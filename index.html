@@ -327,6 +327,8 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 .esim-searchbar input{border:none;background:transparent;outline:none;font-size:13px;flex:1;color:var(--ink);}
 
 .esim-shell{display:grid;grid-template-columns:320px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;min-height:480px;}
+.esim-shell-3col{grid-template-columns:190px 280px 1fr;}
+@media(max-width:920px){.esim-shell-3col{grid-template-columns:1fr;}.esim-shell-3col .inbox-sidebar{max-height:200px;overflow-y:auto;}}
 @media(max-width:760px){.esim-shell{grid-template-columns:1fr;}}
 .esim-list{border-right:1px solid var(--line);overflow-y:auto;max-height:620px;}
 .esim-row{
@@ -526,6 +528,19 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 .handout-card span{font-size:12px;color:var(--ink-soft);}
 
 /* modal-ish name prompt */
+.login-shell{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);padding:20px;
+}
+.login-card{
+  background:#fff;border-radius:16px;padding:40px 36px;max-width:400px;width:100%;text-align:center;
+  box-shadow:0 20px 60px -20px rgba(0,0,0,.5);
+}
+.login-card input{
+  width:100%;padding:12px 14px;border-radius:9px;border:1px solid var(--line);font-size:14px;
+  text-align:center;
+}
+
 .overlay{
   position:fixed;inset:0;background:rgba(22,24,41,.5);display:flex;align-items:center;justify-content:center;
   z-index:100;padding:20px;
@@ -744,7 +759,37 @@ const DAYS = [
       "Escalate potential issues appropriately rather than deciding alone — that's the core of a healthy command hierarchy.",
       "A red flag: a confidential document bypassing legal review before it reaches a client.",
       "Executives should be informed first on critical decisions that affect them."
-    ]}
+    ]},
+
+    {h:"Client Profiling", b:[
+      "A client profile isn't paperwork — it's the reference you build once so you never have to ask the same question twice.",
+      "Every usable profile captures five things: role & organization, personality & communication style, meeting/scheduling rules, travel preferences, and the specific quirks that would trip up someone who didn't know this person."
+    ],
+    example:{label:"Worked profile — Elias Thorne, Managing Owner & CEO, Thorne & Partners Law Group", lines:[
+      "Firm: 450-attorney practice in corporate litigation, white-collar defense, and international arbitration; culture is \"uncompromising excellence.\"",
+      "Communication style: blunt, direct, unemotional feedback. Doesn't micromanage — expects the EA to anticipate, not be told.",
+      "Base: New York City (EST); heavy travel to Washington D.C., London, and Singapore."
+    ]}},
+
+    {h:"Creating a Comprehensive Client Dossier", b:[
+      "A dossier goes deeper than a one-page profile — it's the living reference document that lets anyone run the account with zero ramp-up time.",
+      "Four sections belong in every dossier: Firm & Role (the organizational context), Personal & Family (only what's relevant to supporting them), Standing Instructions (procedural rules that don't change day to day), and Known Quirks (personality-driven patterns written in plain language, not judgment)."
+    ],
+    example:{label:"Dossier excerpt — Elias Thorne", lines:[
+      "Standing Instructions: mandatory 15-minute debrief buffer after every key client or court session; strict Paleo diet, zero dairy — all client dinners vetted in advance; no back-to-back depositions or court hearings.",
+      "Known Quirks: sends rapid, cryptic voice notes around 5:30 AM that need to become a structured agenda by 8:00 AM; needs aisle seats near the front and hates connecting flights.",
+      "Personal & Family: married to Sarah; two children, Leo (8) and Maya (5); one dog, Barnaby."
+    ]}},
+
+    {h:"Setting Up Client Trackers", b:[
+      "A tracker turns a static dossier into a live operational tool — something you update in real time, not a document you write once and forget.",
+      "Start with at least three trackers: Travel Preferences (seat type, airline habits, rebooking rules), Inbox Preferences (format rules, what gets escalated vs. batched), and Meeting Rhythms (non-negotiables, buffer requirements, what can flex under pressure)."
+    ],
+    example:{label:"Tracker entries — Elias Thorne", lines:[
+      "Travel Preferences: aisle seat near the front; no connecting flights; monitor delays proactively and rebook without being asked.",
+      "Inbox Preferences: BLUF only — concise case summary and action point at the top; detailed briefs attached separately, never pasted into the body.",
+      "Meeting Rhythms: no back-to-back depositions or hearings; 15-minute debrief buffer after every key session."
+    ]}}
   ],
   quickChecks:[
     {afterIndex:2, q:"Updating a client on a filing you just made, the tone should be:",
@@ -1381,20 +1426,26 @@ const DAYS = [
    ============================================================ */
 
 const PRACTICE_TOOLS = [
-  {id:"roledrill", icon:"⚖", title:"EA vs. PA Differences Drill", relates:"Day 1",
-   desc:"Rapid-fire drill: decide whether each responsibility sits on the Executive Assistant track or the Personal Assistant track in a law-firm setting."},
-  {id:"triage", icon:"✉", title:"Inbox Management", relates:"Day 4",
-   desc:"A real inbox with drag-to-file labels and sub-labels you build yourself — sort a full law-firm inbox by priority and filing category."},
   {id:"calendar", icon:"◫", title:"Legal Calendar Conflict Resolver", relates:"Day 3",
    desc:"A full attorney's week with overlapping court dates, depositions, and client meetings — drag blocks to new times, recolor them, and resolve every conflict."},
   {id:"financial", icon:"Σ", title:"Trust Account & Billing Sheet", relates:"Day 7",
    desc:"Reconcile a client trust ledger and build a legal services invoice — with live calculations."},
-  {id:"travel", icon:"✈", title:"Case Travel 'What-If' Planner", relates:"Day 2 · 3 · 5",
-   desc:"Build contingency-backed itineraries for an attorney traveling to depositions and hearings in multiple cities."},
-  {id:"calls", icon:"☎", title:"Call Handling Studio", relates:"Day 3 · 4",
-   desc:"Practice inbound gatekeeping for client, opposing counsel, and court calls — plus log prospective-client intake outreach."},
-  {id:"emailsim", icon:"📨", title:"Email Management Simulator", relates:"Day 4",
-   desc:"A mixed inbox of client requests, clutter, and a hidden phishing attempt — draft real replies and get evaluated on tone match, professionalism, and security awareness."}
+  {id:"travel", icon:"✈", title:"Travel Itinerary Planner", relates:"Day 2",
+   desc:"Build a contingency-backed itinerary for Elias Thorne's multi-city travel — depositions, hearings, and the 'Silent Flight' rule."},
+  {id:"calls", icon:"☎", title:"Crisis Call Handling Studio", relates:"Day 8",
+   desc:"Practice gatekeeping under pressure — media inquiries, a suspicious caller requesting sensitive information, and urgent partner check-ins during a live crisis."},
+  {id:"emailsim", icon:"📨", title:"Email Management", relates:"Day 4",
+   desc:"A real inbox — build your own filing system with labels and sub-labels, draft real replies to client emails, and catch a hidden phishing attempt. Evaluated on filing accuracy, tone match, professionalism, and security awareness."},
+  {id:"dossier1", icon:"🗂", title:"Client Dossier & Tracker Builder", relates:"Day 1",
+   desc:"Build a comprehensive client dossier and set up Travel and Inbox Preference trackers for Elias Thorne — sorting real profile facts into the right sections."},
+  {id:"insurance5", icon:"🛡", title:"Insurance & Risk Assessment", relates:"Day 5",
+   desc:"Classify household and personal risks facing the Thorne family into the right category, then match each to the correct risk-management strategy."},
+  {id:"projectcompliance6", icon:"📊", title:"Business Compliance & Project Recovery", relates:"Day 6",
+   desc:"Check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind."},
+  {id:"compliance9", icon:"📋", title:"Compliance & Reputation Tracker", relates:"Day 9",
+   desc:"Spot who's behind on CLE hours, catch unconfirmed event registrants, and draft a professional public response to a negative review."},
+  {id:"socialmedia10", icon:"📱", title:"Social Media Metrics Lab", relates:"Day 10",
+   desc:"Calculate real engagement rates to find the top-performing post, match tone to platform, and work the campaign math on cost-per-lead and ROI."}
 ];
 
 /* ---------- 0. EA vs PA Differences Drill (Day 1) ---------- */
@@ -1422,41 +1473,8 @@ const LABEL_LEGEND = [
   {label:"Case Team / Co-Counsel", color:"#3C4268"},
   {label:"Compliance", color:"#2C7A7B"},
   {label:"Internal / Admin", color:"#7C82A0"},
-  {label:"Marketing / Networking", color:"#A8ADBD"}
-];
-const TRIAGE_EMAILS = [
-  {from:"Opposing Counsel, Whitfield & Marsh", subj:"Settlement offer expires today at 5 PM — response required",
-   meta:"Received 8:14 AM", tier:1, label:"Opposing Counsel", why:"Hard deadline + opposing counsel — immediate escalation."},
-  {from:"Clerk, Superior Court", subj:"Motion hearing rescheduled to tomorrow 9 AM — please confirm attendance",
-   meta:"Received 8:40 AM", tier:1, label:"Court / Filing", why:"Court scheduling change — Tier 1, notify the attorney immediately."},
-  {from:"Client — R. Alvarez (Matter 24-0113)", subj:"I was just served a subpoena — need guidance now",
-   meta:"Received 9:05 AM", tier:1, label:"Client Communication", why:"Time-sensitive legal risk for a current client — immediate escalation."},
-  {from:"Trust Accounting", subj:"Wire authorization needed for settlement disbursement ($42,000)",
-   meta:"Received 9:40 AM", tier:1, label:"Trust & Billing", why:"Financial approval on client trust funds — Tier 1."},
-  {from:"IT Security", subj:"Unusual login attempt detected on your account — verify now",
-   meta:"Received 9:52 AM", tier:1, label:"Compliance", why:"Potential security incident — immediate escalation, same as a confidentiality risk."},
-  {from:"M. Chen, Referred Prospect", subj:"Referred by Atty. Osei — interested in retaining the firm for a contract dispute",
-   meta:"Received 10:05 AM", tier:2, label:"Client Communication", why:"New-client / revenue opportunity — draft a response within 2–4 hrs."},
-  {from:"Co-Counsel, Reyes Law Group", subj:"Discovery document review — need your input by end of week",
-   meta:"Received 10:20 AM", tier:2, label:"Case Team / Co-Counsel", why:"Strategic case-team coordination, not same-day urgent."},
-  {from:"Paralegal Team", subj:"Draft pleading ready for your review before Friday's filing",
-   meta:"Received 10:35 AM", tier:2, label:"Case Team / Co-Counsel", why:"Needed ahead of a deadline, but not an immediate crisis — same-day review."},
-  {from:"Court Reporter Services", subj:"Renewing our annual contract — a few terms to revisit",
-   meta:"Received 10:50 AM", tier:2, label:"Trust & Billing", why:"Vendor negotiation — strategic tier, same-day draft response."},
-  {from:"Vendor — Legal Research Platform", subj:"Your subscription renews in 3 days — confirm seat count",
-   meta:"Received 11:02 AM", tier:2, label:"Trust & Billing", why:"Renewal decision needed soon, but not urgent enough for immediate escalation."},
-  {from:"State Bar Compliance", subj:"CLE reminder: 3 hours remaining before your renewal deadline",
-   meta:"Received 11:10 AM", tier:2, label:"Compliance", why:"Approaching compliance deadline — flag and act within the day."},
-  {from:"Client — D. Osei (Matter 24-0098)", subj:"Can we push our call to Thursday? Something came up.",
-   meta:"Received 11:25 AM", tier:3, label:"Client Communication", why:"Routine scheduling request — no urgency."},
-  {from:"Opposing Counsel, Whitfield & Marsh", subj:"Second document request — no rush, whenever convenient",
-   meta:"Received 11:40 AM", tier:3, label:"Opposing Counsel", why:"Explicitly low-pressure — routine, not urgent despite the sender."},
-  {from:"Bar Association", subj:"Annual dues invoice enclosed",
-   meta:"Received 6:30 AM", tier:3, label:"Trust & Billing", why:"Routine billing item — no urgency."},
-  {from:"Internal Newsletter", subj:"This week at the firm: new hires, case wins, and CLE sessions",
-   meta:"Received 7:00 AM", tier:3, label:"Internal / Admin", why:"Informational only — routine, no action needed."},
-  {from:"L. Farrow", subj:"Great meeting you at the legal conference — let's stay in touch!",
-   meta:"Received 6:48 AM", tier:3, label:"Marketing / Networking", why:"Low-stakes networking follow-up — routine."}
+  {label:"Marketing / Networking", color:"#A8ADBD"},
+  {label:"Security Alert", color:"#4A2545"}
 ];
 
 /* ---------- 2. Legal Calendar Conflict Resolver (week view) ---------- */
@@ -1627,27 +1645,27 @@ const COLD_LEADS = [
    No tier labels anywhere in this data — the trainee must judge
    each message on its own and decide what to do with it. */
 const EMAIL_SIM_MESSAGES = [
-  {type:"actionable", from:"R. Alvarez, Client — Matter 24-0113", subj:"Status update requested — Contract Review", meta:"9:02 AM",
+  {type:"actionable", from:"R. Alvarez, Client — Matter 24-0113", subj:"Status update requested — Contract Review", meta:"9:02 AM", correctLabel:"Client Communication",
    body:"Ms. Chen,\n\nCould you please provide a status update on the contract review for Matter 24-0113? We are approaching our internal deadline and require confirmation of next steps.\n\nRegards,\nR. Alvarez"},
-  {type:"clutter", from:"LegalTech Weekly", subj:"5 AI Tools Every Law Firm Should Know About", meta:"7:15 AM",
+  {type:"clutter", from:"LegalTech Weekly", subj:"5 AI Tools Every Law Firm Should Know About", meta:"7:15 AM", correctLabel:"Marketing / Networking",
    body:"This week's roundup of legal technology news and trends, curated for busy professionals. Read the top 5 tools changing how firms manage discovery..."},
-  {type:"phishing", from:"IT Security Team <security@lsh-support-verify.com>", subj:"URGENT: Your Mailbox Storage Is Full", meta:"8:47 AM",
+  {type:"phishing", from:"IT Security Team <security@lsh-support-verify.com>", subj:"URGENT: Your Mailbox Storage Is Full", meta:"8:47 AM", correctLabel:"Security Alert",
    body:"Your mailbox has exceeded its storage limit. Click below immediately to verify your account, or you will lose access to your email within 24 hours.\n\n{{LINK:Verify My Account Now}}\n\nIT Security Team",
    redFlags:["Sender domain doesn't match the real company domain","Manufactured urgency (a 24-hour countdown)","Generic, impersonal greeting","Pressures you to click a link immediately instead of verifying through a known channel"]},
-  {type:"actionable", from:"T. Whitfield, Client", subj:"quick q about our meeting!!", meta:"9:20 AM",
+  {type:"actionable", from:"T. Whitfield, Client", subj:"quick q about our meeting!!", meta:"9:20 AM", correctLabel:"Client Communication",
    body:"hi!! hope you're doing well :) quick question — any chance we could push our call from thursday to friday instead? also totally random but do you guys have a preferred format for sending over documents, pdf or word doc? no rush at all just wondering! thanks so much!!"},
-  {type:"clutter", from:"Continuing Education Network", subj:"50% Off All CLE Webinars This Month Only!", meta:"6:30 AM",
+  {type:"clutter", from:"Continuing Education Network", subj:"50% Off All CLE Webinars This Month Only!", meta:"6:30 AM", correctLabel:"Marketing / Networking",
    body:"Don't miss our biggest sale of the year on continuing legal education courses. Browse our full catalog and register before the offer ends Friday."},
-  {type:"actionable", from:"D. Osei, Client — Matter 24-0098", subj:"Why haven't I received an update?", meta:"9:41 AM",
+  {type:"actionable", from:"D. Osei, Client — Matter 24-0098", subj:"Why haven't I received an update?", meta:"9:41 AM", correctLabel:"Client Communication",
    body:"This is the third time I'm reaching out. I was told two weeks ago that the invoice discrepancy would be resolved and I still have not heard anything. I need this addressed today. This is unacceptable."},
-  {type:"clutter", from:"LinkedIn", subj:"You have 12 new notifications", meta:"6:05 AM",
+  {type:"clutter", from:"LinkedIn", subj:"You have 12 new notifications", meta:"6:05 AM", correctLabel:"Marketing / Networking",
    body:"See who's viewed your profile, plus new posts from your network this week."},
-  {type:"phishing", from:"DocuSign Notifications <no-reply@docusign-secure-verify.net>", subj:"Action Required: Confirm Wire Transfer Details", meta:"9:55 AM",
+  {type:"phishing", from:"DocuSign Notifications <no-reply@docusign-secure-verify.net>", subj:"Action Required: Confirm Wire Transfer Details", meta:"9:55 AM", correctLabel:"Security Alert",
    body:"A pending wire transfer requires verification before it can be processed. Please reply to this email with the account number and routing number on file to confirm the transaction before it is automatically canceled.",
    redFlags:["Legitimate parties never request account or routing numbers by email reply","Suspicious, non-official sender domain","Creates urgency around a financial transaction to short-circuit normal verification"]},
-  {type:"actionable", from:"M. Chen, Referred Prospect", subj:"Documents needed for contract dispute intake", meta:"10:05 AM",
+  {type:"actionable", from:"M. Chen, Referred Prospect", subj:"Documents needed for contract dispute intake", meta:"10:05 AM", correctLabel:"Client Communication",
    body:"Hello,\n\nFollowing our referral conversation, here is what I believe you'll need to get started:\n1. Signed copy of the original vendor agreement (2022)\n2. Email correspondence regarding the breach (attached separately)\n3. Invoice history for the last 12 months\n4. A list of all parties involved\n\nPlease let me know if anything else is required before we schedule an initial consultation.\n\nBest,\nM. Chen"},
-  {type:"clutter", from:"Office Events Committee", subj:"Sign up for the Fall Potluck!", meta:"7:50 AM",
+  {type:"clutter", from:"Office Events Committee", subj:"Sign up for the Fall Potluck!", meta:"7:50 AM", correctLabel:"Internal / Admin",
    body:"It's that time of year again — please sign up for what dish you'll bring to this year's fall potluck. Sign-up sheet is on the shared drive."}
 ];
 const HANDOUTS = [
@@ -1662,6 +1680,131 @@ const HANDOUTS = [
   {day:9, title:"CLE & Membership Renewal Tracker", icon:"🎓"},
   {day:10, title:"Weekly Social Content Calendar", icon:"📱"}
 ];
+
+/* ---------- Day 9: Compliance & Reputation Tracker ---------- */
+const CLE_ROSTER = [
+  {name:"R. Alvarez", completed:12, required:12, deadline:"Dec 31"},
+  {name:"D. Osei", completed:9, required:12, deadline:"Dec 31"},
+  {name:"M. Chen", completed:12, required:12, deadline:"Jun 30"},
+  {name:"T. Whitfield", completed:6, required:12, deadline:"Dec 31"},
+  {name:"L. Farrow", completed:15, required:12, deadline:"Dec 31"},
+  {name:"J. Reyes", completed:11, required:12, deadline:"Dec 31"}
+]; // correct status: completed >= required -> "On Track", else "Needs Follow-up"
+
+const EVENT_REGISTRANTS = [
+  {name:"A. Kim", confirmed:true}, {name:"B. Lopez", confirmed:false},
+  {name:"C. Carter", confirmed:true}, {name:"D. Davis", confirmed:false},
+  {name:"E. Wong", confirmed:true}, {name:"F. Martinez", confirmed:true},
+  {name:"G. Singh", confirmed:false}, {name:"H. Brown", confirmed:true},
+  {name:"I. Clark", confirmed:true}, {name:"J. Patel", confirmed:false}
+]; // correct action: not confirmed -> needs follow-up
+
+const NEGATIVE_REVIEW = {
+  author:"Former Client", stars:2,
+  text:"I waited nearly three weeks for a callback about my case and no one from the firm reached out. Very disappointed in the lack of communication — I had to keep calling just to get a status update."
+};
+
+/* ---------- Day 10: Social Media Metrics Lab ---------- */
+const SOCIAL_POSTS = [
+  {label:"Instagram — Post A", likes:120, comments:15, shares:10, followers:4000},
+  {label:"Instagram — Post B", likes:300, comments:20, shares:5, followers:10000},
+  {label:"LinkedIn — Post C", likes:45, comments:30, shares:25, followers:1200},
+  {label:"LinkedIn — Post D", likes:500, comments:10, shares:2, followers:25000}
+]; // correct best performer by engagement rate: Post C
+
+const PLATFORM_VERSIONS = [
+  {id:"A", text:"🎉 WE WON! Best Regional Law Firm 2026! Huge thanks to our incredible clients & team 🙌 #LegalExcellence #ProudMoment #TeamWin", platform:"Instagram"},
+  {id:"B", text:"We're honored to share that our firm has been recognized as the Best Regional Law Firm for 2026. This achievement reflects the dedication of our attorneys and staff, and the trust our clients place in us every day.", platform:"LinkedIn"}
+];
+
+const CAMPAIGN_DATA = {spend:500, leads:50, productPrice:20};
+// Correct: Cost per Lead = 500/50 = $10. Revenue = 50*20 = $1,000. ROI = (1000-500)/500*100 = 100%
+
+/* ============================================================
+   DAY 1: CLIENT DOSSIER & TRACKER BUILDER
+   Client: Elias Thorne, Managing Owner & CEO, Thorne & Partners
+   Law Group. Facts drawn from his executive profile.
+   ============================================================ */
+const DOSSIER_SECTIONS = ["Firm & Role", "Personal & Family", "Standing Instructions", "Known Quirks"];
+const DOSSIER_FACTS = [
+  {text:"Managing Owner & CEO of Thorne & Partners Law Group, a 450-attorney firm handling corporate litigation, white-collar defense, and international arbitration.", section:"Firm & Role"},
+  {text:"Firm culture is described internally as \"uncompromising excellence\" — strict confidentiality and meticulous attention to detail.", section:"Firm & Role"},
+  {text:"Personal brand internally is \"The Legal Strategist\" — sharp intellect, evidence-driven, fiercely protective of trial prep and confidentiality.", section:"Firm & Role"},
+  {text:"Married to Sarah; two children, Leo (8) and Maya (5); one dog, Barnaby.", section:"Personal & Family"},
+  {text:"Based in New York City (Eastern time); travels heavily to Washington D.C., London, and Singapore.", section:"Personal & Family"},
+  {text:"Feedback style is blunt, direct, and unemotional — he won't micromanage, but expects the EA to anticipate rather than be told.", section:"Personal & Family"},
+  {text:"Requires a mandatory 15-minute debrief buffer after every key client or court session.", section:"Standing Instructions"},
+  {text:"Strict Paleo diet, zero dairy — all client dinners must be vetted with the venue in advance.", section:"Standing Instructions"},
+  {text:"No back-to-back depositions or court hearings are ever allowed on the calendar.", section:"Standing Instructions"},
+  {text:"Aggressively filters media inquiries, cold client calls, and non-essential partner check-ins.", section:"Standing Instructions"},
+  {text:"Sends rapid, cryptic voice notes around 5:30 AM that need to become a structured agenda by 8:00 AM.", section:"Known Quirks"},
+  {text:"Needs aisle seats near the front of the plane and hates connecting flights.", section:"Known Quirks"}
+];
+
+const TRACKER_SECTIONS = ["Travel Preferences", "Inbox Preferences", "Meeting Rhythms"];
+const TRACKER_FACTS = [
+  {text:"Needs aisle seats near the front of the plane.", section:"Travel Preferences"},
+  {text:"Hates connecting flights — book direct whenever possible.", section:"Travel Preferences"},
+  {text:"Monitor flight delays proactively and rebook without being asked.", section:"Travel Preferences"},
+  {text:"Only reads concise case summaries and action points at the top of an email (BLUF).", section:"Inbox Preferences"},
+  {text:"Detailed briefs must be attached separately — never pasted into the body.", section:"Inbox Preferences"},
+  {text:"The 5:30 AM voice notes need to become a structured, prioritized agenda by 8:00 AM.", section:"Inbox Preferences"},
+  {text:"No back-to-back depositions or court hearings.", section:"Meeting Rhythms"},
+  {text:"Mandatory 15-minute debrief buffer after every key client or court session.", section:"Meeting Rhythms"},
+  {text:"Emergency court filings can disrupt the daily agenda — know which internal partner meetings can be rescheduled instantly.", section:"Meeting Rhythms"}
+];
+
+/* ============================================================
+   DAY 5: INSURANCE & RISK ASSESSMENT
+   Household/personal risk scenarios facing the Thorne family.
+   ============================================================ */
+const RISK_CATEGORIES = ["Financial Risk", "Legal & Liability Risk", "Operational Risk", "Reputational Risk"];
+const RISK_SCENARIOS = [
+  {text:"The umbrella insurance policy on the family's NYC apartment auto-renews Friday, but no one has confirmed the payment went through.", category:"Financial Risk"},
+  {text:"The lease on the family's London townhouse renews next month, and a new clause hasn't been reviewed yet.", category:"Legal & Liability Risk"},
+  {text:"Leo's school pickup schedule conflicts with a last-minute Singapore trip that just landed on the calendar.", category:"Operational Risk"},
+  {text:"A tabloid reporter has contacted Sarah directly asking for comment on one of Elias's active cases.", category:"Reputational Risk"},
+  {text:"The nanny's contract renewal is overdue and the current agreement has technically lapsed.", category:"Legal & Liability Risk"},
+  {text:"Barnaby's vet bills this quarter have exceeded the pet insurance policy's annual cap.", category:"Financial Risk"},
+  {text:"A last-minute venue change for a client dinner means the Paleo/dairy-free requirements haven't been re-confirmed.", category:"Operational Risk"},
+  {text:"An old photo of Elias at a competitor's event has resurfaced online right before a major trial.", category:"Reputational Risk"}
+];
+
+const RISK_STRATEGIES = ["Avoidance", "Reduction", "Transfer", "Retention"];
+const RISK_STRATEGY_SCENARIOS = [
+  {text:"The firm purchases a directors & officers insurance policy to cover Elias against personal liability in his role as Managing Owner.", strategy:"Transfer"},
+  {text:"Given an active trial, Elias declines an invitation to be photographed at a high-profile industry event that could invite media scrutiny.", strategy:"Avoidance"},
+  {text:"A home security system with cameras and monitored alarms is installed at the Thorne residence.", strategy:"Reduction"},
+  {text:"A minor fender-bender on the family car is paid for out of pocket rather than filing a claim that could raise premiums.", strategy:"Retention"}
+];
+
+/* ============================================================
+   DAY 6: BUSINESS COMPLIANCE & PROJECT RECOVERY
+   Thorne & Partners' multi-jurisdiction footprint (NYC, DC,
+   London, Singapore) and an active trial-team recovery scenario.
+   ============================================================ */
+const FIRM_LICENSES = [
+  {name:"New York State Bar — Firm Registration", expires:"Mar 2027", status:"Current"},
+  {name:"D.C. Bar — Foreign Legal Consultant Registration", expires:"Nov 2026", status:"Renew Soon"},
+  {name:"UK Solicitors Regulation Authority — London Office License", expires:"Jan 2027", status:"Current"},
+  {name:"Singapore Legal Services Regulatory Authority — Foreign Law Practice License", expires:"Oct 2026", status:"Renew Soon"},
+  {name:"International Arbitration Institute — Membership", expires:"Aug 2028", status:"Current"},
+  {name:"NY Department of State — Corporate Registration", expires:"Sep 2026", status:"Renew Soon"}
+]; // "Renew Soon" = expires within ~60 days of the training's reference date
+
+const FIRM_KPIS = [
+  {category:"Executive Productivity", kpi:"Calendar Accuracy Rate", target:"≥ 98%", actual:"99%", correctStatus:"On Target"},
+  {category:"Executive Productivity", kpi:"Executive Inbox Response Time", target:"≤ 4 hrs", actual:"6.5 hrs", correctStatus:"Off Target"},
+  {category:"Client Service", kpi:"Avg. Client Response Time", target:"≤ 2 hrs", actual:"1.5 hrs", correctStatus:"On Target"},
+  {category:"Client Service", kpi:"Client Retention Rate", target:"≥ 90%", actual:"88%", correctStatus:"Off Target"},
+  {category:"Operational Efficiency", kpi:"Task Completion Rate", target:"≥ 95%", actual:"97%", correctStatus:"On Target"},
+  {category:"Legal Compliance", kpi:"Filing Deadline Adherence", target:"100%", actual:"100%", correctStatus:"On Target"}
+];
+
+const TRIAL_RECOVERY_SCENARIO = {
+  matter:"Meridian Dynamics — International Arbitration",
+  text:"The discovery review team on the Meridian Dynamics arbitration is two weeks behind schedule, and the hearing date hasn't moved. Elias needs to know what happened and what you're doing about it."
+};
 
 /* ============================================================
    LSH EA/PA UPSKILL PROGRAM — APP LOGIC (part 1: core + dashboard)
@@ -1930,14 +2073,18 @@ async function promptName(){
       <h3>Your name</h3>
       <p>Used on your Training Record PDF and to save your local progress.</p>
       <input id="nameInput" type="text" placeholder="e.g. Jamie Santos" value="${esc(state.traineeName)}">
-      <div class="row">
-        <button class="btn btn-ghost" id="cancelName">Cancel</button>
-        <button class="btn btn-primary" id="saveName">Save</button>
+      <div class="row" style="justify-content:space-between;">
+        <button class="btn btn-ghost" id="logoutBtn" style="color:var(--danger);">Log Out</button>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-ghost" id="cancelName">Cancel</button>
+          <button class="btn btn-primary" id="saveName">Save</button>
+        </div>
       </div>
     </div>`;
   document.body.appendChild(overlay);
   document.getElementById("nameInput").focus();
   document.getElementById("cancelName").onclick=()=>overlay.remove();
+  document.getElementById("logoutBtn").onclick=()=>{ overlay.remove(); logout(); };
   document.getElementById("saveName").onclick=async ()=>{
     const v=document.getElementById("nameInput").value.trim();
     state.traineeName=v;
@@ -1958,6 +2105,11 @@ window.promptName = promptName;
 /* ---------- main render dispatcher ---------- */
 function render(){
   const app=document.getElementById("app");
+  if(state.view==="login"){
+    app.innerHTML = renderLogin();
+    afterRender();
+    return;
+  }
   let body="";
   if(state.view==="dashboard") body=renderDashboard();
   else if(state.view==="day") body=renderDay(state.dayId);
@@ -1975,11 +2127,61 @@ function renderFooter(){
 function afterRender(){
   if(state.view==="tool") initTool(state.toolId);
   if(state.view==="admin" && state.isAdmin && !state.adminData && !state.adminLoading) loadAdminLedger();
+  if(state.view==="login"){
+    const input = document.getElementById("loginNameInput");
+    if(input) input.focus();
+  }
 }
+
+/* ---------- login gate (for monitoring — see honesty note on Admin) ---------- */
+function renderLogin(){
+  return `
+    <div class="login-shell">
+      <div class="login-card">
+        <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px;height:auto;margin-bottom:22px;">
+        <h1 style="font-size:22px;color:var(--navy);margin:0 0 8px;">Welcome to the Upskill Program</h1>
+        <p style="font-size:13.5px;color:var(--ink-soft);margin:0 0 22px;">Enter your name to begin. This identifies your progress on the training record — no password needed.</p>
+        <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') submitLogin();">
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;margin-top:14px;" onclick="submitLogin()">Begin Training</button>
+        <div style="margin-top:20px;font-size:12px;color:var(--ink-soft);">Administrator? <a href="#" onclick="event.preventDefault(); openAdmin();" style="color:var(--navy);font-weight:600;">Sign in here</a> instead.</div>
+      </div>
+    </div>`;
+}
+async function submitLogin(){
+  const v = document.getElementById("loginNameInput").value.trim();
+  if(!v){ toast("Enter your name to continue."); return; }
+  state.traineeName = v;
+  await storeSet("trainee-name", v);
+  if(!state.traineeId){
+    state.traineeId = generateTraineeId(v);
+    await storeSet("trainee-id", state.traineeId);
+  }
+  syncToLedger();
+  state.view = "dashboard";
+  render();
+}
+window.submitLogin = submitLogin;
+
+async function logout(){
+  state.traineeName = "";
+  state.traineeId = "";
+  state.progress = {};
+  state.practiceProgress = {};
+  state.notes = [];
+  await storeSet("trainee-name", "");
+  await storeSet("trainee-id", "");
+  await storeSet("day-progress", {});
+  await storeSet("practice-progress", {});
+  await storeSet("notes", []);
+  state.view = "login";
+  render();
+}
+window.logout = logout;
 
 /* ---------- boot ---------- */
 (async function init(){
   await loadAll();
+  if(!state.traineeName) state.view = "login";
   render();
 })();
 
@@ -2058,6 +2260,7 @@ function renderDay(id){
       <p class="eyebrow">Day ${d.id} of 10</p>
       <h1>${esc(d.title)}</h1>
       <p>${esc(d.objective)}</p>
+      <button class="btn btn-ghost btn-sm" style="margin-top:12px;" onclick="downloadDayPdf(${d.id})">⬇ Download Day Summary (PDF)</button>
     </div>
 
     ${d.taskOverview?renderTaskOverview(d.taskOverview):""}
@@ -2289,13 +2492,16 @@ function renderTool(id){
 function initTool(id){
   const body = document.getElementById("toolBody");
   if(!body) return;
-  if(id==="roledrill") initRoleDrill(body);
-  else if(id==="triage") initTriage(body);
-  else if(id==="calendar") initCalendar(body);
+  if(id==="calendar") initCalendar(body);
   else if(id==="financial") initFinancial(body);
   else if(id==="travel") initTravel(body);
   else if(id==="calls") initCalls(body);
   else if(id==="emailsim") initEmailSim(body);
+  else if(id==="compliance9") initCompliance9(body);
+  else if(id==="socialmedia10") initSocial10(body);
+  else if(id==="dossier1") initDossier1(body);
+  else if(id==="insurance5") initInsurance5(body);
+  else if(id==="projectcompliance6") initProjectCompliance6(body);
 }
 
 async function bumpPracticeProgress(toolId, score){
@@ -2373,256 +2579,6 @@ async function downloadDrillPdf(){
   buildAndSavePdf("LSH EA / PA Upskill Program", "EA vs. PA Differences Drill — Results", lines, "LSH_Drill_Results");
 }
 window.downloadDrillPdf = downloadDrillPdf;
-
-/* ============================================================
-   1. INBOX MANAGEMENT — a real inbox with labels, sub-labels,
-      and drag-to-file (plus a "Move to" dropdown as a fallback)
-   ============================================================ */
-async function initTriage(body){
-  toolState.sweepStart = Date.now();
-  toolState.addingUnder = null; // null = not adding; "ROOT" or a labelId = where the inline add-label input shows
-
-  toolState.labels = (await storeGet("inbox-labels")) || LABEL_LEGEND.map((l,i)=>({id:"default_"+i, name:l.label, parentId:null, color:l.color}));
-  toolState.filing = (await storeGet("inbox-filing")) || {};
-  toolState.triage = (await storeGet("inbox-tiers")) || {};
-  toolState.selectedFolder = null; // null = Inbox (unfiled)
-
-  renderInboxBody(body);
-  toolState.sweepTimer = setInterval(()=>{
-    const el = document.getElementById("sweepClock");
-    if(!el){ clearInterval(toolState.sweepTimer); return; }
-    const secs = Math.floor((Date.now()-toolState.sweepStart)/1000);
-    el.textContent = `${Math.floor(secs/60)}:${String(secs%60).padStart(2,"0")}`;
-  }, 1000);
-}
-
-function findLabel(id){ return toolState.labels.find(l=>l.id===id); }
-function labelChildren(parentId){ return toolState.labels.filter(l=>l.parentId===parentId); }
-function labelChainNames(id){
-  const names=[]; let cur=findLabel(id);
-  while(cur){ names.push(cur.name); cur = cur.parentId ? findLabel(cur.parentId) : null; }
-  return names;
-}
-function countInFolder(id){ return Object.values(toolState.filing).filter(v=>v===id).length; }
-function countUnfiled(){
-  return TRIAGE_EMAILS.length - Object.keys(toolState.filing).filter(k=>toolState.filing[k]!=null).length;
-}
-function flattenLabelsForSelect(parentId=null, depth=0, out=[]){
-  labelChildren(parentId).forEach(l=>{
-    out.push({id:l.id, label:"— ".repeat(depth)+l.name});
-    flattenLabelsForSelect(l.id, depth+1, out);
-  });
-  return out;
-}
-
-function renderInboxBody(body){
-  const flatOptions = flattenLabelsForSelect();
-  body.innerHTML = `
-    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">A real inbox: drag any message into a label to file it (or use the "Move to" menu). Create your own labels and sub-labels to build a filing system that makes sense to you — the categories below reflect LSH's baseline filing convention.</p>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <span class="sweep-timer">⏱ Sweep started — <span id="sweepClock">0:00</span> elapsed</span>
-      <span class="score-tag">${TRIAGE_EMAILS.length} messages</span>
-    </div>
-    <div class="inbox-shell">
-      <div class="inbox-sidebar" ondragover="event.preventDefault()" ondrop="folderDrop(event, null)">
-        <div class="folder-item ${toolState.selectedFolder===null?'active':''}" onclick="selectFolder(null)">
-          <span class="fname">📥 <span>Inbox</span></span>
-          <span class="fcount">${countUnfiled()}</span>
-        </div>
-        <div class="sidebar-section-lbl">Labels</div>
-        ${labelChildren(null).map(l=>renderFolderNode(l)).join("")}
-        ${toolState.addingUnder==="ROOT" ? renderAddLabelRow(null) : `<button class="add-label-btn" onclick="startAddLabel('ROOT')">+ Add Label</button>`}
-      </div>
-      <div class="inbox-main">
-        <div class="inbox-main-head">
-          <h4>${toolState.selectedFolder===null ? "Inbox (unfiled)" : esc(findLabel(toolState.selectedFolder)?.name||"Folder")}</h4>
-        </div>
-        ${renderEmailList()}
-      </div>
-    </div>
-    <button class="btn btn-primary" style="margin-top:16px;" onclick="submitInbox()">Finish Sweep &amp; Check</button>
-    <div id="triageResult"></div>
-  `;
-}
-
-function renderFolderNode(l){
-  const kids = labelChildren(l.id);
-  return `
-    <div>
-      <div class="folder-item ${toolState.selectedFolder===l.id?'active':''}" id="folderRow_${l.id}"
-           onclick="selectFolder('${l.id}')"
-           ondragover="event.preventDefault(); event.currentTarget.classList.add('dragover')"
-           ondragleave="event.currentTarget.classList.remove('dragover')"
-           ondrop="event.currentTarget.classList.remove('dragover'); folderDrop(event,'${l.id}')">
-        <span class="fname">
-          <input type="color" class="fcolor-input" value="${l.color}" onclick="event.stopPropagation()" onchange="changeLabelColor('${l.id}', this.value)">
-          <span>${esc(l.name)}</span>
-        </span>
-        <span style="display:flex;align-items:center;gap:4px;">
-          <span class="fcount">${countInFolder(l.id)}</span>
-          <button class="faddbtn" onclick="event.stopPropagation(); startAddLabel('${l.id}')" title="Add sub-label">+</button>
-        </span>
-      </div>
-      <div class="folder-children">
-        ${kids.map(k=>renderFolderNode(k)).join("")}
-        ${toolState.addingUnder===l.id ? renderAddLabelRow(l.id) : ""}
-      </div>
-    </div>`;
-}
-function renderAddLabelRow(parentId){
-  const pid = parentId===null ? "null" : `'${parentId}'`;
-  return `
-    <div class="add-label-row">
-      <input type="text" id="newLabelInput" placeholder="Label name" autofocus
-             onkeydown="if(event.key==='Enter') confirmAddLabel(${pid}); if(event.key==='Escape') cancelAddLabel();">
-      <button class="btn btn-sm btn-navy" onclick="confirmAddLabel(${pid})">Add</button>
-    </div>`;
-}
-function startAddLabel(parentId){
-  toolState.addingUnder = parentId;
-  renderInboxBody(document.getElementById("toolBody"));
-  const input = document.getElementById("newLabelInput");
-  if(input) input.focus();
-}
-window.startAddLabel = startAddLabel;
-function cancelAddLabel(){
-  toolState.addingUnder = null;
-  renderInboxBody(document.getElementById("toolBody"));
-}
-window.cancelAddLabel = cancelAddLabel;
-async function confirmAddLabel(parentId){
-  const input = document.getElementById("newLabelInput");
-  const name = input ? input.value.trim() : "";
-  if(!name){ toast("Enter a label name first."); return; }
-  const id = "lbl_"+Date.now()+"_"+Math.floor(Math.random()*1000);
-  const color = COLOR_PRESETS[toolState.labels.length % COLOR_PRESETS.length];
-  toolState.labels.push({id, name, parentId: parentId==="ROOT"?null:parentId, color});
-  toolState.addingUnder = null;
-  await storeSet("inbox-labels", toolState.labels);
-  renderInboxBody(document.getElementById("toolBody"));
-}
-window.confirmAddLabel = confirmAddLabel;
-async function changeLabelColor(id, color){
-  const l = findLabel(id);
-  if(l){ l.color = color; await storeSet("inbox-labels", toolState.labels); }
-  renderInboxBody(document.getElementById("toolBody"));
-}
-window.changeLabelColor = changeLabelColor;
-
-function selectFolder(id){
-  toolState.selectedFolder = id;
-  renderInboxBody(document.getElementById("toolBody"));
-}
-window.selectFolder = selectFolder;
-
-function renderEmailList(){
-  const idxs = TRIAGE_EMAILS.map((_,i)=>i).filter(i=>{
-    const f = toolState.filing[i];
-    return toolState.selectedFolder===null ? (f==null) : f===toolState.selectedFolder;
-  });
-  if(!idxs.length) return `<div class="empty-folder">No messages here yet${toolState.selectedFolder===null?" — nice work filing everything!":". Drag a message here, or use its \"Move to\" menu."}</div>`;
-  return idxs.map(i=>{
-    const m = TRIAGE_EMAILS[i];
-    const filedId = toolState.filing[i];
-    const filedLabel = filedId ? findLabel(filedId) : null;
-    return `
-    <div class="mail-row" id="mailRow${i}" draggable="true" ondragstart="mailDragStart(event,${i})">
-      <div>
-        <div class="subj">${esc(m.subj)}</div>
-        <div class="meta">${esc(m.from)} · ${esc(m.meta)}</div>
-        ${filedLabel?`<span class="chip" style="background:${filedLabel.color};">${esc(filedLabel.name)}</span>`:""}
-      </div>
-      <div>
-        <select onchange="setTriage(${i}, this.value)">
-          <option value="">Tier&hellip;</option>
-          <option value="1" ${toolState.triage[i]===1?"selected":""}>Tier 1 — Immediate</option>
-          <option value="2" ${toolState.triage[i]===2?"selected":""}>Tier 2 — Strategic</option>
-          <option value="3" ${toolState.triage[i]===3?"selected":""}>Routine</option>
-        </select>
-        <select onchange="moveEmailTo(${i}, this.value)" style="margin-top:6px;">
-          <option value="">Move to&hellip;</option>
-          <option value="__inbox__">Inbox (unfiled)</option>
-          ${flattenLabelsForSelect().map(o=>`<option value="${o.id}" ${filedId===o.id?"selected":""}>${esc(o.label)}</option>`).join("")}
-        </select>
-      </div>
-    </div>`;
-  }).join("");
-}
-function mailDragStart(ev, idx){ ev.dataTransfer.setData("text/plain", String(idx)); }
-window.mailDragStart = mailDragStart;
-async function folderDrop(ev, labelId){
-  ev.preventDefault();
-  const idx = Number(ev.dataTransfer.getData("text/plain"));
-  if(Number.isNaN(idx)) return;
-  toolState.filing[idx] = labelId;
-  await storeSet("inbox-filing", toolState.filing);
-  renderInboxBody(document.getElementById("toolBody"));
-}
-window.folderDrop = folderDrop;
-async function moveEmailTo(idx, value){
-  toolState.filing[idx] = (value==="__inbox__" || value==="") ? null : value;
-  await storeSet("inbox-filing", toolState.filing);
-  renderInboxBody(document.getElementById("toolBody"));
-}
-window.moveEmailTo = moveEmailTo;
-async function setTriage(i,v){
-  toolState.triage[i] = v ? Number(v) : undefined;
-  await storeSet("inbox-tiers", toolState.triage);
-}
-window.setTriage = setTriage;
-
-async function submitInbox(){
-  clearInterval(toolState.sweepTimer);
-  const answeredTier = TRIAGE_EMAILS.filter((_,i)=>toolState.triage[i]).length;
-  const answeredFiled = TRIAGE_EMAILS.filter((_,i)=>toolState.filing[i]!=null).length;
-  if(answeredTier<TRIAGE_EMAILS.length || answeredFiled<TRIAGE_EMAILS.length){
-    toast(`Assign a tier and file all ${TRIAGE_EMAILS.length} messages first (${answeredTier} tiered, ${answeredFiled} filed).`);
-    return;
-  }
-  let tierCorrect=0, labelCorrect=0;
-  TRIAGE_EMAILS.forEach((m,i)=>{
-    if(toolState.triage[i]===m.tier) tierCorrect++;
-    const chain = toolState.filing[i] ? labelChainNames(toolState.filing[i]) : [];
-    if(chain.includes(m.label)) labelCorrect++;
-  });
-  const score = Math.round(((tierCorrect+labelCorrect)/(TRIAGE_EMAILS.length*2))*100);
-  const elapsed = Math.floor((Date.now()-toolState.sweepStart)/1000);
-  toolState.triageReport = {score, tierCorrect, labelCorrect, elapsed};
-  document.getElementById("triageResult").innerHTML = `
-    <div class="card" style="padding:18px 20px;margin-top:16px;">
-      <b style="color:var(--navy);">Sweep complete in ${Math.floor(elapsed/60)}:${String(elapsed%60).padStart(2,"0")} — Tier ${tierCorrect}/${TRIAGE_EMAILS.length} · Filing ${labelCorrect}/${TRIAGE_EMAILS.length} (${score}% overall)</b>
-      <div style="margin-top:10px;display:grid;gap:6px;">
-        ${TRIAGE_EMAILS.map(m=>`<div style="font-size:12.5px;color:var(--ink-soft);"><b style="color:var(--ink);">Tier ${m.tier} · ${esc(m.label)}:</b> ${esc(m.subj)} — ${esc(m.why)}</div>`).join("")}
-      </div>
-      <button class="btn btn-navy btn-sm" style="margin-top:12px;" onclick="downloadTriagePdf()">⬇ Download My Work</button>
-    </div>`;
-  await bumpPracticeProgress("triage", score);
-  if(score===100) burstConfetti();
-}
-window.submitInbox = submitInbox;
-async function downloadTriagePdf(){
-  await ensureTraineeName();
-  const r = toolState.triageReport || {score:0,tierCorrect:0,labelCorrect:0,elapsed:0};
-  const lines = [`## Inbox Management — Results`,
-    `Tier accuracy: ${r.tierCorrect}/${TRIAGE_EMAILS.length}  ·  Filing accuracy: ${r.labelCorrect}/${TRIAGE_EMAILS.length}  ·  Overall: ${r.score}%`,
-    `Sweep time: ${Math.floor(r.elapsed/60)}:${String(r.elapsed%60).padStart(2,"0")}`, "---",
-    "## Your Filing System"];
-  labelChildren(null).forEach(l=>{
-    lines.push(`${l.name} (${countInFolder(l.id)} filed)`);
-    labelChildren(l.id).forEach(k=>lines.push(`   └ ${k.name} (${countInFolder(k.id)} filed)`));
-  });
-  lines.push("---", "## Message-by-Message");
-  TRIAGE_EMAILS.forEach((m,i)=>{
-    const yourTier = toolState.triage[i] || "—";
-    const filedId = toolState.filing[i];
-    const yourFiling = filedId ? labelChainNames(filedId).reverse().join(" > ") : "Unfiled";
-    lines.push(`${m.subj}`);
-    lines.push(`   From: ${m.from}`);
-    lines.push(`   Your tier: ${yourTier}  (correct: ${m.tier})   Your filing: ${yourFiling}  (correct category: ${m.label})`);
-  });
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Inbox Management — Results", lines, "LSH_Inbox_Management");
-}
-window.downloadTriagePdf = downloadTriagePdf;
 
 /* ============================================================
    2. LEGAL CALENDAR CONFLICT RESOLVER (week view, draggable, colorable)
@@ -3358,6 +3314,34 @@ async function downloadRecordPdf(){
 }
 window.downloadRecordPdf = downloadRecordPdf;
 
+async function downloadDayPdf(dayId){
+  await ensureTraineeName();
+  const d = DAYS.find(x=>x.id===dayId);
+  const prog = state.progress[dayId];
+  const lines = [`## Day ${d.id} — ${d.title}`, d.objective, "---", "## Lessons"];
+  d.lessons.forEach(l=>{
+    lines.push(`## ${l.h}`);
+    l.b.forEach(b=>lines.push(`   • ${b}`));
+    if(l.callout) lines.push(`   Note: ${l.callout.text}`);
+    if(l.example){
+      lines.push(`   Example — ${l.example.label||""}`);
+      l.example.lines.forEach(x=>lines.push(`     ${x}`));
+    }
+    if(l.table){
+      lines.push(`   ${l.table.headers.join(" | ")}`);
+      l.table.rows.forEach(r=>lines.push(`   ${r.join(" | ")}`));
+    }
+  });
+  lines.push("---", "## Knowledge Check");
+  if(prog){
+    lines.push(`Score: ${prog.score}%  (${prog.done?"Passed":"Not yet passed"})`, `Date: ${fmtDate(prog.date)}`);
+  }else{
+    lines.push("Not yet attempted.");
+  }
+  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${d.id} — ${d.title}`, lines, `LSH_Day${d.id}_Summary`);
+}
+window.downloadDayPdf = downloadDayPdf;
+
 /* ============================================================
    MY NOTES / ACTION PLAN — with AI review
    ============================================================ */
@@ -3649,6 +3633,7 @@ function renderAdmin(){
       </div>
       <div style="display:flex;gap:8px;">
         <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadCohortPdf()">⬇ Download Cohort Report</button>
         <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Log out</button>
       </div>
     </div>
@@ -3656,6 +3641,18 @@ function renderAdmin(){
     <div id="adminRowsWrap">${renderAdminRows()}</div>
   `;
 }
+
+async function downloadCohortPdf(){
+  const lines = ["## Trainee Audit — Cohort Report"];
+  state.adminData.forEach(rec=>{
+    const day = adminDayStats(rec);
+    const practice = adminPracticeStats(rec);
+    lines.push(`${rec.name} (${rec.id})`);
+    lines.push(`   Days: ${day.done}/${day.total}  ·  Avg score: ${day.avg}%  ·  Practice runs: ${practice.runs}, avg best ${practice.avg}%  ·  Last active: ${rec.lastActive?fmtDate(rec.lastActive):"—"}`);
+  });
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Admin — Cohort Report", lines, "LSH_Cohort_Report");
+}
+window.downloadCohortPdf = downloadCohortPdf;
 
 function renderAdminRows(){
   const search = (state.adminSearch||"").toLowerCase();
@@ -3746,15 +3743,17 @@ function refreshAdminData(){ state.adminData=null; render(); }
 window.refreshAdminData = refreshAdminData;
 
 /* ============================================================
-   EMAIL MANAGEMENT TRAINING SIMULATOR
-   No tiers anywhere here — the trainee must judge each message
-   on its own merits and decide what to do with it.
+   EMAIL MANAGEMENT
+   One unified inbox exercise: build a filing system with labels
+   and sub-labels, draft real replies, and catch a hidden
+   phishing attempt. No tiers — the trainee judges every message
+   on its own and decides what to do with it.
 
-   UI mirrors common webmail conventions (list + reading pane,
-   unread bolding, avatar initials, star, hover-reveal actions,
-   a collapsed inline reply that expands) — built with our own
-   styling, not a reproduction of any specific product's
-   branding or trademarked design.
+   UI mirrors common webmail conventions (folder sidebar, list +
+   reading pane, unread bolding, avatar initials, star,
+   hover-reveal actions, a collapsed inline reply that expands)
+   — built with our own styling, not a reproduction of any
+   specific product's branding or trademarked design.
    ============================================================ */
 
 const ESIM_AVATAR_COLORS = ["#B54A3F","#DB8437","#3F7D58","#3C4268","#6B4FA0","#2C7A7B","#B5651F","#5B6178"];
@@ -3766,14 +3765,16 @@ function esimAvatar(from){
   return {initials, color};
 }
 
-function initEmailSim(body){
+async function initEmailSim(body){
   toolState.esim = {
     replies:{}, archived:{}, reported:{}, linkClicked:{}, unread:{}, starred:{}, replyOpen:{},
-    searchQuery:"",
+    searchQuery:"", addingUnder:null, selectedFolder:null,
     phase:"in_progress", // "in_progress" | "failed" | "evaluating" | "evaluated"
-    failReason:null, selected:0, report:null, securityScore:null
+    failReason:null, selected:0, report:null, securityScore:null, filingScore:null
   };
   EMAIL_SIM_MESSAGES.forEach((_,i)=>{ toolState.esim.unread[i] = true; });
+  toolState.esim.labels = (await storeGet("inbox-labels")) || LABEL_LEGEND.map((l,i)=>({id:"default_"+i, name:l.label, parentId:null, color:l.color}));
+  toolState.esim.filing = (await storeGet("inbox-filing")) || {};
   renderEsimBody(body);
 }
 
@@ -3781,10 +3782,36 @@ function esimHandledCount(){
   const e = toolState.esim;
   return EMAIL_SIM_MESSAGES.filter((_,i)=> e.replies[i] || e.archived[i] || e.reported[i]).length;
 }
-function esimAllHandled(){ return esimHandledCount()===EMAIL_SIM_MESSAGES.length; }
+function esimFiledCount(){
+  const e = toolState.esim;
+  return EMAIL_SIM_MESSAGES.filter((_,i)=> e.filing[i]!=null).length;
+}
+function esimAllHandled(){
+  return esimHandledCount()===EMAIL_SIM_MESSAGES.length && esimFiledCount()===EMAIL_SIM_MESSAGES.length;
+}
 function esimUnreadCount(){
   const e = toolState.esim;
   return EMAIL_SIM_MESSAGES.filter((_,i)=> e.unread[i]).length;
+}
+
+/* ---------- label / folder helpers (operate on toolState.esim.labels/filing) ---------- */
+function findLabel(id){ return toolState.esim.labels.find(l=>l.id===id); }
+function labelChildren(parentId){ return toolState.esim.labels.filter(l=>l.parentId===parentId); }
+function labelChainNames(id){
+  const names=[]; let cur=findLabel(id);
+  while(cur){ names.push(cur.name); cur = cur.parentId ? findLabel(cur.parentId) : null; }
+  return names;
+}
+function countInFolder(id){ return Object.values(toolState.esim.filing).filter(v=>v===id).length; }
+function countUnfiled(){
+  return EMAIL_SIM_MESSAGES.length - esimFiledCount();
+}
+function flattenLabelsForSelect(parentId=null, depth=0, out=[]){
+  labelChildren(parentId).forEach(l=>{
+    out.push({id:l.id, label:"— ".repeat(depth)+l.name});
+    flattenLabelsForSelect(l.id, depth+1, out);
+  });
+  return out;
 }
 
 const SENSITIVE_REPLY_PATTERN = /(password|routing number|account number|ssn|social security|pin\s*(is|:)|\b\d{6,}\b)/i;
@@ -3809,16 +3836,19 @@ function renderEsimBody(body){
   }
 
   if(e.phase==="evaluating"){
-    body.innerHTML = `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Evaluating your replies for tone match, professionalism, and reviewing your phishing handling…</div>`;
+    body.innerHTML = `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Evaluating your filing, replies, and phishing handling…</div>`;
     return;
   }
 
   if(e.phase==="evaluated"){
     body.innerHTML = `
       <div class="card" style="padding:22px 24px;">
-        <b style="color:var(--navy);font-size:15px;">Security Awareness Score: ${e.securityScore}%</b>
-        <p style="font-size:12.5px;color:var(--ink-soft);margin:4px 0 16px;">Based on how the two simulated phishing emails were handled — reporting them is the ideal response; safely ignoring/archiving them (without falling for the trap) still counts, just not as the strongest response.</p>
-        <div class="ai-result"><b>AI-Assessed Evaluation</b><div class="ai-result-body">${esc(e.report).replace(/\n/g,"<br>")}</div></div>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:6px;">
+          <div><b style="color:var(--navy);font-size:15px;">Filing Accuracy: ${e.filingScore}%</b></div>
+          <div><b style="color:var(--navy);font-size:15px;">Security Awareness: ${e.securityScore}%</b></div>
+        </div>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:4px 0 16px;">Filing is graded against LSH's baseline categories (a custom sub-label still counts, as long as it's nested under the right one). Security awareness rewards reporting the phishing emails — safely ignoring them without falling for the trap still counts, just not as the strongest response.</p>
+        <div class="ai-result"><b>AI-Assessed Evaluation — Writing DNA Match &amp; Professionalism</b><div class="ai-result-body">${esc(e.report).replace(/\n/g,"<br>")}</div></div>
         <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
           <button class="btn btn-ghost" onclick="initEmailSim(document.getElementById('toolBody'))">Run It Again</button>
           <button class="btn btn-navy" onclick="downloadEmailSimPdf()">⬇ Download My Work</button>
@@ -3829,14 +3859,24 @@ function renderEsimBody(body){
 
   // in_progress
   const handled = esimHandledCount();
+  const filed = esimFiledCount();
   body.innerHTML = `
-    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">A mixed inbox — some messages need a real reply, some are just clutter, and at least one is not what it looks like. Nothing is labeled for you; decide for yourself, then process every message before finishing.</p>
-    <div class="esim-progress">${handled} / ${EMAIL_SIM_MESSAGES.length} messages processed &middot; ${esimUnreadCount()} unread</div>
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">A real inbox — file every message into a label (drag it, or use the "Move to" menu), and decide whether it needs a reply, an archive, or a phishing report. Nothing is labeled for you. Create your own sub-labels if you want to organize further; the categories below are LSH's baseline convention.</p>
+    <div class="esim-progress">${handled} / ${EMAIL_SIM_MESSAGES.length} processed &middot; ${filed} / ${EMAIL_SIM_MESSAGES.length} filed &middot; ${esimUnreadCount()} unread</div>
     <div class="esim-searchbar">
       <span class="esim-search-icon">🔍</span>
       <input type="text" id="esimSearchInput" placeholder="Search mail" value="${esc(e.searchQuery)}" oninput="setEsimSearch(this.value)">
     </div>
-    <div class="esim-shell">
+    <div class="esim-shell esim-shell-3col">
+      <div class="inbox-sidebar" ondragover="event.preventDefault()" ondrop="folderDrop(event, null)">
+        <div class="folder-item ${e.selectedFolder===null?'active':''}" onclick="selectFolder(null)">
+          <span class="fname">📥 <span>Inbox</span></span>
+          <span class="fcount">${countUnfiled()}</span>
+        </div>
+        <div class="sidebar-section-lbl">Labels</div>
+        ${labelChildren(null).map(l=>renderFolderNode(l)).join("")}
+        ${e.addingUnder==="ROOT" ? renderAddLabelRow(null) : `<button class="add-label-btn" onclick="startAddLabel('ROOT')">+ Add Label</button>`}
+      </div>
       <div class="esim-list" id="esimListWrap">${renderEsimListRows()}</div>
       <div class="esim-pane" id="esimPane">
         ${renderEsimPane(e.selected)}
@@ -3846,15 +3886,107 @@ function renderEsimBody(body){
   `;
 }
 
+/* ---------- sidebar ---------- */
+function renderFolderNode(l){
+  const e = toolState.esim;
+  const kids = labelChildren(l.id);
+  return `
+    <div>
+      <div class="folder-item ${e.selectedFolder===l.id?'active':''}" id="folderRow_${l.id}"
+           onclick="selectFolder('${l.id}')"
+           ondragover="event.preventDefault(); event.currentTarget.classList.add('dragover')"
+           ondragleave="event.currentTarget.classList.remove('dragover')"
+           ondrop="event.currentTarget.classList.remove('dragover'); folderDrop(event,'${l.id}')">
+        <span class="fname">
+          <input type="color" class="fcolor-input" value="${l.color}" onclick="event.stopPropagation()" onchange="changeLabelColor('${l.id}', this.value)">
+          <span>${esc(l.name)}</span>
+        </span>
+        <span style="display:flex;align-items:center;gap:4px;">
+          <span class="fcount">${countInFolder(l.id)}</span>
+          <button class="faddbtn" onclick="event.stopPropagation(); startAddLabel('${l.id}')" title="Add sub-label">+</button>
+        </span>
+      </div>
+      <div class="folder-children">
+        ${kids.map(k=>renderFolderNode(k)).join("")}
+        ${e.addingUnder===l.id ? renderAddLabelRow(l.id) : ""}
+      </div>
+    </div>`;
+}
+function renderAddLabelRow(parentId){
+  const pid = parentId===null ? "null" : `'${parentId}'`;
+  return `
+    <div class="add-label-row">
+      <input type="text" id="newLabelInput" placeholder="Label name" autofocus
+             onkeydown="if(event.key==='Enter') confirmAddLabel(${pid}); if(event.key==='Escape') cancelAddLabel();">
+      <button class="btn btn-sm btn-navy" onclick="confirmAddLabel(${pid})">Add</button>
+    </div>`;
+}
+function refreshEsimSidebar(){
+  renderEsimBody(document.getElementById("toolBody"));
+}
+function startAddLabel(parentId){
+  toolState.esim.addingUnder = parentId;
+  refreshEsimSidebar();
+  const input = document.getElementById("newLabelInput");
+  if(input) input.focus();
+}
+window.startAddLabel = startAddLabel;
+function cancelAddLabel(){
+  toolState.esim.addingUnder = null;
+  refreshEsimSidebar();
+}
+window.cancelAddLabel = cancelAddLabel;
+async function confirmAddLabel(parentId){
+  const input = document.getElementById("newLabelInput");
+  const name = input ? input.value.trim() : "";
+  if(!name){ toast("Enter a label name first."); return; }
+  const id = "lbl_"+Date.now()+"_"+Math.floor(Math.random()*1000);
+  const color = COLOR_PRESETS[toolState.esim.labels.length % COLOR_PRESETS.length];
+  toolState.esim.labels.push({id, name, parentId: parentId==="ROOT"?null:parentId, color});
+  toolState.esim.addingUnder = null;
+  await storeSet("inbox-labels", toolState.esim.labels);
+  refreshEsimSidebar();
+}
+window.confirmAddLabel = confirmAddLabel;
+async function changeLabelColor(id, color){
+  const l = findLabel(id);
+  if(l){ l.color = color; await storeSet("inbox-labels", toolState.esim.labels); }
+  refreshEsimSidebar();
+}
+window.changeLabelColor = changeLabelColor;
+function selectFolder(id){
+  toolState.esim.selectedFolder = id;
+  refreshEsimSidebar();
+}
+window.selectFolder = selectFolder;
+async function folderDrop(ev, labelId){
+  ev.preventDefault();
+  const idx = Number(ev.dataTransfer.getData("text/plain"));
+  if(Number.isNaN(idx)) return;
+  toolState.esim.filing[idx] = labelId;
+  await storeSet("inbox-filing", toolState.esim.filing);
+  refreshEsimSidebar();
+}
+window.folderDrop = folderDrop;
+async function moveEmailTo(idx, value){
+  toolState.esim.filing[idx] = (value==="__inbox__" || value==="") ? null : value;
+  await storeSet("inbox-filing", toolState.esim.filing);
+  refreshEsimSidebar();
+}
+window.moveEmailTo = moveEmailTo;
+
+/* ---------- list ---------- */
 function renderEsimListRows(){
   const e = toolState.esim;
   const q = (e.searchQuery||"").toLowerCase();
   const indices = EMAIL_SIM_MESSAGES.map((_,i)=>i).filter(i=>{
+    const inFolder = e.selectedFolder===null ? (e.filing[i]==null) : e.filing[i]===e.selectedFolder;
+    if(!inFolder) return false;
     if(!q) return true;
     const m = EMAIL_SIM_MESSAGES[i];
     return m.from.toLowerCase().includes(q) || m.subj.toLowerCase().includes(q);
   });
-  if(!indices.length) return `<div class="esim-empty">No messages match your search.</div>`;
+  if(!indices.length) return `<div class="esim-empty">No messages here${q?" matching your search":e.selectedFolder===null?" — nice work filing everything!":". Drag a message here, or use its \"Move to\" menu."}.</div>`;
   return indices.map(i=>renderEsimRow(EMAIL_SIM_MESSAGES[i],i)).join("");
 }
 function setEsimSearch(v){
@@ -3877,7 +4009,7 @@ function renderEsimRow(m,i){
   if(e.archived[i]) badges.push('<span class="estatus archived">Archived</span>');
   if(e.reported[i]) badges.push('<span class="estatus reported">Reported</span>');
   return `
-    <div class="esim-row ${active?'active':''} ${unread?'unread':''}" onclick="selectEsimEmail(${i})">
+    <div class="esim-row ${active?'active':''} ${unread?'unread':''}" draggable="true" ondragstart="mailDragStart(event,${i})" onclick="selectEsimEmail(${i})">
       <span class="erow-star ${starred?'on':''}" onclick="event.stopPropagation(); toggleEsimStar(${i})">${starred?"★":"☆"}</span>
       <span class="erow-avatar" style="background:${av.color};">${esc(av.initials)}</span>
       <div class="erow-main">
@@ -3891,7 +4023,10 @@ function renderEsimRow(m,i){
       </div>
     </div>`;
 }
+function mailDragStart(ev, idx){ ev.dataTransfer.setData("text/plain", String(idx)); }
+window.mailDragStart = mailDragStart;
 
+/* ---------- reading pane ---------- */
 function renderEsimPane(i){
   const m = EMAIL_SIM_MESSAGES[i];
   const e = toolState.esim;
@@ -3899,6 +4034,7 @@ function renderEsimPane(i){
   const bodyHtml = esc(m.body).replace(/\{\{LINK:(.*?)\}\}/g, (_, label)=>
     `<a href="#" class="esim-fake-link" onclick="event.preventDefault(); clickEsimLink(${i})">${esc(label)}</a>`);
   const replyOpen = !!e.replyOpen[i] || !!e.replies[i];
+  const filedId = e.filing[i];
   return `
     <div class="ephead">
       <h4>${esc(m.subj)}</h4>
@@ -3916,6 +4052,11 @@ function renderEsimPane(i){
       </div>
     </div>
     <div class="epbody">${bodyHtml}</div>
+    <select onchange="moveEmailTo(${i}, this.value)" style="width:100%;margin-bottom:14px;padding:8px 10px;border-radius:7px;border:1px solid var(--line);font-size:12.5px;">
+      <option value="">Move to&hellip;</option>
+      <option value="__inbox__" ${filedId==null?"selected":""}>Inbox (unfiled)</option>
+      ${flattenLabelsForSelect().map(o=>`<option value="${o.id}" ${filedId===o.id?"selected":""}>${esc(o.label)}</option>`).join("")}
+    </select>
     ${replyOpen ? `
       <div class="esim-actions">
         <textarea id="esimReplyInput" placeholder="Type your reply here…">${esc(e.replies[i]||"")}</textarea>
@@ -3929,22 +4070,38 @@ function renderEsimPane(i){
   `;
 }
 
+function refreshEsimListAndProgress(){
+  const listEl = document.getElementById("esimListWrap");
+  if(listEl) listEl.innerHTML = renderEsimListRows();
+  const progEl = document.querySelector(".esim-progress");
+  if(progEl) progEl.textContent = `${esimHandledCount()} / ${EMAIL_SIM_MESSAGES.length} processed · ${esimFiledCount()} / ${EMAIL_SIM_MESSAGES.length} filed · ${esimUnreadCount()} unread`;
+  const sidebarEl = document.querySelector(".inbox-sidebar");
+  if(sidebarEl){
+    const e = toolState.esim;
+    sidebarEl.innerHTML = `
+      <div class="folder-item ${e.selectedFolder===null?'active':''}" onclick="selectFolder(null)">
+        <span class="fname">📥 <span>Inbox</span></span>
+        <span class="fcount">${countUnfiled()}</span>
+      </div>
+      <div class="sidebar-section-lbl">Labels</div>
+      ${labelChildren(null).map(l=>renderFolderNode(l)).join("")}
+      ${e.addingUnder==="ROOT" ? renderAddLabelRow(null) : `<button class="add-label-btn" onclick="startAddLabel('ROOT')">+ Add Label</button>`}
+    `;
+  }
+}
+
 function selectEsimEmail(i){
   toolState.esim.selected = i;
   toolState.esim.unread[i] = false;
   document.getElementById("esimPane").innerHTML = renderEsimPane(i);
-  const listEl = document.getElementById("esimListWrap");
-  if(listEl) listEl.innerHTML = renderEsimListRows();
-  const progEl = document.querySelector(".esim-progress");
-  if(progEl) progEl.textContent = `${esimHandledCount()} / ${EMAIL_SIM_MESSAGES.length} messages processed · ${esimUnreadCount()} unread`;
+  refreshEsimListAndProgress();
 }
 window.selectEsimEmail = selectEsimEmail;
 
 function toggleEsimStar(i){
   toolState.esim.starred[i] = !toolState.esim.starred[i];
   if(toolState.esim.selected===i) document.getElementById("esimPane").innerHTML = renderEsimPane(i);
-  const listEl = document.getElementById("esimListWrap");
-  if(listEl) listEl.innerHTML = renderEsimListRows();
+  refreshEsimListAndProgress();
 }
 window.toggleEsimStar = toggleEsimStar;
 
@@ -4004,15 +4161,24 @@ function reportEsimPhishing(i){
 }
 window.reportEsimPhishing = reportEsimPhishing;
 
+/* ---------- finish / evaluate ---------- */
 async function finishEmailSim(){
   if(!esimAllHandled()){
-    toast(`Process every message first (${esimHandledCount()}/${EMAIL_SIM_MESSAGES.length} done) — reply, archive, or report each one.`);
+    const h = esimHandledCount(), f = esimFiledCount(), total = EMAIL_SIM_MESSAGES.length;
+    toast(`File and process every message first (${f}/${total} filed, ${h}/${total} processed).`);
     return;
   }
   await ensureTraineeName();
   const e = toolState.esim;
   e.phase = "evaluating";
   renderEsimBody(document.getElementById("toolBody"));
+
+  let filingCorrect = 0;
+  EMAIL_SIM_MESSAGES.forEach((m,i)=>{
+    const chain = e.filing[i] ? labelChainNames(e.filing[i]) : [];
+    if(chain.includes(m.correctLabel)) filingCorrect++;
+  });
+  e.filingScore = Math.round((filingCorrect/EMAIL_SIM_MESSAGES.length)*100);
 
   const phishingMsgs = EMAIL_SIM_MESSAGES.map((m,i)=>({m,i})).filter(x=>x.m.type==="phishing");
   let secTotal=0;
@@ -4032,18 +4198,16 @@ async function finishEmailSim(){
     return `- "${m.subj}": ${outcome}`;
   }).join("\n");
 
-  const prompt = `You are evaluating a Legal Executive Assistant trainee's performance in an email management simulation for a company called Legal Support Help (LSH).
+  const prompt = `You are evaluating a Legal Executive Assistant trainee's performance in an email management exercise for a company called Legal Support Help (LSH).
 
-Evaluate strictly under these three headers, in this order, using short bullet points under each:
+Evaluate strictly under these two headers, in this order, using short bullet points under each:
 
 1. Writing DNA Match — for each client email below, assess how well the trainee's reply mirrored THAT SPECIFIC client's tone, formatting, and communication style. The clients intentionally differ: one is terse and formal, one is casual and rambling, one is frustrated/upset, one is detailed and itemized. Note where the trainee matched or mismatched the register.
 2. Professionalism — grammar, clarity, completeness, and etiquette across their replies. Note if any actionable client email was left without a reply.
-3. Security Awareness — using the factual outcome provided below (report it factually, do not re-judge it), describe how the trainee handled the two simulated phishing emails.
+
+Do not evaluate filing or security awareness — those are scored separately and shown elsewhere.
 
 ${actionableSummary}
-
-Phishing handling (ground truth — report this factually):
-${phishingSummary}
 
 Keep it concise — a handful of bullets per section — and end with one overall takeaway sentence. Be constructive and specific.`;
 
@@ -4057,11 +4221,12 @@ Keep it concise — a handful of bullets per section — and end with one overal
     const data = await response.json();
     e.report = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned — try again in a moment.";
   }catch(err){
-    e.report = "Couldn't reach the AI review service to assess Writing DNA Match and Professionalism — check your connection and try again. (Your Security Awareness score above was still computed normally.)";
+    e.report = "Couldn't reach the AI review service to assess Writing DNA Match and Professionalism — check your connection and try again. (Your Filing Accuracy and Security Awareness scores above were still computed normally.)";
   }
   e.phase = "evaluated";
-  await bumpPracticeProgress("emailsim", e.securityScore);
-  if(e.securityScore===100) burstConfetti();
+  const overall = Math.round((e.filingScore + e.securityScore)/2);
+  await bumpPracticeProgress("emailsim", overall);
+  if(overall===100) burstConfetti();
   renderEsimBody(document.getElementById("toolBody"));
 }
 window.finishEmailSim = finishEmailSim;
@@ -4069,21 +4234,631 @@ window.finishEmailSim = finishEmailSim;
 async function downloadEmailSimPdf(){
   await ensureTraineeName();
   const e = toolState.esim;
-  const lines = ["## Email Management Simulator — Results"];
+  const lines = ["## Email Management — Results"];
   if(e.phase==="failed"){
     lines.push(`RESULT: FAILED`, e.failReason.reason, "---");
   }else if(e.phase==="evaluated"){
-    lines.push(`Security Awareness Score: ${e.securityScore}%`, "---", "## AI-Assessed Evaluation", e.report, "---");
+    lines.push(`Filing Accuracy: ${e.filingScore}%  ·  Security Awareness: ${e.securityScore}%`, "---", "## AI-Assessed Evaluation", e.report, "---");
   }
-  lines.push("## Message-by-Message");
+  lines.push("## Your Filing System");
+  labelChildren(null).forEach(l=>{
+    lines.push(`${l.name} (${countInFolder(l.id)} filed)`);
+    labelChildren(l.id).forEach(k=>lines.push(`   └ ${k.name} (${countInFolder(k.id)} filed)`));
+  });
+  lines.push("---", "## Message-by-Message");
   EMAIL_SIM_MESSAGES.forEach((m,i)=>{
     const action = e.replies[i] ? "Replied" : e.reported[i] ? "Reported as phishing" : e.archived[i] ? "Archived" : "Not handled";
-    lines.push(`${m.subj} (${m.from}) — ${action}`);
+    const filedId = e.filing[i];
+    const yourFiling = filedId ? labelChainNames(filedId).reverse().join(" > ") : "Unfiled";
+    lines.push(`${m.subj} (${m.from}) — ${action}  |  Filed: ${yourFiling}  (correct category: ${m.correctLabel})`);
     if(e.replies[i]) lines.push(`   Reply: ${e.replies[i]}`);
   });
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Email Management Simulator — Results", lines, "LSH_Email_Simulator");
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Email Management — Results", lines, "LSH_Email_Management");
 }
 window.downloadEmailSimPdf = downloadEmailSimPdf;
+
+/* ============================================================
+   DAY 9 SIMULATOR: COMPLIANCE & REPUTATION TRACKER
+   Three sections: CLE compliance classification, event
+   registration follow-up, and an AI-evaluated review response.
+   ============================================================ */
+
+function initCompliance9(body){
+  toolState.c9 = {cle:{}, reg:{}, reviewReport:null};
+  body.innerHTML = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. CLE Compliance Dashboard</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each attorney, decide: On Track, or Needs Follow-up.</p>
+    <div class="card" style="padding:14px 16px;overflow-x:auto;">
+      <table class="log-table">
+        <thead><tr><th>Attorney</th><th>Completed</th><th>Required</th><th>Deadline</th><th>Your Call</th></tr></thead>
+        <tbody>
+          ${CLE_ROSTER.map((a,i)=>`
+            <tr>
+              <td>${esc(a.name)}</td><td>${a.completed} hrs</td><td>${a.required} hrs</td><td>${esc(a.deadline)}</td>
+              <td>
+                <select onchange="setC9Cle(${i}, this.value)">
+                  <option value="">Choose&hellip;</option>
+                  <option value="On Track">On Track</option>
+                  <option value="Needs Follow-up">Needs Follow-up</option>
+                </select>
+              </td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Cle()">Check CLE Dashboard</button>
+    <div id="c9CleResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Event Registration Follow-Up</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Mark which registrants still need a follow-up email before the event.</p>
+    <div class="card" style="padding:14px 16px;">
+      ${EVENT_REGISTRANTS.map((r,i)=>`
+        <label class="check-item" style="padding:4px 0;">
+          <input type="checkbox" onchange="setC9Reg(${i}, this.checked)"> ${esc(r.name)}
+        </label>`).join("")}
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Reg()">Check Follow-Up List</button>
+    <div id="c9RegResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Respond to a Negative Review</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--ink);">${esc(NEGATIVE_REVIEW.author)}</b> <span style="color:var(--orange-deep);">${"★".repeat(NEGATIVE_REVIEW.stars)}${"☆".repeat(5-NEGATIVE_REVIEW.stars)}</span>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;font-style:italic;">"${esc(NEGATIVE_REVIEW.text)}"</p>
+    </div>
+    <textarea id="c9ReviewReply" placeholder="Type your public response here…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC9Review(this)">Get AI Feedback</button>
+    <div id="c9ReviewResult" style="margin-top:10px;"></div>
+
+    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadCompliance9Pdf()">⬇ Download My Work</button>
+  `;
+}
+
+function setC9Cle(i,v){ toolState.c9.cle[i]=v; }
+window.setC9Cle = setC9Cle;
+async function checkC9Cle(){
+  const answered = CLE_ROSTER.filter((_,i)=>toolState.c9.cle[i]).length;
+  if(answered<CLE_ROSTER.length){ toast(`Classify all ${CLE_ROSTER.length} attorneys first.`); return; }
+  let correct=0;
+  CLE_ROSTER.forEach((a,i)=>{
+    const want = a.completed>=a.required ? "On Track" : "Needs Follow-up";
+    if(toolState.c9.cle[i]===want) correct++;
+  });
+  const score = Math.round((correct/CLE_ROSTER.length)*100);
+  document.getElementById("c9CleResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${CLE_ROSTER.length} correct (${score}%)</b> — an attorney is "On Track" once completed hours meet or exceed what's required; everyone else gets flagged now, regardless of how far off the deadline is.`;
+  toolState.c9.cleScore = score;
+  await bumpPracticeProgress("compliance9", score);
+}
+window.checkC9Cle = checkC9Cle;
+
+function setC9Reg(i,checked){ toolState.c9.reg[i]=checked; }
+window.setC9Reg = setC9Reg;
+async function checkC9Reg(){
+  let correct=0;
+  EVENT_REGISTRANTS.forEach((r,i)=>{
+    const want = !r.confirmed;
+    const got = !!toolState.c9.reg[i];
+    if(want===got) correct++;
+  });
+  const score = Math.round((correct/EVENT_REGISTRANTS.length)*100);
+  document.getElementById("c9RegResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${EVENT_REGISTRANTS.length} correct (${score}%)</b> — registrants who were never confirmed are the ones who need a follow-up.`;
+  toolState.c9.regScore = score;
+  await bumpPracticeProgress("compliance9", score);
+}
+window.checkC9Reg = checkC9Reg;
+
+async function checkC9Review(btn){
+  const text = document.getElementById("c9ReviewReply").value.trim();
+  if(text.length<15){ toast("Write a fuller response first."); return; }
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  const resultEl = document.getElementById("c9ReviewResult");
+  resultEl.innerHTML = `<div class="ai-loading">Evaluating your response for professionalism and de-escalation…</div>`;
+  const prompt = `You are reviewing a Legal Executive Assistant trainee's draft public response to a negative online review for a law firm called Legal Support Help (LSH).
+
+The review (${NEGATIVE_REVIEW.stars} stars): "${NEGATIVE_REVIEW.text}"
+
+The trainee's draft public response: "${text}"
+
+Evaluate against the standard taught: respond professionally and factually, without escalating the conflict, and without admitting fault or making promises the firm may not be able to keep. Give 3-4 short bullet points of feedback and one overall verdict sentence (would this response protect the firm's reputation or risk making things worse?).`;
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:500, messages:[{role:"user", content:prompt}] })
+    });
+    if(!response.ok) throw new Error("Request failed");
+    const data = await response.json();
+    const feedback = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned.";
+    toolState.c9.reviewReport = feedback;
+    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("compliance9", 100);
+  }catch(e){
+    toolState.c9.reviewReport = "Couldn't reach the AI review service.";
+    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }finally{
+    btn.disabled = false; btn.textContent = "Get AI Feedback";
+  }
+}
+window.checkC9Review = checkC9Review;
+
+async function downloadCompliance9Pdf(){
+  await ensureTraineeName();
+  const c9 = toolState.c9;
+  const lines = ["## A. CLE Compliance Dashboard"];
+  CLE_ROSTER.forEach((a,i)=>{
+    const correct = a.completed>=a.required ? "On Track" : "Needs Follow-up";
+    lines.push(`${a.name}: ${a.completed}/${a.required} hrs, deadline ${a.deadline} — your call: ${c9.cle[i]||"(not answered)"} (correct: ${correct})`);
+  });
+  lines.push("---", "## B. Event Registration Follow-Up");
+  EVENT_REGISTRANTS.forEach((r,i)=>{
+    lines.push(`${r.name} — confirmed: ${r.confirmed?"yes":"no"} — flagged for follow-up: ${c9.reg[i]?"yes":"no"}`);
+  });
+  lines.push("---", "## C. Negative Review Response", `Review: "${NEGATIVE_REVIEW.text}"`, `Your reply: ${document.getElementById("c9ReviewReply").value.trim()||"(not written)"}`);
+  if(c9.reviewReport) lines.push("", "AI Feedback:", c9.reviewReport);
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Compliance & Reputation Tracker — Results", lines, "LSH_Compliance_Tracker");
+}
+window.downloadCompliance9Pdf = downloadCompliance9Pdf;
+
+/* ============================================================
+   DAY 10 SIMULATOR: SOCIAL MEDIA METRICS LAB
+   Three sections: engagement rate + best performer, platform
+   tone matching, and campaign math (CPL / ROI).
+   ============================================================ */
+
+function initSocial10(body){
+  toolState.s10 = {ratesChecked:false, bestPick:"", versionMatch:{}};
+  body.innerHTML = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Engagement Rate: Which Post Actually Won?</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Engagement Rate = (Likes + Comments + Shares) ÷ Followers × 100. Compute each, then pick the real top performer.</p>
+    <div class="card" style="padding:14px 16px;overflow-x:auto;">
+      <table class="log-table">
+        <thead><tr><th>Post</th><th>Likes</th><th>Comments</th><th>Shares</th><th>Followers</th><th>Your Rate (%)</th></tr></thead>
+        <tbody>
+          ${SOCIAL_POSTS.map((p,i)=>`
+            <tr>
+              <td>${esc(p.label)}</td><td>${p.likes}</td><td>${p.comments}</td><td>${p.shares}</td><td>${p.followers.toLocaleString()}</td>
+              <td><input type="number" step="0.1" id="s10rate${i}" style="width:80px;padding:6px 8px;border-radius:6px;border:1px solid var(--line);font-family:'IBM Plex Mono';"></td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <div class="field-row" style="margin-top:12px;">
+      <label>Which post actually performed best?</label>
+      <select id="s10Best" onchange="toolState.s10.bestPick=this.value">
+        <option value="">Choose&hellip;</option>
+        ${SOCIAL_POSTS.map(p=>`<option value="${esc(p.label)}">${esc(p.label)}</option>`).join("")}
+      </select>
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkS10Rates()">Check Engagement Rates</button>
+    <div id="s10RateResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Match the Version to the Platform</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same announcement, two different versions. Which platform does each belong on?</p>
+    ${PLATFORM_VERSIONS.map((v,i)=>`
+      <div class="card" style="padding:14px 16px;margin-bottom:10px;">
+        <p style="font-size:13px;color:#37394A;margin:0 0 10px;">"${esc(v.text)}"</p>
+        <select onchange="setS10Version(${i}, this.value)">
+          <option value="">This belongs on&hellip;</option>
+          <option value="Instagram">Instagram</option>
+          <option value="LinkedIn">LinkedIn</option>
+        </select>
+      </div>`).join("")}
+    <button class="btn btn-ghost btn-sm" onclick="checkS10Versions()">Check Platform Match</button>
+    <div id="s10VersionResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Campaign Math</h3>
+    <div class="card" style="padding:16px 20px;">
+      <div class="field-row"><label>Total Spend ($)</label><input type="number" id="s10Spend" value="${CAMPAIGN_DATA.spend}" oninput="recalcS10Campaign()"></div>
+      <div class="field-row"><label>Leads Generated</label><input type="number" id="s10Leads" value="${CAMPAIGN_DATA.leads}" oninput="recalcS10Campaign()"></div>
+      <div class="field-row"><label>Product Price ($)</label><input type="number" id="s10Price" value="${CAMPAIGN_DATA.productPrice}" oninput="recalcS10Campaign()"></div>
+      <div class="calc-total" style="font-size:13px;"><span>Cost per Lead</span><span id="s10Cpl" class="mono">$0</span></div>
+      <div class="calc-total" style="font-size:13px;border-top:none;padding-top:4px;"><span>Revenue (all leads convert)</span><span id="s10Rev" class="mono">$0</span></div>
+      <div class="calc-total"><span>ROI</span><span id="s10Roi">0%</span></div>
+    </div>
+
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadSocial10Pdf()">⬇ Download My Work</button>
+  `;
+  recalcS10Campaign();
+}
+
+async function checkS10Rates(){
+  let correct=0;
+  const details = SOCIAL_POSTS.map((p,i)=>{
+    const trueRate = (p.likes+p.comments+p.shares)/p.followers*100;
+    const yourRate = Number(document.getElementById(`s10rate${i}`).value);
+    const ok = Math.abs(yourRate-trueRate) <= 0.2;
+    if(ok) correct++;
+    return {label:p.label, trueRate:trueRate.toFixed(1), ok};
+  });
+  const trueBest = details.reduce((a,b)=>parseFloat(b.trueRate)>parseFloat(a.trueRate)?b:a).label;
+  const bestOk = toolState.s10.bestPick===trueBest;
+  const score = Math.round(((correct + (bestOk?1:0)) / (SOCIAL_POSTS.length+1))*100);
+  document.getElementById("s10RateResult").innerHTML = `
+    <b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${SOCIAL_POSTS.length} rates correct, best-performer pick ${bestOk?"✅":"❌"} (${score}%)</b>
+    <div style="margin-top:6px;">${details.map(d=>`${d.label}: ${d.trueRate}%`).join(" · ")}</div>
+    <div style="margin-top:4px;color:var(--ink-soft);">Real top performer: <b style="color:var(--navy);">${trueBest}</b> — despite the smallest follower count and lowest raw likes, it has by far the highest engagement rate.</div>`;
+  toolState.s10.rateScore = score;
+  await bumpPracticeProgress("socialmedia10", score);
+}
+window.checkS10Rates = checkS10Rates;
+
+function setS10Version(i,v){ toolState.s10.versionMatch[i]=v; }
+window.setS10Version = setS10Version;
+async function checkS10Versions(){
+  const answered = PLATFORM_VERSIONS.filter((_,i)=>toolState.s10.versionMatch[i]).length;
+  if(answered<PLATFORM_VERSIONS.length){ toast("Match both versions to a platform first."); return; }
+  let correct=0;
+  PLATFORM_VERSIONS.forEach((v,i)=>{ if(toolState.s10.versionMatch[i]===v.platform) correct++; });
+  const score = Math.round((correct/PLATFORM_VERSIONS.length)*100);
+  document.getElementById("s10VersionResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${PLATFORM_VERSIONS.length} correct (${score}%)</b> — same core message, different register: punchy and hashtag-driven fits Instagram; professional and context-first fits LinkedIn.`;
+  toolState.s10.versionScore = score;
+  await bumpPracticeProgress("socialmedia10", score);
+}
+window.checkS10Versions = checkS10Versions;
+
+function recalcS10Campaign(){
+  const spend = Number(document.getElementById("s10Spend").value)||0;
+  const leads = Number(document.getElementById("s10Leads").value)||0;
+  const price = Number(document.getElementById("s10Price").value)||0;
+  const cpl = leads ? spend/leads : 0;
+  const revenue = leads*price;
+  const roi = spend ? ((revenue-spend)/spend)*100 : 0;
+  document.getElementById("s10Cpl").textContent = "$"+cpl.toLocaleString(undefined,{maximumFractionDigits:2});
+  document.getElementById("s10Rev").textContent = "$"+revenue.toLocaleString(undefined,{maximumFractionDigits:2});
+  document.getElementById("s10Roi").textContent = roi.toLocaleString(undefined,{maximumFractionDigits:1})+"%";
+}
+window.recalcS10Campaign = recalcS10Campaign;
+
+async function downloadSocial10Pdf(){
+  await ensureTraineeName();
+  const lines = ["## A. Engagement Rate"];
+  SOCIAL_POSTS.forEach((p,i)=>{
+    const trueRate = ((p.likes+p.comments+p.shares)/p.followers*100).toFixed(1);
+    const yourRate = document.getElementById(`s10rate${i}`).value || "(not answered)";
+    lines.push(`${p.label}: your rate ${yourRate}%  (correct: ${trueRate}%)`);
+  });
+  lines.push(`Best performer picked: ${toolState.s10.bestPick||"(not answered)"}`, "---", "## B. Platform Tone Matching");
+  PLATFORM_VERSIONS.forEach((v,i)=>{
+    lines.push(`"${v.text.slice(0,60)}..." — your match: ${toolState.s10.versionMatch[i]||"(not answered)"} (correct: ${v.platform})`);
+  });
+  lines.push("---", "## C. Campaign Math",
+    `Spend: $${document.getElementById("s10Spend").value}, Leads: ${document.getElementById("s10Leads").value}, Price: $${document.getElementById("s10Price").value}`,
+    `Cost per Lead: ${document.getElementById("s10Cpl").textContent}`,
+    `Revenue: ${document.getElementById("s10Rev").textContent}`,
+    `ROI: ${document.getElementById("s10Roi").textContent}`);
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Social Media Metrics Lab — Results", lines, "LSH_Social_Media_Lab");
+}
+window.downloadSocial10Pdf = downloadSocial10Pdf;
+
+/* ============================================================
+   DAY 1 SIMULATOR: CLIENT DOSSIER & TRACKER BUILDER
+   Two sections: build a comprehensive dossier for Elias Thorne,
+   then set up his Travel/Inbox/Meeting preference trackers.
+   ============================================================ */
+
+function initDossier1(body){
+  toolState.d1 = {dossier:{}, tracker:{}};
+  body.innerHTML = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Build the Client Dossier</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">You've just been handed a stack of onboarding notes on Elias Thorne, Managing Owner &amp; CEO of Thorne &amp; Partners. Sort each fact into the right dossier section.</p>
+    <div class="card" style="padding:14px 16px;">
+      ${DOSSIER_FACTS.map((f,i)=>`
+        <div class="field-row" style="align-items:flex-start;padding:10px 0;">
+          <label style="flex:1;font-size:13px;">${esc(f.text)}</label>
+          <select onchange="setD1Dossier(${i}, this.value)" style="width:190px;">
+            <option value="">Choose section&hellip;</option>
+            ${DOSSIER_SECTIONS.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("")}
+          </select>
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkD1Dossier()">Check Dossier</button>
+    <div id="d1DossierResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Set Up the Preference Trackers</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Now turn the operational details into live trackers — sort each into Travel Preferences, Inbox Preferences, or Meeting Rhythms.</p>
+    <div class="card" style="padding:14px 16px;">
+      ${TRACKER_FACTS.map((f,i)=>`
+        <div class="field-row" style="align-items:flex-start;padding:10px 0;">
+          <label style="flex:1;font-size:13px;">${esc(f.text)}</label>
+          <select onchange="setD1Tracker(${i}, this.value)" style="width:190px;">
+            <option value="">Choose tracker&hellip;</option>
+            ${TRACKER_SECTIONS.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("")}
+          </select>
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkD1Tracker()">Check Trackers</button>
+    <div id="d1TrackerResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
+  `;
+}
+
+function setD1Dossier(i,v){ toolState.d1.dossier[i]=v; }
+window.setD1Dossier = setD1Dossier;
+async function checkD1Dossier(){
+  const answered = DOSSIER_FACTS.filter((_,i)=>toolState.d1.dossier[i]).length;
+  if(answered<DOSSIER_FACTS.length){ toast(`Sort all ${DOSSIER_FACTS.length} facts first.`); return; }
+  let correct=0;
+  DOSSIER_FACTS.forEach((f,i)=>{ if(toolState.d1.dossier[i]===f.section) correct++; });
+  const score = Math.round((correct/DOSSIER_FACTS.length)*100);
+  document.getElementById("d1DossierResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${DOSSIER_FACTS.length} correct (${score}%)</b> — a dossier separates firm/role context from personal context, standing procedural rules, and personality-driven quirks, so anyone picking up the account can find what they need fast.`;
+  toolState.d1.dossierScore = score;
+  await bumpPracticeProgress("dossier1", score);
+}
+window.checkD1Dossier = checkD1Dossier;
+
+function setD1Tracker(i,v){ toolState.d1.tracker[i]=v; }
+window.setD1Tracker = setD1Tracker;
+async function checkD1Tracker(){
+  const answered = TRACKER_FACTS.filter((_,i)=>toolState.d1.tracker[i]).length;
+  if(answered<TRACKER_FACTS.length){ toast(`Sort all ${TRACKER_FACTS.length} facts first.`); return; }
+  let correct=0;
+  TRACKER_FACTS.forEach((f,i)=>{ if(toolState.d1.tracker[i]===f.section) correct++; });
+  const score = Math.round((correct/TRACKER_FACTS.length)*100);
+  document.getElementById("d1TrackerResult").innerHTML = `
+    <b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${TRACKER_FACTS.length} correct (${score}%)</b>
+    <div style="margin-top:10px;display:grid;gap:10px;">
+      ${TRACKER_SECTIONS.map(sec=>`
+        <div style="background:#F6F7FB;border-radius:8px;padding:10px 12px;">
+          <b style="color:var(--navy);font-size:12px;">${esc(sec)}</b>
+          <ul style="margin:6px 0 0;padding-left:18px;">
+            ${TRACKER_FACTS.filter(f=>f.section===sec).map(f=>`<li style="font-size:12px;color:#37394A;margin-bottom:3px;">${esc(f.text)}</li>`).join("")}
+          </ul>
+        </div>`).join("")}
+    </div>`;
+  toolState.d1.trackerScore = score;
+  await bumpPracticeProgress("dossier1", score);
+  if(score===100) burstConfetti();
+}
+window.checkD1Tracker = checkD1Tracker;
+
+async function downloadDossier1Pdf(){
+  await ensureTraineeName();
+  const lines = ["## A. Client Dossier — Elias Thorne"];
+  DOSSIER_FACTS.forEach((f,i)=>{
+    lines.push(`${f.text}`);
+    lines.push(`   Your section: ${toolState.d1.dossier[i]||"(not answered)"}  (correct: ${f.section})`);
+  });
+  lines.push("---", "## B. Preference Trackers");
+  TRACKER_FACTS.forEach((f,i)=>{
+    lines.push(`${f.text}`);
+    lines.push(`   Your tracker: ${toolState.d1.tracker[i]||"(not answered)"}  (correct: ${f.section})`);
+  });
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Client Dossier & Tracker Builder — Results", lines, "LSH_Dossier_Tracker");
+}
+window.downloadDossier1Pdf = downloadDossier1Pdf;
+
+/* ============================================================
+   DAY 5 SIMULATOR: INSURANCE & RISK ASSESSMENT
+   Household/personal risk scenarios facing the Thorne family.
+   ============================================================ */
+
+function initInsurance5(body){
+  toolState.i5 = {category:{}, strategy:{}};
+  body.innerHTML = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Classify the Risk</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Something crosses your desk about the Thorne household almost every week. Sort each situation into the right risk category.</p>
+    <div class="card" style="padding:14px 16px;">
+      ${RISK_SCENARIOS.map((s,i)=>`
+        <div class="field-row" style="align-items:flex-start;padding:10px 0;">
+          <label style="flex:1;font-size:13px;">${esc(s.text)}</label>
+          <select onchange="setI5Category(${i}, this.value)" style="width:190px;">
+            <option value="">Choose category&hellip;</option>
+            ${RISK_CATEGORIES.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("")}
+          </select>
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkI5Category()">Check Categories</button>
+    <div id="i5CategoryResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Match the Strategy</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each real decision, name the risk-management strategy actually being used.</p>
+    <div class="card" style="padding:14px 16px;">
+      ${RISK_STRATEGY_SCENARIOS.map((s,i)=>`
+        <div class="field-row" style="align-items:flex-start;padding:10px 0;">
+          <label style="flex:1;font-size:13px;">${esc(s.text)}</label>
+          <select onchange="setI5Strategy(${i}, this.value)" style="width:150px;">
+            <option value="">Choose&hellip;</option>
+            ${RISK_STRATEGIES.map(s2=>`<option value="${esc(s2)}">${esc(s2)}</option>`).join("")}
+          </select>
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkI5Strategy()">Check Strategies</button>
+    <div id="i5StrategyResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download My Work</button>
+  `;
+}
+
+function setI5Category(i,v){ toolState.i5.category[i]=v; }
+window.setI5Category = setI5Category;
+async function checkI5Category(){
+  const answered = RISK_SCENARIOS.filter((_,i)=>toolState.i5.category[i]).length;
+  if(answered<RISK_SCENARIOS.length){ toast(`Classify all ${RISK_SCENARIOS.length} scenarios first.`); return; }
+  let correct=0;
+  RISK_SCENARIOS.forEach((s,i)=>{ if(toolState.i5.category[i]===s.category) correct++; });
+  const score = Math.round((correct/RISK_SCENARIOS.length)*100);
+  document.getElementById("i5CategoryResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${RISK_SCENARIOS.length} correct (${score}%)</b>`;
+  toolState.i5.categoryScore = score;
+  await bumpPracticeProgress("insurance5", score);
+}
+window.checkI5Category = checkI5Category;
+
+function setI5Strategy(i,v){ toolState.i5.strategy[i]=v; }
+window.setI5Strategy = setI5Strategy;
+async function checkI5Strategy(){
+  const answered = RISK_STRATEGY_SCENARIOS.filter((_,i)=>toolState.i5.strategy[i]).length;
+  if(answered<RISK_STRATEGY_SCENARIOS.length){ toast(`Match all ${RISK_STRATEGY_SCENARIOS.length} scenarios first.`); return; }
+  let correct=0;
+  RISK_STRATEGY_SCENARIOS.forEach((s,i)=>{ if(toolState.i5.strategy[i]===s.strategy) correct++; });
+  const score = Math.round((correct/RISK_STRATEGY_SCENARIOS.length)*100);
+  document.getElementById("i5StrategyResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${RISK_STRATEGY_SCENARIOS.length} correct (${score}%)</b>`;
+  toolState.i5.strategyScore = score;
+  await bumpPracticeProgress("insurance5", score);
+  if(score===100) burstConfetti();
+}
+window.checkI5Strategy = checkI5Strategy;
+
+async function downloadInsurance5Pdf(){
+  await ensureTraineeName();
+  const lines = ["## A. Risk Category Classification"];
+  RISK_SCENARIOS.forEach((s,i)=>{
+    lines.push(`${s.text}`);
+    lines.push(`   Your call: ${toolState.i5.category[i]||"(not answered)"}  (correct: ${s.category})`);
+  });
+  lines.push("---", "## B. Risk Strategy Matching");
+  RISK_STRATEGY_SCENARIOS.forEach((s,i)=>{
+    lines.push(`${s.text}`);
+    lines.push(`   Your call: ${toolState.i5.strategy[i]||"(not answered)"}  (correct: ${s.strategy})`);
+  });
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Insurance & Risk Assessment — Results", lines, "LSH_Insurance_Risk");
+}
+window.downloadInsurance5Pdf = downloadInsurance5Pdf;
+
+/* ============================================================
+   DAY 6 SIMULATOR: BUSINESS COMPLIANCE & PROJECT RECOVERY
+   Thorne & Partners' multi-jurisdiction licenses, KPI dashboard,
+   and an active trial-team recovery scenario.
+   ============================================================ */
+
+function initProjectCompliance6(body){
+  toolState.c6 = {license:{}, kpi:{}, recoveryReport:null};
+  body.innerHTML = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Multi-Jurisdiction License Check</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Thorne & Partners operates out of New York, D.C., London, and Singapore. For each registration, decide: Current, or Renew Soon.</p>
+    <div class="card" style="padding:14px 16px;overflow-x:auto;">
+      <table class="log-table">
+        <thead><tr><th>License / Registration</th><th>Expires</th><th>Your Call</th></tr></thead>
+        <tbody>
+          ${FIRM_LICENSES.map((l,i)=>`
+            <tr>
+              <td>${esc(l.name)}</td><td>${esc(l.expires)}</td>
+              <td>
+                <select onchange="setC6License(${i}, this.value)">
+                  <option value="">Choose&hellip;</option>
+                  <option value="Current">Current</option>
+                  <option value="Renew Soon">Renew Soon</option>
+                </select>
+              </td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6License()">Check Licenses</button>
+    <div id="c6LicenseResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. KPI Dashboard Review</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">This month's numbers just came in. Flag which metrics are On Target vs. Off Target.</p>
+    <div class="card" style="padding:14px 16px;overflow-x:auto;">
+      <table class="log-table">
+        <thead><tr><th>Category</th><th>KPI</th><th>Target</th><th>Actual</th><th>Your Call</th></tr></thead>
+        <tbody>
+          ${FIRM_KPIS.map((k,i)=>`
+            <tr>
+              <td>${esc(k.category)}</td><td>${esc(k.kpi)}</td><td>${esc(k.target)}</td><td>${esc(k.actual)}</td>
+              <td>
+                <select onchange="setC6Kpi(${i}, this.value)">
+                  <option value="">Choose&hellip;</option>
+                  <option value="On Target">On Target</option>
+                  <option value="Off Target">Off Target</option>
+                </select>
+              </td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6Kpi()">Check Dashboard</button>
+    <div id="c6KpiResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Trial Team Project Recovery</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">${esc(TRIAL_RECOVERY_SCENARIO.matter)}</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRIAL_RECOVERY_SCENARIO.text)}</p>
+    </div>
+    <textarea id="c6RecoveryReply" placeholder="Draft your message to Elias here…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC6Recovery(this)">Get AI Feedback</button>
+    <div id="c6RecoveryResult" style="margin-top:10px;"></div>
+
+    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadProjectCompliance6Pdf()">⬇ Download My Work</button>
+  `;
+}
+
+function setC6License(i,v){ toolState.c6.license[i]=v; }
+window.setC6License = setC6License;
+async function checkC6License(){
+  const answered = FIRM_LICENSES.filter((_,i)=>toolState.c6.license[i]).length;
+  if(answered<FIRM_LICENSES.length){ toast(`Classify all ${FIRM_LICENSES.length} registrations first.`); return; }
+  let correct=0;
+  FIRM_LICENSES.forEach((l,i)=>{ if(toolState.c6.license[i]===l.status) correct++; });
+  const score = Math.round((correct/FIRM_LICENSES.length)*100);
+  document.getElementById("c6LicenseResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${FIRM_LICENSES.length} correct (${score}%)</b>`;
+  toolState.c6.licenseScore = score;
+  await bumpPracticeProgress("projectcompliance6", score);
+}
+window.checkC6License = checkC6License;
+
+function setC6Kpi(i,v){ toolState.c6.kpi[i]=v; }
+window.setC6Kpi = setC6Kpi;
+async function checkC6Kpi(){
+  const answered = FIRM_KPIS.filter((_,i)=>toolState.c6.kpi[i]).length;
+  if(answered<FIRM_KPIS.length){ toast(`Classify all ${FIRM_KPIS.length} metrics first.`); return; }
+  let correct=0;
+  FIRM_KPIS.forEach((k,i)=>{ if(toolState.c6.kpi[i]===k.correctStatus) correct++; });
+  const score = Math.round((correct/FIRM_KPIS.length)*100);
+  document.getElementById("c6KpiResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${FIRM_KPIS.length} correct (${score}%)</b>`;
+  toolState.c6.kpiScore = score;
+  await bumpPracticeProgress("projectcompliance6", score);
+}
+window.checkC6Kpi = checkC6Kpi;
+
+async function checkC6Recovery(btn){
+  const text = document.getElementById("c6RecoveryReply").value.trim();
+  if(text.length<15){ toast("Write a fuller message first."); return; }
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  const resultEl = document.getElementById("c6RecoveryResult");
+  resultEl.innerHTML = `<div class="ai-loading">Evaluating your recovery plan…</div>`;
+  const prompt = `You are reviewing a Legal Executive Assistant trainee's draft message to their principal, Elias Thorne (Managing Owner & CEO of Thorne & Partners Law Group), about a project that has fallen behind schedule.
+
+Scenario: ${TRIAL_RECOVERY_SCENARIO.text}
+
+The trainee's draft message: "${text}"
+
+Evaluate against the standard taught: identify the root cause of the delay before reassigning blame, give a structured and specific plan (not vague reassurance), and match Elias's known preference for BLUF (bottom-line-up-front) communication — the key point and required action should be immediately clear, with detail available but not front-loaded. Give 3-4 short bullet points of feedback and one overall verdict sentence.`;
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:500, messages:[{role:"user", content:prompt}] })
+    });
+    if(!response.ok) throw new Error("Request failed");
+    const data = await response.json();
+    const feedback = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned.";
+    toolState.c6.recoveryReport = feedback;
+    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("projectcompliance6", 100);
+    burstConfetti();
+  }catch(e){
+    toolState.c6.recoveryReport = "Couldn't reach the AI review service.";
+    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }finally{
+    btn.disabled = false; btn.textContent = "Get AI Feedback";
+  }
+}
+window.checkC6Recovery = checkC6Recovery;
+
+async function downloadProjectCompliance6Pdf(){
+  await ensureTraineeName();
+  const c6 = toolState.c6;
+  const lines = ["## A. Multi-Jurisdiction License Check"];
+  FIRM_LICENSES.forEach((l,i)=>{
+    lines.push(`${l.name} (expires ${l.expires}) — your call: ${c6.license[i]||"(not answered)"} (correct: ${l.status})`);
+  });
+  lines.push("---", "## B. KPI Dashboard Review");
+  FIRM_KPIS.forEach((k,i)=>{
+    lines.push(`${k.category} — ${k.kpi}: target ${k.target}, actual ${k.actual} — your call: ${c6.kpi[i]||"(not answered)"} (correct: ${k.correctStatus})`);
+  });
+  lines.push("---", "## C. Trial Team Project Recovery", `Scenario: ${TRIAL_RECOVERY_SCENARIO.text}`, `Your message: ${document.getElementById("c6RecoveryReply").value.trim()||"(not written)"}`);
+  if(c6.recoveryReport) lines.push("", "AI Feedback:", c6.recoveryReport);
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Business Compliance & Project Recovery — Results", lines, "LSH_Project_Compliance");
+}
+window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
 
 </script>
 </body>
