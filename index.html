@@ -855,12 +855,52 @@ const DAYS = [
       "Prioritize: assess which requests are most time-sensitive, flag dependencies, summarize options for executive approval.",
       "Coordinate: use shared project boards (Asana/Trello) and collaborative docs (Sheets/Docs) with automated reminders across departments.",
       "Close the loop: assign clear action items per department, consolidate updates into one report, review before sending, confirm delivery to the client."
-    ]}}
+    ]}},
+
+    {h:"What Is a Large Language Model?", b:[
+      "Tools like Claude, ChatGPT, and Gemini aren't search engines querying a database of facts — they're prediction engines.",
+      "An LLM has read enormous amounts of text and learned the patterns of language. When you ask it to draft something, it predicts the most likely next word, sentence, and paragraph based on your prompt.",
+      "Because it's predicting rather than retrieving, it can produce original, useful text — but it can also confidently invent things that sound right and aren't."
+    ]},
+
+    {h:"Core AI Terms an EA/PA Needs", b:[
+      "Prompt — your instruction and context. A better prompt produces a better output.",
+      "Hallucination — the AI states something false with full confidence. Most common when it doesn't actually \"know\" the answer, but a plausible-sounding one exists in the pattern space.",
+      "Context window — its working memory limit for the current conversation. Paste something too long and it can lose track of the beginning by the time it reaches the end.",
+      "Tokens — roughly ¾ of a word. Higher-tier accounts generally allow longer documents (board decks, transcripts) before hitting the limit."
+    ]},
+
+    {h:"Your AI Toolkit — Three Modes, Different Jobs", b:[
+      "Generative Text — creates new content from patterns. Best for drafting declines, bios, or summarizing a messy email thread.",
+      "Extraction & Analysis — pulls specific data without altering facts. Best for isolating action items from a transcript, or pulling dates from a travel thread.",
+      "Logic & Routing — connects triggers to automated actions, like auto-filing attachments or a VIP-email alert.",
+      "The mistake to train out of yourself: using Generative mode when you actually need Extraction mode. Generative mode is allowed to paraphrase and infer; Extraction mode should quote back only what's explicit in the source."
+    ]},
+
+    {h:"Claude, ChatGPT, and Gemini — Practical Differences", b:[
+      "The same underlying risks apply to all three — hallucination, context limits, and training-on-inputs. The differences are mostly about where each tool sits in an existing workflow.",
+      "Claude — comfortable with long pastes (contracts, transcripts), careful tone control for sensitive drafting.",
+      "ChatGPT — broad ecosystem, fastest to iterate in, widest general familiarity.",
+      "Gemini — lives inside Gmail/Docs/Calendar directly if the org is on Google Workspace, so it can act on live inbox and calendar data, not just what's pasted in — which means the data-security habits below matter more, not less, since it isn't limited to what someone manually pasted."
+    ]},
+
+    {h:"The Golden Rules of Admin Data Security", b:[
+      "Toggle off training — find and disable \"Chat History & Training\" or \"Data Improvement\" in whichever tool you're using.",
+      "Anonymization rule — never input unannounced financial data, employee health information, Social Security numbers, or raw passwords.",
+      "Use placeholders — for a sensitive termination email or M&A memo, swap real names for \"[Company X]\" / \"[Employee Y]\" before hitting send."
+    ],
+    callout:{type:"warning", label:"Confidentiality still applies", text:"Elias's firm runs on \"uncompromising excellence\" and strict confidentiality — an AI tool is still a third party. The same judgment that keeps a case detail out of casual conversation applies to what you paste into a prompt."}}
   ],
   quickChecks:[
     {afterIndex:2, q:"The 'No-Surprises Rule' means:",
      opts:["Executives enjoy occasional surprises","An executive should never be blindsided by something their assistant already knew","Surprises are fine as long as they're positive","Only bad news needs to be flagged early"],
-     a:1, r:"Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."}
+     a:1, r:"Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."},
+    {afterIndex:6, q:"True or False: an LLM looks up facts in a database before answering.",
+     opts:["True","False"],
+     a:1, r:"It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."},
+    {afterIndex:7, q:"You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
+     opts:["Section 12 was too complex for the AI to understand","Context window strain — it lost precision across a long document","The AI refused the request","The contract format wasn't supported"],
+     a:1, r:"When a document is long, precision degrades across it — paste just the relevant section when precision matters."}
   ],
   quiz:[
     {q:"The 'Three C's' of Managing Up are:",
@@ -877,7 +917,22 @@ const DAYS = [
      a:1, r:"E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."},
     {q:"Three urgent requests collide and a VIP client also needs an immediate call. Best first move?",
      opts:["Try to do all four at once","Assess urgency and impact, then communicate a prioritized plan to the executive","Handle the VIP call and quietly drop the rest","Wait for the executive to sort out the priority"],
-     a:1, r:"Clarity + Credibility in action: assess, then propose a plan rather than guessing or freezing."}
+     a:1, r:"Clarity + Credibility in action: assess, then propose a plan rather than guessing or freezing."},
+    {q:"An LLM is best described as:",
+     opts:["A search engine","A fact database","A prediction engine"],
+     a:2, r:"It predicts the most likely next words based on patterns learned from text — it doesn't retrieve facts from a database."},
+    {q:"A hallucination is:",
+     opts:["A bug that crashes the app","Confidently stated false information","A formatting error"],
+     a:1, r:"The AI states something false with full confidence — often when a plausible-sounding answer exists in the pattern space even though it isn't true."},
+    {q:"Which mode should you use to pull exact action items from a transcript without paraphrasing?",
+     opts:["Generative Text","Extraction & Analysis","Logic & Routing"],
+     a:1, r:"Extraction mode quotes back only what's explicit in the source — the right choice when precision matters more than fluency."},
+    {q:"Before pasting a sensitive termination email draft into a public AI tool, you should:",
+     opts:["Do nothing, it's fine","Replace real names with placeholders","Only remove dollar amounts"],
+     a:1, r:"Swap real names for placeholders like \"[Employee Y]\" before hitting send — the anonymization rule applies to sensitive drafts."},
+    {q:"Gemini's tight integration with Gmail and Calendar means:",
+     opts:["It's automatically safer","The data-security habits matter more, since it can touch live inbox and calendar data","Training toggles don't apply to it"],
+     a:1, r:"Because it isn't limited to what's manually pasted in, the same security discipline matters even more, not less."}
   ]
 },
 {
@@ -1426,22 +1481,22 @@ const DAYS = [
    ============================================================ */
 
 const PRACTICE_TOOLS = [
-  {id:"calendar", icon:"◫", title:"Legal Calendar Conflict Resolver", relates:"Day 3",
-   desc:"A full attorney's week with overlapping court dates, depositions, and client meetings — drag blocks to new times, recolor them, and resolve every conflict."},
-  {id:"financial", icon:"Σ", title:"Trust Account & Billing Sheet", relates:"Day 7",
-   desc:"Reconcile a client trust ledger and build a legal services invoice — with live calculations."},
-  {id:"travel", icon:"✈", title:"Travel Itinerary Planner", relates:"Day 2",
-   desc:"Build a contingency-backed itinerary for Elias Thorne's multi-city travel — depositions, hearings, and the 'Silent Flight' rule."},
-  {id:"calls", icon:"☎", title:"Crisis Call Handling Studio", relates:"Day 8",
-   desc:"Practice gatekeeping under pressure — media inquiries, a suspicious caller requesting sensitive information, and urgent partner check-ins during a live crisis."},
-  {id:"emailsim", icon:"📨", title:"Email Management", relates:"Day 4",
-   desc:"A real inbox — build your own filing system with labels and sub-labels, draft real replies to client emails, and catch a hidden phishing attempt. Evaluated on filing accuracy, tone match, professionalism, and security awareness."},
   {id:"dossier1", icon:"🗂", title:"Client Dossier & Tracker Builder", relates:"Day 1",
    desc:"Build a comprehensive client dossier and set up Travel and Inbox Preference trackers for Elias Thorne — sorting real profile facts into the right sections."},
+  {id:"calendar", icon:"◫", title:"Legal Calendar Conflict Resolver", relates:"Day 2",
+   desc:"A full attorney's week with overlapping court dates, depositions, and client meetings — drag blocks to new times, recolor them, resolve every conflict, then write the AI prompt that would turn it into Elias's BLUF-style daily briefing."},
+  {id:"travel", icon:"✈", title:"Travel Itinerary Planner", relates:"Day 3",
+   desc:"Build a personal travel itinerary for Elias Thorne from scratch — a family trip to Spain — applying his known travel preferences as you go."},
+  {id:"emailsim", icon:"📨", title:"Email Management", relates:"Day 4",
+   desc:"A real inbox — build your own filing system with labels and sub-labels, draft real replies to client emails, and catch a hidden phishing attempt. Evaluated on filing accuracy, tone match, professionalism, and security awareness."},
   {id:"insurance5", icon:"🛡", title:"Insurance & Risk Assessment", relates:"Day 5",
    desc:"Classify household and personal risks facing the Thorne family into the right category, then match each to the correct risk-management strategy."},
   {id:"projectcompliance6", icon:"📊", title:"Business Compliance & Project Recovery", relates:"Day 6",
    desc:"Check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind."},
+  {id:"financial", icon:"Σ", title:"Trust Account & Billing Sheet", relates:"Day 7",
+   desc:"Reconcile a client trust ledger and build a legal services invoice — with live calculations."},
+  {id:"calls", icon:"☎", title:"Crisis Call Handling Studio", relates:"Day 8",
+   desc:"Practice gatekeeping under pressure — media inquiries, a suspicious caller requesting sensitive information, and urgent partner check-ins during a live crisis."},
   {id:"compliance9", icon:"📋", title:"Compliance & Reputation Tracker", relates:"Day 9",
    desc:"Spot who's behind on CLE hours, catch unconfirmed event registrants, and draft a professional public response to a negative review."},
   {id:"socialmedia10", icon:"📱", title:"Social Media Metrics Lab", relates:"Day 10",
@@ -1587,18 +1642,17 @@ const INVOICE_QUEUE = [
    explain:"Same dates, same line items, same amount as Invoice #101 — this is a duplicate and shouldn't be billed twice."}
 ];
 
-/* ---------- 4. Case Travel "What-If" Planner ---------- */
-const TRAVEL_LEGS = [
-  {city:"Leg 1 — Chicago → New York (Deposition, Matter 24-0113)", flight:"Depart 7:15 AM, Executive Air 204", hotel:"The Farrow Hotel, 2 nights"},
-  {city:"Leg 2 — New York → Boston (Motion Hearing, Matter 24-0098)", flight:"Depart Day 2, 2:00 PM, Coastal Air 88", hotel:"Harborview Suites, 1 night"},
-  {city:"Leg 3 — Boston → Chicago (Return to Office)", flight:"Depart Day 3, 6:30 PM, Executive Air 311", hotel:"—"}
-];
-const TRAVEL_CHECKLIST = [
-  "Inform the attorney of every schedule conflict as soon as it's known",
-  "Never rebook a flight or hotel without consulting the attorney first",
-  "Prioritize hearings and depositions by court-imposed deadlines and strategic importance",
-  "Present one consolidated, revised itinerary rather than piecemeal updates",
-  "Confirm a backup ('What If') option is on hold for every court-critical leg"
+/* ---------- 4. Travel Itinerary Planner (build-your-own) ---------- */
+const TRAVEL_SCENARIO = {
+  title:"Personal Travel — The Thorne Family, Spain",
+  text:"Elias is taking Sarah, Leo (8), and Maya (5) to Spain for a week — Madrid, then Barcelona. Nothing is pre-built. Create the full itinerary sheet yourself: flights, lodging, and day notes for each leg, applying everything you know about how Elias travels."
+};
+const TRAVEL_REQUIREMENTS = [
+  {id:"seat", label:"Seat preference addressed (aisle, near the front)", keywords:["aisle"]},
+  {id:"direct", label:"No connecting flights noted", keywords:["direct","nonstop","non-stop","no connection","no layover"]},
+  {id:"dietary", label:"Dietary needs flagged (strict Paleo, zero dairy)", keywords:["paleo","dairy","dietary"]},
+  {id:"family", label:"Something age-appropriate planned for Leo and/or Maya", keywords:["leo","maya","kid","child","family-friendly","family friendly"]},
+  {id:"contingency", label:"A contingency / delay-monitoring note included somewhere", keywords:["delay","backup","rebook","contingency","monitor"]}
 ];
 
 /* ---------- 5. Call Handling Studio ---------- */
@@ -2659,6 +2713,12 @@ function renderCalendarBody(body){
     </div>
     <button class="btn btn-primary" style="margin-top:16px;" onclick="submitCalendar()">Check My Plan</button>
     <div id="calResult"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">Create Something for Elias — AI-Assisted Daily Briefing</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias only reads BLUF-style summaries. Instead of writing the briefing yourself, write the <b>prompt</b> you'd give an AI tool to draft it — using your finished weekly schedule above as the source material. This is Generative mode, but disciplined: the AI should draft from what's actually on the calendar, not invent meetings that aren't there.</p>
+    <textarea id="calPromptInput" placeholder="Write your AI prompt here — e.g. what to draft, for whom, in what format, using what source…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkCalendarPrompt(this)">Get AI Feedback</button>
+    <div id="calPromptResult" style="margin-top:10px;"></div>
   `;
 }
 function toHex(c){
@@ -2700,6 +2760,55 @@ async function calReset(){
   toast("Calendar reset to original");
 }
 window.calReset = calReset;
+
+async function checkCalendarPrompt(btn){
+  const prompt = document.getElementById("calPromptInput").value.trim();
+  if(prompt.length<15){ toast("Write a fuller prompt first."); return; }
+  const events = calMergedEvents();
+  const scheduleSummary = DAY_ORDER.map(day=>{
+    const dayEvents = events.filter(e=>e.day===day).sort((a,b)=>a.s-b.s);
+    if(!dayEvents.length) return null;
+    return `${day}: ` + dayEvents.map(e=>`${fmtHr(e.s)}–${fmtHr(e.e)} ${e.t} (${e.p})`).join("; ");
+  }).filter(Boolean).join("\n");
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  const resultEl = document.getElementById("calPromptResult");
+  resultEl.innerHTML = `<div class="ai-loading">Evaluating your prompt…</div>`;
+  const evalPrompt = `You are reviewing a Legal Executive Assistant trainee's AI PROMPT — not a finished draft, the prompt itself — written to get an AI tool to draft a daily/weekly schedule briefing for their principal, Elias Thorne (Managing Owner & CEO of Thorne & Partners Law Group).
+
+Elias only reads BLUF-style summaries: the bottom line and required action up front, detail after.
+
+The trainee's finished weekly schedule (the source material the AI should draft from):
+${scheduleSummary}
+
+The trainee's prompt: "${prompt}"
+
+Evaluate whether the prompt:
+1. Specifies the audience and Elias's BLUF preference (so the AI knows the register to write in)
+2. References the schedule above as the actual source material, rather than leaving the AI to invent meetings
+3. Specifies a format or length constraint
+4. Is Generative-mode appropriate (drafting a briefing) without accidentally inviting the AI to fabricate details not on the calendar
+
+Give 3-4 short bullet points of feedback and one overall verdict sentence on whether this prompt would produce a usable, accurate BLUF briefing.`;
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:500, messages:[{role:"user", content:evalPrompt}] })
+    });
+    if(!response.ok) throw new Error("Request failed");
+    const data = await response.json();
+    const feedback = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned.";
+    toolState.calPromptReport = feedback;
+    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Prompt</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("calendar", 100);
+    burstConfetti();
+  }catch(e){
+    toolState.calPromptReport = "Couldn't reach the AI review service.";
+    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }finally{
+    btn.disabled = false; btn.textContent = "Get AI Feedback";
+  }
+}
+window.checkCalendarPrompt = checkCalendarPrompt;
 
 async function submitCalendar(){
   const events = calMergedEvents();
@@ -2743,6 +2852,8 @@ async function downloadCalendarPdf(){
     lines.push(`${day}:`);
     dayEvents.forEach(e=>lines.push(`   ${fmtHr(e.s)}–${fmtHr(e.e)}  ${e.t}  (${e.p} priority, ${e.type})`));
   });
+  lines.push("---", "## AI-Assisted Daily Briefing Prompt", document.getElementById("calPromptInput")?.value.trim() || "(not written)");
+  if(toolState.calPromptReport) lines.push("", "AI Feedback:", toolState.calPromptReport);
   buildAndSavePdf("LSH EA / PA Upskill Program", "Weekly Calendar — Results", lines, "LSH_Calendar_Plan");
 }
 window.downloadCalendarPdf = downloadCalendarPdf;
@@ -2918,61 +3029,108 @@ window.downloadFinancialPdf = downloadFinancialPdf;
    4. TRAVEL "WHAT-IF" PLANNER
    ============================================================ */
 function initTravel(body){
+  toolState.travel = { rows: [
+    {date:"", city:"", flight:"", hotel:"", notes:""},
+    {date:"", city:"", flight:"", hotel:"", notes:""},
+    {date:"", city:"", flight:"", hotel:"", notes:""}
+  ]};
+  renderTravelBody(body);
+}
+function renderTravelBody(body){
   body.innerHTML = `
-    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:16px;">Scenario: a multi-city trip is booked, but flight changes and hotel overlaps are already showing up. For each leg, write the backup plan you'd want already in place.</p>
-    ${TRAVEL_LEGS.map((leg,i)=>`
-      <div class="leg-card">
-        <div class="leg-title">${esc(leg.city)}</div>
-        <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:10px;">Primary flight: ${esc(leg.flight)} &nbsp;·&nbsp; Hotel: ${esc(leg.hotel)}</div>
-        <div class="leg-fields">
-          <textarea rows="2" placeholder="What-if backup (e.g. next flight on hold, alternate hotel)" id="legBackup${i}"></textarea>
-          <textarea rows="2" placeholder="Contingency notes / who to notify if this leg changes" id="legNotes${i}"></textarea>
-        </div>
-      </div>`).join("")}
-    <h3 style="margin:22px 0 10px;color:var(--navy);font-size:15px;">Best-Practice Checklist</h3>
-    <div class="card" style="padding:16px 20px;">
-      <div class="check-list">
-        ${TRAVEL_CHECKLIST.map((c,i)=>`
-          <label class="check-item"><input type="checkbox" id="chk${i}"> ${esc(c)}</label>`).join("")}
-      </div>
+    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
     </div>
-    <button class="btn btn-primary" style="margin-top:14px;" onclick="submitTravel()">Save My Plan</button>
+    <div class="card" style="padding:14px 16px;overflow-x:auto;">
+      <table class="log-table" id="travelSheet">
+        <thead><tr><th style="width:90px;">Day / Date</th><th>City</th><th>Flight / Transport</th><th>Lodging</th><th>Notes (activities, dietary, contingency)</th><th></th></tr></thead>
+        <tbody id="travelRows">${renderTravelRows()}</tbody>
+      </table>
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="addTravelRow()">+ Add Leg</button>
+    <button class="btn btn-primary" style="margin-top:14px;display:block;" onclick="checkTravel()">Check My Itinerary</button>
     <div id="travelResult"></div>
+
+    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadTravelPdf()">⬇ Download My Work</button>
   `;
 }
-async function submitTravel(){
-  const total = TRAVEL_CHECKLIST.length;
-  let checked=0;
-  for(let i=0;i<total;i++){ if(document.getElementById(`chk${i}`).checked) checked++; }
-  let filled=0;
-  TRAVEL_LEGS.forEach((_,i)=>{
-    if(document.getElementById(`legBackup${i}`).value.trim()) filled++;
+function renderTravelRows(){
+  return toolState.travel.rows.map((r,i)=>`
+    <tr>
+      <td><input type="text" value="${esc(r.date)}" placeholder="Day 1" oninput="setTravelField(${i},'date',this.value)"></td>
+      <td><input type="text" value="${esc(r.city)}" placeholder="Madrid" oninput="setTravelField(${i},'city',this.value)"></td>
+      <td><input type="text" value="${esc(r.flight)}" placeholder="e.g. Direct flight, aisle seats" oninput="setTravelField(${i},'flight',this.value)"></td>
+      <td><input type="text" value="${esc(r.hotel)}" placeholder="Hotel name" oninput="setTravelField(${i},'hotel',this.value)"></td>
+      <td><input type="text" value="${esc(r.notes)}" placeholder="Activities, dining, backup plan" oninput="setTravelField(${i},'notes',this.value)"></td>
+      <td><button class="btn btn-sm btn-ghost" onclick="removeTravelRow(${i})" title="Remove leg">✕</button></td>
+    </tr>`).join("");
+}
+function syncTravelFromDOM(){
+  toolState.travel.rows.forEach((r,i)=>{
+    const row = document.querySelectorAll("#travelRows tr")[i];
+    if(!row) return;
+    const inputs = row.querySelectorAll("input");
+    if(inputs.length<5) return;
+    r.date=inputs[0].value; r.city=inputs[1].value; r.flight=inputs[2].value; r.hotel=inputs[3].value; r.notes=inputs[4].value;
   });
-  const score = Math.round(((checked/total)*0.6 + (filled/TRAVEL_LEGS.length)*0.4)*100);
+}
+function addTravelRow(){
+  syncTravelFromDOM();
+  toolState.travel.rows.push({date:"",city:"",flight:"",hotel:"",notes:""});
+  document.getElementById("travelRows").innerHTML = renderTravelRows();
+}
+window.addTravelRow = addTravelRow;
+function removeTravelRow(i){
+  syncTravelFromDOM();
+  if(toolState.travel.rows.length<=1){ toast("Keep at least one leg."); return; }
+  toolState.travel.rows.splice(i,1);
+  document.getElementById("travelRows").innerHTML = renderTravelRows();
+}
+window.removeTravelRow = removeTravelRow;
+function setTravelField(i,field,val){ toolState.travel.rows[i][field]=val; }
+window.setTravelField = setTravelField;
+
+async function checkTravel(){
+  syncTravelFromDOM();
+  const filledRows = toolState.travel.rows.filter(r=>r.city.trim() && (r.flight.trim()||r.hotel.trim()));
+  if(filledRows.length<2){ toast("Build out at least 2 legs of the trip before checking."); return; }
+
+  const allText = toolState.travel.rows.map(r=>`${r.flight} ${r.notes}`).join(" ").toLowerCase();
+  let detected=0;
+  const results = TRAVEL_REQUIREMENTS.map(req=>{
+    const found = req.keywords.some(k=>allText.includes(k));
+    if(found) detected++;
+    return {label:req.label, found};
+  });
+  const score = Math.round((detected/TRAVEL_REQUIREMENTS.length)*100);
   document.getElementById("travelResult").innerHTML = `
     <div class="card" style="padding:16px 20px;margin-top:14px;">
-      <b style="color:var(--navy);">Plan saved — ${checked}/${total} best practices checked, backup plans written for ${filled}/${TRAVEL_LEGS.length} legs.</b>
-      <button class="btn btn-navy btn-sm" style="margin-top:12px;display:block;" onclick="downloadTravelPdf()">⬇ Download My Work</button>
+      <b style="color:${score===100?'var(--success)':'var(--danger)'};">${detected}/${TRAVEL_REQUIREMENTS.length} of Elias's travel preferences addressed (${score}%)</b>
+      <div style="margin-top:10px;display:grid;gap:6px;">
+        ${results.map(r=>`<div style="font-size:12.8px;color:${r.found?'var(--success)':'var(--ink-soft)'};">${r.found?"✅":"◻"} ${esc(r.label)}</div>`).join("")}
+      </div>
     </div>`;
+  toolState.travel.score = score;
   await bumpPracticeProgress("travel", score);
-  toast("Travel plan saved");
   if(score===100) burstConfetti();
 }
-window.submitTravel = submitTravel;
+window.checkTravel = checkTravel;
+
 async function downloadTravelPdf(){
   await ensureTraineeName();
-  const lines = ["## Case Travel \"What-If\" Planner", "---"];
-  TRAVEL_LEGS.forEach((leg,i)=>{
-    lines.push(`${leg.city}`);
-    lines.push(`   Primary flight: ${leg.flight}   Hotel: ${leg.hotel}`);
-    lines.push(`   Backup plan: ${document.getElementById(`legBackup${i}`).value.trim() || "(not filled in)"}`);
-    lines.push(`   Contingency notes: ${document.getElementById(`legNotes${i}`).value.trim() || "(not filled in)"}`);
+  syncTravelFromDOM();
+  const lines = [`## ${TRAVEL_SCENARIO.title}`, TRAVEL_SCENARIO.text, "---", "## Itinerary"];
+  toolState.travel.rows.forEach(r=>{
+    lines.push(`${r.date || "(day not set)"} — ${r.city || "(city not set)"}`);
+    lines.push(`   Flight/Transport: ${r.flight || "—"}`);
+    lines.push(`   Lodging: ${r.hotel || "—"}`);
+    lines.push(`   Notes: ${r.notes || "—"}`);
   });
-  lines.push("---", "## Best-Practice Checklist");
-  TRAVEL_CHECKLIST.forEach((c,i)=>{
-    lines.push(`   [${document.getElementById(`chk${i}`).checked?"x":" "}] ${c}`);
-  });
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Travel Plan — Results", lines, "LSH_Travel_Plan");
+  if(typeof toolState.travel.score === "number"){
+    lines.push("---", `Preferences addressed: ${toolState.travel.score}%`);
+  }
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Travel Itinerary — Results", lines, "LSH_Travel_Itinerary");
 }
 window.downloadTravelPdf = downloadTravelPdf;
 
