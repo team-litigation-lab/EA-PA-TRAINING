@@ -318,6 +318,92 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 .empty-folder{font-size:12.8px;color:var(--ink-soft);padding:30px 10px;text-align:center;}
 .color-dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-left:6px;vertical-align:middle;}
 
+/* email management simulator: webmail-style inbox, no folders/tiers */
+.esim-searchbar{
+  display:flex;align-items:center;gap:8px;background:#F1F3F8;border-radius:24px;padding:9px 16px;
+  margin-bottom:14px;max-width:420px;
+}
+.esim-search-icon{font-size:13px;opacity:.6;}
+.esim-searchbar input{border:none;background:transparent;outline:none;font-size:13px;flex:1;color:var(--ink);}
+
+.esim-shell{display:grid;grid-template-columns:320px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;min-height:480px;}
+@media(max-width:760px){.esim-shell{grid-template-columns:1fr;}}
+.esim-list{border-right:1px solid var(--line);overflow-y:auto;max-height:620px;}
+.esim-row{
+  display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border-bottom:1px solid #EEF0F4;
+  cursor:pointer;transition:background .12s ease;position:relative;
+}
+.esim-row:hover{background:#F6F7FB;}
+.esim-row:hover .erow-hover-icons{opacity:1;}
+.esim-row.active{background:#EAF0FB;}
+.esim-row .erow-star{
+  font-size:15px;color:#C6CAD6;cursor:pointer;flex:0 0 auto;line-height:1;padding-top:2px;
+  transition:color .12s ease;
+}
+.esim-row .erow-star.on, .esim-row .erow-star:hover{color:#E8A93D;}
+.erow-avatar{
+  width:28px;height:28px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+}
+.esim-row .erow-main{flex:1;min-width:0;}
+.esim-row .erow-topline{display:flex;justify-content:space-between;gap:6px;}
+.esim-row .efrom{font-size:12.6px;color:#5B6178;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.esim-row.unread .efrom{color:var(--ink);font-weight:700;}
+.esim-row .emeta{font-size:10.5px;color:var(--ink-soft);flex:0 0 auto;}
+.esim-row .esubj{font-size:12.3px;color:#5B6178;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.esim-row.unread .esubj{color:var(--ink);font-weight:600;}
+.esim-row .epreview{font-weight:400 !important;color:var(--ink-soft);}
+.esim-row .estatus{font-size:9.5px;font-weight:700;display:inline-block;padding:2px 7px;border-radius:8px;}
+.estatus.replied{background:var(--success-bg);color:var(--success);}
+.estatus.archived{background:#E4E6EE;color:#5B6178;}
+.estatus.reported{background:#FBF3E7;color:var(--orange-deep);}
+.erow-hover-icons{
+  position:absolute;right:10px;top:11px;display:flex;gap:4px;opacity:0;transition:opacity .12s ease;
+  background:#F6F7FB;
+}
+.erow-hover-icons button{
+  width:26px;height:26px;border-radius:50%;border:none;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.15);
+  font-size:12px;cursor:pointer;
+}
+.erow-hover-icons button:hover{background:#EEF0F6;}
+
+.esim-pane{padding:20px 24px;}
+.esim-pane .ephead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px;}
+.esim-pane .ephead h4{margin:0;font-size:17px;color:var(--ink);font-weight:600;}
+.ephead-toolbar{display:flex;gap:4px;flex:0 0 auto;}
+.eicon-btn{
+  width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;
+  font-size:13px;cursor:pointer;transition:background .12s ease;
+}
+.eicon-btn:hover{background:#F1F3F8;}
+.ep-sender-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.ep-sender-row .erow-avatar{width:36px;height:36px;font-size:13px;}
+.epfrom-name{font-size:13.5px;font-weight:600;color:var(--ink);}
+.epfrom-meta{font-size:11.5px;color:var(--ink-soft);margin-top:1px;}
+.esim-pane .epbody{font-size:13.8px;color:#2B2E3D;white-space:pre-wrap;line-height:1.65;margin-bottom:18px;}
+.esim-fake-link{color:#1a73e8;text-decoration:underline;cursor:pointer;font-weight:500;}
+.esim-fake-link:hover{color:#0d47a1;}
+.esim-reply-collapsed{
+  display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:22px;
+  padding:9px 20px;font-size:13px;font-weight:600;color:var(--navy);background:#fff;cursor:pointer;
+  transition:box-shadow .12s ease;
+}
+.esim-reply-collapsed:hover{box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.esim-actions{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:10px;padding:14px;background:#FBFBFD;}
+.esim-actions textarea{
+  width:100%;min-height:120px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);
+  font-size:13px;font-family:inherit;resize:vertical;
+}
+.esim-btn-row{display:flex;gap:8px;flex-wrap:wrap;}
+.esim-empty{padding:60px 20px;text-align:center;color:var(--ink-soft);font-size:13px;}
+.esim-fail-banner{
+  background:var(--danger-bg);border:1px solid var(--danger);border-radius:12px;padding:22px 24px;margin-bottom:18px;
+}
+.esim-fail-banner h3{color:var(--danger);margin:0 0 8px;font-size:18px;}
+.esim-fail-banner ul{margin:8px 0 0;padding-left:18px;}
+.esim-fail-banner li{font-size:13px;color:#7a352c;margin-bottom:4px;}
+.esim-progress{font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-soft);margin-bottom:12px;}
+
 /* differences drill */
 .drill-row{
   display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;
@@ -387,6 +473,25 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 .calc-total{
   display:flex;justify-content:space-between;align-items:center;padding:14px 4px 4px;margin-top:6px;
   border-top:2px solid var(--navy);font-family:'Fraunces';font-size:16px;color:var(--navy);
+}
+
+/* invoice & bill audit queue */
+.audit-card{padding:16px 18px;margin-bottom:12px;}
+.audit-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;}
+.audit-head b{color:var(--navy);font-size:14px;}
+.audit-total{font-family:'IBM Plex Mono';font-size:15px;font-weight:600;color:var(--navy);}
+.audit-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.audit-btn{
+  border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;
+  font-size:12.5px;font-weight:600;transition:all .12s ease;
+}
+.audit-btn:hover{border-color:var(--navy-soft);}
+.audit-btn.active-valid{background:var(--success-bg);border-color:var(--success);color:var(--success);}
+.audit-btn.active-correction{background:#FBF3E7;border-color:var(--orange);color:var(--orange-deep);}
+.audit-btn.active-unrelated{background:var(--danger-bg);border-color:var(--danger);color:var(--danger);}
+.audit-error-select{
+  width:100%;margin-top:10px;padding:8px 10px;border-radius:7px;border:1px solid var(--orange);
+  font-size:12.5px;background:#FFFBF3;
 }
 
 /* travel planner */
@@ -1287,7 +1392,9 @@ const PRACTICE_TOOLS = [
   {id:"travel", icon:"✈", title:"Case Travel 'What-If' Planner", relates:"Day 2 · 3 · 5",
    desc:"Build contingency-backed itineraries for an attorney traveling to depositions and hearings in multiple cities."},
   {id:"calls", icon:"☎", title:"Call Handling Studio", relates:"Day 3 · 4",
-   desc:"Practice inbound gatekeeping for client, opposing counsel, and court calls — plus log prospective-client intake outreach."}
+   desc:"Practice inbound gatekeeping for client, opposing counsel, and court calls — plus log prospective-client intake outreach."},
+  {id:"emailsim", icon:"📨", title:"Email Management Simulator", relates:"Day 4",
+   desc:"A mixed inbox of client requests, clutter, and a hidden phishing attempt — draft real replies and get evaluated on tone match, professionalism, and security awareness."}
 ];
 
 /* ---------- 0. EA vs PA Differences Drill (Day 1) ---------- */
@@ -1355,31 +1462,56 @@ const TRIAGE_EMAILS = [
 /* ---------- 2. Legal Calendar Conflict Resolver (week view) ---------- */
 const DAY_ORDER = ["Mon","Tue","Wed","Thu","Fri"];
 const CAL_EVENTS = [
-  {t:"Team Case Standup", day:"Mon", s:9.0, e:10.0, p:"Medium", loc:"Virtual", type:"Internal"},
+  {t:"Team Case Standup", day:"Mon", s:9, e:10, p:"Medium", loc:"Virtual", type:"Internal"},
   {t:"Client Consultation — Alvarez", day:"Mon", s:9.5, e:10.5, p:"High", loc:"Virtual", type:"Client"},
-  {t:"Urgent Call — Managing Partner", day:"Mon", s:9.25, e:9.75, p:"High", loc:"Virtual", type:"Internal"},
-  {t:"Case Strategy Planning", day:"Mon", s:11.0, e:12.0, p:"High", loc:"Virtual", type:"Internal"},
-  {t:"Vendor Follow-up — Process Server", day:"Mon", s:11.5, e:12.5, p:"Low", loc:"Virtual", type:"Vendor"},
-  {t:"Vendor Review — Court Reporter Svc.", day:"Tue", s:9.0, e:10.0, p:"Medium", loc:"In-person", type:"Vendor"},
-  {t:"Deposition — Matter 24-0113", day:"Tue", s:9.5, e:11.0, p:"High", loc:"Virtual", type:"Deposition"},
-  {t:"Media Inquiry Response", day:"Tue", s:10.5, e:11.0, p:"High", loc:"Virtual", type:"Internal"},
-  {t:"Discovery Document Review", day:"Tue", s:14.0, e:15.0, p:"Medium", loc:"Virtual", type:"Case Team"},
-  {t:"Client Call — Osei Prep", day:"Tue", s:14.5, e:15.0, p:"Medium", loc:"Virtual", type:"Client"},
-  {t:"CLE Session", day:"Wed", s:10.0, e:11.5, p:"Low", loc:"Virtual", type:"Compliance"},
-  {t:"Court Filing Prep", day:"Wed", s:11.0, e:12.0, p:"Medium", loc:"In-person", type:"Court / Filing"},
+  {t:"Case Strategy Planning", day:"Mon", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
+  {t:"Vendor Follow-up — Process Server", day:"Mon", s:12, e:13, p:"Low", loc:"Virtual", type:"Vendor"},
+  {t:"Client Call — Alvarez Follow-up", day:"Mon", s:14, e:15, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"Paralegal Check-in", day:"Mon", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Internal"},
+  {t:"Discovery Deadline Review", day:"Mon", s:15.75, e:16.75, p:"High", loc:"Virtual", type:"Case Team"},
+  {t:"Co-Counsel Sync — Reyes Group", day:"Mon", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Case Team"},
+  {t:"Mail & Filing Review", day:"Mon", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Internal"},
+  {t:"Client Intake — New Referral", day:"Mon", s:13.15, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"Vendor Review — Court Reporter Svc.", day:"Tue", s:9, e:10, p:"Medium", loc:"In-person", type:"Vendor"},
+  {t:"Deposition Prep — Matter 24-0113", day:"Tue", s:9.5, e:10.5, p:"High", loc:"Virtual", type:"Deposition"},
+  {t:"Media Inquiry Response", day:"Tue", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
+  {t:"Press Statement Review", day:"Tue", s:12, e:13, p:"Medium", loc:"Virtual", type:"Internal"},
+  {t:"Discovery Document Review", day:"Tue", s:14, e:15, p:"Medium", loc:"Virtual", type:"Case Team"},
+  {t:"Client Call — Osei Prep", day:"Tue", s:14.5, e:15.5, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"Compliance Audit Prep", day:"Tue", s:15.75, e:16.75, p:"Medium", loc:"Virtual", type:"Compliance"},
+  {t:"CLE Credit Reconciliation", day:"Tue", s:16.25, e:17.25, p:"Low", loc:"Virtual", type:"Compliance"},
+  {t:"Trust Account Spot-Check", day:"Tue", s:10.5, e:11.15, p:"Medium", loc:"Virtual", type:"Trust & Billing"},
+  {t:"Vendor Contract Signature", day:"Tue", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
+  {t:"CLE Session — Ethics Update", day:"Wed", s:9, e:10, p:"Low", loc:"Virtual", type:"Compliance"},
+  {t:"Court Filing Prep", day:"Wed", s:9.5, e:10.5, p:"Medium", loc:"In-person", type:"Court / Filing"},
   {t:"Contract Review — NDA", day:"Wed", s:11.5, e:12.5, p:"Medium", loc:"Virtual", type:"Case Team"},
-  {t:"Co-Counsel Debrief", day:"Wed", s:15.0, e:16.0, p:"Low", loc:"Virtual", type:"Case Team"},
-  {t:"Team 1:1", day:"Wed", s:15.5, e:16.0, p:"Low", loc:"Virtual", type:"Internal"},
-  {t:"Motion Hearing — Matter 24-0098", day:"Thu", s:9.0, e:10.0, p:"High", loc:"In-person", type:"Court / Filing"},
+  {t:"Client Consultation — Whitfield", day:"Wed", s:12, e:13, p:"High", loc:"Virtual", type:"Client"},
+  {t:"Co-Counsel Debrief", day:"Wed", s:14, e:15, p:"Low", loc:"Virtual", type:"Case Team"},
+  {t:"Team 1:1 — Paralegal", day:"Wed", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Internal"},
+  {t:"Deposition — Matter 24-0155", day:"Wed", s:15.75, e:16.75, p:"High", loc:"In-person", type:"Deposition"},
+  {t:"Client Update Call — Farrow", day:"Wed", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"Billing Cycle Review", day:"Wed", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Trust & Billing"},
+  {t:"Vendor Invoice Approval", day:"Wed", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
+  {t:"Motion Hearing — Matter 24-0098", day:"Thu", s:9, e:10, p:"High", loc:"In-person", type:"Court / Filing"},
   {t:"Client Consultation — Osei", day:"Thu", s:9.5, e:10.5, p:"Medium", loc:"Virtual", type:"Client"},
-  {t:"Board Call Prep", day:"Thu", s:9.75, e:10.25, p:"High", loc:"Virtual", type:"Internal"},
-  {t:"Trust Ledger Review", day:"Thu", s:13.0, e:14.0, p:"Medium", loc:"Virtual", type:"Trust & Billing"},
-  {t:"Vendor Invoice Review", day:"Thu", s:13.5, e:14.0, p:"Low", loc:"Virtual", type:"Vendor"},
-  {t:"Last-Minute Client Emergency", day:"Fri", s:10.0, e:11.0, p:"High", loc:"Virtual", type:"Client"},
-  {t:"Weekly Case Review", day:"Fri", s:10.5, e:11.5, p:"Medium", loc:"Virtual", type:"Internal"},
-  {t:"Prospective Client Call #2", day:"Fri", s:10.75, e:11.25, p:"Medium", loc:"Virtual", type:"Client"},
-  {t:"Prospective Client Intake", day:"Fri", s:15.0, e:16.0, p:"Low", loc:"Virtual", type:"Client"},
-  {t:"Compliance Check-in", day:"Fri", s:15.5, e:16.0, p:"Low", loc:"Virtual", type:"Compliance"}
+  {t:"Board Call Prep", day:"Thu", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
+  {t:"Executive Briefing Review", day:"Thu", s:12, e:13, p:"Medium", loc:"Virtual", type:"Internal"},
+  {t:"Trust Ledger Review", day:"Thu", s:14, e:15, p:"Medium", loc:"Virtual", type:"Trust & Billing"},
+  {t:"Vendor Invoice Review", day:"Thu", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Vendor"},
+  {t:"Discovery Response Drafting", day:"Thu", s:15.75, e:16.75, p:"High", loc:"Virtual", type:"Case Team"},
+  {t:"Co-Counsel Call — Reyes Group", day:"Thu", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Case Team"},
+  {t:"CLE Compliance Follow-up", day:"Thu", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Compliance"},
+  {t:"New Matter Intake Call", day:"Thu", s:13.15, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"Last-Minute Client Emergency", day:"Fri", s:9, e:10, p:"High", loc:"Virtual", type:"Client"},
+  {t:"Weekly Case Review", day:"Fri", s:9.5, e:10.5, p:"Medium", loc:"Virtual", type:"Internal"},
+  {t:"Prospective Client Call #2", day:"Fri", s:11.5, e:12.5, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"Referral Intake Follow-up", day:"Fri", s:12, e:13, p:"Low", loc:"Virtual", type:"Client"},
+  {t:"Prospective Client Intake", day:"Fri", s:14, e:15, p:"Low", loc:"Virtual", type:"Client"},
+  {t:"Compliance Check-in", day:"Fri", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Compliance"},
+  {t:"Filing Deadline — Matter 24-0201", day:"Fri", s:15.75, e:16.75, p:"High", loc:"In-person", type:"Court / Filing"},
+  {t:"Court Clerk Confirmation Call", day:"Fri", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Court / Filing"},
+  {t:"Week Wrap-up & Handoff Notes", day:"Fri", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Internal"},
+  {t:"Vendor Renewal Review", day:"Fri", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"}
 ];
 const PRI_COLOR = {High:"#B54A3F", Medium:"#DB8437", Low:"#7C82A0"};
 const COLOR_PRESETS = ["#B54A3F","#DB8437","#7C82A0","#3F7D58","#3C4268","#6B4FA0","#2C7A7B","#B5651F"];
@@ -1394,7 +1526,48 @@ const SOA_DATA = [
 ];
 const SOA_ANSWER = 5000; // opening 5000 +2000 -3000 +1500 -500
 
-const INVOICE_DATA = {rate:100, hours:25, expenses:300, discountPct:10};
+const ERROR_TYPES = [
+  {id:"math", label:"Math / total doesn't match the line items"},
+  {id:"discount", label:"Missing a contractual discount"},
+  {id:"duplicate", label:"Duplicate of another invoice already submitted"},
+  {id:"other", label:"Other issue"}
+];
+
+// The scenario: reconciling the trust account for R. Alvarez, Matter 24-0113.
+// Bookkeeping forwarded these 8 invoices — some belong and are correct, some
+// belong but need a correction before they're paid, and some don't belong
+// to this account at all.
+const INVOICE_QUEUE = [
+  {invNum:"101", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 2–6",
+   lines:[{desc:"Attorney hours",qty:"10 hrs",rate:"$150/hr",amount:1500},{desc:"Filing fee",qty:"—",rate:"—",amount:50}],
+   statedTotal:1550, status:"valid"},
+  {invNum:"102", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 9–13",
+   lines:[{desc:"Attorney hours",qty:"8 hrs",rate:"$150/hr",amount:1200},{desc:"Courier expense",qty:"—",rate:"—",amount:75}],
+   statedTotal:1325, status:"correction", errorType:"math", correctTotal:1275,
+   explain:"Line items total $1,275 (8 × $150 + $75) but the invoice states $1,325 — a $50 math error."},
+  {invNum:"103", matter:"24-0098", client:"D. Osei", dateRange:"Jun 10",
+   lines:[{desc:"Attorney hours",qty:"4 hrs",rate:"$150/hr",amount:600}],
+   statedTotal:600, status:"unrelated",
+   explain:"This is Matter 24-0098 for a different client (D. Osei) — it doesn't belong in Alvarez's trust account at all."},
+  {invNum:"104", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 14",
+   lines:[{desc:"Court filing fee reimbursement",qty:"—",rate:"—",amount:125}],
+   statedTotal:125, status:"valid"},
+  {invNum:"105", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 16–20",
+   lines:[{desc:"Attorney hours",qty:"12 hrs",rate:"$150/hr",amount:1800}],
+   statedTotal:1800, status:"correction", errorType:"discount", correctTotal:1620,
+   explain:"Alvarez's engagement letter specifies a 10% prompt-pay discount that wasn't applied — should be $1,620, not $1,800."},
+  {invNum:"106", matter:"24-0155", client:"Court Reporter Services (Vendor)", dateRange:"Jun 18",
+   lines:[{desc:"Deposition transcript fee",qty:"—",rate:"—",amount:340}],
+   statedTotal:340, status:"unrelated",
+   explain:"This vendor invoice is for Matter 24-0155 — a completely different matter, not R. Alvarez's."},
+  {invNum:"107", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 21–23",
+   lines:[{desc:"Attorney hours",qty:"5 hrs",rate:"$150/hr",amount:750},{desc:"Paralegal hours",qty:"3 hrs",rate:"$85/hr",amount:255},{desc:"Expenses",qty:"—",rate:"—",amount:45}],
+   statedTotal:1050, status:"valid"},
+  {invNum:"108", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 2–6",
+   lines:[{desc:"Attorney hours",qty:"10 hrs",rate:"$150/hr",amount:1500},{desc:"Filing fee",qty:"—",rate:"—",amount:50}],
+   statedTotal:1550, status:"correction", errorType:"duplicate", correctTotal:0,
+   explain:"Same dates, same line items, same amount as Invoice #101 — this is a duplicate and shouldn't be billed twice."}
+];
 
 /* ---------- 4. Case Travel "What-If" Planner ---------- */
 const TRAVEL_LEGS = [
@@ -1450,7 +1623,33 @@ const COLD_LEADS = [
   {name:"David Wong", company:"Prospect — Commercial Lease Review", phone:"555-5555"}
 ];
 
-/* ---------- Handout placeholders ---------- */
+/* ---------- Email Management Training Simulator ----------
+   No tier labels anywhere in this data — the trainee must judge
+   each message on its own and decide what to do with it. */
+const EMAIL_SIM_MESSAGES = [
+  {type:"actionable", from:"R. Alvarez, Client — Matter 24-0113", subj:"Status update requested — Contract Review", meta:"9:02 AM",
+   body:"Ms. Chen,\n\nCould you please provide a status update on the contract review for Matter 24-0113? We are approaching our internal deadline and require confirmation of next steps.\n\nRegards,\nR. Alvarez"},
+  {type:"clutter", from:"LegalTech Weekly", subj:"5 AI Tools Every Law Firm Should Know About", meta:"7:15 AM",
+   body:"This week's roundup of legal technology news and trends, curated for busy professionals. Read the top 5 tools changing how firms manage discovery..."},
+  {type:"phishing", from:"IT Security Team <security@lsh-support-verify.com>", subj:"URGENT: Your Mailbox Storage Is Full", meta:"8:47 AM",
+   body:"Your mailbox has exceeded its storage limit. Click below immediately to verify your account, or you will lose access to your email within 24 hours.\n\n{{LINK:Verify My Account Now}}\n\nIT Security Team",
+   redFlags:["Sender domain doesn't match the real company domain","Manufactured urgency (a 24-hour countdown)","Generic, impersonal greeting","Pressures you to click a link immediately instead of verifying through a known channel"]},
+  {type:"actionable", from:"T. Whitfield, Client", subj:"quick q about our meeting!!", meta:"9:20 AM",
+   body:"hi!! hope you're doing well :) quick question — any chance we could push our call from thursday to friday instead? also totally random but do you guys have a preferred format for sending over documents, pdf or word doc? no rush at all just wondering! thanks so much!!"},
+  {type:"clutter", from:"Continuing Education Network", subj:"50% Off All CLE Webinars This Month Only!", meta:"6:30 AM",
+   body:"Don't miss our biggest sale of the year on continuing legal education courses. Browse our full catalog and register before the offer ends Friday."},
+  {type:"actionable", from:"D. Osei, Client — Matter 24-0098", subj:"Why haven't I received an update?", meta:"9:41 AM",
+   body:"This is the third time I'm reaching out. I was told two weeks ago that the invoice discrepancy would be resolved and I still have not heard anything. I need this addressed today. This is unacceptable."},
+  {type:"clutter", from:"LinkedIn", subj:"You have 12 new notifications", meta:"6:05 AM",
+   body:"See who's viewed your profile, plus new posts from your network this week."},
+  {type:"phishing", from:"DocuSign Notifications <no-reply@docusign-secure-verify.net>", subj:"Action Required: Confirm Wire Transfer Details", meta:"9:55 AM",
+   body:"A pending wire transfer requires verification before it can be processed. Please reply to this email with the account number and routing number on file to confirm the transaction before it is automatically canceled.",
+   redFlags:["Legitimate parties never request account or routing numbers by email reply","Suspicious, non-official sender domain","Creates urgency around a financial transaction to short-circuit normal verification"]},
+  {type:"actionable", from:"M. Chen, Referred Prospect", subj:"Documents needed for contract dispute intake", meta:"10:05 AM",
+   body:"Hello,\n\nFollowing our referral conversation, here is what I believe you'll need to get started:\n1. Signed copy of the original vendor agreement (2022)\n2. Email correspondence regarding the breach (attached separately)\n3. Invoice history for the last 12 months\n4. A list of all parties involved\n\nPlease let me know if anything else is required before we schedule an initial consultation.\n\nBest,\nM. Chen"},
+  {type:"clutter", from:"Office Events Committee", subj:"Sign up for the Fall Potluck!", meta:"7:50 AM",
+   body:"It's that time of year again — please sign up for what dish you'll bring to this year's fall potluck. Sign-up sheet is on the shared drive."}
+];
 const HANDOUTS = [
   {day:1, title:"Command Hierarchy & Escalation Checklist", icon:"⛓"},
   {day:2, title:"Managing Up: One-Day Schedule Worksheet", icon:"📋"},
@@ -1482,6 +1681,8 @@ const state = {
   quizSubmitted:false,
   progress:{},       // {1:{done:true,score:80,date:"..."}}
   traineeName:"",
+  traineeId:"",
+  isAdmin:false,
   storageReady:false
 };
 
@@ -1508,6 +1709,44 @@ async function storeSet(key,val){
   }
 }
 
+/* ---------- shared storage (the "admin ledger" — visible across all trainees) ---------- */
+async function sharedSet(key,val){
+  try{
+    if(window.storage){ await window.storage.set(key, JSON.stringify(val), true); return true; }
+  }catch(e){ console.warn("shared storage set failed",e); }
+  return false;
+}
+async function sharedGet(key){
+  try{
+    if(window.storage){ const r = await window.storage.get(key,true); return r ? JSON.parse(r.value) : null; }
+  }catch(e){ /* not found or unavailable */ }
+  return null;
+}
+async function sharedList(prefix){
+  try{
+    if(window.storage){ const r = await window.storage.list(prefix,true); return (r && r.keys) || []; }
+  }catch(e){ console.warn("shared storage list failed",e); }
+  return [];
+}
+
+function generateTraineeId(name){
+  const slug = (name||"trainee").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,24) || "trainee";
+  return slug + "-" + Math.random().toString(36).slice(2,7);
+}
+
+/** Mirrors this trainee's progress into shared storage so the Admin
+ *  Dashboard can see it. Called after anything that changes progress. */
+async function syncToLedger(){
+  if(!state.traineeId) return;
+  await sharedSet("trainee:"+state.traineeId, {
+    id: state.traineeId,
+    name: state.traineeName || "Unnamed trainee",
+    dayProgress: state.progress,
+    practiceProgress: state.practiceProgress,
+    lastActive: new Date().toISOString()
+  });
+}
+
 async function loadAll(){
   const p = await storeGet("day-progress");
   state.progress = p || {};
@@ -1517,7 +1756,14 @@ async function loadAll(){
   state.practiceProgress = pr || {};
   const nt = await storeGet("notes");
   state.notes = nt || [];
+  let tid = await storeGet("trainee-id");
+  if(!tid && state.traineeName){
+    tid = generateTraineeId(state.traineeName);
+    await storeSet("trainee-id", tid);
+  }
+  state.traineeId = tid || "";
   state.storageReady = true;
+  if(state.traineeId) syncToLedger();
 }
 
 /* ---------- helpers ---------- */
@@ -1586,6 +1832,7 @@ function renderTopbar(){
       </div>
       <div class="nav">
         ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}</button>`).join("")}
+        <button class="${state.view==='admin'?'active':''}" onclick="openAdmin()" style="opacity:.85;">🛡 Admin</button>
       </div>
       <div class="trainee-chip" onclick="promptName()">
         <span class="dot"></span> ${state.traineeName ? esc(state.traineeName) : "Set your name"}
@@ -1695,6 +1942,11 @@ async function promptName(){
     const v=document.getElementById("nameInput").value.trim();
     state.traineeName=v;
     await storeSet("trainee-name", v);
+    if(!state.traineeId && v){
+      state.traineeId = generateTraineeId(v);
+      await storeSet("trainee-id", state.traineeId);
+    }
+    if(state.traineeId) syncToLedger();
     overlay.remove();
     render();
     toast("Saved");
@@ -1713,6 +1965,7 @@ function render(){
   else if(state.view==="tool") body=renderTool(state.toolId);
   else if(state.view==="handouts") body=renderHandouts();
   else if(state.view==="notes") body=renderNotes();
+  else if(state.view==="admin") body=renderAdmin();
   app.innerHTML = renderTopbar() + `<main>${body}</main>` + renderFooter();
   afterRender();
 }
@@ -1721,6 +1974,7 @@ function renderFooter(){
 }
 function afterRender(){
   if(state.view==="tool") initTool(state.toolId);
+  if(state.view==="admin" && state.isAdmin && !state.adminData && !state.adminLoading) loadAdminLedger();
 }
 
 /* ---------- boot ---------- */
@@ -1925,6 +2179,7 @@ async function submitQuiz(dayId){
   const newRecord = {done: passed || (state.progress[dayId]?.done||false), score: Math.max(score, prevBest), date: new Date().toISOString()};
   state.progress[dayId]=newRecord;
   await storeSet("day-progress", state.progress);
+  syncToLedger();
 
   document.getElementById("quizWrap").innerHTML = renderQuiz(d);
   document.getElementById("quizWrap").scrollIntoView({behavior:"smooth",block:"start"});
@@ -2040,6 +2295,7 @@ function initTool(id){
   else if(id==="financial") initFinancial(body);
   else if(id==="travel") initTravel(body);
   else if(id==="calls") initCalls(body);
+  else if(id==="emailsim") initEmailSim(body);
 }
 
 async function bumpPracticeProgress(toolId, score){
@@ -2049,6 +2305,7 @@ async function bumpPracticeProgress(toolId, score){
   if(typeof score==="number") cur.bestScore = Math.max(cur.bestScore||0, score);
   state.practiceProgress[toolId] = cur;
   await storeSet("practice-progress", state.practiceProgress);
+  syncToLedger();
 }
 
 /* ============================================================
@@ -2545,6 +2802,7 @@ function fmtHr(h){
    3. FINANCIAL PRACTICE SHEET
    ============================================================ */
 function initFinancial(body){
+  toolState.audit = {statuses:{}, errorTypes:{}};
   body.innerHTML = `
     <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">A. Client Trust Ledger Reconciliation</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Edit the figures if you'd like to try your own numbers, then check the closing balance.</p>
@@ -2559,20 +2817,107 @@ function initFinancial(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkSoa()">Check Answer</button>
     <div id="soaFeedback" style="margin-top:8px;font-size:13px;"></div>
 
-    <h3 style="margin:30px 0 10px;color:var(--navy);font-size:15px;">B. Legal Services Invoice Calculator</h3>
-    <div class="card" style="padding:16px 20px;">
-      <div class="field-row"><label>Hourly Rate ($)</label><input type="number" id="invRate" value="${INVOICE_DATA.rate}" oninput="recalcInvoice()"></div>
-      <div class="field-row"><label>Hours Worked</label><input type="number" id="invHours" value="${INVOICE_DATA.hours}" oninput="recalcInvoice()"></div>
-      <div class="field-row"><label>Expenses ($)</label><input type="number" id="invExp" value="${INVOICE_DATA.expenses}" oninput="recalcInvoice()"></div>
-      <div class="field-row"><label>Discount (%)</label><input type="number" id="invDisc" value="${INVOICE_DATA.discountPct}" oninput="recalcInvoice()"></div>
-      <div class="calc-total" style="font-size:13px;"><span>Subtotal before discount</span><span id="invSub" class="mono">$0</span></div>
-      <div class="calc-total" style="font-size:13px;border-top:none;padding-top:4px;"><span>Discount amount</span><span id="invDiscAmt" class="mono">$0</span></div>
-      <div class="calc-total"><span>Final Invoice Total</span><span id="invFinal">$0</span></div>
-    </div>
-    <button class="btn btn-navy btn-sm" style="margin-top:14px;" onclick="downloadFinancialPdf()">⬇ Download My Work</button>
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Invoice &amp; Bill Audit Queue</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Bookkeeping forwarded these 8 invoices for R. Alvarez's trust account (Matter 24-0113). Some belong here and are correct, some belong but need a fix before they're paid, and some don't belong at all. Review each one.</p>
+    <div id="auditQueue">${renderAuditQueue()}</div>
+    <button class="btn btn-primary" style="margin-top:6px;" onclick="checkAudit()">Check My Audit</button>
+    <div id="auditResult"></div>
+    <button class="btn btn-navy btn-sm" style="margin-top:16px;" onclick="downloadFinancialPdf()">⬇ Download My Work</button>
   `;
-  recalcSoa(); recalcInvoice();
+  recalcSoa();
 }
+
+function renderAuditQueue(){
+  return INVOICE_QUEUE.map((inv,i)=>renderAuditCard(inv,i)).join("");
+}
+
+function renderAuditCard(inv,i){
+  const a = toolState.audit;
+  const status = a.statuses[i];
+  const errType = a.errorTypes[i];
+  return `
+    <div class="card audit-card" id="auditCard${i}">
+      <div class="audit-head">
+        <div>
+          <b>Invoice #${esc(inv.invNum)}</b> <span class="score-tag">Matter ${esc(inv.matter)} · ${esc(inv.client)} · ${esc(inv.dateRange)}</span>
+        </div>
+        <div class="audit-total">$${inv.statedTotal.toLocaleString()}</div>
+      </div>
+      <table class="mini-table" style="margin-top:10px;">
+        <thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Amount</th></tr></thead>
+        <tbody>${inv.lines.map(l=>`<tr><td>${esc(l.desc)}</td><td>${esc(l.qty)}</td><td>${esc(l.rate)}</td><td>$${l.amount.toLocaleString()}</td></tr>`).join("")}</tbody>
+      </table>
+      <div class="audit-actions">
+        <button class="audit-btn ${status==='valid'?'active-valid':''}" onclick="setAuditStatus(${i},'valid')">✅ Approve</button>
+        <button class="audit-btn ${status==='correction'?'active-correction':''}" onclick="setAuditStatus(${i},'correction')">⚠ Flag for Correction</button>
+        <button class="audit-btn ${status==='unrelated'?'active-unrelated':''}" onclick="setAuditStatus(${i},'unrelated')">🚫 Mark Unrelated</button>
+      </div>
+      ${status==='correction' ? `
+        <select id="errType${i}" class="audit-error-select" onchange="setAuditErrorType(${i}, this.value)">
+          <option value="">What's wrong with it?&hellip;</option>
+          ${ERROR_TYPES.map(et=>`<option value="${et.id}" ${errType===et.id?"selected":""}>${esc(et.label)}</option>`).join("")}
+        </select>`:""}
+    </div>`;
+}
+
+function setAuditStatus(i, status){
+  toolState.audit.statuses[i] = status;
+  if(status!=="correction") delete toolState.audit.errorTypes[i];
+  document.getElementById("auditQueue").innerHTML = renderAuditQueue();
+}
+window.setAuditStatus = setAuditStatus;
+function setAuditErrorType(i, val){
+  toolState.audit.errorTypes[i] = val;
+}
+window.setAuditErrorType = setAuditErrorType;
+
+async function checkAudit(){
+  const a = toolState.audit;
+  const unhandled = INVOICE_QUEUE.filter((_,i)=>!a.statuses[i]).length;
+  if(unhandled>0){ toast(`Classify all ${INVOICE_QUEUE.length} invoices first (${unhandled} left).`); return; }
+  const needsErrorType = INVOICE_QUEUE.filter((_,i)=>a.statuses[i]==="correction" && !a.errorTypes[i]).length;
+  if(needsErrorType>0){ toast(`Pick a reason for each invoice flagged for correction (${needsErrorType} left).`); return; }
+
+  let classCorrect=0, errorCorrect=0, correctionTotal=0;
+  const feedback = [];
+  INVOICE_QUEUE.forEach((inv,i)=>{
+    const yourStatus = a.statuses[i];
+    const classOk = yourStatus===inv.status;
+    if(classOk) classCorrect++;
+    if(inv.status==="correction") correctionTotal++;
+    let errOk = null;
+    if(inv.status==="correction"){
+      errOk = a.errorTypes[i]===inv.errorType;
+      if(errOk) errorCorrect++;
+    }
+    feedback.push({inv, classOk, errOk});
+  });
+  const totalPossible = INVOICE_QUEUE.length + correctionTotal;
+  const score = Math.round(((classCorrect+errorCorrect)/totalPossible)*100);
+
+  const reconcileTotal = INVOICE_QUEUE.reduce((sum,inv)=>{
+    if(inv.status==="valid") return sum+inv.statedTotal;
+    if(inv.status==="correction") return sum+(inv.correctTotal||0);
+    return sum;
+  },0);
+
+  document.getElementById("auditResult").innerHTML = `
+    <div class="card" style="padding:18px 20px;margin-top:14px;">
+      <b style="color:var(--navy);">Classification ${classCorrect}/${INVOICE_QUEUE.length} · Correction reasons ${errorCorrect}/${correctionTotal} (${score}% overall)</b>
+      <p style="font-size:12.8px;color:var(--ink-soft);margin:8px 0 0;">Correct amount to reconcile against Alvarez's trust account, once corrections are made and the duplicate is excluded: <b style="color:var(--navy);">$${reconcileTotal.toLocaleString()}</b></p>
+      <div style="margin-top:12px;display:grid;gap:8px;">
+        ${feedback.map(({inv,classOk,errOk})=>`
+          <div style="font-size:12.3px;color:var(--ink-soft);padding:8px 10px;border-radius:8px;background:${classOk?'#F6F7FB':'var(--danger-bg)'};">
+            <b style="color:var(--ink);">Invoice #${esc(inv.invNum)}</b> — correct status: <b>${inv.status}</b> ${classOk?"✅":"❌ (you said "+(toolState.audit.statuses[INVOICE_QUEUE.indexOf(inv)]||"—")+")"}
+            ${inv.explain?`<div style="margin-top:2px;">${esc(inv.explain)}</div>`:""}
+            ${errOk===false?`<div style="margin-top:2px;color:var(--danger);">Reason selected didn't match — correct reason: ${esc(ERROR_TYPES.find(e=>e.id===inv.errorType).label)}</div>`:""}
+          </div>`).join("")}
+      </div>
+    </div>`;
+  await bumpPracticeProgress("financial", score);
+  if(score===100) burstConfetti();
+}
+window.checkAudit = checkAudit;
 function recalcSoa(){
   let total=0;
   SOA_DATA.forEach((f,i)=>{
@@ -2592,19 +2937,6 @@ async function checkSoa(){
   await bumpPracticeProgress("financial", ok?100:60);
 }
 window.checkSoa = checkSoa;
-function recalcInvoice(){
-  const rate=Number(document.getElementById("invRate").value)||0;
-  const hours=Number(document.getElementById("invHours").value)||0;
-  const exp=Number(document.getElementById("invExp").value)||0;
-  const disc=Number(document.getElementById("invDisc").value)||0;
-  const subtotal = rate*hours+exp;
-  const discAmt = subtotal*(disc/100);
-  const final = subtotal-discAmt;
-  document.getElementById("invSub").textContent = "$"+subtotal.toLocaleString(undefined,{maximumFractionDigits:2});
-  document.getElementById("invDiscAmt").textContent = "-$"+discAmt.toLocaleString(undefined,{maximumFractionDigits:2});
-  document.getElementById("invFinal").textContent = "$"+final.toLocaleString(undefined,{maximumFractionDigits:2});
-}
-window.recalcInvoice = recalcInvoice;
 async function downloadFinancialPdf(){
   await ensureTraineeName();
   const soaLines = SOA_DATA.map((f,i)=>{
@@ -2612,15 +2944,15 @@ async function downloadFinancialPdf(){
     return `   ${f.label}${f.sign<0?" (subtract)":""}: $${v.toLocaleString()}`;
   });
   const closing = document.getElementById("soaTotal").textContent;
-  const rate=document.getElementById("invRate").value, hours=document.getElementById("invHours").value;
-  const exp=document.getElementById("invExp").value, disc=document.getElementById("invDisc").value;
+  const a = toolState.audit || {statuses:{}, errorTypes:{}};
+  const auditLines = INVOICE_QUEUE.map((inv,i)=>{
+    const your = a.statuses[i] || "(not classified)";
+    const yourErr = a.errorTypes[i] ? " — reason: "+(ERROR_TYPES.find(e=>e.id===a.errorTypes[i])||{}).label : "";
+    return `   Invoice #${inv.invNum} (${inv.client}, Matter ${inv.matter}): your call — ${your}${yourErr}`;
+  });
   const lines = [
     "## Client Trust Ledger Reconciliation", ...soaLines, `   Closing Balance: ${closing}`, "---",
-    "## Legal Services Invoice Calculator",
-    `   Hourly Rate: $${rate}   Hours Worked: ${hours}   Expenses: $${exp}   Discount: ${disc}%`,
-    `   Subtotal before discount: ${document.getElementById("invSub").textContent}`,
-    `   Discount amount: ${document.getElementById("invDiscAmt").textContent}`,
-    `   Final Invoice Total: ${document.getElementById("invFinal").textContent}`
+    "## Invoice & Bill Audit Queue", ...auditLines
   ];
   buildAndSavePdf("LSH EA / PA Upskill Program", "Trust Ledger & Billing — Results", lines, "LSH_Financial_Sheet");
 }
@@ -2850,6 +3182,11 @@ async function ensureTraineeName(){
       const v=document.getElementById("nameInput2").value.trim() || "EA/PA Trainee";
       state.traineeName=v;
       await storeSet("trainee-name", v);
+      if(!state.traineeId){
+        state.traineeId = generateTraineeId(v);
+        await storeSet("trainee-id", state.traineeId);
+      }
+      syncToLedger();
       overlay.remove();
       resolve();
     };
@@ -3179,6 +3516,574 @@ function downloadNotesPdf(){
   toast("Notes downloaded");
 }
 window.downloadNotesPdf = downloadNotesPdf;
+
+/* ============================================================
+   ADMIN DASHBOARD
+   ------------------------------------------------------------
+   Honesty note (also surfaced in the UI): this is a LIGHTWEIGHT
+   gate, not real authentication. The passphrase below is checked
+   client-side and anyone with browser dev tools can bypass it or
+   read/write any trainee's data directly. Fine for low-stakes
+   internal practice tracking; not a substitute for a real backend
+   if this ever needs to hold sensitive records.
+   ============================================================ */
+
+const ADMIN_PASSPHRASE = "LSHAdmin2026"; // change this before wider rollout
+
+function openAdmin(){
+  if(state.isAdmin){ goto("admin"); return; }
+  const overlay=document.createElement("div");
+  overlay.className="overlay";
+  overlay.innerHTML=`
+    <div class="card">
+      <h3>🛡 Admin Access</h3>
+      <p>Enter the admin passphrase. Note: this is a lightweight gate for internal use, not secure authentication — anyone with the passphrase (or browser dev tools) can view all trainee data.</p>
+      <input id="adminPass" type="password" placeholder="Passphrase">
+      <div class="row">
+        <button class="btn btn-ghost" id="cancelAdmin">Cancel</button>
+        <button class="btn btn-primary" id="submitAdmin">Enter</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  document.getElementById("adminPass").focus();
+  document.getElementById("cancelAdmin").onclick=()=>overlay.remove();
+  const tryLogin=()=>{
+    const v=document.getElementById("adminPass").value;
+    if(v===ADMIN_PASSPHRASE){
+      state.isAdmin=true;
+      overlay.remove();
+      goto("admin");
+    }else{
+      toast("Incorrect passphrase.");
+    }
+  };
+  document.getElementById("submitAdmin").onclick=tryLogin;
+  document.getElementById("adminPass").addEventListener("keydown",(e)=>{ if(e.key==="Enter") tryLogin(); });
+  overlay.addEventListener("click",(e)=>{ if(e.target===overlay) overlay.remove(); });
+}
+window.openAdmin = openAdmin;
+
+function adminLogout(){
+  state.isAdmin=false;
+  state.adminData=null;
+  goto("dashboard");
+  toast("Logged out of Admin");
+}
+window.adminLogout = adminLogout;
+
+async function loadAdminLedger(){
+  state.adminLoading = true;
+  const keys = await sharedList("trainee:");
+  const records = [];
+  for(const k of keys){
+    const key = typeof k === "string" ? k : k.key;
+    const rec = await sharedGet(key);
+    if(rec) records.push(rec);
+  }
+  state.adminData = records;
+  state.adminLoading = false;
+  render();
+}
+
+function adminDayStats(rec){
+  const dp = rec.dayProgress || {};
+  const done = Object.values(dp).filter(p=>p&&p.done).length;
+  const scores = Object.values(dp).filter(p=>p&&typeof p.score==="number").map(p=>p.score);
+  const avg = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : 0;
+  return {done, total:DAYS.length, avg};
+}
+function adminPracticeStats(rec){
+  const pp = rec.practiceProgress || {};
+  const runs = Object.values(pp).reduce((a,v)=>a+(v.runs||0),0);
+  const scores = Object.values(pp).filter(v=>typeof v.bestScore==="number").map(v=>v.bestScore);
+  const avg = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : 0;
+  return {runs, avg};
+}
+
+function renderAdmin(){
+  if(!state.isAdmin){
+    return `
+      <div class="card" style="padding:40px;text-align:center;">
+        <div style="font-size:30px;margin-bottom:10px;">🛡</div>
+        <h2 style="color:var(--navy);margin:0 0 8px;">Admin access required</h2>
+        <p style="color:var(--ink-soft);font-size:14px;">Use the Admin button in the top navigation to sign in.</p>
+      </div>`;
+  }
+  if(state.adminLoading || !state.adminData){
+    return `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
+  }
+
+  const sort = state.adminSort || "completion_desc";
+
+  const totalTrainees = state.adminData.length;
+  const avgCompletion = totalTrainees ? Math.round(state.adminData.reduce((a,r)=>a+adminDayStats(r).done,0)/totalTrainees/DAYS.length*100) : 0;
+  const avgScoreAll = (()=>{
+    const all = state.adminData.flatMap(r=>Object.values(r.dayProgress||{}).filter(p=>p&&typeof p.score==="number").map(p=>p.score));
+    return all.length ? Math.round(all.reduce((a,b)=>a+b,0)/all.length) : 0;
+  })();
+  const fullyDone = state.adminData.filter(r=>adminDayStats(r).done===DAYS.length).length;
+
+  return `
+    <p class="eyebrow">Admin Dashboard</p>
+    <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Audit</h1>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Lightweight session access, not secure authentication — see the note behind the Admin login. Data reflects what's been synced from each trainee's device.</p>
+
+    <div class="stat-row">
+      <div class="card stat"><div class="num">${totalTrainees}</div><div class="lbl">Trainees tracked</div></div>
+      <div class="card stat"><div class="num">${avgCompletion}%</div><div class="lbl">Avg. completion</div></div>
+      <div class="card stat"><div class="num">${avgScoreAll}%</div><div class="lbl">Avg. quiz score</div></div>
+      <div class="card stat"><div class="num">${fullyDone}</div><div class="lbl">Finished all 10 days</div></div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <input type="text" id="adminSearchInput" placeholder="Search by name…" value="${esc(state.adminSearch||"")}" oninput="setAdminSearch(this.value)"
+               style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;min-width:200px;">
+        <select onchange="setAdminSort(this.value)" style="padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;">
+          <option value="completion_desc" ${sort==="completion_desc"?"selected":""}>Sort: Most days completed</option>
+          <option value="completion_asc" ${sort==="completion_asc"?"selected":""}>Sort: Fewest days completed</option>
+          <option value="score_desc" ${sort==="score_desc"?"selected":""}>Sort: Highest avg. score</option>
+          <option value="name_asc" ${sort==="name_asc"?"selected":""}>Sort: Name (A–Z)</option>
+          <option value="recent" ${sort==="recent"?"selected":""}>Sort: Most recently active</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
+        <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Log out</button>
+      </div>
+    </div>
+
+    <div id="adminRowsWrap">${renderAdminRows()}</div>
+  `;
+}
+
+function renderAdminRows(){
+  const search = (state.adminSearch||"").toLowerCase();
+  const sort = state.adminSort || "completion_desc";
+  let rows = state.adminData.filter(r=>!search || (r.name||"").toLowerCase().includes(search));
+  rows = rows.map(r=>({rec:r, day:adminDayStats(r), practice:adminPracticeStats(r)}));
+  const sorters = {
+    completion_desc: (a,b)=>b.day.done-a.day.done,
+    completion_asc: (a,b)=>a.day.done-b.day.done,
+    name_asc: (a,b)=>(a.rec.name||"").localeCompare(b.rec.name||""),
+    score_desc: (a,b)=>b.day.avg-a.day.avg,
+    recent: (a,b)=>new Date(b.rec.lastActive||0)-new Date(a.rec.lastActive||0)
+  };
+  rows.sort(sorters[sort]||sorters.completion_desc);
+
+  if(rows.length===0){
+    return `<div class="empty-note">No trainees found${search?" matching that search":" yet — once someone sets their name in the app, they'll show up here."}.</div>`;
+  }
+  return `
+    <div class="card" style="padding:0;overflow:hidden;">
+      ${rows.map(({rec,day,practice})=>renderAdminRow(rec,day,practice)).join("")}
+    </div>`;
+}
+
+function renderAdminRow(rec, day, practice){
+  const expanded = state.adminExpandedId===rec.id;
+  return `
+    <div style="border-bottom:1px solid var(--line);">
+      <div style="display:grid;grid-template-columns:1fr 110px 110px 110px 140px auto;gap:12px;align-items:center;padding:14px 18px;">
+        <div>
+          <b style="color:var(--navy);font-size:13.5px;">${esc(rec.name||"Unnamed")}</b>
+          <div style="font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';">${esc(rec.id)}</div>
+        </div>
+        <div style="font-size:13px;">${day.done} / ${day.total} days</div>
+        <div style="font-size:13px;">${day.avg}% avg</div>
+        <div style="font-size:13px;">${practice.runs} runs</div>
+        <div style="font-size:11.5px;color:var(--ink-soft);">${rec.lastActive?fmtDate(rec.lastActive):"—"}</div>
+        <button class="btn btn-sm btn-ghost" onclick="toggleAdminDetail('${rec.id}')">${expanded?"Hide":"View"} Detail</button>
+      </div>
+      ${expanded?renderAdminDetail(rec):""}
+    </div>`;
+}
+
+function renderAdminDetail(rec){
+  const dp = rec.dayProgress||{};
+  const pp = rec.practiceProgress||{};
+  return `
+    <div style="padding:6px 18px 20px;background:#F8F9FC;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div>
+          <div class="sidebar-section-lbl" style="padding-left:0;">Day-by-Day</div>
+          ${DAYS.map(d=>{
+            const p = dp[d.id];
+            return `<div style="display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;border-bottom:1px dashed var(--line);">
+              <span>Day ${d.id} — ${esc(d.title)}</span>
+              <span style="color:${p&&p.done?'var(--success)':'var(--ink-soft)'};">${p?(p.done?`${p.score}% ✓`:`${p.score}% (retry needed)`):"Not started"}</span>
+            </div>`;
+          }).join("")}
+        </div>
+        <div>
+          <div class="sidebar-section-lbl" style="padding-left:0;">Practice Lab</div>
+          ${PRACTICE_TOOLS.map(t=>{
+            const p = pp[t.id];
+            return `<div style="display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;border-bottom:1px dashed var(--line);">
+              <span>${t.icon} ${esc(t.title)}</span>
+              <span style="color:${p?'var(--ink)':'var(--ink-soft)'};">${p?`${p.runs} run(s), best ${p.bestScore||0}%`:"Not attempted"}</span>
+            </div>`;
+          }).join("")}
+        </div>
+      </div>
+    </div>`;
+}
+
+function refreshAdminRows(){
+  const wrap = document.getElementById("adminRowsWrap");
+  if(wrap) wrap.innerHTML = renderAdminRows();
+}
+function toggleAdminDetail(id){
+  state.adminExpandedId = state.adminExpandedId===id ? null : id;
+  refreshAdminRows();
+}
+window.toggleAdminDetail = toggleAdminDetail;
+function setAdminSearch(v){ state.adminSearch=v; refreshAdminRows(); }
+window.setAdminSearch = setAdminSearch;
+function setAdminSort(v){ state.adminSort=v; refreshAdminRows(); }
+window.setAdminSort = setAdminSort;
+function refreshAdminData(){ state.adminData=null; render(); }
+window.refreshAdminData = refreshAdminData;
+
+/* ============================================================
+   EMAIL MANAGEMENT TRAINING SIMULATOR
+   No tiers anywhere here — the trainee must judge each message
+   on its own merits and decide what to do with it.
+
+   UI mirrors common webmail conventions (list + reading pane,
+   unread bolding, avatar initials, star, hover-reveal actions,
+   a collapsed inline reply that expands) — built with our own
+   styling, not a reproduction of any specific product's
+   branding or trademarked design.
+   ============================================================ */
+
+const ESIM_AVATAR_COLORS = ["#B54A3F","#DB8437","#3F7D58","#3C4268","#6B4FA0","#2C7A7B","#B5651F","#5B6178"];
+function esimAvatar(from){
+  const namePart = from.split(/[,<]/)[0].trim();
+  const initials = namePart.split(/\s+/).map(w=>w[0]).filter(Boolean).slice(0,2).join("").toUpperCase() || "?";
+  let hash=0; for(let i=0;i<namePart.length;i++) hash = namePart.charCodeAt(i) + ((hash<<5)-hash);
+  const color = ESIM_AVATAR_COLORS[Math.abs(hash)%ESIM_AVATAR_COLORS.length];
+  return {initials, color};
+}
+
+function initEmailSim(body){
+  toolState.esim = {
+    replies:{}, archived:{}, reported:{}, linkClicked:{}, unread:{}, starred:{}, replyOpen:{},
+    searchQuery:"",
+    phase:"in_progress", // "in_progress" | "failed" | "evaluating" | "evaluated"
+    failReason:null, selected:0, report:null, securityScore:null
+  };
+  EMAIL_SIM_MESSAGES.forEach((_,i)=>{ toolState.esim.unread[i] = true; });
+  renderEsimBody(body);
+}
+
+function esimHandledCount(){
+  const e = toolState.esim;
+  return EMAIL_SIM_MESSAGES.filter((_,i)=> e.replies[i] || e.archived[i] || e.reported[i]).length;
+}
+function esimAllHandled(){ return esimHandledCount()===EMAIL_SIM_MESSAGES.length; }
+function esimUnreadCount(){
+  const e = toolState.esim;
+  return EMAIL_SIM_MESSAGES.filter((_,i)=> e.unread[i]).length;
+}
+
+const SENSITIVE_REPLY_PATTERN = /(password|routing number|account number|ssn|social security|pin\s*(is|:)|\b\d{6,}\b)/i;
+
+function renderEsimBody(body){
+  const e = toolState.esim;
+
+  if(e.phase==="failed"){
+    const msg = EMAIL_SIM_MESSAGES[e.failReason.index];
+    body.innerHTML = `
+      <div class="esim-fail-banner">
+        <h3>❌ Exercise Failed — Phishing Attempt Succeeded</h3>
+        <p style="font-size:13.5px;color:#7a352c;margin:0;">${esc(e.failReason.reason)}</p>
+        <p style="font-size:12.8px;color:#7a352c;margin-top:10px;"><b>What gave it away:</b></p>
+        <ul>${(msg.redFlags||[]).map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+      </div>
+      <button class="btn btn-primary" onclick="initEmailSim(document.getElementById('toolBody'))">Try Again</button>
+      <button class="btn btn-ghost" onclick="downloadEmailSimPdf()">⬇ Download Report</button>
+    `;
+    bumpPracticeProgress("emailsim", 0);
+    return;
+  }
+
+  if(e.phase==="evaluating"){
+    body.innerHTML = `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Evaluating your replies for tone match, professionalism, and reviewing your phishing handling…</div>`;
+    return;
+  }
+
+  if(e.phase==="evaluated"){
+    body.innerHTML = `
+      <div class="card" style="padding:22px 24px;">
+        <b style="color:var(--navy);font-size:15px;">Security Awareness Score: ${e.securityScore}%</b>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:4px 0 16px;">Based on how the two simulated phishing emails were handled — reporting them is the ideal response; safely ignoring/archiving them (without falling for the trap) still counts, just not as the strongest response.</p>
+        <div class="ai-result"><b>AI-Assessed Evaluation</b><div class="ai-result-body">${esc(e.report).replace(/\n/g,"<br>")}</div></div>
+        <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
+          <button class="btn btn-ghost" onclick="initEmailSim(document.getElementById('toolBody'))">Run It Again</button>
+          <button class="btn btn-navy" onclick="downloadEmailSimPdf()">⬇ Download My Work</button>
+        </div>
+      </div>`;
+    return;
+  }
+
+  // in_progress
+  const handled = esimHandledCount();
+  body.innerHTML = `
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">A mixed inbox — some messages need a real reply, some are just clutter, and at least one is not what it looks like. Nothing is labeled for you; decide for yourself, then process every message before finishing.</p>
+    <div class="esim-progress">${handled} / ${EMAIL_SIM_MESSAGES.length} messages processed &middot; ${esimUnreadCount()} unread</div>
+    <div class="esim-searchbar">
+      <span class="esim-search-icon">🔍</span>
+      <input type="text" id="esimSearchInput" placeholder="Search mail" value="${esc(e.searchQuery)}" oninput="setEsimSearch(this.value)">
+    </div>
+    <div class="esim-shell">
+      <div class="esim-list" id="esimListWrap">${renderEsimListRows()}</div>
+      <div class="esim-pane" id="esimPane">
+        ${renderEsimPane(e.selected)}
+      </div>
+    </div>
+    <button class="btn btn-primary" style="margin-top:16px;" onclick="finishEmailSim()">Finish &amp; Get Evaluation</button>
+  `;
+}
+
+function renderEsimListRows(){
+  const e = toolState.esim;
+  const q = (e.searchQuery||"").toLowerCase();
+  const indices = EMAIL_SIM_MESSAGES.map((_,i)=>i).filter(i=>{
+    if(!q) return true;
+    const m = EMAIL_SIM_MESSAGES[i];
+    return m.from.toLowerCase().includes(q) || m.subj.toLowerCase().includes(q);
+  });
+  if(!indices.length) return `<div class="esim-empty">No messages match your search.</div>`;
+  return indices.map(i=>renderEsimRow(EMAIL_SIM_MESSAGES[i],i)).join("");
+}
+function setEsimSearch(v){
+  toolState.esim.searchQuery = v;
+  const wrap = document.getElementById("esimListWrap");
+  if(wrap) wrap.innerHTML = renderEsimListRows();
+}
+window.setEsimSearch = setEsimSearch;
+
+function renderEsimRow(m,i){
+  const e = toolState.esim;
+  const active = e.selected===i;
+  const unread = !!e.unread[i];
+  const starred = !!e.starred[i];
+  const av = esimAvatar(m.from);
+  const senderName = m.from.split(/[,<]/)[0].trim();
+  const preview = m.body.replace(/\{\{LINK:.*?\}\}/g,"link").replace(/\n/g," ").slice(0,54);
+  const badges = [];
+  if(e.replies[i]) badges.push('<span class="estatus replied">Replied</span>');
+  if(e.archived[i]) badges.push('<span class="estatus archived">Archived</span>');
+  if(e.reported[i]) badges.push('<span class="estatus reported">Reported</span>');
+  return `
+    <div class="esim-row ${active?'active':''} ${unread?'unread':''}" onclick="selectEsimEmail(${i})">
+      <span class="erow-star ${starred?'on':''}" onclick="event.stopPropagation(); toggleEsimStar(${i})">${starred?"★":"☆"}</span>
+      <span class="erow-avatar" style="background:${av.color};">${esc(av.initials)}</span>
+      <div class="erow-main">
+        <div class="erow-topline"><span class="efrom">${esc(senderName)}</span><span class="emeta">${esc(m.meta)}</span></div>
+        <div class="esubj">${esc(m.subj)}<span class="epreview"> — ${esc(preview)}</span></div>
+        ${badges.length?`<div style="margin-top:3px;">${badges.join(" ")}</div>`:""}
+      </div>
+      <div class="erow-hover-icons">
+        <button title="Archive" onclick="event.stopPropagation(); archiveEsimEmail(${i})">🗄</button>
+        <button title="Report as phishing" onclick="event.stopPropagation(); reportEsimPhishing(${i})">🚩</button>
+      </div>
+    </div>`;
+}
+
+function renderEsimPane(i){
+  const m = EMAIL_SIM_MESSAGES[i];
+  const e = toolState.esim;
+  const av = esimAvatar(m.from);
+  const bodyHtml = esc(m.body).replace(/\{\{LINK:(.*?)\}\}/g, (_, label)=>
+    `<a href="#" class="esim-fake-link" onclick="event.preventDefault(); clickEsimLink(${i})">${esc(label)}</a>`);
+  const replyOpen = !!e.replyOpen[i] || !!e.replies[i];
+  return `
+    <div class="ephead">
+      <h4>${esc(m.subj)}</h4>
+      <div class="ephead-toolbar">
+        <button class="eicon-btn" title="Archive" onclick="archiveEsimEmail(${i})">🗄</button>
+        <button class="eicon-btn" title="Report as phishing" onclick="reportEsimPhishing(${i})">🚩</button>
+        <button class="eicon-btn" title="Star" onclick="toggleEsimStar(${i})">${e.starred[i]?"★":"☆"}</button>
+      </div>
+    </div>
+    <div class="ep-sender-row">
+      <span class="erow-avatar" style="background:${av.color};">${esc(av.initials)}</span>
+      <div>
+        <div class="epfrom-name">${esc(m.from)}</div>
+        <div class="epfrom-meta">to me &middot; ${esc(m.meta)}</div>
+      </div>
+    </div>
+    <div class="epbody">${bodyHtml}</div>
+    ${replyOpen ? `
+      <div class="esim-actions">
+        <textarea id="esimReplyInput" placeholder="Type your reply here…">${esc(e.replies[i]||"")}</textarea>
+        <div class="esim-btn-row">
+          <button class="btn btn-sm btn-navy" onclick="sendEsimReply(${i})">Send</button>
+          <button class="btn btn-sm btn-ghost" onclick="closeEsimReply(${i})">Discard</button>
+        </div>
+      </div>` : `
+      <button class="esim-reply-collapsed" onclick="openEsimReply(${i})">↩ Reply</button>
+    `}
+  `;
+}
+
+function selectEsimEmail(i){
+  toolState.esim.selected = i;
+  toolState.esim.unread[i] = false;
+  document.getElementById("esimPane").innerHTML = renderEsimPane(i);
+  const listEl = document.getElementById("esimListWrap");
+  if(listEl) listEl.innerHTML = renderEsimListRows();
+  const progEl = document.querySelector(".esim-progress");
+  if(progEl) progEl.textContent = `${esimHandledCount()} / ${EMAIL_SIM_MESSAGES.length} messages processed · ${esimUnreadCount()} unread`;
+}
+window.selectEsimEmail = selectEsimEmail;
+
+function toggleEsimStar(i){
+  toolState.esim.starred[i] = !toolState.esim.starred[i];
+  if(toolState.esim.selected===i) document.getElementById("esimPane").innerHTML = renderEsimPane(i);
+  const listEl = document.getElementById("esimListWrap");
+  if(listEl) listEl.innerHTML = renderEsimListRows();
+}
+window.toggleEsimStar = toggleEsimStar;
+
+function openEsimReply(i){
+  toolState.esim.replyOpen[i] = true;
+  document.getElementById("esimPane").innerHTML = renderEsimPane(i);
+  const ta = document.getElementById("esimReplyInput");
+  if(ta) ta.focus();
+}
+window.openEsimReply = openEsimReply;
+function closeEsimReply(i){
+  toolState.esim.replyOpen[i] = false;
+  document.getElementById("esimPane").innerHTML = renderEsimPane(i);
+}
+window.closeEsimReply = closeEsimReply;
+
+function clickEsimLink(i){
+  toolState.esim.failReason = {
+    index:i,
+    reason:`You clicked the link in "${EMAIL_SIM_MESSAGES[i].subj}" — a simulated phishing email. In a real scenario this could have installed malware or handed over your credentials.`
+  };
+  toolState.esim.phase = "failed";
+  renderEsimBody(document.getElementById("toolBody"));
+}
+window.clickEsimLink = clickEsimLink;
+
+function sendEsimReply(i){
+  const text = document.getElementById("esimReplyInput").value.trim();
+  if(!text){ toast("Write a reply first, or use Archive if no reply is needed."); return; }
+  const m = EMAIL_SIM_MESSAGES[i];
+  if(m.type==="phishing" && SENSITIVE_REPLY_PATTERN.test(text)){
+    toolState.esim.failReason = {
+      index:i,
+      reason:`Your reply to "${m.subj}" included sensitive information (account/routing details, a password, or similar). A real attacker would now have exactly what they were after.`
+    };
+    toolState.esim.phase = "failed";
+    renderEsimBody(document.getElementById("toolBody"));
+    return;
+  }
+  toolState.esim.replies[i] = text;
+  toolState.esim.replyOpen[i] = false;
+  selectEsimEmail(i);
+  toast("Reply sent");
+}
+window.sendEsimReply = sendEsimReply;
+
+function archiveEsimEmail(i){
+  toolState.esim.archived[i] = true;
+  selectEsimEmail(i);
+}
+window.archiveEsimEmail = archiveEsimEmail;
+
+function reportEsimPhishing(i){
+  toolState.esim.reported[i] = true;
+  selectEsimEmail(i);
+  toast("Marked as phishing");
+}
+window.reportEsimPhishing = reportEsimPhishing;
+
+async function finishEmailSim(){
+  if(!esimAllHandled()){
+    toast(`Process every message first (${esimHandledCount()}/${EMAIL_SIM_MESSAGES.length} done) — reply, archive, or report each one.`);
+    return;
+  }
+  await ensureTraineeName();
+  const e = toolState.esim;
+  e.phase = "evaluating";
+  renderEsimBody(document.getElementById("toolBody"));
+
+  const phishingMsgs = EMAIL_SIM_MESSAGES.map((m,i)=>({m,i})).filter(x=>x.m.type==="phishing");
+  let secTotal=0;
+  phishingMsgs.forEach(({i})=>{ secTotal += e.reported[i] ? 100 : 60; });
+  e.securityScore = Math.round(secTotal/phishingMsgs.length);
+
+  const actionableSummary = EMAIL_SIM_MESSAGES.map((m,i)=>{
+    if(m.type!=="actionable") return null;
+    const reply = e.replies[i];
+    return `--- Client Email ---\nFrom: ${m.from}\nSubject: ${m.subj}\nOriginal message:\n${m.body}\n\nTrainee's reply:\n${reply || "(No reply was sent — this client email was archived without a response.)"}`;
+  }).filter(Boolean).join("\n\n");
+
+  const phishingSummary = phishingMsgs.map(({m,i})=>{
+    const outcome = e.reported[i]
+      ? "Correctly reported as phishing; did not click the link or share sensitive info."
+      : "Did not fall for it (no link clicked, no sensitive info shared), but did not proactively report it either.";
+    return `- "${m.subj}": ${outcome}`;
+  }).join("\n");
+
+  const prompt = `You are evaluating a Legal Executive Assistant trainee's performance in an email management simulation for a company called Legal Support Help (LSH).
+
+Evaluate strictly under these three headers, in this order, using short bullet points under each:
+
+1. Writing DNA Match — for each client email below, assess how well the trainee's reply mirrored THAT SPECIFIC client's tone, formatting, and communication style. The clients intentionally differ: one is terse and formal, one is casual and rambling, one is frustrated/upset, one is detailed and itemized. Note where the trainee matched or mismatched the register.
+2. Professionalism — grammar, clarity, completeness, and etiquette across their replies. Note if any actionable client email was left without a reply.
+3. Security Awareness — using the factual outcome provided below (report it factually, do not re-judge it), describe how the trainee handled the two simulated phishing emails.
+
+${actionableSummary}
+
+Phishing handling (ground truth — report this factually):
+${phishingSummary}
+
+Keep it concise — a handful of bullets per section — and end with one overall takeaway sentence. Be constructive and specific.`;
+
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:800, messages:[{role:"user", content:prompt}] })
+    });
+    if(!response.ok) throw new Error("Request failed: "+response.status);
+    const data = await response.json();
+    e.report = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned — try again in a moment.";
+  }catch(err){
+    e.report = "Couldn't reach the AI review service to assess Writing DNA Match and Professionalism — check your connection and try again. (Your Security Awareness score above was still computed normally.)";
+  }
+  e.phase = "evaluated";
+  await bumpPracticeProgress("emailsim", e.securityScore);
+  if(e.securityScore===100) burstConfetti();
+  renderEsimBody(document.getElementById("toolBody"));
+}
+window.finishEmailSim = finishEmailSim;
+
+async function downloadEmailSimPdf(){
+  await ensureTraineeName();
+  const e = toolState.esim;
+  const lines = ["## Email Management Simulator — Results"];
+  if(e.phase==="failed"){
+    lines.push(`RESULT: FAILED`, e.failReason.reason, "---");
+  }else if(e.phase==="evaluated"){
+    lines.push(`Security Awareness Score: ${e.securityScore}%`, "---", "## AI-Assessed Evaluation", e.report, "---");
+  }
+  lines.push("## Message-by-Message");
+  EMAIL_SIM_MESSAGES.forEach((m,i)=>{
+    const action = e.replies[i] ? "Replied" : e.reported[i] ? "Reported as phishing" : e.archived[i] ? "Archived" : "Not handled";
+    lines.push(`${m.subj} (${m.from}) — ${action}`);
+    if(e.replies[i]) lines.push(`   Reply: ${e.replies[i]}`);
+  });
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Email Management Simulator — Results", lines, "LSH_Email_Simulator");
+}
+window.downloadEmailSimPdf = downloadEmailSimPdf;
 
 </script>
 </body>
