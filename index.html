@@ -164,11 +164,73 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 
 .lesson-grid{display:grid;gap:14px;margin-bottom:8px;}
 .lesson-card{padding:20px 22px;}
+.topic-separator{
+  display:inline-block;font-family:'IBM Plex Mono';font-size:10.5px;font-weight:700;letter-spacing:.04em;
+  color:var(--orange);background:var(--navy);padding:5px 12px;border-radius:14px;margin:26px 0 10px;
+}
+.lesson-grid>.topic-separator:first-child{margin-top:0;}
 .lesson-card h4{margin:0 0 10px;font-size:15.5px;color:var(--navy);display:flex;gap:10px;align-items:baseline;}
 .lesson-card h4 .lnum{font-family:'IBM Plex Mono';font-size:12px;color:var(--orange-deep);}
-.lesson-card ul{margin:0;padding-left:18px;}
-.lesson-card li{font-size:13.6px;color:#37394A;margin-bottom:6px;}
+.lesson-card ul{margin:0;padding:0;list-style:none;}
+.lesson-card li{
+  font-size:13.6px;color:#37394A;margin-bottom:10px;padding-left:26px;position:relative;line-height:1.5;
+}
 .lesson-card li:last-child{margin-bottom:0;}
+.lesson-card li::before{
+  content:"";position:absolute;left:0;top:5px;width:11px;height:11px;border-radius:50%;
+  background:var(--orange);
+}
+
+/* rich lesson layouts (mirrors the companion slide deck) */
+.lesson-quadrant{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.lesson-quadrant .qbox{border-radius:10px;padding:14px 16px;color:#fff;}
+.lesson-quadrant .qbox:nth-child(4n+1){background:var(--navy);}
+.lesson-quadrant .qbox:nth-child(4n+2){background:var(--orange);}
+.lesson-quadrant .qbox:nth-child(4n+3){background:var(--navy-soft);}
+.lesson-quadrant .qbox:nth-child(4n+4){background:var(--orange-deep);}
+.lesson-quadrant .qbox .qlabel{font-family:'Fraunces';font-size:14.5px;font-weight:600;margin-bottom:5px;}
+.lesson-quadrant .qbox .qdesc{font-size:12.3px;color:rgba(255,255,255,.9);line-height:1.4;}
+
+.lesson-process{display:flex;flex-direction:column;gap:4px;margin-bottom:14px;}
+.lesson-process .pstep{
+  background:var(--navy);border-radius:10px;padding:16px 14px 14px;
+  color:#fff;position:relative;
+}
+.lesson-process .pstep:nth-child(even){background:var(--navy-soft);}
+.lesson-process .pnum{
+  width:26px;height:26px;border-radius:50%;background:var(--orange);color:var(--navy-deep);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;margin-bottom:8px;
+}
+.lesson-process .plabel{font-family:'Fraunces';font-size:13.5px;font-weight:600;margin-bottom:4px;}
+.lesson-process .pdesc{font-size:11.5px;color:rgba(255,255,255,.9);line-height:1.35;}
+.lesson-process-arrow{text-align:center;color:var(--orange);font-size:16px;font-weight:700;line-height:1;}
+
+.lesson-compare{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.lesson-compare .cbox{border-radius:10px;overflow:hidden;background:var(--bg);border:1px solid var(--line);}
+.lesson-compare .chead{padding:9px 14px;color:#fff;font-family:'Fraunces';font-size:14px;font-weight:600;}
+.lesson-compare .cbox:first-child .chead{background:var(--navy);}
+.lesson-compare .cbox:last-child .chead{background:var(--orange-deep);}
+.lesson-compare .cbody{padding:12px 14px;}
+.lesson-compare .citem{font-size:12.3px;color:#37394A;padding-left:18px;position:relative;margin-bottom:8px;line-height:1.4;}
+.lesson-compare .citem:last-child{margin-bottom:0;}
+.lesson-compare .citem::before{content:"";position:absolute;left:0;top:4px;width:9px;height:9px;border-radius:50%;background:var(--orange);}
+.lesson-compare .cbox:first-child .citem::before{background:var(--navy);}
+
+.lesson-threebox{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.lesson-threebox .tbox{border-radius:10px;padding:16px;color:#fff;}
+.lesson-threebox .tbox:nth-child(3n+1){background:var(--navy);}
+.lesson-threebox .tbox:nth-child(3n+2){background:var(--orange);}
+.lesson-threebox .tbox:nth-child(3n+3){background:var(--navy-soft);}
+.lesson-threebox .tnum{font-family:'Fraunces';font-size:22px;font-weight:700;color:var(--orange);margin-bottom:6px;}
+.lesson-threebox .tbox:nth-child(3n+2) .tnum{color:var(--navy-deep);}
+.lesson-threebox .tlabel{font-family:'Fraunces';font-size:14px;font-weight:600;margin-bottom:5px;}
+.lesson-threebox .tdesc{font-size:12px;color:rgba(255,255,255,.9);line-height:1.4;}
+
+.lesson-stat{
+  background:var(--navy);border-radius:10px;padding:20px 24px;text-align:center;margin-bottom:14px;
+}
+.lesson-stat .snum{font-family:'Fraunces';font-size:26px;font-weight:700;color:var(--orange);line-height:1.25;}
+.lesson-stat .slabel{font-size:13px;color:rgba(255,255,255,.85);margin-top:6px;}
 
 .section-title{
   font-family:'Fraunces';font-size:19px;color:var(--navy);margin:38px 0 16px;
@@ -178,6 +240,14 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
   font-family:'IBM Plex Mono';font-size:11px;background:var(--navy);color:#fff;
   padding:3px 8px;border-radius:5px;letter-spacing:.05em;
 }
+
+.discussion-card{
+  padding:22px 24px;margin:8px 0 30px;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+  color:#fff;
+}
+.discussion-tag{font-family:'IBM Plex Mono';font-size:11.5px;color:var(--orange-soft);letter-spacing:.04em;margin-bottom:10px;}
+.discussion-q{font-family:'Fraunces';font-size:17px;line-height:1.4;margin:0 0 10px;}
+.discussion-note{font-size:12px;color:#B9BEDA;margin:0;}
 
 /* ---------- quiz ---------- */
 .quiz-card{padding:22px 24px;margin-bottom:14px;}
@@ -636,844 +706,2409 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 <div id="app"></div>
 <div id="toast" class="toast"></div>
 <script>
-/* ============================================================
-   LSH EA/PA UPSKILL PROGRAM — CONTENT DATA (enhanced)
-   Condensed + enriched from the LSH 10-Day EA/PA Training source decks.
-
-   Lesson topic schema:
-   { h, b:[...],
-     callout?: {type:"stat"|"tip"|"warning", label, text},
-     example?: {label, lines:[string,...]},
-     table?: {headers:[...], rows:[[...]]} }
-
-   Each day also has quickChecks: [{afterIndex, q, opts, a, r}]
-   — short inline checks woven between lessons, separate from
-   the end-of-day Knowledge Check.
-   ============================================================ */
-
 const DAYS = [
-{
-  id:1,
-  title:"Foundations of the Legal Executive Assistant Role",
-  theme:"Legal EA Task Overview · Communication Principles · Confidentiality · Command Hierarchy",
-  objective:"Get a clear picture of what a Legal Executive Assistant actually does day to day, build the communication habits the role runs on, and know when to escalate rather than act alone.",
-  taskOverview:[
-    {label:"Calendar & Scheduling", tasks:[
-      "Manage the attorney's calendar across multiple active matters, keeping court dates, deadlines, and internal work protected.",
-      "Coordinate depositions, hearings, and client meetings across time zones and other parties' schedules.",
-      "Block dedicated prep time before high-stakes appearances instead of letting the calendar fill in around them."
-    ], sample:"Sample task: block 2 hours before every deposition for prep, and auto-flag any new meeting request that would overlap a confirmed court date."},
-    {label:"Correspondence & Email", tasks:[
-      "Triage the inbox daily by matter and urgency — court deadlines and opposing counsel first.",
-      "Draft client and court correspondence for the attorney's review before anything goes out.",
-      "Keep a paper trail: confirm receipt of key documents and log important exchanges."
-    ], sample:"Sample task: draft a case-status update to a client after a hearing, referencing what happened, what's next, and the next filing deadline — ready for the attorney to review and send."},
-    {label:"Document & Case Support", tasks:[
-      "Format, proofread, and cite-check pleadings, contracts, and correspondence before filing or sending.",
-      "Organize and maintain case files with clear version control so nothing gets overwritten or lost.",
-      "Prepare exhibit binders and meeting materials ahead of hearings and client meetings."
-    ], sample:"Sample task: redline a contract draft against the client's requested changes and flag any inconsistent clauses before it goes to the attorney."},
-    {label:"Court & Filing Coordination", tasks:[
-      "Track every filing deadline on a shared calendar with reminders well ahead of the due date.",
-      "E-file documents through the court's system and confirm the filing was accepted.",
-      "Confirm hearing logistics — room, dial-in, required documents — the day before."
-    ], sample:"Sample task: after e-filing a motion, confirm the court's system shows it as accepted, save the confirmation receipt, and note the docket entry in the case file."},
-    {label:"Billing & Client Support", tasks:[
-      "Track billable hours and prepare invoices with clear, defensible detail.",
-      "Monitor client retainer and trust balances so no matter runs dry unnoticed.",
-      "Handle routine client questions about billing and status without waiting on the attorney."
-    ], sample:"Sample task: flag a client's retainer balance once it drops below 25%, with enough lead time to request replenishment before the matter is affected."},
-    {label:"Confidentiality & Compliance", tasks:[
-      "Handle privileged and confidential documents with strict access control.",
-      "Run basic conflict-of-interest checks before a new matter or contact is added to a case.",
-      "Verify identity and authorization before releasing any case information over phone or email."
-    ], sample:"Sample task: before sharing case details with someone claiming to represent the client, verify they're actually authorized on the matter — then document that you checked."}
-  ],
-  lessons:[
-    {h:"EA vs. PA: Two Mindsets", b:[
-      "A Virtual Executive Assistant is a strategic partner — the goal is increasing executive efficiency and business performance.",
-      "Core VEA work: calendar optimization across time zones, email triage, board materials, legal/finance/HR support, vendor liaison.",
-      "A Virtual Personal Assistant is a personal support specialist — the goal is managing an individual's personal life and logistics.",
-      "Core VPA work: personal calendars, travel booking, household management, personal correspondence, event planning."
+  {
+    "id": 1,
+    "title": "Foundations of the Legal Executive Assistant Role",
+    "theme": "Legal EA Task Overview · Communication Principles · Confidentiality · Command Hierarchy",
+    "objective": "Get a clear picture of what a Legal Executive Assistant actually does day to day, build the communication habits the role runs on, and know when to escalate rather than act alone.",
+    "taskOverview": [
+      {
+        "label": "Calendar & Scheduling",
+        "tasks": [
+          "Manage the attorney's calendar across multiple active matters, keeping court dates, deadlines, and internal work protected.",
+          "Coordinate depositions, hearings, and client meetings across time zones and other parties' schedules.",
+          "Block dedicated prep time before high-stakes appearances instead of letting the calendar fill in around them."
+        ],
+        "sample": "Sample task: block 2 hours before every deposition for prep, and auto-flag any new meeting request that would overlap a confirmed court date."
+      },
+      {
+        "label": "Correspondence & Email",
+        "tasks": [
+          "Triage the inbox daily by matter and urgency — court deadlines and opposing counsel first.",
+          "Draft client and court correspondence for the attorney's review before anything goes out.",
+          "Keep a paper trail: confirm receipt of key documents and log important exchanges."
+        ],
+        "sample": "Sample task: draft a case-status update to a client after a hearing, referencing what happened, what's next, and the next filing deadline — ready for the attorney to review and send."
+      },
+      {
+        "label": "Document & Case Support",
+        "tasks": [
+          "Format, proofread, and cite-check pleadings, contracts, and correspondence before filing or sending.",
+          "Organize and maintain case files with clear version control so nothing gets overwritten or lost.",
+          "Prepare exhibit binders and meeting materials ahead of hearings and client meetings."
+        ],
+        "sample": "Sample task: redline a contract draft against the client's requested changes and flag any inconsistent clauses before it goes to the attorney."
+      },
+      {
+        "label": "Court & Filing Coordination",
+        "tasks": [
+          "Track every filing deadline on a shared calendar with reminders well ahead of the due date.",
+          "E-file documents through the court's system and confirm the filing was accepted.",
+          "Confirm hearing logistics — room, dial-in, required documents — the day before."
+        ],
+        "sample": "Sample task: after e-filing a motion, confirm the court's system shows it as accepted, save the confirmation receipt, and note the docket entry in the case file."
+      },
+      {
+        "label": "Billing & Client Support",
+        "tasks": [
+          "Track billable hours and prepare invoices with clear, defensible detail.",
+          "Monitor client retainer and trust balances so no matter runs dry unnoticed.",
+          "Handle routine client questions about billing and status without waiting on the attorney."
+        ],
+        "sample": "Sample task: flag a client's retainer balance once it drops below 25%, with enough lead time to request replenishment before the matter is affected."
+      },
+      {
+        "label": "Confidentiality & Compliance",
+        "tasks": [
+          "Handle privileged and confidential documents with strict access control.",
+          "Run basic conflict-of-interest checks before a new matter or contact is added to a case.",
+          "Verify identity and authorization before releasing any case information over phone or email."
+        ],
+        "sample": "Sample task: before sharing case details with someone claiming to represent the client, verify they're actually authorized on the matter — then document that you checked."
+      }
     ],
-    callout:{type:"tip", label:"Mindset check", text:"When a request lands, ask: is this protecting business performance (EA) or personal life logistics (PA)? That single question resolves most role-scope questions."}},
-
-    {h:"EA vs. PA: Side-by-Side Work Context", b:[
-      "The two roles both function as trusted extensions of the people they support — but the environment that trust operates in, and the consequences attached to it, are fundamentally different."
+    "lessons": [
+      {
+        "h": "EA vs. PA: Two Mindsets",
+        "b": [
+          "A VEA is a strategic partner: every action is measured by whether it increases the executive's efficiency and the business's performance.",
+          "A VPA is a personal support specialist: success means the individual's life and logistics run smoothly.",
+          "VEA work spans calendar optimization, email triage, board materials, and legal/finance/HR support. VPA work covers personal calendars, travel, household management, and events.",
+          "The two mindsets aren't ranked — conflating them is the most common onboarding mistake.",
+          "Objective of this session: understand where EA and PA roles overlap, identify the skills top-notch assistants share, and navigate typical environments while maintaining standards."
+        ],
+        "callout": {
+          "type": "tip",
+          "label": "Mindset check",
+          "text": "When a request lands, ask: is this protecting business performance (EA) or personal life logistics (PA)? That single question resolves most role-scope questions."
+        }
+      },
+      {
+        "h": "EA vs. PA: Side-by-Side Work Context",
+        "b": [
+          "Both roles are trusted extensions of the people they support — the difference is the environment, and the consequences of getting it wrong.",
+          "An EA who treats a board deck like a household errand list, or a PA who treats a family trip like a litigation deadline, has misread the room."
+        ],
+        "table": {
+          "headers": [
+            "Category",
+            "Executive Assistant (EA)",
+            "Personal Assistant (PA)"
+          ],
+          "rows": [
+            [
+              "Primary setting",
+              "Corporate / organizational",
+              "Private / personal or blended"
+            ],
+            [
+              "Who they support",
+              "C-suite, partners, senior leadership",
+              "Individuals, entrepreneurs, HNW clients"
+            ],
+            [
+              "Formality level",
+              "High — structured, policy-driven",
+              "Moderate — varies by client lifestyle"
+            ],
+            [
+              "Confidentiality scope",
+              "Corporate, legal, financial, HR, strategic",
+              "Personal, family, financial, health, lifestyle"
+            ],
+            [
+              "Decision-making role",
+              "Executive proxy — filters info & priorities",
+              "Personal representative — day-to-day decisions"
+            ],
+            [
+              "Schedule predictability",
+              "Structured business hours, occasional overtime",
+              "Variable, on-call more common"
+            ]
+          ]
+        }
+      },
+      {
+        "h": "Typical Work Environment",
+        "b": [
+          "Common settings: corporate offices, law/professional-services firms, remote/hybrid teams, startups, and private households.",
+          "Standard tech stack: Outlook/Google Workspace, Slack/Teams/Zoom, SharePoint/Clio/iManage, Asana/Trello/ClickUp.",
+          "Standing expectations: executive presence, proactive anticipation, and independent judgment under pressure — irregular hours are the norm.",
+          "Vendor issue: an EA negotiates or escalates professionally; a PA coordinates service resolution directly.",
+          "Conflicting meetings: an EA reschedules based on business priority; a PA confirms personal preference.",
+          "Scope creep: an EA flags contract boundaries; a PA seeks approval before acting."
+        ]
+      },
+      {
+        "h": "Basic Communication Principles for Legal EAs",
+        "b": [
+          "Clarity & precision — legal correspondence has no room for vague language.",
+          "Read the audience — the same update gets reframed for an attorney (brief), a client (plain language), and the court (formal).",
+          "Confidentiality applies to how you talk about a matter, not just to documents — that includes hallway conversations.",
+          "Worked example: the same case update becomes three different messages depending on who's receiving it.",
+          "Key phrases an EA uses: 'The executive's schedule is fully committed — I'll follow up on your request,' and 'I've escalated this for decision and will advise accordingly.'",
+          "Key phrases a PA uses: 'They're unavailable at the moment — can I relay your message or schedule a better time?'"
+        ],
+        "example": {
+          "label": "Same update, three audiences",
+          "lines": [
+            "To the attorney: \"Filed the extension motion at 2 PM; court confirmation attached. No action needed from you.\"",
+            "To the client: \"We've requested additional time to prepare your case properly. We'll keep you posted on next steps.\"",
+            "To the court clerk: \"Please confirm receipt of the enclosed Motion for Extension of Time, filed on behalf of the Defendant.\""
+          ]
+        }
+      },
+      {
+        "h": "Executive Presence in Action",
+        "b": [
+          "EA response to a sensitive request: authoritative, brief, procedural — protects the business first.",
+          "PA response to the same trigger: warm, accommodating, relationship-first — protects the person first.",
+          "Same instinct underneath both: protect first, resolve second.",
+          "EA decision principles: prioritize business-critical matters, filter incoming requests before escalating, know when to negotiate or delegate.",
+          "PA decision principles: honor personal preferences first, offer alternatives instead of outright denials, keep sensitive personal matters private."
+        ],
+        "example": {
+          "label": "Same situation, two roles",
+          "lines": [
+            "Situation — Sensitive Request: someone asks you to share confidential details.",
+            "EA response: \"I cannot release that information. I'll escalate internally.\"",
+            "PA response: \"That's private. I can assist with logistics if needed.\"",
+            "Situation — Persistent Caller: someone keeps pushing for the executive's direct time.",
+            "EA response: \"Please submit the request in writing; I'll review priority.\"",
+            "PA response: \"I'll take a message and follow up as soon as possible.\""
+          ]
+        },
+        "layout": "COMPARE",
+        "compareLeft": {
+          "label": "EA Response",
+          "items": [
+            "Sensitive request for confidential info: \"I cannot release that information. I'll escalate internally.\"",
+            "Persistent caller pushing for direct time: \"Please submit the request in writing; I'll review priority.\"",
+            "Tone: authoritative, brief, procedural — protects the business first."
+          ]
+        },
+        "compareRight": {
+          "label": "PA Response",
+          "items": [
+            "Sensitive request for confidential info: \"That's private. I can assist with logistics if needed.\"",
+            "Persistent caller pushing for direct time: \"I'll take a message and follow up as soon as possible.\"",
+            "Tone: warm, accommodating, relationship-first — protects the person first."
+          ]
+        }
+      },
+      {
+        "h": "Professional Standards & Confidentiality",
+        "b": [
+          "EAs protect business confidentiality — contracts, IP, financials — with compliance awareness of legal/HR/data-privacy rules.",
+          "PAs protect personal privacy and discretion through trust-based relationships.",
+          "There's no 'minor version' of a confidentiality lapse — a casual comment carries the same real risk as a misdirected attachment."
+        ],
+        "callout": {
+          "type": "warning",
+          "label": "No small leaks",
+          "text": "Confidentiality doesn't have a 'minor version' — a casual comment in the wrong hallway carries the same risk as a misdirected email."
+        }
+      },
+      {
+        "h": "Boundaries & Authorization Protocols",
+        "b": [
+          "Clear scope, written agreements, and checklists prevent role overlap.",
+          "Authorization protocols define limits precisely (e.g., an EA approves vendor invoices under $500, escalates above).",
+          "Keep business and personal systems physically separate — calendars, storage, devices.",
+          "Practical example: an EA approves vendor invoices under $500 and escalates larger amounts; a PA books personal travel within a preset budget and notifies the executive if it's exceeded.",
+          "Escalation example: an EA pauses on a contract requiring executive approval; a PA escalates before granting a vendor access to financial accounts.",
+          "A useful personal checklist for ambiguous situations: 'Does this comply with policy, law, and trust?' — if the answer is no or uncertain, escalate."
+        ]
+      },
+      {
+        "h": "Command Hierarchy",
+        "b": [
+          "Escalate potential issues rather than deciding alone — that's the core of a healthy command hierarchy.",
+          "Red flag: a confidential document bypassing legal review before reaching a client.",
+          "Executives should hear critical news from you first, not secondhand.",
+          "Command hierarchy for a corporate/executive track: CEO/President → Senior EA → EA (reports to a specific executive) → Administrative Assistant.",
+          "Command hierarchy for a legal track: Managing Partner/General Counsel → Senior Legal Assistant → Legal EA → Paralegal — the chain is strict, and unauthorized decisions can have real legal consequences.",
+          "Command hierarchy for a personal/household track: Executive or Family Head → Senior PA/Estate Manager → PA → Household staff (driver, housekeeper, nanny)."
+        ],
+        "layout": "PROCESS",
+        "processSteps": [
+          {
+            "label": "Notice",
+            "desc": "Spot a potential issue before it becomes a problem"
+          },
+          {
+            "label": "Assess",
+            "desc": "Determine scope, urgency, and who else it affects"
+          },
+          {
+            "label": "Escalate",
+            "desc": "Route it through the correct channel, not around it"
+          },
+          {
+            "label": "Inform",
+            "desc": "Make sure the executive hears it from you first, not from someone else"
+          }
+        ]
+      },
+      {
+        "h": "Client Profiling",
+        "b": [
+          "A client profile is the reference you build once so you never ask the same question twice.",
+          "Five categories: role & organization, communication style, meeting/scheduling rules, travel preferences, and quirks.",
+          "Worked model — Elias Thorne, CEO of Thorne & Partners: blunt/direct communicator, heavy travel to D.C./London/Singapore, expects anticipation over instruction."
+        ],
+        "example": {
+          "label": "Worked profile — Elias Thorne, Managing Owner & CEO, Thorne & Partners Law Group",
+          "lines": [
+            "Firm: 450-attorney practice in corporate litigation, white-collar defense, and international arbitration; culture is \"uncompromising excellence.\"",
+            "Communication style: blunt, direct, unemotional feedback. Doesn't micromanage — expects the EA to anticipate, not be told.",
+            "Base: New York City (EST); heavy travel to Washington D.C., London, and Singapore."
+          ]
+        }
+      },
+      {
+        "h": "Creating a Comprehensive Client Dossier",
+        "b": [
+          "A dossier goes deeper than a profile — a living document that lets anyone run the account with zero ramp-up.",
+          "Four sections: Firm & Role, Personal & Family, Standing Instructions, Known Quirks.",
+          "Thorne excerpt: 15-minute debrief buffer after key sessions, strict Paleo diet, 5:30 AM voice notes needing an 8 AM agenda, aisle-seat-only travel."
+        ],
+        "example": {
+          "label": "Dossier excerpt — Elias Thorne",
+          "lines": [
+            "Standing Instructions: mandatory 15-minute debrief buffer after every key client or court session; strict Paleo diet, zero dairy — all client dinners vetted in advance; no back-to-back depositions or court hearings.",
+            "Known Quirks: sends rapid, cryptic voice notes around 5:30 AM that need to become a structured agenda by 8:00 AM; needs aisle seats near the front and hates connecting flights.",
+            "Personal & Family: married to Sarah; two children, Leo (8) and Maya (5); one dog, Barnaby."
+          ]
+        },
+        "layout": "QUADRANT",
+        "quadrants": [
+          {
+            "label": "Firm & Role",
+            "desc": "Organizational context — company, industry, culture, and the executive's actual scope of authority"
+          },
+          {
+            "label": "Personal & Family",
+            "desc": "Only what's relevant to supporting them well — spouse, children, pets, key relationships"
+          },
+          {
+            "label": "Standing Instructions",
+            "desc": "Procedural rules that don't change day to day — dietary needs, buffer requirements, filtering rules"
+          },
+          {
+            "label": "Known Quirks",
+            "desc": "Personality-driven patterns written in plain language, never judgment — how they actually operate"
+          }
+        ]
+      },
+      {
+        "h": "Setting Up Client Trackers",
+        "b": [
+          "A tracker turns the dossier into a live tool, updated in real time.",
+          "Start with three: Travel Preferences, Inbox Preferences, Meeting Rhythms.",
+          "A tracker with stale entries is worse than none — it creates false confidence."
+        ],
+        "example": {
+          "label": "Tracker entries — Elias Thorne",
+          "lines": [
+            "Travel Preferences: aisle seat near the front; no connecting flights; monitor delays proactively and rebook without being asked.",
+            "Inbox Preferences: BLUF only — concise case summary and action point at the top; detailed briefs attached separately, never pasted into the body.",
+            "Meeting Rhythms: no back-to-back depositions or hearings; 15-minute debrief buffer after every key session."
+          ]
+        }
+      }
     ],
-    table:{headers:["Category","Executive Assistant (EA)","Personal Assistant (PA)"], rows:[
-      ["Primary setting","Corporate / organizational","Private / personal or blended"],
-      ["Who they support","C-suite, partners, senior leadership","Individuals, entrepreneurs, HNW clients"],
-      ["Formality level","High — structured, policy-driven","Moderate — varies by client lifestyle"],
-      ["Confidentiality scope","Corporate, legal, financial, HR, strategic","Personal, family, financial, health, lifestyle"],
-      ["Decision-making role","Executive proxy — filters info & priorities","Personal representative — day-to-day decisions"],
-      ["Schedule predictability","Structured business hours, occasional overtime","Variable, on-call more common"]
-    ]}},
-
-    {h:"Typical Work Environment", b:[
-      "Common settings: corporate offices, law firms and professional-services firms, remote/hybrid teams across time zones, startup environments, and private households (mainly for PAs).",
-      "Work conditions: high-confidentiality handling of legal, financial, and personal information; time-sensitive, multi-tasking days; direct executive interaction as gatekeeper or proxy; irregular hours around travel or urgent requests.",
-      "Common tech stack: Outlook / Google Workspace, Slack / Teams / Zoom, SharePoint / Clio / iManage / Drive, Asana / Trello / ClickUp.",
-      "Standing expectations: executive presence and polished communication, proactive anticipation of needs, independent judgment under pressure."
-    ]},
-
-    {h:"Basic Communication Principles for Legal EAs", b:[
-      "Clarity & precision — legal correspondence has no room for vague language; say exactly what happened, what's needed, and by when.",
-      "Read the audience — the same update gets reframed for an attorney (brief, direct), a client (plain language, reassuring), and the court (formal, precise).",
-      "Confidentiality in every channel — privilege applies to how you talk about a matter, not just to the documents themselves; that includes hallway conversations and casual texts.",
-      "Written vs. verbal judgment — put anything with a deadline or legal weight in writing; use a quick call only for something time-critical that a written message would delay.",
-      "Timeliness — a same-day acknowledgment, even without a full answer, is often more valuable than a complete response two days later."
+    "quickChecks": [
+      {
+        "afterIndex": 2,
+        "q": "Updating a client on a filing you just made, the tone should be:",
+        "opts": [
+          "Identical to what you'd send the court clerk",
+          "Plain language and reassuring, focused on what it means for them",
+          "As brief as possible with no context",
+          "Skipped — clients don't need filing updates"
+        ],
+        "a": 1,
+        "r": "Reading the audience means the same event gets a different register for the client than for the court or the attorney."
+      },
+      {
+        "afterIndex": 4,
+        "q": "In the 'Persistent Caller' scenario, the EA's scripted response focuses on:",
+        "opts": [
+          "Ignoring the caller entirely",
+          "Asking for a written request to review priority",
+          "Immediately connecting the call",
+          "Promising a callback within the hour"
+        ],
+        "a": 1,
+        "r": "It filters the request into a reviewable, prioritized channel rather than granting or flatly denying access."
+      }
     ],
-    example:{label:"Same update, three audiences", lines:[
-      "To the attorney: \"Filed the extension motion at 2 PM; court confirmation attached. No action needed from you.\"",
-      "To the client: \"We've requested additional time to prepare your case properly. We'll keep you posted on next steps.\"",
-      "To the court clerk: \"Please confirm receipt of the enclosed Motion for Extension of Time, filed on behalf of the Defendant.\""
-    ]}},
-
-    {h:"Executive Presence in Action", b:[
-      "The right response to a sensitive or persistent request depends on role — but both roles share the same instinct: protect first, resolve second."
+    "quiz": [
+      {
+        "q": "Your executive shares sensitive company strategy while you're both in a crowded cafeteria. Best response?",
+        "opts": [
+          "Take notes so you don't forget it later",
+          "Repeat it only to your immediate team",
+          "Politely step aside, summarize privately, and secure the information",
+          "Post it in the internal chat to confirm you heard correctly"
+        ],
+        "a": 2,
+        "r": "Confidentiality is protected by controlling the setting, not by who you tell it to next."
+      },
+      {
+        "q": "Which statement correctly separates EA and PA responsibilities?",
+        "opts": [
+          "EA handles only personal errands",
+          "PA handles all strategic decision-making",
+          "EA handles executive priorities, strategic prep, and confidential business info; PA handles personal support and some admin",
+          "Both roles are identical in scope"
+        ],
+        "a": 2,
+        "r": "The two roles overlap in skills but diverge sharply in scope — business/confidential vs. personal/lifestyle."
+      },
+      {
+        "q": "Which of these is a clear red flag for a command-hierarchy failure?",
+        "opts": [
+          "The executive is informed first of a critical decision",
+          "A confidential client email bypasses legal review",
+          "A PA coordinates personal travel efficiently",
+          "An EA escalates a potential issue appropriately"
+        ],
+        "a": 1,
+        "r": "Skipping the review step that exists specifically to catch confidentiality and legal risk is the hierarchy failure."
+      },
+      {
+        "q": "What best describes a Virtual Executive Assistant's mindset?",
+        "opts": [
+          "Service-focused personal life facilitator",
+          "Strategic partner focused on increasing executive efficiency and performance",
+          "Task-taker who waits for direct instruction on everything",
+          "Personal support specialist for daily logistics"
+        ],
+        "a": 1,
+        "r": "'Strategic partner' is the defining VEA mindset, versus the VPA's 'personal support specialist' framing."
+      },
+      {
+        "q": "Authorization protocols (like a $500 vendor-invoice approval limit) exist mainly to...",
+        "opts": [
+          "Slow the assistant down on purpose",
+          "Define decision-making and spending limits, preventing unauthorized commitments",
+          "Give the assistant more independence than the executive intended",
+          "Replace the need for any escalation at all"
+        ],
+        "a": 1,
+        "r": "Clear limits protect against financial misuse or errors, and they build trust by keeping actions within agreed boundaries."
+      }
     ],
-    example:{label:"Same situation, two roles", lines:[
-      "Situation — Sensitive Request: someone asks you to share confidential details.",
-      "EA response: \"I cannot release that information. I'll escalate internally.\"",
-      "PA response: \"That's private. I can assist with logistics if needed.\"",
-      "Situation — Persistent Caller: someone keeps pushing for the executive's direct time.",
-      "EA response: \"Please submit the request in writing; I'll review priority.\"",
-      "PA response: \"I'll take a message and follow up as soon as possible.\""
-    ]}},
-
-    {h:"Professional Standards & Confidentiality", b:[
-      "EAs protect business confidentiality — contracts, IP, financials — with compliance awareness of legal, HR, and data-privacy rules.",
-      "PAs protect personal privacy and discretion, building trust-based relationships and respecting personal boundaries.",
-      "Mishandling confidential information — even by accident — damages trust and reputation immediately."
+    "discussionQuestion": "Think of a moment (in this role or another) where you had to decide whether something was an EA-style problem or a PA-style problem. What tipped you off, and would you decide the same way again?"
+  },
+  {
+    "id": 2,
+    "title": "Managing Up & the Force Multiplier",
+    "theme": "Tactical Foundation · The Three C's · Digital Edge",
+    "objective": "Apply the Three C's framework to manage up effectively, and shift from task-completer to force multiplier.",
+    "lessons": [
+      {
+        "h": "Bulletproof Basics",
+        "b": [
+          "Inbox Zero & Triaging: categorize every email as Action, Information, or Delegation on first read.",
+          "Draft responses in the executive's actual voice so they only have to hit Send.",
+          "Travel logistics is the 'What If' plan — a backup already on hold, not scrambled together after.",
+          "This level is called 'The Tactical Foundation' — before you can 'help before being asked,' you have to be bulletproof in the basics."
+        ]
+      },
+      {
+        "h": "The Three C's of Managing Up",
+        "b": [
+          "Clarity — say exactly what's happening and what you need.",
+          "Consistency — same standard procedures every time.",
+          "Credibility — recommendations have to be reliable, no exceptions.",
+          "Reframe reactive language into forward-looking language."
+        ],
+        "layout": "THREEBOX",
+        "boxes": [
+          {
+            "label": "Clarity",
+            "desc": "No vague messages — say exactly what's happening and exactly what you need from them"
+          },
+          {
+            "label": "Consistency",
+            "desc": "Use the same standard procedures every time, so outcomes become predictable"
+          },
+          {
+            "label": "Credibility",
+            "desc": "Recommendations have to be accurate and reliable, every single time, with no exceptions"
+          }
+        ]
+      },
+      {
+        "h": "Credibility Is Earned, Not Claimed",
+        "b": [
+          "Credibility is earned through five behaviors: accuracy, follow-through, on-time execution, anticipation, and calm problem-solving.",
+          "The No-Surprises Rule: an executive should never be blindsided by something you already knew.",
+          "Damaged credibility takes a sustained track record to rebuild — not one good week."
+        ],
+        "callout": {
+          "type": "warning",
+          "label": "The No-Surprises Rule",
+          "text": "An executive should never be blindsided by something their assistant already knew about. One missed detail can undo months of trust."
+        }
+      },
+      {
+        "h": "From Helper to Force Multiplier",
+        "b": [
+          "A Force Multiplier expands the executive's impact by anticipating needs, not just completing assigned tasks.",
+          "The shift: from 'I did what I was told' to 'I already have an answer ready.'",
+          "This is a compounding result of consistent Three C's execution, not a switch you flip."
+        ]
+      },
+      {
+        "h": "The Digital Edge",
+        "b": [
+          "Automate anything that repeats — a live dashboard beats a manually rebuilt weekly report.",
+          "This is what separates a reactive assistant from a strategic one."
+        ]
+      },
+      {
+        "h": "Force Multiplier in the Wild",
+        "b": [
+          "Worked scenario: a client adds last-minute requests touching three departments the day before a pitch.",
+          "Prioritize → assess urgency, flag dependencies. Coordinate → shared boards with automated reminders. Close the loop → assign owners, consolidate, confirm delivery."
+        ],
+        "example": {
+          "label": "Worked response",
+          "lines": [
+            "Prioritize: assess which requests are most time-sensitive, flag dependencies, summarize options for executive approval.",
+            "Coordinate: use shared project boards (Asana/Trello) and collaborative docs (Sheets/Docs) with automated reminders across departments.",
+            "Close the loop: assign clear action items per department, consolidate updates into one report, review before sending, confirm delivery to the client."
+          ]
+        },
+        "layout": "PROCESS",
+        "processSteps": [
+          {
+            "label": "Prioritize",
+            "desc": "Assess which requests are most time-sensitive, flag dependencies, summarize options"
+          },
+          {
+            "label": "Coordinate",
+            "desc": "Use shared boards and docs with automated reminders across departments"
+          },
+          {
+            "label": "Close the Loop",
+            "desc": "Assign owners, consolidate into one report, confirm delivery to the client"
+          }
+        ]
+      },
+      {
+        "h": "What Is a Large Language Model?",
+        "b": [
+          "LLMs are prediction engines, not databases — they predict the next likely word based on patterns, not retrieved facts.",
+          "This means they can produce original, useful text — or confidently invent things that sound plausible and aren't."
+        ]
+      },
+      {
+        "h": "Core AI Terms an EA/PA Needs",
+        "b": [
+          "Prompt — your instruction; better prompt, better output.",
+          "Hallucination — confident false statements, common when no real answer exists in the pattern.",
+          "Context window — its working memory; long pastes lose precision toward the end.",
+          "Tokens — roughly ¾ of a word; higher tiers allow longer documents."
+        ],
+        "layout": "QUADRANT",
+        "quadrants": [
+          {
+            "label": "Prompt",
+            "desc": "Your instruction and context — a better prompt reliably produces a better output"
+          },
+          {
+            "label": "Hallucination",
+            "desc": "The AI states something false with full confidence — most common when no real answer exists in its pattern space"
+          },
+          {
+            "label": "Context Window",
+            "desc": "Its working memory limit — paste something too long and it loses precision toward the end"
+          },
+          {
+            "label": "Tokens",
+            "desc": "Roughly ¾ of a word — higher-tier accounts allow longer documents before hitting the limit"
+          }
+        ]
+      },
+      {
+        "h": "Your AI Toolkit — Three Modes, Different Jobs",
+        "b": [
+          "Generative Text — creates new content; best for drafting and summarizing.",
+          "Extraction & Analysis — pulls exact data without altering facts; best for action items and dates.",
+          "Logic & Routing — connects triggers to automated actions.",
+          "Common mistake: using Generative mode when you need Extraction mode."
+        ],
+        "layout": "THREEBOX",
+        "boxes": [
+          {
+            "label": "Generative Text",
+            "desc": "Creates new content from patterns — best for drafting declines, bios, or summarizing a messy thread"
+          },
+          {
+            "label": "Extraction & Analysis",
+            "desc": "Pulls specific data without altering facts — best for isolating action items or exact dates"
+          },
+          {
+            "label": "Logic & Routing",
+            "desc": "Connects triggers to automated actions — auto-filing attachments, VIP-email alerts"
+          }
+        ]
+      },
+      {
+        "h": "Claude, ChatGPT, and Gemini — Practical Differences",
+        "b": [
+          "Same core risks apply to all three (hallucination, context limits, training-on-inputs).",
+          "Claude — handles long pastes well, controllable tone. ChatGPT — broadest ecosystem, fastest iteration. Gemini — lives inside Gmail/Docs/Calendar, can act on live data.",
+          "Gemini's live-data access means security habits matter more, not less."
+        ]
+      },
+      {
+        "h": "The Golden Rules of Admin Data Security",
+        "b": [
+          "Toggle off training/data-improvement settings before any real work goes through an AI tool.",
+          "Never input financial data, health info, SSNs, or passwords.",
+          "Use placeholders — swap real names for '[Company X]' before sending to an AI tool."
+        ],
+        "callout": {
+          "type": "warning",
+          "label": "Confidentiality still applies",
+          "text": "Elias's firm runs on \"uncompromising excellence\" and strict confidentiality — an AI tool is still a third party. The same judgment that keeps a case detail out of casual conversation applies to what you paste into a prompt."
+        }
+      }
     ],
-    callout:{type:"warning", label:"No small leaks", text:"Confidentiality doesn't have a 'minor version' — a casual comment in the wrong hallway carries the same risk as a misdirected email."}},
-
-    {h:"Boundaries & Authorization Protocols", b:[
-      "Clear scope, written agreements, and checklists prevent overlap and protect both the executive and the assistant.",
-      "Authorization protocols define spending and decision limits — e.g. an EA may approve vendor invoices under $500 and must escalate anything larger; a PA may book personal travel within a preset budget.",
-      "Keep business and personal systems physically separate: separate calendars, separate storage for corporate vs. personal files."
-    ]},
-
-    {h:"Command Hierarchy", b:[
-      "Escalate potential issues appropriately rather than deciding alone — that's the core of a healthy command hierarchy.",
-      "A red flag: a confidential document bypassing legal review before it reaches a client.",
-      "Executives should be informed first on critical decisions that affect them."
-    ]},
-
-    {h:"Client Profiling", b:[
-      "A client profile isn't paperwork — it's the reference you build once so you never have to ask the same question twice.",
-      "Every usable profile captures five things: role & organization, personality & communication style, meeting/scheduling rules, travel preferences, and the specific quirks that would trip up someone who didn't know this person."
+    "quickChecks": [
+      {
+        "afterIndex": 2,
+        "q": "The 'No-Surprises Rule' means:",
+        "opts": [
+          "Executives enjoy occasional surprises",
+          "An executive should never be blindsided by something their assistant already knew",
+          "Surprises are fine as long as they're positive",
+          "Only bad news needs to be flagged early"
+        ],
+        "a": 1,
+        "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
+      },
+      {
+        "afterIndex": 6,
+        "q": "True or False: an LLM looks up facts in a database before answering.",
+        "opts": [
+          "True",
+          "False"
+        ],
+        "a": 1,
+        "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
+      },
+      {
+        "afterIndex": 7,
+        "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
+        "opts": [
+          "Section 12 was too complex for the AI to understand",
+          "Context window strain — it lost precision across a long document",
+          "The AI refused the request",
+          "The contract format wasn't supported"
+        ],
+        "a": 1,
+        "r": "When a document is long, precision degrades across it — paste just the relevant section when precision matters."
+      }
     ],
-    example:{label:"Worked profile — Elias Thorne, Managing Owner & CEO, Thorne & Partners Law Group", lines:[
-      "Firm: 450-attorney practice in corporate litigation, white-collar defense, and international arbitration; culture is \"uncompromising excellence.\"",
-      "Communication style: blunt, direct, unemotional feedback. Doesn't micromanage — expects the EA to anticipate, not be told.",
-      "Base: New York City (EST); heavy travel to Washington D.C., London, and Singapore."
-    ]}},
-
-    {h:"Creating a Comprehensive Client Dossier", b:[
-      "A dossier goes deeper than a one-page profile — it's the living reference document that lets anyone run the account with zero ramp-up time.",
-      "Four sections belong in every dossier: Firm & Role (the organizational context), Personal & Family (only what's relevant to supporting them), Standing Instructions (procedural rules that don't change day to day), and Known Quirks (personality-driven patterns written in plain language, not judgment)."
+    "quiz": [
+      {
+        "q": "The 'Three C's' of Managing Up are:",
+        "opts": [
+          "Communication, Creativity, Coordination",
+          "Clarity, Consistency, Credibility",
+          "Control, Conformity, Confidence",
+          "Collaboration, Curiosity, Confidence"
+        ],
+        "a": 1,
+        "r": "Clarity, Consistency, and Credibility are the framework taught for managing up effectively."
+      },
+      {
+        "q": "A 'Force Multiplier' EA/PA primarily...",
+        "opts": [
+          "Completes tasks exactly as assigned without question",
+          "Expands the executive's impact by anticipating needs and solving problems proactively",
+          "Focuses only on administrative efficiency",
+          "Manages only personal tasks for the executive"
+        ],
+        "a": 1,
+        "r": "Force multiplier is a mindset shift — from executing instructions to actively expanding what the executive can accomplish."
+      },
+      {
+        "q": "Which best illustrates leveraging the 'Digital Edge'?",
+        "opts": [
+          "Printing a report for a meeting",
+          "Creating an automated dashboard to track KPIs and reduce manual reporting",
+          "Taking notes in a meeting by hand",
+          "Sending the same email to multiple recipients unsegmented"
+        ],
+        "a": 1,
+        "r": "Automation that removes recurring manual work is the clearest example of the Digital Edge."
+      },
+      {
+        "q": "The 'What If' approach to travel logistics means:",
+        "opts": [
+          "Booking the cheapest option available",
+          "Having a backup option already secured before it's needed",
+          "Letting the executive handle changes themselves",
+          "Avoiding travel bookings until the last minute"
+        ],
+        "a": 1,
+        "r": "E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."
+      },
+      {
+        "q": "Three urgent requests collide and a VIP client also needs an immediate call. Best first move?",
+        "opts": [
+          "Try to do all four at once",
+          "Assess urgency and impact, then communicate a prioritized plan to the executive",
+          "Handle the VIP call and quietly drop the rest",
+          "Wait for the executive to sort out the priority"
+        ],
+        "a": 1,
+        "r": "Clarity + Credibility in action: assess, then propose a plan rather than guessing or freezing."
+      },
+      {
+        "q": "An LLM is best described as:",
+        "opts": [
+          "A search engine",
+          "A fact database",
+          "A prediction engine"
+        ],
+        "a": 2,
+        "r": "It predicts the most likely next words based on patterns learned from text — it doesn't retrieve facts from a database."
+      },
+      {
+        "q": "A hallucination is:",
+        "opts": [
+          "A bug that crashes the app",
+          "Confidently stated false information",
+          "A formatting error"
+        ],
+        "a": 1,
+        "r": "The AI states something false with full confidence — often when a plausible-sounding answer exists in the pattern space even though it isn't true."
+      },
+      {
+        "q": "Which mode should you use to pull exact action items from a transcript without paraphrasing?",
+        "opts": [
+          "Generative Text",
+          "Extraction & Analysis",
+          "Logic & Routing"
+        ],
+        "a": 1,
+        "r": "Extraction mode quotes back only what's explicit in the source — the right choice when precision matters more than fluency."
+      },
+      {
+        "q": "Before pasting a sensitive termination email draft into a public AI tool, you should:",
+        "opts": [
+          "Do nothing, it's fine",
+          "Replace real names with placeholders",
+          "Only remove dollar amounts"
+        ],
+        "a": 1,
+        "r": "Swap real names for placeholders like \"[Employee Y]\" before hitting send — the anonymization rule applies to sensitive drafts."
+      },
+      {
+        "q": "Gemini's tight integration with Gmail and Calendar means:",
+        "opts": [
+          "It's automatically safer",
+          "The data-security habits matter more, since it can touch live inbox and calendar data",
+          "Training toggles don't apply to it"
+        ],
+        "a": 1,
+        "r": "Because it isn't limited to what's manually pasted in, the same security discipline matters even more, not less."
+      }
     ],
-    example:{label:"Dossier excerpt — Elias Thorne", lines:[
-      "Standing Instructions: mandatory 15-minute debrief buffer after every key client or court session; strict Paleo diet, zero dairy — all client dinners vetted in advance; no back-to-back depositions or court hearings.",
-      "Known Quirks: sends rapid, cryptic voice notes around 5:30 AM that need to become a structured agenda by 8:00 AM; needs aisle seats near the front and hates connecting flights.",
-      "Personal & Family: married to Sarah; two children, Leo (8) and Maya (5); one dog, Barnaby."
-    ]}},
-
-    {h:"Setting Up Client Trackers", b:[
-      "A tracker turns a static dossier into a live operational tool — something you update in real time, not a document you write once and forget.",
-      "Start with at least three trackers: Travel Preferences (seat type, airline habits, rebooking rules), Inbox Preferences (format rules, what gets escalated vs. batched), and Meeting Rhythms (non-negotiables, buffer requirements, what can flex under pressure)."
+    "discussionQuestion": "Pick one recurring task on your own plate. What would it look like to handle it the way a 'Force Multiplier' would, instead of the way a task-executor would?"
+  },
+  {
+    "id": 3,
+    "title": "Communication, Meetings & Calendar Mastery",
+    "theme": "Gatekeeping Scripts · Transcriptions · Time & Calendar Management",
+    "objective": "Apply gatekeeping frameworks and scripts, run accurate virtual meetings, and keep a calendar and workload that actually hold up under pressure.",
+    "lessons": [
+      {
+        "h": "Gatekeeping Is Not 'No'",
+        "b": [
+          "Gatekeeping means 'not now' or 'here's a better option' — never an outright block.",
+          "You represent the executive's authority; access is filtered, tone stays calm and confident.",
+          "Never blame the requester for bad timing, and always offer a real next step.",
+          "The Filtering Matrix pairs with a communication toolkit: active listening, framing, appeal to shared values, and asking for opinions rather than giving orders — all aimed at influence without relying on formal authority."
+        ]
+      },
+      {
+        "h": "The Filtering Matrix",
+        "b": [
+          "Categorize each request by urgency and impact: do it now, delegate, defer, or offer an alternative.",
+          "Four screening questions: revenue impact, legal risk, need for executive authority, relationship sensitivity."
+        ]
+      },
+      {
+        "h": "Scripts That Redirect Without Alienating",
+        "b": [
+          "Deferring — acknowledge genuinely, propose concrete next steps with a timeline.",
+          "Re-routing — point to the right team while staying accountable for the outcome.",
+          "Drastic Contrast — explain the real constraint honestly and offer a specific alternative slot.",
+          "Scripts also draw on classic influence principles: consistency and commitment (getting a small agreement first), and authority (citing the right process rather than personal preference)."
+        ]
+      },
+      {
+        "h": "Virtual Meetings & Transcription Accuracy",
+        "b": [
+          "Test recording software before the meeting, not during it.",
+          "Always assign a human note-taker as backup, independent of the tech.",
+          "If minutes come back unclear, apologize, revise, and standardize the template — don't just stop distributing them.",
+          "Two documentation types: Informal Notes (internal use only) and Formal Minutes (structured, distributed record).",
+          "Capture final decisions and action items; don't capture side conversations or off-the-record remarks.",
+          "AI transcription tools (Zoom, Teams, Otter) speed up the process, but the assistant's role is to review and clean the transcript — never distribute it raw.",
+          "After major meetings, prepare an Executive Briefing Memo: a short 'Subject: Executive Brief — [Meeting Topic]' summary rather than the full transcript."
+        ]
+      },
+      {
+        "h": "Prioritization Frameworks",
+        "b": [
+          "Eisenhower Matrix — sort by urgency and importance.",
+          "Pomodoro — 25 min focus, 5 min break, longer break every 4 cycles.",
+          "Time Blocking — dedicated blocks for deep work vs. email.",
+          "80/20 Rule — the 20% of activities producing 80% of results.",
+          "Effective triage can reclaim 10+ hours a week."
+        ],
+        "callout": {
+          "type": "stat",
+          "label": "Why this matters",
+          "text": "Executives spend 30–40% of their time in email. Effective filtering and triage can reclaim 10+ hours a week."
+        },
+        "layout": "QUADRANT",
+        "quadrants": [
+          {
+            "label": "Eisenhower Matrix",
+            "desc": "Sort by urgency and importance so effort goes to what truly matters"
+          },
+          {
+            "label": "Pomodoro Technique",
+            "desc": "25 minutes of focused work, 5-minute break, longer break every 4 cycles"
+          },
+          {
+            "label": "Time Blocking",
+            "desc": "Dedicated blocks for deep work vs. email to reduce distraction and multitasking"
+          },
+          {
+            "label": "80/20 Rule (Pareto)",
+            "desc": "Identify the 20% of activities producing 80% of the results"
+          }
+        ]
+      },
+      {
+        "h": "Time Tracking Done Right",
+        "b": [
+          "Common mistakes: logging time at week's end, vague descriptions, underbilling small tasks, forgetting communications.",
+          "Build a Weekly Time Summary even for non-billable work — it reveals where time actually goes."
+        ]
+      },
+      {
+        "h": "Calendar Management That Holds",
+        "b": [
+          "Centralize on one synced calendar system — a second unofficial calendar is where conflicts breed.",
+          "Build in explicit buffers, automate scheduling with Calendly/Doodle, review weekly.",
+          "Centralize your calendar using CRM software (Salesforce, HubSpot, Zoho) so scheduling data lives in one system, not scattered across tools.",
+          "Executive Energy Management matters as much as time management — protect blocks for deep work, not just avoid double-booking."
+        ]
+      },
+      {
+        "h": "Travel, Calendar & Contact Coordination",
+        "b": [
+          "Inform the executive of every schedule conflict immediately, never rebook without consulting first.",
+          "Prioritize meetings by strategic importance, not by which came first.",
+          "Keep one master contact list the whole team uses — personal copies drift out of sync."
+        ]
+      }
     ],
-    example:{label:"Tracker entries — Elias Thorne", lines:[
-      "Travel Preferences: aisle seat near the front; no connecting flights; monitor delays proactively and rebook without being asked.",
-      "Inbox Preferences: BLUF only — concise case summary and action point at the top; detailed briefs attached separately, never pasted into the body.",
-      "Meeting Rhythms: no back-to-back depositions or hearings; 15-minute debrief buffer after every key session."
-    ]}}
-  ],
-  quickChecks:[
-    {afterIndex:2, q:"Updating a client on a filing you just made, the tone should be:",
-     opts:["Identical to what you'd send the court clerk","Plain language and reassuring, focused on what it means for them","As brief as possible with no context","Skipped — clients don't need filing updates"],
-     a:1, r:"Reading the audience means the same event gets a different register for the client than for the court or the attorney."},
-    {afterIndex:4, q:"In the 'Persistent Caller' scenario, the EA's scripted response focuses on:",
-     opts:["Ignoring the caller entirely","Asking for a written request to review priority","Immediately connecting the call","Promising a callback within the hour"],
-     a:1, r:"It filters the request into a reviewable, prioritized channel rather than granting or flatly denying access."}
-  ],
-  quiz:[
-    {q:"Your executive shares sensitive company strategy while you're both in a crowded cafeteria. Best response?",
-     opts:["Take notes so you don't forget it later","Repeat it only to your immediate team","Politely step aside, summarize privately, and secure the information","Post it in the internal chat to confirm you heard correctly"],
-     a:2, r:"Confidentiality is protected by controlling the setting, not by who you tell it to next."},
-    {q:"Which statement correctly separates EA and PA responsibilities?",
-     opts:["EA handles only personal errands","PA handles all strategic decision-making","EA handles executive priorities, strategic prep, and confidential business info; PA handles personal support and some admin","Both roles are identical in scope"],
-     a:2, r:"The two roles overlap in skills but diverge sharply in scope — business/confidential vs. personal/lifestyle."},
-    {q:"Which of these is a clear red flag for a command-hierarchy failure?",
-     opts:["The executive is informed first of a critical decision","A confidential client email bypasses legal review","A PA coordinates personal travel efficiently","An EA escalates a potential issue appropriately"],
-     a:1, r:"Skipping the review step that exists specifically to catch confidentiality and legal risk is the hierarchy failure."},
-    {q:"What best describes a Virtual Executive Assistant's mindset?",
-     opts:["Service-focused personal life facilitator","Strategic partner focused on increasing executive efficiency and performance","Task-taker who waits for direct instruction on everything","Personal support specialist for daily logistics"],
-     a:1, r:"'Strategic partner' is the defining VEA mindset, versus the VPA's 'personal support specialist' framing."},
-    {q:"Authorization protocols (like a $500 vendor-invoice approval limit) exist mainly to...",
-     opts:["Slow the assistant down on purpose","Define decision-making and spending limits, preventing unauthorized commitments","Give the assistant more independence than the executive intended","Replace the need for any escalation at all"],
-     a:1, r:"Clear limits protect against financial misuse or errors, and they build trust by keeping actions within agreed boundaries."}
-  ]
-},
-{
-  id:2,
-  title:"Managing Up & the Force Multiplier",
-  theme:"Tactical Foundation · The Three C's · Digital Edge",
-  objective:"Apply the Three C's framework to manage up effectively, and shift from task-completer to force multiplier.",
-  lessons:[
-    {h:"Bulletproof Basics", b:[
-      "Inbox Zero & Triaging: categorize every email as Action, Information, or Delegation.",
-      "Draft responses in the executive's voice so they only have to hit Send.",
-      "Complex travel logistics isn't just booking a flight — it's the 'What If' plan (a backup flight already on hold before it's needed)."
-    ]},
-    {h:"The Three C's of Managing Up", b:[
-      "Clarity — no vague messages; say exactly what's happening and what you need.",
-      "Consistency — use the same standard procedures every time, so outcomes are predictable.",
-      "Credibility — recommendations have to be accurate and reliable, every time.",
-      "Reframe reactive language: instead of 'There's a scheduling conflict,' lead with the resolution you're proposing."
-    ]},
-    {h:"Credibility Is Earned, Not Claimed", b:[
-      "Credibility is the currency that lets an assistant manage up with confidence — it's earned through consistent execution and mature judgment.",
-      "It's built from accuracy, follow-through, on-time execution, anticipating next steps, and solving problems without drama."
+    "quickChecks": [
+      {
+        "afterIndex": 2,
+        "q": "Which gatekeeping technique is this: \"The CEO is in a critical planning cycle until Thursday, but I can hold a tentative 15 minutes Tuesday if this concerns the Alpha project\"?",
+        "opts": [
+          "Flat refusal",
+          "Drastic Contrast",
+          "Ignoring the request",
+          "Blaming the caller"
+        ],
+        "a": 1,
+        "r": "It replaces a vague 'he's busy' with the real constraint plus a concrete, specific alternative."
+      },
+      {
+        "afterIndex": 4,
+        "q": "Which prioritization technique focuses on the 20% of tasks that produce 80% of results?",
+        "opts": [
+          "The Eisenhower Matrix",
+          "The Pomodoro Technique",
+          "The 80/20 Rule (Pareto Principle)",
+          "Time Blocking"
+        ],
+        "a": 2,
+        "r": "Pareto's principle is about impact concentration — a small slice of effort driving most of the outcome."
+      }
     ],
-    callout:{type:"warning", label:"The No-Surprises Rule", text:"An executive should never be blindsided by something their assistant already knew about. One missed detail can undo months of trust."}},
-
-    {h:"From Helper to Force Multiplier", b:[
-      "A Force Multiplier expands the executive's impact by anticipating needs and solving problems proactively — not just completing assigned tasks.",
-      "The shift is from 'I did what I was told' to 'I saw this coming and already have an answer.'"
-    ]},
-    {h:"The Digital Edge", b:[
-      "Leverage automation — a dashboard that tracks KPIs beats a manually rebuilt report every week.",
-      "Digital tools are what separate a reactive assistant from a strategic one."
-    ]},
-    {h:"Force Multiplier in the Wild", b:[
-      "Real scenario: a client emails last-minute with additional data requests that touch three internal departments, the day before a major pitch."
+    "quiz": [
+      {
+        "q": "Which is a core principle of gatekeeping?",
+        "opts": [
+          "Access is filtered, not denied",
+          "Always say no to protect the executive's time",
+          "Blame the requester for bad timing",
+          "Ignore requests that seem unimportant"
+        ],
+        "a": 0,
+        "r": "Gatekeeping filters and redirects — it doesn't shut the door."
+      },
+      {
+        "q": "A high-level client wants an urgent meeting but the executive is fully booked. Most effective response?",
+        "opts": [
+          "Reschedule existing meetings without telling the executive",
+          "Ignore the email — the executive will see it eventually",
+          "Consult the executive briefly and propose an alternate schedule that protects priorities",
+          "Tell the client the executive is simply unavailable"
+        ],
+        "a": 2,
+        "r": "This balances responsiveness to the client with protecting the executive's actual priorities."
+      },
+      {
+        "q": "Best first step to ensure an accurate meeting transcription?",
+        "opts": [
+          "Share the raw recording immediately with stakeholders",
+          "Verify the recording software is working before the meeting, and assign a backup note-taker",
+          "Edit the transcript for clarity without checking the recording",
+          "Skip transcription if the meeting seems informal"
+        ],
+        "a": 1,
+        "r": "Catching a recording failure before it happens is far cheaper than fixing it after."
+      },
+      {
+        "q": "A stakeholder says the meeting minutes were unclear. Best course of action?",
+        "opts": [
+          "Stop distributing minutes to avoid future complaints",
+          "Blame the executive for speaking unclearly",
+          "Apologize, revise the minutes for clarity, and standardize a template for next time",
+          "Ignore the complaint — most people understand the gist"
+        ],
+        "a": 2,
+        "r": "Fix the immediate issue and the process, so it doesn't repeat."
+      },
+      {
+        "q": "A client updates their contact info, but teammates keep using the old details. What ensures accuracy?",
+        "opts": [
+          "Wait for someone else to update the list",
+          "Only update the contact info you personally use",
+          "Update the master list and notify the whole team",
+          "Delete the old info without telling anyone"
+        ],
+        "a": 2,
+        "r": "One source of truth, actively communicated, is what keeps a shared list reliable."
+      }
     ],
-    example:{label:"Worked response", lines:[
-      "Prioritize: assess which requests are most time-sensitive, flag dependencies, summarize options for executive approval.",
-      "Coordinate: use shared project boards (Asana/Trello) and collaborative docs (Sheets/Docs) with automated reminders across departments.",
-      "Close the loop: assign clear action items per department, consolidate updates into one report, review before sending, confirm delivery to the client."
-    ]}},
-
-    {h:"What Is a Large Language Model?", b:[
-      "Tools like Claude, ChatGPT, and Gemini aren't search engines querying a database of facts — they're prediction engines.",
-      "An LLM has read enormous amounts of text and learned the patterns of language. When you ask it to draft something, it predicts the most likely next word, sentence, and paragraph based on your prompt.",
-      "Because it's predicting rather than retrieving, it can produce original, useful text — but it can also confidently invent things that sound right and aren't."
-    ]},
-
-    {h:"Core AI Terms an EA/PA Needs", b:[
-      "Prompt — your instruction and context. A better prompt produces a better output.",
-      "Hallucination — the AI states something false with full confidence. Most common when it doesn't actually \"know\" the answer, but a plausible-sounding one exists in the pattern space.",
-      "Context window — its working memory limit for the current conversation. Paste something too long and it can lose track of the beginning by the time it reaches the end.",
-      "Tokens — roughly ¾ of a word. Higher-tier accounts generally allow longer documents (board decks, transcripts) before hitting the limit."
-    ]},
-
-    {h:"Your AI Toolkit — Three Modes, Different Jobs", b:[
-      "Generative Text — creates new content from patterns. Best for drafting declines, bios, or summarizing a messy email thread.",
-      "Extraction & Analysis — pulls specific data without altering facts. Best for isolating action items from a transcript, or pulling dates from a travel thread.",
-      "Logic & Routing — connects triggers to automated actions, like auto-filing attachments or a VIP-email alert.",
-      "The mistake to train out of yourself: using Generative mode when you actually need Extraction mode. Generative mode is allowed to paraphrase and infer; Extraction mode should quote back only what's explicit in the source."
-    ]},
-
-    {h:"Claude, ChatGPT, and Gemini — Practical Differences", b:[
-      "The same underlying risks apply to all three — hallucination, context limits, and training-on-inputs. The differences are mostly about where each tool sits in an existing workflow.",
-      "Claude — comfortable with long pastes (contracts, transcripts), careful tone control for sensitive drafting.",
-      "ChatGPT — broad ecosystem, fastest to iterate in, widest general familiarity.",
-      "Gemini — lives inside Gmail/Docs/Calendar directly if the org is on Google Workspace, so it can act on live inbox and calendar data, not just what's pasted in — which means the data-security habits below matter more, not less, since it isn't limited to what someone manually pasted."
-    ]},
-
-    {h:"The Golden Rules of Admin Data Security", b:[
-      "Toggle off training — find and disable \"Chat History & Training\" or \"Data Improvement\" in whichever tool you're using.",
-      "Anonymization rule — never input unannounced financial data, employee health information, Social Security numbers, or raw passwords.",
-      "Use placeholders — for a sensitive termination email or M&A memo, swap real names for \"[Company X]\" / \"[Employee Y]\" before hitting send."
+    "discussionQuestion": "Share a time you had to say 'not now' to someone without damaging the relationship. What made it land well — or not?"
+  },
+  {
+    "id": 4,
+    "title": "Data, Email & Outreach",
+    "theme": "Administrative Data · Email Triage System · Cold Calling",
+    "objective": "Clean data before it becomes a report, run email as a control system rather than cleanup, and open cold outreach the right way.",
+    "lessons": [
+      {
+        "h": "Data Entry That Holds Up",
+        "b": [
+          "De-duplicate, standardize formatting, filter/validate against source, then sort — in that order.",
+          "Never submit raw data and let someone downstream fix your errors."
+        ],
+        "layout": "PROCESS",
+        "processSteps": [
+          {
+            "label": "De-duplicate",
+            "desc": "Remove duplicate records before anything else touches the data"
+          },
+          {
+            "label": "Standardize",
+            "desc": "Correct inconsistent formatting across every field"
+          },
+          {
+            "label": "Filter",
+            "desc": "Apply validation rules and cross-check against source documents"
+          },
+          {
+            "label": "Sort",
+            "desc": "Order by relevant columns before it goes anywhere else"
+          }
+        ]
+      },
+      {
+        "h": "Email Is a Control System, Not Cleanup",
+        "b": [
+          "Full Access — read/respond/archive/send on the executive's behalf.",
+          "Draft & Review — draft and flag; executive approves before sending.",
+          "Triage Only — sort and escalate; executive responds themselves.",
+          "Know your access level before acting independently."
+        ],
+        "layout": "THREEBOX",
+        "boxes": [
+          {
+            "label": "Full Access",
+            "desc": "Read, respond, archive, and send on the executive's behalf"
+          },
+          {
+            "label": "Draft & Review",
+            "desc": "Draft responses and flag priorities — the executive approves before sending"
+          },
+          {
+            "label": "Triage Only",
+            "desc": "Sort, prioritize, and escalate — the executive responds themselves"
+          }
+        ]
+      },
+      {
+        "h": "The Priority Matrix",
+        "b": [
+          "Tier 1 (Immediate) — legal deadlines, high-value clients, media, financial approvals, crisis comms.",
+          "Tier 2 (Strategic) — revenue opportunities, partnerships, board comms, vendor negotiation."
+        ],
+        "layout": "COMPARE",
+        "compareLeft": {
+          "label": "Tier 1 — Immediate Escalation",
+          "items": [
+            "Legal deadlines",
+            "High-value clients",
+            "Media inquiries",
+            "Financial approvals",
+            "Crisis communications",
+            "Notify the executive immediately, no exceptions"
+          ]
+        },
+        "compareRight": {
+          "label": "Tier 2 — Strategic",
+          "items": [
+            "Revenue opportunities",
+            "Partnerships",
+            "Board communications",
+            "Vendor negotiations",
+            "Draft a response within 2–4 hours",
+            "Still important, but not an interrupt"
+          ]
+        }
+      },
+      {
+        "h": "Calendar & Email Are One System",
+        "b": [
+          "Convert scheduling emails into calendar holds immediately.",
+          "Confirm time zones explicitly, attach agendas to the invite itself.",
+          "A stale calendar is a liability everyone downstream trusts as ground truth."
+        ]
+      },
+      {
+        "h": "The Daily Routine",
+        "b": [
+          "Morning Scan (15–30 min) — flag Tier 1, prepare a briefing summary.",
+          "Midday Review — draft responses, confirm meetings.",
+          "End-of-Day Review — confirm nothing urgent is left, prep tomorrow.",
+          "A short briefing beats forwarding dozens of raw emails."
+        ],
+        "example": {
+          "label": "Executive briefing, real format",
+          "lines": [
+            "2 client escalation issues — responses drafted",
+            "Vendor contract awaiting approval (expires Friday)",
+            "Media request from Business Today — deadline tomorrow",
+            "3 meeting confirmations secured",
+            "Finance flagged payment discrepancy ($8,450)"
+          ]
+        },
+        "layout": "PROCESS",
+        "processSteps": [
+          {
+            "label": "Morning Scan (15–30 min)",
+            "desc": "Flag Tier 1 issues, clear spam, prepare a briefing summary"
+          },
+          {
+            "label": "Midday Review",
+            "desc": "Draft responses, follow up on pending threads, confirm meetings"
+          },
+          {
+            "label": "End-of-Day Review",
+            "desc": "Confirm nothing urgent is left, prep tomorrow's summary"
+          }
+        ]
+      },
+      {
+        "h": "What High-Performing Email Management Looks Like",
+        "b": [
+          "Target: 80–90% of operational emails handled independently, inbox near zero daily.",
+          "No missed critical deadlines, no confidentiality breaches — the two failure modes that erase months of trust."
+        ],
+        "callout": {
+          "type": "stat",
+          "label": "Benchmark",
+          "text": "High-performing EAs handle 80–90% of operational emails independently — without escalating routine items that don't need executive time."
+        },
+        "layout": "STAT",
+        "statNumber": "80–90%",
+        "statLabel": "of operational emails handled independently"
+      },
+      {
+        "h": "Cold Calling, Appointment Setting & Lead Generation",
+        "b": [
+          "Research before calling — a specific, current reference lands differently than a script.",
+          "Open with a brief, relevant value proposition, not a pitch.",
+          "The goal of a cold call is almost never the close — it's earning a warmer second conversation.",
+          "Cold calling, appointment setting, and lead generation sit alongside secured document sharing and handling sensitive/confidential information as core Day 4 skills — the same discretion that applies to email applies to outbound contact lists."
+        ]
+      }
     ],
-    callout:{type:"warning", label:"Confidentiality still applies", text:"Elias's firm runs on \"uncompromising excellence\" and strict confidentiality — an AI tool is still a third party. The same judgment that keeps a case detail out of casual conversation applies to what you paste into a prompt."}}
-  ],
-  quickChecks:[
-    {afterIndex:2, q:"The 'No-Surprises Rule' means:",
-     opts:["Executives enjoy occasional surprises","An executive should never be blindsided by something their assistant already knew","Surprises are fine as long as they're positive","Only bad news needs to be flagged early"],
-     a:1, r:"Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."},
-    {afterIndex:6, q:"True or False: an LLM looks up facts in a database before answering.",
-     opts:["True","False"],
-     a:1, r:"It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."},
-    {afterIndex:7, q:"You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
-     opts:["Section 12 was too complex for the AI to understand","Context window strain — it lost precision across a long document","The AI refused the request","The contract format wasn't supported"],
-     a:1, r:"When a document is long, precision degrades across it — paste just the relevant section when precision matters."}
-  ],
-  quiz:[
-    {q:"The 'Three C's' of Managing Up are:",
-     opts:["Communication, Creativity, Coordination","Clarity, Consistency, Credibility","Control, Conformity, Confidence","Collaboration, Curiosity, Confidence"],
-     a:1, r:"Clarity, Consistency, and Credibility are the framework taught for managing up effectively."},
-    {q:"A 'Force Multiplier' EA/PA primarily...",
-     opts:["Completes tasks exactly as assigned without question","Expands the executive's impact by anticipating needs and solving problems proactively","Focuses only on administrative efficiency","Manages only personal tasks for the executive"],
-     a:1, r:"Force multiplier is a mindset shift — from executing instructions to actively expanding what the executive can accomplish."},
-    {q:"Which best illustrates leveraging the 'Digital Edge'?",
-     opts:["Printing a report for a meeting","Creating an automated dashboard to track KPIs and reduce manual reporting","Taking notes in a meeting by hand","Sending the same email to multiple recipients unsegmented"],
-     a:1, r:"Automation that removes recurring manual work is the clearest example of the Digital Edge."},
-    {q:"The 'What If' approach to travel logistics means:",
-     opts:["Booking the cheapest option available","Having a backup option already secured before it's needed","Letting the executive handle changes themselves","Avoiding travel bookings until the last minute"],
-     a:1, r:"E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."},
-    {q:"Three urgent requests collide and a VIP client also needs an immediate call. Best first move?",
-     opts:["Try to do all four at once","Assess urgency and impact, then communicate a prioritized plan to the executive","Handle the VIP call and quietly drop the rest","Wait for the executive to sort out the priority"],
-     a:1, r:"Clarity + Credibility in action: assess, then propose a plan rather than guessing or freezing."},
-    {q:"An LLM is best described as:",
-     opts:["A search engine","A fact database","A prediction engine"],
-     a:2, r:"It predicts the most likely next words based on patterns learned from text — it doesn't retrieve facts from a database."},
-    {q:"A hallucination is:",
-     opts:["A bug that crashes the app","Confidently stated false information","A formatting error"],
-     a:1, r:"The AI states something false with full confidence — often when a plausible-sounding answer exists in the pattern space even though it isn't true."},
-    {q:"Which mode should you use to pull exact action items from a transcript without paraphrasing?",
-     opts:["Generative Text","Extraction & Analysis","Logic & Routing"],
-     a:1, r:"Extraction mode quotes back only what's explicit in the source — the right choice when precision matters more than fluency."},
-    {q:"Before pasting a sensitive termination email draft into a public AI tool, you should:",
-     opts:["Do nothing, it's fine","Replace real names with placeholders","Only remove dollar amounts"],
-     a:1, r:"Swap real names for placeholders like \"[Employee Y]\" before hitting send — the anonymization rule applies to sensitive drafts."},
-    {q:"Gemini's tight integration with Gmail and Calendar means:",
-     opts:["It's automatically safer","The data-security habits matter more, since it can touch live inbox and calendar data","Training toggles don't apply to it"],
-     a:1, r:"Because it isn't limited to what's manually pasted in, the same security discipline matters even more, not less."}
-  ]
-},
-{
-  id:3,
-  title:"Communication, Meetings & Calendar Mastery",
-  theme:"Gatekeeping Scripts · Transcriptions · Time & Calendar Management",
-  objective:"Apply gatekeeping frameworks and scripts, run accurate virtual meetings, and keep a calendar and workload that actually hold up under pressure.",
-  lessons:[
-    {h:"Gatekeeping Is Not 'No'", b:[
-      "Gatekeeping means saying 'not now' or 'here's a better option' — not blocking access outright.",
-      "Core principles: you represent the executive's authority; access is filtered, not denied; tone stays calm, neutral, confident; never blame the requester; always offer a next step."
-    ]},
-    {h:"The Filtering Matrix", b:[
-      "Categorize each incoming request by urgency and impact, then decide: do it now, delegate, defer, or offer an alternative.",
-      "Before granting access, ask: Does this generate revenue? Carry legal risk? Require executive authority? Is it relationship-sensitive?"
-    ]},
-    {h:"Scripts That Redirect Without Alienating", b:[
-      "Deferring: acknowledge the request, offer to gather details, propose next steps.",
-      "Re-routing: point to the right team while staying attached ('I'm copying them here for the fastest support').",
-      "The Drastic Contrast technique: instead of 'He's busy,' explain the real constraint and offer a specific, concrete slot."
-    ]},
-    {h:"Virtual Meetings & Transcription Accuracy", b:[
-      "Verify recording software works before the meeting starts, and always assign a note-taker as a backup.",
-      "If minutes come back unclear, the right move is to apologize, revise for clarity, and standardize a template — not to blame the executive or stop distributing minutes."
-    ]},
-    {h:"Prioritization Frameworks", b:[
-      "The Eisenhower Matrix — sort by urgency and importance so you focus on what truly matters.",
-      "The Pomodoro Technique — 25 minutes of focused work, 5-minute break; a longer break after every 4 cycles.",
-      "Time Blocking — schedule dedicated blocks for tasks to reduce distraction and multitasking (e.g. 2 hours deep work, 30 minutes email).",
-      "The 80/20 Rule (Pareto Principle) — identify and prioritize the 20% of activities producing 80% of the results."
+    "quickChecks": [
+      {
+        "afterIndex": 2,
+        "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
+        "opts": [
+          "Tier 2 — draft a response in 2–4 hours",
+          "Tier 1 — notify the executive immediately",
+          "Not worth flagging",
+          "Something to batch with the newsletter"
+        ],
+        "a": 1,
+        "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
+      },
+      {
+        "afterIndex": 5,
+        "q": "What best distinguishes high-performing email management from average?",
+        "opts": [
+          "Forwarding every email so nothing is missed",
+          "Handling 80–90% of operational emails independently with zero missed deadlines",
+          "Replying to everything within 5 minutes",
+          "Deleting anything that looks unimportant"
+        ],
+        "a": 1,
+        "r": "It's about independent, reliable handling of the bulk of email — not speed or forwarding volume."
+      }
     ],
-    callout:{type:"stat", label:"Why this matters", text:"Executives spend 30–40% of their time in email. Effective filtering and triage can reclaim 10+ hours a week."}},
-
-    {h:"Time Tracking Done Right", b:[
-      "Common mistakes to avoid: waiting until end of week to log time, vague task descriptions, underbilling small tasks, forgetting communications tied to a matter, combining multiple matters into one entry.",
-      "Build a Weekly Executive Time Summary even if non-billable: % strategic work, % reactive inbox management, % travel/logistics, % meetings — it shows where the executive's time is really going."
-    ]},
-    {h:"Calendar Management That Holds", b:[
-      "Centralize on a single calendar system and sync across devices to avoid conflicts.",
-      "Set boundaries and buffer time, and automate coordination with tools like Calendly or Doodle.",
-      "Review the calendar weekly and refine based on what actually worked."
-    ]},
-    {h:"Travel, Calendar & Contact Coordination", b:[
-      "When a multi-city trip hits last-minute changes: inform the executive of every conflict, never rebook without consulting, and prioritize meetings by strategic importance.",
-      "Keep one master contact list that the whole team actually uses — update it centrally and notify everyone, don't let personal copies drift."
-    ]}
-  ],
-  quickChecks:[
-    {afterIndex:2, q:"Which gatekeeping technique is this: \"The CEO is in a critical planning cycle until Thursday, but I can hold a tentative 15 minutes Tuesday if this concerns the Alpha project\"?",
-     opts:["Flat refusal","Drastic Contrast","Ignoring the request","Blaming the caller"],
-     a:1, r:"It replaces a vague 'he's busy' with the real constraint plus a concrete, specific alternative."},
-    {afterIndex:4, q:"Which prioritization technique focuses on the 20% of tasks that produce 80% of results?",
-     opts:["The Eisenhower Matrix","The Pomodoro Technique","The 80/20 Rule (Pareto Principle)","Time Blocking"],
-     a:2, r:"Pareto's principle is about impact concentration — a small slice of effort driving most of the outcome."}
-  ],
-  quiz:[
-    {q:"Which is a core principle of gatekeeping?",
-     opts:["Access is filtered, not denied","Always say no to protect the executive's time","Blame the requester for bad timing","Ignore requests that seem unimportant"],
-     a:0, r:"Gatekeeping filters and redirects — it doesn't shut the door."},
-    {q:"A high-level client wants an urgent meeting but the executive is fully booked. Most effective response?",
-     opts:["Reschedule existing meetings without telling the executive","Ignore the email — the executive will see it eventually","Consult the executive briefly and propose an alternate schedule that protects priorities","Tell the client the executive is simply unavailable"],
-     a:2, r:"This balances responsiveness to the client with protecting the executive's actual priorities."},
-    {q:"Best first step to ensure an accurate meeting transcription?",
-     opts:["Share the raw recording immediately with stakeholders","Verify the recording software is working before the meeting, and assign a backup note-taker","Edit the transcript for clarity without checking the recording","Skip transcription if the meeting seems informal"],
-     a:1, r:"Catching a recording failure before it happens is far cheaper than fixing it after."},
-    {q:"A stakeholder says the meeting minutes were unclear. Best course of action?",
-     opts:["Stop distributing minutes to avoid future complaints","Blame the executive for speaking unclearly","Apologize, revise the minutes for clarity, and standardize a template for next time","Ignore the complaint — most people understand the gist"],
-     a:2, r:"Fix the immediate issue and the process, so it doesn't repeat."},
-    {q:"A client updates their contact info, but teammates keep using the old details. What ensures accuracy?",
-     opts:["Wait for someone else to update the list","Only update the contact info you personally use","Update the master list and notify the whole team","Delete the old info without telling anyone"],
-     a:2, r:"One source of truth, actively communicated, is what keeps a shared list reliable."}
-  ]
-},
-{
-  id:4,
-  title:"Data, Email & Outreach",
-  theme:"Administrative Data · Email Triage System · Cold Calling",
-  objective:"Clean data before it becomes a report, run email as a control system rather than cleanup, and open cold outreach the right way.",
-  lessons:[
-    {h:"Data Entry That Holds Up", b:[
-      "Use validation rules and filters, and cross-check against source documents — don't just submit raw data and let someone else fix it.",
-      "Order of operations for cleanup: remove duplicates, correct inconsistent formatting, apply filters, then sort by relevant columns."
-    ]},
-    {h:"Email Is a Control System, Not Cleanup", b:[
-      "Three access models — know which one you're in before acting independently:",
-      "Full Access: read, respond, archive, and send on the executive's behalf.",
-      "Draft & Review: draft responses and flag priorities; the executive approves before sending.",
-      "Triage Only: sort, prioritize, and escalate — the executive responds themselves."
-    ]},
-    {h:"The Priority Matrix", b:[
-      "Tier 1 — Immediate Escalation: legal deadlines, high-value clients, media inquiries, financial approvals, crisis comms. Notify the executive immediately.",
-      "Tier 2 — Strategic: revenue opportunities, partnerships, board communications, vendor negotiations. Draft a response within 2–4 hours."
-    ]},
-    {h:"Calendar & Email Are One System", b:[
-      "Convert scheduling emails into calendar holds immediately, confirm time zones, and attach relevant documents and the agenda to the invite.",
-      "Track cancellations and reschedules as they happen — a stale calendar is a liability."
-    ]},
-    {h:"The Daily Routine", b:[
-      "Morning scan (15–30 min): flag Tier 1 issues, clear spam, prepare a briefing summary.",
-      "Midday review: draft responses, follow up on pending threads, confirm meetings.",
-      "End-of-day review: confirm nothing urgent is left, prep tomorrow's summary.",
-      "A short executive briefing beats forwarding dozens of raw emails — it reads as strategic, not reactive."
+    "quiz": [
+      {
+        "q": "Under the 'Draft & Review' email access model, you...",
+        "opts": [
+          "Send on the executive's behalf without review",
+          "Draft responses and flag priorities, but the executive approves before sending",
+          "Only sort emails — never draft anything",
+          "Have full inbox authority including archiving and calendar invites"
+        ],
+        "a": 1,
+        "r": "Draft & Review keeps the executive as the final approver on outgoing messages."
+      },
+      {
+        "q": "A Tier 1 email arrives (media inquiry with a deadline tomorrow). What's the required action?",
+        "opts": [
+          "Batch it with other emails for the end-of-day review",
+          "Notify the executive immediately",
+          "Draft a response within 2–4 hours",
+          "Delete it as low priority"
+        ],
+        "a": 1,
+        "r": "Tier 1 items — legal, high-value client, media, financial approval, crisis — require immediate notification."
+      },
+      {
+        "q": "Best opening line for a cold call?",
+        "opts": [
+          "\"Hi, I'm calling to sell you our services.\"",
+          "\"Hi, I'm [Name] from [Company]. I wanted to see if we could schedule a brief meeting to discuss [relevant topic].\"",
+          "\"Are you available right now for a 30-minute presentation?\"",
+          "\"I'll just send you an email instead.\""
+        ],
+        "a": 1,
+        "r": "It's specific, low-pressure, and value-oriented rather than a hard pitch."
+      },
+      {
+        "q": "You receive a 500-row spreadsheet with typos and incomplete entries. Best first step?",
+        "opts": [
+          "Submit it as-is and let the manager fix errors",
+          "Use validation rules/filters and cross-check against source documents",
+          "Delete any row that looks incomplete",
+          "Sort it alphabetically and call it done"
+        ],
+        "a": 1,
+        "r": "Verifying against source data before reporting is what prevents downstream errors."
+      },
+      {
+        "q": "The purpose of a morning email briefing is to...",
+        "opts": [
+          "Replace dozens of forwarded emails with a short, prioritized summary",
+          "Give the executive every email in full detail",
+          "Avoid having to check email until midday",
+          "Just confirm the inbox is empty"
+        ],
+        "a": 0,
+        "r": "A tight briefing positions the assistant as strategic, not just a message-forwarder."
+      }
     ],
-    example:{label:"Executive briefing, real format", lines:[
-      "2 client escalation issues — responses drafted",
-      "Vendor contract awaiting approval (expires Friday)",
-      "Media request from Business Today — deadline tomorrow",
-      "3 meeting confirmations secured",
-      "Finance flagged payment discrepancy ($8,450)"
-    ]}},
-
-    {h:"What High-Performing Email Management Looks Like", b:[
-      "Inbox at or near zero by end of day.",
-      "80–90% of operational emails handled independently, with no missed critical deadlines and no confidentiality breaches.",
-      "Executive time increasingly freed up for strategic work rather than inbox management."
+    "discussionQuestion": "Where does your current inbox or calendar workflow break down first under pressure? What's one change that would fix it?"
+  },
+  {
+    "id": 5,
+    "title": "Household, Risk & Lifestyle Support",
+    "theme": "Household Operations · Personal Insurance & Risk Framework · Lifestyle Coordination",
+    "objective": "Run household operations like a small business, apply a real risk-management framework, and keep lifestyle support organized and trackable.",
+    "lessons": [
+      {
+        "h": "Running a Household Like a Business",
+        "b": [
+          "Household management applies real business discipline — planning, organizing, budgeting, evaluation.",
+          "The assistant is the main point of contact for family, staff, and contractors."
+        ]
+      },
+      {
+        "h": "When a Vendor Falls Through",
+        "b": [
+          "Notify the household immediately when a vendor falls through, and propose real alternatives.",
+          "Keep backup vendors identified in advance for every recurring service."
+        ]
+      },
+      {
+        "h": "The PA Risk Management Framework",
+        "b": [
+          "Financial Risk — unpaid premiums, lapsed policies, fraud.",
+          "Legal & Liability Risk — injury claims, contractual exposure.",
+          "Operational Risk — missed deadlines, travel disruption, vendor failure.",
+          "Reputational Risk — social media exposure, public disputes, data breaches.",
+          "Most real incidents touch more than one category at once."
+        ],
+        "layout": "QUADRANT",
+        "quadrants": [
+          {
+            "label": "Financial Risk",
+            "desc": "Unpaid premiums, lapsed policies, fraud — monitor renewals, verify payments"
+          },
+          {
+            "label": "Legal & Liability Risk",
+            "desc": "Personal injury claims, contractual exposure, household-staff liability"
+          },
+          {
+            "label": "Operational Risk",
+            "desc": "Missed deadlines, travel disruption, vendor failure — build contingency plans"
+          },
+          {
+            "label": "Reputational Risk",
+            "desc": "Social media exposure, public disputes, data breaches — practice discretion"
+          }
+        ]
+      },
+      {
+        "h": "The Four Core Risk Strategies",
+        "b": [
+          "Avoidance — skip the risky activity entirely.",
+          "Reduction — add safety measures (alarms, defensive driving).",
+          "Transfer — shift the risk to an insurer.",
+          "Retention — accept minor risk when insuring costs more than the risk itself."
+        ],
+        "table": {
+          "headers": [
+            "Strategy",
+            "What it means",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Avoidance",
+              "Avoid the activity that creates the risk",
+              "Not investing in extremely volatile assets without expertise"
+            ],
+            [
+              "Reduction",
+              "Add safety measures to lower potential loss",
+              "Smoke detectors, security systems, defensive driving courses"
+            ],
+            [
+              "Transfer",
+              "Shift the financial risk to an insurer",
+              "Purchasing homeowners or auto insurance"
+            ],
+            [
+              "Retention",
+              "Accept minor risk when insuring costs more than the risk itself",
+              "Paying for small car repairs out of pocket"
+            ]
+          ]
+        }
+      },
+      {
+        "h": "Insurance & Risk at a Glance",
+        "b": [
+          "Track policy expirations, compare coverage against what's actually recommended.",
+          "Review twice a year: has net worth, property, travel, or staff changed? Each 'yes' is a potential gap.",
+          "A Personal Insurance Policy Tracker should be a secure spreadsheet with columns for Policy Type, Carrier, Policy #, Insured Party, Deductible, Premium, Payment Frequency, and Renewal Date — this is what prevents lapses and missed payments.",
+          "Annual Risk Review Checklist prompts: new property or vehicle acquired? Change in marital status? New dependents? Business ownership changes? Increase in net worth? Any 'yes' means notifying the broker for a coverage adjustment."
+        ],
+        "callout": {
+          "type": "tip",
+          "label": "Semi-annual risk check",
+          "text": "Review twice a year: has net worth increased? New properties or vehicles? More international travel? Any new household staff? Each 'yes' is a potential coverage update."
+        }
+      },
+      {
+        "h": "Travel Risk Management",
+        "b": [
+          "Before travel — confirm travel insurance and international coverage.",
+          "During — keep an emergency contact sheet and secure Wi-Fi practices.",
+          "After — reconcile expenses and file claims while details are fresh.",
+          "A claim is a risk event requiring organized response, not just paperwork — the PA's role is Coordinator, Document Controller, and Executive Liaison.",
+          "Phase 1 of a claim (immediate response): ensure safety first, call emergency services if needed, then preserve evidence — clear photos/videos, saved damaged items, police/incident report numbers, witness details. Never admit fault on the executive's behalf."
+        ],
+        "layout": "PROCESS",
+        "processSteps": [
+          {
+            "label": "Before Travel",
+            "desc": "Confirm travel insurance, international medical coverage, register with embassy if high-profile"
+          },
+          {
+            "label": "During Travel",
+            "desc": "Keep an emergency contact sheet, digital document copies, secure Wi-Fi practices"
+          },
+          {
+            "label": "After Travel",
+            "desc": "Reconcile expenses and file any claims promptly, while details are still fresh"
+          }
+        ]
+      },
+      {
+        "h": "Lifestyle & Personal Support",
+        "b": [
+          "Track errands, gifts, and events in one shared tool with deadlines and owners.",
+          "Ad hoc handling is exactly where things get dropped — not from carelessness, but because memory doesn't scale."
+        ]
+      }
     ],
-    callout:{type:"stat", label:"Benchmark", text:"High-performing EAs handle 80–90% of operational emails independently — without escalating routine items that don't need executive time."}},
-
-    {h:"Cold Calling, Appointment Setting & Lead Generation", b:[
-      "Research before calling — company site, LinkedIn, recent news.",
-      "Open with a brief, relevant value proposition, not a pitch: introduce yourself and ask for a short meeting on a specific topic.",
-      "If a prospect is hesitant but not refusing, acknowledge that and offer a low-commitment next step."
-    ]}
-  ],
-  quickChecks:[
-    {afterIndex:2, q:"A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
-     opts:["Tier 2 — draft a response in 2–4 hours","Tier 1 — notify the executive immediately","Not worth flagging","Something to batch with the newsletter"],
-     a:1, r:"Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."},
-    {afterIndex:5, q:"What best distinguishes high-performing email management from average?",
-     opts:["Forwarding every email so nothing is missed","Handling 80–90% of operational emails independently with zero missed deadlines","Replying to everything within 5 minutes","Deleting anything that looks unimportant"],
-     a:1, r:"It's about independent, reliable handling of the bulk of email — not speed or forwarding volume."}
-  ],
-  quiz:[
-    {q:"Under the 'Draft & Review' email access model, you...",
-     opts:["Send on the executive's behalf without review","Draft responses and flag priorities, but the executive approves before sending","Only sort emails — never draft anything","Have full inbox authority including archiving and calendar invites"],
-     a:1, r:"Draft & Review keeps the executive as the final approver on outgoing messages."},
-    {q:"A Tier 1 email arrives (media inquiry with a deadline tomorrow). What's the required action?",
-     opts:["Batch it with other emails for the end-of-day review","Notify the executive immediately","Draft a response within 2–4 hours","Delete it as low priority"],
-     a:1, r:"Tier 1 items — legal, high-value client, media, financial approval, crisis — require immediate notification."},
-    {q:"Best opening line for a cold call?",
-     opts:["\"Hi, I'm calling to sell you our services.\"","\"Hi, I'm [Name] from [Company]. I wanted to see if we could schedule a brief meeting to discuss [relevant topic].\"","\"Are you available right now for a 30-minute presentation?\"","\"I'll just send you an email instead.\""],
-     a:1, r:"It's specific, low-pressure, and value-oriented rather than a hard pitch."},
-    {q:"You receive a 500-row spreadsheet with typos and incomplete entries. Best first step?",
-     opts:["Submit it as-is and let the manager fix errors","Use validation rules/filters and cross-check against source documents","Delete any row that looks incomplete","Sort it alphabetically and call it done"],
-     a:1, r:"Verifying against source data before reporting is what prevents downstream errors."},
-    {q:"The purpose of a morning email briefing is to...",
-     opts:["Replace dozens of forwarded emails with a short, prioritized summary","Give the executive every email in full detail","Avoid having to check email until midday","Just confirm the inbox is empty"],
-     a:0, r:"A tight briefing positions the assistant as strategic, not just a message-forwarder."}
-  ]
-},
-{
-  id:5,
-  title:"Household, Risk & Lifestyle Support",
-  theme:"Household Operations · Personal Insurance & Risk Framework · Lifestyle Coordination",
-  objective:"Run household operations like a small business, apply a real risk-management framework, and keep lifestyle support organized and trackable.",
-  lessons:[
-    {h:"Running a Household Like a Business", b:[
-      "Home management means applying real planning, organizing, budgeting, and evaluation to household operations.",
-      "The assistant is the main point of contact for family, household staff, and contractors — overseeing maintenance, repairs, and seasonal projects."
-    ]},
-    {h:"When a Vendor Falls Through", b:[
-      "Notify the household immediately and propose alternatives — don't quietly reschedule and hope it works out.",
-      "Keep backup vendors ready in advance so a last-minute cancellation doesn't become a crisis."
-    ]},
-    {h:"The PA Risk Management Framework", b:[
-      "PAs operate across four risk categories, each with a distinct role:",
-      "Financial Risk (unpaid premiums, lapsed policies, fraud) — monitor renewals, verify payments, keep documentation accurate.",
-      "Legal & Liability Risk (personal injury claims, contractual exposure, household-staff liability) — flag exposure early.",
-      "Operational Risk (missed deadlines, travel disruption, vendor failure) — build contingency plans, keep organized systems.",
-      "Reputational Risk (social media exposure, public disputes, data breaches) — practice discretion, secure communications."
-    ]},
-    {h:"The Four Core Risk Strategies", b:[
-      "Applying the right strategy to the right risk is the actual skill — not just naming the risk."
+    "quickChecks": [
+      {
+        "afterIndex": 3,
+        "q": "A family purchases homeowners insurance to cover potential losses from fire or theft. Which risk strategy is this?",
+        "opts": [
+          "Avoidance",
+          "Reduction",
+          "Transfer",
+          "Retention"
+        ],
+        "a": 2,
+        "r": "Buying insurance shifts the financial risk onto the insurer — that's Transfer."
+      },
+      {
+        "afterIndex": 4,
+        "q": "During the semi-annual risk review, which of these is a genuine trigger to revisit coverage?",
+        "opts": [
+          "The weather changed",
+          "Net worth increased significantly since the last review",
+          "The assistant took a vacation",
+          "A vendor changed their logo"
+        ],
+        "a": 1,
+        "r": "A meaningful change in net worth, property, vehicles, or household staff should always prompt a coverage check."
+      }
     ],
-    table:{headers:["Strategy","What it means","Example"], rows:[
-      ["Avoidance","Avoid the activity that creates the risk","Not investing in extremely volatile assets without expertise"],
-      ["Reduction","Add safety measures to lower potential loss","Smoke detectors, security systems, defensive driving courses"],
-      ["Transfer","Shift the financial risk to an insurer","Purchasing homeowners or auto insurance"],
-      ["Retention","Accept minor risk when insuring costs more than the risk itself","Paying for small car repairs out of pocket"]
-    ]}},
-
-    {h:"Insurance & Risk at a Glance", b:[
-      "Track policy expiration dates and compare coverage against what's actually recommended (e.g. liability coverage relative to net worth).",
-      "Summarize gaps and get advisor input rather than changing coverage unilaterally.",
-      "Insurance claims often involve sensitive data (medical records, financial details) — use encrypted storage, limit access, and confirm secure portals before uploading anything."
+    "quiz": [
+      {
+        "q": "A household vendor cancels last-minute. Correct move?",
+        "opts": [
+          "Reschedule quietly with the same vendor and say nothing",
+          "Notify the household immediately and line up a backup vendor",
+          "Ignore it and hope it resolves itself",
+          "Cancel the service entirely"
+        ],
+        "a": 1,
+        "r": "Immediate transparency plus a backup plan prevents the gap from becoming a bigger problem."
+      },
+      {
+        "q": "You notice liability insurance is well below what's recommended for the family's net worth. Best step?",
+        "opts": [
+          "Increase coverage immediately without asking anyone",
+          "Summarize current coverage, flag the gap, and consult an insurance advisor",
+          "Ignore it as long as premiums are being paid",
+          "Cancel the policy and start over"
+        ],
+        "a": 1,
+        "r": "Surface the gap with a clear summary and expert input — don't act unilaterally on someone else's coverage."
+      },
+      {
+        "q": "Before a family member's adventure vacation, you should...",
+        "opts": [
+          "Assume standard travel insurance covers everything",
+          "Verify travel insurance actually covers the specific activities planned",
+          "Tell them not to go",
+          "Skip the emergency contact sheet to save time"
+        ],
+        "a": 1,
+        "r": "Generic travel insurance often excludes higher-risk activities — always verify against the actual plan."
+      },
+      {
+        "q": "Best way to manage recurring personal errands like gifts, events, and wardrobe tasks?",
+        "opts": [
+          "Handle everything ad hoc as it comes up",
+          "A shared digital tracker with deadlines, budgets, and clear ownership",
+          "Keep it entirely in your head for speed",
+          "Delegate everything without follow-up"
+        ],
+        "a": 1,
+        "r": "Tracking is what prevents small recurring tasks from silently slipping."
+      },
+      {
+        "q": "Home management is best understood as...",
+        "opts": [
+          "A purely reactive, task-by-task job",
+          "Running the household with the same planning and budgeting discipline as a business",
+          "Something that doesn't require organizational skill",
+          "Primarily about socializing with vendors"
+        ],
+        "a": 1,
+        "r": "It draws directly on planning, organizing, budgeting, and evaluating — the same skills that run a business."
+      }
     ],
-    callout:{type:"tip", label:"Semi-annual risk check", text:"Review twice a year: has net worth increased? New properties or vehicles? More international travel? Any new household staff? Each 'yes' is a potential coverage update."}},
-
-    {h:"Travel Risk Management", b:[
-      "Before travel: confirm travel insurance and international medical coverage, register with an embassy if high-profile, share the itinerary securely.",
-      "During travel: keep an emergency contact sheet, digital copies of documents, and use secure Wi-Fi practices.",
-      "After travel: reconcile expenses and file any claims promptly."
-    ]},
-    {h:"Lifestyle & Personal Support", b:[
-      "Track errands, gifts, and events in one shared digital tool with clear deadlines, budgets, and owners.",
-      "Ad hoc handling without tracking is exactly where things get dropped."
-    ]}
-  ],
-  quickChecks:[
-    {afterIndex:3, q:"A family purchases homeowners insurance to cover potential losses from fire or theft. Which risk strategy is this?",
-     opts:["Avoidance","Reduction","Transfer","Retention"],
-     a:2, r:"Buying insurance shifts the financial risk onto the insurer — that's Transfer."},
-    {afterIndex:4, q:"During the semi-annual risk review, which of these is a genuine trigger to revisit coverage?",
-     opts:["The weather changed","Net worth increased significantly since the last review","The assistant took a vacation","A vendor changed their logo"],
-     a:1, r:"A meaningful change in net worth, property, vehicles, or household staff should always prompt a coverage check."}
-  ],
-  quiz:[
-    {q:"A household vendor cancels last-minute. Correct move?",
-     opts:["Reschedule quietly with the same vendor and say nothing","Notify the household immediately and line up a backup vendor","Ignore it and hope it resolves itself","Cancel the service entirely"],
-     a:1, r:"Immediate transparency plus a backup plan prevents the gap from becoming a bigger problem."},
-    {q:"You notice liability insurance is well below what's recommended for the family's net worth. Best step?",
-     opts:["Increase coverage immediately without asking anyone","Summarize current coverage, flag the gap, and consult an insurance advisor","Ignore it as long as premiums are being paid","Cancel the policy and start over"],
-     a:1, r:"Surface the gap with a clear summary and expert input — don't act unilaterally on someone else's coverage."},
-    {q:"Before a family member's adventure vacation, you should...",
-     opts:["Assume standard travel insurance covers everything","Verify travel insurance actually covers the specific activities planned","Tell them not to go","Skip the emergency contact sheet to save time"],
-     a:1, r:"Generic travel insurance often excludes higher-risk activities — always verify against the actual plan."},
-    {q:"Best way to manage recurring personal errands like gifts, events, and wardrobe tasks?",
-     opts:["Handle everything ad hoc as it comes up","A shared digital tracker with deadlines, budgets, and clear ownership","Keep it entirely in your head for speed","Delegate everything without follow-up"],
-     a:1, r:"Tracking is what prevents small recurring tasks from silently slipping."},
-    {q:"Home management is best understood as...",
-     opts:["A purely reactive, task-by-task job","Running the household with the same planning and budgeting discipline as a business","Something that doesn't require organizational skill","Primarily about socializing with vendors"],
-     a:1, r:"It draws directly on planning, organizing, budgeting, and evaluating — the same skills that run a business."}
-  ]
-},
-{
-  id:6,
-  title:"Business Setup, Compliance & Project Leadership",
-  theme:"Entity Formation · Regulatory Compliance · Project Leadership · KPI Dashboards",
-  objective:"Guide business formation and compliance decisions, lead projects when timelines slip, and optimize operations with a real KPI dashboard.",
-  lessons:[
-    {h:"Choosing a Business Structure", b:[
-      "Each entity type (sole proprietorship, partnership, LLC, corporation) changes liability, taxation, governance, and compliance obligations.",
-      "Gather the client's goals, states of operation, and expansion plans before recommending a structure."
-    ]},
-    {h:"Staying in Good Standing", b:[
-      "Regulatory compliance is maintained through ongoing filings and license renewals — not a one-time step at formation.",
-      "If a required license has lapsed mid-operation, notify the owner immediately and help initiate renewal or corrective action."
-    ]},
-    {h:"Leading a Project Under Pressure", b:[
-      "When deadlines slip, find the root cause of the delay before reassigning tasks — public blame fixes nothing.",
-      "Give stakeholders structured, scheduled progress updates rather than silence or vague reassurance."
-    ]},
-    {h:"Frameworks Worth Knowing", b:[
-      "You're not expected to be a certified practitioner, but recognizing these elevates your strategic value: Lean process improvement, Six Sigma (defect reduction), and the PMI/PMBOK project-management process groups."
-    ]},
-    {h:"Operational Optimization", b:[
-      "Automate repetitive tasks, clarify ownership of each step, and standardize workflows before trying to measure them.",
-      "Track a handful of real KPIs on a dashboard, reviewed on a set cadence — not random or vanity metrics."
-    ]},
-    {h:"The KPI Dashboard Template", b:[
-      "A real operational dashboard (built in Excel, Airtable, Notion, or a practice-management system) tracks a handful of numbers across four areas — not everything, just what matters."
+    "discussionQuestion": "Of the four risk categories (Financial, Legal, Operational, Reputational), which one do you think gets the least attention in most households or offices — and why?"
+  },
+  {
+    "id": 6,
+    "title": "Business Setup, Compliance & Project Leadership",
+    "theme": "Entity Formation · Regulatory Compliance · Project Leadership · KPI Dashboards",
+    "objective": "Guide business formation and compliance decisions, lead projects when timelines slip, and optimize operations with a real KPI dashboard.",
+    "lessons": [
+      {
+        "h": "Choosing a Business Structure",
+        "b": [
+          "Entity type (sole prop, partnership, LLC, corp) changes liability, taxation, and compliance obligations.",
+          "Gather goals, states of operation, and expansion plans before recommending a structure."
+        ]
+      },
+      {
+        "h": "Staying in Good Standing",
+        "b": [
+          "Regulatory compliance is ongoing filings and renewals — never a one-time step.",
+          "If a license has lapsed, notify the owner immediately and start corrective action."
+        ]
+      },
+      {
+        "h": "Leading a Project Under Pressure",
+        "b": [
+          "Find the root cause of a delay before reassigning tasks — public blame fixes nothing.",
+          "Give stakeholders structured, scheduled updates rather than silence.",
+          "Leadership competencies for this work include Strategic Alignment (translating the executive's vision into action steps) and Influence Without Authority (managing vendors, staff, and cross-functional teams you don't formally supervise).",
+          "Decision Support means providing concise summaries, risk analysis, and options with recommendations — assistants don't make every decision, but they shape it."
+        ]
+      },
+      {
+        "h": "Frameworks Worth Knowing",
+        "b": [
+          "Lean — eliminate waste, focus on real value.",
+          "Six Sigma — defect reduction through measurement.",
+          "PMI/PMBOK — standard project-management process groups.",
+          "You don't need certification — just recognize what each solves."
+        ],
+        "layout": "THREEBOX",
+        "boxes": [
+          {
+            "label": "Lean",
+            "desc": "Process improvement — eliminate waste, focus on what adds real value"
+          },
+          {
+            "label": "Six Sigma",
+            "desc": "Defect reduction through rigorous measurement and root-cause analysis"
+          },
+          {
+            "label": "PMI / PMBOK",
+            "desc": "Standard project-management process groups used across industries"
+          }
+        ]
+      },
+      {
+        "h": "Operational Optimization",
+        "b": [
+          "Automate repetitive tasks, clarify ownership, then standardize — in that order.",
+          "Track a small handful of real KPIs on a fixed cadence, not a sprawling list no one reviews."
+        ]
+      },
+      {
+        "h": "The KPI Dashboard Template",
+        "b": [
+          "A real dashboard tracks a few numbers across four areas: Executive Productivity, Client Service, Operational Efficiency, Legal Compliance.",
+          "An SOP has a full lifecycle, not just a creation step: Creation → Review & Update → Approval & Implementation → Monitoring & Audit → Continuous improvement back to Creation."
+        ],
+        "table": {
+          "headers": [
+            "Category",
+            "KPI",
+            "Target"
+          ],
+          "rows": [
+            [
+              "Executive Productivity",
+              "Calendar Accuracy Rate",
+              "≥ 98%"
+            ],
+            [
+              "Executive Productivity",
+              "Executive Inbox Response Time",
+              "≤ 4 hrs"
+            ],
+            [
+              "Client Service",
+              "Avg. Client Response Time",
+              "≤ 2 hrs"
+            ],
+            [
+              "Client Service",
+              "Client Retention Rate",
+              "≥ 90%"
+            ],
+            [
+              "Operational Efficiency",
+              "Task Completion Rate",
+              "≥ 95%"
+            ],
+            [
+              "Operational Efficiency",
+              "Error Reduction Rate",
+              "≤ 2%"
+            ],
+            [
+              "Legal Compliance",
+              "Filing Deadline Adherence",
+              "100%"
+            ],
+            [
+              "Legal Compliance",
+              "Audit Readiness Score",
+              "≥ 95%"
+            ]
+          ]
+        }
+      }
     ],
-    table:{headers:["Category","KPI","Target"], rows:[
-      ["Executive Productivity","Calendar Accuracy Rate","≥ 98%"],
-      ["Executive Productivity","Executive Inbox Response Time","≤ 4 hrs"],
-      ["Client Service","Avg. Client Response Time","≤ 2 hrs"],
-      ["Client Service","Client Retention Rate","≥ 90%"],
-      ["Operational Efficiency","Task Completion Rate","≥ 95%"],
-      ["Operational Efficiency","Error Reduction Rate","≤ 2%"],
-      ["Legal Compliance","Filing Deadline Adherence","100%"],
-      ["Legal Compliance","Audit Readiness Score","≥ 95%"]
-    ]}}
-  ],
-  quickChecks:[
-    {afterIndex:2, q:"A project is behind schedule due to missed deadlines from several team members. Best first response?",
-     opts:["Publicly call out who missed their deadlines","Identify the root cause of the delays before reassigning anything","Ignore it and hope the team catches up","Cancel the project"],
-     a:1, r:"You can't fix a delay effectively until you know why it happened."},
-    {afterIndex:5, q:"On the KPI dashboard, which category does 'Filing Deadline Adherence (100%)' belong to?",
-     opts:["Executive Productivity","Client Service","Operational Efficiency","Legal Compliance"],
-     a:3, r:"Filing deadlines are a compliance metric — critical for legal-adjacent EA/PA work."}
-  ],
-  quiz:[
-    {q:"Before recommending a business structure to a client, you should first...",
-     opts:["Pick the most common structure to save time","Understand the client's goals, states of operation, and expansion plans","Assume every business should incorporate","Skip research and let a lawyer decide later"],
-     a:1, r:"Structure recommendations depend entirely on the specifics of the business's goals and footprint."},
-    {q:"You discover an operating license expired and the business is still running. Best action?",
-     opts:["Ignore it since operations haven't stopped","Notify the owner immediately and help initiate renewal or corrective action","Wait until the next audit to mention it","Shut the business down yourself"],
-     a:1, r:"Prompt disclosure plus a corrective path limits the compliance risk."},
-    {q:"A project is behind schedule due to missed deadlines from several team members. Best first response?",
-     opts:["Publicly call out who missed their deadlines","Identify the root cause of the delays before reassigning anything","Ignore it and hope the team catches up","Cancel the project"],
-     a:1, r:"You can't fix a delay effectively until you know why it happened."},
-    {q:"A client wants frequent updates and is anxious about a project's progress. Best approach?",
-     opts:["Go quiet until the project is finished","Provide structured progress reports on a set, predictable cadence","Share unverified information just to say something","Tell the client to stop asking"],
-     a:1, r:"Predictable, structured updates build confidence even when there isn't dramatic news to share."},
-    {q:"The most effective way to measure team productivity is to...",
-     opts:["Track every metric available, regardless of relevance","Define a small set of specific KPIs and track them consistently","Rely on gut feeling","Only measure output at year-end"],
-     a:1, r:"Focused, well-defined KPIs reviewed regularly give an accurate operational picture."}
-  ]
-},
-{
-  id:7,
-  title:"Financial Operations Support",
-  theme:"SOA Reconciliation · Billing & Invoicing · SOPs · Financial KPIs",
-  objective:"Support financial operations accurately — reconciling accounts, posting expenses, preparing invoices, and staying audit-ready.",
-  lessons:[
-    {h:"The EA/PA's Role in Finance", b:[
-      "Responsibilities now regularly include transaction support (invoices, expenses, reimbursements) and financial coordination between accounting, HR, and operations.",
-      "This is a real link in accurate financial data flow, not just administrative filing."
-    ]},
-    {h:"SOA Reconciliation", b:[
-      "Closing balance = Opening balance + new invoices − payments received +/− adjustments.",
-      "If revenue records don't match bank deposits, the first step is comparing bank statements against revenue records — not recreating every report from scratch."
-    ]},
-    {h:"What an SOP Actually Needs", b:[
-      "An SOP is a documented, step-by-step process designed for consistency, compliance, and accountability.",
-      "Five core elements every SOP needs: Purpose (why it exists), Scope (who it applies to), Procedure (step-by-step actions), Controls (verification measures), and Escalation (when to report issues).",
-      "Without SOPs, execution is inconsistent — and inconsistency is what audits catch."
-    ]},
-    {h:"The Financial Calendar", b:[
-      "Track three recurring categories: billing cycles (monthly, bi-weekly, retainer-based), tax deadlines (federal filing, quarterly estimates, vendor 1099s), and monthly closes (bank reconciliation, AR/AP reconciliation, report generation).",
-      "Best practice: maintain a shared financial calendar with reminders 7–10 days prior to each deadline."
-    ]},
-    {h:"Billing & Invoicing", b:[
-      "Total before discount = (hourly rate × hours worked) + expenses; then the discount is applied to reach the final invoice amount.",
-      "Every invoice needs to clearly state the amount due, the due date, and the payment terms."
-    ]},
-    {h:"Contract-Aware Billing", b:[
-      "Know the payment terms, late fees, billing cycle, and any billable-hour caps before billing begins.",
-      "Approaching a contracted hour cap should be flagged proactively — going over it without warning creates real financial and relationship risk."
-    ]},
-    {h:"Financial KPIs for EAs/PAs", b:[
-      "Invoice Turnaround Time — time from service completion to invoice sent. Target: 24–72 hours.",
-      "Reconciliation Accuracy Rate — % of reconciliations completed without correction. Target: 98–100%.",
-      "Additional metrics worth tracking: Days Sales Outstanding (DSO) and expense-approval cycle time."
+    "quickChecks": [
+      {
+        "afterIndex": 2,
+        "q": "A project is behind schedule due to missed deadlines from several team members. Best first response?",
+        "opts": [
+          "Publicly call out who missed their deadlines",
+          "Identify the root cause of the delays before reassigning anything",
+          "Ignore it and hope the team catches up",
+          "Cancel the project"
+        ],
+        "a": 1,
+        "r": "You can't fix a delay effectively until you know why it happened."
+      },
+      {
+        "afterIndex": 5,
+        "q": "On the KPI dashboard, which category does 'Filing Deadline Adherence (100%)' belong to?",
+        "opts": [
+          "Executive Productivity",
+          "Client Service",
+          "Operational Efficiency",
+          "Legal Compliance"
+        ],
+        "a": 3,
+        "r": "Filing deadlines are a compliance metric — critical for legal-adjacent EA/PA work."
+      }
     ],
-    callout:{type:"stat", label:"Set the alert early", text:"A common best practice is to set an alert when a client retainer drops below 25% — it gives enough runway to act before the account runs dry."}},
-
-    {h:"Bookkeeping Basics & Compliance", b:[
-      "Classify every transaction as income, expense, or receivable — accurate, consistent bookkeeping is what makes audits and decisions trustworthy.",
-      "Maintain clear audit trails and segregate duties — never approve your own transactions. Incomplete records and self-approval are the two biggest audit red flags."
-    ]}
-  ],
-  quickChecks:[
-    {afterIndex:2, q:"Which SOP element answers \"who does this process apply to?\"",
-     opts:["Purpose","Scope","Controls","Escalation"],
-     a:1, r:"Scope defines who the procedure covers; Purpose explains why it exists."},
-    {afterIndex:6, q:"What's the target range for Invoice Turnaround Time?",
-     opts:["1–2 hours","24–72 hours","1–2 weeks","No target — whenever it gets done"],
-     a:1, r:"24–72 hours from service completion to invoice sent is the benchmark target."}
-  ],
-  quiz:[
-    {q:"What's the formula for a Statement of Account (SOA) closing balance?",
-     opts:["Opening balance + new invoices − payments received +/− adjustments","Opening balance − new invoices","Only the sum of unpaid invoices","Total revenue minus total expenses"],
-     a:0, r:"Every movement — new charges, payments, and adjustments — has to be accounted for against the opening balance."},
-    {q:"Reported revenue doesn't match actual bank deposits. What's the first investigative step?",
-     opts:["Recreate every financial report from scratch","Compare bank statements against revenue records","Ask management to explain it without checking anything yourself","Ignore small discrepancies"],
-     a:1, r:"A direct comparison is the fastest way to isolate where the mismatch is coming from."},
-    {q:"Every invoice must clearly include:",
-     opts:["A discount, regardless of whether one applies","The amount due, due date, and payment terms","Only the client's name and total","A handwritten signature"],
-     a:1, r:"These three elements are the minimum for a professional, disputable-if-needed invoice."},
-    {q:"A contract caps billable hours at 100/month and the team is approaching that cap. Best move?",
-     opts:["Say nothing and let hours go over the cap","Flag it to the executive/client before hours exceed the contracted cap","Stop working immediately at hour 90","Change the contract terms unilaterally"],
-     a:1, r:"Proactively flagging protects both the relationship and the billing accuracy."},
-    {q:"The biggest compliance red flag in day-to-day bookkeeping is:",
-     opts:["Using accounting software","Approving your own transactions (no segregation of duties)","Filing receipts digitally","Reviewing the books weekly"],
-     a:1, r:"Segregation of duties exists specifically to prevent self-approved, unchecked transactions."}
-  ]
-},
-{
-  id:8,
-  title:"Access, Confidentiality & Crisis Management",
-  theme:"Credential Management · Least-Privilege Access · Incident Response",
-  objective:"Manage account access responsibly, respond correctly to a suspected data risk, and fix workflows before they cause a leak.",
-  lessons:[
-    {h:"Credential Management", b:[
-      "Every user gets a role matched to what they actually need to do, with MFA enabled.",
-      "Keep a documented credential log noting role, MFA status, and when it was last updated. Never share passwords."
+    "quiz": [
+      {
+        "q": "Before recommending a business structure to a client, you should first...",
+        "opts": [
+          "Pick the most common structure to save time",
+          "Understand the client's goals, states of operation, and expansion plans",
+          "Assume every business should incorporate",
+          "Skip research and let a lawyer decide later"
+        ],
+        "a": 1,
+        "r": "Structure recommendations depend entirely on the specifics of the business's goals and footprint."
+      },
+      {
+        "q": "You discover an operating license expired and the business is still running. Best action?",
+        "opts": [
+          "Ignore it since operations haven't stopped",
+          "Notify the owner immediately and help initiate renewal or corrective action",
+          "Wait until the next audit to mention it",
+          "Shut the business down yourself"
+        ],
+        "a": 1,
+        "r": "Prompt disclosure plus a corrective path limits the compliance risk."
+      },
+      {
+        "q": "A project is behind schedule due to missed deadlines from several team members. Best first response?",
+        "opts": [
+          "Publicly call out who missed their deadlines",
+          "Identify the root cause of the delays before reassigning anything",
+          "Ignore it and hope the team catches up",
+          "Cancel the project"
+        ],
+        "a": 1,
+        "r": "You can't fix a delay effectively until you know why it happened."
+      },
+      {
+        "q": "A client wants frequent updates and is anxious about a project's progress. Best approach?",
+        "opts": [
+          "Go quiet until the project is finished",
+          "Provide structured progress reports on a set, predictable cadence",
+          "Share unverified information just to say something",
+          "Tell the client to stop asking"
+        ],
+        "a": 1,
+        "r": "Predictable, structured updates build confidence even when there isn't dramatic news to share."
+      },
+      {
+        "q": "The most effective way to measure team productivity is to...",
+        "opts": [
+          "Track every metric available, regardless of relevance",
+          "Define a small set of specific KPIs and track them consistently",
+          "Rely on gut feeling",
+          "Only measure output at year-end"
+        ],
+        "a": 1,
+        "r": "Focused, well-defined KPIs reviewed regularly give an accurate operational picture."
+      }
     ],
-    table:{headers:["Role","Typical access","Use when"], rows:[
-      ["Admin","Full read/write, settings, user management","Someone directly responsible for the account/system"],
-      ["Editor","Read/write on content, no settings access","Someone who creates or updates work regularly"],
-      ["Viewer","Read-only","Someone who only needs visibility, not to make changes"]
-    ]}},
-
-    {h:"Least-Privilege Access", b:[
-      "Over-permissioning — like giving a junior staff member admin access — is how systems get accidentally broken.",
-      "Always assign the minimum role that lets someone actually do their job."
+    "discussionQuestion": "Describe a project that fell behind schedule. Looking back, was the real root cause ever actually addressed, or just the symptom?"
+  },
+  {
+    "id": 7,
+    "title": "Financial Operations Support",
+    "theme": "SOA Reconciliation · Billing & Invoicing · SOPs · Financial KPIs",
+    "objective": "Support financial operations accurately — reconciling accounts, posting expenses, preparing invoices, and staying audit-ready.",
+    "lessons": [
+      {
+        "h": "The EA/PA's Role in Finance",
+        "b": [
+          "Financial tasks now regularly include invoices, expenses, and reimbursements — a genuine link in the firm's financial accuracy.",
+          "This is a real link in the chain, not filing that happens to touch numbers."
+        ]
+      },
+      {
+        "h": "SOA Reconciliation",
+        "b": [
+          "SOA = Opening + Invoices − Payments ± Adjustments = Closing Balance.",
+          "If revenue doesn't match deposits, compare bank statements against revenue records first — don't recreate every report from scratch.",
+          "Discrepancy detection techniques: compare the ledger against the bank statement, confirm credits were applied correctly, and look specifically for reversed entries.",
+          "A reconciliation checklist should confirm: all invoices are listed, all payments are recorded, there are no unmatched balances, and every variance is explained.",
+          "Real case study: a payment applied to the wrong client resulted in an actual legal dispute — this is why duplicate-payment prevention (system detection, manual verification, approval thresholds) matters."
+        ],
+        "layout": "STAT",
+        "statNumber": "Opening + Invoices − Payments ± Adjustments",
+        "statLabel": "= Closing Balance"
+      },
+      {
+        "h": "What an SOP Actually Needs",
+        "b": [
+          "Five elements: Purpose, Scope, Procedure, Controls, Escalation.",
+          "Without SOPs, execution becomes inconsistent — which is exactly what audits catch."
+        ],
+        "layout": "PROCESS",
+        "processSteps": [
+          {
+            "label": "Purpose",
+            "desc": "Why the process exists in the first place"
+          },
+          {
+            "label": "Scope",
+            "desc": "Who exactly it applies to"
+          },
+          {
+            "label": "Procedure",
+            "desc": "The actual step-by-step actions"
+          },
+          {
+            "label": "Controls",
+            "desc": "Verification measures built into the process"
+          },
+          {
+            "label": "Escalation",
+            "desc": "When and how to report issues"
+          }
+        ]
+      },
+      {
+        "h": "The Financial Calendar",
+        "b": [
+          "Track billing cycles, tax deadlines, and monthly closes continuously.",
+          "Automated reminders 7–10 days before each deadline give real lead time to fix issues."
+        ]
+      },
+      {
+        "h": "Billing & Invoicing",
+        "b": [
+          "Invoice = (Rate × Hours) + Expenses, minus any discount.",
+          "Every invoice needs a clear amount due, due date, and payment terms."
+        ],
+        "layout": "STAT",
+        "statNumber": "(Rate × Hours) + Expenses",
+        "statLabel": "→ apply discount → final invoice amount"
+      },
+      {
+        "h": "Contract-Aware Billing",
+        "b": [
+          "Know payment terms, late fees, and hour caps before billing begins.",
+          "Flag an approaching hour cap proactively — going over without warning creates real risk."
+        ]
+      },
+      {
+        "h": "Financial KPIs for EAs/PAs",
+        "b": [
+          "Invoice Turnaround Time — target 24–72 hours from service to invoice sent.",
+          "Reconciliation Accuracy — target 98–100%.",
+          "Flag client retainers dropping below 25% to give real runway before an account runs dry."
+        ],
+        "callout": {
+          "type": "stat",
+          "label": "Set the alert early",
+          "text": "A common best practice is to set an alert when a client retainer drops below 25% — it gives enough runway to act before the account runs dry."
+        }
+      },
+      {
+        "h": "Bookkeeping Basics & Compliance",
+        "b": [
+          "Classify every transaction as income, expense, or receivable.",
+          "Maintain audit trails and segregate duties — never approve your own transactions."
+        ]
+      }
     ],
-    callout:{type:"warning", label:"Real scenario", text:"A junior staffer mistakenly given admin access modified system settings they never should have been able to touch. The fix isn't blame — it's correcting the role assignment and reviewing who else may be over-permissioned."}},
-
-    {h:"Responding to a Suspicious Data Request", b:[
-      "Verify the sender's identity before doing anything else.",
-      "Escalate internally through the correct channel, then close the gap that let the request reach you in the first place."
-    ]},
-    {h:"Containing a Confidentiality Leak", b:[
-      "Contain the leak immediately — that comes before anything else.",
-      "Notify the right roles (not just names), and put a policy in place so it doesn't repeat."
-    ]},
-    {h:"Fixing a Broken Workflow", b:[
-      "Disconnected tools — email plus a spreadsheet plus notes — cause duplicate work and missed updates.",
-      "Consolidate into one tracked system, and call out clearly which steps are still manual so they can be improved next."
-    ]}
-  ],
-  quickChecks:[
-    {afterIndex:0, q:"Someone only needs to check on project status without making changes. Which role fits?",
-     opts:["Admin","Editor","Viewer","No access at all"],
-     a:2, r:"Viewer gives visibility without the ability to alter anything — least privilege for a status-check need."},
-    {afterIndex:3, q:"Confidential documents were sent to the wrong recipient. What comes first?",
-     opts:["Drafting a new policy for next quarter","Containing the leak immediately","Waiting to see if anyone notices","Blaming whoever sent it"],
-     a:1, r:"Containment always comes before policy work — stop the damage, then fix the process."}
-  ],
-  quiz:[
-    {q:"A junior staff member was mistakenly given admin access and changed system settings. This is a failure of:",
-     opts:["Password strength","Least-privilege / role-based access assignment","Internet connectivity","File naming conventions"],
-     a:1, r:"Roles should match what someone actually needs — nothing more."},
-    {q:"An unknown sender urgently requests sensitive client data by email. Your first step?",
-     opts:["Send the data quickly since it's marked urgent","Verify the sender's identity before responding at all","Forward it to a colleague for a second opinion","Delete the email without telling anyone"],
-     a:1, r:"Verification always comes before any action on a sensitive request."},
-    {q:"Confidential documents were accidentally sent to the wrong recipient. First priority?",
-     opts:["Draft a policy update for next quarter","Contain the leak immediately","Wait to see if anyone notices","Blame whoever sent it"],
-     a:1, r:"Containment first, process fix second — in that order."},
-    {q:"A credential log should always include:",
-     opts:["Just the username","Assigned role, MFA status, and last-updated date","The user's personal email password","Nothing — logs aren't necessary"],
-     a:1, r:"These three fields are what make a credential log actually useful for an audit or incident review."},
-    {q:"The root problem with using email, a spreadsheet, and notes separately for one workflow is:",
-     opts:["It looks unprofessional","Duplicate work and missed updates from having no single source of truth","It costs more money","Nothing — it works fine long-term"],
-     a:1, r:"Fragmented tracking is exactly where updates get lost and effort gets duplicated."}
-  ]
-},
-{
-  id:9,
-  title:"Events, Compliance Tracking & Reputation",
-  theme:"Event & CLE Compliance SOPs · Brand Stewardship · Membership Management",
-  objective:"Run events and compliance tracking with nothing falling through the cracks, and protect the organization's reputation online.",
-  lessons:[
-    {h:"Running an Event End-to-End", b:[
-      "Track registration status by name so gaps — like unconfirmed registrants — surface immediately rather than at the event itself.",
-      "Have an engagement-tracking plan ready before the event starts, not improvised afterward."
-    ]},
-    {h:"Four SOPs That Keep Professional Development on Track", b:[
-      "Event Registration SOP — verify provider legitimacy, confirm budget/approval, complete registration accurately, record confirmation and receipt.",
-      "Attendance Tracking SOP — monitor live attendance, export webinar reports, save certificates in an audit-ready folder.",
-      "Team Upskilling SOP — run a quarterly needs assessment, evaluate and book vendors, track attendance/completion/ROI.",
-      "Reputation & Recognition SOP — track awards and speaking events, keep executive bios current, monitor and escalate negative publicity."
-    ]},
-    {h:"CLE / Compliance Tracking", b:[
-      "Log completed hours, pending hours, and the deadline for each person under a compliance requirement.",
-      "Flag anyone approaching a deadline early enough that there's still time to act."
-    ]},
-    {h:"Protecting the Brand Online", b:[
-      "Respond to negative reviews professionally and factually — don't escalate the conflict.",
-      "Monitor proactively rather than reactively, and track a couple of real brand-health metrics over time."
-    ]},
-    {h:"Membership Renewals", b:[
-      "A renewal tracker — name, expiration date, status, follow-up required — catches lapses before they happen.",
-      "Automate the reminder; don't rely on memory for volume."
-    ]},
-    {h:"Planning Professional Development", b:[
-      "Offer both virtual and in-person options to fit varied staff schedules.",
-      "Track attendance and measure the session against a couple of clear effectiveness metrics afterward."
-    ]}
-  ],
-  quickChecks:[
-    {afterIndex:1, q:"Which SOP covers saving certificates in an audit-ready folder?",
-     opts:["Event Registration SOP","Attendance Tracking SOP","Team Upskilling SOP","Reputation & Recognition SOP"],
-     a:1, r:"Attendance Tracking is where completion evidence — certificates, webinar reports — gets filed for audits."},
-    {afterIndex:3, q:"A client posts an inaccurate negative review. Best response?",
-     opts:["Ignore it and hope it disappears","Reply professionally and factually, without escalating the conflict","Argue publicly to prove the client wrong","Delete or hide the review without responding"],
-     a:1, r:"A calm, factual public response protects the brand better than silence or confrontation."}
-  ],
-  quiz:[
-    {q:"20 of 150 webinar registrants haven't received a confirmation email. First move?",
-     opts:["Assume they'll figure it out","Investigate the gap and resend confirmations to the affected registrants","Cancel their registrations","Wait until after the event to look into it"],
-     a:1, r:"Catching and fixing the gap before the event prevents no-shows and complaints."},
-    {q:"An attorney has completed 9 of 12 required CLE hours with the deadline approaching. Best action?",
-     opts:["Wait until the deadline passes to raise it","Log the gap now, flag it, and follow up before the deadline","Assume they'll handle it themselves","Report them for non-compliance immediately"],
-     a:1, r:"Early flagging while there's still time to act is the whole point of a tracking system."},
-    {q:"A client posts a negative, factually inaccurate review. Best response?",
-     opts:["Ignore it and hope it disappears","Reply professionally and factually, without escalating the conflict","Argue publicly to prove the client wrong","Delete or hide the review without responding"],
-     a:1, r:"A calm, factual public response protects the brand better than silence or confrontation."},
-    {q:"A renewal tracker should include:",
-     opts:["Just the member's name","Expiration date, renewal status, and follow-up required","Only the payment amount","Nothing — renewals are hard to track anyway"],
-     a:1, r:"These fields are what actually let you catch a lapse before it happens."},
-    {q:"Best way to plan a professional-development seminar for staff with varied schedules?",
-     opts:["Force a single mandatory time slot","Offer both virtual and in-person session options","Cancel it if not everyone can attend the same time","Only offer it once with no recording"],
-     a:1, r:"Flexible formats are what actually get broad participation."}
-  ]
-},
-{
-  id:10,
-  title:"Digital Presence & Social Media Support",
-  theme:"Engagement Metrics · Content Planning · Campaign Math",
-  objective:"Read social performance numbers correctly, write for the platform, and understand the basic math behind a campaign's ROI.",
-  lessons:[
-    {h:"Reading the Numbers", b:[
-      "Engagement Rate = (Likes + Comments + Shares) ÷ Followers × 100.",
-      "Use it to see which post actually resonated with the audience — not just which got the most raw likes."
+    "quickChecks": [
+      {
+        "afterIndex": 2,
+        "q": "Which SOP element answers \"who does this process apply to?\"",
+        "opts": [
+          "Purpose",
+          "Scope",
+          "Controls",
+          "Escalation"
+        ],
+        "a": 1,
+        "r": "Scope defines who the procedure covers; Purpose explains why it exists."
+      },
+      {
+        "afterIndex": 6,
+        "q": "What's the target range for Invoice Turnaround Time?",
+        "opts": [
+          "1–2 hours",
+          "24–72 hours",
+          "1–2 weeks",
+          "No target — whenever it gets done"
+        ],
+        "a": 1,
+        "r": "24–72 hours from service completion to invoice sent is the benchmark target."
+      }
     ],
-    example:{label:"Worked calculation", lines:[
-      "Post: Instagram, 120 likes, 15 comments, 10 shares, 4,000 followers.",
-      "Engagement Rate = (120 + 15 + 10) ÷ 4,000 × 100 = 3.6%.",
-      "A second post with fewer followers but a higher rate can be the stronger performer — rate matters more than raw counts."
-    ]}},
-
-    {h:"SEO Basics for Assistants", b:[
-      "Identify a handful of real target keywords before writing — think about what the audience is actually searching for, not just posting on a schedule."
-    ]},
-    {h:"Writing for the Platform", b:[
-      "The same announcement needs a different voice on each platform — punchy and hashtag-driven on Instagram, professional and context-first on LinkedIn.",
-      "Same core message, different register for each audience."
-    ]},
-    {h:"Planning Content Visually", b:[
-      "A short posting calendar — title, caption, hashtags per platform — keeps a campaign consistent instead of improvised day-to-day."
-    ]},
-    {h:"Basic Campaign Math", b:[
-      "Cost per Lead = Total Spend ÷ Number of Leads Generated.",
-      "ROI = (Revenue − Spend) ÷ Spend × 100.",
-      "Know both numbers before calling a campaign a success."
+    "quiz": [
+      {
+        "q": "What's the formula for a Statement of Account (SOA) closing balance?",
+        "opts": [
+          "Opening balance + new invoices − payments received +/− adjustments",
+          "Opening balance − new invoices",
+          "Only the sum of unpaid invoices",
+          "Total revenue minus total expenses"
+        ],
+        "a": 0,
+        "r": "Every movement — new charges, payments, and adjustments — has to be accounted for against the opening balance."
+      },
+      {
+        "q": "Reported revenue doesn't match actual bank deposits. What's the first investigative step?",
+        "opts": [
+          "Recreate every financial report from scratch",
+          "Compare bank statements against revenue records",
+          "Ask management to explain it without checking anything yourself",
+          "Ignore small discrepancies"
+        ],
+        "a": 1,
+        "r": "A direct comparison is the fastest way to isolate where the mismatch is coming from."
+      },
+      {
+        "q": "Every invoice must clearly include:",
+        "opts": [
+          "A discount, regardless of whether one applies",
+          "The amount due, due date, and payment terms",
+          "Only the client's name and total",
+          "A handwritten signature"
+        ],
+        "a": 1,
+        "r": "These three elements are the minimum for a professional, disputable-if-needed invoice."
+      },
+      {
+        "q": "A contract caps billable hours at 100/month and the team is approaching that cap. Best move?",
+        "opts": [
+          "Say nothing and let hours go over the cap",
+          "Flag it to the executive/client before hours exceed the contracted cap",
+          "Stop working immediately at hour 90",
+          "Change the contract terms unilaterally"
+        ],
+        "a": 1,
+        "r": "Proactively flagging protects both the relationship and the billing accuracy."
+      },
+      {
+        "q": "The biggest compliance red flag in day-to-day bookkeeping is:",
+        "opts": [
+          "Using accounting software",
+          "Approving your own transactions (no segregation of duties)",
+          "Filing receipts digitally",
+          "Reviewing the books weekly"
+        ],
+        "a": 1,
+        "r": "Segregation of duties exists specifically to prevent self-approved, unchecked transactions."
+      }
     ],
-    example:{label:"Worked calculation", lines:[
-      "Campaign: $500 budget, $20 product price, 50 leads generated.",
-      "Cost per Lead = $500 ÷ 50 = $10 per lead.",
-      "If 50 leads convert at $20 each, Revenue = $1,000, so ROI = ($1,000 − $500) ÷ $500 × 100 = 100%."
-    ]}}
-  ],
-  quickChecks:[
-    {afterIndex:0, q:"A post gets 200 likes, 20 comments, 30 shares on an account with 5,000 followers. What's the Engagement Rate?",
-     opts:["2%","5%","10%","50%"],
-     a:1, r:"(200+20+30) ÷ 5,000 × 100 = 5%."},
-    {afterIndex:4, q:"A campaign spends $300 and generates 30 leads. What's the Cost per Lead?",
-     opts:["$3","$10","$30","$300"],
-     a:1, r:"$300 ÷ 30 leads = $10 per lead."}
-  ],
-  quiz:[
-    {q:"Engagement Rate is calculated as:",
-     opts:["Likes only ÷ Followers","(Likes + Comments + Shares) ÷ Followers × 100","Total Followers ÷ Posts","Impressions ÷ Reach"],
-     a:1, r:"This formula captures actual interaction relative to audience size, not raw counts."},
-    {q:"The same announcement posted on Instagram vs. LinkedIn should:",
-     opts:["Be posted with identical wording on both","Use a different tone and format suited to each platform's audience","Only be posted on one platform to save time","Avoid hashtags entirely on both"],
-     a:1, r:"Same core message, different register — that's writing for the platform."},
-    {q:"Cost per Lead is calculated as:",
-     opts:["Total spend ÷ number of leads generated","Total revenue ÷ number of leads","Number of leads ÷ total spend","Ad budget × conversion rate"],
-     a:0, r:"This tells you the actual acquisition cost per lead from the campaign spend."},
-    {q:"The purpose of a posting calendar is to:",
-     opts:["Keep content consistent and coordinated across a campaign instead of improvised","Replace the need for any strategy","Guarantee viral engagement","Avoid having to write captions in advance"],
-     a:0, r:"It's a coordination tool, not a guarantee of performance."},
-    {q:"Identifying a few target keywords before writing content mainly helps with:",
-     opts:["Making the post longer","SEO — helping the intended audience actually find the content","Avoiding the need for a headline","Reducing the number of hashtags needed"],
-     a:1, r:"Keywords connect the content to what people are actually searching for."}
-  ]
-}
+    "discussionQuestion": "What's one financial process in your own work that runs on memory or habit rather than a documented SOP? What would happen if the person who normally does it were out sick for two weeks?"
+  },
+  {
+    "id": 8,
+    "title": "Access, Confidentiality & Crisis Management",
+    "theme": "Credential Management · Least-Privilege Access · Incident Response",
+    "objective": "Manage account access responsibly, respond correctly to a suspected data risk, and fix workflows before they cause a leak.",
+    "lessons": [
+      {
+        "h": "Credential Management",
+        "b": [
+          "Admin — full read/write and user management. Editor — read/write on content only. Viewer — read-only.",
+          "Every user gets MFA and the minimum role for their actual job."
+        ],
+        "table": {
+          "headers": [
+            "Role",
+            "Typical access",
+            "Use when"
+          ],
+          "rows": [
+            [
+              "Admin",
+              "Full read/write, settings, user management",
+              "Someone directly responsible for the account/system"
+            ],
+            [
+              "Editor",
+              "Read/write on content, no settings access",
+              "Someone who creates or updates work regularly"
+            ],
+            [
+              "Viewer",
+              "Read-only",
+              "Someone who only needs visibility, not to make changes"
+            ]
+          ]
+        }
+      },
+      {
+        "h": "Least-Privilege Access",
+        "b": [
+          "Over-permissioning is how systems get accidentally broken by people with no bad intent.",
+          "Real incident: a junior staffer with unneeded admin access modified settings they shouldn't have touched — fix was correcting the role, not blame."
+        ],
+        "callout": {
+          "type": "warning",
+          "label": "Real scenario",
+          "text": "A junior staffer mistakenly given admin access modified system settings they never should have been able to touch. The fix isn't blame — it's correcting the role assignment and reviewing who else may be over-permissioned."
+        }
+      },
+      {
+        "h": "Responding to a Suspicious Data Request",
+        "b": [
+          "Verify the sender's identity before anything else.",
+          "Escalate through the correct internal channel.",
+          "Close the gap that let the request reach you in the first place."
+        ],
+        "layout": "PROCESS",
+        "processSteps": [
+          {
+            "label": "Verify",
+            "desc": "Confirm the sender's identity before doing anything else"
+          },
+          {
+            "label": "Escalate",
+            "desc": "Route it internally through the correct channel"
+          },
+          {
+            "label": "Close the Gap",
+            "desc": "Fix whatever let the request reach you in the first place"
+          }
+        ]
+      },
+      {
+        "h": "Containing a Confidentiality Leak",
+        "b": [
+          "Contain the spread immediately — before anything else.",
+          "Notify the right roles, not just the right names.",
+          "Put a policy in place so the same leak can't repeat."
+        ],
+        "layout": "PROCESS",
+        "processSteps": [
+          {
+            "label": "Contain",
+            "desc": "Stop the spread immediately — this comes before anything else"
+          },
+          {
+            "label": "Notify",
+            "desc": "Alert the right roles, not just the right names"
+          },
+          {
+            "label": "Prevent",
+            "desc": "Put a policy in place so the exact leak can't repeat"
+          }
+        ]
+      },
+      {
+        "h": "Fixing a Broken Workflow",
+        "b": [
+          "Disconnected tools (email + spreadsheet + notes) reliably cause duplicate work, even among careful people.",
+          "Consolidate into one tracked system and name which steps remain manual."
+        ]
+      }
+    ],
+    "quickChecks": [
+      {
+        "afterIndex": 0,
+        "q": "Someone only needs to check on project status without making changes. Which role fits?",
+        "opts": [
+          "Admin",
+          "Editor",
+          "Viewer",
+          "No access at all"
+        ],
+        "a": 2,
+        "r": "Viewer gives visibility without the ability to alter anything — least privilege for a status-check need."
+      },
+      {
+        "afterIndex": 3,
+        "q": "Confidential documents were sent to the wrong recipient. What comes first?",
+        "opts": [
+          "Drafting a new policy for next quarter",
+          "Containing the leak immediately",
+          "Waiting to see if anyone notices",
+          "Blaming whoever sent it"
+        ],
+        "a": 1,
+        "r": "Containment always comes before policy work — stop the damage, then fix the process."
+      }
+    ],
+    "quiz": [
+      {
+        "q": "A junior staff member was mistakenly given admin access and changed system settings. This is a failure of:",
+        "opts": [
+          "Password strength",
+          "Least-privilege / role-based access assignment",
+          "Internet connectivity",
+          "File naming conventions"
+        ],
+        "a": 1,
+        "r": "Roles should match what someone actually needs — nothing more."
+      },
+      {
+        "q": "An unknown sender urgently requests sensitive client data by email. Your first step?",
+        "opts": [
+          "Send the data quickly since it's marked urgent",
+          "Verify the sender's identity before responding at all",
+          "Forward it to a colleague for a second opinion",
+          "Delete the email without telling anyone"
+        ],
+        "a": 1,
+        "r": "Verification always comes before any action on a sensitive request."
+      },
+      {
+        "q": "Confidential documents were accidentally sent to the wrong recipient. First priority?",
+        "opts": [
+          "Draft a policy update for next quarter",
+          "Contain the leak immediately",
+          "Wait to see if anyone notices",
+          "Blame whoever sent it"
+        ],
+        "a": 1,
+        "r": "Containment first, process fix second — in that order."
+      },
+      {
+        "q": "A credential log should always include:",
+        "opts": [
+          "Just the username",
+          "Assigned role, MFA status, and last-updated date",
+          "The user's personal email password",
+          "Nothing — logs aren't necessary"
+        ],
+        "a": 1,
+        "r": "These three fields are what make a credential log actually useful for an audit or incident review."
+      },
+      {
+        "q": "The root problem with using email, a spreadsheet, and notes separately for one workflow is:",
+        "opts": [
+          "It looks unprofessional",
+          "Duplicate work and missed updates from having no single source of truth",
+          "It costs more money",
+          "Nothing — it works fine long-term"
+        ],
+        "a": 1,
+        "r": "Fragmented tracking is exactly where updates get lost and effort gets duplicated."
+      }
+    ],
+    "discussionQuestion": "Have you ever seen — or been part of — a situation where someone had more system access than their role actually required? What was the fix?"
+  },
+  {
+    "id": 9,
+    "title": "Events, Compliance Tracking & Reputation",
+    "theme": "Event & CLE Compliance SOPs · Brand Stewardship · Membership Management",
+    "objective": "Run events and compliance tracking with nothing falling through the cracks, and protect the organization's reputation online.",
+    "lessons": [
+      {
+        "h": "Running an Event End-to-End",
+        "b": [
+          "Track registration status by name so gaps surface immediately, not at the event.",
+          "Have an engagement-tracking plan ready before the event starts."
+        ]
+      },
+      {
+        "h": "Four SOPs That Keep Professional Development on Track",
+        "b": [
+          "Event Registration SOP — verify legitimacy, confirm approval, record receipt.",
+          "Attendance Tracking SOP — monitor live, save certificates in an audit-ready folder.",
+          "Team Upskilling SOP — quarterly needs assessment, track ROI.",
+          "Reputation & Recognition SOP — track awards, keep bios current, escalate negative publicity fast."
+        ],
+        "layout": "QUADRANT",
+        "quadrants": [
+          {
+            "label": "Event Registration SOP",
+            "desc": "Verify provider legitimacy, confirm budget/approval, record confirmation and receipt"
+          },
+          {
+            "label": "Attendance Tracking SOP",
+            "desc": "Monitor live attendance, export reports, save certificates in an audit-ready folder"
+          },
+          {
+            "label": "Team Upskilling SOP",
+            "desc": "Quarterly needs assessment, vendor evaluation, track attendance/completion/ROI"
+          },
+          {
+            "label": "Reputation & Recognition SOP",
+            "desc": "Track awards and speaking events, keep bios current, escalate negative publicity"
+          }
+        ]
+      },
+      {
+        "h": "CLE / Compliance Tracking",
+        "b": [
+          "Log completed hours, pending hours, and the actual deadline for each person.",
+          "Flag anyone approaching a deadline with real time left to act — not the week it's due."
+        ]
+      },
+      {
+        "h": "Protecting the Brand Online",
+        "b": [
+          "Respond to negative reviews professionally and factually — never escalate publicly.",
+          "Monitor proactively; a well-handled negative review can do more for the brand than ten positive ones.",
+          "As the gatekeeper of sensitive data, the operating principle is 'need to know' — described in training as 'The Vault.' Information shifts from 'Executive Secret' to 'Organizational Liability' the moment it's mishandled, which is why a strict 'Cone of Silence' protocol applies to what gets discussed and where."
+        ]
+      },
+      {
+        "h": "Membership Renewals",
+        "b": [
+          "A renewal tracker (name, expiration, status, follow-up) catches lapses before they happen.",
+          "Automate reminders — don't rely on memory once volume grows."
+        ]
+      },
+      {
+        "h": "Planning Professional Development",
+        "b": [
+          "Offer virtual and in-person options to fit varied schedules.",
+          "Measure each session against clear effectiveness metrics, not just attendance."
+        ]
+      }
+    ],
+    "quickChecks": [
+      {
+        "afterIndex": 1,
+        "q": "Which SOP covers saving certificates in an audit-ready folder?",
+        "opts": [
+          "Event Registration SOP",
+          "Attendance Tracking SOP",
+          "Team Upskilling SOP",
+          "Reputation & Recognition SOP"
+        ],
+        "a": 1,
+        "r": "Attendance Tracking is where completion evidence — certificates, webinar reports — gets filed for audits."
+      },
+      {
+        "afterIndex": 3,
+        "q": "A client posts an inaccurate negative review. Best response?",
+        "opts": [
+          "Ignore it and hope it disappears",
+          "Reply professionally and factually, without escalating the conflict",
+          "Argue publicly to prove the client wrong",
+          "Delete or hide the review without responding"
+        ],
+        "a": 1,
+        "r": "A calm, factual public response protects the brand better than silence or confrontation."
+      }
+    ],
+    "quiz": [
+      {
+        "q": "20 of 150 webinar registrants haven't received a confirmation email. First move?",
+        "opts": [
+          "Assume they'll figure it out",
+          "Investigate the gap and resend confirmations to the affected registrants",
+          "Cancel their registrations",
+          "Wait until after the event to look into it"
+        ],
+        "a": 1,
+        "r": "Catching and fixing the gap before the event prevents no-shows and complaints."
+      },
+      {
+        "q": "An attorney has completed 9 of 12 required CLE hours with the deadline approaching. Best action?",
+        "opts": [
+          "Wait until the deadline passes to raise it",
+          "Log the gap now, flag it, and follow up before the deadline",
+          "Assume they'll handle it themselves",
+          "Report them for non-compliance immediately"
+        ],
+        "a": 1,
+        "r": "Early flagging while there's still time to act is the whole point of a tracking system."
+      },
+      {
+        "q": "A client posts a negative, factually inaccurate review. Best response?",
+        "opts": [
+          "Ignore it and hope it disappears",
+          "Reply professionally and factually, without escalating the conflict",
+          "Argue publicly to prove the client wrong",
+          "Delete or hide the review without responding"
+        ],
+        "a": 1,
+        "r": "A calm, factual public response protects the brand better than silence or confrontation."
+      },
+      {
+        "q": "A renewal tracker should include:",
+        "opts": [
+          "Just the member's name",
+          "Expiration date, renewal status, and follow-up required",
+          "Only the payment amount",
+          "Nothing — renewals are hard to track anyway"
+        ],
+        "a": 1,
+        "r": "These fields are what actually let you catch a lapse before it happens."
+      },
+      {
+        "q": "Best way to plan a professional-development seminar for staff with varied schedules?",
+        "opts": [
+          "Force a single mandatory time slot",
+          "Offer both virtual and in-person session options",
+          "Cancel it if not everyone can attend the same time",
+          "Only offer it once with no recording"
+        ],
+        "a": 1,
+        "r": "Flexible formats are what actually get broad participation."
+      }
+    ],
+    "discussionQuestion": "How would you handle a negative public review or comment about your organization? Draft a one-sentence opening line for your response and share why you chose that tone."
+  },
+  {
+    "id": 10,
+    "title": "Digital Presence & Social Media Support",
+    "theme": "Management vs. Marketing · Brand Voice & Content Pillars · SEO/GEO for Executives · Campaign Math",
+    "objective": "Read social performance numbers correctly, write for the platform, and understand the basic math behind a campaign's ROI.",
+    "lessons": [
+      {
+        "h": "Social Media Management vs. Marketing",
+        "layout": "TABLE",
+        "b": [
+          "Management is the restaurant's dining room — keeping guests happy and the menu updated. Marketing is the billboard on the highway bringing new people in.",
+          "EAs typically own Management (consistency, scheduling, DM filtering); PAs and marketing specialists lean more into Marketing (growth, content creation, campaigns)."
+        ],
+        "tableHeaders": [
+          "Feature",
+          "Social Media Management",
+          "Social Media Marketing"
+        ],
+        "tableRows": [
+          [
+            "Primary Goal",
+            "Consistency, engagement, retention",
+            "Growth, lead gen, conversions"
+          ],
+          [
+            "Focus",
+            "'Keeping the lights on' and community care",
+            "Driving strategic results and sales"
+          ],
+          [
+            "Content Type",
+            "Daily updates, behind-the-scenes",
+            "Ad campaigns, promotional videos"
+          ],
+          [
+            "Success Metric",
+            "Follower growth, response time, likes",
+            "Clicks, ROI, sales, email sign-ups"
+          ],
+          [
+            "Nature",
+            "Passive/ongoing — continuous presence",
+            "Active/campaign — starts and ends"
+          ]
+        ]
+      },
+      {
+        "h": "EA vs. PA Roles in Social Media",
+        "layout": "COMPARE",
+        "b": [
+          "The EA is the Gatekeeper & Moderator — daily task is filtering DMs and updating bios, crisis care is spotting negative PR early.",
+          "The PA is the Ghostwriter & Promoter — daily task is writing articles or sharing wins, crisis care is distributing good news to bury the bad."
+        ],
+        "compareLeft": {
+          "label": "Executive Assistant — Brand & Strategy",
+          "items": [
+            "Manages the content calendar for professional platforms (LinkedIn) and times posts for peak engagement.",
+            "Filters DMs and comments for valuable networking, media inquiries, or urgent issues.",
+            "Reviews posts to ensure tone matches the executive's public persona and company policy.",
+            "Acts as first line of defense if a PR issue arises, coordinating with marketing or legal."
+          ]
+        },
+        "compareRight": {
+          "label": "Personal Assistant — Creation & Execution",
+          "items": [
+            "More hands-on with actual content creation for Instagram, TikTok, or personal blogs.",
+            "Captures behind-the-scenes photos/video of the client's daily life, travel, or events.",
+            "Uses apps like Canva or CapCut to edit raw footage before it goes live.",
+            "Handles platform maintenance — bios, links (like Linktree) — and personal community replies."
+          ]
+        }
+      },
+      {
+        "h": "The Executive Personal Brand Style Guide",
+        "layout": "ICONLIST",
+        "b": [
+          "Define the North Star first: what's the primary goal (thought leadership, recruiting, networking) and 3 key topics the executive is the 'expert' in.",
+          "Voice and Tone table: point of view (1st vs. 3rd person), emoji use, and punctuation rules should all be written down, not left to instinct.",
+          "The 'Never' List matters as much as the style guide — banned topics, banned buzzwords, and formatting no-gos (e.g., no more than 5 hashtags).",
+          "Engagement Protocol defines who gets a reply, how to handle trolls, and the approval workflow (e.g., 'EA drafts, executive approves via WhatsApp').",
+          "Visual standard: aim for roughly 70% candid/authentic content (mid-speech, at the desk, traveling) and 30% polished (professional headshots for major announcements)."
+        ]
+      },
+      {
+        "h": "Content Pillars & Finding the Brand Voice",
+        "layout": "QUADRANT",
+        "b": [
+          "The 'This, Not That' exercise defines boundaries for writers: Confident (not sarcastic), Witty (not arrogant), Accessible (not simple), Bold (not aggressive).",
+          "A consistent voice signals a real human is behind the account — if it changes every two days, the audience gets 'brand whiplash' and unfollows."
+        ],
+        "quadrants": [
+          {
+            "label": "Funny vs. Serious",
+            "desc": "Are you making jokes, or providing solemn expertise?"
+          },
+          {
+            "label": "Formal vs. Casual",
+            "desc": "Do you use 'Dear Sir/Madam' or 'Hey there!'?"
+          },
+          {
+            "label": "Detached vs. Enthusiastic",
+            "desc": "A calm, objective observer or a high-energy cheerleader?"
+          },
+          {
+            "label": "Irreverent vs. Respectful",
+            "desc": "Do you challenge the status quo with snark, or play by the rules?"
+          }
+        ]
+      },
+      {
+        "h": "The Content Calendar & Publishing Workflow",
+        "layout": "PROCESS",
+        "b": [
+          "A professional calendar tracks platform, content pillar, asset type, the hook (first 3 seconds/words), SEO keywords, CTA, and status — not just a date and caption.",
+          "Aim for consistency over perfect timing — algorithms prioritize user activity over exact posting time."
+        ],
+        "processSteps": [
+          {
+            "label": "Ideation (Week 1)",
+            "desc": "Brainstorm 12–15 ideas based on your content pillars for the month ahead"
+          },
+          {
+            "label": "Creation (Week 2)",
+            "desc": "Film all videos and design all graphics in 1–2 focused days"
+          },
+          {
+            "label": "Optimization (Week 3)",
+            "desc": "Draft several caption/hook variations and select the best fit for the brand voice"
+          },
+          {
+            "label": "Scheduling (Week 4)",
+            "desc": "Load everything into the publishing tool of choice"
+          }
+        ]
+      },
+      {
+        "h": "Reading the Numbers — Engagement Rate",
+        "layout": "STAT",
+        "statNumber": "(Likes + Comments + Shares) ÷ Followers × 100",
+        "statLabel": "= Engagement Rate",
+        "b": [
+          "Worked example: 120 likes + 15 comments + 10 shares ÷ 4,000 followers × 100 = 3.6%.",
+          "A smaller account with a higher rate can be the stronger performer — rate matters more than raw counts.",
+          "On LinkedIn specifically, 2–5% organic engagement is healthy; above 7% means the post is going viral within its professional niche.",
+          "Watch Reach vs. Engagement together: high reach with low engagement means the hook or audience is wrong; low reach with high engagement means a small, loyal following the algorithm will likely start pushing further."
+        ]
+      },
+      {
+        "h": "Audience Psychology & Pain Points",
+        "layout": "QUADRANT",
+        "b": [
+          "Today's audiences are experiencing 'Digital Overload Fatigue' — they no longer trust polished ads and crave raw, real-world proof over produced content.",
+          "High-impact psychological triggers to use ethically: the Bandwagon Effect ('300 people joined this week'), Reciprocity (give value for free), and Cognitive Dissonance (point out a conflict in current behavior)."
+        ],
+        "quadrants": [
+          {
+            "label": "Financial",
+            "desc": "Hidden fees or rigid pricing — solve with radical transparency and milestone rewards"
+          },
+          {
+            "label": "Convenience",
+            "desc": "Information overload — be the curator, answer one specific question fast"
+          },
+          {
+            "label": "Emotional",
+            "desc": "Burnout and overstimulation — shift from 'hustle' to sustainable progress"
+          },
+          {
+            "label": "Trust",
+            "desc": "Fear of fake data or exploitation — show the real process, not staged content"
+          }
+        ]
+      },
+      {
+        "h": "SEO, GEO & Funneling for Executives",
+        "layout": "ICONLIST",
+        "b": [
+          "SEO (Search Engine Optimization) makes sure the right people find the executive on Google — an EA manages the 'inputs' that feed this: natural keyword phrases, backlinks from podcast/guest-blog appearances.",
+          "Run a monthly 'Google Yourself' audit in Incognito mode — if an outdated profile or old blog post is outranking the executive's current site, update the metadata to compete.",
+          "GEO (Generative Engine Optimization) is the newer discipline: getting AI tools like ChatGPT, Gemini, and Perplexity to actually recommend the executive when someone asks a relevant question.",
+          "GEO tactics include structured data/schema markup, FAQ-style 'direct answer' content, and consistent verbatim bio details across LinkedIn, website, and speaker pages (inconsistency hurts the AI 'trust score').",
+          "Funneling turns a click into a client: Top of funnel (awareness) is social posting and PR; Middle (interest) is the newsletter and lead magnets; Bottom (action) is the booking link, with follow-up within 24 hours.",
+          "Report progress with a monthly Digital Health Scorecard: Domain Authority, AI citation mentions, funnel drop-off rate, and search volume for the executive's name."
+        ]
+      },
+      {
+        "h": "Copywriting vs. Blog Writing",
+        "layout": "COMPARE",
+        "b": [
+          "Copywriting is the 'closer' — short, direct, urgent, built to convert. Blog writing is the 'friendly guide' — long, informative, built to educate and rank.",
+          "The biggest mistake in blog writing today is regurgitating what the top 5 Google results already say — add a unique data point, a contrarian take, or a real example AI can't summarize away."
+        ],
+        "compareLeft": {
+          "label": "Copywriting — The Sell",
+          "items": [
+            "Goal: conversion (buy, sign up, click) — usually short-form (ads, landing pages).",
+            "Use the AIDA formula: Attention, Interest, Desire, Action.",
+            "Strong CTAs use action words and urgency: 'Download your free guide now,' not 'Click here.'"
+          ]
+        },
+        "compareRight": {
+          "label": "Blog Writing — The Tell",
+          "items": [
+            "Goal: education, engagement, SEO — usually long-form (800+ words).",
+            "Structure: a hook headline, a direct-answer intro (no fluff), a skimmable body with H2/H3s, and a clear next-step CTA.",
+            "Add first-hand 'E-E-A-T' evidence — a pro-tip box or personal anecdote — to prove a human wrote it."
+          ]
+        }
+      },
+      {
+        "h": "Basic Campaign Math",
+        "layout": "STAT",
+        "statNumber": "Spend ÷ Leads = CPL",
+        "statLabel": "ROI = (Revenue − Spend) ÷ Spend × 100",
+        "b": [
+          "Worked example: a $500 spend generating 50 leads at a $20 product price gives a Cost per Lead of $10, Revenue of $1,000, and an ROI of 100%.",
+          "Know both numbers before calling any campaign a success — raw lead count alone can make a losing campaign look impressive."
+        ]
+      }
+    ],
+    "quickChecks": [
+      {
+        "afterIndex": 5,
+        "q": "A post gets 200 likes, 20 comments, 30 shares on an account with 5,000 followers. What's the Engagement Rate?",
+        "opts": [
+          "2%",
+          "5%",
+          "10%",
+          "50%"
+        ],
+        "a": 1,
+        "r": "(200+20+30) ÷ 5,000 × 100 = 5%."
+      },
+      {
+        "afterIndex": 9,
+        "q": "A campaign spends $300 and generates 30 leads. What's the Cost per Lead?",
+        "opts": [
+          "$3",
+          "$10",
+          "$30",
+          "$300"
+        ],
+        "a": 1,
+        "r": "$300 ÷ 30 leads = $10 per lead."
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Engagement Rate is calculated as:",
+        "opts": [
+          "Likes only ÷ Followers",
+          "(Likes + Comments + Shares) ÷ Followers × 100",
+          "Total Followers ÷ Posts",
+          "Impressions ÷ Reach"
+        ],
+        "a": 1,
+        "r": "This formula captures actual interaction relative to audience size, not raw counts."
+      },
+      {
+        "q": "The same announcement posted on Instagram vs. LinkedIn should:",
+        "opts": [
+          "Be posted with identical wording on both",
+          "Use a different tone and format suited to each platform's audience",
+          "Only be posted on one platform to save time",
+          "Avoid hashtags entirely on both"
+        ],
+        "a": 1,
+        "r": "Same core message, different register — that's writing for the platform."
+      },
+      {
+        "q": "Cost per Lead is calculated as:",
+        "opts": [
+          "Total spend ÷ number of leads generated",
+          "Total revenue ÷ number of leads",
+          "Number of leads ÷ total spend",
+          "Ad budget × conversion rate"
+        ],
+        "a": 0,
+        "r": "This tells you the actual acquisition cost per lead from the campaign spend."
+      },
+      {
+        "q": "The purpose of a posting calendar is to:",
+        "opts": [
+          "Keep content consistent and coordinated across a campaign instead of improvised",
+          "Replace the need for any strategy",
+          "Guarantee viral engagement",
+          "Avoid having to write captions in advance"
+        ],
+        "a": 0,
+        "r": "It's a coordination tool, not a guarantee of performance."
+      },
+      {
+        "q": "Identifying a few target keywords before writing content mainly helps with:",
+        "opts": [
+          "Making the post longer",
+          "SEO — helping the intended audience actually find the content",
+          "Avoiding the need for a headline",
+          "Reducing the number of hashtags needed"
+        ],
+        "a": 1,
+        "r": "Keywords connect the content to what people are actually searching for."
+      }
+    ],
+    "discussionQuestion": "Pick a recent announcement from your organization. How would you rewrite it differently for Instagram versus LinkedIn?"
+  }
 ];
 
 /* ============================================================
@@ -2322,8 +3957,15 @@ function renderDay(id){
     <h2 class="section-title">Lessons <span class="tag">${d.lessons.length} TOPICS</span></h2>
     ${renderRelatedTools(d.id)}
     <div class="lesson-grid">
-      ${d.lessons.map((l,i)=>renderLessonCard(l,i)+renderQuickChecksAfter(d,i)).join("")}
+      ${d.lessons.map((l,i)=>renderLessonCard(l,i,d)+renderQuickChecksAfter(d,i)).join("")}
     </div>
+
+    ${d.discussionQuestion ? `
+    <div class="card discussion-card">
+      <div class="discussion-tag">💬 For Discussion</div>
+      <p class="discussion-q">${esc(d.discussionQuestion)}</p>
+      <p class="discussion-note">Use this in a live cohort session, an async discussion board, or as a personal reflection prompt before moving on.</p>
+    </div>` : ""}
 
     <h2 class="section-title">Knowledge Check <span class="tag">${d.quiz.length} QUESTIONS</span></h2>
     ${prog&&prog.done ? `<div class="card" style="padding:16px 20px;margin-bottom:16px;font-size:13.5px;color:var(--ink-soft);">You already passed this check on ${fmtDate(prog.date)} with a score of <b style="color:var(--navy);">${prog.score}%</b>. You can retake it any time — your best score is kept.</div>`:""}
@@ -2331,15 +3973,72 @@ function renderDay(id){
   `;
 }
 
-function renderLessonCard(l,i){
+function renderLessonCard(l,i,d){
   return `
+    <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}</div>
     <div class="card lesson-card">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
+      ${renderLessonVisual(l)}
       <ul>${l.b.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
       ${l.callout?renderCallout(l.callout):""}
       ${l.example?renderExample(l.example):""}
       ${l.table?renderTable(l.table):""}
     </div>`;
+}
+function renderLessonVisual(l){
+  switch(l.layout){
+    case "QUADRANT": return renderQuadrantVisual(l.quadrants);
+    case "PROCESS": return renderProcessVisual(l.processSteps);
+    case "COMPARE": return renderCompareVisual(l.compareLeft, l.compareRight);
+    case "THREEBOX": return renderThreeBoxVisual(l.boxes);
+    case "STAT": return renderStatVisual(l.statNumber, l.statLabel);
+    default: return "";
+  }
+}
+function renderQuadrantVisual(quadrants){
+  return `<div class="lesson-quadrant">
+    ${quadrants.map(q=>`
+      <div class="qbox">
+        <div class="qlabel">${esc(q.label)}</div>
+        <div class="qdesc">${esc(q.desc)}</div>
+      </div>`).join("")}
+  </div>`;
+}
+function renderProcessVisual(steps){
+  return `<div class="lesson-process">
+    ${steps.map((s,i)=>`
+      ${i>0?'<div class="lesson-process-arrow">&darr;</div>':""}
+      <div class="pstep">
+        <div class="pnum">${i+1}</div>
+        <div class="plabel">${esc(s.label)}</div>
+        <div class="pdesc">${esc(s.desc)}</div>
+      </div>`).join("")}
+  </div>`;
+}
+function renderCompareVisual(left, right){
+  return `<div class="lesson-compare">
+    ${[left, right].map(col=>`
+      <div class="cbox">
+        <div class="chead">${esc(col.label)}</div>
+        <div class="cbody">${col.items.map(item=>`<div class="citem">${esc(item)}</div>`).join("")}</div>
+      </div>`).join("")}
+  </div>`;
+}
+function renderThreeBoxVisual(boxes){
+  return `<div class="lesson-threebox">
+    ${boxes.map((b,i)=>`
+      <div class="tbox">
+        <div class="tnum">${i+1}</div>
+        <div class="tlabel">${esc(b.label)}</div>
+        <div class="tdesc">${esc(b.desc)}</div>
+      </div>`).join("")}
+  </div>`;
+}
+function renderStatVisual(num, label){
+  return `<div class="lesson-stat">
+    <div class="snum">${esc(num)}</div>
+    <div class="slabel">${esc(label)}</div>
+  </div>`;
 }
 function renderCallout(c){
   const tagLabel = {stat:"By the numbers", tip:"Good practice", warning:"Watch for this"}[c.type]||"Note";
