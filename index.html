@@ -46,6 +46,19 @@ button{font-family:inherit;cursor:pointer;}
 /* ---------- layout shell ---------- */
 #app{min-height:100vh;display:flex;flex-direction:column;}
 
+.notif-banner{
+  background:linear-gradient(90deg, #FFF3E4 0%, #FDEBD8 100%);
+  border-bottom:1px solid var(--orange-soft);
+  padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;
+  position:relative;font-size:12.8px;color:var(--navy);
+}
+.notif-banner b{color:var(--orange-deep);}
+.notif-banner .notif-close{
+  position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  background:none;border:none;font-size:15px;color:var(--ink-soft);cursor:pointer;line-height:1;padding:4px;
+}
+.notif-banner .notif-close:hover{color:var(--navy);}
+
 .topbar{
   background:var(--navy);
   color:#fff;
@@ -55,17 +68,113 @@ button{font-family:inherit;cursor:pointer;}
 .topbar-inner{
   max-width:1120px;margin:0 auto;padding:14px 24px;
   display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;row-gap:10px;
 }
-.brand{display:flex;align-items:center;gap:12px;cursor:pointer;}
-.brand-mark{width:38px;height:38px;flex:0 0 auto;object-fit:contain;}
-.brand-text{display:flex;flex-direction:column;line-height:1.15;}
-.brand-text b{font-family:'Fraunces';font-size:15px;letter-spacing:.01em;}
-.brand-text span{font-size:11px;color:#B9BEDA;text-transform:uppercase;letter-spacing:.09em;}
+.topbar-right{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;flex:1 1 auto;justify-content:flex-end;min-width:0;
+}
+.topbar-search{
+  flex:1 1 220px;max-width:340px;display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;
+  padding:8px 14px;position:relative;min-width:0;
+}
+.topbar-search input{
+  background:none;border:none;outline:none;color:#fff;font-size:13px;flex:1;
+}
+.topbar-search input::placeholder{color:rgba(255,255,255,.55);}
+.topbar-search .sicon{font-size:12px;opacity:.7;}
+.search-results{
+  position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:10px;
+  box-shadow:0 12px 32px -8px rgba(0,0,0,.35);overflow:hidden;z-index:60;text-align:left;
+  animation:previewIn .18s ease both;
+}
+.search-results .sr-item{
+  padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--line);color:var(--ink);
+}
+.search-results .sr-item:last-child{border-bottom:none;}
+.search-results .sr-item:hover{background:var(--bg);}
+.search-results .sr-item b{color:var(--navy);font-size:13px;display:block;}
+.search-results .sr-item span{font-size:11px;color:var(--ink-soft);}
+.search-results .sr-empty{padding:14px;font-size:12.5px;color:var(--ink-soft);text-align:center;}
 
-.nav{display:flex;gap:4px;background:rgba(255,255,255,.06);padding:4px;border-radius:10px;}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;flex:0 0 auto;min-width:0;}
+.brand-mark{width:38px;height:38px;flex:0 0 auto;object-fit:contain;}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0;}
+.brand-text b{font-family:'Fraunces';font-size:15px;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
+.brand-text span{font-size:11px;color:#B9BEDA;text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
+
+/* pill tabs (dashboard quick-nav, mirrors reference) */
+.pill-tabs{
+  display:inline-flex;background:var(--bg);border-radius:26px;padding:5px;gap:4px;margin:0 auto 34px;
+}
+.pill-tabs button{
+  border:none;background:none;padding:11px 22px;border-radius:22px;font-size:13.5px;font-weight:600;
+  color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .15s ease;
+}
+.pill-tabs button.active{background:var(--navy);color:#fff;box-shadow:0 4px 14px -4px rgba(38,43,69,.5);}
+.pill-tabs button:not(.active):hover{color:var(--navy);}
+
+/* horizontal step timeline */
+.step-timeline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0;margin:0 0 28px;}
+.step-node{display:flex;align-items:center;}
+.step-circle{
+  width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces';font-weight:700;font-size:17px;flex:0 0 auto;border:2.5px solid var(--line);
+  color:var(--ink-soft);background:#fff;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;
+}
+.step-circle:hover{transform:scale(1.1);}
+.step-circle.st-done{border-color:var(--navy);background:var(--navy);color:#fff;}
+.step-circle.st-open{border-color:var(--orange);color:var(--orange-deep);}
+.step-circle.st-current{animation:stepPulse 2.2s ease-in-out infinite;}
+.step-circle.st-locked{border-color:var(--line);color:#B7BBCC;cursor:not-allowed;}
+@keyframes stepPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(219,132,55,.35);}
+  50%{box-shadow:0 0 0 7px rgba(219,132,55,0);}
+}
+.step-dash{width:34px;height:0;border-top:2.5px dashed var(--line);margin:0 4px;flex:0 0 auto;transition:border-color .3s ease;}
+.step-dash.filled{border-top-style:solid;border-top-color:var(--navy);}
+@media(max-width:900px){.step-dash{width:18px;}}
+
+/* illustrated module card grid */
+.module-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));gap:18px;margin-bottom:8px;}
+.module-card{
+  background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.module-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px -12px rgba(38,43,69,.28);}
+.module-banner{
+  height:110px;display:flex;align-items:center;justify-content:center;font-size:42px;position:relative;
+  background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+}
+.module-card:nth-child(3n+2) .module-banner{background:linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);}
+.module-card:nth-child(3n+3) .module-banner{background:linear-gradient(135deg, var(--navy-soft) 0%, var(--navy) 100%);}
+.module-card .module-lock{position:absolute;inset:0;background:rgba(22,24,41,.55);display:flex;align-items:center;justify-content:center;font-size:26px;}
+.module-body{padding:14px 16px 8px;flex:1;display:flex;flex-direction:column;}
+.module-body .mnum{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--orange-deep);font-weight:700;letter-spacing:.04em;margin-bottom:4px;}
+.module-body p{font-size:13px;color:var(--ink);line-height:1.4;margin:0;flex:1;}
+.module-body p b{color:var(--navy);}
+.module-toggle{
+  border:1px solid var(--line);background:var(--bg);color:var(--navy);font-size:12.5px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+  margin:0 16px 14px;padding:9px 14px;border-radius:9px;transition:background .15s ease, border-color .15s ease;
+}
+.module-toggle:hover{background:#fff;border-color:var(--navy-soft);}
+.module-toggle .chev{display:inline-block;transition:transform .2s ease;font-size:13px;}
+.module-toggle.expanded .chev{transform:rotate(180deg);}
+.module-preview{
+  padding:0 16px 14px;font-size:12px;color:var(--ink-soft);border-top:1px dashed var(--line);margin-top:4px;
+  animation:previewIn .28s ease both;
+}
+@keyframes previewIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+.module-preview ul{margin:8px 0;padding-left:16px;}
+.module-preview li{margin-bottom:4px;}
+.module-preview .btn{margin-top:4px;}
+
+.nav{display:flex;gap:4px;background:rgba(255,255,255,.06);padding:4px;border-radius:10px;flex-wrap:wrap;flex:0 1 auto;}
 .nav button{
   background:transparent;border:none;color:#D7DAEC;font-size:13.5px;font-weight:600;
-  padding:8px 14px;border-radius:7px;transition:all .15s ease;
+  padding:8px 14px;border-radius:7px;transition:all .15s ease;white-space:nowrap;
 }
 .nav button.active{background:var(--orange);color:#241304;}
 .nav button:not(.active):hover{background:rgba(255,255,255,.09);color:#fff;}
@@ -73,11 +182,13 @@ button{font-family:inherit;cursor:pointer;}
 .trainee-chip{
   display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CCE6;
   border:1px solid rgba(255,255,255,.18);padding:6px 10px;border-radius:20px;cursor:pointer;
+  white-space:nowrap;flex:0 0 auto;
 }
 .trainee-chip:hover{border-color:rgba(255,255,255,.4);}
 .trainee-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--orange);}
 
-main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
+main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;animation:pageIn .35s ease both;}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
 .footer-note{
   text-align:center;font-size:11.5px;color:var(--ink-soft);padding:26px 24px 40px;
@@ -232,6 +343,30 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 .lesson-stat .snum{font-family:'Fraunces';font-size:26px;font-weight:700;color:var(--orange);line-height:1.25;}
 .lesson-stat .slabel{font-size:13px;color:rgba(255,255,255,.85);margin-top:6px;}
 
+/* lesson slideshow */
+.slide-dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+.slide-dot{
+  width:10px;height:10px;border-radius:50%;background:var(--line);cursor:pointer;
+  transition:all .22s ease;
+}
+.slide-dot:hover{background:var(--orange-soft);}
+.slide-dot.visited{background:var(--navy-soft);}
+.slide-dot.active{background:var(--orange);width:28px;border-radius:6px;}
+
+.lesson-slide{animation-duration:.4s;animation-timing-function:ease;animation-fill-mode:both;}
+.lesson-slide.dir-next{animation-name:slideInRight;}
+.lesson-slide.dir-prev{animation-name:slideInLeft;}
+@keyframes slideInRight{from{opacity:0;transform:translateX(36px);}to{opacity:1;transform:translateX(0);}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-36px);}to{opacity:1;transform:translateX(0);}}
+
+.slide-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:22px 0 8px;flex-wrap:wrap;}
+.slide-counter{font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-soft);}
+.slide-done-banner{
+  margin-top:22px;padding:16px 20px;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+  color:#fff;border-radius:12px;font-size:13.5px;text-align:center;
+  animation:previewIn .4s ease both;
+}
+
 .section-title{
   font-family:'Fraunces';font-size:19px;color:var(--navy);margin:38px 0 16px;
   display:flex;align-items:center;gap:10px;
@@ -274,16 +409,47 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 .quiz-result .sub{font-size:13.5px;color:var(--ink-soft);margin-top:4px;}
 
 /* ---------- practice lab ---------- */
-.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-@media(max-width:760px){.tool-grid{grid-template-columns:1fr;}}
-.tool-card{padding:22px 24px;display:flex;flex-direction:column;gap:10px;}
-.tool-icon{
-  width:38px;height:38px;border-radius:9px;background:var(--navy);color:var(--orange);
-  display:flex;align-items:center;justify-content:center;font-size:18px;
+.practice-shell{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start;}
+@media(max-width:820px){.practice-shell{grid-template-columns:1fr;}}
+.practice-sidebar{
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;
+  position:sticky;top:90px;display:flex;flex-direction:column;gap:3px;
 }
-.tool-card h3{margin:0;font-size:16.5px;color:var(--navy);}
-.tool-card p{margin:0;font-size:13px;color:var(--ink-soft);flex:1;}
-.tool-foot{display:flex;align-items:center;justify-content:space-between;margin-top:6px;}
+.practice-sidebar button{
+  text-align:left;border:none;background:none;padding:11px 14px;border-radius:9px;font-size:13px;
+  font-weight:600;color:var(--ink-soft);cursor:pointer;transition:background .15s ease, color .15s ease;
+  width:100%;
+}
+.practice-sidebar button:hover{background:var(--bg);color:var(--navy);}
+.practice-sidebar button.active{background:var(--navy);color:#fff;}
+.practice-sidebar .sb-label{font-size:10.5px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;padding:8px 14px 2px;}
+
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:18px;}
+.tool-card{
+  padding:0;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;
+  transition:transform .2s ease, box-shadow .2s ease;
+  animation:previewIn .3s ease both;
+}
+.tool-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px -14px rgba(38,43,69,.32);}
+.tool-banner{
+  height:100px;display:flex;align-items:center;justify-content:center;font-size:38px;
+  background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);flex:0 0 auto;
+}
+.tool-card:nth-child(3n+2) .tool-banner{background:linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);}
+.tool-card:nth-child(3n+3) .tool-banner{background:linear-gradient(135deg, var(--navy-soft) 0%, var(--navy) 100%);}
+.tool-body2{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.tool-card h3{margin:0;font-size:14.5px;color:var(--navy);font-family:'Fraunces';}
+.tool-card .tool-desc2{font-size:12px;color:var(--ink-soft);line-height:1.4;margin:0;flex:1;}
+.tool-status-row{display:flex;align-items:center;gap:6px;font-size:11.5px;}
+.tool-status-row.st-notstarted{color:var(--ink-soft);}
+.tool-status-row.st-inprogress{color:var(--orange-deep);}
+.tool-status-row.st-done{color:var(--success);}
+.tool-open-btn{
+  margin-top:2px;width:100%;justify-content:center;background:#fff;color:var(--navy);
+  border:1.5px solid var(--navy);border-radius:8px;padding:9px;font-weight:700;font-size:12.8px;
+  transition:background .15s ease, color .15s ease;display:flex;align-items:center;
+}
+.tool-card:hover .tool-open-btn{background:var(--navy);color:#fff;}
 
 .tool-shell{padding:26px 28px;}
 .tool-shell .toolhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;gap:16px;flex-wrap:wrap;}
@@ -512,6 +678,12 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;}
 }
 .cal-color-input::-webkit-color-swatch-wrapper{padding:0;border-radius:50%;}
 .cal-color-input::-webkit-color-swatch{border:none;border-radius:50%;}
+.cal-move-btn{
+  position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:4px;border:none;
+  background:rgba(0,0,0,.28);color:#fff;font-size:10px;line-height:1;cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center;transition:background .12s ease;
+}
+.cal-move-btn:hover{background:rgba(0,0,0,.55);}
 
 .week-grid{
   display:grid;grid-template-columns:56px repeat(5,1fr);gap:0;border:1px solid var(--line);
@@ -3653,6 +3825,23 @@ function brandMark(){
 }
 
 /* ---------- top bar ---------- */
+function renderNotifBanner(){
+  if(state.notifDismissed) return "";
+  const done = completedCount();
+  const msg = done===0
+    ? "Welcome to the <b>LSH EA/PA Upskill Program</b> — pick up your training any time, on any device."
+    : done===10
+    ? "🎉 You've completed all 10 days — download your Training Record any time from the dashboard."
+    : `You're on <b>Day ${nextDayId()} of 10</b> — pick up right where you left off.`;
+  return `
+  <div class="notif-banner">
+    <span>${msg}</span>
+    <button class="notif-close" onclick="dismissNotifBanner()" title="Dismiss">✕</button>
+  </div>`;
+}
+function dismissNotifBanner(){ state.notifDismissed = true; render(); }
+window.dismissNotifBanner = dismissNotifBanner;
+
 function renderTopbar(){
   const views = [["dashboard","Dashboard"],["practice","Practice Lab"],["notes","My Notes"],["handouts","Handouts"]];
   return `
@@ -3662,16 +3851,65 @@ function renderTopbar(){
         ${brandMark()}
         <div class="brand-text"><b>LSH EA/PA Upskill Program</b><span>10-Day Interactive Training</span></div>
       </div>
-      <div class="nav">
-        ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}</button>`).join("")}
-        <button class="${state.view==='admin'?'active':''}" onclick="openAdmin()" style="opacity:.85;">🛡 Admin</button>
-      </div>
-      <div class="trainee-chip" onclick="promptName()">
-        <span class="dot"></span> ${state.traineeName ? esc(state.traineeName) : "Set your name"}
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <span class="sicon">🔍</span>
+          <input type="text" id="topSearchInput" placeholder="Search days, topics, tools…" value="${esc(state.searchQuery||'')}" oninput="setTopSearch(this.value)" onkeydown="if(event.key==='Escape') clearTopSearch();">
+          ${state.searchQuery ? `<div class="search-results" id="searchResultsWrap">${renderSearchResults(state.searchQuery)}</div>` : ""}
+        </div>
+        <div class="nav">
+          ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}</button>`).join("")}
+          <button class="${state.view==='admin'?'active':''}" onclick="openAdmin()" style="opacity:.85;">🛡 Admin</button>
+        </div>
+        <div class="trainee-chip" onclick="promptName()">
+          <span class="dot"></span> ${state.traineeName ? esc(state.traineeName) : "Set your name"}
+        </div>
       </div>
     </div>
   </div>`;
 }
+
+function setTopSearch(v){
+  state.searchQuery = v;
+  const input = document.getElementById("topSearchInput");
+  const wrap = document.querySelector(".topbar-search");
+  if(!wrap) return;
+  let resultsEl = document.getElementById("searchResultsWrap");
+  if(!v){ if(resultsEl) resultsEl.remove(); return; }
+  if(!resultsEl){
+    resultsEl = document.createElement("div");
+    resultsEl.className = "search-results";
+    resultsEl.id = "searchResultsWrap";
+    wrap.appendChild(resultsEl);
+  }
+  resultsEl.innerHTML = renderSearchResults(v);
+}
+window.setTopSearch = setTopSearch;
+function clearTopSearch(){
+  state.searchQuery = "";
+  const resultsEl = document.getElementById("searchResultsWrap");
+  if(resultsEl) resultsEl.remove();
+  const input = document.getElementById("topSearchInput");
+  if(input) input.value = "";
+}
+window.clearTopSearch = clearTopSearch;
+
+function renderSearchResults(q){
+  const query = q.toLowerCase();
+  const dayHits = DAYS.filter(d => d.title.toLowerCase().includes(query) || d.theme.toLowerCase().includes(query) ||
+    d.lessons.some(l=>l.h.toLowerCase().includes(query)));
+  const toolHits = PRACTICE_TOOLS.filter(t => t.title.toLowerCase().includes(query) || t.desc.toLowerCase().includes(query));
+  const rows = [];
+  dayHits.slice(0,5).forEach(d=>rows.push(`<div class="sr-item" onclick="jumpToSearchResult('day',${d.id})"><b>Day ${d.id} — ${esc(d.title)}</b><span>${esc(d.theme)}</span></div>`));
+  toolHits.slice(0,5).forEach(t=>rows.push(`<div class="sr-item" onclick="jumpToSearchResult('tool','${t.id}')"><b>${t.icon} ${esc(t.title)}</b><span>Practice Lab &middot; ${esc(t.relates)}</span></div>`));
+  if(!rows.length) return `<div class="sr-empty">No matches for "${esc(q)}"</div>`;
+  return rows.join("");
+}
+function jumpToSearchResult(view,id){
+  state.searchQuery = "";
+  goto(view,id);
+}
+window.jumpToSearchResult = jumpToSearchResult;
 
 /* ---------- dashboard ---------- */
 function renderDashboard(){
@@ -3687,6 +3925,7 @@ function renderDashboard(){
         <button class="btn btn-primary" onclick="goto('day',${nextDayId()})">${done===0?"Start Day 1":"Continue training"}</button>
         <button class="btn btn-ghost" onclick="goto('practice')">Open Practice Lab</button>
         <button class="btn btn-navy" onclick="downloadRecordPdf()">⬇ Download Training Record</button>
+        <button class="btn btn-ghost" onclick="downloadFullPortfolioPdf()">⬇ Download Full Portfolio</button>
       </div>
     </div>
     <div class="hero-seal-wrap">
@@ -3704,12 +3943,74 @@ function renderDashboard(){
     <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
   </div>
 
-  <h2 class="section-title">Training Roadmap <span class="tag">10 DAYS</span></h2>
-  <div class="timeline">
-    ${DAYS.map(d=>dayRow(d)).join("")}
+  <div class="pill-tabs">
+    <button class="active">📘 Training Roadmap</button>
+    <button onclick="goto('practice')">🧰 Practice Lab</button>
+    <button onclick="goto('notes')">📝 My Notes</button>
+  </div>
+
+  <h2 class="section-title" style="justify-content:center;">Complete Your Training In <span class="tag">10 EASY STEPS</span></h2>
+  <div class="step-timeline">
+    ${DAYS.map((d,i)=>{
+      const prog = state.progress[d.id];
+      const unlocked = dayUnlocked(d.id);
+      const isCurrent = d.id===nextDayId() && !(prog&&prog.done);
+      const status = (prog&&prog.done ? "st-done" : (unlocked?"st-open":"st-locked")) + (isCurrent?" st-current":"");
+      const nextDone = i<DAYS.length-1 && state.progress[DAYS[i+1].id] && state.progress[DAYS[i+1].id].done;
+      const dashFilled = prog&&prog.done && nextDone;
+      return `<div class="step-node">
+        <div class="step-circle ${status}" onclick="${unlocked?`scrollToModule(${d.id})`:''}" title="Day ${d.id} — ${esc(d.title)}">${prog&&prog.done?'✓':d.id}</div>
+        ${i<DAYS.length-1?`<div class="step-dash ${dashFilled?'filled':''}"></div>`:''}
+      </div>`;
+    }).join("")}
+  </div>
+
+  <div class="module-grid">
+    ${DAYS.map(d=>moduleCard(d)).join("")}
   </div>
   `;
 }
+function moduleCard(d){
+  const prog = state.progress[d.id];
+  const unlocked = dayUnlocked(d.id);
+  const status = prog&&prog.done ? "done" : (unlocked?"open":"locked");
+  const icon = DAY_ICONS[d.id] || "📘";
+  const expanded = state.expandedModule===d.id;
+  return `
+  <div class="module-card" id="module-${d.id}">
+    <div class="module-banner">
+      ${icon}
+      ${status==='locked'?'<div class="module-lock">🔒</div>':''}
+    </div>
+    <div class="module-body">
+      <div class="mnum">DAY ${d.id} OF 10${status==='done'?' &middot; COMPLETED':''}</div>
+      <p><b>${esc(d.title)}.</b> ${esc(d.theme)}</p>
+    </div>
+    <button class="module-toggle ${expanded?'expanded':''}" onclick="toggleModule(${d.id})" title="Preview topics">
+      ${expanded?'Hide Topics':'Preview Topics'} <span class="chev">⌄</span>
+    </button>
+    ${expanded ? `
+    <div class="module-preview">
+      <ul>${d.lessons.slice(0,4).map(l=>`<li>${esc(l.h)}</li>`).join("")}${d.lessons.length>4?`<li>+ ${d.lessons.length-4} more topic${d.lessons.length-4>1?'s':''}</li>`:''}</ul>
+      <button class="btn btn-sm ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} style="width:100%;justify-content:center;" onclick="goto('day',${d.id})">${status==='done'?'Review Day '+d.id:'Open Day '+d.id}</button>
+    </div>` : ""}
+  </div>`;
+}
+function toggleModule(id){
+  state.expandedModule = state.expandedModule===id ? null : id;
+  render();
+}
+window.toggleModule = toggleModule;
+function scrollToModule(id){
+  state.expandedModule = id;
+  render();
+  setTimeout(()=>{
+    const el = document.getElementById("module-"+id);
+    if(el) el.scrollIntoView({behavior:"smooth", block:"center"});
+  }, 30);
+}
+window.scrollToModule = scrollToModule;
+const DAY_ICONS = {1:"🗂",2:"📅",3:"💬",4:"📨",5:"🛡",6:"📊",7:"Σ",8:"☎",9:"📋",10:"📱"};
 function nextDayId(){
   for(const d of DAYS){ if(!(state.progress[d.id]&&state.progress[d.id].done)) return d.id; }
   return 10;
@@ -3747,7 +4048,7 @@ function dayRow(d){
 /* ---------- router ---------- */
 function goto(view, id){
   state.view=view;
-  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizSubmitted=false; }
+  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; }
   if(view==="tool"){ state.toolId=id; }
   window.scrollTo({top:0,behavior:"smooth"});
   render();
@@ -3807,7 +4108,7 @@ function render(){
   else if(state.view==="handouts") body=renderHandouts();
   else if(state.view==="notes") body=renderNotes();
   else if(state.view==="admin") body=renderAdmin();
-  app.innerHTML = renderTopbar() + `<main>${body}</main>` + renderFooter();
+  app.innerHTML = renderNotifBanner() + renderTopbar() + `<main>${body}</main>` + renderFooter();
   afterRender();
 }
 function renderFooter(){
@@ -3955,10 +4256,9 @@ function renderDay(id){
     ${d.taskOverview?renderTaskOverview(d.taskOverview):""}
 
     <h2 class="section-title">Lessons <span class="tag">${d.lessons.length} TOPICS</span></h2>
+    ${renderLessonSlideshow(d)}
+
     ${renderRelatedTools(d.id)}
-    <div class="lesson-grid">
-      ${d.lessons.map((l,i)=>renderLessonCard(l,i,d)+renderQuickChecksAfter(d,i)).join("")}
-    </div>
 
     ${d.discussionQuestion ? `
     <div class="card discussion-card">
@@ -3967,11 +4267,70 @@ function renderDay(id){
       <p class="discussion-note">Use this in a live cohort session, an async discussion board, or as a personal reflection prompt before moving on.</p>
     </div>` : ""}
 
-    <h2 class="section-title">Knowledge Check <span class="tag">${d.quiz.length} QUESTIONS</span></h2>
+    <h2 class="section-title" id="knowledgeCheckAnchor">Knowledge Check <span class="tag">${d.quiz.length} QUESTIONS</span></h2>
     ${prog&&prog.done ? `<div class="card" style="padding:16px 20px;margin-bottom:16px;font-size:13.5px;color:var(--ink-soft);">You already passed this check on ${fmtDate(prog.date)} with a score of <b style="color:var(--navy);">${prog.score}%</b>. You can retake it any time — your best score is kept.</div>`:""}
     <div id="quizWrap">${renderQuiz(d)}</div>
   `;
 }
+
+function renderLessonSlideshow(d){
+  const total = d.lessons.length;
+  const idx = Math.min(state.lessonSlide||0, total-1);
+  const l = d.lessons[idx];
+  const isLast = idx===total-1;
+  return `
+    <div class="slide-dots">
+      ${d.lessons.map((_,i)=>`<span class="slide-dot ${i===idx?'active':i<idx?'visited':''}" onclick="goToSlide(${i})" title="Topic ${i+1}"></span>`).join("")}
+    </div>
+    <div class="lesson-slide dir-${state.slideDir||'next'}" id="lessonSlideWrap">
+      ${renderLessonCard(l,idx,d)}
+      ${renderQuickChecksAfter(d,idx)}
+    </div>
+    <div class="slide-nav">
+      <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
+      <span class="slide-counter">Topic ${idx+1} of ${total}</span>
+      ${isLast
+        ? `<button class="btn btn-primary" onclick="scrollToKnowledgeCheck()">Continue to Knowledge Check &rarr;</button>`
+        : `<button class="btn btn-primary" onclick="nextSlide()">Next Topic &rarr;</button>`}
+    </div>
+    ${isLast ? `<div class="slide-done-banner">🎉 That's every topic for Day ${d.id} — nice work. Practice what you learned below, or jump straight to the Knowledge Check.</div>` : ""}
+  `;
+}
+function goToSlide(i){
+  state.slideDir = i>(state.lessonSlide||0) ? "next" : "prev";
+  state.lessonSlide = i;
+  refreshLessonSlide();
+}
+window.goToSlide = goToSlide;
+function nextSlide(){
+  const d = DAYS.find(x=>x.id===state.dayId);
+  if((state.lessonSlide||0) < d.lessons.length-1){
+    state.slideDir = "next";
+    state.lessonSlide = (state.lessonSlide||0)+1;
+    refreshLessonSlide();
+  }
+}
+window.nextSlide = nextSlide;
+function prevSlide(){
+  if((state.lessonSlide||0) > 0){
+    state.slideDir = "prev";
+    state.lessonSlide = (state.lessonSlide||0)-1;
+    refreshLessonSlide();
+  }
+}
+window.prevSlide = prevSlide;
+function refreshLessonSlide(){
+  render();
+  setTimeout(()=>{
+    const el = document.getElementById("lessonSlideWrap");
+    if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+  }, 30);
+}
+function scrollToKnowledgeCheck(){
+  const el = document.getElementById("knowledgeCheckAnchor");
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+window.scrollToKnowledgeCheck = scrollToKnowledgeCheck;
 
 function renderLessonCard(l,i,d){
   return `
@@ -4201,27 +4560,46 @@ function renderAnswerFeedback(d){
 let toolState = {};
 
 function renderPracticeHub(){
+  const filterDay = state.practiceFilter;
+  const visibleTools = filterDay ? PRACTICE_TOOLS.filter(t=>t.relates===`Day ${filterDay}`) : PRACTICE_TOOLS;
   return `
     <p class="eyebrow">Practice Lab</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">Let's Practice the Principles</h1>
     <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 26px;">Hands-on tools for the skills that show up every day on the job. Available any time — no day needs to be unlocked first.</p>
-    <div class="tool-grid">
-      ${PRACTICE_TOOLS.map(t=>{
-        const p = (state.practiceProgress||{})[t.id];
-        return `
-        <div class="card tool-card">
-          <div class="tool-icon">${t.icon}</div>
-          <h3>${esc(t.title)}</h3>
-          <p>${esc(t.desc)}</p>
-          <div class="tool-foot">
-            <span class="score-tag">${t.relates}${p&&p.bestScore!==undefined?` · Best ${p.bestScore}%`:''}</span>
-            <button class="btn btn-sm btn-navy" onclick="goto('tool','${t.id}')">Open Tool</button>
-          </div>
-        </div>`;
-      }).join("")}
+    <div class="practice-shell">
+      <div class="practice-sidebar">
+        <div class="sb-label">JUMP TO</div>
+        <button class="${!filterDay?'active':''}" onclick="setPracticeFilter(null)">All Tools</button>
+        ${DAYS.map(d=>`<button class="${filterDay===d.id?'active':''}" onclick="setPracticeFilter(${d.id})">Day ${d.id} — ${esc(d.title.length>22?d.title.slice(0,20)+'…':d.title)}</button>`).join("")}
+      </div>
+      <div class="tool-grid" id="toolGridWrap">${renderToolCards(visibleTools)}</div>
     </div>
   `;
 }
+function renderToolCards(tools){
+  if(!tools.length) return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">No tools for this day yet.</div>`;
+  return tools.map(t=>{
+    const p = (state.practiceProgress||{})[t.id];
+    const statusClass = p ? "st-done" : "st-notstarted";
+    const statusIcon = p ? "✅" : "◻";
+    const statusLabel = p ? `Completed — best score ${p.bestScore}% (${p.runs} run${p.runs===1?"":"s"})` : "Not started";
+    return `
+    <div class="card tool-card" onclick="goto('tool','${t.id}')">
+      <div class="tool-banner">${t.icon}</div>
+      <div class="tool-body2">
+        <h3>${esc(t.title)}</h3>
+        <p class="tool-desc2">${esc(t.desc)}</p>
+        <div class="tool-status-row ${statusClass}"><span>${statusIcon}</span> ${statusLabel}</div>
+        <button class="btn tool-open-btn" onclick="event.stopPropagation(); goto('tool','${t.id}')">Open Tool</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+function setPracticeFilter(dayId){
+  state.practiceFilter = dayId;
+  render();
+}
+window.setPracticeFilter = setPracticeFilter;
 
 function toolHead(t){
   return `
@@ -4379,13 +4757,14 @@ function renderCalendarBody(body){
                 ondragstart="calDragStart(event,${e.idx})"
                 style="top:${top}px;height:${h}px;background:${bg};" title="Drag to move · click the dot to recolor">
         <input type="color" class="cal-color-input" value="${toHex(bg)}" onclick="event.stopPropagation()" onchange="calColorChange(${e.idx}, this.value)">
+        <button class="cal-move-btn" onclick="event.stopPropagation(); openMoveDialog(${e.idx})" title="Move this to a different day/time">⇄</button>
         <b>${esc(e.t)}</b><span class="cal-sub">${e.loc!=="—"?esc(e.loc)+" · ":""}${esc(e.type)}</span>
       </div>`;
     }).join("");
   }
 
   body.innerHTML = `
-    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time to resolve a conflict, and click the small dot on a block to recolor it. Nothing here is graded until you click Check My Plan.</p>
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly — and click the small dot to recolor it. Nothing here is graded until you click Check My Plan.</p>
     <div class="legend-row">
       ${["High","Medium","Low"].map(p=>`<span class="legend-chip"><span class="sw" style="background:${PRI_COLOR[p]};"></span>${p} priority</span>`).join("")}
       <button class="btn btn-ghost btn-sm" style="margin-left:auto;" onclick="calReset()">Reset to Original</button>
@@ -4428,23 +4807,68 @@ function calDragStart(ev, idx){
   ev.dataTransfer.setData("text/plain", String(idx));
 }
 window.calDragStart = calDragStart;
-async function calDrop(ev, day){
-  ev.preventDefault();
-  const idx = Number(ev.dataTransfer.getData("text/plain"));
-  const colBody = ev.currentTarget.querySelector(".week-col-body");
-  const rect = colBody.getBoundingClientRect();
-  const y = ev.clientY - rect.top;
-  let newStart = CAL_DAY_START + y/CAL_PX_PER_HR;
-  newStart = Math.round(newStart*2)/2; // snap to nearest 30 min
+async function applyCalMove(idx, day, newStart){
   const base = CAL_EVENTS[idx];
   const dur = base.e - base.s;
+  newStart = Math.round(newStart*2)/2; // snap to nearest 30 min
   newStart = Math.max(CAL_DAY_START, Math.min(newStart, CAL_DAY_END-dur));
   const existing = toolState.calEdits[idx] || {};
   toolState.calEdits[idx] = {...existing, day, s:newStart, e:newStart+dur};
   await storeSet("calendar-edits", toolState.calEdits);
   renderCalendarBody(document.getElementById("toolBody"));
 }
+async function calDrop(ev, day){
+  ev.preventDefault();
+  const idx = Number(ev.dataTransfer.getData("text/plain"));
+  const colBody = ev.currentTarget.querySelector(".week-col-body");
+  const rect = colBody.getBoundingClientRect();
+  const y = ev.clientY - rect.top;
+  const newStart = CAL_DAY_START + y/CAL_PX_PER_HR;
+  await applyCalMove(idx, day, newStart);
+}
 window.calDrop = calDrop;
+
+function fmtHr12(h){
+  const hr = Math.floor(h), min = (h%1)*60;
+  const period = hr>=12 ? "PM" : "AM";
+  const hr12 = hr>12 ? hr-12 : (hr===0?12:hr);
+  return `${hr12}:${min===0?"00":min}${period}`;
+}
+function openMoveDialog(idx){
+  const events = calMergedEvents();
+  const e = events[idx];
+  const slots = [];
+  for(let h=CAL_DAY_START; h<=CAL_DAY_END-(e.e-e.s); h+=0.5) slots.push(h);
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  overlay.innerHTML = `
+    <div class="card">
+      <h3>Move "${esc(e.t)}"</h3>
+      <p>Pick exactly where this should go — no dragging required.</p>
+      <label style="font-size:12.5px;color:var(--ink-soft);display:block;margin-bottom:4px;">Day</label>
+      <select id="moveDaySelect" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:14px;margin-bottom:14px;">
+        ${DAY_ORDER.map(d=>`<option value="${d}" ${d===e.day?"selected":""}>${d}</option>`).join("")}
+      </select>
+      <label style="font-size:12.5px;color:var(--ink-soft);display:block;margin-bottom:4px;">Start Time</label>
+      <select id="moveTimeSelect" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:14px;margin-bottom:14px;">
+        ${slots.map(s=>`<option value="${s}" ${Math.abs(s-e.s)<0.01?"selected":""}>${fmtHr12(s)}</option>`).join("")}
+      </select>
+      <div class="row">
+        <button class="btn btn-ghost" id="moveCancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="moveConfirmBtn">Move It</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  document.getElementById("moveCancelBtn").onclick = ()=>overlay.remove();
+  document.getElementById("moveConfirmBtn").onclick = async ()=>{
+    const day = document.getElementById("moveDaySelect").value;
+    const newStart = Number(document.getElementById("moveTimeSelect").value);
+    overlay.remove();
+    await applyCalMove(idx, day, newStart);
+    toast("Moved");
+  };
+}
+window.openMoveDialog = openMoveDialog;
 async function calColorChange(idx, hex){
   const existing = toolState.calEdits[idx] || {};
   toolState.calEdits[idx] = {...existing, color:hex};
@@ -5170,6 +5594,44 @@ async function downloadRecordPdf(){
   toast("Training Record downloaded");
 }
 window.downloadRecordPdf = downloadRecordPdf;
+
+async function downloadFullPortfolioPdf(){
+  await ensureTraineeName();
+  const done = completedCount();
+  const pct = Math.round((done/DAYS.length)*100);
+  const lines = [
+    `## Complete Training Portfolio`,
+    `Overall Progress: ${done} of ${DAYS.length} days complete (${pct}%)  ·  Average quiz score: ${avgScore()}%  ·  Practice Lab runs: ${practiceRunsCount()}`,
+    "---",
+    "## Day-by-Day Summary"
+  ];
+  DAYS.forEach(d=>{
+    const prog = state.progress[d.id];
+    const status = prog&&prog.done ? `Completed (${prog.score}%) on ${fmtDate(prog.date)}` : "Not yet completed";
+    lines.push(`Day ${d.id} — ${d.title}: ${status}`);
+  });
+
+  lines.push("---", "## Practice Lab Progress");
+  const pp = state.practiceProgress||{};
+  PRACTICE_TOOLS.forEach(t=>{
+    const rec = pp[t.id];
+    lines.push(`${t.icon} ${t.title} (${t.relates}): ${rec ? `${rec.runs} run${rec.runs===1?"":"s"}, best score ${rec.bestScore}%` : "Not yet attempted"}`);
+  });
+
+  lines.push("---", "## My Notes");
+  if(!state.notes || !state.notes.length){
+    lines.push("(No notes saved yet.)");
+  }else{
+    state.notes.forEach(n=>{
+      lines.push(`## ${n.title || "Untitled Note"}`);
+      lines.push(n.content && n.content.trim() ? n.content.trim() : "(Empty)");
+      lines.push("");
+    });
+  }
+
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Complete Training Portfolio", lines, "LSH_Full_Portfolio");
+}
+window.downloadFullPortfolioPdf = downloadFullPortfolioPdf;
 
 async function downloadDayPdf(dayId){
   await ensureTraineeName();
