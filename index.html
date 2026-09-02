@@ -62,7 +62,7 @@ button{font-family:inherit;cursor:pointer;}
 .topbar{
   background:var(--navy);
   color:#fff;
-  position:sticky;top:0;z-index:40;
+  position:-webkit-sticky;position:sticky;top:0;z-index:40;
   box-shadow:0 2px 16px rgba(0,0,0,.15);
 }
 .topbar-inner{
@@ -452,6 +452,56 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .tool-card:hover .tool-open-btn{background:var(--navy);color:#fff;}
 
 .tool-shell{padding:26px 28px;}
+
+/* dossier builder: instant feedback rows */
+.fact-row{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 8px;
+  border-radius:8px;transition:background .25s ease;
+}
+.fact-row label{flex:1;font-size:13px;color:var(--ink);}
+.fact-row + .fact-row{border-top:1px dashed var(--line);}
+.fact-control{display:flex;align-items:center;gap:8px;flex:0 0 auto;}
+.fact-feedback{width:18px;font-size:14px;text-align:center;}
+.fact-row.fact-correct{background:var(--success-bg);}
+.fact-row.fact-correct .fact-feedback{color:var(--success);}
+.fact-row.fact-wrong{background:var(--danger-bg);}
+.fact-row.fact-wrong .fact-feedback{color:var(--danger);}
+.fact-row.fact-pulse{animation:factPulse .5s ease;}
+@keyframes factPulse{0%{transform:scale(1);}30%{transform:scale(1.015);}100%{transform:scale(1);}}
+
+/* upload dropzone */
+.dropzone{
+  border:2px dashed var(--line);border-radius:14px;padding:32px 20px;text-align:center;cursor:pointer;
+  background:var(--bg);transition:border-color .2s ease, background .2s ease;
+}
+.dropzone:hover, .dropzone.dragover{border-color:var(--orange);background:#FFF7EE;}
+.dz-icon{font-size:32px;margin-bottom:8px;}
+.dz-text{font-size:13.5px;color:var(--ink);margin-bottom:4px;}
+.dz-note{font-size:11.5px;color:var(--ink-soft);}
+.file-preview-card{
+  display:flex;align-items:center;gap:12px;margin-top:12px;padding:12px 14px;
+  background:#fff;border:1px solid var(--line);border-radius:10px;
+  animation:previewIn .25s ease both;
+}
+.fp-icon{font-size:22px;}
+.fp-meta{flex:1;display:flex;flex-direction:column;font-size:12.5px;}
+.fp-meta span{color:var(--ink-soft);font-size:11px;margin-top:2px;}
+
+/* gamified transition overlay */
+.gamified-transition{
+  position:fixed;inset:0;background:rgba(22,24,41,.75);z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  animation:previewIn .3s ease both;
+}
+.gt-card{
+  background:#fff;border-radius:18px;padding:40px 50px;text-align:center;
+  box-shadow:0 30px 70px -20px rgba(0,0,0,.5);
+  animation:gtPop .45s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes gtPop{from{opacity:0;transform:scale(.85);}to{opacity:1;transform:scale(1);}}
+.gt-emoji{font-size:44px;margin-bottom:10px;}
+.gt-title{font-family:'Fraunces';font-size:22px;color:var(--navy);font-weight:700;margin-bottom:6px;}
+.gt-sub{font-size:13px;color:var(--ink-soft);}
 .tool-shell .toolhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;gap:16px;flex-wrap:wrap;}
 .tool-shell h2{margin:0 0 6px;color:var(--navy);font-size:22px;}
 .tool-shell .toolhead p{margin:0;color:var(--ink-soft);font-size:13.5px;max-width:64ch;}
@@ -3747,8 +3797,36 @@ async function syncToLedger(){
     name: state.traineeName || "Unnamed trainee",
     dayProgress: state.progress,
     practiceProgress: state.practiceProgress,
+    submissions: state.submissions||[],
     lastActive: new Date().toISOString()
   });
+}
+
+const SUBMISSION_INLINE_LIMIT = 200*1024; // 200KB — stored in full; larger files record metadata only
+function readFileAsDataURL(file){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = ()=>resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+async function submitFileForReview(toolId, toolTitle, file){
+  const record = {
+    toolId, toolTitle, fileName:file.name, fileType:file.type||"unknown",
+    fileSize:file.size, submittedAt:new Date().toISOString(), dataUrl:null, stored:false
+  };
+  if(file.size<=SUBMISSION_INLINE_LIMIT){
+    try{
+      record.dataUrl = await readFileAsDataURL(file);
+      record.stored = true;
+    }catch(e){ record.stored = false; }
+  }
+  state.submissions = state.submissions||[];
+  state.submissions.push(record);
+  await storeSet("submissions", state.submissions);
+  await syncToLedger();
+  return record;
 }
 
 async function loadAll(){
@@ -3760,6 +3838,8 @@ async function loadAll(){
   state.practiceProgress = pr || {};
   const nt = await storeGet("notes");
   state.notes = nt || [];
+  const sb = await storeGet("submissions");
+  state.submissions = sb || [];
   let tid = await storeGet("trainee-id");
   if(!tid && state.traineeName){
     tid = generateTraineeId(state.traineeName);
@@ -6018,6 +6098,7 @@ function renderAdminRow(rec, day, practice){
 function renderAdminDetail(rec){
   const dp = rec.dayProgress||{};
   const pp = rec.practiceProgress||{};
+  const subs = rec.submissions||[];
   return `
     <div style="padding:6px 18px 20px;background:#F8F9FC;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
@@ -6042,6 +6123,15 @@ function renderAdminDetail(rec){
           }).join("")}
         </div>
       </div>
+      ${subs.length ? `
+      <div style="margin-top:16px;">
+        <div class="sidebar-section-lbl" style="padding-left:0;">Submitted Files (${subs.length})</div>
+        ${subs.map(s=>`
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--line);">
+            <span>📎 ${esc(s.fileName)} <span style="color:var(--ink-soft);">— ${esc(s.toolTitle)} · ${(s.fileSize/1024).toFixed(0)}KB · ${fmtDate(s.submittedAt)}</span></span>
+            ${s.stored && s.dataUrl ? `<a href="${s.dataUrl}" download="${esc(s.fileName)}" class="btn btn-sm btn-ghost">Download</a>` : `<span style="color:var(--ink-soft);font-size:11px;">Too large to store — filename on record only</span>`}
+          </div>`).join("")}
+      </div>` : ""}
     </div>`;
 }
 
@@ -6849,23 +6939,27 @@ window.downloadSocial10Pdf = downloadSocial10Pdf;
 
 /* ============================================================
    DAY 1 SIMULATOR: CLIENT DOSSIER & TRACKER BUILDER
-   Two sections: build a comprehensive dossier for Elias Thorne,
-   then set up his Travel/Inbox/Meeting preference trackers.
+   Three parts: build the dossier, set up preference trackers
+   (both with instant per-fact feedback), then submit completed
+   work through a drag-and-drop upload dropzone.
    ============================================================ */
 
 function initDossier1(body){
-  toolState.d1 = {dossier:{}, tracker:{}};
+  toolState.d1 = {dossier:{}, tracker:{}, file:null};
   body.innerHTML = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Build the Client Dossier</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">You've just been handed a stack of onboarding notes on Elias Thorne, Managing Owner &amp; CEO of Thorne &amp; Partners. Sort each fact into the right dossier section.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">You've just been handed a stack of onboarding notes on Elias Thorne, Managing Owner &amp; CEO of Thorne &amp; Partners. Sort each fact into the right dossier section — you'll know instantly if you got it right.</p>
     <div class="card" style="padding:14px 16px;">
       ${DOSSIER_FACTS.map((f,i)=>`
-        <div class="field-row" style="align-items:flex-start;padding:10px 0;">
-          <label style="flex:1;font-size:13px;">${esc(f.text)}</label>
-          <select onchange="setD1Dossier(${i}, this.value)" style="width:190px;">
-            <option value="">Choose section&hellip;</option>
-            ${DOSSIER_SECTIONS.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("")}
-          </select>
+        <div class="fact-row" id="factrow-d${i}">
+          <label>${esc(f.text)}</label>
+          <div class="fact-control">
+            <select onchange="setD1Dossier(${i}, this.value)" style="width:190px;">
+              <option value="">Choose section&hellip;</option>
+              ${DOSSIER_SECTIONS.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("")}
+            </select>
+            <span class="fact-feedback" id="dfb${i}"></span>
+          </div>
         </div>`).join("")}
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkD1Dossier()">Check Dossier</button>
@@ -6875,23 +6969,58 @@ function initDossier1(body){
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Now turn the operational details into live trackers — sort each into Travel Preferences, Inbox Preferences, or Meeting Rhythms.</p>
     <div class="card" style="padding:14px 16px;">
       ${TRACKER_FACTS.map((f,i)=>`
-        <div class="field-row" style="align-items:flex-start;padding:10px 0;">
-          <label style="flex:1;font-size:13px;">${esc(f.text)}</label>
-          <select onchange="setD1Tracker(${i}, this.value)" style="width:190px;">
-            <option value="">Choose tracker&hellip;</option>
-            ${TRACKER_SECTIONS.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("")}
-          </select>
+        <div class="fact-row" id="factrow-t${i}">
+          <label>${esc(f.text)}</label>
+          <div class="fact-control">
+            <select onchange="setD1Tracker(${i}, this.value)" style="width:190px;">
+              <option value="">Choose tracker&hellip;</option>
+              ${TRACKER_SECTIONS.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("")}
+            </select>
+            <span class="fact-feedback" id="tfb${i}"></span>
+          </div>
         </div>`).join("")}
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkD1Tracker()">Check Trackers</button>
     <div id="d1TrackerResult" style="margin-top:8px;font-size:13px;"></div>
 
-    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Submit Your Completed Work</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Export your dossier and trackers (spreadsheet, doc, or notes file) and upload it here for your trainer to review.</p>
+    <div class="dropzone" id="d1Dropzone"
+         ondragover="event.preventDefault(); document.getElementById('d1Dropzone').classList.add('dragover')"
+         ondragleave="document.getElementById('d1Dropzone').classList.remove('dragover')"
+         ondrop="handleD1Drop(event)"
+         onclick="document.getElementById('d1FileInput').click()">
+      <div class="dz-icon">📤</div>
+      <div class="dz-text"><b>Drag &amp; drop your file here</b>, or click to browse</div>
+      <div class="dz-note">Files under 200KB are stored in full for your trainer to open; larger files are still logged by name.</div>
+      <input type="file" id="d1FileInput" style="display:none;" onchange="handleD1FileSelect(event)">
+    </div>
+    <div id="d1FilePreview"></div>
+    <button class="btn btn-navy" style="margin-top:14px;" id="d1SubmitBtn" onclick="submitD1Work()" disabled>Submit for Review</button>
+
+    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
+    <div id="d1TransitionOverlay"></div>
   `;
 }
 
-function setD1Dossier(i,v){ toolState.d1.dossier[i]=v; }
+/* ---------- Part A: dossier, with instant feedback ---------- */
+function setD1Dossier(i,v){
+  toolState.d1.dossier[i]=v;
+  markFactFeedback(`factrow-d${i}`, `dfb${i}`, v, DOSSIER_FACTS[i].section);
+}
 window.setD1Dossier = setD1Dossier;
+function markFactFeedback(rowId, fbId, chosen, correct){
+  const row = document.getElementById(rowId);
+  const fb = document.getElementById(fbId);
+  if(!row || !fb) return;
+  row.classList.remove("fact-correct","fact-wrong");
+  if(!chosen){ fb.textContent=""; return; }
+  const isRight = chosen===correct;
+  row.classList.add(isRight?"fact-correct":"fact-wrong");
+  fb.textContent = isRight ? "✅" : "✗";
+  // brief pulse animation trigger
+  row.classList.remove("fact-pulse"); void row.offsetWidth; row.classList.add("fact-pulse");
+}
 async function checkD1Dossier(){
   const answered = DOSSIER_FACTS.filter((_,i)=>toolState.d1.dossier[i]).length;
   if(answered<DOSSIER_FACTS.length){ toast(`Sort all ${DOSSIER_FACTS.length} facts first.`); return; }
@@ -6901,10 +7030,15 @@ async function checkD1Dossier(){
   document.getElementById("d1DossierResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${DOSSIER_FACTS.length} correct (${score}%)</b> — a dossier separates firm/role context from personal context, standing procedural rules, and personality-driven quirks, so anyone picking up the account can find what they need fast.`;
   toolState.d1.dossierScore = score;
   await bumpPracticeProgress("dossier1", score);
+  checkD1AllDone();
 }
 window.checkD1Dossier = checkD1Dossier;
 
-function setD1Tracker(i,v){ toolState.d1.tracker[i]=v; }
+/* ---------- Part B: trackers, with instant feedback ---------- */
+function setD1Tracker(i,v){
+  toolState.d1.tracker[i]=v;
+  markFactFeedback(`factrow-t${i}`, `tfb${i}`, v, TRACKER_FACTS[i].section);
+}
 window.setD1Tracker = setD1Tracker;
 async function checkD1Tracker(){
   const answered = TRACKER_FACTS.filter((_,i)=>toolState.d1.tracker[i]).length;
@@ -6926,8 +7060,80 @@ async function checkD1Tracker(){
   toolState.d1.trackerScore = score;
   await bumpPracticeProgress("dossier1", score);
   if(score===100) burstConfetti();
+  checkD1AllDone();
 }
 window.checkD1Tracker = checkD1Tracker;
+function checkD1AllDone(){
+  if(toolState.d1.dossierScore!==undefined && toolState.d1.trackerScore!==undefined){
+    const btn = document.getElementById("d1SubmitBtn");
+    if(btn && toolState.d1.file) btn.disabled = false;
+  }
+}
+
+/* ---------- Part C: upload dropzone ---------- */
+function handleD1Drop(ev){
+  ev.preventDefault();
+  document.getElementById("d1Dropzone").classList.remove("dragover");
+  const file = ev.dataTransfer.files && ev.dataTransfer.files[0];
+  if(file) setD1File(file);
+}
+window.handleD1Drop = handleD1Drop;
+function handleD1FileSelect(ev){
+  const file = ev.target.files && ev.target.files[0];
+  if(file) setD1File(file);
+}
+window.handleD1FileSelect = handleD1FileSelect;
+function setD1File(file){
+  toolState.d1.file = file;
+  const sizeKb = (file.size/1024).toFixed(0);
+  const isImage = file.type.startsWith("image/");
+  document.getElementById("d1FilePreview").innerHTML = `
+    <div class="file-preview-card">
+      ${isImage ? `<span class="fp-icon">🖼️</span>` : `<span class="fp-icon">📄</span>`}
+      <div class="fp-meta"><b>${esc(file.name)}</b><span>${sizeKb}KB &middot; ${esc(file.type||"unknown type")}</span></div>
+      <button class="btn btn-sm btn-ghost" onclick="clearD1File()">Remove</button>
+    </div>`;
+  const btn = document.getElementById("d1SubmitBtn");
+  if(toolState.d1.dossierScore!==undefined && toolState.d1.trackerScore!==undefined){
+    btn.disabled = false;
+  }else{
+    toast("File attached — finish checking Part A and B before submitting.");
+  }
+}
+function clearD1File(){
+  toolState.d1.file = null;
+  document.getElementById("d1FilePreview").innerHTML = "";
+  document.getElementById("d1SubmitBtn").disabled = true;
+  document.getElementById("d1FileInput").value = "";
+}
+window.clearD1File = clearD1File;
+
+async function submitD1Work(){
+  if(!toolState.d1.file){ toast("Attach a file first."); return; }
+  const btn = document.getElementById("d1SubmitBtn");
+  btn.disabled = true; btn.textContent = "Submitting…";
+  await ensureTraineeName();
+  await submitFileForReview("dossier1", "Client Dossier & Tracker Builder", toolState.d1.file);
+  showD1Transition();
+}
+window.submitD1Work = submitD1Work;
+
+function showD1Transition(){
+  const overlay = document.getElementById("d1TransitionOverlay");
+  overlay.innerHTML = `
+    <div class="gamified-transition">
+      <div class="gt-card">
+        <div class="gt-emoji">🎉</div>
+        <div class="gt-title">Submitted!</div>
+        <div class="gt-sub">Taking you to Day 1's Knowledge Check…</div>
+      </div>
+    </div>`;
+  burstConfetti();
+  setTimeout(()=>{
+    goto("day", 1);
+    setTimeout(()=>{ scrollToKnowledgeCheck(); }, 350);
+  }, 1400);
+}
 
 async function downloadDossier1Pdf(){
   await ensureTraineeName();
@@ -6941,6 +7147,7 @@ async function downloadDossier1Pdf(){
     lines.push(`${f.text}`);
     lines.push(`   Your tracker: ${toolState.d1.tracker[i]||"(not answered)"}  (correct: ${f.section})`);
   });
+  if(toolState.d1.file) lines.push("---", `## C. Submitted File`, toolState.d1.file.name);
   buildAndSavePdf("LSH EA / PA Upskill Program", "Client Dossier & Tracker Builder — Results", lines, "LSH_Dossier_Tracker");
 }
 window.downloadDossier1Pdf = downloadDossier1Pdf;
