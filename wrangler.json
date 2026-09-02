@@ -1,2 +1,7 @@
-// wrangler.json
-"name": "ea-pa-training",
+{
+  "name": "ea-pa-training",
+  "compatibility_date": "2024-09-23",
+  "assets": {
+    "directory": "."
+  }
+}
