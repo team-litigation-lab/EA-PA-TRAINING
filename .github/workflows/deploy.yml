@@ -1,14 +1,19 @@
-  - name: Setup Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: '18'
+- name: Debug wrangler.json
+  run: |
+    echo "=== current working dir ==="
+    pwd
+    echo "=== listing top-level files ==="
+    ls -la
+    echo "=== show wrangler.json ==="
+    if [ -f wrangler.json ]; then cat wrangler.json; else echo "no wrangler.json"; fi
+    echo "=== find other wrangler.* files (maxdepth 3) ==="
+    find . -maxdepth 3 -type f -iname 'wrangler.*' || true
+    echo "=== git tracked wrangler files ==="
+    git ls-files | grep -i wrangler || true
 
-  - name: Install dependencies (if package.json exists)
-    run: |
-      if [ -f package.json ]; then npm ci; fi
-
-  - name: Deploy with Wrangler (explicit assets directory)
-    env:
-      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-    run: |
-      npx --yes wrangler deploy --assets=./
+- name: Deploy with Wrangler (explicit assets directory)
+  env:
+    CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+  run: |
+    # Use the explicit assets flag so Wrangler doesn't require a Worker entrypoint
+    npx --yes wrangler deploy --assets=./
