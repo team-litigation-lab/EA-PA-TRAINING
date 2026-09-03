@@ -36,6 +36,7 @@ body{
   color:var(--ink);
   font-family:'Inter',system-ui,sans-serif;
   font-weight:700;
+  font-size:17px;
   -webkit-font-smoothing:antialiased;
   line-height:1.5;
 }
@@ -277,11 +278,11 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   color:var(--orange);background:var(--navy);padding:5px 12px;border-radius:14px;margin:26px 0 10px;
 }
 .lesson-grid>.topic-separator:first-child{margin-top:0;}
-.lesson-card h4{margin:0 0 10px;font-size:15.5px;color:var(--navy);display:flex;gap:10px;align-items:baseline;}
-.lesson-card h4 .lnum{font-family:'IBM Plex Mono';font-size:12px;color:var(--orange-deep);}
+.lesson-card h4{margin:0 0 10px;font-size:18px;color:var(--navy);display:flex;gap:10px;align-items:baseline;}
+.lesson-card h4 .lnum{font-family:'IBM Plex Mono';font-size:13px;color:var(--orange-deep);}
 .lesson-card ul{margin:0;padding:0;list-style:none;}
 .lesson-card li{
-  font-size:13.6px;color:#37394A;margin-bottom:10px;padding-left:26px;position:relative;line-height:1.5;
+  font-size:15.5px;color:#37394A;margin-bottom:10px;padding-left:26px;position:relative;line-height:1.55;
 }
 .lesson-card li:last-child{margin-bottom:0;}
 .lesson-card li::before{
@@ -483,6 +484,16 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .client-header-text h2{margin:0 0 8px;font-family:'Fraunces';font-size:32px;color:#fff;}
 .client-header-text p{margin:0 0 10px;font-size:16px;color:#C9CCE6;}
 .client-tagline{font-size:14px;font-style:italic;color:var(--orange-soft);font-weight:600;}
+
+.client-intro-banner{
+  background:linear-gradient(135deg, #FFF3E4 0%, #FDEBD8 100%);border:1px solid var(--orange-soft);
+  border-radius:14px;padding:24px 28px;margin-bottom:24px;
+}
+.cib-tag{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);letter-spacing:.05em;margin-bottom:10px;}
+.client-intro-banner h2{font-family:'Fraunces';font-size:20px;color:var(--navy);margin:0 0 12px;}
+.client-intro-banner p{font-size:13.8px;color:#3A2F22;line-height:1.65;margin:0 0 10px;}
+.client-intro-banner p:last-child{margin-bottom:0;}
+.client-intro-banner b{color:var(--orange-deep);}
 .profile-section h3{margin:0 0 10px;font-size:14.5px;color:var(--navy);font-family:'Fraunces';}
 .profile-section ul{margin:0;padding-left:18px;}
 .profile-section li{font-size:12.5px;color:#37394A;margin-bottom:7px;line-height:1.45;}
@@ -874,6 +885,32 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   color:var(--navy);background:#F6F7FB;border-bottom:1px solid var(--line);
 }
 .week-col-body{position:relative;background:repeating-linear-gradient(180deg,transparent,transparent 49px,var(--line) 50px);}
+.cal-drop-ghost{
+  position:absolute;left:2px;right:2px;background:rgba(219,132,55,.28);border:2px dashed var(--orange);
+  border-radius:6px;pointer-events:none;z-index:5;display:flex;align-items:center;justify-content:center;
+  font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);
+}
+
+.video-placeholder{
+  background:linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);border-radius:16px;
+  padding:60px 40px;text-align:center;color:#fff;
+}
+.vp-play{
+  width:74px;height:74px;border-radius:50%;background:var(--orange);color:var(--navy-deep);
+  display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 18px;
+  box-shadow:0 10px 26px -6px rgba(219,132,55,.5);
+}
+.vp-label{font-family:'IBM Plex Mono';font-size:11.5px;font-weight:700;color:var(--orange-soft);letter-spacing:.08em;margin-bottom:10px;}
+.vp-title{font-family:'Fraunces';font-size:22px;font-weight:700;margin-bottom:14px;}
+.vp-note{font-size:13px;color:#C9CCE6;max-width:52ch;margin:0 auto;line-height:1.6;}
+
+.meet-client-card{padding:26px 28px;}
+.mc-tag{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);letter-spacing:.05em;margin-bottom:10px;}
+.meet-client-card h3{font-family:'Fraunces';font-size:21px;color:var(--navy);margin:0 0 12px;}
+.meet-client-card p{font-size:13.8px;color:var(--ink);line-height:1.6;margin:0 0 10px;}
+.meet-client-card ul{margin:0 0 12px;padding-left:20px;}
+.meet-client-card li{font-size:13.5px;color:var(--ink);line-height:1.6;margin-bottom:6px;}
+.mc-note{font-style:italic;color:var(--ink-soft)!important;font-size:12.8px!important;}
 
 .decision-row{display:grid;grid-template-columns:1fr 200px;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line);}
 .decision-row:first-child{border-top:none;}
@@ -3682,9 +3719,9 @@ const DAYS = [DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8, DAY9, DAY10];
 const PRACTICE_TOOLS = [
   {id:"dossier1", icon:"🗂", title:"Client Dossier & Tracker Builder", relates:"Day 1",
    desc:"Build a comprehensive client dossier and set up Travel and Inbox Preference trackers for Elias Thorne — sorting real profile facts into the right sections."},
-  {id:"calendar", icon:"◫", title:"Legal Calendar Conflict Resolver", relates:"Day 2",
+  {id:"calendar", icon:"◫", title:"Legal Calendar Conflict Resolver", relates:"Day 3",
    desc:"A full attorney's week with overlapping court dates, depositions, and client meetings — drag blocks to new times, recolor them, resolve every conflict, then write the AI prompt that would turn it into Elias's BLUF-style daily briefing."},
-  {id:"travel", icon:"✈", title:"Travel Itinerary Planner", relates:"Day 3",
+  {id:"travel", icon:"✈", title:"Travel Itinerary Planner", relates:"Day 2",
    desc:"Build a personal travel itinerary for Elias Thorne from scratch — a family trip to Spain — applying his known travel preferences as you go."},
   {id:"emailsim", icon:"📨", title:"Email Management", relates:"Day 4",
    desc:"A real inbox — build your own filing system with labels and sub-labels, draft real replies to client emails, and catch a hidden phishing attempt. Evaluated on filing accuracy, tone match, professionalism, and security awareness."},
@@ -4388,6 +4425,15 @@ function renderFacilitatorGuide(){
 function renderClientProfile(){
   return `
     <h1 style="color:var(--navy);font-size:28px;margin:0 0 22px;">Client Profile</h1>
+
+    <div class="client-intro-banner">
+      <div class="cib-tag">📌 Read This First</div>
+      <h2>Your Client for All 10 Days</h2>
+      <p>Every exercise in this program — every dossier, every calendar, every email, every crisis scenario — is built around <b>one single client: Elias Thorne</b>. This isn't a new persona introduced each day; it's the same person, the same firm, and the same standing rules from Day 1 straight through to Day 10.</p>
+      <p>That's deliberate. In a real role, your value compounds — the calendar rules you learn early inform how you triage an inbox later, and the preferences you document up front are what make later exercises gradeable on real accuracy rather than guesswork. Treat this page as your standing reference: come back to it any time you need to check a fact, a preference, or a quirk before drafting a response.</p>
+      <p>If a later exercise ever seems to contradict something on this page, that's worth raising with your trainer — it's exactly the kind of discrepancy a real EA would catch.</p>
+    </div>
+
     <div class="card client-header-card">
       ${clientAvatarSvg()}
       <div class="client-header-text">
@@ -4847,25 +4893,77 @@ window.backToSlidesFromKnowledgeCheck = backToSlidesFromKnowledgeCheck;
 /* ---------- unified day slideshow: Task Overview -> Topics -> Practice Lab -> Discussion -> Knowledge Check ---------- */
 function buildDaySlides(d){
   const slides = [];
+  slides.push({type:"video"});
   if(d.taskOverview) slides.push({type:"taskOverview"});
+  if(d.id===1) slides.push({type:"meetClient"});
   d.lessons.forEach((l,i)=> slides.push({type:"topic", lessonIndex:i}));
   if(relatedTools(d.id).length) slides.push({type:"practiceLab"});
   if(d.discussionQuestion && state.isAdmin) slides.push({type:"discussion"});
   return slides;
 }
 function daySlideTitle(d, slide){
+  if(slide.type==="video") return "Video Training";
   if(slide.type==="taskOverview") return "Legal EA Task Overview";
+  if(slide.type==="meetClient") return "Meet Elias Thorne — Live Q&A";
   if(slide.type==="topic") return d.lessons[slide.lessonIndex].h;
   if(slide.type==="practiceLab") return "Practice Lab";
   if(slide.type==="discussion") return "Trainer Checkpoint";
   return "";
 }
 function renderDaySlideContent(d, slide, idx){
+  if(slide.type==="video") return renderVideoPlaceholder(d);
   if(slide.type==="taskOverview") return renderTaskOverview(d.taskOverview);
+  if(slide.type==="meetClient") return renderMeetClientSlide();
   if(slide.type==="topic") return renderLessonCard(d.lessons[slide.lessonIndex], slide.lessonIndex, d) + renderQuickChecksAfter(d, slide.lessonIndex);
   if(slide.type==="practiceLab") return renderPracticeLabSlide(d);
   if(slide.type==="discussion") return renderDiscussionSlide(d);
   return "";
+}
+function renderMeetClientSlide(){
+  return `
+    <div class="card meet-client-card">
+      <div class="mc-tag">🎭 Live Roleplay — Introductory Q&amp;A</div>
+      <h3>Meet Elias Thorne</h3>
+      <p>Before you open a single document about him, your trainer is going to step into the role of Elias Thorne for a few minutes — live, in character. This is your only chance in the entire program to ask him something directly, before you start working from documentation alone.</p>
+      <p>Ask him the way you'd ask a new executive on your actual first day. A few places to start, if you're not sure:</p>
+      <ul>
+        <li>How does he prefer to communicate — and how will you know if you've gotten it wrong?</li>
+        <li>What does he expect from an assistant that he wouldn't necessarily write down anywhere?</li>
+        <li>What's the one thing that would lose his trust fastest?</li>
+        <li>What does a normal week actually look like for him?</li>
+      </ul>
+      <p class="mc-note">There's no dossier open during this exercise — just listen, and take mental notes. You'll build the real dossier right after this.</p>
+    </div>
+    ${state.isAdmin ? renderMeetClientTrainerGuide() : ""}
+  `;
+}
+function renderMeetClientTrainerGuide(){
+  return `
+    <div class="trainer-checkpoint">
+      <div class="tc-tag">🧑‍🏫 Trainer Guide — Running This Roleplay</div>
+      <p><b>Opening line (say this in character, cold, no preamble):</b><br>"Alright — before we get into any of the formal stuff, you've got a few minutes to ask me whatever you actually want to know. What do you need to know before we start working together?"</p>
+      <p><b>Tone to hold throughout:</b> blunt, direct, unemotional. He does not soften bad news, does not over-explain, and does not fill silence. Short answers are correct — resist the urge to over-elaborate on his behalf. He also doesn't micromanage; if a question is really "you'll figure that out," say so plainly rather than inventing a rule that doesn't exist.</p>
+      <p><b>Sample Q&amp;A pairs, ready to use or adapt:</b></p>
+      <ul>
+        <li><i>"What's your biggest pet peeve with assistants?"</i> → "Being told about a problem after it's already blown up. If you see something coming, I want to hear about it before it happens, not after."</li>
+        <li><i>"How do you like to be updated on things?"</i> → "Short. Whatever it is, lead with what I actually need to know and what you need from me. I don't need the whole story to get there."</li>
+        <li><i>"What happens if you're unreachable and something urgent comes up?"</i> → "Then you make the call that protects the business, and you tell me the second I'm back — not two hours later because you were waiting for the 'right time.'"</li>
+        <li><i>"Is there anything you just won't compromise on?"</i> → "A few things. You'll learn what they are. Break one and you won't need me to tell you twice."</li>
+      </ul>
+      <p><b>If a trainee asks something not covered above or in the dossier:</b> improvise, but stay consistent with the personality — blunt and unsentimental, never cruel, never chatty. A good fallback: "That's not something I'd have a rule for — use your judgment, and if you get it wrong once, we'll fix it."</p>
+      <p><b>Wrapping up:</b> after 5–8 minutes (or when questions run dry), drop the character explicitly — "Okay, that's Elias — now let's build the real dossier" — and move on to the next slide. Don't let the roleplay bleed into the formal content that follows.</p>
+    </div>
+  `;
+}
+function renderVideoPlaceholder(d){
+  return `
+    <div class="video-placeholder">
+      <div class="vp-play">▶</div>
+      <div class="vp-label">VIDEO TRAINING</div>
+      <div class="vp-title">Day ${d.id}: ${esc(d.title)}</div>
+      <p class="vp-note">Recorded video training for this day goes here. This placeholder marks where a video module will be embedded — it's kept entirely separate from the reading topics that follow so video and text content never blend into one cluttered screen.</p>
+    </div>
+  `;
 }
 function renderPracticeLabSlide(d){
   const tools = relatedTools(d.id);
@@ -5442,9 +5540,12 @@ function renderCalendarBody(body){
         ${hours.map(h=>`<div class="week-hour" style="height:${CAL_PX_PER_HR}px;">${h>12?h-12:h}${h>=12?'PM':'AM'}</div>`).join("")}
       </div>
       ${DAY_ORDER.map(day=>`
-        <div class="week-col" ondragover="event.preventDefault()" ondrop="calDrop(event,'${day}')">
+        <div class="week-col" ondragover="calDragOver(event,'${day}')" ondragleave="calDragLeave(event,'${day}')" ondrop="calDrop(event,'${day}')">
           <div class="week-day-header">${day}</div>
-          <div class="week-col-body" style="height:${colH}px;">${colFor(day)}</div>
+          <div class="week-col-body" id="colBody-${cssId(day)}" style="height:${colH}px;position:relative;">
+            <div class="cal-drop-ghost" id="ghost-${cssId(day)}" style="display:none;"></div>
+            ${colFor(day)}
+          </div>
         </div>`).join("")}
     </div>
     <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">Remaining Conflicts</h3>
@@ -5481,8 +5582,41 @@ function toHex(c){
 }
 function calDragStart(ev, idx){
   ev.dataTransfer.setData("text/plain", String(idx));
+  toolState.calDraggingIdx = idx;
 }
 window.calDragStart = calDragStart;
+
+function calSnapTime(ev, day){
+  const colBody = document.getElementById("colBody-"+cssId(day));
+  if(!colBody) return null;
+  const rect = colBody.getBoundingClientRect();
+  const y = ev.clientY - rect.top;
+  let start = CAL_DAY_START + y/CAL_PX_PER_HR;
+  start = Math.round(start*2)/2;
+  const idx = toolState.calDraggingIdx;
+  const target = idx!==undefined ? calMergedEvents().find(e=>e.idx===idx) : null;
+  const dur = target ? target.e - target.s : 1;
+  start = Math.max(CAL_DAY_START, Math.min(start, CAL_DAY_END-dur));
+  return {start, dur};
+}
+function calDragOver(ev, day){
+  ev.preventDefault();
+  const snap = calSnapTime(ev, day);
+  if(!snap) return;
+  const ghost = document.getElementById("ghost-"+cssId(day));
+  if(!ghost) return;
+  ghost.style.display = "block";
+  ghost.style.top = ((snap.start-CAL_DAY_START)*CAL_PX_PER_HR)+"px";
+  ghost.style.height = Math.max(snap.dur*CAL_PX_PER_HR, 30)+"px";
+  ghost.textContent = fmtHr12(snap.start);
+}
+window.calDragOver = calDragOver;
+function calDragLeave(ev, day){
+  const ghost = document.getElementById("ghost-"+cssId(day));
+  if(ghost) ghost.style.display = "none";
+}
+window.calDragLeave = calDragLeave;
+
 async function applyCalMove(idx, day, newStart){
   const target = calMergedEvents().find(e=>e.idx===idx);
   if(!target) return;
@@ -5505,11 +5639,10 @@ async function applyCalMove(idx, day, newStart){
 async function calDrop(ev, day){
   ev.preventDefault();
   const idx = Number(ev.dataTransfer.getData("text/plain"));
-  const colBody = ev.currentTarget.querySelector(".week-col-body");
-  const rect = colBody.getBoundingClientRect();
-  const y = ev.clientY - rect.top;
-  const newStart = CAL_DAY_START + y/CAL_PX_PER_HR;
-  await applyCalMove(idx, day, newStart);
+  const snap = calSnapTime(ev, day);
+  calDragLeave(ev, day);
+  if(!snap) return;
+  await applyCalMove(idx, day, snap.start);
 }
 window.calDrop = calDrop;
 
