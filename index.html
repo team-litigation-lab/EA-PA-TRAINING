@@ -156,22 +156,10 @@ button{font-family:inherit;cursor:pointer;}
 .module-body .mnum{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--orange-deep);font-weight:700;letter-spacing:.04em;margin-bottom:4px;}
 .module-body p{font-size:13px;color:var(--ink);line-height:1.4;margin:0;flex:1;}
 .module-body p b{color:var(--navy);}
-.module-toggle{
-  border:1px solid var(--line);background:var(--bg);color:var(--navy);font-size:12.5px;font-weight:600;
-  display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
-  margin:0 16px 14px;padding:9px 14px;border-radius:9px;transition:background .15s ease, border-color .15s ease;
-}
-.module-toggle:hover{background:#fff;border-color:var(--navy-soft);}
-.module-toggle .chev{display:inline-block;transition:transform .2s ease;font-size:13px;}
-.module-toggle.expanded .chev{transform:rotate(180deg);}
-.module-preview{
-  padding:0 16px 14px;font-size:12px;color:var(--ink-soft);border-top:1px dashed var(--line);margin-top:4px;
-  animation:previewIn .28s ease both;
+.module-start-btn{
+  margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:10px;font-weight:700;
 }
 @keyframes previewIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
-.module-preview ul{margin:8px 0;padding-left:16px;}
-.module-preview li{margin-bottom:4px;}
-.module-preview .btn{margin-top:4px;}
 
 .nav{display:flex;gap:4px;background:rgba(255,255,255,.06);padding:4px;border-radius:10px;flex-wrap:wrap;flex:0 1 auto;}
 .nav button{
@@ -269,6 +257,13 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .day-head .eyebrow{color:var(--orange-deep);}
 .day-head h1{color:var(--navy);font-size:28px;margin:6px 0 10px;}
 .day-head p{color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0;}
+.day-head-compact{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:14px;
+  border-bottom:1px solid var(--line);
+}
+.dhc-eyebrow{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);letter-spacing:.04em;}
+.dhc-title{font-family:'Fraunces';font-size:16px;font-weight:600;color:var(--navy);flex:1;min-width:0;}
+.btn-xs{padding:5px 10px;font-size:11.5px;}
 .back-link{
   display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
   color:var(--ink-soft);margin-bottom:18px;
@@ -399,6 +394,12 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .discussion-tag{font-family:'IBM Plex Mono';font-size:11.5px;color:var(--orange-soft);letter-spacing:.04em;margin-bottom:10px;}
 .discussion-q{font-family:'Fraunces';font-size:17px;line-height:1.4;margin:0 0 10px;}
 .discussion-note{font-size:12px;color:#B9BEDA;margin:0;}
+
+.trainer-checkpoint{
+  margin-top:16px;padding:16px 18px;background:#F6F7FB;border:1.5px dashed var(--navy-soft);border-radius:12px;
+}
+.tc-tag{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.04em;margin-bottom:8px;}
+.trainer-checkpoint p{font-size:12.8px;color:#37394A;margin:0;line-height:1.5;}
 
 /* ---------- quiz ---------- */
 .quiz-card{padding:22px 24px;margin-bottom:14px;}
@@ -4431,7 +4432,6 @@ function moduleCard(d){
   const unlocked = dayUnlocked(d.id);
   const status = prog&&prog.done ? "done" : (unlocked?"open":"locked");
   const icon = DAY_ICONS[d.id] || "📘";
-  const expanded = state.expandedModule===d.id;
   return `
   <div class="module-card" id="module-${d.id}">
     <div class="module-banner">
@@ -4442,23 +4442,10 @@ function moduleCard(d){
       <div class="mnum">DAY ${d.id} OF 10${status==='done'?' &middot; COMPLETED':''}</div>
       <p><b>${esc(d.title)}.</b> ${esc(d.theme)}</p>
     </div>
-    <button class="module-toggle ${expanded?'expanded':''}" onclick="toggleModule(${d.id})" title="Preview topics">
-      ${expanded?'Hide Topics':'Preview Topics'} <span class="chev">⌄</span>
-    </button>
-    ${expanded ? `
-    <div class="module-preview">
-      <ul>${d.lessons.slice(0,4).map(l=>`<li>${esc(l.h)}</li>`).join("")}${d.lessons.length>4?`<li>+ ${d.lessons.length-4} more topic${d.lessons.length-4>1?'s':''}</li>`:''}</ul>
-      <button class="btn btn-sm ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} style="width:100%;justify-content:center;" onclick="goto('day',${d.id})">${status==='done'?'Review Day '+d.id:'Open Day '+d.id}</button>
-    </div>` : ""}
+    <button class="btn module-start-btn ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} onclick="goto('day',${d.id})">${status==='done'?'Review':'Start'}</button>
   </div>`;
 }
-function toggleModule(id){
-  state.expandedModule = state.expandedModule===id ? null : id;
-  render();
-}
-window.toggleModule = toggleModule;
 function scrollToModule(id){
-  state.expandedModule = id;
   render();
   setTimeout(()=>{
     const el = document.getElementById("module-"+id);
@@ -4504,7 +4491,7 @@ function dayRow(d){
 /* ---------- router ---------- */
 function goto(view, id){
   state.view=view;
-  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; state.slideInterstitial=null; }
+  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; }
   if(view==="tool"){ state.toolId=id; }
   window.scrollTo({top:0,behavior:"smooth"});
   render();
@@ -4701,37 +4688,92 @@ function renderDay(id){
       </div>`;
   }
   const prog = state.progress[id];
-  return `
+  const compactHead = `
     <a class="back-link" onclick="goto('dashboard')">&larr; Back to roadmap</a>
-    <div class="day-head">
-      <p class="eyebrow">Day ${d.id} of 10</p>
-      <h1>${esc(d.title)}</h1>
-      <p>${esc(d.objective)}</p>
-      <button class="btn btn-ghost btn-sm" style="margin-top:12px;" onclick="downloadDayPdf(${d.id})">⬇ Download Day Summary (PDF)</button>
+    <div class="day-head-compact">
+      <span class="dhc-eyebrow">Day ${d.id} of 10</span>
+      <span class="dhc-title">${esc(d.title)}</span>
+      <button class="btn btn-ghost btn-xs" onclick="downloadDayPdf(${d.id})">⬇ PDF</button>
+    </div>`;
+
+  if(state.dayViewMode==="knowledgeCheck"){
+    return `
+      ${compactHead}
+      <h2 class="section-title" id="knowledgeCheckAnchor">Knowledge Check <span class="tag">${d.quiz.length} QUESTIONS</span></h2>
+      ${prog&&prog.done ? `<div class="card" style="padding:16px 20px;margin-bottom:16px;font-size:13.5px;color:var(--ink-soft);">You already passed this check on ${fmtDate(prog.date)} with a score of <b style="color:var(--navy);">${prog.score}%</b>. You can retake it any time — your best score is kept.</div>`:""}
+      <div id="quizWrap">${renderQuiz(d)}</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:16px;" onclick="backToSlidesFromKnowledgeCheck()">&larr; Back to lessons</button>
+    `;
+  }
+
+  return `
+    ${compactHead}
+    ${renderDaySlideshow(d)}
+  `;
+}
+function backToSlidesFromKnowledgeCheck(){
+  state.dayViewMode = "slides";
+  const d = DAYS.find(x=>x.id===state.dayId);
+  state.lessonSlide = buildDaySlides(d).length-1;
+  render();
+}
+window.backToSlidesFromKnowledgeCheck = backToSlidesFromKnowledgeCheck;
+
+/* ---------- unified day slideshow: Task Overview -> Topics -> Practice Lab -> Discussion -> Knowledge Check ---------- */
+function buildDaySlides(d){
+  const slides = [];
+  if(d.taskOverview) slides.push({type:"taskOverview"});
+  d.lessons.forEach((l,i)=> slides.push({type:"topic", lessonIndex:i}));
+  if(relatedTools(d.id).length) slides.push({type:"practiceLab"});
+  if(d.discussionQuestion) slides.push({type:"discussion"});
+  return slides;
+}
+function daySlideTitle(d, slide){
+  if(slide.type==="taskOverview") return "Legal EA Task Overview";
+  if(slide.type==="topic") return d.lessons[slide.lessonIndex].h;
+  if(slide.type==="practiceLab") return "Practice Lab";
+  if(slide.type==="discussion") return "Trainer Checkpoint";
+  return "";
+}
+function renderDaySlideContent(d, slide, idx){
+  if(slide.type==="taskOverview") return renderTaskOverview(d.taskOverview);
+  if(slide.type==="topic") return renderLessonCard(d.lessons[slide.lessonIndex], slide.lessonIndex, d) + renderQuickChecksAfter(d, slide.lessonIndex);
+  if(slide.type==="practiceLab") return renderPracticeLabSlide(d);
+  if(slide.type==="discussion") return renderDiscussionSlide(d);
+  return "";
+}
+function renderPracticeLabSlide(d){
+  const tools = relatedTools(d.id);
+  return `
+    <div class="card" style="padding:20px 22px;background:#FFFBF3;border-color:var(--orange-soft);">
+      <b style="color:var(--navy);font-size:14px;">⚖ Practice What You Just Learned</b>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+        ${tools.map(t=>`
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+            <div><b style="font-size:13.5px;color:var(--ink);">${t.icon} ${esc(t.title)}</b><p style="margin:2px 0 0;font-size:12.8px;color:var(--ink-soft);">${esc(t.desc)}</p></div>
+            <button class="btn btn-sm btn-navy" onclick="goto('tool','${t.id}')">Open Tool</button>
+          </div>`).join("")}
+      </div>
     </div>
-
-    ${d.taskOverview?renderTaskOverview(d.taskOverview):""}
-
-    <h2 class="section-title">Lessons <span class="tag">${d.lessons.length} TOPICS</span></h2>
-    ${renderLessonSlideshow(d)}
-
-    ${renderRelatedTools(d.id)}
-
-    ${d.discussionQuestion ? `
+    <div class="trainer-checkpoint">
+      <div class="tc-tag">🧑‍🏫 Trainer Checkpoint</div>
+      <p>Once the exercise above is finished, pause here for a live debrief with your trainer — walk through what you did, why, and where your judgment differed from the model answer. This is where the real learning happens, not just in the exercise itself.</p>
+    </div>
+  `;
+}
+function renderDiscussionSlide(d){
+  return `
     <div class="card discussion-card">
       <div class="discussion-tag">💬 For Discussion</div>
       <p class="discussion-q">${esc(d.discussionQuestion)}</p>
-      <p class="discussion-note">Use this in a live cohort session, an async discussion board, or as a personal reflection prompt before moving on.</p>
-    </div>` : ""}
-
-    <h2 class="section-title" id="knowledgeCheckAnchor">Knowledge Check <span class="tag">${d.quiz.length} QUESTIONS</span></h2>
-    ${prog&&prog.done ? `<div class="card" style="padding:16px 20px;margin-bottom:16px;font-size:13.5px;color:var(--ink-soft);">You already passed this check on ${fmtDate(prog.date)} with a score of <b style="color:var(--navy);">${prog.score}%</b>. You can retake it any time — your best score is kept.</div>`:""}
-    <div id="quizWrap">${renderQuiz(d)}</div>
+      <p class="discussion-note">Trainer Checkpoint: pause the self-paced flow here. Raise this question live with your trainer or cohort before continuing — this isn't a rhetorical prompt, it's meant to be actually discussed out loud.</p>
+    </div>
   `;
 }
 
-function renderLessonSlideshow(d){
-  const total = d.lessons.length;
+function renderDaySlideshow(d){
+  const slides = buildDaySlides(d);
+  const total = slides.length;
   const idx = Math.min(state.lessonSlide||0, total-1);
   const isLast = idx===total-1;
 
@@ -4739,33 +4781,32 @@ function renderLessonSlideshow(d){
     const it = state.slideInterstitial;
     return `
       <div class="slide-dots">
-        ${d.lessons.map((_,i)=>`<span class="slide-dot ${i===idx?'active':i<idx?'visited':''}"></span>`).join("")}
+        ${slides.map((_,i)=>`<span class="slide-dot ${i===idx?'active':i<idx?'visited':''}"></span>`).join("")}
       </div>
       <div class="slide-interstitial">
         <div class="si-icon">${it.toKnowledgeCheck?"📝":"→"}</div>
-        <div class="si-label">${it.toKnowledgeCheck?"Wrapping up the lessons":"Next Topic"}</div>
+        <div class="si-label">${it.toKnowledgeCheck?"Wrapping up":"Up Next"}</div>
         <div class="si-title">${esc(it.title)}</div>
       </div>
     `;
   }
 
-  const l = d.lessons[idx];
+  const slide = slides[idx];
   return `
     <div class="slide-dots">
-      ${d.lessons.map((_,i)=>`<span class="slide-dot ${i===idx?'active':i<idx?'visited':''}" onclick="goToSlide(${i})" title="Topic ${i+1}"></span>`).join("")}
+      ${slides.map((_,i)=>`<span class="slide-dot ${i===idx?'active':i<idx?'visited':''}" onclick="goToSlide(${i})" title="Step ${i+1}"></span>`).join("")}
     </div>
     <div class="lesson-slide dir-${state.slideDir||'next'}" id="lessonSlideWrap">
-      ${renderLessonCard(l,idx,d)}
-      ${renderQuickChecksAfter(d,idx)}
+      ${renderDaySlideContent(d, slide, idx)}
     </div>
     <div class="slide-nav">
       <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
-      <span class="slide-counter">Topic ${idx+1} of ${total}</span>
+      <span class="slide-counter">Step ${idx+1} of ${total}</span>
       ${isLast
         ? `<button class="btn btn-primary" onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
-        : `<button class="btn btn-primary" onclick="nextSlide()">Next Topic &rarr;</button>`}
+        : `<button class="btn btn-primary" onclick="nextSlide()">Next &rarr;</button>`}
     </div>
-    ${isLast ? `<div class="slide-done-banner">🎉 That's every topic for Day ${d.id} — nice work. Practice what you learned below, or jump straight to the Knowledge Check.</div>` : ""}
+    ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — nice work. Head to the Knowledge Check when you're ready.</div>` : ""}
   `;
 }
 function goToSlide(i){
@@ -4776,10 +4817,11 @@ function goToSlide(i){
 window.goToSlide = goToSlide;
 function nextSlide(){
   const d = DAYS.find(x=>x.id===state.dayId);
+  const slides = buildDaySlides(d);
   const nextIdx = (state.lessonSlide||0)+1;
-  if(nextIdx <= d.lessons.length-1){
+  if(nextIdx <= slides.length-1){
     state.slideDir = "next";
-    state.slideInterstitial = { title: d.lessons[nextIdx].h, toKnowledgeCheck:false };
+    state.slideInterstitial = { title: daySlideTitle(d, slides[nextIdx]), toKnowledgeCheck:false };
     render();
     setTimeout(()=>{
       state.slideInterstitial = null;
@@ -4794,8 +4836,9 @@ function goToKnowledgeCheckWithInterstitial(){
   render();
   setTimeout(()=>{
     state.slideInterstitial = null;
+    state.dayViewMode = "knowledgeCheck";
     render();
-    setTimeout(()=>{ scrollToKnowledgeCheck(); }, 30);
+    window.scrollTo({top:0, behavior:"smooth"});
   }, 900);
 }
 window.goToKnowledgeCheckWithInterstitial = goToKnowledgeCheckWithInterstitial;
@@ -8182,7 +8225,7 @@ function showD1Transition(){
   burstConfetti();
   setTimeout(()=>{
     goto("day", 1);
-    setTimeout(()=>{ scrollToKnowledgeCheck(); }, 350);
+    setTimeout(()=>{ state.dayViewMode = "knowledgeCheck"; render(); }, 350);
   }, 1400);
 }
 
