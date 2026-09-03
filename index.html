@@ -1536,11 +1536,24 @@ const DAYS = [
     "lessons": [
       {
         "h": "Bulletproof Basics",
+        "layout": "THREEBOX",
+        "boxes": [
+          {
+            "label": "Inbox Zero & Triaging",
+            "desc": "Categorize every email as Action, Information, or Delegation on first read — and draft in the executive's own voice so they only have to hit Send."
+          },
+          {
+            "label": "Complex Travel Logistics",
+            "desc": "Not just booking a flight — it's the 'What If' plan. If the 2:00 PM flight is canceled, you already have the 4:00 PM on hold."
+          },
+          {
+            "label": "Meeting Lifecycle",
+            "desc": "Moving from 'taking minutes' to 'driving outcomes' — setting the agenda before, tracking deliverables after."
+          }
+        ],
         "b": [
-          "Inbox Zero & Triaging: categorize every email as Action, Information, or Delegation on first read.",
-          "Draft responses in the executive's actual voice so they only have to hit Send.",
-          "Travel logistics is the 'What If' plan — a backup already on hold, not scrambled together after.",
-          "This level is called 'The Tactical Foundation' — before you can 'help before being asked,' you have to be bulletproof in the basics."
+          "These basics sound simple, but consistency under pressure — doing them the same way on a chaotic Tuesday as on a quiet Friday — is what actually builds trust over time.",
+          "Discussion prompt: pick one of these three basics you're weakest on today. What's the actual habit, not the intention, that would fix it this week?"
         ]
       },
       {
@@ -1549,7 +1562,8 @@ const DAYS = [
           "Clarity — say exactly what's happening and what you need.",
           "Consistency — same standard procedures every time.",
           "Credibility — recommendations have to be reliable, no exceptions.",
-          "Reframe reactive language into forward-looking language."
+          "Reframe reactive language into forward-looking language.",
+          "Discussion prompt: think of a message you sent recently that could have used more Clarity. Rewrite the opening line right now, out loud, the way the Three C's would want it."
         ],
         "layout": "THREEBOX",
         "boxes": [
@@ -1569,37 +1583,68 @@ const DAYS = [
       },
       {
         "h": "Credibility Is Earned, Not Claimed",
-        "b": [
-          "Credibility is earned through five behaviors: accuracy, follow-through, on-time execution, anticipation, and calm problem-solving.",
-          "The No-Surprises Rule: an executive should never be blindsided by something you already knew.",
-          "Damaged credibility takes a sustained track record to rebuild — not one good week."
+        "layout": "QUADRANT",
+        "quadrants": [
+          {
+            "label": "Operational Reliability",
+            "desc": "Accuracy, follow-through, on-time execution, anticipating next steps, zero-drama problem solving"
+          },
+          {
+            "label": "The No-Surprises Rule",
+            "desc": "An executive should never be blindsided by something their assistant already knew about"
+          },
+          {
+            "label": "Judgment Under Pressure",
+            "desc": "Micro-decisions that quietly affect financial exposure, legal risk, and reputation"
+          },
+          {
+            "label": "Discretion & Confidentiality Discipline",
+            "desc": "Especially critical in investor relations, legal matters, family logistics, and M&A activity"
+          }
         ],
-        "callout": {
-          "type": "warning",
-          "label": "The No-Surprises Rule",
-          "text": "An executive should never be blindsided by something their assistant already knew about. One missed detail can undo months of trust."
-        }
+        "b": [
+          "Credibility is the currency that lets an assistant manage up with real confidence — earned exclusively through consistent execution and mature judgment, never through self-promotion.",
+          "Credibility, once damaged, isn't restored by a single good week — it requires a sustained track record roughly proportional to how badly it was damaged.",
+          "Discussion prompt: describe a real moment (any job) where a small, undramatic decision you made turned out to carry real financial, legal, or reputational weight. What told you it mattered before it became obvious?"
+        ]
       },
       {
         "h": "From Helper to Force Multiplier",
         "b": [
           "A Force Multiplier expands the executive's impact by anticipating needs, not just completing assigned tasks.",
           "The shift: from 'I did what I was told' to 'I already have an answer ready.'",
-          "This is a compounding result of consistent Three C's execution, not a switch you flip."
+          "This is a compounding result of consistent Three C's execution, not a switch you flip.",
+          "Discussion prompt: what's the difference between an assistant who 'did what they were told' and one who's a genuine Force Multiplier — in one sentence, using your own words, not the training's?"
         ]
       },
       {
         "h": "The Digital Edge",
+        "layout": "THREEBOX",
+        "boxes": [
+          {
+            "label": "AI Prompting",
+            "desc": "Using Claude, ChatGPT, or another LLM to summarize a 50-page report into 5 bullet points for the morning briefing"
+          },
+          {
+            "label": "Automation",
+            "desc": "Setting up workflows (like Zapier) so that when a specific client emails, a task is automatically created in the project management tool"
+          },
+          {
+            "label": "Data Visualization",
+            "desc": "Basic proficiency in tools like Tableau or advanced Excel to help visualize team performance or budgets"
+          }
+        ],
         "b": [
-          "Automate anything that repeats — a live dashboard beats a manually rebuilt weekly report.",
-          "This is what separates a reactive assistant from a strategic one."
+          "Digital tools are what separate a reactive assistant, who fights the same fire every week, from a strategic one, who's already automated the fire away.",
+          "Discussion prompt: name one recurring task on your own plate that a simple automation (even just an email rule or a template) could take off your hands this month."
         ]
       },
       {
         "h": "Force Multiplier in the Wild",
         "b": [
           "Worked scenario: a client adds last-minute requests touching three departments the day before a pitch.",
-          "Prioritize → assess urgency, flag dependencies. Coordinate → shared boards with automated reminders. Close the loop → assign owners, consolidate, confirm delivery."
+          "Prioritize → assess urgency, flag dependencies. Coordinate → shared boards with automated reminders. Close the loop → assign owners, consolidate, confirm delivery.",
+          "Discussion prompt: walk through how you'd actually execute the 'Coordinate' step here if two of the three departments were in different time zones and one wasn't responding."
         ],
         "example": {
           "label": "Worked response",
@@ -1629,7 +1674,8 @@ const DAYS = [
         "h": "What Is a Large Language Model?",
         "b": [
           "LLMs are prediction engines, not databases — they predict the next likely word based on patterns, not retrieved facts.",
-          "This means they can produce original, useful text — or confidently invent things that sound plausible and aren't."
+          "This means they can produce original, useful text — or confidently invent things that sound plausible and aren't.",
+          "Discussion prompt: describe a time (in this training or elsewhere) an AI tool gave you an answer that sounded confident but turned out to be wrong. What tipped you off?"
         ]
       },
       {
@@ -1638,7 +1684,8 @@ const DAYS = [
           "Prompt — your instruction; better prompt, better output.",
           "Hallucination — confident false statements, common when no real answer exists in the pattern.",
           "Context window — its working memory; long pastes lose precision toward the end.",
-          "Tokens — roughly ¾ of a word; higher tiers allow longer documents."
+          "Tokens — roughly ¾ of a word; higher tiers allow longer documents.",
+          "Discussion prompt: without looking back at the definitions, explain 'context window' to someone who's never used an AI tool, in one sentence."
         ],
         "layout": "QUADRANT",
         "quadrants": [
@@ -1666,7 +1713,8 @@ const DAYS = [
           "Generative Text — creates new content; best for drafting and summarizing.",
           "Extraction & Analysis — pulls exact data without altering facts; best for action items and dates.",
           "Logic & Routing — connects triggers to automated actions.",
-          "Common mistake: using Generative mode when you need Extraction mode."
+          "Common mistake: using Generative mode when you need Extraction mode.",
+          "Discussion prompt: think of a task you did this week. Which of the three modes — Generative, Extraction, or Logic — would it actually have called for, and would you have picked correctly before this lesson?"
         ],
         "layout": "THREEBOX",
         "boxes": [
@@ -1689,7 +1737,8 @@ const DAYS = [
         "b": [
           "Same core risks apply to all three (hallucination, context limits, training-on-inputs).",
           "Claude — handles long pastes well, controllable tone. ChatGPT — broadest ecosystem, fastest iteration. Gemini — lives inside Gmail/Docs/Calendar, can act on live data.",
-          "Gemini's live-data access means security habits matter more, not less."
+          "Gemini's live-data access means security habits matter more, not less.",
+          "Discussion prompt: if Elias's firm ran on Google Workspace instead of its current setup, what would change about how carefully you'd need to vet what gets pasted into Gemini?"
         ]
       },
       {
@@ -1697,7 +1746,8 @@ const DAYS = [
         "b": [
           "Toggle off training/data-improvement settings before any real work goes through an AI tool.",
           "Never input financial data, health info, SSNs, or passwords.",
-          "Use placeholders — swap real names for '[Company X]' before sending to an AI tool."
+          "Use placeholders — swap real names for '[Company X]' before sending to an AI tool.",
+          "Discussion prompt: walk through exactly how you'd anonymize a real termination email before pasting it into an AI tool for drafting help — what specifically gets swapped out, and what stays?"
         ],
         "callout": {
           "type": "warning",
