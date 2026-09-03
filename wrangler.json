@@ -1,6 +1,7 @@
 {
   "name": "ea-pa-training",
-  "type": "javascript",
   "compatibility_date": "2024-09-23",
-  "pages_build_caching": false
+  "assets": {
+    "directory": "./"
+  }
 }
