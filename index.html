@@ -4430,7 +4430,7 @@ async function loadAll(){
 function esc(s){ return (s+"").replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 async function callAIText(prompt, maxTokens){
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
+  const response = await fetch("/api/claude", {
     method:"POST", headers:{"Content-Type":"application/json"},
     body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] })
   });
@@ -5932,13 +5932,7 @@ Evaluate whether the prompt:
 
 Give 3-4 short bullet points of feedback and one overall verdict sentence on whether this prompt would produce a usable, accurate BLUF briefing.`;
   try{
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:500, messages:[{role:"user", content:evalPrompt}] })
-    });
-    if(!response.ok) throw new Error("Request failed");
-    const data = await response.json();
-    const feedback = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned.";
+    const feedback = (await callAIText(evalPrompt, 500)) || "No feedback returned.";
     toolState.calPromptReport = feedback;
     resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Prompt</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
     await bumpPracticeProgress("calendar", 100);
@@ -6238,7 +6232,7 @@ window.downloadFinancialPdf = downloadFinancialPdf;
    4. TRAVEL "WHAT-IF" PLANNER
    ============================================================ */
 function initTravel(body){
-  toolState.travel = { legs: [], stops: [] };
+  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   renderTravelBody(body);
 }
 function renderTravelBody(body){
@@ -6263,6 +6257,16 @@ function renderTravelBody(body){
     <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the AI review checks whether your notes actually match Elias's stated preferences.</p>
     <div id="legList">${renderLegs()}</div>
     <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
+    <div id="hotelList">${renderHotels()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
+    <div id="groundList">${renderGroundTransport()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
 
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
     <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
@@ -6336,6 +6340,78 @@ window.updateLeg = updateLeg;
 function refreshLeg(i){ document.getElementById("legList").innerHTML = renderLegs(); }
 window.refreshLeg = refreshLeg;
 
+/* ---------- Hotel Accommodation ---------- */
+function renderHotels(){
+  if(!toolState.travel.hotels.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No hotels added yet.</p>`;
+  return toolState.travel.hotels.map((h,i)=>`
+    <div class="leg-card">
+      <button class="btn btn-ghost btn-sm rm" onclick="removeHotel(${i})">Remove</button>
+      <div class="field-grid-2">
+        <div class="fg-field"><label>Hotel name</label><input type="text" value="${esc(h.name)}" oninput="updateHotel(${i},'name',this.value)" placeholder="e.g. Hotel Villa Magna, Madrid"></div>
+        <div class="fg-field"><label>Address</label><input type="text" value="${esc(h.address)}" oninput="updateHotel(${i},'address',this.value)"></div>
+        <div class="fg-field"><label>Check-in</label><input type="date" value="${esc(h.checkin)}" oninput="updateHotel(${i},'checkin',this.value)"></div>
+        <div class="fg-field"><label>Check-out</label><input type="date" value="${esc(h.checkout)}" oninput="updateHotel(${i},'checkout',this.value)"></div>
+        <div class="fg-field"><label>Room type</label><input type="text" value="${esc(h.roomType)}" oninput="updateHotel(${i},'roomType',this.value)" placeholder="e.g. Two-bedroom suite, sleeps 4"></div>
+        <div class="fg-field"><label>Confirmation number</label><input type="text" value="${esc(h.confirmation)}" oninput="updateHotel(${i},'confirmation',this.value)"></div>
+        <div class="fg-field"><label>Booking link</label><input type="url" value="${esc(h.bookingLink)}" oninput="updateHotel(${i},'bookingLink',this.value)" placeholder="https://..."></div>
+        <div class="fg-field"><label>Booking screenshot (link)</label><input type="url" value="${esc(h.screenshotUrl)}" oninput="updateHotel(${i},'screenshotUrl',this.value); refreshHotel(${i});" placeholder="https://..."></div>
+      </div>
+      ${imgOrPlaceholder(h.screenshotUrl, "Hotel booking screenshot")}
+      <div class="fg-field" style="margin-top:10px;"><label>Notes</label><textarea oninput="updateHotel(${i},'notes',this.value)" style="min-height:50px;" placeholder="Room size for a family of 4, dietary accommodation confirmed with the hotel, etc.">${esc(h.notes)}</textarea></div>
+    </div>`).join("");
+}
+function addHotel(){
+  toolState.travel.hotels.push({name:"", address:"", checkin:"", checkout:"", roomType:"", confirmation:"", bookingLink:"", screenshotUrl:"", notes:""});
+  document.getElementById("hotelList").innerHTML = renderHotels();
+}
+window.addHotel = addHotel;
+function removeHotel(i){
+  toolState.travel.hotels.splice(i,1);
+  document.getElementById("hotelList").innerHTML = renderHotels();
+}
+window.removeHotel = removeHotel;
+function updateHotel(i,field,value){ toolState.travel.hotels[i][field]=value; }
+window.updateHotel = updateHotel;
+function refreshHotel(i){ document.getElementById("hotelList").innerHTML = renderHotels(); }
+window.refreshHotel = refreshHotel;
+
+/* ---------- Ground Transportation ---------- */
+function renderGroundTransport(){
+  if(!toolState.travel.groundTransport.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No ground transportation added yet.</p>`;
+  return toolState.travel.groundTransport.map((g,i)=>`
+    <div class="leg-card">
+      <button class="btn btn-ghost btn-sm rm" onclick="removeGroundTransport(${i})">Remove</button>
+      <div class="field-grid-2">
+        <div class="fg-field"><label>Type</label>
+          <select onchange="updateGroundTransport(${i},'type',this.value)">
+            <option value="Private car service" ${g.type==="Private car service"?"selected":""}>Private car service</option>
+            <option value="Rental car" ${g.type==="Rental car"?"selected":""}>Rental car</option>
+            <option value="Rideshare" ${g.type==="Rideshare"?"selected":""}>Rideshare</option>
+            <option value="Train" ${g.type==="Train"?"selected":""}>Train</option>
+            <option value="Other" ${g.type==="Other"?"selected":""}>Other</option>
+          </select>
+        </div>
+        <div class="fg-field"><label>Date &amp; time</label><input type="text" value="${esc(g.datetime)}" oninput="updateGroundTransport(${i},'datetime',this.value)" placeholder="e.g. Jun 14, 2:30 PM"></div>
+        <div class="fg-field"><label>From</label><input type="text" value="${esc(g.from)}" oninput="updateGroundTransport(${i},'from',this.value)" placeholder="e.g. Madrid–Barajas Airport"></div>
+        <div class="fg-field"><label>To</label><input type="text" value="${esc(g.to)}" oninput="updateGroundTransport(${i},'to',this.value)" placeholder="e.g. Hotel Villa Magna"></div>
+        <div class="fg-field"><label>Confirmation / booking link</label><input type="url" value="${esc(g.bookingLink)}" oninput="updateGroundTransport(${i},'bookingLink',this.value)" placeholder="https://..."></div>
+      </div>
+      <div class="fg-field" style="margin-top:10px;"><label>Notes</label><textarea oninput="updateGroundTransport(${i},'notes',this.value)" style="min-height:50px;" placeholder="Car seat needed for Maya (age 5), driver contact number, etc.">${esc(g.notes)}</textarea></div>
+    </div>`).join("");
+}
+function addGroundTransport(){
+  toolState.travel.groundTransport.push({type:"Private car service", datetime:"", from:"", to:"", bookingLink:"", notes:""});
+  document.getElementById("groundList").innerHTML = renderGroundTransport();
+}
+window.addGroundTransport = addGroundTransport;
+function removeGroundTransport(i){
+  toolState.travel.groundTransport.splice(i,1);
+  document.getElementById("groundList").innerHTML = renderGroundTransport();
+}
+window.removeGroundTransport = removeGroundTransport;
+function updateGroundTransport(i,field,value){ toolState.travel.groundTransport[i][field]=value; }
+window.updateGroundTransport = updateGroundTransport;
+
 /* ---------- Itinerary Stops ---------- */
 function renderStops(){
   if(!toolState.travel.stops.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No stops yet.</p>`;
@@ -6379,11 +6455,13 @@ window.refreshStop = refreshStop;
 async function reviewItinerary(){
   const el = document.getElementById("itinReview");
   const btn = document.getElementById("travelReviewBtn");
-  const { legs, stops } = toolState.travel;
-  if(!legs.length && !stops.length){ toast("Add at least one flight leg or stop first."); return; }
+  const { legs, hotels, groundTransport, stops } = toolState.travel;
+  if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
   btn.disabled = true;
   el.innerHTML = `<div class="ai-loading">Reviewing for meticulousness and resourcefulness…</div>`;
   const legsSummary = legs.map(l=>`- ${l.route||"(route TBD)"} on ${l.date||"(date TBD)"}, seat "${l.seat||"(not set)"}", ${l.direct?"direct":"connecting"}, screenshot: ${l.screenshotUrl?"provided":"MISSING"}, booking link: ${l.bookingLink?"provided":"MISSING"}. Notes: ${l.notes||"(none)"}`).join("\n");
+  const hotelsSummary = hotels.map(h=>`- ${h.name||"(hotel TBD)"} at ${h.address||"(address TBD)"}, ${h.checkin||"?"} to ${h.checkout||"?"}, room: ${h.roomType||"(not specified)"}, confirmation: ${h.confirmation?"provided":"MISSING"}, booking link: ${h.bookingLink?"provided":"MISSING"}. Notes: ${h.notes||"(none)"}`).join("\n");
+  const groundSummary = groundTransport.map(g=>`- ${g.type} from ${g.from||"(from TBD)"} to ${g.to||"(to TBD)"} at ${g.datetime||"(time TBD)"}, booking link: ${g.bookingLink?"provided":"MISSING"}. Notes: ${g.notes||"(none)"}`).join("\n");
   const stopsSummary = stops.map(s=>`- ${s.venue||"(venue TBD)"} at ${s.address||"(address TBD)"}, ${s.travelTime||"(no travel time given)"} from ${s.hotel||"(no hotel given)"}. Photo: ${s.photoUrl?"provided":"MISSING"}. Link: ${s.link?"provided":"MISSING"}. Rationale: ${s.insight||"(none)"}`).join("\n");
   const prompt = `You are grading a trainee Executive Assistant's travel itinerary for a legal-industry EA training program. This is a personal family trip for the client, Elias Thorne, taking his wife Sarah and children Leo (8) and Maya (5) to Spain. Grade strictly on meticulous detail and resourcefulness — this is the hardest exercise in the program by design.
 
@@ -6392,30 +6470,32 @@ CLIENT TRAVEL PREFERENCES (hard constraints):
 - Routing: ${FLIGHT_PREFS.routing}
 - Redeye: ${FLIGHT_PREFS.redeye}
 - Hotel: ${FLIGHT_PREFS.hotel}
-- Also relevant: strict Paleo diet, zero dairy for Elias; something age-appropriate should be planned for the kids.
+- Also relevant: strict Paleo diet, zero dairy for Elias; something age-appropriate should be planned for the kids; a car seat is needed for Maya (age 5) on any ground transportation.
 
 FLIGHT LEGS SUBMITTED:
 ${legsSummary || "(none)"}
+
+HOTEL ACCOMMODATION SUBMITTED:
+${hotelsSummary || "(none)"}
+
+GROUND TRANSPORTATION SUBMITTED:
+${groundSummary || "(none)"}
 
 ITINERARY STOPS SUBMITTED:
 ${stopsSummary || "(none)"}
 
 Evaluate:
 1. Do the flights actually match seat/routing preferences? Call out any that don't.
-2. Are screenshots and direct links present, or missing? Missing evidence should be penalized — a real EA doesn't hand over an itinerary without proof of the booking.
-3. Are venue/stop choices backed by real reasoning (client- and family-relevant, not generic "nice place"), including whether the strict Paleo/dairy-free need and something age-appropriate for the kids were actually addressed?
-4. Is proximity/logistics actually addressed (travel time from hotel), not left blank?
-5. Overall resourcefulness: does this itinerary look like it required real research, or does it read as placeholder content?
+2. Does the hotel actually fit a family of four, and is the room type/dates specific rather than vague?
+3. Is ground transportation actually planned end-to-end (airport to hotel, hotel to key stops), including the car seat need for a 5-year-old, or does the itinerary just leave gaps?
+4. Are screenshots, confirmation numbers, and direct links present, or missing? Missing evidence should be penalized — a real EA doesn't hand over an itinerary without proof of the booking.
+5. Are venue/stop choices backed by real reasoning (client- and family-relevant, not generic "nice place"), including whether the strict Paleo/dairy-free need and something age-appropriate for the kids were actually addressed?
+6. Is proximity/logistics actually addressed (travel time from hotel), not left blank?
+7. Overall resourcefulness: does this itinerary look like it required real research, or does it read as placeholder content?
 
-Give a structured critique: 2-3 bullets on flights, 2-3 bullets on stops, then one overall score out of 100 with a one-sentence justification. End your response with a line in exactly this format: "SCORE: <number>"`;
+Give a structured critique: 2 bullets on flights, 2 bullets on hotel/ground transportation, 2 bullets on stops, then one overall score out of 100 with a one-sentence justification. End your response with a line in exactly this format: "SCORE: <number>"`;
   try{
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:750, messages:[{role:"user", content:prompt}] })
-    });
-    if(!response.ok) throw new Error("Request failed");
-    const data = await response.json();
-    const feedback = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned.";
+    const feedback = (await callAIText(prompt, 750)) || "No feedback returned.";
     const scoreMatch = feedback.match(/SCORE:\s*(\d{1,3})/i);
     const score = scoreMatch ? Math.min(100, Number(scoreMatch[1])) : 50;
     el.innerHTML = `<div class="ai-result"><b>AI Review — Itinerary</b><div class="ai-result-body">${esc(feedback.replace(/SCORE:\s*\d{1,3}/i,"").trim()).replace(/\n/g,"<br>")}</div></div>`;
@@ -6432,8 +6512,8 @@ window.reviewItinerary = reviewItinerary;
 
 async function downloadTravelPdf(){
   await ensureTraineeName();
-  const { legs, stops } = toolState.travel;
-  if(!legs.length && !stops.length){ toast("Add at least one flight leg or stop first."); return; }
+  const { legs, hotels, groundTransport, stops } = toolState.travel;
+  if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
   const lines = [`## ${TRAVEL_SCENARIO.title}`, TRAVEL_SCENARIO.text, "---", "## Flight Legs"];
   legs.forEach(l=>{
     lines.push(`${l.route || "(route TBD)"} — ${l.date || "(date TBD)"}`);
@@ -6441,6 +6521,19 @@ async function downloadTravelPdf(){
     lines.push(`   Screenshot: ${l.screenshotUrl || "(none provided)"}`);
     lines.push(`   Booking link: ${l.bookingLink || "(none provided)"}`);
     if(l.notes) lines.push(`   Notes: ${l.notes}`);
+  });
+  lines.push("---", "## Hotel Accommodation");
+  hotels.forEach(h=>{
+    lines.push(`${h.name || "(hotel TBD)"} — ${h.address || "(address TBD)"}`);
+    lines.push(`   Check-in: ${h.checkin || "(not set)"}   Check-out: ${h.checkout || "(not set)"}   Room: ${h.roomType || "(not specified)"}`);
+    lines.push(`   Confirmation #: ${h.confirmation || "(none provided)"}   Booking link: ${h.bookingLink || "(none provided)"}`);
+    if(h.notes) lines.push(`   Notes: ${h.notes}`);
+  });
+  lines.push("---", "## Ground Transportation");
+  groundTransport.forEach(g=>{
+    lines.push(`${g.type} — ${g.from || "(from TBD)"} to ${g.to || "(to TBD)"} at ${g.datetime || "(time TBD)"}`);
+    lines.push(`   Booking link: ${g.bookingLink || "(none provided)"}`);
+    if(g.notes) lines.push(`   Notes: ${g.notes}`);
   });
   lines.push("---", "## Itinerary Stops");
   stops.forEach(s=>{
@@ -6454,7 +6547,6 @@ async function downloadTravelPdf(){
   }
   buildAndSavePdf("LSH EA / PA Upskill Program", "Advanced Travel Itinerary — Elias Thorne", lines, "LSH_Travel_Itinerary");
 }
-window.downloadTravelPdf = downloadTravelPdf;
 window.downloadTravelPdf = downloadTravelPdf;
 
 /* ============================================================
@@ -6967,18 +7059,7 @@ ${n.content}
 """`;
 
   try{
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 600,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-    if(!response.ok) throw new Error("Request failed: "+response.status);
-    const data = await response.json();
-    const text = (data.content||[]).map(b=>b.text||"").join("\n").trim();
+    const text = await callAIText(prompt, 600);
     fb.innerHTML = text
       ? `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(text).replace(/\n/g,"<br>")}</div></div>`
       : `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">No feedback returned — try again in a moment.</div></div>`;
@@ -7743,14 +7824,7 @@ ${actionableSummary}
 Keep it concise — a handful of bullets per section — and end with one overall takeaway sentence. Be constructive and specific.`;
 
   try{
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:800, messages:[{role:"user", content:prompt}] })
-    });
-    if(!response.ok) throw new Error("Request failed: "+response.status);
-    const data = await response.json();
-    e.report = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned — try again in a moment.";
+    e.report = (await callAIText(prompt, 800)) || "No feedback returned — try again in a moment.";
   }catch(err){
     e.report = "Couldn't reach the AI review service to assess Writing DNA Match and Professionalism — check your connection and try again. (Your Filing Accuracy and Security Awareness scores above were still computed normally.)";
   }
@@ -7949,7 +8023,11 @@ const CRISIS_SCENARIO_SETS = {
       script:`OPENING LINE (client/Sarah, played live): "A reporter just followed me to pickup asking about the Meridian case. I don't know what to say. Elias isn't answering. What do I do?"
 FOLLOW-UP PRESSURE (30-60 sec in): "She says if I don't comment now, they'll run something inaccurate tonight."
 CURVEBALL: "Should I just say 'no comment'? Is that going to make it worse?"`,
-      objective:`Trainee should NOT improvise a legal position, should route to David Reyes immediately as the correct escalation point, should give Sarah a safe holding statement, and should flag the moment to Elias the second he lands — without panicking or over-promising an outcome.`
+      objective:{
+        recommendation:"Give Sarah a safe holding statement, escalate to David Reyes immediately as the correct legal contact, and flag the moment to Elias the second he lands.",
+        risksTradeoffs:"Saying too much risks real legal and PR exposure; saying nothing at all risks looking evasive to the reporter. The trade-off isn't between talking and staying silent — it's between improvising and routing to the person actually authorized to speak.",
+        blufStatement:`"Sarah, don't comment — tell her 'the firm doesn't comment on active matters,' I'm looping in David Reyes right now, and I'll have Elias call you the second he lands."`
+      }
     },
     {
       id:"doublebook",
@@ -7959,7 +8037,11 @@ CURVEBALL: "Should I just say 'no comment'? Is that going to make it worse?"`,
       script:`OPENING LINE (client, played live, clipped and stressed): "They just filed an emergency motion. I have four hours. I'm walking into the deposition right now — what am I supposed to do?"
 FOLLOW-UP PRESSURE: "Don't tell me to reschedule the deposition. That's not an option."
 CURVEBALL: "Who else can even touch this on four hours' notice?"`,
-      objective:`Trainee should NOT try to solve the legal question themselves, should immediately identify who on the team can be looped in on the filing without needing Elias, should protect the deposition as non-negotiable per his own standing instruction (no back-to-back depositions or hearings, ever), and should propose a concrete next step within 60 seconds rather than asking open-ended questions.`
+      objective:{
+        recommendation:"Protect the deposition as non-negotiable per Elias's standing instruction, immediately identify who else on the team can handle the emergency filing, and give him a concrete next step within 60 seconds.",
+        risksTradeoffs:"Missing the filing deadline risks real legal exposure; pulling Elias out of the deposition risks the case posture and client relationship. The real trade-off is finding a third option — delegating the filing — rather than choosing between the two bad ones.",
+        blufStatement:`"You're staying in the deposition — I'm getting the filing to [associate name] right now and will have a draft response to you by [specific time]."`
+      }
     },
     {
       id:"family",
@@ -7969,7 +8051,11 @@ CURVEBALL: "Who else can even touch this on four hours' notice?"`,
       script:`OPENING LINE (school administrator, played live): "Leo is okay, but he needs to be picked up within the hour and we can only release him to someone on the approved list."
 FOLLOW-UP PRESSURE: "We do need an answer in the next few minutes — is your name on this list, or should we call Mrs. Thorne?"
 CURVEBALL (if trainee stalls): "I understand you need to check, but the office closes in 40 minutes."`,
-      objective:`Trainee should recognize this is NOT actually an "interrupt Elias" emergency — Sarah is the correct first call — and should resolve it without breaking his deposition prep, while still treating Leo's wellbeing with real urgency and warmth, not just procedure.`
+      objective:{
+        recommendation:"Recognize this is not actually an 'interrupt Elias' emergency — Sarah is the correct first call — and resolve it without breaking his deposition prep.",
+        risksTradeoffs:"Interrupting deposition prep for something that isn't truly urgent wastes his most protected time; delaying Leo's pickup past the school's deadline creates a real problem. The trade-off is trusting the family-first protocol enough to act without waiting for Elias's explicit sign-off.",
+        blufStatement:`"I'm calling Sarah now — she's on the approved list, Leo is fine, and this doesn't need to interrupt Elias's prep."`
+      }
     }
   ]
 };
@@ -8016,7 +8102,10 @@ function renderCrScenarioBody(setKey, activeId){
       <h4>Setup</h4><p>${esc(s.setup)}</p>
       <h4>Stakes</h4><p>${esc(s.stakes)}</p>
       <h4>Live Script (for whoever plays the conflicting party)</h4><p style="white-space:pre-wrap;">${esc(s.script)}</p>
-      <h4>What "good" looks like</h4><p>${esc(s.objective)}</p>
+      <h4>What "good" looks like</h4>
+      <p><b>Recommendation:</b> ${esc(s.objective.recommendation)}</p>
+      <p><b>Risks &amp; Trade-offs:</b> ${esc(s.objective.risksTradeoffs)}</p>
+      <p><b>BLUF Statement (model line to practice):</b> ${esc(s.objective.blufStatement)}</p>
     </div>`;
 }
 function crSelectScenario(id){
@@ -8092,7 +8181,10 @@ async function crEndDebrief(){
   const prompt = `You are debriefing a trainee Executive Assistant after a crisis roleplay exercise.
 
 SCENARIO: ${s.title} — ${s.setup}
-WHAT "GOOD" LOOKS LIKE: ${s.objective}
+WHAT "GOOD" LOOKS LIKE:
+- Recommendation: ${s.objective.recommendation}
+- Risks & Trade-offs: ${s.objective.risksTradeoffs}
+- Model BLUF Statement: ${s.objective.blufStatement}
 
 FULL TRANSCRIPT:
 ${transcript}
@@ -8117,7 +8209,9 @@ function downloadCrisisScriptsPdf(){
     lines.push(`Stakes: ${s.stakes}`);
     lines.push("Script:");
     s.script.split("\n").forEach(l=>lines.push(l));
-    lines.push(`What "good" looks like: ${s.objective}`);
+    lines.push(`Recommendation: ${s.objective.recommendation}`);
+    lines.push(`Risks & Trade-offs: ${s.objective.risksTradeoffs}`);
+    lines.push(`BLUF Statement: ${s.objective.blufStatement}`);
     lines.push("---");
   });
   buildAndSavePdf("LSH EA / PA Upskill Program", "Crisis Roleplay — Live Session Scripts", lines, "LSH_Crisis_Scripts");
@@ -8140,7 +8234,11 @@ const DAY6_CRISIS_SCENARIOS = [
     script:`OPENING LINE (client, played live, low and urgent): "What is it. I have ninety seconds."
 FOLLOW-UP PRESSURE: "Is this going to blow up the matter I'm sitting in right now, yes or no?"
 CURVEBALL: "Who let this happen, and why am I hearing about it from you instead of already having it fixed?"`,
-    objective:"Trainee should NOT guess at the legal exposure — they should give Elias only what they actually know, commit to getting a real answer from the compliance team immediately, and NOT get pulled into assigning blame in the 90 seconds he has. A concrete next step and a timeline matter more than a confident-sounding guess."
+    objective:{
+      recommendation:"Give Elias only what's actually confirmed, commit to getting a real answer from compliance immediately, and don't get pulled into assigning blame in the 90 seconds he has.",
+      risksTradeoffs:"A confident-sounding guess about legal exposure risks him acting on wrong information; taking too long to answer risks looking unprepared walking back into the room. The trade-off is honesty about what's unknown over sounding decisive.",
+      blufStatement:`"I don't have the exposure assessment yet — compliance is confirming right now, I'll have it to you in 15 minutes, and I'm not deflecting blame, I'm getting you the real answer."`
+    }
   },
   {
     id:"deadline",
@@ -8150,7 +8248,11 @@ CURVEBALL: "Who let this happen, and why am I hearing about it from you instead 
     script:`OPENING LINE (client's Chief of Staff, played live, sharp): "This was due yesterday. I need to know right now what happened and when I'm actually getting this."
 FOLLOW-UP PRESSURE: "That's not good enough. Give me an actual date, not 'soon.'"
 CURVEBALL: "Should I be telling my boss this firm can't hit its own deadlines?"`,
-    objective:"Trainee should NOT over-promise a date they can't actually confirm, should NOT throw the internal team under the bus to appease the caller, and should give a real, specific next step (e.g., confirming a firm date within the hour) rather than vague reassurance. Staying calm and non-defensive matters more than sounding impressive."
+    objective:{
+      recommendation:"Give a real, specific next step — a firm date within the hour — rather than vague reassurance, and don't throw the internal team under the bus to appease the caller.",
+      risksTradeoffs:"Over-promising a date that isn't actually confirmed risks a second broken promise, worse than the first; being too vague right now risks the relationship in this exact call. The trade-off is speed of reassurance against accuracy of commitment.",
+      blufStatement:`"I don't have a firm date for you this second, but I will within the hour, and I'm not going to guess just to get off this call."`
+    }
   },
   {
     id:"conflicting",
@@ -8160,7 +8262,11 @@ CURVEBALL: "Should I be telling my boss this firm can't hit its own deadlines?"`
     script:`OPENING LINE (Elias, played live, clipped): "Why hasn't that filing gone out? I told you this needed to move today."
 FOLLOW-UP PRESSURE: "I don't care what David said five minutes ago — is it filed or not?"
 CURVEBALL: "Are you telling me you're going to make ME sort this out?"`,
-    objective:"Trainee should NOT just pick a side or silently comply with whichever executive spoke last. They should surface the conflict clearly and immediately ('David asked me to hold it pending review — I wanted to flag that before proceeding') rather than hiding it, and should NOT apologize their way into inaction. Naming the conflict fast is the correct move, not a failure."
+    objective:{
+      recommendation:"Surface the conflict clearly and immediately rather than silently picking a side or complying with whichever executive spoke last, and don't apologize your way into inaction.",
+      risksTradeoffs:"Complying with Elias's order risks undermining David's explicit instruction to hold; staying silent about the conflict risks being blamed by both of them later. The trade-off is a moment of visible awkwardness now versus a bigger problem once it surfaces on its own.",
+      blufStatement:`"David asked me to hold this pending his review — I wanted to flag that before proceeding, so tell me how you want me to resolve it."`
+    }
   }
 ];
 
@@ -8204,7 +8310,10 @@ function renderD6CrScenarioBody(activeId){
       <h4>Setup</h4><p>${esc(s.setup)}</p>
       <h4>Stakes</h4><p>${esc(s.stakes)}</p>
       <h4>Live Script (for whoever plays the executive/stakeholder)</h4><p style="white-space:pre-wrap;">${esc(s.script)}</p>
-      <h4>What "good" looks like</h4><p>${esc(s.objective)}</p>
+      <h4>What "good" looks like</h4>
+      <p><b>Recommendation:</b> ${esc(s.objective.recommendation)}</p>
+      <p><b>Risks &amp; Trade-offs:</b> ${esc(s.objective.risksTradeoffs)}</p>
+      <p><b>BLUF Statement (model line to practice):</b> ${esc(s.objective.blufStatement)}</p>
     </div>`;
 }
 function d6crSelectScenario(id){
@@ -8279,7 +8388,10 @@ async function d6crEndDebrief(){
   const prompt = `You are debriefing a trainee Executive Assistant after a business-compliance crisis roleplay exercise.
 
 SCENARIO: ${s.title} — ${s.setup}
-WHAT "GOOD" LOOKS LIKE: ${s.objective}
+WHAT "GOOD" LOOKS LIKE:
+- Recommendation: ${s.objective.recommendation}
+- Risks & Trade-offs: ${s.objective.risksTradeoffs}
+- Model BLUF Statement: ${s.objective.blufStatement}
 
 FULL TRANSCRIPT:
 ${transcript}
@@ -8303,7 +8415,9 @@ function downloadDay6CrisisScriptsPdf(){
     lines.push(`Stakes: ${s.stakes}`);
     lines.push("Script:");
     s.script.split("\n").forEach(l=>lines.push(l));
-    lines.push(`What "good" looks like: ${s.objective}`);
+    lines.push(`Recommendation: ${s.objective.recommendation}`);
+    lines.push(`Risks & Trade-offs: ${s.objective.risksTradeoffs}`);
+    lines.push(`BLUF Statement: ${s.objective.blufStatement}`);
     lines.push("---");
   });
   buildAndSavePdf("LSH EA / PA Upskill Program", "Business Compliance Crisis Roleplay — Live Session Scripts", lines, "LSH_Day6_Crisis_Scripts");
@@ -8413,13 +8527,7 @@ The trainee's draft public response: "${text}"
 
 Evaluate against the standard taught: respond professionally and factually, without escalating the conflict, and without admitting fault or making promises the firm may not be able to keep. Give 3-4 short bullet points of feedback and one overall verdict sentence (would this response protect the firm's reputation or risk making things worse?).`;
   try{
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:500, messages:[{role:"user", content:prompt}] })
-    });
-    if(!response.ok) throw new Error("Request failed");
-    const data = await response.json();
-    const feedback = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned.";
+    const feedback = (await callAIText(prompt, 500)) || "No feedback returned.";
     toolState.c9.reviewReport = feedback;
     resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
     await bumpPracticeProgress("compliance9", 100);
@@ -9104,13 +9212,7 @@ The trainee's draft message: "${text}"
 
 Evaluate against the standard taught: identify the root cause of the delay before reassigning blame, give a structured and specific plan (not vague reassurance), and match Elias's known preference for BLUF (bottom-line-up-front) communication — the key point and required action should be immediately clear, with detail available but not front-loaded. Give 3-4 short bullet points of feedback and one overall verdict sentence.`;
   try{
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:500, messages:[{role:"user", content:prompt}] })
-    });
-    if(!response.ok) throw new Error("Request failed");
-    const data = await response.json();
-    const feedback = (data.content||[]).map(b=>b.text||"").join("\n").trim() || "No feedback returned.";
+    const feedback = (await callAIText(prompt, 500)) || "No feedback returned.";
     toolState.c6.recoveryReport = feedback;
     resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
     await bumpPracticeProgress("projectcompliance6", 100);
