@@ -1,23 +1,19 @@
 export default {
   async fetch(request, env, ctx) {
-    // write a key-value pair
-    await env.KV.put('KEY', 'VALUE');
+    const url = new URL(request.url);
 
-    // read a key-value pair
-    const value = await env.KV.get('KEY');
+    // API route — your KV test logic
+    if (url.pathname === "/api/kv") {
+      await env.KV.put("KEY", "VALUE");
+      const value = await env.KV.get("KEY");
+      const allKeys = await env.KV.list();
+      await env.KV.delete("KEY");
+      return new Response(JSON.stringify({ value, allKeys }), {
+        headers: { "Content-Type": "application/json" }
+      });
+    }
 
-    // list all key-value pairs
-    const allKeys = await env.KV.list();
-
-    // delete a key-value pair
-    await env.KV.delete('KEY');
-
-    // return a Workers response
-    return new Response(
-      JSON.stringify({
-        value: value,
-        allKeys: allKeys,
-      }),
-    );
-  } 
-}
+    // Everything else — serve static assets (your website)
+    return env.ASSETS.fetch(request);
+  }
+};
