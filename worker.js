@@ -11,15 +11,19 @@ export default {
       }
       try {
         const body = await request.text();
-        const anthropicResponse = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": env.ANTHROPIC_API_KEY,
-            "anthropic-version": "2023-06-01"
-          },
-          body
-        });
+  // Replace the original lines 14-21 with this:
+const json = await request.json();
+json.max_tokens = 2000; // Increase this value as needed
+
+const anthropicResponse = await fetch("https://api.anthropic.com/v1/messages", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": env.ANTHROPIC_API_KEY,
+    "anthropic-version": "2023-06-01"
+  },
+  body: JSON.stringify(json)
+});
         const responseText = await anthropicResponse.text();
         return new Response(responseText, {
           status: anthropicResponse.status,
