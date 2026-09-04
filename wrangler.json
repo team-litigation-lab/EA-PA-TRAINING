@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "WORKER-NAME",
+  "name": "ea-pa-training"
+",
   "main": "src/index.ts",
   "compatibility_date": "2025-02-04",
   "observability": {
