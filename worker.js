@@ -5,39 +5,41 @@ export default {
     if (url.pathname === "/api/claude" && request.method === "POST") {
       if (!env.ANTHROPIC_API_KEY) {
         return new Response(
-          JSON.stringify({ error: "ANTHROPIC_API_KEY is not configured on this Worker." }),
+          JSON.stringify({ error: "ANTHROPIC_API_KEY is missing." }),
           { status: 500, headers: { "Content-Type": "application/json" } }
         );
       }
-      try {
-        const body = await request.text();
-  // Replace the original lines 14-21 with this:
-const json = await request.json();
-json.max_tokens = 2000; // Increase this value as needed
 
-const anthropicResponse = await fetch("https://api.anthropic.com/v1/messages", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": env.ANTHROPIC_API_KEY,
-    "anthropic-version": "2023-06-01"
-  },
-  body: JSON.stringify(json)
-});
-        const responseText = await anthropicResponse.text();
-        return new Response(responseText, {
+      try {
+        // Read the body exactly once
+        const payload = await request.json();
+        
+        // Override the token limit to prevent truncation
+        payload.max_tokens = 4096;
+
+        const anthropicResponse = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": env.ANTHROPIC_API_KEY,
+            "anthropic-version": "2023-06-01"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const responseData = await anthropicResponse.text();
+        return new Response(responseData, {
           status: anthropicResponse.status,
           headers: { "Content-Type": "application/json" }
         });
       } catch (e) {
         return new Response(
-          JSON.stringify({ error: "Proxy request to Anthropic failed.", detail: String(e) }),
+          JSON.stringify({ error: "Worker processing failed.", detail: e.message }),
           { status: 502, headers: { "Content-Type": "application/json" } }
         );
       }
     }
 
-    // Every other request: serve the static site as before.
     return env.ASSETS.fetch(request);
   }
 };
