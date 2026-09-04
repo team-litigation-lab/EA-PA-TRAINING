@@ -1,21 +1,15 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ea-pa-training"
-",
+  "name": "ea-pa-training",
   "main": "src/index.ts",
   "compatibility_date": "2025-02-04",
   "observability": {
     "enabled": true
   },
-
-  // Add this to your wrangler.jsonc
   "kv_namespaces": [
     {
-      "binding": "KV",
-      "id": "b121aa911590471bbad351d03274d7f4",
-      
-      // Optional: preview_id used when running `wrangler dev` for local dev
-      "preview_id": "<ID_OF_PREVIEW_KV_NAMESPACE_FOR_LOCAL_DEVELOPMENT>"
+      "binding": "LSH_KV",
+      "id": "b121aa911590471bbad351d03274d7f4"
     }
   ]
 }
