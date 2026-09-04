@@ -402,6 +402,24 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .tc-tag{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.04em;margin-bottom:8px;}
 .trainer-checkpoint p{font-size:12.8px;color:#37394A;margin:0;line-height:1.5;}
 
+/* mock financial documents */
+.mock-doc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-bottom:18px;box-shadow:0 2px 8px rgba(22,24,41,.05);}
+.mock-invoice{border-top:4px solid var(--navy);}
+.mock-receipt{border-top:4px solid var(--success);}
+.mock-hours{border-top:4px solid var(--ink-soft);background:#FAFAFC;}
+.mock-doc-letterhead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:12px;margin-bottom:14px;}
+.mock-doc-firm{font-family:'Fraunces';font-size:14.5px;font-weight:700;color:var(--navy);letter-spacing:.01em;}
+.mock-doc-type{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);letter-spacing:.08em;}
+.mock-doc-meta{display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));gap:10px 20px;margin-bottom:16px;}
+.mock-doc-meta div{font-size:12px;color:var(--ink);}
+.mock-doc-meta b{display:block;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;font-weight:700;}
+.mock-doc-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px;}
+.mock-doc-table th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);padding:6px 8px;border-bottom:1.5px solid var(--line);}
+.mock-doc-table td{padding:7px 8px;border-bottom:1px solid var(--line);color:var(--ink);}
+.mock-doc-totals{display:flex;flex-direction:column;gap:4px;align-items:flex-end;padding-top:10px;border-top:1px solid var(--line);}
+.mock-doc-totals div{display:flex;gap:20px;font-size:12.5px;min-width:220px;justify-content:space-between;}
+.mock-doc-total-due{font-weight:700;color:var(--navy);font-size:14px!important;padding-top:6px;border-top:1px solid var(--line);}
+
 /* ---------- quiz ---------- */
 .quiz-card{padding:22px 24px;margin-bottom:14px;}
 .quiz-q{font-size:14.5px;font-weight:600;color:var(--navy);margin:0 0 12px;}
@@ -3945,25 +3963,49 @@ const ERROR_TYPES = [
 // Bookkeeping forwarded these 8 invoices — some belong and are correct, some
 // belong but need a correction before they're paid, and some don't belong
 // to this account at all.
-const ATTENTION_TO_DETAIL_LEDGER = [
-  {date:"Mar 3", desc:"Partner review — discovery correspondence", rate:"$850/hr", qty:"2.0", total:"$1,700"},
-  {date:"Mar 5", desc:"Associate drafting — motion in limine", rate:"$375/hr", qty:"3.5", total:"$1,312.50"},
-  {date:"Mar 6", desc:"Partner call — client status update", rate:"$850/hr", qty:"0.5", total:"$500"},
-  {date:"Mar 9", desc:"Associate drafting — motion in limine", rate:"$375/hr", qty:"3.5", total:"$1,312.50"},
-  {date:"Mar 12", desc:"Partner review — expert witness report", rate:"$850/hr", qty:"1.5", total:"$1,275"},
-  {date:"Mar 14", desc:"Paralegal — exhibit binder prep", rate:"$180/hr", qty:"4.0", total:"$720"},
-  {date:"Mar 18", desc:"Partner deposition prep", rate:"$800/hr", qty:"3.0", total:"$2,400"},
-  {date:"Mar 21", desc:"Associate — deposition attendance", rate:"$375/hr", qty:"5.0", total:"$1,875"},
-  {date:"Mar 24", desc:"Partner — settlement negotiation call", rate:"$850/hr", qty:"1.0", total:"$850"},
-  {date:"Mar 27", desc:"Paralegal — trial exhibit organization", rate:"$180/hr", qty:"3.5", total:"$630"},
-  {date:"Mar 29", desc:"Partner review — final pretrial brief", rate:"$850/hr", qty:"2.0", total:"$1,700"},
-  {date:"Apr 2", desc:"Partner call — post-hearing debrief", rate:"$850/hr", qty:"0.5", total:"$425"}
-];
+const MOCK_INVOICE = {
+  number: "2024-0847",
+  matter: "24-0113 — Alvarez v. Meridian Dynamics",
+  client: "R. Alvarez",
+  date: "March 31, 2026",
+  billingPeriod: "March 1–31, 2026",
+  lineItems: [
+    {date:"Mar 3", timekeeper:"E. Thorne (Partner)", desc:"Discovery correspondence review", hours:"2.0", rate:"$850/hr", amount:"$1,700.00"},
+    {date:"Mar 5", timekeeper:"J. Kim (Associate)", desc:"Draft motion in limine", hours:"3.5", rate:"$375/hr", amount:"$1,312.50"},
+    {date:"Mar 12", timekeeper:"E. Thorne (Partner)", desc:"Expert witness report review", hours:"1.5", rate:"$850/hr", amount:"$1,275.00"},
+    {date:"Mar 14", timekeeper:"M. Chen (Paralegal)", desc:"Exhibit binder preparation", hours:"4.0", rate:"$180/hr", amount:"$720.00"},
+    {date:"Mar 18", timekeeper:"E. Thorne (Partner)", desc:"Deposition preparation", hours:"3.0", rate:"$850/hr", amount:"$2,250.00"},
+    {date:"Mar 21", timekeeper:"J. Kim (Associate)", desc:"Deposition attendance", hours:"5.0", rate:"$375/hr", amount:"$1,875.00"}
+  ],
+  subtotal: "$9,132.50",
+  totalDue: "$9,132.50"
+};
+const MOCK_RECEIPT = {
+  receiptNumber: "RCP-3391",
+  appliedToInvoice: "2024-0847",
+  dateReceived: "March 28, 2026",
+  amountReceived: "$8,132.50",
+  method: "Wire transfer",
+  status: "PAID IN FULL"
+};
+const MOCK_HOURS_LISTING = {
+  source: "TimeKeeper Pro — Raw Time Entry Export",
+  matter: "24-0113 — Alvarez v. Meridian Dynamics",
+  period: "March 1–31, 2026",
+  entries: [
+    {date:"Mar 3", timekeeper:"E. Thorne (Partner)", desc:"Discovery correspondence review", hours:"2.0"},
+    {date:"Mar 5", timekeeper:"J. Kim (Associate)", desc:"Draft motion in limine", hours:"3.5"},
+    {date:"Mar 9", timekeeper:"J. Kim (Associate)", desc:"Draft motion in limine (continued)", hours:"2.0"},
+    {date:"Mar 12", timekeeper:"E. Thorne (Partner)", desc:"Expert witness report review", hours:"1.5"},
+    {date:"Mar 14", timekeeper:"M. Chen (Paralegal)", desc:"Exhibit binder preparation", hours:"4.0"},
+    {date:"Mar 18", timekeeper:"E. Thorne (Partner)", desc:"Deposition preparation", hours:"3.0"},
+    {date:"Mar 21", timekeeper:"J. Kim (Associate)", desc:"Deposition attendance", hours:"5.0"}
+  ]
+};
 const ATTENTION_TO_DETAIL_ANSWERS = [
-  "Line 3 (Mar 6): the line total is $500, but $850/hr × 0.5 hr = $425 — a math error.",
-  "Line 4 (Mar 9): identical description, rate, quantity, and total as Line 2 (Mar 5) — this is a duplicate charge that shouldn't be billed twice.",
-  "Line 7 (Mar 18): the rate is listed as $800/hr, but every other partner-level entry on this ledger uses $850/hr — a rate mismatch against R. Alvarez's contracted partner rate.",
-  "Line 12 (Apr 2): this billing sheet is for March — an April 2 entry falls outside the billing period and shouldn't appear on this month's invoice."
+  "Invoice, Mar 18 line: 3.0 hrs × $850/hr should be $2,550.00, but the invoice shows $2,250.00 — a math error that also makes the invoice's own subtotal wrong.",
+  "The Billable Hours Listing shows a Mar 9 entry (J. Kim, 2.0 hrs, 'Draft motion in limine (continued)') that never appears on the invoice at all — $750 of logged, billable work was never invoiced.",
+  "The Receipt shows $8,132.50 received and marked 'PAID IN FULL,' but the invoice's Total Due is $9,132.50 — a $1,000 gap between what was billed and what was actually collected, incorrectly marked as fully paid."
 ];
 
 const INVOICE_QUEUE = [
@@ -6058,24 +6100,74 @@ function initFinancial(body){
     <div id="auditResult"></div>
 
     <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Attention to Detail Test</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Below is R. Alvarez's full trust ledger for the month — a longer, denser sheet than Part A. Somewhere in these 12 lines are real errors: a math mistake, a duplicate charge, a rate that doesn't match the engagement letter, a date outside the billing period. Find every one.</p>
-    <div class="card" style="padding:14px 16px;overflow-x:auto;">
-      <table class="log-table">
-        <thead><tr><th>Line</th><th>Date</th><th>Description</th><th>Rate</th><th>Hours/Qty</th><th>Line Total</th></tr></thead>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Below are three real documents for Matter 24-0113 — an invoice, a payment receipt, and the raw time-tracking export they were both supposed to come from. Nothing here is wrong within any single document at a glance — the errors only show up when you actually cross-check one against another, the way a careful EA would before filing.</p>
+
+    <div class="mock-doc mock-invoice">
+      <div class="mock-doc-letterhead">
+        <div class="mock-doc-firm">THORNE &amp; PARTNERS LAW GROUP</div>
+        <div class="mock-doc-type">INVOICE</div>
+      </div>
+      <div class="mock-doc-meta">
+        <div><b>Invoice #</b>${esc(MOCK_INVOICE.number)}</div>
+        <div><b>Matter</b>${esc(MOCK_INVOICE.matter)}</div>
+        <div><b>Client</b>${esc(MOCK_INVOICE.client)}</div>
+        <div><b>Invoice Date</b>${esc(MOCK_INVOICE.date)}</div>
+        <div><b>Billing Period</b>${esc(MOCK_INVOICE.billingPeriod)}</div>
+      </div>
+      <table class="mock-doc-table">
+        <thead><tr><th>Date</th><th>Timekeeper</th><th>Description</th><th>Hours</th><th>Rate</th><th>Amount</th></tr></thead>
         <tbody>
-          ${ATTENTION_TO_DETAIL_LEDGER.map((r,i)=>`
-            <tr><td>${i+1}</td><td>${esc(r.date)}</td><td>${esc(r.desc)}</td><td>${esc(r.rate)}</td><td>${esc(r.qty)}</td><td>${esc(r.total)}</td></tr>`).join("")}
+          ${MOCK_INVOICE.lineItems.map(l=>`<tr><td>${esc(l.date)}</td><td>${esc(l.timekeeper)}</td><td>${esc(l.desc)}</td><td>${esc(l.hours)}</td><td>${esc(l.rate)}</td><td>${esc(l.amount)}</td></tr>`).join("")}
+        </tbody>
+      </table>
+      <div class="mock-doc-totals">
+        <div><span>Subtotal</span><span>${esc(MOCK_INVOICE.subtotal)}</span></div>
+        <div class="mock-doc-total-due"><span>Total Due</span><span>${esc(MOCK_INVOICE.totalDue)}</span></div>
+      </div>
+    </div>
+
+    <div class="mock-doc mock-receipt">
+      <div class="mock-doc-letterhead">
+        <div class="mock-doc-firm">THORNE &amp; PARTNERS LAW GROUP</div>
+        <div class="mock-doc-type">PAYMENT RECEIPT</div>
+      </div>
+      <div class="mock-doc-meta">
+        <div><b>Receipt #</b>${esc(MOCK_RECEIPT.receiptNumber)}</div>
+        <div><b>Applied to Invoice</b>${esc(MOCK_RECEIPT.appliedToInvoice)}</div>
+        <div><b>Date Received</b>${esc(MOCK_RECEIPT.dateReceived)}</div>
+        <div><b>Method</b>${esc(MOCK_RECEIPT.method)}</div>
+      </div>
+      <div class="mock-doc-totals">
+        <div><span>Amount Received</span><span>${esc(MOCK_RECEIPT.amountReceived)}</span></div>
+        <div class="mock-doc-total-due"><span>Status</span><span>${esc(MOCK_RECEIPT.status)}</span></div>
+      </div>
+    </div>
+
+    <div class="mock-doc mock-hours">
+      <div class="mock-doc-letterhead">
+        <div class="mock-doc-firm">${esc(MOCK_HOURS_LISTING.source)}</div>
+        <div class="mock-doc-type">RAW TIME ENTRIES</div>
+      </div>
+      <div class="mock-doc-meta">
+        <div><b>Matter</b>${esc(MOCK_HOURS_LISTING.matter)}</div>
+        <div><b>Period</b>${esc(MOCK_HOURS_LISTING.period)}</div>
+      </div>
+      <table class="mock-doc-table">
+        <thead><tr><th>Date</th><th>Timekeeper</th><th>Description</th><th>Hours Logged</th></tr></thead>
+        <tbody>
+          ${MOCK_HOURS_LISTING.entries.map(e=>`<tr><td>${esc(e.date)}</td><td>${esc(e.timekeeper)}</td><td>${esc(e.desc)}</td><td>${esc(e.hours)}</td></tr>`).join("")}
         </tbody>
       </table>
     </div>
-    <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your findings — list every discrepancy you find, by line number</label>
-    <textarea id="attnDetailFindings" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Line 3: ...&#10;Line 7: ..."></textarea>
+
+    <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your findings — list every discrepancy you find, and which documents it's between</label>
+    <textarea id="attnDetailFindings" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="e.g. Invoice Mar 18 line: ...&#10;Hours listing vs. invoice: ..."></textarea>
     <button class="btn btn-navy" style="margin-top:12px;" onclick="submitAttnDetail()">Submit for Trainer Review</button>
     <div id="attnDetailSubmitMsg" style="margin-top:8px;font-size:13px;"></div>
     ${state.isAdmin ? `
     <div class="trainer-checkpoint" style="margin-top:16px;">
       <div class="tc-tag">🧑‍🏫 Trainer Cue — Manual Grading, Answer Key</div>
-      <p>This section is deliberately <b>not auto-graded</b> — line-by-line accuracy checking is exactly the skill being tested, and a script that finds the errors for the trainee would defeat the point. Review their submitted findings yourself against the list below.</p>
+      <p>This section is deliberately <b>not auto-graded</b> — cross-document accuracy checking is exactly the skill being tested, and a script that finds the errors for the trainee would defeat the point. Review their submitted findings yourself against the list below.</p>
       <p><b>The planted errors are:</b></p>
       <ul style="margin:8px 0 0;padding-left:20px;">
         ${ATTENTION_TO_DETAIL_ANSWERS.map(a=>`<li style="font-size:12.8px;margin-bottom:6px;">${esc(a)}</li>`).join("")}
@@ -8057,6 +8149,50 @@ CURVEBALL (if trainee stalls): "I understand you need to check, but the office c
         blufStatement:`"I'm calling Sarah now — she's on the approved list, Leo is fine, and this doesn't need to interrupt Elias's prep."`
       }
     }
+  ],
+  compliance9: [
+    {
+      id:"clelapse",
+      title:"CLE Deadline, Discovered at the Worst Moment",
+      setup:"You're at a bar association networking event with Elias when you check the CLE tracker on your phone and realize an attorney's compliance deadline is today, not next week as the tracker showed — and Elias is thirty seconds from introducing that same attorney to a major prospective client.",
+      stakes:"A lapsed credential is fixable, but not instantly. If it surfaces in front of the prospective client right now, it damages both the introduction and the firm's credibility in the room.",
+      script:`OPENING LINE (Elias, played live, low voice, mid-event): "Quick — before I bring him over, anything I need to know?"
+FOLLOW-UP PRESSURE: "Is this a 'fix it tomorrow' thing or a 'don't introduce him right now' thing?"
+CURVEBALL: "The client's walking over. What do I say if she asks how long he's been practicing?"`,
+      objective:{
+        recommendation:"Give Elias a fast, honest read on severity — this is fixable within a day and doesn't change what's true about the attorney's standing tonight — and commit to having it cured before end of day tomorrow.",
+        risksTradeoffs:"Downplaying it risks a real compliance gap going unaddressed; overreacting in the moment risks torpedoing a client introduction over something curable. The trade-off is giving Elias just enough accurate information to make his own call in the next ten seconds.",
+        blufStatement:`"It's a paperwork lapse, not a practice issue — fixable by tomorrow. Go ahead with the introduction; I'll have it resolved first thing."`
+      }
+    },
+    {
+      id:"reviewgoesviral",
+      title:"Negative Review Gets Picked Up",
+      setup:"A negative online review naming a specific case just got shared by a legal-industry account with real reach. A partner who is not Elias calls you directly, agitated, asking why nobody flagged this sooner.",
+      stakes:"How the next 30 minutes are handled will likely determine whether this fades quietly or becomes a bigger story. The partner calling you is not the right person to authorize a public response, but he doesn't want to hear that right now.",
+      script:`OPENING LINE (partner, played live, sharp): "Have you seen this? It's got two hundred shares already. Why is this the first I'm hearing about it?"
+FOLLOW-UP PRESSURE: "So what's the firm doing about it? Right now — not next week."
+CURVEBALL: "Should I just respond to it myself? I have a login."`,
+      objective:{
+        recommendation:"Confirm you're on it, route the actual public-response decision to whoever handles firm communications/reputation (not the partner personally), and give him a concrete timeline rather than letting him improvise a reply himself.",
+        risksTradeoffs:"An uncoordinated personal reply from an agitated partner risks making the story worse; treating it as low-priority risks letting it spread further. The trade-off is moving fast on process without letting anyone act unilaterally.",
+        blufStatement:`"I've already flagged it to [communications contact] — please don't respond personally, a coordinated reply is being drafted now and I'll have it to you within the hour."`
+      }
+    },
+    {
+      id:"membershiplapse",
+      title:"Membership Lapse, Five Minutes Before He's On Stage",
+      setup:"Elias is about to be introduced to moderate a panel at a bar association conference — tied to a professional membership — when you discover that membership technically lapsed last week due to a missed renewal.",
+      stakes:"He has five minutes. Pulling him off the panel over this would be a bigger problem than the lapse itself, but if it comes up publicly, it's an embarrassing and avoidable miss.",
+      script:`OPENING LINE (Elias, played live, tense, adjusting his jacket): "Tell me this can wait until after I'm off stage."
+FOLLOW-UP PRESSURE: "Is there any chance this comes up in the next hour?"
+CURVEBALL: "How did this even lapse — isn't this exactly the kind of thing you're supposed to catch?"`,
+      objective:{
+        recommendation:"Confirm this does not need to interrupt the panel, give an honest answer about the realistic odds of it surfacing publicly, and own the process gap directly rather than deflecting — then fix the renewal immediately after he's off stage.",
+        risksTradeoffs:"Making this feel like an emergency right before he goes on stage risks visibly rattling him in front of the room; treating it too casually risks it genuinely surfacing unaddressed. The trade-off is calm reassurance now versus a real fix immediately after.",
+        blufStatement:`"This doesn't need to touch the panel — go. I'll have the renewal processed the second you're off stage, and yes, that's on me to have caught earlier."`
+      }
+    }
   ]
 };
 
@@ -8432,6 +8568,7 @@ window.downloadDay6CrisisScriptsPdf = downloadDay6CrisisScriptsPdf;
 
 function initCompliance9(body){
   toolState.c9 = {cle:{}, reg:{}, reviewReport:null};
+  toolState.cr = {setKey:"compliance9", activeScenario: CRISIS_SCENARIO_SETS.compliance9[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.compliance9[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   body.innerHTML = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. CLE Compliance Dashboard</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each attorney, decide: On Track, or Needs Follow-up.</p>
@@ -8477,6 +8614,7 @@ function initCompliance9(body){
     <div id="c9ReviewResult" style="margin-top:10px;"></div>
 
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadCompliance9Pdf()">⬇ Download My Work</button>
+    ${renderCrisisRoleplaySection("compliance9", "D. Live Crisis Roleplay — Compliance &amp; Reputation")}
   `;
 }
 
@@ -9102,16 +9240,25 @@ window.downloadInsurance5Pdf = downloadInsurance5Pdf;
 
 /* ============================================================
    DAY 6 SIMULATOR: BUSINESS COMPLIANCE & PROJECT RECOVERY
-   Thorne & Partners' multi-jurisdiction licenses, KPI dashboard,
-   and an active trial-team recovery scenario.
+   Redesigned as one connected scenario, not three unrelated
+   exercises: a license check and a KPI review are the EVIDENCE
+   the trainee gathers, and the recovery memo in Part C requires
+   actually synthesizing both findings, not just describing the
+   trial delay in isolation.
    ============================================================ */
 
 function initProjectCompliance6(body){
   toolState.c6 = {license:{}, kpi:{}, recoveryReport:null};
   toolState.c6cr = {activeScenario: DAY6_CRISIS_SCENARIOS[0].id, chatHistory:[{role:"client", text: DAY6_CRISIS_SCENARIOS[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   body.innerHTML = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Multi-Jurisdiction License Check</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Thorne & Partners operates out of New York, D.C., London, and Singapore. For each registration, decide: Current, or Renew Soon.</p>
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">📅 Month-End, Thorne &amp; Partners</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">It's month-end compliance review. Two routine checks land on your desk at the same time — a license status sweep across all four jurisdictions, and this month's KPI dashboard. Neither looks urgent on its own. But by the end of this exercise, you'll see they're both pointing at the same thing: the Meridian Dynamics arbitration is under real strain, and it's already showing up elsewhere before anyone's said so out loud.</p>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;">Treat Parts A and B as evidence-gathering — what you find there is exactly what your recovery message in Part C needs to reference. This isn't three separate exercises; it's one situation seen from three angles.</p>
+    </div>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Spot the Compliance Risk</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Thorne &amp; Partners operates out of New York, D.C., London, and Singapore. For each registration, decide: Current, or Renew Soon. One of these is directly tied to international arbitration work — the kind Meridian Dynamics is.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
         <thead><tr><th>License / Registration</th><th>Expires</th><th>Your Call</th></tr></thead>
@@ -9133,8 +9280,8 @@ function initProjectCompliance6(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6License()">Check Licenses</button>
     <div id="c6LicenseResult" style="margin-top:8px;font-size:13px;"></div>
 
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. KPI Dashboard Review</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">This month's numbers just came in. Flag which metrics are On Target vs. Off Target.</p>
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Read the Operational Warning Signs</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">This month's numbers just came in. Flag which metrics are On Target vs. Off Target — and notice which categories are slipping together.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
         <thead><tr><th>Category</th><th>KPI</th><th>Target</th><th>Actual</th><th>Your Call</th></tr></thead>
@@ -9156,12 +9303,13 @@ function initProjectCompliance6(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6Kpi()">Check Dashboard</button>
     <div id="c6KpiResult" style="margin-top:8px;font-size:13px;"></div>
 
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Trial Team Project Recovery</h3>
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Write the Recovery &amp; Escalation Memo</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">${esc(TRIAL_RECOVERY_SCENARIO.matter)}</b>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRIAL_RECOVERY_SCENARIO.text)}</p>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:8px 0 0;">A weak message reports this delay in isolation. A strong one connects it to what you just found in Parts A and B — the compliance risk that needs attention before the hearing date arrives, and the KPI evidence that shows the strain is already spilling into other areas.</p>
     </div>
-    <textarea id="c6RecoveryReply" placeholder="Draft your message to Elias here…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
+    <textarea id="c6RecoveryReply" placeholder="Draft your message to Elias here — reference what you found in Parts A and B, not just the trial delay on its own…" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC6Recovery(this)">Get AI Feedback</button>
     <div id="c6RecoveryResult" style="margin-top:10px;"></div>
 
@@ -9206,13 +9354,22 @@ async function checkC6Recovery(btn){
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your recovery plan…</div>`;
   const prompt = `You are reviewing a Legal Executive Assistant trainee's draft message to their principal, Elias Thorne (Managing Owner & CEO of Thorne & Partners Law Group), about a project that has fallen behind schedule.
 
-Scenario: ${TRIAL_RECOVERY_SCENARIO.text}
+FULL SITUATION (the trainee was given all three pieces together, as one connected scenario):
+1. License check: the D.C. Bar Foreign Legal Consultant Registration — which specifically covers international arbitration work — is coming up for renewal soon.
+2. KPI dashboard: Executive Inbox Response Time and Client Retention Rate are both off target this month, consistent with the team being stretched thin.
+3. The trigger event: ${TRIAL_RECOVERY_SCENARIO.text}
 
 The trainee's draft message: "${text}"
 
-Evaluate against the standard taught: identify the root cause of the delay before reassigning blame, give a structured and specific plan (not vague reassurance), and match Elias's known preference for BLUF (bottom-line-up-front) communication — the key point and required action should be immediately clear, with detail available but not front-loaded. Give 3-4 short bullet points of feedback and one overall verdict sentence.`;
+Evaluate against the standard taught:
+1. Does the message connect the dots — referencing the license renewal risk and/or the KPI strain as part of the same picture, not just reporting the trial delay in isolation? A message that ignores Parts A and B entirely is missing the actual point of this exercise.
+2. Does it identify the root cause of the delay before reassigning blame?
+3. Is the plan structured and specific, not vague reassurance?
+4. Does it match Elias's known preference for BLUF (bottom-line-up-front) communication — the key point and required action immediately clear, detail available but not front-loaded?
+
+Give 4-5 short bullet points of feedback — explicitly call out whether they connected Parts A/B to the recovery message or treated it as a standalone report — then one overall verdict sentence.`;
   try{
-    const feedback = (await callAIText(prompt, 500)) || "No feedback returned.";
+    const feedback = (await callAIText(prompt, 550)) || "No feedback returned.";
     toolState.c6.recoveryReport = feedback;
     resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
     await bumpPracticeProgress("projectcompliance6", 100);
@@ -9229,15 +9386,15 @@ window.checkC6Recovery = checkC6Recovery;
 async function downloadProjectCompliance6Pdf(){
   await ensureTraineeName();
   const c6 = toolState.c6;
-  const lines = ["## A. Multi-Jurisdiction License Check"];
+  const lines = ["## A. Spot the Compliance Risk"];
   FIRM_LICENSES.forEach((l,i)=>{
     lines.push(`${l.name} (expires ${l.expires}) — your call: ${c6.license[i]||"(not answered)"} (correct: ${l.status})`);
   });
-  lines.push("---", "## B. KPI Dashboard Review");
+  lines.push("---", "## B. Read the Operational Warning Signs");
   FIRM_KPIS.forEach((k,i)=>{
     lines.push(`${k.category} — ${k.kpi}: target ${k.target}, actual ${k.actual} — your call: ${c6.kpi[i]||"(not answered)"} (correct: ${k.correctStatus})`);
   });
-  lines.push("---", "## C. Trial Team Project Recovery", `Scenario: ${TRIAL_RECOVERY_SCENARIO.text}`, `Your message: ${document.getElementById("c6RecoveryReply").value.trim()||"(not written)"}`);
+  lines.push("---", "## C. Recovery & Escalation Memo", `Scenario: ${TRIAL_RECOVERY_SCENARIO.text}`, `Your message: ${document.getElementById("c6RecoveryReply").value.trim()||"(not written)"}`);
   if(c6.recoveryReport) lines.push("", "AI Feedback:", c6.recoveryReport);
   buildAndSavePdf("LSH EA / PA Upskill Program", "Business Compliance & Project Recovery — Results", lines, "LSH_Project_Compliance");
 }
