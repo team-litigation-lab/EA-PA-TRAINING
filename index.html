@@ -6098,6 +6098,7 @@ async function submitAttnDetail(){
   if(val.length < 10){ toast("Write out what you found before submitting."); return; }
   toolState.audit.attnDetailFindings = val;
   await storeSet("attn-detail-findings", val);
+  await bumpPracticeProgress("financial", null);
   msgEl.innerHTML = `<b style="color:var(--success);">Submitted.</b> Your trainer will review this manually and follow up with feedback — this one isn't auto-graded.`;
 }
 window.submitAttnDetail = submitAttnDetail;
@@ -8750,6 +8751,7 @@ Give 4-5 short bullet points of specific feedback, then one overall verdict sent
   try{
     const feedback = await callAIText(prompt, 600);
     el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Dossier</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("dossier1", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -8785,6 +8787,7 @@ Give 4-5 short bullet points of specific feedback, then one overall verdict sent
   try{
     const feedback = await callAIText(prompt, 650);
     el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your ACT Email</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("dossier1", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
