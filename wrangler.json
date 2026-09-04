@@ -3,6 +3,9 @@
   "name": "ea-pa-training",
   "main": "index.ts",
   "compatibility_date": "2025-02-04",
+  "assets": {
+    "directory": "./"
+  },
   "observability": {
     "enabled": true
   },
