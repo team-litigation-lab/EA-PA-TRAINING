@@ -4367,39 +4367,71 @@ async function storeGet(key){
       const r = await window.storage.get(key,false);
       return r ? JSON.parse(r.value) : null;
     }
-  }catch(e){ /* key not found or storage error */ }
+  }catch(e){ /* key not found in window.storage, or unavailable */ }
+  try{
+    const raw = localStorage.getItem("lsh_"+key);
+    if(raw !== null) return JSON.parse(raw);
+  }catch(e){ /* localStorage unavailable (private browsing, etc.) */ }
   return mem[key] !== undefined ? mem[key] : null;
 }
 async function storeSet(key,val){
   mem[key]=val;
+  let savedAnywhere = false;
   try{
-    if(window.storage){ await window.storage.set(key, JSON.stringify(val), false); }
-    return true;
+    if(window.storage){ await window.storage.set(key, JSON.stringify(val), false); savedAnywhere = true; }
+  }catch(e){ /* window.storage unavailable or failed, fall through to localStorage */ }
+  try{
+    localStorage.setItem("lsh_"+key, JSON.stringify(val));
+    savedAnywhere = true;
   }catch(e){
-    console.warn("storage set failed",e);
-    toast("Couldn't save — your device may be low on storage. Your work is kept for this session.");
-    return false;
+    console.warn("localStorage set failed",e);
   }
+  if(!savedAnywhere){
+    toast("Couldn't save — your device may be low on storage or in private browsing. Your work is kept for this session only.");
+  }
+  return savedAnywhere;
 }
 
 /* ---------- shared storage (the "admin ledger" — visible across all trainees) ---------- */
 async function sharedSet(key,val){
   try{
     if(window.storage){ await window.storage.set(key, JSON.stringify(val), true); return true; }
-  }catch(e){ console.warn("shared storage set failed",e); }
-  return false;
+  }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  try{
+    const response = await fetch("/api/storage/set", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ key, value: JSON.stringify(val) })
+    });
+    return response.ok;
+  }catch(e){ console.warn("shared storage set failed",e); return false; }
 }
 async function sharedGet(key){
   try{
     if(window.storage){ const r = await window.storage.get(key,true); return r ? JSON.parse(r.value) : null; }
-  }catch(e){ /* not found or unavailable */ }
-  return null;
+  }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  try{
+    const response = await fetch("/api/storage/get", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ key })
+    });
+    if(!response.ok) return null;
+    const data = await response.json();
+    return data.value ? JSON.parse(data.value) : null;
+  }catch(e){ return null; }
 }
 async function sharedList(prefix){
   try{
     if(window.storage){ const r = await window.storage.list(prefix,true); return (r && r.keys) || []; }
-  }catch(e){ console.warn("shared storage list failed",e); }
-  return [];
+  }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  try{
+    const response = await fetch("/api/storage/list", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ prefix })
+    });
+    if(!response.ok) return [];
+    const data = await response.json();
+    return data.keys || [];
+  }catch(e){ console.warn("shared storage list failed",e); return []; }
 }
 
 function generateTraineeId(name){
@@ -4483,7 +4515,20 @@ async function callAIText(prompt, maxTokens){
 }
 async function callAIJson(prompt, maxTokens){
   const text = await callAIText(prompt, maxTokens);
-  const cleaned = text.replace(/^```json\s*/i,"").replace(/^```\s*/,"").replace(/```\s*$/,"").trim();
+  let cleaned = text.replace(/^```json\s*/i,"").replace(/^```\s*/,"").replace(/```\s*$/,"").trim();
+  // Robustness: if the model added any preamble/postamble text around the JSON
+  // (common on longer, more complex generations), extract just the array or
+  // object itself rather than failing outright on the surrounding text.
+  if(cleaned[0] !== "[" && cleaned[0] !== "{"){
+    const arrStart = cleaned.indexOf("[");
+    const objStart = cleaned.indexOf("{");
+    const start = (arrStart===-1) ? objStart : (objStart===-1 ? arrStart : Math.min(arrStart, objStart));
+    if(start !== -1){
+      const isArray = cleaned[start] === "[";
+      const end = isArray ? cleaned.lastIndexOf("]") : cleaned.lastIndexOf("}");
+      if(end > start) cleaned = cleaned.slice(start, end+1);
+    }
+  }
   return JSON.parse(cleaned);
 }
 function fmtDate(iso){ if(!iso) return ""; const d=new Date(iso); return d.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}); }
@@ -8025,11 +8070,11 @@ Generate EXACTLY 25 realistic, varied emails that would be in his inbox after be
 
 For EACH email, also privately classify which Eisenhower Matrix quadrant it truly belongs in, from the EA's perspective (not Elias's) — quadrant "1" = Urgent & Important (Do), "2" = Important Not Urgent (Schedule), "3" = Urgent Not Important (Delegate), "4" = Neither (Delete/Defer).
 
-Return ONLY a JSON array of exactly 25 objects, each shaped like:
+Return ONLY a JSON array of exactly 25 objects — no preamble, no explanation, no markdown code fences, nothing before the opening [ or after the closing ]. Each object shaped like:
 {"from":"Name <email>", "subject":"...", "preview":"one sentence preview", "idealQuadrant":"1"}`;
   try{
-    const data = await callAIJson(prompt, 4000);
-    if(!Array.isArray(data) || data.length < 15) throw new Error("bad response");
+    const data = await callAIJson(prompt, 6000);
+    if(!Array.isArray(data) || data.length < 15) throw new Error("bad response shape");
     toolState.iz.inbox = data.map((e,i)=>({id:"m"+i, from:e.from||"Unknown", subject:e.subject||"(no subject)", preview:e.preview||"", idealQuadrant:String(e.idealQuadrant||"4")}));
     toolState.iz.placements = {};
     status.textContent = `${toolState.iz.inbox.length} emails generated.`;
@@ -8037,6 +8082,7 @@ Return ONLY a JSON array of exactly 25 objects, each shaped like:
     document.getElementById("izSortCard").style.display = "block";
     izRenderBoard();
   }catch(e){
+    console.error("Inbox generation failed:", e);
     status.textContent = "Couldn't generate — check your connection and try again.";
   }finally{
     btn.disabled = false;
