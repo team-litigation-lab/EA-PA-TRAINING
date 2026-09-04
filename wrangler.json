@@ -7,6 +7,6 @@
     "binding": "ASSETS"
   },
   "kv_namespaces": [
-    { "binding": "LSH_KV", "id": "LSHCONTAINER" }
+    { "binding": "LSH_KV", "id": "b121aa911590471bbad351d03274d7f4" }
   ]
 }
