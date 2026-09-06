@@ -5430,22 +5430,22 @@ const DAYS = [DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8, DAY9, DAY10];
 const PRACTICE_TOOLS = [
   {id:"dossier1", icon:"🗂", title:"Client Dossier & Tracker Builder", relates:"Day 1",
    desc:"Build a comprehensive client dossier and set up Travel and Inbox Preference trackers for Elias Thorne — sorting real profile facts into the right sections."},
+  {id:"forcemultiplier2", icon:"⚡", title:"The Force Multiplier Challenge", relates:"Day 2",
+   desc:"Three connected challenges — anticipate what a vague executive request really needs, write an AI prompt that actually runs and produces real output, then handle a messy scenario that tests both skills at once."},
   {id:"calendar", icon:"◫", title:"Legal Calendar Conflict Resolver", relates:"Day 3",
    desc:"A full attorney's week with overlapping court dates, depositions, and client meetings — drag blocks to new times, recolor them, resolve every conflict, then write the AI prompt that would turn it into Elias's BLUF-style daily briefing."},
-  {id:"travel", icon:"✈", title:"Travel Itinerary Planner", relates:"Day 2",
-   desc:"Build a personal travel itinerary for Elias Thorne from scratch — a family trip to Spain — applying his known travel preferences as you go."},
-  {id:"emailsim", icon:"📨", title:"Inbox Triage", relates:"Day 4",
-   desc:"A real inbox — build your own filing system with labels and sub-labels, draft real replies to client emails, and catch a hidden phishing attempt. Evaluated on filing accuracy, tone match, professionalism, and security awareness."},
-  {id:"insurance5", icon:"🛡", title:"Insurance & Risk Assessment", relates:"Day 5",
-   desc:"Classify household and personal risks facing the Thorne family into the right category, then match each to the correct risk-management strategy."},
+  {id:"emailsim", icon:"📨", title:"Inbox Triage & Outreach", relates:"Day 4",
+   desc:"A real inbox — build your own filing system, draft real replies, and catch a hidden phishing attempt — then practice inbound gatekeeping under pressure and log a round of cold-calling outreach."},
+  {id:"insurance5", icon:"🛡", title:"Household Risk & Travel Planning", relates:"Day 5",
+   desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
   {id:"projectcompliance6", icon:"📊", title:"Business Compliance & Project Recovery", relates:"Day 6",
    desc:"Check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind."},
   {id:"financial", icon:"Σ", title:"Trust Account & Billing Sheet", relates:"Day 7",
    desc:"Reconcile a client trust ledger and build a legal services invoice — with live calculations."},
-  {id:"calls", icon:"☎", title:"Crisis Call Handling Studio", relates:"Day 8",
-   desc:"Practice gatekeeping under pressure — media inquiries, a suspicious caller requesting sensitive information, and urgent partner check-ins during a live crisis."},
   {id:"compliance9", icon:"📋", title:"Compliance & Reputation Tracker", relates:"Day 9",
    desc:"Spot who's behind on CLE hours, catch unconfirmed event registrants, and draft a professional public response to a negative review."},
+  {id:"accessincident8", icon:"🔐", title:"The Access & Incident Response Simulator", relates:"Day 8",
+   desc:"Audit who actually has too much system access, decide how to verify a caller before disclosing anything sensitive, then write your real containment response to an active confidentiality leak."},
   {id:"socialmedia10", icon:"📱", title:"Social Media Metrics Lab", relates:"Day 10",
    desc:"Calculate real engagement rates to find the top-performing post, match tone to platform, and work the campaign math on cost-per-lead and ROI."}
 ];
@@ -6030,8 +6030,8 @@ async function sharedList(prefix){
 }
 
 function generateTraineeId(name){
-  const slug = (name||"trainee").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,24) || "trainee";
-  return slug + "-" + Math.random().toString(36).slice(2,7);
+  const slug = (name||"trainee").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,40) || "trainee";
+  return slug;
 }
 
 /** Mirrors this trainee's progress into shared storage so the Admin
@@ -6585,9 +6585,22 @@ async function submitLogin(){
   if(!v){ toast("Enter your name to continue."); return; }
   state.traineeName = v;
   await storeSet("trainee-name", v);
-  if(!state.traineeId){
+  const isNewSession = !state.traineeId;
+  if(isNewSession){
     state.traineeId = generateTraineeId(v);
     await storeSet("trainee-id", state.traineeId);
+  }
+  // If this name already has a record (e.g. they logged out and are logging
+  // back in), restore their real progress before syncing — otherwise the
+  // sync below would overwrite their history with this session's empty state.
+  if(isNewSession){
+    const existing = await sharedGet("trainee:"+state.traineeId);
+    if(existing){
+      state.progress = existing.dayProgress || {};
+      state.practiceProgress = existing.practiceProgress || {};
+      await storeSet("day-progress", state.progress);
+      await storeSet("practice-progress", state.practiceProgress);
+    }
   }
   await syncToLedger();
   const status = await getApprovalStatus(state.traineeId);
@@ -7289,14 +7302,14 @@ function initTool(id){
   if(!body) return;
   if(id==="calendar") initCalendar(body);
   else if(id==="financial") initFinancial(body);
-  else if(id==="travel") initTravel(body);
-  else if(id==="calls") initCalls(body);
   else if(id==="emailsim") initEmailSim(body);
   else if(id==="compliance9") initCompliance9(body);
   else if(id==="socialmedia10") initSocial10(body);
   else if(id==="dossier1") initDossier1(body);
   else if(id==="insurance5") initInsurance5(body);
   else if(id==="projectcompliance6") initProjectCompliance6(body);
+  else if(id==="forcemultiplier2") initForceMultiplier2(body);
+  else if(id==="accessincident8") initAccessIncident8(body);
 }
 
 async function bumpPracticeProgress(toolId, score){
@@ -8061,75 +8074,6 @@ async function downloadFinancialPdf(){
 }
 window.downloadFinancialPdf = downloadFinancialPdf;
 
-/* ============================================================
-   4. TRAVEL "WHAT-IF" PLANNER
-   ============================================================ */
-function initTravel(body){
-  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
-  renderTravelBody(body);
-}
-function renderTravelBody(body){
-  body.innerHTML = `
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
-      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
-      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
-      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">Build this the way you'd build a real one: real flight-search screenshots (linked), real direct booking links, real venue photos, real proximity research. Vague placeholders will show up as vague in the review.</p>
-    </div>
-
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Client Travel Preferences (reference)</h3>
-      <div class="pref-ref-grid">
-        <div><b>Seat</b><span>${esc(FLIGHT_PREFS.seat)}</span></div>
-        <div><b>Routing</b><span>${esc(FLIGHT_PREFS.routing)}</span></div>
-        <div><b>Redeye</b><span>${esc(FLIGHT_PREFS.redeye)}</span></div>
-        <div><b>Hotel</b><span>${esc(FLIGHT_PREFS.hotel)}</span></div>
-      </div>
-    </div>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the AI review checks whether your notes actually match Elias's stated preferences.</p>
-    <div id="legList">${renderLegs()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
-    <div id="hotelList">${renderHotels()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
-    <div id="groundList">${renderGroundTransport()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
-    <div id="stopList">${renderStops()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addStop()">+ Add Stop</button>
-
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">ACT Practice — A Task Lands Mid-Planning</h3>
-      <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">While you're building this itinerary, David Reyes (Head of Litigation) emails you directly. Reply using the same <b>ACT</b> framework from Day 1 — Acknowledge, Clarify, Timeline.</p>
-      <div class="voice-note" style="background:var(--navy-deep);">
-        <span class="vn-time">David Reyes — 2:14 PM</span>
-        <p style="font-size:13px;color:#fff;margin:8px 0 0;line-height:1.6;">"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."</p>
-      </div>
-      <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your ACT email reply</label>
-      <textarea id="travelActDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Subject: ...&#10;&#10;David — ..."></textarea>
-      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewTravelActEmail()">Get AI Feedback</button>
-      <div id="travelActFeedback" style="margin-top:14px;"></div>
-    </div>
-
-    <div class="card" style="padding:18px 20px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Review &amp; Export</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-primary btn-sm" id="travelReviewBtn" onclick="reviewItinerary()">Get AI Review</button>
-        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download as PDF</button>
-      </div>
-      <div id="itinReview" style="margin-top:14px;"></div>
-    </div>
-  `;
-}
-
 /* ---------- image-or-placeholder helper ---------- */
 function imgOrPlaceholder(url, label){
   if(!url) return `<div class="link-preview-box empty">📷 ${esc(label)} — no link provided yet</div>`;
@@ -8346,7 +8290,7 @@ Give a structured critique: 2 bullets on flights, 2 bullets on hotel/ground tran
     const score = scoreMatch ? Math.min(100, Number(scoreMatch[1])) : 50;
     el.innerHTML = `<div class="ai-result"><b>AI Review — Itinerary</b><div class="ai-result-body">${esc(feedback.replace(/SCORE:\s*\d{1,3}/i,"").trim()).replace(/\n/g,"<br>")}</div></div>`;
     toolState.travel.score = score;
-    await bumpPracticeProgress("travel", score);
+    await bumpPracticeProgress("insurance5", score);
     if(score>=90) burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get a review</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
@@ -8384,7 +8328,7 @@ Give 4-5 short bullet points of specific feedback, then one overall verdict sent
   try{
     const feedback = await callAIText(prompt, 650);
     el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your ACT Email</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("travel", null);
+    await bumpPracticeProgress("insurance5", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -8431,12 +8375,11 @@ async function downloadTravelPdf(){
 window.downloadTravelPdf = downloadTravelPdf;
 
 /* ============================================================
-   5. CALL HANDLING STUDIO
+   5. CALL HANDLING STUDIO (embedded within Inbox Triage / Day 4)
    ============================================================ */
-function initCalls(body){
-  toolState.calls = {};
-  body.innerHTML = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Inbound Gatekeeping Practice</h3>
+function renderCallsSection(){
+  return `
+    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">D. Inbound Gatekeeping Practice</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Pick the response that best matches the gatekeeping technique in play.</p>
     ${CALL_SCENARIOS.map((s,i)=>`
       <div class="scenario-card">
@@ -8454,7 +8397,7 @@ function initCalls(body){
     <button class="btn btn-primary" onclick="submitCalls()">Check My Responses</button>
     <div id="callsResult"></div>
 
-    <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">B. Prospective Client Intake Call Log</h3>
+    <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">E. Prospective Client Intake Call Log</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Reference opening line: <i>"Hi, I'm [Your Name] from [Firm]. I wanted to see if we could schedule a brief consultation to discuss [the matter you were referred about]."</i> Log your practice calls below.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
@@ -8476,7 +8419,6 @@ function initCalls(body){
       <button class="btn btn-navy btn-sm" onclick="downloadCallsPdf()">⬇ Download My Work</button>
     </div>
   `;
-  loadCallLog();
 }
 async function saveCallLog(){
   const log = COLD_LEADS.map((l,i)=>({
@@ -8521,7 +8463,7 @@ async function submitCalls(){
     <div class="card" style="padding:16px 20px;margin-top:14px;">
       <b style="color:var(--navy);">${correct} / ${total} correct (${score}%)</b>
     </div>`;
-  await bumpPracticeProgress("calls", score);
+  await bumpPracticeProgress("emailsim", score);
   if(score===100) burstConfetti();
 }
 window.submitCalls = submitCalls;
@@ -9316,6 +9258,8 @@ async function initEmailSim(body){
     failReason:null, selected:0, report:null, securityScore:null, filingScore:null
   };
   toolState.iz = {inbox:[], placements:{}, hasSimulatedFailure:false};
+  toolState.calls = {};
+  loadCallLog();
   EMAIL_SIM_MESSAGES.forEach((_,i)=>{ if(!(i in toolState.esim.replies) && !toolState.esim.archived[i] && !toolState.esim.reported[i]) toolState.esim.unread[i] = true; });
   toolState.esim.labels = (await storeGet("inbox-labels")) || LABEL_LEGEND.map((l,i)=>({id:"default_"+i, name:l.label, parentId:null, color:l.color}));
   toolState.esim.filing = (await storeGet("inbox-filing")) || {};
@@ -9435,6 +9379,7 @@ function renderEsimBody(body){
     </div>
     <button class="btn btn-primary" style="margin-top:16px;" onclick="finishEmailSim()">Finish &amp; Get Evaluation</button>
     ${renderInboxZeroSection()}
+    ${renderCallsSection()}
   `;
 }
 
@@ -10430,6 +10375,135 @@ window.downloadDay6CrisisScriptsPdf = downloadDay6CrisisScriptsPdf;
    registration follow-up, and an AI-evaluated review response.
    ============================================================ */
 
+/* ============================================================
+   DAY 8 TOOL: THE ACCESS & INCIDENT RESPONSE SIMULATOR
+   ============================================================ */
+const AI8_ACCESS_AUDIT = [
+  {who:"Paralegal — has full admin access to the firm's trust accounting system", excessive:true},
+  {who:"Contract attorney whose engagement ended 3 months ago — still has access to the case management system", excessive:true},
+  {who:"New associate — has read-only access to case files they're actively assigned to", excessive:false},
+  {who:"IT support vendor — has unrestricted access to the firm's client communication platform", excessive:true},
+  {who:"Managing partner — has full access to firm financials", excessive:false},
+  {who:"Summer intern — has been given the same system access as a senior associate", excessive:true}
+];
+const AI8_VERIFY_SCENARIO = {
+  setup:"A caller says they're 'David Reyes's assistant' and needs sensitive case file details right now — David supposedly needs it in the next 10 minutes for a client call.",
+  options:[
+    {text:"Read out the details immediately since it sounds urgent and time-sensitive", correct:false},
+    {text:"Tell them you'll call David back directly at his known number to confirm before sharing anything", correct:true},
+    {text:"Ask the caller for David's direct line so you can verify with him first", correct:false},
+    {text:"Ask the caller a security question you make up on the spot, then proceed if they sound confident", correct:false}
+  ]
+};
+const AI8_LEAK_SCENARIO = {
+  text:"Twenty minutes ago, you accidentally CC'd a confidential settlement document to the wrong client entirely — not the intended recipient. You just noticed."
+};
+
+function initAccessIncident8(body){
+  toolState.ai8 = {auditAnswers:{}, verifyAnswer:null, containmentDraft:""};
+  body.innerHTML = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Least-Privilege Access Audit</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each person below, decide: is their current access Appropriate for their role, or Excessive and something that should be revoked?</p>
+    <div class="card" style="padding:14px 16px;">
+      ${AI8_ACCESS_AUDIT.map((a,i)=>`
+        <div style="padding:10px 0;border-bottom:1px solid var(--line);">
+          <p style="font-size:13px;color:#37394A;margin:0 0 8px;">${esc(a.who)}</p>
+          <select onchange="toolState.ai8.auditAnswers[${i}]=this.value">
+            <option value="">Choose&hellip;</option>
+            <option value="appropriate">Appropriate</option>
+            <option value="excessive">Excessive — should be revoked</option>
+          </select>
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkAi8Audit()">Check My Answers</button>
+    <div id="ai8AuditResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Verify Before You Disclose</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">${esc(AI8_VERIFY_SCENARIO.setup)}</p>
+    </div>
+    ${AI8_VERIFY_SCENARIO.options.map((o,i)=>`
+      <label class="quiz-opt" style="display:block;margin-bottom:8px;">
+        <input type="radio" name="ai8verify" value="${i}" onchange="toolState.ai8.verifyAnswer=${i}">
+        <span style="font-size:13px;">${esc(o.text)}</span>
+      </label>`).join("")}
+    <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="checkAi8Verify()">Check My Answer</button>
+    <div id="ai8VerifyResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Contain the Leak</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">${esc(AI8_LEAK_SCENARIO.text)}</p>
+    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Write your actual immediate next steps — what you do first, second, third.</p>
+    <textarea id="ai8ContainmentDraft" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="First, I would..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewAi8Containment()">Get AI Feedback</button>
+    <div id="ai8ContainmentResult" style="margin-top:14px;"></div>
+
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadAi8Pdf()">⬇ Download My Work</button>
+  `;
+}
+
+async function checkAi8Audit(){
+  const answered = Object.keys(toolState.ai8.auditAnswers).length;
+  if(answered < AI8_ACCESS_AUDIT.length){ toast("Classify all six people first."); return; }
+  let correct = 0;
+  AI8_ACCESS_AUDIT.forEach((a,i)=>{
+    const chosen = toolState.ai8.auditAnswers[i];
+    const shouldBe = a.excessive ? "excessive" : "appropriate";
+    if(chosen === shouldBe) correct++;
+  });
+  const score = Math.round((correct/AI8_ACCESS_AUDIT.length)*100);
+  document.getElementById("ai8AuditResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${AI8_ACCESS_AUDIT.length} correct (${score}%)</b>`;
+  await bumpPracticeProgress("accessincident8", score);
+}
+window.checkAi8Audit = checkAi8Audit;
+
+async function checkAi8Verify(){
+  if(toolState.ai8.verifyAnswer===null){ toast("Choose an answer first."); return; }
+  const correct = AI8_VERIFY_SCENARIO.options[toolState.ai8.verifyAnswer].correct;
+  document.getElementById("ai8VerifyResult").innerHTML = correct
+    ? `<b style="color:var(--success);">Correct.</b> Independent verification through a known channel — not the inbound contact — is the defense against impersonation.`
+    : `<b style="color:var(--danger);">Not quite.</b> The safest move is calling David back directly at a number you already know, not trusting anything the caller provides or claims.`;
+  await bumpPracticeProgress("accessincident8", correct?100:0);
+}
+window.checkAi8Verify = checkAi8Verify;
+
+async function reviewAi8Containment(){
+  const draft = document.getElementById("ai8ContainmentDraft").value.trim();
+  const el = document.getElementById("ai8ContainmentResult");
+  if(draft.length < 20){ toast("Write out your steps first."); return; }
+  el.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
+  const prompt = `You are evaluating a trainee Executive Assistant's incident-response plan for a legal-industry EA training program.
+
+SCENARIO: ${AI8_LEAK_SCENARIO.text}
+
+TRAINEE'S RESPONSE:
+${draft}
+
+Evaluate whether they prioritized CONTAINMENT and SCOPE ASSESSMENT first (stopping further spread, figuring out exactly what was exposed and to whom) before moving to blame-assignment or process review. Flag if they jumped straight to "who's at fault" instead of containing the exposure first. Give 3-4 short bullet points of feedback, then one overall verdict sentence.`;
+  try{
+    const feedback = await callAIText(prompt, 500);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("accessincident8", 100);
+    burstConfetti();
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.reviewAi8Containment = reviewAi8Containment;
+
+async function downloadAi8Pdf(){
+  await ensureTraineeName();
+  const lines = ["## A. Least-Privilege Access Audit"];
+  AI8_ACCESS_AUDIT.forEach((a,i)=>{
+    lines.push(`${a.who} — your call: ${toolState.ai8.auditAnswers[i]||"(not answered)"} (correct: ${a.excessive?"excessive":"appropriate"})`);
+  });
+  lines.push("---", "## B. Verify Before You Disclose", `Scenario: ${AI8_VERIFY_SCENARIO.setup}`, `Your answer: ${toolState.ai8.verifyAnswer!==null ? AI8_VERIFY_SCENARIO.options[toolState.ai8.verifyAnswer].text : "(not answered)"}`);
+  lines.push("---", "## C. Contain the Leak", `Scenario: ${AI8_LEAK_SCENARIO.text}`, `Your response: ${document.getElementById("ai8ContainmentDraft").value.trim()||"(not written)"}`);
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Access & Incident Response — Results", lines, "LSH_Access_Incident");
+}
+window.downloadAi8Pdf = downloadAi8Pdf;
+
 function initCompliance9(body){
   toolState.c9 = {cle:{}, reg:{}, reviewReport:null};
   toolState.cr = {setKey:"compliance9", activeScenario: CRISIS_SCENARIO_SETS.compliance9[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.compliance9[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
@@ -10565,6 +10639,146 @@ window.downloadCompliance9Pdf = downloadCompliance9Pdf;
    Three sections: engagement rate + best performer, platform
    tone matching, and campaign math (CPL / ROI).
    ============================================================ */
+
+/* ============================================================
+   DAY 2 TOOL: THE FORCE MULTIPLIER CHALLENGE
+   Three connected parts testing Managing Up and AI Proficiency
+   together, not in isolation.
+   ============================================================ */
+const FM2_CHECKLIST = [
+  {text:"Wait for him to send the full list of what he needs", good:false},
+  {text:"Pull together the latest KPI dashboard and financial summary before he asks", good:true},
+  {text:"Confirm who else is attending and whether any materials need to go out in advance", good:true},
+  {text:"Just book the conference room and consider it done", good:false},
+  {text:"Check if this conflicts with anything else on his calendar that week and flag it now", good:true},
+  {text:"Ask him exactly what slides he wants, word for word", good:false}
+];
+const FM2_PROMPT_TASK = {
+  brief:"Elias needs a messy client email thread turned into 3 clean bullet points for his 8 AM briefing — no more than 15 words per bullet, action items only.",
+  sourceText:`Hi Elias, following up after our call — just to note the client wants to move the closing date up if possible, though legal should confirm this doesn't create issues with the financing timeline. Also they mentioned wanting to loop in their CFO next week, not sure exact day yet. One more thing — they asked about the escrow holdback percentage again, might want to have an answer ready before the CFO call. Let me know if you need anything else from our side. Thanks, Client Rep`
+};
+const FM2_FULL_SCENARIO = {
+  text:`Elias forwards a client email thread with no comment except: "Deal with this." The thread shows the client is upset about a delayed filing, asking pointed questions about what happened and whether it affects their case timeline.`
+};
+
+function initForceMultiplier2(body){
+  toolState.fm2 = {checklistSelected:{}, promptDraft:"", promptOutput:null, planDraft:""};
+  body.innerHTML = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Anticipate the Real Need</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias sends one line: <i>"Get me ready for the Meridian Dynamics board update Thursday."</i> That's it — no other detail. Select every action below that shows genuine force-multiplier thinking, not just reactive task-completion.</p>
+    <div class="card" style="padding:14px 16px;">
+      ${FM2_CHECKLIST.map((c,i)=>`
+        <label style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer;">
+          <input type="checkbox" onchange="toolState.fm2.checklistSelected[${i}]=this.checked" style="margin-top:3px;">
+          <span style="font-size:13px;color:#37394A;">${esc(c.text)}</span>
+        </label>`).join("")}
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkFm2Checklist()">Check My Selections</button>
+    <div id="fm2ChecklistResult" style="margin-top:8px;font-size:13px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Prompt Engineering Challenge — This Actually Runs</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">${esc(FM2_PROMPT_TASK.brief)} Write the exact prompt you'd give an AI tool to do this — then run it for real and see what it actually produces.</p>
+    <div class="card" style="padding:14px 16px;margin-bottom:10px;background:#F8F9FC;">
+      <b style="font-size:12.5px;color:var(--navy);">The messy source email</b>
+      <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;font-style:italic;">"${esc(FM2_PROMPT_TASK.sourceText)}"</p>
+    </div>
+    <textarea id="fm2PromptDraft" style="width:100%;min-height:90px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Write the exact prompt you'd type into an AI tool..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="runFm2Prompt()">Run This Prompt</button>
+    <div id="fm2PromptOutput" style="margin-top:14px;"></div>
+
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. The Full Scenario</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">${esc(FM2_FULL_SCENARIO.text)}</p>
+    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Write your plan: what you'd actually do (Managing Up), and the AI prompt you'd use as part of executing it (AI Proficiency).</p>
+    <textarea id="fm2PlanDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="What you'd do, and the AI prompt you'd use as part of it..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewFm2Plan()">Get AI Feedback</button>
+    <div id="fm2PlanResult" style="margin-top:14px;"></div>
+
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadFm2Pdf()">⬇ Download My Work</button>
+  `;
+}
+
+async function checkFm2Checklist(){
+  const answered = Object.keys(toolState.fm2.checklistSelected).length > 0;
+  if(!answered){ toast("Select at least one item first."); return; }
+  let correct = 0;
+  FM2_CHECKLIST.forEach((c,i)=>{
+    const selected = !!toolState.fm2.checklistSelected[i];
+    if(selected === c.good) correct++;
+  });
+  const score = Math.round((correct/FM2_CHECKLIST.length)*100);
+  document.getElementById("fm2ChecklistResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${FM2_CHECKLIST.length} correct (${score}%)</b> — the good ones are the proactive ones; the reactive ones are the trap.`;
+  await bumpPracticeProgress("forcemultiplier2", score);
+}
+window.checkFm2Checklist = checkFm2Checklist;
+
+async function runFm2Prompt(){
+  const draft = document.getElementById("fm2PromptDraft").value.trim();
+  const el = document.getElementById("fm2PromptOutput");
+  if(draft.length < 10){ toast("Write your prompt first."); return; }
+  el.innerHTML = `<div class="ai-loading">Running your prompt…</div>`;
+  const executionPrompt = `${draft}\n\nHere is the text to work with:\n"${FM2_PROMPT_TASK.sourceText}"`;
+  try{
+    const output = await callAIText(executionPrompt, 300);
+    const critiquePrompt = `A trainee Executive Assistant wrote the following prompt to turn a messy client email into 3 clean bullet points (no more than 15 words per bullet, action items only) for an executive's morning briefing.
+
+THEIR PROMPT: "${draft}"
+
+WHAT THAT PROMPT ACTUALLY PRODUCED: "${output}"
+
+Evaluate: did their prompt specify the output format clearly (bullet points)? Did it specify the length constraint (15 words)? Did it correctly ask for extraction of action items rather than a general summary? Give 2-3 short bullet points of feedback on the PROMPT itself (not the output), then one verdict sentence on whether this prompt would reliably produce good results if run again on a different messy email.`;
+    const critique = await callAIText(critiquePrompt, 350);
+    el.innerHTML = `
+      <div class="ai-result"><b>What Your Prompt Actually Produced</b><div class="ai-result-body">${esc(output).replace(/\n/g,"<br>")}</div></div>
+      <div class="ai-result" style="margin-top:10px;"><b>Feedback on Your Prompt</b><div class="ai-result-body">${esc(critique).replace(/\n/g,"<br>")}</div></div>
+    `;
+    await bumpPracticeProgress("forcemultiplier2", null);
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't run your prompt</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.runFm2Prompt = runFm2Prompt;
+
+async function reviewFm2Plan(){
+  const draft = document.getElementById("fm2PlanDraft").value.trim();
+  const el = document.getElementById("fm2PlanResult");
+  if(draft.length < 30){ toast("Write out your plan first."); return; }
+  el.innerHTML = `<div class="ai-loading">Reviewing your plan…</div>`;
+  const prompt = `You are evaluating a trainee Executive Assistant's response to a deliberately ambiguous instruction, for a legal-industry EA training program testing both "Managing Up" judgment and "AI Proficiency."
+
+SCENARIO: ${FM2_FULL_SCENARIO.text}
+
+TRAINEE'S PLAN:
+${draft}
+
+Evaluate two things together:
+1. Managing Up: did they correctly read "deal with this" as needing real judgment (assessing the client's actual concern, likely needing to loop in the attorney handling the filing, and communicating proactively) rather than either ignoring it or escalating everything blindly?
+2. AI Proficiency: did they include a specific, well-constructed AI prompt as part of their plan (e.g., drafting a client response, summarizing the thread) rather than either skipping AI entirely or using it vaguely?
+
+Give 4-5 short bullet points of feedback covering both dimensions, then one overall verdict sentence.`;
+  try{
+    const feedback = await callAIText(prompt, 600);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("forcemultiplier2", 100);
+    burstConfetti();
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.reviewFm2Plan = reviewFm2Plan;
+
+async function downloadFm2Pdf(){
+  await ensureTraineeName();
+  const lines = ["## A. Anticipate the Real Need"];
+  FM2_CHECKLIST.forEach((c,i)=>{
+    lines.push(`[${toolState.fm2.checklistSelected[i]?"x":" "}] ${c.text} (${c.good?"proactive":"reactive"})`);
+  });
+  lines.push("---", "## B. Prompt Engineering Challenge", `Your prompt: ${document.getElementById("fm2PromptDraft").value.trim()||"(not written)"}`);
+  lines.push("---", "## C. The Full Scenario", `Scenario: ${FM2_FULL_SCENARIO.text}`, `Your plan: ${document.getElementById("fm2PlanDraft").value.trim()||"(not written)"}`);
+  buildAndSavePdf("LSH EA / PA Upskill Program", "The Force Multiplier Challenge — Results", lines, "LSH_Force_Multiplier");
+}
+window.downloadFm2Pdf = downloadFm2Pdf;
 
 function initSocial10(body){
   toolState.s10 = {ratesChecked:false, bestPick:"", versionMatch:{}};
@@ -11080,6 +11294,7 @@ window.downloadDossier1Pdf = downloadDossier1Pdf;
 
 function initInsurance5(body){
   toolState.i5 = {category:{}, strategy:{}};
+  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   toolState.cr = {setKey:"insurance5", activeScenario: CRISIS_SCENARIO_SETS.insurance5[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.insurance5[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   body.innerHTML = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Classify the Risk</h3>
@@ -11094,8 +11309,67 @@ function initInsurance5(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:14px;" onclick="checkI5Strategy()">Check Strategies</button>
     <div id="i5StrategyResult" style="margin-top:8px;font-size:13px;"></div>
 
-    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download My Work</button>
-    ${renderCrisisRoleplaySection("insurance5", "C. Live Crisis Roleplay")}
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Plan the Family's Travel Risk, Start to Finish</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
+      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">Build this the way you'd build a real one: real flight-search screenshots (linked), real direct booking links, real venue photos, real proximity research. Vague placeholders will show up as vague in the review.</p>
+    </div>
+
+    <div class="card" style="padding:16px 18px;margin-bottom:16px;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Client Travel Preferences (reference)</h3>
+      <div class="pref-ref-grid">
+        <div><b>Seat</b><span>${esc(FLIGHT_PREFS.seat)}</span></div>
+        <div><b>Routing</b><span>${esc(FLIGHT_PREFS.routing)}</span></div>
+        <div><b>Redeye</b><span>${esc(FLIGHT_PREFS.redeye)}</span></div>
+        <div><b>Hotel</b><span>${esc(FLIGHT_PREFS.hotel)}</span></div>
+      </div>
+    </div>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the AI review checks whether your notes actually match Elias's stated preferences.</p>
+    <div id="legList">${renderLegs()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
+    <div id="hotelList">${renderHotels()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
+    <div id="groundList">${renderGroundTransport()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
+    <div id="stopList">${renderStops()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addStop()">+ Add Stop</button>
+
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">ACT Practice — A Task Lands Mid-Planning</h3>
+      <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">While you're building this itinerary, David Reyes (Head of Litigation) emails you directly. Reply using the same <b>ACT</b> framework from Day 1 — Acknowledge, Clarify, Timeline.</p>
+      <div class="voice-note" style="background:var(--navy-deep);">
+        <span class="vn-time">David Reyes — 2:14 PM</span>
+        <p style="font-size:13px;color:#fff;margin:8px 0 0;line-height:1.6;">"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."</p>
+      </div>
+      <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your ACT email reply</label>
+      <textarea id="travelActDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Subject: ...&#10;&#10;David — ..."></textarea>
+      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewTravelActEmail()">Get AI Feedback</button>
+      <div id="travelActFeedback" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Review &amp; Export Travel Plan</h3>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm" id="travelReviewBtn" onclick="reviewItinerary()">Get AI Review</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download Travel Plan as PDF</button>
+      </div>
+      <div id="itinReview" style="margin-top:14px;"></div>
+    </div>
+
+    <button class="btn btn-navy btn-sm" style="margin-top:6px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
+    ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
   `;
 }
 
