@@ -337,6 +337,14 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-stat .snum{font-family:'Fraunces';font-size:24px;font-weight:700;color:var(--orange);line-height:1.25;}
 .lesson-stat .slabel{font-size:13px;color:rgba(255,255,255,.85);margin-top:6px;}
 
+.lesson-palette{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;margin-bottom:14px;}
+.palette-swatch{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#fff;}
+.palette-color{height:64px;width:100%;}
+.palette-info{padding:10px 12px;}
+.palette-info b{display:block;font-family:'Fraunces';font-size:13.5px;color:var(--navy);margin-bottom:2px;}
+.palette-info span{display:block;font-family:'IBM Plex Mono';font-size:11px;color:var(--ink-soft);margin-bottom:6px;}
+.palette-info p{font-size:12px;color:#37394A;margin:0;line-height:1.4;}
+
 /* lesson slideshow */
 .slide-dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
 .slide-dot{
@@ -513,15 +521,13 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .profile-section li{font-size:12.5px;color:#37394A;margin-bottom:7px;line-height:1.45;}
 .profile-section li:last-child{margin-bottom:0;}
 /* drag-and-drop matching cards (Insurance & Risk) */
-.match-board{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:start;}
-@media(max-width:720px){.match-board{grid-template-columns:1fr;}}
+.match-board{display:flex;flex-direction:column;gap:18px;}
 .match-tray{
   background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;padding:12px;
-  min-height:120px;display:flex;flex-direction:column;gap:8px;
+  min-height:80px;display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;align-content:flex-start;
 }
-.match-tray-label{font-size:10.5px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;margin-bottom:2px;}
-.match-zones{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(max-width:560px){.match-zones{grid-template-columns:1fr;}}
+.match-tray-label{font-size:10.5px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;margin-bottom:2px;width:100%;}
+.match-zones{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;}
 .match-zone{
   background:#fff;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;min-height:120px;
   transition:border-color .15s ease, background .15s ease;
@@ -546,6 +552,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12px;color:var(--ink);
   cursor:grab;box-shadow:0 1px 2px rgba(22,24,41,.06);transition:box-shadow .12s ease, transform .12s ease;
 }
+.match-tray .match-card{flex:1 1 200px;max-width:280px;}
 .match-zone:nth-child(4n+1) .match-card{border-left-color:var(--navy);}
 .match-zone:nth-child(4n+2) .match-card{border-left-color:var(--orange);}
 .match-zone:nth-child(4n+3) .match-card{border-left-color:var(--navy-soft);}
@@ -1998,6 +2005,37 @@ const DAY2 = {
         "text": "Elias's firm runs on \"uncompromising excellence\" and strict confidentiality — an AI tool is still a third party. The same judgment that keeps a case detail out of casual conversation applies to what you paste into a prompt."
       },
       "trainerCue": "Close Day 2 with a live 'sanitize this together' exercise: bring a real (or realistic) sensitive email and have the room call out what to redact before it goes into an AI tool."
+    },
+    {
+      "h": "Communication Mastery",
+      "layout": "QUADRANT",
+      "quadrants": [
+        {"label":"Clarity Over Cleverness", "desc":"Say the actual point in the first sentence — don't make the reader work to find it"},
+        {"label":"Match the Medium", "desc":"A quick confirmation is a text or a one-line email; a sensitive decision deserves a call or a real conversation"},
+        {"label":"Active Listening", "desc":"Repeat back what you heard before acting on it — assumptions are where most miscommunication actually happens"},
+        {"label":"Read the Room, Then Adjust", "desc":"The same update lands differently with a stressed executive than a calm one — tone should flex, facts shouldn't"}
+      ],
+      "b": [
+        "Communication mastery isn't about sounding polished — it's about the message landing correctly the first time, without a follow-up to clarify what you actually meant.",
+        "Most breakdowns in EA/executive communication trace back to one of two things: the message was too vague to act on, or it used the wrong channel for how urgent or sensitive it actually was.",
+        "Discussion prompt: think of a time a message you sent was misread — was it a clarity problem, a channel problem, or a tone problem?"
+      ],
+      "trainerCue": "Ask for a real example from the room of a message that got misread — diagnosing WHY it failed (clarity vs. channel vs. tone) is more useful than a hypothetical."
+    },
+    {
+      "h": "Executive Presence",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Composed Under Pressure", "desc":"Your calm in a crisis is often the only calm in the room — it's contagious, and so is panic"},
+        {"label":"Decisive in Ambiguity", "desc":"When no one has told you exactly what to do, make the reasonable call and own it, rather than freezing until someone rescues you"},
+        {"label":"Credible in Small Moments", "desc":"Presence is built in routine interactions — a clear email, a well-run handoff — long before it's tested in a real crisis"}
+      ],
+      "b": [
+        "Executive presence for an EA isn't about imitating the executive — it's about being someone whose judgment other people trust in the room, on a call, or in a hallway conversation.",
+        "The fastest way to lose presence is visible panic or visible uncertainty about basic facts — the fastest way to build it is calm, specific, accurate communication under pressure.",
+        "This is closely tied to Managing Up: an EA with genuine presence makes the executive's life easier simply by being someone others don't need to double-check."
+      ],
+      "trainerCue": "If time allows, have two trainees role-play a 30-second 'deliver bad news calmly' exchange — presence is far easier to feel live than to describe in the abstract."
     }
   ],
   "quickChecks": [
@@ -2345,6 +2383,23 @@ const DAY3 = {
         "Build a Weekly Time Summary even for non-billable work — it reveals where time actually goes."
       ],
       "trainerCue": "Ask the room to guess which time-tracking mistake costs the most money over a year — most guess wrong (it's usually the small underbilled tasks, not the big missed ones)."
+    },
+    {
+      "h": "Time Management",
+      "layout": "PROCESS",
+      "processSteps": [
+        {"label":"Decide", "desc":"Before touching the calendar, decide what actually deserves protected time this week — this is a prioritization call, not a scheduling one"},
+        {"label":"Block", "desc":"Turn that decision into an actual calendar block, before the day fills up with other people's requests"},
+        {"label":"Protect", "desc":"Defend the block the way you'd defend any other commitment — a calendar entry with no protection behind it isn't really management"},
+        {"label":"Review", "desc":"Check weekly whether protected time actually held, or whether it kept losing to whatever felt urgent in the moment"}
+      ],
+      "b": [
+        "Time management and calendar management aren't the same skill, even though they're inseparable in practice: time management is deciding what deserves time; calendar management is making sure the calendar actually reflects and protects that decision.",
+        "A calendar that's technically conflict-free can still fail at time management — if it's packed with reactive meetings and has no protected space for the work that actually matters most.",
+        "This connects directly to travel planning too: a trip only works if the calendar around it — before, during, and after — was managed with the same discipline as the itinerary itself.",
+        "Discussion prompt: think of a week where your calendar looked fine on paper but the actual priorities still didn't get done — what broke, the decision or the protection of it?"
+      ],
+      "trainerCue": "Use this topic as the explicit bridge before the Calendar Management topic — the tool later in this day tests both calendar conflict resolution AND travel planning together, so make the connection between deciding priorities and protecting them on a calendar explicit here."
     },
     {
       "h": "Calendar Management That Holds",
@@ -2775,6 +2830,23 @@ const DAY4 = {
         "Cold calling, appointment setting, and lead generation sit alongside secured document sharing and handling sensitive/confidential information as core Day 4 skills — the same discretion that applies to email applies to outbound contact lists."
       ],
       "trainerCue": "If nobody in the room does outbound cold calling, don't skip this — reframe it as 'cold outreach of any kind,' since the research-first principle applies broadly."
+    },
+    {
+      "h": "Creating and Maintaining a Comprehensive Contact List",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Capture the Right Fields", "desc":"Beyond name and number: relationship context, preferred contact method, their own assistant's name, and any standing notes ('always CC his EA')"},
+        {"label":"Categorize on Purpose", "desc":"Business, personal, vendor, medical, legal — a flat, uncategorized list becomes unusable past a few dozen entries"},
+        {"label":"Maintain It Like a System", "desc":"Update immediately after every interaction that reveals new or changed info — a contact list that's only updated 'eventually' is already stale"}
+      ],
+      "b": [
+        "A contact list isn't just a phone book — it's operational infrastructure. A good one lets anyone stepping in for you find the right person, with the right context, in seconds, not minutes of guessing.",
+        "The single most common failure mode isn't missing contacts — it's stale ones: an old assistant's name still listed for a vendor, a phone number that changed two roles ago, a category that made sense a year ago and doesn't anymore.",
+        "Centralize in one system (a CRM, a shared contacts platform, or at minimum one synced digital address book) — a contact list split across someone's personal phone, an old spreadsheet, and email signatures is really three incomplete lists pretending to be one.",
+        "Build in a light recurring audit — even a quarterly 10-minute pass to remove duplicates and flag anything that looks outdated prevents the slow rot that makes a contact list untrustworthy.",
+        "Discussion prompt: think of a time you (or someone you know) couldn't reach the right person quickly because contact info was missing, wrong, or scattered — what would have prevented it?"
+      ],
+      "trainerCue": "Ask the room for a real example of a contact list going stale and causing a real delay — this lands much harder than the abstract principle alone."
     }
   ],
   "quickChecks": [
@@ -3167,6 +3239,24 @@ const DAY5 = {
         "Ad hoc handling is exactly where things get dropped — not from carelessness, but because memory doesn't scale."
       ],
       "trainerCue": "Close with a direct question: 'What's one recurring errand or gift-tracking task in your life that would fall apart if you didn't personally remember it?' That's the argument for a shared tracker, made personally."
+    },
+    {
+      "h": "Creating a Home Binder for a Busy Executive",
+      "layout": "QUADRANT",
+      "quadrants": [
+        {"label":"Household Operations", "desc":"Staff schedules and contacts, vendor info, appliance manuals, alarm/wifi codes, utility accounts"},
+        {"label":"Family & Medical", "desc":"Doctors, allergies, medications, school info, pediatrician — anything someone else would need in an emergency"},
+        {"label":"Financial & Legal Reference", "desc":"Insurance policy numbers, key account contacts, safety deposit box location — not the sensitive numbers themselves, just where to find them"},
+        {"label":"Emergency Contacts", "desc":"Who to call first for what — plumber vs. security vs. a specific family member — organized so anyone can find the right contact fast"}
+      ],
+      "b": [
+        "A home binder exists for exactly one moment: when someone other than you needs to find critical household information fast, and you're not available to just tell them.",
+        "The test of a good binder isn't how complete it looks — it's whether a substitute PA, a family member, or an emergency responder could actually use it without calling you first.",
+        "Digital vs. physical is a real decision, not just preference: physical works when power/internet is down and for anyone unfamiliar with digital tools; digital works for easy updating and remote access. Many households genuinely need both — a physical copy for true emergencies, kept current from a digital master.",
+        "Never store actual sensitive numbers (full account numbers, passwords, SSNs) directly in the binder — reference where to find them securely instead. A binder that falls into the wrong hands shouldn't be a security incident.",
+        "Maintenance is the same discipline as the contact list: an outdated home binder is worse than no binder, since it creates false confidence that the information is current."
+      ],
+      "trainerCue": "Ask the room what would happen today if they were unreachable for 24 hours and someone else had to run their executive's household — the gaps that come up are exactly what belongs in the binder."
     }
   ],
   "quickChecks": [
@@ -5054,6 +5144,67 @@ const DAY10 = {
       "trainerCue": "Run the 'This, Not That' exercise live as a group exercise on the whiteboard before trainees do it individually — the contrast pairs are more memorable out loud."
     },
     {
+      "h": "Defining and Maintaining Brand Voice, Tone & Messaging",
+      "layout": "COMPARE",
+      "compareLeft": {
+        "label": "Elias's Actual Voice",
+        "items": [
+          "Direct — leads with the answer, not the preamble",
+          "Credible — backs claims with specifics, not adjectives",
+          "Unhurried — doesn't chase trends just to stay visible"
+        ]
+      },
+      "compareRight": {
+        "label": "A Generic, Wrong Voice",
+        "items": [
+          "Hedges everything — 'we believe,' 'it's possible that'",
+          "Leans on buzzwords instead of specifics",
+          "Chases every trending format regardless of fit"
+        ]
+      },
+      "b": [
+        "Defining a voice is the easy part — a single workshop can produce a good voice guide. Maintaining it across months, multiple contributors, and dozens of posts is the actual discipline.",
+        "A written style guide should give concrete 'this, not that' examples like the ones above, not just adjectives — 'confident' means nothing to a new contributor without a real sentence showing what confident looks like versus what it doesn't.",
+        "Messaging guidelines are a layer above tone: they define the specific claims and framing that are always used consistently — e.g., always describing the firm the same way, never contradicting a stated position from post to post.",
+        "The maintenance mechanism matters as much as the guide itself: someone needs to actually review drafts against the guide before publishing, or the guide quietly stops being followed within a month."
+      ],
+      "trainerCue": "Ask the room to rewrite one generic-voice line from the right column into Elias's actual voice, live — this is a much faster way to internalize a voice than reading examples passively."
+    },
+    {
+      "h": "Visual Brand Assets — Sample Color Palette",
+      "layout": "PALETTE",
+      "palette": [
+        {"name":"Deep Navy", "hex":"#1B2340", "use":"Primary — headers, dominant brand color, conveys authority and stability"},
+        {"name":"Warm Gold", "hex":"#C9A24B", "use":"Accent — calls-to-action, highlights, used sparingly for emphasis"},
+        {"name":"Charcoal", "hex":"#2E2E2E", "use":"Body text — high readability, pairs with either brand color"},
+        {"name":"Warm Ivory", "hex":"#F5F1E8", "use":"Background — neutral canvas that doesn't compete with navy or gold"}
+      ],
+      "b": [
+        "A brand's visual identity isn't just a logo — it's a small, deliberately limited set of colors, fonts, and imagery rules that make every piece of content instantly recognizable as the same brand, even without a name attached.",
+        "The palette above follows a common, reliable pattern: one dominant color, one accent used sparingly, one text color, one background — resist the urge to add a fifth 'just in case' color, since restraint is what keeps a brand looking deliberate rather than random.",
+        "Typography works the same way: pick one heading font and one body font, and use them everywhere — mixing fonts across posts is one of the fastest ways to make a brand look unmanaged.",
+        "Imagery rules matter as much as color: decide up front what's off-limits (generic stock-photo clichés, overly casual snapshots) so every contributor is choosing images against the same standard, not their own personal taste."
+      ],
+      "trainerCue": "If your organization already has a real brand palette, swap it in here and have the room evaluate whether it actually follows the 'one dominant, one accent, one text, one background' discipline — most real-world palettes don't, and spotting why is a useful exercise."
+    },
+    {
+      "h": "Platform Proficiencies — Tool-Specific Best Practices",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Social Media Platforms", "desc":"Each platform has its own native format expectations — a LinkedIn post and an Instagram caption shouldn't be the same text copy-pasted twice"},
+        {"label":"CMS Platforms", "desc":"WordPress, Webflow, Squarespace — knowing how to update a page, swap an image, or publish a post without breaking the site layout"},
+        {"label":"Newsletter Platforms", "desc":"Mailchimp, ConvertKit, Substack — list segmentation, send-time optimization, and reading basic open/click-rate reports"}
+      ],
+      "b": [
+        "Being 'good at social media' isn't one skill — it's platform literacy across several genuinely different tools, each with its own conventions, audience expectations, and technical quirks.",
+        "On social platforms: LinkedIn rewards professional, text-forward posts with a clear point in the first two lines; Instagram rewards visual-first content with captions that support rather than carry the post; X/Twitter rewards brevity and timeliness over polish.",
+        "On CMS platforms, the core EA-relevant skill is making a routine content update (a new page, a swapped image, a corrected typo) without needing a developer — most platforms support this through a visual editor, but every platform's editor works slightly differently.",
+        "On newsletter platforms, the most common EA-relevant tasks are: building a segmented list (not blasting everyone the same email), scheduling around actual audience time zones, and reading a basic performance report to see whether an email actually got opened and clicked, not just sent.",
+        "A practical rule across all three categories: before touching a live/production account, always test in a draft or preview mode first — a typo in a draft is invisible; a typo already sent to a real list is not."
+      ],
+      "trainerCue": "If your organization uses specific tools (a particular CMS, a particular email platform), do a 10-minute live screen-share of the actual publishing flow — abstract platform literacy is far less useful than seeing the real click-path once."
+    },
+    {
       "h": "The Content Calendar & Publishing Workflow",
       "layout": "PROCESS",
       "b": [
@@ -5432,12 +5583,12 @@ const PRACTICE_TOOLS = [
    desc:"Build a comprehensive client dossier and set up Travel and Inbox Preference trackers for Elias Thorne — sorting real profile facts into the right sections."},
   {id:"forcemultiplier2", icon:"⚡", title:"The Force Multiplier Challenge", relates:"Day 2",
    desc:"Three connected challenges — anticipate what a vague executive request really needs, write an AI prompt that actually runs and produces real output, then handle a messy scenario that tests both skills at once."},
-  {id:"calendar", icon:"◫", title:"Legal Calendar Conflict Resolver", relates:"Day 3",
-   desc:"A full attorney's week with overlapping court dates, depositions, and client meetings — drag blocks to new times, recolor them, resolve every conflict, then write the AI prompt that would turn it into Elias's BLUF-style daily briefing."},
+  {id:"calendar", icon:"◫", title:"Calendar Conflict Resolver & Travel Planning", relates:"Day 3",
+   desc:"A full attorney's week with overlapping commitments to resolve and turn into an AI-drafted BLUF briefing, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
   {id:"emailsim", icon:"📨", title:"Inbox Triage & Outreach", relates:"Day 4",
    desc:"A real inbox — build your own filing system, draft real replies, and catch a hidden phishing attempt — then practice inbound gatekeeping under pressure and log a round of cold-calling outreach."},
-  {id:"insurance5", icon:"🛡", title:"Household Risk & Travel Planning", relates:"Day 5",
-   desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
+  {id:"insurance5", icon:"🛡", title:"Household Risk Assessment", relates:"Day 5",
+   desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, then handle a live crisis roleplay drawn from real household scenarios."},
   {id:"projectcompliance6", icon:"📊", title:"Business Compliance & Project Recovery", relates:"Day 6",
    desc:"Check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind."},
   {id:"financial", icon:"Σ", title:"Trust Account & Billing Sheet", relates:"Day 7",
@@ -7027,8 +7178,22 @@ function renderLessonVisual(l){
     case "COMPARE": return renderCompareVisual(l.compareLeft, l.compareRight);
     case "THREEBOX": return renderThreeBoxVisual(l.boxes);
     case "STAT": return renderStatVisual(l.statNumber, l.statLabel);
+    case "PALETTE": return renderPaletteVisual(l.palette);
     default: return "";
   }
+}
+function renderPaletteVisual(palette){
+  return `<div class="lesson-palette">
+    ${palette.map(c=>`
+      <div class="palette-swatch">
+        <div class="palette-color" style="background:${c.hex};"></div>
+        <div class="palette-info">
+          <b>${esc(c.name)}</b>
+          <span>${esc(c.hex)}</span>
+          <p>${esc(c.use)}</p>
+        </div>
+      </div>`).join("")}
+  </div>`;
 }
 function renderQuadrantVisual(quadrants){
   return `<div class="lesson-quadrant">
@@ -7416,6 +7581,7 @@ async function initCalendar(body){
   toolState.calEdits = (await storeGet("calendar-edits")) || {};
   toolState.calCustomEvents = (await storeGet("calendar-custom")) || [];
   toolState.calBaseline = calFindConflicts(CAL_EVENTS).length; // conflicts before any edits, fixed for this session
+  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   renderCalendarBody(body);
 }
 
@@ -7491,6 +7657,65 @@ function renderCalendarBody(body){
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Get a fresh, AI-generated read on the current calendar above and see what independent admin work it implies.</p>
     <button class="btn btn-orange btn-sm" onclick="generateProactiveTasks()">Generate Proactive Tasks</button>
     <div id="proactiveResult" style="margin-top:14px;"></div>
+
+    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">Travel Management, Start to Finish</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
+      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">Build this the way you'd build a real one: real flight-search screenshots (linked), real direct booking links, real venue photos, real proximity research. Vague placeholders will show up as vague in the review.</p>
+    </div>
+
+    <div class="card" style="padding:16px 18px;margin-bottom:16px;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Client Travel Preferences (reference)</h3>
+      <div class="pref-ref-grid">
+        <div><b>Seat</b><span>${esc(FLIGHT_PREFS.seat)}</span></div>
+        <div><b>Routing</b><span>${esc(FLIGHT_PREFS.routing)}</span></div>
+        <div><b>Redeye</b><span>${esc(FLIGHT_PREFS.redeye)}</span></div>
+        <div><b>Hotel</b><span>${esc(FLIGHT_PREFS.hotel)}</span></div>
+      </div>
+    </div>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the AI review checks whether your notes actually match Elias's stated preferences.</p>
+    <div id="legList">${renderLegs()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
+    <div id="hotelList">${renderHotels()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
+    <div id="groundList">${renderGroundTransport()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
+    <div id="stopList">${renderStops()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addStop()">+ Add Stop</button>
+
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">ACT Practice — A Task Lands Mid-Planning</h3>
+      <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">While you're building this itinerary, David Reyes (Head of Litigation) emails you directly. Reply using the same <b>ACT</b> framework from Day 1 — Acknowledge, Clarify, Timeline.</p>
+      <div class="voice-note" style="background:var(--navy-deep);">
+        <span class="vn-time">David Reyes — 2:14 PM</span>
+        <p style="font-size:13px;color:#fff;margin:8px 0 0;line-height:1.6;">"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."</p>
+      </div>
+      <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your ACT email reply</label>
+      <textarea id="travelActDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Subject: ...&#10;&#10;David — ..."></textarea>
+      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewTravelActEmail()">Get AI Feedback</button>
+      <div id="travelActFeedback" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Review &amp; Export Travel Plan</h3>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm" id="travelReviewBtn" onclick="reviewItinerary()">Get AI Review</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download Travel Plan as PDF</button>
+      </div>
+      <div id="itinReview" style="margin-top:14px;"></div>
+    </div>
   `;
 }
 function toHex(c){
@@ -11294,7 +11519,6 @@ window.downloadDossier1Pdf = downloadDossier1Pdf;
 
 function initInsurance5(body){
   toolState.i5 = {category:{}, strategy:{}};
-  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   toolState.cr = {setKey:"insurance5", activeScenario: CRISIS_SCENARIO_SETS.insurance5[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.insurance5[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   body.innerHTML = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Classify the Risk</h3>
@@ -11309,67 +11533,8 @@ function initInsurance5(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:14px;" onclick="checkI5Strategy()">Check Strategies</button>
     <div id="i5StrategyResult" style="margin-top:8px;font-size:13px;"></div>
 
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Plan the Family's Travel Risk, Start to Finish</h3>
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
-      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
-      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
-      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">Build this the way you'd build a real one: real flight-search screenshots (linked), real direct booking links, real venue photos, real proximity research. Vague placeholders will show up as vague in the review.</p>
-    </div>
-
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Client Travel Preferences (reference)</h3>
-      <div class="pref-ref-grid">
-        <div><b>Seat</b><span>${esc(FLIGHT_PREFS.seat)}</span></div>
-        <div><b>Routing</b><span>${esc(FLIGHT_PREFS.routing)}</span></div>
-        <div><b>Redeye</b><span>${esc(FLIGHT_PREFS.redeye)}</span></div>
-        <div><b>Hotel</b><span>${esc(FLIGHT_PREFS.hotel)}</span></div>
-      </div>
-    </div>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the AI review checks whether your notes actually match Elias's stated preferences.</p>
-    <div id="legList">${renderLegs()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
-    <div id="hotelList">${renderHotels()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
-    <div id="groundList">${renderGroundTransport()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
-    <div id="stopList">${renderStops()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addStop()">+ Add Stop</button>
-
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">ACT Practice — A Task Lands Mid-Planning</h3>
-      <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">While you're building this itinerary, David Reyes (Head of Litigation) emails you directly. Reply using the same <b>ACT</b> framework from Day 1 — Acknowledge, Clarify, Timeline.</p>
-      <div class="voice-note" style="background:var(--navy-deep);">
-        <span class="vn-time">David Reyes — 2:14 PM</span>
-        <p style="font-size:13px;color:#fff;margin:8px 0 0;line-height:1.6;">"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."</p>
-      </div>
-      <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your ACT email reply</label>
-      <textarea id="travelActDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Subject: ...&#10;&#10;David — ..."></textarea>
-      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewTravelActEmail()">Get AI Feedback</button>
-      <div id="travelActFeedback" style="margin-top:14px;"></div>
-    </div>
-
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Review &amp; Export Travel Plan</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-primary btn-sm" id="travelReviewBtn" onclick="reviewItinerary()">Get AI Review</button>
-        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download Travel Plan as PDF</button>
-      </div>
-      <div id="itinReview" style="margin-top:14px;"></div>
-    </div>
-
-    <button class="btn btn-navy btn-sm" style="margin-top:6px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
-    ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
+    ${renderCrisisRoleplaySection("insurance5", "C. Live Crisis Roleplay")}
   `;
 }
 
