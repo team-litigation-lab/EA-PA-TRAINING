@@ -11553,7 +11553,7 @@ function renderMatchBoard(prefix, cardTexts, zoneLabels){
       </div>
       <div class="match-zones">
         ${zoneLabels.map(z=>`
-          <div class="match-zone" id="${prefix}Zone-${cssId(z)}" ondragover="event.preventDefault(); this.classList.add('zone-hover')" ondragleave="this.classList.remove('zone-hover')" ondrop="matchDrop(event,'${prefix}',${JSON.stringify(z)})">
+          <div class="match-zone" id="${prefix}Zone-${cssId(z)}" ondragover="event.preventDefault(); this.classList.add('zone-hover')" ondragleave="this.classList.remove('zone-hover')" ondrop="matchDrop(event,'${prefix}','${esc(z)}')">
             <div class="match-zone-label">${esc(z)}</div>
             <div class="match-zone-body">${cardTexts.map((t,i)=> store[i]===z ? renderMatchCard(prefix,i,t) : "").join("")}</div>
           </div>`).join("")}
