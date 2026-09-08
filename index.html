@@ -166,6 +166,12 @@ button{font-family:inherit;cursor:pointer;}
 .module-topic-list li::before{
   content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--orange);
 }
+.module-topic-list li.module-topic-more{
+  font-style:italic;color:var(--ink-soft);
+}
+.module-topic-list li.module-topic-more::before{
+  background:transparent;border:1px solid var(--ink-soft);
+}
 .module-start-btn{
   margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:10px;font-weight:700;
 }
@@ -1182,7 +1188,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 const DAY1 = {
   "id": 1,
   "title": "Foundations of the Legal Executive Assistant Role",
-  "theme": "Legal EA Task Overview · Communication Principles · Confidentiality · Command Hierarchy",
+  "theme": "Legal EA Task Overview · Communication & Gatekeeping · Confidentiality & NDAs · Command Hierarchy & Liaison",
   "objective": "Get a clear picture of what a Legal Executive Assistant actually does day to day, build the communication habits the role runs on, and know when to escalate rather than act alone.",
   "taskOverview": [
     {
@@ -1885,9 +1891,24 @@ const DAY1 = {
 const DAY2 = {
   "id": 2,
   "title": "Managing Up & How to Leverage AI with Precision",
-  "theme": "Tactical Foundation · The Three C's · Digital Edge",
+  "theme": "Managing Up & The Three C's · AI Proficiency & the Digital Edge · Email as a Control System",
   "objective": "Apply the Three C's framework to manage up effectively, and shift from task-completer to force multiplier.",
   "lessons": [
+    {
+      "h": "Before You Begin: AI Use in the Legal Industry",
+      "callout": {
+        "type": "warning",
+        "label": "Read before using AI in this program",
+        "text": "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
+      },
+      "b": [
+        "This isn't a one-time rule to memorize and move past — it's the frame every AI topic in this program sits inside. What follows will show you how AI can genuinely help, but every technique still has to clear the standard set here first.",
+        "Firm and attorney preference comes first: some attorneys are comfortable with AI-assisted drafting, others aren't, and some restrict it to narrow, specific uses. Know the actual preference for the specific attorney and matter you're working on — never assume based on what a different attorney or a different firm allows.",
+        "Human intervention isn't optional in certain roles or tasks, no matter how good the AI output looks. Legal judgment, case strategy, and anything touching client-facing representation stay with the attorney — AI supports the work, it doesn't make the call.",
+        "Confidentiality is the highest-stakes line in this list: attorney-client privilege means information pasted into an AI tool can carry real legal exposure, not just an internal risk. Get approval before using AI on anything privileged, and when in doubt, don't paste it — ask first."
+      ],
+      "trainerCue": "Set the tone for the whole day here — ask the room whether their own firm (or one they know) has an explicit AI policy, and whether they actually know what it says. Most won't, which is exactly the gap this disclaimer exists to close."
+    },
     {
       "h": "Bulletproof Basics",
       "layout": "THREEBOX",
@@ -2197,7 +2218,7 @@ const DAY2 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 2,
+      "afterIndex": 3,
       "q": "The 'No-Surprises Rule' means:",
       "opts": [
         "Executives enjoy occasional surprises",
@@ -2209,7 +2230,7 @@ const DAY2 = {
       "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
     },
     {
-      "afterIndex": 6,
+      "afterIndex": 7,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -2219,7 +2240,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 7,
+      "afterIndex": 8,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Section 12 was too complex for the AI to understand",
@@ -2454,7 +2475,7 @@ const DAY2 = {
 const DAY3 = {
   "id": 3,
   "title": "Time, Calendar & Travel Management",
-  "theme": "Prioritization & Time Tracking · Calendar Discipline · Travel Planning",
+  "theme": "Prioritization & Time Tracking · Calendar Discipline & Contact Lists · Travel Planning",
   "objective": "Build the discipline to prioritize and protect time, keep a calendar that actually holds under pressure, and plan travel end-to-end.",
   "lessons": [
     {
@@ -2528,11 +2549,20 @@ const DAY3 = {
       "trainerCue": "This is a good moment for a live 'find the conflict' exercise on a real or sample calendar screen-shared to the room."
     },
     {
-      "h": "Travel, Calendar & Contact Coordination",
+      "h": "Calendar Conflict & Prioritization Discipline",
       "b": [
-        "Inform the executive of every schedule conflict immediately, never rebook without consulting first.",
-        "Prioritize meetings by strategic importance, not by which came first.",
-        "Keep one master contact list the whole team uses — personal copies drift out of sync."
+        "Inform the executive of every schedule conflict immediately — never rebook or decline something on their behalf without consulting first, since they may have context about a meeting's real importance that isn't visible on the calendar itself.",
+        "Prioritize meetings by strategic importance, not by which came first — a board update outranks a routine check-in even if the check-in was scheduled weeks earlier.",
+        "When two commitments genuinely conflict, present the executive with the actual trade-off and a recommendation, rather than either silently picking one or dumping the decision back on them with no framing."
+      ],
+      "trainerCue": "Give the room a real double-booking scenario and ask them to identify what 'strategic importance' actually means in that specific case — the abstract rule is easy to agree with, applying it to a real conflict is the actual skill."
+    },
+    {
+      "h": "Master Contact List Discipline",
+      "b": [
+        "Keep one master contact list the whole team uses — personal copies drift out of sync, and the drift is invisible until someone acts on outdated information at the worst possible moment.",
+        "This is the same discipline as the Comprehensive Contact List topic from Day 4, applied specifically to calendar and scheduling context — knowing exactly who needs to be looped in for a given meeting type, and having their current contact details on hand without having to search.",
+        "A common real failure: two assistants each keep their own copy of a key contact's information, one of them outdated, and a time-sensitive call goes to a wrong or disconnected number during exactly the situation where speed mattered most."
       ],
       "trainerCue": "Close this topic with a real story (yours or theirs) about a contact list that went stale and caused a real problem — it's more memorable than the rule itself."
     }
@@ -2791,7 +2821,7 @@ const DAY3 = {
 const DAY4 = {
   "id": 4,
   "title": "Data & Outreach",
-  "theme": "Administrative Data · Priority Triage · Cold Calling",
+  "theme": "Administrative Data & Research · Cold Calling & Lead Generation · Contact List Management",
   "objective": "Clean data before it becomes a report, prioritize and run a workday that actually holds, and open cold outreach the right way.",
   "lessons": [
     {
@@ -3214,7 +3244,7 @@ const DAY4 = {
 const DAY5 = {
   "id": 5,
   "title": "Household, Risk & Lifestyle Support",
-  "theme": "Household Operations · Personal Insurance & Risk Framework · Lifestyle Coordination",
+  "theme": "Household Operations & Recurring Admin · Risk Framework, Insurance & Vendor Management · Travel, Lifestyle & Home Binder",
   "objective": "Run household operations like a small business, apply a real risk-management framework, and keep lifestyle support organized and trackable.",
   "lessons": [
     {
@@ -3669,7 +3699,7 @@ const DAY5 = {
 const DAY6 = {
   "id": 6,
   "title": "Business Setup, Compliance & Project Leadership",
-  "theme": "Entity Formation · Regulatory Compliance · Project Leadership · KPI Dashboards",
+  "theme": "Entity Formation & Regulatory Compliance · Project Leadership & Seasonal Coordination · Lean Six Sigma & KPI Dashboards",
   "objective": "Guide business formation and compliance decisions, lead projects when timelines slip, and optimize operations with a real KPI dashboard.",
   "lessons": [
     {
@@ -4140,7 +4170,7 @@ const DAY6 = {
 const DAY7 = {
   "id": 7,
   "title": "Financial Operations Support",
-  "theme": "SOA Reconciliation · Billing & Invoicing · SOPs · Financial KPIs",
+  "theme": "SOA Reconciliation & Credit Cards/Tax Season · Billing & Invoicing · SOPs & Financial KPIs",
   "objective": "Support financial operations accurately — reconciling accounts, posting expenses, preparing invoices, and staying audit-ready.",
   "lessons": [
     {
@@ -4916,7 +4946,7 @@ const DAY8 = {
 const DAY9 = {
   "id": 9,
   "title": "Events, Compliance Tracking & Reputation",
-  "theme": "Event & CLE Compliance SOPs · Brand Stewardship · Membership Management",
+  "theme": "Event & CLE Compliance SOPs · Brand Stewardship & Awards/Charitable Coordination · Membership Management",
   "objective": "Run events and compliance tracking with nothing falling through the cracks, and protect the organization's reputation online.",
   "lessons": [
     {
@@ -5265,7 +5295,7 @@ const DAY9 = {
 const DAY10 = {
   "id": 10,
   "title": "Digital Presence & Social Media Support",
-  "theme": "Management vs. Marketing · Brand Voice & Content Pillars · SEO/GEO for Executives · Campaign Math",
+  "theme": "Management vs. Marketing · Brand Voice, Visual Assets & Platform Proficiencies · SEO/GEO & Campaign Math",
   "objective": "Read social performance numbers correctly, write for the platform, and understand the basic math behind a campaign's ROI.",
   "lessons": [
     {
@@ -5820,7 +5850,7 @@ const PRACTICE_TOOLS = [
   {id:"coldcalling4", icon:"☎", title:"Cold-Calling & Lead Generation", relates:"Day 4",
    desc:"Log a full round of cold-calling outreach with a reference opening line, then draft a real lead-generation plan — specific sources, qualifying criteria, and a first-contact approach for a new practice area launch."},
   {id:"insurance5", icon:"🛡", title:"Household Risk Assessment", relates:"Day 5",
-   desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, then handle a live crisis roleplay drawn from real household scenarios."},
+   desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, build a real Home Binder section, then handle a live crisis roleplay drawn from real household scenarios."},
   {id:"projectcompliance6", icon:"📊", title:"Business Compliance & Project Recovery", relates:"Day 6",
    desc:"Check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind."},
   {id:"financial", icon:"Σ", title:"Trust Account & Billing Sheet", relates:"Day 7",
@@ -6834,6 +6864,9 @@ function moduleCard(d){
   const unlocked = dayUnlocked(d.id);
   const status = prog&&prog.done ? "done" : (unlocked?"open":"locked");
   const icon = DAY_ICONS[d.id] || "📘";
+  const TOPIC_CAP = 6;
+  const shown = d.lessons.slice(0, TOPIC_CAP);
+  const remaining = d.lessons.length - shown.length;
   return `
   <div class="module-card" id="module-${d.id}">
     <div class="module-banner">
@@ -6844,7 +6877,8 @@ function moduleCard(d){
       <div class="mnum">DAY ${d.id} OF 10${status==='done'?' &middot; COMPLETED':''}</div>
       <p><b>${esc(d.title)}</b></p>
       <ul class="module-topic-list">
-        ${d.lessons.map(l=>`<li>${esc(l.h)}</li>`).join("")}
+        ${shown.map(l=>`<li>${esc(l.h)}</li>`).join("")}
+        ${remaining>0?`<li class="module-topic-more">+${remaining} more topic${remaining===1?'':'s'}</li>`:""}
       </ul>
     </div>
     <button class="btn module-start-btn ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} onclick="goto('day',${d.id})">${status==='done'?'Review':'Start'}</button>
@@ -11934,10 +11968,54 @@ function initInsurance5(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:14px;" onclick="checkI5Strategy()">Check Strategies</button>
     <div id="i5StrategyResult" style="margin-top:8px;font-size:13px;"></div>
 
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Build a Home Binder Section</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">Elias is traveling for two weeks and wants a real Home Binder ready in case someone else — a substitute PA, a family member — needs to step in while he's gone. Fill in each section below using what you actually know about the household.</p>
+    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Remember the security rule from this day's lesson: reference <i>where</i> to find sensitive numbers (account numbers, passwords) — never write the actual numbers themselves into the binder.</p>
+    ${HOME_BINDER_SECTIONS.map((sec,si)=>`
+      <div style="margin-bottom:14px;">
+        <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">${esc(sec)}</label>
+        <textarea id="i5binder${si}" placeholder="Write this section's entries…" style="width:100%;min-height:80px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
+      </div>`).join("")}
+    <button class="btn btn-navy btn-sm" onclick="reviewI5Binder()">Get AI Feedback</button>
+    <div id="i5BinderResult" style="margin-top:10px;"></div>
+
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
-    ${renderCrisisRoleplaySection("insurance5", "C. Live Crisis Roleplay")}
+    ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
   `;
 }
+const HOME_BINDER_SECTIONS = ["Household Operations", "Family & Medical", "Financial & Legal Reference", "Emergency Contacts"];
+async function reviewI5Binder(){
+  const texts = HOME_BINDER_SECTIONS.map((sec,si)=>`## ${sec}\n${document.getElementById(`i5binder${si}`).value.trim()||"(not written)"}`).join("\n\n");
+  const written = HOME_BINDER_SECTIONS.filter((_,si)=>document.getElementById(`i5binder${si}`).value.trim().length>10).length;
+  const el = document.getElementById("i5BinderResult");
+  if(written < HOME_BINDER_SECTIONS.length){ toast("Write something real in every section first."); return; }
+  el.innerHTML = `<div class="ai-loading">Reviewing your Home Binder draft…</div>`;
+  const prompt = `You are grading a trainee Executive Assistant's Home Binder draft for the Thorne household, for a legal-industry EA training program.
+
+CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
+${CLIENT_DOSSIER_MD}
+
+TRAINEE'S HOME BINDER DRAFT:
+${texts}
+
+Evaluate against these criteria:
+1. Usability — could a substitute PA or family member actually use this to find what they need in an emergency, or is it too vague to act on?
+2. Coverage — does it reasonably address all four sections (Household Operations, Family & Medical, Financial & Legal Reference, Emergency Contacts)?
+3. CRITICAL SECURITY CHECK — does the draft contain any actual sensitive numbers written out (account numbers, passwords, SSNs, full card numbers)? This is a hard fail if present — the binder should only ever reference WHERE to find such information securely, never the number itself. Flag this explicitly and prominently if it occurs, even if everything else is strong.
+4. Accuracy — does it contradict anything in the reference material?
+
+Give 4-5 short bullet points of specific feedback (leading with the security check result), then one overall verdict sentence.`;
+  try{
+    const feedback = await callAIText(prompt, 650);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Home Binder</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("insurance5", null);
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.reviewI5Binder = reviewI5Binder;
 
 /* ---------- reusable drag-and-drop matching board ---------- */
 function renderMatchBoard(prefix, cardTexts, zoneLabels){
@@ -12019,6 +12097,11 @@ async function downloadInsurance5Pdf(){
   RISK_STRATEGY_SCENARIOS.forEach((s,i)=>{
     lines.push(`${s.text}`);
     lines.push(`   Your call: ${toolState.i5.strategy[i]||"(not answered)"}  (correct: ${s.strategy})`);
+  });
+  lines.push("---", "## C. Home Binder Section");
+  HOME_BINDER_SECTIONS.forEach((sec,si)=>{
+    const el = document.getElementById(`i5binder${si}`);
+    lines.push(`## ${sec}`, el ? (el.value.trim()||"(not written)") : "(not written)");
   });
   buildAndSavePdf("LSH EA / PA Upskill Program", "Insurance & Risk Assessment — Results", lines, "LSH_Insurance_Risk");
 }
