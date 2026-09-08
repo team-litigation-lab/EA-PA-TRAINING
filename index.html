@@ -155,8 +155,15 @@ button{font-family:inherit;cursor:pointer;}
 .module-card .module-lock{position:absolute;inset:0;background:rgba(22,24,41,.55);display:flex;align-items:center;justify-content:center;font-size:26px;}
 .module-body{padding:14px 16px 8px;flex:1;display:flex;flex-direction:column;}
 .module-body .mnum{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--orange-deep);font-weight:700;letter-spacing:.04em;margin-bottom:4px;}
-.module-body p{font-size:13px;color:var(--ink);line-height:1.4;margin:0;flex:1;}
+.module-body p{font-size:13px;color:var(--ink);line-height:1.4;margin:0 0 6px;}
 .module-body p b{color:var(--navy);}
+.module-topic-list{list-style:none;margin:0;padding:0;flex:1;}
+.module-topic-list li{
+  font-size:12px;color:#37394A;line-height:1.45;margin-bottom:5px;padding-left:14px;position:relative;
+}
+.module-topic-list li::before{
+  content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--orange);
+}
 .module-start-btn{
   margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:10px;font-weight:700;
 }
@@ -6177,6 +6184,18 @@ async function sharedList(prefix){
     return data.keys || [];
   }catch(e){ console.warn("shared storage list failed",e); return []; }
 }
+async function sharedDelete(key){
+  try{
+    if(window.storage){ await window.storage.delete(key,true); return true; }
+  }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  try{
+    const response = await fetch("/api/storage/delete", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ key })
+    });
+    return response.ok;
+  }catch(e){ console.warn("shared storage delete failed",e); return false; }
+}
 
 function generateTraineeId(name){
   const slug = (name||"trainee").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,40) || "trainee";
@@ -6191,12 +6210,15 @@ async function syncToLedger(){
   await sharedSet("trainee:"+state.traineeId, {
     id: state.traineeId,
     name: state.traineeName || "Unnamed trainee",
+    batch: state.traineeBatch || (existing ? existing.batch : "") || "",
     dayProgress: state.progress,
     practiceProgress: state.practiceProgress,
     submissions: state.submissions||[],
     lastActive: new Date().toISOString(),
     approved: existing ? existing.approved : false,
-    registeredAt: existing ? existing.registeredAt : new Date().toISOString()
+    registeredAt: existing ? existing.registeredAt : new Date().toISOString(),
+    archived: existing ? (existing.archived||false) : false,
+    aiReview: existing ? existing.aiReview : null
   });
 }
 async function getApprovalStatus(traineeId){
@@ -6239,6 +6261,8 @@ async function loadAll(){
   state.progress = p || {};
   const n = await storeGet("trainee-name");
   state.traineeName = n || "";
+  const bt = await storeGet("trainee-batch");
+  state.traineeBatch = bt || "";
   const pr = await storeGet("practice-progress");
   state.practiceProgress = pr || {};
   const nt = await storeGet("notes");
@@ -6576,7 +6600,10 @@ function moduleCard(d){
     </div>
     <div class="module-body">
       <div class="mnum">DAY ${d.id} OF 10${status==='done'?' &middot; COMPLETED':''}</div>
-      <p><b>${esc(d.title)}.</b> ${esc(d.theme)}</p>
+      <p><b>${esc(d.title)}</b></p>
+      <ul class="module-topic-list">
+        ${d.lessons.map(l=>`<li>${esc(l.h)}</li>`).join("")}
+      </ul>
     </div>
     <button class="btn module-start-btn ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} onclick="goto('day',${d.id})">${status==='done'?'Review':'Start'}</button>
   </div>`;
@@ -6723,7 +6750,8 @@ function renderLogin(){
         <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px;height:auto;margin-bottom:22px;">
         <h1 style="font-size:22px;color:var(--navy);margin:0 0 8px;">Welcome to the Upskill Program</h1>
         <p style="font-size:13.5px;color:var(--ink-soft);margin:0 0 22px;">Enter your name to begin. This identifies your progress on the training record — no password needed.</p>
-        <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') submitLogin();">
+        <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') document.getElementById('loginBatchInput').focus();">
+        <input type="text" id="loginBatchInput" placeholder="Batch (e.g. B050225)" style="margin-top:10px;" onkeydown="if(event.key==='Enter') submitLogin();">
         <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;margin-top:14px;" onclick="submitLogin()">Begin Training</button>
         <div style="margin-top:20px;font-size:12px;color:var(--ink-soft);">Administrator? <a href="#" onclick="event.preventDefault(); openAdmin();" style="color:var(--navy);font-weight:600;">Sign in here</a> instead.</div>
       </div>
@@ -6732,12 +6760,17 @@ function renderLogin(){
 async function submitLogin(){
   const v = document.getElementById("loginNameInput").value.trim();
   if(!v){ toast("Enter your name to continue."); return; }
+  const isNewSession = !state.traineeId;
+  const batchInput = document.getElementById("loginBatchInput");
+  const batchVal = batchInput ? batchInput.value.trim() : "";
+  if(isNewSession && !batchVal){ toast("Enter your batch to continue."); return; }
   state.traineeName = v;
   await storeSet("trainee-name", v);
-  const isNewSession = !state.traineeId;
   if(isNewSession){
     state.traineeId = generateTraineeId(v);
     await storeSet("trainee-id", state.traineeId);
+    state.traineeBatch = batchVal;
+    await storeSet("trainee-batch", batchVal);
   }
   // If this name already has a record (e.g. they logged out and are logging
   // back in), restore their real progress before syncing — otherwise the
@@ -6749,6 +6782,7 @@ async function submitLogin(){
       state.practiceProgress = existing.practiceProgress || {};
       await storeSet("day-progress", state.progress);
       await storeSet("practice-progress", state.practiceProgress);
+      if(existing.batch){ state.traineeBatch = existing.batch; await storeSet("trainee-batch", existing.batch); }
     }
   }
   await syncToLedger();
@@ -9280,9 +9314,10 @@ async function rejectTrainee(traineeId){
   await loadAdminLedger();
 }
 async function confirmRevokeTrainee(traineeId, name){
-  if(!confirm(`Revoke access for ${name}? They'll immediately lose access to the training material — their progress is kept, and you can re-approve them later if needed.`)) return;
-  await rejectTrainee(traineeId);
-  toast(`Access revoked for ${name}.`);
+  if(!confirm(`Permanently revoke and delete ${name}'s registration? This removes their entire record — approval status and all saved progress — from the system. This cannot be undone; if they come back, they'll need to register fresh. Continue?`)) return;
+  await sharedDelete("trainee:"+traineeId);
+  toast(`Registration deleted for ${name}.`);
+  await loadAdminLedger();
 }
 window.confirmRevokeTrainee = confirmRevokeTrainee;
 window.rejectTrainee = rejectTrainee;
@@ -9324,7 +9359,7 @@ function renderAdmin(){
     ${renderPendingApprovalsPanel()}
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
         <input type="text" id="adminSearchInput" placeholder="Search by name…" value="${esc(state.adminSearch||"")}" oninput="setAdminSearch(this.value)"
                style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;min-width:200px;">
         <select onchange="setAdminSort(this.value)" style="padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;">
@@ -9334,8 +9369,13 @@ function renderAdmin(){
           <option value="name_asc" ${sort==="name_asc"?"selected":""}>Sort: Name (A–Z)</option>
           <option value="recent" ${sort==="recent"?"selected":""}>Sort: Most recently active</option>
         </select>
+        ${renderBatchFilter()}
+        <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-soft);cursor:pointer;">
+          <input type="checkbox" ${state.adminShowArchived?"checked":""} onchange="setAdminShowArchived(this.checked)"> Show archived
+        </label>
       </div>
       <div style="display:flex;gap:8px;">
+        ${state.adminBatchFilter ? `<button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="confirmArchiveBatch('${esc(state.adminBatchFilter)}')">📦 Archive This Batch</button>` : ""}
         <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
         <button class="btn btn-navy btn-sm" onclick="downloadCohortPdf()">⬇ Download Cohort Report</button>
         <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Log out</button>
@@ -9344,6 +9384,15 @@ function renderAdmin(){
 
     <div id="adminRowsWrap">${renderAdminRows()}</div>
   `;
+}
+function renderBatchFilter(){
+  const batches = Array.from(new Set(state.adminData.map(r=>r.batch).filter(Boolean))).sort();
+  if(!batches.length) return "";
+  return `
+    <select onchange="setAdminBatchFilter(this.value)" style="padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;">
+      <option value="">All batches</option>
+      ${batches.map(b=>`<option value="${esc(b)}" ${state.adminBatchFilter===b?"selected":""}>${esc(b)}</option>`).join("")}
+    </select>`;
 }
 
 async function downloadCohortPdf(){
@@ -9362,6 +9411,8 @@ function renderAdminRows(){
   const search = (state.adminSearch||"").toLowerCase();
   const sort = state.adminSort || "completion_desc";
   let rows = state.adminData.filter(r=>!search || (r.name||"").toLowerCase().includes(search));
+  if(!state.adminShowArchived) rows = rows.filter(r=>!r.archived);
+  if(state.adminBatchFilter) rows = rows.filter(r=>r.batch===state.adminBatchFilter);
   rows = rows.map(r=>({rec:r, day:adminDayStats(r), practice:adminPracticeStats(r)}));
   const sorters = {
     completion_desc: (a,b)=>b.day.done-a.day.done,
@@ -9387,8 +9438,8 @@ function renderAdminRow(rec, day, practice){
     <div style="border-bottom:1px solid var(--line);">
       <div style="display:grid;grid-template-columns:1fr 110px 110px 110px 140px auto;gap:12px;align-items:center;padding:14px 18px;">
         <div>
-          <b style="color:var(--navy);font-size:13.5px;">${esc(rec.name||"Unnamed")}</b>
-          <div style="font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';">${esc(rec.id)}</div>
+          <b style="color:var(--navy);font-size:13.5px;">${esc(rec.name||"Unnamed")}</b>${rec.archived?' <span style="font-size:10px;color:var(--ink-soft);">(archived)</span>':''}
+          <div style="font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';">${esc(rec.id)}${rec.batch?` · ${esc(rec.batch)}`:''}</div>
         </div>
         <div style="font-size:13px;">${day.done} / ${day.total} days</div>
         <div style="font-size:13px;">${day.avg}% avg</div>
@@ -9402,6 +9453,53 @@ function renderAdminRow(rec, day, practice){
       ${expanded?renderAdminDetail(rec):""}
     </div>`;
 }
+
+async function generateAiReview(traineeId){
+  const btnWrap = document.getElementById("aiReviewWrap-"+traineeId);
+  if(btnWrap) btnWrap.innerHTML = `<div class="ai-loading">Generating AI review…</div>`;
+  const rec = await sharedGet("trainee:"+traineeId);
+  if(!rec) return;
+  const dp = rec.dayProgress||{};
+  const pp = rec.practiceProgress||{};
+  const dayLines = DAYS.map(d=>{
+    const p = dp[d.id];
+    return `Day ${d.id} (${d.title}): ${p ? (p.done?`${p.score}% — completed`:`${p.score}% — not yet passing`) : "not started"}`;
+  }).join("\n");
+  const practiceLines = PRACTICE_TOOLS.map(t=>{
+    const p = pp[t.id];
+    return `${t.title}: ${p ? `${p.runs} run(s), best score ${p.bestScore||0}%` : "not attempted"}`;
+  }).join("\n");
+  const prompt = `You are writing a trainer-style performance evaluation for an Executive Assistant / Personal Assistant trainee, based on their actual training data below. Match the tone and structure of a real internal trainer review — specific, evidence-based, and grounded only in the data given (don't invent specifics that aren't supported by it).
+
+TRAINEE: ${rec.name}
+
+DAY-BY-DAY KNOWLEDGE CHECK SCORES:
+${dayLines}
+
+PRACTICE LAB RESULTS:
+${practiceLines}
+
+Return ONLY a JSON object with this exact shape, no other text:
+{
+  "strength": "2-4 sentences on their clearest strengths, grounded in which days/tools they excelled at",
+  "challenges": "2-4 sentences on where they struggled or have gaps, grounded in low scores or unattempted work",
+  "ratings": {"triage": <1-5 integer>, "communication": <1-5 integer>, "technical": <1-5 integer>},
+  "redFlag": "a specific concern if the data warrants one (e.g. large gaps, very low scores, many unattempted days), or the literal string 'None' if nothing stands out",
+  "endorsement": "one of exactly: 'Highly Endorsed', 'Endorsed', 'Specific Area to Improve', 'Not Yet Endorsed'"
+}`;
+  try{
+    const review = await callAIJson(prompt, 700);
+    review.generatedAt = new Date().toISOString();
+    rec.aiReview = review;
+    await sharedSet("trainee:"+traineeId, rec);
+    if(btnWrap) btnWrap.innerHTML = renderAiReviewBlock(rec);
+    const idx = state.adminData.findIndex(r=>r.id===traineeId);
+    if(idx!==-1) state.adminData[idx] = rec;
+  }catch(e){
+    if(btnWrap) btnWrap.innerHTML = `<div class="ai-result ai-error"><b>Couldn't generate review</b><div class="ai-result-body">Check your connection and try again.</div></div><button class="btn btn-sm btn-navy" style="margin-top:10px;" onclick="generateAiReview('${traineeId}')">Try Again</button>`;
+  }
+}
+window.generateAiReview = generateAiReview;
 
 function renderAdminDetail(rec){
   const dp = rec.dayProgress||{};
@@ -9440,9 +9538,41 @@ function renderAdminDetail(rec){
             ${s.stored && s.dataUrl ? `<a href="${s.dataUrl}" download="${esc(s.fileName)}" class="btn btn-sm btn-ghost">Download</a>` : `<span style="color:var(--ink-soft);font-size:11px;">Too large to store — filename on record only</span>`}
           </div>`).join("")}
       </div>` : ""}
+
+      <div style="margin-top:16px;">
+        <div class="sidebar-section-lbl" style="padding-left:0;">AI-Generated Ranking &amp; Review</div>
+        <div id="aiReviewWrap-${esc(rec.id)}">${renderAiReviewBlock(rec)}</div>
+      </div>
     </div>`;
 }
-
+function renderAiReviewBlock(rec){
+  const r = rec.aiReview;
+  const btnLabel = r ? "Regenerate AI Review" : "Generate AI Review";
+  return `
+    ${r ? `
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:8px;">Generated ${fmtDate(r.generatedAt)} from Day scores and Practice Lab results.</div>
+      <div style="display:grid;gap:10px;">
+        <div><b style="font-size:12.5px;color:var(--navy);">Strength</b><p style="font-size:12.5px;margin:4px 0 0;">${esc(r.strength)}</p></div>
+        <div><b style="font-size:12.5px;color:var(--navy);">Challenges</b><p style="font-size:12.5px;margin:4px 0 0;">${esc(r.challenges)}</p></div>
+        <div>
+          <b style="font-size:12.5px;color:var(--navy);">General Attribute Rating</b>
+          <div style="font-size:12.5px;margin:4px 0 0;">
+            Executive Triage &amp; Problem Solving: ${starString(r.ratings.triage)}<br>
+            Communication &amp; Discretion: ${starString(r.ratings.communication)}<br>
+            Technical / Workflow Execution: ${starString(r.ratings.technical)}
+          </div>
+        </div>
+        <div><b style="font-size:12.5px;color:var(--navy);">Red Flag</b><p style="font-size:12.5px;margin:4px 0 0;">${esc(r.redFlag)}</p></div>
+        <div><b style="font-size:12.5px;color:var(--navy);">Endorsement</b><p style="font-size:12.5px;margin:4px 0 0;font-weight:600;color:var(--navy);">${esc(r.endorsement)}</p></div>
+      </div>
+    ` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">No AI review generated yet.</p>`}
+    <button class="btn btn-sm btn-navy" style="margin-top:10px;" onclick="generateAiReview('${esc(rec.id)}')">${btnLabel}</button>
+  `;
+}
+function starString(n){
+  n = Math.max(0, Math.min(5, Math.round(n||0)));
+  return "★".repeat(n) + "☆".repeat(5-n);
+}
 function refreshAdminRows(){
   const wrap = document.getElementById("adminRowsWrap");
   if(wrap) wrap.innerHTML = renderAdminRows();
@@ -9456,6 +9586,22 @@ function setAdminSearch(v){ state.adminSearch=v; refreshAdminRows(); }
 window.setAdminSearch = setAdminSearch;
 function setAdminSort(v){ state.adminSort=v; refreshAdminRows(); }
 window.setAdminSort = setAdminSort;
+function setAdminBatchFilter(v){ state.adminBatchFilter=v; render(); }
+window.setAdminBatchFilter = setAdminBatchFilter;
+function setAdminShowArchived(v){ state.adminShowArchived=v; render(); }
+window.setAdminShowArchived = setAdminShowArchived;
+async function confirmArchiveBatch(batch){
+  const members = state.adminData.filter(r=>r.batch===batch && !r.archived);
+  if(!members.length){ toast("Nothing to archive in this batch."); return; }
+  if(!confirm(`Archive all ${members.length} trainee(s) in batch "${batch}"? They'll be hidden from the default view but their data and AI reviews are kept — check "Show archived" to see them again.`)) return;
+  for(const rec of members){
+    rec.archived = true;
+    await sharedSet("trainee:"+rec.id, rec);
+  }
+  toast(`Batch "${batch}" archived (${members.length} trainee(s)).`);
+  await loadAdminLedger();
+}
+window.confirmArchiveBatch = confirmArchiveBatch;
 function refreshAdminData(){ state.adminData=null; render(); }
 window.refreshAdminData = refreshAdminData;
 
