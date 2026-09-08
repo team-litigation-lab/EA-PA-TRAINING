@@ -2837,6 +2837,24 @@ const DAY4 = {
       "trainerCue": "If nobody in the room does outbound cold calling, don't skip this — reframe it as 'cold outreach of any kind,' since the research-first principle applies broadly."
     },
     {
+      "h": "How to Generate Leads for Business",
+      "layout": "PROCESS",
+      "processSteps": [
+        {"label":"Identify Sources", "desc":"Referrals from existing clients, past-client re-engagement, professional networking, industry directories, and content that draws inbound interest — a real pipeline draws from more than one channel"},
+        {"label":"Qualify the Lead", "desc":"Fit, need, authority, and timeline — a lead that matches none of these wastes outreach effort better spent elsewhere"},
+        {"label":"Make First Contact", "desc":"Research-backed, specific, and brief — the same discipline as a cold call, just aimed at someone not yet in the pipeline at all"},
+        {"label":"Track and Follow Up", "desc":"A lead not logged is a lead that gets lost — feed every real lead straight into the same contact-list discipline covered next"}
+      ],
+      "b": [
+        "Lead generation is the step before cold calling, not the same thing: cold calling works a lead you already have; lead generation is finding that lead in the first place.",
+        "Referrals are consistently the highest-quality source — a past client's introduction arrives with built-in trust a cold list never has. Actively asking satisfied clients for referrals, rather than waiting passively, is what separates a real lead-generation habit from hoping for the best.",
+        "Not every lead deserves equal effort — qualifying early (does this person or business actually fit what the firm serves, and do they have real authority and timeline to act) prevents burning hours chasing contacts who were never going to convert.",
+        "A lead that isn't tracked doesn't exist for practical purposes — this is exactly why lead generation and the Comprehensive Contact List discipline in this same day are inseparable; one produces the raw material, the other keeps it from evaporating.",
+        "Discussion prompt: think of a business that generated a lead well versus one that let a promising contact go cold — what was actually different about the follow-through, not just the first contact?"
+      ],
+      "trainerCue": "Ask the room where their own best professional leads have actually come from historically — referral vs. cold outreach vs. inbound content — the real-world answer is almost always referrals, which is worth naming explicitly."
+    },
+    {
       "h": "Creating and Maintaining a Comprehensive Contact List",
       "layout": "THREEBOX",
       "boxes": [
@@ -5590,8 +5608,8 @@ const PRACTICE_TOOLS = [
    desc:"Anticipate what a vague executive request really needs, write an AI prompt that actually runs and produces real output, handle a messy combined scenario, then clear a real inbox — building your own filing system and catching a hidden phishing attempt."},
   {id:"calendar", icon:"◫", title:"Calendar Conflict Resolver & Travel Planning", relates:"Day 3",
    desc:"A full attorney's week with overlapping commitments to resolve and turn into an AI-drafted BLUF briefing, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
-  {id:"coldcalling4", icon:"☎", title:"Cold-Calling Outreach Log", relates:"Day 4",
-   desc:"Log a full round of cold-calling outreach with a reference opening line, tracking outcome and follow-up for each prospective client."},
+  {id:"coldcalling4", icon:"☎", title:"Cold-Calling & Lead Generation", relates:"Day 4",
+   desc:"Log a full round of cold-calling outreach with a reference opening line, then draft a real lead-generation plan — specific sources, qualifying criteria, and a first-contact approach for a new practice area launch."},
   {id:"insurance5", icon:"🛡", title:"Household Risk Assessment", relates:"Day 5",
    desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, then handle a live crisis roleplay drawn from real household scenarios."},
   {id:"projectcompliance6", icon:"📊", title:"Business Compliance & Project Recovery", relates:"Day 6",
@@ -8693,11 +8711,46 @@ async function saveCallLog(){
   toast("Call log saved");
 }
 window.saveCallLog = saveCallLog;
+const LEAD_GEN_SCENARIO = {
+  text: "Thorne & Partners is opening a new practice area and wants to start building a pipeline of potential clients before the official launch. Elias has asked you to draft a real lead-generation plan — not just a call list."
+};
 function initColdCalling4(body){
   toolState.calls = {};
-  body.innerHTML = renderColdCallingSection('A');
+  body.innerHTML = renderColdCallingSection('A') + `
+    <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">${esc(LEAD_GEN_SCENARIO.text)}</p>
+    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Write your plan: at least 3 specific lead sources you'd actually use, your qualifying criteria (what makes a lead worth pursuing), and your first-contact approach.</p>
+    <textarea id="leadGenDraft" style="width:100%;min-height:160px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Lead sources...&#10;&#10;Qualifying criteria...&#10;&#10;First-contact approach..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewLeadGenPlan()">Get AI Feedback</button>
+    <div id="leadGenResult" style="margin-top:14px;"></div>
+  `;
   loadCallLog();
 }
+async function reviewLeadGenPlan(){
+  const draft = document.getElementById("leadGenDraft").value.trim();
+  const el = document.getElementById("leadGenResult");
+  if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
+  el.innerHTML = `<div class="ai-loading">Reviewing your lead generation plan…</div>`;
+  const prompt = `You are evaluating a trainee Executive Assistant's lead-generation plan, for a legal-industry EA training program.
+
+SCENARIO: ${LEAD_GEN_SCENARIO.text}
+
+TRAINEE'S PLAN:
+${draft}
+
+Evaluate whether the plan: names at least 3 genuinely different, specific lead sources (not vague — "networking" alone isn't specific, "attend the state bar's real estate section quarterly mixer" is); defines real qualifying criteria (fit, need, authority, timeline — not just "good leads"); and describes a concrete, research-backed first-contact approach rather than a generic pitch. Give 4-5 short bullet points of feedback, then one overall verdict sentence.`;
+  try{
+    const feedback = await callAIText(prompt, 600);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("coldcalling4", 100);
+    burstConfetti();
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.reviewLeadGenPlan = reviewLeadGenPlan;
 async function loadCallLog(){
   const log = await storeGet("call-log");
   if(!log) return;
@@ -8736,7 +8789,7 @@ async function submitCalls(){
 window.submitCalls = submitCalls;
 async function downloadCallsPdf(){
   await ensureTraineeName();
-  const lines = ["## Cold-Calling Outreach Log"];
+  const lines = ["## A. Cold-Calling Outreach Log"];
   COLD_LEADS.forEach((l,i)=>{
     const date=document.getElementById(`logDate${i}`)?.value||"";
     const outcome=document.getElementById(`logOutcome${i}`)?.value||"";
@@ -8745,7 +8798,9 @@ async function downloadCallsPdf(){
     lines.push(`${l.name} (${l.company}, ${l.phone})`);
     lines.push(`   Called: ${date||"—"}   Outcome: ${outcome||"—"}   Follow-up: ${followup||"—"}   Notes: ${notes||"—"}`);
   });
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Cold-Calling Outreach Log — Results", lines, "LSH_Cold_Calling");
+  const leadGenDraft = document.getElementById("leadGenDraft");
+  lines.push("---", "## B. Lead Generation Practice", `Scenario: ${LEAD_GEN_SCENARIO.text}`, `Your plan: ${leadGenDraft && leadGenDraft.value.trim() ? leadGenDraft.value.trim() : "(not written)"}`);
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Cold-Calling & Lead Generation — Results", lines, "LSH_Cold_Calling");
 }
 window.downloadCallsPdf = downloadCallsPdf;
 
@@ -11373,17 +11428,11 @@ window.downloadSocial10Pdf = downloadSocial10Pdf;
    ============================================================ */
 
 function initDossier1(body){
-  toolState.d1 = {file:null, dossierScore:undefined, trackerScore:undefined};
+  toolState.d1 = {dossierScore:undefined, trackerScore:undefined};
   toolState.calls = {};
   body.innerHTML = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Draft the Client Dossier</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Below are raw onboarding notes on Elias Thorne, Managing Owner &amp; CEO of Thorne &amp; Partners — unsorted, exactly as they'd land on your desk. Write the dossier in your own words, organized under the four sections below.</p>
-    <div class="card" style="padding:14px 16px;margin-bottom:14px;background:#F8F9FC;">
-      <b style="font-size:12px;color:var(--navy);">Raw Notes</b>
-      <ul style="margin:8px 0 0;padding-left:18px;">
-        ${DOSSIER_FACTS.map(f=>`<li style="font-size:12.3px;color:#37394A;margin-bottom:5px;">${esc(f.text)}</li>`).join("")}
-      </ul>
-    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Write the dossier in your own words, organized under the four sections below — reference the Client Profile page any time you need to check a fact or preference.</p>
     ${DOSSIER_SECTIONS.map((sec,si)=>`
       <div style="margin-bottom:14px;">
         <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">${esc(sec)}</label>
@@ -11397,13 +11446,7 @@ function initDossier1(body){
     <div id="d1DossierAIResult" style="margin-top:10px;"></div>
 
     <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Set Up the Preference Trackers</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn these operational details into three live trackers, written in your own words.</p>
-    <div class="card" style="padding:14px 16px;margin-bottom:14px;background:#F8F9FC;">
-      <b style="font-size:12px;color:var(--navy);">Raw Notes</b>
-      <ul style="margin:8px 0 0;padding-left:18px;">
-        ${TRACKER_FACTS.map(f=>`<li style="font-size:12.3px;color:#37394A;margin-bottom:5px;">${esc(f.text)}</li>`).join("")}
-      </ul>
-    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn Elias's operational details into three live trackers, written in your own words, using the Client Profile page as your reference.</p>
     ${TRACKER_SECTIONS.map((sec,si)=>`
       <div style="margin-bottom:14px;">
         <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">${esc(sec)}</label>
@@ -11435,26 +11478,8 @@ function initDossier1(body){
     <div id="d1ActFeedback" style="margin-top:14px;"></div>
     ${renderGatekeepingSection('D')}
 
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">E. Submit Your Completed Work</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Export your dossier and trackers (spreadsheet, doc, or notes file) and upload it here for your trainer to review.</p>
-    <div class="dropzone" id="d1Dropzone"
-         ondragover="event.preventDefault(); document.getElementById('d1Dropzone').classList.add('dragover')"
-         ondragleave="document.getElementById('d1Dropzone').classList.remove('dragover')"
-         ondrop="handleD1Drop(event)"
-         onclick="document.getElementById('d1FileInput').click()">
-      <div class="dz-icon">📤</div>
-      <div class="dz-text"><b>Drag &amp; drop your file here</b>, or click to browse</div>
-      <div class="dz-note">Files under 200KB are stored in full for your trainer to open; larger files are still logged by name.</div>
-      <input type="file" id="d1FileInput" style="display:none;" onchange="handleD1FileSelect(event)">
-    </div>
-    <div id="d1FilePreview"></div>
-    <button class="btn btn-navy" style="margin-top:14px;" id="d1SubmitBtn" onclick="submitD1Work()" disabled>Submit for Review</button>
-    <div id="d1SubmitStatus" style="margin-top:8px;font-size:12px;color:var(--ink-soft);"></div>
-
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
-    <div id="d1TransitionOverlay"></div>
   `;
-  checkD1AllDone();
 }
 
 /* ---------- coverage-based scoring for free text ---------- */
@@ -11491,7 +11516,6 @@ async function checkD1Dossier(){
     <p style="font-size:12px;color:var(--ink-soft);margin-top:8px;">This checks whether the key facts made it into your writing — your own phrasing and structure are exactly the point.</p>`;
   toolState.d1.dossierScore = result.score;
   await bumpPracticeProgress("dossier1", result.score);
-  checkD1AllDone();
 }
 window.checkD1Dossier = checkD1Dossier;
 
@@ -11510,25 +11534,8 @@ async function checkD1Tracker(){
   toolState.d1.trackerScore = result.score;
   await bumpPracticeProgress("dossier1", result.score);
   if(result.score===100) burstConfetti();
-  checkD1AllDone();
 }
 window.checkD1Tracker = checkD1Tracker;
-function checkD1AllDone(){
-  const btn = document.getElementById("d1SubmitBtn");
-  const statusEl = document.getElementById("d1SubmitStatus");
-  if(!btn || !statusEl) return;
-  const missing = [];
-  if(toolState.d1.dossierScore===undefined) missing.push("check Part A (Dossier)");
-  if(toolState.d1.trackerScore===undefined) missing.push("check Part B (Trackers)");
-  if(!toolState.d1.file) missing.push("attach a file");
-  if(missing.length===0){
-    btn.disabled = false;
-    statusEl.textContent = "";
-  }else{
-    btn.disabled = true;
-    statusEl.textContent = "Still needed to submit: " + missing.join(", ") + ".";
-  }
-}
 
 /* ---------- AI feedback: dossier draft ---------- */
 async function reviewD1DossierAI(){
@@ -11596,66 +11603,6 @@ Give 4-5 short bullet points of specific feedback, then one overall verdict sent
 }
 window.reviewD1ActEmail = reviewD1ActEmail;
 
-/* ---------- Part C: upload dropzone (unchanged) ---------- */
-function handleD1Drop(ev){
-  ev.preventDefault();
-  document.getElementById("d1Dropzone").classList.remove("dragover");
-  const file = ev.dataTransfer.files && ev.dataTransfer.files[0];
-  if(file) setD1File(file);
-}
-window.handleD1Drop = handleD1Drop;
-function handleD1FileSelect(ev){
-  const file = ev.target.files && ev.target.files[0];
-  if(file) setD1File(file);
-}
-window.handleD1FileSelect = handleD1FileSelect;
-function setD1File(file){
-  toolState.d1.file = file;
-  const sizeKb = (file.size/1024).toFixed(0);
-  const isImage = file.type.startsWith("image/");
-  document.getElementById("d1FilePreview").innerHTML = `
-    <div class="file-preview-card">
-      ${isImage ? `<span class="fp-icon">🖼️</span>` : `<span class="fp-icon">📄</span>`}
-      <div class="fp-meta"><b>${esc(file.name)}</b><span>${sizeKb}KB &middot; ${esc(file.type||"unknown type")}</span></div>
-      <button class="btn btn-sm btn-ghost" onclick="clearD1File()">Remove</button>
-    </div>`;
-  checkD1AllDone();
-}
-function clearD1File(){
-  toolState.d1.file = null;
-  document.getElementById("d1FilePreview").innerHTML = "";
-  document.getElementById("d1FileInput").value = "";
-  checkD1AllDone();
-}
-window.clearD1File = clearD1File;
-
-async function submitD1Work(){
-  if(!toolState.d1.file){ toast("Attach a file first."); return; }
-  const btn = document.getElementById("d1SubmitBtn");
-  btn.disabled = true; btn.textContent = "Submitting…";
-  await ensureTraineeName();
-  await submitFileForReview("dossier1", "Client Dossier & Tracker Builder", toolState.d1.file);
-  showD1Transition();
-}
-window.submitD1Work = submitD1Work;
-
-function showD1Transition(){
-  const overlay = document.getElementById("d1TransitionOverlay");
-  overlay.innerHTML = `
-    <div class="gamified-transition">
-      <div class="gt-card">
-        <div class="gt-emoji">🎉</div>
-        <div class="gt-title">Submitted!</div>
-        <div class="gt-sub">Taking you to Day 1's Knowledge Check…</div>
-      </div>
-    </div>`;
-  burstConfetti();
-  setTimeout(()=>{
-    goto("day", 1);
-    setTimeout(()=>{ state.dayViewMode = "knowledgeCheck"; render(); }, 350);
-  }, 1400);
-}
-
 async function downloadDossier1Pdf(){
   await ensureTraineeName();
   const lines = ["## A. Client Dossier — Elias Thorne (free-text draft)"];
@@ -11680,7 +11627,6 @@ async function downloadDossier1Pdf(){
     lines.push(`${s.tag}: ${s.scn}`);
     lines.push(`   Your answer: ${typeof picked==="number" ? s.opts[picked] : "(not answered)"}`);
   });
-  if(toolState.d1.file) lines.push("---", `## Submitted File`, toolState.d1.file.name);
   buildAndSavePdf("LSH EA / PA Upskill Program", "Client Dossier & Gatekeeping Practice — Results", lines, "LSH_Dossier_Tracker");
 }
 window.downloadDossier1Pdf = downloadDossier1Pdf;
