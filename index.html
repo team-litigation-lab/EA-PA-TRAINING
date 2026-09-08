@@ -876,12 +876,15 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .cal-block b{display:block;font-size:11.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .cal-block .cal-sub{font-size:9.5px;opacity:.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;}
 .cal-block.conflict{outline:2px solid var(--danger);outline-offset:-2px;}
-.cal-color-input{
-  position:absolute;top:5px;left:5px;width:11px;height:11px;padding:0;border:1px solid rgba(255,255,255,.8);
-  border-radius:50%;cursor:pointer;background:none;appearance:none;-webkit-appearance:none;
+.cal-color-picker{
+  position:absolute;top:5px;left:5px;display:flex;gap:3px;z-index:2;
 }
-.cal-color-input::-webkit-color-swatch-wrapper{padding:0;border-radius:50%;}
-.cal-color-input::-webkit-color-swatch{border:none;border-radius:50%;}
+.cal-color-dot{
+  width:10px;height:10px;border-radius:50%;cursor:pointer;border:1.5px solid rgba(255,255,255,.8);
+  transition:transform .1s ease;
+}
+.cal-color-dot:hover{transform:scale(1.25);}
+.cal-color-dot.selected{border-color:#fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.35);}
 .cal-move-btn{
   position:absolute;top:2px;right:20px;width:16px;height:16px;border-radius:4px;border:none;
   background:rgba(0,0,0,.28);color:#fff;font-size:10px;line-height:1;cursor:pointer;padding:0;
@@ -1325,6 +1328,47 @@ const DAY1 = {
         ]
       },
       "trainerCue": "Read the three-message worked example out loud in three different tones (clipped, plain, formal) so the room actually HEARS the register shift, not just reads it."
+    },
+    {
+      "h": "Gatekeeping Is Not 'No'",
+      "b": [
+        "Gatekeeping means 'not now' or 'here's a better option' — never an outright block.",
+        "You represent the executive's authority; access is filtered, tone stays calm and confident.",
+        "Never blame the requester for bad timing, and always offer a real next step.",
+        "The Filtering Matrix pairs with a communication toolkit: active listening, framing, appeal to shared values, and asking for opinions rather than giving orders — all aimed at influence without relying on formal authority."
+      ],
+      "trainerCue": "Roleplay this live: you play a pushy caller, pick a trainee to gatekeep you in real time. Do it twice — once where they cave, once where they hold the line — and debrief the difference."
+    },
+    {
+      "h": "The Filtering Matrix",
+      "b": [
+        "Categorize each request by urgency and impact: do it now, delegate, defer, or offer an alternative.",
+        "Four screening questions: revenue impact, legal risk, need for executive authority, relationship sensitivity."
+      ],
+      "trainerCue": "Put the four filtering questions on the board and run one ambiguous real-world request through them live as a group before trainees try it solo."
+    },
+    {
+      "h": "Scripts That Redirect Without Alienating",
+      "b": [
+        "Deferring — acknowledge genuinely, propose concrete next steps with a timeline.",
+        "Re-routing — point to the right team while staying accountable for the outcome.",
+        "Drastic Contrast — explain the real constraint honestly and offer a specific alternative slot.",
+        "Scripts also draw on classic influence principles: consistency and commitment (getting a small agreement first), and authority (citing the right process rather than personal preference)."
+      ],
+      "trainerCue": "Have three volunteers each deliver one of the three scripts (Deferring, Re-routing, Drastic Contrast) to the same scenario — the tonal differences are the whole lesson."
+    },
+    {
+      "h": "Virtual Meetings & Transcription Accuracy",
+      "b": [
+        "Test recording software before the meeting, not during it.",
+        "Always assign a human note-taker as backup, independent of the tech.",
+        "If minutes come back unclear, apologize, revise, and standardize the template — don't just stop distributing them.",
+        "Two documentation types: Informal Notes (internal use only) and Formal Minutes (structured, distributed record).",
+        "Capture final decisions and action items; don't capture side conversations or off-the-record remarks.",
+        "AI transcription tools (Zoom, Teams, Otter) speed up the process, but the assistant's role is to review and clean the transcript — never distribute it raw.",
+        "After major meetings, prepare an Executive Briefing Memo: a short 'Subject: Executive Brief — [Meeting Topic]' summary rather than the full transcript."
+      ],
+      "trainerCue": "Ask: 'Has a meeting ever ended and nobody could agree on what was actually decided?' That's the exact failure this topic exists to prevent."
     },
     {
       "h": "Executive Presence in Action",
@@ -1887,6 +1931,47 @@ const DAY2 = {
       "trainerCue": "Poll the room: who's already using an automation tool like Zapier, even informally? Use a real answer to make 'The Digital Edge' concrete rather than theoretical."
     },
     {
+      "h": "Email Is a Control System, Not Cleanup",
+      "b": [
+        "Full Access — read/respond/archive/send on the executive's behalf.",
+        "Draft & Review — draft and flag; executive approves before sending.",
+        "Triage Only — sort and escalate; executive responds themselves.",
+        "Know your access level before acting independently."
+      ],
+      "layout": "THREEBOX",
+      "boxes": [
+        {
+          "label": "Full Access",
+          "desc": "Read, respond, archive, and send on the executive's behalf"
+        },
+        {
+          "label": "Draft & Review",
+          "desc": "Draft responses and flag priorities — the executive approves before sending"
+        },
+        {
+          "label": "Triage Only",
+          "desc": "Sort, prioritize, and escalate — the executive responds themselves"
+        }
+      ],
+      "trainerCue": "Ask each trainee to say out loud which access model (Full Access / Draft & Review / Triage Only) they currently operate under in their own role, if applicable — it surfaces real ambiguity worth discussing."
+    },
+    {
+      "h": "What High-Performing Inbox Triage Looks Like",
+      "b": [
+        "Target: 80–90% of operational emails handled independently, inbox near zero daily.",
+        "No missed critical deadlines, no confidentiality breaches — the two failure modes that erase months of trust."
+      ],
+      "callout": {
+        "type": "stat",
+        "label": "Benchmark",
+        "text": "High-performing EAs handle 80–90% of operational emails independently — without escalating routine items that don't need executive time."
+      },
+      "layout": "STAT",
+      "statNumber": "80–90%",
+      "statLabel": "of operational emails handled independently",
+      "trainerCue": "Push back gently if anyone says '80–90% independently' sounds unrealistic for their context — ask what's actually stopping them from getting there, and treat it as a real discussion, not a rebuttal."
+    },
+    {
       "h": "Force Multiplier in the Wild",
       "b": [
         "Worked scenario: a client adds last-minute requests touching three departments the day before a pitch.",
@@ -2300,51 +2385,10 @@ const DAY2 = {
 
 const DAY3 = {
   "id": 3,
-  "title": "Communication, Meetings & Calendar Mastery",
-  "theme": "Gatekeeping Scripts · Transcriptions · Time & Calendar Management",
-  "objective": "Apply gatekeeping frameworks and scripts, run accurate virtual meetings, and keep a calendar and workload that actually hold up under pressure.",
+  "title": "Time, Calendar & Travel Management",
+  "theme": "Prioritization & Time Tracking · Calendar Discipline · Travel Planning",
+  "objective": "Build the discipline to prioritize and protect time, keep a calendar that actually holds under pressure, and plan travel end-to-end.",
   "lessons": [
-    {
-      "h": "Gatekeeping Is Not 'No'",
-      "b": [
-        "Gatekeeping means 'not now' or 'here's a better option' — never an outright block.",
-        "You represent the executive's authority; access is filtered, tone stays calm and confident.",
-        "Never blame the requester for bad timing, and always offer a real next step.",
-        "The Filtering Matrix pairs with a communication toolkit: active listening, framing, appeal to shared values, and asking for opinions rather than giving orders — all aimed at influence without relying on formal authority."
-      ],
-      "trainerCue": "Roleplay this live: you play a pushy caller, pick a trainee to gatekeep you in real time. Do it twice — once where they cave, once where they hold the line — and debrief the difference."
-    },
-    {
-      "h": "The Filtering Matrix",
-      "b": [
-        "Categorize each request by urgency and impact: do it now, delegate, defer, or offer an alternative.",
-        "Four screening questions: revenue impact, legal risk, need for executive authority, relationship sensitivity."
-      ],
-      "trainerCue": "Put the four filtering questions on the board and run one ambiguous real-world request through them live as a group before trainees try it solo."
-    },
-    {
-      "h": "Scripts That Redirect Without Alienating",
-      "b": [
-        "Deferring — acknowledge genuinely, propose concrete next steps with a timeline.",
-        "Re-routing — point to the right team while staying accountable for the outcome.",
-        "Drastic Contrast — explain the real constraint honestly and offer a specific alternative slot.",
-        "Scripts also draw on classic influence principles: consistency and commitment (getting a small agreement first), and authority (citing the right process rather than personal preference)."
-      ],
-      "trainerCue": "Have three volunteers each deliver one of the three scripts (Deferring, Re-routing, Drastic Contrast) to the same scenario — the tonal differences are the whole lesson."
-    },
-    {
-      "h": "Virtual Meetings & Transcription Accuracy",
-      "b": [
-        "Test recording software before the meeting, not during it.",
-        "Always assign a human note-taker as backup, independent of the tech.",
-        "If minutes come back unclear, apologize, revise, and standardize the template — don't just stop distributing them.",
-        "Two documentation types: Informal Notes (internal use only) and Formal Minutes (structured, distributed record).",
-        "Capture final decisions and action items; don't capture side conversations or off-the-record remarks.",
-        "AI transcription tools (Zoom, Teams, Otter) speed up the process, but the assistant's role is to review and clean the transcript — never distribute it raw.",
-        "After major meetings, prepare an Executive Briefing Memo: a short 'Subject: Executive Brief — [Meeting Topic]' summary rather than the full transcript."
-      ],
-      "trainerCue": "Ask: 'Has a meeting ever ended and nobody could agree on what was actually decided?' That's the exact failure this topic exists to prevent."
-    },
     {
       "h": "Prioritization Frameworks",
       "b": [
@@ -2678,9 +2722,9 @@ const DAY3 = {
 
 const DAY4 = {
   "id": 4,
-  "title": "Data, Email & Outreach",
-  "theme": "Administrative Data · Email Triage System · Cold Calling",
-  "objective": "Clean data before it becomes a report, run email as a control system rather than cleanup, and open cold outreach the right way.",
+  "title": "Data & Outreach",
+  "theme": "Administrative Data · Priority Triage · Cold Calling",
+  "objective": "Clean data before it becomes a report, prioritize and run a workday that actually holds, and open cold outreach the right way.",
   "lessons": [
     {
       "h": "Data Entry That Holds Up",
@@ -2708,31 +2752,6 @@ const DAY4 = {
         }
       ],
       "trainerCue": "Live-demo the four-step data cleaning order on a genuinely messy sample spreadsheet — trainees remember doing it far better than hearing it described."
-    },
-    {
-      "h": "Email Is a Control System, Not Cleanup",
-      "b": [
-        "Full Access — read/respond/archive/send on the executive's behalf.",
-        "Draft & Review — draft and flag; executive approves before sending.",
-        "Triage Only — sort and escalate; executive responds themselves.",
-        "Know your access level before acting independently."
-      ],
-      "layout": "THREEBOX",
-      "boxes": [
-        {
-          "label": "Full Access",
-          "desc": "Read, respond, archive, and send on the executive's behalf"
-        },
-        {
-          "label": "Draft & Review",
-          "desc": "Draft responses and flag priorities — the executive approves before sending"
-        },
-        {
-          "label": "Triage Only",
-          "desc": "Sort, prioritize, and escalate — the executive responds themselves"
-        }
-      ],
-      "trainerCue": "Ask each trainee to say out loud which access model (Full Access / Draft & Review / Triage Only) they currently operate under in their own role, if applicable — it surfaces real ambiguity worth discussing."
     },
     {
       "h": "The Priority Matrix",
@@ -2764,15 +2783,6 @@ const DAY4 = {
         ]
       },
       "trainerCue": "This is a good comprehension check: read out five sample emails and have the room shout 'Tier 1' or 'Tier 2' as fast as they can — speed reveals who's actually internalized the distinction."
-    },
-    {
-      "h": "Calendar & Email Are One System",
-      "b": [
-        "Convert scheduling emails into calendar holds immediately.",
-        "Confirm time zones explicitly, attach agendas to the invite itself.",
-        "A stale calendar is a liability everyone downstream trusts as ground truth."
-      ],
-      "trainerCue": "Ask: 'What's the worst thing that's happened to you because a calendar invite didn't match reality?' Almost everyone has one."
     },
     {
       "h": "The Daily Routine",
@@ -2808,22 +2818,6 @@ const DAY4 = {
         }
       ],
       "trainerCue": "Walk your OWN actual morning routine (or a composite one) against the three-phase Daily Routine live — real specificity beats the abstract structure."
-    },
-    {
-      "h": "What High-Performing Inbox Triage Looks Like",
-      "b": [
-        "Target: 80–90% of operational emails handled independently, inbox near zero daily.",
-        "No missed critical deadlines, no confidentiality breaches — the two failure modes that erase months of trust."
-      ],
-      "callout": {
-        "type": "stat",
-        "label": "Benchmark",
-        "text": "High-performing EAs handle 80–90% of operational emails independently — without escalating routine items that don't need executive time."
-      },
-      "layout": "STAT",
-      "statNumber": "80–90%",
-      "statLabel": "of operational emails handled independently",
-      "trainerCue": "Push back gently if anyone says '80–90% independently' sounds unrealistic for their context — ask what's actually stopping them from getting there, and treat it as a real discussion, not a rebuttal."
     },
     {
       "h": "Cold Calling, Appointment Setting & Lead Generation",
@@ -2881,15 +2875,15 @@ const DAY4 = {
   ],
   "quiz": [
     {
-      "q": "Under the 'Draft & Review' email access model, you...",
+      "q": "According to the Comprehensive Contact List topic, the single most common failure mode is...",
       "opts": [
-        "Send on the executive's behalf without review",
-        "Draft responses and flag priorities, but the executive approves before sending",
-        "Only sort emails — never draft anything",
-        "Have full inbox authority including archiving and calendar invites"
+        "Missing contacts entirely",
+        "Stale entries — outdated names, numbers, or roles that were never updated",
+        "Too many categories",
+        "Using a CRM instead of a spreadsheet"
       ],
       "a": 1,
-      "r": "Draft & Review keeps the executive as the final approver on outgoing messages."
+      "r": "Stale entries are more common and more damaging than missing contacts outright — the list looks complete but quietly stops being trustworthy."
     },
     {
       "q": "A Tier 1 email arrives (media inquiry with a deadline tomorrow). What's the required action?",
@@ -5583,14 +5577,14 @@ const DAYS = [DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8, DAY9, DAY10];
    ============================================================ */
 
 const PRACTICE_TOOLS = [
-  {id:"dossier1", icon:"🗂", title:"Client Dossier & Tracker Builder", relates:"Day 1",
-   desc:"Build a comprehensive client dossier and set up Travel and Inbox Preference trackers for Elias Thorne — sorting real profile facts into the right sections."},
+  {id:"dossier1", icon:"🗂", title:"Client Dossier & Gatekeeping Practice", relates:"Day 1",
+   desc:"Build a comprehensive client dossier and preference trackers for Elias Thorne, respond to a real ACT-framework voice note, then practice inbound gatekeeping under pressure."},
   {id:"forcemultiplier2", icon:"⚡", title:"The Force Multiplier Challenge", relates:"Day 2",
-   desc:"Three connected challenges — anticipate what a vague executive request really needs, write an AI prompt that actually runs and produces real output, then handle a messy scenario that tests both skills at once."},
+   desc:"Anticipate what a vague executive request really needs, write an AI prompt that actually runs and produces real output, handle a messy combined scenario, then clear a real inbox — building your own filing system and catching a hidden phishing attempt."},
   {id:"calendar", icon:"◫", title:"Calendar Conflict Resolver & Travel Planning", relates:"Day 3",
    desc:"A full attorney's week with overlapping commitments to resolve and turn into an AI-drafted BLUF briefing, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
-  {id:"emailsim", icon:"📨", title:"Inbox Triage & Outreach", relates:"Day 4",
-   desc:"A real inbox — build your own filing system, draft real replies, and catch a hidden phishing attempt — then practice inbound gatekeeping under pressure and log a round of cold-calling outreach."},
+  {id:"coldcalling4", icon:"☎", title:"Cold-Calling Outreach Log", relates:"Day 4",
+   desc:"Log a full round of cold-calling outreach with a reference opening line, tracking outcome and follow-up for each prospective client."},
   {id:"insurance5", icon:"🛡", title:"Household Risk Assessment", relates:"Day 5",
    desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, then handle a live crisis roleplay drawn from real household scenarios."},
   {id:"projectcompliance6", icon:"📊", title:"Business Compliance & Project Recovery", relates:"Day 6",
@@ -7471,7 +7465,6 @@ function initTool(id){
   if(!body) return;
   if(id==="calendar") initCalendar(body);
   else if(id==="financial") initFinancial(body);
-  else if(id==="emailsim") initEmailSim(body);
   else if(id==="compliance9") initCompliance9(body);
   else if(id==="socialmedia10") initSocial10(body);
   else if(id==="dossier1") initDossier1(body);
@@ -7479,6 +7472,7 @@ function initTool(id){
   else if(id==="projectcompliance6") initProjectCompliance6(body);
   else if(id==="forcemultiplier2") initForceMultiplier2(body);
   else if(id==="accessincident8") initAccessIncident8(body);
+  else if(id==="coldcalling4") initColdCalling4(body);
 }
 
 async function bumpPracticeProgress(toolId, score){
@@ -7605,8 +7599,10 @@ function renderCalendarBody(body){
       const bg = e.color || PRI_COLOR[e.p];
       return `<div class="cal-block ${isConflict?'conflict':''}" draggable="true"
                 ondragstart="calDragStart(event,${e.idx})"
-                style="top:${top}px;height:${h}px;background:${bg};" title="Drag to move · click the dot to recolor">
-        <input type="color" class="cal-color-input" value="${toHex(bg)}" onclick="event.stopPropagation()" onchange="calColorChange(${e.idx}, this.value)">
+                style="top:${top}px;height:${h}px;background:${bg};" title="Drag to move">
+        <div class="cal-color-picker" onclick="event.stopPropagation()">
+          ${Object.entries(PRI_COLOR).map(([p,hex])=>`<span class="cal-color-dot ${toHex(bg)===hex?'selected':''}" style="background:${hex};" onclick="calColorChange(${e.idx}, '${hex}')" title="${p}"></span>`).join("")}
+        </div>
         <button class="cal-move-btn" onclick="event.stopPropagation(); openMoveDialog(${e.idx})" title="Move this to a different day/time">⇄</button>
         <button class="cal-del-btn" onclick="event.stopPropagation(); calDeleteEvent(${e.idx})" title="Remove this event">✕</button>
         <b>${esc(e.t)}</b><span class="cal-sub">${e.loc!=="—"?esc(e.loc)+" · ":""}${esc(e.type)}</span>
@@ -7615,7 +7611,7 @@ function renderCalendarBody(body){
   }
 
   body.innerHTML = `
-    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly. Click the small dot to recolor, <b>✕</b> to remove an event entirely, or <b>+ Add Event</b> to schedule something new — including proactive tasks you spot are missing, like a debrief buffer or prep block. Nothing here is graded until you click Check My Plan.</p>
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly. Click one of the three priority-color dots to recolor, <b>✕</b> to remove an event entirely, or <b>+ Add Event</b> to schedule something new — including proactive tasks you spot are missing, like a debrief buffer or prep block. Nothing here is graded until you click Check My Plan.</p>
     <div class="legend-row">
       ${["High","Medium","Low"].map(p=>`<span class="legend-chip"><span class="sw" style="background:${PRI_COLOR[p]};"></span>${p} priority</span>`).join("")}
       <button class="btn btn-navy btn-sm" style="margin-left:auto;" onclick="openAddEventDialog()">+ Add Event</button>
@@ -8606,9 +8602,9 @@ window.downloadTravelPdf = downloadTravelPdf;
 /* ============================================================
    5. CALL HANDLING STUDIO (embedded within Inbox Triage / Day 4)
    ============================================================ */
-function renderCallsSection(){
+function renderGatekeepingSection(letter){
   return `
-    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">D. Inbound Gatekeeping Practice</h3>
+    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">${letter}. Inbound Gatekeeping Practice</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Pick the response that best matches the gatekeeping technique in play.</p>
     ${CALL_SCENARIOS.map((s,i)=>`
       <div class="scenario-card">
@@ -8625,8 +8621,11 @@ function renderCallsSection(){
       </div>`).join("")}
     <button class="btn btn-primary" onclick="submitCalls()">Check My Responses</button>
     <div id="callsResult"></div>
-
-    <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">E. Prospective Client Intake Call Log</h3>
+  `;
+}
+function renderColdCallingSection(letter){
+  return `
+    <h3 style="margin:${letter==='A'?'0':'32px'} 0 10px;color:var(--navy);font-size:15px;">${letter}. Prospective Client Intake Call Log</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Reference opening line: <i>"Hi, I'm [Your Name] from [Firm]. I wanted to see if we could schedule a brief consultation to discuss [the matter you were referred about]."</i> Log your practice calls below.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
@@ -8660,6 +8659,11 @@ async function saveCallLog(){
   toast("Call log saved");
 }
 window.saveCallLog = saveCallLog;
+function initColdCalling4(body){
+  toolState.calls = {};
+  body.innerHTML = renderColdCallingSection('A');
+  loadCallLog();
+}
 async function loadCallLog(){
   const log = await storeGet("call-log");
   if(!log) return;
@@ -8692,21 +8696,13 @@ async function submitCalls(){
     <div class="card" style="padding:16px 20px;margin-top:14px;">
       <b style="color:var(--navy);">${correct} / ${total} correct (${score}%)</b>
     </div>`;
-  await bumpPracticeProgress("emailsim", score);
+  await bumpPracticeProgress("dossier1", score);
   if(score===100) burstConfetti();
 }
 window.submitCalls = submitCalls;
 async function downloadCallsPdf(){
   await ensureTraineeName();
-  const r = toolState.callsReport;
-  const lines = ["## Call Handling Studio", "---", "## A. Inbound Gatekeeping"];
-  if(r) lines.push(`Score: ${r.correct} / ${r.total} (${r.score}%)`);
-  CALL_SCENARIOS.forEach((s,i)=>{
-    const picked = toolState.calls[i];
-    lines.push(`${s.tag}: ${s.scn}`);
-    lines.push(`   Your answer: ${typeof picked==="number" ? s.opts[picked] : "(not answered)"}`);
-  });
-  lines.push("---", "## B. Prospective Client Intake Log");
+  const lines = ["## Cold-Calling Outreach Log"];
   COLD_LEADS.forEach((l,i)=>{
     const date=document.getElementById(`logDate${i}`)?.value||"";
     const outcome=document.getElementById(`logOutcome${i}`)?.value||"";
@@ -8715,7 +8711,7 @@ async function downloadCallsPdf(){
     lines.push(`${l.name} (${l.company}, ${l.phone})`);
     lines.push(`   Called: ${date||"—"}   Outcome: ${outcome||"—"}   Follow-up: ${followup||"—"}   Notes: ${notes||"—"}`);
   });
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Call Handling — Results", lines, "LSH_Call_Handling");
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Cold-Calling Outreach Log — Results", lines, "LSH_Cold_Calling");
 }
 window.downloadCallsPdf = downloadCallsPdf;
 
@@ -9283,6 +9279,12 @@ async function rejectTrainee(traineeId){
   toast("Rejected.");
   await loadAdminLedger();
 }
+async function confirmRevokeTrainee(traineeId, name){
+  if(!confirm(`Revoke access for ${name}? They'll immediately lose access to the training material — their progress is kept, and you can re-approve them later if needed.`)) return;
+  await rejectTrainee(traineeId);
+  toast(`Access revoked for ${name}.`);
+}
+window.confirmRevokeTrainee = confirmRevokeTrainee;
 window.rejectTrainee = rejectTrainee;
 function renderAdmin(){
   if(!state.isAdmin){
@@ -9392,7 +9394,10 @@ function renderAdminRow(rec, day, practice){
         <div style="font-size:13px;">${day.avg}% avg</div>
         <div style="font-size:13px;">${practice.runs} runs</div>
         <div style="font-size:11.5px;color:var(--ink-soft);">${rec.lastActive?fmtDate(rec.lastActive):"—"}</div>
-        <button class="btn btn-sm btn-ghost" onclick="toggleAdminDetail('${rec.id}')">${expanded?"Hide":"View"} Detail</button>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-sm btn-ghost" onclick="toggleAdminDetail('${rec.id}')">${expanded?"Hide":"View"} Detail</button>
+          <button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee('${rec.id}', '${esc(rec.name||"this trainee").replace(/'/g,"\\'")}')">Revoke</button>
+        </div>
       </div>
       ${expanded?renderAdminDetail(rec):""}
     </div>`;
@@ -9479,6 +9484,7 @@ function esimAvatar(from){
 
 async function initEmailSim(body){
   const savedInteractions = (await storeGet("inbox-interactions")) || {};
+  toolState.esimContainerId = body.id || "toolBody";
   toolState.esim = {
     replies: savedInteractions.replies || {}, archived: savedInteractions.archived || {}, reported: savedInteractions.reported || {},
     linkClicked: savedInteractions.linkClicked || {}, unread:{}, starred: savedInteractions.starred || {}, replyOpen:{},
@@ -9487,8 +9493,6 @@ async function initEmailSim(body){
     failReason:null, selected:0, report:null, securityScore:null, filingScore:null
   };
   toolState.iz = {inbox:[], placements:{}, hasSimulatedFailure:false};
-  toolState.calls = {};
-  loadCallLog();
   EMAIL_SIM_MESSAGES.forEach((_,i)=>{ if(!(i in toolState.esim.replies) && !toolState.esim.archived[i] && !toolState.esim.reported[i]) toolState.esim.unread[i] = true; });
   toolState.esim.labels = (await storeGet("inbox-labels")) || LABEL_LEGEND.map((l,i)=>({id:"default_"+i, name:l.label, parentId:null, color:l.color}));
   toolState.esim.filing = (await storeGet("inbox-filing")) || {};
@@ -9555,7 +9559,7 @@ function renderEsimBody(body){
       <button class="btn btn-primary" onclick="initEmailSim(document.getElementById('toolBody'))">Try Again</button>
       <button class="btn btn-ghost" onclick="downloadEmailSimPdf()">⬇ Download Report</button>
     `;
-    bumpPracticeProgress("emailsim", 0);
+    bumpPracticeProgress("forcemultiplier2", 0);
     return;
   }
 
@@ -9608,7 +9612,6 @@ function renderEsimBody(body){
     </div>
     <button class="btn btn-primary" style="margin-top:16px;" onclick="finishEmailSim()">Finish &amp; Get Evaluation</button>
     ${renderInboxZeroSection()}
-    ${renderCallsSection()}
   `;
 }
 
@@ -9648,7 +9651,7 @@ function renderAddLabelRow(parentId){
     </div>`;
 }
 function refreshEsimSidebar(){
-  renderEsimBody(document.getElementById("toolBody"));
+  renderEsimBody(document.getElementById(toolState.esimContainerId));
 }
 function startAddLabel(parentId){
   toolState.esim.addingUnder = parentId;
@@ -9852,7 +9855,7 @@ function clickEsimLink(i){
     reason:`You clicked the link in "${EMAIL_SIM_MESSAGES[i].subj}" — a simulated phishing email. In a real scenario this could have installed malware or handed over your credentials.`
   };
   toolState.esim.phase = "failed";
-  renderEsimBody(document.getElementById("toolBody"));
+  renderEsimBody(document.getElementById(toolState.esimContainerId));
 }
 window.clickEsimLink = clickEsimLink;
 
@@ -9866,7 +9869,7 @@ function sendEsimReply(i){
       reason:`Your reply to "${m.subj}" included sensitive information (account/routing details, a password, or similar). A real attacker would now have exactly what they were after.`
     };
     toolState.esim.phase = "failed";
-    renderEsimBody(document.getElementById("toolBody"));
+    renderEsimBody(document.getElementById(toolState.esimContainerId));
     return;
   }
   toolState.esim.replies[i] = text;
@@ -9902,7 +9905,7 @@ async function finishEmailSim(){
   await ensureTraineeName();
   const e = toolState.esim;
   e.phase = "evaluating";
-  renderEsimBody(document.getElementById("toolBody"));
+  renderEsimBody(document.getElementById(toolState.esimContainerId));
 
   let filingCorrect = 0;
   EMAIL_SIM_MESSAGES.forEach((m,i)=>{
@@ -9949,9 +9952,9 @@ Keep it concise — a handful of bullets per section — and end with one overal
   }
   e.phase = "evaluated";
   const overall = Math.round((e.filingScore + e.securityScore)/2);
-  await bumpPracticeProgress("emailsim", overall);
+  await bumpPracticeProgress("forcemultiplier2", overall);
   if(overall===100) burstConfetti();
-  renderEsimBody(document.getElementById("toolBody"));
+  renderEsimBody(document.getElementById(toolState.esimContainerId));
 }
 window.finishEmailSim = finishEmailSim;
 
@@ -10121,7 +10124,7 @@ async function izSubmitSort(){
           <div class="iz-preview">You placed: <b>${esc(IZ_QUAD_LABELS[placements[e.id]])}</b> &middot; Expert triage: <b>${esc(IZ_QUAD_LABELS[e.idealQuadrant])}</b></div>
         </div>`).join("") : `<p class="iz-empty">Perfect match on every email.</p>`}
     </div>`;
-  await bumpPracticeProgress("emailsim", score);
+  await bumpPracticeProgress("forcemultiplier2", score);
   if(score===100) burstConfetti();
 }
 window.izSubmitSort = izSubmitSort;
@@ -10924,8 +10927,13 @@ function initForceMultiplier2(body){
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewFm2Plan()">Get AI Feedback</button>
     <div id="fm2PlanResult" style="margin-top:14px;"></div>
 
+    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">D. Inbox Triage</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A real inbox — apply the Digital Edge and AI Proficiency skills from this day to actually clear it. Build your own filing system, draft real replies, and catch a hidden phishing attempt.</p>
+    <div id="fm2EmailWrap"></div>
+
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadFm2Pdf()">⬇ Download My Work</button>
   `;
+  initEmailSim(document.getElementById("fm2EmailWrap"));
 }
 
 async function checkFm2Checklist(){
@@ -11220,6 +11228,7 @@ window.downloadSocial10Pdf = downloadSocial10Pdf;
 
 function initDossier1(body){
   toolState.d1 = {file:null, dossierScore:undefined, trackerScore:undefined};
+  toolState.calls = {};
   body.innerHTML = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Draft the Client Dossier</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Below are raw onboarding notes on Elias Thorne, Managing Owner &amp; CEO of Thorne &amp; Partners — unsorted, exactly as they'd land on your desk. Write the dossier in your own words, organized under the four sections below.</p>
@@ -11278,8 +11287,9 @@ function initDossier1(body){
       <button class="btn btn-navy btn-sm" onclick="reviewD1ActEmail()">Get AI Feedback</button>
     </div>
     <div id="d1ActFeedback" style="margin-top:14px;"></div>
+    ${renderGatekeepingSection('D')}
 
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">D. Submit Your Completed Work</h3>
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">E. Submit Your Completed Work</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Export your dossier and trackers (spreadsheet, doc, or notes file) and upload it here for your trainer to review.</p>
     <div class="dropzone" id="d1Dropzone"
          ondragover="event.preventDefault(); document.getElementById('d1Dropzone').classList.add('dragover')"
@@ -11293,10 +11303,12 @@ function initDossier1(body){
     </div>
     <div id="d1FilePreview"></div>
     <button class="btn btn-navy" style="margin-top:14px;" id="d1SubmitBtn" onclick="submitD1Work()" disabled>Submit for Review</button>
+    <div id="d1SubmitStatus" style="margin-top:8px;font-size:12px;color:var(--ink-soft);"></div>
 
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
     <div id="d1TransitionOverlay"></div>
   `;
+  checkD1AllDone();
 }
 
 /* ---------- coverage-based scoring for free text ---------- */
@@ -11356,9 +11368,19 @@ async function checkD1Tracker(){
 }
 window.checkD1Tracker = checkD1Tracker;
 function checkD1AllDone(){
-  if(toolState.d1.dossierScore!==undefined && toolState.d1.trackerScore!==undefined){
-    const btn = document.getElementById("d1SubmitBtn");
-    if(btn && toolState.d1.file) btn.disabled = false;
+  const btn = document.getElementById("d1SubmitBtn");
+  const statusEl = document.getElementById("d1SubmitStatus");
+  if(!btn || !statusEl) return;
+  const missing = [];
+  if(toolState.d1.dossierScore===undefined) missing.push("check Part A (Dossier)");
+  if(toolState.d1.trackerScore===undefined) missing.push("check Part B (Trackers)");
+  if(!toolState.d1.file) missing.push("attach a file");
+  if(missing.length===0){
+    btn.disabled = false;
+    statusEl.textContent = "";
+  }else{
+    btn.disabled = true;
+    statusEl.textContent = "Still needed to submit: " + missing.join(", ") + ".";
   }
 }
 
@@ -11451,18 +11473,13 @@ function setD1File(file){
       <div class="fp-meta"><b>${esc(file.name)}</b><span>${sizeKb}KB &middot; ${esc(file.type||"unknown type")}</span></div>
       <button class="btn btn-sm btn-ghost" onclick="clearD1File()">Remove</button>
     </div>`;
-  const btn = document.getElementById("d1SubmitBtn");
-  if(toolState.d1.dossierScore!==undefined && toolState.d1.trackerScore!==undefined){
-    btn.disabled = false;
-  }else{
-    toast("File attached — finish checking Part A and B before submitting.");
-  }
+  checkD1AllDone();
 }
 function clearD1File(){
   toolState.d1.file = null;
   document.getElementById("d1FilePreview").innerHTML = "";
-  document.getElementById("d1SubmitBtn").disabled = true;
   document.getElementById("d1FileInput").value = "";
+  checkD1AllDone();
 }
 window.clearD1File = clearD1File;
 
@@ -11509,8 +11526,16 @@ async function downloadDossier1Pdf(){
   if(actDraft && actDraft.value.trim()){
     lines.push("---", "## C. Sample Task — ACT Email Reply", actDraft.value.trim());
   }
+  lines.push("---", "## D. Inbound Gatekeeping Practice");
+  const gkReport = toolState.callsReport;
+  if(gkReport) lines.push(`Score: ${gkReport.correct} / ${gkReport.total} (${gkReport.score}%)`);
+  CALL_SCENARIOS.forEach((s,i)=>{
+    const picked = toolState.calls ? toolState.calls[i] : undefined;
+    lines.push(`${s.tag}: ${s.scn}`);
+    lines.push(`   Your answer: ${typeof picked==="number" ? s.opts[picked] : "(not answered)"}`);
+  });
   if(toolState.d1.file) lines.push("---", `## Submitted File`, toolState.d1.file.name);
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Client Dossier & Tracker Builder — Results", lines, "LSH_Dossier_Tracker");
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Client Dossier & Gatekeeping Practice — Results", lines, "LSH_Dossier_Tracker");
 }
 window.downloadDossier1Pdf = downloadDossier1Pdf;
 
