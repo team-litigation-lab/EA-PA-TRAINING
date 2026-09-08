@@ -79,6 +79,20 @@ export default {
         }
       }
 
+      if (url.pathname === "/api/storage/delete" && request.method === "POST") {
+        if (!env.LSH_KV) {
+          return new Response(JSON.stringify({ error: "LSH_KV namespace is not bound on this Worker." }), { status: 500, headers: { "Content-Type": "application/json" } });
+        }
+        try {
+          const { key } = await request.json();
+          if (!key) return new Response(JSON.stringify({ error: "Missing key" }), { status: 400, headers: { "Content-Type": "application/json" } });
+          await env.LSH_KV.delete(key);
+          return new Response(JSON.stringify({ ok: true }), { headers: { "Content-Type": "application/json" } });
+        } catch (e) {
+          return new Response(JSON.stringify({ error: "KV delete failed.", detail: String(e) }), { status: 500, headers: { "Content-Type": "application/json" } });
+        }
+      }
+
       // Every other request: serve the static site as before.
       return await env.ASSETS.fetch(request);
     } catch (outerError) {
