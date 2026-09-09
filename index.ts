@@ -28,6 +28,8 @@
   --danger-bg:#F7E9E6;
   --radius:14px;
   --shadow:0 1px 2px rgba(22,24,41,.04), 0 8px 24px -12px rgba(22,24,41,.18);
+  --font-body:14px;
+  --font-sub:12px;
 }
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
@@ -53,12 +55,12 @@ button{font-family:inherit;cursor:pointer;}
   background:linear-gradient(90deg, #FFF3E4 0%, #FDEBD8 100%);
   border-bottom:1px solid var(--orange-soft);
   padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;
-  position:relative;font-size:12.8px;color:var(--navy);
+  position:relative;font-size:var(--font-sub);color:var(--navy);
 }
 .notif-banner b{color:var(--orange-deep);}
 .notif-banner .notif-close{
   position:absolute;right:18px;top:50%;transform:translateY(-50%);
-  background:none;border:none;font-size:15px;color:var(--ink-soft);cursor:pointer;line-height:1;padding:4px;
+  background:none;border:none;font-size:var(--font-body);color:var(--ink-soft);cursor:pointer;line-height:1;padding:4px;
 }
 .notif-banner .notif-close:hover{color:var(--navy);}
 
@@ -82,10 +84,10 @@ button{font-family:inherit;cursor:pointer;}
   padding:8px 14px;position:relative;min-width:0;
 }
 .topbar-search input{
-  background:none;border:none;outline:none;color:#fff;font-size:13px;flex:1;
+  background:none;border:none;outline:none;color:#fff;font-size:var(--font-body);flex:1;
 }
 .topbar-search input::placeholder{color:rgba(255,255,255,.55);}
-.topbar-search .sicon{font-size:12px;opacity:.7;}
+.topbar-search .sicon{font-size:var(--font-sub);opacity:.7;}
 .search-results{
   position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:10px;
   box-shadow:0 12px 32px -8px rgba(0,0,0,.35);overflow:hidden;z-index:60;text-align:left;
@@ -96,22 +98,22 @@ button{font-family:inherit;cursor:pointer;}
 }
 .search-results .sr-item:last-child{border-bottom:none;}
 .search-results .sr-item:hover{background:var(--bg);}
-.search-results .sr-item b{color:var(--navy);font-size:13px;display:block;}
-.search-results .sr-item span{font-size:11px;color:var(--ink-soft);}
-.search-results .sr-empty{padding:14px;font-size:12.5px;color:var(--ink-soft);text-align:center;}
+.search-results .sr-item b{color:var(--navy);font-size:var(--font-body);display:block;}
+.search-results .sr-item span{font-size:var(--font-sub);color:var(--ink-soft);}
+.search-results .sr-empty{padding:14px;font-size:var(--font-sub);color:var(--ink-soft);text-align:center;}
 
 .brand{display:flex;align-items:center;gap:12px;cursor:pointer;flex:0 0 auto;min-width:0;}
 .brand-mark{width:38px;height:38px;flex:0 0 auto;object-fit:contain;}
 .brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0;}
-.brand-text b{font-family:'Fraunces';font-size:15px;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
-.brand-text span{font-size:11px;color:#B9BEDA;text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
+.brand-text b{font-family:'Fraunces';font-size:var(--font-body);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
+.brand-text span{font-size:var(--font-sub);color:#B9BEDA;text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
 
 /* pill tabs (dashboard quick-nav, mirrors reference) */
 .pill-tabs{
   display:inline-flex;background:var(--bg);border-radius:26px;padding:5px;gap:4px;margin:0 auto 34px;
 }
 .pill-tabs button{
-  border:none;background:none;padding:11px 22px;border-radius:22px;font-size:13.5px;font-weight:600;
+  border:none;background:none;padding:11px 22px;border-radius:22px;font-size:var(--font-body);font-weight:600;
   color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .15s ease;
 }
 .pill-tabs button.active{background:var(--navy);color:#fff;box-shadow:0 4px 14px -4px rgba(38,43,69,.5);}
@@ -154,9 +156,22 @@ button{font-family:inherit;cursor:pointer;}
 .module-card:nth-child(3n+3) .module-banner{background:linear-gradient(135deg, var(--navy-soft) 0%, var(--navy) 100%);}
 .module-card .module-lock{position:absolute;inset:0;background:rgba(22,24,41,.55);display:flex;align-items:center;justify-content:center;font-size:26px;}
 .module-body{padding:14px 16px 8px;flex:1;display:flex;flex-direction:column;}
-.module-body .mnum{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--orange-deep);font-weight:700;letter-spacing:.04em;margin-bottom:4px;}
-.module-body p{font-size:13px;color:var(--ink);line-height:1.4;margin:0;flex:1;}
+.module-body .mnum{font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--orange-deep);font-weight:700;letter-spacing:.04em;margin-bottom:4px;}
+.module-body p{font-size:var(--font-body);color:var(--ink);line-height:1.4;margin:0 0 6px;}
 .module-body p b{color:var(--navy);}
+.module-topic-list{list-style:none;margin:0;padding:0;flex:1;}
+.module-topic-list li{
+  font-size:var(--font-sub);color:#37394A;line-height:1.45;margin-bottom:5px;padding-left:14px;position:relative;
+}
+.module-topic-list li::before{
+  content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--orange);
+}
+.module-topic-list li.module-topic-more{
+  font-style:italic;color:var(--ink-soft);
+}
+.module-topic-list li.module-topic-more::before{
+  background:transparent;border:1px solid var(--ink-soft);
+}
 .module-start-btn{
   margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:10px;font-weight:700;
 }
@@ -164,14 +179,14 @@ button{font-family:inherit;cursor:pointer;}
 
 .nav{display:flex;gap:4px;background:rgba(255,255,255,.06);padding:4px;border-radius:10px;flex-wrap:wrap;flex:0 1 auto;}
 .nav button{
-  background:transparent;border:none;color:#D7DAEC;font-size:13.5px;font-weight:600;
+  background:transparent;border:none;color:#D7DAEC;font-size:var(--font-body);font-weight:600;
   padding:8px 14px;border-radius:7px;transition:all .15s ease;white-space:nowrap;
 }
 .nav button.active{background:var(--orange);color:#241304;}
 .nav button:not(.active):hover{background:rgba(255,255,255,.09);color:#fff;}
 
 .trainee-chip{
-  display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CCE6;
+  display:flex;align-items:center;gap:8px;font-size:var(--font-sub);color:#C9CCE6;
   border:1px solid rgba(255,255,255,.18);padding:6px 10px;border-radius:20px;cursor:pointer;
   white-space:nowrap;flex:0 0 auto;
 }
@@ -182,12 +197,12 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 @keyframes pageIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
 .footer-note{
-  text-align:center;font-size:11.5px;color:var(--ink-soft);padding:26px 24px 40px;
+  text-align:center;font-size:var(--font-sub);color:var(--ink-soft);padding:26px 24px 40px;
 }
 
 /* ---------- generic building blocks ---------- */
 .eyebrow{
-  font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  font-size:var(--font-sub);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:var(--orange-deep);margin:0 0 8px;
 }
 .card{
@@ -196,7 +211,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .btn{
   display:inline-flex;align-items:center;gap:8px;border-radius:9px;border:1px solid transparent;
-  font-weight:600;font-size:13.5px;padding:10px 18px;transition:all .15s ease;
+  font-weight:600;font-size:var(--font-body);padding:10px 18px;transition:all .15s ease;
 }
 .btn-primary{background:var(--orange);color:#241304;}
 .btn-primary:hover{background:var(--orange-deep);color:#fff;}
@@ -205,10 +220,10 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .btn-navy{background:var(--navy);color:#fff;}
 .btn-navy:hover{background:var(--navy-deep);}
 .btn[disabled]{opacity:.42;cursor:not-allowed;pointer-events:none;}
-.btn-sm{padding:7px 13px;font-size:12.5px;}
+.btn-sm{padding:7px 13px;font-size:var(--font-sub);}
 
 .pill{
-  display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;font-size:var(--font-sub);font-weight:700;
   padding:4px 10px;border-radius:20px;letter-spacing:.03em;text-transform:uppercase;
 }
 .pill-locked{background:#E4E6EE;color:#7C82A0;}
@@ -222,15 +237,21 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 @media(max-width:820px){.hero{grid-template-columns:1fr;}}
 .hero h1{font-size:34px;margin:0 0 14px;color:var(--navy);}
-.hero p{color:var(--ink-soft);font-size:15px;max-width:52ch;margin:0 0 22px;}
+.hero p{color:var(--ink-soft);font-size:var(--font-body);max-width:52ch;margin:0 0 22px;}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
 .hero-seal-wrap{display:flex;justify-content:center;}
 
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:38px;}
+.admin-tab-btn{
+  background:none;border:none;padding:10px 4px;margin-right:22px;font-size:14px;font-weight:600;color:var(--ink-soft);
+  cursor:pointer;border-bottom:2px solid transparent;position:relative;top:1px;
+}
+.admin-tab-btn.active{color:var(--navy);border-bottom-color:var(--orange);}
+.admin-tab-btn:hover{color:var(--navy);}
 @media(max-width:720px){.stat-row{grid-template-columns:repeat(2,1fr);}}
 .stat{padding:18px 18px;}
 .stat .num{font-family:'Fraunces';font-size:26px;color:var(--navy);}
-.stat .lbl{font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-top:2px;}
+.stat .lbl{font-size:var(--font-sub);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-top:2px;}
 
 .timeline{position:relative;padding-left:2px;}
 .day-row{
@@ -246,9 +267,9 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .day-row.done .day-num{background:var(--success);}
 .day-row.locked .day-num{background:#C9CCDC;color:#fff;}
 .day-body h3{margin:0 0 4px;font-size:16.5px;color:var(--navy);}
-.day-body p{margin:0;font-size:13px;color:var(--ink-soft);}
+.day-body p{margin:0;font-size:var(--font-body);color:var(--ink-soft);}
 .day-meta{display:flex;align-items:center;gap:10px;}
-.score-tag{font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-soft);}
+.score-tag{font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);}
 
 /* ---------- seal (signature element) ---------- */
 .seal{filter:drop-shadow(0 6px 14px rgba(38,43,69,.18));}
@@ -258,11 +279,11 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:14px;
   border-bottom:1px solid var(--line);
 }
-.dhc-eyebrow{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);letter-spacing:.04em;}
+.dhc-eyebrow{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--orange-deep);letter-spacing:.04em;}
 .dhc-title{font-family:'Fraunces';font-size:16px;font-weight:600;color:var(--navy);flex:1;min-width:0;}
-.btn-xs{padding:5px 10px;font-size:11.5px;}
+.btn-xs{padding:5px 10px;font-size:var(--font-sub);}
 .back-link{
-  display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+  display:inline-flex;align-items:center;gap:6px;font-size:var(--font-body);font-weight:600;
   color:var(--ink-soft);margin-bottom:18px;
 }
 .back-link:hover{color:var(--navy);}
@@ -270,15 +291,15 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-grid{display:grid;gap:14px;margin-bottom:8px;}
 .lesson-card{padding:20px 22px;}
 .topic-separator{
-  display:inline-block;font-family:'IBM Plex Mono';font-size:10.5px;font-weight:700;letter-spacing:.04em;
+  display:inline-block;font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;letter-spacing:.04em;
   color:var(--orange);background:var(--navy);padding:5px 12px;border-radius:14px;margin:26px 0 10px;
 }
 .lesson-grid>.topic-separator:first-child{margin-top:0;}
 .lesson-card h4{margin:0 0 10px;font-size:18px;color:var(--navy);display:flex;gap:10px;align-items:baseline;}
-.lesson-card h4 .lnum{font-family:'IBM Plex Mono';font-size:13px;color:var(--orange-deep);}
+.lesson-card h4 .lnum{font-family:'IBM Plex Mono';font-size:var(--font-body);color:var(--orange-deep);}
 .lesson-card ul{margin:0;padding:0;list-style:none;}
 .lesson-card li{
-  font-size:15.5px;color:#37394A;margin-bottom:10px;padding-left:26px;position:relative;line-height:1.55;
+  font-size:var(--font-body);color:#37394A;margin-bottom:10px;padding-left:26px;position:relative;line-height:1.55;
 }
 .lesson-card li:last-child{margin-bottom:0;}
 .lesson-card li::before{
@@ -293,8 +314,8 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-quadrant .qbox:nth-child(4n+2){background:var(--orange);}
 .lesson-quadrant .qbox:nth-child(4n+3){background:var(--navy-soft);}
 .lesson-quadrant .qbox:nth-child(4n+4){background:var(--orange-deep);}
-.lesson-quadrant .qbox .qlabel{font-family:'Fraunces';font-size:14.5px;font-weight:600;margin-bottom:5px;}
-.lesson-quadrant .qbox .qdesc{font-size:12.5px;color:rgba(255,255,255,.9);line-height:1.4;}
+.lesson-quadrant .qbox .qlabel{font-family:'Fraunces';font-size:var(--font-body);font-weight:600;margin-bottom:5px;}
+.lesson-quadrant .qbox .qdesc{font-size:var(--font-sub);color:rgba(255,255,255,.9);line-height:1.4;}
 
 .lesson-process{display:flex;flex-wrap:wrap;align-items:stretch;gap:4px;margin-bottom:14px;}
 .lesson-process .pstep{
@@ -304,19 +325,19 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-process .pstep:nth-child(4n+2), .lesson-process .pstep:nth-child(4n+4){background:var(--navy-soft);}
 .lesson-process .pnum{
   width:26px;height:26px;border-radius:50%;background:var(--orange);color:var(--navy-deep);
-  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;margin-bottom:8px;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--font-body);margin-bottom:8px;
 }
-.lesson-process .plabel{font-family:'Fraunces';font-size:13.5px;font-weight:600;margin-bottom:4px;}
-.lesson-process .pdesc{font-size:12.5px;color:rgba(255,255,255,.9);line-height:1.35;}
+.lesson-process .plabel{font-family:'Fraunces';font-size:var(--font-body);font-weight:600;margin-bottom:4px;}
+.lesson-process .pdesc{font-size:var(--font-sub);color:rgba(255,255,255,.9);line-height:1.35;}
 .lesson-process-arrow{display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:16px;font-weight:700;line-height:1;flex:0 0 auto;padding:0 2px;}
 
 .lesson-compare{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;margin-bottom:14px;}
 .lesson-compare .cbox{border-radius:10px;overflow:hidden;background:var(--bg);border:1px solid var(--line);}
-.lesson-compare .chead{padding:9px 14px;color:#fff;font-family:'Fraunces';font-size:14px;font-weight:600;}
+.lesson-compare .chead{padding:9px 14px;color:#fff;font-family:'Fraunces';font-size:var(--font-body);font-weight:600;}
 .lesson-compare .cbox:first-child .chead{background:var(--navy);}
 .lesson-compare .cbox:last-child .chead{background:var(--orange-deep);}
 .lesson-compare .cbody{padding:12px 14px;}
-.lesson-compare .citem{font-size:12.5px;color:#37394A;padding-left:18px;position:relative;margin-bottom:8px;line-height:1.4;}
+.lesson-compare .citem{font-size:var(--font-sub);color:#37394A;padding-left:18px;position:relative;margin-bottom:8px;line-height:1.4;}
 .lesson-compare .citem:last-child{margin-bottom:0;}
 .lesson-compare .citem::before{content:"";position:absolute;left:0;top:4px;width:9px;height:9px;border-radius:50%;background:var(--orange);}
 .lesson-compare .cbox:first-child .citem::before{background:var(--navy);}
@@ -328,14 +349,22 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-threebox .tbox:nth-child(3n+3){background:var(--navy-soft);}
 .lesson-threebox .tnum{font-family:'Fraunces';font-size:20px;font-weight:700;color:var(--orange);margin-bottom:6px;}
 .lesson-threebox .tbox:nth-child(3n+2) .tnum{color:var(--navy-deep);}
-.lesson-threebox .tlabel{font-family:'Fraunces';font-size:14px;font-weight:600;margin-bottom:5px;}
-.lesson-threebox .tdesc{font-size:12.5px;color:rgba(255,255,255,.9);line-height:1.4;}
+.lesson-threebox .tlabel{font-family:'Fraunces';font-size:var(--font-body);font-weight:600;margin-bottom:5px;}
+.lesson-threebox .tdesc{font-size:var(--font-sub);color:rgba(255,255,255,.9);line-height:1.4;}
 
 .lesson-stat{
   background:var(--navy);border-radius:10px;padding:20px 24px;text-align:center;margin-bottom:14px;
 }
 .lesson-stat .snum{font-family:'Fraunces';font-size:24px;font-weight:700;color:var(--orange);line-height:1.25;}
-.lesson-stat .slabel{font-size:13px;color:rgba(255,255,255,.85);margin-top:6px;}
+.lesson-stat .slabel{font-size:var(--font-body);color:rgba(255,255,255,.85);margin-top:6px;}
+
+.lesson-palette{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;margin-bottom:14px;}
+.palette-swatch{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#fff;}
+.palette-color{height:64px;width:100%;}
+.palette-info{padding:10px 12px;}
+.palette-info b{display:block;font-family:'Fraunces';font-size:var(--font-body);color:var(--navy);margin-bottom:2px;}
+.palette-info span{display:block;font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);margin-bottom:6px;}
+.palette-info p{font-size:var(--font-sub);color:#37394A;margin:0;line-height:1.4;}
 
 /* lesson slideshow */
 .slide-dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
@@ -347,17 +376,21 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .slide-dot.visited{background:var(--navy-soft);}
 .slide-dot.active{background:var(--orange);width:28px;border-radius:6px;}
 
-.lesson-slide{animation-duration:.4s;animation-timing-function:ease;animation-fill-mode:both;}
+.lesson-slide{
+  animation-duration:.4s;animation-timing-function:ease;animation-fill-mode:both;
+  max-height:64vh;overflow-y:auto;padding-right:6px;
+}
+@media(max-height:700px){.lesson-slide{max-height:58vh;}}
 .lesson-slide.dir-next{animation-name:slideInRight;}
 .lesson-slide.dir-prev{animation-name:slideInLeft;}
 @keyframes slideInRight{from{opacity:0;transform:translateX(36px);}to{opacity:1;transform:translateX(0);}}
 @keyframes slideInLeft{from{opacity:0;transform:translateX(-36px);}to{opacity:1;transform:translateX(0);}}
 
 .slide-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:22px 0 8px;flex-wrap:wrap;}
-.slide-counter{font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-soft);}
+.slide-counter{font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);}
 .slide-done-banner{
   margin-top:22px;padding:16px 20px;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
-  color:#fff;border-radius:12px;font-size:13.5px;text-align:center;
+  color:#fff;border-radius:12px;font-size:var(--font-body);text-align:center;
   animation:previewIn .4s ease both;
 }
 
@@ -372,7 +405,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   animation:siPulse 1.1s ease-in-out infinite;
 }
 @keyframes siPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
-.si-label{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;margin-top:6px;}
+.si-label{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;margin-top:6px;}
 .si-title{font-family:'Fraunces';font-size:22px;font-weight:700;color:var(--navy);}
 
 .section-title{
@@ -380,7 +413,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   display:flex;align-items:center;gap:10px;flex-wrap:wrap;
 }
 .section-title .tag{
-  font-family:'IBM Plex Mono';font-size:11px;background:var(--navy);color:#fff;
+  font-family:'IBM Plex Mono';font-size:var(--font-sub);background:var(--navy);color:#fff;
   padding:3px 8px;border-radius:5px;letter-spacing:.05em;white-space:nowrap;flex:0 0 auto;
 }
 
@@ -388,15 +421,15 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   padding:22px 24px;margin:8px 0 30px;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
   color:#fff;
 }
-.discussion-tag{font-family:'IBM Plex Mono';font-size:11.5px;color:var(--orange-soft);letter-spacing:.04em;margin-bottom:10px;}
+.discussion-tag{font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--orange-soft);letter-spacing:.04em;margin-bottom:10px;}
 .discussion-q{font-family:'Fraunces';font-size:17px;line-height:1.4;margin:0 0 10px;}
-.discussion-note{font-size:12px;color:#B9BEDA;margin:0;}
+.discussion-note{font-size:var(--font-sub);color:#B9BEDA;margin:0;}
 
 .trainer-checkpoint{
   margin-top:16px;padding:16px 18px;background:#F6F7FB;border:1.5px dashed var(--navy-soft);border-radius:12px;
 }
-.tc-tag{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.04em;margin-bottom:8px;}
-.trainer-checkpoint p{font-size:12.8px;color:#37394A;margin:0;line-height:1.5;}
+.tc-tag{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--navy);letter-spacing:.04em;margin-bottom:8px;}
+.trainer-checkpoint p{font-size:var(--font-sub);color:#37394A;margin:0;line-height:1.5;}
 
 /* mock financial documents */
 .mock-doc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-bottom:18px;box-shadow:0 2px 8px rgba(22,24,41,.05);}
@@ -404,32 +437,32 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .mock-receipt{border-top:4px solid var(--success);}
 .mock-hours{border-top:4px solid var(--ink-soft);background:#FAFAFC;}
 .mock-doc-letterhead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:12px;margin-bottom:14px;}
-.mock-doc-firm{font-family:'Fraunces';font-size:14.5px;font-weight:700;color:var(--navy);letter-spacing:.01em;}
-.mock-doc-type{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);letter-spacing:.08em;}
+.mock-doc-firm{font-family:'Fraunces';font-size:var(--font-body);font-weight:700;color:var(--navy);letter-spacing:.01em;}
+.mock-doc-type{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--orange-deep);letter-spacing:.08em;}
 .mock-doc-meta{display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));gap:10px 20px;margin-bottom:16px;}
-.mock-doc-meta div{font-size:12px;color:var(--ink);}
-.mock-doc-meta b{display:block;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;font-weight:700;}
-.mock-doc-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px;}
-.mock-doc-table th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);padding:6px 8px;border-bottom:1.5px solid var(--line);}
+.mock-doc-meta div{font-size:var(--font-sub);color:var(--ink);}
+.mock-doc-meta b{display:block;font-size:var(--font-sub);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;font-weight:700;}
+.mock-doc-table{width:100%;border-collapse:collapse;font-size:var(--font-sub);margin-bottom:14px;}
+.mock-doc-table th{text-align:left;font-size:var(--font-sub);text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);padding:6px 8px;border-bottom:1.5px solid var(--line);}
 .mock-doc-table td{padding:7px 8px;border-bottom:1px solid var(--line);color:var(--ink);}
 .mock-doc-totals{display:flex;flex-direction:column;gap:4px;align-items:flex-end;padding-top:10px;border-top:1px solid var(--line);}
-.mock-doc-totals div{display:flex;gap:20px;font-size:12.5px;min-width:220px;justify-content:space-between;}
-.mock-doc-total-due{font-weight:700;color:var(--navy);font-size:14px!important;padding-top:6px;border-top:1px solid var(--line);}
+.mock-doc-totals div{display:flex;gap:20px;font-size:var(--font-sub);min-width:220px;justify-content:space-between;}
+.mock-doc-total-due{font-weight:700;color:var(--navy);font-size:var(--font-body)!important;padding-top:6px;border-top:1px solid var(--line);}
 
 /* ---------- quiz ---------- */
 .quiz-card{padding:22px 24px;margin-bottom:14px;}
-.quiz-q{font-size:14.5px;font-weight:600;color:var(--navy);margin:0 0 12px;}
+.quiz-q{font-size:var(--font-body);font-weight:600;color:var(--navy);margin:0 0 12px;}
 .quiz-opts{display:grid;gap:8px;}
 .quiz-opt{
   display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:9px;
-  padding:11px 13px;font-size:13.5px;transition:all .12s ease;
+  padding:11px 13px;font-size:var(--font-body);transition:all .12s ease;
 }
 .quiz-opt:hover{border-color:var(--navy-soft);background:#F8F9FC;}
 .quiz-opt input{margin-top:2px;accent-color:var(--orange);}
 .quiz-opt.correct{border-color:var(--success);background:var(--success-bg);}
 .quiz-opt.incorrect{border-color:var(--danger);background:var(--danger-bg);}
 .quiz-rationale{
-  font-size:12.8px;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
+  font-size:var(--font-sub);color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
   display:none;
 }
 .quiz-rationale.show{display:block;}
@@ -438,7 +471,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   padding:26px 26px;text-align:center;margin-top:6px;
 }
 .quiz-result .big{font-family:'Fraunces';font-size:42px;color:var(--navy);}
-.quiz-result .sub{font-size:13.5px;color:var(--ink-soft);margin-top:4px;}
+.quiz-result .sub{font-size:var(--font-body);color:var(--ink-soft);margin-top:4px;}
 
 /* ---------- practice lab ---------- */
 .practice-shell{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start;}
@@ -448,13 +481,13 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   position:sticky;top:90px;display:flex;flex-direction:column;gap:3px;
 }
 .practice-sidebar button{
-  text-align:left;border:none;background:none;padding:11px 14px;border-radius:9px;font-size:13px;
+  text-align:left;border:none;background:none;padding:11px 14px;border-radius:9px;font-size:var(--font-body);
   font-weight:600;color:var(--ink-soft);cursor:pointer;transition:background .15s ease, color .15s ease;
   width:100%;
 }
 .practice-sidebar button:hover{background:var(--bg);color:var(--navy);}
 .practice-sidebar button.active{background:var(--navy);color:#fff;}
-.practice-sidebar .sb-label{font-size:10.5px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;padding:8px 14px 2px;}
+.practice-sidebar .sb-label{font-size:var(--font-sub);font-weight:700;color:var(--ink-soft);letter-spacing:.05em;padding:8px 14px 2px;}
 
 .tool-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:18px;}
 .tool-card{
@@ -470,15 +503,15 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .tool-card:nth-child(3n+2) .tool-banner{background:linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);}
 .tool-card:nth-child(3n+3) .tool-banner{background:linear-gradient(135deg, var(--navy-soft) 0%, var(--navy) 100%);}
 .tool-body2{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
-.tool-card h3{margin:0;font-size:14.5px;color:var(--navy);font-family:'Fraunces';}
-.tool-card .tool-desc2{font-size:12px;color:var(--ink-soft);line-height:1.4;margin:0;flex:1;}
-.tool-status-row{display:flex;align-items:center;gap:6px;font-size:11.5px;}
+.tool-card h3{margin:0;font-size:var(--font-body);color:var(--navy);font-family:'Fraunces';}
+.tool-card .tool-desc2{font-size:var(--font-sub);color:var(--ink-soft);line-height:1.4;margin:0;flex:1;}
+.tool-status-row{display:flex;align-items:center;gap:6px;font-size:var(--font-sub);}
 .tool-status-row.st-notstarted{color:var(--ink-soft);}
 .tool-status-row.st-inprogress{color:var(--orange-deep);}
 .tool-status-row.st-done{color:var(--success);}
 .tool-open-btn{
   margin-top:2px;width:100%;justify-content:center;background:#fff;color:var(--navy);
-  border:1.5px solid var(--navy);border-radius:8px;padding:9px;font-weight:700;font-size:12.8px;
+  border:1.5px solid var(--navy);border-radius:8px;padding:9px;font-weight:700;font-size:var(--font-sub);
   transition:background .15s ease, color .15s ease;display:flex;align-items:center;
 }
 .tool-card:hover .tool-open-btn{background:var(--navy);color:#fff;}
@@ -497,31 +530,29 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .client-header-text h2{margin:0 0 8px;font-family:'Fraunces';font-size:32px;color:#fff;}
 .client-header-text p{margin:0 0 10px;font-size:16px;color:#C9CCE6;}
-.client-tagline{font-size:14px;font-style:italic;color:var(--orange-soft);font-weight:600;}
+.client-tagline{font-size:var(--font-body);font-style:italic;color:var(--orange-soft);font-weight:600;}
 
 .client-intro-banner{
   background:linear-gradient(135deg, #FFF3E4 0%, #FDEBD8 100%);border:1px solid var(--orange-soft);
   border-radius:14px;padding:24px 28px;margin-bottom:24px;
 }
-.cib-tag{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);letter-spacing:.05em;margin-bottom:10px;}
+.cib-tag{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--orange-deep);letter-spacing:.05em;margin-bottom:10px;}
 .client-intro-banner h2{font-family:'Fraunces';font-size:20px;color:var(--navy);margin:0 0 12px;}
-.client-intro-banner p{font-size:13.8px;color:#3A2F22;line-height:1.65;margin:0 0 10px;}
+.client-intro-banner p{font-size:var(--font-body);color:#3A2F22;line-height:1.65;margin:0 0 10px;}
 .client-intro-banner p:last-child{margin-bottom:0;}
 .client-intro-banner b{color:var(--orange-deep);}
-.profile-section h3{margin:0 0 10px;font-size:14.5px;color:var(--navy);font-family:'Fraunces';}
+.profile-section h3{margin:0 0 10px;font-size:var(--font-body);color:var(--navy);font-family:'Fraunces';}
 .profile-section ul{margin:0;padding-left:18px;}
-.profile-section li{font-size:12.5px;color:#37394A;margin-bottom:7px;line-height:1.45;}
+.profile-section li{font-size:var(--font-sub);color:#37394A;margin-bottom:7px;line-height:1.45;}
 .profile-section li:last-child{margin-bottom:0;}
 /* drag-and-drop matching cards (Insurance & Risk) */
-.match-board{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:start;}
-@media(max-width:720px){.match-board{grid-template-columns:1fr;}}
+.match-board{display:flex;flex-direction:column;gap:18px;}
 .match-tray{
   background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;padding:12px;
-  min-height:120px;display:flex;flex-direction:column;gap:8px;
+  min-height:80px;display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;align-content:flex-start;
 }
-.match-tray-label{font-size:10.5px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;margin-bottom:2px;}
-.match-zones{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(max-width:560px){.match-zones{grid-template-columns:1fr;}}
+.match-tray-label{font-size:var(--font-sub);font-weight:700;color:var(--ink-soft);letter-spacing:.05em;margin-bottom:2px;width:100%;}
+.match-zones{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;}
 .match-zone{
   background:#fff;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;min-height:120px;
   transition:border-color .15s ease, background .15s ease;
@@ -529,7 +560,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .match-zone.zone-hover{border-color:var(--orange);}
 .match-zone-label{
-  font-family:'Fraunces';font-size:12.5px;font-weight:600;color:#fff;padding:9px 12px;margin:0;
+  font-family:'Fraunces';font-size:var(--font-sub);font-weight:600;color:#fff;padding:9px 12px;margin:0;
 }
 .match-zone-body{display:flex;flex-direction:column;gap:6px;min-height:20px;padding:10px;flex:1;}
 
@@ -543,9 +574,10 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .match-zone:nth-child(4n+4) .match-zone-label{background:var(--orange-deep);}
 .match-zone.zone-hover{box-shadow:0 0 0 2px var(--orange) inset;}
 .match-card{
-  background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12px;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:9px 11px;font-size:var(--font-sub);color:var(--ink);
   cursor:grab;box-shadow:0 1px 2px rgba(22,24,41,.06);transition:box-shadow .12s ease, transform .12s ease;
 }
+.match-tray .match-card{flex:1 1 200px;max-width:280px;}
 .match-zone:nth-child(4n+1) .match-card{border-left-color:var(--navy);}
 .match-zone:nth-child(4n+2) .match-card{border-left-color:var(--orange);}
 .match-zone:nth-child(4n+3) .match-card{border-left-color:var(--navy-soft);}
@@ -558,8 +590,8 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 /* advanced travel itinerary tool */
 .pref-ref-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:12px;}
 .pref-ref-grid div{background:var(--bg);border-radius:9px;padding:10px 12px;}
-.pref-ref-grid b{display:block;font-size:11px;color:var(--navy);margin-bottom:3px;}
-.pref-ref-grid span{font-size:12px;color:var(--ink-soft);line-height:1.4;}
+.pref-ref-grid b{display:block;font-size:var(--font-sub);color:var(--navy);margin-bottom:3px;}
+.pref-ref-grid span{font-size:var(--font-sub);color:var(--ink-soft);line-height:1.4;}
 
 .leg-card, .stop-card{
   border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px;position:relative;background:#fff;
@@ -568,20 +600,20 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .field-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px;}
 @media(max-width:640px){.field-grid-2{grid-template-columns:1fr;}}
 .fg-field{display:flex;flex-direction:column;gap:4px;}
-.fg-field label{font-size:11px;font-weight:700;color:var(--ink-soft);letter-spacing:.02em;}
+.fg-field label{font-size:var(--font-sub);font-weight:700;color:var(--ink-soft);letter-spacing:.02em;}
 .fg-field input, .fg-field select, .fg-field textarea{
-  border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;color:var(--ink);
+  border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:var(--font-body);font-family:inherit;color:var(--ink);
 }
 .fg-field textarea{resize:vertical;}
 
 .pref-check{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
-.pref-badge{font-size:11px;padding:3px 9px;border-radius:20px;font-weight:700;}
+.pref-badge{font-size:var(--font-sub);padding:3px 9px;border-radius:20px;font-weight:700;}
 .pref-ok{background:var(--success-bg);color:var(--success);}
 .pref-bad{background:var(--danger-bg);color:var(--danger);}
 
 .link-preview-box{
   margin-top:10px;border:1px dashed var(--line);border-radius:10px;padding:10px;
-  display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink-soft);background:var(--bg);
+  display:flex;align-items:center;gap:10px;font-size:var(--font-sub);color:var(--ink-soft);background:var(--bg);
 }
 .link-preview-box img{max-width:120px;max-height:80px;border-radius:6px;object-fit:cover;}
 .link-preview-box.empty{justify-content:center;font-style:italic;}
@@ -590,7 +622,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .stop-photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;align-items:start;}
 @media(max-width:640px){.stop-photo-grid{grid-template-columns:1fr;}}
 .directions-link{
-  display:inline-block;margin-top:10px;font-size:12px;font-weight:700;color:var(--orange-deep);text-decoration:none;
+  display:inline-block;margin-top:10px;font-size:var(--font-sub);font-weight:700;color:var(--orange-deep);text-decoration:none;
 }
 .directions-link:hover{text-decoration:underline;}
 
@@ -601,10 +633,10 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 8px;
   border-radius:8px;transition:background .25s ease;
 }
-.fact-row label{flex:1;font-size:13px;color:var(--ink);}
+.fact-row label{flex:1;font-size:var(--font-body);color:var(--ink);}
 .fact-row + .fact-row{border-top:1px dashed var(--line);}
 .fact-control{display:flex;align-items:center;gap:8px;flex:0 0 auto;}
-.fact-feedback{width:18px;font-size:14px;text-align:center;}
+.fact-feedback{width:18px;font-size:var(--font-body);text-align:center;}
 .fact-row.fact-correct{background:var(--success-bg);}
 .fact-row.fact-correct .fact-feedback{color:var(--success);}
 .fact-row.fact-wrong{background:var(--danger-bg);}
@@ -619,16 +651,16 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .dropzone:hover, .dropzone.dragover{border-color:var(--orange);background:#FFF7EE;}
 .dz-icon{font-size:32px;margin-bottom:8px;}
-.dz-text{font-size:13.5px;color:var(--ink);margin-bottom:4px;}
-.dz-note{font-size:11.5px;color:var(--ink-soft);}
+.dz-text{font-size:var(--font-body);color:var(--ink);margin-bottom:4px;}
+.dz-note{font-size:var(--font-sub);color:var(--ink-soft);}
 .file-preview-card{
   display:flex;align-items:center;gap:12px;margin-top:12px;padding:12px 14px;
   background:#fff;border:1px solid var(--line);border-radius:10px;
   animation:previewIn .25s ease both;
 }
 .fp-icon{font-size:22px;}
-.fp-meta{flex:1;display:flex;flex-direction:column;font-size:12.5px;}
-.fp-meta span{color:var(--ink-soft);font-size:11px;margin-top:2px;}
+.fp-meta{flex:1;display:flex;flex-direction:column;font-size:var(--font-sub);}
+.fp-meta span{color:var(--ink-soft);font-size:var(--font-sub);margin-top:2px;}
 
 /* gamified transition overlay */
 .gamified-transition{
@@ -644,10 +676,10 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 @keyframes gtPop{from{opacity:0;transform:scale(.85);}to{opacity:1;transform:scale(1);}}
 .gt-emoji{font-size:44px;margin-bottom:10px;}
 .gt-title{font-family:'Fraunces';font-size:22px;color:var(--navy);font-weight:700;margin-bottom:6px;}
-.gt-sub{font-size:13px;color:var(--ink-soft);}
+.gt-sub{font-size:var(--font-body);color:var(--ink-soft);}
 .tool-shell .toolhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;gap:16px;flex-wrap:wrap;}
 .tool-shell h2{margin:0 0 6px;color:var(--navy);font-size:22px;}
-.tool-shell .toolhead p{margin:0;color:var(--ink-soft);font-size:13.5px;max-width:64ch;}
+.tool-shell .toolhead p{margin:0;color:var(--ink-soft);font-size:var(--font-body);max-width:64ch;}
 
 /* ---------- delight: hover polish, tabs, confetti ---------- */
 .card{transition:transform .15s ease, box-shadow .15s ease;}
@@ -663,13 +695,13 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .tab-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
 .tab-btn{
   border:1px solid var(--line);background:#fff;color:var(--ink-soft);
-  border-radius:20px;padding:8px 14px;font-size:12.3px;font-weight:700;
+  border-radius:20px;padding:8px 14px;font-size:var(--font-sub);font-weight:700;
   transition:all .15s ease;
 }
 .tab-btn:hover{border-color:var(--navy-soft);color:var(--navy);transform:translateY(-1px);}
 .tab-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 .task-panel ul{margin:0 0 4px;padding-left:18px;}
-.task-panel li{font-size:13.4px;color:#37394A;margin-bottom:7px;line-height:1.5;}
+.task-panel li{font-size:var(--font-body);color:#37394A;margin-bottom:7px;line-height:1.55;}
 
 @keyframes sealPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
 .seal.pulse{animation:sealPulse 2s ease-in-out infinite;}
@@ -685,12 +717,12 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 .legend-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
 .legend-chip{
-  display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--ink-soft);
+  display:flex;align-items:center;gap:6px;font-size:var(--font-sub);font-weight:600;color:var(--ink-soft);
   border:1px solid var(--line);border-radius:20px;padding:5px 10px 5px 8px;
 }
 .legend-chip .sw{width:10px;height:10px;border-radius:3px;flex:0 0 auto;}
 .sweep-timer{
-  font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-soft);
+  font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);
   display:flex;align-items:center;gap:6px;
 }
 
@@ -700,7 +732,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .inbox-sidebar{background:#F6F7FB;border-right:1px solid var(--line);padding:10px 8px;}
 .folder-item{
   display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 8px;border-radius:7px;
-  font-size:12.8px;cursor:pointer;color:var(--ink);margin-bottom:2px;transition:background .12s ease;
+  font-size:var(--font-sub);cursor:pointer;color:var(--ink);margin-bottom:2px;transition:background .12s ease;
 }
 .folder-item:hover{background:#E9EBF3;}
 .folder-item.active{background:var(--navy);color:#fff;}
@@ -708,24 +740,24 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .folder-item .fname{display:flex;align-items:center;gap:7px;overflow:hidden;}
 .folder-item .fname .dot{width:9px;height:9px;border-radius:3px;flex:0 0 auto;}
 .folder-item .fname span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.folder-item .fcount{font-family:'IBM Plex Mono';font-size:10.5px;opacity:.8;}
+.folder-item .fcount{font-family:'IBM Plex Mono';font-size:var(--font-sub);opacity:.8;}
 .folder-item .fcolor-input{width:12px;height:12px;padding:0;border:none;background:none;border-radius:50%;cursor:pointer;flex:0 0 auto;}
-.folder-item .faddbtn{opacity:0;font-size:13px;padding:0 4px;border-radius:4px;flex:0 0 auto;}
+.folder-item .faddbtn{opacity:0;font-size:var(--font-body);padding:0 4px;border-radius:4px;flex:0 0 auto;}
 .folder-item:hover .faddbtn{opacity:.7;}
 .folder-item .faddbtn:hover{opacity:1;background:rgba(0,0,0,.08);}
 .folder-children{margin-left:14px;border-left:1px dashed var(--line);padding-left:6px;}
-.sidebar-section-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);padding:8px 8px 4px;}
+.sidebar-section-lbl{font-size:var(--font-sub);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);padding:8px 8px 4px;}
 .add-label-row{display:flex;gap:4px;padding:6px 4px;}
-.add-label-row input{flex:1;padding:6px 8px;border-radius:6px;border:1px solid var(--line);font-size:12px;}
+.add-label-row input{flex:1;padding:6px 8px;border-radius:6px;border:1px solid var(--line);font-size:var(--font-sub);}
 .add-label-btn{
-  width:100%;text-align:left;padding:7px 8px;border-radius:7px;font-size:12.2px;color:var(--navy-soft);
+  width:100%;text-align:left;padding:7px 8px;border-radius:7px;font-size:var(--font-sub);color:var(--navy-soft);
   font-weight:600;background:none;border:none;
 }
 .add-label-btn:hover{background:#E9EBF3;color:var(--navy);}
 
 .inbox-main{padding:14px 16px;}
 .inbox-main-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.inbox-main-head h4{margin:0;font-size:14px;color:var(--navy);}
+.inbox-main-head h4{margin:0;font-size:var(--font-body);color:var(--navy);}
 .mail-row{
   display:grid;grid-template-columns:1fr 150px;gap:10px;align-items:center;
   padding:12px 14px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;
@@ -733,18 +765,18 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .mail-row:hover{box-shadow:0 3px 10px -3px rgba(0,0,0,.15);}
 .mail-row:active{cursor:grabbing;}
-.mail-row .subj{font-size:13.3px;font-weight:600;color:var(--ink);}
-.mail-row .meta{font-size:11.3px;color:var(--ink-soft);margin-top:2px;}
+.mail-row .subj{font-size:var(--font-body);font-weight:600;color:var(--ink);}
+.mail-row .meta{font-size:var(--font-sub);color:var(--ink-soft);margin-top:2px;}
 .mail-row .chip{
-  display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;color:#fff;
+  display:inline-flex;align-items:center;gap:5px;font-size:var(--font-sub);font-weight:600;color:#fff;
   padding:3px 8px;border-radius:10px;margin-top:6px;width:fit-content;
 }
 .mail-row select{
-  width:100%;padding:7px 8px;border-radius:7px;border:1px solid var(--line);font-size:12px;
+  width:100%;padding:7px 8px;border-radius:7px;border:1px solid var(--line);font-size:var(--font-sub);
   font-family:inherit;background:#fff;
 }
-.mail-row .unfile-btn{font-size:10.5px;color:var(--ink-soft);background:none;border:none;text-decoration:underline;padding:2px 0;margin-top:4px;cursor:pointer;}
-.empty-folder{font-size:12.8px;color:var(--ink-soft);padding:30px 10px;text-align:center;}
+.mail-row .unfile-btn{font-size:var(--font-sub);color:var(--ink-soft);background:none;border:none;text-decoration:underline;padding:2px 0;margin-top:4px;cursor:pointer;}
+.empty-folder{font-size:var(--font-sub);color:var(--ink-soft);padding:30px 10px;text-align:center;}
 .color-dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-left:6px;vertical-align:middle;}
 
 /* email management simulator: webmail-style inbox, no folders/tiers */
@@ -752,8 +784,8 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   display:flex;align-items:center;gap:8px;background:#F1F3F8;border-radius:24px;padding:9px 16px;
   margin-bottom:14px;max-width:420px;
 }
-.esim-search-icon{font-size:13px;opacity:.6;}
-.esim-searchbar input{border:none;background:transparent;outline:none;font-size:13px;flex:1;color:var(--ink);}
+.esim-search-icon{font-size:var(--font-body);opacity:.6;}
+.esim-searchbar input{border:none;background:transparent;outline:none;font-size:var(--font-body);flex:1;color:var(--ink);}
 
 .esim-shell{display:grid;grid-template-columns:320px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;min-height:480px;}
 .esim-shell-3col{grid-template-columns:190px 280px 1fr;}
@@ -768,23 +800,23 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .esim-row:hover .erow-hover-icons{opacity:1;}
 .esim-row.active{background:#EAF0FB;}
 .esim-row .erow-star{
-  font-size:15px;color:#C6CAD6;cursor:pointer;flex:0 0 auto;line-height:1;padding-top:2px;
+  font-size:var(--font-body);color:#C6CAD6;cursor:pointer;flex:0 0 auto;line-height:1;padding-top:2px;
   transition:color .12s ease;
 }
 .esim-row .erow-star.on, .esim-row .erow-star:hover{color:#E8A93D;}
 .erow-avatar{
-  width:28px;height:28px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;
+  width:28px;height:28px;border-radius:50%;color:#fff;font-size:var(--font-sub);font-weight:700;
   display:flex;align-items:center;justify-content:center;flex:0 0 auto;
 }
 .esim-row .erow-main{flex:1;min-width:0;}
 .esim-row .erow-topline{display:flex;justify-content:space-between;gap:6px;}
-.esim-row .efrom{font-size:12.6px;color:#5B6178;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.esim-row .efrom{font-size:var(--font-sub);color:#5B6178;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .esim-row.unread .efrom{color:var(--ink);font-weight:700;}
-.esim-row .emeta{font-size:10.5px;color:var(--ink-soft);flex:0 0 auto;}
-.esim-row .esubj{font-size:12.3px;color:#5B6178;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.esim-row .emeta{font-size:var(--font-sub);color:var(--ink-soft);flex:0 0 auto;}
+.esim-row .esubj{font-size:var(--font-sub);color:#5B6178;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .esim-row.unread .esubj{color:var(--ink);font-weight:600;}
 .esim-row .epreview{font-weight:400 !important;color:var(--ink-soft);}
-.esim-row .estatus{font-size:9.5px;font-weight:700;display:inline-block;padding:2px 7px;border-radius:8px;}
+.esim-row .estatus{font-size:var(--font-sub);font-weight:700;display:inline-block;padding:2px 7px;border-radius:8px;}
 .estatus.replied{background:var(--success-bg);color:var(--success);}
 .estatus.archived{background:#E4E6EE;color:#5B6178;}
 .estatus.reported{background:#FBF3E7;color:var(--orange-deep);}
@@ -794,7 +826,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .erow-hover-icons button{
   width:26px;height:26px;border-radius:50%;border:none;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.15);
-  font-size:12px;cursor:pointer;
+  font-size:var(--font-sub);cursor:pointer;
 }
 .erow-hover-icons button:hover{background:#EEF0F6;}
 
@@ -804,82 +836,85 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .ephead-toolbar{display:flex;gap:4px;flex:0 0 auto;}
 .eicon-btn{
   width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;
-  font-size:13px;cursor:pointer;transition:background .12s ease;
+  font-size:var(--font-body);cursor:pointer;transition:background .12s ease;
 }
 .eicon-btn:hover{background:#F1F3F8;}
 .ep-sender-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-.ep-sender-row .erow-avatar{width:36px;height:36px;font-size:13px;}
-.epfrom-name{font-size:13.5px;font-weight:600;color:var(--ink);}
-.epfrom-meta{font-size:11.5px;color:var(--ink-soft);margin-top:1px;}
-.esim-pane .epbody{font-size:13.8px;color:#2B2E3D;white-space:pre-wrap;line-height:1.65;margin-bottom:18px;}
+.ep-sender-row .erow-avatar{width:36px;height:36px;font-size:var(--font-body);}
+.epfrom-name{font-size:var(--font-body);font-weight:600;color:var(--ink);}
+.epfrom-meta{font-size:var(--font-sub);color:var(--ink-soft);margin-top:1px;}
+.esim-pane .epbody{font-size:var(--font-body);color:#2B2E3D;white-space:pre-wrap;line-height:1.65;margin-bottom:18px;}
 .esim-fake-link{color:#1a73e8;text-decoration:underline;cursor:pointer;font-weight:500;}
 .esim-fake-link:hover{color:#0d47a1;}
 .esim-reply-collapsed{
   display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:22px;
-  padding:9px 20px;font-size:13px;font-weight:600;color:var(--navy);background:#fff;cursor:pointer;
+  padding:9px 20px;font-size:var(--font-body);font-weight:600;color:var(--navy);background:#fff;cursor:pointer;
   transition:box-shadow .12s ease;
 }
 .esim-reply-collapsed:hover{box-shadow:0 2px 8px rgba(0,0,0,.12);}
 .esim-actions{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:10px;padding:14px;background:#FBFBFD;}
 .esim-actions textarea{
   width:100%;min-height:120px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);
-  font-size:13px;font-family:inherit;resize:vertical;
+  font-size:var(--font-body);font-family:inherit;resize:vertical;
 }
 .esim-btn-row{display:flex;gap:8px;flex-wrap:wrap;}
-.esim-empty{padding:60px 20px;text-align:center;color:var(--ink-soft);font-size:13px;}
+.esim-empty{padding:60px 20px;text-align:center;color:var(--ink-soft);font-size:var(--font-body);}
 .esim-fail-banner{
   background:var(--danger-bg);border:1px solid var(--danger);border-radius:12px;padding:22px 24px;margin-bottom:18px;
 }
 .esim-fail-banner h3{color:var(--danger);margin:0 0 8px;font-size:18px;}
 .esim-fail-banner ul{margin:8px 0 0;padding-left:18px;}
-.esim-fail-banner li{font-size:13px;color:#7a352c;margin-bottom:4px;}
-.esim-progress{font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-soft);margin-bottom:12px;}
+.esim-fail-banner li{font-size:var(--font-body);color:#7a352c;margin-bottom:4px;}
+.esim-progress{font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);margin-bottom:12px;}
 
 /* differences drill */
 .drill-row{
   display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;
   padding:14px 16px;border:1px solid var(--line);border-radius:10px;margin-bottom:9px;
 }
-.drill-row .dtext{font-size:13.4px;color:var(--ink);}
+.drill-row .dtext{font-size:var(--font-body);color:var(--ink);}
 .drill-btns{display:flex;gap:6px;}
 .drill-btn{
   border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;
-  font-size:12.5px;font-weight:700;letter-spacing:.02em;
+  font-size:var(--font-sub);font-weight:700;letter-spacing:.02em;
 }
 .drill-btn.correct{background:var(--success-bg);border-color:var(--success);color:var(--success);}
 .drill-btn.incorrect{background:var(--danger-bg);border-color:var(--danger);color:var(--danger);}
 .drill-progress{
-  font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-soft);margin-bottom:14px;
+  font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);margin-bottom:14px;
 }
 
 /* calendar tool */
 .cal-grid{display:grid;grid-template-columns:70px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
-.cal-hour{border-top:1px solid var(--line);padding:6px 8px;font-size:11px;color:var(--ink-soft);font-family:'IBM Plex Mono';}
+.cal-hour{border-top:1px solid var(--line);padding:6px 8px;font-size:var(--font-sub);color:var(--ink-soft);font-family:'IBM Plex Mono';}
 .cal-track{position:relative;border-top:1px solid var(--line);min-height:34px;}
 .cal-block{
-  position:absolute;left:4px;right:4px;border-radius:6px;padding:4px 8px 4px 22px;font-size:11px;color:#fff;
+  position:absolute;left:4px;right:4px;border-radius:6px;padding:4px 8px 4px 22px;font-size:var(--font-sub);color:#fff;
   overflow:hidden;line-height:1.25;cursor:grab;transition:box-shadow .12s ease, transform .12s ease;
 }
 .cal-block:hover{box-shadow:0 3px 10px -2px rgba(0,0,0,.35);transform:translateY(-1px);}
 .cal-block:active{cursor:grabbing;}
-.cal-block b{display:block;font-size:11.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.cal-block .cal-sub{font-size:9.5px;opacity:.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;}
+.cal-block b{display:block;font-size:var(--font-sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cal-block .cal-sub{font-size:var(--font-sub);opacity:.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;}
 .cal-block.conflict{outline:2px solid var(--danger);outline-offset:-2px;}
-.cal-color-input{
-  position:absolute;top:5px;left:5px;width:11px;height:11px;padding:0;border:1px solid rgba(255,255,255,.8);
-  border-radius:50%;cursor:pointer;background:none;appearance:none;-webkit-appearance:none;
+.cal-color-picker{
+  position:absolute;top:5px;left:5px;display:flex;gap:3px;z-index:2;
 }
-.cal-color-input::-webkit-color-swatch-wrapper{padding:0;border-radius:50%;}
-.cal-color-input::-webkit-color-swatch{border:none;border-radius:50%;}
+.cal-color-dot{
+  width:10px;height:10px;border-radius:50%;cursor:pointer;border:1.5px solid rgba(255,255,255,.8);
+  transition:transform .1s ease;
+}
+.cal-color-dot:hover{transform:scale(1.25);}
+.cal-color-dot.selected{border-color:#fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.35);}
 .cal-move-btn{
   position:absolute;top:2px;right:20px;width:16px;height:16px;border-radius:4px;border:none;
-  background:rgba(0,0,0,.28);color:#fff;font-size:10px;line-height:1;cursor:pointer;padding:0;
+  background:rgba(0,0,0,.28);color:#fff;font-size:var(--font-sub);line-height:1;cursor:pointer;padding:0;
   display:flex;align-items:center;justify-content:center;transition:background .12s ease;
 }
 .cal-move-btn:hover{background:rgba(0,0,0,.55);}
 .cal-del-btn{
   position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:4px;border:none;
-  background:rgba(181,74,63,.55);color:#fff;font-size:10px;line-height:1;cursor:pointer;padding:0;
+  background:rgba(181,74,63,.55);color:#fff;font-size:var(--font-sub);line-height:1;cursor:pointer;padding:0;
   display:flex;align-items:center;justify-content:center;transition:background .12s ease;
 }
 .cal-del-btn:hover{background:rgba(181,74,63,.9);}
@@ -890,19 +925,19 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .week-gutter{display:flex;flex-direction:column;border-right:1px solid var(--line);}
 .week-corner{height:30px;border-bottom:1px solid var(--line);}
-.week-hour{font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';padding:2px 6px;border-top:1px solid var(--line);}
+.week-hour{font-size:var(--font-sub);color:var(--ink-soft);font-family:'IBM Plex Mono';padding:2px 6px;border-top:1px solid var(--line);}
 .week-hour:first-child{border-top:none;}
 .week-col{display:flex;flex-direction:column;border-right:1px solid var(--line);}
 .week-col:last-child{border-right:none;}
 .week-day-header{
-  height:30px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;
+  height:30px;display:flex;align-items:center;justify-content:center;font-size:var(--font-sub);font-weight:700;
   color:var(--navy);background:#F6F7FB;border-bottom:1px solid var(--line);
 }
 .week-col-body{position:relative;background:repeating-linear-gradient(180deg,transparent,transparent 49px,var(--line) 50px);}
 .cal-drop-ghost{
   position:absolute;left:2px;right:2px;background:rgba(219,132,55,.28);border:2px dashed var(--orange);
   border-radius:6px;pointer-events:none;z-index:5;display:flex;align-items:center;justify-content:center;
-  font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);
+  font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--orange-deep);
 }
 
 .video-placeholder{
@@ -914,29 +949,29 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 18px;
   box-shadow:0 10px 26px -6px rgba(219,132,55,.5);
 }
-.vp-label{font-family:'IBM Plex Mono';font-size:11.5px;font-weight:700;color:var(--orange-soft);letter-spacing:.08em;margin-bottom:10px;}
+.vp-label{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--orange-soft);letter-spacing:.08em;margin-bottom:10px;}
 .vp-title{font-family:'Fraunces';font-size:22px;font-weight:700;margin-bottom:14px;}
-.vp-note{font-size:13px;color:#C9CCE6;max-width:52ch;margin:0 auto;line-height:1.6;}
+.vp-note{font-size:var(--font-body);color:#C9CCE6;max-width:52ch;margin:0 auto;line-height:1.6;}
 
 .meet-client-card{padding:26px 28px;}
-.mc-tag{font-family:'IBM Plex Mono';font-size:11px;font-weight:700;color:var(--orange-deep);letter-spacing:.05em;margin-bottom:10px;}
+.mc-tag{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--orange-deep);letter-spacing:.05em;margin-bottom:10px;}
 .meet-client-card h3{font-family:'Fraunces';font-size:21px;color:var(--navy);margin:0 0 12px;}
-.meet-client-card p{font-size:13.8px;color:var(--ink);line-height:1.6;margin:0 0 10px;}
+.meet-client-card p{font-size:var(--font-body);color:var(--ink);line-height:1.6;margin:0 0 10px;}
 .meet-client-card ul{margin:0 0 12px;padding-left:20px;}
-.meet-client-card li{font-size:13.5px;color:var(--ink);line-height:1.6;margin-bottom:6px;}
-.mc-note{font-style:italic;color:var(--ink-soft)!important;font-size:12.8px!important;}
+.meet-client-card li{font-size:var(--font-body);color:var(--ink);line-height:1.6;margin-bottom:6px;}
+.mc-note{font-style:italic;color:var(--ink-soft)!important;font-size:var(--font-sub)!important;}
 
 .decision-row{display:grid;grid-template-columns:1fr 200px;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line);}
 .decision-row:first-child{border-top:none;}
-.decision-row .lbl{font-size:13px;color:var(--ink);}
-.decision-row select{width:100%;padding:8px 9px;border-radius:7px;border:1px solid var(--line);font-size:12.5px;}
+.decision-row .lbl{font-size:var(--font-body);color:var(--ink);}
+.decision-row select{width:100%;padding:8px 9px;border-radius:7px;border:1px solid var(--line);font-size:var(--font-sub);}
 
 /* financial */
 .field-row{display:grid;grid-template-columns:1fr 140px;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line);}
 .field-row:last-child{border-bottom:none;}
-.field-row label{font-size:13.4px;color:var(--ink);}
+.field-row label{font-size:var(--font-body);color:var(--ink);}
 .field-row input{
-  padding:8px 10px;border-radius:7px;border:1px solid var(--line);font-size:13.5px;text-align:right;
+  padding:8px 10px;border-radius:7px;border:1px solid var(--line);font-size:var(--font-body);text-align:right;
   font-family:'IBM Plex Mono';
 }
 .calc-total{
@@ -947,12 +982,12 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 /* invoice & bill audit queue */
 .audit-card{padding:16px 18px;margin-bottom:12px;}
 .audit-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;}
-.audit-head b{color:var(--navy);font-size:14px;}
-.audit-total{font-family:'IBM Plex Mono';font-size:15px;font-weight:600;color:var(--navy);}
+.audit-head b{color:var(--navy);font-size:var(--font-body);}
+.audit-total{font-family:'IBM Plex Mono';font-size:var(--font-body);font-weight:600;color:var(--navy);}
 .audit-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
 .audit-btn{
   border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;
-  font-size:12.5px;font-weight:600;transition:all .12s ease;
+  font-size:var(--font-sub);font-weight:600;transition:all .12s ease;
 }
 .audit-btn:hover{border-color:var(--navy-soft);}
 .audit-btn.active-valid{background:var(--success-bg);border-color:var(--success);color:var(--success);}
@@ -960,28 +995,28 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .audit-btn.active-unrelated{background:var(--danger-bg);border-color:var(--danger);color:var(--danger);}
 .audit-error-select{
   width:100%;margin-top:10px;padding:8px 10px;border-radius:7px;border:1px solid var(--orange);
-  font-size:12.5px;background:#FFFBF3;
+  font-size:var(--font-sub);background:#FFFBF3;
 }
 
 /* travel planner */
 .leg-card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:12px;}
-.leg-card .leg-title{font-weight:700;color:var(--navy);font-size:14px;margin-bottom:10px;}
+.leg-card .leg-title{font-weight:700;color:var(--navy);font-size:var(--font-body);margin-bottom:10px;}
 .leg-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .leg-fields textarea, .leg-fields input{
-  width:100%;padding:8px 10px;border-radius:7px;border:1px solid var(--line);font-size:12.8px;font-family:inherit;resize:vertical;
+  width:100%;padding:8px 10px;border-radius:7px;border:1px solid var(--line);font-size:var(--font-sub);font-family:inherit;resize:vertical;
 }
 .check-list{display:grid;gap:8px;margin-top:6px;}
-.check-item{display:flex;gap:10px;align-items:flex-start;font-size:13.3px;}
+.check-item{display:flex;gap:10px;align-items:flex-start;font-size:var(--font-body);}
 .check-item input{margin-top:3px;accent-color:var(--orange);}
 
 /* call practice */
 .scenario-card{border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:14px;}
-.scenario-card .stag{font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
-.scenario-card p.scn{font-size:13.8px;margin:8px 0 12px;color:var(--ink);}
-.log-table{width:100%;border-collapse:collapse;font-size:12.5px;}
-.log-table th{text-align:left;color:var(--ink-soft);font-weight:600;padding:8px 8px;border-bottom:2px solid var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.04em;}
+.scenario-card .stag{font-size:var(--font-sub);color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.scenario-card p.scn{font-size:var(--font-body);margin:8px 0 12px;color:var(--ink);}
+.log-table{width:100%;border-collapse:collapse;font-size:var(--font-sub);}
+.log-table th{text-align:left;color:var(--ink-soft);font-weight:600;padding:8px 8px;border-bottom:2px solid var(--navy);font-size:var(--font-sub);text-transform:uppercase;letter-spacing:.04em;}
 .log-table td{padding:6px 8px;border-bottom:1px solid var(--line);}
-.log-table input{width:100%;border:none;background:transparent;font-size:12.5px;font-family:inherit;padding:4px;}
+.log-table input{width:100%;border:none;background:transparent;font-size:var(--font-sub);font-family:inherit;padding:4px;}
 .log-table input:focus{outline:1px solid var(--orange);border-radius:4px;}
 
 /* handouts */
@@ -991,8 +1026,8 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   width:38px;height:38px;border-radius:8px;background:#F1EDE3;color:var(--orange-deep);
   display:flex;align-items:center;justify-content:center;font-size:16px;flex:0 0 auto;
 }
-.handout-card h4{margin:0 0 2px;font-size:14px;color:var(--navy);}
-.handout-card span{font-size:12px;color:var(--ink-soft);}
+.handout-card h4{margin:0 0 2px;font-size:var(--font-body);color:var(--navy);}
+.handout-card span{font-size:var(--font-sub);color:var(--ink-soft);}
 
 /* modal-ish name prompt */
 .login-shell{
@@ -1004,7 +1039,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   box-shadow:0 20px 60px -20px rgba(0,0,0,.5);
 }
 .login-card input{
-  width:100%;padding:12px 14px;border-radius:9px;border:1px solid var(--line);font-size:14px;
+  width:100%;padding:12px 14px;border-radius:9px;border:1px solid var(--line);font-size:var(--font-body);
   text-align:center;
 }
 
@@ -1014,23 +1049,23 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .overlay .card{max-width:380px;width:100%;padding:26px 26px;}
 .overlay h3{margin:0 0 6px;color:var(--navy);}
-.overlay p{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
-.overlay input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:14px;margin-bottom:14px;}
+.overlay p{font-size:var(--font-body);color:var(--ink-soft);margin:0 0 16px;}
+.overlay input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:var(--font-body);margin-bottom:14px;}
 .overlay .row{display:flex;gap:10px;justify-content:flex-end;}
 
 .toast{
   position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
-  background:var(--navy);color:#fff;padding:11px 20px;border-radius:9px;font-size:13px;
+  background:var(--navy);color:#fff;padding:11px 20px;border-radius:9px;font-size:var(--font-body);
   box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px);}
 
 /* ---------- lesson enrichment: callouts, examples, tables ---------- */
 .callout{
-  border-radius:10px;padding:12px 14px;font-size:12.6px;margin-top:12px;
+  border-radius:10px;padding:12px 14px;font-size:var(--font-sub);margin-top:12px;
   border-left:3px solid;line-height:1.45;
 }
-.callout b.ctag{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;}
+.callout b.ctag{display:block;font-size:var(--font-sub);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;}
 .callout-stat{background:#FBF3E7;border-color:var(--orange);color:#6b4816;}
 .callout-tip{background:var(--success-bg);border-color:var(--success);color:#2b5138;}
 .callout-warning{background:var(--danger-bg);border-color:var(--danger);color:#7a352c;}
@@ -1040,20 +1075,20 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   padding:12px 14px;margin-top:12px;
 }
 .example-block .ex-label{
-  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  font-size:var(--font-sub);font-weight:700;text-transform:uppercase;letter-spacing:.07em;
   color:var(--navy-soft);margin-bottom:8px;
 }
 .example-block .ex-line{
   padding:8px 10px;border-radius:7px;background:#fff;border:1px solid var(--line);
-  font-size:12.6px;margin-bottom:6px;line-height:1.4;
+  font-size:var(--font-sub);margin-bottom:6px;line-height:1.4;
 }
 .example-block .ex-line:last-child{margin-bottom:0;}
 
 .mini-table-wrap{overflow-x:auto;margin-top:12px;}
-.mini-table{width:100%;border-collapse:collapse;font-size:11.6px;min-width:420px;}
+.mini-table{width:100%;border-collapse:collapse;font-size:var(--font-sub);min-width:420px;}
 .mini-table th{
   text-align:left;background:var(--navy);color:#fff;padding:7px 10px;
-  font-size:10px;text-transform:uppercase;letter-spacing:.03em;font-weight:600;
+  font-size:var(--font-sub);text-transform:uppercase;letter-spacing:.03em;font-weight:600;
 }
 .mini-table td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:#37394A;}
 .mini-table tr:nth-child(even) td{background:#F8F9FC;}
@@ -1063,7 +1098,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   padding:18px 20px;margin:4px 0 20px;
 }
 .qcheck-card .qc-tag{
-  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  font-size:var(--font-sub);font-weight:700;text-transform:uppercase;letter-spacing:.08em;
   color:var(--orange-deep);margin-bottom:10px;display:flex;align-items:center;gap:6px;
 }
 .qcheck-card .qc-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--orange);}
@@ -1077,76 +1112,76 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .note-title-input:focus{outline:none;background:#F6F7FB;}
 .note-textarea{
-  width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.6px;
+  width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:var(--font-body);
   font-family:inherit;resize:vertical;min-height:120px;color:var(--ink);
 }
 .note-textarea:focus{outline:none;border-color:var(--navy-soft);}
 .note-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;}
-.note-saved{font-size:11.5px;color:var(--ink-soft);}
+.note-saved{font-size:var(--font-sub);color:var(--ink-soft);}
 .ai-feedback{margin-top:12px;}
-.ai-loading{font-size:12.8px;color:var(--ink-soft);font-style:italic;}
+.ai-loading{font-size:var(--font-sub);color:var(--ink-soft);font-style:italic;}
 .ai-result{
-  background:#F6F7FB;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:13px;
+  background:#F6F7FB;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:var(--font-body);
 }
-.ai-result b{color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px;}
+.ai-result b{color:var(--navy);font-size:var(--font-sub);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px;}
 /* Inbox Zero — Eisenhower Matrix */
 .iz-pool{border:1px solid var(--line);border-radius:12px;padding:12px;min-height:80px;background:#fff;margin-bottom:14px;display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto;}
 .iz-quad-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 @media(max-width:720px){.iz-quad-grid{grid-template-columns:1fr;}}
 .iz-quad{border-radius:12px;padding:12px;min-height:100px;border:2px dashed var(--line);background:var(--bg);transition:border-color .15s ease, background .15s ease;}
 .iz-quad.dragover{border-color:var(--orange);background:#FFF6EC;}
-.iz-quad h5{margin:0 0 8px;font-size:12.5px;color:var(--navy);display:flex;justify-content:space-between;align-items:center;font-family:'Fraunces';}
-.iz-quad .iz-tag{font-family:'IBM Plex Mono';font-size:9.5px;color:var(--ink-soft);background:#fff;padding:2px 7px;border-radius:8px;}
+.iz-quad h5{margin:0 0 8px;font-size:var(--font-sub);color:var(--navy);display:flex;justify-content:space-between;align-items:center;font-family:'Fraunces';}
+.iz-quad .iz-tag{font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);background:#fff;padding:2px 7px;border-radius:8px;}
 .iz-q1{border-color:#D9736A;} .iz-q2{border-color:var(--orange);} .iz-q3{border-color:#7C88C4;} .iz-q4{border-color:#9BA3B8;}
-.iz-card{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin-bottom:8px;cursor:grab;font-size:12px;}
+.iz-card{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin-bottom:8px;cursor:grab;font-size:var(--font-sub);}
 .iz-card:last-child{margin-bottom:0;}
 .iz-card:active{cursor:grabbing;}
-.iz-from{font-weight:700;color:var(--navy);font-size:11.5px;}
+.iz-from{font-weight:700;color:var(--navy);font-size:var(--font-sub);}
 .iz-subj{font-weight:600;margin-top:2px;color:var(--ink);}
-.iz-preview{color:var(--ink-soft);margin-top:2px;font-size:11.5px;}
-.iz-empty{font-size:12.5px;color:var(--ink-soft);text-align:center;padding:10px;}
+.iz-preview{color:var(--ink-soft);margin-top:2px;font-size:var(--font-sub);}
+.iz-empty{font-size:var(--font-sub);color:var(--ink-soft);text-align:center;padding:10px;}
 .iz-score-banner{display:flex;align-items:center;gap:14px;padding:16px;border-radius:12px;background:var(--bg);}
 .iz-score-num{font-family:'Fraunces';font-size:34px;color:var(--navy);font-weight:700;}
-.iz-score-note{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+.iz-score-note{font-size:var(--font-sub);color:var(--ink-soft);margin-top:2px;}
 .iz-mismatch-row{padding:10px 0;border-bottom:1px solid var(--line);}
 .iz-mismatch-row:last-child{border-bottom:none;}
 
-.task-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line);font-size:13px;}
+.task-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line);font-size:var(--font-body);}
 .task-item:last-child{border-bottom:none;}
 .task-item .task-dot{color:var(--orange-deep);}
 .task-item b{color:var(--navy);}
-.task-item .task-why{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+.task-item .task-why{font-size:var(--font-sub);color:var(--ink-soft);margin-top:2px;}
 
 /* Crisis Roleplay */
 .cr-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
-.cr-tabs button{border:1px solid var(--line);background:#fff;color:var(--ink-soft);border-radius:20px;padding:8px 15px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s ease;}
+.cr-tabs button{border:1px solid var(--line);background:#fff;color:var(--ink-soft);border-radius:20px;padding:8px 15px;font-size:var(--font-sub);font-weight:700;cursor:pointer;transition:all .15s ease;}
 .cr-tabs button.active{background:var(--navy);color:#fff;border-color:var(--navy);}
-.cr-panel h4{color:var(--orange-deep);font-size:12.5px;margin:14px 0 4px;font-family:'Fraunces';}
-.cr-panel p{font-size:12.8px;margin:0 0 8px;color:var(--ink);line-height:1.5;}
+.cr-panel h4{color:var(--orange-deep);font-size:var(--font-sub);margin:14px 0 4px;font-family:'Fraunces';}
+.cr-panel p{font-size:var(--font-sub);margin:0 0 8px;color:var(--ink);line-height:1.5;}
 .cr-chat-window{border:1px solid var(--line);border-radius:12px;height:320px;overflow-y:auto;padding:14px;background:#fbfbfd;margin-top:6px;}
-.cr-msg{max-width:78%;margin-bottom:10px;padding:10px 13px;border-radius:12px;font-size:13px;line-height:1.5;}
+.cr-msg{max-width:78%;margin-bottom:10px;padding:10px 13px;border-radius:12px;font-size:var(--font-body);line-height:1.5;}
 .cr-msg.cr-client{background:var(--navy);color:#fff;border-bottom-left-radius:3px;}
 .cr-msg.cr-ea{background:var(--orange-soft);color:var(--navy-deep);margin-left:auto;border-bottom-right-radius:3px;}
 .cr-chat-input-row{display:flex;gap:8px;margin-top:10px;}
-.cr-chat-input-row textarea{flex:1;min-height:44px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:13px;font-family:inherit;resize:vertical;}
+.cr-chat-input-row textarea{flex:1;min-height:44px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:var(--font-body);font-family:inherit;resize:vertical;}
 
 /* Day 1 lecture + ACT email sample task */
 .badge-inline{
-  display:inline-block;font-family:'IBM Plex Mono';font-size:10px;font-weight:700;background:var(--orange);
+  display:inline-block;font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;background:var(--orange);
   color:#3A2308;padding:3px 9px;border-radius:10px;margin-left:8px;vertical-align:middle;
 }
 .act-box{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0;}
 @media(max-width:680px){.act-box{grid-template-columns:1fr;}}
-.act-card{background:var(--bg);border-radius:10px;padding:14px;font-size:12.5px;color:var(--ink);line-height:1.5;}
+.act-card{background:var(--bg);border-radius:10px;padding:14px;font-size:var(--font-sub);color:var(--ink);line-height:1.5;}
 .act-card b{color:var(--orange-deep);font-family:'Fraunces';font-size:18px;display:block;margin-bottom:4px;}
-.voice-note{background:var(--navy-deep);color:#fff;border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.6;margin:10px 0;}
-.voice-note .vn-time{color:var(--orange-soft);font-size:11px;display:block;margin-bottom:6px;}
+.voice-note{background:var(--navy-deep);color:#fff;border-radius:10px;padding:14px 16px;font-size:var(--font-body);line-height:1.6;margin:10px 0;}
+.voice-note .vn-time{color:var(--orange-soft);font-size:var(--font-sub);display:block;margin-bottom:6px;}
 .ai-result-body{color:#37394A;line-height:1.55;}
 .ai-result.ai-error{background:var(--danger-bg);border-color:var(--danger);}
 .ai-result.ai-error b{color:var(--danger);}
 
 .empty-note{
-  font-size:12.5px;color:var(--ink-soft);background:#F6F7FB;border:1px dashed var(--line);
+  font-size:var(--font-sub);color:var(--ink-soft);background:#F6F7FB;border:1px dashed var(--line);
   border-radius:10px;padding:14px 16px;margin-top:16px;
 }
 </style>
@@ -1159,7 +1194,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 const DAY1 = {
   "id": 1,
   "title": "Foundations of the Legal Executive Assistant Role",
-  "theme": "Legal EA Task Overview · Communication Principles · Confidentiality · Command Hierarchy",
+  "theme": "Legal EA Task Overview · Communication & Gatekeeping · Confidentiality & NDAs · Command Hierarchy & Liaison",
   "objective": "Get a clear picture of what a Legal Executive Assistant actually does day to day, build the communication habits the role runs on, and know when to escalate rather than act alone.",
   "taskOverview": [
     {
@@ -1316,6 +1351,47 @@ const DAY1 = {
       "trainerCue": "Read the three-message worked example out loud in three different tones (clipped, plain, formal) so the room actually HEARS the register shift, not just reads it."
     },
     {
+      "h": "Gatekeeping Is Not 'No'",
+      "b": [
+        "Gatekeeping means 'not now' or 'here's a better option' — never an outright block.",
+        "You represent the executive's authority; access is filtered, tone stays calm and confident.",
+        "Never blame the requester for bad timing, and always offer a real next step.",
+        "The Filtering Matrix pairs with a communication toolkit: active listening, framing, appeal to shared values, and asking for opinions rather than giving orders — all aimed at influence without relying on formal authority."
+      ],
+      "trainerCue": "Roleplay this live: you play a pushy caller, pick a trainee to gatekeep you in real time. Do it twice — once where they cave, once where they hold the line — and debrief the difference."
+    },
+    {
+      "h": "The Filtering Matrix",
+      "b": [
+        "Categorize each request by urgency and impact: do it now, delegate, defer, or offer an alternative.",
+        "Four screening questions: revenue impact, legal risk, need for executive authority, relationship sensitivity."
+      ],
+      "trainerCue": "Put the four filtering questions on the board and run one ambiguous real-world request through them live as a group before trainees try it solo."
+    },
+    {
+      "h": "Scripts That Redirect Without Alienating",
+      "b": [
+        "Deferring — acknowledge genuinely, propose concrete next steps with a timeline.",
+        "Re-routing — point to the right team while staying accountable for the outcome.",
+        "Drastic Contrast — explain the real constraint honestly and offer a specific alternative slot.",
+        "Scripts also draw on classic influence principles: consistency and commitment (getting a small agreement first), and authority (citing the right process rather than personal preference)."
+      ],
+      "trainerCue": "Have three volunteers each deliver one of the three scripts (Deferring, Re-routing, Drastic Contrast) to the same scenario — the tonal differences are the whole lesson."
+    },
+    {
+      "h": "Virtual Meetings & Transcription Accuracy",
+      "b": [
+        "Test recording software before the meeting, not during it.",
+        "Always assign a human note-taker as backup, independent of the tech.",
+        "If minutes come back unclear, apologize, revise, and standardize the template — don't just stop distributing them.",
+        "Two documentation types: Informal Notes (internal use only) and Formal Minutes (structured, distributed record).",
+        "Capture final decisions and action items; don't capture side conversations or off-the-record remarks.",
+        "AI transcription tools (Zoom, Teams, Otter) speed up the process, but the assistant's role is to review and clean the transcript — never distribute it raw.",
+        "After major meetings, prepare an Executive Briefing Memo: a short 'Subject: Executive Brief — [Meeting Topic]' summary rather than the full transcript."
+      ],
+      "trainerCue": "Ask: 'Has a meeting ever ended and nobody could agree on what was actually decided?' That's the exact failure this topic exists to prevent."
+    },
+    {
       "h": "Executive Presence in Action",
       "b": [
         "EA response to a sensitive request: authoritative, brief, procedural — protects the business first.",
@@ -1381,6 +1457,16 @@ const DAY1 = {
       "trainerCue": "Cold-call someone: 'You just approved a $600 vendor invoice under a $500 limit by accident. What do you do in the next 10 minutes?' Use their answer to check if escalation instinct is there."
     },
     {
+      "h": "NDAs & Non-Disclosure Discipline",
+      "b": [
+        "A non-disclosure agreement is a legal contract, not a formality — it defines exactly what information is protected, who's bound by it, for how long, and what happens if it's breached. An EA who's only ever 'signed one' without reading it is exposed the moment a real question comes up.",
+        "The EA's practical role isn't drafting NDAs — it's tracking them: knowing which vendors, contractors, or temporary staff have an NDA on file before sharing anything sensitive with them, and flagging when someone's asking for access they haven't been cleared for.",
+        "NDAs commonly have a defined term (they can expire) and defined scope (they may cover some information but not all) — treating every NDA as blanket, permanent protection is a common and risky mistake.",
+        "If a vendor or contractor asks for sensitive information and you can't confirm an NDA is actually in place and covers that specific request, the answer is to pause and verify — not to assume it's fine because they're already engaged in other work."
+      ],
+      "trainerCue": "Ask the room: 'If someone asked you right now whether a specific vendor has a signed NDA on file, could you find out in under two minutes?' If the honest answer is no, that's the gap this topic is meant to close."
+    },
+    {
       "h": "Command Hierarchy",
       "b": [
         "Escalate potential issues rather than deciding alone — that's the core of a healthy command hierarchy.",
@@ -1410,6 +1496,33 @@ const DAY1 = {
         }
       ],
       "trainerCue": "Walk the room through the three org-chart tracks on screen and ask which one matches their own current or most recent job — this is a good pulse-check on the room's mixed experience level."
+    },
+    {
+      "h": "Serving as Liaison & Point of Contact",
+      "layout": "COMPARE",
+      "compareLeft": {
+        "label": "Gatekeeping",
+        "items": [
+          "Filtering what reaches the executive",
+          "Deciding what waits, what's redirected",
+          "Primarily protective — controlling access"
+        ]
+      },
+      "compareRight": {
+        "label": "Liaison",
+        "items": [
+          "Actively connecting two parties who need each other",
+          "Carrying information accurately in both directions",
+          "Primarily facilitative — enabling coordination"
+        ]
+      },
+      "b": [
+        "Being the liaison means other staff, departments, or outside contacts have one clear person to reach instead of guessing who owns a given question — that clarity alone prevents a lot of wasted time and crossed wires.",
+        "The core liaison skill is accurate two-way relay: passing a request to the executive without distorting it, and passing the executive's answer back without softening or embellishing it into something it wasn't.",
+        "This role compounds with command hierarchy — as the liaison, you're often the one who has to know which track (corporate, legal, household) a given request actually belongs to, so it reaches the right person.",
+        "A liaison who becomes a bottleneck has failed at the role just as much as one who lets everything through unfiltered — the goal is smooth, accurate coordination, not personal indispensability."
+      ],
+      "trainerCue": "Ask for a real example of a time information got garbled passing through a middle person — then ask what would have prevented it. That's the liaison discipline in one exercise."
     },
     {
       "h": "Client Profiling",
@@ -1535,6 +1648,28 @@ const DAY1 = {
     }
   ],
   "quiz": [
+    {
+      "q": "A vendor asks for sensitive information and you can't confirm an NDA is actually in place covering that specific request. Correct move?",
+      "opts": [
+        "Share it since the vendor is already engaged in other work",
+        "Pause and verify the NDA actually covers this specific request before sharing anything",
+        "Ask the vendor to sign an NDA on the spot and proceed immediately",
+        "Escalate only if something goes wrong afterward"
+      ],
+      "a": 1,
+      "r": "An NDA has defined scope and can expire — treating any existing relationship as blanket coverage is the exact mistake this discipline is meant to prevent."
+    },
+    {
+      "q": "What's the key difference between gatekeeping and serving as liaison?",
+      "opts": [
+        "They're functionally the same role",
+        "Liaison requires more formal authority than gatekeeping",
+        "Gatekeeping is primarily protective (filtering access); liaison is primarily facilitative (actively connecting two parties)",
+        "Liaison only applies to external contacts, never internal staff"
+      ],
+      "a": 2,
+      "r": "Gatekeeping controls what reaches the executive; liaison actively carries information accurately in both directions between two parties who need each other."
+    },
     {
       "q": "Your executive shares sensitive company strategy while you're both in a crowded cafeteria. Best response?",
       "opts": [
@@ -1762,9 +1897,24 @@ const DAY1 = {
 const DAY2 = {
   "id": 2,
   "title": "Managing Up & How to Leverage AI with Precision",
-  "theme": "Tactical Foundation · The Three C's · Digital Edge",
+  "theme": "Managing Up & The Three C's · AI Proficiency & the Digital Edge · Email as a Control System",
   "objective": "Apply the Three C's framework to manage up effectively, and shift from task-completer to force multiplier.",
   "lessons": [
+    {
+      "h": "Before You Begin: AI Use in the Legal Industry",
+      "callout": {
+        "type": "warning",
+        "label": "Read before using AI in this program",
+        "text": "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
+      },
+      "b": [
+        "This isn't a one-time rule to memorize and move past — it's the frame every AI topic in this program sits inside. What follows will show you how AI can genuinely help, but every technique still has to clear the standard set here first.",
+        "Firm and attorney preference comes first: some attorneys are comfortable with AI-assisted drafting, others aren't, and some restrict it to narrow, specific uses. Know the actual preference for the specific attorney and matter you're working on — never assume based on what a different attorney or a different firm allows.",
+        "Human intervention isn't optional in certain roles or tasks, no matter how good the AI output looks. Legal judgment, case strategy, and anything touching client-facing representation stay with the attorney — AI supports the work, it doesn't make the call.",
+        "Confidentiality is the highest-stakes line in this list: attorney-client privilege means information pasted into an AI tool can carry real legal exposure, not just an internal risk. Get approval before using AI on anything privileged, and when in doubt, don't paste it — ask first."
+      ],
+      "trainerCue": "Set the tone for the whole day here — ask the room whether their own firm (or one they know) has an explicit AI policy, and whether they actually know what it says. Most won't, which is exactly the gap this disclaimer exists to close."
+    },
     {
       "h": "Bulletproof Basics",
       "layout": "THREEBOX",
@@ -1876,6 +2026,47 @@ const DAY2 = {
       "trainerCue": "Poll the room: who's already using an automation tool like Zapier, even informally? Use a real answer to make 'The Digital Edge' concrete rather than theoretical."
     },
     {
+      "h": "Email Is a Control System, Not Cleanup",
+      "b": [
+        "Full Access — read/respond/archive/send on the executive's behalf.",
+        "Draft & Review — draft and flag; executive approves before sending.",
+        "Triage Only — sort and escalate; executive responds themselves.",
+        "Know your access level before acting independently."
+      ],
+      "layout": "THREEBOX",
+      "boxes": [
+        {
+          "label": "Full Access",
+          "desc": "Read, respond, archive, and send on the executive's behalf"
+        },
+        {
+          "label": "Draft & Review",
+          "desc": "Draft responses and flag priorities — the executive approves before sending"
+        },
+        {
+          "label": "Triage Only",
+          "desc": "Sort, prioritize, and escalate — the executive responds themselves"
+        }
+      ],
+      "trainerCue": "Ask each trainee to say out loud which access model (Full Access / Draft & Review / Triage Only) they currently operate under in their own role, if applicable — it surfaces real ambiguity worth discussing."
+    },
+    {
+      "h": "What High-Performing Inbox Triage Looks Like",
+      "b": [
+        "Target: 80–90% of operational emails handled independently, inbox near zero daily.",
+        "No missed critical deadlines, no confidentiality breaches — the two failure modes that erase months of trust."
+      ],
+      "callout": {
+        "type": "stat",
+        "label": "Benchmark",
+        "text": "High-performing EAs handle 80–90% of operational emails independently — without escalating routine items that don't need executive time."
+      },
+      "layout": "STAT",
+      "statNumber": "80–90%",
+      "statLabel": "of operational emails handled independently",
+      "trainerCue": "Push back gently if anyone says '80–90% independently' sounds unrealistic for their context — ask what's actually stopping them from getting there, and treat it as a real discussion, not a rebuttal."
+    },
+    {
       "h": "Force Multiplier in the Wild",
       "b": [
         "Worked scenario: a client adds last-minute requests touching three departments the day before a pitch.",
@@ -1985,24 +2176,40 @@ const DAY2 = {
       "trainerCue": "This is your natural spot for a live platform comparison if your organization has access to more than one tool — showing a real side-by-side beats describing it."
     },
     {
-      "h": "The Golden Rules of Admin Data Security",
-      "b": [
-        "Toggle off training/data-improvement settings before any real work goes through an AI tool.",
-        "Never input financial data, health info, SSNs, or passwords.",
-        "Use placeholders — swap real names for '[Company X]' before sending to an AI tool.",
-        "Discussion prompt: walk through exactly how you'd anonymize a real termination email before pasting it into an AI tool for drafting help — what specifically gets swapped out, and what stays?"
+      "h": "Communication Mastery",
+      "layout": "QUADRANT",
+      "quadrants": [
+        {"label":"Clarity Over Cleverness", "desc":"Say the actual point in the first sentence — don't make the reader work to find it"},
+        {"label":"Match the Medium", "desc":"A quick confirmation is a text or a one-line email; a sensitive decision deserves a call or a real conversation"},
+        {"label":"Active Listening", "desc":"Repeat back what you heard before acting on it — assumptions are where most miscommunication actually happens"},
+        {"label":"Read the Room, Then Adjust", "desc":"The same update lands differently with a stressed executive than a calm one — tone should flex, facts shouldn't"}
       ],
-      "callout": {
-        "type": "warning",
-        "label": "Confidentiality still applies",
-        "text": "Elias's firm runs on \"uncompromising excellence\" and strict confidentiality — an AI tool is still a third party. The same judgment that keeps a case detail out of casual conversation applies to what you paste into a prompt."
-      },
-      "trainerCue": "Close Day 2 with a live 'sanitize this together' exercise: bring a real (or realistic) sensitive email and have the room call out what to redact before it goes into an AI tool."
+      "b": [
+        "Communication mastery isn't about sounding polished — it's about the message landing correctly the first time, without a follow-up to clarify what you actually meant.",
+        "Most breakdowns in EA/executive communication trace back to one of two things: the message was too vague to act on, or it used the wrong channel for how urgent or sensitive it actually was.",
+        "Discussion prompt: think of a time a message you sent was misread — was it a clarity problem, a channel problem, or a tone problem?"
+      ],
+      "trainerCue": "Ask for a real example from the room of a message that got misread — diagnosing WHY it failed (clarity vs. channel vs. tone) is more useful than a hypothetical."
+    },
+    {
+      "h": "Executive Presence",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Composed Under Pressure", "desc":"Your calm in a crisis is often the only calm in the room — it's contagious, and so is panic"},
+        {"label":"Decisive in Ambiguity", "desc":"When no one has told you exactly what to do, make the reasonable call and own it, rather than freezing until someone rescues you"},
+        {"label":"Credible in Small Moments", "desc":"Presence is built in routine interactions — a clear email, a well-run handoff — long before it's tested in a real crisis"}
+      ],
+      "b": [
+        "Executive presence for an EA isn't about imitating the executive — it's about being someone whose judgment other people trust in the room, on a call, or in a hallway conversation.",
+        "The fastest way to lose presence is visible panic or visible uncertainty about basic facts — the fastest way to build it is calm, specific, accurate communication under pressure.",
+        "This is closely tied to Managing Up: an EA with genuine presence makes the executive's life easier simply by being someone others don't need to double-check."
+      ],
+      "trainerCue": "If time allows, have two trainees role-play a 30-second 'deliver bad news calmly' exchange — presence is far easier to feel live than to describe in the abstract."
     }
   ],
   "quickChecks": [
     {
-      "afterIndex": 2,
+      "afterIndex": 3,
       "q": "The 'No-Surprises Rule' means:",
       "opts": [
         "Executives enjoy occasional surprises",
@@ -2014,7 +2221,7 @@ const DAY2 = {
       "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
     },
     {
-      "afterIndex": 6,
+      "afterIndex": 7,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -2024,7 +2231,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 7,
+      "afterIndex": 8,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Section 12 was too complex for the AI to understand",
@@ -2258,51 +2465,10 @@ const DAY2 = {
 
 const DAY3 = {
   "id": 3,
-  "title": "Communication, Meetings & Calendar Mastery",
-  "theme": "Gatekeeping Scripts · Transcriptions · Time & Calendar Management",
-  "objective": "Apply gatekeeping frameworks and scripts, run accurate virtual meetings, and keep a calendar and workload that actually hold up under pressure.",
+  "title": "Time, Calendar & Travel Management",
+  "theme": "Prioritization & Time Tracking · Calendar Discipline & Contact Lists · Travel Planning",
+  "objective": "Build the discipline to prioritize and protect time, keep a calendar that actually holds under pressure, and plan travel end-to-end.",
   "lessons": [
-    {
-      "h": "Gatekeeping Is Not 'No'",
-      "b": [
-        "Gatekeeping means 'not now' or 'here's a better option' — never an outright block.",
-        "You represent the executive's authority; access is filtered, tone stays calm and confident.",
-        "Never blame the requester for bad timing, and always offer a real next step.",
-        "The Filtering Matrix pairs with a communication toolkit: active listening, framing, appeal to shared values, and asking for opinions rather than giving orders — all aimed at influence without relying on formal authority."
-      ],
-      "trainerCue": "Roleplay this live: you play a pushy caller, pick a trainee to gatekeep you in real time. Do it twice — once where they cave, once where they hold the line — and debrief the difference."
-    },
-    {
-      "h": "The Filtering Matrix",
-      "b": [
-        "Categorize each request by urgency and impact: do it now, delegate, defer, or offer an alternative.",
-        "Four screening questions: revenue impact, legal risk, need for executive authority, relationship sensitivity."
-      ],
-      "trainerCue": "Put the four filtering questions on the board and run one ambiguous real-world request through them live as a group before trainees try it solo."
-    },
-    {
-      "h": "Scripts That Redirect Without Alienating",
-      "b": [
-        "Deferring — acknowledge genuinely, propose concrete next steps with a timeline.",
-        "Re-routing — point to the right team while staying accountable for the outcome.",
-        "Drastic Contrast — explain the real constraint honestly and offer a specific alternative slot.",
-        "Scripts also draw on classic influence principles: consistency and commitment (getting a small agreement first), and authority (citing the right process rather than personal preference)."
-      ],
-      "trainerCue": "Have three volunteers each deliver one of the three scripts (Deferring, Re-routing, Drastic Contrast) to the same scenario — the tonal differences are the whole lesson."
-    },
-    {
-      "h": "Virtual Meetings & Transcription Accuracy",
-      "b": [
-        "Test recording software before the meeting, not during it.",
-        "Always assign a human note-taker as backup, independent of the tech.",
-        "If minutes come back unclear, apologize, revise, and standardize the template — don't just stop distributing them.",
-        "Two documentation types: Informal Notes (internal use only) and Formal Minutes (structured, distributed record).",
-        "Capture final decisions and action items; don't capture side conversations or off-the-record remarks.",
-        "AI transcription tools (Zoom, Teams, Otter) speed up the process, but the assistant's role is to review and clean the transcript — never distribute it raw.",
-        "After major meetings, prepare an Executive Briefing Memo: a short 'Subject: Executive Brief — [Meeting Topic]' summary rather than the full transcript."
-      ],
-      "trainerCue": "Ask: 'Has a meeting ever ended and nobody could agree on what was actually decided?' That's the exact failure this topic exists to prevent."
-    },
     {
       "h": "Prioritization Frameworks",
       "b": [
@@ -2347,6 +2513,23 @@ const DAY3 = {
       "trainerCue": "Ask the room to guess which time-tracking mistake costs the most money over a year — most guess wrong (it's usually the small underbilled tasks, not the big missed ones)."
     },
     {
+      "h": "Time Management",
+      "layout": "PROCESS",
+      "processSteps": [
+        {"label":"Decide", "desc":"Before touching the calendar, decide what actually deserves protected time this week — this is a prioritization call, not a scheduling one"},
+        {"label":"Block", "desc":"Turn that decision into an actual calendar block, before the day fills up with other people's requests"},
+        {"label":"Protect", "desc":"Defend the block the way you'd defend any other commitment — a calendar entry with no protection behind it isn't really management"},
+        {"label":"Review", "desc":"Check weekly whether protected time actually held, or whether it kept losing to whatever felt urgent in the moment"}
+      ],
+      "b": [
+        "Time management and calendar management aren't the same skill, even though they're inseparable in practice: time management is deciding what deserves time; calendar management is making sure the calendar actually reflects and protects that decision.",
+        "A calendar that's technically conflict-free can still fail at time management — if it's packed with reactive meetings and has no protected space for the work that actually matters most.",
+        "This connects directly to travel planning too: a trip only works if the calendar around it — before, during, and after — was managed with the same discipline as the itinerary itself.",
+        "Discussion prompt: think of a week where your calendar looked fine on paper but the actual priorities still didn't get done — what broke, the decision or the protection of it?"
+      ],
+      "trainerCue": "Use this topic as the explicit bridge before the Calendar Management topic — the tool later in this day tests both calendar conflict resolution AND travel planning together, so make the connection between deciding priorities and protecting them on a calendar explicit here."
+    },
+    {
       "h": "Calendar Management That Holds",
       "b": [
         "Centralize on one synced calendar system — a second unofficial calendar is where conflicts breed.",
@@ -2357,13 +2540,268 @@ const DAY3 = {
       "trainerCue": "This is a good moment for a live 'find the conflict' exercise on a real or sample calendar screen-shared to the room."
     },
     {
-      "h": "Travel, Calendar & Contact Coordination",
+      "h": "Calendar Conflict & Prioritization Discipline",
       "b": [
-        "Inform the executive of every schedule conflict immediately, never rebook without consulting first.",
-        "Prioritize meetings by strategic importance, not by which came first.",
-        "Keep one master contact list the whole team uses — personal copies drift out of sync."
+        "Inform the executive of every schedule conflict immediately — never rebook or decline something on their behalf without consulting first, since they may have context about a meeting's real importance that isn't visible on the calendar itself.",
+        "Prioritize meetings by strategic importance, not by which came first — a board update outranks a routine check-in even if the check-in was scheduled weeks earlier.",
+        "When two commitments genuinely conflict, present the executive with the actual trade-off and a recommendation, rather than either silently picking one or dumping the decision back on them with no framing."
+      ],
+      "trainerCue": "Give the room a real double-booking scenario and ask them to identify what 'strategic importance' actually means in that specific case — the abstract rule is easy to agree with, applying it to a real conflict is the actual skill."
+    },
+    {
+      "h": "Master Contact List Discipline",
+      "b": [
+        "Keep one master contact list the whole team uses — personal copies drift out of sync, and the drift is invisible until someone acts on outdated information at the worst possible moment.",
+        "This is the same discipline as the Comprehensive Contact List topic from Day 4, applied specifically to calendar and scheduling context — knowing exactly who needs to be looped in for a given meeting type, and having their current contact details on hand without having to search.",
+        "A common real failure: two assistants each keep their own copy of a key contact's information, one of them outdated, and a time-sensitive call goes to a wrong or disconnected number during exactly the situation where speed mattered most."
       ],
       "trainerCue": "Close this topic with a real story (yours or theirs) about a contact list that went stale and caused a real problem — it's more memorable than the rule itself."
+    },
+    {
+      "h": "Energy Management vs. Time Management",
+      "b": [
+        "Time management asks 'when should this happen'; energy management asks 'am I actually capable of doing this well right now' — both matter, and most people only plan around the first one.",
+        "Most people have a predictable energy pattern across the day — a window of sharp focus, a mid-afternoon dip, a second wind. Protecting the sharp-focus window for the work that actually needs it is a real scheduling decision, not a luxury.",
+        "As an EA, this applies to your executive's calendar too: a high-stakes negotiation scheduled during their known low-energy window is a real risk you can flag, not just a time slot that happened to be open."
+      ],
+      "trainerCue": "Ask the room to name their own natural high-energy window — most people already know it intuitively but have never actually protected it on a calendar."
+    },
+    {
+      "h": "Handling Interruptions Without Losing the Day",
+      "layout": "PROCESS",
+      "processSteps": [
+        {"label":"Triage in Seconds", "desc":"Is this genuinely urgent, or does it just feel urgent because it's happening right now?"},
+        {"label":"Capture, Don't Solve", "desc":"If it's not truly urgent, write it down where you'll actually see it later — don't trust memory"},
+        {"label":"Return Deliberately", "desc":"Finish the thought you were on before the interruption, don't just abandon it"},
+        {"label":"Batch the Non-Urgent", "desc":"Handle captured items in one block later, rather than one at a time as they arrive"}
+      ],
+      "b": [
+        "Every interruption has a hidden cost beyond its own length — the time it takes to mentally return to what you were doing before it. A two-minute interruption can cost fifteen minutes of real focus.",
+        "Not every interruption is actually urgent — it just arrives with urgency because it's happening in the present moment. Learning to tell the difference in the first few seconds is the actual skill."
+      ],
+      "trainerCue": "Ask the room how long it actually takes them to get back to full focus after a genuine interruption — most underestimate it badly until they think about it directly."
+    },
+    {
+      "h": "The Two-Minute Rule",
+      "b": [
+        "If a task will genuinely take less than two minutes, do it immediately instead of adding it to a list — the overhead of tracking it exceeds the cost of just finishing it.",
+        "This only works as a discipline if it's applied honestly — a task that 'should' take two minutes but keeps expanding once you start is a sign to stop and actually schedule it properly instead.",
+        "The rule prevents small tasks from silently accumulating into a backlog that feels overwhelming even though no single item was ever hard."
+      ],
+      "trainerCue": "Ask the room to estimate how many two-minute tasks are currently sitting unaddressed in their own inbox or task list right now — the number is usually higher than expected."
+    },
+    {
+      "h": "Weekly Planning Rituals",
+      "b": [
+        "A short, consistent weekly planning session — reviewing what's coming, what didn't get done last week, and what actually needs to happen this week — prevents the Monday-morning scramble of reconstructing priorities from scratch.",
+        "This is different from daily planning: weekly planning catches the things that don't fit neatly into a single day, like a deadline that's three days out but needs prep starting today.",
+        "The ritual only works if it's protected on the calendar itself — a planning session that gets bumped for 'something more urgent' every week isn't actually a ritual."
+      ],
+      "trainerCue": "Ask who currently has an actual standing weekly planning block versus who plans reactively each morning — this usually splits the room roughly in half."
+    },
+    {
+      "h": "Saying No Without Damaging Relationships",
+      "layout": "COMPARE",
+      "compareLeft": {
+        "label": "Damages the Relationship",
+        "items": [
+          "A flat 'no' with no explanation",
+          "Silence — never responding at all",
+          "Agreeing, then quietly not delivering"
+        ]
+      },
+      "compareRight": {
+        "label": "Protects the Relationship",
+        "items": [
+          "A clear no, with the real reason and a genuine alternative",
+          "A prompt response, even if the answer is no",
+          "Honesty up front about what you can't take on"
+        ]
+      },
+      "b": [
+        "Saying yes to everything isn't actually generous — it just moves the disappointment to later, when something inevitably slips because there was never enough real capacity for it.",
+        "A well-delivered no is specific about the constraint ('I can't take this on before Thursday given X') rather than vague, which makes it feel like a real answer instead of a dismissal."
+      ],
+      "trainerCue": "Ask for a real example of a 'no' that actually strengthened a working relationship because it was handled well — most people have one if they think about it."
+    },
+    {
+      "h": "Batch Processing Similar Tasks",
+      "b": [
+        "Grouping similar tasks together (all calls in one block, all email replies in another) reduces the mental cost of switching between completely different types of work.",
+        "This is different from just doing tasks in the order they arrive — batching is a deliberate choice to delay some tasks slightly so they can be done together more efficiently.",
+        "The trade-off is real: batching works best for tasks without a hard individual deadline. A genuinely urgent item still needs to break the batch."
+      ],
+      "trainerCue": "Ask the room to name one category of their own recurring work that's currently handled one-at-a-time as it arrives, but could realistically be batched."
+    },
+    {
+      "h": "The Cost of Context-Switching",
+      "layout": "STAT",
+      "statNumber": "23 minutes",
+      "statLabel": "average time to return to full focus after a significant interruption",
+      "b": [
+        "Every switch between unrelated tasks — not just interruptions, but voluntarily jumping between different types of work — carries a real cost in the time it takes to rebuild full concentration.",
+        "This is the strongest practical argument for batching and protected focus blocks: it's not about discipline for its own sake, it's about not paying the same mental re-entry cost dozens of times a day.",
+        "Multitasking on genuinely different cognitive tasks (not just background tasks like listening to music) is almost always slower in total than doing them one at a time, even though it feels more productive in the moment."
+      ],
+      "trainerCue": "Ask the room to count how many times they've switched between unrelated tasks in just the last hour — the number is usually far higher than they'd guess before counting."
+    },
+    {
+      "h": "Recurring Meeting Hygiene",
+      "b": [
+        "Standing meetings accumulate over time and rarely get removed even after their original purpose is gone — a quarterly audit of every recurring meeting (does this still need to exist, at this frequency, with these attendees) catches the ones that have quietly outlived their usefulness.",
+        "A recurring meeting with no agenda is one of the most common calendar failures — if nobody can say in one sentence what this week's meeting is actually for, that's a sign to skip it or reformat it.",
+        "As an EA, you're often positioned to notice this decay before anyone else does, simply because you see the full calendar pattern that any single attendee doesn't."
+      ],
+      "trainerCue": "Ask the room to name one recurring meeting in their own life that they suspect could be cancelled or shortened but nobody has actually questioned it yet."
+    },
+    {
+      "h": "Buffer Time Between Meetings",
+      "b": [
+        "Back-to-back meetings with zero buffer guarantee that every meeting either starts late or ends abruptly — a 5-10 minute buffer between meetings isn't wasted time, it's what makes the rest of the calendar actually hold.",
+        "Buffers also give room for the debrief and prep that real meetings require — walking into the next conversation still thinking about the last one is a common, avoidable failure.",
+        "This connects directly to the mandatory debrief-buffer standing rule for this client specifically — a calendar that ignores this isn't just inconvenient, it violates a documented preference."
+      ],
+      "trainerCue": "Pull up a real (or realistic) back-to-back calendar day and ask the room where they'd insert buffers first, and what they'd have to move to make room."
+    },
+    {
+      "h": "Time Zone Management for Distributed Teams",
+      "b": [
+        "A meeting time that's convenient in one time zone can be genuinely unreasonable in another — always confirm the actual local time for every participant, not just your own.",
+        "Daylight saving transitions are a common, quiet source of scheduling errors — a recurring meeting that was correct in March can silently shift an hour off in November if the calendar tool doesn't handle the transition the way you expect.",
+        "When scheduling across many time zones, naming the reference time zone explicitly in the invite itself (not just relying on each calendar app to convert correctly) prevents the most common confusion."
+      ],
+      "trainerCue": "Ask the room to name a real scheduling mix-up caused by a time zone or daylight saving error — this is one of the most universally relatable calendar failures."
+    },
+    {
+      "h": "Calendar Blocking for Deep Work",
+      "b": [
+        "A calendar that only tracks meetings is missing half the picture — blocking real time for focused, uninterrupted work is what actually protects it from being silently filled by other people's requests.",
+        "A deep-work block that's visible but not actually protected (anyone can still book over it) isn't a real block — it needs to function as a genuine commitment, not a suggestion.",
+        "This is where calendar discipline and prioritization intersect directly: the block is only worth protecting if it's actually reserved for the highest-priority work, not just whatever's easiest to schedule around."
+      ],
+      "trainerCue": "Ask who has ever had a protected deep-work block get silently double-booked — and what that taught them about actually enforcing the block."
+    },
+    {
+      "h": "Handling Last-Minute Calendar Changes",
+      "b": [
+        "A late cancellation or a sudden new request doesn't just affect the one meeting — it can cascade through the rest of the day if the ripple effects aren't checked immediately.",
+        "The instinct to just accept a last-minute change without checking what it displaces is a common mistake — always check what else is affected before confirming.",
+        "Communicating a last-minute change clearly and immediately to everyone affected (not just updating the calendar silently) is what prevents confusion and duplicate confusion later."
+      ],
+      "trainerCue": "Roleplay a live scenario: a meeting 90 minutes from now just got moved up to right now — walk through what actually needs to happen in the next five minutes."
+    },
+    {
+      "h": "Multi-Calendar Coordination",
+      "b": [
+        "Many executives run more than one calendar in practice — professional, personal, board commitments — and the real risk is a conflict that's invisible because it only shows up when you look across all of them at once.",
+        "A single master view (even if it's just you checking multiple calendars manually before confirming anything) is what actually prevents this — trusting just the primary calendar is how double-bookings slip through.",
+        "This connects directly to the Boundaries & Authorization topic from Day 1 — keeping business and personal systems separate doesn't mean keeping them uncoordinated; someone still has to check both."
+      ],
+      "trainerCue": "Ask the room whether they've ever double-booked something because they were only checking one calendar when a second one also mattered — this is a very common real failure."
+    },
+    {
+      "h": "Visa & Documentation Requirements",
+      "b": [
+        "Different destinations have genuinely different visa and documentation requirements, and these can change — always verify current requirements for the specific trip, not what was true on a previous trip to a similar destination.",
+        "Passport validity requirements are a common, avoidable failure point: many countries require six months of remaining validity beyond the travel dates, not just that the passport hasn't technically expired.",
+        "Building in real lead time for visa processing (which can take weeks, not days, for some destinations) is what prevents a trip from being jeopardized by paperwork discovered too late."
+      ],
+      "trainerCue": "Ask if anyone has a real story of a trip nearly derailed by a passport or visa issue discovered too close to departure — this tends to be memorable and widely relatable."
+    },
+    {
+      "h": "International Travel Considerations",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Health & Safety", "desc":"Required or recommended vaccinations, travel advisories, and local emergency contact numbers for the destination"},
+        {"label":"Currency & Payment", "desc":"Whether cards are widely accepted, whether local currency is needed, and realistic exchange logistics"},
+        {"label":"Cultural & Business Norms", "desc":"Meeting etiquette, dress expectations, and communication norms that differ from the home market"}
+      ],
+      "b": [
+        "International travel carries a wider set of real variables than domestic travel, and treating it with the same planning depth as a routine trip is a common, avoidable mistake.",
+        "Checking current government travel advisories for the specific destination before finalizing a trip is a real diligence step, not an optional extra — advisories can change close to a travel date."
+      ],
+      "trainerCue": "If anyone in the room has done real international travel coordination, ask them to name the one thing that surprised them most the first time — the real answer usually isn't obvious in advance."
+    },
+    {
+      "h": "Expense Tracking While Traveling",
+      "b": [
+        "Receipts get lost in real time far more easily while traveling than in a normal office routine — capturing them immediately (a photo, a folder, anything) beats trying to reconstruct a trip's expenses afterward from memory.",
+        "Categorizing expenses as they happen (which client, which matter, which cost center) is much faster than doing it all at once after return, when the context has already faded.",
+        "This connects directly to the SOA reconciliation and expense-entry discipline from Day 7 — travel expense tracking is the same skill, applied under less controlled conditions."
+      ],
+      "trainerCue": "Ask the room how they currently handle receipts while traveling — most will admit to at least once losing or forgetting one, which is exactly the failure this discipline prevents."
+    },
+    {
+      "h": "Travel Risk Contingency Planning",
+      "b": [
+        "A real travel plan accounts for what happens when something goes wrong — a cancelled flight, a missed connection, a sudden weather event — not just the ideal-case itinerary.",
+        "Knowing the backup options in advance (the next viable flight, an alternate routing, a local contact at the destination) turns a disruption into a quick pivot instead of a crisis handled from scratch under pressure.",
+        "This is the same principle as backup-vendor identification from Day 5 — a real contingency plan exists before it's needed, not improvised in the moment."
+      ],
+      "trainerCue": "Ask for a real story of a travel disruption that was handled well because a backup plan already existed — versus one that turned into a scramble because it didn't."
+    },
+    {
+      "h": "Loyalty Programs & Travel Preferences",
+      "b": [
+        "Tracking an executive's loyalty program memberships (airline, hotel) and always applying them isn't a minor courtesy — it's real, recurring value in upgrades, priority service, and status that compounds over many trips.",
+        "This connects directly to the stated seat, routing, and hotel preferences from the Client Profile — loyalty program numbers should be applied consistently alongside those preferences every single time, not just when remembered.",
+        "A missed loyalty number on a booking is a small, completely avoidable error that a well-run travel process should never actually produce."
+      ],
+      "trainerCue": "Ask the room to name a travel preference (loyalty program or otherwise) that's easy to forget under time pressure — the honest answer usually reveals a real gap worth building a checklist around."
+    },
+    {
+      "h": "Managing Multi-City, Multi-Leg Itineraries",
+      "b": [
+        "A trip with several connected legs has more failure points than a simple round-trip — a delay on the first leg can cascade through every subsequent connection, and the plan needs enough real buffer to absorb that.",
+        "Confirming that ground transportation and hotel check-in times actually align with arrival times at each leg (not just that flights are booked) is what prevents a technically-correct itinerary from falling apart in practice.",
+        "A single-page summary of the entire itinerary — not scattered confirmation emails — is what actually makes a complex, multi-leg trip manageable in the moment."
+      ],
+      "trainerCue": "Walk through a real or realistic 3-leg itinerary live and ask the room to spot where the tightest connection is — that's the point most likely to actually cause a problem."
+    },
+    {
+      "h": "Ground Transportation Coordination",
+      "b": [
+        "Ground transportation is the most commonly under-planned part of a trip — flights and hotels get real attention, while 'we'll figure out a car' is treated as an afterthought that then becomes a real problem on arrival.",
+        "Confirming a car service or rental with a specific pickup time, location, and contact detail — not a vague 'sometime after landing' — is what prevents the exact kind of gap that ruins an otherwise well-planned trip.",
+        "This connects directly to the car-seat and family-specific requirements noted in the Client Profile — ground transportation planning has to account for who's actually traveling, not just the executive alone."
+      ],
+      "trainerCue": "Ask the room whether they've ever landed somewhere with flights and hotel confirmed but ground transportation genuinely uncertain — this is a very common, very avoidable gap."
+    },
+    {
+      "h": "Building a Real Travel Checklist",
+      "b": [
+        "A travel checklist that exists only in memory isn't a real checklist — writing it down once and reusing it for every trip is what actually prevents the same detail from being forgotten differently each time.",
+        "A good checklist covers documentation, health/safety prep, packing considerations specific to the destination, loyalty numbers, and a contingency contact — not just 'book the flight and hotel.'",
+        "This connects directly to the Home Binder discipline from Day 5 — a travel checklist is the same kind of durable, written reference, just scoped to trip preparation specifically."
+      ],
+      "trainerCue": "Ask who currently has an actual written travel checklist versus who rebuilds it from memory every time — building one live as a group is a strong close to this topic."
+    },
+    {
+      "h": "Post-Trip Debrief & Follow-Up",
+      "b": [
+        "A trip isn't complete when the traveler gets home — expense reconciliation, thank-you follow-ups, and capturing what went wrong (so it doesn't repeat) are real, often-skipped final steps.",
+        "A quick post-trip note on what worked and what didn't (a hotel that fell short, a connection that was too tight) is what makes the next trip's planning genuinely better instead of repeating the same mistakes.",
+        "This is the same continuous-improvement discipline as the seasonal-coordination playbook from Day 6 — a trip debrief is a small-scale version of the same habit."
+      ],
+      "trainerCue": "Ask the room whether they currently do any kind of post-trip debrief, even informally — most don't, which is exactly the gap this topic is meant to close."
+    },
+    {
+      "h": "The Weekly Time Audit",
+      "b": [
+        "Most people's sense of where their time actually goes is inaccurate — a real time audit (tracking actual activity for even one representative week) usually reveals surprises that pure intuition misses.",
+        "The goal isn't to track time forever — it's a periodic check-in to catch drift, the same way a budget review catches spending patterns that crept in unnoticed.",
+        "This connects directly to the Time Tracking Done Right topic earlier in this day — a periodic audit is what turns raw tracked data into an actual improvement, rather than just a log nobody reviews."
+      ],
+      "trainerCue": "Ask the room to guess, before checking, what percentage of their week goes to their top priority — then compare that guess to what a real audit would likely show. The gap is usually the whole lesson."
+    },
+    {
+      "h": "Setting Realistic Deadlines",
+      "b": [
+        "A deadline that's set without genuinely accounting for the work involved isn't a real deadline — it's a guess that creates false confidence until it's suddenly missed.",
+        "Building in real buffer for the unexpected (not padding every estimate blindly, but accounting for genuine uncertainty) is what makes a deadline something people can actually plan around.",
+        "As an EA, you're often the one setting deadlines for tasks you're not personally doing — checking in with whoever's doing the actual work before committing to a date is what keeps the deadline honest."
+      ],
+      "trainerCue": "Ask for a real example of a deadline that was set too optimistically and what that actually cost once it slipped — this is a nearly universal experience worth naming directly."
     }
   ],
   "quickChecks": [
@@ -2619,9 +3057,9 @@ const DAY3 = {
 
 const DAY4 = {
   "id": 4,
-  "title": "Data, Email & Outreach",
-  "theme": "Administrative Data · Email Triage System · Cold Calling",
-  "objective": "Clean data before it becomes a report, run email as a control system rather than cleanup, and open cold outreach the right way.",
+  "title": "Data & Outreach",
+  "theme": "Administrative Data & Research · Cold Calling & Lead Generation · Contact List Management",
+  "objective": "Clean data before it becomes a report, prioritize and run a workday that actually holds, and open cold outreach the right way.",
   "lessons": [
     {
       "h": "Data Entry That Holds Up",
@@ -2649,31 +3087,6 @@ const DAY4 = {
         }
       ],
       "trainerCue": "Live-demo the four-step data cleaning order on a genuinely messy sample spreadsheet — trainees remember doing it far better than hearing it described."
-    },
-    {
-      "h": "Email Is a Control System, Not Cleanup",
-      "b": [
-        "Full Access — read/respond/archive/send on the executive's behalf.",
-        "Draft & Review — draft and flag; executive approves before sending.",
-        "Triage Only — sort and escalate; executive responds themselves.",
-        "Know your access level before acting independently."
-      ],
-      "layout": "THREEBOX",
-      "boxes": [
-        {
-          "label": "Full Access",
-          "desc": "Read, respond, archive, and send on the executive's behalf"
-        },
-        {
-          "label": "Draft & Review",
-          "desc": "Draft responses and flag priorities — the executive approves before sending"
-        },
-        {
-          "label": "Triage Only",
-          "desc": "Sort, prioritize, and escalate — the executive responds themselves"
-        }
-      ],
-      "trainerCue": "Ask each trainee to say out loud which access model (Full Access / Draft & Review / Triage Only) they currently operate under in their own role, if applicable — it surfaces real ambiguity worth discussing."
     },
     {
       "h": "The Priority Matrix",
@@ -2705,15 +3118,6 @@ const DAY4 = {
         ]
       },
       "trainerCue": "This is a good comprehension check: read out five sample emails and have the room shout 'Tier 1' or 'Tier 2' as fast as they can — speed reveals who's actually internalized the distinction."
-    },
-    {
-      "h": "Calendar & Email Are One System",
-      "b": [
-        "Convert scheduling emails into calendar holds immediately.",
-        "Confirm time zones explicitly, attach agendas to the invite itself.",
-        "A stale calendar is a liability everyone downstream trusts as ground truth."
-      ],
-      "trainerCue": "Ask: 'What's the worst thing that's happened to you because a calendar invite didn't match reality?' Almost everyone has one."
     },
     {
       "h": "The Daily Routine",
@@ -2751,20 +3155,20 @@ const DAY4 = {
       "trainerCue": "Walk your OWN actual morning routine (or a composite one) against the three-phase Daily Routine live — real specificity beats the abstract structure."
     },
     {
-      "h": "What High-Performing Inbox Triage Looks Like",
-      "b": [
-        "Target: 80–90% of operational emails handled independently, inbox near zero daily.",
-        "No missed critical deadlines, no confidentiality breaches — the two failure modes that erase months of trust."
+      "h": "Research as a Core EA Skill",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Vendor & Contact Vetting", "desc":"Confirming a vendor, contractor, or new contact is legitimate before the executive commits time or money to them"},
+        {"label":"Meeting & Attendee Prep", "desc":"A short brief on who's in the room and what's actually at stake — the same research discipline that makes a cold call land"},
+        {"label":"Fact-Checking Before Forwarding", "desc":"Verifying a claim before it reaches the executive as fact — passing along something unverified is a credibility risk you own"}
       ],
-      "callout": {
-        "type": "stat",
-        "label": "Benchmark",
-        "text": "High-performing EAs handle 80–90% of operational emails independently — without escalating routine items that don't need executive time."
-      },
-      "layout": "STAT",
-      "statNumber": "80–90%",
-      "statLabel": "of operational emails handled independently",
-      "trainerCue": "Push back gently if anyone says '80–90% independently' sounds unrealistic for their context — ask what's actually stopping them from getting there, and treat it as a real discussion, not a rebuttal."
+      "b": [
+        "Research isn't a separate skill from the rest of the EA role — it's the quiet discipline underneath most of it: knowing who you're calling before you call them, knowing what's actually true before you forward it, knowing a vendor is legitimate before scheduling them.",
+        "A reliable, fast method matters more than an exhaustive one for most EA research tasks: check the primary source first (the company's own site, the actual filing, the original email) before secondary summaries; cross-check anything that will inform a real decision or a dollar amount; and know when 'good enough for a time-sensitive task' is actually enough, versus when the stakes call for deeper diligence.",
+        "The failure mode isn't usually laziness — it's mistaking a single, unverified source for confirmation. A vendor's own claims about themselves aren't verification; a second, independent source is.",
+        "This same discipline is exactly what makes the research-before-calling principle in the next topic work — 'research before calling' isn't a cold-calling-specific tip, it's this broader skill applied to one situation."
+      ],
+      "trainerCue": "Give the room a fake vendor name and a 90-second timer — have them describe out loud what they'd actually check first. The instinct to reach for the primary source (not just the first search result) is the whole teaching point."
     },
     {
       "h": "Cold Calling, Appointment Setting & Lead Generation",
@@ -2775,6 +3179,41 @@ const DAY4 = {
         "Cold calling, appointment setting, and lead generation sit alongside secured document sharing and handling sensitive/confidential information as core Day 4 skills — the same discretion that applies to email applies to outbound contact lists."
       ],
       "trainerCue": "If nobody in the room does outbound cold calling, don't skip this — reframe it as 'cold outreach of any kind,' since the research-first principle applies broadly."
+    },
+    {
+      "h": "How to Generate Leads for Business",
+      "layout": "PROCESS",
+      "processSteps": [
+        {"label":"Identify Sources", "desc":"Referrals from existing clients, past-client re-engagement, professional networking, industry directories, and content that draws inbound interest — a real pipeline draws from more than one channel"},
+        {"label":"Qualify the Lead", "desc":"Fit, need, authority, and timeline — a lead that matches none of these wastes outreach effort better spent elsewhere"},
+        {"label":"Make First Contact", "desc":"Research-backed, specific, and brief — the same discipline as a cold call, just aimed at someone not yet in the pipeline at all"},
+        {"label":"Track and Follow Up", "desc":"A lead not logged is a lead that gets lost — feed every real lead straight into the same contact-list discipline covered next"}
+      ],
+      "b": [
+        "Lead generation is the step before cold calling, not the same thing: cold calling works a lead you already have; lead generation is finding that lead in the first place.",
+        "Referrals are consistently the highest-quality source — a past client's introduction arrives with built-in trust a cold list never has. Actively asking satisfied clients for referrals, rather than waiting passively, is what separates a real lead-generation habit from hoping for the best.",
+        "Not every lead deserves equal effort — qualifying early (does this person or business actually fit what the firm serves, and do they have real authority and timeline to act) prevents burning hours chasing contacts who were never going to convert.",
+        "A lead that isn't tracked doesn't exist for practical purposes — this is exactly why lead generation and the Comprehensive Contact List discipline in this same day are inseparable; one produces the raw material, the other keeps it from evaporating.",
+        "Discussion prompt: think of a business that generated a lead well versus one that let a promising contact go cold — what was actually different about the follow-through, not just the first contact?"
+      ],
+      "trainerCue": "Ask the room where their own best professional leads have actually come from historically — referral vs. cold outreach vs. inbound content — the real-world answer is almost always referrals, which is worth naming explicitly."
+    },
+    {
+      "h": "Creating and Maintaining a Comprehensive Contact List",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Capture the Right Fields", "desc":"Beyond name and number: relationship context, preferred contact method, their own assistant's name, and any standing notes ('always CC his EA')"},
+        {"label":"Categorize on Purpose", "desc":"Business, personal, vendor, medical, legal — a flat, uncategorized list becomes unusable past a few dozen entries"},
+        {"label":"Maintain It Like a System", "desc":"Update immediately after every interaction that reveals new or changed info — a contact list that's only updated 'eventually' is already stale"}
+      ],
+      "b": [
+        "A contact list isn't just a phone book — it's operational infrastructure. A good one lets anyone stepping in for you find the right person, with the right context, in seconds, not minutes of guessing.",
+        "The single most common failure mode isn't missing contacts — it's stale ones: an old assistant's name still listed for a vendor, a phone number that changed two roles ago, a category that made sense a year ago and doesn't anymore.",
+        "Centralize in one system (a CRM, a shared contacts platform, or at minimum one synced digital address book) — a contact list split across someone's personal phone, an old spreadsheet, and email signatures is really three incomplete lists pretending to be one.",
+        "Build in a light recurring audit — even a quarterly 10-minute pass to remove duplicates and flag anything that looks outdated prevents the slow rot that makes a contact list untrustworthy.",
+        "Discussion prompt: think of a time you (or someone you know) couldn't reach the right person quickly because contact info was missing, wrong, or scattered — what would have prevented it?"
+      ],
+      "trainerCue": "Ask the room for a real example of a contact list going stale and causing a real delay — this lands much harder than the abstract principle alone."
     }
   ],
   "quickChecks": [
@@ -2805,15 +3244,26 @@ const DAY4 = {
   ],
   "quiz": [
     {
-      "q": "Under the 'Draft & Review' email access model, you...",
+      "q": "When researching a new vendor, why isn't the vendor's own website or claims sufficient verification?",
       "opts": [
-        "Send on the executive's behalf without review",
-        "Draft responses and flag priorities, but the executive approves before sending",
-        "Only sort emails — never draft anything",
-        "Have full inbox authority including archiving and calendar invites"
+        "It's against company policy to visit vendor websites",
+        "A single, unverified source isn't confirmation — an independent second source is needed for anything informing a real decision",
+        "Vendor websites are always intentionally deceptive",
+        "It simply takes too long to read"
       ],
       "a": 1,
-      "r": "Draft & Review keeps the executive as the final approver on outgoing messages."
+      "r": "A vendor's own claims about themselves aren't verification — the discipline is checking a second, independent source before it informs a decision or a dollar amount."
+    },
+    {
+      "q": "According to the Comprehensive Contact List topic, the single most common failure mode is...",
+      "opts": [
+        "Missing contacts entirely",
+        "Stale entries — outdated names, numbers, or roles that were never updated",
+        "Too many categories",
+        "Using a CRM instead of a spreadsheet"
+      ],
+      "a": 1,
+      "r": "Stale entries are more common and more damaging than missing contacts outright — the list looks complete but quietly stops being trustworthy."
     },
     {
       "q": "A Tier 1 email arrives (media inquiry with a deadline tomorrow). What's the required action?",
@@ -3031,7 +3481,7 @@ const DAY4 = {
 const DAY5 = {
   "id": 5,
   "title": "Household, Risk & Lifestyle Support",
-  "theme": "Household Operations · Personal Insurance & Risk Framework · Lifestyle Coordination",
+  "theme": "Household Operations & Recurring Admin · Risk Framework, Insurance & Vendor Management · Travel, Lifestyle & Home Binder",
   "objective": "Run household operations like a small business, apply a real risk-management framework, and keep lifestyle support organized and trackable.",
   "lessons": [
     {
@@ -3041,6 +3491,40 @@ const DAY5 = {
         "The assistant is the main point of contact for family, staff, and contractors."
       ],
       "trainerCue": "Ask who's managed ANY household-adjacent logistics (even just their own family) — this topic lands better when trainees map it to something personally familiar first."
+    },
+    {
+      "h": "Recurring Household Admin: Utilities, Purchasing & Subscriptions",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Utilities", "desc":"Electricity, water, gas, rent — payments that can't lapse, on a calendar with real due dates, not memory"},
+        {"label":"Purchasing", "desc":"Business needs (office/pantry supplies) and personal needs (meals, clothes) — both real spending decisions, both trackable"},
+        {"label":"Subscriptions", "desc":"Sign-up, renewal, payment, and cancellation — the lifecycle most households never actually manage past the sign-up step"}
+      ],
+      "b": [
+        "These three categories share the same underlying failure mode: they're all recurring, low-drama tasks that are easy to let slide because nothing dramatic happens the first time they're missed — until a utility gets shut off, or a subscription renews at triple the promotional rate a year after nobody remembers signing up.",
+        "Utilities specifically need a payment calendar with real due dates, not a mental note — a missed rent or utility payment isn't just an inconvenience, it can cascade into late fees, service interruption, or in the case of rent, real legal consequences.",
+        "Purchasing (business and personal) should follow the same discipline as any other spending: a clear sense of what's routine and pre-approved versus what needs a check-in first, and a simple log of what was bought and when so nothing is duplicated or forgotten.",
+        "Subscription management is the most commonly neglected of the three — the actual task isn't just signing up, it's tracking renewal dates and actively deciding whether to keep or cancel before the auto-renewal happens, not after.",
+        "All three connect directly to the Home Binder discipline from earlier in this day — these are exactly the kind of recurring facts (due dates, account details, renewal dates) that belong in a well-maintained reference, not in someone's memory."
+      ],
+      "trainerCue": "Ask the room for a real subscription that auto-renewed on them (or someone they know) without anyone noticing — nearly everyone has one, and it makes the 'track renewal dates actively' point land immediately."
+    },
+    {
+      "h": "Procurement and Vendor/Supplier Management",
+      "layout": "PROCESS",
+      "processSteps": [
+        {"label":"Source Multiple Options", "desc":"The first vendor found isn't necessarily the right one — comparing at least a couple of real options is what makes the eventual choice defensible"},
+        {"label":"Compare Terms, Not Just Price", "desc":"Pricing, reliability, response time, and contract terms all matter — the cheapest option that's unreliable costs more in the long run"},
+        {"label":"Formalize the Agreement", "desc":"A real contract or statement of work, not a verbal understanding — this is what protects both sides when expectations aren't met"},
+        {"label":"Manage the Relationship Ongoing", "desc":"Track performance and renewal dates actively, and always have a backup identified before you need one"}
+      ],
+      "b": [
+        "Procurement is the proactive counterpart to the reactive vendor-failure handling covered next — the discipline here is what actually reduces how often a vendor falls through in the first place.",
+        "Treating vendor selection as a real comparison (multiple options, real terms review) rather than defaulting to whoever's easiest to reach is what separates deliberate procurement from just filling a gap quickly.",
+        "Supplier management doesn't end at signing — the EA's ongoing role is tracking whether the vendor is actually performing as agreed, when the contract or engagement is up for renewal, and whether a backup option is identified in case this vendor becomes unavailable.",
+        "This connects directly to the Recurring Household Admin discipline just covered — vendor contracts and renewal dates are exactly the kind of recurring fact that belongs in a tracked reference, not someone's memory."
+      ],
+      "trainerCue": "Ask whether anyone in the room has ever kept using an underperforming vendor simply because switching felt like more effort than it was worth — that inertia is exactly what a real procurement and backup-vendor discipline is meant to prevent."
     },
     {
       "h": "When a Vendor Falls Through",
@@ -3167,6 +3651,24 @@ const DAY5 = {
         "Ad hoc handling is exactly where things get dropped — not from carelessness, but because memory doesn't scale."
       ],
       "trainerCue": "Close with a direct question: 'What's one recurring errand or gift-tracking task in your life that would fall apart if you didn't personally remember it?' That's the argument for a shared tracker, made personally."
+    },
+    {
+      "h": "Creating a Home Binder for a Busy Executive",
+      "layout": "QUADRANT",
+      "quadrants": [
+        {"label":"Household Operations", "desc":"Staff schedules and contacts, vendor info, appliance manuals, alarm/wifi codes, utility accounts"},
+        {"label":"Family & Medical", "desc":"Doctors, allergies, medications, school info, pediatrician — anything someone else would need in an emergency"},
+        {"label":"Financial & Legal Reference", "desc":"Insurance policy numbers, key account contacts, safety deposit box location — not the sensitive numbers themselves, just where to find them"},
+        {"label":"Emergency Contacts", "desc":"Who to call first for what — plumber vs. security vs. a specific family member — organized so anyone can find the right contact fast"}
+      ],
+      "b": [
+        "A home binder exists for exactly one moment: when someone other than you needs to find critical household information fast, and you're not available to just tell them.",
+        "The test of a good binder isn't how complete it looks — it's whether a substitute PA, a family member, or an emergency responder could actually use it without calling you first.",
+        "Digital vs. physical is a real decision, not just preference: physical works when power/internet is down and for anyone unfamiliar with digital tools; digital works for easy updating and remote access. Many households genuinely need both — a physical copy for true emergencies, kept current from a digital master.",
+        "Never store actual sensitive numbers (full account numbers, passwords, SSNs) directly in the binder — reference where to find them securely instead. A binder that falls into the wrong hands shouldn't be a security incident.",
+        "Maintenance is the same discipline as the contact list: an outdated home binder is worse than no binder, since it creates false confidence that the information is current."
+      ],
+      "trainerCue": "Ask the room what would happen today if they were unreachable for 24 hours and someone else had to run their executive's household — the gaps that come up are exactly what belongs in the binder."
     }
   ],
   "quickChecks": [
@@ -3196,6 +3698,17 @@ const DAY5 = {
     }
   ],
   "quiz": [
+    {
+      "q": "What is the most commonly neglected part of subscription management?",
+      "opts": [
+        "The initial sign-up process",
+        "Actively tracking renewal dates and deciding whether to cancel before auto-renewal happens",
+        "Choosing a payment method",
+        "Reading the terms of service"
+      ],
+      "a": 1,
+      "r": "Most households manage the sign-up step fine — it's the ongoing renewal tracking that gets neglected, which is exactly how subscriptions quietly triple in price a year later."
+    },
     {
       "q": "A household vendor cancels last-minute. Correct move?",
       "opts": [
@@ -3423,7 +3936,7 @@ const DAY5 = {
 const DAY6 = {
   "id": 6,
   "title": "Business Setup, Compliance & Project Leadership",
-  "theme": "Entity Formation · Regulatory Compliance · Project Leadership · KPI Dashboards",
+  "theme": "Entity Formation & Regulatory Compliance · Project Leadership & Seasonal Coordination · Lean Six Sigma & KPI Dashboards",
   "objective": "Guide business formation and compliance decisions, lead projects when timelines slip, and optimize operations with a real KPI dashboard.",
   "lessons": [
     {
@@ -3451,6 +3964,23 @@ const DAY6 = {
         "Decision Support means providing concise summaries, risk analysis, and options with recommendations — assistants don't make every decision, but they shape it."
       ],
       "trainerCue": "Roleplay a live 'deadline just slipped, stakeholders are asking' scenario and see if the room's instinct is to look for who's at fault or what's actually broken — correct gently if it's the former."
+    },
+    {
+      "h": "Seasonal Project Coordination",
+      "layout": "PROCESS",
+      "processSteps": [
+        {"label":"Recognize the Pattern", "desc":"Year-end close, trial season, annual compliance renewals, conference season — these repeat on a predictable calendar, unlike a one-off project"},
+        {"label":"Build the Playbook Once", "desc":"Document the checklist, timeline, and owner for each recurring task the first time through — this is what makes next season faster than this one"},
+        {"label":"Start Before It's Urgent", "desc":"The single most common seasonal-coordination failure is starting prep at the same trigger point every year instead of earlier, based on what last cycle actually revealed"},
+        {"label":"Debrief and Update the Playbook", "desc":"After each cycle, capture what broke or ran late — a playbook that's never updated just repeats the same friction annually"}
+      ],
+      "b": [
+        "Seasonal coordination is a distinct skill from general project management: a one-off project has a defined end and gets closed out; a seasonal responsibility recurs on a cycle and needs a system, not a fresh plan built from scratch every time.",
+        "The EA/PA value here is almost entirely in the playbook — the first time through a recurring season is naturally reactive, but every cycle after that should get faster and less chaotic if the lessons actually get captured somewhere real, not just remembered informally.",
+        "A good seasonal playbook names specific trigger dates (not just 'start early') — e.g., 'send the CLE renewal reminder 60 days out, not 30' — because vague timing guidance is exactly what causes the same late scramble every year.",
+        "This connects directly to the KPI Dashboard discipline later in this day: tracking whether seasonal deadlines were actually hit on time, cycle over cycle, is what proves the playbook is working rather than just existing."
+      ],
+      "trainerCue": "Ask the room to name one recurring, predictable crunch time in their own work or life — then ask whether there's an actual written playbook for it, or whether it gets rebuilt from memory every time."
     },
     {
       "h": "Frameworks Worth Knowing",
@@ -3639,6 +4169,17 @@ const DAY6 = {
     }
   ],
   "quiz": [
+    {
+      "q": "What's the single most common seasonal-coordination failure?",
+      "opts": [
+        "Not having enough staff available",
+        "Starting prep at the same trigger point every year instead of earlier, based on what the last cycle revealed",
+        "Using outdated project management software",
+        "Underestimating the budget"
+      ],
+      "a": 1,
+      "r": "A playbook that never adjusts its starting point based on real experience just repeats the same late scramble every cycle."
+    },
     {
       "q": "Before recommending a business structure to a client, you should first...",
       "opts": [
@@ -3866,7 +4407,7 @@ const DAY6 = {
 const DAY7 = {
   "id": 7,
   "title": "Financial Operations Support",
-  "theme": "SOA Reconciliation · Billing & Invoicing · SOPs · Financial KPIs",
+  "theme": "SOA Reconciliation & Credit Cards/Tax Season · Billing & Invoicing · SOPs & Financial KPIs",
   "objective": "Support financial operations accurately — reconciling accounts, posting expenses, preparing invoices, and staying audit-ready.",
   "lessons": [
     {
@@ -3890,6 +4431,22 @@ const DAY7 = {
       "statNumber": "Opening + Invoices − Payments ± Adjustments",
       "statLabel": "= Closing Balance",
       "trainerCue": "Work the SOA formula with real (or realistic) numbers on the board as a group before trainees try the reconciliation exercise solo."
+    },
+    {
+      "h": "Credit Cards, Tax Season & Working with Accountants",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Credit Card Payments", "desc":"Tracking due dates and statement review the same way as any other recurring payment — a missed card payment carries real fees and credit consequences"},
+        {"label":"Card Applications", "desc":"Gathering the specific documentation a card application needs and following the process precisely — this isn't a task to guess your way through"},
+        {"label":"Tax Season Support", "desc":"Organizing receipts and records as they happen year-round, not scrambling to reconstruct them when the accountant asks"}
+      ],
+      "b": [
+        "Credit card payments follow the same discipline as every other recurring financial task in this program: a real due-date calendar, not memory, and a statement review before payment — not after — to catch anything that shouldn't be there.",
+        "When a credit card application is part of the task, the EA's role is precision: gathering exactly what's requested (not more, not less) and following the specific process the issuer requires, since financial applications are one place where 'close enough' documentation causes real delays.",
+        "Tax season support isn't a once-a-year task disguised as one — the actual EA value is in organizing receipts, invoices, and records continuously through the year, so that when the accountant asks for documentation, it's a retrieval task, not a reconstruction project.",
+        "Liaising with accountants means being the reliable point of contact who can answer 'do you have X' quickly and accurately — which is only possible if the underlying records were kept current all along, connecting directly to the reconciliation discipline covered earlier in this day."
+      ],
+      "trainerCue": "Ask the room how confident they'd feel today if an accountant asked for 'every receipt from the last 90 days' — the honest answer usually reveals whether records are being kept continuously or reconstructed under pressure."
     },
     {
       "h": "What an SOP Actually Needs",
@@ -4029,6 +4586,17 @@ const DAY7 = {
     }
   ],
   "quiz": [
+    {
+      "q": "What is the real EA value in tax season support?",
+      "opts": [
+        "Filing the tax return personally",
+        "Organizing receipts and records continuously through the year so retrieval is easy when the accountant asks",
+        "Negotiating directly with tax authorities",
+        "Choosing which accountant the firm should hire"
+      ],
+      "a": 1,
+      "r": "The EA's role is continuous organization, not a once-a-year scramble — that's what turns 'do you have X' into a quick retrieval instead of a reconstruction project."
+    },
     {
       "q": "What's the formula for a Statement of Account (SOA) closing balance?",
       "opts": [
@@ -4256,7 +4824,7 @@ const DAY7 = {
 const DAY8 = {
   "id": 8,
   "title": "Access, Confidentiality & Crisis Management",
-  "theme": "Credential Management · Least-Privilege Access · Incident Response",
+  "theme": "Credential Management · Least-Privilege Access · Incident Response & AI Data Security",
   "objective": "Manage account access responsibly, respond correctly to a suspected data risk, and fix workflows before they cause a leak.",
   "lessons": [
     {
@@ -4359,6 +4927,289 @@ const DAY8 = {
         "Consolidate into one tracked system and name which steps remain manual."
       ],
       "trainerCue": "Ask the room to name a workflow in their own life that's held together by email plus a spreadsheet plus memory — nearly everyone has one, and it's the perfect live example."
+    },
+    {
+      "h": "The Golden Rules of Admin Data Security",
+      "b": [
+        "Toggle off training/data-improvement settings before any real work goes through an AI tool.",
+        "Never input financial data, health info, SSNs, or passwords.",
+        "Use placeholders — swap real names for '[Company X]' before sending to an AI tool.",
+        "Discussion prompt: walk through exactly how you'd anonymize a real termination email before pasting it into an AI tool for drafting help — what specifically gets swapped out, and what stays?"
+      ],
+      "callout": {
+        "type": "warning",
+        "label": "Confidentiality still applies",
+        "text": "Elias's firm runs on \"uncompromising excellence\" and strict confidentiality — an AI tool is still a third party. The same judgment that keeps a case detail out of casual conversation applies to what you paste into a prompt."
+      },
+      "trainerCue": "Close with a live 'sanitize this together' exercise: bring a real (or realistic) sensitive email and have the room call out what to redact before it goes into an AI tool — the same least-privilege and confidentiality instincts from earlier in this day, applied specifically to AI."
+    },
+    {
+      "h": "Multi-Factor Authentication Basics",
+      "b": [
+        "A password alone is a single point of failure — multi-factor authentication (something you know plus something you have, like a code sent to a phone) means a stolen password alone isn't enough to get in.",
+        "MFA should be enabled on every account that handles anything sensitive, not just the ones that feel obviously high-risk — email access alone is often enough to reset passwords on many other systems.",
+        "The most common real failure isn't a lack of MFA technology — it's an account that was set up before MFA was required and never retroactively updated."
+      ],
+      "trainerCue": "Ask the room how many of their own accounts actually have MFA enabled versus how many they assume are protected but have never checked."
+    },
+    {
+      "h": "Password Manager Best Practices",
+      "b": [
+        "Reusing the same password across multiple accounts means one breach anywhere becomes a breach everywhere — a password manager makes genuinely unique passwords for every account practical instead of overwhelming.",
+        "The master password protecting the password manager itself deserves the most scrutiny of any password you have, precisely because it's the one that unlocks everything else.",
+        "Sharing credentials through a password manager's built-in sharing feature (where the actual password stays hidden) is meaningfully safer than sending a password in plain text over email or chat."
+      ],
+      "trainerCue": "Ask who's still keeping passwords in an unencrypted document or sticky note somewhere — this is far more common than people admit, and naming it normalizes fixing it."
+    },
+    {
+      "h": "Offboarding Access Removal Checklist",
+      "b": [
+        "When someone leaves a role — an employee, a contractor, a vendor relationship ending — every system they had access to needs to be revoked, not just the obvious ones like email.",
+        "A written offboarding checklist (every system, every account, every shared credential) prevents the common failure of remembering the main systems but missing a smaller, less obvious one.",
+        "Access that's 'probably fine to leave active for now' after someone's departure is exactly the kind of stale permission that Least-Privilege Access exists to prevent."
+      ],
+      "trainerCue": "Ask the room to name every system a departing team member would need removed from at their own organization — most people can't list them all from memory, which is the actual point."
+    },
+    {
+      "h": "Shared Account Risks",
+      "b": [
+        "A shared login used by multiple people means there's no way to know who actually took a given action — this becomes a real problem the moment something goes wrong and accountability matters.",
+        "Shared accounts also make offboarding much harder: revoking access for one person who's leaving means changing a password everyone else who still needs it also has to learn.",
+        "Individual accounts with appropriately scoped permissions are almost always safer than a shared account, even when the shared account feels more convenient in the moment."
+      ],
+      "trainerCue": "Ask if anyone's organization still uses a shared login for something important — and what would happen if they needed to figure out who did something specific with it."
+    },
+    {
+      "h": "Physical Security Basics",
+      "b": [
+        "Digital security discipline means little if a laptop is left unlocked in a public space or a filing cabinet with sensitive documents is left unlocked overnight — physical access is still access.",
+        "A badge, key, or physical access card should be treated with the same seriousness as a password — reported immediately if lost, not just 'probably fine, I'll mention it eventually.'",
+        "Visitors and vendors in a physical office space should have a clear, limited scope of where they can go unescorted — the same least-privilege principle applied to physical space."
+      ],
+      "trainerCue": "Ask the room to think about their own physical workspace right now — is there anything sensitive visible or accessible that shouldn't be, if a visitor walked by?"
+    },
+    {
+      "h": "Device Security Fundamentals",
+      "b": [
+        "A device left unlocked, even briefly, is an open door — screen-lock timeouts should be short enough to matter, and locking manually before stepping away should be a reflex, not an afterthought.",
+        "Full-disk encryption means a lost or stolen device is a hardware loss, not necessarily a data breach — this distinction matters enormously if a laptop is ever actually lost.",
+        "Personal devices used for work (checking email on a phone, for example) carry the same confidentiality obligations as a work-issued device, even though it's easy to treat them more casually."
+      ],
+      "trainerCue": "Ask the room how many of their own devices would survive being lost right now without exposing anything sensitive — encryption and lock screens are the difference."
+    },
+    {
+      "h": "Classifying Information by Sensitivity Level",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Public", "desc":"Fine to share freely — a published press release, public firm information"},
+        {"label":"Internal", "desc":"Not secret, but not for outside distribution — internal memos, non-sensitive scheduling details"},
+        {"label":"Confidential / Privileged", "desc":"Real legal and reputational exposure if it leaks — case details, client communications, financial data"}
+      ],
+      "b": [
+        "Not all information needs the same level of protection — treating everything as maximally sensitive makes real diligence exhausting, while treating everything casually is how genuine leaks happen.",
+        "When you're not sure which category something falls into, the safer default is to treat it as more sensitive until you can confirm otherwise, not less."
+      ],
+      "trainerCue": "Give the room five real or realistic pieces of information from this program's client scenario and have them classify each one live — the disagreements are where the real learning happens."
+    },
+    {
+      "h": "Secure File Sharing Methods",
+      "b": [
+        "Email attachments are one of the least secure ways to share sensitive files — once sent, you have no control over where that copy goes next. A secure, access-controlled sharing link is almost always the better option.",
+        "Setting real expiration dates and access permissions on shared links (rather than leaving them open indefinitely) means a link that leaks or gets forwarded doesn't stay exploitable forever.",
+        "Password-protecting a sensitive document is only meaningful if the password is sent through a genuinely separate channel — sending both the file and its password in the same email defeats the purpose."
+      ],
+      "trainerCue": "Ask the room how they currently share sensitive files by default — email attachment is still extremely common, and naming that gap directly is the point."
+    },
+    {
+      "h": "Email Encryption Basics",
+      "b": [
+        "Standard email isn't inherently secure in transit or storage — for genuinely sensitive content, an encrypted email option (many providers now offer one) provides real additional protection.",
+        "Knowing when a message actually needs encryption versus when it doesn't is itself a skill — not everything needs the heaviest security tool available, but privileged legal content usually does.",
+        "This connects directly to the Comprehensive Confidential Handling discipline covered earlier — encryption is one more layer, not a replacement for good judgment about what gets sent at all."
+      ],
+      "trainerCue": "Ask whether the room's own organization has an actual encrypted email option available — many do and simply don't use it because nobody's aware it exists."
+    },
+    {
+      "h": "Metadata Risks in Shared Documents",
+      "b": [
+        "A document's visible content isn't the only thing that can leak — metadata (track changes history, comments, author names, previous edits) can reveal information nobody intended to share.",
+        "'Cleaning' a document before external sharing (removing track changes, comments, hidden text) is a real, often-skipped step — a document that looks clean on screen can still carry a full edit history underneath.",
+        "This is especially relevant for anything shared with opposing counsel or an external party — a stray comment meant for internal eyes only has caused real, documented problems in legal practice."
+      ],
+      "trainerCue": "If possible, show a real example of hidden track-changes or comments in a document that looks clean on the surface — seeing it live is far more convincing than describing it."
+    },
+    {
+      "h": "Clean Desk Policy",
+      "b": [
+        "Sensitive documents left visible on a desk, in a printer tray, or on an unlocked screen are a real, physical version of a data leak — a clean desk policy exists to close this specific, easy-to-overlook gap.",
+        "Printers are a commonly forgotten risk: a sensitive document printed and left in the tray is accessible to anyone who walks by, even in an otherwise secure office.",
+        "This connects directly to the Physical Security topic earlier — clean desk discipline is the daily habit that makes physical security actually work in practice, not just in policy."
+      ],
+      "trainerCue": "Ask the room to picture their own desk right now — would a clean desk audit find anything that shouldn't be visible?"
+    },
+    {
+      "h": "Secure Disposal of Sensitive Documents",
+      "b": [
+        "A sensitive document thrown in a regular trash or recycling bin is still readable by anyone who finds it — shredding (or a secure disposal service) is what actually destroys the information, not just discards the paper.",
+        "This applies to digital 'disposal' too — deleting a file doesn't necessarily remove it from a device permanently; genuinely sensitive digital files may need secure deletion, not just a move to trash.",
+        "A recurring habit (shredding at the end of each day or week, not letting sensitive discards pile up) is what actually makes this discipline reliable rather than occasional."
+      ],
+      "trainerCue": "Ask whether the room's own workspace has an actual shredder or secure disposal bin readily accessible — if it's inconvenient, it won't get used consistently."
+    },
+    {
+      "h": "The First 10 Minutes of a Security Incident",
+      "layout": "PROCESS",
+      "processSteps": [
+        {"label":"Contain", "desc":"Stop further exposure first — disconnect, revoke access, or pause whatever's actively leaking"},
+        {"label":"Assess", "desc":"Figure out what's actually been exposed and to whom, as precisely as you can in the moment"},
+        {"label":"Notify", "desc":"Alert whoever needs to know immediately — don't wait until you have a complete picture"},
+        {"label":"Document", "desc":"Write down what happened and when, in real time — memory of the first moments fades fast"}
+      ],
+      "b": [
+        "The instinct to fully understand a situation before saying anything is understandable but costly — early notification, even with incomplete information, is almost always better than a delayed, complete report.",
+        "This is the same containment-first principle from the Confidentiality Leak topic earlier in this day, expanded into a general first-response sequence that applies to security incidents more broadly."
+      ],
+      "trainerCue": "Roleplay a live, cold scenario — 'you just noticed something is wrong' — and see whether the room's instinct is to investigate fully first or to escalate immediately. Correct gently toward escalating first if needed."
+    },
+    {
+      "h": "Who to Notify and When",
+      "b": [
+        "Different types of incidents have different real notification requirements — a general confidentiality slip and a genuine data breach may trigger different people, different timelines, and in some cases actual legal obligations.",
+        "Knowing in advance who the right contact is for a given type of incident (IT, a specific partner, outside counsel) prevents the wasted time of figuring that out for the first time during an actual crisis.",
+        "When genuinely uncertain who should be notified, escalating to someone senior is almost always the safer choice than deciding on your own that it's not serious enough to mention."
+      ],
+      "trainerCue": "Ask the room whether they currently know exactly who they'd contact first for a real security concern at their own organization — many don't, which is the actual gap this topic addresses."
+    },
+    {
+      "h": "Documenting an Incident as It Unfolds",
+      "b": [
+        "A contemporaneous record — what happened, when, who was notified, what actions were taken — is far more accurate and far more useful than a reconstruction written days later from memory.",
+        "This documentation isn't about assigning blame — it's what allows an accurate post-incident review and, if needed, supports any actual legal or compliance requirements that follow.",
+        "Even a simple, real-time note (timestamps and short factual statements) is more valuable than a polished summary written well after the fact, once details have already started to blur."
+      ],
+      "trainerCue": "Ask the room how confident they'd be recreating an accurate timeline of something stressful that happened a week ago, purely from memory — this is exactly why real-time documentation matters."
+    },
+    {
+      "h": "Post-Incident Review",
+      "b": [
+        "Once an incident is actually resolved, a real review — what happened, what worked, what should change — is what prevents the same failure from repeating in a slightly different form later.",
+        "A good post-incident review focuses on the process and the gap that allowed the incident, not on blaming the individual involved — blame-focused reviews make people less likely to report the next issue early.",
+        "This connects directly to the Seasonal Coordination playbook discipline from Day 6 — a post-incident review is the same continuous-improvement habit, applied to a security context."
+      ],
+      "trainerCue": "Ask the room whether their own organization actually does post-incident reviews consistently, or whether incidents tend to just quietly get resolved and forgotten without a real debrief."
+    },
+    {
+      "h": "Social Engineering Red Flags",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Urgency Pressure", "desc":"'I need this right now, don't have time to verify' — manufactured urgency is a classic manipulation tactic"},
+        {"label":"Authority Impersonation", "desc":"Someone claiming to be an executive, IT, or a vendor to bypass normal verification"},
+        {"label":"Unusual Requests", "desc":"A request that's slightly outside someone's normal pattern — a new payment method, an unfamiliar account"}
+      ],
+      "b": [
+        "Social engineering targets people, not systems — the strongest technical security in the world doesn't help if someone is convinced to simply hand over access or information voluntarily.",
+        "The same independent-verification principle from the NDA and access-request topics applies directly here — verify through a known, separate channel before acting on any request that feels even slightly off."
+      ],
+      "trainerCue": "Ask for a real example (theirs or someone they know) of a social engineering attempt they recognized in time — hearing how someone actually caught it is more useful than the abstract warning signs alone."
+    },
+    {
+      "h": "Phishing Recognition Beyond Email",
+      "b": [
+        "Phishing isn't limited to email anymore — text messages, phone calls, and even calendar invites can carry the same manipulation tactics, and the same skepticism should apply to all of them.",
+        "A generic greeting, a slightly-off sender address, or an unexpected attachment are still the most common tells, regardless of which channel the attempt arrives through.",
+        "When in doubt about a suspicious message's legitimacy, verifying through a separate, known channel (calling a known number, not one provided in the suspicious message itself) is the safe default."
+      ],
+      "trainerCue": "Ask the room whether they've seen a phishing attempt outside of email specifically — text or phone-based attempts are increasingly common and often less immediately recognized."
+    },
+    {
+      "h": "Recognizing Insider Threat Warning Signs",
+      "b": [
+        "Not every security risk comes from outside — access being used in ways that don't match someone's actual role, or unusual data access patterns, are worth noticing without immediately assuming malice.",
+        "Most insider incidents aren't deliberate sabotage — they're often a well-meaning person taking a shortcut around a security control because it felt inconvenient, which is still a real risk worth addressing.",
+        "This isn't about suspicion of colleagues by default — it's about the same least-privilege discipline from earlier in this day: access patterns that don't match a role are worth a second look regardless of intent."
+      ],
+      "trainerCue": "Frame this carefully — the point isn't to encourage distrust of coworkers, it's to notice when access patterns genuinely don't match a role, which is a system-level observation, not a personal accusation."
+    },
+    {
+      "h": "Crisis Communication Principles",
+      "b": [
+        "During an active crisis, communication should be calm, factual, and frequent — silence or vague reassurance tends to make people more anxious, not less, even when the actual situation is under control.",
+        "Sharing only what's actually confirmed, clearly labeled as such, prevents the common failure of speculation being repeated as fact and making an already-difficult situation more confused.",
+        "This connects directly to the ACT framework from Day 1 — Acknowledge what's happening, Clarify what's still unknown, and give a Timeline for the next real update, even during a genuine crisis."
+      ],
+      "trainerCue": "Ask the room to recall a crisis (professional or otherwise) that was made worse by poor communication versus one where clear, calm updates actually helped — the contrast is the whole lesson."
+    },
+    {
+      "h": "Maintaining Calm Under Pressure",
+      "b": [
+        "Your visible calm during a crisis is often the only calm in the room, and it's genuinely contagious — the reverse is also true, which is why visible panic from an EA can make a bad situation measurably worse.",
+        "Calm isn't the same as passive — it's the ability to think clearly and act deliberately while everyone around you is reacting, which is a skill that can be practiced, not just a personality trait some people happen to have.",
+        "A simple technique that actually helps: pause before responding, even for just a few seconds, rather than reacting to the first instinct a crisis produces."
+      ],
+      "trainerCue": "Ask the room for a real technique that's helped them stay calm under real pressure — collecting a few different real answers gives everyone more than one option to try."
+    },
+    {
+      "h": "Chain of Command During a Crisis",
+      "b": [
+        "A crisis is exactly the wrong time to be figuring out for the first time who has authority to make which decisions — knowing the chain of command in advance is what prevents paralysis when speed actually matters.",
+        "This connects directly to the Command Hierarchy topic from Day 1 — the same structure that governs routine escalation is what should be relied on during a crisis too, not abandoned in favor of improvising.",
+        "When the normal chain of command is genuinely unavailable (the usual contact can't be reached), knowing the real backup path in advance prevents a dangerous gap in decision-making authority."
+      ],
+      "trainerCue": "Ask the room whether they actually know their own real backup contact if their primary escalation point were unreachable right now — many don't, which is worth surfacing directly."
+    },
+    {
+      "h": "Business Continuity Basics",
+      "b": [
+        "A real business continuity plan answers a simple question in advance: if a key system, person, or resource became unavailable tomorrow, what's the actual plan to keep functioning?",
+        "This doesn't need to be elaborate to be useful — even a basic list of critical systems, key contacts, and backup options covers most of the practical value.",
+        "This connects directly to backup-vendor identification from Day 5 and the Home Binder discipline — business continuity is the same 'plan before you need it' principle, applied at an organizational scale."
+      ],
+      "trainerCue": "Ask the room to name one single point of failure in their own work right now — one person, system, or resource that, if suddenly unavailable, would cause a real problem with no backup plan."
+    },
+    {
+      "h": "Attorney-Client Privilege: What EAs Need to Know",
+      "b": [
+        "Attorney-client privilege protects confidential communications between a lawyer and their client made for the purpose of seeking or giving legal advice — it's one of the oldest and most strictly guarded protections in the legal system, and it can be lost through carelessness.",
+        "Privilege can be waived by disclosure to the wrong person — including, in some circumstances, by including someone outside the privileged relationship on an email thread or by discussing case details somewhere they could be overheard.",
+        "As an EA, you often sit inside the privileged relationship by necessity (managing a lawyer's communications and calendar), which means the same confidentiality obligation extends to you — this isn't a courtesy, it's a real legal protection you're responsible for helping preserve.",
+        "When in doubt about whether something is privileged or who's allowed to see it, the safe default is to ask the attorney directly rather than assume — an accidental disclosure can't be undone once it happens."
+      ],
+      "trainerCue": "Ask the room for a real or hypothetical example of how privilege could be accidentally waived through something as simple as a misdirected email or a conversation in a public space — making it concrete is what makes the risk land."
+    },
+    {
+      "h": "HIPAA in a Legal Context",
+      "b": [
+        "HIPAA (the Health Insurance Portability and Accountability Act) protects individually identifiable health information, and it applies directly whenever a legal matter touches medical records — personal injury cases, workers' compensation, disability claims, and similar matters.",
+        "Even outside of health-specific practice areas, HIPAA can apply the moment a case file includes any medical information — a firm doesn't need to be a healthcare provider itself for HIPAA obligations to be relevant to how that information is handled.",
+        "Practical handling matters as much as the legal theory: medical records within a case file need the same discretion as any other highly sensitive document — not shared beyond who genuinely needs them, and not left visible or accessible to anyone without a real reason to see them.",
+        "This connects directly to the Classifying Information by Sensitivity Level topic earlier in this day — health information involved in a legal matter should default to the highest sensitivity tier."
+      ],
+      "trainerCue": "Ask whether anyone in the room has handled a case file that included medical records — walk through, concretely, what extra care that actually required in practice."
+    },
+    {
+      "h": "GDPR & Data Privacy Regulations",
+      "b": [
+        "The GDPR (General Data Protection Regulation) governs how personal data of individuals in the EU is collected, stored, and processed — and it can apply to a firm even if the firm itself isn't based in the EU, if it handles data belonging to EU individuals.",
+        "GDPR gives individuals real rights over their own data, including the right to know what's held about them and, in many cases, the right to have it deleted — this has practical implications for how long records are retained and how they're organized.",
+        "The U.S. has its own growing patchwork of state-level privacy laws (California's CCPA is the most well-known) that function similarly in spirit, even though the specific requirements differ — 'we're not in the EU' doesn't mean data privacy law doesn't apply.",
+        "As an EA, the practical takeaway isn't memorizing every regulation's specifics — it's recognizing when a matter involves personal data that might trigger these obligations, and flagging that early rather than assuming it's someone else's concern."
+      ],
+      "trainerCue": "Ask the room whether their firm handles any client or case data belonging to individuals outside the U.S. — if so, GDPR may already be more relevant to their daily work than they realize."
+    },
+    {
+      "h": "Other Relevant Compliance Frameworks",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Financial & Corporate", "desc":"Sarbanes-Oxley (SOX) for public-company financial records; industry-specific rules for regulated clients"},
+        {"label":"Sector-Specific Privacy", "desc":"GLBA for financial data, FERPA for education records — relevant when a matter touches those industries"},
+        {"label":"State Bar & Ethics Rules", "desc":"Each state's own rules of professional conduct govern confidentiality obligations beyond privilege alone"}
+      ],
+      "b": [
+        "Legal and administrative work touches an unusually wide range of regulatory frameworks depending on the client and matter — no single training can cover every one exhaustively, and that's not actually the goal.",
+        "The real, transferable skill is pattern recognition: knowing that certain categories of information (health, financial, data belonging to minors, data belonging to individuals in another country) tend to carry extra regulatory weight, and treating them with extra care by default rather than needing to identify the exact statute first.",
+        "When a matter involves an unfamiliar regulatory area, asking the attorney directly whether there are specific compliance obligations to be aware of is always the right move — better to ask a question that turns out to be unnecessary than to miss one that mattered."
+      ],
+      "trainerCue": "Close this cluster of topics by asking the room to name any other regulation relevant to their own firm's specific practice areas that wasn't covered here — this list is deliberately not exhaustive, and naming the gaps is part of the lesson."
     }
   ],
   "quickChecks": [
@@ -4615,7 +5466,7 @@ const DAY8 = {
 const DAY9 = {
   "id": 9,
   "title": "Events, Compliance Tracking & Reputation",
-  "theme": "Event & CLE Compliance SOPs · Brand Stewardship · Membership Management",
+  "theme": "Event & CLE Compliance SOPs · Brand Stewardship & Awards/Charitable Coordination · Membership Management",
   "objective": "Run events and compliance tracking with nothing falling through the cracks, and protect the organization's reputation online.",
   "lessons": [
     {
@@ -4673,6 +5524,16 @@ const DAY9 = {
       "trainerCue": "Roleplay responding to a real (or realistic) negative online review live, cold, with no prep — then compare it to a version drafted with time to think. The contrast is the lesson."
     },
     {
+      "h": "Awards, Recognition & Charitable Coordination",
+      "b": [
+        "Awards applications run on the same discipline as any other application process: exact eligibility criteria, exact required materials, and a real submission deadline — missing any one of these disqualifies an otherwise strong nomination.",
+        "Building a simple tracker for awards worth pursuing each year (name, deadline, eligibility, materials needed, status) prevents the common failure of noticing a good-fit award only after its deadline has already passed.",
+        "Charitable and donation coordination has its own quiet discipline: tracking what's been committed, confirming it's actually been fulfilled, and keeping documentation — many donations have tax or reporting implications that matter later even though the moment itself feels informal.",
+        "Both of these connect to the brand-protection topic just covered — award recognitions and genuine charitable involvement are proactive reputation-building, the positive counterpart to the reactive review-management work already covered."
+      ],
+      "trainerCue": "Ask whether the room's own organization (or one they know) has ever missed a genuinely strong awards nomination simply because nobody was tracking the deadline — this is a very common, very preventable gap."
+    },
+    {
       "h": "Membership Renewals",
       "b": [
         "A renewal tracker (name, expiration, status, follow-up) catches lapses before they happen.",
@@ -4716,6 +5577,17 @@ const DAY9 = {
     }
   ],
   "quiz": [
+    {
+      "q": "What's the most common failure with awards applications?",
+      "opts": [
+        "Not having enough achievements to qualify",
+        "Noticing a good-fit award only after its deadline has already passed",
+        "The application form being too long",
+        "Not knowing which awards exist at all"
+      ],
+      "a": 1,
+      "r": "Missing the deadline on an otherwise strong nomination is the classic, preventable failure — a simple tracker with deadlines catches this before it happens."
+    },
     {
       "q": "20 of 150 webinar registrants haven't received a confirmation email. First move?",
       "opts": [
@@ -4943,7 +5815,7 @@ const DAY9 = {
 const DAY10 = {
   "id": 10,
   "title": "Digital Presence & Social Media Support",
-  "theme": "Management vs. Marketing · Brand Voice & Content Pillars · SEO/GEO for Executives · Campaign Math",
+  "theme": "Management vs. Marketing · Brand Voice, Visual Assets & Platform Proficiencies · SEO/GEO & Campaign Math",
   "objective": "Read social performance numbers correctly, write for the platform, and understand the basic math behind a campaign's ROI.",
   "lessons": [
     {
@@ -5052,6 +5924,67 @@ const DAY10 = {
         }
       ],
       "trainerCue": "Run the 'This, Not That' exercise live as a group exercise on the whiteboard before trainees do it individually — the contrast pairs are more memorable out loud."
+    },
+    {
+      "h": "Defining and Maintaining Brand Voice, Tone & Messaging",
+      "layout": "COMPARE",
+      "compareLeft": {
+        "label": "Elias's Actual Voice",
+        "items": [
+          "Direct — leads with the answer, not the preamble",
+          "Credible — backs claims with specifics, not adjectives",
+          "Unhurried — doesn't chase trends just to stay visible"
+        ]
+      },
+      "compareRight": {
+        "label": "A Generic, Wrong Voice",
+        "items": [
+          "Hedges everything — 'we believe,' 'it's possible that'",
+          "Leans on buzzwords instead of specifics",
+          "Chases every trending format regardless of fit"
+        ]
+      },
+      "b": [
+        "Defining a voice is the easy part — a single workshop can produce a good voice guide. Maintaining it across months, multiple contributors, and dozens of posts is the actual discipline.",
+        "A written style guide should give concrete 'this, not that' examples like the ones above, not just adjectives — 'confident' means nothing to a new contributor without a real sentence showing what confident looks like versus what it doesn't.",
+        "Messaging guidelines are a layer above tone: they define the specific claims and framing that are always used consistently — e.g., always describing the firm the same way, never contradicting a stated position from post to post.",
+        "The maintenance mechanism matters as much as the guide itself: someone needs to actually review drafts against the guide before publishing, or the guide quietly stops being followed within a month."
+      ],
+      "trainerCue": "Ask the room to rewrite one generic-voice line from the right column into Elias's actual voice, live — this is a much faster way to internalize a voice than reading examples passively."
+    },
+    {
+      "h": "Visual Brand Assets — Sample Color Palette",
+      "layout": "PALETTE",
+      "palette": [
+        {"name":"Deep Navy", "hex":"#1B2340", "use":"Primary — headers, dominant brand color, conveys authority and stability"},
+        {"name":"Warm Gold", "hex":"#C9A24B", "use":"Accent — calls-to-action, highlights, used sparingly for emphasis"},
+        {"name":"Charcoal", "hex":"#2E2E2E", "use":"Body text — high readability, pairs with either brand color"},
+        {"name":"Warm Ivory", "hex":"#F5F1E8", "use":"Background — neutral canvas that doesn't compete with navy or gold"}
+      ],
+      "b": [
+        "A brand's visual identity isn't just a logo — it's a small, deliberately limited set of colors, fonts, and imagery rules that make every piece of content instantly recognizable as the same brand, even without a name attached.",
+        "The palette above follows a common, reliable pattern: one dominant color, one accent used sparingly, one text color, one background — resist the urge to add a fifth 'just in case' color, since restraint is what keeps a brand looking deliberate rather than random.",
+        "Typography works the same way: pick one heading font and one body font, and use them everywhere — mixing fonts across posts is one of the fastest ways to make a brand look unmanaged.",
+        "Imagery rules matter as much as color: decide up front what's off-limits (generic stock-photo clichés, overly casual snapshots) so every contributor is choosing images against the same standard, not their own personal taste."
+      ],
+      "trainerCue": "If your organization already has a real brand palette, swap it in here and have the room evaluate whether it actually follows the 'one dominant, one accent, one text, one background' discipline — most real-world palettes don't, and spotting why is a useful exercise."
+    },
+    {
+      "h": "Platform Proficiencies — Tool-Specific Best Practices",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Social Media Platforms", "desc":"Each platform has its own native format expectations — a LinkedIn post and an Instagram caption shouldn't be the same text copy-pasted twice"},
+        {"label":"CMS Platforms", "desc":"WordPress, Webflow, Squarespace — knowing how to update a page, swap an image, or publish a post without breaking the site layout"},
+        {"label":"Newsletter Platforms", "desc":"Mailchimp, ConvertKit, Substack — list segmentation, send-time optimization, and reading basic open/click-rate reports"}
+      ],
+      "b": [
+        "Being 'good at social media' isn't one skill — it's platform literacy across several genuinely different tools, each with its own conventions, audience expectations, and technical quirks.",
+        "On social platforms: LinkedIn rewards professional, text-forward posts with a clear point in the first two lines; Instagram rewards visual-first content with captions that support rather than carry the post; X/Twitter rewards brevity and timeliness over polish.",
+        "On CMS platforms, the core EA-relevant skill is making a routine content update (a new page, a swapped image, a corrected typo) without needing a developer — most platforms support this through a visual editor, but every platform's editor works slightly differently.",
+        "On newsletter platforms, the most common EA-relevant tasks are: building a segmented list (not blasting everyone the same email), scheduling around actual audience time zones, and reading a basic performance report to see whether an email actually got opened and clicked, not just sent.",
+        "A practical rule across all three categories: before touching a live/production account, always test in a draft or preview mode first — a typo in a draft is invisible; a typo already sent to a real list is not."
+      ],
+      "trainerCue": "If your organization uses specific tools (a particular CMS, a particular email platform), do a 10-minute live screen-share of the actual publishing flow — abstract platform literacy is far less useful than seeing the real click-path once."
     },
     {
       "h": "The Content Calendar & Publishing Workflow",
@@ -5428,22 +6361,22 @@ const DAYS = [DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8, DAY9, DAY10];
    ============================================================ */
 
 const PRACTICE_TOOLS = [
-  {id:"dossier1", icon:"🗂", title:"Client Dossier & Tracker Builder", relates:"Day 1",
-   desc:"Build a comprehensive client dossier and set up Travel and Inbox Preference trackers for Elias Thorne — sorting real profile facts into the right sections."},
+  {id:"dossier1", icon:"🗂", title:"Client Dossier & Gatekeeping Practice", relates:"Day 1",
+   desc:"Build a comprehensive client dossier and preference trackers for Elias Thorne, respond to a real ACT-framework voice note, then practice inbound gatekeeping under pressure."},
   {id:"forcemultiplier2", icon:"⚡", title:"The Force Multiplier Challenge", relates:"Day 2",
-   desc:"Three connected challenges — anticipate what a vague executive request really needs, write an AI prompt that actually runs and produces real output, then handle a messy scenario that tests both skills at once."},
-  {id:"calendar", icon:"◫", title:"Legal Calendar Conflict Resolver", relates:"Day 3",
-   desc:"A full attorney's week with overlapping court dates, depositions, and client meetings — drag blocks to new times, recolor them, resolve every conflict, then write the AI prompt that would turn it into Elias's BLUF-style daily briefing."},
-  {id:"emailsim", icon:"📨", title:"Inbox Triage & Outreach", relates:"Day 4",
-   desc:"A real inbox — build your own filing system, draft real replies, and catch a hidden phishing attempt — then practice inbound gatekeeping under pressure and log a round of cold-calling outreach."},
-  {id:"insurance5", icon:"🛡", title:"Household Risk & Travel Planning", relates:"Day 5",
-   desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
+   desc:"Anticipate what a vague executive request really needs, write an AI prompt that actually runs and produces real output, handle a messy combined scenario, then clear a real inbox — building your own filing system and catching a hidden phishing attempt."},
+  {id:"calendar", icon:"◫", title:"Calendar Conflict Resolver & Travel Planning", relates:"Day 3",
+   desc:"A full attorney's week with overlapping commitments to resolve and turn into an AI-drafted BLUF briefing, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
+  {id:"coldcalling4", icon:"☎", title:"Cold-Calling & Lead Generation", relates:"Day 4",
+   desc:"Log a full round of cold-calling outreach with a reference opening line, then draft a real lead-generation plan — specific sources, qualifying criteria, and a first-contact approach for a new practice area launch."},
+  {id:"insurance5", icon:"🛡", title:"Household Risk Assessment", relates:"Day 5",
+   desc:"Classify household and personal risks facing the Thorne family, match each to the right risk-management strategy, build a real Home Binder section, then handle a live crisis roleplay drawn from real household scenarios."},
   {id:"projectcompliance6", icon:"📊", title:"Business Compliance & Project Recovery", relates:"Day 6",
    desc:"Check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind."},
   {id:"financial", icon:"Σ", title:"Trust Account & Billing Sheet", relates:"Day 7",
    desc:"Reconcile a client trust ledger and build a legal services invoice — with live calculations."},
   {id:"compliance9", icon:"📋", title:"Compliance & Reputation Tracker", relates:"Day 9",
-   desc:"Spot who's behind on CLE hours, catch unconfirmed event registrants, and draft a professional public response to a negative review."},
+   desc:"Spot who's behind on CLE hours, catch unconfirmed event registrants, draft a professional public response to a negative review, and track which awards deadlines are still open versus already passed."},
   {id:"accessincident8", icon:"🔐", title:"The Access & Incident Response Simulator", relates:"Day 8",
    desc:"Audit who actually has too much system access, decide how to verify a caller before disclosing anything sensitive, then write your real containment response to an active confidentiality leak."},
   {id:"socialmedia10", icon:"📱", title:"Social Media Metrics Lab", relates:"Day 10",
@@ -5683,7 +6616,21 @@ const CALL_SCENARIOS = [
      "\"The attorney is unavailable for ad hoc calls right now — please send the details in writing and I'll make sure they're reviewed.\"",
      "Silence the call and never mention it again.",
      "Tell the paralegal to just wait outside the door."
-   ], a:1, r:"This protects the attorney's focus during a client meeting while still giving the paralegal a real channel to be heard."}
+   ], a:1, r:"This protects the attorney's focus during a client meeting while still giving the paralegal a real channel to be heard."},
+  {tag:"Verify Before Sharing", scn:"A vendor you've worked with before calls asking for sensitive case details, saying it's urgent for a project they're already helping with.",
+   opts:[
+     "Share the details since they're already an engaged vendor.",
+     "\"I want to make sure I'm sharing this correctly — let me confirm the NDA on file actually covers this specific request before I send anything over.\"",
+     "Refuse to speak with them at all going forward.",
+     "Ask them to email the request so there's a written record, then share immediately without checking anything."
+   ], a:1, r:"An existing working relationship isn't the same as confirmed NDA coverage for this specific request — verify scope before sharing, not after."},
+  {tag:"Accurate Liaison", scn:"IT and a partner's office both contact you separately, each asking for an update on the same pending approval from the executive.",
+   opts:[
+     "Tell each of them something slightly different to get them off the phone faster.",
+     "Confirm the actual status with the executive once, then relay the identical accurate answer to both parties.",
+     "Ignore both requests until the executive brings it up.",
+     "Guess at a likely answer so neither party has to wait."
+   ], a:1, r:"As liaison, the value is one accurate answer carried consistently in every direction — not a different story for each party."}
 ];
 
 const COLD_LEADS = [
@@ -5820,7 +6767,8 @@ const RISK_SCENARIOS = [
   {text:"The nanny's contract renewal is overdue and the current agreement has technically lapsed.", category:"Legal & Liability Risk"},
   {text:"Barnaby's vet bills this quarter have exceeded the pet insurance policy's annual cap.", category:"Financial Risk"},
   {text:"A last-minute venue change for a client dinner means the Paleo/dairy-free requirements haven't been re-confirmed.", category:"Operational Risk"},
-  {text:"An old photo of Elias at a competitor's event has resurfaced online right before a major trial.", category:"Reputational Risk"}
+  {text:"An old photo of Elias at a competitor's event has resurfaced online right before a major trial.", category:"Reputational Risk"},
+  {text:"A home monitoring subscription auto-renewed at triple the promotional rate because nobody reviewed it before the renewal date.", category:"Financial Risk"}
 ];
 
 const RISK_STRATEGIES = ["Avoidance", "Reduction", "Transfer", "Retention"];
@@ -6028,10 +6976,22 @@ async function sharedList(prefix){
     return data.keys || [];
   }catch(e){ console.warn("shared storage list failed",e); return []; }
 }
+async function sharedDelete(key){
+  try{
+    if(window.storage){ await window.storage.delete(key,true); return true; }
+  }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  try{
+    const response = await fetch("/api/storage/delete", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ key })
+    });
+    return response.ok;
+  }catch(e){ console.warn("shared storage delete failed",e); return false; }
+}
 
 function generateTraineeId(name){
-  const slug = (name||"trainee").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,24) || "trainee";
-  return slug + "-" + Math.random().toString(36).slice(2,7);
+  const slug = (name||"trainee").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,40) || "trainee";
+  return slug;
 }
 
 /** Mirrors this trainee's progress into shared storage so the Admin
@@ -6042,12 +7002,15 @@ async function syncToLedger(){
   await sharedSet("trainee:"+state.traineeId, {
     id: state.traineeId,
     name: state.traineeName || "Unnamed trainee",
+    batch: state.traineeBatch || (existing ? existing.batch : "") || "",
     dayProgress: state.progress,
     practiceProgress: state.practiceProgress,
     submissions: state.submissions||[],
     lastActive: new Date().toISOString(),
     approved: existing ? existing.approved : false,
-    registeredAt: existing ? existing.registeredAt : new Date().toISOString()
+    registeredAt: existing ? existing.registeredAt : new Date().toISOString(),
+    archived: existing ? (existing.archived||false) : false,
+    aiReview: existing ? existing.aiReview : null
   });
 }
 async function getApprovalStatus(traineeId){
@@ -6090,6 +7053,8 @@ async function loadAll(){
   state.progress = p || {};
   const n = await storeGet("trainee-name");
   state.traineeName = n || "";
+  const bt = await storeGet("trainee-batch");
+  state.traineeBatch = bt || "";
   const pr = await storeGet("practice-progress");
   state.practiceProgress = pr || {};
   const nt = await storeGet("notes");
@@ -6419,6 +7384,9 @@ function moduleCard(d){
   const unlocked = dayUnlocked(d.id);
   const status = prog&&prog.done ? "done" : (unlocked?"open":"locked");
   const icon = DAY_ICONS[d.id] || "📘";
+  const TOPIC_CAP = 6;
+  const shown = d.lessons.slice(0, TOPIC_CAP);
+  const remaining = d.lessons.length - shown.length;
   return `
   <div class="module-card" id="module-${d.id}">
     <div class="module-banner">
@@ -6427,7 +7395,11 @@ function moduleCard(d){
     </div>
     <div class="module-body">
       <div class="mnum">DAY ${d.id} OF 10${status==='done'?' &middot; COMPLETED':''}</div>
-      <p><b>${esc(d.title)}.</b> ${esc(d.theme)}</p>
+      <p><b>${esc(d.title)}</b></p>
+      <ul class="module-topic-list">
+        ${shown.map(l=>`<li>${esc(l.h)}</li>`).join("")}
+        ${remaining>0?`<li class="module-topic-more">+${remaining} more topic${remaining===1?'':'s'}</li>`:""}
+      </ul>
     </div>
     <button class="btn module-start-btn ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} onclick="goto('day',${d.id})">${status==='done'?'Review':'Start'}</button>
   </div>`;
@@ -6574,7 +7546,8 @@ function renderLogin(){
         <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px;height:auto;margin-bottom:22px;">
         <h1 style="font-size:22px;color:var(--navy);margin:0 0 8px;">Welcome to the Upskill Program</h1>
         <p style="font-size:13.5px;color:var(--ink-soft);margin:0 0 22px;">Enter your name to begin. This identifies your progress on the training record — no password needed.</p>
-        <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') submitLogin();">
+        <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') document.getElementById('loginBatchInput').focus();">
+        <input type="text" id="loginBatchInput" placeholder="Batch (e.g. B050225)" style="margin-top:10px;" onkeydown="if(event.key==='Enter') submitLogin();">
         <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;margin-top:14px;" onclick="submitLogin()">Begin Training</button>
         <div style="margin-top:20px;font-size:12px;color:var(--ink-soft);">Administrator? <a href="#" onclick="event.preventDefault(); openAdmin();" style="color:var(--navy);font-weight:600;">Sign in here</a> instead.</div>
       </div>
@@ -6583,11 +7556,30 @@ function renderLogin(){
 async function submitLogin(){
   const v = document.getElementById("loginNameInput").value.trim();
   if(!v){ toast("Enter your name to continue."); return; }
+  const isNewSession = !state.traineeId;
+  const batchInput = document.getElementById("loginBatchInput");
+  const batchVal = batchInput ? batchInput.value.trim() : "";
+  if(isNewSession && !batchVal){ toast("Enter your batch to continue."); return; }
   state.traineeName = v;
   await storeSet("trainee-name", v);
-  if(!state.traineeId){
+  if(isNewSession){
     state.traineeId = generateTraineeId(v);
     await storeSet("trainee-id", state.traineeId);
+    state.traineeBatch = batchVal;
+    await storeSet("trainee-batch", batchVal);
+  }
+  // If this name already has a record (e.g. they logged out and are logging
+  // back in), restore their real progress before syncing — otherwise the
+  // sync below would overwrite their history with this session's empty state.
+  if(isNewSession){
+    const existing = await sharedGet("trainee:"+state.traineeId);
+    if(existing){
+      state.progress = existing.dayProgress || {};
+      state.practiceProgress = existing.practiceProgress || {};
+      await storeSet("day-progress", state.progress);
+      await storeSet("practice-progress", state.practiceProgress);
+      if(existing.batch){ state.traineeBatch = existing.batch; await storeSet("trainee-batch", existing.batch); }
+    }
   }
   await syncToLedger();
   const status = await getApprovalStatus(state.traineeId);
@@ -7014,8 +8006,22 @@ function renderLessonVisual(l){
     case "COMPARE": return renderCompareVisual(l.compareLeft, l.compareRight);
     case "THREEBOX": return renderThreeBoxVisual(l.boxes);
     case "STAT": return renderStatVisual(l.statNumber, l.statLabel);
+    case "PALETTE": return renderPaletteVisual(l.palette);
     default: return "";
   }
+}
+function renderPaletteVisual(palette){
+  return `<div class="lesson-palette">
+    ${palette.map(c=>`
+      <div class="palette-swatch">
+        <div class="palette-color" style="background:${c.hex};"></div>
+        <div class="palette-info">
+          <b>${esc(c.name)}</b>
+          <span>${esc(c.hex)}</span>
+          <p>${esc(c.use)}</p>
+        </div>
+      </div>`).join("")}
+  </div>`;
 }
 function renderQuadrantVisual(quadrants){
   return `<div class="lesson-quadrant">
@@ -7289,7 +8295,6 @@ function initTool(id){
   if(!body) return;
   if(id==="calendar") initCalendar(body);
   else if(id==="financial") initFinancial(body);
-  else if(id==="emailsim") initEmailSim(body);
   else if(id==="compliance9") initCompliance9(body);
   else if(id==="socialmedia10") initSocial10(body);
   else if(id==="dossier1") initDossier1(body);
@@ -7297,6 +8302,7 @@ function initTool(id){
   else if(id==="projectcompliance6") initProjectCompliance6(body);
   else if(id==="forcemultiplier2") initForceMultiplier2(body);
   else if(id==="accessincident8") initAccessIncident8(body);
+  else if(id==="coldcalling4") initColdCalling4(body);
 }
 
 async function bumpPracticeProgress(toolId, score){
@@ -7403,6 +8409,7 @@ async function initCalendar(body){
   toolState.calEdits = (await storeGet("calendar-edits")) || {};
   toolState.calCustomEvents = (await storeGet("calendar-custom")) || [];
   toolState.calBaseline = calFindConflicts(CAL_EVENTS).length; // conflicts before any edits, fixed for this session
+  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   renderCalendarBody(body);
 }
 
@@ -7422,8 +8429,10 @@ function renderCalendarBody(body){
       const bg = e.color || PRI_COLOR[e.p];
       return `<div class="cal-block ${isConflict?'conflict':''}" draggable="true"
                 ondragstart="calDragStart(event,${e.idx})"
-                style="top:${top}px;height:${h}px;background:${bg};" title="Drag to move · click the dot to recolor">
-        <input type="color" class="cal-color-input" value="${toHex(bg)}" onclick="event.stopPropagation()" onchange="calColorChange(${e.idx}, this.value)">
+                style="top:${top}px;height:${h}px;background:${bg};" title="Drag to move">
+        <div class="cal-color-picker" onclick="event.stopPropagation()">
+          ${Object.entries(PRI_COLOR).map(([p,hex])=>`<span class="cal-color-dot ${toHex(bg)===hex?'selected':''}" style="background:${hex};" onclick="calColorChange(${e.idx}, '${hex}')" title="${p}"></span>`).join("")}
+        </div>
         <button class="cal-move-btn" onclick="event.stopPropagation(); openMoveDialog(${e.idx})" title="Move this to a different day/time">⇄</button>
         <button class="cal-del-btn" onclick="event.stopPropagation(); calDeleteEvent(${e.idx})" title="Remove this event">✕</button>
         <b>${esc(e.t)}</b><span class="cal-sub">${e.loc!=="—"?esc(e.loc)+" · ":""}${esc(e.type)}</span>
@@ -7432,7 +8441,7 @@ function renderCalendarBody(body){
   }
 
   body.innerHTML = `
-    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly. Click the small dot to recolor, <b>✕</b> to remove an event entirely, or <b>+ Add Event</b> to schedule something new — including proactive tasks you spot are missing, like a debrief buffer or prep block. Nothing here is graded until you click Check My Plan.</p>
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly. Click one of the three priority-color dots to recolor, <b>✕</b> to remove an event entirely, or <b>+ Add Event</b> to schedule something new — including proactive tasks you spot are missing, like a debrief buffer or prep block. Nothing here is graded until you click Check My Plan.</p>
     <div class="legend-row">
       ${["High","Medium","Low"].map(p=>`<span class="legend-chip"><span class="sw" style="background:${PRI_COLOR[p]};"></span>${p} priority</span>`).join("")}
       <button class="btn btn-navy btn-sm" style="margin-left:auto;" onclick="openAddEventDialog()">+ Add Event</button>
@@ -7478,6 +8487,65 @@ function renderCalendarBody(body){
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Get a fresh, AI-generated read on the current calendar above and see what independent admin work it implies.</p>
     <button class="btn btn-orange btn-sm" onclick="generateProactiveTasks()">Generate Proactive Tasks</button>
     <div id="proactiveResult" style="margin-top:14px;"></div>
+
+    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">Travel Management, Start to Finish</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
+      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">Build this the way you'd build a real one: real flight-search screenshots (linked), real direct booking links, real venue photos, real proximity research. Vague placeholders will show up as vague in the review.</p>
+    </div>
+
+    <div class="card" style="padding:16px 18px;margin-bottom:16px;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Client Travel Preferences (reference)</h3>
+      <div class="pref-ref-grid">
+        <div><b>Seat</b><span>${esc(FLIGHT_PREFS.seat)}</span></div>
+        <div><b>Routing</b><span>${esc(FLIGHT_PREFS.routing)}</span></div>
+        <div><b>Redeye</b><span>${esc(FLIGHT_PREFS.redeye)}</span></div>
+        <div><b>Hotel</b><span>${esc(FLIGHT_PREFS.hotel)}</span></div>
+      </div>
+    </div>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the AI review checks whether your notes actually match Elias's stated preferences.</p>
+    <div id="legList">${renderLegs()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
+    <div id="hotelList">${renderHotels()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
+    <div id="groundList">${renderGroundTransport()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
+
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
+    <div id="stopList">${renderStops()}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addStop()">+ Add Stop</button>
+
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">ACT Practice — A Task Lands Mid-Planning</h3>
+      <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">While you're building this itinerary, David Reyes (Head of Litigation) emails you directly. Reply using the same <b>ACT</b> framework from Day 1 — Acknowledge, Clarify, Timeline.</p>
+      <div class="voice-note" style="background:var(--navy-deep);">
+        <span class="vn-time">David Reyes — 2:14 PM</span>
+        <p style="font-size:13px;color:#fff;margin:8px 0 0;line-height:1.6;">"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."</p>
+      </div>
+      <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your ACT email reply</label>
+      <textarea id="travelActDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Subject: ...&#10;&#10;David — ..."></textarea>
+      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewTravelActEmail()">Get AI Feedback</button>
+      <div id="travelActFeedback" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;">
+      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Review &amp; Export Travel Plan</h3>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm" id="travelReviewBtn" onclick="reviewItinerary()">Get AI Review</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download Travel Plan as PDF</button>
+      </div>
+      <div id="itinReview" style="margin-top:14px;"></div>
+    </div>
   `;
 }
 function toHex(c){
@@ -8364,9 +9432,9 @@ window.downloadTravelPdf = downloadTravelPdf;
 /* ============================================================
    5. CALL HANDLING STUDIO (embedded within Inbox Triage / Day 4)
    ============================================================ */
-function renderCallsSection(){
+function renderGatekeepingSection(letter){
   return `
-    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">D. Inbound Gatekeeping Practice</h3>
+    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">${letter}. Inbound Gatekeeping Practice</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Pick the response that best matches the gatekeeping technique in play.</p>
     ${CALL_SCENARIOS.map((s,i)=>`
       <div class="scenario-card">
@@ -8383,8 +9451,11 @@ function renderCallsSection(){
       </div>`).join("")}
     <button class="btn btn-primary" onclick="submitCalls()">Check My Responses</button>
     <div id="callsResult"></div>
-
-    <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">E. Prospective Client Intake Call Log</h3>
+  `;
+}
+function renderColdCallingSection(letter){
+  return `
+    <h3 style="margin:${letter==='A'?'0':'32px'} 0 10px;color:var(--navy);font-size:15px;">${letter}. Prospective Client Intake Call Log</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Reference opening line: <i>"Hi, I'm [Your Name] from [Firm]. I wanted to see if we could schedule a brief consultation to discuss [the matter you were referred about]."</i> Log your practice calls below.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
@@ -8418,6 +9489,46 @@ async function saveCallLog(){
   toast("Call log saved");
 }
 window.saveCallLog = saveCallLog;
+const LEAD_GEN_SCENARIO = {
+  text: "Thorne & Partners is opening a new practice area and wants to start building a pipeline of potential clients before the official launch. Elias has asked you to draft a real lead-generation plan — not just a call list."
+};
+function initColdCalling4(body){
+  toolState.calls = {};
+  body.innerHTML = renderColdCallingSection('A') + `
+    <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">${esc(LEAD_GEN_SCENARIO.text)}</p>
+    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Write your plan: at least 3 specific lead sources you'd actually use, your qualifying criteria (what makes a lead worth pursuing), and your first-contact approach.</p>
+    <textarea id="leadGenDraft" style="width:100%;min-height:160px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Lead sources...&#10;&#10;Qualifying criteria...&#10;&#10;First-contact approach..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewLeadGenPlan()">Get AI Feedback</button>
+    <div id="leadGenResult" style="margin-top:14px;"></div>
+  `;
+  loadCallLog();
+}
+async function reviewLeadGenPlan(){
+  const draft = document.getElementById("leadGenDraft").value.trim();
+  const el = document.getElementById("leadGenResult");
+  if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
+  el.innerHTML = `<div class="ai-loading">Reviewing your lead generation plan…</div>`;
+  const prompt = `You are evaluating a trainee Executive Assistant's lead-generation plan, for a legal-industry EA training program.
+
+SCENARIO: ${LEAD_GEN_SCENARIO.text}
+
+TRAINEE'S PLAN:
+${draft}
+
+Evaluate whether the plan: names at least 3 genuinely different, specific lead sources (not vague — "networking" alone isn't specific, "attend the state bar's real estate section quarterly mixer" is); defines real qualifying criteria (fit, need, authority, timeline — not just "good leads"); and describes a concrete, research-backed first-contact approach rather than a generic pitch. Give 4-5 short bullet points of feedback, then one overall verdict sentence.`;
+  try{
+    const feedback = await callAIText(prompt, 600);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("coldcalling4", 100);
+    burstConfetti();
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.reviewLeadGenPlan = reviewLeadGenPlan;
 async function loadCallLog(){
   const log = await storeGet("call-log");
   if(!log) return;
@@ -8450,21 +9561,13 @@ async function submitCalls(){
     <div class="card" style="padding:16px 20px;margin-top:14px;">
       <b style="color:var(--navy);">${correct} / ${total} correct (${score}%)</b>
     </div>`;
-  await bumpPracticeProgress("emailsim", score);
+  await bumpPracticeProgress("dossier1", score);
   if(score===100) burstConfetti();
 }
 window.submitCalls = submitCalls;
 async function downloadCallsPdf(){
   await ensureTraineeName();
-  const r = toolState.callsReport;
-  const lines = ["## Call Handling Studio", "---", "## A. Inbound Gatekeeping"];
-  if(r) lines.push(`Score: ${r.correct} / ${r.total} (${r.score}%)`);
-  CALL_SCENARIOS.forEach((s,i)=>{
-    const picked = toolState.calls[i];
-    lines.push(`${s.tag}: ${s.scn}`);
-    lines.push(`   Your answer: ${typeof picked==="number" ? s.opts[picked] : "(not answered)"}`);
-  });
-  lines.push("---", "## B. Prospective Client Intake Log");
+  const lines = ["## A. Cold-Calling Outreach Log"];
   COLD_LEADS.forEach((l,i)=>{
     const date=document.getElementById(`logDate${i}`)?.value||"";
     const outcome=document.getElementById(`logOutcome${i}`)?.value||"";
@@ -8473,7 +9576,9 @@ async function downloadCallsPdf(){
     lines.push(`${l.name} (${l.company}, ${l.phone})`);
     lines.push(`   Called: ${date||"—"}   Outcome: ${outcome||"—"}   Follow-up: ${followup||"—"}   Notes: ${notes||"—"}`);
   });
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Call Handling — Results", lines, "LSH_Call_Handling");
+  const leadGenDraft = document.getElementById("leadGenDraft");
+  lines.push("---", "## B. Lead Generation Practice", `Scenario: ${LEAD_GEN_SCENARIO.text}`, `Your plan: ${leadGenDraft && leadGenDraft.value.trim() ? leadGenDraft.value.trim() : "(not written)"}`);
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Cold-Calling & Lead Generation — Results", lines, "LSH_Cold_Calling");
 }
 window.downloadCallsPdf = downloadCallsPdf;
 
@@ -9041,7 +10146,348 @@ async function rejectTrainee(traineeId){
   toast("Rejected.");
   await loadAdminLedger();
 }
+async function confirmRevokeTrainee(traineeId, name){
+  if(!confirm(`Permanently revoke and delete ${name}'s registration? This removes their entire record — approval status and all saved progress — from the system. This cannot be undone; if they come back, they'll need to register fresh. Continue?`)) return;
+  await sharedDelete("trainee:"+traineeId);
+  toast(`Registration deleted for ${name}.`);
+  await loadAdminLedger();
+}
+window.confirmRevokeTrainee = confirmRevokeTrainee;
 window.rejectTrainee = rejectTrainee;
+/* ============================================================
+   ADMIN SOP REFERENCE — trainer-facing procedural reference,
+   transcribed from the full Upskill Training Guide SOP.
+   ============================================================ */
+const SOP_DATA = [
+  {
+    id: 1,
+    title: "Foundational Training",
+    introduction: "Welcome to LSH EA PA Upskill Training Day 1. My name is ___ and I am your upskill coach.",
+    objectives: [
+      "Understand the difference between EA and PA roles and where they overlap.",
+      "Identify the key skills, qualifications, and responsibilities of top-notch assistants.",
+      "Navigate typical work environments while maintaining professional standards and confidentiality."
+    ],
+    discussionInfo: { duration: "Approximately 1-2 hours", ppt: "EA PA Day 1", canvaLabel: "EA PA Day 1", video: "Video Discussion EA PA Day 1" },
+    topics: [
+      "Key Distinctions in Roles / EA vs PA Work Context",
+      "Communication Principles",
+      "Professional Standards & Confidentiality",
+      "Typical Work Environment",
+      "Boundary, Stress, Task Management and Strategic Thinking",
+      "Command Hierarchy for Legal / Executive Assistant"
+    ],
+    sections: [
+      { h: "Virtual Executive Assistant", type: "bullets", items: [
+        "A Virtual Executive Assistant delivers high-level business and operational support to executives, founders, and leadership teams within remote or hybrid environments.",
+        "Mindset: Strategic Partner",
+        "Primary Goal: Increase executive efficiency and business performance."
+      ]},
+      { h: "Virtual Personal Assistant", type: "bullets", items: [
+        "A Virtual Personal Assistant supports an individual's personal life management and daily logistics, often blending lifestyle coordination with administrative tasks.",
+        "Mindset: Personal Support Specialist",
+        "Primary Goal: Reduce personal stress and lessen time demands for executives."
+      ]},
+      { h: "Core Responsibilities — Virtual Executive Assistant", type: "bullets", items: [
+        "Executive calendar optimization across time zones",
+        "Email triage and executive-level communication drafting",
+        "Preparing agendas, reports, slide decks, and briefing notes",
+        "Coordinating virtual meetings, board calls, and webinars",
+        "Tracking action items and deadlines (project tools, CRMs)",
+        "Supporting legal, finance, HR workflows (NDAs, contracts, filings)",
+        "Vendor, stakeholder, and client liaison"
+      ]},
+      { h: "Core Responsibilities — Virtual Personal Assistant", type: "bullets", items: [
+        "Managing personal calendars and appointments",
+        "Travel booking and itinerary creation (personal trips)",
+        "Online shopping, subscriptions, and bill reminders",
+        "Household management and personal vendors",
+        "Managing personal email and correspondence",
+        "Event planning (birthdays, holidays, family gatherings)",
+        "Personal credit management"
+      ]},
+      { h: "Common Challenges of an EA / PA", type: "table", headers: ["Challenge", "EA", "PA"], rows: [
+        ["Vendor Issue", "Negotiates or escalates professionally", "Coordinates service resolution"],
+        ["Conflicting Meetings", "Reschedules based on business priority", "Confirms personal preference"],
+        ["Confidential Info", "Applies corporate confidentiality protocols", "Maintains personal discretion"],
+        ["Scope Creep", "Flags contract boundaries", "Seeks approval before acting"]
+      ]},
+      { h: "Professional Standards & Confidentiality", type: "table", headers: ["Executive Assistant", "Personal Assistant"], rows: [
+        ["Business confidentiality (contracts, IP, finances)", "Personal privacy and discretion"],
+        ["Compliance awareness (legal, HR, data privacy)", "Trust-based relationship management"],
+        ["Professional tone and executive presence", "Flexibility and adaptability"],
+        ["Proactive problem-solving", "Respect for personal boundaries; professional tone and executive presence"]
+      ]},
+      { h: "Key Distinctions in Roles", type: "table", headers: ["", "Executive Assistant", "Personal Assistant"], rows: [
+        ["Mindset", "Strategic partner to the Executive", "Service-focused, personal life facilitator"],
+        ["Decision Influence", "Advises, filters, escalates", "Supports preferences, implements requests"],
+        ["Tone", "Confident, brief, authoritative", "Warm, flexible, accommodating"],
+        ["Scope", "Business, operational, confidential", "Personal, lifestyle, household"],
+        ["Key Outcome", "Maximizes executive productivity", "Maximizes personal efficiency and peace of mind"]
+      ]},
+      { h: "Communication Principles — Executive Presence (EA)", type: "bullets", items: [
+        "Be neutral, concise, confident",
+        "Anticipate challenges and offer solutions",
+        "Protect executive time and priorities",
+        "Escalate with discretion",
+        "Speak on behalf of the executive, not yourself"
+      ]},
+      { h: "Key Phrases (EA)", type: "bullets", items: [
+        "\"The executive's schedule is fully committed.\"",
+        "\"I'll follow up on your request.\"",
+        "\"To maintain alignment with priorities, this request will need review.\"",
+        "\"I've escalated this for decision and will advise accordingly.\""
+      ]},
+      { h: "Communication Principles — Personal Support (PA)", type: "bullets", items: [
+        "Polite, empathetic, flexible",
+        "Offer options, not directives",
+        "Protect personal time, privacy, and routines",
+        "Calmly redirect repetitive or out-of-scope requests",
+        "Speak in alignment with the executive's personal preferences"
+      ]},
+      { h: "Key Phrases (PA)", type: "bullets", items: [
+        "\"They're unavailable at the moment. Can I relay your message or schedule a better time?\"",
+        "\"That's not something they can accommodate right now, but here's an alternative.\"",
+        "\"I'll make sure this gets handled according to their preferences.\""
+      ]},
+      { h: "Decision-Making & Boundaries — EA", type: "bullets", items: [
+        "Filter incoming requests before escalating",
+        "Know when to negotiate deadlines or delegate"
+      ]},
+      { h: "Example Scenario (EA)", type: "paragraph", text: "A client wants an urgent contract review. EA Response: \"The executive is currently in back-to-back meetings. Please submit the request in writing, and I'll flag it for review.\"" },
+      { h: "Decision-Making & Boundaries — PA", type: "bullets", items: [
+        "Honor personal preferences first",
+        "Offer alternatives instead of outright denials",
+        "Keep sensitive personal matters private"
+      ]},
+      { h: "Example Scenario (PA)", type: "paragraph", text: "A friend of the executive calls requesting a last-minute personal favor. PA Response: \"They're unavailable right now. I can check their schedule and propose a suitable time.\"" },
+      { h: "Executive Presence vs Personal Support in Action", type: "table", headers: ["Situation", "EA Response", "PA Response"], rows: [
+        ["Overbooked Schedule", "\"The executive is fully booked. I'll propose alternatives.\"", "\"They're not available right now. Can I suggest another time?\""],
+        ["Sensitive Request", "\"I cannot release that information. I'll escalate internally.\"", "\"That's private. I can assist with logistics if needed.\""],
+        ["Persistent Caller", "\"Please submit the request in writing; I'll review priority.\"", "\"I'll take a message and follow up as soon as possible.\""]
+      ]},
+      { h: "Typical Work Environment", type: "paragraph", text: "Executive Assistants (EAs), Personal Assistants (PAs), and Virtual Assistants (VAs) operate in fast-paced, high-responsibility environments that require discretion, adaptability, and strong organizational skills. The work setting may vary, but expectations remain consistently high." },
+      { h: "Common Work Settings", type: "bullets", items: [
+        "Corporate offices (C-suite, senior leadership teams)",
+        "Law firms, medical practices, or professional services firms",
+        "Remote or hybrid environments supporting executives across time zones",
+        "Entrepreneurial or startup settings with evolving structures",
+        "Private households (primarily for PAs)"
+      ]},
+      { h: "Work Conditions & Dynamics", type: "bullets", items: [
+        "High confidentiality handling sensitive legal, financial, and personal information",
+        "Time-sensitive tasks requiring rapid prioritization and decision-making",
+        "Multi-tasking environment balancing competing deadlines and stakeholders",
+        "Direct executive interaction, often acting as a gatekeeper or proxy",
+        "Irregular hours may occur due to travel, urgent requests, or global operations"
+      ]},
+      { h: "Tools & Technology", type: "bullets", items: [
+        "Calendar and scheduling platforms (Outlook, Google Workspace)",
+        "Communication tools (Slack, Teams, Zoom)",
+        "Document management systems (SharePoint, Clio, iManage, Google Drive)",
+        "Project and task management tools (Asana, Trello, ClickUp)"
+      ]},
+      { h: "Professional Expectations", type: "bullets", items: [
+        "Executive presence and polished communication",
+        "Proactive problem-solving and anticipation of needs",
+        "Ability to work independently with minimal supervision",
+        "Strong attention to detail under pressure"
+      ]},
+      { h: "EA vs PA — Full Comparison", type: "table", headers: ["Category", "Executive Assistant (EA)", "Personal Assistant (PA)"], rows: [
+        ["Primary Setting", "Corporate, professional, or organizational environment", "Private, personal, or blended personal-business environment"],
+        ["Who They Support", "C-suite executives, partners, directors, senior leadership", "Individuals, entrepreneurs, high-net-worth clients, public figures"],
+        ["Work Focus", "Business operations, executive-level support, organizational efficiency", "Personal life management with some business support"],
+        ["Formality Level", "High — structured, professional, policy-driven", "Moderate to flexible — varies by client lifestyle"],
+        ["Confidentiality Scope", "Corporate, legal, financial, HR, strategic information", "Personal, family, financial, health, lifestyle information"],
+        ["Work Location", "Office-based, hybrid, or fully remote", "On-site (home, travel) or hybrid"],
+        ["Schedule Predictability", "Generally structured business hours with occasional overtime", "Variable hours, on-call availability more common"],
+        ["Decision-Making Role", "Acts as executive proxy; filters information and priorities", "Acts as personal representative; handles day-to-day decisions"],
+        ["Stakeholder Interaction", "Internal teams, boards, clients, legal and finance professionals", "Family members, household staff, vendors, service providers"],
+        ["Tools & Systems", "Corporate systems (Outlook, Teams, SharePoint, CRM, DMS)", "Personal tools (shared calendars, lifestyle apps, vendor platforms)"],
+        ["Travel Involvement", "Business travel coordination and logistics", "Personal and family travel planning and coordination"],
+        ["Performance Expectations", "Strategic thinking, business judgment, executive presence", "Discretion, flexibility, lifestyle management, responsiveness"]
+      ]},
+      { h: "EA vs PA Work Context", type: "paragraph", text: "Executive Assistants (EAs) and Personal Assistants (PAs) both function as trusted extensions of the individuals they support. However, the environment in which that trust operates — and the consequences attached to it — are fundamentally different." },
+      { h: "Executive Assistants — Organizational Context", type: "table", headers: ["Dimension", "Detail"], rows: [
+        ["Organizational Authority & Governance", "EAs operate within formal organizational systems. Their authority is derived from the executive's position inside a company or institution."],
+        ["Governance-Driven Environment", "EAs must comply with corporate policies, legal regulations, industry standards, and internal controls. Decisions are shaped by company risk tolerance, compliance obligations, and documented procedures."],
+        ["Institutional Impact", "Errors or breaches may result in legal exposure, regulatory penalties, financial loss, reputational damage, or internal disciplinary action — not just for the executive, but for the organization as a whole."],
+        ["Proxy Authority", "EAs often act as a gatekeeper or representative, managing access, prioritizing communications, and making judgment calls that affect teams, budgets, contracts, and strategic initiatives."],
+        ["Structured Accountability", "Actions are traceable through systems, audits, email records, and approvals. Documentation and precision are essential."]
+      ]},
+      { h: "Personal Assistants — Personal Trust Context", type: "table", headers: ["Dimension", "Detail"], rows: [
+        ["Personal Trust & Lifestyle Management", "PAs operate within a personal trust framework, where authority is granted directly by the individual rather than an organization."],
+        ["Trust-Based Discretion", "PAs handle intimate, highly personal matters — family logistics, finances, health-related coordination, travel, and private communications — often without formal policies or oversight."],
+        ["Lifestyle Continuity", "The PA's role is to ensure the principal's life runs smoothly. Mistakes can disrupt personal safety, privacy, family relationships, or public image."],
+        ["Informal Authority", "Decisions are often made quickly, based on judgment, familiarity with preferences, and real-time needs rather than written procedures."],
+        ["Relational Consequences", "Errors may not trigger lawsuits or audits but can irreparably damage trust, leading to immediate termination or reputational harm within private circles."]
+      ]},
+      { h: "Why the Context and Consequences Differ", type: "table", headers: ["Aspect", "EA", "PA"], rows: [
+        ["Source of Authority", "Organizational role", "Personal delegation"],
+        ["Primary Risk", "Legal, financial, regulatory", "Privacy, safety, trust"],
+        ["Oversight", "Formal, documented", "Informal, relational"],
+        ["Consequence of Error", "Institutional impact", "Personal impact"],
+        ["Success Metric", "Organizational efficiency", "Lifestyle stability"]
+      ]},
+      { h: "The Spectrum Concept", type: "bullets", items: [
+        "Executive Assistants (EAs) and Personal Assistants (PAs) operate along a continuum of support, not a strict divide.",
+        "Understanding operational boundaries is critical to risk management, role clarity, and professional sustainability.",
+        "Rather than viewing EA and PA roles as binary, it is more accurate to see them on a spectrum of authority and responsibility."
+      ]},
+      { h: "Movement Along the Spectrum Is Influenced By", type: "bullets", items: [
+        "The executive's role and lifestyle",
+        "Organizational maturity",
+        "Trust level and tenure",
+        "Legal, regulatory, and privacy constraints"
+      ]},
+      { h: "Core Operational Boundaries", type: "paragraph", text: "Executive Assistants (EAs) work within organizational systems, with their primary authority derived from job descriptions, corporate governance, and executive delegation according to company policy." },
+      { h: "Typical Boundaries: EA", type: "bullets", items: [
+        "Managing business calendar, meetings, and travel",
+        "Overseeing corporate communications and inbox",
+        "Tracking budgets, approvals, and expenses",
+        "Coordinating legal, HR, and compliance matters",
+        "Interacting with board, investors, and stakeholders"
+      ]},
+      { h: "Hard Stops for EAs", type: "bullets", items: [
+        "Personal financial management (unless formally authorized)",
+        "Family or household matters",
+        "Health decisions beyond scheduling/logistics",
+        "Tasks that bypass company policy or legal safeguards"
+      ]},
+      { h: "Personal Assistant (PA) Boundary Zone", type: "paragraph", text: "PAs operate inside personal trust frameworks. Primary authority comes from direct personal delegation, relationship-based trust, and lifestyle and privacy needs." },
+      { h: "Typical Boundaries: PA", type: "bullets", items: [
+        "Personal and family scheduling",
+        "Household management and staffing",
+        "Personal travel, events, and lifestyle logistics",
+        "Private vendor and service coordination",
+        "Confidential personal communications"
+      ]},
+      { h: "Hard Stops for PAs", type: "bullets", items: [
+        "Corporate decision-making authority",
+        "Contract execution without legal oversight",
+        "Actions that expose the principal to legal or tax risk",
+        "Representing the individual in regulated business contexts"
+      ]},
+      { h: "Hybrid Zone (Most Common in Reality)", type: "bullets", items: [
+        "Many modern roles fall in the hybrid EA/PA zone, especially with founders, entrepreneurs, and high-net-worth individuals."
+      ]},
+      { h: "Hybrid Role Characteristics", type: "bullets", items: [
+        "Blended business and personal calendars",
+        "Travel that combines business and family needs",
+        "Informal decision-making with high discretion",
+        "Limited formal documentation of authority"
+      ]},
+      { h: "Risk Indicators in Hybrid Roles", type: "bullets", items: [
+        "Undefined spending authority",
+        "No written scope or escalation protocol",
+        "Handling personal matters using corporate systems",
+        "Blurred data privacy and record-keeping"
+      ]},
+      { h: "Business Scope Examples", type: "bullets", items: [
+        "Scheduling executive meetings",
+        "Managing corporate correspondence",
+        "Preparing reports",
+        "Tracking expenses within company policy"
+      ]},
+      { h: "Examples of Personal Scope", type: "bullets", items: [
+        "Arranging travel",
+        "Managing family calendars",
+        "Coordinating household staff",
+        "Running personal errands"
+      ]},
+      { h: "Why Defining Scope Matters", type: "bullets", items: [
+        "Defining scope is essential for effective boundary management. It prevents confusion and errors by clarifying the distinction between personal and professional tasks, reducing potential legal risks.",
+        "Clear scope is essential as it prevents overlap, minimizes mistakes, and ensures the assistant works confidently within their authority. It also safeguards against miscommunication and boundary overstepping for both the executive and assistant."
+      ]},
+      { h: "Implementation Tips: Scope", type: "bullets", items: [
+        "Use written agreements, checklists, or SOPs.",
+        "Regularly review responsibilities to adapt to role changes or evolving trust."
+      ]},
+      { h: "Practical Examples: Scope", type: "bullets", items: [
+        "EA: Approving vendor invoices under $500 and escalating larger amounts.",
+        "PA: Booking personal travel within a budget and notifying the principal of excess expenses."
+      ]},
+      { h: "Authorization Protocols", type: "paragraph", text: "Authorization protocols define the limits of an assistant's decision-making and spending without executive approval, ensuring compliance and safeguarding assets. Proper authorization prevents financial misuse and errors while fostering trust by showing assistants understand their limits." },
+      { h: "Implementation Tips: Authorization", type: "bullets", items: [
+        "Document approval limits, establish clear escalation steps, and train assistants on when to pause or seek guidance."
+      ]},
+      { h: "Practical Examples: Authorization", type: "bullets", items: [
+        "Maintain separate calendars for business and family events.",
+        "Keep corporate files on approved drives and personal documents in a private folder or cloud."
+      ]},
+      { h: "System Separation", type: "paragraph", text: "Blurring personal and professional boundaries in hybrid roles poses risks. Maintaining separation reduces errors, protects privacy, and ensures compliance with organizational policies and data regulations. Mixing systems can cause privacy breaches, accidental leaks, and regulatory violations. It also helps assistants operate efficiently without context confusion." },
+      { h: "Implementation Tips: System Separation", type: "bullets", items: [
+        "Regularly audit systems, avoid forwarding personal info via corporate email, and password-protect sensitive personal accounts."
+      ]},
+      { h: "Practical Examples: System Separation", type: "bullets", items: [
+        "EA: A contract requires executive approval before signing.",
+        "PA: A personal vendor requests access to financial accounts; escalate to principal before action."
+      ]}
+    ]
+  }
+];
+
+function renderAdminSOP(){
+  const day = state.sopDay || 1;
+  const d = SOP_DATA.find(x=>x.id===day);
+  const availableDays = SOP_DATA.map(x=>x.id);
+  return `
+    <p class="eyebrow">Admin — Reference</p>
+    <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">SOP Reference</h1>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">The full trainer-facing Upskill Training Guide SOP, transcribed for in-app reference. Trainee-facing lesson content lives in each Day's own page — this is the underlying trainer script and detail behind it.</p>
+
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">
+      ${Array.from({length:10},(_,i)=>i+1).map(n=>{
+        const has = availableDays.includes(n);
+        return `<button class="btn btn-sm ${n===day?'btn-navy':'btn-ghost'}" ${has?'':'disabled title="Not yet added"'} onclick="setSopDay(${n})">Day ${n}${has?'':' (soon)'}</button>`;
+      }).join("")}
+    </div>
+
+    ${d ? renderSopDayContent(d) : `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">Day ${day}'s SOP content hasn't been added yet.</div>`}
+  `;
+}
+function renderSopDayContent(d){
+  return `
+    <div class="card" style="padding:22px 26px;margin-bottom:18px;">
+      <div style="font-size:12px;color:var(--orange);font-weight:700;letter-spacing:.04em;text-transform:uppercase;">Day ${d.id}</div>
+      <h2 style="color:var(--navy);margin:4px 0 14px;">${esc(d.title)}</h2>
+      <div style="background:#F8F9FC;border-radius:10px;padding:14px 16px;margin-bottom:16px;">
+        <p style="font-size:13px;font-style:italic;color:#37394A;margin:0;">"${esc(d.introduction)}"</p>
+      </div>
+      <b style="font-size:12.5px;color:var(--navy);">Objectives — by the end of this session, participants will be able to:</b>
+      <ul style="margin:6px 0 14px;padding-left:20px;">
+        ${d.objectives.map(o=>`<li style="font-size:13px;margin-bottom:4px;">${esc(o)}</li>`).join("")}
+      </ul>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-soft);margin-bottom:14px;">
+        <span><b>Duration:</b> ${esc(d.discussionInfo.duration)}</span>
+        <span><b>PPT:</b> ${esc(d.discussionInfo.ppt)}</span>
+        <span><b>Canva:</b> ${esc(d.discussionInfo.canvaLabel)}</span>
+        <span><b>Video:</b> ${esc(d.discussionInfo.video)}</span>
+      </div>
+      <b style="font-size:12.5px;color:var(--navy);">Today we will discuss:</b>
+      <ul style="margin:6px 0 0;padding-left:20px;">
+        ${d.topics.map(t=>`<li style="font-size:13px;margin-bottom:4px;">${esc(t)}</li>`).join("")}
+      </ul>
+    </div>
+    ${d.sections.map(renderSopSection).join("")}
+  `;
+}
+function renderSopSection(s){
+  let body = "";
+  if(s.type==="bullets"){
+    body = `<ul style="margin:0;padding-left:20px;">${s.items.map(i=>`<li style="font-size:13px;margin-bottom:5px;">${esc(i)}</li>`).join("")}</ul>`;
+  }else if(s.type==="paragraph"){
+    body = `<p style="font-size:13px;margin:0;line-height:1.55;">${esc(s.text)}</p>`;
+  }else if(s.type==="table"){
+    body = `<div style="overflow-x:auto;"><table class="log-table"><thead><tr>${s.headers.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${s.rows.map(r=>`<tr>${r.map(c=>`<td style="font-size:12.5px;">${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  }
+  return `
+    <div class="card" style="padding:16px 20px;margin-bottom:12px;">
+      <h3 style="font-size:14.5px;color:var(--navy);margin:0 0 10px;">${esc(s.h)}</h3>
+      ${body}
+    </div>`;
+}
+
 function renderAdmin(){
   if(!state.isAdmin){
     return `
@@ -9051,8 +10497,16 @@ function renderAdmin(){
         <p style="color:var(--ink-soft);font-size:14px;">Use the Admin button in the top navigation to sign in.</p>
       </div>`;
   }
+  const tab = state.adminTab || "audit";
+  const tabBar = `
+    <div style="display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line);">
+      <button class="admin-tab-btn ${tab==='audit'?'active':''}" onclick="setAdminTab('audit')">Trainee Audit</button>
+      <button class="admin-tab-btn ${tab==='sop'?'active':''}" onclick="setAdminTab('sop')">SOP Reference</button>
+    </div>`;
+  if(tab==="sop") return tabBar + renderAdminSOP();
+
   if(state.adminLoading || !state.adminData){
-    return `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
+    return tabBar + `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
   }
 
   const sort = state.adminSort || "completion_desc";
@@ -9065,7 +10519,7 @@ function renderAdmin(){
   })();
   const fullyDone = state.adminData.filter(r=>adminDayStats(r).done===DAYS.length).length;
 
-  return `
+  return tabBar + `
     <p class="eyebrow">Admin Dashboard</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Audit</h1>
     <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Lightweight session access, not secure authentication — see the note behind the Admin login. Data reflects what's been synced from each trainee's device.</p>
@@ -9080,7 +10534,7 @@ function renderAdmin(){
     ${renderPendingApprovalsPanel()}
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
         <input type="text" id="adminSearchInput" placeholder="Search by name…" value="${esc(state.adminSearch||"")}" oninput="setAdminSearch(this.value)"
                style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;min-width:200px;">
         <select onchange="setAdminSort(this.value)" style="padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;">
@@ -9090,8 +10544,13 @@ function renderAdmin(){
           <option value="name_asc" ${sort==="name_asc"?"selected":""}>Sort: Name (A–Z)</option>
           <option value="recent" ${sort==="recent"?"selected":""}>Sort: Most recently active</option>
         </select>
+        ${renderBatchFilter()}
+        <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-soft);cursor:pointer;">
+          <input type="checkbox" ${state.adminShowArchived?"checked":""} onchange="setAdminShowArchived(this.checked)"> Show archived
+        </label>
       </div>
       <div style="display:flex;gap:8px;">
+        ${state.adminBatchFilter ? `<button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="confirmArchiveBatch('${esc(state.adminBatchFilter)}')">📦 Archive This Batch</button>` : ""}
         <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
         <button class="btn btn-navy btn-sm" onclick="downloadCohortPdf()">⬇ Download Cohort Report</button>
         <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Log out</button>
@@ -9100,6 +10559,15 @@ function renderAdmin(){
 
     <div id="adminRowsWrap">${renderAdminRows()}</div>
   `;
+}
+function renderBatchFilter(){
+  const batches = Array.from(new Set(state.adminData.map(r=>r.batch).filter(Boolean))).sort();
+  if(!batches.length) return "";
+  return `
+    <select onchange="setAdminBatchFilter(this.value)" style="padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;">
+      <option value="">All batches</option>
+      ${batches.map(b=>`<option value="${esc(b)}" ${state.adminBatchFilter===b?"selected":""}>${esc(b)}</option>`).join("")}
+    </select>`;
 }
 
 async function downloadCohortPdf(){
@@ -9118,6 +10586,8 @@ function renderAdminRows(){
   const search = (state.adminSearch||"").toLowerCase();
   const sort = state.adminSort || "completion_desc";
   let rows = state.adminData.filter(r=>!search || (r.name||"").toLowerCase().includes(search));
+  if(!state.adminShowArchived) rows = rows.filter(r=>!r.archived);
+  if(state.adminBatchFilter) rows = rows.filter(r=>r.batch===state.adminBatchFilter);
   rows = rows.map(r=>({rec:r, day:adminDayStats(r), practice:adminPracticeStats(r)}));
   const sorters = {
     completion_desc: (a,b)=>b.day.done-a.day.done,
@@ -9143,18 +10613,68 @@ function renderAdminRow(rec, day, practice){
     <div style="border-bottom:1px solid var(--line);">
       <div style="display:grid;grid-template-columns:1fr 110px 110px 110px 140px auto;gap:12px;align-items:center;padding:14px 18px;">
         <div>
-          <b style="color:var(--navy);font-size:13.5px;">${esc(rec.name||"Unnamed")}</b>
-          <div style="font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';">${esc(rec.id)}</div>
+          <b style="color:var(--navy);font-size:13.5px;">${esc(rec.name||"Unnamed")}</b>${rec.archived?' <span style="font-size:10px;color:var(--ink-soft);">(archived)</span>':''}
+          <div style="font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';">${esc(rec.id)}${rec.batch?` · ${esc(rec.batch)}`:''}</div>
         </div>
         <div style="font-size:13px;">${day.done} / ${day.total} days</div>
         <div style="font-size:13px;">${day.avg}% avg</div>
         <div style="font-size:13px;">${practice.runs} runs</div>
         <div style="font-size:11.5px;color:var(--ink-soft);">${rec.lastActive?fmtDate(rec.lastActive):"—"}</div>
-        <button class="btn btn-sm btn-ghost" onclick="toggleAdminDetail('${rec.id}')">${expanded?"Hide":"View"} Detail</button>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-sm btn-ghost" onclick="toggleAdminDetail('${rec.id}')">${expanded?"Hide":"View"} Detail</button>
+          <button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee('${rec.id}', '${esc(rec.name||"this trainee").replace(/'/g,"\\'")}')">Revoke</button>
+        </div>
       </div>
       ${expanded?renderAdminDetail(rec):""}
     </div>`;
 }
+
+async function generateAiReview(traineeId){
+  const btnWrap = document.getElementById("aiReviewWrap-"+traineeId);
+  if(btnWrap) btnWrap.innerHTML = `<div class="ai-loading">Generating AI review…</div>`;
+  const rec = await sharedGet("trainee:"+traineeId);
+  if(!rec) return;
+  const dp = rec.dayProgress||{};
+  const pp = rec.practiceProgress||{};
+  const dayLines = DAYS.map(d=>{
+    const p = dp[d.id];
+    return `Day ${d.id} (${d.title}): ${p ? (p.done?`${p.score}% — completed`:`${p.score}% — not yet passing`) : "not started"}`;
+  }).join("\n");
+  const practiceLines = PRACTICE_TOOLS.map(t=>{
+    const p = pp[t.id];
+    return `${t.title}: ${p ? `${p.runs} run(s), best score ${p.bestScore||0}%` : "not attempted"}`;
+  }).join("\n");
+  const prompt = `You are writing a trainer-style performance evaluation for an Executive Assistant / Personal Assistant trainee, based on their actual training data below. Match the tone and structure of a real internal trainer review — specific, evidence-based, and grounded only in the data given (don't invent specifics that aren't supported by it).
+
+TRAINEE: ${rec.name}
+
+DAY-BY-DAY KNOWLEDGE CHECK SCORES:
+${dayLines}
+
+PRACTICE LAB RESULTS:
+${practiceLines}
+
+Return ONLY a JSON object with this exact shape, no other text:
+{
+  "strength": "2-4 sentences on their clearest strengths, grounded in which days/tools they excelled at",
+  "challenges": "2-4 sentences on where they struggled or have gaps, grounded in low scores or unattempted work",
+  "ratings": {"triage": <1-5 integer>, "communication": <1-5 integer>, "technical": <1-5 integer>},
+  "redFlag": "a specific concern if the data warrants one (e.g. large gaps, very low scores, many unattempted days), or the literal string 'None' if nothing stands out",
+  "endorsement": "one of exactly: 'Highly Endorsed', 'Endorsed', 'Specific Area to Improve', 'Not Yet Endorsed'"
+}`;
+  try{
+    const review = await callAIJson(prompt, 700);
+    review.generatedAt = new Date().toISOString();
+    rec.aiReview = review;
+    await sharedSet("trainee:"+traineeId, rec);
+    if(btnWrap) btnWrap.innerHTML = renderAiReviewBlock(rec);
+    const idx = state.adminData.findIndex(r=>r.id===traineeId);
+    if(idx!==-1) state.adminData[idx] = rec;
+  }catch(e){
+    if(btnWrap) btnWrap.innerHTML = `<div class="ai-result ai-error"><b>Couldn't generate review</b><div class="ai-result-body">Check your connection and try again.</div></div><button class="btn btn-sm btn-navy" style="margin-top:10px;" onclick="generateAiReview('${traineeId}')">Try Again</button>`;
+  }
+}
+window.generateAiReview = generateAiReview;
 
 function renderAdminDetail(rec){
   const dp = rec.dayProgress||{};
@@ -9193,9 +10713,41 @@ function renderAdminDetail(rec){
             ${s.stored && s.dataUrl ? `<a href="${s.dataUrl}" download="${esc(s.fileName)}" class="btn btn-sm btn-ghost">Download</a>` : `<span style="color:var(--ink-soft);font-size:11px;">Too large to store — filename on record only</span>`}
           </div>`).join("")}
       </div>` : ""}
+
+      <div style="margin-top:16px;">
+        <div class="sidebar-section-lbl" style="padding-left:0;">AI-Generated Ranking &amp; Review</div>
+        <div id="aiReviewWrap-${esc(rec.id)}">${renderAiReviewBlock(rec)}</div>
+      </div>
     </div>`;
 }
-
+function renderAiReviewBlock(rec){
+  const r = rec.aiReview;
+  const btnLabel = r ? "Regenerate AI Review" : "Generate AI Review";
+  return `
+    ${r ? `
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:8px;">Generated ${fmtDate(r.generatedAt)} from Day scores and Practice Lab results.</div>
+      <div style="display:grid;gap:10px;">
+        <div><b style="font-size:12.5px;color:var(--navy);">Strength</b><p style="font-size:12.5px;margin:4px 0 0;">${esc(r.strength)}</p></div>
+        <div><b style="font-size:12.5px;color:var(--navy);">Challenges</b><p style="font-size:12.5px;margin:4px 0 0;">${esc(r.challenges)}</p></div>
+        <div>
+          <b style="font-size:12.5px;color:var(--navy);">General Attribute Rating</b>
+          <div style="font-size:12.5px;margin:4px 0 0;">
+            Executive Triage &amp; Problem Solving: ${starString(r.ratings.triage)}<br>
+            Communication &amp; Discretion: ${starString(r.ratings.communication)}<br>
+            Technical / Workflow Execution: ${starString(r.ratings.technical)}
+          </div>
+        </div>
+        <div><b style="font-size:12.5px;color:var(--navy);">Red Flag</b><p style="font-size:12.5px;margin:4px 0 0;">${esc(r.redFlag)}</p></div>
+        <div><b style="font-size:12.5px;color:var(--navy);">Endorsement</b><p style="font-size:12.5px;margin:4px 0 0;font-weight:600;color:var(--navy);">${esc(r.endorsement)}</p></div>
+      </div>
+    ` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">No AI review generated yet.</p>`}
+    <button class="btn btn-sm btn-navy" style="margin-top:10px;" onclick="generateAiReview('${esc(rec.id)}')">${btnLabel}</button>
+  `;
+}
+function starString(n){
+  n = Math.max(0, Math.min(5, Math.round(n||0)));
+  return "★".repeat(n) + "☆".repeat(5-n);
+}
 function refreshAdminRows(){
   const wrap = document.getElementById("adminRowsWrap");
   if(wrap) wrap.innerHTML = renderAdminRows();
@@ -9209,6 +10761,26 @@ function setAdminSearch(v){ state.adminSearch=v; refreshAdminRows(); }
 window.setAdminSearch = setAdminSearch;
 function setAdminSort(v){ state.adminSort=v; refreshAdminRows(); }
 window.setAdminSort = setAdminSort;
+function setAdminBatchFilter(v){ state.adminBatchFilter=v; render(); }
+window.setAdminBatchFilter = setAdminBatchFilter;
+function setAdminShowArchived(v){ state.adminShowArchived=v; render(); }
+window.setAdminShowArchived = setAdminShowArchived;
+function setAdminTab(t){ state.adminTab=t; render(); }
+window.setAdminTab = setAdminTab;
+function setSopDay(d){ state.sopDay=d; render(); }
+window.setSopDay = setSopDay;
+async function confirmArchiveBatch(batch){
+  const members = state.adminData.filter(r=>r.batch===batch && !r.archived);
+  if(!members.length){ toast("Nothing to archive in this batch."); return; }
+  if(!confirm(`Archive all ${members.length} trainee(s) in batch "${batch}"? They'll be hidden from the default view but their data and AI reviews are kept — check "Show archived" to see them again.`)) return;
+  for(const rec of members){
+    rec.archived = true;
+    await sharedSet("trainee:"+rec.id, rec);
+  }
+  toast(`Batch "${batch}" archived (${members.length} trainee(s)).`);
+  await loadAdminLedger();
+}
+window.confirmArchiveBatch = confirmArchiveBatch;
 function refreshAdminData(){ state.adminData=null; render(); }
 window.refreshAdminData = refreshAdminData;
 
@@ -9237,6 +10809,7 @@ function esimAvatar(from){
 
 async function initEmailSim(body){
   const savedInteractions = (await storeGet("inbox-interactions")) || {};
+  toolState.esimContainerId = body.id || "toolBody";
   toolState.esim = {
     replies: savedInteractions.replies || {}, archived: savedInteractions.archived || {}, reported: savedInteractions.reported || {},
     linkClicked: savedInteractions.linkClicked || {}, unread:{}, starred: savedInteractions.starred || {}, replyOpen:{},
@@ -9245,8 +10818,6 @@ async function initEmailSim(body){
     failReason:null, selected:0, report:null, securityScore:null, filingScore:null
   };
   toolState.iz = {inbox:[], placements:{}, hasSimulatedFailure:false};
-  toolState.calls = {};
-  loadCallLog();
   EMAIL_SIM_MESSAGES.forEach((_,i)=>{ if(!(i in toolState.esim.replies) && !toolState.esim.archived[i] && !toolState.esim.reported[i]) toolState.esim.unread[i] = true; });
   toolState.esim.labels = (await storeGet("inbox-labels")) || LABEL_LEGEND.map((l,i)=>({id:"default_"+i, name:l.label, parentId:null, color:l.color}));
   toolState.esim.filing = (await storeGet("inbox-filing")) || {};
@@ -9313,7 +10884,7 @@ function renderEsimBody(body){
       <button class="btn btn-primary" onclick="initEmailSim(document.getElementById('toolBody'))">Try Again</button>
       <button class="btn btn-ghost" onclick="downloadEmailSimPdf()">⬇ Download Report</button>
     `;
-    bumpPracticeProgress("emailsim", 0);
+    bumpPracticeProgress("forcemultiplier2", 0);
     return;
   }
 
@@ -9366,7 +10937,6 @@ function renderEsimBody(body){
     </div>
     <button class="btn btn-primary" style="margin-top:16px;" onclick="finishEmailSim()">Finish &amp; Get Evaluation</button>
     ${renderInboxZeroSection()}
-    ${renderCallsSection()}
   `;
 }
 
@@ -9406,7 +10976,7 @@ function renderAddLabelRow(parentId){
     </div>`;
 }
 function refreshEsimSidebar(){
-  renderEsimBody(document.getElementById("toolBody"));
+  renderEsimBody(document.getElementById(toolState.esimContainerId));
 }
 function startAddLabel(parentId){
   toolState.esim.addingUnder = parentId;
@@ -9610,7 +11180,7 @@ function clickEsimLink(i){
     reason:`You clicked the link in "${EMAIL_SIM_MESSAGES[i].subj}" — a simulated phishing email. In a real scenario this could have installed malware or handed over your credentials.`
   };
   toolState.esim.phase = "failed";
-  renderEsimBody(document.getElementById("toolBody"));
+  renderEsimBody(document.getElementById(toolState.esimContainerId));
 }
 window.clickEsimLink = clickEsimLink;
 
@@ -9624,7 +11194,7 @@ function sendEsimReply(i){
       reason:`Your reply to "${m.subj}" included sensitive information (account/routing details, a password, or similar). A real attacker would now have exactly what they were after.`
     };
     toolState.esim.phase = "failed";
-    renderEsimBody(document.getElementById("toolBody"));
+    renderEsimBody(document.getElementById(toolState.esimContainerId));
     return;
   }
   toolState.esim.replies[i] = text;
@@ -9660,7 +11230,7 @@ async function finishEmailSim(){
   await ensureTraineeName();
   const e = toolState.esim;
   e.phase = "evaluating";
-  renderEsimBody(document.getElementById("toolBody"));
+  renderEsimBody(document.getElementById(toolState.esimContainerId));
 
   let filingCorrect = 0;
   EMAIL_SIM_MESSAGES.forEach((m,i)=>{
@@ -9707,9 +11277,9 @@ Keep it concise — a handful of bullets per section — and end with one overal
   }
   e.phase = "evaluated";
   const overall = Math.round((e.filingScore + e.securityScore)/2);
-  await bumpPracticeProgress("emailsim", overall);
+  await bumpPracticeProgress("forcemultiplier2", overall);
   if(overall===100) burstConfetti();
-  renderEsimBody(document.getElementById("toolBody"));
+  renderEsimBody(document.getElementById(toolState.esimContainerId));
 }
 window.finishEmailSim = finishEmailSim;
 
@@ -9879,7 +11449,7 @@ async function izSubmitSort(){
           <div class="iz-preview">You placed: <b>${esc(IZ_QUAD_LABELS[placements[e.id]])}</b> &middot; Expert triage: <b>${esc(IZ_QUAD_LABELS[e.idealQuadrant])}</b></div>
         </div>`).join("") : `<p class="iz-empty">Perfect match on every email.</p>`}
     </div>`;
-  await bumpPracticeProgress("emailsim", score);
+  await bumpPracticeProgress("forcemultiplier2", score);
   if(score===100) burstConfetti();
 }
 window.izSubmitSort = izSubmitSort;
@@ -10538,10 +12108,62 @@ function initCompliance9(body){
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC9Review(this)">Get AI Feedback</button>
     <div id="c9ReviewResult" style="margin-top:10px;"></div>
 
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">D. Awards &amp; Recognition Deadline Tracker</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Today's date for this exercise is treated as March 15. For each award below, decide: still time to apply, or the deadline has already passed.</p>
+    <div class="card" style="padding:14px 16px;overflow-x:auto;">
+      <table class="log-table">
+        <thead><tr><th>Award</th><th>Deadline</th><th>Your Call</th></tr></thead>
+        <tbody>
+          ${AWARDS_TRACKER.map((a,i)=>`
+            <tr>
+              <td>${esc(a.name)}</td><td>${esc(a.deadline)}</td>
+              <td>
+                <select onchange="setC9Award(${i}, this.value)">
+                  <option value="">Choose&hellip;</option>
+                  <option value="Apply Now">Apply Now</option>
+                  <option value="Deadline Passed">Deadline Passed</option>
+                </select>
+              </td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Awards()">Check Awards Tracker</button>
+    <div id="c9AwardsResult" style="margin-top:8px;font-size:13px;"></div>
+
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadCompliance9Pdf()">⬇ Download My Work</button>
-    ${renderCrisisRoleplaySection("compliance9", "D. Live Crisis Roleplay — Compliance & Reputation")}
+    ${renderCrisisRoleplaySection("compliance9", "E. Live Crisis Roleplay — Compliance & Reputation")}
   `;
 }
+const AWARDS_TRACKER = [
+  {name:"State Bar Excellence in Litigation Award", deadline:"March 1"},
+  {name:"Regional 40 Under 40 Legal Professionals", deadline:"April 10"},
+  {name:"National Pro Bono Recognition Award", deadline:"March 22"},
+  {name:"City Business Journal Best Law Firms", deadline:"May 20"},
+  {name:"Legal Innovators Annual Award", deadline:"February 28"}
+];
+function setC9Award(i,v){ toolState.c9.awards = toolState.c9.awards||{}; toolState.c9.awards[i]=v; }
+window.setC9Award = setC9Award;
+async function checkC9Awards(){
+  toolState.c9.awards = toolState.c9.awards||{};
+  const answered = AWARDS_TRACKER.filter((_,i)=>toolState.c9.awards[i]).length;
+  if(answered<AWARDS_TRACKER.length){ toast(`Classify all ${AWARDS_TRACKER.length} awards first.`); return; }
+  // Reference "today" for this exercise is March 15 — deadlines strictly after that are still open.
+  const monthNum = {January:1,February:2,March:3,April:4,May:5,June:6,July:7,August:8,September:9,October:10,November:11,December:12};
+  const today = {month:3, day:15};
+  let correct=0;
+  AWARDS_TRACKER.forEach((a,i)=>{
+    const [mName, dNum] = a.deadline.split(" ");
+    const m = monthNum[mName], d = parseInt(dNum,10);
+    const stillOpen = (m > today.month) || (m === today.month && d > today.day);
+    const want = stillOpen ? "Apply Now" : "Deadline Passed";
+    if(toolState.c9.awards[i]===want) correct++;
+  });
+  const score = Math.round((correct/AWARDS_TRACKER.length)*100);
+  document.getElementById("c9AwardsResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${AWARDS_TRACKER.length} correct (${score}%)</b> — this is exactly the kind of tracker that prevents noticing a good-fit award after its deadline has already passed.`;
+  await bumpPracticeProgress("compliance9", score);
+}
+window.checkC9Awards = checkC9Awards;
 
 function setC9Cle(i,v){ toolState.c9.cle[i]=v; }
 window.setC9Cle = setC9Cle;
@@ -10617,6 +12239,10 @@ async function downloadCompliance9Pdf(){
   });
   lines.push("---", "## C. Negative Review Response", `Review: "${NEGATIVE_REVIEW.text}"`, `Your reply: ${document.getElementById("c9ReviewReply").value.trim()||"(not written)"}`);
   if(c9.reviewReport) lines.push("", "AI Feedback:", c9.reviewReport);
+  lines.push("---", "## D. Awards & Recognition Deadline Tracker");
+  AWARDS_TRACKER.forEach((a,i)=>{
+    lines.push(`${a.name} — deadline ${a.deadline} — your call: ${(c9.awards&&c9.awards[i])||"(not answered)"}`);
+  });
   buildAndSavePdf("LSH EA / PA Upskill Program", "Compliance & Reputation Tracker — Results", lines, "LSH_Compliance_Tracker");
 }
 window.downloadCompliance9Pdf = downloadCompliance9Pdf;
@@ -10682,8 +12308,13 @@ function initForceMultiplier2(body){
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewFm2Plan()">Get AI Feedback</button>
     <div id="fm2PlanResult" style="margin-top:14px;"></div>
 
+    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">D. Inbox Triage</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A real inbox — apply the Digital Edge and AI Proficiency skills from this day to actually clear it. Build your own filing system, draft real replies, and catch a hidden phishing attempt.</p>
+    <div id="fm2EmailWrap"></div>
+
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadFm2Pdf()">⬇ Download My Work</button>
   `;
+  initEmailSim(document.getElementById("fm2EmailWrap"));
 }
 
 async function checkFm2Checklist(){
@@ -10977,16 +12608,11 @@ window.downloadSocial10Pdf = downloadSocial10Pdf;
    ============================================================ */
 
 function initDossier1(body){
-  toolState.d1 = {file:null, dossierScore:undefined, trackerScore:undefined};
+  toolState.d1 = {dossierScore:undefined, trackerScore:undefined};
+  toolState.calls = {};
   body.innerHTML = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Draft the Client Dossier</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Below are raw onboarding notes on Elias Thorne, Managing Owner &amp; CEO of Thorne &amp; Partners — unsorted, exactly as they'd land on your desk. Write the dossier in your own words, organized under the four sections below.</p>
-    <div class="card" style="padding:14px 16px;margin-bottom:14px;background:#F8F9FC;">
-      <b style="font-size:12px;color:var(--navy);">Raw Notes</b>
-      <ul style="margin:8px 0 0;padding-left:18px;">
-        ${DOSSIER_FACTS.map(f=>`<li style="font-size:12.3px;color:#37394A;margin-bottom:5px;">${esc(f.text)}</li>`).join("")}
-      </ul>
-    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Write the dossier in your own words, organized under the four sections below — reference the Client Profile page any time you need to check a fact or preference.</p>
     ${DOSSIER_SECTIONS.map((sec,si)=>`
       <div style="margin-bottom:14px;">
         <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">${esc(sec)}</label>
@@ -11000,13 +12626,7 @@ function initDossier1(body){
     <div id="d1DossierAIResult" style="margin-top:10px;"></div>
 
     <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Set Up the Preference Trackers</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn these operational details into three live trackers, written in your own words.</p>
-    <div class="card" style="padding:14px 16px;margin-bottom:14px;background:#F8F9FC;">
-      <b style="font-size:12px;color:var(--navy);">Raw Notes</b>
-      <ul style="margin:8px 0 0;padding-left:18px;">
-        ${TRACKER_FACTS.map(f=>`<li style="font-size:12.3px;color:#37394A;margin-bottom:5px;">${esc(f.text)}</li>`).join("")}
-      </ul>
-    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn Elias's operational details into three live trackers, written in your own words, using the Client Profile page as your reference.</p>
     ${TRACKER_SECTIONS.map((sec,si)=>`
       <div style="margin-bottom:14px;">
         <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">${esc(sec)}</label>
@@ -11036,24 +12656,9 @@ function initDossier1(body){
       <button class="btn btn-navy btn-sm" onclick="reviewD1ActEmail()">Get AI Feedback</button>
     </div>
     <div id="d1ActFeedback" style="margin-top:14px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">D. Submit Your Completed Work</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Export your dossier and trackers (spreadsheet, doc, or notes file) and upload it here for your trainer to review.</p>
-    <div class="dropzone" id="d1Dropzone"
-         ondragover="event.preventDefault(); document.getElementById('d1Dropzone').classList.add('dragover')"
-         ondragleave="document.getElementById('d1Dropzone').classList.remove('dragover')"
-         ondrop="handleD1Drop(event)"
-         onclick="document.getElementById('d1FileInput').click()">
-      <div class="dz-icon">📤</div>
-      <div class="dz-text"><b>Drag &amp; drop your file here</b>, or click to browse</div>
-      <div class="dz-note">Files under 200KB are stored in full for your trainer to open; larger files are still logged by name.</div>
-      <input type="file" id="d1FileInput" style="display:none;" onchange="handleD1FileSelect(event)">
-    </div>
-    <div id="d1FilePreview"></div>
-    <button class="btn btn-navy" style="margin-top:14px;" id="d1SubmitBtn" onclick="submitD1Work()" disabled>Submit for Review</button>
+    ${renderGatekeepingSection('D')}
 
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
-    <div id="d1TransitionOverlay"></div>
   `;
 }
 
@@ -11091,7 +12696,6 @@ async function checkD1Dossier(){
     <p style="font-size:12px;color:var(--ink-soft);margin-top:8px;">This checks whether the key facts made it into your writing — your own phrasing and structure are exactly the point.</p>`;
   toolState.d1.dossierScore = result.score;
   await bumpPracticeProgress("dossier1", result.score);
-  checkD1AllDone();
 }
 window.checkD1Dossier = checkD1Dossier;
 
@@ -11110,15 +12714,8 @@ async function checkD1Tracker(){
   toolState.d1.trackerScore = result.score;
   await bumpPracticeProgress("dossier1", result.score);
   if(result.score===100) burstConfetti();
-  checkD1AllDone();
 }
 window.checkD1Tracker = checkD1Tracker;
-function checkD1AllDone(){
-  if(toolState.d1.dossierScore!==undefined && toolState.d1.trackerScore!==undefined){
-    const btn = document.getElementById("d1SubmitBtn");
-    if(btn && toolState.d1.file) btn.disabled = false;
-  }
-}
 
 /* ---------- AI feedback: dossier draft ---------- */
 async function reviewD1DossierAI(){
@@ -11186,71 +12783,6 @@ Give 4-5 short bullet points of specific feedback, then one overall verdict sent
 }
 window.reviewD1ActEmail = reviewD1ActEmail;
 
-/* ---------- Part C: upload dropzone (unchanged) ---------- */
-function handleD1Drop(ev){
-  ev.preventDefault();
-  document.getElementById("d1Dropzone").classList.remove("dragover");
-  const file = ev.dataTransfer.files && ev.dataTransfer.files[0];
-  if(file) setD1File(file);
-}
-window.handleD1Drop = handleD1Drop;
-function handleD1FileSelect(ev){
-  const file = ev.target.files && ev.target.files[0];
-  if(file) setD1File(file);
-}
-window.handleD1FileSelect = handleD1FileSelect;
-function setD1File(file){
-  toolState.d1.file = file;
-  const sizeKb = (file.size/1024).toFixed(0);
-  const isImage = file.type.startsWith("image/");
-  document.getElementById("d1FilePreview").innerHTML = `
-    <div class="file-preview-card">
-      ${isImage ? `<span class="fp-icon">🖼️</span>` : `<span class="fp-icon">📄</span>`}
-      <div class="fp-meta"><b>${esc(file.name)}</b><span>${sizeKb}KB &middot; ${esc(file.type||"unknown type")}</span></div>
-      <button class="btn btn-sm btn-ghost" onclick="clearD1File()">Remove</button>
-    </div>`;
-  const btn = document.getElementById("d1SubmitBtn");
-  if(toolState.d1.dossierScore!==undefined && toolState.d1.trackerScore!==undefined){
-    btn.disabled = false;
-  }else{
-    toast("File attached — finish checking Part A and B before submitting.");
-  }
-}
-function clearD1File(){
-  toolState.d1.file = null;
-  document.getElementById("d1FilePreview").innerHTML = "";
-  document.getElementById("d1SubmitBtn").disabled = true;
-  document.getElementById("d1FileInput").value = "";
-}
-window.clearD1File = clearD1File;
-
-async function submitD1Work(){
-  if(!toolState.d1.file){ toast("Attach a file first."); return; }
-  const btn = document.getElementById("d1SubmitBtn");
-  btn.disabled = true; btn.textContent = "Submitting…";
-  await ensureTraineeName();
-  await submitFileForReview("dossier1", "Client Dossier & Tracker Builder", toolState.d1.file);
-  showD1Transition();
-}
-window.submitD1Work = submitD1Work;
-
-function showD1Transition(){
-  const overlay = document.getElementById("d1TransitionOverlay");
-  overlay.innerHTML = `
-    <div class="gamified-transition">
-      <div class="gt-card">
-        <div class="gt-emoji">🎉</div>
-        <div class="gt-title">Submitted!</div>
-        <div class="gt-sub">Taking you to Day 1's Knowledge Check…</div>
-      </div>
-    </div>`;
-  burstConfetti();
-  setTimeout(()=>{
-    goto("day", 1);
-    setTimeout(()=>{ state.dayViewMode = "knowledgeCheck"; render(); }, 350);
-  }, 1400);
-}
-
 async function downloadDossier1Pdf(){
   await ensureTraineeName();
   const lines = ["## A. Client Dossier — Elias Thorne (free-text draft)"];
@@ -11267,8 +12799,15 @@ async function downloadDossier1Pdf(){
   if(actDraft && actDraft.value.trim()){
     lines.push("---", "## C. Sample Task — ACT Email Reply", actDraft.value.trim());
   }
-  if(toolState.d1.file) lines.push("---", `## Submitted File`, toolState.d1.file.name);
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Client Dossier & Tracker Builder — Results", lines, "LSH_Dossier_Tracker");
+  lines.push("---", "## D. Inbound Gatekeeping Practice");
+  const gkReport = toolState.callsReport;
+  if(gkReport) lines.push(`Score: ${gkReport.correct} / ${gkReport.total} (${gkReport.score}%)`);
+  CALL_SCENARIOS.forEach((s,i)=>{
+    const picked = toolState.calls ? toolState.calls[i] : undefined;
+    lines.push(`${s.tag}: ${s.scn}`);
+    lines.push(`   Your answer: ${typeof picked==="number" ? s.opts[picked] : "(not answered)"}`);
+  });
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Client Dossier & Gatekeeping Practice — Results", lines, "LSH_Dossier_Tracker");
 }
 window.downloadDossier1Pdf = downloadDossier1Pdf;
 
@@ -11281,7 +12820,6 @@ window.downloadDossier1Pdf = downloadDossier1Pdf;
 
 function initInsurance5(body){
   toolState.i5 = {category:{}, strategy:{}};
-  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   toolState.cr = {setKey:"insurance5", activeScenario: CRISIS_SCENARIO_SETS.insurance5[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.insurance5[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   body.innerHTML = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Classify the Risk</h3>
@@ -11296,69 +12834,54 @@ function initInsurance5(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:14px;" onclick="checkI5Strategy()">Check Strategies</button>
     <div id="i5StrategyResult" style="margin-top:8px;font-size:13px;"></div>
 
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Plan the Family's Travel Risk, Start to Finish</h3>
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
-      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
-      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
-      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">Build this the way you'd build a real one: real flight-search screenshots (linked), real direct booking links, real venue photos, real proximity research. Vague placeholders will show up as vague in the review.</p>
+    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Build a Home Binder Section</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">Elias is traveling for two weeks and wants a real Home Binder ready in case someone else — a substitute PA, a family member — needs to step in while he's gone. Fill in each section below using what you actually know about the household.</p>
     </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Remember the security rule from this day's lesson: reference <i>where</i> to find sensitive numbers (account numbers, passwords) — never write the actual numbers themselves into the binder.</p>
+    ${HOME_BINDER_SECTIONS.map((sec,si)=>`
+      <div style="margin-bottom:14px;">
+        <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">${esc(sec)}</label>
+        <textarea id="i5binder${si}" placeholder="Write this section's entries…" style="width:100%;min-height:80px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
+      </div>`).join("")}
+    <button class="btn btn-navy btn-sm" onclick="reviewI5Binder()">Get AI Feedback</button>
+    <div id="i5BinderResult" style="margin-top:10px;"></div>
 
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Client Travel Preferences (reference)</h3>
-      <div class="pref-ref-grid">
-        <div><b>Seat</b><span>${esc(FLIGHT_PREFS.seat)}</span></div>
-        <div><b>Routing</b><span>${esc(FLIGHT_PREFS.routing)}</span></div>
-        <div><b>Redeye</b><span>${esc(FLIGHT_PREFS.redeye)}</span></div>
-        <div><b>Hotel</b><span>${esc(FLIGHT_PREFS.hotel)}</span></div>
-      </div>
-    </div>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the AI review checks whether your notes actually match Elias's stated preferences.</p>
-    <div id="legList">${renderLegs()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
-    <div id="hotelList">${renderHotels()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
-    <div id="groundList">${renderGroundTransport()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
-    <div id="stopList">${renderStops()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addStop()">+ Add Stop</button>
-
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">ACT Practice — A Task Lands Mid-Planning</h3>
-      <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">While you're building this itinerary, David Reyes (Head of Litigation) emails you directly. Reply using the same <b>ACT</b> framework from Day 1 — Acknowledge, Clarify, Timeline.</p>
-      <div class="voice-note" style="background:var(--navy-deep);">
-        <span class="vn-time">David Reyes — 2:14 PM</span>
-        <p style="font-size:13px;color:#fff;margin:8px 0 0;line-height:1.6;">"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."</p>
-      </div>
-      <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your ACT email reply</label>
-      <textarea id="travelActDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Subject: ...&#10;&#10;David — ..."></textarea>
-      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewTravelActEmail()">Get AI Feedback</button>
-      <div id="travelActFeedback" style="margin-top:14px;"></div>
-    </div>
-
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Review &amp; Export Travel Plan</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-primary btn-sm" id="travelReviewBtn" onclick="reviewItinerary()">Get AI Review</button>
-        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download Travel Plan as PDF</button>
-      </div>
-      <div id="itinReview" style="margin-top:14px;"></div>
-    </div>
-
-    <button class="btn btn-navy btn-sm" style="margin-top:6px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
     ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
   `;
 }
+const HOME_BINDER_SECTIONS = ["Household Operations", "Family & Medical", "Financial & Legal Reference", "Emergency Contacts"];
+async function reviewI5Binder(){
+  const texts = HOME_BINDER_SECTIONS.map((sec,si)=>`## ${sec}\n${document.getElementById(`i5binder${si}`).value.trim()||"(not written)"}`).join("\n\n");
+  const written = HOME_BINDER_SECTIONS.filter((_,si)=>document.getElementById(`i5binder${si}`).value.trim().length>10).length;
+  const el = document.getElementById("i5BinderResult");
+  if(written < HOME_BINDER_SECTIONS.length){ toast("Write something real in every section first."); return; }
+  el.innerHTML = `<div class="ai-loading">Reviewing your Home Binder draft…</div>`;
+  const prompt = `You are grading a trainee Executive Assistant's Home Binder draft for the Thorne household, for a legal-industry EA training program.
+
+CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
+${CLIENT_DOSSIER_MD}
+
+TRAINEE'S HOME BINDER DRAFT:
+${texts}
+
+Evaluate against these criteria:
+1. Usability — could a substitute PA or family member actually use this to find what they need in an emergency, or is it too vague to act on?
+2. Coverage — does it reasonably address all four sections (Household Operations, Family & Medical, Financial & Legal Reference, Emergency Contacts)?
+3. CRITICAL SECURITY CHECK — does the draft contain any actual sensitive numbers written out (account numbers, passwords, SSNs, full card numbers)? This is a hard fail if present — the binder should only ever reference WHERE to find such information securely, never the number itself. Flag this explicitly and prominently if it occurs, even if everything else is strong.
+4. Accuracy — does it contradict anything in the reference material?
+
+Give 4-5 short bullet points of specific feedback (leading with the security check result), then one overall verdict sentence.`;
+  try{
+    const feedback = await callAIText(prompt, 650);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Home Binder</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("insurance5", null);
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.reviewI5Binder = reviewI5Binder;
 
 /* ---------- reusable drag-and-drop matching board ---------- */
 function renderMatchBoard(prefix, cardTexts, zoneLabels){
@@ -11371,7 +12894,7 @@ function renderMatchBoard(prefix, cardTexts, zoneLabels){
       </div>
       <div class="match-zones">
         ${zoneLabels.map(z=>`
-          <div class="match-zone" id="${prefix}Zone-${cssId(z)}" ondragover="event.preventDefault(); this.classList.add('zone-hover')" ondragleave="this.classList.remove('zone-hover')" ondrop="matchDrop(event,'${prefix}',${JSON.stringify(z)})">
+          <div class="match-zone" id="${prefix}Zone-${cssId(z)}" ondragover="event.preventDefault(); this.classList.add('zone-hover')" ondragleave="this.classList.remove('zone-hover')" ondrop="matchDrop(event,'${prefix}','${esc(z)}')">
             <div class="match-zone-label">${esc(z)}</div>
             <div class="match-zone-body">${cardTexts.map((t,i)=> store[i]===z ? renderMatchCard(prefix,i,t) : "").join("")}</div>
           </div>`).join("")}
@@ -11440,6 +12963,11 @@ async function downloadInsurance5Pdf(){
   RISK_STRATEGY_SCENARIOS.forEach((s,i)=>{
     lines.push(`${s.text}`);
     lines.push(`   Your call: ${toolState.i5.strategy[i]||"(not answered)"}  (correct: ${s.strategy})`);
+  });
+  lines.push("---", "## C. Home Binder Section");
+  HOME_BINDER_SECTIONS.forEach((sec,si)=>{
+    const el = document.getElementById(`i5binder${si}`);
+    lines.push(`## ${sec}`, el ? (el.value.trim()||"(not written)") : "(not written)");
   });
   buildAndSavePdf("LSH EA / PA Upskill Program", "Insurance & Risk Assessment — Results", lines, "LSH_Insurance_Risk");
 }
@@ -11612,3 +13140,4 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
 </script>
 </body>
 </html>
+
