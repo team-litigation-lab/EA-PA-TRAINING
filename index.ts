@@ -172,10 +172,6 @@ button{font-family:inherit;cursor:pointer;}
 .module-topic-list li.module-topic-more::before{
   background:transparent;border:1px solid var(--ink-soft);
 }
-.module-lab-uses{
-  font-size:var(--font-sub);color:var(--orange-deep);font-weight:600;
-  margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
-}
 .module-start-btn{
   margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:10px;font-weight:700;
 }
@@ -455,11 +451,11 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 /* ---------- quiz ---------- */
 .quiz-card{padding:22px 24px;margin-bottom:14px;}
-.quiz-q{font-size:var(--font-sub);font-weight:600;color:var(--navy);margin:0 0 12px;}
+.quiz-q{font-size:var(--font-body);font-weight:600;color:var(--navy);margin:0 0 12px;}
 .quiz-opts{display:grid;gap:8px;}
 .quiz-opt{
   display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:9px;
-  padding:11px 13px;font-size:var(--font-sub);transition:all .12s ease;
+  padding:11px 13px;font-size:var(--font-body);transition:all .12s ease;
 }
 .quiz-opt:hover{border-color:var(--navy-soft);background:#F8F9FC;}
 .quiz-opt input{margin-top:2px;accent-color:var(--orange);}
@@ -1092,36 +1088,6 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   .prominent-disclaimer{flex-direction:column;padding:16px 18px;}
   .prominent-disclaimer .pd-body p{font-size:14.5px;}
 }
-
-.lab-attempt-banner{
-  display:flex;gap:14px;align-items:flex-start;
-  background:#FBF3E7;border:2px solid var(--orange);border-radius:12px;
-  padding:14px 18px;margin:0 0 18px;
-}
-.lab-attempt-banner .lab-attempt-icon{font-size:24px;line-height:1;flex-shrink:0;}
-.lab-attempt-banner .lab-attempt-body b{display:block;font-size:13.5px;color:var(--orange-deep);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
-.lab-attempt-banner .lab-attempt-body p{font-size:13.5px;line-height:1.55;color:#5c3d17;margin:0;}
-.lab-attempt-banner.lab-attempt-locked{background:var(--danger-bg);border-color:var(--danger);}
-.lab-attempt-banner.lab-attempt-locked .lab-attempt-body b{color:var(--danger);}
-.lab-attempt-banner.lab-attempt-locked .lab-attempt-body p{color:#7a352c;}
-
-.eval-report{
-  background:var(--paper);border:1px solid var(--line);border-radius:14px;
-  padding:20px 22px;margin-top:12px;box-shadow:var(--shadow);
-}
-.eval-report-header{display:flex;gap:18px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
-.eval-score-ring{
-  width:64px;height:64px;border-radius:50%;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  border:4px solid var(--ring-color);font-size:19px;font-weight:800;color:var(--navy);
-}
-.eval-tier{font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;}
-.eval-subscore-row{display:flex;gap:12px;flex-wrap:wrap;}
-.eval-subscore-row span{font-size:11.5px;color:var(--ink-soft);background:#F3F4F8;padding:3px 9px;border-radius:20px;}
-.eval-section{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);}
-.eval-section b{font-size:12.5px;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:6px;}
-.eval-section ul{margin:0;padding-left:18px;}
-.eval-section li{font-size:13px;line-height:1.5;margin-bottom:4px;color:#37394A;}
 
 .example-block{
   background:#F6F7FB;border:1px dashed var(--line);border-radius:10px;
@@ -7064,8 +7030,7 @@ async function syncToLedger(){
     approved: existing ? existing.approved : false,
     registeredAt: existing ? existing.registeredAt : new Date().toISOString(),
     archived: existing ? (existing.archived||false) : false,
-    aiReview: existing ? existing.aiReview : null,
-    labAttempts: state.labAttempts || (existing ? existing.labAttempts : {}) || {}
+    aiReview: existing ? existing.aiReview : null
   });
 }
 async function getApprovalStatus(traineeId){
@@ -7112,8 +7077,6 @@ async function loadAll(){
   state.traineeBatch = bt || "";
   const pr = await storeGet("practice-progress");
   state.practiceProgress = pr || {};
-  const la = await storeGet("lab-attempts");
-  state.labAttempts = la || {};
   const nt = await storeGet("notes");
   state.notes = nt || [];
   const sb = await storeGet("submissions");
@@ -7127,30 +7090,20 @@ async function loadAll(){
   }
   state.traineeId = tid || "";
   state.storageReady = true;
-  if(state.traineeId) await syncToLedger();
+  if(state.traineeId) syncToLedger();
 }
 
 /* ---------- helpers ---------- */
 function esc(s){ return (s+"").replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 async function callAIText(prompt, maxTokens){
-  const controller = new AbortController();
-  const timeoutId = setTimeout(()=>controller.abort(), 30000);
-  try{
-    const response = await fetch("/api/claude", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] }),
-      signal: controller.signal
-    });
-    if(!response.ok) throw new Error("Request failed");
-    const data = await response.json();
-    return (data.content||[]).map(b=>b.text||"").join("\n").trim();
-  }catch(e){
-    if(e.name==="AbortError") throw new Error("Request timed out — the AI service took too long to respond.");
-    throw e;
-  }finally{
-    clearTimeout(timeoutId);
-  }
+  const response = await fetch("/api/claude", {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] })
+  });
+  if(!response.ok) throw new Error("Request failed");
+  const data = await response.json();
+  return (data.content||[]).map(b=>b.text||"").join("\n").trim();
 }
 async function callAIJson(prompt, maxTokens){
   const text = await callAIText(prompt, maxTokens);
@@ -7243,12 +7196,6 @@ function renderFacilitatorGuide(){
     <p class="eyebrow">For Trainers</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">Facilitator Guide</h1>
     <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 26px;">How to actually run a live session using this portal — what trainees see, what only you see, and how to use each built-in facilitation feature.</p>
-
-    <div class="card" style="padding:22px 24px;margin-bottom:16px;background:#F8F9FC;">
-      <h3 style="color:var(--navy);margin:0 0 10px;">Looking for the Full Training Script?</h3>
-      <p style="font-size:13.5px;color:var(--ink);line-height:1.6;margin:0 0 12px;">This page is about running a live session <i>using</i> the portal. For the detailed, day-by-day trainer script itself — the full Upskill Training Guide SOP, with objectives, discussion notes, and every reference table — that lives in the Admin Dashboard's <b>SOP Reference</b> tab.</p>
-      <button class="btn btn-navy btn-sm" onclick="goto('admin'); setAdminTab('sop');">📋 Open SOP Reference</button>
-    </div>
 
     <div class="card" style="padding:22px 24px;margin-bottom:16px;">
       <h3 style="color:var(--navy);margin:0 0 10px;">What Trainees See vs. What You See</h3>
@@ -7421,7 +7368,7 @@ function renderDashboard(){
   <div class="stat-row">
     <div class="card stat"><div class="num">${done} / 10</div><div class="lbl">Days completed</div></div>
     <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
-    <div class="card stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Competency — ${esc(overallCompetencyScore().tier)}` : "Overall Competency Score"}</div></div>
+    <div class="card stat"><div class="num">${practiceRunsCount()}</div><div class="lbl">Practice Lab runs</div></div>
     <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
   </div>
 
@@ -7452,7 +7399,6 @@ function renderDashboard(){
   </div>
   `;
 }
-const LAB_CAP_DAYS = [1,2,3,4,5,6,8,9,10]; // Day7's tool has no AI-graded actions, so no cap applies
 function moduleCard(d){
   const prog = state.progress[d.id];
   const unlocked = dayUnlocked(d.id);
@@ -7461,7 +7407,6 @@ function moduleCard(d){
   const TOPIC_CAP = 6;
   const shown = d.lessons.slice(0, TOPIC_CAP);
   const remaining = d.lessons.length - shown.length;
-  const hasLabCap = LAB_CAP_DAYS.includes(d.id);
   return `
   <div class="module-card" id="module-${d.id}">
     <div class="module-banner">
@@ -7475,7 +7420,6 @@ function moduleCard(d){
         ${shown.map(l=>`<li>${esc(l.h)}</li>`).join("")}
         ${remaining>0?`<li class="module-topic-more">+${remaining} more topic${remaining===1?'':'s'}</li>`:""}
       </ul>
-      ${hasLabCap ? `<div class="module-lab-uses">Tool Uses Remaining: ${labAttemptsRemaining(d.id)}/${LAB_ATTEMPT_CAP}</div>` : ""}
     </div>
     <button class="btn module-start-btn ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} onclick="goto('day',${d.id})">${status==='done'?'Review':'Start'}</button>
   </div>`;
@@ -7498,13 +7442,6 @@ function avgScore(){
   const scores = Object.values(state.progress).filter(p=>p&&typeof p.score==="number").map(p=>p.score);
   if(!scores.length) return 0;
   return Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
-}
-function overallCompetencyScore(){
-  const pp = state.practiceProgress||{};
-  const scores = Object.values(pp).filter(v=>typeof v.bestScore==="number" && v.bestScore>0).map(v=>v.bestScore);
-  if(!scores.length) return {score:0, tier:null};
-  const score = Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
-  return {score, tier: gradeTierFor(score)};
 }
 function practiceRunsCount(){
   const pp = state.practiceProgress||{};
@@ -7569,7 +7506,7 @@ async function promptName(){
       state.traineeId = generateTraineeId(v);
       await storeSet("trainee-id", state.traineeId);
     }
-    if(state.traineeId) await syncToLedger();
+    if(state.traineeId) syncToLedger();
     overlay.remove();
     render();
     toast("Saved");
@@ -7659,10 +7596,8 @@ async function submitLogin(){
     if(existing){
       state.progress = existing.dayProgress || {};
       state.practiceProgress = existing.practiceProgress || {};
-      state.labAttempts = existing.labAttempts || {};
       await storeSet("day-progress", state.progress);
       await storeSet("practice-progress", state.practiceProgress);
-      await storeSet("lab-attempts", state.labAttempts);
       if(existing.batch){ state.traineeBatch = existing.batch; await storeSet("trainee-batch", existing.batch); }
     }
   }
@@ -8000,7 +7935,8 @@ function renderDaySlideshow(d){
         ? `<button class="btn btn-primary" onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
         : `<button class="btn btn-primary" onclick="nextSlide()">Next &rarr;</button>`}
     </div>
-    ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.</div>` : ""}
+    ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — nice work. Head to the Knowledge Check when you're ready.</div>
+    <div style="text-align:center;margin-top:10px;"><button class="btn btn-ghost btn-sm" onclick="scrollToModule(${d.id})">Return to Progress</button></div>` : ""}
   `;
 }
 function goToSlide(i){
@@ -8257,7 +8193,7 @@ async function submitQuiz(dayId){
   const newRecord = {done: passed || (state.progress[dayId]?.done||false), score: Math.max(score, prevBest), date: new Date().toISOString()};
   state.progress[dayId]=newRecord;
   await storeSet("day-progress", state.progress);
-  await syncToLedger();
+  syncToLedger();
 
   document.getElementById("quizWrap").innerHTML = renderQuiz(d);
   document.getElementById("quizWrap").scrollIntoView({behavior:"smooth",block:"start"});
@@ -8278,7 +8214,6 @@ function renderQuizResult(d){
       <div class="sub">${msg}</div>
       <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;">
         <button class="btn btn-ghost" onclick="retakeQuiz(${d.id})">Retake Quiz</button>
-        <button class="btn btn-ghost" onclick="downloadQuizResultPdf(${d.id})">⬇ Download PDF</button>
         <button class="btn btn-ghost" onclick="scrollToModule(${d.id})">Return to Progress</button>
         ${lastPassed && d.id<10 ? `<button class="btn btn-primary" onclick="goToNextDay(${d.id})">Continue to Day ${d.id+1} &rarr;</button>`:""}
         ${lastPassed && d.id===10 ? `<button class="btn btn-primary" onclick="downloadRecordPdf()">⬇ Download Completion Certificate</button>`:""}
@@ -8287,24 +8222,6 @@ function renderQuizResult(d){
     <div id="answerFeedback"></div>
   `;
 }
-async function downloadQuizResultPdf(dayId){
-  await ensureTraineeName();
-  const d = DAYS.find(x=>x.id===dayId);
-  const {lastScore, lastCorrect, lastTotal, lastPassed} = state;
-  const lines = [
-    `Result: ${lastCorrect} / ${lastTotal} correct (${lastScore}%) — ${lastPassed ? "PASSED" : "Not yet passing (70% required)"}`,
-    "---"
-  ];
-  d.quiz.forEach((q,i)=>{
-    const picked = state.quizAnswers[i];
-    lines.push(`Q${i+1}: ${q.q}`);
-    lines.push(`   Your answer: ${typeof picked==="number" ? q.opts[picked] : "(not answered)"}`);
-    lines.push(`   Correct answer: ${q.opts[q.a]}`);
-    lines.push(`   Why: ${q.r}`);
-  });
-  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${dayId} Knowledge Check — Results`, lines, `LSH_Day${dayId}_Knowledge_Check`);
-}
-window.downloadQuizResultPdf = downloadQuizResultPdf;
 function goToNextDay(dayId){
   const nextId = dayId + 1;
   if(!dayUnlocked(nextId)){
@@ -8425,152 +8342,7 @@ async function bumpPracticeProgress(toolId, score){
   if(typeof score==="number") cur.bestScore = Math.max(cur.bestScore||0, score);
   state.practiceProgress[toolId] = cur;
   await storeSet("practice-progress", state.practiceProgress);
-  await syncToLedger();
-}
-
-/* ============================================================
-   PRACTICE LAB USAGE CAP — 3 AI-graded attempts per day's module.
-   ============================================================ */
-const LAB_ATTEMPT_CAP = 3;
-function labAttemptsUsed(dayId){
-  return (state.labAttempts && state.labAttempts[dayId]) || 0;
-}
-function labAttemptsRemaining(dayId){
-  return Math.max(0, LAB_ATTEMPT_CAP - labAttemptsUsed(dayId));
-}
-async function useLabAttempt(dayId){
-  if(labAttemptsRemaining(dayId) <= 0){
-    toast(`No attempts remaining for Day ${dayId}'s Practice Lab — you've used all ${LAB_ATTEMPT_CAP}.`);
-    return false;
-  }
-  state.labAttempts = state.labAttempts || {};
-  state.labAttempts[dayId] = labAttemptsUsed(dayId) + 1;
-  await storeSet("lab-attempts", state.labAttempts);
-  await syncToLedger();
-  refreshLabAttemptBanners();
-  return true;
-}
-function toolIdToDayId(toolId){
-  const t = PRACTICE_TOOLS.find(x=>x.id===toolId);
-  return t && t.relates ? parseInt(t.relates.replace(/[^0-9]/g,""), 10) : null;
-}
-
-/* ============================================================
-   AI COMPETENCY EVALUATION ENGINE — standardized 100-point rubric
-   used across all Practice Lab AI-graded submissions.
-   Accuracy & Technical Precision (35) + Executive Presence & Judgment (30)
-   + Risk Mitigation & SOP Compliance (20) + Efficiency & Structure (15)
-   ============================================================ */
-function gradeTierFor(score){
-  if(score >= 85) return "Executive Lead";
-  if(score >= 65) return "Proficient Assistant";
-  return "Requires Remediation";
-}
-const GRADE_TIER_COLOR = {
-  "Executive Lead": "var(--success)",
-  "Proficient Assistant": "var(--orange)",
-  "Requires Remediation": "var(--danger)"
-};
-async function runRubricEvaluation(exerciseLabel, exerciseContext, submissionText, criteriaNotes){
-  const prompt = `You are an automated competency evaluator grading a trainee Executive Assistant's submission for a legal-industry EA training program. Grade rigorously and realistically — a submission that is merely present or generic should score low; do not award high marks simply because something was submitted. Vary scores genuinely based on submission quality; do not default to the same score every time.
-
-EXERCISE: ${exerciseLabel}
-
-CONTEXT:
-${exerciseContext}
-
-EXERCISE-SPECIFIC GRADING NOTES:
-${criteriaNotes}
-
-TRAINEE'S SUBMISSION:
-${submissionText}
-
-Score this submission on a 100-point rubric across these four weighted categories:
-- Accuracy & Technical Precision (0-35 points): factual correctness, adherence to the specific details of the exercise, no contradictions of the reference material.
-- Executive Presence & Judgment (0-30 points): tone, confidence, discretion, and the quality of judgment shown — would a real executive trust this work.
-- Risk Mitigation & SOP Compliance (0-20 points): does it show awareness of confidentiality, escalation, and procedural discipline where relevant.
-- Efficiency & Structure (0-15 points): is it clear, well-organized, and free of unnecessary padding.
-
-A generic, vague, or minimal-effort submission should score well below 70 overall. A submission with real errors or contradictions of the reference material should score well below 50 on Accuracy specifically. Reserve 85+ overall for submissions that are genuinely strong across all four categories, not just adequate.
-
-Return ONLY a JSON object with this exact shape, no other text:
-{
-  "accuracyScore": <integer 0-35>,
-  "presenceScore": <integer 0-30>,
-  "riskScore": <integer 0-20>,
-  "efficiencyScore": <integer 0-15>,
-  "strengths": ["...", "..."],
-  "blindspots": ["...", "..."],
-  "growthSuggestions": ["...", "..."]
-}`;
-  const raw = await callAIJson(prompt, 900);
-  const accuracyScore = Math.max(0, Math.min(35, Math.round(raw.accuracyScore||0)));
-  const presenceScore = Math.max(0, Math.min(30, Math.round(raw.presenceScore||0)));
-  const riskScore = Math.max(0, Math.min(20, Math.round(raw.riskScore||0)));
-  const efficiencyScore = Math.max(0, Math.min(15, Math.round(raw.efficiencyScore||0)));
-  const totalScore = accuracyScore + presenceScore + riskScore + efficiencyScore;
-  return {
-    accuracyScore, presenceScore, riskScore, efficiencyScore, totalScore,
-    gradeTier: gradeTierFor(totalScore),
-    strengths: Array.isArray(raw.strengths) ? raw.strengths : [],
-    blindspots: Array.isArray(raw.blindspots) ? raw.blindspots : [],
-    growthSuggestions: Array.isArray(raw.growthSuggestions) ? raw.growthSuggestions : []
-  };
-}
-function renderEvaluationReport(report){
-  const tierColor = GRADE_TIER_COLOR[report.gradeTier] || "var(--ink-soft)";
-  return `
-    <div class="eval-report">
-      <div class="eval-report-header">
-        <div class="eval-score-ring" style="--ring-color:${tierColor};">
-          <span>${report.totalScore}</span>
-        </div>
-        <div>
-          <div class="eval-tier" style="color:${tierColor};">${esc(report.gradeTier)}</div>
-          <div class="eval-subscore-row">
-            <span>Accuracy ${report.accuracyScore}/35</span>
-            <span>Executive Presence ${report.presenceScore}/30</span>
-            <span>Risk &amp; SOP ${report.riskScore}/20</span>
-            <span>Efficiency ${report.efficiencyScore}/15</span>
-          </div>
-        </div>
-      </div>
-      ${report.strengths.length ? `
-      <div class="eval-section">
-        <b>Strengths</b>
-        <ul>${report.strengths.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
-      </div>` : ""}
-      ${report.blindspots.length ? `
-      <div class="eval-section">
-        <b>Blindspots</b>
-        <ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
-      </div>` : ""}
-      ${report.growthSuggestions.length ? `
-      <div class="eval-section">
-        <b>Growth Suggestions</b>
-        <ul>${report.growthSuggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
-      </div>` : ""}
-    </div>`;
-}
-function refreshLabAttemptBanners(){
-  document.querySelectorAll(".lab-attempt-banner").forEach(el=>{
-    const dayId = parseInt(el.dataset.dayId, 10);
-    el.outerHTML = renderLabAttemptBanner(dayId);
-  });
-}
-function renderLabAttemptBanner(dayId){
-  const remaining = labAttemptsRemaining(dayId);
-  const locked = remaining <= 0;
-  return `
-    <div class="lab-attempt-banner ${locked?'lab-attempt-locked':''}" data-day-id="${dayId}">
-      <div class="lab-attempt-icon">${locked?'🔒':'⚠️'}</div>
-      <div class="lab-attempt-body">
-        <b>${locked?'No attempts remaining — read-only mode':'Tool Utilization Limit'}</b>
-        <p>${locked
-          ? `You've used all ${LAB_ATTEMPT_CAP} attempts allocated for this day's Practice Lab. You can still view any completed results below, but no further submissions will be graded.`
-          : `You are allocated a total of ${LAB_ATTEMPT_CAP} Practice Lab attempts for this day's module. Use your attempts strategically — review all background materials, instructions, and details thoroughly before initiating a submission. <b>${remaining} of ${LAB_ATTEMPT_CAP} attempts remaining.</b>`}</p>
-      </div>
-    </div>`;
+  syncToLedger();
 }
 
 /* ============================================================
@@ -8699,7 +8471,6 @@ function renderCalendarBody(body){
   }
 
   body.innerHTML = `
-    ${renderLabAttemptBanner(3)}
     <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly. Click one of the three priority-color dots to recolor, <b>✕</b> to remove an event entirely, or <b>+ Add Event</b> to schedule something new — including proactive tasks you spot are missing, like a debrief buffer or prep block. Nothing here is graded until you click Check My Plan.</p>
     <div class="legend-row">
       ${["High","Medium","Low"].map(p=>`<span class="legend-chip"><span class="sw" style="background:${PRI_COLOR[p]};"></span>${p} priority</span>`).join("")}
@@ -9016,7 +8787,6 @@ window.calReset = calReset;
 async function checkCalendarPrompt(btn){
   const prompt = document.getElementById("calPromptInput").value.trim();
   if(prompt.length<15){ toast("Write a fuller prompt first."); return; }
-  if(!(await useLabAttempt(3))) return;
   const events = calMergedEvents();
   const scheduleSummary = DAY_ORDER.map(day=>{
     const dayEvents = events.filter(e=>e.day===day).sort((a,b)=>a.s-b.s);
@@ -9026,17 +8796,28 @@ async function checkCalendarPrompt(btn){
   btn.disabled = true; btn.textContent = "Reviewing…";
   const resultEl = document.getElementById("calPromptResult");
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your prompt…</div>`;
+  const evalPrompt = `You are reviewing a Legal Executive Assistant trainee's AI PROMPT — not a finished draft, the prompt itself — written to get an AI tool to draft a daily/weekly schedule briefing for their principal, Elias Thorne (Managing Owner & CEO of Thorne & Partners Law Group).
+
+Elias only reads BLUF-style summaries: the bottom line and required action up front, detail after.
+
+The trainee's finished weekly schedule (the source material the AI should draft from):
+${scheduleSummary}
+
+The trainee's prompt: "${prompt}"
+
+Evaluate whether the prompt:
+1. Specifies the audience and Elias's BLUF preference (so the AI knows the register to write in)
+2. References the schedule above as the actual source material, rather than leaving the AI to invent meetings
+3. Specifies a format or length constraint
+4. Is Generative-mode appropriate (drafting a briefing) without accidentally inviting the AI to fabricate details not on the calendar
+
+Give 3-4 short bullet points of feedback and one overall verdict sentence on whether this prompt would produce a usable, accurate BLUF briefing.`;
   try{
-    const report = await runRubricEvaluation(
-      "AI Prompt — Weekly Schedule Briefing",
-      `Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group) only reads BLUF-style summaries: the bottom line and required action up front, detail after.\n\nThe trainee's finished weekly schedule (the source material the AI should draft from):\n${scheduleSummary}\n\nThis is a PROMPT the trainee wrote, not a finished draft — grade the prompt itself, not any output.`,
-      `The trainee's prompt: "${prompt}"`,
-      `Does the prompt specify the audience and Elias's BLUF preference (so the AI knows the register to write in)? Does it reference the schedule as the actual source material, rather than leaving the AI to invent meetings? Does it specify a format or length constraint? Is it Generative-mode appropriate (drafting a briefing) without accidentally inviting the AI to fabricate details not on the calendar?`
-    );
-    toolState.calPromptReport = report;
-    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Prompt</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("calendar", report.totalScore);
-    if(report.totalScore>=85) burstConfetti();
+    const feedback = (await callAIText(evalPrompt, 500)) || "No feedback returned.";
+    toolState.calPromptReport = feedback;
+    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Prompt</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("calendar", 100);
+    burstConfetti();
   }catch(e){
     toolState.calPromptReport = "Couldn't reach the AI review service.";
     resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
@@ -9047,7 +8828,6 @@ async function checkCalendarPrompt(btn){
 window.checkCalendarPrompt = checkCalendarPrompt;
 
 async function generateProactiveTasks(){
-  if(!(await useLabAttempt(3))) return;
   const el = document.getElementById("proactiveResult");
   el.innerHTML = `<div class="ai-loading">Reviewing the calendar for gaps…</div>`;
   const events = calMergedEvents();
@@ -9552,24 +9332,51 @@ async function reviewItinerary(){
   const btn = document.getElementById("travelReviewBtn");
   const { legs, hotels, groundTransport, stops } = toolState.travel;
   if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
-  if(!(await useLabAttempt(3))) return;
   btn.disabled = true;
   el.innerHTML = `<div class="ai-loading">Reviewing for meticulousness and resourcefulness…</div>`;
   const legsSummary = legs.map(l=>`- ${l.route||"(route TBD)"} on ${l.date||"(date TBD)"}, seat "${l.seat||"(not set)"}", ${l.direct?"direct":"connecting"}, screenshot: ${l.screenshotUrl?"provided":"MISSING"}, booking link: ${l.bookingLink?"provided":"MISSING"}. Notes: ${l.notes||"(none)"}`).join("\n");
   const hotelsSummary = hotels.map(h=>`- ${h.name||"(hotel TBD)"} at ${h.address||"(address TBD)"}, ${h.checkin||"?"} to ${h.checkout||"?"}, room: ${h.roomType||"(not specified)"}, confirmation: ${h.confirmation?"provided":"MISSING"}, booking link: ${h.bookingLink?"provided":"MISSING"}. Notes: ${h.notes||"(none)"}`).join("\n");
   const groundSummary = groundTransport.map(g=>`- ${g.type} from ${g.from||"(from TBD)"} to ${g.to||"(to TBD)"} at ${g.datetime||"(time TBD)"}, booking link: ${g.bookingLink?"provided":"MISSING"}. Notes: ${g.notes||"(none)"}`).join("\n");
   const stopsSummary = stops.map(s=>`- ${s.venue||"(venue TBD)"} at ${s.address||"(address TBD)"}, ${s.travelTime||"(no travel time given)"} from ${s.hotel||"(no hotel given)"}. Photo: ${s.photoUrl?"provided":"MISSING"}. Link: ${s.link?"provided":"MISSING"}. Rationale: ${s.insight||"(none)"}`).join("\n");
+  const prompt = `You are grading a trainee Executive Assistant's travel itinerary for a legal-industry EA training program. This is a personal family trip for the client, Elias Thorne, taking his wife Sarah and children Leo (8) and Maya (5) to Spain. Grade strictly on meticulous detail and resourcefulness — this is the hardest exercise in the program by design.
+
+CLIENT TRAVEL PREFERENCES (hard constraints):
+- Seat: ${FLIGHT_PREFS.seat}
+- Routing: ${FLIGHT_PREFS.routing}
+- Redeye: ${FLIGHT_PREFS.redeye}
+- Hotel: ${FLIGHT_PREFS.hotel}
+- Also relevant: strict Paleo diet, zero dairy for Elias; something age-appropriate should be planned for the kids; a car seat is needed for Maya (age 5) on any ground transportation.
+
+FLIGHT LEGS SUBMITTED:
+${legsSummary || "(none)"}
+
+HOTEL ACCOMMODATION SUBMITTED:
+${hotelsSummary || "(none)"}
+
+GROUND TRANSPORTATION SUBMITTED:
+${groundSummary || "(none)"}
+
+ITINERARY STOPS SUBMITTED:
+${stopsSummary || "(none)"}
+
+Evaluate:
+1. Do the flights actually match seat/routing preferences? Call out any that don't.
+2. Does the hotel actually fit a family of four, and is the room type/dates specific rather than vague?
+3. Is ground transportation actually planned end-to-end (airport to hotel, hotel to key stops), including the car seat need for a 5-year-old, or does the itinerary just leave gaps?
+4. Are screenshots, confirmation numbers, and direct links present, or missing? Missing evidence should be penalized — a real EA doesn't hand over an itinerary without proof of the booking.
+5. Are venue/stop choices backed by real reasoning (client- and family-relevant, not generic "nice place"), including whether the strict Paleo/dairy-free need and something age-appropriate for the kids were actually addressed?
+6. Is proximity/logistics actually addressed (travel time from hotel), not left blank?
+7. Overall resourcefulness: does this itinerary look like it required real research, or does it read as placeholder content?
+
+Give a structured critique: 2 bullets on flights, 2 bullets on hotel/ground transportation, 2 bullets on stops, then one overall score out of 100 with a one-sentence justification. End your response with a line in exactly this format: "SCORE: <number>"`;
   try{
-    const report = await runRubricEvaluation(
-      "Travel Itinerary — Personal Family Trip",
-      `This is a personal family trip for the client, Elias Thorne, taking his wife Sarah and children Leo (8) and Maya (5) to Spain. Grade strictly on meticulous detail and resourcefulness — this is the hardest exercise in the program by design.\n\nCLIENT TRAVEL PREFERENCES (hard constraints):\n- Seat: ${FLIGHT_PREFS.seat}\n- Routing: ${FLIGHT_PREFS.routing}\n- Redeye: ${FLIGHT_PREFS.redeye}\n- Hotel: ${FLIGHT_PREFS.hotel}\n- Also relevant: strict Paleo diet, zero dairy for Elias; something age-appropriate should be planned for the kids; a car seat is needed for Maya (age 5) on any ground transportation.`,
-      `FLIGHT LEGS SUBMITTED:\n${legsSummary || "(none)"}\n\nHOTEL ACCOMMODATION SUBMITTED:\n${hotelsSummary || "(none)"}\n\nGROUND TRANSPORTATION SUBMITTED:\n${groundSummary || "(none)"}\n\nITINERARY STOPS SUBMITTED:\n${stopsSummary || "(none)"}`,
-      `Do the flights actually match seat/routing preferences? Does the hotel actually fit a family of four with specific room type/dates? Is ground transportation planned end-to-end including the car seat need? Are screenshots, confirmation numbers, and direct links present — missing evidence should be penalized heavily, since a real EA doesn't hand over an itinerary without proof of booking. Are venue/stop choices backed by real, client-specific reasoning (Paleo/dairy-free, age-appropriate for kids) rather than generic placeholders? Is travel time/proximity actually addressed? Overall: does this look like real research, or placeholder content?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Itinerary</b>` + renderEvaluationReport(report);
-    toolState.travel.score = report.totalScore;
-    await bumpPracticeProgress("calendar", report.totalScore);
-    if(report.totalScore>=90) burstConfetti();
+    const feedback = (await callAIText(prompt, 750)) || "No feedback returned.";
+    const scoreMatch = feedback.match(/SCORE:\s*(\d{1,3})/i);
+    const score = scoreMatch ? Math.min(100, Number(scoreMatch[1])) : 50;
+    el.innerHTML = `<div class="ai-result"><b>AI Review — Itinerary</b><div class="ai-result-body">${esc(feedback.replace(/SCORE:\s*\d{1,3}/i,"").trim()).replace(/\n/g,"<br>")}</div></div>`;
+    toolState.travel.score = score;
+    await bumpPracticeProgress("insurance5", score);
+    if(score>=90) burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get a review</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }finally{
@@ -9582,17 +9389,31 @@ async function reviewTravelActEmail(){
   const draft = document.getElementById("travelActDraft").value.trim();
   const el = document.getElementById("travelActFeedback");
   if(draft.length < 20){ toast("Write your ACT email first."); return; }
-  if(!(await useLabAttempt(3))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your ACT email…</div>`;
+  const prompt = `You are grading a trainee Executive Assistant's reply email, using the ACT framework (Acknowledge, Clarify, Timeline), for a legal-industry EA training program.
+
+CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
+${CLIENT_DOSSIER_MD}
+
+THE TASK DAVID REYES (HEAD OF LITIGATION) SENT BY EMAIL:
+"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."
+
+Note: this email actually contains TWO separate asks tangled together (a hotel/IT security check, and a schedule cross-check against Elias's flight). A strong reply should separate them rather than answering as one blended task.
+
+TRAINEE'S ACT EMAIL DRAFT:
+${draft}
+
+Evaluate:
+1. Acknowledge — did they restate both threads (not just one), showing they understood what David actually needs?
+2. Clarify — did they ask only for genuinely missing information, rather than something they could reasonably confirm themselves (e.g. checking the hotel listing, checking the itinerary they're already building)?
+3. Timeline — is there a clear "by when" and "who owns it" for each thread (the hotel/IT check vs. the schedule cross-check)?
+4. Tone/format — professional but efficient, appropriate for a busy Head of Litigation, not overly casual or overly long?
+
+Give 4-5 short bullet points of specific feedback, then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "ACT Framework Reply Email — Travel Logistics",
-      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}\n\nTHE TASK DAVID REYES (HEAD OF LITIGATION) SENT BY EMAIL:\n"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."\n\nNote: this email actually contains TWO separate asks tangled together (a hotel/IT security check, and a schedule cross-check against Elias's flight). A strong reply should separate them rather than answering as one blended task.`,
-      draft,
-      `Acknowledge — did they restate both threads (not just one), showing they understood what David actually needs? Clarify — did they ask only for genuinely missing information, rather than something they could reasonably confirm themselves (e.g. checking the hotel listing, checking the itinerary they're already building)? Timeline — is there a clear "by when" and "who owns it" for each thread? Tone/format — professional but efficient, appropriate for a busy Head of Litigation?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your ACT Email</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("calendar", report.totalScore);
+    const feedback = await callAIText(prompt, 650);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your ACT Email</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("insurance5", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -9703,7 +9524,7 @@ const LEAD_GEN_SCENARIO = {
 };
 function initColdCalling4(body){
   toolState.calls = {};
-  body.innerHTML = renderLabAttemptBanner(4) + renderColdCallingSection('A') + `
+  body.innerHTML = renderColdCallingSection('A') + `
     <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(LEAD_GEN_SCENARIO.text)}</p>
@@ -9719,18 +9540,20 @@ async function reviewLeadGenPlan(){
   const draft = document.getElementById("leadGenDraft").value.trim();
   const el = document.getElementById("leadGenResult");
   if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
-  if(!(await useLabAttempt(4))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your lead generation plan…</div>`;
+  const prompt = `You are evaluating a trainee Executive Assistant's lead-generation plan, for a legal-industry EA training program.
+
+SCENARIO: ${LEAD_GEN_SCENARIO.text}
+
+TRAINEE'S PLAN:
+${draft}
+
+Evaluate whether the plan: names at least 3 genuinely different, specific lead sources (not vague — "networking" alone isn't specific, "attend the state bar's real estate section quarterly mixer" is); defines real qualifying criteria (fit, need, authority, timeline — not just "good leads"); and describes a concrete, research-backed first-contact approach rather than a generic pitch. Give 4-5 short bullet points of feedback, then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "Lead Generation Plan",
-      `SCENARIO: ${LEAD_GEN_SCENARIO.text}`,
-      draft,
-      `Does the plan name at least 3 genuinely different, specific lead sources (not vague — "networking" alone isn't specific, "attend the state bar's real estate section quarterly mixer" is)? Does it define real qualifying criteria (fit, need, authority, timeline — not just "good leads")? Does it describe a concrete, research-backed first-contact approach rather than a generic pitch?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Plan</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("coldcalling4", report.totalScore);
-    if(report.totalScore>=85) burstConfetti();
+    const feedback = await callAIText(prompt, 600);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("coldcalling4", 100);
+    burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -9837,7 +9660,7 @@ async function ensureTraineeName(){
         state.traineeId = generateTraineeId(v);
         await storeSet("trainee-id", state.traineeId);
       }
-      await syncToLedger();
+      syncToLedger();
       overlay.remove();
       resolve();
     };
@@ -11434,7 +11257,6 @@ async function finishEmailSim(){
     toast(`File and process every message first (${f}/${total} filed, ${h}/${total} processed).`);
     return;
   }
-  if(!(await useLabAttempt(2))) return;
   await ensureTraineeName();
   const e = toolState.esim;
   e.phase = "evaluating";
@@ -11465,34 +11287,28 @@ async function finishEmailSim(){
     return `- "${m.subj}": ${outcome}`;
   }).join("\n");
 
-  const prompt = `Evaluate strictly under these two headers, in this order, using short bullet points under each:
+  const prompt = `You are evaluating a Legal Executive Assistant trainee's performance in an email management exercise for a company called Legal Support Help (LSH).
+
+Evaluate strictly under these two headers, in this order, using short bullet points under each:
 
 1. Writing DNA Match — for each client email below, assess how well the trainee's reply mirrored THAT SPECIFIC client's tone, formatting, and communication style. The clients intentionally differ: one is terse and formal, one is casual and rambling, one is frustrated/upset, one is detailed and itemized. Note where the trainee matched or mismatched the register.
 2. Professionalism — grammar, clarity, completeness, and etiquette across their replies. Note if any actionable client email was left without a reply.
 
-Do not evaluate filing or security awareness — those are scored separately and shown elsewhere.`;
+Do not evaluate filing or security awareness — those are scored separately and shown elsewhere.
 
-  let rubricScore = 0;
+${actionableSummary}
+
+Keep it concise — a handful of bullets per section — and end with one overall takeaway sentence. Be constructive and specific.`;
+
   try{
-    const report = await runRubricEvaluation(
-      "Inbox Triage — Writing DNA Match & Professionalism",
-      `This is one part of a larger inbox-triage exercise. Filing accuracy and security/phishing awareness are scored separately and objectively elsewhere — grade only the writing quality shown in these replies.`,
-      actionableSummary,
-      prompt
-    );
-    e.reportCard = report;
-    e.report = `<b>Strengths</b><ul>${report.strengths.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` +
-      (report.blindspots.length ? `<b>Blindspots</b><ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : "") +
-      (report.growthSuggestions.length ? `<b>Growth Suggestions</b><ul>${report.growthSuggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : "");
-    rubricScore = report.totalScore;
+    e.report = (await callAIText(prompt, 800)) || "No feedback returned — try again in a moment.";
   }catch(err){
     e.report = "Couldn't reach the AI review service to assess Writing DNA Match and Professionalism — check your connection and try again. (Your Filing Accuracy and Security Awareness scores above were still computed normally.)";
-    rubricScore = null;
   }
   e.phase = "evaluated";
-  const overall = rubricScore!==null ? Math.round((e.filingScore + e.securityScore + rubricScore)/3) : Math.round((e.filingScore + e.securityScore)/2);
+  const overall = Math.round((e.filingScore + e.securityScore)/2);
   await bumpPracticeProgress("forcemultiplier2", overall);
-  if(overall>=85) burstConfetti();
+  if(overall===100) burstConfetti();
   renderEsimBody(document.getElementById(toolState.esimContainerId));
 }
 window.finishEmailSim = finishEmailSim;
@@ -11850,7 +11666,6 @@ async function crSendChat(){
   const input = document.getElementById("crChatInput");
   const text = input.value.trim();
   if(!text) return;
-  if(!(await useLabAttempt(toolIdToDayId(toolState.cr.setKey)))) return;
   toolState.cr.chatHistory.push({role:"ea", text});
   input.value = "";
   crRenderChatWindow();
@@ -11887,19 +11702,25 @@ window.crSendChat = crSendChat;
 async function crEndDebrief(){
   const el = document.getElementById("crDebrief");
   if((toolState.cr.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message first."); return; }
-  if(!(await useLabAttempt(toolIdToDayId(toolState.cr.setKey)))) return;
   el.innerHTML = `<div class="ai-loading">Preparing your debrief…</div>`;
   const s = crCurrentScenario();
   const transcript = toolState.cr.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"CLIENT: ":"EA: ")+m.text).join("\n");
+  const prompt = `You are debriefing a trainee Executive Assistant after a crisis roleplay exercise.
+
+SCENARIO: ${s.title} — ${s.setup}
+WHAT "GOOD" LOOKS LIKE:
+- Recommendation: ${s.objective.recommendation}
+- Risks & Trade-offs: ${s.objective.risksTradeoffs}
+- Model BLUF Statement: ${s.objective.blufStatement}
+
+FULL TRANSCRIPT:
+${transcript}
+
+Give a short debrief: 3-4 bullets on what the trainee did well or should improve (composure, escalation judgment, avoiding over-promising, warmth vs. procedure balance), then one overall verdict sentence on whether they stayed a calm, reliable operational anchor under pressure.`;
   try{
-    const report = await runRubricEvaluation(
-      "Crisis Roleplay Debrief",
-      `SCENARIO: ${s.title} — ${s.setup}\n\nWHAT "GOOD" LOOKS LIKE:\n- Recommendation: ${s.objective.recommendation}\n- Risks & Trade-offs: ${s.objective.risksTradeoffs}\n- Model BLUF Statement: ${s.objective.blufStatement}`,
-      transcript,
-      `Assess composure, escalation judgment, avoiding over-promising, and warmth vs. procedure balance across the trainee's side of the transcript. Did they stay a calm, reliable operational anchor under pressure?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Debrief</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress(toolState.cr.setKey, report.totalScore);
+    const feedback = await callAIText(prompt, 500);
+    el.innerHTML = `<div class="ai-result"><b>Debrief</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress(toolState.cr.setKey, 100);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't generate a debrief</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12057,7 +11878,6 @@ async function d6crSendChat(){
   const input = document.getElementById("d6crChatInput");
   const text = input.value.trim();
   if(!text) return;
-  if(!(await useLabAttempt(6))) return;
   toolState.c6cr.chatHistory.push({role:"ea", text});
   input.value = "";
   d6crRenderChatWindow();
@@ -12094,19 +11914,25 @@ window.d6crSendChat = d6crSendChat;
 async function d6crEndDebrief(){
   const el = document.getElementById("d6crDebrief");
   if((toolState.c6cr.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message first."); return; }
-  if(!(await useLabAttempt(6))) return;
   el.innerHTML = `<div class="ai-loading">Preparing your debrief…</div>`;
   const s = d6crCurrentScenario();
   const transcript = toolState.c6cr.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"EXECUTIVE/STAKEHOLDER: ":"EA: ")+m.text).join("\n");
+  const prompt = `You are debriefing a trainee Executive Assistant after a business-compliance crisis roleplay exercise.
+
+SCENARIO: ${s.title} — ${s.setup}
+WHAT "GOOD" LOOKS LIKE:
+- Recommendation: ${s.objective.recommendation}
+- Risks & Trade-offs: ${s.objective.risksTradeoffs}
+- Model BLUF Statement: ${s.objective.blufStatement}
+
+FULL TRANSCRIPT:
+${transcript}
+
+Give a short debrief: 3-4 bullets on what the trainee did well or should improve (composure, escalation judgment, avoiding blame-shifting, giving concrete next steps vs. vague reassurance), then one overall verdict sentence on whether they stayed a calm, reliable operational anchor under pressure.`;
   try{
-    const report = await runRubricEvaluation(
-      "Business-Compliance Crisis Roleplay Debrief",
-      `SCENARIO: ${s.title} — ${s.setup}\n\nWHAT "GOOD" LOOKS LIKE:\n- Recommendation: ${s.objective.recommendation}\n- Risks & Trade-offs: ${s.objective.risksTradeoffs}\n- Model BLUF Statement: ${s.objective.blufStatement}`,
-      transcript,
-      `Assess composure, escalation judgment, avoiding blame-shifting, and giving concrete next steps vs. vague reassurance across the trainee's side of the transcript. Did they stay a calm, reliable operational anchor under pressure?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Debrief</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("projectcompliance6", report.totalScore);
+    const feedback = await callAIText(prompt, 500);
+    el.innerHTML = `<div class="ai-result"><b>Debrief</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("projectcompliance6", 100);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't generate a debrief</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12163,7 +11989,6 @@ const AI8_LEAK_SCENARIO = {
 function initAccessIncident8(body){
   toolState.ai8 = {auditAnswers:{}, verifyAnswer:null, containmentDraft:""};
   body.innerHTML = `
-    ${renderLabAttemptBanner(8)}
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Least-Privilege Access Audit</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each person below, decide: is their current access Appropriate for their role, or Excessive and something that should be revoked?</p>
     <div class="card" style="padding:14px 16px;">
@@ -12234,18 +12059,20 @@ async function reviewAi8Containment(){
   const draft = document.getElementById("ai8ContainmentDraft").value.trim();
   const el = document.getElementById("ai8ContainmentResult");
   if(draft.length < 20){ toast("Write out your steps first."); return; }
-  if(!(await useLabAttempt(8))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
+  const prompt = `You are evaluating a trainee Executive Assistant's incident-response plan for a legal-industry EA training program.
+
+SCENARIO: ${AI8_LEAK_SCENARIO.text}
+
+TRAINEE'S RESPONSE:
+${draft}
+
+Evaluate whether they prioritized CONTAINMENT and SCOPE ASSESSMENT first (stopping further spread, figuring out exactly what was exposed and to whom) before moving to blame-assignment or process review. Flag if they jumped straight to "who's at fault" instead of containing the exposure first. Give 3-4 short bullet points of feedback, then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "Incident Response Plan — Confidentiality Leak",
-      `SCENARIO: ${AI8_LEAK_SCENARIO.text}`,
-      draft,
-      `Did the trainee prioritize CONTAINMENT and SCOPE ASSESSMENT first (stopping further spread, figuring out exactly what was exposed and to whom) before moving to blame-assignment or process review? Score Risk Mitigation & SOP Compliance low if they jumped straight to "who's at fault" instead of containing the exposure first.`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Response</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("accessincident8", report.totalScore);
-    if(report.totalScore>=85) burstConfetti();
+    const feedback = await callAIText(prompt, 500);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("accessincident8", 100);
+    burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12268,7 +12095,6 @@ function initCompliance9(body){
   toolState.c9 = {cle:{}, reg:{}, reviewReport:null};
   toolState.cr = {setKey:"compliance9", activeScenario: CRISIS_SCENARIO_SETS.compliance9[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.compliance9[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   body.innerHTML = `
-    ${renderLabAttemptBanner(9)}
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. CLE Compliance Dashboard</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each attorney, decide: On Track, or Needs Follow-up.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
@@ -12405,20 +12231,21 @@ window.checkC9Reg = checkC9Reg;
 async function checkC9Review(btn){
   const text = document.getElementById("c9ReviewReply").value.trim();
   if(text.length<15){ toast("Write a fuller response first."); return; }
-  if(!(await useLabAttempt(9))) return;
   btn.disabled = true; btn.textContent = "Reviewing…";
   const resultEl = document.getElementById("c9ReviewResult");
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your response for professionalism and de-escalation…</div>`;
+  const prompt = `You are reviewing a Legal Executive Assistant trainee's draft public response to a negative online review for a law firm called Legal Support Help (LSH).
+
+The review (${NEGATIVE_REVIEW.stars} stars): "${NEGATIVE_REVIEW.text}"
+
+The trainee's draft public response: "${text}"
+
+Evaluate against the standard taught: respond professionally and factually, without escalating the conflict, and without admitting fault or making promises the firm may not be able to keep. Give 3-4 short bullet points of feedback and one overall verdict sentence (would this response protect the firm's reputation or risk making things worse?).`;
   try{
-    const report = await runRubricEvaluation(
-      "Public Response to a Negative Online Review",
-      `The review (${NEGATIVE_REVIEW.stars} stars): "${NEGATIVE_REVIEW.text}"`,
-      text,
-      `Evaluate against the standard taught: respond professionally and factually, without escalating the conflict, and without admitting fault or making promises the firm may not be able to keep. Would this response protect the firm's reputation or risk making things worse?`
-    );
-    toolState.c9.reviewReport = report;
-    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Response</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("compliance9", report.totalScore);
+    const feedback = (await callAIText(prompt, 500)) || "No feedback returned.";
+    toolState.c9.reviewReport = feedback;
+    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("compliance9", 100);
   }catch(e){
     toolState.c9.reviewReport = "Couldn't reach the AI review service.";
     resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
@@ -12484,7 +12311,6 @@ function initForceMultiplier2(body){
       label: "Before you use AI in this exercise",
       text: "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
     })}
-    ${renderLabAttemptBanner(2)}
 
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Anticipate the Real Need</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias sends one line: <i>"Get me ready for the Meridian Dynamics board update Thursday."</i> That's it — no other detail. Select every action below that shows genuine force-multiplier thinking, not just reactive task-completion.</p>
@@ -12544,23 +12370,23 @@ async function runFm2Prompt(){
   const draft = document.getElementById("fm2PromptDraft").value.trim();
   const el = document.getElementById("fm2PromptOutput");
   if(draft.length < 10){ toast("Write your prompt first."); return; }
-  if(!(await useLabAttempt(2))) return;
   el.innerHTML = `<div class="ai-loading">Running your prompt…</div>`;
   const executionPrompt = `${draft}\n\nHere is the text to work with:\n"${FM2_PROMPT_TASK.sourceText}"`;
   try{
     const output = await callAIText(executionPrompt, 300);
-    const report = await runRubricEvaluation(
-      "Prompt Engineering — Turning a Messy Email into Action Bullets",
-      `The trainee was asked to write a prompt that turns a messy client email into 3 clean bullet points (no more than 15 words per bullet, action items only) for an executive's morning briefing.`,
-      `THEIR PROMPT: "${draft}"\n\nWHAT THAT PROMPT ACTUALLY PRODUCED: "${output}"`,
-      `Grade the PROMPT itself, not the output text. Did it specify the output format clearly (bullet points)? Did it specify the length constraint (15 words)? Did it correctly ask for extraction of action items rather than a general summary? Would this prompt reliably produce good results if run again on a different messy email?`
-    );
+    const critiquePrompt = `A trainee Executive Assistant wrote the following prompt to turn a messy client email into 3 clean bullet points (no more than 15 words per bullet, action items only) for an executive's morning briefing.
+
+THEIR PROMPT: "${draft}"
+
+WHAT THAT PROMPT ACTUALLY PRODUCED: "${output}"
+
+Evaluate: did their prompt specify the output format clearly (bullet points)? Did it specify the length constraint (15 words)? Did it correctly ask for extraction of action items rather than a general summary? Give 2-3 short bullet points of feedback on the PROMPT itself (not the output), then one verdict sentence on whether this prompt would reliably produce good results if run again on a different messy email.`;
+    const critique = await callAIText(critiquePrompt, 350);
     el.innerHTML = `
       <div class="ai-result"><b>What Your Prompt Actually Produced</b><div class="ai-result-body">${esc(output).replace(/\n/g,"<br>")}</div></div>
-      <b style="font-size:13px;color:var(--navy);display:block;margin:14px 0 8px;">Evaluation Report — Your Prompt</b>
-      ${renderEvaluationReport(report)}
+      <div class="ai-result" style="margin-top:10px;"><b>Feedback on Your Prompt</b><div class="ai-result-body">${esc(critique).replace(/\n/g,"<br>")}</div></div>
     `;
-    await bumpPracticeProgress("forcemultiplier2", report.totalScore);
+    await bumpPracticeProgress("forcemultiplier2", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't run your prompt</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12571,18 +12397,24 @@ async function reviewFm2Plan(){
   const draft = document.getElementById("fm2PlanDraft").value.trim();
   const el = document.getElementById("fm2PlanResult");
   if(draft.length < 30){ toast("Write out your plan first."); return; }
-  if(!(await useLabAttempt(2))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your plan…</div>`;
+  const prompt = `You are evaluating a trainee Executive Assistant's response to a deliberately ambiguous instruction, for a legal-industry EA training program testing both "Managing Up" judgment and "AI Proficiency."
+
+SCENARIO: ${FM2_FULL_SCENARIO.text}
+
+TRAINEE'S PLAN:
+${draft}
+
+Evaluate two things together:
+1. Managing Up: did they correctly read "deal with this" as needing real judgment (assessing the client's actual concern, likely needing to loop in the attorney handling the filing, and communicating proactively) rather than either ignoring it or escalating everything blindly?
+2. AI Proficiency: did they include a specific, well-constructed AI prompt as part of their plan (e.g., drafting a client response, summarizing the thread) rather than either skipping AI entirely or using it vaguely?
+
+Give 4-5 short bullet points of feedback covering both dimensions, then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "Managing Up & AI Proficiency — Ambiguous Instruction Response",
-      `SCENARIO: ${FM2_FULL_SCENARIO.text}`,
-      draft,
-      `Evaluate two things together: (1) Managing Up — did they correctly read "deal with this" as needing real judgment (assessing the client's actual concern, likely needing to loop in the attorney handling the filing, and communicating proactively) rather than either ignoring it or escalating everything blindly? (2) AI Proficiency — did they include a specific, well-constructed AI prompt as part of their plan (e.g., drafting a client response, summarizing the thread) rather than either skipping AI entirely or using it vaguely?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Plan</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("forcemultiplier2", report.totalScore);
-    if(report.totalScore>=85) burstConfetti();
+    const feedback = await callAIText(prompt, 600);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("forcemultiplier2", 100);
+    burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12604,7 +12436,6 @@ window.downloadFm2Pdf = downloadFm2Pdf;
 function initSocial10(body){
   toolState.s10 = {ratesChecked:false, bestPick:"", versionMatch:{}};
   body.innerHTML = `
-    ${renderLabAttemptBanner(10)}
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Engagement Rate: Which Post Actually Won?</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Engagement Rate = (Likes + Comments + Shares) ÷ Followers × 100. Compute each, then pick the real top performer.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
@@ -12734,17 +12565,24 @@ async function reviewS10BrandKit(){
   };
   const el = document.getElementById("s10BrandKitResult");
   if(!fields.colors || !fields.voice || !fields.tagline){ toast("Fill in at least colors, voice, and tagline first."); return; }
-  if(!(await useLabAttempt(10))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your Brand Kit…</div>`;
+  const prompt = `You are reviewing a trainee Executive Assistant's Brand Kit for their executive's professional social media presence, for a legal-industry EA training program.
+
+CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group, known for blunt/direct communication, "uncompromising excellence" firm culture):
+${CLIENT_DOSSIER_MD}
+
+TRAINEE'S BRAND KIT:
+- Primary color(s): ${fields.colors || "(not specified)"}
+- Typography: ${fields.fonts || "(not specified)"}
+- Voice & tone: ${fields.voice || "(not specified)"}
+- Tagline: ${fields.tagline || "(not specified)"}
+- Visual style notes: ${fields.visual || "(not specified)"}
+
+Evaluate whether this Brand Kit is genuinely consistent with Elias's actual personality and firm culture (direct, credible, uncompromising — not casual, trendy, or generic), and whether it's specific enough that someone else could follow it consistently. Give 3-4 short bullet points of feedback, then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "Brand Kit — Professional Social Media Presence",
-      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group, known for blunt/direct communication, "uncompromising excellence" firm culture):\n${CLIENT_DOSSIER_MD}`,
-      `- Primary color(s): ${fields.colors || "(not specified)"}\n- Typography: ${fields.fonts || "(not specified)"}\n- Voice & tone: ${fields.voice || "(not specified)"}\n- Tagline: ${fields.tagline || "(not specified)"}\n- Visual style notes: ${fields.visual || "(not specified)"}`,
-      `Is this Brand Kit genuinely consistent with Elias's actual personality and firm culture (direct, credible, uncompromising — not casual, trendy, or generic)? Is it specific enough that someone else could follow it consistently, rather than vague or generic?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Brand Kit</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("socialmedia10", report.totalScore);
+    const feedback = await callAIText(prompt, 500);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("socialmedia10", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12755,17 +12593,20 @@ async function reviewS10MarketingPlan(){
   const draft = document.getElementById("s10PlanDraft").value.trim();
   const el = document.getElementById("s10PlanResult");
   if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
-  if(!(await useLabAttempt(10))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your marketing plan…</div>`;
+  const prompt = `You are reviewing a trainee Executive Assistant's comprehensive social media marketing plan for their executive, for a legal-industry EA training program.
+
+CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
+${CLIENT_DOSSIER_MD}
+
+TRAINEE'S MARKETING PLAN DRAFT:
+${draft}
+
+Evaluate whether the plan genuinely covers: clear goals, a defined target audience, platform choices with reasoning (not just "post everywhere"), content pillars, a realistic posting cadence, and concrete success metrics/KPIs — not just vague aspirations. Flag anything missing entirely. Give 4-5 short bullet points of feedback, then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "Comprehensive Social Media Marketing Plan",
-      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}`,
-      draft,
-      `Does the plan genuinely cover: clear goals, a defined target audience, platform choices with reasoning (not just "post everywhere"), content pillars, a realistic posting cadence, and concrete success metrics/KPIs — not just vague aspirations? Flag anything missing entirely.`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Marketing Plan</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("socialmedia10", report.totalScore);
+    const feedback = await callAIText(prompt, 600);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("socialmedia10", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12805,7 +12646,6 @@ function initDossier1(body){
   toolState.d1 = {dossierScore:undefined, trackerScore:undefined};
   toolState.calls = {};
   body.innerHTML = `
-    ${renderLabAttemptBanner(1)}
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Draft the Client Dossier</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Write the dossier in your own words, organized under the four sections below — reference the Client Profile page any time you need to check a fact or preference.</p>
     ${DOSSIER_SECTIONS.map((sec,si)=>`
@@ -12914,19 +12754,28 @@ window.checkD1Tracker = checkD1Tracker;
 
 /* ---------- AI feedback: dossier draft ---------- */
 async function reviewD1DossierAI(){
-  if(!(await useLabAttempt(1))) return;
   const texts = DOSSIER_SECTIONS.map((sec,si)=>`## ${sec}\n${document.getElementById(`d1sec${si}`).value.trim()||"(not written)"}`).join("\n\n");
   const el = document.getElementById("d1DossierAIResult");
   el.innerHTML = `<div class="ai-loading">Reviewing your dossier draft…</div>`;
+  const prompt = `You are grading a trainee Executive Assistant's free-text client dossier for a legal-industry EA training program.
+
+REFERENCE MATERIAL they were given (the source of truth):
+${CLIENT_DOSSIER_MD}
+
+TRAINEE'S DOSSIER DRAFT (their own words):
+${texts}
+
+Evaluate against these criteria:
+1. Coverage — does it address Firm & Role, Personal & Family, Standing Instructions, and Known Quirks (or reasonably equivalent groupings)?
+2. Accuracy — does it contradict or misstate anything in the reference material?
+3. Operational usefulness — does it explain why facts matter (e.g. "no back-to-back court dates" as a hard rule), not just restate them as trivia?
+4. Own words — is this genuinely rewritten, not copy-pasted?
+
+Give 4-5 short bullet points of specific feedback, then one overall verdict sentence (ready to use / needs another pass, and why).`;
   try{
-    const report = await runRubricEvaluation(
-      "Client Dossier Draft",
-      `REFERENCE MATERIAL the trainee was given (the source of truth):\n${CLIENT_DOSSIER_MD}`,
-      texts,
-      `Coverage — does it address Firm & Role, Personal & Family, Standing Instructions, and Known Quirks (or reasonably equivalent groupings)? Operational usefulness — does it explain why facts matter (e.g. "no back-to-back court dates" as a hard rule), not just restate them as trivia? Own words — is this genuinely rewritten, not copy-pasted?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Dossier</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("dossier1", report.totalScore);
+    const feedback = await callAIText(prompt, 600);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Dossier</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("dossier1", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12938,17 +12787,31 @@ async function reviewD1ActEmail(){
   const draft = document.getElementById("d1ActDraft").value.trim();
   const el = document.getElementById("d1ActFeedback");
   if(draft.length < 20){ toast("Write your ACT email first."); return; }
-  if(!(await useLabAttempt(1))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your ACT email…</div>`;
+  const prompt = `You are grading a trainee Executive Assistant's reply email, using the ACT framework (Acknowledge, Clarify, Timeline), for a legal-industry EA training program.
+
+CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
+${CLIENT_DOSSIER_MD}
+
+THE UNSTRUCTURED VOICE NOTE ELIAS SENT:
+"Need something set up in Singapore — the arbitration team wants to get in front of the client before the hearing. Figure out what makes sense, sometime in the back half of next month probably. Sarah's going to want to know if I'm back for Maya's recital — check that. Also tell David I need ten minutes before end of day, whenever he's free, not urgent but don't let it slide."
+
+Note: this voice note actually contains THREE separate asks (a Singapore client meeting to arrange, a travel/family conflict to check, and a message to relay to David Reyes, Head of Litigation). A strong reply should separate them rather than treating it as one task.
+
+TRAINEE'S ACT EMAIL DRAFT:
+${draft}
+
+Evaluate:
+1. Acknowledge — did they restate what he actually needs (all three threads, not just one)?
+2. Clarify — did they ask only for genuinely missing information, and avoid asking things answerable from the dossier (e.g. flight/hotel preferences, Paleo requirements)?
+3. Timeline — is there a clear "by when" and "who owns it" for each thread?
+4. Tone/format — BLUF-appropriate for someone who reads on his phone between meetings?
+
+Give 4-5 short bullet points of specific feedback, then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "ACT Framework Reply Email",
-      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}\n\nTHE UNSTRUCTURED VOICE NOTE ELIAS SENT:\n"Need something set up in Singapore — the arbitration team wants to get in front of the client before the hearing. Figure out what makes sense, sometime in the back half of next month probably. Sarah's going to want to know if I'm back for Maya's recital — check that. Also tell David I need ten minutes before end of day, whenever he's free, not urgent but don't let it slide."\n\nNote: this voice note actually contains THREE separate asks (a Singapore client meeting to arrange, a travel/family conflict to check, and a message to relay to David Reyes, Head of Litigation). A strong reply should separate them rather than treating it as one task.`,
-      draft,
-      `Acknowledge — did they restate what he actually needs (all three threads, not just one)? Clarify — did they ask only for genuinely missing information, and avoid asking things answerable from the dossier (e.g. flight/hotel preferences, Paleo requirements)? Timeline — is there a clear "by when" and "who owns it" for each thread? Tone/format — BLUF-appropriate for someone who reads on his phone between meetings?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your ACT Email</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("dossier1", report.totalScore);
+    const feedback = await callAIText(prompt, 650);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your ACT Email</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("dossier1", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12994,7 +12857,6 @@ function initInsurance5(body){
   toolState.i5 = {category:{}, strategy:{}};
   toolState.cr = {setKey:"insurance5", activeScenario: CRISIS_SCENARIO_SETS.insurance5[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.insurance5[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   body.innerHTML = `
-    ${renderLabAttemptBanner(5)}
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Classify the Risk</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Something crosses your desk about the Thorne household almost every week. Drag each card into the risk category it belongs to.</p>
     ${renderMatchBoard("i5cat", RISK_SCENARIOS.map(s=>s.text), RISK_CATEGORIES)}
@@ -13030,17 +12892,26 @@ async function reviewI5Binder(){
   const written = HOME_BINDER_SECTIONS.filter((_,si)=>document.getElementById(`i5binder${si}`).value.trim().length>10).length;
   const el = document.getElementById("i5BinderResult");
   if(written < HOME_BINDER_SECTIONS.length){ toast("Write something real in every section first."); return; }
-  if(!(await useLabAttempt(5))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your Home Binder draft…</div>`;
+  const prompt = `You are grading a trainee Executive Assistant's Home Binder draft for the Thorne household, for a legal-industry EA training program.
+
+CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
+${CLIENT_DOSSIER_MD}
+
+TRAINEE'S HOME BINDER DRAFT:
+${texts}
+
+Evaluate against these criteria:
+1. Usability — could a substitute PA or family member actually use this to find what they need in an emergency, or is it too vague to act on?
+2. Coverage — does it reasonably address all four sections (Household Operations, Family & Medical, Financial & Legal Reference, Emergency Contacts)?
+3. CRITICAL SECURITY CHECK — does the draft contain any actual sensitive numbers written out (account numbers, passwords, SSNs, full card numbers)? This is a hard fail if present — the binder should only ever reference WHERE to find such information securely, never the number itself. Flag this explicitly and prominently if it occurs, even if everything else is strong.
+4. Accuracy — does it contradict anything in the reference material?
+
+Give 4-5 short bullet points of specific feedback (leading with the security check result), then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "Home Binder Draft — Thorne Household",
-      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}`,
-      texts,
-      `Usability — could a substitute PA or family member actually use this to find what they need in an emergency, or is it too vague to act on? Coverage — does it reasonably address all four sections (Household Operations, Family & Medical, Financial & Legal Reference, Emergency Contacts)? CRITICAL SECURITY CHECK (treat as a hard fail on Accuracy & Technical Precision specifically if present) — does the draft contain any actual sensitive numbers written out (account numbers, passwords, SSNs, full card numbers)? The binder should only ever reference WHERE to find such information securely, never the number itself — if this occurs, cap the Accuracy score at 10/35 regardless of other quality, and flag it explicitly and prominently as a blindspot.`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Home Binder</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("insurance5", report.totalScore);
+    const feedback = await callAIText(prompt, 650);
+    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Home Binder</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("insurance5", null);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -13150,7 +13021,6 @@ function initProjectCompliance6(body){
   toolState.c6 = {license:{}, kpi:{}, recoveryReport:null};
   toolState.c6cr = {activeScenario: DAY6_CRISIS_SCENARIOS[0].id, chatHistory:[{role:"client", text: DAY6_CRISIS_SCENARIOS[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   body.innerHTML = `
-    ${renderLabAttemptBanner(6)}
     <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">📅 Month-End, Thorne &amp; Partners</b>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">It's month-end compliance review. Two routine checks land on your desk at the same time — a license status sweep across all four jurisdictions, and this month's KPI dashboard. Neither looks urgent on its own. But by the end of this exercise, you'll see they're both pointing at the same thing: the Meridian Dynamics arbitration is under real strain, and it's already showing up elsewhere before anyone's said so out loud.</p>
@@ -13250,21 +13120,31 @@ window.checkC6Kpi = checkC6Kpi;
 async function checkC6Recovery(btn){
   const text = document.getElementById("c6RecoveryReply").value.trim();
   if(text.length<15){ toast("Write a fuller message first."); return; }
-  if(!(await useLabAttempt(6))) return;
   btn.disabled = true; btn.textContent = "Reviewing…";
   const resultEl = document.getElementById("c6RecoveryResult");
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your recovery plan…</div>`;
+  const prompt = `You are reviewing a Legal Executive Assistant trainee's draft message to their principal, Elias Thorne (Managing Owner & CEO of Thorne & Partners Law Group), about a project that has fallen behind schedule.
+
+FULL SITUATION (the trainee was given all three pieces together, as one connected scenario):
+1. License check: the D.C. Bar Foreign Legal Consultant Registration — which specifically covers international arbitration work — is coming up for renewal soon.
+2. KPI dashboard: Executive Inbox Response Time and Client Retention Rate are both off target this month, consistent with the team being stretched thin.
+3. The trigger event: ${TRIAL_RECOVERY_SCENARIO.text}
+
+The trainee's draft message: "${text}"
+
+Evaluate against the standard taught:
+1. Does the message connect the dots — referencing the license renewal risk and/or the KPI strain as part of the same picture, not just reporting the trial delay in isolation? A message that ignores Parts A and B entirely is missing the actual point of this exercise.
+2. Does it identify the root cause of the delay before reassigning blame?
+3. Is the plan structured and specific, not vague reassurance?
+4. Does it match Elias's known preference for BLUF (bottom-line-up-front) communication — the key point and required action immediately clear, detail available but not front-loaded?
+
+Give 4-5 short bullet points of feedback — explicitly call out whether they connected Parts A/B to the recovery message or treated it as a standalone report — then one overall verdict sentence.`;
   try{
-    const report = await runRubricEvaluation(
-      "Project Recovery Message — Trial Delay",
-      `FULL SITUATION (the trainee was given all three pieces together, as one connected scenario):\n1. License check: the D.C. Bar Foreign Legal Consultant Registration — which specifically covers international arbitration work — is coming up for renewal soon.\n2. KPI dashboard: Executive Inbox Response Time and Client Retention Rate are both off target this month, consistent with the team being stretched thin.\n3. The trigger event: ${TRIAL_RECOVERY_SCENARIO.text}\n\nElias Thorne (Managing Owner & CEO) has a known preference for BLUF (bottom-line-up-front) communication.`,
-      text,
-      `Does the message connect the dots — referencing the license renewal risk and/or the KPI strain as part of the same picture, not just reporting the trial delay in isolation? A message that ignores Parts A and B entirely is missing the actual point of this exercise, and should score low on Risk Mitigation & SOP Compliance specifically. Does it identify the root cause of the delay before reassigning blame? Is the plan structured and specific, not vague reassurance? Does it match the BLUF preference — key point and required action immediately clear, detail available but not front-loaded?`
-    );
-    toolState.c6.recoveryReport = report;
-    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Recovery Message</b>` + renderEvaluationReport(report);
-    await bumpPracticeProgress("projectcompliance6", report.totalScore);
-    if(report.totalScore>=85) burstConfetti();
+    const feedback = (await callAIText(prompt, 550)) || "No feedback returned.";
+    toolState.c6.recoveryReport = feedback;
+    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
+    await bumpPracticeProgress("projectcompliance6", 100);
+    burstConfetti();
   }catch(e){
     toolState.c6.recoveryReport = "Couldn't reach the AI review service.";
     resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
