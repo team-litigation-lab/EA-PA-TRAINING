@@ -1070,6 +1070,25 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .callout-tip{background:var(--success-bg);border-color:var(--success);color:#2b5138;}
 .callout-warning{background:var(--danger-bg);border-color:var(--danger);color:#7a352c;}
 
+.prominent-disclaimer{
+  display:flex;gap:16px;align-items:flex-start;
+  background:var(--danger-bg);border:2px solid var(--danger);border-radius:14px;
+  padding:20px 24px;margin:16px 0 18px;box-shadow:0 4px 14px -6px rgba(181,74,63,.25);
+}
+.prominent-disclaimer .pd-icon{font-size:32px;line-height:1;flex-shrink:0;}
+.prominent-disclaimer .pd-body{flex:1;}
+.prominent-disclaimer .pd-label{
+  display:block;font-size:15px;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--danger);margin-bottom:8px;
+}
+.prominent-disclaimer .pd-body p{
+  font-size:16px;line-height:1.6;color:#5c261e;margin:0;font-weight:500;
+}
+@media (max-width:640px){
+  .prominent-disclaimer{flex-direction:column;padding:16px 18px;}
+  .prominent-disclaimer .pd-body p{font-size:14.5px;}
+}
+
 .example-block{
   background:#F6F7FB;border:1px dashed var(--line);border-radius:10px;
   padding:12px 14px;margin-top:12px;
@@ -1904,6 +1923,7 @@ const DAY2 = {
       "h": "Before You Begin: AI Use in the Legal Industry",
       "callout": {
         "type": "warning",
+        "prominent": true,
         "label": "Read before using AI in this program",
         "text": "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
       },
@@ -7989,7 +8009,7 @@ function renderLessonCard(l,i,d){
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
       ${renderLessonVisual(l)}
       <ul>${l.b.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-      ${l.callout?renderCallout(l.callout):""}
+      ${l.callout?(l.callout.prominent?renderProminentDisclaimer(l.callout):renderCallout(l.callout)):""}
       ${l.example?renderExample(l.example):""}
       ${l.table?renderTable(l.table):""}
       ${l.trainerCue && state.isAdmin ?`
@@ -8074,6 +8094,16 @@ function renderCallout(c){
     <div class="callout callout-${c.type}">
       <b class="ctag">${esc(c.label||tagLabel)}</b>
       ${esc(c.text)}
+    </div>`;
+}
+function renderProminentDisclaimer(c){
+  return `
+    <div class="prominent-disclaimer">
+      <div class="pd-icon">⚠️</div>
+      <div class="pd-body">
+        <b class="pd-label">${esc(c.label||"Important")}</b>
+        <p>${esc(c.text)}</p>
+      </div>
     </div>`;
 }
 function renderExample(e){
@@ -12277,6 +12307,11 @@ const FM2_FULL_SCENARIO = {
 function initForceMultiplier2(body){
   toolState.fm2 = {checklistSelected:{}, promptDraft:"", promptOutput:null, planDraft:""};
   body.innerHTML = `
+    ${renderProminentDisclaimer({
+      label: "Before you use AI in this exercise",
+      text: "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
+    })}
+
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Anticipate the Real Need</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias sends one line: <i>"Get me ready for the Meridian Dynamics board update Thursday."</i> That's it — no other detail. Select every action below that shows genuine force-multiplier thinking, not just reactive task-completion.</p>
     <div class="card" style="padding:14px 16px;">
@@ -13140,4 +13175,3 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
 </script>
 </body>
 </html>
-
