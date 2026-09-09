@@ -179,6 +179,11 @@ button{font-family:inherit;cursor:pointer;}
 .module-start-btn{
   margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:10px;font-weight:700;
 }
+.module-finish-btn{
+  margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:7px;font-size:11.5px;
+  color:var(--success);border-color:var(--success);
+}
+.module-finish-btn:hover{background:var(--success-bg);}
 @keyframes previewIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
 
 .nav{display:flex;gap:4px;background:rgba(255,255,255,.06);padding:4px;border-radius:10px;flex-wrap:wrap;flex:0 1 auto;}
@@ -7497,6 +7502,7 @@ function moduleCard(d){
       ${hasLabCap ? `<div class="module-lab-uses">Tool Uses Remaining: ${labAttemptsRemaining(d.id)}/${LAB_ATTEMPT_CAP}</div>` : ""}
     </div>
     <button class="btn module-start-btn ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} onclick="goto('day',${d.id})">${status==='done'?'Review':'Start'}</button>
+    ${(status!=='locked' && status!=='done') ? `<button class="btn btn-ghost btn-sm module-finish-btn" onclick="finishTrainingForDay(${d.id})">✓ Finish Training</button>` : ""}
   </div>`;
 }
 function scrollToModule(id){
@@ -7525,6 +7531,23 @@ function returnToLessonCard(dayId){
   render();
 }
 window.returnToLessonCard = returnToLessonCard;
+function finishTrainingForDay(dayId){
+  // A direct, explicit manual trigger: jump straight to this day's Knowledge
+  // Check, bypassing the slide sequence entirely. This gives a trainee a
+  // clear, unambiguous path to complete a day regardless of whatever
+  // navigation path they took to get here — the Knowledge Check itself is
+  // still the only thing that actually marks a day done (via submitQuiz),
+  // so this can't be used to skip real completion, only to reach it directly.
+  state.view = "day";
+  state.dayId = dayId;
+  state.dayViewMode = "knowledgeCheck";
+  state.quizAnswers = {};
+  state.quizSubmitted = false;
+  state.slideInterstitial = null;
+  window.scrollTo({top:0, behavior:"smooth"});
+  render();
+}
+window.finishTrainingForDay = finishTrainingForDay;
 const DAY_ICONS = {1:"🗂",2:"📅",3:"💬",4:"📨",5:"🛡",6:"📊",7:"Σ",8:"☎",9:"📋",10:"📱"};
 function nextDayId(){
   for(const d of DAYS){ if(!(state.progress[d.id]&&state.progress[d.id].done)) return d.id; }
@@ -8758,6 +8781,11 @@ async function initCalendar(body){
 }
 
 function renderCalendarBody(body){
+  // Preserve plain-text fields that aren't backed by toolState — this
+  // function re-runs on every drag/drop, color change, or delete, and
+  // without this, any text typed into other wizard parts would be lost.
+  const savedCalPrompt = document.getElementById("calPromptInput") ? document.getElementById("calPromptInput").value : "";
+  const savedTravelAct = document.getElementById("travelActDraft") ? document.getElementById("travelActDraft").value : "";
   const events = calMergedEvents();
   const conflicts = calFindConflicts(events);
   const conflictIdx = new Set(conflicts.flat());
@@ -8784,8 +8812,8 @@ function renderCalendarBody(body){
     }).join("");
   }
 
-  body.innerHTML = `
-    ${renderLabAttemptBanner(3)}
+  toolState.wizardIndex = toolState.wizardIndex || 0;
+  const partA = `
     <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly. Click one of the three priority-color dots to recolor, <b>✕</b> to remove an event entirely, or <b>+ Add Event</b> to schedule something new — including proactive tasks you spot are missing, like a debrief buffer or prep block. Nothing here is graded until you click Check My Plan.</p>
     <div class="legend-row">
       ${["High","Medium","Low"].map(p=>`<span class="legend-chip"><span class="sw" style="background:${PRI_COLOR[p]};"></span>${p} priority</span>`).join("")}
@@ -8821,19 +8849,22 @@ function renderCalendarBody(body){
     </div>
     <button class="btn btn-primary" style="margin-top:16px;" onclick="submitCalendar()">Check My Plan</button>
     <div id="calResult"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">Create Something for Elias — AI-Assisted Daily Briefing</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias only reads BLUF-style summaries. Instead of writing the briefing yourself, write the <b>prompt</b> you'd give an AI tool to draft it — using your finished weekly schedule above as the source material. This is Generative mode, but disciplined: the AI should draft from what's actually on the calendar, not invent meetings that aren't there.</p>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">AI-Assisted Daily Briefing</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias only reads BLUF-style summaries. Instead of writing the briefing yourself, write the <b>prompt</b> you'd give an AI tool to draft it — using your finished weekly schedule from Part 1 as the source material. This is Generative mode, but disciplined: the AI should draft from what's actually on the calendar, not invent meetings that aren't there.</p>
     <textarea id="calPromptInput" placeholder="Write your AI prompt here — e.g. what to draft, for whom, in what format, using what source…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkCalendarPrompt(this)">Get AI Feedback</button>
     <div id="calPromptResult" style="margin-top:10px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">Proactive EA Tasks</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Get a fresh, AI-generated read on the current calendar above and see what independent admin work it implies.</p>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Proactive EA Tasks</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Get a fresh, AI-generated read on the current calendar and see what independent admin work it implies.</p>
     <button class="btn btn-orange btn-sm" onclick="generateProactiveTasks()">Generate Proactive Tasks</button>
     <div id="proactiveResult" style="margin-top:14px;"></div>
-
-    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">Travel Management, Start to Finish</h3>
+  `;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Travel Management, Start to Finish</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
@@ -8892,6 +8923,14 @@ function renderCalendarBody(body){
       <div id="itinReview" style="margin-top:14px;"></div>
     </div>
   `;
+  body.innerHTML = renderToolWizard(3, [
+    {label:"Calendar Conflict Resolver", html:partA},
+    {label:"AI-Assisted Daily Briefing", html:partB},
+    {label:"Proactive EA Tasks", html:partC},
+    {label:"Travel Management", html:partD}
+  ]);
+  if(savedCalPrompt) document.getElementById("calPromptInput").value = savedCalPrompt;
+  if(savedTravelAct) document.getElementById("travelActDraft").value = savedTravelAct;
 }
 function toHex(c){
   if(c.startsWith("#")) return c;
@@ -12565,13 +12604,8 @@ const FM2_FULL_SCENARIO = {
 
 function initForceMultiplier2(body){
   toolState.fm2 = {checklistSelected:{}, promptDraft:"", promptOutput:null, planDraft:""};
-  body.innerHTML = `
-    ${renderProminentDisclaimer({
-      label: "Before you use AI in this exercise",
-      text: "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
-    })}
-    ${renderLabAttemptBanner(2)}
-
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Anticipate the Real Need</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias sends one line: <i>"Get me ready for the Meridian Dynamics board update Thursday."</i> That's it — no other detail. Select every action below that shows genuine force-multiplier thinking, not just reactive task-completion.</p>
     <div class="card" style="padding:14px 16px;">
@@ -12583,8 +12617,9 @@ function initForceMultiplier2(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkFm2Checklist()">Check My Selections</button>
     <div id="fm2ChecklistResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Prompt Engineering Challenge — This Actually Runs</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Prompt Engineering Challenge — This Actually Runs</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">${esc(FM2_PROMPT_TASK.brief)} Write the exact prompt you'd give an AI tool to do this — then run it for real and see what it actually produces.</p>
     <div class="card" style="padding:14px 16px;margin-bottom:10px;background:#F8F9FC;">
       <b style="font-size:12.5px;color:var(--navy);">The messy source email</b>
@@ -12593,8 +12628,9 @@ function initForceMultiplier2(body){
     <textarea id="fm2PromptDraft" style="width:100%;min-height:90px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Write the exact prompt you'd type into an AI tool..."></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="runFm2Prompt()">Run This Prompt</button>
     <div id="fm2PromptOutput" style="margin-top:14px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. The Full Scenario</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. The Full Scenario</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(FM2_FULL_SCENARIO.text)}</p>
     </div>
@@ -12602,13 +12638,22 @@ function initForceMultiplier2(body){
     <textarea id="fm2PlanDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="What you'd do, and the AI prompt you'd use as part of it..."></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewFm2Plan()">Get AI Feedback</button>
     <div id="fm2PlanResult" style="margin-top:14px;"></div>
-
-    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">D. Inbox Triage</h3>
+  `;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Inbox Triage</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A real inbox — apply the Digital Edge and AI Proficiency skills from this day to actually clear it. Build your own filing system, draft real replies, and catch a hidden phishing attempt.</p>
     <div id="fm2EmailWrap"></div>
-
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadFm2Pdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderProminentDisclaimer({
+      label: "Before you use AI in this exercise",
+      text: "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
+    }) + renderToolWizard(2, [
+      {label:"Anticipate the Real Need", html:partA},
+      {label:"Prompt Engineering", html:partB},
+      {label:"The Full Scenario", html:partC},
+      {label:"Inbox Triage", html:partD}
+    ]);
   initEmailSim(document.getElementById("fm2EmailWrap"));
 }
 
