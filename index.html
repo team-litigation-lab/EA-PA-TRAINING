@@ -476,6 +476,39 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .quiz-rationale.show{display:block;}
 
+.quiz-dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:4px 0 10px;max-width:480px;margin-left:auto;margin-right:auto;}
+.quiz-dot{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .15s ease;}
+.quiz-dot.done{background:var(--success);}
+.quiz-dot.active{background:var(--orange);width:20px;border-radius:5px;}
+.quiz-progress-label{
+  text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--navy-soft);margin-bottom:14px;
+}
+.quiz-grid{
+  display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;margin-top:16px;
+}
+.quiz-grid-opt{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  border:2px solid var(--line);border-radius:12px;padding:18px 14px;cursor:pointer;
+  min-height:120px;transition:all .15s ease;background:var(--paper);
+}
+.quiz-grid-opt:hover{border-color:var(--navy-soft);background:#F8F9FC;transform:translateY(-2px);}
+.quiz-grid-opt.selected{border-color:var(--orange);background:var(--orange-soft);box-shadow:0 4px 14px -6px rgba(219,132,55,.4);}
+.quiz-grid-letter{
+  width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:12.5px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:10px;flex-shrink:0;
+}
+.quiz-grid-opt.selected .quiz-grid-letter{background:var(--orange-deep);}
+.quiz-grid-text{font-size:var(--font-sub);color:#37394A;line-height:1.4;}
+.quiz-nav{
+  display:flex;align-items:center;justify-content:space-between;margin-top:22px;
+}
+@media (max-width:640px){
+  .quiz-grid{grid-template-columns:1fr;}
+  .quiz-grid-opt{min-height:auto;flex-direction:row;text-align:left;padding:14px;}
+  .quiz-grid-letter{margin-bottom:0;margin-right:12px;}
+}
+
 .quiz-result{
   padding:26px 26px;text-align:center;margin-top:6px;
 }
@@ -7542,6 +7575,7 @@ function finishTrainingForDay(dayId){
   state.dayId = dayId;
   state.dayViewMode = "knowledgeCheck";
   state.quizAnswers = {};
+  state.quizQuestionIndex = 0;
   state.quizSubmitted = false;
   state.slideInterstitial = null;
   window.scrollTo({top:0, behavior:"smooth"});
@@ -7593,7 +7627,7 @@ function dayRow(d){
 /* ---------- router ---------- */
 function goto(view, id){
   state.view=view;
-  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; }
+  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; }
   if(view==="tool"){ state.toolId=id; }
   window.scrollTo({top:0,behavior:"smooth"});
   render();
@@ -8282,22 +8316,45 @@ function renderQuiz(d){
   if(state.quizSubmitted){
     return renderQuizResult(d);
   }
+  const qi = Math.min(state.quizQuestionIndex||0, d.quiz.length-1);
+  const q = d.quiz[qi];
+  const isLast = qi === d.quiz.length-1;
+  const answered = state.quizAnswers[qi] !== undefined;
   return `
-    ${d.quiz.map((q,i)=>`
-      <div class="card quiz-card">
-        <p class="quiz-q">${i+1}. ${esc(q.q)}</p>
-        <div class="quiz-opts">
-          ${q.opts.map((o,oi)=>`
-            <label class="quiz-opt">
-              <input type="radio" name="q${i}" value="${oi}" onchange="setAnswer(${i},${oi})" ${state.quizAnswers[i]===oi?'checked':''}>
-              <span>${esc(o)}</span>
-            </label>`).join("")}
-        </div>
-      </div>`).join("")}
-    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;" onclick="submitQuiz(${d.id})">Submit Knowledge Check</button>
+    <div class="quiz-dots">
+      ${d.quiz.map((_,i)=>`<span class="quiz-dot ${i===qi?'active':state.quizAnswers[i]!==undefined?'done':''}" onclick="goToQuizQuestion(${i})"></span>`).join("")}
+    </div>
+    <div class="quiz-progress-label">Question ${qi+1} of ${d.quiz.length}</div>
+    <div class="card quiz-card">
+      <p class="quiz-q">${esc(q.q)}</p>
+      <div class="quiz-grid">
+        ${q.opts.map((o,oi)=>`
+          <label class="quiz-grid-opt ${state.quizAnswers[qi]===oi?'selected':''}">
+            <input type="radio" name="q${qi}" value="${oi}" onchange="setAnswer(${qi},${oi})" ${state.quizAnswers[qi]===oi?'checked':''} style="display:none;">
+            <span class="quiz-grid-letter">${String.fromCharCode(65+oi)}</span>
+            <span class="quiz-grid-text">${esc(o)}</span>
+          </label>`).join("")}
+      </div>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn btn-ghost" ${qi===0?'disabled':''} onclick="goToQuizQuestion(${qi-1})">&larr; Back</button>
+      ${isLast
+        ? `<button class="btn btn-primary" style="padding:13px 28px;" onclick="submitQuiz(${d.id})">Submit Knowledge Check</button>`
+        : `<button class="btn btn-primary" style="padding:13px 28px;" ${answered?'':'disabled'} onclick="goToQuizQuestion(${qi+1})">Next &rarr;</button>`}
+    </div>
   `;
 }
-function setAnswer(qi, oi){ state.quizAnswers[qi]=oi; }
+function goToQuizQuestion(i){
+  state.quizQuestionIndex = i;
+  document.getElementById("quizWrap").innerHTML = renderQuiz(DAYS.find(d=>d.id===state.dayId));
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+window.goToQuizQuestion = goToQuizQuestion;
+function setAnswer(qi, oi){
+  state.quizAnswers[qi]=oi;
+  const wrap = document.getElementById("quizWrap");
+  if(wrap) wrap.innerHTML = renderQuiz(DAYS.find(d=>d.id===state.dayId));
+}
 window.setAnswer = setAnswer;
 
 async function submitQuiz(dayId){
@@ -8377,7 +8434,7 @@ function goToNextDay(dayId){
 }
 window.goToNextDay = goToNextDay;
 function retakeQuiz(dayId){
-  state.quizAnswers={}; state.quizSubmitted=false;
+  state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false;
   document.getElementById("quizWrap").innerHTML = renderQuiz(DAYS.find(x=>x.id===dayId));
 }
 window.retakeQuiz = retakeQuiz;
@@ -9263,7 +9320,8 @@ function fmtHr(h){
    ============================================================ */
 function initFinancial(body){
   toolState.audit = {statuses:{}, errorTypes:{}};
-  body.innerHTML = `
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">A. Client Trust Ledger Reconciliation</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Edit the figures if you'd like to try your own numbers, then check the closing balance.</p>
     <div class="card" style="padding:16px 20px;">
@@ -9276,14 +9334,16 @@ function initFinancial(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkSoa()">Check Answer</button>
     <div id="soaFeedback" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Invoice &amp; Bill Audit Queue</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Invoice &amp; Bill Audit Queue</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Bookkeeping forwarded these 8 invoices for R. Alvarez's trust account (Matter 24-0113). Some belong here and are correct, some belong but need a fix before they're paid, and some don't belong at all. Review each one.</p>
     <div id="auditQueue">${renderAuditQueue()}</div>
     <button class="btn btn-primary" style="margin-top:6px;" onclick="checkAudit()">Check My Audit</button>
     <div id="auditResult"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Attention to Detail Test</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Attention to Detail Test</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Below are three real documents for Matter 24-0113 — an invoice, a payment receipt, and the raw time-tracking export they were both supposed to come from. Nothing here is wrong within any single document at a glance — the errors only show up when you actually cross-check one against another, the way a careful EA would before filing.</p>
 
     <div class="mock-doc mock-invoice">
@@ -9360,6 +9420,11 @@ function initFinancial(body){
 
     <button class="btn btn-navy btn-sm" style="margin-top:16px;" onclick="downloadFinancialPdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderToolWizard(null, [
+    {label:"Trust Ledger Reconciliation", html:partA},
+    {label:"Invoice & Bill Audit", html:partB},
+    {label:"Attention to Detail Test", html:partC}
+  ]);
   recalcSoa();
 }
 async function submitAttnDetail(){
@@ -9828,8 +9893,10 @@ const LEAD_GEN_SCENARIO = {
 };
 function initColdCalling4(body){
   toolState.calls = {};
-  body.innerHTML = renderLabAttemptBanner(4) + renderColdCallingSection('A') + `
-    <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
+  toolState.wizardIndex = 0;
+  const partA = renderColdCallingSection('A');
+  const partB = `
+    <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(LEAD_GEN_SCENARIO.text)}</p>
     </div>
@@ -9838,6 +9905,10 @@ function initColdCalling4(body){
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewLeadGenPlan()">Get AI Feedback</button>
     <div id="leadGenResult" style="margin-top:14px;"></div>
   `;
+  body.innerHTML = renderToolWizard(4, [
+    {label:"Cold-Calling Log", html:partA},
+    {label:"Lead Generation Practice", html:partB}
+  ]);
   loadCallLog();
 }
 async function reviewLeadGenPlan(){
@@ -12287,8 +12358,8 @@ const AI8_LEAK_SCENARIO = {
 
 function initAccessIncident8(body){
   toolState.ai8 = {auditAnswers:{}, verifyAnswer:null, containmentDraft:""};
-  body.innerHTML = `
-    ${renderLabAttemptBanner(8)}
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Least-Privilege Access Audit</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each person below, decide: is their current access Appropriate for their role, or Excessive and something that should be revoked?</p>
     <div class="card" style="padding:14px 16px;">
@@ -12304,8 +12375,9 @@ function initAccessIncident8(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkAi8Audit()">Check My Answers</button>
     <div id="ai8AuditResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Verify Before You Disclose</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Verify Before You Disclose</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(AI8_VERIFY_SCENARIO.setup)}</p>
     </div>
@@ -12316,8 +12388,9 @@ function initAccessIncident8(body){
       </label>`).join("")}
     <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="checkAi8Verify()">Check My Answer</button>
     <div id="ai8VerifyResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Contain the Leak</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Contain the Leak</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(AI8_LEAK_SCENARIO.text)}</p>
     </div>
@@ -12325,9 +12398,13 @@ function initAccessIncident8(body){
     <textarea id="ai8ContainmentDraft" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="First, I would..."></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewAi8Containment()">Get AI Feedback</button>
     <div id="ai8ContainmentResult" style="margin-top:14px;"></div>
-
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadAi8Pdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderToolWizard(8, [
+    {label:"Least-Privilege Access Audit", html:partA},
+    {label:"Verify Before You Disclose", html:partB},
+    {label:"Contain the Leak", html:partC}
+  ]);
 }
 
 async function checkAi8Audit(){
@@ -12392,8 +12469,8 @@ window.downloadAi8Pdf = downloadAi8Pdf;
 function initCompliance9(body){
   toolState.c9 = {cle:{}, reg:{}, reviewReport:null};
   toolState.cr = {setKey:"compliance9", activeScenario: CRISIS_SCENARIO_SETS.compliance9[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.compliance9[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
-  body.innerHTML = `
-    ${renderLabAttemptBanner(9)}
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. CLE Compliance Dashboard</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each attorney, decide: On Track, or Needs Follow-up.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
@@ -12416,8 +12493,9 @@ function initCompliance9(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Cle()">Check CLE Dashboard</button>
     <div id="c9CleResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Event Registration Follow-Up</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Event Registration Follow-Up</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Mark which registrants still need a follow-up email before the event.</p>
     <div class="card" style="padding:14px 16px;">
       ${EVENT_REGISTRANTS.map((r,i)=>`
@@ -12427,8 +12505,9 @@ function initCompliance9(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Reg()">Check Follow-Up List</button>
     <div id="c9RegResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Respond to a Negative Review</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Respond to a Negative Review</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--ink);">${esc(NEGATIVE_REVIEW.author)}</b> <span style="color:var(--orange-deep);">${"★".repeat(NEGATIVE_REVIEW.stars)}${"☆".repeat(5-NEGATIVE_REVIEW.stars)}</span>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;font-style:italic;">"${esc(NEGATIVE_REVIEW.text)}"</p>
@@ -12436,8 +12515,9 @@ function initCompliance9(body){
     <textarea id="c9ReviewReply" placeholder="Type your public response here…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC9Review(this)">Get AI Feedback</button>
     <div id="c9ReviewResult" style="margin-top:10px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">D. Awards &amp; Recognition Deadline Tracker</h3>
+  `;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Awards &amp; Recognition Deadline Tracker</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Today's date for this exercise is treated as March 15. For each award below, decide: still time to apply, or the deadline has already passed.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
@@ -12459,10 +12539,16 @@ function initCompliance9(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Awards()">Check Awards Tracker</button>
     <div id="c9AwardsResult" style="margin-top:8px;font-size:13px;"></div>
-
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadCompliance9Pdf()">⬇ Download My Work</button>
-    ${renderCrisisRoleplaySection("compliance9", "E. Live Crisis Roleplay — Compliance & Reputation")}
   `;
+  const partE = renderCrisisRoleplaySection("compliance9", "E. Live Crisis Roleplay — Compliance & Reputation");
+  body.innerHTML = renderToolWizard(9, [
+    {label:"CLE Compliance Dashboard", html:partA},
+    {label:"Event Follow-Up", html:partB},
+    {label:"Negative Review Response", html:partC},
+    {label:"Awards Tracker", html:partD},
+    {label:"Crisis Roleplay", html:partE}
+  ]);
 }
 const AWARDS_TRACKER = [
   {name:"State Bar Excellence in Litigation Award", deadline:"March 1"},
@@ -12734,8 +12820,8 @@ window.downloadFm2Pdf = downloadFm2Pdf;
 
 function initSocial10(body){
   toolState.s10 = {ratesChecked:false, bestPick:"", versionMatch:{}};
-  body.innerHTML = `
-    ${renderLabAttemptBanner(10)}
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Engagement Rate: Which Post Actually Won?</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Engagement Rate = (Likes + Comments + Shares) ÷ Followers × 100. Compute each, then pick the real top performer.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
@@ -12759,8 +12845,9 @@ function initSocial10(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkS10Rates()">Check Engagement Rates</button>
     <div id="s10RateResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Match the Version to the Platform</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Match the Version to the Platform</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same announcement, two different versions. Which platform does each belong on?</p>
     ${PLATFORM_VERSIONS.map((v,i)=>`
       <div class="card" style="padding:14px 16px;margin-bottom:10px;">
@@ -12773,8 +12860,9 @@ function initSocial10(body){
       </div>`).join("")}
     <button class="btn btn-ghost btn-sm" onclick="checkS10Versions()">Check Platform Match</button>
     <div id="s10VersionResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Campaign Math</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Campaign Math</h3>
     <div class="card" style="padding:16px 20px;">
       <div class="field-row"><label>Total Spend ($)</label><input type="number" id="s10Spend" value="${CAMPAIGN_DATA.spend}" oninput="recalcS10Campaign()"></div>
       <div class="field-row"><label>Leads Generated</label><input type="number" id="s10Leads" value="${CAMPAIGN_DATA.leads}" oninput="recalcS10Campaign()"></div>
@@ -12783,8 +12871,9 @@ function initSocial10(body){
       <div class="calc-total" style="font-size:13px;border-top:none;padding-top:4px;"><span>Revenue (all leads convert)</span><span id="s10Rev" class="mono">$0</span></div>
       <div class="calc-total"><span>ROI</span><span id="s10Roi">0%</span></div>
     </div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">D. Build a Brand Kit</h3>
+  `;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Build a Brand Kit</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Before any content gets published, a real social media presence needs a defined Brand Kit — the reference that keeps every post consistent, whoever writes it. Define one for Elias's professional presence.</p>
     <div class="card" style="padding:16px 20px;">
       <div class="field-row"><label>Primary color(s)</label><input type="text" id="s10BkColors" placeholder="e.g. Navy #1B2340, Warm Gold #C9A24B"></div>
@@ -12795,15 +12884,22 @@ function initSocial10(body){
     </div>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewS10BrandKit()">Get AI Feedback</button>
     <div id="s10BrandKitResult" style="margin-top:10px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">E. Write a Comprehensive Social Media Marketing Plan</h3>
+  `;
+  const partE = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">E. Write a Comprehensive Social Media Marketing Plan</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Pull everything from this day together into one real plan — goals, target audience, platforms, content pillars, posting cadence, and how success will be measured.</p>
     <textarea id="s10PlanDraft" style="width:100%;min-height:200px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="1. Goals&#10;2. Target audience&#10;3. Platforms &amp; why each one&#10;4. Content pillars&#10;5. Posting cadence&#10;6. Success metrics / KPIs"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewS10MarketingPlan()">Get AI Feedback</button>
     <div id="s10PlanResult" style="margin-top:10px;"></div>
-
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadSocial10Pdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderToolWizard(10, [
+    {label:"Engagement Rate", html:partA},
+    {label:"Version Matching", html:partB},
+    {label:"Campaign Math", html:partC},
+    {label:"Brand Kit", html:partD},
+    {label:"Marketing Plan", html:partE}
+  ]);
   recalcS10Campaign();
 }
 
@@ -13133,21 +13229,23 @@ window.downloadDossier1Pdf = downloadDossier1Pdf;
 function initInsurance5(body){
   toolState.i5 = {category:{}, strategy:{}};
   toolState.cr = {setKey:"insurance5", activeScenario: CRISIS_SCENARIO_SETS.insurance5[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.insurance5[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
-  body.innerHTML = `
-    ${renderLabAttemptBanner(5)}
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Classify the Risk</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Something crosses your desk about the Thorne household almost every week. Drag each card into the risk category it belongs to.</p>
     ${renderMatchBoard("i5cat", RISK_SCENARIOS.map(s=>s.text), RISK_CATEGORIES)}
     <button class="btn btn-ghost btn-sm" style="margin-top:14px;" onclick="checkI5Category()">Check Categories</button>
     <div id="i5CategoryResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Match the Strategy</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Match the Strategy</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each real decision, drag it onto the risk-management strategy actually being used.</p>
     ${renderMatchBoard("i5strat", RISK_STRATEGY_SCENARIOS.map(s=>s.text), RISK_STRATEGIES)}
     <button class="btn btn-ghost btn-sm" style="margin-top:14px;" onclick="checkI5Strategy()">Check Strategies</button>
     <div id="i5StrategyResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Build a Home Binder Section</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Build a Home Binder Section</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">Elias is traveling for two weeks and wants a real Home Binder ready in case someone else — a substitute PA, a family member — needs to step in while he's gone. Fill in each section below using what you actually know about the household.</p>
     </div>
@@ -13159,10 +13257,17 @@ function initInsurance5(body){
       </div>`).join("")}
     <button class="btn btn-navy btn-sm" onclick="reviewI5Binder()">Get AI Feedback</button>
     <div id="i5BinderResult" style="margin-top:10px;"></div>
-
-    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
-    ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
   `;
+  const partD = `
+    ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
+  `;
+  body.innerHTML = renderToolWizard(5, [
+    {label:"Classify the Risk", html:partA},
+    {label:"Match the Strategy", html:partB},
+    {label:"Home Binder", html:partC},
+    {label:"Crisis Roleplay", html:partD}
+  ]);
 }
 const HOME_BINDER_SECTIONS = ["Household Operations", "Family & Medical", "Financial & Legal Reference", "Emergency Contacts"];
 async function reviewI5Binder(){
@@ -13289,8 +13394,8 @@ window.downloadInsurance5Pdf = downloadInsurance5Pdf;
 function initProjectCompliance6(body){
   toolState.c6 = {license:{}, kpi:{}, recoveryReport:null};
   toolState.c6cr = {activeScenario: DAY6_CRISIS_SCENARIOS[0].id, chatHistory:[{role:"client", text: DAY6_CRISIS_SCENARIOS[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
-  body.innerHTML = `
-    ${renderLabAttemptBanner(6)}
+  toolState.wizardIndex = 0;
+  const partA = `
     <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">📅 Month-End, Thorne &amp; Partners</b>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">It's month-end compliance review. Two routine checks land on your desk at the same time — a license status sweep across all four jurisdictions, and this month's KPI dashboard. Neither looks urgent on its own. But by the end of this exercise, you'll see they're both pointing at the same thing: the Meridian Dynamics arbitration is under real strain, and it's already showing up elsewhere before anyone's said so out loud.</p>
@@ -13319,8 +13424,9 @@ function initProjectCompliance6(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6License()">Check Licenses</button>
     <div id="c6LicenseResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Read the Operational Warning Signs</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Read the Operational Warning Signs</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">This month's numbers just came in. Flag which metrics are On Target vs. Off Target — and notice which categories are slipping together.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
@@ -13342,8 +13448,9 @@ function initProjectCompliance6(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6Kpi()">Check Dashboard</button>
     <div id="c6KpiResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Write the Recovery &amp; Escalation Memo</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Write the Recovery &amp; Escalation Memo</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">${esc(TRIAL_RECOVERY_SCENARIO.matter)}</b>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRIAL_RECOVERY_SCENARIO.text)}</p>
@@ -13353,10 +13460,17 @@ function initProjectCompliance6(body){
     <textarea id="c6RecoveryReply" placeholder="Draft your message to Elias here — reference what you found in Parts A and B, not just the trial delay on its own…" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC6Recovery(this)">Get AI Feedback</button>
     <div id="c6RecoveryResult" style="margin-top:10px;"></div>
-
-    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadProjectCompliance6Pdf()">⬇ Download My Work</button>
-    ${renderDay6CrisisRoleplaySection()}
   `;
+  const partD = `
+    ${renderDay6CrisisRoleplaySection()}
+    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadProjectCompliance6Pdf()">⬇ Download My Work</button>
+  `;
+  body.innerHTML = renderToolWizard(6, [
+    {label:"Compliance Risk", html:partA},
+    {label:"Operational Warning Signs", html:partB},
+    {label:"Recovery Memo", html:partC},
+    {label:"Crisis Roleplay", html:partD}
+  ]);
 }
 
 function setC6License(i,v){ toolState.c6.license[i]=v; }
