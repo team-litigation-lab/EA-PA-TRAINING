@@ -7122,12 +7122,18 @@ const state = {
 /* ---------- storage (persists across sessions) ---------- */
 const mem = {}; // in-memory fallback if window.storage is unavailable
 async function storeGet(key){
+  let fromWindowStorage;
   try{
     if(window.storage){
       const r = await window.storage.get(key,false);
-      return r ? JSON.parse(r.value) : null;
+      fromWindowStorage = r ? JSON.parse(r.value) : undefined;
     }
   }catch(e){ /* key not found in window.storage, or unavailable */ }
+  if(fromWindowStorage !== undefined) return fromWindowStorage;
+  // window.storage came up empty (missing key, unavailable, or threw) — always
+  // check localStorage too rather than treating window.storage as exclusive.
+  // storeSet writes to both, so a value can genuinely live only in
+  // localStorage if window.storage was ever unavailable or reset.
   try{
     const raw = localStorage.getItem("lsh_"+key);
     if(raw !== null) return JSON.parse(raw);
@@ -7154,21 +7160,29 @@ async function storeSet(key,val){
 
 /* ---------- shared storage (the "admin ledger" — visible across all trainees) ---------- */
 async function sharedSet(key,val){
+  let savedAnywhere = false;
   try{
-    if(window.storage){ await window.storage.set(key, JSON.stringify(val), true); return true; }
-  }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+    if(window.storage){ await window.storage.set(key, JSON.stringify(val), true); savedAnywhere = true; }
+  }catch(e){ /* window.storage unavailable or failed, fall through */ }
+  // Always also write to the real, cross-device KV-backed API — this is the
+  // actual shared ledger the Admin dashboard and other trainees/devices
+  // read from. window.storage (when present, e.g. previewing in Claude.ai)
+  // is a separate store and must never be treated as a substitute for it.
   try{
     const response = await fetch("/api/storage/set", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ key, value: JSON.stringify(val) })
     });
-    return response.ok;
-  }catch(e){ console.warn("shared storage set failed",e); return false; }
+    if(response.ok) savedAnywhere = true;
+  }catch(e){ console.warn("shared storage set failed",e); }
+  return savedAnywhere;
 }
 async function sharedGet(key){
+  let fromWindowStorage;
   try{
-    if(window.storage){ const r = await window.storage.get(key,true); return r ? JSON.parse(r.value) : null; }
+    if(window.storage){ const r = await window.storage.get(key,true); fromWindowStorage = r ? JSON.parse(r.value) : undefined; }
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  if(fromWindowStorage !== undefined) return fromWindowStorage;
   try{
     const response = await fetch("/api/storage/get", {
       method:"POST", headers:{"Content-Type":"application/json"},
@@ -7180,30 +7194,35 @@ async function sharedGet(key){
   }catch(e){ return null; }
 }
 async function sharedList(prefix){
+  let fromWindowStorage = [];
   try{
-    if(window.storage){ const r = await window.storage.list(prefix,true); return (r && r.keys) || []; }
+    if(window.storage){ const r = await window.storage.list(prefix,true); fromWindowStorage = (r && r.keys) || []; }
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  let fromKv = [];
   try{
     const response = await fetch("/api/storage/list", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ prefix })
     });
-    if(!response.ok) return [];
-    const data = await response.json();
-    return data.keys || [];
-  }catch(e){ console.warn("shared storage list failed",e); return []; }
+    if(response.ok){ const data = await response.json(); fromKv = data.keys || []; }
+  }catch(e){ console.warn("shared storage list failed",e); }
+  // Merge and dedupe — a key may exist in either store depending on which
+  // one a given write happened to land in historically.
+  return [...new Set([...fromWindowStorage, ...fromKv])];
 }
 async function sharedDelete(key){
+  let deletedAnywhere = false;
   try{
-    if(window.storage){ await window.storage.delete(key,true); return true; }
+    if(window.storage){ await window.storage.delete(key,true); deletedAnywhere = true; }
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
   try{
     const response = await fetch("/api/storage/delete", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ key })
     });
-    return response.ok;
-  }catch(e){ console.warn("shared storage delete failed",e); return false; }
+    if(response.ok) deletedAnywhere = true;
+  }catch(e){ console.warn("shared storage delete failed",e); }
+  return deletedAnywhere;
 }
 
 function generateTraineeId(name){
