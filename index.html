@@ -395,6 +395,40 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-iconlist .il-body b{font-family:'Fraunces';font-size:var(--font-body);font-weight:600;color:var(--navy);display:block;margin-bottom:3px;}
 .lesson-iconlist .il-body p{font-size:var(--font-sub);color:#37394A;margin:0;line-height:1.4;}
 
+.video-placeholder-card{
+  display:grid;grid-template-columns:200px 1fr;gap:0;margin-bottom:14px;
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;
+}
+@media(max-width:560px){.video-placeholder-card{grid-template-columns:1fr;}}
+.vpc-thumb{
+  position:relative;background:linear-gradient(135deg, var(--navy) 0%, #2E3A6B 100%);
+  min-height:130px;display:flex;align-items:center;justify-content:center;
+}
+.vpc-thumb-initials{
+  font-family:'Fraunces';font-size:34px;font-weight:600;color:rgba(255,255,255,.18);letter-spacing:.02em;
+}
+.vpc-play-btn{
+  position:absolute;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);
+  color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px;
+  box-shadow:0 4px 14px -4px rgba(0,0,0,.4);
+}
+.vpc-duration{
+  position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.65);color:#fff;
+  font-family:'IBM Plex Mono';font-size:11px;padding:2px 7px;border-radius:5px;
+}
+.vpc-body{padding:16px 18px;}
+.vpc-title{font-family:'Fraunces';font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.vpc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.vpc-tag{
+  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;
+  color:var(--orange-deep);background:var(--orange-soft);padding:3px 9px;border-radius:20px;
+}
+.vpc-watch-btn{display:inline-flex;margin-bottom:12px;}
+.vpc-takeaways{padding-top:12px;border-top:1px solid var(--line);}
+.vpc-takeaways b{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-soft);display:block;margin-bottom:6px;}
+.vpc-takeaways ul{margin:0;padding-left:18px;}
+.vpc-takeaways li{font-size:var(--font-sub);color:#37394A;margin-bottom:4px;line-height:1.4;}
+
 /* lesson slideshow */
 .slide-dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
 .slide-dot{
@@ -8410,8 +8444,34 @@ function renderLessonVisual(l){
     case "STAT": return renderStatVisual(l.statNumber, l.statLabel);
     case "PALETTE": return renderPaletteVisual(l.palette);
     case "ICONLIST": return renderIconListVisual(l.icons);
+    case "VIDEO": return renderVideoPlaceholderCard(l.video);
     default: return "";
   }
+}
+function renderVideoPlaceholderCard(video){
+  // Zero raw video files ever ship with this portal — every video lesson is
+  // this lightweight placeholder card, pointing out to wherever the actual
+  // file is hosted (Drive, etc.). Nothing here downloads or embeds video.
+  if(!video) return "";
+  const initials = (video.title||"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
+  return `
+    <div class="video-placeholder-card">
+      <div class="vpc-thumb">
+        <div class="vpc-thumb-initials">${esc(initials)}</div>
+        <div class="vpc-play-btn">▶</div>
+        ${video.duration ? `<div class="vpc-duration">${esc(video.duration)}</div>` : ""}
+      </div>
+      <div class="vpc-body">
+        <div class="vpc-title">${esc(video.title||"Untitled Video Lesson")}</div>
+        ${video.tags && video.tags.length ? `<div class="vpc-tags">${video.tags.map(t=>`<span class="vpc-tag">${esc(t)}</span>`).join("")}</div>` : ""}
+        ${video.driveUrl ? `<a class="btn btn-navy btn-sm vpc-watch-btn" href="${esc(video.driveUrl)}" target="_blank" rel="noopener noreferrer">▶ Watch Video on Drive</a>` : ""}
+        ${video.takeaways && video.takeaways.length ? `
+        <div class="vpc-takeaways">
+          <b>Key Takeaways</b>
+          <ul>${video.takeaways.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+        </div>` : ""}
+      </div>
+    </div>`;
 }
 function renderIconListVisual(icons){
   if(!icons || !icons.length) return "";
