@@ -184,6 +184,12 @@ button{font-family:inherit;cursor:pointer;}
   color:var(--success);border-color:var(--success);
 }
 .module-finish-btn:hover{background:var(--success-bg);}
+.module-review-row{
+  display:flex;gap:8px;margin:0 16px 16px;
+}
+.module-review-row button{
+  flex:1;justify-content:center;padding:7px 6px;font-size:11px;
+}
 @keyframes previewIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
 
 .nav{display:flex;gap:4px;background:rgba(255,255,255,.06);padding:4px;border-radius:10px;flex-wrap:wrap;flex:0 1 auto;}
@@ -318,7 +324,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 /* rich lesson layouts (mirrors the companion slide deck) — horizontally aligned grids */
 .lesson-quadrant{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:10px;margin-bottom:14px;}
-.lesson-quadrant .qbox{border-radius:10px;padding:14px 16px;color:#fff;}
+.lesson-quadrant .qbox{border-radius:10px;padding:16px;color:#fff;}
 .lesson-quadrant .qbox:nth-child(4n+1){background:var(--navy);}
 .lesson-quadrant .qbox:nth-child(4n+2){background:var(--orange);}
 .lesson-quadrant .qbox:nth-child(4n+3){background:var(--navy-soft);}
@@ -328,7 +334,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 .lesson-process{display:flex;flex-wrap:wrap;align-items:stretch;gap:4px;margin-bottom:14px;}
 .lesson-process .pstep{
-  background:var(--navy);border-radius:10px;padding:16px 14px 14px;
+  background:var(--navy);border-radius:10px;padding:16px;
   color:#fff;position:relative;flex:1 1 160px;min-width:140px;
 }
 .lesson-process .pstep:nth-child(4n+2), .lesson-process .pstep:nth-child(4n+4){background:var(--navy-soft);}
@@ -345,7 +351,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-compare .chead{padding:9px 14px;color:#fff;font-family:'Fraunces';font-size:var(--font-body);font-weight:600;}
 .lesson-compare .cbox:first-child .chead{background:var(--navy);}
 .lesson-compare .cbox:last-child .chead{background:var(--orange-deep);}
-.lesson-compare .cbody{padding:12px 14px;}
+.lesson-compare .cbody{padding:16px;}
 .lesson-compare .citem{font-size:var(--font-sub);color:#37394A;padding-left:18px;position:relative;margin-bottom:8px;line-height:1.4;}
 .lesson-compare .citem:last-child{margin-bottom:0;}
 .lesson-compare .citem::before{content:"";position:absolute;left:0;top:4px;width:9px;height:9px;border-radius:50%;background:var(--orange);}
@@ -374,6 +380,15 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .palette-info b{display:block;font-family:'Fraunces';font-size:var(--font-body);color:var(--navy);margin-bottom:2px;}
 .palette-info span{display:block;font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);margin-bottom:6px;}
 .palette-info p{font-size:var(--font-sub);color:#37394A;margin:0;line-height:1.4;}
+
+.lesson-iconlist{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.lesson-iconlist .il-item{
+  display:flex;gap:14px;align-items:flex-start;background:#F8F9FC;border:1px solid var(--line);
+  border-radius:10px;padding:16px;
+}
+.lesson-iconlist .il-icon{font-size:22px;line-height:1;flex-shrink:0;width:30px;text-align:center;}
+.lesson-iconlist .il-body b{font-family:'Fraunces';font-size:var(--font-body);font-weight:600;color:var(--navy);display:block;margin-bottom:3px;}
+.lesson-iconlist .il-body p{font-size:var(--font-sub);color:#37394A;margin:0;line-height:1.4;}
 
 /* lesson slideshow */
 .slide-dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
@@ -514,6 +529,15 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .quiz-result .big{font-family:'Fraunces';font-size:42px;color:var(--navy);}
 .quiz-result .sub{font-size:var(--font-body);color:var(--ink-soft);margin-top:4px;}
+.quiz-history{
+  margin-top:24px;padding-top:18px;border-top:1px solid var(--line);text-align:left;
+  max-width:420px;margin-left:auto;margin-right:auto;
+}
+.quiz-history b{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-soft);display:block;margin-bottom:8px;}
+.quiz-history table{width:100%;border-collapse:collapse;}
+.quiz-history td{font-size:12.5px;padding:6px 4px;border-bottom:1px solid var(--line);color:#37394A;}
+.quiz-history td.qh-pass{color:var(--success);font-weight:600;}
+.quiz-history td.qh-fail{color:var(--danger);font-weight:600;}
 
 /* ---------- practice lab ---------- */
 .practice-shell{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start;}
@@ -1506,21 +1530,8 @@ const DAY1 = {
       "b": [
         "EA response to a sensitive request: authoritative, brief, procedural — protects the business first.",
         "PA response to the same trigger: warm, accommodating, relationship-first — protects the person first.",
-        "Same instinct underneath both: protect first, resolve second.",
-        "EA decision principles: prioritize business-critical matters, filter incoming requests before escalating, know when to negotiate or delegate.",
-        "PA decision principles: honor personal preferences first, offer alternatives instead of outright denials, keep sensitive personal matters private."
+        "Same instinct underneath both: protect first, resolve second."
       ],
-      "example": {
-        "label": "Same situation, two roles",
-        "lines": [
-          "Situation — Sensitive Request: someone asks you to share confidential details.",
-          "EA response: \"I cannot release that information. I'll escalate internally.\"",
-          "PA response: \"That's private. I can assist with logistics if needed.\"",
-          "Situation — Persistent Caller: someone keeps pushing for the executive's direct time.",
-          "EA response: \"Please submit the request in writing; I'll review priority.\"",
-          "PA response: \"I'll take a message and follow up as soon as possible.\""
-        ]
-      },
       "layout": "COMPARE",
       "compareLeft": {
         "label": "EA Response",
@@ -1539,6 +1550,14 @@ const DAY1 = {
         ]
       },
       "trainerCue": "Have two volunteers role-play the EA response and PA response back-to-back to the same prompt — the contrast lands much harder live than on a slide."
+    },
+    {
+      "h": "EA vs. PA Decision Principles",
+      "b": [
+        "EA decision principles: prioritize business-critical matters, filter incoming requests before escalating, know when to negotiate or delegate.",
+        "PA decision principles: honor personal preferences first, offer alternatives instead of outright denials, keep sensitive personal matters private."
+      ],
+      "trainerCue": "Ask the room which set of principles feels more natural to them personally — it's a good gauge of which track (EA or PA) matches their own instincts."
     },
     {
       "h": "Professional Standards & Confidentiality",
@@ -1581,10 +1600,7 @@ const DAY1 = {
       "b": [
         "Escalate potential issues rather than deciding alone — that's the core of a healthy command hierarchy.",
         "Red flag: a confidential document bypassing legal review before reaching a client.",
-        "Executives should hear critical news from you first, not secondhand.",
-        "Command hierarchy for a corporate/executive track: CEO/President → Senior EA → EA (reports to a specific executive) → Administrative Assistant.",
-        "Command hierarchy for a legal track: Managing Partner/General Counsel → Senior Legal Assistant → Legal EA → Paralegal — the chain is strict, and unauthorized decisions can have real legal consequences.",
-        "Command hierarchy for a personal/household track: Executive or Family Head → Senior PA/Estate Manager → PA → Household staff (driver, housekeeper, nanny)."
+        "Executives should hear critical news from you first, not secondhand."
       ],
       "layout": "PROCESS",
       "processSteps": [
@@ -1604,6 +1620,15 @@ const DAY1 = {
           "label": "Inform",
           "desc": "Make sure the executive hears it from you first, not from someone else"
         }
+      ],
+      "trainerCue": "Ask the room to describe, in their own words, what 'escalating rather than deciding alone' actually looks like in practice — the abstract sequence lands better once someone puts it in real terms."
+    },
+    {
+      "h": "Command Hierarchy Across Different Tracks",
+      "b": [
+        "Command hierarchy for a corporate/executive track: CEO/President → Senior EA → EA (reports to a specific executive) → Administrative Assistant.",
+        "Command hierarchy for a legal track: Managing Partner/General Counsel → Senior Legal Assistant → Legal EA → Paralegal — the chain is strict, and unauthorized decisions can have real legal consequences.",
+        "Command hierarchy for a personal/household track: Executive or Family Head → Senior PA/Estate Manager → PA → Household staff (driver, housekeeper, nanny)."
       ],
       "trainerCue": "Walk the room through the three org-chart tracks on screen and ask which one matches their own current or most recent job — this is a good pulse-check on the room's mixed experience level."
     },
@@ -1627,12 +1652,18 @@ const DAY1 = {
         ]
       },
       "b": [
-        "Being the liaison means other staff, departments, or outside contacts have one clear person to reach instead of guessing who owns a given question — that clarity alone prevents a lot of wasted time and crossed wires.",
+        "Being the liaison means other staff, departments, or outside contacts have one clear person to reach instead of guessing who owns a given question — that clarity alone prevents a lot of wasted time and crossed wires."
+      ],
+      "trainerCue": "Ask for a real example of a time information got garbled passing through a middle person — then ask what would have prevented it. That's the liaison discipline in one exercise."
+    },
+    {
+      "h": "The Liaison Skill in Practice",
+      "b": [
         "The core liaison skill is accurate two-way relay: passing a request to the executive without distorting it, and passing the executive's answer back without softening or embellishing it into something it wasn't.",
         "This role compounds with command hierarchy — as the liaison, you're often the one who has to know which track (corporate, legal, household) a given request actually belongs to, so it reaches the right person.",
         "A liaison who becomes a bottleneck has failed at the role just as much as one who lets everything through unfiltered — the goal is smooth, accurate coordination, not personal indispensability."
       ],
-      "trainerCue": "Ask for a real example of a time information got garbled passing through a middle person — then ask what would have prevented it. That's the liaison discipline in one exercise."
+      "trainerCue": "Ask the room to name the difference between a liaison who's 'thorough' and one who's actually just slow — the line between the two is worth discussing directly."
     },
     {
       "h": "Client Profiling",
@@ -1655,19 +1686,8 @@ const DAY1 = {
       "h": "Creating a Comprehensive Client Dossier",
       "b": [
         "A dossier goes deeper than a profile — a living document that lets anyone run the account with zero ramp-up.",
-        "Four sections: Firm & Role, Personal & Family, Standing Instructions, Known Quirks.",
-        "Thorne excerpt: 15-minute debrief buffer after key sessions, strict Paleo diet, 5:30 AM voice notes needing an 8 AM agenda, aisle-seat-only travel.",
-        "Each of the four sections answers a different failure mode: getting the professional context wrong, missing a personal sensitivity, breaking a hard rule, or misreading an idiosyncrasy as negotiable when it isn't.",
-        "Anyone can paste facts under headings — a good dossier explains why a fact matters operationally, not just states it as trivia, and is written for the EA who inherits the account cold."
+        "Four sections: Firm & Role, Personal & Family, Standing Instructions, Known Quirks."
       ],
-      "example": {
-        "label": "Dossier excerpt — Elias Thorne",
-        "lines": [
-          "Standing Instructions: mandatory 15-minute debrief buffer after every key client or court session; strict Paleo diet, zero dairy — all client dinners vetted in advance; no back-to-back depositions or court hearings.",
-          "Known Quirks: sends rapid, cryptic voice notes around 5:30 AM that need to become a structured agenda by 8:00 AM; needs aisle seats near the front and hates connecting flights.",
-          "Personal & Family: married to Sarah; two children, Leo (8) and Maya (5); one dog, Barnaby."
-        ]
-      },
       "layout": "QUADRANT",
       "quadrants": [
         {
@@ -1687,6 +1707,23 @@ const DAY1 = {
           "desc": "Personality-driven patterns written in plain language, never judgment — how they actually operate"
         }
       ],
+      "trainerCue": "Ask the room which of the four sections they'd find hardest to fill in accurately without ever having met the executive — that's usually Known Quirks, and it's worth naming why."
+    },
+    {
+      "h": "Dossier Excerpt — Elias Thorne",
+      "b": [
+        "Thorne excerpt: 15-minute debrief buffer after key sessions, strict Paleo diet, 5:30 AM voice notes needing an 8 AM agenda, aisle-seat-only travel.",
+        "Each of the four sections answers a different failure mode: getting the professional context wrong, missing a personal sensitivity, breaking a hard rule, or misreading an idiosyncrasy as negotiable when it isn't.",
+        "Anyone can paste facts under headings — a good dossier explains why a fact matters operationally, not just states it as trivia, and is written for the EA who inherits the account cold."
+      ],
+      "example": {
+        "label": "Dossier excerpt — Elias Thorne",
+        "lines": [
+          "Standing Instructions: mandatory 15-minute debrief buffer after every key client or court session; strict Paleo diet, zero dairy — all client dinners vetted in advance; no back-to-back depositions or court hearings.",
+          "Known Quirks: sends rapid, cryptic voice notes around 5:30 AM that need to become a structured agenda by 8:00 AM; needs aisle seats near the front and hates connecting flights.",
+          "Personal & Family: married to Sarah; two children, Leo (8) and Maya (5); one dog, Barnaby."
+        ]
+      },
       "trainerCue": "Live-build one dossier section on the whiteboard from the raw facts as a group, out loud, before trainees do it solo — this is the single highest-value facilitator moment in Day 1."
     },
     {
@@ -4533,10 +4570,7 @@ const DAY7 = {
       "h": "SOA Reconciliation",
       "b": [
         "SOA = Opening + Invoices − Payments ± Adjustments = Closing Balance.",
-        "If revenue doesn't match deposits, compare bank statements against revenue records first — don't recreate every report from scratch.",
-        "Discrepancy detection techniques: compare the ledger against the bank statement, confirm credits were applied correctly, and look specifically for reversed entries.",
-        "A reconciliation checklist should confirm: all invoices are listed, all payments are recorded, there are no unmatched balances, and every variance is explained.",
-        "Real case study: a payment applied to the wrong client resulted in an actual legal dispute — this is why duplicate-payment prevention (system detection, manual verification, approval thresholds) matters."
+        "If revenue doesn't match deposits, compare bank statements against revenue records first — don't recreate every report from scratch."
       ],
       "layout": "STAT",
       "statNumber": "Opening + Invoices − Payments ± Adjustments",
@@ -4544,7 +4578,16 @@ const DAY7 = {
       "trainerCue": "Work the SOA formula with real (or realistic) numbers on the board as a group before trainees try the reconciliation exercise solo."
     },
     {
-      "h": "Credit Cards, Tax Season & Working with Accountants",
+      "h": "Reconciliation Discrepancy Detection",
+      "b": [
+        "Discrepancy detection techniques: compare the ledger against the bank statement, confirm credits were applied correctly, and look specifically for reversed entries.",
+        "A reconciliation checklist should confirm: all invoices are listed, all payments are recorded, there are no unmatched balances, and every variance is explained.",
+        "Real case study: a payment applied to the wrong client resulted in an actual legal dispute — this is why duplicate-payment prevention (system detection, manual verification, approval thresholds) matters."
+      ],
+      "trainerCue": "Ask the room what they'd actually check first if a reconciliation came up $340 short — the answer reveals whether the checklist habit has genuinely landed."
+    },
+    {
+      "h": "Credit Cards & Card Applications",
       "layout": "THREEBOX",
       "boxes": [
         {"label":"Credit Card Payments", "desc":"Tracking due dates and statement review the same way as any other recurring payment — a missed card payment carries real fees and credit consequences"},
@@ -4553,11 +4596,17 @@ const DAY7 = {
       ],
       "b": [
         "Credit card payments follow the same discipline as every other recurring financial task in this program: a real due-date calendar, not memory, and a statement review before payment — not after — to catch anything that shouldn't be there.",
-        "When a credit card application is part of the task, the EA's role is precision: gathering exactly what's requested (not more, not less) and following the specific process the issuer requires, since financial applications are one place where 'close enough' documentation causes real delays.",
+        "When a credit card application is part of the task, the EA's role is precision: gathering exactly what's requested (not more, not less) and following the specific process the issuer requires, since financial applications are one place where 'close enough' documentation causes real delays."
+      ],
+      "trainerCue": "Ask the room how confident they'd feel today if an accountant asked for 'every receipt from the last 90 days' — the honest answer usually reveals whether records are being kept continuously or reconstructed under pressure."
+    },
+    {
+      "h": "Tax Season Support & Working with Accountants",
+      "b": [
         "Tax season support isn't a once-a-year task disguised as one — the actual EA value is in organizing receipts, invoices, and records continuously through the year, so that when the accountant asks for documentation, it's a retrieval task, not a reconstruction project.",
         "Liaising with accountants means being the reliable point of contact who can answer 'do you have X' quickly and accurately — which is only possible if the underlying records were kept current all along, connecting directly to the reconciliation discipline covered earlier in this day."
       ],
-      "trainerCue": "Ask the room how confident they'd feel today if an accountant asked for 'every receipt from the last 90 days' — the honest answer usually reveals whether records are being kept continuously or reconstructed under pressure."
+      "trainerCue": "Ask the room to describe what a truly continuous, year-round receipt-organizing habit would actually look like day to day — most people can describe the goal but not the daily mechanics, which is exactly the gap this topic closes."
     },
     {
       "h": "What an SOP Actually Needs",
@@ -4613,11 +4662,7 @@ const DAY7 = {
       "h": "QuickBooks How-Tos — Step by Step",
       "layout": "PROCESS",
       "b": [
-        "These four tasks cover the majority of what an EA actually touches in QuickBooks day to day — you don't need to know the whole platform, just these workflows cold.",
-        "The single most common new-user mistake is miscategorizing an expense (e.g. filing a client-reimbursable cost as a general office expense) — this quietly breaks both the client's invoice accuracy and the firm's own books. When in doubt, ask before categorizing, don't guess.",
-        "Reconciliation only 'finishes' when the difference shows exactly $0.00. If it doesn't, the fix is almost always a missing transaction or a duplicate — not forcing the numbers to match by adjusting an unrelated entry.",
-        "Every invoice should be checked against the engagement letter or contract terms before sending — QuickBooks will happily generate an invoice for the wrong rate if that's what you typed in.",
-        "If your firm uses QuickBooks Online (not Desktop), changes save automatically — there's no separate 'save file' step, which means a wrong entry needs to be corrected via a journal entry or edit, not undone with Ctrl+Z."
+        "These four tasks cover the majority of what an EA actually touches in QuickBooks day to day — you don't need to know the whole platform, just these workflows cold."
       ],
       "trainerCue": "If you have QuickBooks access, screen-share a live invoice creation and a live reconciliation instead of walking through this as slides — trainees retain the click-path far better watching it happen than reading the steps.",
       "processSteps": [
@@ -4638,6 +4683,16 @@ const DAY7 = {
           "desc": "Reports → search 'Accounts Receivable Aging Summary' → run it → scan the 61-90 and 90+ day columns first — those are the balances that need a follow-up call, not the current ones."
         }
       ]
+    },
+    {
+      "h": "QuickBooks Common Mistakes & Tips",
+      "b": [
+        "The single most common new-user mistake is miscategorizing an expense (e.g. filing a client-reimbursable cost as a general office expense) — this quietly breaks both the client's invoice accuracy and the firm's own books. When in doubt, ask before categorizing, don't guess.",
+        "Reconciliation only 'finishes' when the difference shows exactly $0.00. If it doesn't, the fix is almost always a missing transaction or a duplicate — not forcing the numbers to match by adjusting an unrelated entry.",
+        "Every invoice should be checked against the engagement letter or contract terms before sending — QuickBooks will happily generate an invoice for the wrong rate if that's what you typed in.",
+        "If your firm uses QuickBooks Online (not Desktop), changes save automatically — there's no separate 'save file' step, which means a wrong entry needs to be corrected via a journal entry or edit, not undone with Ctrl+Z."
+      ],
+      "trainerCue": "Ask the room to guess what percentage of QuickBooks errors they think come from miscategorization versus other causes — then reveal it's the single most common mistake, which usually surprises people."
     },
     {
       "h": "Contract-Aware Billing",
@@ -4672,7 +4727,7 @@ const DAY7 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 2,
+      "afterIndex": 5,
       "q": "Which SOP element answers \"who does this process apply to?\"",
       "opts": [
         "Purpose",
@@ -6000,6 +6055,13 @@ const DAY10 = {
     {
       "h": "The Executive Personal Brand Style Guide",
       "layout": "ICONLIST",
+      "icons": [
+        {"icon":"🎯", "label":"North Star", "desc":"The primary goal (thought leadership, recruiting, networking) and the 3 key topics the executive is the 'expert' in"},
+        {"icon":"🗣", "label":"Voice & Tone", "desc":"Point of view (1st vs. 3rd person), emoji use, and punctuation rules — written down, not left to instinct"},
+        {"icon":"🚫", "label":"The 'Never' List", "desc":"Banned topics, banned buzzwords, and formatting no-gos (e.g. no more than 5 hashtags)"},
+        {"icon":"💬", "label":"Engagement Protocol", "desc":"Who gets a reply, how to handle trolls, and the approval workflow"},
+        {"icon":"📸", "label":"Visual Standard", "desc":"Roughly 70% candid/authentic content, 30% polished (professional headshots for major announcements)"}
+      ],
       "b": [
         "Define the North Star first: what's the primary goal (thought leadership, recruiting, networking) and 3 key topics the executive is the 'expert' in.",
         "Voice and Tone table: point of view (1st vs. 3rd person), emoji use, and punctuation rules should all be written down, not left to instinct.",
@@ -6167,6 +6229,12 @@ const DAY10 = {
     {
       "h": "SEO, GEO & Funneling for Executives",
       "layout": "ICONLIST",
+      "icons": [
+        {"icon":"🔍", "label":"SEO", "desc":"Making sure the right people find the executive on Google — natural keyword phrases, backlinks from podcast/guest-blog appearances"},
+        {"icon":"🤖", "label":"GEO", "desc":"Getting AI tools like ChatGPT, Gemini, and Perplexity to actually recommend the executive when someone asks a relevant question"},
+        {"icon":"🔽", "label":"Funneling", "desc":"Top of funnel is awareness (social, PR), middle is interest (newsletter, lead magnets), bottom is action (booking link, 24-hour follow-up)"},
+        {"icon":"📊", "label":"Monthly Scorecard", "desc":"Domain Authority, AI citation mentions, funnel drop-off rate, and search volume for the executive's name"}
+      ],
       "b": [
         "SEO (Search Engine Optimization) makes sure the right people find the executive on Google — an EA manages the 'inputs' that feed this: natural keyword phrases, backlinks from podcast/guest-blog appearances.",
         "Run a monthly 'Google Yourself' audit in Incognito mode — if an outdated profile or old blog post is outranking the executive's current site, update the metadata to compete.",
@@ -6534,8 +6602,8 @@ const CAL_EVENTS = [
   {t:"Paralegal Check-in", day:"Mon", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Internal"},
   {t:"Discovery Deadline Review", day:"Mon", s:15.75, e:16.75, p:"High", loc:"Virtual", type:"Case Team"},
   {t:"Co-Counsel Sync — Reyes Group", day:"Mon", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Case Team"},
-  {t:"Mail & Filing Review", day:"Mon", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Internal"},
-  {t:"Client Intake — New Referral", day:"Mon", s:13.15, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"Mail & Filing Review", day:"Mon", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Internal"},
+  {t:"Client Intake — New Referral", day:"Mon", s:13.25, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Vendor Review — Court Reporter Svc.", day:"Tue", s:9, e:10, p:"Medium", loc:"In-person", type:"Vendor"},
   {t:"Deposition Prep — Matter 24-0113", day:"Tue", s:9.5, e:10.5, p:"High", loc:"Virtual", type:"Deposition"},
   {t:"Media Inquiry Response", day:"Tue", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
@@ -6544,8 +6612,8 @@ const CAL_EVENTS = [
   {t:"Client Call — Osei Prep", day:"Tue", s:14.5, e:15.5, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Compliance Audit Prep", day:"Tue", s:15.75, e:16.75, p:"Medium", loc:"Virtual", type:"Compliance"},
   {t:"CLE Credit Reconciliation", day:"Tue", s:16.25, e:17.25, p:"Low", loc:"Virtual", type:"Compliance"},
-  {t:"Trust Account Spot-Check", day:"Tue", s:10.5, e:11.15, p:"Medium", loc:"Virtual", type:"Trust & Billing"},
-  {t:"Vendor Contract Signature", day:"Tue", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
+  {t:"Trust Account Spot-Check", day:"Tue", s:10.5, e:11.25, p:"Medium", loc:"Virtual", type:"Trust & Billing"},
+  {t:"Vendor Contract Signature", day:"Tue", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
   {t:"CLE Session — Ethics Update", day:"Wed", s:9, e:10, p:"Low", loc:"Virtual", type:"Compliance"},
   {t:"Court Filing Prep", day:"Wed", s:9.5, e:10.5, p:"Medium", loc:"In-person", type:"Court / Filing"},
   {t:"Contract Review — NDA", day:"Wed", s:11.5, e:12.5, p:"Medium", loc:"Virtual", type:"Case Team"},
@@ -6554,8 +6622,8 @@ const CAL_EVENTS = [
   {t:"Team 1:1 — Paralegal", day:"Wed", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Internal"},
   {t:"Deposition — Matter 24-0155", day:"Wed", s:15.75, e:16.75, p:"High", loc:"In-person", type:"Deposition"},
   {t:"Client Update Call — Farrow", day:"Wed", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Client"},
-  {t:"Billing Cycle Review", day:"Wed", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Trust & Billing"},
-  {t:"Vendor Invoice Approval", day:"Wed", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
+  {t:"Billing Cycle Review", day:"Wed", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Trust & Billing"},
+  {t:"Vendor Invoice Approval", day:"Wed", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
   {t:"Motion Hearing — Matter 24-0098", day:"Thu", s:9, e:10, p:"High", loc:"In-person", type:"Court / Filing"},
   {t:"Client Consultation — Osei", day:"Thu", s:9.5, e:10.5, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Board Call Prep", day:"Thu", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
@@ -6564,8 +6632,8 @@ const CAL_EVENTS = [
   {t:"Vendor Invoice Review", day:"Thu", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Vendor"},
   {t:"Discovery Response Drafting", day:"Thu", s:15.75, e:16.75, p:"High", loc:"Virtual", type:"Case Team"},
   {t:"Co-Counsel Call — Reyes Group", day:"Thu", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Case Team"},
-  {t:"CLE Compliance Follow-up", day:"Thu", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Compliance"},
-  {t:"New Matter Intake Call", day:"Thu", s:13.15, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"CLE Compliance Follow-up", day:"Thu", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Compliance"},
+  {t:"New Matter Intake Call", day:"Thu", s:13.25, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Last-Minute Client Emergency", day:"Fri", s:9, e:10, p:"High", loc:"Virtual", type:"Client"},
   {t:"Weekly Case Review", day:"Fri", s:9.5, e:10.5, p:"Medium", loc:"Virtual", type:"Internal"},
   {t:"Prospective Client Call #2", day:"Fri", s:11.5, e:12.5, p:"Medium", loc:"Virtual", type:"Client"},
@@ -6574,8 +6642,8 @@ const CAL_EVENTS = [
   {t:"Compliance Check-in", day:"Fri", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Compliance"},
   {t:"Filing Deadline — Matter 24-0201", day:"Fri", s:15.75, e:16.75, p:"High", loc:"In-person", type:"Court / Filing"},
   {t:"Court Clerk Confirmation Call", day:"Fri", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Court / Filing"},
-  {t:"Week Wrap-up & Handoff Notes", day:"Fri", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Internal"},
-  {t:"Vendor Renewal Review", day:"Fri", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"}
+  {t:"Week Wrap-up & Handoff Notes", day:"Fri", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Internal"},
+  {t:"Vendor Renewal Review", day:"Fri", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"}
 ];
 const PRI_COLOR = {High:"#B54A3F", Medium:"#DB8437", Low:"#7C82A0"};
 const COLOR_PRESETS = ["#B54A3F","#DB8437","#7C82A0","#3F7D58","#3C4268","#6B4FA0","#2C7A7B","#B5651F"];
@@ -7210,22 +7278,33 @@ async function callAIText(prompt, maxTokens){
   }
 }
 async function callAIJson(prompt, maxTokens){
-  const text = await callAIText(prompt, maxTokens);
-  let cleaned = text.replace(/^```json\s*/i,"").replace(/^```\s*/,"").replace(/```\s*$/,"").trim();
-  // Robustness: if the model added any preamble/postamble text around the JSON
-  // (common on longer, more complex generations), extract just the array or
-  // object itself rather than failing outright on the surrounding text.
-  if(cleaned[0] !== "[" && cleaned[0] !== "{"){
-    const arrStart = cleaned.indexOf("[");
-    const objStart = cleaned.indexOf("{");
-    const start = (arrStart===-1) ? objStart : (objStart===-1 ? arrStart : Math.min(arrStart, objStart));
-    if(start !== -1){
-      const isArray = cleaned[start] === "[";
-      const end = isArray ? cleaned.lastIndexOf("]") : cleaned.lastIndexOf("}");
-      if(end > start) cleaned = cleaned.slice(start, end+1);
+  function extractAndParse(text){
+    let cleaned = text.replace(/^```json\s*/i,"").replace(/^```\s*/,"").replace(/```\s*$/,"").trim();
+    // Robustness: if the model added any preamble/postamble text around the JSON
+    // (common on longer, more complex generations), extract just the array or
+    // object itself rather than failing outright on the surrounding text.
+    if(cleaned[0] !== "[" && cleaned[0] !== "{"){
+      const arrStart = cleaned.indexOf("[");
+      const objStart = cleaned.indexOf("{");
+      const start = (arrStart===-1) ? objStart : (objStart===-1 ? arrStart : Math.min(arrStart, objStart));
+      if(start !== -1){
+        const isArray = cleaned[start] === "[";
+        const end = isArray ? cleaned.lastIndexOf("]") : cleaned.lastIndexOf("}");
+        if(end > start) cleaned = cleaned.slice(start, end+1);
+      }
     }
+    return JSON.parse(cleaned);
   }
-  return JSON.parse(cleaned);
+  try{
+    const text = await callAIText(prompt, maxTokens);
+    return extractAndParse(text);
+  }catch(firstErr){
+    // A single malformed or truncated JSON response is often just a transient
+    // formatting glitch, not a real failure — one retry resolves the large
+    // majority of these without surfacing an error to the trainee at all.
+    const text2 = await callAIText(prompt, maxTokens);
+    return extractAndParse(text2);
+  }
 }
 function fmtDate(iso){ if(!iso) return ""; const d=new Date(iso); return d.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}); }
 function toast(msg){
@@ -7536,6 +7615,11 @@ function moduleCard(d){
     </div>
     <button class="btn module-start-btn ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} onclick="goto('day',${d.id})">${status==='done'?'Review':'Start'}</button>
     ${(status!=='locked' && status!=='done') ? `<button class="btn btn-ghost btn-sm module-finish-btn" onclick="finishTrainingForDay(${d.id})">✓ Finish Training</button>` : ""}
+    ${status==='done' ? `
+    <div class="module-review-row">
+      <button class="btn btn-ghost btn-sm" onclick="reviewMyScore(${d.id})" title="View your recorded score — nothing changes">👁 Review Score</button>
+      <button class="btn btn-ghost btn-sm" onclick="finishTrainingForDay(${d.id})" title="Retake the Knowledge Check — your best score is kept">🔁 Retake</button>
+    </div>` : ""}
   </div>`;
 }
 function scrollToModule(id){
@@ -7582,6 +7666,25 @@ function finishTrainingForDay(dayId){
   render();
 }
 window.finishTrainingForDay = finishTrainingForDay;
+function reviewMyScore(dayId){
+  // Shows the trainee's existing recorded result directly, read-only — no
+  // quiz is re-taken and nothing about state.progress[dayId] is touched.
+  const prog = state.progress[dayId];
+  if(!prog){ toast("No recorded result yet for this day."); return; }
+  const d = DAYS.find(x=>x.id===dayId);
+  const lastAttempt = (prog.history && prog.history.length) ? prog.history[prog.history.length-1] : {score: prog.score, passed: prog.done};
+  state.view = "day";
+  state.dayId = dayId;
+  state.dayViewMode = "knowledgeCheck";
+  state.quizSubmitted = true;
+  state.lastScore = prog.score;
+  state.lastCorrect = Math.round((prog.score/100) * d.quiz.length);
+  state.lastTotal = d.quiz.length;
+  state.lastPassed = prog.done;
+  window.scrollTo({top:0, behavior:"smooth"});
+  render();
+}
+window.reviewMyScore = reviewMyScore;
 const DAY_ICONS = {1:"🗂",2:"📅",3:"💬",4:"📨",5:"🛡",6:"📊",7:"Σ",8:"☎",9:"📋",10:"📱"};
 function nextDayId(){
   for(const d of DAYS){ if(!(state.progress[d.id]&&state.progress[d.id].done)) return d.id; }
@@ -8184,8 +8287,19 @@ function renderLessonVisual(l){
     case "THREEBOX": return renderThreeBoxVisual(l.boxes);
     case "STAT": return renderStatVisual(l.statNumber, l.statLabel);
     case "PALETTE": return renderPaletteVisual(l.palette);
+    case "ICONLIST": return renderIconListVisual(l.icons);
     default: return "";
   }
+}
+function renderIconListVisual(icons){
+  if(!icons || !icons.length) return "";
+  return `<div class="lesson-iconlist">
+    ${icons.map(it=>`
+      <div class="il-item">
+        <div class="il-icon">${esc(it.icon)}</div>
+        <div class="il-body"><b>${esc(it.label)}</b><p>${esc(it.desc)}</p></div>
+      </div>`).join("")}
+  </div>`;
 }
 function renderPaletteVisual(palette){
   return `<div class="lesson-palette">
@@ -8370,7 +8484,13 @@ async function submitQuiz(dayId){
   state.lastScore=score; state.lastCorrect=correct; state.lastTotal=total; state.lastPassed=passed;
 
   const prevBest = state.progress[dayId]?.score || 0;
-  const newRecord = {done: passed || (state.progress[dayId]?.done||false), score: Math.max(score, prevBest), date: new Date().toISOString()};
+  const prevHistory = state.progress[dayId]?.history || [];
+  const newRecord = {
+    done: passed || (state.progress[dayId]?.done||false),
+    score: Math.max(score, prevBest),
+    date: new Date().toISOString(),
+    history: [...prevHistory, {score, passed, date: new Date().toISOString()}]
+  };
   state.progress[dayId]=newRecord;
   await storeSet("day-progress", state.progress);
   await syncToLedger();
@@ -8387,6 +8507,7 @@ function renderQuizResult(d){
   const passMsgs = ["Nice work — next day unlocked.", "Sharp — you've got this down.", "Solid pass. On to the next one.", "That's a wrap on Day "+d.id+" — well done."];
   const failMsgs = ["Not quite 70% yet — review below and try again.", "Close, but not there yet — a quick review below should help.", "So close! Look over the answers below and give it another go."];
   const msg = lastPassed ? passMsgs[Math.floor(Math.random()*passMsgs.length)] : failMsgs[Math.floor(Math.random()*failMsgs.length)];
+  const history = (state.progress[d.id] && state.progress[d.id].history) || [];
   return `
     <div class="card quiz-result">
       ${sealSvg({size:84,label:lastScore+"%",done:lastPassed})}
@@ -8399,6 +8520,13 @@ function renderQuizResult(d){
         ${lastPassed && d.id<10 ? `<button class="btn btn-primary" onclick="goToNextDay(${d.id})">Continue to Day ${d.id+1} &rarr;</button>`:""}
         ${lastPassed && d.id===10 ? `<button class="btn btn-primary" onclick="downloadRecordPdf()">⬇ Download Completion Certificate</button>`:""}
       </div>
+      ${history.length ? `
+      <div class="quiz-history">
+        <b>Your Attempt History</b>
+        <table>
+          ${history.map((h,i)=>`<tr><td>Attempt ${i+1}</td><td>${h.score}%</td><td class="${h.passed?'qh-pass':'qh-fail'}">${h.passed?'Passed':'Not yet'}</td><td>${new Date(h.date).toLocaleDateString()}</td></tr>`).join("")}
+        </table>
+      </div>` : ""}
     </div>
     <div id="answerFeedback"></div>
   `;
@@ -8411,6 +8539,12 @@ async function downloadQuizResultPdf(dayId){
     `Result: ${lastCorrect} / ${lastTotal} correct (${lastScore}%) — ${lastPassed ? "PASSED" : "Not yet passing (70% required)"}`,
     "---"
   ];
+  const history = (state.progress[dayId] && state.progress[dayId].history) || [];
+  if(history.length){
+    lines.push("Attempt History:");
+    history.forEach((h,i)=>lines.push(`   Attempt ${i+1}: ${h.score}% — ${h.passed?"Passed":"Not yet"} — ${new Date(h.date).toLocaleDateString()}`));
+    lines.push("---");
+  }
   d.quiz.forEach((q,i)=>{
     const picked = state.quizAnswers[i];
     lines.push(`Q${i+1}: ${q.q}`);
