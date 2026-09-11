@@ -121,6 +121,11 @@ button{font-family:inherit;cursor:pointer;}
 
 /* horizontal step timeline */
 .step-timeline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0;margin:0 0 28px;}
+
+.crisis-hub-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:16px;}
+.crisis-hub-card{padding:20px 22px;}
+.crisis-hub-card b{display:block;font-family:'Fraunces';font-size:16px;color:var(--navy);margin-bottom:8px;}
+.crisis-hub-card p{font-size:13px;color:var(--ink-soft);margin:0 0 16px;line-height:1.5;}
 .step-node{display:flex;align-items:center;}
 .step-circle{
   width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -510,7 +515,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .quiz-grid-opt:hover{border-color:var(--navy-soft);background:#F8F9FC;transform:translateY(-2px);}
 .quiz-grid-opt.selected{border-color:var(--orange);background:var(--orange-soft);box-shadow:0 4px 14px -6px rgba(219,132,55,.4);}
 .quiz-grid-letter{
-  width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:12.5px;
+  width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:12px;
   display:flex;align-items:center;justify-content:center;margin-bottom:10px;flex-shrink:0;
 }
 .quiz-grid-opt.selected .quiz-grid-letter{background:var(--orange-deep);}
@@ -535,7 +540,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .quiz-history b{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-soft);display:block;margin-bottom:8px;}
 .quiz-history table{width:100%;border-collapse:collapse;}
-.quiz-history td{font-size:12.5px;padding:6px 4px;border-bottom:1px solid var(--line);color:#37394A;}
+.quiz-history td{font-size:12px;padding:6px 4px;border-bottom:1px solid var(--line);color:#37394A;}
 .quiz-history td.qh-pass{color:var(--success);font-weight:600;}
 .quiz-history td.qh-fail{color:var(--danger);font-weight:600;}
 
@@ -7531,7 +7536,7 @@ function dismissNotifBanner(){ state.notifDismissed = true; render(); }
 window.dismissNotifBanner = dismissNotifBanner;
 
 function renderTopbar(){
-  const views = [["dashboard","Dashboard"],["clientprofile","Client Profile"],["practice","Practice Lab"],["notes","My Notes"],["handouts","Handouts"]];
+  const views = [["dashboard","Dashboard"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Crisis Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
   if(state.isAdmin) views.push(["facilitatorguide","Facilitator Guide"]);
   return `
   <div class="topbar">
@@ -7599,6 +7604,32 @@ function jumpToSearchResult(view,id){
   goto(view,id);
 }
 window.jumpToSearchResult = jumpToSearchResult;
+
+/* ---------- crisis roleplay hub ---------- */
+function renderCrisisRoleplayHub(){
+  const options = [
+    {toolId:"insurance5", dayId:5, wizardIdx:3, title:"Household Risk & Crisis", desc:"A live, unscripted crisis scenario tied to Day 5's household risk-management practice — pressure-test your composure and judgment as the Thorne household PA."},
+    {toolId:"projectcompliance6", dayId:6, wizardIdx:3, title:"Business Compliance Crisis", desc:"A live, unscripted crisis scenario tied to Day 6's compliance practice — an escalating operational or compliance situation demanding a calm, structured response."},
+    {toolId:"compliance9", dayId:9, wizardIdx:4, title:"Reputation & Compliance Crisis", desc:"A live, unscripted crisis scenario tied to Day 9's compliance & reputation practice — a public-facing situation testing discretion under real pressure."}
+  ];
+  return `
+    <h2 class="section-title">🔥 Live Crisis Roleplay</h2>
+    <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Three high-pressure, unscripted scenarios pulled from across the program — pick one to jump straight in. Your trainer may run any of these live in person, or you can rehearse solo against the AI first.</p>
+    <div class="crisis-hub-grid">
+      ${options.map(o=>`
+        <div class="card crisis-hub-card">
+          <b>${esc(o.title)}</b>
+          <p>${esc(o.desc)}</p>
+          <button class="btn btn-navy btn-sm" onclick="goToCrisisScenario('${o.toolId}', ${o.wizardIdx})">Start This Scenario &rarr;</button>
+        </div>`).join("")}
+    </div>
+  `;
+}
+function goToCrisisScenario(toolId, wizardIdx){
+  goto("tool", toolId);
+  setTimeout(()=>{ wizardGoTo(wizardIdx); }, 30);
+}
+window.goToCrisisScenario = goToCrisisScenario;
 
 /* ---------- dashboard ---------- */
 function renderDashboard(){
@@ -7880,6 +7911,7 @@ function render(){
   else if(state.view==="handouts") body=renderHandouts();
   else if(state.view==="notes") body=renderNotes();
   else if(state.view==="clientprofile") body=renderClientProfile();
+  else if(state.view==="crisisroleplay") body=renderCrisisRoleplayHub();
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
   app.innerHTML = renderNotifBanner() + renderTopbar() + `<main>${body}</main>` + renderFooter();
@@ -7903,7 +7935,7 @@ function renderLogin(){
     <div class="login-shell">
       <div class="login-card">
         <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px;height:auto;margin-bottom:22px;">
-        <h1 style="font-size:22px;color:var(--navy);margin:0 0 8px;">Welcome to the Upskill Program</h1>
+        <h1 style="font-size:22px;color:var(--navy);margin:0 0 8px;">Welcome to EA / PA Upskill Program</h1>
         <p style="font-size:13.5px;color:var(--ink-soft);margin:0 0 22px;">Enter your name to begin. This identifies your progress on the training record — no password needed.</p>
         <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') document.getElementById('loginBatchInput').focus();">
         <input type="text" id="loginBatchInput" placeholder="Batch (e.g. B050225)" style="margin-top:10px;" onkeydown="if(event.key==='Enter') submitLogin();">
@@ -8863,6 +8895,7 @@ Return ONLY a JSON object with this exact shape, no other text:
 }
 function renderEvaluationReport(report, dayId){
   const tierColor = GRADE_TIER_COLOR[report.gradeTier] || "var(--ink-soft)";
+  if(dayId){ toolState.lastEvalReport = {report, dayId}; }
   return `
     <div class="eval-report">
       <div class="eval-report-header">
@@ -8899,9 +8932,43 @@ function renderEvaluationReport(report, dayId){
         <button class="btn btn-ghost btn-sm" onclick="repeatActivity()" ${labAttemptsRemaining()<=0 && dayId!==7 ? 'disabled title="No Practice Lab attempts remaining"' : ''}>🔁 Repeat Activity</button>
         <button class="btn btn-navy btn-sm" onclick="retainScoreAndAdvance()">✅ Retain Score &amp; Advance</button>
       </div>
-      <button class="btn btn-ghost btn-sm eval-kb-btn" onclick="returnToLessonCard(${dayId})">📚 Jump to Knowledge Base</button>` : ""}
+      <div class="eval-action-row" style="border-top:none;padding-top:0;margin-top:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="downloadEvaluationReportPdf()">⬇ Download PDF</button>
+        <button class="btn btn-ghost btn-sm" onclick="returnToLessonCard(${dayId})">📚 Jump to Knowledge Base</button>
+      </div>` : ""}
     </div>`;
 }
+async function downloadEvaluationReportPdf(){
+  const stored = toolState.lastEvalReport;
+  if(!stored){ toast("No evaluation report to download yet."); return; }
+  await ensureTraineeName();
+  const {report, dayId} = stored;
+  const lines = [
+    `Overall Score: ${report.totalScore}/100 — ${report.gradeTier}`,
+    "---",
+    `Accuracy & Technical Precision: ${report.accuracyScore}/35`,
+    `Executive Presence & Judgment: ${report.presenceScore}/30`,
+    `Risk Mitigation & SOP Compliance: ${report.riskScore}/20`,
+    `Efficiency & Structure: ${report.efficiencyScore}/15`,
+    "---"
+  ];
+  if(report.strengths.length){
+    lines.push("Strengths:");
+    report.strengths.forEach(s=>lines.push("   • "+s));
+    lines.push("---");
+  }
+  if(report.blindspots.length){
+    lines.push("Blindspots:");
+    report.blindspots.forEach(s=>lines.push("   • "+s));
+    lines.push("---");
+  }
+  if(report.growthSuggestions.length){
+    lines.push("Growth Suggestions:");
+    report.growthSuggestions.forEach(s=>lines.push("   • "+s));
+  }
+  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${dayId} — AI Evaluation Report`, lines, `LSH_Day${dayId}_Evaluation_Report`);
+}
+window.downloadEvaluationReportPdf = downloadEvaluationReportPdf;
 function repeatActivity(){
   // The submission form is still directly above this report within the same
   // wizard part — repeating just means scrolling back up to it and letting
