@@ -310,6 +310,27 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 .lesson-grid{display:grid;gap:14px;margin-bottom:8px;}
 .lesson-card{padding:20px 22px;}
+
+.fp-section{margin-bottom:16px;}
+.fp-section:last-of-type{margin-bottom:0;}
+.fp-label{
+  display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--navy-soft);margin-bottom:8px;
+}
+.fp-num{
+  width:19px;height:19px;border-radius:50%;background:var(--orange);color:#fff;font-size:10.5px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.fp-body ul{margin:0;padding-left:20px;}
+.fp-body li{font-size:var(--font-body);color:#37394A;margin-bottom:6px;line-height:1.5;}
+.fp-howto-list{margin:0;padding-left:20px;counter-reset:none;}
+.fp-howto-list li{font-size:var(--font-body);color:#37394A;margin-bottom:8px;line-height:1.5;}
+.fp-howto-list li::marker{font-weight:700;color:var(--orange-deep);}
+.fp-fallback-text{font-size:var(--font-body);color:#37394A;margin:0;line-height:1.5;}
+.fp-discussion-prompt{
+  font-size:var(--font-body);color:#37394A;margin:0;line-height:1.5;font-style:italic;
+  background:#F8F9FC;border-left:3px solid var(--orange);padding:10px 14px;border-radius:0 8px 8px 0;
+}
 .topic-separator{
   display:inline-block;font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;letter-spacing:.04em;
   color:var(--orange);background:var(--navy);padding:5px 12px;border-radius:14px;margin:26px 0 10px;
@@ -5769,6 +5790,174 @@ const DAY9 = {
         "Measure each session against clear effectiveness metrics, not just attendance."
       ],
       "trainerCue": "Close by asking the room how THEY'D measure whether a training session (like this one) was actually effective — it's a nice meta moment to end professional-development content on."
+    },
+    {
+      "h": "Executive Time Blocking & Calendar Defense",
+      "fourPart": {
+        "corePrinciples": [
+          "Time blocking means treating an executive's calendar as a finite, defended resource — every hour is either protected for deep work, allocated to a specific commitment, or deliberately left open, never just 'whatever fills in.'",
+          "Calendar defense is the discipline of actively protecting those blocks after they're set — a block that anyone can bump for a lower-priority request isn't actually protecting anything.",
+          "The EA's job isn't just scheduling meetings — it's making the calendar reflect what actually matters, and then defending that reflection against constant pressure to erode it."
+        ],
+        "howTo": [
+          "Identify the executive's 2-3 genuine priority categories (e.g. client-facing work, strategic planning, family time) before touching the calendar at all — blocking time without knowing what it's protecting is just busywork.",
+          "Place recurring protected blocks first, before any meetings get scheduled around them — deep work time set after the calendar fills up never actually survives.",
+          "Set an explicit rule for what can and can't bump a protected block (e.g. 'only Tier 1 client escalations, confirmed by the EA first') so the defense isn't a judgment call made under pressure every single time.",
+          "When a real conflict does arise, offer the requester a genuine alternative slot rather than just declining — this preserves the relationship while still protecting the block.",
+          "Review weekly whether the protected blocks actually held — a block that gets bumped every week isn't a real block, it's a suggestion."
+        ],
+        "bestPractices": [
+          "The most common failure isn't forgetting to block time — it's blocking it and then approving every request that threatens it anyway, which trains everyone around the executive to ignore the blocks entirely.",
+          "A protected block needs a visible reason on the calendar (even a vague one like 'Focus Time — Do Not Book') so other people scheduling around the executive understand it's not just open space.",
+          "Pitfall: blocking time for 'flexibility' with no defined purpose. Unprotected, purposeless blocks get eaten first — always tie a block to a specific priority.",
+          "Executives themselves are often the ones who break their own defended time — part of the EA's role is holding the line even when the executive is tempted to say yes to one more thing."
+        ],
+        "discussionCase": "Elias has a standing Tuesday 2-4pm block for strategic case review — genuinely protected, no exceptions, for the last three months. A major client calls at 1:45pm asking for a 30-minute call \"right now\" about a time-sensitive but not truly urgent contract question. How do you handle this without either breaking the block or damaging the client relationship?"
+      }
+    },
+    {
+      "h": "High-Stakes Travel Disruption Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Travel disruption management is fundamentally a triage skill — the first job when a flight cancels or a connection is missed isn't fixing everything at once, it's figuring out what actually has to happen next and in what order.",
+          "The stakes of a disruption are rarely about the flight itself — they're about what the executive misses if the disruption isn't resolved: a deposition, a closing, a board meeting. Solve for the actual downstream consequence, not just \"get them on a plane.\"",
+          "A high-stakes disruption is exactly the moment an EA's preparation from calmer days pays off — the travel file, the backup contacts, and the known preferences are what make a fast, correct response possible under pressure."
+        ],
+        "howTo": [
+          "The instant a disruption is confirmed, identify the single most time-critical downstream commitment (the meeting, the hearing, the flight the executive absolutely cannot miss) — this becomes the fixed point everything else is solved around.",
+          "Check rebooking options directly with the airline app/website in parallel with calling — apps often surface options before a phone agent can, and having options ready speeds up any call that is needed.",
+          "If no direct rebooking preserves the fixed point, evaluate alternatives in order: a different airport, a different airline, ground transportation for the final leg, or — if genuinely unavoidable — informing the fixed-point commitment's other party of a likely delay before it becomes a surprise.",
+          "Communicate the actual plan to the executive in one clear message: what happened, what you're doing about it, and what they need to know or decide — not a stream of updates as you figure it out.",
+          "Once resolved, update every downstream party who was expecting the original schedule (drivers, hotels, the meeting host) so the fix doesn't create a second set of surprises."
+        ],
+        "bestPractices": [
+          "Never let the executive be the one to discover a disruption from an app notification — you should already be on it, or already have reached out, by the time they see it themselves.",
+          "Resist the urge to report every micro-update as you work the problem — a stressed executive needs the resolved plan, not a live narration of your search process.",
+          "Pitfall: fixing the immediate flight but forgetting the ripple effects — a rebooked arrival time can silently break a ground transportation pickup or a hotel check-in that no one re-confirmed.",
+          "Keep a standing note of the executive's real hard constraints (won't take redeyes, needs aisle seats, dietary needs for any meals involved) so a disruption-response decision doesn't accidentally violate a preference in the rush to fix the bigger problem."
+        ],
+        "discussionCase": "Elias's connecting flight to a closing-day meeting gets cancelled with no same-day rebooking available on that airline, and the meeting cannot be moved. You have two imperfect options: a red-eye on a different airline that gets him in with two hours to spare, or a private car for the final leg that costs significantly more but lets him sleep and arrive rested. How do you decide, and how do you present the decision to him?"
+      }
+    },
+    {
+      "h": "Board Meeting Preparation & Minute Drafting",
+      "fourPart": {
+        "corePrinciples": [
+          "Board meeting preparation exists to make sure decisions get made efficiently once the board is actually in the room — most of the real work happens in the days before the meeting, not during it.",
+          "Minutes are a legal and governance record, not a transcript — their job is to accurately capture what was decided and by what authority, not to reproduce the conversation.",
+          "Both preparation and minute-taking demand the same underlying discipline as everything else in this program: precision, discretion, and getting the details right the first time, since board-level errors carry outsized consequences."
+        ],
+        "howTo": [
+          "Confirm the agenda with the executive (and often the board chair) well in advance, and circulate board materials with enough lead time for members to actually review them — last-minute packets undermine the whole meeting.",
+          "Assemble the board packet in a consistent structure every time (prior minutes for approval, agenda, supporting documents for each agenda item) so returning board members always know where to find what they need.",
+          "During the meeting, capture: who was present (and who was absent), each motion made, who seconded it, and the exact outcome of the vote — this is the legally load-bearing part of the minutes.",
+          "Draft the minutes promptly after the meeting while the details are fresh, using neutral, factual language — record what was decided, not who argued for what or how the discussion unfolded.",
+          "Circulate draft minutes for review and correction before they're finalized and filed — minutes are typically approved as an agenda item at the next meeting, so accuracy now prevents a correction fight later."
+        ],
+        "bestPractices": [
+          "Never record minutes as a narrative of the discussion — capturing opinions, disagreements, or the back-and-forth exposes the board to unnecessary legal risk if the minutes are ever reviewed in litigation or an audit.",
+          "Pitfall: vague motion language. \"The board discussed the budget\" is not a minute-worthy record — \"Motion to approve the FY26 budget as presented, seconded, passed 5-0\" is.",
+          "Confidential or sensitive board discussions may warrant a note that the topic was discussed without capturing specifics — check with the executive or general counsel on what's appropriate to formally record versus handle separately.",
+          "A board packet that arrives too close to the meeting isn't just an inconvenience — it can genuinely undermine a decision's legitimacy if a member reasonably argues they didn't have time to review what they were voting on."
+        ],
+        "discussionCase": "During a board meeting, a motion is raised, discussed at length with real disagreement among members, amended once, and finally passed 4-1. You're taking minutes live. What specifically do you need to capture accurately, and what should you deliberately leave out of the written record?"
+      }
+    },
+    {
+      "h": "Business Structures & Legal Entities",
+      "fourPart": {
+        "corePrinciples": [
+          "Every US business operates under a specific legal structure, and that choice shapes liability exposure, tax treatment, and administrative burden for the life of the business — it's a foundational decision, not paperwork to handle quickly.",
+          "The core structures an EA will encounter: Sole Proprietorship (no legal separation from the owner), Partnership (shared ownership, shared liability), LLC (Limited Liability Company — liability protection with flexible taxation), and Corporation (C-Corp or S-Corp — full liability protection, more formal governance requirements).",
+          "The single most important distinction across all of these is liability: does a lawsuit or debt against the business put the owner's personal assets at risk, or does the entity itself absorb that exposure?"
+        ],
+        "howTo": [
+          "When supporting an executive setting up a new venture, first identify the actual goals: personal liability protection, tax treatment preference, number of owners, and plans to raise outside investment — these drive the structure choice more than any general rule of thumb.",
+          "A sole proprietorship or general partnership requires no formal filing to exist, but offers zero liability separation — appropriate only for very low-risk, single-owner situations.",
+          "An LLC is the most common choice for small-to-mid-size businesses wanting liability protection without full corporate formality — it requires state filing (Articles of Organization) but has flexible management and tax structure.",
+          "A C-Corp is typically chosen when the business plans to raise venture capital or eventually go public, since it supports multiple classes of stock and institutional investment structures that an LLC generally cannot.",
+          "An S-Corp is a tax election (not a separate entity type) available to eligible corporations or LLCs, allowing profits to pass through to owners' personal tax returns while still retaining liability protection — flag this distinction, since it's frequently confused with a standalone entity type."
+        ],
+        "bestPractices": [
+          "This decision should always involve an actual attorney and accountant — an EA's role is preparing the executive with informed questions and organizing the resulting paperwork, never recommending a specific structure.",
+          "Pitfall: treating 'LLC' as a generic catch-all answer. The right structure depends entirely on the specific goals (liability, tax, investment plans) — defaulting to LLC without confirming those goals can create real problems later.",
+          "Keep a clear record of which structure was chosen and why, since this decision affects nearly every downstream task covered in this day's remaining topics — formation, licensing, and financial infrastructure all depend on it.",
+          "Structures can be changed later, but conversion (e.g. sole proprietorship to LLC, LLC to C-Corp) is its own formal process with real cost and complexity — it's rarely as simple as \"just switch.\""
+        ],
+        "discussionCase": "Elias is considering launching a separate arbitration consulting practice alongside the firm. He wants personal liability protection, plans to bring on one additional partner within the year, and has no plans to seek outside investment. Based only on these stated goals — not on giving him legal advice — what questions would you want confirmed with his attorney before any paperwork moves forward?"
+      }
+    },
+    {
+      "h": "Entity Formation Protocols",
+      "fourPart": {
+        "corePrinciples": [
+          "Entity formation is the formal, state-level process of legally creating a business structure — the business doesn't exist as that entity type until the correct filing is accepted by the state.",
+          "Formation is administrative, but it isn't optional or symbolic — a business operating as an LLC or corporation before formation is actually complete has no real liability protection yet, whatever the founders may believe.",
+          "The exact filing requirements vary by state and entity type, but the underlying protocol — choose a name, file formation documents, appoint a registered agent, adopt internal governance documents — is consistent nationwide."
+        ],
+        "howTo": [
+          "Confirm the business name is available and compliant with the state's naming rules (often requiring an identifier like \"LLC\" or \"Inc.\" in the name) before filing anything — a rejected filing over a name conflict costs real time.",
+          "File the formation document with the correct state agency — Articles of Organization for an LLC, Articles of Incorporation for a corporation — along with the filing fee, which varies significantly by state.",
+          "Appoint a registered agent: a person or service authorized to receive legal and state correspondence on the business's behalf. This is a legal requirement in every state, not an optional convenience.",
+          "Draft internal governance documents — an Operating Agreement for an LLC, or Bylaws for a corporation — even though many states don't require filing these publicly; they govern internal decision-making and are often required by banks or investors later.",
+          "Apply for an Employer Identification Number (EIN) from the IRS once formation is confirmed — this is required before the business can open a bank account, hire employees, or file taxes as the new entity."
+        ],
+        "bestPractices": [
+          "Keep the confirmed formation date and state filing number in the business's permanent records — this is referenced repeatedly for banking, licensing, and tax purposes going forward.",
+          "Pitfall: operating under the new business name (signing contracts, opening accounts) before the state has actually confirmed formation. Wait for confirmation, not just submission.",
+          "Different states have meaningfully different costs, timelines, and annual requirements (some require annual reports, some don't) — where to form is itself a decision, not automatically the state where the business will operate.",
+          "A missing or lapsed registered agent can result in the business losing good standing with the state without anyone noticing until a real problem surfaces — this is a recurring compliance item, not a one-time task."
+        ],
+        "discussionCase": "You're coordinating the formation of Elias's new consulting LLC. The state confirms the Articles of Organization were accepted on a Tuesday, but the attorney's office is still finalizing the Operating Agreement. A potential client wants to sign an engagement letter with the new entity by Friday. What do you need to confirm is actually in place before that engagement letter can be safely signed under the new entity's name?"
+      }
+    },
+    {
+      "h": "Federal/State/Financial Infrastructure",
+      "fourPart": {
+        "corePrinciples": [
+          "Once an entity is formed, it needs its own financial and regulatory infrastructure — a newly formed business with no EIN, no bank account, and no tax registrations isn't actually operational yet, just legally created.",
+          "This infrastructure exists at three distinct levels — federal (IRS), state (state tax and labor agencies), and financial (banking) — and each has its own separate setup process that formation alone doesn't complete.",
+          "Keeping these systems properly separated from day one (especially business and personal finances) is what preserves the liability protection the entity structure was chosen for in the first place."
+        ],
+        "howTo": [
+          "Obtain the EIN from the IRS immediately after formation is confirmed — this federal tax ID is required for nearly every subsequent step and is free to obtain directly from the IRS.",
+          "Register with the relevant state tax agency for any applicable state taxes (income, sales, franchise tax depending on the state and business type) and with the state labor/unemployment agency if the business will have employees.",
+          "Open a dedicated business bank account using the EIN and formation documents — never route business income or expenses through a personal account, even temporarily, since this undermines the liability separation.",
+          "Set up a bookkeeping system (even a simple one) before the first transaction happens, not after — reconstructing financial records after the fact is far harder than maintaining them from day one.",
+          "If the business will have employees, register for state and federal payroll tax withholding before the first paycheck is issued — this has hard compliance deadlines, not a grace period."
+        ],
+        "bestPractices": [
+          "Commingling personal and business funds — even briefly, even for a \"small\" expense — is one of the most common ways a founder accidentally undermines their own liability protection. Keep the separation absolute from the very first transaction.",
+          "Pitfall: assuming state tax registration is automatic upon formation. It's a separate, additional step in every state — formation and tax registration are not the same filing.",
+          "Keep copies of every federal and state registration confirmation in the business's permanent file — these are referenced repeatedly for licensing, banking, and any future audits.",
+          "If the business operates in multiple states, each state where it has a genuine business presence may require its own separate tax registration — this is easy to miss when a business expands beyond its home state."
+        ],
+        "discussionCase": "Elias's new consulting LLC has its EIN and a business bank account is being opened this week. He mentions he already paid the filing attorney's invoice from his personal credit card \"just to get it done faster,\" and plans to reimburse himself later. What's the actual risk in this, and what would you want to help him do about it before it becomes a habit?"
+      }
+    },
+    {
+      "h": "Licensing & Compliance",
+      "fourPart": {
+        "corePrinciples": [
+          "Formation creates the entity; licensing gives it legal permission to actually operate in its specific industry and location — a fully formed business without the right licenses can still be operating illegally.",
+          "Licensing requirements are layered: federal (for regulated industries), state (professional and general business licenses), and local (city/county permits) — most businesses need to check all three, not just one.",
+          "Compliance doesn't end at initial licensing — most licenses and permits require renewal, and many industries have ongoing regulatory obligations that continue for the life of the business."
+        ],
+        "howTo": [
+          "Identify whether the industry requires a federal license (relatively rare — mainly regulated sectors like broadcasting, alcohol, firearms, aviation) before assuming state/local licensing alone is sufficient.",
+          "Check state-level requirements: a general business license in some states, plus any profession-specific license (legal, medical, financial services, real estate, and similar regulated professions all require these).",
+          "Check local requirements: many cities and counties require a local business license or permit separate from state registration, plus zoning compliance if there's a physical location involved.",
+          "Build a compliance calendar tracking every license and permit's renewal date the moment each one is obtained — a lapsed license discovered during an audit or client engagement is a much worse problem than a routine renewal.",
+          "Revisit licensing requirements whenever the business changes materially — a new service line, a new state of operation, or a new physical location can each trigger licensing obligations that didn't exist before."
+        ],
+        "bestPractices": [
+          "Never assume a business is fully compliant just because it's been operating without incident — many licensing gaps only surface during an audit, a client's due diligence, or a dispute, often at the worst possible time.",
+          "Pitfall: treating licensing as a one-time setup task. It's a recurring compliance responsibility, structurally identical to the CLE tracking and compliance-calendar disciplines covered elsewhere in this day.",
+          "When in doubt about whether a specific license applies, confirm with the state's business licensing portal or an attorney rather than guessing — the cost of checking is trivial compared to the cost of operating without a required license.",
+          "Keep every license and permit — active, pending, and expired — in one centralized reference, the same way this program teaches maintaining any other compliance-critical record."
+        ],
+        "discussionCase": "Elias's consulting LLC has been operating for two months on formation and tax registration alone. You're reviewing the file and realize no one has confirmed whether his state requires a specific professional consulting license for the type of advisory work he's doing. How do you approach raising this now, and what would you want to have confirmed before his next client engagement?"
+      }
     }
   ],
   "quickChecks": [
@@ -8418,16 +8607,96 @@ function scrollToKnowledgeCheck(){
 }
 window.scrollToKnowledgeCheck = scrollToKnowledgeCheck;
 
+function deriveFourPartStructure(l){
+  // Auto-derives the 4-part structure from a topic's existing data, so every
+  // one of the program's existing lesson cards gets this structure without
+  // needing its underlying content individually rewritten. New topics can
+  // instead provide an explicit l.fourPart object with purpose-written
+  // content, which always takes priority over this derivation.
+  const isProcess = l.layout === "PROCESS";
+  const hasVisual = !!l.layout;
+  const bullets = l.b || [];
+  return {
+    corePrinciples: {
+      visualHtml: (hasVisual && !isProcess) ? renderLessonVisual(l) : null,
+      fallbackText: isProcess
+        ? `"${l.h}" is a sequential skill — the core principle is following the steps below in order, not treating them as optional or interchangeable.`
+        : (!hasVisual
+            ? (bullets.length > 1 ? bullets[0] : `The core idea behind "${l.h}" is covered directly below.`)
+            : null)
+    },
+    howTo: {
+      visualHtml: isProcess ? renderLessonVisual(l) : null,
+      fallbackText: !isProcess ? "Apply the principle above directly in your day-to-day work — this topic doesn't break into a separate numbered sequence beyond what's shown." : null
+    },
+    bestPractices: {
+      bullets: (!hasVisual && bullets.length > 1) ? bullets.slice(1) : bullets,
+      callout: l.callout || null
+    },
+    discussionCase: {
+      example: l.example || null,
+      table: l.table || null,
+      trainerCue: l.trainerCue || null
+    }
+  };
+}
+function renderFourPartSection(num, label, content){
+  if(!content) return "";
+  return `
+    <div class="fp-section">
+      <div class="fp-label"><span class="fp-num">${num}</span>${esc(label)}</div>
+      <div class="fp-body">${content}</div>
+    </div>`;
+}
 function renderLessonCard(l,i,d){
+  // Explicit, hand-authored fourPart content (simple string/array shape) takes
+  // priority for new topics. Existing topics without it fall back to the
+  // tested automatic derivation from their visual/bullets/example data.
+  if(l.fourPart){
+    const fp = l.fourPart;
+    return `
+    <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}</div>
+    <div class="card lesson-card">
+      <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
+      ${renderFourPartSection(1, "Core Principles", fp.corePrinciples && fp.corePrinciples.length ? `<ul>${fp.corePrinciples.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "")}
+      ${renderFourPartSection(2, "Step-by-Step How-To Framework", fp.howTo && fp.howTo.length ? `<ol class="fp-howto-list">${fp.howTo.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>` : "")}
+      ${renderFourPartSection(3, "Executive Best Practices & Pitfalls", fp.bestPractices && fp.bestPractices.length ? `<ul>${fp.bestPractices.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "")}
+      ${renderFourPartSection(4, "Applied Discussion Case", fp.discussionCase ? `<p class="fp-discussion-prompt">${esc(fp.discussionCase)}</p>` : "")}
+      ${l.trainerCue && state.isAdmin ?`
+      <div class="trainer-checkpoint">
+        <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
+        <p>${esc(l.trainerCue)}</p>
+      </div>` : ""}
+    </div>`;
+  }
+  const fp = deriveFourPartStructure(l);
+
+  const corePrinciplesHtml = fp.corePrinciples.visualHtml ||
+    (fp.corePrinciples.fallbackText ? `<p class="fp-fallback-text">${esc(fp.corePrinciples.fallbackText)}</p>` : "");
+
+  const howToHtml = fp.howTo.visualHtml ||
+    (fp.howTo.fallbackText ? `<p class="fp-fallback-text">${esc(fp.howTo.fallbackText)}</p>` : "");
+
+  const bestPracticesParts = [];
+  if(fp.bestPractices.bullets && fp.bestPractices.bullets.length) bestPracticesParts.push(`<ul>${fp.bestPractices.bullets.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`);
+  if(fp.bestPractices.callout) bestPracticesParts.push(fp.bestPractices.callout.prominent ? renderProminentDisclaimer(fp.bestPractices.callout) : renderCallout(fp.bestPractices.callout));
+  const bestPracticesHtml = bestPracticesParts.join("");
+
+  const discussionParts = [];
+  if(fp.discussionCase.example) discussionParts.push(renderExample(fp.discussionCase.example));
+  if(fp.discussionCase.table) discussionParts.push(renderTable(fp.discussionCase.table));
+  if(fp.discussionCase.trainerCue) discussionParts.push(`<p class="fp-discussion-prompt">${esc(fp.discussionCase.trainerCue)}</p>`);
+  if(!discussionParts.length) discussionParts.push(`<p class="fp-discussion-prompt">Discuss with your trainer or a peer: describe a real situation from your own work (or a hypothetical one) where "${esc(l.h)}" would directly apply — what would you actually do?</p>`);
+  const discussionHtml = discussionParts.join("");
+
   return `
     <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}</div>
     <div class="card lesson-card">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
-      ${renderLessonVisual(l)}
-      <ul>${l.b.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-      ${l.callout?(l.callout.prominent?renderProminentDisclaimer(l.callout):renderCallout(l.callout)):""}
-      ${l.example?renderExample(l.example):""}
-      ${l.table?renderTable(l.table):""}
+      ${renderFourPartSection(1, "Core Principles", corePrinciplesHtml)}
+      ${renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml)}
+      ${renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml)}
+      ${renderFourPartSection(4, "Applied Discussion Case", discussionHtml)}
       ${l.trainerCue && state.isAdmin ?`
       <div class="trainer-checkpoint">
         <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
@@ -8445,6 +8714,7 @@ function renderLessonVisual(l){
     case "PALETTE": return renderPaletteVisual(l.palette);
     case "ICONLIST": return renderIconListVisual(l.icons);
     case "VIDEO": return renderVideoPlaceholderCard(l.video);
+    case "TABLE": return (l.tableHeaders && l.tableRows) ? renderTable({headers:l.tableHeaders, rows:l.tableRows}) : "";
     default: return "";
   }
 }
