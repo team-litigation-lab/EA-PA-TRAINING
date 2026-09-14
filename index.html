@@ -7462,6 +7462,61 @@ const ATTENTION_TO_DETAIL_ANSWERS = [
   "The Receipt shows $8,132.50 received and marked 'PAID IN FULL,' but the invoice's Total Due is $9,132.50 — a $1,000 gap between what was billed and what was actually collected, incorrectly marked as fully paid."
 ];
 
+// 15-case compliance audit simulation (Day 6) — reconstructed from the
+// provided answer key. 8 cases carry a real, specific compliance failure;
+// the remaining 7 are clean and correctly filed, to test whether trainees
+// can tell the difference rather than just flagging everything.
+const COMPLIANCE_AUDIT_CASES = [
+  {id:1, jurisdiction:"California", matterType:"Civil Response", detail:"Response due Feb 9. Filed Feb 11.",
+   hasIssue:true, issueType:"deadline", risk:"HIGH",
+   explain:"Missed deadline — filed 2 days late. Each missed deadline is a direct malpractice exposure point."},
+  {id:2, jurisdiction:"New York", matterType:"Civil Motion", detail:"Motion due Mar 3. Filed Mar 1, correct caption and formatting confirmed.",
+   hasIssue:false, risk:null,
+   explain:"Filed on time, correct form used — no issue here."},
+  {id:3, jurisdiction:"Texas", matterType:"Franchise Filing", detail:"Annual franchise filing due Jul 15. Filed Aug 11 — nearly one month late. Penalty notice issued by the state.",
+   hasIssue:true, issueType:"lateFiling", risk:"HIGH",
+   explain:"Late regulatory filing — a state penalty was already issued, confirming this wasn't caught in time."},
+  {id:4, jurisdiction:"New York", matterType:"Civil Motion", detail:"Motion filed with incorrect caption formatting per the local court's filing rules.",
+   hasIssue:true, issueType:"form", risk:"MODERATE",
+   explain:"Incorrect state form/formatting — this specific court rejects filings with caption errors, risking a refiling delay."},
+  {id:5, jurisdiction:"Illinois", matterType:"Will Execution", detail:"Will executed and filed. Notary seal is missing from the execution page.",
+   hasIssue:true, issueType:"notarization", risk:"CRITICAL",
+   explain:"Missing notarization — an execution defect. Risk is CRITICAL specifically because a will's validity can be challenged if this is discovered after the testator's death, when it can no longer be corrected."},
+  {id:6, jurisdiction:"California", matterType:"Discovery Response", detail:"Discovery response due Apr 20. Filed Apr 18, correct form confirmed.",
+   hasIssue:false, risk:null,
+   explain:"Filed ahead of deadline, correct form — no issue here."},
+  {id:7, jurisdiction:"Texas", matterType:"Discovery", detail:"Discovery response due Aug 31. Filed Sept 3.",
+   hasIssue:true, issueType:"deadline", risk:"HIGH",
+   explain:"Missed deadline — filed 3 days late."},
+  {id:8, jurisdiction:"Florida", matterType:"Motion", detail:"Motion filed on time, properly notarized where required, correct jurisdictional form used.",
+   hasIssue:false, risk:null,
+   explain:"On time, correctly notarized, correct form — no issue here."},
+  {id:9, jurisdiction:"Florida", matterType:"Complaint", detail:"Complaint filed using a California civil cover sheet instead of Florida's required form.",
+   hasIssue:true, issueType:"form", risk:"HIGH",
+   explain:"Wrong jurisdictional form entirely — not just a formatting slip, but the wrong state's form used, which risks outright rejection."},
+  {id:10, jurisdiction:"New York", matterType:"Discovery", detail:"Discovery filed correctly and on time.",
+   hasIssue:false, risk:null,
+   explain:"Correctly filed — no issue here."},
+  {id:11, jurisdiction:"Illinois", matterType:"Motion", detail:"Motion filed on time, correct form confirmed.",
+   hasIssue:false, risk:null,
+   explain:"On time, correct form — no issue here."},
+  {id:12, jurisdiction:"Texas", matterType:"Probate", detail:"Publication date Jan 15. Statutory period is 90 days (due Apr 15). Recorded internally as due Apr 10.",
+   hasIssue:true, issueType:"deadline", risk:"MODERATE",
+   explain:"Incorrect statutory calculation — 90 days from Jan 15 is actually Apr 15, not Apr 10. The internal date was wrong, even though this specific case wasn't yet missed at time of audit."},
+  {id:13, jurisdiction:"California", matterType:"Will Execution", detail:"Will executed and properly notarized, seal confirmed present.",
+   hasIssue:false, risk:null,
+   explain:"Properly notarized — no issue here."},
+  {id:14, jurisdiction:"Texas", matterType:"Civil Response", detail:"Response filed 4 days ahead of deadline.",
+   hasIssue:false, risk:null,
+   explain:"Filed well ahead of deadline — no issue here."},
+  {id:15, jurisdiction:"Illinois", matterType:"Subpoena", detail:"Subpoena issued for an upcoming hearing. Proof of service was not uploaded to the case file before the hearing date.",
+   hasIssue:true, issueType:"other", risk:"MODERATE",
+   explain:"Proof of service missing before the hearing — a potential evidentiary issue if service is ever challenged, even though no deadline was technically missed."}
+];
+const COMPLIANCE_AUDIT_SCORING = {
+  deadline: 10, form: 10, notarization: 15, lateFiling: 10, other: 10
+};
+
 const INVOICE_QUEUE = [
   {invNum:"101", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 2–6",
    lines:[{desc:"Attorney hours",qty:"10 hrs",rate:"$150/hr",amount:1500},{desc:"Filing fee",qty:"—",rate:"—",amount:50}],
@@ -7800,7 +7855,13 @@ const CLIENT_PROFILE_DOC = [
   ]},
   {section:"Key Relationships at the Firm", items:[
     "Sarah Kim — Firm COO. Handles firm-wide operational matters; loop her in on anything touching office administration or budget beyond routine spend.",
-    "David Reyes — Head of Litigation. Elias's closest strategic partner on major case decisions."
+    "David Reyes — Head of Litigation. Elias's closest strategic partner on major case decisions.",
+    "Marcus Chen — Head of Corporate Practice. Owns the corporate/transactional side of the firm; loop him in on anything touching M&A, entity formation, or corporate client matters — separate lane from David's litigation work.",
+    "Priya Nair — Director of Communications & PR. The correct first contact for any media inquiry, public statement, or reputational situation — never respond to a journalist or public post without looping her in first.",
+    "Robert Hale — Chief Financial Officer. Owns firm-wide financial oversight, including trust account controls and budget approval above what Elias personally reviews.",
+    "Lena Vasquez — Director of HR & People Operations. The right contact for anything touching staff, hiring, or internal personnel matters — not something to handle solo even if it seems minor.",
+    "Diane Whitfield — Board Chair. The firm's outside majority investor and chair of its governance board; scheduling with her takes priority-adjacent handling similar to a top-tier client, not routine internal traffic.",
+    "James Okafor — Independent Board Member. External governance oversight; typically only surfaces around quarterly board meetings, but treat any direct outreach from him as something to flag to Elias immediately."
   ]},
   {section:"Quick Reference: Do's and Don'ts", items:[
     "DO surface a conflict or gap the moment you spot it — silence reads as concealment, not calm.",
@@ -10687,6 +10748,113 @@ async function checkAudit(){
   if(score===100) burstConfetti();
 }
 window.checkAudit = checkAudit;
+
+/* ---------- Day 6: 15-Case Compliance Audit Simulation ---------- */
+function renderComplianceAuditQueue(){
+  return COMPLIANCE_AUDIT_CASES.map((c,i)=>renderComplianceAuditCard(c,i)).join("");
+}
+function renderComplianceAuditCard(c,i){
+  const ca = toolState.c6audit;
+  const verdict = ca.verdicts[i];
+  const risk = ca.risks[i];
+  return `
+    <div class="card audit-card" id="caCard${i}">
+      <div class="audit-head">
+        <div><b>Case ${c.id}</b> <span class="score-tag">${esc(c.jurisdiction)} · ${esc(c.matterType)}</span></div>
+      </div>
+      <p style="font-size:12.8px;color:#37394A;margin:8px 0 10px;">${esc(c.detail)}</p>
+      <div class="audit-actions">
+        <button class="audit-btn ${verdict==='clean'?'active-valid':''}" onclick="setComplianceVerdict(${i},'clean')">✅ Clean</button>
+        <button class="audit-btn ${verdict==='issue'?'active-correction':''}" onclick="setComplianceVerdict(${i},'issue')">⚠ Issue Found</button>
+      </div>
+      ${verdict==='issue' ? `
+        <select id="caRisk${i}" class="audit-error-select" onchange="setComplianceRisk(${i}, this.value)">
+          <option value="">Risk level?&hellip;</option>
+          <option value="MODERATE" ${risk==='MODERATE'?"selected":""}>Moderate</option>
+          <option value="HIGH" ${risk==='HIGH'?"selected":""}>High</option>
+          <option value="CRITICAL" ${risk==='CRITICAL'?"selected":""}>Critical</option>
+        </select>`:""}
+    </div>`;
+}
+function setComplianceVerdict(i, verdict){
+  toolState.c6audit.verdicts[i] = verdict;
+  if(verdict!=="issue") delete toolState.c6audit.risks[i];
+  document.getElementById("complianceAuditQueue").innerHTML = renderComplianceAuditQueue();
+}
+window.setComplianceVerdict = setComplianceVerdict;
+function setComplianceRisk(i, val){
+  toolState.c6audit.risks[i] = val;
+}
+window.setComplianceRisk = setComplianceRisk;
+
+async function checkComplianceAudit(){
+  const ca = toolState.c6audit;
+  const unhandled = COMPLIANCE_AUDIT_CASES.filter((_,i)=>!ca.verdicts[i]).length;
+  if(unhandled>0){ toast(`Classify all 15 cases first (${unhandled} left).`); return; }
+  const needsRisk = COMPLIANCE_AUDIT_CASES.filter((_,i)=>ca.verdicts[i]==="issue" && !ca.risks[i]).length;
+  if(needsRisk>0){ toast(`Pick a risk level for each flagged case (${needsRisk} left).`); return; }
+
+  // Points per the provided scoring breakdown: each specific issue type earns
+  // its designated points when correctly flagged; a separate risk-classification
+  // bucket (20 pts) rewards correctly grading severity on cases genuinely flagged.
+  let issuePoints = 0, issuePointsPossible = 0;
+  let riskCorrect = 0, riskPossible = 0;
+  const feedback = [];
+  COMPLIANCE_AUDIT_CASES.forEach((c,i)=>{
+    const yourVerdict = ca.verdicts[i];
+    const correctVerdict = c.hasIssue ? "issue" : "clean";
+    const verdictOk = yourVerdict === correctVerdict;
+    if(c.hasIssue){
+      const pts = COMPLIANCE_AUDIT_SCORING[c.issueType] || 10;
+      issuePointsPossible += pts;
+      if(verdictOk) issuePoints += pts;
+      riskPossible++;
+      if(verdictOk && ca.risks[i]===c.risk) riskCorrect++;
+    }
+    feedback.push({c, verdictOk, yourVerdict, correctVerdict});
+  });
+  // Scale: issue-identification + risk-classification together represent the
+  // full 100 points from the provided rubric, since the escalation/preventive
+  // control portion is graded separately as its own AI-evaluated submission.
+  const issueScore = issuePointsPossible ? (issuePoints/issuePointsPossible)*75 : 75;
+  const riskScore = riskPossible ? (riskCorrect/riskPossible)*25 : 25;
+  const score = Math.round(issueScore + riskScore);
+
+  document.getElementById("complianceAuditResult").innerHTML = `
+    <div class="card" style="padding:18px 20px;margin-top:14px;">
+      <b style="color:var(--navy);">Audit Score: ${score}/100</b>
+      <div style="margin-top:12px;display:grid;gap:8px;">
+        ${feedback.filter(f=>!f.verdictOk || f.c.hasIssue).map(({c,verdictOk,yourVerdict,correctVerdict})=>`
+          <div style="font-size:12.3px;color:var(--ink-soft);padding:8px 10px;border-radius:8px;background:${verdictOk?'#F6F7FB':'var(--danger-bg)'};">
+            <b style="color:var(--ink);">Case ${c.id}</b> — correct: <b>${correctVerdict}</b> ${verdictOk?"✅":"❌ (you said "+(yourVerdict||"—")+")"}
+            ${c.hasIssue?`<div style="margin-top:2px;">${esc(c.explain)} ${c.risk?`Risk level: <b>${c.risk}</b>.`:""}</div>`:""}
+          </div>`).join("")}
+      </div>
+    </div>`;
+  await bumpPracticeProgress("projectcompliance6", score);
+  if(score===100) burstConfetti();
+}
+window.checkComplianceAudit = checkComplianceAudit;
+
+async function reviewComplianceAuditResponse(){
+  const val = document.getElementById("complianceAuditWritten").value.trim();
+  const resultEl = document.getElementById("complianceAuditWrittenResult");
+  if(val.length < 20){ toast("Write out your escalation pathway and preventive control recommendation first."); return; }
+  resultEl.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
+  try{
+    const report = await runRubricEvaluation(
+      "Compliance Audit — Escalation Pathway & Preventive Control",
+      `The trainee just completed a 15-case compliance audit simulation. The most severe findings were: a missing notary seal on an Illinois will (CRITICAL — a validity risk that becomes uncorrectable after the testator's death), a wrong jurisdictional form used on a Florida complaint (HIGH), and two missed deadlines (HIGH). The trainee is now asked to name a real escalation pathway for the most severe finding, and recommend one concrete preventive control that would stop this class of error from recurring.`,
+      val,
+      `Did they correctly identify the missing notarization as the single most severe finding (not just list findings without prioritizing)? Is the escalation pathway specific — who gets notified, how fast, and why that's the right chain — rather than a vague "escalate to a supervisor"? Is the preventive control concrete and actually preventive (e.g. a notarization checklist step built into the filing SOP) rather than a generic "be more careful" statement?`
+    );
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Escalation & Prevention</b>` + renderEvaluationReport(report, 6);
+    await bumpPracticeProgress("projectcompliance6", report.totalScore);
+  }catch(e){
+    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.reviewComplianceAuditResponse = reviewComplianceAuditResponse;
 function recalcSoa(){
   let total=0;
   SOA_DATA.forEach((f,i)=>{
@@ -11983,6 +12151,192 @@ const SOP_DATA = [
       { h: "Practical Examples: System Separation", type: "bullets", items: [
         "EA: A contract requires executive approval before signing.",
         "PA: A personal vendor requests access to financial accounts; escalate to principal before action."
+      ]}
+    ]
+  },
+  {
+    id: 2,
+    title: "Managing Up — The Three C's Framework",
+    introduction: "Welcome to LSH EA PA Upskill Training Day 2. My name is ___ and I am your upskill coach.",
+    objectives: [
+      "Apply the \"Three C's\" framework (Clarity, Communication, Credibility) to manage up effectively.",
+      "Recognize how the role evolves from a support function to a strategic partner."
+    ],
+    discussionInfo: { duration: "Approximately 1-2 hours", ppt: "EA PA Day 2", canvaLabel: "EA PA Day 2", video: "Video Discussion EA PA Day 2" },
+    topics: [
+      "Managing Up: The \"Three C's\" Framework",
+      "The Tactical Foundation and Digital Edge",
+      "The Role Evolution: From \"Helper\" to \"Force Multiplier\""
+    ],
+    sections: [
+      { h: "Level 1: The Tactical Foundation", type: "bullets", items: [
+        "To be strategic, master the basics first.",
+        "Categorize emails by Action, Information, or Delegation.",
+        "Draft responses in your Executive's voice for quick sending.",
+        "Aim for Inbox Zero and effective triaging.",
+        "Prepare \"What If\" plans for travel — e.g., holding a backup flight on hold for cancellations.",
+        "Manage complex travel logistics efficiently, with contingency plans in place.",
+        "Understand the full meeting lifecycle — shift from merely recording minutes to driving outcomes.",
+        "Set agendas and track deliverables, not just attendance."
+      ]},
+      { h: "Level 2: The Digital Edge", type: "bullets", items: [
+        "Use AI (e.g. Gemini) to summarize lengthy reports into concise bullet points for briefings.",
+        "Automate tasks through workflows (e.g. Zapier) triggered by client emails.",
+        "Gain proficiency in data visualization tools (Tableau, advanced Excel) to present team performance and budgets effectively."
+      ]},
+      { h: "Level 3: Strategic Partnership", type: "bullets", items: [
+        "To become indispensable, concentrate on three things.",
+        "Gatekeeping vs. Gatewaying — safeguard your executive's time while still seizing genuinely valuable opportunities.",
+        "Stakeholder Mapping — navigate office politics and manage key relationships on your executive's behalf.",
+        "Executive Presence — develop the confidence to effectively represent your executive in meetings."
+      ]},
+      { h: "The Three C's Framework — Overview", type: "bullets", items: [
+        "A strategic partnership model for Executive and Personal Assistants: managing up focuses on alignment, anticipation, and strategic support — not control.",
+        "When Clarity, Communication, and Credibility all operate together, the assistant becomes a Force Multiplier: decision velocity increases, stress decreases, executive/attorney trust deepens, and boundaries hold."
+      ]},
+      { h: "Clarity — Structural Alignment", type: "bullets", items: [
+        "Structural alignment is essential before execution — clarity defines the assistant-executive relationship. Without it, even skilled assistants can only react.",
+        "Key questions for clarity: What matters most? Who makes decisions? What is considered urgent? What are the boundaries? What responsibilities belong to whom?",
+        "Role clarity in EA/PA positions is crucial to prevent burnout and liability caused by blurred lines."
+      ]},
+      { h: "Clarity — Key Definitions", type: "bullets", items: [
+        "Strategic vs. Administrative Tasks",
+        "Business vs. Personal Domains",
+        "Decision Authority Thresholds",
+        "Financial Authorization Limits",
+        "Confidentiality Classifications"
+      ]},
+      { h: "Strategic vs. Administrative Tasks", type: "table", headers: ["Strategic (High-Impact, Judgment-Based)", "Administrative (Execution-Focused, Process-Based)"], rows: [
+        ["Draft an executive brief on litigation exposure for the board meeting.", "Calendar court deadlines and confirm filing dates."],
+        ["Prepare a risk matrix for contract disputes.", "Format and proofread contracts for final signature."],
+        ["Create a 30-day implementation plan for a new compliance policy.", "Schedule depositions and send calendar invites."],
+        ["Analyze vendor proposals and summarize with recommendations.", "Process expense reimbursements; file UCC financing statements; organize client files; book travel."]
+      ]},
+      { h: "Business vs. Personal Domain Tasks", type: "table", headers: ["Business Domain", "Personal Domain (Executive Support)"], rows: [
+        ["Coordinate board meeting logistics", "Schedule medical appointments"],
+        ["Track corporate compliance filings", "Coordinate child's school enrollment"],
+        ["Prepare quarterly performance dashboard", "Arrange family travel itinerary"],
+        ["Manage investor communication schedules", "Manage household staff payroll"],
+        ["Oversee vendor contract renewals", "Purchase milestone event gifts"],
+        ["Draft engagement letter templates for law firm clients", "Oversee personal property insurance renewals"]
+      ]},
+      { h: "Decision Authority Thresholds", type: "table", headers: ["Level", "What It Covers"], rows: [
+        ["Low-Level (Autonomous Execution)", "Confirm meeting reschedules; approve vendor renewals under $2,000; respond to routine client inquiries with templates; process standard NDA requests."],
+        ["Mid-Level (Consult + Execute)", "Negotiate minor contract adjustments; approve travel upgrades within policy; resolve billing discrepancies within a defined threshold; prioritize inbound meeting requests by strategic value."],
+        ["High-Level (Escalation Required)", "Approve litigation settlements; sign contracts over authorized limits; release public statements; authorize vendor or staff terminations; approve compliance policy exceptions."]
+      ]},
+      { h: "Financial Authorization Limits", type: "table", headers: ["Range", "Typical Examples"], rows: [
+        ["Under $1,000", "Office supply purchases; subscription renewals; event deposits; client lunch expenses."],
+        ["$1,000–$10,000", "Expert witness retainer deposits; settlement disbursements; corporate equipment procurement; standard travel modifications; marketing campaign expenses; software implementation fees; vendor contract renewals."],
+        ["$10,000+", "Real estate deposits — and anything else this significant escalates by default."]
+      ]},
+      { h: "Confidentiality Classifications", type: "bullets", items: [
+        "Public: press releases, published blog posts, marketing materials.",
+        "Internal (Restricted to Organization): internal performance metrics, staff salary bands, strategic growth plans.",
+        "Confidential (Client/Executive Sensitive — Highly Restricted/Privileged): client case files, estate planning financial disclosures, pending acquisition documents, settlement agreements, medical records, attorney-client privileged communications, litigation strategy memos, board executive session notes, personal executive financial statements, M&A due diligence data room documents."
+      ]},
+      { h: "Priority Clarity", type: "bullets", items: [
+        "Many executives perceive everything as urgent — the assistant's role is to clarify and operationalize priorities by identifying: revenue-generating activities, strategic growth initiatives, reputation-sensitive events, compliance/legal deadlines, and personal commitments with relational significance."
+      ]},
+      { h: "Revenue-Generating Activities", type: "bullets", items: [
+        "Prepare engagement letters.",
+        "Track and follow up on unsigned retainer agreements.",
+        "Ensure timely billing aligned with settlement disbursement timelines.",
+        "Draft billing summaries for high-value litigation clients.",
+        "Schedule consultation calls with qualified leads.",
+        "Prepare proposal packages for corporate compliance services.",
+        "Monitor contingency fee cases near resolution.",
+        "Follow up on unpaid invoices over 30 days.",
+        "Coordinate expert witness contracts for litigation.",
+        "Organize closing documentation for business acquisitions."
+      ]},
+      { h: "Strategic Growth Initiatives", type: "bullets", items: [
+        "Launch new estate planning services.",
+        "Research multi-state compliance requirements.",
+        "Prepare materials for an industry conference.",
+        "Draft an SOP manual for legal support.",
+        "Build a CRM pipeline tracking system.",
+        "Analyze competitor services.",
+        "Assist with M&A due diligence.",
+        "Develop an onboarding checklist for high-value clients.",
+        "Support new case management software implementation.",
+        "Prepare a quarterly executive strategy briefing deck."
+      ]},
+      { h: "Reputation-Sensitive Events", type: "bullets", items: [
+        "Coordinate media responses to litigation inquiries.",
+        "Manage logistics for board meetings.",
+        "Draft executive talking points for regulatory hearings.",
+        "Review communication tone and risks before anything goes out.",
+        "Address negative online reviews from high-profile clients.",
+        "Oversee coordination of high-profile client events.",
+        "Prepare crisis communication summaries post-compliance incidents.",
+        "Confirm key stakeholder attendance for investor meetings.",
+        "Manage the confidential exit of senior executives.",
+        "Ensure executive readiness for keynote presentations."
+      ]},
+      { h: "Communication — Managing Information Flow", type: "bullets", items: [
+        "Effective communication focuses on thoughtful engagement, not simply talking more at executives.",
+        "Structured executive updates should distill intelligence, not dump data. Three components: Situation (what happened), Impact (why it matters), Recommendation (what should be done).",
+        "This approach transforms the assistant from a messenger into a strategic advisor."
+      ]},
+      { h: "Proactive vs. Reactive Communication", type: "bullets", items: [
+        "Proactive communication involves: anticipating conflicts before they arise, providing pre-meeting briefs, delivering post-meeting summaries, sending daily priority snapshots, and giving early alerts for reputational or operational risks.",
+        "Reactive assistants, by contrast, only report problems after they've already happened."
+      ]},
+      { h: "Proactive Communication — Worked Example", type: "paragraph", text: "Instead of: \"There's a scheduling conflict.\" Say: \"You're double-booked at 3 PM. I recommend prioritizing the investor call due to revenue impact. I've drafted a message for the internal team.\" The second version is executive-level communication — it names the problem, makes a recommendation, and shows the work is already in motion." },
+      { h: "Gatekeeping Language", type: "bullets", items: [
+        "Gatekeeping is about maintaining strategic focus, not blocking access. Diplomatic language protects time while minimizing friction:",
+        "\"He's fully committed this week. What specific outcome are you hoping to achieve?\"",
+        "\"To make this productive, can you send an agenda?\"",
+        "\"Given current priorities, I can offer next Thursday.\""
+      ]},
+      { h: "Communication in Hybrid Roles — Corporate Mode", type: "bullets", items: [
+        "Formal, documented, structured, and risk-aware. Used for board communications, client correspondence, court matters, compliance reporting, vendor contracts, and investor updates.",
+        "Tone characteristics: structured, direct, a clear action step, documentable."
+      ]},
+      { h: "Communication in Hybrid Roles — Personal Mode", type: "bullets", items: [
+        "Discreet, flexible, relationship-based, and emotionally intelligent. Used for family matters, medical scheduling, household coordination, sensitive personal events, milestone planning.",
+        "Key attributes: discreet, flexible, relationship-based, emotionally intelligent, softer tone, service-oriented.",
+        "Sample personal tone: \"I've secured a quiet table at your preferred restaurant for Saturday evening. Let me know if you'd like any additional arrangements handled.\""
+      ]},
+      { h: "Communication in Hybrid Roles — Legal EA Complexity", type: "bullets", items: [
+        "Complexity arises when legal authority intersects with personal matters — e.g. an executive's personal real estate purchase needing legal review, estate planning updates for the family, personal litigation involving the executive, or corporate funds used for hybrid travel.",
+        "In these situations, the Legal EA must: maintain documentation standards, preserve privilege where applicable, separate business and personal records, apply compliance safeguards, and avoid casual language in sensitive legal matters.",
+        "Tone can be layered: externally formal (\"Please review the attached draft trust amendment for the Executive's personal estate file. Execution timeline requested by Friday.\") while internally controlled but supportive (\"The updated trust amendment is ready for your review. I'll coordinate signing at your convenience.\").",
+        "Without tone discipline: casual language reduces authority, informal communication creates legal risk, overly formal language in personal matters can damage trust, and blurred boundaries create governance challenges. Hybrid roles need intentional tone switching, not accidental blending."
+      ]},
+      { h: "Credibility — Influence Without Authority", type: "bullets", items: [
+        "Credibility enables assistants to manage confidently, earned through consistent execution and mature judgment.",
+        "Operational reliability is built on: accuracy, follow-through, on-time execution, anticipation of next steps, and zero-drama problem solving.",
+        "A single missed detail can damage months of built-up trust."
+      ]},
+      { h: "The No-Surprises Rule", type: "bullets", items: [
+        "Executives and attorneys should never be caught off guard by information their assistant already knew about — anything relevant needs to reach them proactively, good or bad."
+      ]},
+      { h: "Judgment Under Pressure", type: "bullets", items: [
+        "Assistants make micro-decisions that impact financial exposure, legal risk, reputation, and relationships.",
+        "Credibility grows specifically when an assistant diplomatically protects others from potential pitfalls — not just when things go smoothly."
+      ]},
+      { h: "Discretion & Confidentiality — Where It Matters Most", type: "bullets", items: [
+        "Discretion and confidentiality are especially critical in: investor relations, legal matters, family logistics, M&A activity, and medical or personal information.",
+        "Essential skills: information compartmentalization, secure communication protocols, document handling standards, digital hygiene.",
+        "In hybrid roles, credibility is compromised the moment personal information leaks into corporate channels."
+      ]},
+      { h: "Executive Energy Management", type: "bullets", items: [
+        "Advanced assistants manage energy alongside time, which is what fosters long-term influence and credibility.",
+        "Key roles: buffering transitions, preventing decision fatigue, limiting unnecessary meetings, shielding from emotional volatility, and knowing when to intervene quietly."
+      ]},
+      { h: "Judgment-Based Tasks — Legal Executive Assistant", type: "bullets", items: [
+        "Re-prioritizing calendars for unexpected investor meetings.",
+        "Diplomatically declining low-value meetings.",
+        "Resolving scheduling conflicts to maintain executive reputation.",
+        "Flagging overcommitment risks to prevent burnout.",
+        "Suggesting alternative travel routes to avoid delays before keynotes.",
+        "Identifying missing signature blocks in contracts.",
+        "Flagging statute of limitations risks in litigation calendars.",
+        "Escalating potential privilege breaches in email chains.",
+        "Noticing inconsistencies between settlement drafts and term sheets.",
+        "Identifying conflicts of interest from client intake information."
       ]}
     ]
   }
@@ -14551,6 +14905,7 @@ window.downloadInsurance5Pdf = downloadInsurance5Pdf;
 
 function initProjectCompliance6(body){
   toolState.c6 = {license:{}, kpi:{}, recoveryReport:null};
+  toolState.c6audit = {verdicts:{}, risks:{}};
   toolState.c6cr = {activeScenario: DAY6_CRISIS_SCENARIOS[0].id, chatHistory:[{role:"client", text: DAY6_CRISIS_SCENARIOS[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   toolState.wizardIndex = 0;
   const partA = `
@@ -14623,11 +14978,27 @@ function initProjectCompliance6(body){
     ${renderDay6CrisisRoleplaySection()}
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadProjectCompliance6Pdf()">⬇ Download My Work</button>
   `;
+  const partE = `
+    <div class="card" style="padding:16px 18px;margin-bottom:20px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">🔍 15-Case Compliance Audit Simulation</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">Bookkeeping and case management just forwarded 15 case files for a routine compliance sweep across multiple jurisdictions. Some are filed correctly. Some aren't — a missed deadline, an incorrect form, a missing notarization, a late regulatory filing. Review each case and decide: clean, or an issue worth flagging.</p>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;">If you flag a case, you'll also classify how serious the issue actually is — Moderate, High, or Critical. Getting the severity right matters as much as catching the issue in the first place.</p>
+    </div>
+    <div id="complianceAuditQueue">${renderComplianceAuditQueue()}</div>
+    <button class="btn btn-primary" style="margin-top:6px;" onclick="checkComplianceAudit()">Check My Audit</button>
+    <div id="complianceAuditResult"></div>
+    <h3 style="margin:28px 0 6px;color:var(--navy);font-size:15px;">Escalation & Prevention</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Once you've completed the case review: name the single most severe finding, describe the real escalation pathway for it (who, how fast, why), and recommend one concrete preventive control that would stop this class of error from recurring.</p>
+    <textarea id="complianceAuditWritten" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Most severe finding: ...&#10;&#10;Escalation pathway: ...&#10;&#10;Preventive control recommendation: ..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewComplianceAuditResponse()">Get AI Feedback</button>
+    <div id="complianceAuditWrittenResult" style="margin-top:14px;"></div>
+  `;
   body.innerHTML = renderToolWizard(6, [
     {label:"Compliance Risk", html:partA},
     {label:"Operational Warning Signs", html:partB},
     {label:"Recovery Memo", html:partC},
-    {label:"Crisis Roleplay", html:partD}
+    {label:"Crisis Roleplay", html:partD},
+    {label:"Compliance Audit Simulation", html:partE}
   ]);
 }
 
