@@ -560,28 +560,26 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   color:var(--navy-soft);margin-bottom:14px;
 }
 .quiz-grid{
-  display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;margin-top:16px;
+  display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;margin-top:16px;
 }
 .quiz-grid-opt{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  border:2px solid var(--line);border-radius:12px;padding:18px 14px;cursor:pointer;
-  min-height:120px;transition:all .15s ease;background:var(--paper);
+  display:flex;flex-direction:row;align-items:center;text-align:left;
+  border:2px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;
+  min-height:0;transition:all .15s ease;background:var(--paper);
 }
-.quiz-grid-opt:hover{border-color:var(--navy-soft);background:#F8F9FC;transform:translateY(-2px);}
-.quiz-grid-opt.selected{border-color:var(--orange);background:var(--orange-soft);box-shadow:0 4px 14px -6px rgba(219,132,55,.4);}
+.quiz-grid-opt:hover{border-color:var(--navy-soft);background:#F8F9FC;}
+.quiz-grid-opt.selected{border-color:var(--orange);background:var(--orange-soft);box-shadow:0 3px 10px -5px rgba(219,132,55,.4);}
 .quiz-grid-letter{
-  width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:12px;
-  display:flex;align-items:center;justify-content:center;margin-bottom:10px;flex-shrink:0;
+  width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:11px;
+  display:flex;align-items:center;justify-content:center;margin-right:10px;margin-bottom:0;flex-shrink:0;
 }
 .quiz-grid-opt.selected .quiz-grid-letter{background:var(--orange-deep);}
-.quiz-grid-text{font-size:var(--font-sub);color:#37394A;line-height:1.4;}
+.quiz-grid-text{font-size:var(--font-sub);color:#37394A;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .quiz-nav{
   display:flex;align-items:center;justify-content:space-between;margin-top:22px;
 }
 @media (max-width:640px){
   .quiz-grid{grid-template-columns:1fr;}
-  .quiz-grid-opt{min-height:auto;flex-direction:row;text-align:left;padding:14px;}
-  .quiz-grid-letter{margin-bottom:0;margin-right:12px;}
 }
 
 .quiz-result{
@@ -2760,15 +2758,6 @@ const DAY3 = {
       "trainerCue": "Give the room a real double-booking scenario and ask them to identify what 'strategic importance' actually means in that specific case — the abstract rule is easy to agree with, applying it to a real conflict is the actual skill."
     },
     {
-      "h": "Master Contact List Discipline",
-      "b": [
-        "Keep one master contact list the whole team uses — personal copies drift out of sync, and the drift is invisible until someone acts on outdated information at the worst possible moment.",
-        "This is the same discipline as the Comprehensive Contact List topic from Day 4, applied specifically to calendar and scheduling context — knowing exactly who needs to be looped in for a given meeting type, and having their current contact details on hand without having to search.",
-        "A common real failure: two assistants each keep their own copy of a key contact's information, one of them outdated, and a time-sensitive call goes to a wrong or disconnected number during exactly the situation where speed mattered most."
-      ],
-      "trainerCue": "Close this topic with a real story (yours or theirs) about a contact list that went stale and caused a real problem — it's more memorable than the rule itself."
-    },
-    {
       "h": "Energy Management vs. Time Management",
       "b": [
         "Time management asks 'when should this happen'; energy management asks 'am I actually capable of doing this well right now' — both matter, and most people only plan around the first one.",
@@ -3437,6 +3426,107 @@ const DAY4 = {
         "Discussion prompt: think of a time you (or someone you know) couldn't reach the right person quickly because contact info was missing, wrong, or scattered — what would have prevented it?"
       ],
       "trainerCue": "Ask the room to actually answer the discussion prompt out loud — a specific memory of a real, frustrating search for a contact makes the recurring-audit habit land much better than the principle alone."
+    },
+    {
+      "h": "Master Contact List Discipline",
+      "b": [
+        "Keep one master contact list the whole team uses — personal copies drift out of sync, and the drift is invisible until someone acts on outdated information at the worst possible moment.",
+        "This is the same contact-list discipline covered earlier in this day, applied specifically to calendar and scheduling context — knowing exactly who needs to be looped in for a given meeting type, and having their current contact details on hand without having to search.",
+        "A common real failure: two assistants each keep their own copy of a key contact's information, one of them outdated, and a time-sensitive call goes to a wrong or disconnected number during exactly the situation where speed mattered most."
+      ],
+      "trainerCue": "Close this topic with a real story (yours or theirs) about a contact list that went stale and caused a real problem — it's more memorable than the rule itself."
+    },
+    {
+      "h": "Sales Mindset",
+      "fourPart": {
+        "corePrinciples": [
+          "Supporting sales or business-development activity as an EA/PA requires understanding the underlying mindset, not just executing tasks — a cold outreach message written without understanding why it works lands flat, however correctly formatted it is.",
+          "Sales conversations are fundamentally about identifying and solving a genuine problem for the other person, not about persuading someone into something they don't need — this reframing changes how every subsequent skill in this module should be applied.",
+          "Rejection is the normal, expected outcome of most outreach attempts, not a sign something went wrong — a sales mindset treats a \"no\" as information, not a personal failure."
+        ],
+        "howTo": [
+          "Before any outreach, get genuinely clear on what problem the recipient actually has that this conversation could solve — outreach built around \"what we're offering\" instead of \"what they need\" is weaker from the first line.",
+          "Approach every interaction with real curiosity about the other person's situation, not a script to get through — the best outreach reads like it was written for one specific person, because it was.",
+          "Track your own outreach activity and outcomes honestly, including the rejections — this is what turns a string of individual attempts into an improving process over time.",
+          "Separate the professional outcome (did the message get through, did they respond) from any personal reaction to rejection — this is what makes sustained outreach volume possible without burning out."
+        ],
+        "bestPractices": [
+          "Pitfall: treating every outreach attempt as equally important. Not every lead deserves equal effort — knowing where to invest more time is itself part of the sales mindset.",
+          "Never take a \"no\" personally or let it change your tone for the next outreach attempt — each conversation is independent.",
+          "Genuine curiosity about the other person's business or situation is not a technique to fake — it needs to be real, because insincerity is detectable in writing and in tone.",
+          "A sales mindset applied to internal coordination (getting a colleague's buy-in, persuading an executive toward a recommendation) uses the same underlying skill — understanding what the other person actually needs before making your case."
+        ],
+        "discussionCase": "You've sent 15 cold outreach emails this week and received zero responses. What would a sales mindset say about what to do next — and what would the opposite of a sales mindset look like in this exact moment?"
+      }
+    },
+    {
+      "h": "Lead Generation & Data Sourcing",
+      "fourPart": {
+        "corePrinciples": [
+          "Data sourcing is the research layer underneath lead generation — before any outreach happens, you need accurate information about who the prospect actually is, what they do, and why they might be a genuine fit.",
+          "The quality of the data determines the quality of everything downstream — a well-crafted outreach message sent to a poorly-researched or wrong contact wastes the effort regardless of how good the message is.",
+          "This connects directly to the research discipline covered earlier in this day — sourcing a lead's information is the same primary-source-first, verify-before-you-act skill applied to prospecting specifically."
+        ],
+        "howTo": [
+          "Use lead enrichment and research tools (LinkedIn Sales Navigator, company websites, industry directories) to confirm a prospect's actual role, company context, and relevant recent activity before any outreach.",
+          "Verify contact information through the primary source (the company's own site or official channels) rather than trusting a single third-party data source, which can be outdated.",
+          "Organize sourced leads in a shared, trackable system (a CRM or structured spreadsheet) with the key qualifying details captured at the point of sourcing, not reconstructed later.",
+          "Prioritize sourcing effort toward leads that match real qualifying criteria (fit, need, authority, timeline) rather than sourcing broadly and sorting quality later — this saves significant time downstream."
+        ],
+        "bestPractices": [
+          "Pitfall: outreach based on stale or unverified data — a message referencing outdated information (an old job title, a company that's since changed) undermines credibility immediately.",
+          "Respect data privacy and only use legitimately available, professional information — sourcing leads is research, not an invitation to gather information inappropriately.",
+          "Keep sourced data current — a lead list that's six months old without any refresh is likely to contain meaningful inaccuracies.",
+          "A small list of well-sourced, genuinely qualified leads outperforms a large list of loosely-verified ones — resist the pressure to prioritize volume over data quality."
+        ],
+        "discussionCase": "You're asked to build a list of 50 potential leads by end of day for a specific outreach campaign. Given the time constraint, how do you balance genuine data verification against the volume target, and where would you not cut corners even under time pressure?"
+      }
+    },
+    {
+      "h": "Cold Outbound Execution",
+      "fourPart": {
+        "corePrinciples": [
+          "Cold outbound execution is where research and mindset become an actual message or call — this is the visible, external-facing moment where everything upstream either pays off or doesn't.",
+          "The same research-before-calling discipline covered elsewhere in this day applies directly here: knowing something specific and accurate about the recipient before reaching out is what separates outreach that lands from outreach that gets deleted.",
+          "Execution quality compounds — a strong opening line, genuine relevance, and a clear, low-friction next step matter more than volume alone."
+        ],
+        "howTo": [
+          "Open with something specific to the recipient, not a generic template line — a reference to something real about their role, company, or recent activity signals the message wasn't mass-sent.",
+          "Keep the actual ask small and specific — a request for 15 minutes is far more likely to get a yes than an open-ended \"let's connect sometime.\"",
+          "Use the tools available (call tracking software, CRM logging, LinkedIn Sales Navigator) to track every outbound attempt and its outcome, so follow-up is systematic rather than a memory exercise.",
+          "Prepare for the conversation, not just the opening line — anticipate the most likely objections and have a genuine, non-scripted response ready, so the conversation can flow naturally if it gets that far."
+        ],
+        "bestPractices": [
+          "Pitfall: using a rigid script word-for-word regardless of how the conversation actually goes. A script should be a starting point, not a performance to recite through objections.",
+          "Prioritize listening over talking once a conversation starts — the goal is understanding their actual situation, not delivering the pitch you prepared.",
+          "Handle objections gracefully rather than pushing past them — offering to follow up with more information respects the person's actual position rather than trying to argue them out of it.",
+          "Log every outbound attempt and its outcome in the CRM immediately, not at the end of the day from memory — details fade fast, and accurate logs are what make follow-up actually effective."
+        ],
+        "discussionCase": "You're making a cold call and the prospect immediately says \"I'm not interested\" before you've said much beyond your opening line. What's the actual best next move — push forward with the pitch, ask a clarifying question, or end the call gracefully? What would you want to know to decide?"
+      }
+    },
+    {
+      "h": "Appointment Setting (BANT/MEDDPICC)",
+      "fourPart": {
+        "corePrinciples": [
+          "Appointment setting is the process of scheduling meetings or calls between qualified prospects and the relevant team, timed to be genuinely useful for both sides — its purpose is a productive conversation, not just a filled calendar slot.",
+          "BANT (Budget, Authority, Need, Timeline) and MEDDPICC (Metrics, Economic buyer, Decision criteria, Decision process, Paper process, Identify pain, Champion, Competition) are both qualifying frameworks — structured ways to confirm a prospect is actually worth the meeting before it's scheduled.",
+          "Qualifying before scheduling protects everyone's time — an unqualified meeting wastes the executive's time and often the prospect's too, since the conversation goes nowhere."
+        ],
+        "howTo": [
+          "Apply BANT as a quick, lighter-weight qualifying check: does this prospect have Budget, real Authority to decide, a genuine Need, and a realistic Timeline — if two or more of these are clearly absent, the meeting likely isn't worth scheduling yet.",
+          "Apply MEDDPICC for higher-stakes or more complex qualifying situations: confirm real Metrics of success, identify the actual Economic buyer, understand their Decision criteria and Decision process, know the Paper process (contracts, approvals), clearly Identify the pain point, find an internal Champion, and understand the Competition.",
+          "Only set appointments with leads who are genuinely interested or pre-qualified — using a scheduling tool (Calendly, Microsoft Bookings) to let qualified leads pick a convenient slot removes back-and-forth friction.",
+          "Confirm the meeting's agenda, expected duration, and participants before it happens, and send a reminder 24-48 hours prior with any prep materials — this is what makes a scheduled meeting actually productive rather than a first introduction that goes nowhere."
+        ],
+        "bestPractices": [
+          "Pitfall: scheduling a meeting just because someone responded positively, without actually confirming they're qualified. A fast \"yes\" isn't the same as a real fit.",
+          "Choose BANT for quick, lower-stakes qualifying and MEDDPICC for complex, higher-value, multi-stakeholder situations — using the heavier framework for every quick call adds unnecessary friction.",
+          "Never overpromise what a meeting will cover just to secure the booking — a prospect who feels misled about the meeting's purpose disengages fast.",
+          "Confirm and remind close to the meeting time, not just once at booking — no-shows are one of the most common and avoidable failures in appointment setting."
+        ],
+        "discussionCase": "A prospect responds enthusiastically to your outreach and wants to schedule a call immediately, but you haven't confirmed they have real budget or decision authority. Do you schedule the meeting anyway, ask qualifying questions first, or something in between? What would you actually say to find out without losing their interest?"
+      }
     }
   ],
   "quickChecks": [
@@ -3739,6 +3829,52 @@ const DAY5 = {
       "trainerCue": "Ask which of the three categories (utilities, purchasing, subscriptions) the room finds easiest to let slide personally — the honest answer is a good entry point into why each needs its own explicit system."
     },
     {
+      "h": "Household Staff Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Managing household staff (a nanny, housekeeper, driver, or estate manager) is fundamentally a coordination role, not a supervisory one in the traditional sense — the PA's job is making sure schedules, expectations, and communication all stay aligned, not micromanaging how each person does their job.",
+          "Clear, written expectations from day one prevent the vast majority of staff-management friction — verbal understandings drift, and by the time a disagreement surfaces, neither side remembers the original agreement the same way.",
+          "Staff scheduling has to account for both the household's needs and the staff's own reasonable boundaries — a schedule that only works when someone stays late every week isn't sustainable, whatever the org chart says."
+        ],
+        "howTo": [
+          "Maintain a written role description for each staff position, even an informal one, covering hours, core responsibilities, and who they report to — this becomes the reference point whenever a question about scope comes up.",
+          "Build a shared household calendar showing each staff member's schedule, so overlaps and gaps are visible at a glance rather than discovered when someone doesn't show up.",
+          "Set a regular, brief check-in cadence with household staff (even monthly) — small friction points surface and get resolved before they become real problems.",
+          "Keep emergency contact and basic medical information for each staff member on file, the same way you would for family members — this matters if something happens while they're on the property."
+        ],
+        "bestPractices": [
+          "Never let staff scheduling live only in one person's memory (yours or the household manager's) — if you're unreachable, someone else needs to be able to answer \"who's supposed to be here today.\"",
+          "Pitfall: assuming staff will raise scheduling conflicts themselves. Many won't, out of politeness or job security concerns — proactively checking in surfaces problems earlier.",
+          "Treat household staff with the same professionalism and discretion you'd extend to any other working relationship — this is someone's livelihood, not an informal arrangement, even in a personal household.",
+          "When staff turnover happens, build in real handoff time and documentation — losing institutional knowledge (the household's actual routines and preferences) is the most common cost of a rushed transition."
+        ],
+        "discussionCase": "The Thorne household's regular housekeeper is going on medical leave for six weeks with two days' notice. You need a temporary replacement who can be up to speed quickly. What would you actually document and hand off to make sure the temporary hire doesn't need to ask Sarah Thorne a dozen basic questions in the first week?"
+      }
+    },
+    {
+      "h": "Home Maintenance & Repair Coordination",
+      "fourPart": {
+        "corePrinciples": [
+          "Home maintenance splits into two very different categories that need different handling: routine, scheduled maintenance (HVAC servicing, gutter cleaning) versus reactive repairs (a broken appliance, a leak) — treating both the same way leads to either forgotten routine tasks or panicked reactive scrambles.",
+          "A maintenance calendar exists to prevent small, cheap fixes from becoming large, expensive ones — most major home repairs were once a minor issue that went unaddressed.",
+          "Contractor and vendor relationships for home maintenance follow the same procurement discipline covered elsewhere in this day — vetted, compared, and tracked, not just whoever's available fastest."
+        ],
+        "howTo": [
+          "Build a recurring maintenance calendar covering every system with a manufacturer-recommended service interval (HVAC, water heater, appliances under warranty) — this prevents the most common and costly oversight: skipped routine service voiding a warranty.",
+          "Keep a running list of trusted, vetted contractors by specialty (plumber, electrician, HVAC, general handyman) so a reactive repair doesn't start with a cold search under time pressure.",
+          "For any repair, get the scope and cost confirmed in writing before work begins, even for a trusted, repeat contractor — verbal estimates have a way of growing once work starts.",
+          "Track warranty documentation and appliance manuals in the Home Binder system, organized by item, so a repair call starts with \"is this still under warranty\" answered in seconds, not a search."
+        ],
+        "bestPractices": [
+          "Pitfall: treating every maintenance need as equally urgent. A dripping faucet and a gas smell are not the same priority level — triage matters here the same way it does with email or calendar requests.",
+          "Never authorize significant repair spending without the executive's sign-off threshold being clear in advance — know the dollar amount below which you can approve directly versus what needs a check-in first.",
+          "Keep photos and a brief written record of major repairs and renovations — this matters for warranty claims, insurance, and eventually if the property is ever sold.",
+          "A maintenance calendar that exists but is never actually checked is worse than no calendar — it creates false confidence that things are handled."
+        ],
+        "discussionCase": "You notice the HVAC system is due for its annual service based on your maintenance calendar, but the household has been consistently declining the reminder for three months because \"it's working fine.\" What's the actual risk here, and how do you raise this again without it feeling like nagging?"
+      }
+    },
+    {
       "h": "Procurement and Vendor/Supplier Management",
       "layout": "PROCESS",
       "processSteps": [
@@ -3760,6 +3896,29 @@ const DAY5 = {
         "This connects directly to the Recurring Household Admin discipline just covered — vendor contracts and renewal dates are exactly the kind of recurring fact that belongs in a tracked reference, not someone's memory."
       ],
       "trainerCue": "Ask the room to name a vendor relationship they've seen managed well past the signing stage — what did ongoing management actually look like in practice, beyond just paying invoices?"
+    },
+    {
+      "h": "Negotiating Vendor Contracts & Terms",
+      "fourPart": {
+        "corePrinciples": [
+          "Negotiation isn't about extracting the lowest possible price — it's about securing terms that genuinely protect the household or business if something goes wrong, which is a different goal than just \"cheaper.\"",
+          "The strongest negotiating position comes from having real alternatives already lined up — a vendor who knows you have no other option has no reason to move on price or terms.",
+          "Most vendor terms are more negotiable than people assume, especially payment schedules, cancellation terms, and service-level guarantees — the default contract a vendor offers is a starting point, not a fixed rule."
+        ],
+        "howTo": [
+          "Before any negotiation conversation, know your actual priorities in order — price, timeline, flexibility, and service guarantees rarely can all be maximized at once, so know which ones matter most for this specific engagement.",
+          "Ask directly for better terms on at least one dimension beyond price — a shorter cancellation notice period or a service-level guarantee often costs the vendor nothing to grant but genuinely protects you.",
+          "Get every negotiated term in writing as part of the actual contract, not a side verbal agreement — an unwritten concession disappears the moment there's a dispute or a staff change on the vendor's side.",
+          "For any recurring or high-value vendor relationship, revisit terms at renewal rather than auto-renewing — vendor pricing and terms drift over time, and renewal is the natural point to re-negotiate."
+        ],
+        "bestPractices": [
+          "Pitfall: negotiating only on price and ignoring the cancellation and dispute-resolution terms — these matter far more than price the one time something actually goes wrong.",
+          "Never let a vendor rush you into signing under time pressure they created — a vendor who says \"this price is only good today\" is using a tactic, not describing a real constraint, in the vast majority of cases.",
+          "Keep a simple record of what was negotiated and why for every significant vendor contract — this protects institutional memory when the person who negotiated it is no longer handling that relationship.",
+          "A negotiation that damages the working relationship isn't a win, even if it secures better terms on paper — for ongoing vendor relationships, how you negotiate matters as much as what you get."
+        ],
+        "discussionCase": "A vendor the household has used reliably for two years sends a renewal contract with a 15% price increase and no explanation. You have one comparable alternative vendor you've never used. How do you approach the renewal conversation, and what would actually justify staying versus switching?"
+      }
     },
     {
       "h": "When a Vendor Falls Through",
@@ -3882,6 +4041,29 @@ const DAY5 = {
       "trainerCue": "Emphasize 'never admit fault' specifically — this is the detail most likely to be forgotten under real pressure, and it's the one with the most serious consequences if missed."
     },
     {
+      "h": "International Travel Risk & Duty of Care",
+      "fourPart": {
+        "corePrinciples": [
+          "International travel introduces risk categories domestic travel doesn't: political instability, health infrastructure gaps, unfamiliar legal systems, and communication barriers during an emergency — the Before/During/After framework still applies, but each phase needs more depth.",
+          "\"Duty of care\" means the organization or household has a real responsibility to know where a traveler is and be able to reach or assist them — this isn't just a courtesy, it's an expectation that becomes critical the moment something goes wrong.",
+          "The riskier the destination, the more this planning has to happen before departure — improvising an emergency response from an unfamiliar country, in an unfamiliar language, is far harder than it sounds."
+        ],
+        "howTo": [
+          "Check official government travel advisories for the destination before booking, not just before departure — this shapes whether extra precautions (security briefing, evacuation insurance) are warranted at all.",
+          "Register international travel with the relevant government's travel registration program where available — this is what makes official evacuation or emergency assistance possible if a crisis hits.",
+          "Confirm international health coverage and, for higher-risk destinations, medical evacuation insurance specifically — standard travel insurance often doesn't cover medical evacuation, which can cost well into six figures without it.",
+          "Build a destination-specific emergency card: local embassy contact, nearest hospital with English-speaking staff if relevant, local emergency numbers (which differ from 911), and a designated check-in schedule with the office or family."
+        ],
+        "bestPractices": [
+          "Pitfall: treating international travel prep as \"the same checklist, just with a passport.\" The stakes and the failure modes are genuinely different, and the prep needs to reflect that.",
+          "For any high-risk destination, loop in the executive's security team or a travel-risk consultant if one exists — this isn't a call an EA should be making alone for genuinely dangerous locations.",
+          "Keep scanned copies of every critical document (passport, visas, insurance cards, prescriptions) accessible remotely, separate from the physical originals — losing documents abroad is a common, solvable-in-advance problem.",
+          "A missed check-in should trigger an actual escalation protocol, decided in advance — not a guessing game about how many hours of silence is actually concerning for this specific trip and destination."
+        ],
+        "discussionCase": "Elias is traveling internationally for an arbitration matter in a country with a moderate travel advisory. He's dismissive of extra precautions, saying he's traveled there before with no issues. What would you actually want in place before he leaves, and how do you raise it in a way that respects his experience while still doing your job?"
+      }
+    },
+    {
       "h": "Lifestyle & Personal Support",
       "b": [
         "Track errands, gifts, and events in one shared tool with deadlines and owners.",
@@ -3912,11 +4094,149 @@ const DAY5 = {
         "Maintenance is the same discipline as the contact list: an outdated home binder is worse than no binder, since it creates false confidence that the information is current."
       ],
       "trainerCue": "Emphasize the security rule explicitly and check that trainees genuinely understand the difference between 'the account number' and 'where to find the account number' — this distinction is exactly what the Practice Lab exercise for this day will test."
+    },
+    {
+      "h": "Digital Home Binder Tools & Platforms",
+      "fourPart": {
+        "corePrinciples": [
+          "The right digital tool for a home binder depends on who else needs access and how — a tool only you can use isn't actually solving the \"someone else needs this\" problem the binder exists for.",
+          "Structure matters more than the specific platform — a well-organized binder in a simple tool beats a disorganized one in a sophisticated tool.",
+          "Whatever platform is chosen, it needs a real access and permissions plan — not everyone who might need the binder should see every section of it."
+        ],
+        "howTo": [
+          "For household teams already using a shared workspace (Notion, Google Workspace, or similar), building the binder there keeps it in a tool people already check, rather than one more place to remember.",
+          "Use consistent section headers matching the four Home Binder categories from earlier in this day (Household Operations, Family & Medical, Financial & Legal Reference, Emergency Contacts) so the digital structure mirrors what a physical binder would look like.",
+          "Set explicit sharing permissions per section where the platform allows it — a driver may need the household operations section but shouldn't need access to family medical information.",
+          "Export or print a physical backup periodically (monthly or quarterly) so the \"digital tool is down\" scenario doesn't leave anyone without access to genuinely critical information."
+        ],
+        "bestPractices": [
+          "Pitfall: choosing a sophisticated tool nobody else in the household actually knows how to use — the binder's value depends entirely on other people being able to access it when needed.",
+          "Never rely on a single person's personal login as the only access point — if that person is unreachable, the binder is effectively inaccessible, defeating its purpose.",
+          "Revisit access permissions whenever household staff changes — a departed employee retaining binder access is a real, easily-avoided security gap.",
+          "Test the binder's actual usability periodically by having someone unfamiliar with it try to find something specific — this surfaces organization problems faster than reviewing it yourself."
+        ],
+        "discussionCase": "The Thorne household is deciding between a shared Notion workspace (which the family already uses for other things) and a dedicated home-management app with built-in permission controls. What would you actually want to know about who needs access to what before recommending one over the other?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Information Security",
+      "fourPart": {
+        "corePrinciples": [
+          "Information security risk means the exposure of sensitive data — client information, financial details, personal family information, confidential business matters — through carelessness, a breach, or simple mishandling.",
+          "An EA or PA routinely has access to more sensitive information than almost anyone else around an executive, which makes information security a core part of the role, not a specialized IT concern that's someone else's job.",
+          "The goal isn't perfect security (which doesn't exist) — it's disciplined, consistent handling that keeps the routine risk of a slip low, and a clear escalation path for when something does go wrong."
+        ],
+        "howTo": [
+          "Apply least-privilege access as a default — only see and hold the sensitive information actually needed for the task at hand, not everything available just because access exists.",
+          "Verify identity before disclosing anything sensitive over phone or email — a confident-sounding request is not verification, especially for financial or account details.",
+          "Use secure channels for genuinely sensitive information — a password-protected document or a secure portal, not a casual text message or unencrypted email, for anything that would cause real harm if intercepted.",
+          "Know the actual containment steps for a suspected leak or breach before one happens: stop further spread first, assess scope, then escalate — panicking and immediately assigning blame delays the part that actually matters."
+        ],
+        "bestPractices": [
+          "Pitfall: treating information security as someone else's responsibility because \"IT handles that.\" Most real information security failures are human handling errors, not technical ones.",
+          "Never store sensitive account numbers, passwords, or identification numbers in an unsecured document \"just to have it handy\" — reference where to find them securely instead.",
+          "Report a suspected security incident immediately, even a small one — a near-miss reported early is far easier to contain than a real breach discovered late.",
+          "Regularly reconsider who actually needs standing access to sensitive systems or information — access that made sense a year ago may no longer be necessary."
+        ],
+        "discussionCase": "You receive an email that looks like it's from Elias's bank, asking you to confirm his account details to resolve a \"security flag.\" It looks legitimate but arrived at an unusual time. What do you actually do before responding?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Operational Continuity",
+      "fourPart": {
+        "corePrinciples": [
+          "Operational continuity risk is the danger that a disruption — the EA/PA being unavailable, a key system going down, a critical vendor failing — stops essential support functions from happening at all.",
+          "Continuity planning exists so that a single point of failure (usually \"only I know how to do this\") doesn't bring an entire operation to a halt when that one person is unreachable.",
+          "This connects directly to documentation discipline covered elsewhere in this program — an SOP, a binder, a tracked contact list are all continuity tools, not just organizational nice-to-haves."
+        ],
+        "howTo": [
+          "Identify the specific tasks that would genuinely break if you were unreachable for 48 hours — these are your actual continuity risks, not a generic worry.",
+          "Document critical recurring processes (even briefly) so someone else could execute them in an emergency — this is the same discipline as the SOP and Home Binder work covered elsewhere in this program.",
+          "Maintain a backup or secondary contact for every critical vendor and system access — a single point of contact for something essential is a continuity risk waiting to happen.",
+          "Build a simple \"if I'm unreachable\" protocol and make sure at least one other person knows it exists — who to contact, where key documents live, what absolutely cannot wait."
+        ],
+        "bestPractices": [
+          "Pitfall: being so indispensable that nothing can happen without you. This feels secure but is actually a significant operational risk, for the executive and for you.",
+          "Test continuity plans occasionally rather than assuming they'd work — have someone actually try to follow your documentation for a routine task and see what's missing.",
+          "Keep continuity documentation current — an outdated backup plan creates false confidence, which is worse than knowing there's a real gap.",
+          "Continuity planning isn't pessimism — it's the same risk-reduction discipline this whole framework teaches, applied to your own role instead of an external vendor or system."
+        ],
+        "discussionCase": "You're planning a two-week vacation, the first real time away from the role in over a year. What would you actually need to document and hand off to make sure nothing critical falls through during those two weeks?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Reputational Risks",
+      "fourPart": {
+        "corePrinciples": [
+          "Reputational risk is exposure that damages how the executive, the family, or the business is perceived publicly — social media missteps, public disputes, leaked information, or a mishandled sensitive situation.",
+          "Reputational damage often spreads faster and is harder to reverse than financial or operational damage — a single bad moment captured and shared can outlast the actual event by years.",
+          "The EA/PA's role here is largely preventive: exercising discretion and judgment before something becomes a public problem, not managing the fallout after it already has."
+        ],
+        "howTo": [
+          "Apply discretion by default to anything that could become public — assume any message, document, or conversation might eventually be seen outside its intended audience.",
+          "Vet event guest lists, public appearances, and social content with reputational exposure specifically in mind, not just logistics — who's in the room or what's being posted can create risk logistics alone wouldn't catch.",
+          "Know the actual escalation path for a reputational issue in progress — who needs to be informed immediately, and who's authorized to respond publicly versus who should stay silent until guided.",
+          "Control information flow deliberately — knowing what can be shared, with whom, and when is as much a reputational skill as a confidentiality one."
+        ],
+        "bestPractices": [
+          "Pitfall: responding to a reputational situation quickly instead of correctly. A fast, wrong public response usually causes more damage than a brief, deliberate pause before responding.",
+          "Never assume a private conversation or communication will stay private — plan and communicate as if anything could surface.",
+          "Keep a mental (or literal) list of topics and situations that are reputationally sensitive for this specific executive, since the risk areas vary by person, industry, and public profile.",
+          "When in doubt about whether something is reputationally risky, escalate rather than deciding alone — this is exactly the kind of judgment call this program has emphasized isn't yours to make solo."
+        ],
+        "discussionCase": "A journalist reaches out directly to you, not through the firm's usual channels, asking for comment on a sensitive matter involving Elias. They're polite but persistent. What do you actually do, and what do you deliberately avoid doing?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Physical & Travel Safety",
+      "fourPart": {
+        "corePrinciples": [
+          "Physical and travel safety risk covers real, bodily risk to the executive or family — during travel, at events, or in daily life — distinct from the financial, operational, and reputational risks covered elsewhere in this framework.",
+          "This category has the highest stakes of the five, since the consequences of a gap here are the most severe and least reversible.",
+          "Duty of care — the responsibility to know where someone is and be able to reach or assist them — applies here more than anywhere else in the EA/PA role."
+        ],
+        "howTo": [
+          "Maintain visibility into the executive's location and itinerary at all times during travel or high-profile events, without being intrusive about it — this is what makes a fast response possible if something happens.",
+          "Build destination-specific safety awareness before any travel to an unfamiliar or higher-risk location — local emergency numbers, nearest medical care, and any relevant advisories.",
+          "Coordinate directly with security personnel where they exist, rather than working around them — physical safety planning is a team function, not a solo EA/PA judgment call for genuinely high-risk situations.",
+          "Keep emergency contact and basic medical information current and accessible for the executive and family members — this needs to be findable in seconds during an actual emergency, not searched for."
+        ],
+        "bestPractices": [
+          "Pitfall: treating physical safety planning as excessive or paranoid for a \"normal\" trip. The planning should scale to actual risk level, but some baseline awareness applies to every trip.",
+          "Never guess at emergency response — know the actual local emergency numbers and nearest appropriate medical facility for wherever the executive currently is, especially internationally.",
+          "Loop in professional security expertise for genuinely elevated-risk situations rather than handling it alone — this is a case where knowing the limits of your own role matters.",
+          "A missed check-in during travel should trigger a real, pre-agreed escalation — not a guessing game about how many hours of silence is actually concerning."
+        ],
+        "discussionCase": "Elias is attending a public event with elevated media attention, and the venue has confirmed only minimal security screening for attendees. What would you actually want confirmed or arranged before the event, and who would you loop in?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Financial Controls",
+      "fourPart": {
+        "corePrinciples": [
+          "Financial controls risk covers unauthorized spending, fraud, billing errors, and financial mismanagement — distinct from the broader financial risk category covered elsewhere, this focuses specifically on the controls that prevent those failures.",
+          "An EA/PA often has real financial access — approving invoices, managing accounts, handling reimbursements — which means financial controls discipline is a direct part of the role, not an accounting department concern alone.",
+          "Strong financial controls protect the EA/PA as much as the executive — clear approval thresholds and documentation mean no one's word-against-word if a financial question is ever raised."
+        ],
+        "howTo": [
+          "Know your actual approval authority in dollar terms before you need it — what you can approve directly versus what requires sign-off, so a financial decision under time pressure doesn't become a guessing game.",
+          "Require documentation (an invoice, a receipt, a written approval) for every financial transaction you handle, even small or routine ones — verbal-only financial decisions are exactly where disputes and errors happen.",
+          "Reconcile recurring financial activity regularly (monthly at minimum) rather than assuming it's correct — small billing errors compound if they're not caught early.",
+          "Flag anything financially unusual immediately, even if you're not certain it's wrong — a duplicate charge, an unexpected vendor invoice, or an out-of-pattern request are worth a second look before processing."
+        ],
+        "bestPractices": [
+          "Pitfall: processing a financial request quickly because it seems urgent, without the normal verification. Urgency is one of the most common tactics behind actual financial fraud.",
+          "Never approve or process a financial transaction based solely on a request that arrived through an unusual channel (a text instead of the normal system, an email from a slightly-off address).",
+          "Keep financial approval records organized and accessible — this is what makes an audit, if one ever happens, a quick confirmation rather than a stressful reconstruction.",
+          "When a financial request falls outside your normal pattern for this executive or household, verify through a second channel before acting, even if it delays things slightly."
+        ],
+        "discussionCase": "You receive an email that appears to be from Elias, asking you to urgently wire funds to a vendor for a time-sensitive deal, with instructions to keep it discreet. The tone matches how he writes, but something feels slightly off. What do you actually do before taking any action?"
+      }
     }
   ],
   "quickChecks": [
     {
-      "afterIndex": 7,
+      "afterIndex": 10,
       "q": "A family purchases homeowners insurance to cover potential losses from fire or theft. Which risk strategy is this?",
       "opts": [
         "Avoidance",
@@ -3928,7 +4248,7 @@ const DAY5 = {
       "r": "Buying insurance shifts the financial risk onto the insurer — that's Transfer."
     },
     {
-      "afterIndex": 8,
+      "afterIndex": 11,
       "q": "During the semi-annual risk review, which of these is a genuine trigger to revisit coverage?",
       "opts": [
         "The weather changed",
@@ -4367,6 +4687,75 @@ const DAY6 = {
         ]
       },
       "trainerCue": "Put the KPI table on screen and ask the room to guess which metric is hardest to actually hit consistently in real practice — usually Executive Inbox Response Time."
+    },
+    {
+      "h": "SOP Architecture & Trigger Mapping",
+      "fourPart": {
+        "corePrinciples": [
+          "A Standard Operating Procedure is a step-by-step guide built to standardize a task, reduce errors, ensure compliance, and speed up execution — its value comes from being followed consistently, not from existing on paper.",
+          "Every real SOP shares the same architecture: a Title & SOP ID, a stated Purpose, a defined Scope (who and what it covers), Definitions for any abbreviations used, the Step-by-Step Procedure itself, assigned Roles & Responsibilities, linked Forms/Templates/Tools, Compliance/Risk Notes, and a Revision History.",
+          "\"Trigger mapping\" means identifying exactly what event should cause someone to reach for this SOP — a well-scoped SOP tells you not just what to do, but precisely when it applies, so it doesn't get skipped when it's actually needed or misapplied when it isn't."
+        ],
+        "howTo": [
+          "Start every new SOP by identifying the specific task or process that needs standardizing, and write down why it needs one — \"why is this SOP necessary\" is the question that keeps an SOP focused rather than generic.",
+          "Define scope explicitly: which staff, which jurisdiction or department, which document or task types this SOP actually covers — a scope that's too broad becomes useless, too narrow means constant exceptions.",
+          "Write the procedure itself as numbered steps, a flowchart, or a checklist — never as a paragraph of prose, since prose is what people skip under time pressure.",
+          "Assign a specific trigger event to the SOP explicitly (e.g. \"whenever a new filing deadline is received\" or \"whenever a client requests a document\") — this is what makes the SOP something people reach for automatically, not just a document that exists."
+        ],
+        "bestPractices": [
+          "Pitfall: writing an SOP with no clear trigger. If nobody knows exactly when to use it, it won't get used consistently, however well-written the steps are.",
+          "Every SOP needs an owner — one person or role responsible for keeping it current — otherwise updates fall through the cracks and the document quietly goes stale.",
+          "Give every SOP a real ID and version number from the start (e.g. \"Deadline Management SOP — SOP-CA-001\") — this becomes essential the moment you have more than a handful of SOPs to track.",
+          "An SOP that's too long to actually reference in the moment defeats its own purpose — a numbered checklist someone can follow live beats an exhaustive document nobody opens under pressure."
+        ],
+        "discussionCase": "You're documenting an SOP for handling last-minute court filing deadlines. What's the actual trigger event that should cause someone to pull up this SOP, and what would the first three steps need to cover to be genuinely useful in the moment, not just accurate on paper?"
+      }
+    },
+    {
+      "h": "Hybrid Screen-Recording Workflow (Loom + Text)",
+      "fourPart": {
+        "corePrinciples": [
+          "Some processes are genuinely harder to document in text alone than to show — a screen-recording walkthrough (using a tool like Loom) captures exact click-paths and software navigation that a written list of steps often can't convey as clearly.",
+          "A hybrid approach — a short screen recording paired with a concise written summary — combines the strengths of both formats: the recording shows exactly what to do, the text makes it searchable, skimmable, and referenceable without replaying video.",
+          "The written component isn't optional or an afterthought — a video with no text summary is hard to search, hard to skim back through, and hard to keep current as a standalone SOP."
+        ],
+        "howTo": [
+          "Record a short, focused screen capture (ideally under 5 minutes) walking through the exact steps of the process, narrating what you're doing and why as you go — not just silently clicking through it.",
+          "Immediately after recording, write a companion text summary using the same numbered-step structure as any other SOP — this becomes the searchable, skimmable reference, with the video linked as the visual walkthrough.",
+          "Store both together in the same SOP repository entry, with the video clearly linked at the top and the text steps below it, so someone can either watch or read depending on what they need in the moment.",
+          "Keep recordings short and single-purpose — one recording per discrete process, rather than one long recording covering multiple unrelated tasks, since long recordings become as hard to navigate as long documents."
+        ],
+        "bestPractices": [
+          "Pitfall: recording a screen walkthrough and never writing the text summary. The recording alone isn't a complete SOP — it's the illustration for one.",
+          "When the underlying software or process changes, both the recording and the text need updating — an outdated recording showing an old interface is actively misleading, not just unhelpful.",
+          "Keep recordings accessible without requiring a special login or app where possible — a video walkthrough that's hard to access defeats the purpose of making a process easier to follow.",
+          "Use this hybrid format selectively — for genuinely visual, software-navigation-heavy processes, not for every SOP. A simple decision-tree SOP is often clearer as text alone."
+        ],
+        "discussionCase": "You need to document how to process a complex multi-step expense report in a specific accounting platform, involving several screens and a non-obvious approval routing. Would this genuinely benefit from the hybrid screen-recording approach, or would a well-written text SOP alone be just as effective? What would tip the decision either way?"
+      }
+    },
+    {
+      "h": "Maintenance, Auditing & Version Control",
+      "fourPart": {
+        "corePrinciples": [
+          "An SOP is never actually \"finished\" — it needs a defined lifecycle: creation, review and update, approval and implementation, monitoring and audit, and back to creation for the next revision.",
+          "Version control exists so that when an SOP changes, everyone can tell which version they're looking at and what specifically changed — an SOP with no version history creates real risk if an outdated copy is still circulating somewhere.",
+          "Auditing isn't a one-time check — it's the recurring mechanism that confirms an SOP is actually being followed, not just that it exists."
+        ],
+        "howTo": [
+          "Schedule a recurring review cadence for every SOP — quarterly or biannual is typical — rather than leaving updates to happen only when something goes wrong.",
+          "Track every revision in a Revision History Log: date, author, and exactly what changed — this is what makes it possible to reconstruct why a process works the way it currently does.",
+          "Trigger an off-cycle update whenever one of the real triggers hits: a law or regulation changes, a process improvement is identified, an error or near-miss reveals a gap, the underlying technology changes, or staff feedback consistently points to confusion.",
+          "Measure SOP adherence with real KPIs where possible — deadline adherence, error rates, filing accuracy — so \"is this SOP working\" has an actual answer, not just an impression."
+        ],
+        "bestPractices": [
+          "Pitfall: updating an SOP's content but not incrementing its version number. This is exactly how someone ends up working from an outdated copy without realizing it.",
+          "Keep SOPs in one central, accessible repository — cloud-based or an internal server — rather than scattered across individual people's files, where updates can't reliably reach everyone using them.",
+          "After any audit or operational review that surfaces a gap, close the loop by actually updating the relevant SOP — an audit finding that never makes it back into the document repeats itself next cycle.",
+          "Assign a specific owner to each SOP who's responsible for updates — without one, \"someone should update this eventually\" is how SOPs go stale."
+        ],
+        "discussionCase": "During a routine audit, you discover that three different team members are each following a slightly different version of the same filing SOP — none of them realized there was a discrepancy. What does this reveal about the current version control process, and what would you actually change to prevent it from happening again?"
+      }
     }
   ],
   "quickChecks": [
@@ -5958,6 +6347,98 @@ const DAY9 = {
         ],
         "discussionCase": "Elias's consulting LLC has been operating for two months on formation and tax registration alone. You're reviewing the file and realize no one has confirmed whether his state requires a specific professional consulting license for the type of advisory work he's doing. How do you approach raising this now, and what would you want to have confirmed before his next client engagement?"
       }
+    },
+    {
+      "h": "Video Conferencing: Platform Admin (Zoom/Teams/Meet)",
+      "fourPart": {
+        "corePrinciples": [
+          "Administering video conferencing platforms is a distinct skill from just attending a call — it means owning the settings, scheduling, and account-level configuration that make every meeting on that platform run smoothly for everyone else.",
+          "Different platforms (Zoom, Microsoft Teams, Google Meet) have meaningfully different admin capabilities and quirks — genuine platform literacy means knowing your organization's primary platform well, not just knowing that video calls exist.",
+          "Most platform-admin problems are preventable with correct setup ahead of time — waiting rooms, registration settings, recording permissions — rather than needing to be solved live during a meeting."
+        ],
+        "howTo": [
+          "Confirm the meeting's core settings before scheduling: waiting room or lobby on/off, who can share screens, whether recording is enabled and who's notified, and registration requirements if it's a larger event.",
+          "Build a pre-meeting checklist specific to the platform being used — test webinar/platform access, confirm login credentials, download any needed materials, and confirm the agenda is attached.",
+          "Know how to manage participants live: muting, removing a disruptive participant, promoting someone to co-host or presenter, and switching between screen-share sources without fumbling.",
+          "Keep account-level settings (default meeting durations, recording storage location, security defaults) reviewed periodically rather than left on whatever they defaulted to originally."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming default platform settings are fine for every meeting type. A sensitive internal discussion and a public webinar need very different security settings, and using the same defaults for both is a real risk.",
+          "Test any new or unfamiliar meeting format (a webinar, a large panel, breakout rooms) before the first time it's needed live — the first attempt at a new feature shouldn't be during an actual high-stakes meeting.",
+          "Keep login credentials and platform access organized and available to a backup person — a platform-admin bottleneck where only one person can start or manage meetings is a real operational risk.",
+          "Document platform-specific quirks you've learned (screen-share limitations, recording storage rules) so they don't need to be rediscovered by the next person to administer that platform."
+        ],
+        "discussionCase": "Elias needs to host a confidential internal strategy call with senior partners, but the calendar invite went out through a general meeting link with no waiting room or registration required. What would you want changed before the call, and how would you raise it given the invite already went out?"
+      }
+    },
+    {
+      "h": "Live Event Moderation",
+      "fourPart": {
+        "corePrinciples": [
+          "Live event moderation is the active, real-time management of a virtual event while it's happening — distinct from the setup work of platform admin, this is what you're doing during the actual call.",
+          "A moderator's job is to keep the event running smoothly for the audience and the presenter simultaneously — watching for technical issues, managing the flow, and handling anything unexpected without disrupting the presenter's focus.",
+          "The Day-of-Event sequence follows a consistent pattern: Reminder → Login Confirmed → Attendance Verified → Monitor → Document → Follow-Up — each step exists to catch a specific, predictable failure point."
+        ],
+        "howTo": [
+          "Before the event starts, confirm the executive's login, verify audio and video are working, and take an attendance screenshot if tracking is needed — catching a technical problem before the event starts is far better than during it.",
+          "During the event, actively monitor for issues rather than just watching passively — audio drops, screen-share failures, or chat/Q&A questions that need routing to the presenter.",
+          "For events requiring attendance verification (like CLE-eligible sessions), track participation actively: confirm Q&A engagement if required, track minimum attendance time, and note actual session start and end times.",
+          "Immediately after the event, complete the post-event sequence: confirm certificates or attendance records if applicable, verify correct credit hours were captured, and document the session for the record."
+        ],
+        "bestPractices": [
+          "Pitfall: moderating passively and only reacting once something has already gone wrong. Active monitoring catches most issues before they become visible to the audience.",
+          "Keep a visible checklist during the event rather than trying to remember every step — live moderation has too many simultaneous demands to rely on memory alone.",
+          "Document technical issues as they happen, even minor ones — this record is what makes the Technical Troubleshooting process (covered next) actually improve over time.",
+          "Speaking-engagement events need extra oversight: confirm introduction accuracy, ensure presentation materials are loaded, confirm recording availability, and document audience size."
+        ],
+        "discussionCase": "You're moderating a webinar where Elias is the featured speaker, and ten minutes in, his audio starts cutting out intermittently. The audience is starting to comment about it in the chat. What do you actually do, in what order, without disrupting his presentation more than necessary?"
+      }
+    },
+    {
+      "h": "Executive Meeting Etiquette",
+      "fourPart": {
+        "corePrinciples": [
+          "Video meeting etiquette for executive-level calls is a real professional skill, not just following generic Zoom manners — the standard is higher because the stakes and the audience typically are too.",
+          "The EA/PA's own conduct on a call reflects on the executive, whether or not that's fair — professional presence on video matters even when you're not the one presenting.",
+          "Etiquette here isn't about rigid formality — it's about removing friction and distraction so the actual content of the meeting gets the attention it deserves."
+        ],
+        "howTo": [
+          "Prepare the executive with a brief pre-call note covering the agenda, expected duration, participants and their roles, and the meeting format — this is the same preparation discipline as any other executive briefing.",
+          "Join executive calls slightly early to confirm technology is working before the executive joins — discovering a login or audio problem should never happen after the executive is already waiting.",
+          "Keep your own presence professional and unobtrusive when supporting rather than leading a call — camera framing, background, and mute discipline all matter.",
+          "Manage the mechanics quietly in the background (muting a noisy participant, sharing a document, monitoring chat) so the executive can focus entirely on the conversation itself."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming meeting etiquette is obvious and doesn't need active attention. Small lapses (an unmuted background noise, a late join, an unprepared executive) are more noticeable and more costly on executive-level calls.",
+          "Send reminders 24-48 hours before an important call with any prep materials attached — the reminder itself is part of the etiquette, not just a courtesy.",
+          "Confirm participants and their roles in advance where possible, so the executive isn't caught off-guard by who's actually in the room.",
+          "Never let a technical or scheduling issue become the executive's problem to solve live — that's exactly what the preparation and moderation work exists to prevent."
+        ],
+        "discussionCase": "Elias has an important video call with a prospective client, and you notice thirty seconds before it starts that the meeting link in his calendar is for the wrong time zone — the client is actually expecting the call an hour earlier and may already be waiting. What do you do right now?"
+      }
+    },
+    {
+      "h": "Video Conferencing: Technical Troubleshooting",
+      "fourPart": {
+        "corePrinciples": [
+          "Most video conferencing technical problems fall into a small number of predictable categories — login failures, audio/video issues, screen-share problems — which means a calm, structured troubleshooting approach beats panic almost every time.",
+          "The goal during a live technical issue is rapid triage, not a perfect diagnosis — get the call functional again first, understand exactly what went wrong afterward.",
+          "Documenting technical issues after they happen is what turns troubleshooting from a one-time fix into an improving system, the same continuous-improvement discipline covered elsewhere in this program."
+        ],
+        "howTo": [
+          "For a login failure specifically: verify the correct link is being used, check browser compatibility, and if it's still not resolved, contact the platform provider's support directly rather than continuing to guess.",
+          "For audio or video issues, work through the most common causes in order: check the correct device is selected in settings, confirm the app has permission to access camera/microphone, and try leaving and rejoining the meeting before more drastic steps.",
+          "Have a backup communication channel ready before any high-stakes call (a phone number, a secondary messaging app) so a total platform failure doesn't mean total communication failure.",
+          "Document every technical issue that occurs — what happened, what fixed it, how long it took — so recurring problems become visible and preventable rather than repeatedly surprising."
+        ],
+        "bestPractices": [
+          "Pitfall: trying every possible fix at once instead of working through likely causes in order. Systematic troubleshooting is faster than random troubleshooting, even under pressure.",
+          "Keep the platform provider's support contact readily available before you need it — searching for support contact information during an active issue wastes valuable time.",
+          "For any executive-level call, do a technical test run in advance for unfamiliar setups (a new location, a new device, an unfamiliar platform) rather than discovering problems live.",
+          "A calm, clear explanation to participants during a technical delay (\"we're resolving an audio issue, one moment\") maintains professionalism better than silence or visible panic."
+        ],
+        "discussionCase": "Fifteen minutes before a critical client call, you discover the meeting platform is down for planned maintenance you weren't aware of. What's your actual triage sequence in the next five minutes to make sure the call still happens on time?"
+      }
     }
   ],
   "quickChecks": [
@@ -6928,11 +7409,12 @@ const ERROR_TYPES = [
   {id:"math", label:"Math / total doesn't match the line items"},
   {id:"discount", label:"Missing a contractual discount"},
   {id:"duplicate", label:"Duplicate of another invoice already submitted"},
+  {id:"personal", label:"Personal / non-business charge included"},
   {id:"other", label:"Other issue"}
 ];
 
 // The scenario: reconciling the trust account for R. Alvarez, Matter 24-0113.
-// Bookkeeping forwarded these 8 invoices — some belong and are correct, some
+// Bookkeeping forwarded these invoices — some belong and are correct, some
 // belong but need a correction before they're paid, and some don't belong
 // to this account at all.
 const MOCK_INVOICE = {
@@ -7009,7 +7491,19 @@ const INVOICE_QUEUE = [
   {invNum:"108", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 2–6",
    lines:[{desc:"Attorney hours",qty:"10 hrs",rate:"$150/hr",amount:1500},{desc:"Filing fee",qty:"—",rate:"—",amount:50}],
    statedTotal:1550, status:"correction", errorType:"duplicate", correctTotal:0,
-   explain:"Same dates, same line items, same amount as Invoice #101 — this is a duplicate and shouldn't be billed twice."}
+   explain:"Same dates, same line items, same amount as Invoice #101 — this is a duplicate and shouldn't be billed twice."},
+  {invNum:"VLS-0104", matter:"24-0113", client:"Velocity Logistics (Vendor)", dateRange:"Jun 24",
+   lines:[{desc:"Expedited document courier",qty:"3 hrs",rate:"$150/hr",amount:450},{desc:"Bulk fuel surcharge (estimate)",qty:"—",rate:"—",amount:300}],
+   statedTotal:750, status:"correction", errorType:"math", correctTotal:450,
+   explain:"The vendor's own contract caps the fuel surcharge at a flat $0 for expedited same-matter courier runs — the $300 'estimate' line isn't a rate this vendor is actually contracted to charge. Correct total is the courier fee alone: $450."},
+  {invNum:"CWC-2907", matter:"—", client:"City-Wide Courier (Vendor)", dateRange:"Jun 25",
+   lines:[{desc:"Package delivery",qty:"—",rate:"—",amount:50},{desc:"Package delivery",qty:"—",rate:"—",amount:25},{desc:"Misc handling",qty:"—",rate:"—",amount:150}],
+   statedTotal:225, status:"unrelated",
+   explain:"No matter number anywhere on this receipt, and 'Misc handling' has zero description of what it actually covers — there's nothing here tying it to Alvarez's account at all."},
+  {invNum:"PPD-2026-004", matter:"24-0113", client:"Premier Print & Design (Vendor)", dateRange:"Jun 26",
+   lines:[{desc:"Marketing collateral — Q4",qty:"1",rate:"$2,500",amount:2500},{desc:"Private event banner",qty:"15 hrs",rate:"—",amount:800}],
+   statedTotal:3300, status:"correction", errorType:"personal", correctTotal:2500,
+   explain:"'Private event banner' has no connection to Alvarez's litigation matter — this looks like a personal or unrelated-event expense that shouldn't be billed to the client's trust account at all. Only the Q4 marketing collateral line belongs here."}
 ];
 
 /* ---------- 4. Travel Itinerary Planner (build-your-own) ---------- */
@@ -9987,7 +10481,7 @@ function initFinancial(body){
   `;
   const partB = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Invoice &amp; Bill Audit Queue</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Bookkeeping forwarded these 8 invoices for R. Alvarez's trust account (Matter 24-0113). Some belong here and are correct, some belong but need a fix before they're paid, and some don't belong at all. Review each one.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Bookkeeping forwarded these invoices for R. Alvarez's trust account (Matter 24-0113), including several from outside vendors. Some belong here and are correct, some belong but need a fix before they're paid, and some don't belong at all. Review each one.</p>
     <div id="auditQueue">${renderAuditQueue()}</div>
     <button class="btn btn-primary" style="margin-top:6px;" onclick="checkAudit()">Check My Audit</button>
     <div id="auditResult"></div>
