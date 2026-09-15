@@ -9626,6 +9626,7 @@ function renderDashboard(){
   const done = completedCount();
   const pct = Math.round((done/DAYS.length)*100);
   return `
+  ${renderSurpriseTaskCard()}
   <div class="hero">
     <div>
       <p class="eyebrow">EA / PA Upskill Program</p>
@@ -9681,6 +9682,60 @@ function renderDashboard(){
   </div>
   `;
 }
+
+/* ---------- Random Task Injection (trainee side) ---------- */
+function renderSurpriseTaskCard(){
+  const t = state.activeSurpriseTask;
+  if(!t || !t.active) return "";
+  const prog = state.progress[t.dayId];
+  const alreadyAnswered = prog && prog.surpriseTaskAnsweredAt === t.generatedAt;
+  if(alreadyAnswered) return "";
+  return `
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#FFF4E8;border:1.5px solid var(--orange);">
+      <div style="font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;">🎲 Surprise Task — Day ${t.dayId}</div>
+      <p style="font-size:14px;color:var(--navy);font-weight:600;margin:6px 0 10px;">${esc(t.task)}</p>
+      <textarea id="surpriseTaskInput" placeholder="Handle it — right now, using what you learned today..." style="width:100%;min-height:90px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
+      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="submitSurpriseTask()">Submit for Grading</button>
+      <div id="surpriseTaskResult" style="margin-top:12px;"></div>
+    </div>`;
+}
+async function checkSurpriseTask(){
+  const dayId = nextDayId();
+  try{
+    const rec = await sharedGet("surprise-task-day"+dayId);
+    state.activeSurpriseTask = (rec && rec.active) ? rec : null;
+  }catch(e){
+    state.activeSurpriseTask = null;
+  }
+}
+async function submitSurpriseTask(){
+  const t = state.activeSurpriseTask;
+  const input = document.getElementById("surpriseTaskInput");
+  const val = input.value.trim();
+  const resultEl = document.getElementById("surpriseTaskResult");
+  if(val.length < 15){ toast("Write out how you'd actually handle this first."); return; }
+  resultEl.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
+  try{
+    const day = DAYS.find(d=>d.id===t.dayId);
+    const report = await runRubricEvaluation(
+      `Surprise Task — Day ${t.dayId}`,
+      `The trainee was handed this task unannounced, mid-session, specifically to test real-time critical thinking, prioritization, and application of Day ${t.dayId}'s material (${day.title}) — not a rehearsed Practice Lab exercise. The task: ${t.task}`,
+      val,
+      `Did they correctly apply today's actual lesson content, not just general common sense? Did they prioritize correctly given it was dropped on them unannounced? Is the response decisive and realistic, not vague or hedging?`
+    );
+    resultEl.innerHTML = renderEvaluationReport(report, t.dayId);
+    if(!state.progress[t.dayId]) state.progress[t.dayId] = {};
+    state.progress[t.dayId].surpriseTaskScore = report.totalScore;
+    state.progress[t.dayId].surpriseTaskAnsweredAt = t.generatedAt;
+    await storeSet("day-progress", state.progress);
+    await syncToLedger();
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.submitSurpriseTask = submitSurpriseTask;
+
 const LAB_CAP_DAYS = [1,2,3,4,5,6,8,9,10]; // Day7's tool has no AI-graded actions, so no cap applies
 function moduleCard(d){
   const prog = state.progress[d.id];
@@ -9831,6 +9886,7 @@ function dayRow(d){
 /* ---------- router ---------- */
 function goto(view, id){
   state.view=view;
+  if(view==="dashboard"){ state.surpriseTaskChecked = false; }
   if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; }
   if(view==="tool"){ state.toolId=id; }
   window.scrollTo({top:0,behavior:"smooth"});
@@ -9914,6 +9970,10 @@ function renderFooter(){
 function afterRender(){
   if(state.view==="tool") initTool(state.toolId);
   if(state.view==="admin" && state.isAdmin && !state.adminData && !state.adminLoading) loadAdminLedger();
+  if(state.view==="dashboard" && state.traineeId && !state.isAdmin && !state.surpriseTaskChecked){
+    state.surpriseTaskChecked = true;
+    checkSurpriseTask().then(render);
+  }
   if(state.view==="login"){
     const input = document.getElementById("loginNameInput");
     if(input) input.focus();
@@ -10075,7 +10135,8 @@ function startApprovalPolling(traineeId){
   // Catches a mid-session revoke: without this, an already-open, already-approved
   // session has no way to learn its access was pulled until the trainee happens
   // to refresh — this check runs in the background so revocation takes effect
-  // even if they never do.
+  // even if they never do. Also doubles as the live-broadcast check for a
+  // freshly-injected surprise task, so it appears without needing a refresh.
   if(state.approvalPollInterval) clearInterval(state.approvalPollInterval);
   state.approvalPollInterval = setInterval(async ()=>{
     if(state.traineeId !== traineeId) return; // a different trainee logged in since this was scheduled
@@ -10083,8 +10144,12 @@ function startApprovalPolling(traineeId){
       const status = await getApprovalStatus(traineeId);
       if(status !== "approved"){
         await forceRevokedLogout();
+        return;
       }
     }catch(e){ /* transient network issue — try again next interval, don't force a logout on a fetch failure */ }
+    if(state.view==="dashboard"){
+      try{ await checkSurpriseTask(); render(); }catch(e){ /* best-effort */ }
+    }
   }, 90000);
 }
 
@@ -13753,6 +13818,18 @@ function renderAdmin(){
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Audit</h1>
     <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Lightweight session access, not secure authentication — see the note behind the Admin login. Data reflects what's been synced from each trainee's device.</p>
 
+    <div class="card" style="padding:16px 18px;margin-bottom:20px;background:#FFF4E8;border-color:var(--orange-soft);">
+      <b style="color:var(--navy);font-size:13.5px;">🎲 Random Task Injection</b>
+      <p style="font-size:12.5px;color:#5A4A32;margin:6px 0 12px;">Generates one unscripted task grounded in that day's actual lesson material and broadcasts it to every trainee currently on that day — an unannounced, real-time test of what they just learned. Timing is up to you; trigger it whenever fits the live session.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <select id="surpriseTaskDaySelect" style="padding:7px 10px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;">
+          ${DAYS.map(d=>`<option value="${d.id}">Day ${d.id} — ${esc(d.title)}</option>`).join("")}
+        </select>
+        <button class="btn btn-navy btn-sm" onclick="injectSurpriseTask()">🎲 Generate & Broadcast</button>
+      </div>
+      <div id="surpriseTaskInjectResult" style="margin-top:10px;"></div>
+    </div>
+
     <div class="stat-row">
       <div class="card stat"><div class="num">${totalTrainees}</div><div class="lbl">Trainees tracked</div></div>
       <div class="card stat"><div class="num">${avgCompletion}%</div><div class="lbl">Avg. completion</div></div>
@@ -14103,6 +14180,38 @@ async function clearAssignedRoleplay(traineeId){
   }
 }
 window.clearAssignedRoleplay = clearAssignedRoleplay;
+
+async function injectSurpriseTask(){
+  const dayId = parseInt(document.getElementById("surpriseTaskDaySelect").value, 10);
+  const day = DAYS.find(d=>d.id===dayId);
+  const resultEl = document.getElementById("surpriseTaskInjectResult");
+  resultEl.innerHTML = `<div class="ai-loading">Generating a task grounded in Day ${dayId}'s material…</div>`;
+  const topicList = day.lessons.map(l=>l.h).join("; ");
+  const prompt = `Generate one unscripted, realistic task delegation for a Legal Executive/Personal Assistant trainee, to be dropped on them unannounced mid-session during live training. It must be answerable correctly ONLY by someone who has actually absorbed today's specific lesson material — not generic advice.
+
+TODAY'S LESSON TOPICS (Day ${dayId}: ${day.title}):
+${topicList}
+
+CLIENT CONTEXT:
+${CLIENT_DOSSIER_MD}
+
+Write a short (2-4 sentence), realistic incoming request or situation — the kind that would actually land on an EA/PA's desk — that specifically requires applying one or more of today's topics correctly. Return ONLY the task text itself, nothing else — no preamble, no explanation, no quotation marks around it.`;
+  try{
+    const task = await callAIText(prompt, 250);
+    const record = {task: task.trim(), dayId, generatedAt: new Date().toISOString(), active: true};
+    await sharedSet("surprise-task-day"+dayId, record);
+    resultEl.innerHTML = `<div class="card" style="padding:10px 14px;background:#fff;border-color:var(--line);font-size:12.5px;color:#37394A;"><b style="color:var(--navy);">Broadcast live:</b> ${esc(task.trim())}</div>`;
+    toast(`Surprise task broadcast to Day ${dayId} trainees.`);
+  }catch(e){
+    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't generate a task</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.injectSurpriseTask = injectSurpriseTask;
+async function clearSurpriseTask(dayId){
+  await sharedSet("surprise-task-day"+dayId, {active:false, dayId});
+  toast(`Surprise task cleared for Day ${dayId}.`);
+}
+window.clearSurpriseTask = clearSurpriseTask;
 function renderAiReviewBlock(rec){
   const r = rec.aiReview;
   const btnLabel = r ? "Regenerate AI Review" : "Generate AI Review";
