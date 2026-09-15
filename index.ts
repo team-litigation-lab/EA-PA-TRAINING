@@ -121,6 +121,42 @@ button{font-family:inherit;cursor:pointer;}
 
 /* horizontal step timeline */
 .step-timeline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0;margin:0 0 28px;}
+
+.crisis-hub-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:16px;}
+.crisis-hub-card{padding:20px 22px;}
+.crisis-hub-card b{display:block;font-family:'Fraunces';font-size:16px;color:var(--navy);margin-bottom:8px;}
+.crisis-hub-card p{font-size:13px;color:var(--ink-soft);margin:0 0 16px;line-height:1.5;}
+
+.rp-category-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;}
+.rp-category-card{padding:20px 18px;text-align:center;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+.rp-category-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(0,0,0,.15);}
+.rp-cat-icon{font-size:28px;margin-bottom:8px;}
+.rp-category-card b{display:block;font-family:'Fraunces';font-size:14.5px;color:var(--navy);margin-bottom:4px;}
+.rp-category-card p{font-size:12px;color:var(--ink-soft);margin:0;}
+
+.rp-topic-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:12px;}
+.rp-topic-card{padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:transform .15s ease, box-shadow .15s ease;}
+.rp-topic-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(0,0,0,.15);}
+.rp-topic-card b{font-family:'Fraunces';font-size:14px;color:var(--navy);}
+.rp-topic-arrow{font-size:11.5px;color:var(--orange-deep);font-weight:600;}
+
+.rp-mode-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:14px;}
+.rp-mode-card{padding:20px 20px;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+.rp-mode-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(0,0,0,.15);}
+.rp-mode-icon{font-size:24px;margin-bottom:6px;}
+.rp-mode-card b{display:block;font-family:'Fraunces';font-size:15px;color:var(--navy);}
+.rp-mode-sub{display:block;font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin:2px 0 8px;}
+.rp-mode-card p{font-size:12.5px;color:var(--ink-soft);margin:0;line-height:1.5;}
+
+.rp-session-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.rp-session-tag{font-size:11.5px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+.rp-timer{font-family:'IBM Plex Mono';font-size:20px;font-weight:700;color:var(--navy);background:#F8F9FC;border-radius:10px;padding:8px 16px;}
+.rp-coach-panel{padding:16px 18px;align-self:start;position:sticky;top:20px;}
+.rp-coach-panel ul{margin:0;padding-left:18px;}
+.rp-coach-panel li{font-size:12.3px;color:#37394A;margin-bottom:6px;line-height:1.4;}
+@media(max-width:900px){
+  .rp-coach-panel{position:static;}
+}
 .step-node{display:flex;align-items:center;}
 .step-circle{
   width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -172,8 +208,23 @@ button{font-family:inherit;cursor:pointer;}
 .module-topic-list li.module-topic-more::before{
   background:transparent;border:1px solid var(--ink-soft);
 }
+.module-lab-uses{
+  font-size:var(--font-sub);color:var(--orange-deep);font-weight:600;
+  margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
+}
 .module-start-btn{
   margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:10px;font-weight:700;
+}
+.module-finish-btn{
+  margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:7px;font-size:11.5px;
+  color:var(--success);border-color:var(--success);
+}
+.module-finish-btn:hover{background:var(--success-bg);}
+.module-review-row{
+  display:flex;gap:8px;margin:0 16px 16px;
+}
+.module-review-row button{
+  flex:1;justify-content:center;padding:7px 6px;font-size:11px;
 }
 @keyframes previewIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
 
@@ -290,6 +341,27 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 .lesson-grid{display:grid;gap:14px;margin-bottom:8px;}
 .lesson-card{padding:20px 22px;}
+
+.fp-section{margin-bottom:16px;}
+.fp-section:last-of-type{margin-bottom:0;}
+.fp-label{
+  display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--navy-soft);margin-bottom:8px;
+}
+.fp-num{
+  width:19px;height:19px;border-radius:50%;background:var(--orange);color:#fff;font-size:10.5px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.fp-body ul{margin:0;padding-left:20px;}
+.fp-body li{font-size:var(--font-body);color:#37394A;margin-bottom:6px;line-height:1.5;}
+.fp-howto-list{margin:0;padding-left:20px;counter-reset:none;}
+.fp-howto-list li{font-size:var(--font-body);color:#37394A;margin-bottom:8px;line-height:1.5;}
+.fp-howto-list li::marker{font-weight:700;color:var(--orange-deep);}
+.fp-fallback-text{font-size:var(--font-body);color:#37394A;margin:0;line-height:1.5;}
+.fp-discussion-prompt{
+  font-size:var(--font-body);color:#37394A;margin:0;line-height:1.5;font-style:italic;
+  background:#F8F9FC;border-left:3px solid var(--orange);padding:10px 14px;border-radius:0 8px 8px 0;
+}
 .topic-separator{
   display:inline-block;font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;letter-spacing:.04em;
   color:var(--orange);background:var(--navy);padding:5px 12px;border-radius:14px;margin:26px 0 10px;
@@ -309,7 +381,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 /* rich lesson layouts (mirrors the companion slide deck) — horizontally aligned grids */
 .lesson-quadrant{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:10px;margin-bottom:14px;}
-.lesson-quadrant .qbox{border-radius:10px;padding:14px 16px;color:#fff;}
+.lesson-quadrant .qbox{border-radius:10px;padding:16px;color:#fff;}
 .lesson-quadrant .qbox:nth-child(4n+1){background:var(--navy);}
 .lesson-quadrant .qbox:nth-child(4n+2){background:var(--orange);}
 .lesson-quadrant .qbox:nth-child(4n+3){background:var(--navy-soft);}
@@ -319,7 +391,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 .lesson-process{display:flex;flex-wrap:wrap;align-items:stretch;gap:4px;margin-bottom:14px;}
 .lesson-process .pstep{
-  background:var(--navy);border-radius:10px;padding:16px 14px 14px;
+  background:var(--navy);border-radius:10px;padding:16px;
   color:#fff;position:relative;flex:1 1 160px;min-width:140px;
 }
 .lesson-process .pstep:nth-child(4n+2), .lesson-process .pstep:nth-child(4n+4){background:var(--navy-soft);}
@@ -336,7 +408,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-compare .chead{padding:9px 14px;color:#fff;font-family:'Fraunces';font-size:var(--font-body);font-weight:600;}
 .lesson-compare .cbox:first-child .chead{background:var(--navy);}
 .lesson-compare .cbox:last-child .chead{background:var(--orange-deep);}
-.lesson-compare .cbody{padding:12px 14px;}
+.lesson-compare .cbody{padding:16px;}
 .lesson-compare .citem{font-size:var(--font-sub);color:#37394A;padding-left:18px;position:relative;margin-bottom:8px;line-height:1.4;}
 .lesson-compare .citem:last-child{margin-bottom:0;}
 .lesson-compare .citem::before{content:"";position:absolute;left:0;top:4px;width:9px;height:9px;border-radius:50%;background:var(--orange);}
@@ -365,6 +437,49 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .palette-info b{display:block;font-family:'Fraunces';font-size:var(--font-body);color:var(--navy);margin-bottom:2px;}
 .palette-info span{display:block;font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--ink-soft);margin-bottom:6px;}
 .palette-info p{font-size:var(--font-sub);color:#37394A;margin:0;line-height:1.4;}
+
+.lesson-iconlist{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.lesson-iconlist .il-item{
+  display:flex;gap:14px;align-items:flex-start;background:#F8F9FC;border:1px solid var(--line);
+  border-radius:10px;padding:16px;
+}
+.lesson-iconlist .il-icon{font-size:22px;line-height:1;flex-shrink:0;width:30px;text-align:center;}
+.lesson-iconlist .il-body b{font-family:'Fraunces';font-size:var(--font-body);font-weight:600;color:var(--navy);display:block;margin-bottom:3px;}
+.lesson-iconlist .il-body p{font-size:var(--font-sub);color:#37394A;margin:0;line-height:1.4;}
+
+.video-placeholder-card{
+  display:grid;grid-template-columns:200px 1fr;gap:0;margin-bottom:14px;
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;
+}
+@media(max-width:560px){.video-placeholder-card{grid-template-columns:1fr;}}
+.vpc-thumb{
+  position:relative;background:linear-gradient(135deg, var(--navy) 0%, #2E3A6B 100%);
+  min-height:130px;display:flex;align-items:center;justify-content:center;
+}
+.vpc-thumb-initials{
+  font-family:'Fraunces';font-size:34px;font-weight:600;color:rgba(255,255,255,.18);letter-spacing:.02em;
+}
+.vpc-play-btn{
+  position:absolute;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);
+  color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px;
+  box-shadow:0 4px 14px -4px rgba(0,0,0,.4);
+}
+.vpc-duration{
+  position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.65);color:#fff;
+  font-family:'IBM Plex Mono';font-size:11px;padding:2px 7px;border-radius:5px;
+}
+.vpc-body{padding:16px 18px;}
+.vpc-title{font-family:'Fraunces';font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.vpc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.vpc-tag{
+  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;
+  color:var(--orange-deep);background:var(--orange-soft);padding:3px 9px;border-radius:20px;
+}
+.vpc-watch-btn{display:inline-flex;margin-bottom:12px;}
+.vpc-takeaways{padding-top:12px;border-top:1px solid var(--line);}
+.vpc-takeaways b{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-soft);display:block;margin-bottom:6px;}
+.vpc-takeaways ul{margin:0;padding-left:18px;}
+.vpc-takeaways li{font-size:var(--font-sub);color:#37394A;margin-bottom:4px;line-height:1.4;}
 
 /* lesson slideshow */
 .slide-dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
@@ -451,11 +566,11 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 
 /* ---------- quiz ---------- */
 .quiz-card{padding:22px 24px;margin-bottom:14px;}
-.quiz-q{font-size:var(--font-body);font-weight:600;color:var(--navy);margin:0 0 12px;}
+.quiz-q{font-size:var(--font-sub);font-weight:600;color:var(--navy);margin:0 0 12px;}
 .quiz-opts{display:grid;gap:8px;}
 .quiz-opt{
   display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:9px;
-  padding:11px 13px;font-size:var(--font-body);transition:all .12s ease;
+  padding:11px 13px;font-size:var(--font-sub);transition:all .12s ease;
 }
 .quiz-opt:hover{border-color:var(--navy-soft);background:#F8F9FC;}
 .quiz-opt input{margin-top:2px;accent-color:var(--orange);}
@@ -467,11 +582,51 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .quiz-rationale.show{display:block;}
 
+.quiz-dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:4px 0 10px;max-width:480px;margin-left:auto;margin-right:auto;}
+.quiz-dot{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .15s ease;}
+.quiz-dot.done{background:var(--success);}
+.quiz-dot.active{background:var(--orange);width:20px;border-radius:5px;}
+.quiz-progress-label{
+  text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--navy-soft);margin-bottom:14px;
+}
+.quiz-grid{
+  display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;margin-top:16px;
+}
+.quiz-grid-opt{
+  display:flex;flex-direction:row;align-items:center;text-align:left;
+  border:2px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;
+  min-height:0;transition:all .15s ease;background:var(--paper);
+}
+.quiz-grid-opt:hover{border-color:var(--navy-soft);background:#F8F9FC;}
+.quiz-grid-opt.selected{border-color:var(--orange);background:var(--orange-soft);box-shadow:0 3px 10px -5px rgba(219,132,55,.4);}
+.quiz-grid-letter{
+  width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:11px;
+  display:flex;align-items:center;justify-content:center;margin-right:10px;margin-bottom:0;flex-shrink:0;
+}
+.quiz-grid-opt.selected .quiz-grid-letter{background:var(--orange-deep);}
+.quiz-grid-text{font-size:var(--font-sub);color:#37394A;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.quiz-nav{
+  display:flex;align-items:center;justify-content:space-between;margin-top:22px;
+}
+@media (max-width:640px){
+  .quiz-grid{grid-template-columns:1fr;}
+}
+
 .quiz-result{
   padding:26px 26px;text-align:center;margin-top:6px;
 }
 .quiz-result .big{font-family:'Fraunces';font-size:42px;color:var(--navy);}
 .quiz-result .sub{font-size:var(--font-body);color:var(--ink-soft);margin-top:4px;}
+.quiz-history{
+  margin-top:24px;padding-top:18px;border-top:1px solid var(--line);text-align:left;
+  max-width:420px;margin-left:auto;margin-right:auto;
+}
+.quiz-history b{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-soft);display:block;margin-bottom:8px;}
+.quiz-history table{width:100%;border-collapse:collapse;}
+.quiz-history td{font-size:12px;padding:6px 4px;border-bottom:1px solid var(--line);color:#37394A;}
+.quiz-history td.qh-pass{color:var(--success);font-weight:600;}
+.quiz-history td.qh-fail{color:var(--danger);font-weight:600;}
 
 /* ---------- practice lab ---------- */
 .practice-shell{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start;}
@@ -1089,6 +1244,60 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   .prominent-disclaimer .pd-body p{font-size:14.5px;}
 }
 
+.lab-attempt-banner{
+  display:flex;gap:14px;align-items:flex-start;
+  background:#FBF3E7;border:2px solid var(--orange);border-radius:12px;
+  padding:14px 18px;margin:0 0 18px;
+}
+.lab-attempt-banner .lab-attempt-icon{font-size:24px;line-height:1;flex-shrink:0;}
+.lab-attempt-banner .lab-attempt-body b{display:block;font-size:13.5px;color:var(--orange-deep);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+.lab-attempt-banner .lab-attempt-body p{font-size:13.5px;line-height:1.55;color:#5c3d17;margin:0;}
+.lab-attempt-banner.lab-attempt-locked{background:var(--danger-bg);border-color:var(--danger);}
+.lab-attempt-banner.lab-attempt-locked .lab-attempt-body b{color:var(--danger);}
+.lab-attempt-banner.lab-attempt-locked .lab-attempt-body p{color:#7a352c;}
+
+.wizard-dots{display:flex;gap:8px;justify-content:center;margin:4px 0 14px;}
+.wizard-dot{
+  width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;
+  transition:all .15s ease;
+}
+.wizard-dot.done{background:var(--success);}
+.wizard-dot.active{background:var(--orange);width:22px;border-radius:5px;}
+.wizard-part-label{
+  text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--navy-soft);margin-bottom:18px;
+}
+.wizard-screen{animation:wizardFadeIn .25s ease;}
+@keyframes wizardFadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.wizard-nav{
+  display:flex;align-items:center;justify-content:space-between;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--line);
+}
+.wizard-nav-counter{font-size:12px;color:var(--ink-soft);font-weight:600;}
+
+.eval-report{
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  padding:20px 22px;margin-top:12px;box-shadow:var(--shadow);
+}
+.eval-report-header{display:flex;gap:18px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
+.eval-score-ring{
+  width:64px;height:64px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border:4px solid var(--ring-color);font-size:19px;font-weight:800;color:var(--navy);
+}
+.eval-tier{font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;}
+.eval-subscore-row{display:flex;gap:12px;flex-wrap:wrap;}
+.eval-action-row{
+  display:flex;gap:10px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+}
+.eval-action-row button{flex:1;justify-content:center;}
+.eval-kb-btn{margin-top:10px;width:100%;justify-content:center;}
+.eval-subscore-row span{font-size:11.5px;color:var(--ink-soft);background:#F3F4F8;padding:3px 9px;border-radius:20px;}
+.eval-section{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);}
+.eval-section b{font-size:12.5px;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:6px;}
+.eval-section ul{margin:0;padding-left:18px;}
+.eval-section li{font-size:13px;line-height:1.5;margin-bottom:4px;color:#37394A;}
+
 .example-block{
   background:#F6F7FB;border:1px dashed var(--line);border-radius:10px;
   padding:12px 14px;margin-top:12px;
@@ -1415,21 +1624,8 @@ const DAY1 = {
       "b": [
         "EA response to a sensitive request: authoritative, brief, procedural — protects the business first.",
         "PA response to the same trigger: warm, accommodating, relationship-first — protects the person first.",
-        "Same instinct underneath both: protect first, resolve second.",
-        "EA decision principles: prioritize business-critical matters, filter incoming requests before escalating, know when to negotiate or delegate.",
-        "PA decision principles: honor personal preferences first, offer alternatives instead of outright denials, keep sensitive personal matters private."
+        "Same instinct underneath both: protect first, resolve second."
       ],
-      "example": {
-        "label": "Same situation, two roles",
-        "lines": [
-          "Situation — Sensitive Request: someone asks you to share confidential details.",
-          "EA response: \"I cannot release that information. I'll escalate internally.\"",
-          "PA response: \"That's private. I can assist with logistics if needed.\"",
-          "Situation — Persistent Caller: someone keeps pushing for the executive's direct time.",
-          "EA response: \"Please submit the request in writing; I'll review priority.\"",
-          "PA response: \"I'll take a message and follow up as soon as possible.\""
-        ]
-      },
       "layout": "COMPARE",
       "compareLeft": {
         "label": "EA Response",
@@ -1448,6 +1644,14 @@ const DAY1 = {
         ]
       },
       "trainerCue": "Have two volunteers role-play the EA response and PA response back-to-back to the same prompt — the contrast lands much harder live than on a slide."
+    },
+    {
+      "h": "EA vs. PA Decision Principles",
+      "b": [
+        "EA decision principles: prioritize business-critical matters, filter incoming requests before escalating, know when to negotiate or delegate.",
+        "PA decision principles: honor personal preferences first, offer alternatives instead of outright denials, keep sensitive personal matters private."
+      ],
+      "trainerCue": "Ask the room which set of principles feels more natural to them personally — it's a good gauge of which track (EA or PA) matches their own instincts."
     },
     {
       "h": "Professional Standards & Confidentiality",
@@ -1490,10 +1694,7 @@ const DAY1 = {
       "b": [
         "Escalate potential issues rather than deciding alone — that's the core of a healthy command hierarchy.",
         "Red flag: a confidential document bypassing legal review before reaching a client.",
-        "Executives should hear critical news from you first, not secondhand.",
-        "Command hierarchy for a corporate/executive track: CEO/President → Senior EA → EA (reports to a specific executive) → Administrative Assistant.",
-        "Command hierarchy for a legal track: Managing Partner/General Counsel → Senior Legal Assistant → Legal EA → Paralegal — the chain is strict, and unauthorized decisions can have real legal consequences.",
-        "Command hierarchy for a personal/household track: Executive or Family Head → Senior PA/Estate Manager → PA → Household staff (driver, housekeeper, nanny)."
+        "Executives should hear critical news from you first, not secondhand."
       ],
       "layout": "PROCESS",
       "processSteps": [
@@ -1513,6 +1714,15 @@ const DAY1 = {
           "label": "Inform",
           "desc": "Make sure the executive hears it from you first, not from someone else"
         }
+      ],
+      "trainerCue": "Ask the room to describe, in their own words, what 'escalating rather than deciding alone' actually looks like in practice — the abstract sequence lands better once someone puts it in real terms."
+    },
+    {
+      "h": "Command Hierarchy Across Different Tracks",
+      "b": [
+        "Command hierarchy for a corporate/executive track: CEO/President → Senior EA → EA (reports to a specific executive) → Administrative Assistant.",
+        "Command hierarchy for a legal track: Managing Partner/General Counsel → Senior Legal Assistant → Legal EA → Paralegal — the chain is strict, and unauthorized decisions can have real legal consequences.",
+        "Command hierarchy for a personal/household track: Executive or Family Head → Senior PA/Estate Manager → PA → Household staff (driver, housekeeper, nanny)."
       ],
       "trainerCue": "Walk the room through the three org-chart tracks on screen and ask which one matches their own current or most recent job — this is a good pulse-check on the room's mixed experience level."
     },
@@ -1536,12 +1746,18 @@ const DAY1 = {
         ]
       },
       "b": [
-        "Being the liaison means other staff, departments, or outside contacts have one clear person to reach instead of guessing who owns a given question — that clarity alone prevents a lot of wasted time and crossed wires.",
+        "Being the liaison means other staff, departments, or outside contacts have one clear person to reach instead of guessing who owns a given question — that clarity alone prevents a lot of wasted time and crossed wires."
+      ],
+      "trainerCue": "Ask for a real example of a time information got garbled passing through a middle person — then ask what would have prevented it. That's the liaison discipline in one exercise."
+    },
+    {
+      "h": "The Liaison Skill in Practice",
+      "b": [
         "The core liaison skill is accurate two-way relay: passing a request to the executive without distorting it, and passing the executive's answer back without softening or embellishing it into something it wasn't.",
         "This role compounds with command hierarchy — as the liaison, you're often the one who has to know which track (corporate, legal, household) a given request actually belongs to, so it reaches the right person.",
         "A liaison who becomes a bottleneck has failed at the role just as much as one who lets everything through unfiltered — the goal is smooth, accurate coordination, not personal indispensability."
       ],
-      "trainerCue": "Ask for a real example of a time information got garbled passing through a middle person — then ask what would have prevented it. That's the liaison discipline in one exercise."
+      "trainerCue": "Ask the room to name the difference between a liaison who's 'thorough' and one who's actually just slow — the line between the two is worth discussing directly."
     },
     {
       "h": "Client Profiling",
@@ -1564,19 +1780,8 @@ const DAY1 = {
       "h": "Creating a Comprehensive Client Dossier",
       "b": [
         "A dossier goes deeper than a profile — a living document that lets anyone run the account with zero ramp-up.",
-        "Four sections: Firm & Role, Personal & Family, Standing Instructions, Known Quirks.",
-        "Thorne excerpt: 15-minute debrief buffer after key sessions, strict Paleo diet, 5:30 AM voice notes needing an 8 AM agenda, aisle-seat-only travel.",
-        "Each of the four sections answers a different failure mode: getting the professional context wrong, missing a personal sensitivity, breaking a hard rule, or misreading an idiosyncrasy as negotiable when it isn't.",
-        "Anyone can paste facts under headings — a good dossier explains why a fact matters operationally, not just states it as trivia, and is written for the EA who inherits the account cold."
+        "Four sections: Firm & Role, Personal & Family, Standing Instructions, Known Quirks."
       ],
-      "example": {
-        "label": "Dossier excerpt — Elias Thorne",
-        "lines": [
-          "Standing Instructions: mandatory 15-minute debrief buffer after every key client or court session; strict Paleo diet, zero dairy — all client dinners vetted in advance; no back-to-back depositions or court hearings.",
-          "Known Quirks: sends rapid, cryptic voice notes around 5:30 AM that need to become a structured agenda by 8:00 AM; needs aisle seats near the front and hates connecting flights.",
-          "Personal & Family: married to Sarah; two children, Leo (8) and Maya (5); one dog, Barnaby."
-        ]
-      },
       "layout": "QUADRANT",
       "quadrants": [
         {
@@ -1596,6 +1801,23 @@ const DAY1 = {
           "desc": "Personality-driven patterns written in plain language, never judgment — how they actually operate"
         }
       ],
+      "trainerCue": "Ask the room which of the four sections they'd find hardest to fill in accurately without ever having met the executive — that's usually Known Quirks, and it's worth naming why."
+    },
+    {
+      "h": "Dossier Excerpt — Elias Thorne",
+      "b": [
+        "Thorne excerpt: 15-minute debrief buffer after key sessions, strict Paleo diet, 5:30 AM voice notes needing an 8 AM agenda, aisle-seat-only travel.",
+        "Each of the four sections answers a different failure mode: getting the professional context wrong, missing a personal sensitivity, breaking a hard rule, or misreading an idiosyncrasy as negotiable when it isn't.",
+        "Anyone can paste facts under headings — a good dossier explains why a fact matters operationally, not just states it as trivia, and is written for the EA who inherits the account cold."
+      ],
+      "example": {
+        "label": "Dossier excerpt — Elias Thorne",
+        "lines": [
+          "Standing Instructions: mandatory 15-minute debrief buffer after every key client or court session; strict Paleo diet, zero dairy — all client dinners vetted in advance; no back-to-back depositions or court hearings.",
+          "Known Quirks: sends rapid, cryptic voice notes around 5:30 AM that need to become a structured agenda by 8:00 AM; needs aisle seats near the front and hates connecting flights.",
+          "Personal & Family: married to Sarah; two children, Leo (8) and Maya (5); one dog, Barnaby."
+        ]
+      },
       "trainerCue": "Live-build one dossier section on the whiteboard from the raw facts as a group, out loud, before trainees do it solo — this is the single highest-value facilitator moment in Day 1."
     },
     {
@@ -1963,9 +2185,7 @@ const DAY2 = {
       "b": [
         "Clarity — say exactly what's happening and what you need.",
         "Consistency — same standard procedures every time.",
-        "Credibility — recommendations have to be reliable, no exceptions.",
-        "Reframe reactive language into forward-looking language.",
-        "Discussion prompt: think of a message you sent recently that could have used more Clarity. Rewrite the opening line right now, out loud, the way the Three C's would want it."
+        "Credibility — recommendations have to be reliable, no exceptions."
       ],
       "layout": "THREEBOX",
       "boxes": [
@@ -1983,6 +2203,14 @@ const DAY2 = {
         }
       ],
       "trainerCue": "Have someone read the Three C's out loud in order, then immediately ask: 'Which one collapses first when you're overwhelmed?' Almost everyone says Clarity — use that as the hook for why it's listed first."
+    },
+    {
+      "h": "Reframing Reactive Language",
+      "b": [
+        "Reframe reactive language into forward-looking language.",
+        "Discussion prompt: think of a message you sent recently that could have used more Clarity. Rewrite the opening line right now, out loud, the way the Three C's would want it."
+      ],
+      "trainerCue": "Actually do the discussion prompt as a group — go around the room and have 2-3 people rewrite a real opening line live. This is more useful in practice than reading the concept alone."
     },
     {
       "h": "Credibility Is Earned, Not Claimed",
@@ -2048,9 +2276,6 @@ const DAY2 = {
     {
       "h": "Email Is a Control System, Not Cleanup",
       "b": [
-        "Full Access — read/respond/archive/send on the executive's behalf.",
-        "Draft & Review — draft and flag; executive approves before sending.",
-        "Triage Only — sort and escalate; executive responds themselves.",
         "Know your access level before acting independently."
       ],
       "layout": "THREEBOX",
@@ -2130,10 +2355,6 @@ const DAY2 = {
     {
       "h": "Core AI Terms an EA/PA Needs",
       "b": [
-        "Prompt — your instruction; better prompt, better output.",
-        "Hallucination — confident false statements, common when no real answer exists in the pattern.",
-        "Context window — its working memory; long pastes lose precision toward the end.",
-        "Tokens — roughly ¾ of a word; higher tiers allow longer documents.",
         "Discussion prompt: without looking back at the definitions, explain 'context window' to someone who's never used an AI tool, in one sentence."
       ],
       "layout": "QUADRANT",
@@ -2160,9 +2381,6 @@ const DAY2 = {
     {
       "h": "Your AI Toolkit — Three Modes, Different Jobs",
       "b": [
-        "Generative Text — creates new content; best for drafting and summarizing.",
-        "Extraction & Analysis — pulls exact data without altering facts; best for action items and dates.",
-        "Logic & Routing — connects triggers to automated actions.",
         "Common mistake: using Generative mode when you need Extraction mode.",
         "Discussion prompt: think of a task you did this week. Which of the three modes — Generative, Extraction, or Logic — would it actually have called for, and would you have picked correctly before this lesson?"
       ],
@@ -2181,7 +2399,7 @@ const DAY2 = {
           "desc": "Connects triggers to automated actions — auto-filing attachments, VIP-email alerts"
         }
       ],
-      "trainerCue": "Ask trainees to sort a task from THEIR OWN week into Generative / Extraction / Logic before revealing the model answer — the mismatch is usually the most useful part of the discussion."
+      "trainerCue": "Ask trainees to sort a task from their own week into Generative / Extraction / Logic before revealing the model answer — the mismatch is usually the most useful part of the discussion."
     },
     {
       "h": "Claude, ChatGPT, and Gemini — Practical Differences",
@@ -2225,11 +2443,366 @@ const DAY2 = {
         "This is closely tied to Managing Up: an EA with genuine presence makes the executive's life easier simply by being someone others don't need to double-check."
       ],
       "trainerCue": "If time allows, have two trainees role-play a 30-second 'deliver bad news calmly' exchange — presence is far easier to feel live than to describe in the abstract."
+    },
+    {
+      "h": "Authority & Boundary Management — EA vs. Legal EA",
+      "fourPart": {
+        "corePrinciples": [
+          "Boundary management is what keeps a high-trust role from quietly becoming a high-risk one — every assistant needs a clear, practiced sense of what they can decide alone versus what needs a real approval.",
+          "This looks different for a general Executive Assistant than for a Legal EA, since legal work carries additional formal requirements (conflict checks, trust accounting, client file access) on top of the standard business boundaries."
+        ],
+        "howTo": [
+          "As an EA: politely decline unauthorized expense approvals, require written confirmation for any budget exception, document verbal approvals from the executive in writing after the fact, redirect vendor pressure to the actual procurement process, and keep personal and corporate expense records strictly separate.",
+          "As a Legal EA: decline unauthorized client file requests, require a conflict check before any new matter opens, escalate anything that exceeds financial limits, maintain documentation for settlement disbursements, and follow trust accounting procedures without exception."
+        ],
+        "bestPractices": [
+          "Pitfall: treating a verbal 'go ahead' as sufficient authorization for anything with real financial or legal weight — get it in writing after the fact if it happened verbally.",
+          "Vendor pressure to bypass the normal process is a pattern, not a one-off — the correct response is redirecting to procurement every time, not just when it's convenient.",
+          "For Legal EAs specifically, a skipped conflict check isn't just a process miss — it can create a real, retroactively unfixable problem for the firm."
+        ],
+        "discussionCase": "A vendor calls insisting an invoice needs to be approved today to avoid a late fee, and the person who normally approves it is unreachable. What do you actually do, and how is this different if you're an EA versus a Legal EA handling a client trust disbursement?"
+      }
+    },
+    {
+      "h": "Proactive Risk Mitigation & Strategic Support — EA vs. Legal EA",
+      "fourPart": {
+        "corePrinciples": [
+          "Proactive risk mitigation means catching a problem before it becomes one — the difference between an assistant who prevents a crisis and one who just responds well to it.",
+          "Strategic support tasks are the highest-leverage work an assistant does — synthesis, analysis, and recommendation, not just execution — and again, the specifics differ meaningfully between general executive support and legal support."
+        ],
+        "howTo": [
+          "EA proactive risk tasks: anticipate reputational risk in guest lists, catch vendor contract renewals before their deadline, catch typos in press release drafts before they go out, prepare briefing summaries ahead of high-stakes meetings, and build in buffer time between critical meetings.",
+          "Legal EA proactive risk tasks: track compliance filing deadlines, confirm execution formalities for estate planning documents, monitor and escalate discovery deadlines, ensure document retention policy compliance before an audit, and catch unsigned engagement letters before work starts.",
+          "EA strategic support tasks: build an executive dashboard of key metrics, draft a 30-day action summary after a board meeting, analyze meeting outcomes and track follow-ups, propose workflow improvements, and map stakeholder influence before a negotiation.",
+          "Legal EA strategic support tasks: prepare litigation exposure summaries for attorney review, organize case chronology to highlight evidentiary gaps, draft compliance checklists for regulatory changes, build due diligence tracking sheets for acquisitions, and develop templates that reduce firm-wide drafting errors."
+        ],
+        "bestPractices": [
+          "Proactive work is invisible when done well — a crisis that never happened doesn't announce itself, which is exactly why this category of work is easy to underinvest in.",
+          "Strategic support tasks require synthesis, not just data-gathering — a dashboard that just displays raw numbers isn't strategic support; one that highlights what actually needs attention is."
+        ],
+        "discussionCase": "Looking at your own current workload: which of your regular tasks are proactive risk mitigation versus purely reactive? If the proactive list is short, what would you need to change to grow it?"
+      }
+    },
+    {
+      "h": "Why the Force Multiplier Evolution Is Non-Negotiable",
+      "fourPart": {
+        "corePrinciples": [
+          "The modern executive environment is high-speed, high-visibility, legally exposed, reputation-sensitive, and revenue-driven all at once — an assistant functioning purely as a 'helper' becomes a bottleneck in this environment, not through any personal failing, just through the role's limits.",
+          "An assistant who operates as a force multiplier instead becomes genuine infrastructure — the executive's decision velocity depends on it directly."
+        ],
+        "howTo": [
+          "Recognize the signs you're still in pure-helper mode: waiting for explicit instruction on things you've handled before, needing approval for decisions within your demonstrated judgment, and measuring your own success purely by responsiveness rather than outcomes.",
+          "Shift deliberately: the next time a familiar type of request comes in, handle it with a recommendation attached rather than just executing and waiting for the next instruction."
+        ],
+        "bestPractices": [
+          "This evolution isn't about overstepping — it's about closing the gap between 'I did what was asked' and 'I made the outcome better than a literal instruction would have.'",
+          "Pitfall: mistaking constant availability for value. Being reachable at all hours isn't the same as being a force multiplier — the two are sometimes even in tension."
+        ],
+        "discussionCase": "Think of a recent task where you executed exactly what was asked, nothing more. What would the force-multiplier version of that same task have looked like?"
+      }
+    },
+    {
+      "h": "The Helper Identity vs. the Force Multiplier Identity",
+      "fourPart": {
+        "corePrinciples": [
+          "The biggest transformation in this role is psychological, not procedural — it's a shift in identity, from 'support role' to 'strategic operator.' Not a title change. A capability change.",
+          "The Helper identity: seeks approval, avoids ownership of decisions, waits for instruction, fears overstepping, and measures success by responsiveness.",
+          "The Force Multiplier identity: owns outcomes, frames decisions, anticipates consequences, understands executive psychology, and measures success by executive leverage."
+        ],
+        "howTo": [
+          "Notice which identity is driving your default response to an ambiguous request — do you ask 'what should I do?' or do you propose an approach and ask for a quick confirmation?",
+          "Practice framing, not just reporting: instead of relaying a fact and waiting, attach a recommendation to it, even a tentative one."
+        ],
+        "bestPractices": [
+          "This shift takes real practice — don't expect it to happen by reading about it once. The habit of proposing rather than just reporting has to be built deliberately, request by request.",
+          "A helper makes life easier. A force multiplier makes performance stronger — these sound similar but are genuinely different bars."
+        ],
+        "discussionCase": "Which identity better describes how you currently operate — and what's one concrete habit from the Helper column you could consciously start replacing this week?"
+      }
+    },
+    {
+      "h": "Strategic Time Engineering",
+      "fourPart": {
+        "corePrinciples": [
+          "This is not just managing a calendar — it's engineering it. Time becomes capital, and the assistant is effectively the portfolio manager deciding where that capital gets allocated.",
+          "Strategic time engineering means aligning time with revenue-generating activities, protecting strategic growth initiatives, buffering compliance and legal deadlines, managing reputation-sensitive events, and protecting personal commitments with real relational weight."
+        ],
+        "howTo": [
+          "Before defending any block of time, be able to say which category it serves — if you can't name the category, it's not actually a protected block, it's just unscheduled time.",
+          "Treat calendar allocation as an active, ongoing decision, not a one-time setup — revisit whether the current allocation still matches what actually matters."
+        ],
+        "bestPractices": [
+          "Pitfall: protecting time reactively (only after something gets disrupted) rather than proactively engineering the allocation from the start.",
+          "\"Time as capital\" is a genuinely useful reframe — capital gets deliberately invested, not just spent as requests arrive."
+        ],
+        "discussionCase": "Looking at a typical week on your executive's calendar: which of the five categories (revenue, growth, compliance, reputation, personal) is currently getting the least protection — and why might that be happening?"
+      }
+    },
+    {
+      "h": "Reducing Cognitive Load for Executives",
+      "fourPart": {
+        "corePrinciples": [
+          "Executives suffer from decision fatigue — every additional open-ended question you route to them draws down a limited resource.",
+          "A force multiplier reduces this load by presenting structured options, highlighting trade-offs, pre-vetting risks, anticipating objections, and flagging second-order consequences — doing the thinking work before it reaches the executive, not after."
+        ],
+        "howTo": [
+          "Instead of asking 'what do you want to do?', say: 'Here are the three viable options. Based on current priorities, Option B aligns best with Q2 revenue objectives.'",
+          "Before bringing any decision to the executive, ask yourself what you'd recommend if you had to decide — bring that recommendation along with the options, not just the raw choice."
+        ],
+        "bestPractices": [
+          "This is leadership support at a strategic level, not overstepping — presenting a recommendation doesn't remove the executive's authority to choose differently.",
+          "Pitfall: presenting options with no actual point of view. A neutral list of choices with no recommendation still leaves the full cognitive load on the executive."
+        ],
+        "discussionCase": "Think of the last open-ended question you brought to your executive with no options attached. How would you reframe it now, with structured options and a recommendation?"
+      }
+    },
+    {
+      "h": "\"If It Happens Twice, It Deserves a System\"",
+      "fourPart": {
+        "corePrinciples": [
+          "Systems create scale. Scale creates leverage. Helpers complete tasks one at a time; force multipliers design systems so the task stops needing to be solved fresh every time it recurs.",
+          "The threshold is simple and memorable: the second time you do something, that's the signal to build a system for it, not the fifth or the tenth."
+        ],
+        "howTo": [
+          "When you notice a task repeating, pause before doing it the same manual way a second time — ask what a lightweight system (a checklist, a template, a tracked dashboard) would look like instead.",
+          "Common candidates for systemization: weekly report gathering, travel booking, contract approval flow, vendor onboarding, investor updates. For each, the output is the same shape: SOP steps, automation opportunities, approval checkpoints, and escalation triggers."
+        ],
+        "bestPractices": [
+          "Pitfall: waiting until a task has become genuinely painful before systemizing it — by then, the manual version has already cost significant time that a system built earlier would have saved.",
+          "A system doesn't need to be sophisticated to count — a simple, consistently-used checklist is a real system."
+        ],
+        "discussionCase": "Name one task you've personally done more than twice in the last month without building a system for it. What would the first version of that system look like?"
+      }
+    },
+    {
+      "h": "Managing Constant Executive Exposure",
+      "fourPart": {
+        "corePrinciples": [
+          "High-level executives operate under constant exposure: legal risk, compliance risk, public perception risk, stakeholder scrutiny, and brand vulnerability — all simultaneously, all the time.",
+          "The assistant's role isn't just support — it's active exposure management, catching what could turn into a real problem before it does."
+        ],
+        "howTo": [
+          "Flag red-flag emails before they're sent, not after.",
+          "Screen invitations for reputational alignment before they're accepted.",
+          "Ensure contracts go through proper review rather than being signed on the strength of a summary.",
+          "Monitor compliance calendars actively, not just when reminded.",
+          "Manage sensitive communications with discretion by default."
+        ],
+        "bestPractices": [
+          "This is a genuinely different mindset from task completion — it requires actively scanning for risk in things that look routine on the surface.",
+          "Pitfall: assuming exposure management is someone else's job (legal, compliance) rather than a shared responsibility that starts with whoever sees the request first — often the assistant."
+        ],
+        "discussionCase": "Of the five exposure categories (legal, compliance, perception, stakeholder, brand), which one do you currently watch for least actively — and what would watching for it more actively actually look like day to day?"
+      }
+    },
+    {
+      "h": "Time Management Requires Energy Management",
+      "fourPart": {
+        "corePrinciples": [
+          "An exhausted executive makes expensive mistakes — managing time alone isn't enough if the executive's energy is being drained faster than their calendar reflects.",
+          "Energy management means preventing meeting overload, creating strategic recovery buffers, protecting deep-work windows, filtering low-leverage requests, and identifying which relationships or obligations are quietly draining."
+        ],
+        "howTo": [
+          "Look beyond whether a slot is technically free — consider whether back-to-back high-intensity meetings are compounding fatigue even if the calendar has no literal conflicts.",
+          "Build recovery buffers deliberately after genuinely demanding meetings or events, not just between unrelated ones.",
+          "Notice patterns: which recurring meetings or relationships seem to leave the executive visibly more depleted, and raise this pattern rather than just accommodating it silently."
+        ],
+        "bestPractices": [
+          "Hybrid roles (business and personal support combined) are the most dangerous to energy management if unmanaged — the boundaries that would normally create recovery time blur easily.",
+          "Pitfall: treating an open calendar slot as automatically available, without considering whether the executive actually has the energy left for what's being scheduled into it."
+        ],
+        "discussionCase": "Looking at a demanding week on the calendar: where would you insert a genuine recovery buffer, and how would you justify that choice if someone questioned why that slot isn't being used for another meeting?"
+      }
+    },
+    {
+      "h": "Operational Excellence & Institutional Accountability",
+      "fourPart": {
+        "corePrinciples": [
+          "Without governance, high-trust roles become high-risk roles — the same access and autonomy that make an assistant valuable can create real exposure if it isn't paired with real accountability.",
+          "A force multiplier understands: scope definition (business versus personal), spending authority limits, data separation protocols, escalation rules, and approval chains — and operates within them deliberately, not by accident."
+        ],
+        "howTo": [
+          "Know your actual scope boundaries explicitly, not just intuitively — what's clearly business, what's clearly personal, and where the genuinely ambiguous cases sit.",
+          "Keep spending authority limits and escalation rules written down somewhere you can reference quickly, not just remembered."
+        ],
+        "bestPractices": [
+          "Pitfall: treating high trust as equivalent to unlimited discretion. Trust and defined boundaries aren't in tension — the boundaries are part of what makes the trust sustainable.",
+          "Institutional accountability protects the assistant as much as the executive — clear boundaries mean no ambiguity if a decision is ever questioned later."
+        ],
+        "discussionCase": "Where is your current scope boundary genuinely fuzzy — a type of task or decision where you're not fully certain whether it's yours to decide or something to escalate?"
+      }
+    },
+    {
+      "h": "Language Signals Level",
+      "fourPart": {
+        "corePrinciples": [
+          "The words you use when relaying information reveal — and reinforce — which identity you're operating from. Language isn't cosmetic here; it's diagnostic.",
+          "The helper reports facts and waits. The force multiplier reports facts already framed with a recommendation or next step attached."
+        ],
+        "howTo": [
+          "Helper: \"They want to meet.\" Force multiplier: \"They're requesting a meeting. Based on our objectives, we can (1) decline, (2) delegate, or (3) meet with conditions. I recommend delegation.\"",
+          "Helper: \"Should I respond?\" Force multiplier: \"I've drafted a response that maintains our position without conceding liability. Please review.\"",
+          "Practice converting your own recent messages from the helper pattern to the force-multiplier pattern — the shift is almost always adding structure and a recommendation, not adding length."
+        ],
+        "bestPractices": [
+          "This isn't about sounding more impressive — it's about actually doing more of the thinking before the message goes out, which is what the language change reflects.",
+          "Pitfall: adopting the confident language pattern without actually doing the underlying analysis — the phrasing should follow real judgment, not substitute for it."
+        ],
+        "discussionCase": "Take a message you sent this week that used the 'helper' pattern. Rewrite it in the force-multiplier pattern — what additional thinking did that rewrite actually require you to do?"
+      }
+    },
+    {
+      "h": "Measuring the Force Multiplier Transformation",
+      "fourPart": {
+        "corePrinciples": [
+          "This transformation isn't just a mindset — its impact is genuinely quantifiable. A force multiplier reduces executive inbox volume, increases strategic time allocation, reduces last-minute crisis events, decreases compliance misses, improves response turnaround, and increases clarity in stakeholder communication.",
+          "Being able to name these metrics matters — it turns \"I'm doing a good job\" into something demonstrable."
+        ],
+        "howTo": [
+          "Pick one or two of these metrics that are realistic to track in your own role (e.g. inbox volume, response turnaround) and start noting them, even informally.",
+          "When discussing your own performance or value, reference concrete change where you can — \"reduced average response time from X to Y\" lands differently than a general claim."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming the value of this work is self-evident and doesn't need to be measured or communicated. It often isn't visible to others unless someone names it.",
+          "Not every metric applies to every role — pick the ones that genuinely reflect your actual responsibilities rather than forcing all six."
+        ],
+        "discussionCase": "Which one of these six metrics would be easiest for you to start tracking in your current role, and what would tracking it for a month likely reveal?"
+      }
+    },
+    {
+      "h": "What Force Multiplier Autonomy Is — and Isn't",
+      "fourPart": {
+        "corePrinciples": [
+          "It is not: overstepping authority, playing executive, replacing leadership, or acting without alignment.",
+          "It is: structured empowerment, pre-approved autonomy, intelligent anticipation, and strategic execution. It requires maturity, discretion, and calibrated confidence — not just confidence alone."
+        ],
+        "howTo": [
+          "Before acting with autonomy on something new, confirm it falls within structured, pre-approved boundaries — genuine force-multiplier autonomy is earned and defined, not assumed.",
+          "When in doubt about whether something is within your autonomy, that doubt itself is useful information — it usually means checking first is the right call."
+        ],
+        "bestPractices": [
+          "Pitfall: using \"I was just being a force multiplier\" to justify a decision that was actually outside your actual scope. The framework doesn't excuse overstepping — it describes disciplined, aligned initiative.",
+          "Calibrated confidence means being decisive within your real boundaries and appropriately cautious right at their edge."
+        ],
+        "discussionCase": "Describe a time you (or someone you know) crossed the line from structured empowerment into overstepping. Looking back, what would have kept it on the right side of that line?"
+      }
+    },
+    {
+      "h": "The Legal VA's Force Multiplier Evolution",
+      "fourPart": {
+        "corePrinciples": [
+          "The shift from helper to force multiplier is especially critical for a Legal Virtual Assistant, given the demands of deadlines, liability, confidentiality, and revenue pressure specific to legal work.",
+          "Traditional Legal VA: waits for instructions, completes assigned tasks, manages inbox and calendar, formats documents.",
+          "Legal Force Multiplier: filters complexity, anticipates legal risk, protects attorney time, structures operations, and accelerates decision-making."
+        ],
+        "howTo": [
+          "Notice where your current legal-support work sits on this spectrum — closer to formatting and task completion, or closer to filtering and anticipating risk.",
+          "Pick one recurring legal-support task and consciously shift it from the traditional pattern toward the force-multiplier pattern this week."
+        ],
+        "bestPractices": [
+          "The stakes of staying in the traditional pattern are higher in legal work specifically — a missed deadline or an unflagged risk carries real liability, not just inefficiency.",
+          "This evolution builds directly on the general Force Multiplier concept covered earlier in this day — it's the same shift, applied to legal-specific responsibilities."
+        ],
+        "discussionCase": "Which of the four Legal Force Multiplier behaviors (filtering complexity, anticipating legal risk, protecting attorney time, structuring operations) is furthest from how you currently operate, and what's making that gap hard to close?"
+      }
+    },
+    {
+      "h": "Cognitive Relief for Attorneys",
+      "fourPart": {
+        "corePrinciples": [
+          "Attorneys carry case strategy, client emotions, revenue pressure, compliance risk, and court deadlines simultaneously — cognitive relief means removing mental clutter, not adding to it.",
+          "A Legal VA offers cognitive relief by pre-summarizing lengthy email chains, creating case briefs for client meetings, preparing issue-spotting summaries, organizing facts into clear chronologies, and highlighting exactly which decisions actually need attorney judgment."
+        ],
+        "howTo": [
+          "Instead of: \"You have 42 unread emails,\" provide: \"Three emails require your legal decision. Two are billing approvals. One is opposing counsel requesting an extension.\"",
+          "Practice this triage-and-summarize pattern on your own inbox review before passing anything along — the goal is to have already done the sorting, not to hand over the raw volume."
+        ],
+        "bestPractices": [
+          "Pitfall: forwarding volume instead of synthesis. \"Here are your 42 emails\" isn't cognitive relief — it's just relocation of the same cognitive load.",
+          "This skill compounds — the more consistently you triage this way, the more the attorney can trust your summaries without re-checking the raw inbox themselves."
+        ],
+        "discussionCase": "Take a real, cluttered inbox scenario you've handled recently. How would you have restructured your summary to match the 'three require decision, two are approvals, one is an extension request' pattern?"
+      }
+    },
+    {
+      "h": "Strategic Filtration for Legal Work",
+      "fourPart": {
+        "corePrinciples": [
+          "A Legal VA must know the difference between administrative urgency, legal urgency, revenue urgency, and reputational urgency — separating noise from genuine legal significance is what filtration means here.",
+          "Filtration protects attorney focus — every item that reaches the attorney's direct attention should have earned that attention."
+        ],
+        "howTo": [
+          "Flag statute of limitations risk immediately — this category never waits.",
+          "Deprioritize genuinely non-urgent items, like an internal newsletter draft, even if they arrived marked urgent.",
+          "Escalate media inquiries tied to active litigation right away — this is reputational and legal urgency at once.",
+          "Identify which client requests require actual attorney review versus which can be handled with a template response."
+        ],
+        "bestPractices": [
+          "Pitfall: treating everything marked \"urgent\" by the sender as equally urgent in reality — the sender's framing and the actual urgency level are often different things.",
+          "This is a judgment skill that improves with pattern recognition — the more legal-urgency situations you've correctly triaged, the faster and more confident the next one gets."
+        ],
+        "discussionCase": "A client email marked \"URGENT\" arrives asking a routine procedural question, while a quiet, politely-worded email from opposing counsel mentions a deadline in passing. Which one is actually more urgent, and how do you know?"
+      }
+    },
+    {
+      "h": "Operational Architecture for Legal Work",
+      "fourPart": {
+        "corePrinciples": [
+          "Helper mindset: \"Tell me what to do next.\" Force multiplier mindset: \"Here's a workflow so this never becomes urgent again.\" This is building systems instead of reacting to chaos, applied specifically to legal operations.",
+          "Operational architecture prevents malpractice risk — a well-built system catches what a rushed, ad hoc response might miss."
+        ],
+        "howTo": [
+          "Create a litigation deadline tracking dashboard rather than tracking deadlines from memory or scattered notes.",
+          "Develop an intake-to-engagement SOP so new-matter onboarding doesn't depend on any one person's memory of the steps.",
+          "Build a trust accounting reconciliation checklist, implement firm-wide document naming conventions, and create a discovery response tracking matrix."
+        ],
+        "bestPractices": [
+          "Pitfall: rebuilding the same ad hoc solution every time a similar situation recurs, instead of investing once in a system that handles the whole category.",
+          "These systems don't need to be built by IT or a formal process — a well-designed spreadsheet or shared checklist is a legitimate piece of operational architecture."
+        ],
+        "discussionCase": "Which of these five systems (deadline dashboard, intake SOP, trust accounting checklist, naming conventions, discovery tracking matrix) is most obviously missing from your current environment, and what real problem has that gap already caused?"
+      }
+    },
+    {
+      "h": "Decision Compression",
+      "fourPart": {
+        "corePrinciples": [
+          "Attorneys are paid for judgment — a Legal VA's job is to prepare decisions in the most digestible form possible, so that judgment is spent on the actual decision, not on wading through raw material first.",
+          "This is decision compression: shortening the attorney's path to clarity."
+        ],
+        "howTo": [
+          "Instead of sending a 60-page contract draft with no guidance, provide: \"Three clauses deviate from our standard template: indemnification expanded, payment terms shortened to 10 days, arbitration venue changed to Texas. Recommendation: review Sections 4, 7, and 11.\"",
+          "Before sending any lengthy document for review, ask yourself what the three most important things the reviewer needs to know are — lead with those."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming that forwarding the full document is sufficient support. Forwarding isn't compression — highlighting what actually changed or matters is.",
+          "This connects directly to the BLUF (Bottom Line Up Front) principle covered elsewhere in this program — decision compression is BLUF applied specifically to document review."
+        ],
+        "discussionCase": "Take a lengthy document you've forwarded for review recently with little or no summary attached. What would the decision-compressed version of that same handoff have looked like?"
+      }
+    },
+    {
+      "h": "Risk Buffering for Legal Work",
+      "fourPart": {
+        "corePrinciples": [
+          "Risk buffering equals credibility capital — protecting the attorney from preventable exposure is one of the highest-trust functions a Legal VA performs.",
+          "Legal VAs buffer risk by tracking compliance deadlines across jurisdictions, confirming proper document execution formalities, maintaining privilege boundaries, requiring engagement letters before work begins, documenting approvals in writing, and monitoring trust account procedures."
+        ],
+        "howTo": [
+          "Build the habit of checking execution formalities (signatures, notarization, witnesses where required) as a standard step, not an afterthought — this connects directly to the notarization and execution-defect risks covered elsewhere in this program.",
+          "Require an engagement letter before any billable work starts, without exception, even for a trusted returning client."
+        ],
+        "bestPractices": [
+          "Pitfall: treating risk buffering as extra, optional diligence rather than a core part of the role — it's the function that protects both the attorney and the firm from the most costly, hardest-to-reverse mistakes.",
+          "Every one of these buffering habits is cheap to do consistently and expensive to skip even once."
+        ],
+        "discussionCase": "Of the six risk-buffering habits listed (deadline tracking, execution formalities, privilege boundaries, engagement letters, written approvals, trust account monitoring), which one would be easiest to let slip under time pressure — and what would make it more resistant to being skipped?"
+      }
     }
   ],
   "quickChecks": [
     {
-      "afterIndex": 3,
+      "afterIndex": 4,
       "q": "The 'No-Surprises Rule' means:",
       "opts": [
         "Executives enjoy occasional surprises",
@@ -2241,7 +2814,7 @@ const DAY2 = {
       "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
     },
     {
-      "afterIndex": 7,
+      "afterIndex": 10,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -2251,7 +2824,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 8,
+      "afterIndex": 11,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Section 12 was too complex for the AI to understand",
@@ -2492,10 +3065,6 @@ const DAY3 = {
     {
       "h": "Prioritization Frameworks",
       "b": [
-        "Eisenhower Matrix — sort by urgency and importance.",
-        "Pomodoro — 25 min focus, 5 min break, longer break every 4 cycles.",
-        "Time Blocking — dedicated blocks for deep work vs. email.",
-        "80/20 Rule — the 20% of activities producing 80% of results.",
         "Effective triage can reclaim 10+ hours a week."
       ],
       "callout": {
@@ -2542,12 +3111,18 @@ const DAY3 = {
         {"label":"Review", "desc":"Check weekly whether protected time actually held, or whether it kept losing to whatever felt urgent in the moment"}
       ],
       "b": [
-        "Time management and calendar management aren't the same skill, even though they're inseparable in practice: time management is deciding what deserves time; calendar management is making sure the calendar actually reflects and protects that decision.",
+        "Time management and calendar management aren't the same skill, even though they're inseparable in practice: time management is deciding what deserves time; calendar management is making sure the calendar actually reflects and protects that decision."
+      ],
+      "trainerCue": "Use this topic as the explicit bridge before the Calendar Management topic — the tool later in this day tests both calendar conflict resolution AND travel planning together, so make the connection between deciding priorities and protecting them on a calendar explicit here."
+    },
+    {
+      "h": "When Time Management Fails Despite a Clean Calendar",
+      "b": [
         "A calendar that's technically conflict-free can still fail at time management — if it's packed with reactive meetings and has no protected space for the work that actually matters most.",
         "This connects directly to travel planning too: a trip only works if the calendar around it — before, during, and after — was managed with the same discipline as the itinerary itself.",
         "Discussion prompt: think of a week where your calendar looked fine on paper but the actual priorities still didn't get done — what broke, the decision or the protection of it?"
       ],
-      "trainerCue": "Use this topic as the explicit bridge before the Calendar Management topic — the tool later in this day tests both calendar conflict resolution AND travel planning together, so make the connection between deciding priorities and protecting them on a calendar explicit here."
+      "trainerCue": "Actually run the discussion prompt — a specific memory of a technically-fine-but-actually-failed week is what makes 'protection, not just decision' land as a real distinction rather than a wordplay."
     },
     {
       "h": "Calendar Management That Holds",
@@ -2567,15 +3142,6 @@ const DAY3 = {
         "When two commitments genuinely conflict, present the executive with the actual trade-off and a recommendation, rather than either silently picking one or dumping the decision back on them with no framing."
       ],
       "trainerCue": "Give the room a real double-booking scenario and ask them to identify what 'strategic importance' actually means in that specific case — the abstract rule is easy to agree with, applying it to a real conflict is the actual skill."
-    },
-    {
-      "h": "Master Contact List Discipline",
-      "b": [
-        "Keep one master contact list the whole team uses — personal copies drift out of sync, and the drift is invisible until someone acts on outdated information at the worst possible moment.",
-        "This is the same discipline as the Comprehensive Contact List topic from Day 4, applied specifically to calendar and scheduling context — knowing exactly who needs to be looped in for a given meeting type, and having their current contact details on hand without having to search.",
-        "A common real failure: two assistants each keep their own copy of a key contact's information, one of them outdated, and a time-sensitive call goes to a wrong or disconnected number during exactly the situation where speed mattered most."
-      ],
-      "trainerCue": "Close this topic with a real story (yours or theirs) about a contact list that went stale and caused a real problem — it's more memorable than the rule itself."
     },
     {
       "h": "Energy Management vs. Time Management",
@@ -2826,19 +3392,7 @@ const DAY3 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 2,
-      "q": "Which gatekeeping technique is this: \"The CEO is in a critical planning cycle until Thursday, but I can hold a tentative 15 minutes Tuesday if this concerns the Alpha project\"?",
-      "opts": [
-        "Flat refusal",
-        "Drastic Contrast",
-        "Ignoring the request",
-        "Blaming the caller"
-      ],
-      "a": 1,
-      "r": "It replaces a vague 'he's busy' with the real constraint plus a concrete, specific alternative."
-    },
-    {
-      "afterIndex": 4,
+      "afterIndex": 0,
       "q": "Which prioritization technique focuses on the 20% of tasks that produce 80% of results?",
       "opts": [
         "The Eisenhower Matrix",
@@ -3144,19 +3698,8 @@ const DAY4 = {
       "b": [
         "Morning Scan (15–30 min) — flag Tier 1, prepare a briefing summary.",
         "Midday Review — draft responses, confirm meetings.",
-        "End-of-Day Review — confirm nothing urgent is left, prep tomorrow.",
-        "A short briefing beats forwarding dozens of raw emails."
+        "End-of-Day Review — confirm nothing urgent is left, prep tomorrow."
       ],
-      "example": {
-        "label": "Executive briefing, real format",
-        "lines": [
-          "2 client escalation issues — responses drafted",
-          "Vendor contract awaiting approval (expires Friday)",
-          "Media request from Business Today — deadline tomorrow",
-          "3 meeting confirmations secured",
-          "Finance flagged payment discrepancy ($8,450)"
-        ]
-      },
       "layout": "PROCESS",
       "processSteps": [
         {
@@ -3172,7 +3715,24 @@ const DAY4 = {
           "desc": "Confirm nothing urgent is left, prep tomorrow's summary"
         }
       ],
-      "trainerCue": "Walk your OWN actual morning routine (or a composite one) against the three-phase Daily Routine live — real specificity beats the abstract structure."
+      "trainerCue": "Walk your own actual morning routine (or a composite one) against the three-phase Daily Routine live — real specificity beats the abstract structure."
+    },
+    {
+      "h": "The Morning Briefing, In Practice",
+      "b": [
+        "A short briefing beats forwarding dozens of raw emails."
+      ],
+      "example": {
+        "label": "Executive briefing, real format",
+        "lines": [
+          "2 client escalation issues — responses drafted",
+          "Vendor contract awaiting approval (expires Friday)",
+          "Media request from Business Today — deadline tomorrow",
+          "3 meeting confirmations secured",
+          "Finance flagged payment discrepancy ($8,450)"
+        ]
+      },
+      "trainerCue": "Compare this five-line briefing against what a raw, unfiltered inbox forward would have looked like for the same morning — the contrast is the whole point of this topic."
     },
     {
       "h": "Research as a Core EA Skill",
@@ -3183,12 +3743,18 @@ const DAY4 = {
         {"label":"Fact-Checking Before Forwarding", "desc":"Verifying a claim before it reaches the executive as fact — passing along something unverified is a credibility risk you own"}
       ],
       "b": [
-        "Research isn't a separate skill from the rest of the EA role — it's the quiet discipline underneath most of it: knowing who you're calling before you call them, knowing what's actually true before you forward it, knowing a vendor is legitimate before scheduling them.",
+        "Research isn't a separate skill from the rest of the EA role — it's the quiet discipline underneath most of it: knowing who you're calling before you call them, knowing what's actually true before you forward it, knowing a vendor is legitimate before scheduling them."
+      ],
+      "trainerCue": "Give the room a fake vendor name and a 90-second timer — have them describe out loud what they'd actually check first. The instinct to reach for the primary source (not just the first search result) is the whole teaching point."
+    },
+    {
+      "h": "Research Method & the Real Failure Mode",
+      "b": [
         "A reliable, fast method matters more than an exhaustive one for most EA research tasks: check the primary source first (the company's own site, the actual filing, the original email) before secondary summaries; cross-check anything that will inform a real decision or a dollar amount; and know when 'good enough for a time-sensitive task' is actually enough, versus when the stakes call for deeper diligence.",
         "The failure mode isn't usually laziness — it's mistaking a single, unverified source for confirmation. A vendor's own claims about themselves aren't verification; a second, independent source is.",
         "This same discipline is exactly what makes the research-before-calling principle in the next topic work — 'research before calling' isn't a cold-calling-specific tip, it's this broader skill applied to one situation."
       ],
-      "trainerCue": "Give the room a fake vendor name and a 90-second timer — have them describe out loud what they'd actually check first. The instinct to reach for the primary source (not just the first search result) is the whole teaching point."
+      "trainerCue": "Ask the room for a real example of a time a single, unverified source turned out to be wrong — the specific memory of getting burned is what makes the 'second independent source' habit actually stick."
     },
     {
       "h": "Cold Calling, Appointment Setting & Lead Generation",
@@ -3210,13 +3776,19 @@ const DAY4 = {
         {"label":"Track and Follow Up", "desc":"A lead not logged is a lead that gets lost — feed every real lead straight into the same contact-list discipline covered next"}
       ],
       "b": [
-        "Lead generation is the step before cold calling, not the same thing: cold calling works a lead you already have; lead generation is finding that lead in the first place.",
+        "Lead generation is the step before cold calling, not the same thing: cold calling works a lead you already have; lead generation is finding that lead in the first place."
+      ],
+      "trainerCue": "Ask the room where their own best professional leads have actually come from historically — referral vs. cold outreach vs. inbound content — the real-world answer is almost always referrals, which is worth naming explicitly."
+    },
+    {
+      "h": "Lead Quality, Qualifying & Tracking",
+      "b": [
         "Referrals are consistently the highest-quality source — a past client's introduction arrives with built-in trust a cold list never has. Actively asking satisfied clients for referrals, rather than waiting passively, is what separates a real lead-generation habit from hoping for the best.",
         "Not every lead deserves equal effort — qualifying early (does this person or business actually fit what the firm serves, and do they have real authority and timeline to act) prevents burning hours chasing contacts who were never going to convert.",
         "A lead that isn't tracked doesn't exist for practical purposes — this is exactly why lead generation and the Comprehensive Contact List discipline in this same day are inseparable; one produces the raw material, the other keeps it from evaporating.",
         "Discussion prompt: think of a business that generated a lead well versus one that let a promising contact go cold — what was actually different about the follow-through, not just the first contact?"
       ],
-      "trainerCue": "Ask the room where their own best professional leads have actually come from historically — referral vs. cold outreach vs. inbound content — the real-world answer is almost always referrals, which is worth naming explicitly."
+      "trainerCue": "Ask for real examples on both sides of the discussion prompt — a business that nailed follow-through and one that let a lead go cold. The contrast in specifics is more instructive than the abstract principle."
     },
     {
       "h": "Creating and Maintaining a Comprehensive Contact List",
@@ -3227,18 +3799,125 @@ const DAY4 = {
         {"label":"Maintain It Like a System", "desc":"Update immediately after every interaction that reveals new or changed info — a contact list that's only updated 'eventually' is already stale"}
       ],
       "b": [
-        "A contact list isn't just a phone book — it's operational infrastructure. A good one lets anyone stepping in for you find the right person, with the right context, in seconds, not minutes of guessing.",
+        "A contact list isn't just a phone book — it's operational infrastructure. A good one lets anyone stepping in for you find the right person, with the right context, in seconds, not minutes of guessing."
+      ],
+      "trainerCue": "Ask the room for a real example of a contact list going stale and causing a real delay — this lands much harder than the abstract principle alone."
+    },
+    {
+      "h": "Contact List Failure Modes & Upkeep",
+      "b": [
         "The single most common failure mode isn't missing contacts — it's stale ones: an old assistant's name still listed for a vendor, a phone number that changed two roles ago, a category that made sense a year ago and doesn't anymore.",
         "Centralize in one system (a CRM, a shared contacts platform, or at minimum one synced digital address book) — a contact list split across someone's personal phone, an old spreadsheet, and email signatures is really three incomplete lists pretending to be one.",
         "Build in a light recurring audit — even a quarterly 10-minute pass to remove duplicates and flag anything that looks outdated prevents the slow rot that makes a contact list untrustworthy.",
         "Discussion prompt: think of a time you (or someone you know) couldn't reach the right person quickly because contact info was missing, wrong, or scattered — what would have prevented it?"
       ],
-      "trainerCue": "Ask the room for a real example of a contact list going stale and causing a real delay — this lands much harder than the abstract principle alone."
+      "trainerCue": "Ask the room to actually answer the discussion prompt out loud — a specific memory of a real, frustrating search for a contact makes the recurring-audit habit land much better than the principle alone."
+    },
+    {
+      "h": "Master Contact List Discipline",
+      "b": [
+        "Keep one master contact list the whole team uses — personal copies drift out of sync, and the drift is invisible until someone acts on outdated information at the worst possible moment.",
+        "This is the same contact-list discipline covered earlier in this day, applied specifically to calendar and scheduling context — knowing exactly who needs to be looped in for a given meeting type, and having their current contact details on hand without having to search.",
+        "A common real failure: two assistants each keep their own copy of a key contact's information, one of them outdated, and a time-sensitive call goes to a wrong or disconnected number during exactly the situation where speed mattered most."
+      ],
+      "trainerCue": "Close this topic with a real story (yours or theirs) about a contact list that went stale and caused a real problem — it's more memorable than the rule itself."
+    },
+    {
+      "h": "Sales Mindset",
+      "fourPart": {
+        "corePrinciples": [
+          "Supporting sales or business-development activity as an EA/PA requires understanding the underlying mindset, not just executing tasks — a cold outreach message written without understanding why it works lands flat, however correctly formatted it is.",
+          "Sales conversations are fundamentally about identifying and solving a genuine problem for the other person, not about persuading someone into something they don't need — this reframing changes how every subsequent skill in this module should be applied.",
+          "Rejection is the normal, expected outcome of most outreach attempts, not a sign something went wrong — a sales mindset treats a \"no\" as information, not a personal failure."
+        ],
+        "howTo": [
+          "Before any outreach, get genuinely clear on what problem the recipient actually has that this conversation could solve — outreach built around \"what we're offering\" instead of \"what they need\" is weaker from the first line.",
+          "Approach every interaction with real curiosity about the other person's situation, not a script to get through — the best outreach reads like it was written for one specific person, because it was.",
+          "Track your own outreach activity and outcomes honestly, including the rejections — this is what turns a string of individual attempts into an improving process over time.",
+          "Separate the professional outcome (did the message get through, did they respond) from any personal reaction to rejection — this is what makes sustained outreach volume possible without burning out."
+        ],
+        "bestPractices": [
+          "Pitfall: treating every outreach attempt as equally important. Not every lead deserves equal effort — knowing where to invest more time is itself part of the sales mindset.",
+          "Never take a \"no\" personally or let it change your tone for the next outreach attempt — each conversation is independent.",
+          "Genuine curiosity about the other person's business or situation is not a technique to fake — it needs to be real, because insincerity is detectable in writing and in tone.",
+          "A sales mindset applied to internal coordination (getting a colleague's buy-in, persuading an executive toward a recommendation) uses the same underlying skill — understanding what the other person actually needs before making your case."
+        ],
+        "discussionCase": "You've sent 15 cold outreach emails this week and received zero responses. What would a sales mindset say about what to do next — and what would the opposite of a sales mindset look like in this exact moment?"
+      }
+    },
+    {
+      "h": "Lead Generation & Data Sourcing",
+      "fourPart": {
+        "corePrinciples": [
+          "Data sourcing is the research layer underneath lead generation — before any outreach happens, you need accurate information about who the prospect actually is, what they do, and why they might be a genuine fit.",
+          "The quality of the data determines the quality of everything downstream — a well-crafted outreach message sent to a poorly-researched or wrong contact wastes the effort regardless of how good the message is.",
+          "This connects directly to the research discipline covered earlier in this day — sourcing a lead's information is the same primary-source-first, verify-before-you-act skill applied to prospecting specifically."
+        ],
+        "howTo": [
+          "Use lead enrichment and research tools (LinkedIn Sales Navigator, company websites, industry directories) to confirm a prospect's actual role, company context, and relevant recent activity before any outreach.",
+          "Verify contact information through the primary source (the company's own site or official channels) rather than trusting a single third-party data source, which can be outdated.",
+          "Organize sourced leads in a shared, trackable system (a CRM or structured spreadsheet) with the key qualifying details captured at the point of sourcing, not reconstructed later.",
+          "Prioritize sourcing effort toward leads that match real qualifying criteria (fit, need, authority, timeline) rather than sourcing broadly and sorting quality later — this saves significant time downstream."
+        ],
+        "bestPractices": [
+          "Pitfall: outreach based on stale or unverified data — a message referencing outdated information (an old job title, a company that's since changed) undermines credibility immediately.",
+          "Respect data privacy and only use legitimately available, professional information — sourcing leads is research, not an invitation to gather information inappropriately.",
+          "Keep sourced data current — a lead list that's six months old without any refresh is likely to contain meaningful inaccuracies.",
+          "A small list of well-sourced, genuinely qualified leads outperforms a large list of loosely-verified ones — resist the pressure to prioritize volume over data quality."
+        ],
+        "discussionCase": "You're asked to build a list of 50 potential leads by end of day for a specific outreach campaign. Given the time constraint, how do you balance genuine data verification against the volume target, and where would you not cut corners even under time pressure?"
+      }
+    },
+    {
+      "h": "Cold Outbound Execution",
+      "fourPart": {
+        "corePrinciples": [
+          "Cold outbound execution is where research and mindset become an actual message or call — this is the visible, external-facing moment where everything upstream either pays off or doesn't.",
+          "The same research-before-calling discipline covered elsewhere in this day applies directly here: knowing something specific and accurate about the recipient before reaching out is what separates outreach that lands from outreach that gets deleted.",
+          "Execution quality compounds — a strong opening line, genuine relevance, and a clear, low-friction next step matter more than volume alone."
+        ],
+        "howTo": [
+          "Open with something specific to the recipient, not a generic template line — a reference to something real about their role, company, or recent activity signals the message wasn't mass-sent.",
+          "Keep the actual ask small and specific — a request for 15 minutes is far more likely to get a yes than an open-ended \"let's connect sometime.\"",
+          "Use the tools available (call tracking software, CRM logging, LinkedIn Sales Navigator) to track every outbound attempt and its outcome, so follow-up is systematic rather than a memory exercise.",
+          "Prepare for the conversation, not just the opening line — anticipate the most likely objections and have a genuine, non-scripted response ready, so the conversation can flow naturally if it gets that far."
+        ],
+        "bestPractices": [
+          "Pitfall: using a rigid script word-for-word regardless of how the conversation actually goes. A script should be a starting point, not a performance to recite through objections.",
+          "Prioritize listening over talking once a conversation starts — the goal is understanding their actual situation, not delivering the pitch you prepared.",
+          "Handle objections gracefully rather than pushing past them — offering to follow up with more information respects the person's actual position rather than trying to argue them out of it.",
+          "Log every outbound attempt and its outcome in the CRM immediately, not at the end of the day from memory — details fade fast, and accurate logs are what make follow-up actually effective."
+        ],
+        "discussionCase": "You're making a cold call and the prospect immediately says \"I'm not interested\" before you've said much beyond your opening line. What's the actual best next move — push forward with the pitch, ask a clarifying question, or end the call gracefully? What would you want to know to decide?"
+      }
+    },
+    {
+      "h": "Appointment Setting (BANT/MEDDPICC)",
+      "fourPart": {
+        "corePrinciples": [
+          "Appointment setting is the process of scheduling meetings or calls between qualified prospects and the relevant team, timed to be genuinely useful for both sides — its purpose is a productive conversation, not just a filled calendar slot.",
+          "BANT (Budget, Authority, Need, Timeline) and MEDDPICC (Metrics, Economic buyer, Decision criteria, Decision process, Paper process, Identify pain, Champion, Competition) are both qualifying frameworks — structured ways to confirm a prospect is actually worth the meeting before it's scheduled.",
+          "Qualifying before scheduling protects everyone's time — an unqualified meeting wastes the executive's time and often the prospect's too, since the conversation goes nowhere."
+        ],
+        "howTo": [
+          "Apply BANT as a quick, lighter-weight qualifying check: does this prospect have Budget, real Authority to decide, a genuine Need, and a realistic Timeline — if two or more of these are clearly absent, the meeting likely isn't worth scheduling yet.",
+          "Apply MEDDPICC for higher-stakes or more complex qualifying situations: confirm real Metrics of success, identify the actual Economic buyer, understand their Decision criteria and Decision process, know the Paper process (contracts, approvals), clearly Identify the pain point, find an internal Champion, and understand the Competition.",
+          "Only set appointments with leads who are genuinely interested or pre-qualified — using a scheduling tool (Calendly, Microsoft Bookings) to let qualified leads pick a convenient slot removes back-and-forth friction.",
+          "Confirm the meeting's agenda, expected duration, and participants before it happens, and send a reminder 24-48 hours prior with any prep materials — this is what makes a scheduled meeting actually productive rather than a first introduction that goes nowhere."
+        ],
+        "bestPractices": [
+          "Pitfall: scheduling a meeting just because someone responded positively, without actually confirming they're qualified. A fast \"yes\" isn't the same as a real fit.",
+          "Choose BANT for quick, lower-stakes qualifying and MEDDPICC for complex, higher-value, multi-stakeholder situations — using the heavier framework for every quick call adds unnecessary friction.",
+          "Never overpromise what a meeting will cover just to secure the booking — a prospect who feels misled about the meeting's purpose disengages fast.",
+          "Confirm and remind close to the meeting time, not just once at booking — no-shows are one of the most common and avoidable failures in appointment setting."
+        ],
+        "discussionCase": "A prospect responds enthusiastically to your outreach and wants to schedule a call immediately, but you haven't confirmed they have real budget or decision authority. Do you schedule the meeting anyway, ask qualifying questions first, or something in between? What would you actually say to find out without losing their interest?"
+      }
     }
   ],
   "quickChecks": [
     {
-      "afterIndex": 2,
+      "afterIndex": 1,
       "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
       "opts": [
         "Tier 2 — draft a response in 2–4 hours",
@@ -3250,7 +3929,7 @@ const DAY4 = {
       "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
     },
     {
-      "afterIndex": 5,
+      "afterIndex": 3,
       "q": "What best distinguishes high-performing email management from average?",
       "opts": [
         "Forwarding every email so nothing is missed",
@@ -3521,13 +4200,65 @@ const DAY5 = {
         {"label":"Subscriptions", "desc":"Sign-up, renewal, payment, and cancellation — the lifecycle most households never actually manage past the sign-up step"}
       ],
       "b": [
-        "These three categories share the same underlying failure mode: they're all recurring, low-drama tasks that are easy to let slide because nothing dramatic happens the first time they're missed — until a utility gets shut off, or a subscription renews at triple the promotional rate a year after nobody remembers signing up.",
+        "These three categories share the same underlying failure mode: they're all recurring, low-drama tasks that are easy to let slide because nothing dramatic happens the first time they're missed — until a utility gets shut off, or a subscription renews at triple the promotional rate a year after nobody remembers signing up."
+      ],
+      "trainerCue": "Ask the room for a real subscription that auto-renewed on them (or someone they know) without anyone noticing — nearly everyone has one, and it makes the 'track renewal dates actively' point land immediately."
+    },
+    {
+      "h": "Managing Each Recurring Category",
+      "b": [
         "Utilities specifically need a payment calendar with real due dates, not a mental note — a missed rent or utility payment isn't just an inconvenience, it can cascade into late fees, service interruption, or in the case of rent, real legal consequences.",
         "Purchasing (business and personal) should follow the same discipline as any other spending: a clear sense of what's routine and pre-approved versus what needs a check-in first, and a simple log of what was bought and when so nothing is duplicated or forgotten.",
         "Subscription management is the most commonly neglected of the three — the actual task isn't just signing up, it's tracking renewal dates and actively deciding whether to keep or cancel before the auto-renewal happens, not after.",
         "All three connect directly to the Home Binder discipline from earlier in this day — these are exactly the kind of recurring facts (due dates, account details, renewal dates) that belong in a well-maintained reference, not in someone's memory."
       ],
-      "trainerCue": "Ask the room for a real subscription that auto-renewed on them (or someone they know) without anyone noticing — nearly everyone has one, and it makes the 'track renewal dates actively' point land immediately."
+      "trainerCue": "Ask which of the three categories (utilities, purchasing, subscriptions) the room finds easiest to let slide personally — the honest answer is a good entry point into why each needs its own explicit system."
+    },
+    {
+      "h": "Household Staff Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Managing household staff (a nanny, housekeeper, driver, or estate manager) is fundamentally a coordination role, not a supervisory one in the traditional sense — the PA's job is making sure schedules, expectations, and communication all stay aligned, not micromanaging how each person does their job.",
+          "Clear, written expectations from day one prevent the vast majority of staff-management friction — verbal understandings drift, and by the time a disagreement surfaces, neither side remembers the original agreement the same way.",
+          "Staff scheduling has to account for both the household's needs and the staff's own reasonable boundaries — a schedule that only works when someone stays late every week isn't sustainable, whatever the org chart says."
+        ],
+        "howTo": [
+          "Maintain a written role description for each staff position, even an informal one, covering hours, core responsibilities, and who they report to — this becomes the reference point whenever a question about scope comes up.",
+          "Build a shared household calendar showing each staff member's schedule, so overlaps and gaps are visible at a glance rather than discovered when someone doesn't show up.",
+          "Set a regular, brief check-in cadence with household staff (even monthly) — small friction points surface and get resolved before they become real problems.",
+          "Keep emergency contact and basic medical information for each staff member on file, the same way you would for family members — this matters if something happens while they're on the property."
+        ],
+        "bestPractices": [
+          "Never let staff scheduling live only in one person's memory (yours or the household manager's) — if you're unreachable, someone else needs to be able to answer \"who's supposed to be here today.\"",
+          "Pitfall: assuming staff will raise scheduling conflicts themselves. Many won't, out of politeness or job security concerns — proactively checking in surfaces problems earlier.",
+          "Treat household staff with the same professionalism and discretion you'd extend to any other working relationship — this is someone's livelihood, not an informal arrangement, even in a personal household.",
+          "When staff turnover happens, build in real handoff time and documentation — losing institutional knowledge (the household's actual routines and preferences) is the most common cost of a rushed transition."
+        ],
+        "discussionCase": "The Thorne household's regular housekeeper is going on medical leave for six weeks with two days' notice. You need a temporary replacement who can be up to speed quickly. What would you actually document and hand off to make sure the temporary hire doesn't need to ask Sarah Thorne a dozen basic questions in the first week?"
+      }
+    },
+    {
+      "h": "Home Maintenance & Repair Coordination",
+      "fourPart": {
+        "corePrinciples": [
+          "Home maintenance splits into two very different categories that need different handling: routine, scheduled maintenance (HVAC servicing, gutter cleaning) versus reactive repairs (a broken appliance, a leak) — treating both the same way leads to either forgotten routine tasks or panicked reactive scrambles.",
+          "A maintenance calendar exists to prevent small, cheap fixes from becoming large, expensive ones — most major home repairs were once a minor issue that went unaddressed.",
+          "Contractor and vendor relationships for home maintenance follow the same procurement discipline covered elsewhere in this day — vetted, compared, and tracked, not just whoever's available fastest."
+        ],
+        "howTo": [
+          "Build a recurring maintenance calendar covering every system with a manufacturer-recommended service interval (HVAC, water heater, appliances under warranty) — this prevents the most common and costly oversight: skipped routine service voiding a warranty.",
+          "Keep a running list of trusted, vetted contractors by specialty (plumber, electrician, HVAC, general handyman) so a reactive repair doesn't start with a cold search under time pressure.",
+          "For any repair, get the scope and cost confirmed in writing before work begins, even for a trusted, repeat contractor — verbal estimates have a way of growing once work starts.",
+          "Track warranty documentation and appliance manuals in the Home Binder system, organized by item, so a repair call starts with \"is this still under warranty\" answered in seconds, not a search."
+        ],
+        "bestPractices": [
+          "Pitfall: treating every maintenance need as equally urgent. A dripping faucet and a gas smell are not the same priority level — triage matters here the same way it does with email or calendar requests.",
+          "Never authorize significant repair spending without the executive's sign-off threshold being clear in advance — know the dollar amount below which you can approve directly versus what needs a check-in first.",
+          "Keep photos and a brief written record of major repairs and renovations — this matters for warranty claims, insurance, and eventually if the property is ever sold.",
+          "A maintenance calendar that exists but is never actually checked is worse than no calendar — it creates false confidence that things are handled."
+        ],
+        "discussionCase": "You notice the HVAC system is due for its annual service based on your maintenance calendar, but the household has been consistently declining the reminder for three months because \"it's working fine.\" What's the actual risk here, and how do you raise this again without it feeling like nagging?"
+      }
     },
     {
       "h": "Procurement and Vendor/Supplier Management",
@@ -3539,12 +4270,41 @@ const DAY5 = {
         {"label":"Manage the Relationship Ongoing", "desc":"Track performance and renewal dates actively, and always have a backup identified before you need one"}
       ],
       "b": [
-        "Procurement is the proactive counterpart to the reactive vendor-failure handling covered next — the discipline here is what actually reduces how often a vendor falls through in the first place.",
+        "Procurement is the proactive counterpart to the reactive vendor-failure handling covered next — the discipline here is what actually reduces how often a vendor falls through in the first place."
+      ],
+      "trainerCue": "Ask whether anyone in the room has ever kept using an underperforming vendor simply because switching felt like more effort than it was worth — that inertia is exactly what a real procurement and backup-vendor discipline is meant to prevent."
+    },
+    {
+      "h": "Vendor Relationships Beyond the Signature",
+      "b": [
         "Treating vendor selection as a real comparison (multiple options, real terms review) rather than defaulting to whoever's easiest to reach is what separates deliberate procurement from just filling a gap quickly.",
         "Supplier management doesn't end at signing — the EA's ongoing role is tracking whether the vendor is actually performing as agreed, when the contract or engagement is up for renewal, and whether a backup option is identified in case this vendor becomes unavailable.",
         "This connects directly to the Recurring Household Admin discipline just covered — vendor contracts and renewal dates are exactly the kind of recurring fact that belongs in a tracked reference, not someone's memory."
       ],
-      "trainerCue": "Ask whether anyone in the room has ever kept using an underperforming vendor simply because switching felt like more effort than it was worth — that inertia is exactly what a real procurement and backup-vendor discipline is meant to prevent."
+      "trainerCue": "Ask the room to name a vendor relationship they've seen managed well past the signing stage — what did ongoing management actually look like in practice, beyond just paying invoices?"
+    },
+    {
+      "h": "Negotiating Vendor Contracts & Terms",
+      "fourPart": {
+        "corePrinciples": [
+          "Negotiation isn't about extracting the lowest possible price — it's about securing terms that genuinely protect the household or business if something goes wrong, which is a different goal than just \"cheaper.\"",
+          "The strongest negotiating position comes from having real alternatives already lined up — a vendor who knows you have no other option has no reason to move on price or terms.",
+          "Most vendor terms are more negotiable than people assume, especially payment schedules, cancellation terms, and service-level guarantees — the default contract a vendor offers is a starting point, not a fixed rule."
+        ],
+        "howTo": [
+          "Before any negotiation conversation, know your actual priorities in order — price, timeline, flexibility, and service guarantees rarely can all be maximized at once, so know which ones matter most for this specific engagement.",
+          "Ask directly for better terms on at least one dimension beyond price — a shorter cancellation notice period or a service-level guarantee often costs the vendor nothing to grant but genuinely protects you.",
+          "Get every negotiated term in writing as part of the actual contract, not a side verbal agreement — an unwritten concession disappears the moment there's a dispute or a staff change on the vendor's side.",
+          "For any recurring or high-value vendor relationship, revisit terms at renewal rather than auto-renewing — vendor pricing and terms drift over time, and renewal is the natural point to re-negotiate."
+        ],
+        "bestPractices": [
+          "Pitfall: negotiating only on price and ignoring the cancellation and dispute-resolution terms — these matter far more than price the one time something actually goes wrong.",
+          "Never let a vendor rush you into signing under time pressure they created — a vendor who says \"this price is only good today\" is using a tactic, not describing a real constraint, in the vast majority of cases.",
+          "Keep a simple record of what was negotiated and why for every significant vendor contract — this protects institutional memory when the person who negotiated it is no longer handling that relationship.",
+          "A negotiation that damages the working relationship isn't a win, even if it secures better terms on paper — for ongoing vendor relationships, how you negotiate matters as much as what you get."
+        ],
+        "discussionCase": "A vendor the household has used reliably for two years sends a renewal contract with a 15% price increase and no explanation. You have one comparable alternative vendor you've never used. How do you approach the renewal conversation, and what would actually justify staying versus switching?"
+      }
     },
     {
       "h": "When a Vendor Falls Through",
@@ -3557,10 +4317,6 @@ const DAY5 = {
     {
       "h": "The PA Risk Management Framework",
       "b": [
-        "Financial Risk — unpaid premiums, lapsed policies, fraud.",
-        "Legal & Liability Risk — injury claims, contractual exposure.",
-        "Operational Risk — missed deadlines, travel disruption, vendor failure.",
-        "Reputational Risk — social media exposure, public disputes, data breaches.",
         "Most real incidents touch more than one category at once."
       ],
       "layout": "QUADRANT",
@@ -3643,9 +4399,7 @@ const DAY5 = {
       "b": [
         "Before travel — confirm travel insurance and international coverage.",
         "During — keep an emergency contact sheet and secure Wi-Fi practices.",
-        "After — reconcile expenses and file claims while details are fresh.",
-        "A claim is a risk event requiring organized response, not just paperwork — the PA's role is Coordinator, Document Controller, and Executive Liaison.",
-        "Phase 1 of a claim (immediate response): ensure safety first, call emergency services if needed, then preserve evidence — clear photos/videos, saved damaged items, police/incident report numbers, witness details. Never admit fault on the executive's behalf."
+        "After — reconcile expenses and file claims while details are fresh."
       ],
       "layout": "PROCESS",
       "processSteps": [
@@ -3662,7 +4416,38 @@ const DAY5 = {
           "desc": "Reconcile expenses and file any claims promptly, while details are still fresh"
         }
       ],
-      "trainerCue": "Walk through the Before/During/After travel risk structure using a REAL upcoming trip if anyone in the room has one — hypotheticals land less than something someone's actually planning."
+      "trainerCue": "Walk through the Before/During/After travel risk structure using a real upcoming trip if anyone in the room has one — hypotheticals land less than something someone's actually planning."
+    },
+    {
+      "h": "Handling a Travel Claim",
+      "b": [
+        "A claim is a risk event requiring organized response, not just paperwork — the PA's role is Coordinator, Document Controller, and Executive Liaison.",
+        "Phase 1 of a claim (immediate response): ensure safety first, call emergency services if needed, then preserve evidence — clear photos/videos, saved damaged items, police/incident report numbers, witness details. Never admit fault on the executive's behalf."
+      ],
+      "trainerCue": "Emphasize 'never admit fault' specifically — this is the detail most likely to be forgotten under real pressure, and it's the one with the most serious consequences if missed."
+    },
+    {
+      "h": "International Travel Risk & Duty of Care",
+      "fourPart": {
+        "corePrinciples": [
+          "International travel introduces risk categories domestic travel doesn't: political instability, health infrastructure gaps, unfamiliar legal systems, and communication barriers during an emergency — the Before/During/After framework still applies, but each phase needs more depth.",
+          "\"Duty of care\" means the organization or household has a real responsibility to know where a traveler is and be able to reach or assist them — this isn't just a courtesy, it's an expectation that becomes critical the moment something goes wrong.",
+          "The riskier the destination, the more this planning has to happen before departure — improvising an emergency response from an unfamiliar country, in an unfamiliar language, is far harder than it sounds."
+        ],
+        "howTo": [
+          "Check official government travel advisories for the destination before booking, not just before departure — this shapes whether extra precautions (security briefing, evacuation insurance) are warranted at all.",
+          "Register international travel with the relevant government's travel registration program where available — this is what makes official evacuation or emergency assistance possible if a crisis hits.",
+          "Confirm international health coverage and, for higher-risk destinations, medical evacuation insurance specifically — standard travel insurance often doesn't cover medical evacuation, which can cost well into six figures without it.",
+          "Build a destination-specific emergency card: local embassy contact, nearest hospital with English-speaking staff if relevant, local emergency numbers (which differ from 911), and a designated check-in schedule with the office or family."
+        ],
+        "bestPractices": [
+          "Pitfall: treating international travel prep as \"the same checklist, just with a passport.\" The stakes and the failure modes are genuinely different, and the prep needs to reflect that.",
+          "For any high-risk destination, loop in the executive's security team or a travel-risk consultant if one exists — this isn't a call an EA should be making alone for genuinely dangerous locations.",
+          "Keep scanned copies of every critical document (passport, visas, insurance cards, prescriptions) accessible remotely, separate from the physical originals — losing documents abroad is a common, solvable-in-advance problem.",
+          "A missed check-in should trigger an actual escalation protocol, decided in advance — not a guessing game about how many hours of silence is actually concerning for this specific trip and destination."
+        ],
+        "discussionCase": "Elias is traveling internationally for an arbitration matter in a country with a moderate travel advisory. He's dismissive of extra precautions, saying he's traveled there before with no issues. What would you actually want in place before he leaves, and how do you raise it in a way that respects his experience while still doing your job?"
+      }
     },
     {
       "h": "Lifestyle & Personal Support",
@@ -3683,17 +4468,161 @@ const DAY5 = {
       ],
       "b": [
         "A home binder exists for exactly one moment: when someone other than you needs to find critical household information fast, and you're not available to just tell them.",
-        "The test of a good binder isn't how complete it looks — it's whether a substitute PA, a family member, or an emergency responder could actually use it without calling you first.",
+        "The test of a good binder isn't how complete it looks — it's whether a substitute PA, a family member, or an emergency responder could actually use it without calling you first."
+      ],
+      "trainerCue": "Ask the room what would happen today if they were unreachable for 24 hours and someone else had to run their executive's household — the gaps that come up are exactly what belongs in the binder."
+    },
+    {
+      "h": "Home Binder: Format, Security & Maintenance",
+      "b": [
         "Digital vs. physical is a real decision, not just preference: physical works when power/internet is down and for anyone unfamiliar with digital tools; digital works for easy updating and remote access. Many households genuinely need both — a physical copy for true emergencies, kept current from a digital master.",
         "Never store actual sensitive numbers (full account numbers, passwords, SSNs) directly in the binder — reference where to find them securely instead. A binder that falls into the wrong hands shouldn't be a security incident.",
         "Maintenance is the same discipline as the contact list: an outdated home binder is worse than no binder, since it creates false confidence that the information is current."
       ],
-      "trainerCue": "Ask the room what would happen today if they were unreachable for 24 hours and someone else had to run their executive's household — the gaps that come up are exactly what belongs in the binder."
+      "trainerCue": "Emphasize the security rule explicitly and check that trainees genuinely understand the difference between 'the account number' and 'where to find the account number' — this distinction is exactly what the Practice Lab exercise for this day will test."
+    },
+    {
+      "h": "Digital Home Binder Tools & Platforms",
+      "fourPart": {
+        "corePrinciples": [
+          "The right digital tool for a home binder depends on who else needs access and how — a tool only you can use isn't actually solving the \"someone else needs this\" problem the binder exists for.",
+          "Structure matters more than the specific platform — a well-organized binder in a simple tool beats a disorganized one in a sophisticated tool.",
+          "Whatever platform is chosen, it needs a real access and permissions plan — not everyone who might need the binder should see every section of it."
+        ],
+        "howTo": [
+          "For household teams already using a shared workspace (Notion, Google Workspace, or similar), building the binder there keeps it in a tool people already check, rather than one more place to remember.",
+          "Use consistent section headers matching the four Home Binder categories from earlier in this day (Household Operations, Family & Medical, Financial & Legal Reference, Emergency Contacts) so the digital structure mirrors what a physical binder would look like.",
+          "Set explicit sharing permissions per section where the platform allows it — a driver may need the household operations section but shouldn't need access to family medical information.",
+          "Export or print a physical backup periodically (monthly or quarterly) so the \"digital tool is down\" scenario doesn't leave anyone without access to genuinely critical information."
+        ],
+        "bestPractices": [
+          "Pitfall: choosing a sophisticated tool nobody else in the household actually knows how to use — the binder's value depends entirely on other people being able to access it when needed.",
+          "Never rely on a single person's personal login as the only access point — if that person is unreachable, the binder is effectively inaccessible, defeating its purpose.",
+          "Revisit access permissions whenever household staff changes — a departed employee retaining binder access is a real, easily-avoided security gap.",
+          "Test the binder's actual usability periodically by having someone unfamiliar with it try to find something specific — this surfaces organization problems faster than reviewing it yourself."
+        ],
+        "discussionCase": "The Thorne household is deciding between a shared Notion workspace (which the family already uses for other things) and a dedicated home-management app with built-in permission controls. What would you actually want to know about who needs access to what before recommending one over the other?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Information Security",
+      "fourPart": {
+        "corePrinciples": [
+          "Information security risk means the exposure of sensitive data — client information, financial details, personal family information, confidential business matters — through carelessness, a breach, or simple mishandling.",
+          "An EA or PA routinely has access to more sensitive information than almost anyone else around an executive, which makes information security a core part of the role, not a specialized IT concern that's someone else's job.",
+          "The goal isn't perfect security (which doesn't exist) — it's disciplined, consistent handling that keeps the routine risk of a slip low, and a clear escalation path for when something does go wrong."
+        ],
+        "howTo": [
+          "Apply least-privilege access as a default — only see and hold the sensitive information actually needed for the task at hand, not everything available just because access exists.",
+          "Verify identity before disclosing anything sensitive over phone or email — a confident-sounding request is not verification, especially for financial or account details.",
+          "Use secure channels for genuinely sensitive information — a password-protected document or a secure portal, not a casual text message or unencrypted email, for anything that would cause real harm if intercepted.",
+          "Know the actual containment steps for a suspected leak or breach before one happens: stop further spread first, assess scope, then escalate — panicking and immediately assigning blame delays the part that actually matters."
+        ],
+        "bestPractices": [
+          "Pitfall: treating information security as someone else's responsibility because \"IT handles that.\" Most real information security failures are human handling errors, not technical ones.",
+          "Never store sensitive account numbers, passwords, or identification numbers in an unsecured document \"just to have it handy\" — reference where to find them securely instead.",
+          "Report a suspected security incident immediately, even a small one — a near-miss reported early is far easier to contain than a real breach discovered late.",
+          "Regularly reconsider who actually needs standing access to sensitive systems or information — access that made sense a year ago may no longer be necessary."
+        ],
+        "discussionCase": "You receive an email that looks like it's from Elias's bank, asking you to confirm his account details to resolve a \"security flag.\" It looks legitimate but arrived at an unusual time. What do you actually do before responding?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Operational Continuity",
+      "fourPart": {
+        "corePrinciples": [
+          "Operational continuity risk is the danger that a disruption — the EA/PA being unavailable, a key system going down, a critical vendor failing — stops essential support functions from happening at all.",
+          "Continuity planning exists so that a single point of failure (usually \"only I know how to do this\") doesn't bring an entire operation to a halt when that one person is unreachable.",
+          "This connects directly to documentation discipline covered elsewhere in this program — an SOP, a binder, a tracked contact list are all continuity tools, not just organizational nice-to-haves."
+        ],
+        "howTo": [
+          "Identify the specific tasks that would genuinely break if you were unreachable for 48 hours — these are your actual continuity risks, not a generic worry.",
+          "Document critical recurring processes (even briefly) so someone else could execute them in an emergency — this is the same discipline as the SOP and Home Binder work covered elsewhere in this program.",
+          "Maintain a backup or secondary contact for every critical vendor and system access — a single point of contact for something essential is a continuity risk waiting to happen.",
+          "Build a simple \"if I'm unreachable\" protocol and make sure at least one other person knows it exists — who to contact, where key documents live, what absolutely cannot wait."
+        ],
+        "bestPractices": [
+          "Pitfall: being so indispensable that nothing can happen without you. This feels secure but is actually a significant operational risk, for the executive and for you.",
+          "Test continuity plans occasionally rather than assuming they'd work — have someone actually try to follow your documentation for a routine task and see what's missing.",
+          "Keep continuity documentation current — an outdated backup plan creates false confidence, which is worse than knowing there's a real gap.",
+          "Continuity planning isn't pessimism — it's the same risk-reduction discipline this whole framework teaches, applied to your own role instead of an external vendor or system."
+        ],
+        "discussionCase": "You're planning a two-week vacation, the first real time away from the role in over a year. What would you actually need to document and hand off to make sure nothing critical falls through during those two weeks?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Reputational Risks",
+      "fourPart": {
+        "corePrinciples": [
+          "Reputational risk is exposure that damages how the executive, the family, or the business is perceived publicly — social media missteps, public disputes, leaked information, or a mishandled sensitive situation.",
+          "Reputational damage often spreads faster and is harder to reverse than financial or operational damage — a single bad moment captured and shared can outlast the actual event by years.",
+          "The EA/PA's role here is largely preventive: exercising discretion and judgment before something becomes a public problem, not managing the fallout after it already has."
+        ],
+        "howTo": [
+          "Apply discretion by default to anything that could become public — assume any message, document, or conversation might eventually be seen outside its intended audience.",
+          "Vet event guest lists, public appearances, and social content with reputational exposure specifically in mind, not just logistics — who's in the room or what's being posted can create risk logistics alone wouldn't catch.",
+          "Know the actual escalation path for a reputational issue in progress — who needs to be informed immediately, and who's authorized to respond publicly versus who should stay silent until guided.",
+          "Control information flow deliberately — knowing what can be shared, with whom, and when is as much a reputational skill as a confidentiality one."
+        ],
+        "bestPractices": [
+          "Pitfall: responding to a reputational situation quickly instead of correctly. A fast, wrong public response usually causes more damage than a brief, deliberate pause before responding.",
+          "Never assume a private conversation or communication will stay private — plan and communicate as if anything could surface.",
+          "Keep a mental (or literal) list of topics and situations that are reputationally sensitive for this specific executive, since the risk areas vary by person, industry, and public profile.",
+          "When in doubt about whether something is reputationally risky, escalate rather than deciding alone — this is exactly the kind of judgment call this program has emphasized isn't yours to make solo."
+        ],
+        "discussionCase": "A journalist reaches out directly to you, not through the firm's usual channels, asking for comment on a sensitive matter involving Elias. They're polite but persistent. What do you actually do, and what do you deliberately avoid doing?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Physical & Travel Safety",
+      "fourPart": {
+        "corePrinciples": [
+          "Physical and travel safety risk covers real, bodily risk to the executive or family — during travel, at events, or in daily life — distinct from the financial, operational, and reputational risks covered elsewhere in this framework.",
+          "This category has the highest stakes of the five, since the consequences of a gap here are the most severe and least reversible.",
+          "Duty of care — the responsibility to know where someone is and be able to reach or assist them — applies here more than anywhere else in the EA/PA role."
+        ],
+        "howTo": [
+          "Maintain visibility into the executive's location and itinerary at all times during travel or high-profile events, without being intrusive about it — this is what makes a fast response possible if something happens.",
+          "Build destination-specific safety awareness before any travel to an unfamiliar or higher-risk location — local emergency numbers, nearest medical care, and any relevant advisories.",
+          "Coordinate directly with security personnel where they exist, rather than working around them — physical safety planning is a team function, not a solo EA/PA judgment call for genuinely high-risk situations.",
+          "Keep emergency contact and basic medical information current and accessible for the executive and family members — this needs to be findable in seconds during an actual emergency, not searched for."
+        ],
+        "bestPractices": [
+          "Pitfall: treating physical safety planning as excessive or paranoid for a \"normal\" trip. The planning should scale to actual risk level, but some baseline awareness applies to every trip.",
+          "Never guess at emergency response — know the actual local emergency numbers and nearest appropriate medical facility for wherever the executive currently is, especially internationally.",
+          "Loop in professional security expertise for genuinely elevated-risk situations rather than handling it alone — this is a case where knowing the limits of your own role matters.",
+          "A missed check-in during travel should trigger a real, pre-agreed escalation — not a guessing game about how many hours of silence is actually concerning."
+        ],
+        "discussionCase": "Elias is attending a public event with elevated media attention, and the venue has confirmed only minimal security screening for attendees. What would you actually want confirmed or arranged before the event, and who would you loop in?"
+      }
+    },
+    {
+      "h": "EA/PA Risk Framework: Financial Controls",
+      "fourPart": {
+        "corePrinciples": [
+          "Financial controls risk covers unauthorized spending, fraud, billing errors, and financial mismanagement — distinct from the broader financial risk category covered elsewhere, this focuses specifically on the controls that prevent those failures.",
+          "An EA/PA often has real financial access — approving invoices, managing accounts, handling reimbursements — which means financial controls discipline is a direct part of the role, not an accounting department concern alone.",
+          "Strong financial controls protect the EA/PA as much as the executive — clear approval thresholds and documentation mean no one's word-against-word if a financial question is ever raised."
+        ],
+        "howTo": [
+          "Know your actual approval authority in dollar terms before you need it — what you can approve directly versus what requires sign-off, so a financial decision under time pressure doesn't become a guessing game.",
+          "Require documentation (an invoice, a receipt, a written approval) for every financial transaction you handle, even small or routine ones — verbal-only financial decisions are exactly where disputes and errors happen.",
+          "Reconcile recurring financial activity regularly (monthly at minimum) rather than assuming it's correct — small billing errors compound if they're not caught early.",
+          "Flag anything financially unusual immediately, even if you're not certain it's wrong — a duplicate charge, an unexpected vendor invoice, or an out-of-pattern request are worth a second look before processing."
+        ],
+        "bestPractices": [
+          "Pitfall: processing a financial request quickly because it seems urgent, without the normal verification. Urgency is one of the most common tactics behind actual financial fraud.",
+          "Never approve or process a financial transaction based solely on a request that arrived through an unusual channel (a text instead of the normal system, an email from a slightly-off address).",
+          "Keep financial approval records organized and accessible — this is what makes an audit, if one ever happens, a quick confirmation rather than a stressful reconstruction.",
+          "When a financial request falls outside your normal pattern for this executive or household, verify through a second channel before acting, even if it delays things slightly."
+        ],
+        "discussionCase": "You receive an email that appears to be from Elias, asking you to urgently wire funds to a vendor for a time-sensitive deal, with instructions to keep it discreet. The tone matches how he writes, but something feels slightly off. What do you actually do before taking any action?"
+      }
     }
   ],
   "quickChecks": [
     {
-      "afterIndex": 3,
+      "afterIndex": 10,
       "q": "A family purchases homeowners insurance to cover potential losses from fire or theft. Which risk strategy is this?",
       "opts": [
         "Avoidance",
@@ -3705,7 +4634,7 @@ const DAY5 = {
       "r": "Buying insurance shifts the financial risk onto the insurer — that's Transfer."
     },
     {
-      "afterIndex": 4,
+      "afterIndex": 11,
       "q": "During the semi-annual risk review, which of these is a genuine trigger to revisit coverage?",
       "opts": [
         "The weather changed",
@@ -3995,19 +4924,22 @@ const DAY6 = {
         {"label":"Debrief and Update the Playbook", "desc":"After each cycle, capture what broke or ran late — a playbook that's never updated just repeats the same friction annually"}
       ],
       "b": [
-        "Seasonal coordination is a distinct skill from general project management: a one-off project has a defined end and gets closed out; a seasonal responsibility recurs on a cycle and needs a system, not a fresh plan built from scratch every time.",
-        "The EA/PA value here is almost entirely in the playbook — the first time through a recurring season is naturally reactive, but every cycle after that should get faster and less chaotic if the lessons actually get captured somewhere real, not just remembered informally.",
-        "A good seasonal playbook names specific trigger dates (not just 'start early') — e.g., 'send the CLE renewal reminder 60 days out, not 30' — because vague timing guidance is exactly what causes the same late scramble every year.",
-        "This connects directly to the KPI Dashboard discipline later in this day: tracking whether seasonal deadlines were actually hit on time, cycle over cycle, is what proves the playbook is working rather than just existing."
+        "Seasonal coordination is a distinct skill from general project management: a one-off project has a defined end and gets closed out; a seasonal responsibility recurs on a cycle and needs a system, not a fresh plan built from scratch every time."
       ],
       "trainerCue": "Ask the room to name one recurring, predictable crunch time in their own work or life — then ask whether there's an actual written playbook for it, or whether it gets rebuilt from memory every time."
     },
     {
+      "h": "Building & Using the Seasonal Playbook",
+      "b": [
+        "The EA/PA value here is almost entirely in the playbook — the first time through a recurring season is naturally reactive, but every cycle after that should get faster and less chaotic if the lessons actually get captured somewhere real, not just remembered informally.",
+        "A good seasonal playbook names specific trigger dates (not just 'start early') — e.g., 'send the CLE renewal reminder 60 days out, not 30' — because vague timing guidance is exactly what causes the same late scramble every year.",
+        "This connects directly to the KPI Dashboard discipline later in this day: tracking whether seasonal deadlines were actually hit on time, cycle over cycle, is what proves the playbook is working rather than just existing."
+      ],
+      "trainerCue": "Ask for a specific, named trigger date from someone's own recurring task — 'start early' is easy to say and hard to act on, so pushing for an actual date is the real teaching moment here."
+    },
+    {
       "h": "Frameworks Worth Knowing",
       "b": [
-        "Lean — eliminate waste, focus on real value.",
-        "Six Sigma — defect reduction through measurement.",
-        "PMI/PMBOK — standard project-management process groups.",
         "You don't need certification — just recognize what each solves."
       ],
       "layout": "THREEBOX",
@@ -4031,12 +4963,7 @@ const DAY6 = {
       "h": "Lean Six Sigma in Practice — A Real Methodology, Not Just a Buzzword",
       "layout": "PROCESS",
       "b": [
-        "Lean and Six Sigma are two different disciplines that get combined in practice: Lean is about eliminating waste and keeping only what adds real value; Six Sigma is about reducing defects and variation through measurement. Together, 'Lean Six Sigma' means: cut what doesn't matter, then rigorously fix what's actually broken.",
-        "Lean's core idea is the 8 Wastes (often remembered by the acronym DOWNTIME): Defects, Overproduction, Waiting, Non-utilized talent, Transportation, Inventory, Motion, Extra-processing. An EA doesn't need to memorize the acronym — but recognizing 'this step is pure waste' the moment you see it is exactly the instinct Lean is trying to build.",
-        "The DMAIC cycle above (Define, Measure, Analyze, Improve, Control) is Six Sigma's core methodology — it's a five-step way to fix a broken process permanently instead of patching it once and watching it break again next month.",
-        "Concrete EA example of 'Waiting' waste: if a contract sits for three days because it needs one partner's signature and that partner is often out, the fix isn't reminding harder — it's building a backup-approver rule into the process itself.",
-        "Concrete EA example of 'Motion' waste: if finding a signed NDA requires checking four different folders because filing habits vary by person, standardizing one filing location removes wasted motion permanently, not just for this one document.",
-        "Concrete EA example of DMAIC in miniature: Define — 'expense reports take too long to get approved.' Measure — track actual turnaround time for two weeks. Analyze — find it's always stuck at the same approval step. Improve — set up an auto-reminder at 48 hours. Control — review turnaround time monthly to confirm it holds."
+        "Lean and Six Sigma are two different disciplines that get combined in practice: Lean is about eliminating waste and keeping only what adds real value; Six Sigma is about reducing defects and variation through measurement. Together, 'Lean Six Sigma' means: cut what doesn't matter, then rigorously fix what's actually broken."
       ],
       "trainerCue": "Run a live 30-second DMAIC exercise on a real annoyance from the room's own work — someone names a recurring problem, and the group calls out what Define/Measure/Analyze/Improve/Control would look like for it. This is far more memorable than walking through the Elias-specific examples alone.",
       "processSteps": [
@@ -4063,38 +4990,24 @@ const DAY6 = {
       ]
     },
     {
-      "h": "Lean Six Sigma, In Depth",
-      "layout": "PROCESS",
-      "processSteps": [
-        {
-          "label": "Define",
-          "desc": "Name the problem precisely and who it affects — not 'things feel slow,' but 'contract approvals take 9 days when they should take 3'"
-        },
-        {
-          "label": "Measure",
-          "desc": "Get a real baseline number before changing anything — you can't prove improvement without one"
-        },
-        {
-          "label": "Analyze",
-          "desc": "Find the actual root cause — often a Fishbone diagram or simply asking 'why' five times in a row"
-        },
-        {
-          "label": "Improve",
-          "desc": "Test a specific fix on a small scale before rolling it out everywhere"
-        },
-        {
-          "label": "Control",
-          "desc": "Lock the improvement in with a checklist or SOP so the old, slower way doesn't quietly creep back"
-        }
-      ],
+      "h": "DMAIC — Three Worked EA Examples",
       "b": [
-        "Lean Six Sigma is really two methodologies fused together: Lean's obsession with eliminating waste, and Six Sigma's obsession with reducing defects through measurement. Together they follow the five-step DMAIC cycle above.",
-        "Lean names eight specific types of waste worth memorizing by the acronym DOWNTIME: Defects, Overproduction, Waiting, Non-utilized talent, Transportation, Inventory, Motion, Extra processing. Most admin waste in a real office falls under Waiting (approvals stuck in someone's inbox) and Extra Processing (re-entering the same data in three different systems).",
-        "Kaizen is the Lean principle of continuous, small improvement — not one big overhaul, but a habit of fixing small frictions the moment you notice them. This is closer to how most EAs actually improve their own workflows day to day than a formal DMAIC project ever is.",
-        "A real EA application: if client intake forms keep coming back incomplete, DMAIC looks like — Define: '30% of intake forms are missing required fields.' Measure: track the actual rejection rate for two weeks. Analyze: find that one specific field is confusing, not the whole form. Improve: reword just that field and re-test on a small batch. Control: make the reworded form the new standard template so nobody reverts to the old version.",
-        "You don't need a Six Sigma belt to use this. The value for an EA is having a repeatable way to fix a broken process instead of guessing — and the discipline of the 'Control' step, which is the one people skip and then wonder why the old problem came back three months later."
+        "Concrete EA example of 'Waiting' waste: if a contract sits for three days because it needs one partner's signature and that partner is often out, the fix isn't reminding harder — it's building a backup-approver rule into the process itself.",
+        "Concrete EA example of 'Motion' waste: if finding a signed NDA requires checking four different folders because filing habits vary by person, standardizing one filing location removes wasted motion permanently, not just for this one document.",
+        "Concrete EA example of DMAIC in miniature: Define — 'expense reports take too long to get approved.' Measure — track actual turnaround time for two weeks. Analyze — find it's always stuck at the same approval step. Improve — set up an auto-reminder at 48 hours. Control — review turnaround time monthly to confirm it holds.",
+        "A real EA application: if client intake forms keep coming back incomplete, DMAIC looks like — Define: '30% of intake forms are missing required fields.' Measure: track the actual rejection rate for two weeks. Analyze: find that one specific field is confusing, not the whole form. Improve: reword just that field and re-test on a small batch. Control: make the reworded form the new standard template so nobody reverts to the old version."
       ],
       "trainerCue": "Walk the room through the real client-intake-form example live, step by step, before asking them to apply DMAIC to a process from their own work. The abstract five letters mean nothing until they see it solve something concrete."
+    },
+    {
+      "h": "Lean's 8 Wastes & Kaizen",
+      "b": [
+        "Lean's core idea is the 8 Wastes (often remembered by the acronym DOWNTIME): Defects, Overproduction, Waiting, Non-utilized talent, Transportation, Inventory, Motion, Extra-processing. An EA doesn't need to memorize the acronym — but recognizing 'this step is pure waste' the moment you see it is exactly the instinct Lean is trying to build.",
+        "Most admin waste in a real office falls under Waiting (approvals stuck in someone's inbox) and Extra Processing (re-entering the same data in three different systems).",
+        "Kaizen is the Lean principle of continuous, small improvement — not one big overhaul, but a habit of fixing small frictions the moment you notice them. This is closer to how most EAs actually improve their own workflows day to day than a formal DMAIC project ever is.",
+        "You don't need a Six Sigma belt to use any of this. The real value for an EA is having a repeatable way to fix a broken process instead of guessing — and the discipline of the 'Control' step in particular, which is the one people skip and then wonder why the old problem came back three months later."
+      ],
+      "trainerCue": "Ask the room which of the 8 wastes they recognize most in their own work — Waiting and Extra Processing are almost always the answer, which is worth naming explicitly before moving on."
     },
     {
       "h": "Operational Optimization",
@@ -4160,6 +5073,75 @@ const DAY6 = {
         ]
       },
       "trainerCue": "Put the KPI table on screen and ask the room to guess which metric is hardest to actually hit consistently in real practice — usually Executive Inbox Response Time."
+    },
+    {
+      "h": "SOP Architecture & Trigger Mapping",
+      "fourPart": {
+        "corePrinciples": [
+          "A Standard Operating Procedure is a step-by-step guide built to standardize a task, reduce errors, ensure compliance, and speed up execution — its value comes from being followed consistently, not from existing on paper.",
+          "Every real SOP shares the same architecture: a Title & SOP ID, a stated Purpose, a defined Scope (who and what it covers), Definitions for any abbreviations used, the Step-by-Step Procedure itself, assigned Roles & Responsibilities, linked Forms/Templates/Tools, Compliance/Risk Notes, and a Revision History.",
+          "\"Trigger mapping\" means identifying exactly what event should cause someone to reach for this SOP — a well-scoped SOP tells you not just what to do, but precisely when it applies, so it doesn't get skipped when it's actually needed or misapplied when it isn't."
+        ],
+        "howTo": [
+          "Start every new SOP by identifying the specific task or process that needs standardizing, and write down why it needs one — \"why is this SOP necessary\" is the question that keeps an SOP focused rather than generic.",
+          "Define scope explicitly: which staff, which jurisdiction or department, which document or task types this SOP actually covers — a scope that's too broad becomes useless, too narrow means constant exceptions.",
+          "Write the procedure itself as numbered steps, a flowchart, or a checklist — never as a paragraph of prose, since prose is what people skip under time pressure.",
+          "Assign a specific trigger event to the SOP explicitly (e.g. \"whenever a new filing deadline is received\" or \"whenever a client requests a document\") — this is what makes the SOP something people reach for automatically, not just a document that exists."
+        ],
+        "bestPractices": [
+          "Pitfall: writing an SOP with no clear trigger. If nobody knows exactly when to use it, it won't get used consistently, however well-written the steps are.",
+          "Every SOP needs an owner — one person or role responsible for keeping it current — otherwise updates fall through the cracks and the document quietly goes stale.",
+          "Give every SOP a real ID and version number from the start (e.g. \"Deadline Management SOP — SOP-CA-001\") — this becomes essential the moment you have more than a handful of SOPs to track.",
+          "An SOP that's too long to actually reference in the moment defeats its own purpose — a numbered checklist someone can follow live beats an exhaustive document nobody opens under pressure."
+        ],
+        "discussionCase": "You're documenting an SOP for handling last-minute court filing deadlines. What's the actual trigger event that should cause someone to pull up this SOP, and what would the first three steps need to cover to be genuinely useful in the moment, not just accurate on paper?"
+      }
+    },
+    {
+      "h": "Hybrid Screen-Recording Workflow (Loom + Text)",
+      "fourPart": {
+        "corePrinciples": [
+          "Some processes are genuinely harder to document in text alone than to show — a screen-recording walkthrough (using a tool like Loom) captures exact click-paths and software navigation that a written list of steps often can't convey as clearly.",
+          "A hybrid approach — a short screen recording paired with a concise written summary — combines the strengths of both formats: the recording shows exactly what to do, the text makes it searchable, skimmable, and referenceable without replaying video.",
+          "The written component isn't optional or an afterthought — a video with no text summary is hard to search, hard to skim back through, and hard to keep current as a standalone SOP."
+        ],
+        "howTo": [
+          "Record a short, focused screen capture (ideally under 5 minutes) walking through the exact steps of the process, narrating what you're doing and why as you go — not just silently clicking through it.",
+          "Immediately after recording, write a companion text summary using the same numbered-step structure as any other SOP — this becomes the searchable, skimmable reference, with the video linked as the visual walkthrough.",
+          "Store both together in the same SOP repository entry, with the video clearly linked at the top and the text steps below it, so someone can either watch or read depending on what they need in the moment.",
+          "Keep recordings short and single-purpose — one recording per discrete process, rather than one long recording covering multiple unrelated tasks, since long recordings become as hard to navigate as long documents."
+        ],
+        "bestPractices": [
+          "Pitfall: recording a screen walkthrough and never writing the text summary. The recording alone isn't a complete SOP — it's the illustration for one.",
+          "When the underlying software or process changes, both the recording and the text need updating — an outdated recording showing an old interface is actively misleading, not just unhelpful.",
+          "Keep recordings accessible without requiring a special login or app where possible — a video walkthrough that's hard to access defeats the purpose of making a process easier to follow.",
+          "Use this hybrid format selectively — for genuinely visual, software-navigation-heavy processes, not for every SOP. A simple decision-tree SOP is often clearer as text alone."
+        ],
+        "discussionCase": "You need to document how to process a complex multi-step expense report in a specific accounting platform, involving several screens and a non-obvious approval routing. Would this genuinely benefit from the hybrid screen-recording approach, or would a well-written text SOP alone be just as effective? What would tip the decision either way?"
+      }
+    },
+    {
+      "h": "Maintenance, Auditing & Version Control",
+      "fourPart": {
+        "corePrinciples": [
+          "An SOP is never actually \"finished\" — it needs a defined lifecycle: creation, review and update, approval and implementation, monitoring and audit, and back to creation for the next revision.",
+          "Version control exists so that when an SOP changes, everyone can tell which version they're looking at and what specifically changed — an SOP with no version history creates real risk if an outdated copy is still circulating somewhere.",
+          "Auditing isn't a one-time check — it's the recurring mechanism that confirms an SOP is actually being followed, not just that it exists."
+        ],
+        "howTo": [
+          "Schedule a recurring review cadence for every SOP — quarterly or biannual is typical — rather than leaving updates to happen only when something goes wrong.",
+          "Track every revision in a Revision History Log: date, author, and exactly what changed — this is what makes it possible to reconstruct why a process works the way it currently does.",
+          "Trigger an off-cycle update whenever one of the real triggers hits: a law or regulation changes, a process improvement is identified, an error or near-miss reveals a gap, the underlying technology changes, or staff feedback consistently points to confusion.",
+          "Measure SOP adherence with real KPIs where possible — deadline adherence, error rates, filing accuracy — so \"is this SOP working\" has an actual answer, not just an impression."
+        ],
+        "bestPractices": [
+          "Pitfall: updating an SOP's content but not incrementing its version number. This is exactly how someone ends up working from an outdated copy without realizing it.",
+          "Keep SOPs in one central, accessible repository — cloud-based or an internal server — rather than scattered across individual people's files, where updates can't reliably reach everyone using them.",
+          "After any audit or operational review that surfaces a gap, close the loop by actually updating the relevant SOP — an audit finding that never makes it back into the document repeats itself next cycle.",
+          "Assign a specific owner to each SOP who's responsible for updates — without one, \"someone should update this eventually\" is how SOPs go stale."
+        ],
+        "discussionCase": "During a routine audit, you discover that three different team members are each following a slightly different version of the same filing SOP — none of them realized there was a discrepancy. What does this reveal about the current version control process, and what would you actually change to prevent it from happening again?"
+      }
     }
   ],
   "quickChecks": [
@@ -4176,7 +5158,7 @@ const DAY6 = {
       "r": "You can't fix a delay effectively until you know why it happened."
     },
     {
-      "afterIndex": 5,
+      "afterIndex": 10,
       "q": "On the KPI dashboard, which category does 'Filing Deadline Adherence (100%)' belong to?",
       "opts": [
         "Executive Productivity",
@@ -4442,10 +5424,7 @@ const DAY7 = {
       "h": "SOA Reconciliation",
       "b": [
         "SOA = Opening + Invoices − Payments ± Adjustments = Closing Balance.",
-        "If revenue doesn't match deposits, compare bank statements against revenue records first — don't recreate every report from scratch.",
-        "Discrepancy detection techniques: compare the ledger against the bank statement, confirm credits were applied correctly, and look specifically for reversed entries.",
-        "A reconciliation checklist should confirm: all invoices are listed, all payments are recorded, there are no unmatched balances, and every variance is explained.",
-        "Real case study: a payment applied to the wrong client resulted in an actual legal dispute — this is why duplicate-payment prevention (system detection, manual verification, approval thresholds) matters."
+        "If revenue doesn't match deposits, compare bank statements against revenue records first — don't recreate every report from scratch."
       ],
       "layout": "STAT",
       "statNumber": "Opening + Invoices − Payments ± Adjustments",
@@ -4453,7 +5432,16 @@ const DAY7 = {
       "trainerCue": "Work the SOA formula with real (or realistic) numbers on the board as a group before trainees try the reconciliation exercise solo."
     },
     {
-      "h": "Credit Cards, Tax Season & Working with Accountants",
+      "h": "Reconciliation Discrepancy Detection",
+      "b": [
+        "Discrepancy detection techniques: compare the ledger against the bank statement, confirm credits were applied correctly, and look specifically for reversed entries.",
+        "A reconciliation checklist should confirm: all invoices are listed, all payments are recorded, there are no unmatched balances, and every variance is explained.",
+        "Real case study: a payment applied to the wrong client resulted in an actual legal dispute — this is why duplicate-payment prevention (system detection, manual verification, approval thresholds) matters."
+      ],
+      "trainerCue": "Ask the room what they'd actually check first if a reconciliation came up $340 short — the answer reveals whether the checklist habit has genuinely landed."
+    },
+    {
+      "h": "Credit Cards & Card Applications",
       "layout": "THREEBOX",
       "boxes": [
         {"label":"Credit Card Payments", "desc":"Tracking due dates and statement review the same way as any other recurring payment — a missed card payment carries real fees and credit consequences"},
@@ -4462,11 +5450,17 @@ const DAY7 = {
       ],
       "b": [
         "Credit card payments follow the same discipline as every other recurring financial task in this program: a real due-date calendar, not memory, and a statement review before payment — not after — to catch anything that shouldn't be there.",
-        "When a credit card application is part of the task, the EA's role is precision: gathering exactly what's requested (not more, not less) and following the specific process the issuer requires, since financial applications are one place where 'close enough' documentation causes real delays.",
+        "When a credit card application is part of the task, the EA's role is precision: gathering exactly what's requested (not more, not less) and following the specific process the issuer requires, since financial applications are one place where 'close enough' documentation causes real delays."
+      ],
+      "trainerCue": "Ask the room how confident they'd feel today if an accountant asked for 'every receipt from the last 90 days' — the honest answer usually reveals whether records are being kept continuously or reconstructed under pressure."
+    },
+    {
+      "h": "Tax Season Support & Working with Accountants",
+      "b": [
         "Tax season support isn't a once-a-year task disguised as one — the actual EA value is in organizing receipts, invoices, and records continuously through the year, so that when the accountant asks for documentation, it's a retrieval task, not a reconstruction project.",
         "Liaising with accountants means being the reliable point of contact who can answer 'do you have X' quickly and accurately — which is only possible if the underlying records were kept current all along, connecting directly to the reconciliation discipline covered earlier in this day."
       ],
-      "trainerCue": "Ask the room how confident they'd feel today if an accountant asked for 'every receipt from the last 90 days' — the honest answer usually reveals whether records are being kept continuously or reconstructed under pressure."
+      "trainerCue": "Ask the room to describe what a truly continuous, year-round receipt-organizing habit would actually look like day to day — most people can describe the goal but not the daily mechanics, which is exactly the gap this topic closes."
     },
     {
       "h": "What an SOP Actually Needs",
@@ -4522,11 +5516,7 @@ const DAY7 = {
       "h": "QuickBooks How-Tos — Step by Step",
       "layout": "PROCESS",
       "b": [
-        "These four tasks cover the majority of what an EA actually touches in QuickBooks day to day — you don't need to know the whole platform, just these workflows cold.",
-        "The single most common new-user mistake is miscategorizing an expense (e.g. filing a client-reimbursable cost as a general office expense) — this quietly breaks both the client's invoice accuracy and the firm's own books. When in doubt, ask before categorizing, don't guess.",
-        "Reconciliation only 'finishes' when the difference shows exactly $0.00. If it doesn't, the fix is almost always a missing transaction or a duplicate — not forcing the numbers to match by adjusting an unrelated entry.",
-        "Every invoice should be checked against the engagement letter or contract terms before sending — QuickBooks will happily generate an invoice for the wrong rate if that's what you typed in.",
-        "If your firm uses QuickBooks Online (not Desktop), changes save automatically — there's no separate 'save file' step, which means a wrong entry needs to be corrected via a journal entry or edit, not undone with Ctrl+Z."
+        "These four tasks cover the majority of what an EA actually touches in QuickBooks day to day — you don't need to know the whole platform, just these workflows cold."
       ],
       "trainerCue": "If you have QuickBooks access, screen-share a live invoice creation and a live reconciliation instead of walking through this as slides — trainees retain the click-path far better watching it happen than reading the steps.",
       "processSteps": [
@@ -4547,6 +5537,16 @@ const DAY7 = {
           "desc": "Reports → search 'Accounts Receivable Aging Summary' → run it → scan the 61-90 and 90+ day columns first — those are the balances that need a follow-up call, not the current ones."
         }
       ]
+    },
+    {
+      "h": "QuickBooks Common Mistakes & Tips",
+      "b": [
+        "The single most common new-user mistake is miscategorizing an expense (e.g. filing a client-reimbursable cost as a general office expense) — this quietly breaks both the client's invoice accuracy and the firm's own books. When in doubt, ask before categorizing, don't guess.",
+        "Reconciliation only 'finishes' when the difference shows exactly $0.00. If it doesn't, the fix is almost always a missing transaction or a duplicate — not forcing the numbers to match by adjusting an unrelated entry.",
+        "Every invoice should be checked against the engagement letter or contract terms before sending — QuickBooks will happily generate an invoice for the wrong rate if that's what you typed in.",
+        "If your firm uses QuickBooks Online (not Desktop), changes save automatically — there's no separate 'save file' step, which means a wrong entry needs to be corrected via a journal entry or edit, not undone with Ctrl+Z."
+      ],
+      "trainerCue": "Ask the room to guess what percentage of QuickBooks errors they think come from miscategorization versus other causes — then reveal it's the single most common mistake, which usually surprises people."
     },
     {
       "h": "Contract-Aware Billing",
@@ -4581,7 +5581,7 @@ const DAY7 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 2,
+      "afterIndex": 5,
       "q": "Which SOP element answers \"who does this process apply to?\"",
       "opts": [
         "Purpose",
@@ -5500,10 +6500,7 @@ const DAY9 = {
     {
       "h": "Four SOPs That Keep Professional Development on Track",
       "b": [
-        "Event Registration SOP — verify legitimacy, confirm approval, record receipt.",
-        "Attendance Tracking SOP — monitor live, save certificates in an audit-ready folder.",
-        "Team Upskilling SOP — quarterly needs assessment, track ROI.",
-        "Reputation & Recognition SOP — track awards, keep bios current, escalate negative publicity fast."
+        "Each SOP exists to prevent a specific, predictable failure — missing a legitimate event, losing a certificate needed for an audit, spending on training with no way to prove it worked, or missing a real chance at recognition."
       ],
       "layout": "QUADRANT",
       "quadrants": [
@@ -5568,6 +6565,266 @@ const DAY9 = {
         "Measure each session against clear effectiveness metrics, not just attendance."
       ],
       "trainerCue": "Close by asking the room how THEY'D measure whether a training session (like this one) was actually effective — it's a nice meta moment to end professional-development content on."
+    },
+    {
+      "h": "Executive Time Blocking & Calendar Defense",
+      "fourPart": {
+        "corePrinciples": [
+          "Time blocking means treating an executive's calendar as a finite, defended resource — every hour is either protected for deep work, allocated to a specific commitment, or deliberately left open, never just 'whatever fills in.'",
+          "Calendar defense is the discipline of actively protecting those blocks after they're set — a block that anyone can bump for a lower-priority request isn't actually protecting anything.",
+          "The EA's job isn't just scheduling meetings — it's making the calendar reflect what actually matters, and then defending that reflection against constant pressure to erode it."
+        ],
+        "howTo": [
+          "Identify the executive's 2-3 genuine priority categories (e.g. client-facing work, strategic planning, family time) before touching the calendar at all — blocking time without knowing what it's protecting is just busywork.",
+          "Place recurring protected blocks first, before any meetings get scheduled around them — deep work time set after the calendar fills up never actually survives.",
+          "Set an explicit rule for what can and can't bump a protected block (e.g. 'only Tier 1 client escalations, confirmed by the EA first') so the defense isn't a judgment call made under pressure every single time.",
+          "When a real conflict does arise, offer the requester a genuine alternative slot rather than just declining — this preserves the relationship while still protecting the block.",
+          "Review weekly whether the protected blocks actually held — a block that gets bumped every week isn't a real block, it's a suggestion."
+        ],
+        "bestPractices": [
+          "The most common failure isn't forgetting to block time — it's blocking it and then approving every request that threatens it anyway, which trains everyone around the executive to ignore the blocks entirely.",
+          "A protected block needs a visible reason on the calendar (even a vague one like 'Focus Time — Do Not Book') so other people scheduling around the executive understand it's not just open space.",
+          "Pitfall: blocking time for 'flexibility' with no defined purpose. Unprotected, purposeless blocks get eaten first — always tie a block to a specific priority.",
+          "Executives themselves are often the ones who break their own defended time — part of the EA's role is holding the line even when the executive is tempted to say yes to one more thing."
+        ],
+        "discussionCase": "Elias has a standing Tuesday 2-4pm block for strategic case review — genuinely protected, no exceptions, for the last three months. A major client calls at 1:45pm asking for a 30-minute call \"right now\" about a time-sensitive but not truly urgent contract question. How do you handle this without either breaking the block or damaging the client relationship?"
+      }
+    },
+    {
+      "h": "High-Stakes Travel Disruption Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Travel disruption management is fundamentally a triage skill — the first job when a flight cancels or a connection is missed isn't fixing everything at once, it's figuring out what actually has to happen next and in what order.",
+          "The stakes of a disruption are rarely about the flight itself — they're about what the executive misses if the disruption isn't resolved: a deposition, a closing, a board meeting. Solve for the actual downstream consequence, not just \"get them on a plane.\"",
+          "A high-stakes disruption is exactly the moment an EA's preparation from calmer days pays off — the travel file, the backup contacts, and the known preferences are what make a fast, correct response possible under pressure."
+        ],
+        "howTo": [
+          "The instant a disruption is confirmed, identify the single most time-critical downstream commitment (the meeting, the hearing, the flight the executive absolutely cannot miss) — this becomes the fixed point everything else is solved around.",
+          "Check rebooking options directly with the airline app/website in parallel with calling — apps often surface options before a phone agent can, and having options ready speeds up any call that is needed.",
+          "If no direct rebooking preserves the fixed point, evaluate alternatives in order: a different airport, a different airline, ground transportation for the final leg, or — if genuinely unavoidable — informing the fixed-point commitment's other party of a likely delay before it becomes a surprise.",
+          "Communicate the actual plan to the executive in one clear message: what happened, what you're doing about it, and what they need to know or decide — not a stream of updates as you figure it out.",
+          "Once resolved, update every downstream party who was expecting the original schedule (drivers, hotels, the meeting host) so the fix doesn't create a second set of surprises."
+        ],
+        "bestPractices": [
+          "Never let the executive be the one to discover a disruption from an app notification — you should already be on it, or already have reached out, by the time they see it themselves.",
+          "Resist the urge to report every micro-update as you work the problem — a stressed executive needs the resolved plan, not a live narration of your search process.",
+          "Pitfall: fixing the immediate flight but forgetting the ripple effects — a rebooked arrival time can silently break a ground transportation pickup or a hotel check-in that no one re-confirmed.",
+          "Keep a standing note of the executive's real hard constraints (won't take redeyes, needs aisle seats, dietary needs for any meals involved) so a disruption-response decision doesn't accidentally violate a preference in the rush to fix the bigger problem."
+        ],
+        "discussionCase": "Elias's connecting flight to a closing-day meeting gets cancelled with no same-day rebooking available on that airline, and the meeting cannot be moved. You have two imperfect options: a red-eye on a different airline that gets him in with two hours to spare, or a private car for the final leg that costs significantly more but lets him sleep and arrive rested. How do you decide, and how do you present the decision to him?"
+      }
+    },
+    {
+      "h": "Board Meeting Preparation & Minute Drafting",
+      "fourPart": {
+        "corePrinciples": [
+          "Board meeting preparation exists to make sure decisions get made efficiently once the board is actually in the room — most of the real work happens in the days before the meeting, not during it.",
+          "Minutes are a legal and governance record, not a transcript — their job is to accurately capture what was decided and by what authority, not to reproduce the conversation.",
+          "Both preparation and minute-taking demand the same underlying discipline as everything else in this program: precision, discretion, and getting the details right the first time, since board-level errors carry outsized consequences."
+        ],
+        "howTo": [
+          "Confirm the agenda with the executive (and often the board chair) well in advance, and circulate board materials with enough lead time for members to actually review them — last-minute packets undermine the whole meeting.",
+          "Assemble the board packet in a consistent structure every time (prior minutes for approval, agenda, supporting documents for each agenda item) so returning board members always know where to find what they need.",
+          "During the meeting, capture: who was present (and who was absent), each motion made, who seconded it, and the exact outcome of the vote — this is the legally load-bearing part of the minutes.",
+          "Draft the minutes promptly after the meeting while the details are fresh, using neutral, factual language — record what was decided, not who argued for what or how the discussion unfolded.",
+          "Circulate draft minutes for review and correction before they're finalized and filed — minutes are typically approved as an agenda item at the next meeting, so accuracy now prevents a correction fight later."
+        ],
+        "bestPractices": [
+          "Never record minutes as a narrative of the discussion — capturing opinions, disagreements, or the back-and-forth exposes the board to unnecessary legal risk if the minutes are ever reviewed in litigation or an audit.",
+          "Pitfall: vague motion language. \"The board discussed the budget\" is not a minute-worthy record — \"Motion to approve the FY26 budget as presented, seconded, passed 5-0\" is.",
+          "Confidential or sensitive board discussions may warrant a note that the topic was discussed without capturing specifics — check with the executive or general counsel on what's appropriate to formally record versus handle separately.",
+          "A board packet that arrives too close to the meeting isn't just an inconvenience — it can genuinely undermine a decision's legitimacy if a member reasonably argues they didn't have time to review what they were voting on."
+        ],
+        "discussionCase": "During a board meeting, a motion is raised, discussed at length with real disagreement among members, amended once, and finally passed 4-1. You're taking minutes live. What specifically do you need to capture accurately, and what should you deliberately leave out of the written record?"
+      }
+    },
+    {
+      "h": "Business Structures & Legal Entities",
+      "fourPart": {
+        "corePrinciples": [
+          "Every US business operates under a specific legal structure, and that choice shapes liability exposure, tax treatment, and administrative burden for the life of the business — it's a foundational decision, not paperwork to handle quickly.",
+          "The core structures an EA will encounter: Sole Proprietorship (no legal separation from the owner), Partnership (shared ownership, shared liability), LLC (Limited Liability Company — liability protection with flexible taxation), and Corporation (C-Corp or S-Corp — full liability protection, more formal governance requirements).",
+          "The single most important distinction across all of these is liability: does a lawsuit or debt against the business put the owner's personal assets at risk, or does the entity itself absorb that exposure?"
+        ],
+        "howTo": [
+          "When supporting an executive setting up a new venture, first identify the actual goals: personal liability protection, tax treatment preference, number of owners, and plans to raise outside investment — these drive the structure choice more than any general rule of thumb.",
+          "A sole proprietorship or general partnership requires no formal filing to exist, but offers zero liability separation — appropriate only for very low-risk, single-owner situations.",
+          "An LLC is the most common choice for small-to-mid-size businesses wanting liability protection without full corporate formality — it requires state filing (Articles of Organization) but has flexible management and tax structure.",
+          "A C-Corp is typically chosen when the business plans to raise venture capital or eventually go public, since it supports multiple classes of stock and institutional investment structures that an LLC generally cannot.",
+          "An S-Corp is a tax election (not a separate entity type) available to eligible corporations or LLCs, allowing profits to pass through to owners' personal tax returns while still retaining liability protection — flag this distinction, since it's frequently confused with a standalone entity type."
+        ],
+        "bestPractices": [
+          "This decision should always involve an actual attorney and accountant — an EA's role is preparing the executive with informed questions and organizing the resulting paperwork, never recommending a specific structure.",
+          "Pitfall: treating 'LLC' as a generic catch-all answer. The right structure depends entirely on the specific goals (liability, tax, investment plans) — defaulting to LLC without confirming those goals can create real problems later.",
+          "Keep a clear record of which structure was chosen and why, since this decision affects nearly every downstream task covered in this day's remaining topics — formation, licensing, and financial infrastructure all depend on it.",
+          "Structures can be changed later, but conversion (e.g. sole proprietorship to LLC, LLC to C-Corp) is its own formal process with real cost and complexity — it's rarely as simple as \"just switch.\""
+        ],
+        "discussionCase": "Elias is considering launching a separate arbitration consulting practice alongside the firm. He wants personal liability protection, plans to bring on one additional partner within the year, and has no plans to seek outside investment. Based only on these stated goals — not on giving him legal advice — what questions would you want confirmed with his attorney before any paperwork moves forward?"
+      }
+    },
+    {
+      "h": "Entity Formation Protocols",
+      "fourPart": {
+        "corePrinciples": [
+          "Entity formation is the formal, state-level process of legally creating a business structure — the business doesn't exist as that entity type until the correct filing is accepted by the state.",
+          "Formation is administrative, but it isn't optional or symbolic — a business operating as an LLC or corporation before formation is actually complete has no real liability protection yet, whatever the founders may believe.",
+          "The exact filing requirements vary by state and entity type, but the underlying protocol — choose a name, file formation documents, appoint a registered agent, adopt internal governance documents — is consistent nationwide."
+        ],
+        "howTo": [
+          "Confirm the business name is available and compliant with the state's naming rules (often requiring an identifier like \"LLC\" or \"Inc.\" in the name) before filing anything — a rejected filing over a name conflict costs real time.",
+          "File the formation document with the correct state agency — Articles of Organization for an LLC, Articles of Incorporation for a corporation — along with the filing fee, which varies significantly by state.",
+          "Appoint a registered agent: a person or service authorized to receive legal and state correspondence on the business's behalf. This is a legal requirement in every state, not an optional convenience.",
+          "Draft internal governance documents — an Operating Agreement for an LLC, or Bylaws for a corporation — even though many states don't require filing these publicly; they govern internal decision-making and are often required by banks or investors later.",
+          "Apply for an Employer Identification Number (EIN) from the IRS once formation is confirmed — this is required before the business can open a bank account, hire employees, or file taxes as the new entity."
+        ],
+        "bestPractices": [
+          "Keep the confirmed formation date and state filing number in the business's permanent records — this is referenced repeatedly for banking, licensing, and tax purposes going forward.",
+          "Pitfall: operating under the new business name (signing contracts, opening accounts) before the state has actually confirmed formation. Wait for confirmation, not just submission.",
+          "Different states have meaningfully different costs, timelines, and annual requirements (some require annual reports, some don't) — where to form is itself a decision, not automatically the state where the business will operate.",
+          "A missing or lapsed registered agent can result in the business losing good standing with the state without anyone noticing until a real problem surfaces — this is a recurring compliance item, not a one-time task."
+        ],
+        "discussionCase": "You're coordinating the formation of Elias's new consulting LLC. The state confirms the Articles of Organization were accepted on a Tuesday, but the attorney's office is still finalizing the Operating Agreement. A potential client wants to sign an engagement letter with the new entity by Friday. What do you need to confirm is actually in place before that engagement letter can be safely signed under the new entity's name?"
+      }
+    },
+    {
+      "h": "Federal/State/Financial Infrastructure",
+      "fourPart": {
+        "corePrinciples": [
+          "Once an entity is formed, it needs its own financial and regulatory infrastructure — a newly formed business with no EIN, no bank account, and no tax registrations isn't actually operational yet, just legally created.",
+          "This infrastructure exists at three distinct levels — federal (IRS), state (state tax and labor agencies), and financial (banking) — and each has its own separate setup process that formation alone doesn't complete.",
+          "Keeping these systems properly separated from day one (especially business and personal finances) is what preserves the liability protection the entity structure was chosen for in the first place."
+        ],
+        "howTo": [
+          "Obtain the EIN from the IRS immediately after formation is confirmed — this federal tax ID is required for nearly every subsequent step and is free to obtain directly from the IRS.",
+          "Register with the relevant state tax agency for any applicable state taxes (income, sales, franchise tax depending on the state and business type) and with the state labor/unemployment agency if the business will have employees.",
+          "Open a dedicated business bank account using the EIN and formation documents — never route business income or expenses through a personal account, even temporarily, since this undermines the liability separation.",
+          "Set up a bookkeeping system (even a simple one) before the first transaction happens, not after — reconstructing financial records after the fact is far harder than maintaining them from day one.",
+          "If the business will have employees, register for state and federal payroll tax withholding before the first paycheck is issued — this has hard compliance deadlines, not a grace period."
+        ],
+        "bestPractices": [
+          "Commingling personal and business funds — even briefly, even for a \"small\" expense — is one of the most common ways a founder accidentally undermines their own liability protection. Keep the separation absolute from the very first transaction.",
+          "Pitfall: assuming state tax registration is automatic upon formation. It's a separate, additional step in every state — formation and tax registration are not the same filing.",
+          "Keep copies of every federal and state registration confirmation in the business's permanent file — these are referenced repeatedly for licensing, banking, and any future audits.",
+          "If the business operates in multiple states, each state where it has a genuine business presence may require its own separate tax registration — this is easy to miss when a business expands beyond its home state."
+        ],
+        "discussionCase": "Elias's new consulting LLC has its EIN and a business bank account is being opened this week. He mentions he already paid the filing attorney's invoice from his personal credit card \"just to get it done faster,\" and plans to reimburse himself later. What's the actual risk in this, and what would you want to help him do about it before it becomes a habit?"
+      }
+    },
+    {
+      "h": "Licensing & Compliance",
+      "fourPart": {
+        "corePrinciples": [
+          "Formation creates the entity; licensing gives it legal permission to actually operate in its specific industry and location — a fully formed business without the right licenses can still be operating illegally.",
+          "Licensing requirements are layered: federal (for regulated industries), state (professional and general business licenses), and local (city/county permits) — most businesses need to check all three, not just one.",
+          "Compliance doesn't end at initial licensing — most licenses and permits require renewal, and many industries have ongoing regulatory obligations that continue for the life of the business."
+        ],
+        "howTo": [
+          "Identify whether the industry requires a federal license (relatively rare — mainly regulated sectors like broadcasting, alcohol, firearms, aviation) before assuming state/local licensing alone is sufficient.",
+          "Check state-level requirements: a general business license in some states, plus any profession-specific license (legal, medical, financial services, real estate, and similar regulated professions all require these).",
+          "Check local requirements: many cities and counties require a local business license or permit separate from state registration, plus zoning compliance if there's a physical location involved.",
+          "Build a compliance calendar tracking every license and permit's renewal date the moment each one is obtained — a lapsed license discovered during an audit or client engagement is a much worse problem than a routine renewal.",
+          "Revisit licensing requirements whenever the business changes materially — a new service line, a new state of operation, or a new physical location can each trigger licensing obligations that didn't exist before."
+        ],
+        "bestPractices": [
+          "Never assume a business is fully compliant just because it's been operating without incident — many licensing gaps only surface during an audit, a client's due diligence, or a dispute, often at the worst possible time.",
+          "Pitfall: treating licensing as a one-time setup task. It's a recurring compliance responsibility, structurally identical to the CLE tracking and compliance-calendar disciplines covered elsewhere in this day.",
+          "When in doubt about whether a specific license applies, confirm with the state's business licensing portal or an attorney rather than guessing — the cost of checking is trivial compared to the cost of operating without a required license.",
+          "Keep every license and permit — active, pending, and expired — in one centralized reference, the same way this program teaches maintaining any other compliance-critical record."
+        ],
+        "discussionCase": "Elias's consulting LLC has been operating for two months on formation and tax registration alone. You're reviewing the file and realize no one has confirmed whether his state requires a specific professional consulting license for the type of advisory work he's doing. How do you approach raising this now, and what would you want to have confirmed before his next client engagement?"
+      }
+    },
+    {
+      "h": "Video Conferencing: Platform Admin (Zoom/Teams/Meet)",
+      "fourPart": {
+        "corePrinciples": [
+          "Administering video conferencing platforms is a distinct skill from just attending a call — it means owning the settings, scheduling, and account-level configuration that make every meeting on that platform run smoothly for everyone else.",
+          "Different platforms (Zoom, Microsoft Teams, Google Meet) have meaningfully different admin capabilities and quirks — genuine platform literacy means knowing your organization's primary platform well, not just knowing that video calls exist.",
+          "Most platform-admin problems are preventable with correct setup ahead of time — waiting rooms, registration settings, recording permissions — rather than needing to be solved live during a meeting."
+        ],
+        "howTo": [
+          "Confirm the meeting's core settings before scheduling: waiting room or lobby on/off, who can share screens, whether recording is enabled and who's notified, and registration requirements if it's a larger event.",
+          "Build a pre-meeting checklist specific to the platform being used — test webinar/platform access, confirm login credentials, download any needed materials, and confirm the agenda is attached.",
+          "Know how to manage participants live: muting, removing a disruptive participant, promoting someone to co-host or presenter, and switching between screen-share sources without fumbling.",
+          "Keep account-level settings (default meeting durations, recording storage location, security defaults) reviewed periodically rather than left on whatever they defaulted to originally."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming default platform settings are fine for every meeting type. A sensitive internal discussion and a public webinar need very different security settings, and using the same defaults for both is a real risk.",
+          "Test any new or unfamiliar meeting format (a webinar, a large panel, breakout rooms) before the first time it's needed live — the first attempt at a new feature shouldn't be during an actual high-stakes meeting.",
+          "Keep login credentials and platform access organized and available to a backup person — a platform-admin bottleneck where only one person can start or manage meetings is a real operational risk.",
+          "Document platform-specific quirks you've learned (screen-share limitations, recording storage rules) so they don't need to be rediscovered by the next person to administer that platform."
+        ],
+        "discussionCase": "Elias needs to host a confidential internal strategy call with senior partners, but the calendar invite went out through a general meeting link with no waiting room or registration required. What would you want changed before the call, and how would you raise it given the invite already went out?"
+      }
+    },
+    {
+      "h": "Live Event Moderation",
+      "fourPart": {
+        "corePrinciples": [
+          "Live event moderation is the active, real-time management of a virtual event while it's happening — distinct from the setup work of platform admin, this is what you're doing during the actual call.",
+          "A moderator's job is to keep the event running smoothly for the audience and the presenter simultaneously — watching for technical issues, managing the flow, and handling anything unexpected without disrupting the presenter's focus.",
+          "The Day-of-Event sequence follows a consistent pattern: Reminder → Login Confirmed → Attendance Verified → Monitor → Document → Follow-Up — each step exists to catch a specific, predictable failure point."
+        ],
+        "howTo": [
+          "Before the event starts, confirm the executive's login, verify audio and video are working, and take an attendance screenshot if tracking is needed — catching a technical problem before the event starts is far better than during it.",
+          "During the event, actively monitor for issues rather than just watching passively — audio drops, screen-share failures, or chat/Q&A questions that need routing to the presenter.",
+          "For events requiring attendance verification (like CLE-eligible sessions), track participation actively: confirm Q&A engagement if required, track minimum attendance time, and note actual session start and end times.",
+          "Immediately after the event, complete the post-event sequence: confirm certificates or attendance records if applicable, verify correct credit hours were captured, and document the session for the record."
+        ],
+        "bestPractices": [
+          "Pitfall: moderating passively and only reacting once something has already gone wrong. Active monitoring catches most issues before they become visible to the audience.",
+          "Keep a visible checklist during the event rather than trying to remember every step — live moderation has too many simultaneous demands to rely on memory alone.",
+          "Document technical issues as they happen, even minor ones — this record is what makes the Technical Troubleshooting process (covered next) actually improve over time.",
+          "Speaking-engagement events need extra oversight: confirm introduction accuracy, ensure presentation materials are loaded, confirm recording availability, and document audience size."
+        ],
+        "discussionCase": "You're moderating a webinar where Elias is the featured speaker, and ten minutes in, his audio starts cutting out intermittently. The audience is starting to comment about it in the chat. What do you actually do, in what order, without disrupting his presentation more than necessary?"
+      }
+    },
+    {
+      "h": "Executive Meeting Etiquette",
+      "fourPart": {
+        "corePrinciples": [
+          "Video meeting etiquette for executive-level calls is a real professional skill, not just following generic Zoom manners — the standard is higher because the stakes and the audience typically are too.",
+          "The EA/PA's own conduct on a call reflects on the executive, whether or not that's fair — professional presence on video matters even when you're not the one presenting.",
+          "Etiquette here isn't about rigid formality — it's about removing friction and distraction so the actual content of the meeting gets the attention it deserves."
+        ],
+        "howTo": [
+          "Prepare the executive with a brief pre-call note covering the agenda, expected duration, participants and their roles, and the meeting format — this is the same preparation discipline as any other executive briefing.",
+          "Join executive calls slightly early to confirm technology is working before the executive joins — discovering a login or audio problem should never happen after the executive is already waiting.",
+          "Keep your own presence professional and unobtrusive when supporting rather than leading a call — camera framing, background, and mute discipline all matter.",
+          "Manage the mechanics quietly in the background (muting a noisy participant, sharing a document, monitoring chat) so the executive can focus entirely on the conversation itself."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming meeting etiquette is obvious and doesn't need active attention. Small lapses (an unmuted background noise, a late join, an unprepared executive) are more noticeable and more costly on executive-level calls.",
+          "Send reminders 24-48 hours before an important call with any prep materials attached — the reminder itself is part of the etiquette, not just a courtesy.",
+          "Confirm participants and their roles in advance where possible, so the executive isn't caught off-guard by who's actually in the room.",
+          "Never let a technical or scheduling issue become the executive's problem to solve live — that's exactly what the preparation and moderation work exists to prevent."
+        ],
+        "discussionCase": "Elias has an important video call with a prospective client, and you notice thirty seconds before it starts that the meeting link in his calendar is for the wrong time zone — the client is actually expecting the call an hour earlier and may already be waiting. What do you do right now?"
+      }
+    },
+    {
+      "h": "Video Conferencing: Technical Troubleshooting",
+      "fourPart": {
+        "corePrinciples": [
+          "Most video conferencing technical problems fall into a small number of predictable categories — login failures, audio/video issues, screen-share problems — which means a calm, structured troubleshooting approach beats panic almost every time.",
+          "The goal during a live technical issue is rapid triage, not a perfect diagnosis — get the call functional again first, understand exactly what went wrong afterward.",
+          "Documenting technical issues after they happen is what turns troubleshooting from a one-time fix into an improving system, the same continuous-improvement discipline covered elsewhere in this program."
+        ],
+        "howTo": [
+          "For a login failure specifically: verify the correct link is being used, check browser compatibility, and if it's still not resolved, contact the platform provider's support directly rather than continuing to guess.",
+          "For audio or video issues, work through the most common causes in order: check the correct device is selected in settings, confirm the app has permission to access camera/microphone, and try leaving and rejoining the meeting before more drastic steps.",
+          "Have a backup communication channel ready before any high-stakes call (a phone number, a secondary messaging app) so a total platform failure doesn't mean total communication failure.",
+          "Document every technical issue that occurs — what happened, what fixed it, how long it took — so recurring problems become visible and preventable rather than repeatedly surprising."
+        ],
+        "bestPractices": [
+          "Pitfall: trying every possible fix at once instead of working through likely causes in order. Systematic troubleshooting is faster than random troubleshooting, even under pressure.",
+          "Keep the platform provider's support contact readily available before you need it — searching for support contact information during an active issue wastes valuable time.",
+          "For any executive-level call, do a technical test run in advance for unfamiliar setups (a new location, a new device, an unfamiliar platform) rather than discovering problems live.",
+          "A calm, clear explanation to participants during a technical delay (\"we're resolving an audio issue, one moment\") maintains professionalism better than silence or visible panic."
+        ],
+        "discussionCase": "Fifteen minutes before a critical client call, you discover the meeting platform is down for planned maintenance you weren't aware of. What's your actual triage sequence in the next five minutes to make sure the call still happens on time?"
+      }
     }
   ],
   "quickChecks": [
@@ -5909,12 +7166,15 @@ const DAY10 = {
     {
       "h": "The Executive Personal Brand Style Guide",
       "layout": "ICONLIST",
+      "icons": [
+        {"icon":"🎯", "label":"North Star", "desc":"The primary goal (thought leadership, recruiting, networking) and the 3 key topics the executive is the 'expert' in"},
+        {"icon":"🗣", "label":"Voice & Tone", "desc":"Point of view (1st vs. 3rd person), emoji use, and punctuation rules — written down, not left to instinct"},
+        {"icon":"🚫", "label":"The 'Never' List", "desc":"Banned topics, banned buzzwords, and formatting no-gos (e.g. no more than 5 hashtags)"},
+        {"icon":"💬", "label":"Engagement Protocol", "desc":"Who gets a reply, how to handle trolls, and the approval workflow"},
+        {"icon":"📸", "label":"Visual Standard", "desc":"Roughly 70% candid/authentic content, 30% polished (professional headshots for major announcements)"}
+      ],
       "b": [
-        "Define the North Star first: what's the primary goal (thought leadership, recruiting, networking) and 3 key topics the executive is the 'expert' in.",
-        "Voice and Tone table: point of view (1st vs. 3rd person), emoji use, and punctuation rules should all be written down, not left to instinct.",
-        "The 'Never' List matters as much as the style guide — banned topics, banned buzzwords, and formatting no-gos (e.g., no more than 5 hashtags).",
-        "Engagement Protocol defines who gets a reply, how to handle trolls, and the approval workflow (e.g., 'EA drafts, executive approves via WhatsApp').",
-        "Visual standard: aim for roughly 70% candid/authentic content (mid-speech, at the desk, traveling) and 30% polished (professional headshots for major announcements)."
+        "A style guide only works if it's actually written down somewhere everyone drafting content can reference — an unwritten 'sense' of the brand voice doesn't transfer between people."
       ],
       "trainerCue": "Read the 'Never List' concept out loud and ask the room to draft one item for a hypothetical executive's own Never List on the spot — it makes the concept concrete fast."
     },
@@ -5965,12 +7225,18 @@ const DAY10 = {
         ]
       },
       "b": [
-        "Defining a voice is the easy part — a single workshop can produce a good voice guide. Maintaining it across months, multiple contributors, and dozens of posts is the actual discipline.",
+        "Defining a voice is the easy part — a single workshop can produce a good voice guide. Maintaining it across months, multiple contributors, and dozens of posts is the actual discipline."
+      ],
+      "trainerCue": "Ask the room to rewrite one generic-voice line from the right column into Elias's actual voice, live — this is a much faster way to internalize a voice than reading examples passively."
+    },
+    {
+      "h": "Making a Voice Guide Actually Stick",
+      "b": [
         "A written style guide should give concrete 'this, not that' examples like the ones above, not just adjectives — 'confident' means nothing to a new contributor without a real sentence showing what confident looks like versus what it doesn't.",
         "Messaging guidelines are a layer above tone: they define the specific claims and framing that are always used consistently — e.g., always describing the firm the same way, never contradicting a stated position from post to post.",
         "The maintenance mechanism matters as much as the guide itself: someone needs to actually review drafts against the guide before publishing, or the guide quietly stops being followed within a month."
       ],
-      "trainerCue": "Ask the room to rewrite one generic-voice line from the right column into Elias's actual voice, live — this is a much faster way to internalize a voice than reading examples passively."
+      "trainerCue": "Ask who, specifically, would review drafts against the guide in the room's own organization — if nobody has a clear answer, that's the actual gap this topic is pointing at."
     },
     {
       "h": "Visual Brand Assets — Sample Color Palette",
@@ -5982,12 +7248,18 @@ const DAY10 = {
         {"name":"Warm Ivory", "hex":"#F5F1E8", "use":"Background — neutral canvas that doesn't compete with navy or gold"}
       ],
       "b": [
-        "A brand's visual identity isn't just a logo — it's a small, deliberately limited set of colors, fonts, and imagery rules that make every piece of content instantly recognizable as the same brand, even without a name attached.",
+        "A brand's visual identity isn't just a logo — it's a small, deliberately limited set of colors, fonts, and imagery rules that make every piece of content instantly recognizable as the same brand, even without a name attached."
+      ],
+      "trainerCue": "If your organization already has a real brand palette, swap it in here and have the room evaluate whether it actually follows the 'one dominant, one accent, one text, one background' discipline — most real-world palettes don't, and spotting why is a useful exercise."
+    },
+    {
+      "h": "Brand Consistency: Palette, Typography & Imagery",
+      "b": [
         "The palette above follows a common, reliable pattern: one dominant color, one accent used sparingly, one text color, one background — resist the urge to add a fifth 'just in case' color, since restraint is what keeps a brand looking deliberate rather than random.",
         "Typography works the same way: pick one heading font and one body font, and use them everywhere — mixing fonts across posts is one of the fastest ways to make a brand look unmanaged.",
         "Imagery rules matter as much as color: decide up front what's off-limits (generic stock-photo clichés, overly casual snapshots) so every contributor is choosing images against the same standard, not their own personal taste."
       ],
-      "trainerCue": "If your organization already has a real brand palette, swap it in here and have the room evaluate whether it actually follows the 'one dominant, one accent, one text, one background' discipline — most real-world palettes don't, and spotting why is a useful exercise."
+      "trainerCue": "Ask the room to spot a real brand (their own organization's, or one they follow) that mixes fonts or colors inconsistently across posts — noticing it in the wild makes the restraint principle land better than the abstract rule alone."
     },
     {
       "h": "Platform Proficiencies — Tool-Specific Best Practices",
@@ -5998,13 +7270,19 @@ const DAY10 = {
         {"label":"Newsletter Platforms", "desc":"Mailchimp, ConvertKit, Substack — list segmentation, send-time optimization, and reading basic open/click-rate reports"}
       ],
       "b": [
-        "Being 'good at social media' isn't one skill — it's platform literacy across several genuinely different tools, each with its own conventions, audience expectations, and technical quirks.",
+        "Being 'good at social media' isn't one skill — it's platform literacy across several genuinely different tools, each with its own conventions, audience expectations, and technical quirks."
+      ],
+      "trainerCue": "If your organization uses specific tools (a particular CMS, a particular email platform), do a 10-minute live screen-share of the actual publishing flow — abstract platform literacy is far less useful than seeing the real click-path once."
+    },
+    {
+      "h": "Platform Details & the One Rule That Applies to All Three",
+      "b": [
         "On social platforms: LinkedIn rewards professional, text-forward posts with a clear point in the first two lines; Instagram rewards visual-first content with captions that support rather than carry the post; X/Twitter rewards brevity and timeliness over polish.",
         "On CMS platforms, the core EA-relevant skill is making a routine content update (a new page, a swapped image, a corrected typo) without needing a developer — most platforms support this through a visual editor, but every platform's editor works slightly differently.",
         "On newsletter platforms, the most common EA-relevant tasks are: building a segmented list (not blasting everyone the same email), scheduling around actual audience time zones, and reading a basic performance report to see whether an email actually got opened and clicked, not just sent.",
         "A practical rule across all three categories: before touching a live/production account, always test in a draft or preview mode first — a typo in a draft is invisible; a typo already sent to a real list is not."
       ],
-      "trainerCue": "If your organization uses specific tools (a particular CMS, a particular email platform), do a 10-minute live screen-share of the actual publishing flow — abstract platform literacy is far less useful than seeing the real click-path once."
+      "trainerCue": "Emphasize the draft-first rule explicitly — ask if anyone in the room has a story of something going out live that shouldn't have. Nearly everyone does, and it makes the rule concrete."
     },
     {
       "h": "The Content Calendar & Publishing Workflow",
@@ -6039,12 +7317,18 @@ const DAY10 = {
       "statNumber": "(Likes + Comments + Shares) ÷ Followers × 100",
       "statLabel": "= Engagement Rate",
       "b": [
-        "Worked example: 120 likes + 15 comments + 10 shares ÷ 4,000 followers × 100 = 3.6%.",
+        "Worked example: 120 likes + 15 comments + 10 shares ÷ 4,000 followers × 100 = 3.6%."
+      ],
+      "trainerCue": "Do the engagement-rate calculation together as a group, live, with the room's own numbers if anyone has real social data handy — nothing beats real numbers for making a formula stick."
+    },
+    {
+      "h": "Engagement Rate Benchmarks & Interpretation",
+      "b": [
         "A smaller account with a higher rate can be the stronger performer — rate matters more than raw counts.",
         "On LinkedIn specifically, 2–5% organic engagement is healthy; above 7% means the post is going viral within its professional niche.",
         "Watch Reach vs. Engagement together: high reach with low engagement means the hook or audience is wrong; low reach with high engagement means a small, loyal following the algorithm will likely start pushing further."
       ],
-      "trainerCue": "Do the engagement-rate calculation together as a group, live, with the room's own numbers if anyone has real social data handy — nothing beats real numbers for making a formula stick."
+      "trainerCue": "Ask the room to guess where their own organization's typical LinkedIn posts fall on the 2-5%/7%+ scale before revealing real numbers, if available — most people overestimate or have never actually checked."
     },
     {
       "h": "Audience Psychology & Pain Points",
@@ -6076,15 +7360,23 @@ const DAY10 = {
     {
       "h": "SEO, GEO & Funneling for Executives",
       "layout": "ICONLIST",
+      "icons": [
+        {"icon":"🔍", "label":"SEO", "desc":"Making sure the right people find the executive on Google — natural keyword phrases, backlinks from podcast/guest-blog appearances"},
+        {"icon":"🤖", "label":"GEO", "desc":"Getting AI tools like ChatGPT, Gemini, and Perplexity to actually recommend the executive when someone asks a relevant question"},
+        {"icon":"🔽", "label":"Funneling", "desc":"Top of funnel is awareness (social, PR), middle is interest (newsletter, lead magnets), bottom is action (booking link, 24-hour follow-up)"},
+        {"icon":"📊", "label":"Monthly Scorecard", "desc":"Domain Authority, AI citation mentions, funnel drop-off rate, and search volume for the executive's name"}
+      ],
       "b": [
-        "SEO (Search Engine Optimization) makes sure the right people find the executive on Google — an EA manages the 'inputs' that feed this: natural keyword phrases, backlinks from podcast/guest-blog appearances.",
-        "Run a monthly 'Google Yourself' audit in Incognito mode — if an outdated profile or old blog post is outranking the executive's current site, update the metadata to compete.",
-        "GEO (Generative Engine Optimization) is the newer discipline: getting AI tools like ChatGPT, Gemini, and Perplexity to actually recommend the executive when someone asks a relevant question.",
-        "GEO tactics include structured data/schema markup, FAQ-style 'direct answer' content, and consistent verbatim bio details across LinkedIn, website, and speaker pages (inconsistency hurts the AI 'trust score').",
-        "Funneling turns a click into a client: Top of funnel (awareness) is social posting and PR; Middle (interest) is the newsletter and lead magnets; Bottom (action) is the booking link, with follow-up within 24 hours.",
-        "Report progress with a monthly Digital Health Scorecard: Domain Authority, AI citation mentions, funnel drop-off rate, and search volume for the executive's name."
+        "Run a monthly 'Google Yourself' audit in Incognito mode — if an outdated profile or old blog post is outranking the executive's current site, update the metadata to compete."
       ],
       "trainerCue": "GEO is likely the newest concept in the room — pause here longer than the slide count suggests you should, and ask directly: 'Has anyone actually asked ChatGPT or Perplexity to recommend a business or person?' Most have, and don't realize it's the same mechanism."
+    },
+    {
+      "h": "GEO Tactics & Consistency",
+      "b": [
+        "GEO tactics include structured data/schema markup, FAQ-style 'direct answer' content, and consistent verbatim bio details across LinkedIn, website, and speaker pages (inconsistency hurts the AI 'trust score')."
+      ],
+      "trainerCue": "Ask the room to check whether their own executive's bio is worded identically across LinkedIn, the firm website, and any speaker pages — small wording differences are more common than people expect, and this is exactly what hurts GEO trust."
     },
     {
       "h": "Copywriting vs. Blog Writing",
@@ -6125,7 +7417,7 @@ const DAY10 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 5,
+      "afterIndex": 11,
       "q": "A post gets 200 likes, 20 comments, 30 shares on an account with 5,000 followers. What's the Engagement Rate?",
       "opts": [
         "2%",
@@ -6137,7 +7429,7 @@ const DAY10 = {
       "r": "(200+20+30) ÷ 5,000 × 100 = 5%."
     },
     {
-      "afterIndex": 9,
+      "afterIndex": 17,
       "q": "A campaign spends $300 and generates 30 leads. What's the Cost per Lead?",
       "opts": [
         "$3",
@@ -6443,8 +7735,8 @@ const CAL_EVENTS = [
   {t:"Paralegal Check-in", day:"Mon", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Internal"},
   {t:"Discovery Deadline Review", day:"Mon", s:15.75, e:16.75, p:"High", loc:"Virtual", type:"Case Team"},
   {t:"Co-Counsel Sync — Reyes Group", day:"Mon", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Case Team"},
-  {t:"Mail & Filing Review", day:"Mon", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Internal"},
-  {t:"Client Intake — New Referral", day:"Mon", s:13.15, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"Mail & Filing Review", day:"Mon", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Internal"},
+  {t:"Client Intake — New Referral", day:"Mon", s:13.25, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Vendor Review — Court Reporter Svc.", day:"Tue", s:9, e:10, p:"Medium", loc:"In-person", type:"Vendor"},
   {t:"Deposition Prep — Matter 24-0113", day:"Tue", s:9.5, e:10.5, p:"High", loc:"Virtual", type:"Deposition"},
   {t:"Media Inquiry Response", day:"Tue", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
@@ -6453,8 +7745,8 @@ const CAL_EVENTS = [
   {t:"Client Call — Osei Prep", day:"Tue", s:14.5, e:15.5, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Compliance Audit Prep", day:"Tue", s:15.75, e:16.75, p:"Medium", loc:"Virtual", type:"Compliance"},
   {t:"CLE Credit Reconciliation", day:"Tue", s:16.25, e:17.25, p:"Low", loc:"Virtual", type:"Compliance"},
-  {t:"Trust Account Spot-Check", day:"Tue", s:10.5, e:11.15, p:"Medium", loc:"Virtual", type:"Trust & Billing"},
-  {t:"Vendor Contract Signature", day:"Tue", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
+  {t:"Trust Account Spot-Check", day:"Tue", s:10.5, e:11.25, p:"Medium", loc:"Virtual", type:"Trust & Billing"},
+  {t:"Vendor Contract Signature", day:"Tue", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
   {t:"CLE Session — Ethics Update", day:"Wed", s:9, e:10, p:"Low", loc:"Virtual", type:"Compliance"},
   {t:"Court Filing Prep", day:"Wed", s:9.5, e:10.5, p:"Medium", loc:"In-person", type:"Court / Filing"},
   {t:"Contract Review — NDA", day:"Wed", s:11.5, e:12.5, p:"Medium", loc:"Virtual", type:"Case Team"},
@@ -6463,8 +7755,8 @@ const CAL_EVENTS = [
   {t:"Team 1:1 — Paralegal", day:"Wed", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Internal"},
   {t:"Deposition — Matter 24-0155", day:"Wed", s:15.75, e:16.75, p:"High", loc:"In-person", type:"Deposition"},
   {t:"Client Update Call — Farrow", day:"Wed", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Client"},
-  {t:"Billing Cycle Review", day:"Wed", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Trust & Billing"},
-  {t:"Vendor Invoice Approval", day:"Wed", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
+  {t:"Billing Cycle Review", day:"Wed", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Trust & Billing"},
+  {t:"Vendor Invoice Approval", day:"Wed", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
   {t:"Motion Hearing — Matter 24-0098", day:"Thu", s:9, e:10, p:"High", loc:"In-person", type:"Court / Filing"},
   {t:"Client Consultation — Osei", day:"Thu", s:9.5, e:10.5, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Board Call Prep", day:"Thu", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
@@ -6473,8 +7765,8 @@ const CAL_EVENTS = [
   {t:"Vendor Invoice Review", day:"Thu", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Vendor"},
   {t:"Discovery Response Drafting", day:"Thu", s:15.75, e:16.75, p:"High", loc:"Virtual", type:"Case Team"},
   {t:"Co-Counsel Call — Reyes Group", day:"Thu", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Case Team"},
-  {t:"CLE Compliance Follow-up", day:"Thu", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Compliance"},
-  {t:"New Matter Intake Call", day:"Thu", s:13.15, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
+  {t:"CLE Compliance Follow-up", day:"Thu", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Compliance"},
+  {t:"New Matter Intake Call", day:"Thu", s:13.25, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Last-Minute Client Emergency", day:"Fri", s:9, e:10, p:"High", loc:"Virtual", type:"Client"},
   {t:"Weekly Case Review", day:"Fri", s:9.5, e:10.5, p:"Medium", loc:"Virtual", type:"Internal"},
   {t:"Prospective Client Call #2", day:"Fri", s:11.5, e:12.5, p:"Medium", loc:"Virtual", type:"Client"},
@@ -6483,8 +7775,8 @@ const CAL_EVENTS = [
   {t:"Compliance Check-in", day:"Fri", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Compliance"},
   {t:"Filing Deadline — Matter 24-0201", day:"Fri", s:15.75, e:16.75, p:"High", loc:"In-person", type:"Court / Filing"},
   {t:"Court Clerk Confirmation Call", day:"Fri", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Court / Filing"},
-  {t:"Week Wrap-up & Handoff Notes", day:"Fri", s:10.5, e:11.15, p:"Low", loc:"Virtual", type:"Internal"},
-  {t:"Vendor Renewal Review", day:"Fri", s:13.15, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"}
+  {t:"Week Wrap-up & Handoff Notes", day:"Fri", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Internal"},
+  {t:"Vendor Renewal Review", day:"Fri", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"}
 ];
 const PRI_COLOR = {High:"#B54A3F", Medium:"#DB8437", Low:"#7C82A0"};
 const COLOR_PRESETS = ["#B54A3F","#DB8437","#7C82A0","#3F7D58","#3C4268","#6B4FA0","#2C7A7B","#B5651F"];
@@ -6503,11 +7795,12 @@ const ERROR_TYPES = [
   {id:"math", label:"Math / total doesn't match the line items"},
   {id:"discount", label:"Missing a contractual discount"},
   {id:"duplicate", label:"Duplicate of another invoice already submitted"},
+  {id:"personal", label:"Personal / non-business charge included"},
   {id:"other", label:"Other issue"}
 ];
 
 // The scenario: reconciling the trust account for R. Alvarez, Matter 24-0113.
-// Bookkeeping forwarded these 8 invoices — some belong and are correct, some
+// Bookkeeping forwarded these invoices — some belong and are correct, some
 // belong but need a correction before they're paid, and some don't belong
 // to this account at all.
 const MOCK_INVOICE = {
@@ -6555,6 +7848,61 @@ const ATTENTION_TO_DETAIL_ANSWERS = [
   "The Receipt shows $8,132.50 received and marked 'PAID IN FULL,' but the invoice's Total Due is $9,132.50 — a $1,000 gap between what was billed and what was actually collected, incorrectly marked as fully paid."
 ];
 
+// 15-case compliance audit simulation (Day 6) — reconstructed from the
+// provided answer key. 8 cases carry a real, specific compliance failure;
+// the remaining 7 are clean and correctly filed, to test whether trainees
+// can tell the difference rather than just flagging everything.
+const COMPLIANCE_AUDIT_CASES = [
+  {id:1, jurisdiction:"California", matterType:"Civil Response", detail:"Response due Feb 9. Filed Feb 11.",
+   hasIssue:true, issueType:"deadline", risk:"HIGH",
+   explain:"Missed deadline — filed 2 days late. Each missed deadline is a direct malpractice exposure point."},
+  {id:2, jurisdiction:"New York", matterType:"Civil Motion", detail:"Motion due Mar 3. Filed Mar 1, correct caption and formatting confirmed.",
+   hasIssue:false, risk:null,
+   explain:"Filed on time, correct form used — no issue here."},
+  {id:3, jurisdiction:"Texas", matterType:"Franchise Filing", detail:"Annual franchise filing due Jul 15. Filed Aug 11 — nearly one month late. Penalty notice issued by the state.",
+   hasIssue:true, issueType:"lateFiling", risk:"HIGH",
+   explain:"Late regulatory filing — a state penalty was already issued, confirming this wasn't caught in time."},
+  {id:4, jurisdiction:"New York", matterType:"Civil Motion", detail:"Motion filed with incorrect caption formatting per the local court's filing rules.",
+   hasIssue:true, issueType:"form", risk:"MODERATE",
+   explain:"Incorrect state form/formatting — this specific court rejects filings with caption errors, risking a refiling delay."},
+  {id:5, jurisdiction:"Illinois", matterType:"Will Execution", detail:"Will executed and filed. Notary seal is missing from the execution page.",
+   hasIssue:true, issueType:"notarization", risk:"CRITICAL",
+   explain:"Missing notarization — an execution defect. Risk is CRITICAL specifically because a will's validity can be challenged if this is discovered after the testator's death, when it can no longer be corrected."},
+  {id:6, jurisdiction:"California", matterType:"Discovery Response", detail:"Discovery response due Apr 20. Filed Apr 18, correct form confirmed.",
+   hasIssue:false, risk:null,
+   explain:"Filed ahead of deadline, correct form — no issue here."},
+  {id:7, jurisdiction:"Texas", matterType:"Discovery", detail:"Discovery response due Aug 31. Filed Sept 3.",
+   hasIssue:true, issueType:"deadline", risk:"HIGH",
+   explain:"Missed deadline — filed 3 days late."},
+  {id:8, jurisdiction:"Florida", matterType:"Motion", detail:"Motion filed on time, properly notarized where required, correct jurisdictional form used.",
+   hasIssue:false, risk:null,
+   explain:"On time, correctly notarized, correct form — no issue here."},
+  {id:9, jurisdiction:"Florida", matterType:"Complaint", detail:"Complaint filed using a California civil cover sheet instead of Florida's required form.",
+   hasIssue:true, issueType:"form", risk:"HIGH",
+   explain:"Wrong jurisdictional form entirely — not just a formatting slip, but the wrong state's form used, which risks outright rejection."},
+  {id:10, jurisdiction:"New York", matterType:"Discovery", detail:"Discovery filed correctly and on time.",
+   hasIssue:false, risk:null,
+   explain:"Correctly filed — no issue here."},
+  {id:11, jurisdiction:"Illinois", matterType:"Motion", detail:"Motion filed on time, correct form confirmed.",
+   hasIssue:false, risk:null,
+   explain:"On time, correct form — no issue here."},
+  {id:12, jurisdiction:"Texas", matterType:"Probate", detail:"Publication date Jan 15. Statutory period is 90 days (due Apr 15). Recorded internally as due Apr 10.",
+   hasIssue:true, issueType:"deadline", risk:"MODERATE",
+   explain:"Incorrect statutory calculation — 90 days from Jan 15 is actually Apr 15, not Apr 10. The internal date was wrong, even though this specific case wasn't yet missed at time of audit."},
+  {id:13, jurisdiction:"California", matterType:"Will Execution", detail:"Will executed and properly notarized, seal confirmed present.",
+   hasIssue:false, risk:null,
+   explain:"Properly notarized — no issue here."},
+  {id:14, jurisdiction:"Texas", matterType:"Civil Response", detail:"Response filed 4 days ahead of deadline.",
+   hasIssue:false, risk:null,
+   explain:"Filed well ahead of deadline — no issue here."},
+  {id:15, jurisdiction:"Illinois", matterType:"Subpoena", detail:"Subpoena issued for an upcoming hearing. Proof of service was not uploaded to the case file before the hearing date.",
+   hasIssue:true, issueType:"other", risk:"MODERATE",
+   explain:"Proof of service missing before the hearing — a potential evidentiary issue if service is ever challenged, even though no deadline was technically missed."}
+];
+const COMPLIANCE_AUDIT_SCORING = {
+  deadline: 10, form: 10, notarization: 15, lateFiling: 10, other: 10
+};
+
 const INVOICE_QUEUE = [
   {invNum:"101", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 2–6",
    lines:[{desc:"Attorney hours",qty:"10 hrs",rate:"$150/hr",amount:1500},{desc:"Filing fee",qty:"—",rate:"—",amount:50}],
@@ -6584,7 +7932,19 @@ const INVOICE_QUEUE = [
   {invNum:"108", matter:"24-0113", client:"R. Alvarez", dateRange:"Jun 2–6",
    lines:[{desc:"Attorney hours",qty:"10 hrs",rate:"$150/hr",amount:1500},{desc:"Filing fee",qty:"—",rate:"—",amount:50}],
    statedTotal:1550, status:"correction", errorType:"duplicate", correctTotal:0,
-   explain:"Same dates, same line items, same amount as Invoice #101 — this is a duplicate and shouldn't be billed twice."}
+   explain:"Same dates, same line items, same amount as Invoice #101 — this is a duplicate and shouldn't be billed twice."},
+  {invNum:"VLS-0104", matter:"24-0113", client:"Velocity Logistics (Vendor)", dateRange:"Jun 24",
+   lines:[{desc:"Expedited document courier",qty:"3 hrs",rate:"$150/hr",amount:450},{desc:"Bulk fuel surcharge (estimate)",qty:"—",rate:"—",amount:300}],
+   statedTotal:750, status:"correction", errorType:"math", correctTotal:450,
+   explain:"The vendor's own contract caps the fuel surcharge at a flat $0 for expedited same-matter courier runs — the $300 'estimate' line isn't a rate this vendor is actually contracted to charge. Correct total is the courier fee alone: $450."},
+  {invNum:"CWC-2907", matter:"—", client:"City-Wide Courier (Vendor)", dateRange:"Jun 25",
+   lines:[{desc:"Package delivery",qty:"—",rate:"—",amount:50},{desc:"Package delivery",qty:"—",rate:"—",amount:25},{desc:"Misc handling",qty:"—",rate:"—",amount:150}],
+   statedTotal:225, status:"unrelated",
+   explain:"No matter number anywhere on this receipt, and 'Misc handling' has zero description of what it actually covers — there's nothing here tying it to Alvarez's account at all."},
+  {invNum:"PPD-2026-004", matter:"24-0113", client:"Premier Print & Design (Vendor)", dateRange:"Jun 26",
+   lines:[{desc:"Marketing collateral — Q4",qty:"1",rate:"$2,500",amount:2500},{desc:"Private event banner",qty:"15 hrs",rate:"—",amount:800}],
+   statedTotal:3300, status:"correction", errorType:"personal", correctTotal:2500,
+   explain:"'Private event banner' has no connection to Alvarez's litigation matter — this looks like a personal or unrelated-event expense that shouldn't be billed to the client's trust account at all. Only the Q4 marketing collateral line belongs here."}
 ];
 
 /* ---------- 4. Travel Itinerary Planner (build-your-own) ---------- */
@@ -6881,7 +8241,13 @@ const CLIENT_PROFILE_DOC = [
   ]},
   {section:"Key Relationships at the Firm", items:[
     "Sarah Kim — Firm COO. Handles firm-wide operational matters; loop her in on anything touching office administration or budget beyond routine spend.",
-    "David Reyes — Head of Litigation. Elias's closest strategic partner on major case decisions."
+    "David Reyes — Head of Litigation. Elias's closest strategic partner on major case decisions.",
+    "Marcus Chen — Head of Corporate Practice. Owns the corporate/transactional side of the firm; loop him in on anything touching M&A, entity formation, or corporate client matters — separate lane from David's litigation work.",
+    "Priya Nair — Director of Communications & PR. The correct first contact for any media inquiry, public statement, or reputational situation — never respond to a journalist or public post without looping her in first.",
+    "Robert Hale — Chief Financial Officer. Owns firm-wide financial oversight, including trust account controls and budget approval above what Elias personally reviews.",
+    "Lena Vasquez — Director of HR & People Operations. The right contact for anything touching staff, hiring, or internal personnel matters — not something to handle solo even if it seems minor.",
+    "Diane Whitfield — Board Chair. The firm's outside majority investor and chair of its governance board; scheduling with her takes priority-adjacent handling similar to a top-tier client, not routine internal traffic.",
+    "James Okafor — Independent Board Member. External governance oversight; typically only surfaces around quarterly board meetings, but treat any direct outreach from him as something to flag to Elias immediately."
   ]},
   {section:"Quick Reference: Do's and Don'ts", items:[
     "DO surface a conflict or gap the moment you spot it — silence reads as concealment, not calm.",
@@ -6925,12 +8291,18 @@ const state = {
 /* ---------- storage (persists across sessions) ---------- */
 const mem = {}; // in-memory fallback if window.storage is unavailable
 async function storeGet(key){
+  let fromWindowStorage;
   try{
     if(window.storage){
       const r = await window.storage.get(key,false);
-      return r ? JSON.parse(r.value) : null;
+      fromWindowStorage = r ? JSON.parse(r.value) : undefined;
     }
   }catch(e){ /* key not found in window.storage, or unavailable */ }
+  if(fromWindowStorage !== undefined) return fromWindowStorage;
+  // window.storage came up empty (missing key, unavailable, or threw) — always
+  // check localStorage too rather than treating window.storage as exclusive.
+  // storeSet writes to both, so a value can genuinely live only in
+  // localStorage if window.storage was ever unavailable or reset.
   try{
     const raw = localStorage.getItem("lsh_"+key);
     if(raw !== null) return JSON.parse(raw);
@@ -6957,21 +8329,29 @@ async function storeSet(key,val){
 
 /* ---------- shared storage (the "admin ledger" — visible across all trainees) ---------- */
 async function sharedSet(key,val){
+  let savedAnywhere = false;
   try{
-    if(window.storage){ await window.storage.set(key, JSON.stringify(val), true); return true; }
-  }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+    if(window.storage){ await window.storage.set(key, JSON.stringify(val), true); savedAnywhere = true; }
+  }catch(e){ /* window.storage unavailable or failed, fall through */ }
+  // Always also write to the real, cross-device KV-backed API — this is the
+  // actual shared ledger the Admin dashboard and other trainees/devices
+  // read from. window.storage (when present, e.g. previewing in Claude.ai)
+  // is a separate store and must never be treated as a substitute for it.
   try{
     const response = await fetch("/api/storage/set", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ key, value: JSON.stringify(val) })
     });
-    return response.ok;
-  }catch(e){ console.warn("shared storage set failed",e); return false; }
+    if(response.ok) savedAnywhere = true;
+  }catch(e){ console.warn("shared storage set failed",e); }
+  return savedAnywhere;
 }
 async function sharedGet(key){
+  let fromWindowStorage;
   try{
-    if(window.storage){ const r = await window.storage.get(key,true); return r ? JSON.parse(r.value) : null; }
+    if(window.storage){ const r = await window.storage.get(key,true); fromWindowStorage = r ? JSON.parse(r.value) : undefined; }
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  if(fromWindowStorage !== undefined) return fromWindowStorage;
   try{
     const response = await fetch("/api/storage/get", {
       method:"POST", headers:{"Content-Type":"application/json"},
@@ -6983,30 +8363,35 @@ async function sharedGet(key){
   }catch(e){ return null; }
 }
 async function sharedList(prefix){
+  let fromWindowStorage = [];
   try{
-    if(window.storage){ const r = await window.storage.list(prefix,true); return (r && r.keys) || []; }
+    if(window.storage){ const r = await window.storage.list(prefix,true); fromWindowStorage = (r && r.keys) || []; }
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
+  let fromKv = [];
   try{
     const response = await fetch("/api/storage/list", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ prefix })
     });
-    if(!response.ok) return [];
-    const data = await response.json();
-    return data.keys || [];
-  }catch(e){ console.warn("shared storage list failed",e); return []; }
+    if(response.ok){ const data = await response.json(); fromKv = data.keys || []; }
+  }catch(e){ console.warn("shared storage list failed",e); }
+  // Merge and dedupe — a key may exist in either store depending on which
+  // one a given write happened to land in historically.
+  return [...new Set([...fromWindowStorage, ...fromKv])];
 }
 async function sharedDelete(key){
+  let deletedAnywhere = false;
   try{
-    if(window.storage){ await window.storage.delete(key,true); return true; }
+    if(window.storage){ await window.storage.delete(key,true); deletedAnywhere = true; }
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
   try{
     const response = await fetch("/api/storage/delete", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ key })
     });
-    return response.ok;
-  }catch(e){ console.warn("shared storage delete failed",e); return false; }
+    if(response.ok) deletedAnywhere = true;
+  }catch(e){ console.warn("shared storage delete failed",e); }
+  return deletedAnywhere;
 }
 
 function generateTraineeId(name){
@@ -7026,11 +8411,13 @@ async function syncToLedger(){
     dayProgress: state.progress,
     practiceProgress: state.practiceProgress,
     submissions: state.submissions||[],
+    roleplayHistory: state.roleplayHistory||[],
     lastActive: new Date().toISOString(),
     approved: existing ? existing.approved : false,
     registeredAt: existing ? existing.registeredAt : new Date().toISOString(),
     archived: existing ? (existing.archived||false) : false,
-    aiReview: existing ? existing.aiReview : null
+    aiReview: existing ? existing.aiReview : null,
+    labAttemptsGlobal: (typeof state.labAttemptsGlobal === "number") ? state.labAttemptsGlobal : (existing ? (existing.labAttemptsGlobal||0) : 0)
   });
 }
 async function getApprovalStatus(traineeId){
@@ -7077,10 +8464,28 @@ async function loadAll(){
   state.traineeBatch = bt || "";
   const pr = await storeGet("practice-progress");
   state.practiceProgress = pr || {};
+  const laGlobal = await storeGet("lab-attempts-global");
+  if(typeof laGlobal === "number"){
+    state.labAttemptsGlobal = laGlobal;
+  }else{
+    // Migrate any existing per-day attempt data (from before the cap became
+    // program-wide) into the new global counter — sum every day's usage
+    // except Day7, which was always exempt and should never count here.
+    const laOld = await storeGet("lab-attempts");
+    if(laOld && typeof laOld === "object"){
+      const migrated = Object.entries(laOld).reduce((sum,[dayId,count])=> parseInt(dayId,10)===7 ? sum : sum + (count||0), 0);
+      state.labAttemptsGlobal = Math.min(migrated, LAB_ATTEMPT_CAP);
+      await storeSet("lab-attempts-global", state.labAttemptsGlobal);
+    }else{
+      state.labAttemptsGlobal = 0;
+    }
+  }
   const nt = await storeGet("notes");
   state.notes = nt || [];
   const sb = await storeGet("submissions");
   state.submissions = sb || [];
+  const rph = await storeGet("roleplayHistory");
+  state.roleplayHistory = rph || [];
   const sp = await storeGet("slide-progress");
   state.slideProgress = sp || {};
   let tid = await storeGet("trainee-id");
@@ -7090,38 +8495,59 @@ async function loadAll(){
   }
   state.traineeId = tid || "";
   state.storageReady = true;
-  if(state.traineeId) syncToLedger();
+  if(state.traineeId) await syncToLedger();
 }
 
 /* ---------- helpers ---------- */
 function esc(s){ return (s+"").replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 async function callAIText(prompt, maxTokens){
-  const response = await fetch("/api/claude", {
-    method:"POST", headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] })
-  });
-  if(!response.ok) throw new Error("Request failed");
-  const data = await response.json();
-  return (data.content||[]).map(b=>b.text||"").join("\n").trim();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(()=>controller.abort(), 30000);
+  try{
+    const response = await fetch("/api/claude", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] }),
+      signal: controller.signal
+    });
+    if(!response.ok) throw new Error("Request failed");
+    const data = await response.json();
+    return (data.content||[]).map(b=>b.text||"").join("\n").trim();
+  }catch(e){
+    if(e.name==="AbortError") throw new Error("Request timed out — the AI service took too long to respond.");
+    throw e;
+  }finally{
+    clearTimeout(timeoutId);
+  }
 }
 async function callAIJson(prompt, maxTokens){
-  const text = await callAIText(prompt, maxTokens);
-  let cleaned = text.replace(/^```json\s*/i,"").replace(/^```\s*/,"").replace(/```\s*$/,"").trim();
-  // Robustness: if the model added any preamble/postamble text around the JSON
-  // (common on longer, more complex generations), extract just the array or
-  // object itself rather than failing outright on the surrounding text.
-  if(cleaned[0] !== "[" && cleaned[0] !== "{"){
-    const arrStart = cleaned.indexOf("[");
-    const objStart = cleaned.indexOf("{");
-    const start = (arrStart===-1) ? objStart : (objStart===-1 ? arrStart : Math.min(arrStart, objStart));
-    if(start !== -1){
-      const isArray = cleaned[start] === "[";
-      const end = isArray ? cleaned.lastIndexOf("]") : cleaned.lastIndexOf("}");
-      if(end > start) cleaned = cleaned.slice(start, end+1);
+  function extractAndParse(text){
+    let cleaned = text.replace(/^```json\s*/i,"").replace(/^```\s*/,"").replace(/```\s*$/,"").trim();
+    // Robustness: if the model added any preamble/postamble text around the JSON
+    // (common on longer, more complex generations), extract just the array or
+    // object itself rather than failing outright on the surrounding text.
+    if(cleaned[0] !== "[" && cleaned[0] !== "{"){
+      const arrStart = cleaned.indexOf("[");
+      const objStart = cleaned.indexOf("{");
+      const start = (arrStart===-1) ? objStart : (objStart===-1 ? arrStart : Math.min(arrStart, objStart));
+      if(start !== -1){
+        const isArray = cleaned[start] === "[";
+        const end = isArray ? cleaned.lastIndexOf("]") : cleaned.lastIndexOf("}");
+        if(end > start) cleaned = cleaned.slice(start, end+1);
+      }
     }
+    return JSON.parse(cleaned);
   }
-  return JSON.parse(cleaned);
+  try{
+    const text = await callAIText(prompt, maxTokens);
+    return extractAndParse(text);
+  }catch(firstErr){
+    // A single malformed or truncated JSON response is often just a transient
+    // formatting glitch, not a real failure — one retry resolves the large
+    // majority of these without surfacing an error to the trainee at all.
+    const text2 = await callAIText(prompt, maxTokens);
+    return extractAndParse(text2);
+  }
 }
 function fmtDate(iso){ if(!iso) return ""; const d=new Date(iso); return d.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}); }
 function toast(msg){
@@ -7197,6 +8623,12 @@ function renderFacilitatorGuide(){
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">Facilitator Guide</h1>
     <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 26px;">How to actually run a live session using this portal — what trainees see, what only you see, and how to use each built-in facilitation feature.</p>
 
+    <div class="card" style="padding:22px 24px;margin-bottom:16px;background:#F8F9FC;">
+      <h3 style="color:var(--navy);margin:0 0 10px;">Looking for the Full Training Script?</h3>
+      <p style="font-size:13.5px;color:var(--ink);line-height:1.6;margin:0 0 12px;">This page is about running a live session <i>using</i> the portal. For the detailed, day-by-day trainer script itself — the full Upskill Training Guide SOP, with objectives, discussion notes, and every reference table — that lives in the Admin Dashboard's <b>SOP Reference</b> tab.</p>
+      <button class="btn btn-navy btn-sm" onclick="goto('admin'); setAdminTab('sop');">📋 Open SOP Reference</button>
+    </div>
+
     <div class="card" style="padding:22px 24px;margin-bottom:16px;">
       <h3 style="color:var(--navy);margin:0 0 10px;">What Trainees See vs. What You See</h3>
       <p style="font-size:13.5px;color:var(--ink);line-height:1.6;">Trainees get a clean, self-paced flow: one topic per screen, no scrolling, routing straight from the last topic into Practice Lab and then the Knowledge Check. <b>Trainer Cues and Discussion Checkpoints are invisible to them entirely</b> — not hidden by styling, genuinely absent from what loads on their screen. Only an account signed in with the trainer passphrase (the same one that unlocks the Admin dashboard) sees this guide, the Trainer Cue on every topic, and the Discussion slide at the end of each day's lesson sequence.</p>
@@ -7271,8 +8703,13 @@ function dismissNotifBanner(){ state.notifDismissed = true; render(); }
 window.dismissNotifBanner = dismissNotifBanner;
 
 function renderTopbar(){
-  const views = [["dashboard","Dashboard"],["clientprofile","Client Profile"],["practice","Practice Lab"],["notes","My Notes"],["handouts","Handouts"]];
-  if(state.isAdmin) views.push(["facilitatorguide","Facilitator Guide"]);
+  let views = [["dashboard","Dashboard"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
+  if(state.isAdmin){
+    // Admin is a trainer monitoring dashboard, not a trainee workspace — hide
+    // the trainee-facing-only views that have no role here.
+    views = views.filter(([id]) => !["crisisroleplay","notes","handouts"].includes(id));
+    views.push(["facilitatorguide","Facilitator Guide"]);
+  }
   return `
   <div class="topbar">
     <div class="topbar-inner">
@@ -7340,6 +8777,389 @@ function jumpToSearchResult(view,id){
 }
 window.jumpToSearchResult = jumpToSearchResult;
 
+/* ---------- crisis roleplay hub ---------- */
+const ROLEPLAY_CATEGORIES = [
+  {id:"legal", icon:"⚖️", label:"Legal Operations", topics:[
+    {id:"docketing", label:"Court Docketing Escalations", context:"A court deadline is at risk — either a filing that's about to be missed, or a docketing error just discovered that needs immediate correction. The other party is an attorney or court clerk applying real time pressure."},
+    {id:"iolta", label:"IOLTA / Trust Account Disputes", context:"A client is disputing a charge or withdrawal from their trust account, or questioning why funds haven't been disbursed. This requires careful, precise language given trust accounting's strict compliance rules — no vague reassurances."},
+    {id:"deposition", label:"Deposition Scheduling Friction", context:"A deposition needs to be rescheduled or is double-booked, and opposing counsel's office or a witness is pushing back hard on the timeline. Real scheduling stakes with a legal deadline attached."},
+    {id:"privilege", label:"Attorney-Client Privilege Inquiries", context:"Someone (a family member, a vendor, an outside party) is asking for information that may be privileged or confidential, and is applying social or emotional pressure to get an answer."},
+    {id:"upl", label:"UPL Boundaries", context:"A client or contact is pushing the EA/PA to give something that sounds like legal advice, or to make a legal judgment call — testing whether the trainee holds the line on the Unauthorized Practice of Law boundary under pressure."}
+  ]},
+  {id:"corporate", icon:"💼", label:"Corporate EA & Stakeholder", topics:[
+    {id:"boardgatekeeping", label:"Board Member Gatekeeping", context:"A board member wants time with the executive that isn't currently available, and is pushing back on being told 'no' or redirected — testing diplomatic but firm gatekeeping language."},
+    {id:"investorupdate", label:"Investor Update Clarification", context:"An investor is calling directly, confused or frustrated about something in a recent update, wanting immediate clarification the EA isn't fully authorized to give."},
+    {id:"inboxtriage", label:"High-Priority Inbox Triage", context:"A flood of messages just landed simultaneously, at least one genuinely urgent, several merely marked urgent — the caller is pressing about which one is being handled first."},
+    {id:"calendarcollision", label:"Calendar Collision Management", context:"Two high-priority commitments just collided on the calendar, and the person on the other end of this call is the one who's about to lose the slot — they're not happy about it."},
+    {id:"vendornegotiation", label:"Vendor Negotiation", context:"A vendor is pushing for a price increase, a contract change, or immediate payment terms the EA isn't authorized to agree to alone — real negotiation pressure, not just an information request."}
+  ]},
+  {id:"lifestyle", icon:"🏡", label:"Lifestyle & Estate PA", topics:[
+    {id:"domesticstaff", label:"Domestic Staff Oversight", context:"A household staff scheduling or performance issue has come to a head, and the person calling (a staff member, or a family member unhappy about staff) wants it resolved right now."},
+    {id:"householdemergency", label:"Household Emergency Triage", context:"A household emergency (a major repair, a security issue) is competing directly with the executive's professional obligations for the same window of time — e.g., estate repairs colliding with trial prep. The caller wants an immediate decision."},
+    {id:"traveldisruption", label:"Private Travel Disruption", context:"A private or family travel plan has just been disrupted (a cancelled flight, a closed venue, a missing reservation) and the caller is stranded or anxious, needing a real-time solution."},
+    {id:"familylogistics", label:"Confidential Family Logistics", context:"A sensitive, private family matter needs coordinating, and the caller is pressing for details or involvement that may not be appropriate to share — testing discretion under social pressure."}
+  ]},
+  {id:"revenue", icon:"📈", label:"Revenue & Outreach", topics:[
+    {id:"coldobjections", label:"Cold Calling Objections", context:"The trainee is the one making the call, and the prospect on the other end is throwing out real objections — not interested, bad timing, already have a provider — testing whether the trainee holds their ground without being pushy."},
+    {id:"bantqualifying", label:"BANT Lead Qualification", context:"The trainee is qualifying an inbound lead who's cagey and evasive about budget, authority, and timeline, but is eager to move fast anyway — testing whether the trainee actually qualifies before scheduling."},
+    {id:"pushyprospect", label:"Pushy Sales Prospects", context:"A prospect on the other end is aggressive and demanding — pushing for a discount, an immediate answer, or special treatment outside the normal process — testing composure without folding or being combative."}
+  ]}
+];
+const ROLEPLAY_MODES = [
+  {id:"guided", label:"Guided Practice", sub:"Self-Paced", icon:"🧭", desc:"Prompt cards, suggested BLUF responses, and real-time coaching tips stay visible on screen as you go — this mode is for learning the pattern, not testing yourself under pressure."},
+  {id:"blitz", label:"Unscripted Call Blitz", sub:"Timed", icon:"⏱️", desc:"A live, ticking timer and no help text. The AI plays whoever's calling — Elias, a vendor, a board member — with unpredictable, realistic responses. This is the pressure-test version."},
+  {id:"twopart", label:"2-Part Challenge", sub:"Crisis + Rapid Delegation", icon:"🎯", desc:"Part 1 is a high-stakes crisis call. Part 2 drops 3-4 unrelated tasks on you back-to-back, no break in between — testing whether you can context-switch cleanly under load."}
+];
+
+function renderCrisisRoleplayHub(){
+  const rp = state.rpHub || {step:"category", categoryId:null, topicId:null};
+
+  if(rp.step==="category" || !rp.categoryId){
+    return `
+      <h2 class="section-title">🔥 Live Roleplay Dashboard</h2>
+      <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">An on-demand practice sandbox, separate from your daily Practice Lab tasks. Pick a category, a specific situation, and how hard you want to be pushed — then jump straight into a live, unscripted call.</p>
+
+      ${state.assignedRoleplay ? `
+      <div class="card" style="padding:16px 18px;margin-bottom:24px;background:var(--orange-soft);border:1px solid var(--orange);">
+        <div style="font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;">🧑‍🏫 Assigned by Your Trainer</div>
+        <b style="display:block;font-size:15px;color:var(--navy);margin:4px 0 2px;">${esc(state.assignedRoleplay.topicLabel)}</b>
+        <p style="font-size:12.5px;color:#5A4A32;margin:0 0 10px;">Your trainer flagged this as extra practice based on your performance so far — worth prioritizing this one.</p>
+        <button class="btn btn-navy btn-sm" onclick="rpStartAssigned()">Start This Now &rarr;</button>
+      </div>` : ""}
+
+      <h3 style="font-size:13px;color:var(--navy);margin:0 0 10px;">Pick a Category</h3>
+      <div class="rp-category-grid">
+        ${ROLEPLAY_CATEGORIES.map(c=>`
+          <div class="card rp-category-card" onclick="rpSelectCategory('${c.id}')">
+            <div class="rp-cat-icon">${c.icon}</div>
+            <b>${esc(c.label)}</b>
+            <p>${c.topics.length} situations</p>
+          </div>`).join("")}
+      </div>
+    `;
+  }
+
+  const category = ROLEPLAY_CATEGORIES.find(c=>c.id===rp.categoryId);
+
+  if(rp.step==="topic" || !rp.topicId){
+    return `
+      <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpBackToCategories()">&larr; All Categories</button>
+      <h2 class="section-title">${category.icon} ${esc(category.label)}</h2>
+      <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Pick the specific situation you want to practice.</p>
+      <div class="rp-topic-grid">
+        ${category.topics.map(t=>`
+          <div class="card rp-topic-card" onclick="rpSelectTopic('${t.id}')">
+            <b>${esc(t.label)}</b>
+            <span class="rp-topic-arrow">Choose a mode &rarr;</span>
+          </div>`).join("")}
+      </div>
+    `;
+  }
+
+  // mode selection
+  const topic = category.topics.find(t=>t.id===rp.topicId);
+  return `
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpBackToTopics()">&larr; ${esc(category.label)}</button>
+    <h2 class="section-title">${esc(topic.label)}</h2>
+    <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Choose how you want to run this one.</p>
+    <div class="rp-mode-grid">
+      ${ROLEPLAY_MODES.map(m=>`
+        <div class="card rp-mode-card" onclick="rpLaunchRoleplay('${m.id}')">
+          <div class="rp-mode-icon">${m.icon}</div>
+          <b>${esc(m.label)}</b>
+          <span class="rp-mode-sub">${esc(m.sub)}</span>
+          <p>${esc(m.desc)}</p>
+        </div>`).join("")}
+    </div>
+  `;
+}
+function rpStartAssigned(){
+  if(!state.assignedRoleplay) return;
+  state.rpHub = {step:"mode", categoryId: state.assignedRoleplay.categoryId, topicId: state.assignedRoleplay.topicId};
+  render();
+}
+window.rpStartAssigned = rpStartAssigned;
+function rpSelectCategory(categoryId){
+  state.rpHub = {step:"topic", categoryId, topicId:null};
+  render();
+}
+window.rpSelectCategory = rpSelectCategory;
+function rpSelectTopic(topicId){
+  state.rpHub.step = "mode";
+  state.rpHub.topicId = topicId;
+  render();
+}
+window.rpSelectTopic = rpSelectTopic;
+function rpBackToCategories(){
+  state.rpHub = {step:"category", categoryId:null, topicId:null};
+  render();
+}
+window.rpBackToCategories = rpBackToCategories;
+function rpBackToTopics(){
+  state.rpHub.step = "topic";
+  state.rpHub.topicId = null;
+  render();
+}
+window.rpBackToTopics = rpBackToTopics;
+
+/* ---------- open roleplay engine (generative, topic+mode driven) ---------- */
+function rpLaunchRoleplay(modeId){
+  const category = ROLEPLAY_CATEGORIES.find(c=>c.id===state.rpHub.categoryId);
+  const topic = category.topics.find(t=>t.id===state.rpHub.topicId);
+  const mode = ROLEPLAY_MODES.find(m=>m.id===modeId);
+  state.rpSession = {
+    category, topic, mode,
+    chatHistory: [],
+    startedAt: Date.now(),
+    part: 1,
+    rapidTasks: [],
+    rapidIndex: 0,
+    rapidResponses: []
+  };
+  if(state.rpTimerInterval) clearInterval(state.rpTimerInterval);
+  if(mode.id==="blitz"){
+    state.rpTimerInterval = setInterval(()=>{
+      const el = document.getElementById("rpTimer");
+      if(!el || !state.rpSession){ clearInterval(state.rpTimerInterval); return; }
+      const elapsed = Math.floor((Date.now()-state.rpSession.startedAt)/1000);
+      const mm = String(Math.floor(elapsed/60)).padStart(2,"0");
+      const ss = String(elapsed%60).padStart(2,"0");
+      el.textContent = `⏱️ ${mm}:${ss}`;
+    }, 1000);
+  }
+  goto("openroleplay");
+  rpGenerateOpening();
+}
+window.rpLaunchRoleplay = rpLaunchRoleplay;
+
+async function rpGenerateOpening(){
+  const s = state.rpSession;
+  s.chatHistory.push({role:"client", text:"…connecting…", pending:true});
+  render();
+  const prompt = `You are generating the OPENING LINE for a live, unscripted roleplay training call for an Executive/Personal Assistant. You are playing the person calling or messaging in — stay fully in character, no meta-commentary, no scenario description, just the actual opening line someone would say.
+
+CLIENT BACKGROUND (for context on who might be calling — Elias Thorne, his firm, his household):
+${CLIENT_DOSSIER_MD}
+
+SITUATION TYPE: ${s.topic.label} (category: ${s.category.label})
+${s.topic.context}
+
+Write ONLY the opening line this caller would actually say — 1-3 sentences, realistic, dropping the EA/PA straight into the situation with no preamble. Do not narrate the scene or explain who's calling — just speak as them.`;
+  try{
+    const opening = await callAIText(prompt, 150);
+    s.chatHistory = [{role:"client", text: opening.trim()}];
+  }catch(e){
+    s.chatHistory = [{role:"client", text:"[Connection issue generating the scenario — try Restart below.]"}];
+  }
+  render();
+}
+
+function renderOpenRoleplay(){
+  const s = state.rpSession;
+  if(!s) return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">No active roleplay — head back to the dashboard to start one.</div>`;
+  const elapsed = Math.floor((Date.now()-s.startedAt)/1000);
+  const mm = String(Math.floor(elapsed/60)).padStart(2,"0");
+  const ss = String(elapsed%60).padStart(2,"0");
+
+  if(s.mode.id==="twopart" && s.part===2){
+    return renderRapidDelegationPart(s);
+  }
+
+  return `
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpExitToHub()">&larr; Back to Dashboard</button>
+    <div class="rp-session-header">
+      <div>
+        <div class="rp-session-tag">${s.category.icon} ${esc(s.category.label)} · ${esc(s.mode.label)}</div>
+        <h2 style="margin:2px 0 0;color:var(--navy);">${esc(s.topic.label)}</h2>
+      </div>
+      ${s.mode.id==="blitz" ? `<div class="rp-timer" id="rpTimer">⏱️ ${mm}:${ss}</div>` : ""}
+    </div>
+
+    <div style="display:grid;grid-template-columns:${s.mode.id==='guided'?'1fr 300px':'1fr'};gap:18px;align-items:start;">
+      <div class="card" style="padding:16px 18px;">
+        <div class="cr-chat-window" id="rpChatWindow">${renderRpChat(s)}</div>
+        <div class="cr-chat-input-row">
+          <textarea id="rpChatInput" placeholder="Respond as the EA/PA..."></textarea>
+          <button class="btn btn-orange btn-sm" onclick="rpSendMessage()">Send</button>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-ghost btn-sm" onclick="rpRestart()">Restart</button>
+          ${s.mode.id==="twopart" ? `<button class="btn btn-navy btn-sm" onclick="rpAdvanceToPart2()">Part 1 Done — Start Part 2: Rapid Delegation &rarr;</button>` : `<button class="btn btn-navy btn-sm" onclick="rpEndDebrief()">End &amp; Get Debrief</button>`}
+        </div>
+        <div id="rpDebrief" style="margin-top:14px;"></div>
+      </div>
+      ${s.mode.id==="guided" ? `
+      <div class="card rp-coach-panel">
+        <b style="font-size:12.5px;color:var(--navy);">🧭 Coaching Tips</b>
+        <ul style="margin:8px 0 0;padding-left:18px;">
+          <li>Lead with BLUF — bottom line first, context after.</li>
+          <li>Acknowledge the concern before redirecting it.</li>
+          <li>Offer a concrete next step, not just reassurance.</li>
+          <li>Never promise something you're not authorized to promise.</li>
+        </ul>
+        <b style="font-size:12.5px;color:var(--navy);display:block;margin-top:14px;">Suggested Opening Pattern</b>
+        <p style="font-size:12.3px;color:#37394A;background:#F8F9FC;border-radius:8px;padding:10px 12px;margin:6px 0 0;">"I hear you on [concern] — here's where things stand: [bottom line]. Here's what I'm doing next: [action]."</p>
+      </div>` : ""}
+    </div>
+  `;
+}
+function renderRpChat(s){
+  return (s.chatHistory||[]).map(m=>`<div class="cr-msg ${m.role==='client'?'cr-client':'cr-ea'}">${esc(m.text)}</div>`).join("");
+}
+function rpRenderChatWindow(){
+  const win = document.getElementById("rpChatWindow");
+  if(!win) return;
+  win.innerHTML = renderRpChat(state.rpSession);
+  win.scrollTop = win.scrollHeight;
+}
+async function rpSendMessage(){
+  const input = document.getElementById("rpChatInput");
+  const text = input.value.trim();
+  if(!text) return;
+  const s = state.rpSession;
+  s.chatHistory.push({role:"ea", text});
+  input.value = "";
+  rpRenderChatWindow();
+  s.chatHistory.push({role:"client", text:"…thinking…", pending:true});
+  rpRenderChatWindow();
+  const transcript = s.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"CALLER: ":"EA: ")+m.text).join("\n");
+  const prompt = `You are roleplaying as the caller/contact in a live, unscripted training call for an Executive/Personal Assistant. Stay fully in character. No meta-commentary.
+
+CLIENT BACKGROUND:
+${CLIENT_DOSSIER_MD}
+
+SITUATION TYPE: ${state.rpSession.topic.label} (${state.rpSession.category.label})
+${state.rpSession.topic.context}
+
+CONVERSATION SO FAR:
+${transcript}
+
+Respond with the next line only — 1-3 sentences, realistic in tone for this situation. If the EA/PA is handling it well, you may show some de-escalation. If they're vague, evasive, or clearly wrong, apply more pressure or push back.`;
+  try{
+    const reply = await callAIText(prompt, 200);
+    s.chatHistory = s.chatHistory.filter(m=>!m.pending);
+    s.chatHistory.push({role:"client", text: reply.trim()});
+  }catch(e){
+    s.chatHistory = s.chatHistory.filter(m=>!m.pending);
+    s.chatHistory.push({role:"client", text:"[Connection issue — try sending again.]"});
+  }
+  rpRenderChatWindow();
+}
+window.rpSendMessage = rpSendMessage;
+function rpRestart(){
+  state.rpSession.chatHistory = [];
+  state.rpSession.startedAt = Date.now();
+  const dEl = document.getElementById("rpDebrief");
+  if(dEl) dEl.innerHTML = "";
+  rpGenerateOpening();
+}
+window.rpRestart = rpRestart;
+function rpExitToHub(){
+  if(state.rpTimerInterval){ clearInterval(state.rpTimerInterval); state.rpTimerInterval = null; }
+  state.rpSession = null;
+  state.rpHub = {step:"category", categoryId:null, topicId:null};
+  goto("crisisroleplay");
+}
+window.rpExitToHub = rpExitToHub;
+
+async function rpEndDebrief(){
+  const s = state.rpSession;
+  const el = document.getElementById("rpDebrief");
+  if((s.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message first."); return; }
+  el.innerHTML = `<div class="ai-loading">Reviewing the exchange…</div>`;
+  const transcript = s.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"CALLER: ":"EA: ")+m.text).join("\n");
+  try{
+    const report = await runRoleplayRubricEvaluation(s, transcript);
+    el.innerHTML = renderRoleplayEvaluationReport(report);
+    await rpRecordSessionScore(s, report, transcript);
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.rpEndDebrief = rpEndDebrief;
+
+async function rpRecordSessionScore(s, report, transcript){
+  // Record this session's category + score so the trainer can see per-category
+  // roleplay performance on the Admin side and assign targeted practice.
+  if(!state.roleplayHistory) state.roleplayHistory = [];
+  state.roleplayHistory.push({
+    categoryId: s.category.id, categoryLabel: s.category.label,
+    topicId: s.topic.id, topicLabel: s.topic.label,
+    modeId: s.mode.id, score: report.totalScore, date: new Date().toISOString()
+  });
+  await storeSet("roleplayHistory", state.roleplayHistory);
+  try{ await syncToLedger(); }catch(e){ /* best-effort sync, don't block on it */ }
+}
+
+async function rpAdvanceToPart2(){
+  const s = state.rpSession;
+  if((s.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message in Part 1 first."); return; }
+  s.part = 2;
+  s.rapidTasks = [];
+  s.rapidIndex = 0;
+  s.rapidResponses = [];
+  render();
+  await rpGenerateRapidTasks();
+}
+window.rpAdvanceToPart2 = rpAdvanceToPart2;
+
+async function rpGenerateRapidTasks(){
+  const s = state.rpSession;
+  const prompt = `Generate exactly 4 short, unrelated, back-to-back task requests that would realistically drop on an Executive/Personal Assistant's desk in quick succession — the kind of rapid-fire context-switching moment where several different people all need something at once. Keep loose thematic proximity to this general category: ${s.category.label}, but the 4 tasks should be clearly distinct from each other and from this scenario: ${s.topic.label}.
+
+Return ONLY a JSON array of 4 strings, each a short, realistic incoming request (1-2 sentences), nothing else — no markdown, no explanation.`;
+  try{
+    const raw = await callAIText(prompt, 300);
+    const cleaned = raw.replace(/```json|```/g,"").trim();
+    s.rapidTasks = JSON.parse(cleaned).slice(0,4);
+  }catch(e){
+    s.rapidTasks = [
+      "A vendor just texted asking for same-day payment confirmation on an overdue invoice.",
+      "Elias's spouse is calling about a scheduling conflict with tonight's dinner reservation.",
+      "A colleague needs the quarterly report reformatted and resent in the next 10 minutes.",
+      "The building manager left a voicemail about an access badge issue for tomorrow."
+    ];
+  }
+  render();
+}
+function renderRapidDelegationPart(s){
+  const task = s.rapidTasks[s.rapidIndex];
+  const done = s.rapidIndex >= s.rapidTasks.length;
+  return `
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpExitToHub()">&larr; Back to Dashboard</button>
+    <div class="rp-session-header">
+      <div>
+        <div class="rp-session-tag">${s.category.icon} Part 2: Rapid Delegation</div>
+        <h2 style="margin:2px 0 0;color:var(--navy);">${done ? "All Tasks Handled" : `Task ${s.rapidIndex+1} of ${s.rapidTasks.length}`}</h2>
+      </div>
+    </div>
+    ${!s.rapidTasks.length ? `<div class="ai-loading">Generating your rapid-fire tasks…</div>` : done ? `
+      <div class="card" style="padding:18px 20px;">
+        <p style="font-size:13px;color:#37394A;">You handled all ${s.rapidTasks.length} tasks. Ready for feedback on how you did across the full session?</p>
+        <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="rpEndDebrief()">Get Full-Session Debrief</button>
+        <div id="rpDebrief" style="margin-top:14px;"></div>
+      </div>
+    ` : `
+      <div class="card" style="padding:18px 20px;">
+        <p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px;">${esc(task)}</p>
+        <textarea id="rpRapidInput" placeholder="How do you handle this — right now, no time to overthink it..." style="width:100%;min-height:80px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;"></textarea>
+        <button class="btn btn-orange btn-sm" style="margin-top:10px;" onclick="rpSubmitRapidTask()">Next Task &rarr;</button>
+      </div>
+    `}
+  `;
+}
+function rpSubmitRapidTask(){
+  const s = state.rpSession;
+  const input = document.getElementById("rpRapidInput");
+  const text = input.value.trim();
+  if(!text){ toast("Enter a quick response first."); return; }
+  s.rapidResponses.push({task: s.rapidTasks[s.rapidIndex], response: text});
+  s.rapidIndex++;
+  render();
+}
+window.rpSubmitRapidTask = rpSubmitRapidTask;
+
+
 /* ---------- dashboard ---------- */
 function renderDashboard(){
   const done = completedCount();
@@ -7368,8 +9188,9 @@ function renderDashboard(){
   <div class="stat-row">
     <div class="card stat"><div class="num">${done} / 10</div><div class="lbl">Days completed</div></div>
     <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
-    <div class="card stat"><div class="num">${practiceRunsCount()}</div><div class="lbl">Practice Lab runs</div></div>
+    <div class="card stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
     <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
+    <div class="card stat"><div class="num">${labAttemptsRemaining()} / ${LAB_ATTEMPT_CAP}</div><div class="lbl">Practice Lab attempts left <span style="font-weight:400;">(program-wide — Day 7 unlimited)</span></div></div>
   </div>
 
   <div class="pill-tabs">
@@ -7399,6 +9220,7 @@ function renderDashboard(){
   </div>
   `;
 }
+const LAB_CAP_DAYS = [1,2,3,4,5,6,8,9,10]; // Day7's tool has no AI-graded actions, so no cap applies
 function moduleCard(d){
   const prog = state.progress[d.id];
   const unlocked = dayUnlocked(d.id);
@@ -7422,6 +9244,12 @@ function moduleCard(d){
       </ul>
     </div>
     <button class="btn module-start-btn ${status==='locked'?'btn-ghost':'btn-navy'}" ${status==='locked'?'disabled':''} onclick="goto('day',${d.id})">${status==='done'?'Review':'Start'}</button>
+    ${(status!=='locked' && status!=='done') ? `<button class="btn btn-ghost btn-sm module-finish-btn" onclick="finishTrainingForDay(${d.id})">✓ Finish Training</button>` : ""}
+    ${status==='done' ? `
+    <div class="module-review-row">
+      <button class="btn btn-ghost btn-sm" onclick="reviewMyScore(${d.id})" title="View your recorded score — nothing changes">👁 Review Score</button>
+      <button class="btn btn-ghost btn-sm" onclick="finishTrainingForDay(${d.id})" title="Retake the Knowledge Check — your best score is kept">🔁 Retake</button>
+    </div>` : ""}
   </div>`;
 }
 function scrollToModule(id){
@@ -7433,6 +9261,60 @@ function scrollToModule(id){
   }, 30);
 }
 window.scrollToModule = scrollToModule;
+function returnToLessonCard(dayId){
+  const sameDay = state.dayId === dayId;
+  state.view = "day";
+  state.dayId = dayId;
+  state.dayViewMode = "slides";
+  state.quizSubmitted = false;
+  // Only preserve state.lessonSlide when it's genuinely for this same day —
+  // goto('tool',...) and the Knowledge Check flow never reset it, so a
+  // same-day return restores the exact slide the trainee was on. If they
+  // opened this tool directly (a different or no prior day), that index
+  // would be meaningless here, so start from the top instead.
+  if(!sameDay || typeof state.lessonSlide !== "number") state.lessonSlide = 0;
+  state.slideInterstitial = null;
+  window.scrollTo({top:0, behavior:"smooth"});
+  render();
+}
+window.returnToLessonCard = returnToLessonCard;
+function finishTrainingForDay(dayId){
+  // A direct, explicit manual trigger: jump straight to this day's Knowledge
+  // Check, bypassing the slide sequence entirely. This gives a trainee a
+  // clear, unambiguous path to complete a day regardless of whatever
+  // navigation path they took to get here — the Knowledge Check itself is
+  // still the only thing that actually marks a day done (via submitQuiz),
+  // so this can't be used to skip real completion, only to reach it directly.
+  state.view = "day";
+  state.dayId = dayId;
+  state.dayViewMode = "knowledgeCheck";
+  state.quizAnswers = {};
+  state.quizQuestionIndex = 0;
+  state.quizSubmitted = false;
+  state.slideInterstitial = null;
+  window.scrollTo({top:0, behavior:"smooth"});
+  render();
+}
+window.finishTrainingForDay = finishTrainingForDay;
+function reviewMyScore(dayId){
+  // Shows the trainee's existing recorded result directly, read-only — no
+  // quiz is re-taken and nothing about state.progress[dayId] is touched.
+  const prog = state.progress[dayId];
+  if(!prog){ toast("No recorded result yet for this day."); return; }
+  const d = DAYS.find(x=>x.id===dayId);
+  const lastAttempt = (prog.history && prog.history.length) ? prog.history[prog.history.length-1] : {score: prog.score, passed: prog.done};
+  state.view = "day";
+  state.dayId = dayId;
+  state.dayViewMode = "knowledgeCheck";
+  state.quizSubmitted = true;
+  state.lastScore = prog.score;
+  state.lastCorrect = Math.round((prog.score/100) * d.quiz.length);
+  state.lastTotal = d.quiz.length;
+  state.lastPassed = prog.done;
+  window.scrollTo({top:0, behavior:"smooth"});
+  render();
+}
+window.reviewMyScore = reviewMyScore;
 const DAY_ICONS = {1:"🗂",2:"📅",3:"💬",4:"📨",5:"🛡",6:"📊",7:"Σ",8:"☎",9:"📋",10:"📱"};
 function nextDayId(){
   for(const d of DAYS){ if(!(state.progress[d.id]&&state.progress[d.id].done)) return d.id; }
@@ -7442,6 +9324,23 @@ function avgScore(){
   const scores = Object.values(state.progress).filter(p=>p&&typeof p.score==="number").map(p=>p.score);
   if(!scores.length) return 0;
   return Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+}
+function overallCompetencyScore(){
+  const pp = state.practiceProgress||{};
+  const scores = Object.values(pp).filter(v=>typeof v.bestScore==="number" && v.bestScore>0).map(v=>v.bestScore);
+  if(!scores.length) return {score:0, tier:null};
+  const score = Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+  return {score, tier: gradeTierFor(score)};
+}
+function averageCompetencyScore(){
+  // Unlike overallCompetencyScore (best attempt per tool), this averages
+  // EVERY recorded attempt across every tool — a more holistic picture that
+  // reflects retakes too, not just each tool's single best showing.
+  const pp = state.practiceProgress||{};
+  const allAttempts = Object.values(pp).flatMap(v=>(v.history||[]).map(h=>h.score));
+  if(!allAttempts.length) return {score:0, tier:null};
+  const score = Math.round(allAttempts.reduce((a,b)=>a+b,0)/allAttempts.length);
+  return {score, tier: gradeTierFor(score)};
 }
 function practiceRunsCount(){
   const pp = state.practiceProgress||{};
@@ -7471,7 +9370,7 @@ function dayRow(d){
 /* ---------- router ---------- */
 function goto(view, id){
   state.view=view;
-  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; }
+  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; }
   if(view==="tool"){ state.toolId=id; }
   window.scrollTo({top:0,behavior:"smooth"});
   render();
@@ -7506,7 +9405,7 @@ async function promptName(){
       state.traineeId = generateTraineeId(v);
       await storeSet("trainee-id", state.traineeId);
     }
-    if(state.traineeId) syncToLedger();
+    if(state.traineeId) await syncToLedger();
     overlay.remove();
     render();
     toast("Saved");
@@ -7541,6 +9440,8 @@ function render(){
   else if(state.view==="handouts") body=renderHandouts();
   else if(state.view==="notes") body=renderNotes();
   else if(state.view==="clientprofile") body=renderClientProfile();
+  else if(state.view==="crisisroleplay") body=renderCrisisRoleplayHub();
+  else if(state.view==="openroleplay") body=renderOpenRoleplay();
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
   app.innerHTML = renderNotifBanner() + renderTopbar() + `<main>${body}</main>` + renderFooter();
@@ -7564,7 +9465,7 @@ function renderLogin(){
     <div class="login-shell">
       <div class="login-card">
         <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px;height:auto;margin-bottom:22px;">
-        <h1 style="font-size:22px;color:var(--navy);margin:0 0 8px;">Welcome to the Upskill Program</h1>
+        <h1 style="font-size:22px;color:var(--navy);margin:0 0 8px;">Welcome to EA / PA Upskill Program</h1>
         <p style="font-size:13.5px;color:var(--ink-soft);margin:0 0 22px;">Enter your name to begin. This identifies your progress on the training record — no password needed.</p>
         <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') document.getElementById('loginBatchInput').focus();">
         <input type="text" id="loginBatchInput" placeholder="Batch (e.g. B050225)" style="margin-top:10px;" onkeydown="if(event.key==='Enter') submitLogin();">
@@ -7596,9 +9497,22 @@ async function submitLogin(){
     if(existing){
       state.progress = existing.dayProgress || {};
       state.practiceProgress = existing.practiceProgress || {};
+      if(typeof existing.labAttemptsGlobal === "number"){
+        state.labAttemptsGlobal = existing.labAttemptsGlobal;
+      }else if(existing.labAttempts && typeof existing.labAttempts === "object"){
+        // Old-format ledger record from before the cap was program-wide.
+        state.labAttemptsGlobal = Math.min(
+          Object.entries(existing.labAttempts).reduce((sum,[dayId,count])=> parseInt(dayId,10)===7 ? sum : sum + (count||0), 0),
+          LAB_ATTEMPT_CAP
+        );
+      }else{
+        state.labAttemptsGlobal = 0;
+      }
       await storeSet("day-progress", state.progress);
       await storeSet("practice-progress", state.practiceProgress);
+      await storeSet("lab-attempts-global", state.labAttemptsGlobal);
       if(existing.batch){ state.traineeBatch = existing.batch; await storeSet("trainee-batch", existing.batch); }
+      state.assignedRoleplay = existing.assignedRoleplay || null;
     }
   }
   await syncToLedger();
@@ -7683,6 +9597,10 @@ window.logout = logout;
     const status = await getApprovalStatus(state.traineeId);
     if(status==="approved"){
       // leave state.view at its default (clientprofile) for an approved returning trainee
+      try{
+        const rec = await sharedGet("trainee:"+state.traineeId);
+        if(rec) state.assignedRoleplay = rec.assignedRoleplay || null;
+      }catch(e){ /* best-effort — don't block app load on this */ }
     }else if(status==="rejected"){
       state.view = "registrationDenied";
     }else{
@@ -7935,8 +9853,7 @@ function renderDaySlideshow(d){
         ? `<button class="btn btn-primary" onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
         : `<button class="btn btn-primary" onclick="nextSlide()">Next &rarr;</button>`}
     </div>
-    ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — nice work. Head to the Knowledge Check when you're ready.</div>
-    <div style="text-align:center;margin-top:10px;"><button class="btn btn-ghost btn-sm" onclick="scrollToModule(${d.id})">Return to Progress</button></div>` : ""}
+    ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.</div>` : ""}
   `;
 }
 function goToSlide(i){
@@ -8002,16 +9919,96 @@ function scrollToKnowledgeCheck(){
 }
 window.scrollToKnowledgeCheck = scrollToKnowledgeCheck;
 
+function deriveFourPartStructure(l){
+  // Auto-derives the 4-part structure from a topic's existing data, so every
+  // one of the program's existing lesson cards gets this structure without
+  // needing its underlying content individually rewritten. New topics can
+  // instead provide an explicit l.fourPart object with purpose-written
+  // content, which always takes priority over this derivation.
+  const isProcess = l.layout === "PROCESS";
+  const hasVisual = !!l.layout;
+  const bullets = l.b || [];
+  return {
+    corePrinciples: {
+      visualHtml: (hasVisual && !isProcess) ? renderLessonVisual(l) : null,
+      fallbackText: isProcess
+        ? `"${l.h}" is a sequential skill — the core principle is following the steps below in order, not treating them as optional or interchangeable.`
+        : (!hasVisual
+            ? (bullets.length > 1 ? bullets[0] : `The core idea behind "${l.h}" is covered directly below.`)
+            : null)
+    },
+    howTo: {
+      visualHtml: isProcess ? renderLessonVisual(l) : null,
+      fallbackText: !isProcess ? "Apply the principle above directly in your day-to-day work — this topic doesn't break into a separate numbered sequence beyond what's shown." : null
+    },
+    bestPractices: {
+      bullets: (!hasVisual && bullets.length > 1) ? bullets.slice(1) : bullets,
+      callout: l.callout || null
+    },
+    discussionCase: {
+      example: l.example || null,
+      table: l.table || null,
+      trainerCue: l.trainerCue || null
+    }
+  };
+}
+function renderFourPartSection(num, label, content){
+  if(!content) return "";
+  return `
+    <div class="fp-section">
+      <div class="fp-label"><span class="fp-num">${num}</span>${esc(label)}</div>
+      <div class="fp-body">${content}</div>
+    </div>`;
+}
 function renderLessonCard(l,i,d){
+  // Explicit, hand-authored fourPart content (simple string/array shape) takes
+  // priority for new topics. Existing topics without it fall back to the
+  // tested automatic derivation from their visual/bullets/example data.
+  if(l.fourPart){
+    const fp = l.fourPart;
+    return `
+    <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}</div>
+    <div class="card lesson-card">
+      <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
+      ${renderFourPartSection(1, "Core Principles", fp.corePrinciples && fp.corePrinciples.length ? `<ul>${fp.corePrinciples.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "")}
+      ${renderFourPartSection(2, "Step-by-Step How-To Framework", fp.howTo && fp.howTo.length ? `<ol class="fp-howto-list">${fp.howTo.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>` : "")}
+      ${renderFourPartSection(3, "Executive Best Practices & Pitfalls", fp.bestPractices && fp.bestPractices.length ? `<ul>${fp.bestPractices.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "")}
+      ${renderFourPartSection(4, "Applied Discussion Case", fp.discussionCase ? `<p class="fp-discussion-prompt">${esc(fp.discussionCase)}</p>` : "")}
+      ${l.trainerCue && state.isAdmin ?`
+      <div class="trainer-checkpoint">
+        <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
+        <p>${esc(l.trainerCue)}</p>
+      </div>` : ""}
+    </div>`;
+  }
+  const fp = deriveFourPartStructure(l);
+
+  const corePrinciplesHtml = fp.corePrinciples.visualHtml ||
+    (fp.corePrinciples.fallbackText ? `<p class="fp-fallback-text">${esc(fp.corePrinciples.fallbackText)}</p>` : "");
+
+  const howToHtml = fp.howTo.visualHtml ||
+    (fp.howTo.fallbackText ? `<p class="fp-fallback-text">${esc(fp.howTo.fallbackText)}</p>` : "");
+
+  const bestPracticesParts = [];
+  if(fp.bestPractices.bullets && fp.bestPractices.bullets.length) bestPracticesParts.push(`<ul>${fp.bestPractices.bullets.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`);
+  if(fp.bestPractices.callout) bestPracticesParts.push(fp.bestPractices.callout.prominent ? renderProminentDisclaimer(fp.bestPractices.callout) : renderCallout(fp.bestPractices.callout));
+  const bestPracticesHtml = bestPracticesParts.join("");
+
+  const discussionParts = [];
+  if(fp.discussionCase.example) discussionParts.push(renderExample(fp.discussionCase.example));
+  if(fp.discussionCase.table) discussionParts.push(renderTable(fp.discussionCase.table));
+  if(fp.discussionCase.trainerCue) discussionParts.push(`<p class="fp-discussion-prompt">${esc(fp.discussionCase.trainerCue)}</p>`);
+  if(!discussionParts.length) discussionParts.push(`<p class="fp-discussion-prompt">Discuss with your trainer or a peer: describe a real situation from your own work (or a hypothetical one) where "${esc(l.h)}" would directly apply — what would you actually do?</p>`);
+  const discussionHtml = discussionParts.join("");
+
   return `
     <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}</div>
     <div class="card lesson-card">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
-      ${renderLessonVisual(l)}
-      <ul>${l.b.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-      ${l.callout?(l.callout.prominent?renderProminentDisclaimer(l.callout):renderCallout(l.callout)):""}
-      ${l.example?renderExample(l.example):""}
-      ${l.table?renderTable(l.table):""}
+      ${renderFourPartSection(1, "Core Principles", corePrinciplesHtml)}
+      ${renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml)}
+      ${renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml)}
+      ${renderFourPartSection(4, "Applied Discussion Case", discussionHtml)}
       ${l.trainerCue && state.isAdmin ?`
       <div class="trainer-checkpoint">
         <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
@@ -8027,8 +10024,46 @@ function renderLessonVisual(l){
     case "THREEBOX": return renderThreeBoxVisual(l.boxes);
     case "STAT": return renderStatVisual(l.statNumber, l.statLabel);
     case "PALETTE": return renderPaletteVisual(l.palette);
+    case "ICONLIST": return renderIconListVisual(l.icons);
+    case "VIDEO": return renderVideoPlaceholderCard(l.video);
+    case "TABLE": return (l.tableHeaders && l.tableRows) ? renderTable({headers:l.tableHeaders, rows:l.tableRows}) : "";
     default: return "";
   }
+}
+function renderVideoPlaceholderCard(video){
+  // Zero raw video files ever ship with this portal — every video lesson is
+  // this lightweight placeholder card, pointing out to wherever the actual
+  // file is hosted (Drive, etc.). Nothing here downloads or embeds video.
+  if(!video) return "";
+  const initials = (video.title||"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
+  return `
+    <div class="video-placeholder-card">
+      <div class="vpc-thumb">
+        <div class="vpc-thumb-initials">${esc(initials)}</div>
+        <div class="vpc-play-btn">▶</div>
+        ${video.duration ? `<div class="vpc-duration">${esc(video.duration)}</div>` : ""}
+      </div>
+      <div class="vpc-body">
+        <div class="vpc-title">${esc(video.title||"Untitled Video Lesson")}</div>
+        ${video.tags && video.tags.length ? `<div class="vpc-tags">${video.tags.map(t=>`<span class="vpc-tag">${esc(t)}</span>`).join("")}</div>` : ""}
+        ${video.driveUrl ? `<a class="btn btn-navy btn-sm vpc-watch-btn" href="${esc(video.driveUrl)}" target="_blank" rel="noopener noreferrer">▶ Watch Video on Drive</a>` : ""}
+        ${video.takeaways && video.takeaways.length ? `
+        <div class="vpc-takeaways">
+          <b>Key Takeaways</b>
+          <ul>${video.takeaways.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+        </div>` : ""}
+      </div>
+    </div>`;
+}
+function renderIconListVisual(icons){
+  if(!icons || !icons.length) return "";
+  return `<div class="lesson-iconlist">
+    ${icons.map(it=>`
+      <div class="il-item">
+        <div class="il-icon">${esc(it.icon)}</div>
+        <div class="il-body"><b>${esc(it.label)}</b><p>${esc(it.desc)}</p></div>
+      </div>`).join("")}
+  </div>`;
 }
 function renderPaletteVisual(palette){
   return `<div class="lesson-palette">
@@ -8159,22 +10194,45 @@ function renderQuiz(d){
   if(state.quizSubmitted){
     return renderQuizResult(d);
   }
+  const qi = Math.min(state.quizQuestionIndex||0, d.quiz.length-1);
+  const q = d.quiz[qi];
+  const isLast = qi === d.quiz.length-1;
+  const answered = state.quizAnswers[qi] !== undefined;
   return `
-    ${d.quiz.map((q,i)=>`
-      <div class="card quiz-card">
-        <p class="quiz-q">${i+1}. ${esc(q.q)}</p>
-        <div class="quiz-opts">
-          ${q.opts.map((o,oi)=>`
-            <label class="quiz-opt">
-              <input type="radio" name="q${i}" value="${oi}" onchange="setAnswer(${i},${oi})" ${state.quizAnswers[i]===oi?'checked':''}>
-              <span>${esc(o)}</span>
-            </label>`).join("")}
-        </div>
-      </div>`).join("")}
-    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;" onclick="submitQuiz(${d.id})">Submit Knowledge Check</button>
+    <div class="quiz-dots">
+      ${d.quiz.map((_,i)=>`<span class="quiz-dot ${i===qi?'active':state.quizAnswers[i]!==undefined?'done':''}" onclick="goToQuizQuestion(${i})"></span>`).join("")}
+    </div>
+    <div class="quiz-progress-label">Question ${qi+1} of ${d.quiz.length}</div>
+    <div class="card quiz-card">
+      <p class="quiz-q">${esc(q.q)}</p>
+      <div class="quiz-grid">
+        ${q.opts.map((o,oi)=>`
+          <label class="quiz-grid-opt ${state.quizAnswers[qi]===oi?'selected':''}">
+            <input type="radio" name="q${qi}" value="${oi}" onchange="setAnswer(${qi},${oi})" ${state.quizAnswers[qi]===oi?'checked':''} style="display:none;">
+            <span class="quiz-grid-letter">${String.fromCharCode(65+oi)}</span>
+            <span class="quiz-grid-text">${esc(o)}</span>
+          </label>`).join("")}
+      </div>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn btn-ghost" ${qi===0?'disabled':''} onclick="goToQuizQuestion(${qi-1})">&larr; Back</button>
+      ${isLast
+        ? `<button class="btn btn-primary" style="padding:13px 28px;" onclick="submitQuiz(${d.id})">Submit Knowledge Check</button>`
+        : `<button class="btn btn-primary" style="padding:13px 28px;" ${answered?'':'disabled'} onclick="goToQuizQuestion(${qi+1})">Next &rarr;</button>`}
+    </div>
   `;
 }
-function setAnswer(qi, oi){ state.quizAnswers[qi]=oi; }
+function goToQuizQuestion(i){
+  state.quizQuestionIndex = i;
+  document.getElementById("quizWrap").innerHTML = renderQuiz(DAYS.find(d=>d.id===state.dayId));
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+window.goToQuizQuestion = goToQuizQuestion;
+function setAnswer(qi, oi){
+  state.quizAnswers[qi]=oi;
+  const wrap = document.getElementById("quizWrap");
+  if(wrap) wrap.innerHTML = renderQuiz(DAYS.find(d=>d.id===state.dayId));
+}
 window.setAnswer = setAnswer;
 
 async function submitQuiz(dayId){
@@ -8190,10 +10248,16 @@ async function submitQuiz(dayId){
   state.lastScore=score; state.lastCorrect=correct; state.lastTotal=total; state.lastPassed=passed;
 
   const prevBest = state.progress[dayId]?.score || 0;
-  const newRecord = {done: passed || (state.progress[dayId]?.done||false), score: Math.max(score, prevBest), date: new Date().toISOString()};
+  const prevHistory = state.progress[dayId]?.history || [];
+  const newRecord = {
+    done: passed || (state.progress[dayId]?.done||false),
+    score: Math.max(score, prevBest),
+    date: new Date().toISOString(),
+    history: [...prevHistory, {score, passed, date: new Date().toISOString()}]
+  };
   state.progress[dayId]=newRecord;
   await storeSet("day-progress", state.progress);
-  syncToLedger();
+  await syncToLedger();
 
   document.getElementById("quizWrap").innerHTML = renderQuiz(d);
   document.getElementById("quizWrap").scrollIntoView({behavior:"smooth",block:"start"});
@@ -8207,6 +10271,7 @@ function renderQuizResult(d){
   const passMsgs = ["Nice work — next day unlocked.", "Sharp — you've got this down.", "Solid pass. On to the next one.", "That's a wrap on Day "+d.id+" — well done."];
   const failMsgs = ["Not quite 70% yet — review below and try again.", "Close, but not there yet — a quick review below should help.", "So close! Look over the answers below and give it another go."];
   const msg = lastPassed ? passMsgs[Math.floor(Math.random()*passMsgs.length)] : failMsgs[Math.floor(Math.random()*failMsgs.length)];
+  const history = (state.progress[d.id] && state.progress[d.id].history) || [];
   return `
     <div class="card quiz-result">
       ${sealSvg({size:84,label:lastScore+"%",done:lastPassed})}
@@ -8214,14 +10279,46 @@ function renderQuizResult(d){
       <div class="sub">${msg}</div>
       <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;">
         <button class="btn btn-ghost" onclick="retakeQuiz(${d.id})">Retake Quiz</button>
-        <button class="btn btn-ghost" onclick="scrollToModule(${d.id})">Return to Progress</button>
+        <button class="btn btn-ghost" onclick="downloadQuizResultPdf(${d.id})">⬇ Download PDF</button>
+        <button class="btn btn-ghost" onclick="returnToLessonCard(${d.id})">Return to Progress</button>
         ${lastPassed && d.id<10 ? `<button class="btn btn-primary" onclick="goToNextDay(${d.id})">Continue to Day ${d.id+1} &rarr;</button>`:""}
         ${lastPassed && d.id===10 ? `<button class="btn btn-primary" onclick="downloadRecordPdf()">⬇ Download Completion Certificate</button>`:""}
       </div>
+      ${history.length ? `
+      <div class="quiz-history">
+        <b>Your Attempt History</b>
+        <table>
+          ${history.map((h,i)=>`<tr><td>Attempt ${i+1}</td><td>${h.score}%</td><td class="${h.passed?'qh-pass':'qh-fail'}">${h.passed?'Passed':'Not yet'}</td><td>${new Date(h.date).toLocaleDateString()}</td></tr>`).join("")}
+        </table>
+      </div>` : ""}
     </div>
     <div id="answerFeedback"></div>
   `;
 }
+async function downloadQuizResultPdf(dayId){
+  await ensureTraineeName();
+  const d = DAYS.find(x=>x.id===dayId);
+  const {lastScore, lastCorrect, lastTotal, lastPassed} = state;
+  const lines = [
+    `Result: ${lastCorrect} / ${lastTotal} correct (${lastScore}%) — ${lastPassed ? "PASSED" : "Not yet passing (70% required)"}`,
+    "---"
+  ];
+  const history = (state.progress[dayId] && state.progress[dayId].history) || [];
+  if(history.length){
+    lines.push("Attempt History:");
+    history.forEach((h,i)=>lines.push(`   Attempt ${i+1}: ${h.score}% — ${h.passed?"Passed":"Not yet"} — ${new Date(h.date).toLocaleDateString()}`));
+    lines.push("---");
+  }
+  d.quiz.forEach((q,i)=>{
+    const picked = state.quizAnswers[i];
+    lines.push(`Q${i+1}: ${q.q}`);
+    lines.push(`   Your answer: ${typeof picked==="number" ? q.opts[picked] : "(not answered)"}`);
+    lines.push(`   Correct answer: ${q.opts[q.a]}`);
+    lines.push(`   Why: ${q.r}`);
+  });
+  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${dayId} Knowledge Check — Results`, lines, `LSH_Day${dayId}_Knowledge_Check`);
+}
+window.downloadQuizResultPdf = downloadQuizResultPdf;
 function goToNextDay(dayId){
   const nextId = dayId + 1;
   if(!dayUnlocked(nextId)){
@@ -8235,7 +10332,7 @@ function goToNextDay(dayId){
 }
 window.goToNextDay = goToNextDay;
 function retakeQuiz(dayId){
-  state.quizAnswers={}; state.quizSubmitted=false;
+  state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false;
   document.getElementById("quizWrap").innerHTML = renderQuiz(DAYS.find(x=>x.id===dayId));
 }
 window.retakeQuiz = retakeQuiz;
@@ -8306,7 +10403,7 @@ function toolHead(t){
     <div class="card tool-shell">
       <div class="toolhead">
         <div><h2>${t.icon} ${esc(t.title)}</h2><p>${esc(t.desc)}</p></div>
-        ${relatedDayId ? `<button class="btn btn-ghost btn-sm" onclick="scrollToModule(${relatedDayId})">Return to Progress</button>` : ""}
+        ${relatedDayId ? `<button class="btn btn-ghost btn-sm" onclick="returnToLessonCard(${relatedDayId})">Return to Progress</button>` : ""}
       </div>
       <div id="toolBody"></div>
     </div>
@@ -8337,12 +10434,348 @@ function initTool(id){
 
 async function bumpPracticeProgress(toolId, score){
   state.practiceProgress = state.practiceProgress || {};
-  const cur = state.practiceProgress[toolId] || {runs:0, bestScore:0};
+  const cur = state.practiceProgress[toolId] || {runs:0, bestScore:0, history:[]};
   cur.runs = (cur.runs||0) + 1;
-  if(typeof score==="number") cur.bestScore = Math.max(cur.bestScore||0, score);
+  cur.history = cur.history || [];
+  if(typeof score==="number"){
+    cur.bestScore = Math.max(cur.bestScore||0, score);
+    cur.history.push({score, date: new Date().toISOString()});
+  }
   state.practiceProgress[toolId] = cur;
   await storeSet("practice-progress", state.practiceProgress);
-  syncToLedger();
+  await syncToLedger();
+}
+
+/* ============================================================
+   PRACTICE LAB USAGE CAP — 3 AI-graded attempts per day's module.
+   ============================================================ */
+const LAB_ATTEMPT_CAP = 3; // program-wide cap, shared across all capped days combined — Day7 remains exempt
+function labAttemptsUsed(){
+  return state.labAttemptsGlobal || 0;
+}
+function labAttemptsRemaining(){
+  return Math.max(0, LAB_ATTEMPT_CAP - labAttemptsUsed());
+}
+async function useLabAttempt(dayId){
+  if(dayId === 7) return true; // Day7 is explicitly exempt from the cap — unlimited runs, never counted
+  if(labAttemptsRemaining() <= 0){
+    toast(`No Practice Lab attempts remaining — you've used all ${LAB_ATTEMPT_CAP} for the entire program.`);
+    return false;
+  }
+  state.labAttemptsGlobal = labAttemptsUsed() + 1;
+  await storeSet("lab-attempts-global", state.labAttemptsGlobal);
+  await syncToLedger();
+  refreshLabAttemptBanners();
+  return true;
+}
+function toolIdToDayId(toolId){
+  const t = PRACTICE_TOOLS.find(x=>x.id===toolId);
+  return t && t.relates ? parseInt(t.relates.replace(/[^0-9]/g,""), 10) : null;
+}
+
+/* ============================================================
+   AI COMPETENCY EVALUATION ENGINE — standardized 100-point rubric
+   used across all Practice Lab AI-graded submissions.
+   Accuracy & Technical Precision (35) + Executive Presence & Judgment (30)
+   + Risk Mitigation & SOP Compliance (20) + Efficiency & Structure (15)
+   ============================================================ */
+function gradeTierFor(score){
+  if(score >= 85) return "Executive Lead";
+  if(score >= 65) return "Proficient Assistant";
+  return "Requires Remediation";
+}
+const GRADE_TIER_COLOR = {
+  "Executive Lead": "var(--success)",
+  "Proficient Assistant": "var(--orange)",
+  "Requires Remediation": "var(--danger)"
+};
+async function runRubricEvaluation(exerciseLabel, exerciseContext, submissionText, criteriaNotes){
+  const prompt = `You are an automated competency evaluator grading a trainee Executive Assistant's submission for a legal-industry EA training program. Grade rigorously and realistically — a submission that is merely present or generic should score low; do not award high marks simply because something was submitted. Vary scores genuinely based on submission quality; do not default to the same score every time.
+
+EXERCISE: ${exerciseLabel}
+
+CONTEXT:
+${exerciseContext}
+
+EXERCISE-SPECIFIC GRADING NOTES:
+${criteriaNotes}
+
+TRAINEE'S SUBMISSION:
+${submissionText}
+
+Score this submission on a 100-point rubric across these four weighted categories:
+- Accuracy & Technical Precision (0-35 points): factual correctness, adherence to the specific details of the exercise, no contradictions of the reference material.
+- Executive Presence & Judgment (0-30 points): tone, confidence, discretion, and the quality of judgment shown — would a real executive trust this work.
+- Risk Mitigation & SOP Compliance (0-20 points): does it show awareness of confidentiality, escalation, and procedural discipline where relevant.
+- Efficiency & Structure (0-15 points): is it clear, well-organized, and free of unnecessary padding.
+
+A generic, vague, or minimal-effort submission should score well below 70 overall. A submission with real errors or contradictions of the reference material should score well below 50 on Accuracy specifically. Reserve 85+ overall for submissions that are genuinely strong across all four categories, not just adequate.
+
+Return ONLY a JSON object with this exact shape, no other text:
+{
+  "accuracyScore": <integer 0-35>,
+  "presenceScore": <integer 0-30>,
+  "riskScore": <integer 0-20>,
+  "efficiencyScore": <integer 0-15>,
+  "strengths": ["...", "..."],
+  "blindspots": ["...", "..."],
+  "growthSuggestions": ["...", "..."]
+}`;
+  const raw = await callAIJson(prompt, 900);
+  const accuracyScore = Math.max(0, Math.min(35, Math.round(raw.accuracyScore||0)));
+  const presenceScore = Math.max(0, Math.min(30, Math.round(raw.presenceScore||0)));
+  const riskScore = Math.max(0, Math.min(20, Math.round(raw.riskScore||0)));
+  const efficiencyScore = Math.max(0, Math.min(15, Math.round(raw.efficiencyScore||0)));
+  const totalScore = accuracyScore + presenceScore + riskScore + efficiencyScore;
+  return {
+    accuracyScore, presenceScore, riskScore, efficiencyScore, totalScore,
+    gradeTier: gradeTierFor(totalScore),
+    strengths: Array.isArray(raw.strengths) ? raw.strengths : [],
+    blindspots: Array.isArray(raw.blindspots) ? raw.blindspots : [],
+    growthSuggestions: Array.isArray(raw.growthSuggestions) ? raw.growthSuggestions : []
+  };
+}
+async function runRoleplayRubricEvaluation(scenario, transcript){
+  const prompt = `You are an automated evaluator grading a trainee Executive/Personal Assistant's performance in a live, unscripted roleplay call. Grade rigorously and realistically — do not default to the same score every time, and don't award high marks just because the trainee said something plausible-sounding.
+
+SITUATION TYPE: ${scenario.topic.label} (category: ${scenario.category.label})
+${scenario.topic.context}
+
+FULL TRANSCRIPT:
+${transcript}
+
+Score this performance on a 100-point rubric across these four EQUALLY weighted categories (0-25 points each):
+- BLUF Adherence (0-25): did the trainee lead with the bottom line early, rather than burying it in context or hedging? A response that opens with background before the actual point should score low here.
+- Risk & Privilege Identification (0-25): did the trainee protect confidential or privileged information, avoid anything resembling unauthorized legal advice (UPL), and correctly flag any financial/trust-account (IOLTA) risk where relevant to this specific situation? Not every scenario involves all three — judge only what's actually relevant here.
+- Composure & Tone (0-25): did the trainee stay professionally diplomatic under pressure, even if the caller was rude, aggressive, or emotional? Visible defensiveness, over-apologizing, or matching hostile tone should score low.
+- ACT Protocol Execution (0-25): did the trainee Acknowledge the concern, Clarify what's actually needed, and establish a Timeline — before committing to anything? Committing to a task or promise without first doing this should score low here specifically.
+
+A generic or minimal-effort performance should score well below 70 overall. Reserve 85+ for genuinely strong performance across all four categories, not just adequate.
+
+Return ONLY a JSON object with this exact shape, no other text:
+{
+  "blufScore": <integer 0-25>,
+  "riskPrivilegeScore": <integer 0-25>,
+  "composureScore": <integer 0-25>,
+  "actProtocolScore": <integer 0-25>,
+  "strengths": ["...", "..."],
+  "blindspots": ["...", "..."],
+  "growthSuggestions": ["...", "..."]
+}`;
+  const raw = await callAIJson(prompt, 900);
+  const blufScore = Math.max(0, Math.min(25, Math.round(raw.blufScore||0)));
+  const riskPrivilegeScore = Math.max(0, Math.min(25, Math.round(raw.riskPrivilegeScore||0)));
+  const composureScore = Math.max(0, Math.min(25, Math.round(raw.composureScore||0)));
+  const actProtocolScore = Math.max(0, Math.min(25, Math.round(raw.actProtocolScore||0)));
+  const totalScore = blufScore + riskPrivilegeScore + composureScore + actProtocolScore;
+  return {
+    blufScore, riskPrivilegeScore, composureScore, actProtocolScore, totalScore,
+    gradeTier: gradeTierFor(totalScore),
+    strengths: Array.isArray(raw.strengths) ? raw.strengths : [],
+    blindspots: Array.isArray(raw.blindspots) ? raw.blindspots : [],
+    growthSuggestions: Array.isArray(raw.growthSuggestions) ? raw.growthSuggestions : []
+  };
+}
+function renderRoleplayEvaluationReport(report){
+  const tierColor = GRADE_TIER_COLOR[report.gradeTier] || "var(--ink-soft)";
+  return `
+    <div class="eval-report">
+      <div class="eval-report-header">
+        <div class="eval-score-ring" style="--ring-color:${tierColor};">
+          <span>${report.totalScore}</span>
+        </div>
+        <div>
+          <div class="eval-tier" style="color:${tierColor};">${esc(report.gradeTier)}</div>
+          <div class="eval-subscore-row">
+            <span>BLUF Adherence ${report.blufScore}/25</span>
+            <span>Risk &amp; Privilege ${report.riskPrivilegeScore}/25</span>
+            <span>Composure &amp; Tone ${report.composureScore}/25</span>
+            <span>ACT Protocol ${report.actProtocolScore}/25</span>
+          </div>
+        </div>
+      </div>
+      ${report.strengths.length ? `
+      <div class="eval-section">
+        <b>Strengths</b>
+        <ul>${report.strengths.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+      ${report.blindspots.length ? `
+      <div class="eval-section">
+        <b>Blindspots</b>
+        <ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+      ${report.growthSuggestions.length ? `
+      <div class="eval-section">
+        <b>Growth Suggestions</b>
+        <ul>${report.growthSuggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+    </div>`;
+}
+
+function renderEvaluationReport(report, dayId){
+  const tierColor = GRADE_TIER_COLOR[report.gradeTier] || "var(--ink-soft)";
+  if(dayId){ toolState.lastEvalReport = {report, dayId}; }
+  return `
+    <div class="eval-report">
+      <div class="eval-report-header">
+        <div class="eval-score-ring" style="--ring-color:${tierColor};">
+          <span>${report.totalScore}</span>
+        </div>
+        <div>
+          <div class="eval-tier" style="color:${tierColor};">${esc(report.gradeTier)}</div>
+          <div class="eval-subscore-row">
+            <span>Accuracy ${report.accuracyScore}/35</span>
+            <span>Executive Presence ${report.presenceScore}/30</span>
+            <span>Risk &amp; SOP ${report.riskScore}/20</span>
+            <span>Efficiency ${report.efficiencyScore}/15</span>
+          </div>
+        </div>
+      </div>
+      ${report.strengths.length ? `
+      <div class="eval-section">
+        <b>Strengths</b>
+        <ul>${report.strengths.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+      ${report.blindspots.length ? `
+      <div class="eval-section">
+        <b>Blindspots</b>
+        <ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+      ${report.growthSuggestions.length ? `
+      <div class="eval-section">
+        <b>Growth Suggestions</b>
+        <ul>${report.growthSuggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+      ${dayId ? `
+      <div class="eval-action-row">
+        <button class="btn btn-ghost btn-sm" onclick="repeatActivity()" ${labAttemptsRemaining()<=0 && dayId!==7 ? 'disabled title="No Practice Lab attempts remaining"' : ''}>🔁 Repeat Activity</button>
+        <button class="btn btn-navy btn-sm" onclick="retainScoreAndAdvance()">✅ Retain Score &amp; Advance</button>
+      </div>
+      <div class="eval-action-row" style="border-top:none;padding-top:0;margin-top:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="downloadEvaluationReportPdf()">⬇ Download PDF</button>
+        <button class="btn btn-ghost btn-sm" onclick="returnToLessonCard(${dayId})">📚 Jump to Knowledge Base</button>
+      </div>` : ""}
+    </div>`;
+}
+async function downloadEvaluationReportPdf(){
+  const stored = toolState.lastEvalReport;
+  if(!stored){ toast("No evaluation report to download yet."); return; }
+  await ensureTraineeName();
+  const {report, dayId} = stored;
+  const lines = [
+    `Overall Score: ${report.totalScore}/100 — ${report.gradeTier}`,
+    "---",
+    `Accuracy & Technical Precision: ${report.accuracyScore}/35`,
+    `Executive Presence & Judgment: ${report.presenceScore}/30`,
+    `Risk Mitigation & SOP Compliance: ${report.riskScore}/20`,
+    `Efficiency & Structure: ${report.efficiencyScore}/15`,
+    "---"
+  ];
+  if(report.strengths.length){
+    lines.push("Strengths:");
+    report.strengths.forEach(s=>lines.push("   • "+s));
+    lines.push("---");
+  }
+  if(report.blindspots.length){
+    lines.push("Blindspots:");
+    report.blindspots.forEach(s=>lines.push("   • "+s));
+    lines.push("---");
+  }
+  if(report.growthSuggestions.length){
+    lines.push("Growth Suggestions:");
+    report.growthSuggestions.forEach(s=>lines.push("   • "+s));
+  }
+  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${dayId} — AI Evaluation Report`, lines, `LSH_Day${dayId}_Evaluation_Report`);
+}
+window.downloadEvaluationReportPdf = downloadEvaluationReportPdf;
+function repeatActivity(){
+  // The submission form is still directly above this report within the same
+  // wizard part — repeating just means scrolling back up to it and letting
+  // the trainee edit/resubmit. The actual attempt-cap check and history
+  // logging both already happen naturally on the next real submission.
+  window.scrollTo({top:0, behavior:"smooth"});
+  toast("Edit your submission above and resubmit when ready.");
+}
+window.repeatActivity = repeatActivity;
+function retainScoreAndAdvance(){
+  const labels = toolState.wizardLabels || [];
+  const nextIdx = (toolState.wizardIndex||0) + 1;
+  if(nextIdx < labels.length){
+    wizardGoTo(nextIdx);
+  }else{
+    toast("Score retained — that's the last part of this tool.");
+  }
+}
+window.retainScoreAndAdvance = retainScoreAndAdvance;
+function refreshLabAttemptBanners(){
+  document.querySelectorAll(".lab-attempt-banner").forEach(el=>{
+    const dayId = parseInt(el.dataset.dayId, 10);
+    el.outerHTML = renderLabAttemptBanner(dayId);
+  });
+}
+
+/* ============================================================
+   MULTI-SCREEN TOOL WIZARD — every Practice Lab tool's parts
+   (A, B, C...) render as separate screens with Next/Back nav,
+   never combined onto a single scrolling page. All parts render
+   into the DOM at once (so no typed input is ever lost) and only
+   the active one is shown — visually and functionally identical
+   to true single-screen navigation.
+   ============================================================ */
+function renderToolWizard(dayId, parts){
+  toolState.wizardLabels = parts.map(p=>p.label);
+  const idx = Math.min(toolState.wizardIndex||0, parts.length-1);
+  return `
+    ${dayId ? renderLabAttemptBanner(dayId) : ""}
+    <div class="wizard-dots">
+      ${parts.map((p,i)=>`<span class="wizard-dot ${i===idx?'active':i<idx?'done':''}" onclick="wizardGoTo(${i})" title="${esc(p.label)}"></span>`).join("")}
+    </div>
+    <div class="wizard-part-label" id="wizardPartLabel">Part ${idx+1} of ${parts.length} — ${esc(parts[idx].label)}</div>
+    ${parts.map((p,i)=>`<div class="wizard-screen" style="display:${i===idx?'block':'none'};" data-wizard-idx="${i}">${p.html}</div>`).join("")}
+    <div class="wizard-nav">
+      <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="wizardGoTo(${idx-1})">&larr; Back</button>
+      <span class="wizard-nav-counter">${idx+1} / ${parts.length}</span>
+      ${idx<parts.length-1 ? `<button class="btn btn-primary" onclick="wizardGoTo(${idx+1})">Next &rarr;</button>` : `<span style="width:88px;"></span>`}
+    </div>
+  `;
+}
+function wizardGoTo(i){
+  const labels = toolState.wizardLabels || [];
+  if(i<0 || i>=labels.length) return;
+  toolState.wizardIndex = i;
+  document.querySelectorAll(".wizard-screen").forEach(el=>{
+    el.style.display = (parseInt(el.dataset.wizardIdx,10)===i) ? "block" : "none";
+  });
+  document.querySelectorAll(".wizard-dot").forEach((el,idx)=>{
+    el.classList.toggle("active", idx===i);
+    el.classList.toggle("done", idx<i);
+  });
+  const labelEl = document.getElementById("wizardPartLabel");
+  if(labelEl) labelEl.textContent = `Part ${i+1} of ${labels.length} — ${labels[i]}`;
+  const navWrap = document.querySelector(".wizard-nav");
+  if(navWrap){
+    navWrap.innerHTML = `
+      <button class="btn btn-ghost" ${i===0?'disabled':''} onclick="wizardGoTo(${i-1})">&larr; Back</button>
+      <span class="wizard-nav-counter">${i+1} / ${labels.length}</span>
+      ${i<labels.length-1 ? `<button class="btn btn-primary" onclick="wizardGoTo(${i+1})">Next &rarr;</button>` : `<span style="width:88px;"></span>`}
+    `;
+  }
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+window.wizardGoTo = wizardGoTo;
+function renderLabAttemptBanner(dayId){
+  const remaining = labAttemptsRemaining();
+  const locked = remaining <= 0;
+  return `
+    <div class="lab-attempt-banner ${locked?'lab-attempt-locked':''}" data-day-id="${dayId}">
+      <div class="lab-attempt-icon">${locked?'🔒':'⚠️'}</div>
+      <div class="lab-attempt-body">
+        <b>${locked?'No attempts remaining — read-only mode':'Program-Wide Tool Utilization Limit'}</b>
+        <p>${locked
+          ? `You've used all ${LAB_ATTEMPT_CAP} Practice Lab attempts allocated for the entire program. You can still view any completed results below, but no further submissions will be graded — except Day 7, which is unlimited.`
+          : `You are allocated a total of ${LAB_ATTEMPT_CAP} Practice Lab attempts across the <b>entire 10-day program</b> (Day 7 is exempt and unlimited). Use your attempts strategically — review all background materials, instructions, and details thoroughly before initiating a submission. <b>${remaining} of ${LAB_ATTEMPT_CAP} attempts remaining, program-wide.</b>`}</p>
+      </div>
+    </div>`;
 }
 
 /* ============================================================
@@ -8444,6 +10877,11 @@ async function initCalendar(body){
 }
 
 function renderCalendarBody(body){
+  // Preserve plain-text fields that aren't backed by toolState — this
+  // function re-runs on every drag/drop, color change, or delete, and
+  // without this, any text typed into other wizard parts would be lost.
+  const savedCalPrompt = document.getElementById("calPromptInput") ? document.getElementById("calPromptInput").value : "";
+  const savedTravelAct = document.getElementById("travelActDraft") ? document.getElementById("travelActDraft").value : "";
   const events = calMergedEvents();
   const conflicts = calFindConflicts(events);
   const conflictIdx = new Set(conflicts.flat());
@@ -8470,7 +10908,8 @@ function renderCalendarBody(body){
     }).join("");
   }
 
-  body.innerHTML = `
+  toolState.wizardIndex = toolState.wizardIndex || 0;
+  const partA = `
     <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly. Click one of the three priority-color dots to recolor, <b>✕</b> to remove an event entirely, or <b>+ Add Event</b> to schedule something new — including proactive tasks you spot are missing, like a debrief buffer or prep block. Nothing here is graded until you click Check My Plan.</p>
     <div class="legend-row">
       ${["High","Medium","Low"].map(p=>`<span class="legend-chip"><span class="sw" style="background:${PRI_COLOR[p]};"></span>${p} priority</span>`).join("")}
@@ -8506,19 +10945,22 @@ function renderCalendarBody(body){
     </div>
     <button class="btn btn-primary" style="margin-top:16px;" onclick="submitCalendar()">Check My Plan</button>
     <div id="calResult"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">Create Something for Elias — AI-Assisted Daily Briefing</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias only reads BLUF-style summaries. Instead of writing the briefing yourself, write the <b>prompt</b> you'd give an AI tool to draft it — using your finished weekly schedule above as the source material. This is Generative mode, but disciplined: the AI should draft from what's actually on the calendar, not invent meetings that aren't there.</p>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">AI-Assisted Daily Briefing</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias only reads BLUF-style summaries. Instead of writing the briefing yourself, write the <b>prompt</b> you'd give an AI tool to draft it — using your finished weekly schedule from Part 1 as the source material. This is Generative mode, but disciplined: the AI should draft from what's actually on the calendar, not invent meetings that aren't there.</p>
     <textarea id="calPromptInput" placeholder="Write your AI prompt here — e.g. what to draft, for whom, in what format, using what source…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkCalendarPrompt(this)">Get AI Feedback</button>
     <div id="calPromptResult" style="margin-top:10px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">Proactive EA Tasks</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Get a fresh, AI-generated read on the current calendar above and see what independent admin work it implies.</p>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Proactive EA Tasks</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Get a fresh, AI-generated read on the current calendar and see what independent admin work it implies.</p>
     <button class="btn btn-orange btn-sm" onclick="generateProactiveTasks()">Generate Proactive Tasks</button>
     <div id="proactiveResult" style="margin-top:14px;"></div>
-
-    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">Travel Management, Start to Finish</h3>
+  `;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Travel Management, Start to Finish</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
@@ -8577,6 +11019,14 @@ function renderCalendarBody(body){
       <div id="itinReview" style="margin-top:14px;"></div>
     </div>
   `;
+  body.innerHTML = renderToolWizard(3, [
+    {label:"Calendar Conflict Resolver", html:partA},
+    {label:"AI-Assisted Daily Briefing", html:partB},
+    {label:"Proactive EA Tasks", html:partC},
+    {label:"Travel Management", html:partD}
+  ]);
+  if(savedCalPrompt) document.getElementById("calPromptInput").value = savedCalPrompt;
+  if(savedTravelAct) document.getElementById("travelActDraft").value = savedTravelAct;
 }
 function toHex(c){
   if(c.startsWith("#")) return c;
@@ -8787,6 +11237,7 @@ window.calReset = calReset;
 async function checkCalendarPrompt(btn){
   const prompt = document.getElementById("calPromptInput").value.trim();
   if(prompt.length<15){ toast("Write a fuller prompt first."); return; }
+  if(!(await useLabAttempt(3))) return;
   const events = calMergedEvents();
   const scheduleSummary = DAY_ORDER.map(day=>{
     const dayEvents = events.filter(e=>e.day===day).sort((a,b)=>a.s-b.s);
@@ -8796,28 +11247,17 @@ async function checkCalendarPrompt(btn){
   btn.disabled = true; btn.textContent = "Reviewing…";
   const resultEl = document.getElementById("calPromptResult");
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your prompt…</div>`;
-  const evalPrompt = `You are reviewing a Legal Executive Assistant trainee's AI PROMPT — not a finished draft, the prompt itself — written to get an AI tool to draft a daily/weekly schedule briefing for their principal, Elias Thorne (Managing Owner & CEO of Thorne & Partners Law Group).
-
-Elias only reads BLUF-style summaries: the bottom line and required action up front, detail after.
-
-The trainee's finished weekly schedule (the source material the AI should draft from):
-${scheduleSummary}
-
-The trainee's prompt: "${prompt}"
-
-Evaluate whether the prompt:
-1. Specifies the audience and Elias's BLUF preference (so the AI knows the register to write in)
-2. References the schedule above as the actual source material, rather than leaving the AI to invent meetings
-3. Specifies a format or length constraint
-4. Is Generative-mode appropriate (drafting a briefing) without accidentally inviting the AI to fabricate details not on the calendar
-
-Give 3-4 short bullet points of feedback and one overall verdict sentence on whether this prompt would produce a usable, accurate BLUF briefing.`;
   try{
-    const feedback = (await callAIText(evalPrompt, 500)) || "No feedback returned.";
-    toolState.calPromptReport = feedback;
-    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Prompt</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("calendar", 100);
-    burstConfetti();
+    const report = await runRubricEvaluation(
+      "AI Prompt — Weekly Schedule Briefing",
+      `Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group) only reads BLUF-style summaries: the bottom line and required action up front, detail after.\n\nThe trainee's finished weekly schedule (the source material the AI should draft from):\n${scheduleSummary}\n\nThis is a PROMPT the trainee wrote, not a finished draft — grade the prompt itself, not any output.`,
+      `The trainee's prompt: "${prompt}"`,
+      `Does the prompt specify the audience and Elias's BLUF preference (so the AI knows the register to write in)? Does it reference the schedule as the actual source material, rather than leaving the AI to invent meetings? Does it specify a format or length constraint? Is it Generative-mode appropriate (drafting a briefing) without accidentally inviting the AI to fabricate details not on the calendar?`
+    );
+    toolState.calPromptReport = report;
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Prompt</b>` + renderEvaluationReport(report, 3);
+    await bumpPracticeProgress("calendar", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
   }catch(e){
     toolState.calPromptReport = "Couldn't reach the AI review service.";
     resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
@@ -8828,6 +11268,7 @@ Give 3-4 short bullet points of feedback and one overall verdict sentence on whe
 window.checkCalendarPrompt = checkCalendarPrompt;
 
 async function generateProactiveTasks(){
+  if(!(await useLabAttempt(3))) return;
   const el = document.getElementById("proactiveResult");
   el.innerHTML = `<div class="ai-loading">Reviewing the calendar for gaps…</div>`;
   const events = calMergedEvents();
@@ -8918,7 +11359,8 @@ function fmtHr(h){
    ============================================================ */
 function initFinancial(body){
   toolState.audit = {statuses:{}, errorTypes:{}};
-  body.innerHTML = `
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">A. Client Trust Ledger Reconciliation</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Edit the figures if you'd like to try your own numbers, then check the closing balance.</p>
     <div class="card" style="padding:16px 20px;">
@@ -8931,14 +11373,16 @@ function initFinancial(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkSoa()">Check Answer</button>
     <div id="soaFeedback" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Invoice &amp; Bill Audit Queue</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Bookkeeping forwarded these 8 invoices for R. Alvarez's trust account (Matter 24-0113). Some belong here and are correct, some belong but need a fix before they're paid, and some don't belong at all. Review each one.</p>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Invoice &amp; Bill Audit Queue</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Bookkeeping forwarded these invoices for R. Alvarez's trust account (Matter 24-0113), including several from outside vendors. Some belong here and are correct, some belong but need a fix before they're paid, and some don't belong at all. Review each one.</p>
     <div id="auditQueue">${renderAuditQueue()}</div>
     <button class="btn btn-primary" style="margin-top:6px;" onclick="checkAudit()">Check My Audit</button>
     <div id="auditResult"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Attention to Detail Test</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Attention to Detail Test</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Below are three real documents for Matter 24-0113 — an invoice, a payment receipt, and the raw time-tracking export they were both supposed to come from. Nothing here is wrong within any single document at a glance — the errors only show up when you actually cross-check one against another, the way a careful EA would before filing.</p>
 
     <div class="mock-doc mock-invoice">
@@ -9001,12 +11445,13 @@ function initFinancial(body){
 
     <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your findings — list every discrepancy you find, and which documents it's between</label>
     <textarea id="attnDetailFindings" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="e.g. Invoice Mar 18 line: ...&#10;Hours listing vs. invoice: ..."></textarea>
-    <button class="btn btn-navy" style="margin-top:12px;" onclick="submitAttnDetail()">Submit for Trainer Review</button>
+    <button class="btn btn-navy" style="margin-top:12px;" onclick="submitAttnDetail()">Get AI Feedback</button>
     <div id="attnDetailSubmitMsg" style="margin-top:8px;font-size:13px;"></div>
+    <div id="attnDetailResult" style="margin-top:14px;"></div>
     ${state.isAdmin ? `
     <div class="trainer-checkpoint" style="margin-top:16px;">
-      <div class="tc-tag">🧑‍🏫 Trainer Cue — Manual Grading, Answer Key</div>
-      <p>This section is deliberately <b>not auto-graded</b> — cross-document accuracy checking is exactly the skill being tested, and a script that finds the errors for the trainee would defeat the point. Review their submitted findings yourself against the list below.</p>
+      <div class="tc-tag">🧑‍🏫 Trainer Cue — AI-Graded, Answer Key Reference</div>
+      <p>This is now graded automatically against the planted errors below — the AI is given this exact list as its answer key, so scoring should be reliable. It's still worth spot-checking a few submissions, since cross-document accuracy checking is a nuanced skill.</p>
       <p><b>The planted errors are:</b></p>
       <ul style="margin:8px 0 0;padding-left:20px;">
         ${ATTENTION_TO_DETAIL_ANSWERS.map(a=>`<li style="font-size:12.8px;margin-bottom:6px;">${esc(a)}</li>`).join("")}
@@ -9015,16 +11460,34 @@ function initFinancial(body){
 
     <button class="btn btn-navy btn-sm" style="margin-top:16px;" onclick="downloadFinancialPdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderToolWizard(null, [
+    {label:"Trust Ledger Reconciliation", html:partA},
+    {label:"Invoice & Bill Audit", html:partB},
+    {label:"Attention to Detail Test", html:partC}
+  ]);
   recalcSoa();
 }
 async function submitAttnDetail(){
   const val = document.getElementById("attnDetailFindings").value.trim();
   const msgEl = document.getElementById("attnDetailSubmitMsg");
+  const resultEl = document.getElementById("attnDetailResult");
   if(val.length < 10){ toast("Write out what you found before submitting."); return; }
   toolState.audit.attnDetailFindings = val;
   await storeSet("attn-detail-findings", val);
-  await bumpPracticeProgress("financial", null);
-  msgEl.innerHTML = `<b style="color:var(--success);">Submitted.</b> Your trainer will review this manually and follow up with feedback — this one isn't auto-graded.`;
+  msgEl.innerHTML = "";
+  resultEl.innerHTML = `<div class="ai-loading">Cross-checking your findings against the planted discrepancies…</div>`;
+  try{
+    const report = await runRubricEvaluation(
+      "Attention to Detail — Cross-Document Accuracy Check",
+      `Three real documents for Matter 24-0113 were shown to the trainee: an invoice, a payment receipt, and the raw time-tracking export they were both supposed to come from. Nothing is wrong within any single document at a glance — the errors only surface when cross-checking one document against another.\n\nTHE EXACT PLANTED DISCREPANCIES (the trainee needs to have found these, in their own words — exact phrasing doesn't matter, catching the actual issue does):\n${ATTENTION_TO_DETAIL_ANSWERS.map((a,i)=>`${i+1}. ${a}`).join("\n")}`,
+      val,
+      `Score almost entirely on how many of the planted discrepancies above the trainee actually caught and correctly described — this is the core of Accuracy & Technical Precision for this exercise. A submission that finds 0-1 of the real discrepancies should score very low regardless of how well-written it is; a submission that finds most or all of them should score high even if the writing is brief. Don't reward general commentary about "reviewing carefully" that doesn't identify a specific, real discrepancy from the list.`
+    );
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Findings</b>` + renderEvaluationReport(report, 7);
+    await bumpPracticeProgress("financial", report.totalScore);
+  }catch(e){
+    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
 }
 window.submitAttnDetail = submitAttnDetail;
 
@@ -9119,6 +11582,113 @@ async function checkAudit(){
   if(score===100) burstConfetti();
 }
 window.checkAudit = checkAudit;
+
+/* ---------- Day 6: 15-Case Compliance Audit Simulation ---------- */
+function renderComplianceAuditQueue(){
+  return COMPLIANCE_AUDIT_CASES.map((c,i)=>renderComplianceAuditCard(c,i)).join("");
+}
+function renderComplianceAuditCard(c,i){
+  const ca = toolState.c6audit;
+  const verdict = ca.verdicts[i];
+  const risk = ca.risks[i];
+  return `
+    <div class="card audit-card" id="caCard${i}">
+      <div class="audit-head">
+        <div><b>Case ${c.id}</b> <span class="score-tag">${esc(c.jurisdiction)} · ${esc(c.matterType)}</span></div>
+      </div>
+      <p style="font-size:12.8px;color:#37394A;margin:8px 0 10px;">${esc(c.detail)}</p>
+      <div class="audit-actions">
+        <button class="audit-btn ${verdict==='clean'?'active-valid':''}" onclick="setComplianceVerdict(${i},'clean')">✅ Clean</button>
+        <button class="audit-btn ${verdict==='issue'?'active-correction':''}" onclick="setComplianceVerdict(${i},'issue')">⚠ Issue Found</button>
+      </div>
+      ${verdict==='issue' ? `
+        <select id="caRisk${i}" class="audit-error-select" onchange="setComplianceRisk(${i}, this.value)">
+          <option value="">Risk level?&hellip;</option>
+          <option value="MODERATE" ${risk==='MODERATE'?"selected":""}>Moderate</option>
+          <option value="HIGH" ${risk==='HIGH'?"selected":""}>High</option>
+          <option value="CRITICAL" ${risk==='CRITICAL'?"selected":""}>Critical</option>
+        </select>`:""}
+    </div>`;
+}
+function setComplianceVerdict(i, verdict){
+  toolState.c6audit.verdicts[i] = verdict;
+  if(verdict!=="issue") delete toolState.c6audit.risks[i];
+  document.getElementById("complianceAuditQueue").innerHTML = renderComplianceAuditQueue();
+}
+window.setComplianceVerdict = setComplianceVerdict;
+function setComplianceRisk(i, val){
+  toolState.c6audit.risks[i] = val;
+}
+window.setComplianceRisk = setComplianceRisk;
+
+async function checkComplianceAudit(){
+  const ca = toolState.c6audit;
+  const unhandled = COMPLIANCE_AUDIT_CASES.filter((_,i)=>!ca.verdicts[i]).length;
+  if(unhandled>0){ toast(`Classify all 15 cases first (${unhandled} left).`); return; }
+  const needsRisk = COMPLIANCE_AUDIT_CASES.filter((_,i)=>ca.verdicts[i]==="issue" && !ca.risks[i]).length;
+  if(needsRisk>0){ toast(`Pick a risk level for each flagged case (${needsRisk} left).`); return; }
+
+  // Points per the provided scoring breakdown: each specific issue type earns
+  // its designated points when correctly flagged; a separate risk-classification
+  // bucket (20 pts) rewards correctly grading severity on cases genuinely flagged.
+  let issuePoints = 0, issuePointsPossible = 0;
+  let riskCorrect = 0, riskPossible = 0;
+  const feedback = [];
+  COMPLIANCE_AUDIT_CASES.forEach((c,i)=>{
+    const yourVerdict = ca.verdicts[i];
+    const correctVerdict = c.hasIssue ? "issue" : "clean";
+    const verdictOk = yourVerdict === correctVerdict;
+    if(c.hasIssue){
+      const pts = COMPLIANCE_AUDIT_SCORING[c.issueType] || 10;
+      issuePointsPossible += pts;
+      if(verdictOk) issuePoints += pts;
+      riskPossible++;
+      if(verdictOk && ca.risks[i]===c.risk) riskCorrect++;
+    }
+    feedback.push({c, verdictOk, yourVerdict, correctVerdict});
+  });
+  // Scale: issue-identification + risk-classification together represent the
+  // full 100 points from the provided rubric, since the escalation/preventive
+  // control portion is graded separately as its own AI-evaluated submission.
+  const issueScore = issuePointsPossible ? (issuePoints/issuePointsPossible)*75 : 75;
+  const riskScore = riskPossible ? (riskCorrect/riskPossible)*25 : 25;
+  const score = Math.round(issueScore + riskScore);
+
+  document.getElementById("complianceAuditResult").innerHTML = `
+    <div class="card" style="padding:18px 20px;margin-top:14px;">
+      <b style="color:var(--navy);">Audit Score: ${score}/100</b>
+      <div style="margin-top:12px;display:grid;gap:8px;">
+        ${feedback.filter(f=>!f.verdictOk || f.c.hasIssue).map(({c,verdictOk,yourVerdict,correctVerdict})=>`
+          <div style="font-size:12.3px;color:var(--ink-soft);padding:8px 10px;border-radius:8px;background:${verdictOk?'#F6F7FB':'var(--danger-bg)'};">
+            <b style="color:var(--ink);">Case ${c.id}</b> — correct: <b>${correctVerdict}</b> ${verdictOk?"✅":"❌ (you said "+(yourVerdict||"—")+")"}
+            ${c.hasIssue?`<div style="margin-top:2px;">${esc(c.explain)} ${c.risk?`Risk level: <b>${c.risk}</b>.`:""}</div>`:""}
+          </div>`).join("")}
+      </div>
+    </div>`;
+  await bumpPracticeProgress("projectcompliance6", score);
+  if(score===100) burstConfetti();
+}
+window.checkComplianceAudit = checkComplianceAudit;
+
+async function reviewComplianceAuditResponse(){
+  const val = document.getElementById("complianceAuditWritten").value.trim();
+  const resultEl = document.getElementById("complianceAuditWrittenResult");
+  if(val.length < 20){ toast("Write out your escalation pathway and preventive control recommendation first."); return; }
+  resultEl.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
+  try{
+    const report = await runRubricEvaluation(
+      "Compliance Audit — Escalation Pathway & Preventive Control",
+      `The trainee just completed a 15-case compliance audit simulation. The most severe findings were: a missing notary seal on an Illinois will (CRITICAL — a validity risk that becomes uncorrectable after the testator's death), a wrong jurisdictional form used on a Florida complaint (HIGH), and two missed deadlines (HIGH). The trainee is now asked to name a real escalation pathway for the most severe finding, and recommend one concrete preventive control that would stop this class of error from recurring.`,
+      val,
+      `Did they correctly identify the missing notarization as the single most severe finding (not just list findings without prioritizing)? Is the escalation pathway specific — who gets notified, how fast, and why that's the right chain — rather than a vague "escalate to a supervisor"? Is the preventive control concrete and actually preventive (e.g. a notarization checklist step built into the filing SOP) rather than a generic "be more careful" statement?`
+    );
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Escalation & Prevention</b>` + renderEvaluationReport(report, 6);
+    await bumpPracticeProgress("projectcompliance6", report.totalScore);
+  }catch(e){
+    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.reviewComplianceAuditResponse = reviewComplianceAuditResponse;
 function recalcSoa(){
   let total=0;
   SOA_DATA.forEach((f,i)=>{
@@ -9332,51 +11902,24 @@ async function reviewItinerary(){
   const btn = document.getElementById("travelReviewBtn");
   const { legs, hotels, groundTransport, stops } = toolState.travel;
   if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
+  if(!(await useLabAttempt(3))) return;
   btn.disabled = true;
   el.innerHTML = `<div class="ai-loading">Reviewing for meticulousness and resourcefulness…</div>`;
   const legsSummary = legs.map(l=>`- ${l.route||"(route TBD)"} on ${l.date||"(date TBD)"}, seat "${l.seat||"(not set)"}", ${l.direct?"direct":"connecting"}, screenshot: ${l.screenshotUrl?"provided":"MISSING"}, booking link: ${l.bookingLink?"provided":"MISSING"}. Notes: ${l.notes||"(none)"}`).join("\n");
   const hotelsSummary = hotels.map(h=>`- ${h.name||"(hotel TBD)"} at ${h.address||"(address TBD)"}, ${h.checkin||"?"} to ${h.checkout||"?"}, room: ${h.roomType||"(not specified)"}, confirmation: ${h.confirmation?"provided":"MISSING"}, booking link: ${h.bookingLink?"provided":"MISSING"}. Notes: ${h.notes||"(none)"}`).join("\n");
   const groundSummary = groundTransport.map(g=>`- ${g.type} from ${g.from||"(from TBD)"} to ${g.to||"(to TBD)"} at ${g.datetime||"(time TBD)"}, booking link: ${g.bookingLink?"provided":"MISSING"}. Notes: ${g.notes||"(none)"}`).join("\n");
   const stopsSummary = stops.map(s=>`- ${s.venue||"(venue TBD)"} at ${s.address||"(address TBD)"}, ${s.travelTime||"(no travel time given)"} from ${s.hotel||"(no hotel given)"}. Photo: ${s.photoUrl?"provided":"MISSING"}. Link: ${s.link?"provided":"MISSING"}. Rationale: ${s.insight||"(none)"}`).join("\n");
-  const prompt = `You are grading a trainee Executive Assistant's travel itinerary for a legal-industry EA training program. This is a personal family trip for the client, Elias Thorne, taking his wife Sarah and children Leo (8) and Maya (5) to Spain. Grade strictly on meticulous detail and resourcefulness — this is the hardest exercise in the program by design.
-
-CLIENT TRAVEL PREFERENCES (hard constraints):
-- Seat: ${FLIGHT_PREFS.seat}
-- Routing: ${FLIGHT_PREFS.routing}
-- Redeye: ${FLIGHT_PREFS.redeye}
-- Hotel: ${FLIGHT_PREFS.hotel}
-- Also relevant: strict Paleo diet, zero dairy for Elias; something age-appropriate should be planned for the kids; a car seat is needed for Maya (age 5) on any ground transportation.
-
-FLIGHT LEGS SUBMITTED:
-${legsSummary || "(none)"}
-
-HOTEL ACCOMMODATION SUBMITTED:
-${hotelsSummary || "(none)"}
-
-GROUND TRANSPORTATION SUBMITTED:
-${groundSummary || "(none)"}
-
-ITINERARY STOPS SUBMITTED:
-${stopsSummary || "(none)"}
-
-Evaluate:
-1. Do the flights actually match seat/routing preferences? Call out any that don't.
-2. Does the hotel actually fit a family of four, and is the room type/dates specific rather than vague?
-3. Is ground transportation actually planned end-to-end (airport to hotel, hotel to key stops), including the car seat need for a 5-year-old, or does the itinerary just leave gaps?
-4. Are screenshots, confirmation numbers, and direct links present, or missing? Missing evidence should be penalized — a real EA doesn't hand over an itinerary without proof of the booking.
-5. Are venue/stop choices backed by real reasoning (client- and family-relevant, not generic "nice place"), including whether the strict Paleo/dairy-free need and something age-appropriate for the kids were actually addressed?
-6. Is proximity/logistics actually addressed (travel time from hotel), not left blank?
-7. Overall resourcefulness: does this itinerary look like it required real research, or does it read as placeholder content?
-
-Give a structured critique: 2 bullets on flights, 2 bullets on hotel/ground transportation, 2 bullets on stops, then one overall score out of 100 with a one-sentence justification. End your response with a line in exactly this format: "SCORE: <number>"`;
   try{
-    const feedback = (await callAIText(prompt, 750)) || "No feedback returned.";
-    const scoreMatch = feedback.match(/SCORE:\s*(\d{1,3})/i);
-    const score = scoreMatch ? Math.min(100, Number(scoreMatch[1])) : 50;
-    el.innerHTML = `<div class="ai-result"><b>AI Review — Itinerary</b><div class="ai-result-body">${esc(feedback.replace(/SCORE:\s*\d{1,3}/i,"").trim()).replace(/\n/g,"<br>")}</div></div>`;
-    toolState.travel.score = score;
-    await bumpPracticeProgress("insurance5", score);
-    if(score>=90) burstConfetti();
+    const report = await runRubricEvaluation(
+      "Travel Itinerary — Personal Family Trip",
+      `This is a personal family trip for the client, Elias Thorne, taking his wife Sarah and children Leo (8) and Maya (5) to Spain. Grade strictly on meticulous detail and resourcefulness — this is the hardest exercise in the program by design.\n\nCLIENT TRAVEL PREFERENCES (hard constraints):\n- Seat: ${FLIGHT_PREFS.seat}\n- Routing: ${FLIGHT_PREFS.routing}\n- Redeye: ${FLIGHT_PREFS.redeye}\n- Hotel: ${FLIGHT_PREFS.hotel}\n- Also relevant: strict Paleo diet, zero dairy for Elias; something age-appropriate should be planned for the kids; a car seat is needed for Maya (age 5) on any ground transportation.`,
+      `FLIGHT LEGS SUBMITTED:\n${legsSummary || "(none)"}\n\nHOTEL ACCOMMODATION SUBMITTED:\n${hotelsSummary || "(none)"}\n\nGROUND TRANSPORTATION SUBMITTED:\n${groundSummary || "(none)"}\n\nITINERARY STOPS SUBMITTED:\n${stopsSummary || "(none)"}`,
+      `Do the flights actually match seat/routing preferences? Does the hotel actually fit a family of four with specific room type/dates? Is ground transportation planned end-to-end including the car seat need? Are screenshots, confirmation numbers, and direct links present — missing evidence should be penalized heavily, since a real EA doesn't hand over an itinerary without proof of booking. Are venue/stop choices backed by real, client-specific reasoning (Paleo/dairy-free, age-appropriate for kids) rather than generic placeholders? Is travel time/proximity actually addressed? Overall: does this look like real research, or placeholder content?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Itinerary</b>` + renderEvaluationReport(report, 3);
+    toolState.travel.score = report.totalScore;
+    await bumpPracticeProgress("calendar", report.totalScore);
+    if(report.totalScore>=90) burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get a review</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }finally{
@@ -9389,31 +11932,17 @@ async function reviewTravelActEmail(){
   const draft = document.getElementById("travelActDraft").value.trim();
   const el = document.getElementById("travelActFeedback");
   if(draft.length < 20){ toast("Write your ACT email first."); return; }
+  if(!(await useLabAttempt(3))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your ACT email…</div>`;
-  const prompt = `You are grading a trainee Executive Assistant's reply email, using the ACT framework (Acknowledge, Clarify, Timeline), for a legal-industry EA training program.
-
-CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
-${CLIENT_DOSSIER_MD}
-
-THE TASK DAVID REYES (HEAD OF LITIGATION) SENT BY EMAIL:
-"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."
-
-Note: this email actually contains TWO separate asks tangled together (a hotel/IT security check, and a schedule cross-check against Elias's flight). A strong reply should separate them rather than answering as one blended task.
-
-TRAINEE'S ACT EMAIL DRAFT:
-${draft}
-
-Evaluate:
-1. Acknowledge — did they restate both threads (not just one), showing they understood what David actually needs?
-2. Clarify — did they ask only for genuinely missing information, rather than something they could reasonably confirm themselves (e.g. checking the hotel listing, checking the itinerary they're already building)?
-3. Timeline — is there a clear "by when" and "who owns it" for each thread (the hotel/IT check vs. the schedule cross-check)?
-4. Tone/format — professional but efficient, appropriate for a busy Head of Litigation, not overly casual or overly long?
-
-Give 4-5 short bullet points of specific feedback, then one overall verdict sentence.`;
   try{
-    const feedback = await callAIText(prompt, 650);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your ACT Email</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("insurance5", null);
+    const report = await runRubricEvaluation(
+      "ACT Framework Reply Email — Travel Logistics",
+      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}\n\nTHE TASK DAVID REYES (HEAD OF LITIGATION) SENT BY EMAIL:\n"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."\n\nNote: this email actually contains TWO separate asks tangled together (a hotel/IT security check, and a schedule cross-check against Elias's flight). A strong reply should separate them rather than answering as one blended task.`,
+      draft,
+      `Acknowledge — did they restate both threads (not just one), showing they understood what David actually needs? Clarify — did they ask only for genuinely missing information, rather than something they could reasonably confirm themselves (e.g. checking the hotel listing, checking the itinerary they're already building)? Timeline — is there a clear "by when" and "who owns it" for each thread? Tone/format — professional but efficient, appropriate for a busy Head of Litigation?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your ACT Email</b>` + renderEvaluationReport(report, 3);
+    await bumpPracticeProgress("calendar", report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -9524,8 +12053,10 @@ const LEAD_GEN_SCENARIO = {
 };
 function initColdCalling4(body){
   toolState.calls = {};
-  body.innerHTML = renderColdCallingSection('A') + `
-    <h3 style="margin:32px 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
+  toolState.wizardIndex = 0;
+  const partA = renderColdCallingSection('A');
+  const partB = `
+    <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(LEAD_GEN_SCENARIO.text)}</p>
     </div>
@@ -9534,26 +12065,28 @@ function initColdCalling4(body){
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewLeadGenPlan()">Get AI Feedback</button>
     <div id="leadGenResult" style="margin-top:14px;"></div>
   `;
+  body.innerHTML = renderToolWizard(4, [
+    {label:"Cold-Calling Log", html:partA},
+    {label:"Lead Generation Practice", html:partB}
+  ]);
   loadCallLog();
 }
 async function reviewLeadGenPlan(){
   const draft = document.getElementById("leadGenDraft").value.trim();
   const el = document.getElementById("leadGenResult");
   if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
+  if(!(await useLabAttempt(4))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your lead generation plan…</div>`;
-  const prompt = `You are evaluating a trainee Executive Assistant's lead-generation plan, for a legal-industry EA training program.
-
-SCENARIO: ${LEAD_GEN_SCENARIO.text}
-
-TRAINEE'S PLAN:
-${draft}
-
-Evaluate whether the plan: names at least 3 genuinely different, specific lead sources (not vague — "networking" alone isn't specific, "attend the state bar's real estate section quarterly mixer" is); defines real qualifying criteria (fit, need, authority, timeline — not just "good leads"); and describes a concrete, research-backed first-contact approach rather than a generic pitch. Give 4-5 short bullet points of feedback, then one overall verdict sentence.`;
   try{
-    const feedback = await callAIText(prompt, 600);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("coldcalling4", 100);
-    burstConfetti();
+    const report = await runRubricEvaluation(
+      "Lead Generation Plan",
+      `SCENARIO: ${LEAD_GEN_SCENARIO.text}`,
+      draft,
+      `Does the plan name at least 3 genuinely different, specific lead sources (not vague — "networking" alone isn't specific, "attend the state bar's real estate section quarterly mixer" is)? Does it define real qualifying criteria (fit, need, authority, timeline — not just "good leads")? Does it describe a concrete, research-backed first-contact approach rather than a generic pitch?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Plan</b>` + renderEvaluationReport(report, 4);
+    await bumpPracticeProgress("coldcalling4", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -9660,7 +12193,7 @@ async function ensureTraineeName(){
         state.traineeId = generateTraineeId(v);
         await storeSet("trainee-id", state.traineeId);
       }
-      syncToLedger();
+      await syncToLedger();
       overlay.remove();
       resolve();
     };
@@ -10454,6 +12987,192 @@ const SOP_DATA = [
         "PA: A personal vendor requests access to financial accounts; escalate to principal before action."
       ]}
     ]
+  },
+  {
+    id: 2,
+    title: "Managing Up — The Three C's Framework",
+    introduction: "Welcome to LSH EA PA Upskill Training Day 2. My name is ___ and I am your upskill coach.",
+    objectives: [
+      "Apply the \"Three C's\" framework (Clarity, Communication, Credibility) to manage up effectively.",
+      "Recognize how the role evolves from a support function to a strategic partner."
+    ],
+    discussionInfo: { duration: "Approximately 1-2 hours", ppt: "EA PA Day 2", canvaLabel: "EA PA Day 2", video: "Video Discussion EA PA Day 2" },
+    topics: [
+      "Managing Up: The \"Three C's\" Framework",
+      "The Tactical Foundation and Digital Edge",
+      "The Role Evolution: From \"Helper\" to \"Force Multiplier\""
+    ],
+    sections: [
+      { h: "Level 1: The Tactical Foundation", type: "bullets", items: [
+        "To be strategic, master the basics first.",
+        "Categorize emails by Action, Information, or Delegation.",
+        "Draft responses in your Executive's voice for quick sending.",
+        "Aim for Inbox Zero and effective triaging.",
+        "Prepare \"What If\" plans for travel — e.g., holding a backup flight on hold for cancellations.",
+        "Manage complex travel logistics efficiently, with contingency plans in place.",
+        "Understand the full meeting lifecycle — shift from merely recording minutes to driving outcomes.",
+        "Set agendas and track deliverables, not just attendance."
+      ]},
+      { h: "Level 2: The Digital Edge", type: "bullets", items: [
+        "Use AI (e.g. Gemini) to summarize lengthy reports into concise bullet points for briefings.",
+        "Automate tasks through workflows (e.g. Zapier) triggered by client emails.",
+        "Gain proficiency in data visualization tools (Tableau, advanced Excel) to present team performance and budgets effectively."
+      ]},
+      { h: "Level 3: Strategic Partnership", type: "bullets", items: [
+        "To become indispensable, concentrate on three things.",
+        "Gatekeeping vs. Gatewaying — safeguard your executive's time while still seizing genuinely valuable opportunities.",
+        "Stakeholder Mapping — navigate office politics and manage key relationships on your executive's behalf.",
+        "Executive Presence — develop the confidence to effectively represent your executive in meetings."
+      ]},
+      { h: "The Three C's Framework — Overview", type: "bullets", items: [
+        "A strategic partnership model for Executive and Personal Assistants: managing up focuses on alignment, anticipation, and strategic support — not control.",
+        "When Clarity, Communication, and Credibility all operate together, the assistant becomes a Force Multiplier: decision velocity increases, stress decreases, executive/attorney trust deepens, and boundaries hold."
+      ]},
+      { h: "Clarity — Structural Alignment", type: "bullets", items: [
+        "Structural alignment is essential before execution — clarity defines the assistant-executive relationship. Without it, even skilled assistants can only react.",
+        "Key questions for clarity: What matters most? Who makes decisions? What is considered urgent? What are the boundaries? What responsibilities belong to whom?",
+        "Role clarity in EA/PA positions is crucial to prevent burnout and liability caused by blurred lines."
+      ]},
+      { h: "Clarity — Key Definitions", type: "bullets", items: [
+        "Strategic vs. Administrative Tasks",
+        "Business vs. Personal Domains",
+        "Decision Authority Thresholds",
+        "Financial Authorization Limits",
+        "Confidentiality Classifications"
+      ]},
+      { h: "Strategic vs. Administrative Tasks", type: "table", headers: ["Strategic (High-Impact, Judgment-Based)", "Administrative (Execution-Focused, Process-Based)"], rows: [
+        ["Draft an executive brief on litigation exposure for the board meeting.", "Calendar court deadlines and confirm filing dates."],
+        ["Prepare a risk matrix for contract disputes.", "Format and proofread contracts for final signature."],
+        ["Create a 30-day implementation plan for a new compliance policy.", "Schedule depositions and send calendar invites."],
+        ["Analyze vendor proposals and summarize with recommendations.", "Process expense reimbursements; file UCC financing statements; organize client files; book travel."]
+      ]},
+      { h: "Business vs. Personal Domain Tasks", type: "table", headers: ["Business Domain", "Personal Domain (Executive Support)"], rows: [
+        ["Coordinate board meeting logistics", "Schedule medical appointments"],
+        ["Track corporate compliance filings", "Coordinate child's school enrollment"],
+        ["Prepare quarterly performance dashboard", "Arrange family travel itinerary"],
+        ["Manage investor communication schedules", "Manage household staff payroll"],
+        ["Oversee vendor contract renewals", "Purchase milestone event gifts"],
+        ["Draft engagement letter templates for law firm clients", "Oversee personal property insurance renewals"]
+      ]},
+      { h: "Decision Authority Thresholds", type: "table", headers: ["Level", "What It Covers"], rows: [
+        ["Low-Level (Autonomous Execution)", "Confirm meeting reschedules; approve vendor renewals under $2,000; respond to routine client inquiries with templates; process standard NDA requests."],
+        ["Mid-Level (Consult + Execute)", "Negotiate minor contract adjustments; approve travel upgrades within policy; resolve billing discrepancies within a defined threshold; prioritize inbound meeting requests by strategic value."],
+        ["High-Level (Escalation Required)", "Approve litigation settlements; sign contracts over authorized limits; release public statements; authorize vendor or staff terminations; approve compliance policy exceptions."]
+      ]},
+      { h: "Financial Authorization Limits", type: "table", headers: ["Range", "Typical Examples"], rows: [
+        ["Under $1,000", "Office supply purchases; subscription renewals; event deposits; client lunch expenses."],
+        ["$1,000–$10,000", "Expert witness retainer deposits; settlement disbursements; corporate equipment procurement; standard travel modifications; marketing campaign expenses; software implementation fees; vendor contract renewals."],
+        ["$10,000+", "Real estate deposits — and anything else this significant escalates by default."]
+      ]},
+      { h: "Confidentiality Classifications", type: "bullets", items: [
+        "Public: press releases, published blog posts, marketing materials.",
+        "Internal (Restricted to Organization): internal performance metrics, staff salary bands, strategic growth plans.",
+        "Confidential (Client/Executive Sensitive — Highly Restricted/Privileged): client case files, estate planning financial disclosures, pending acquisition documents, settlement agreements, medical records, attorney-client privileged communications, litigation strategy memos, board executive session notes, personal executive financial statements, M&A due diligence data room documents."
+      ]},
+      { h: "Priority Clarity", type: "bullets", items: [
+        "Many executives perceive everything as urgent — the assistant's role is to clarify and operationalize priorities by identifying: revenue-generating activities, strategic growth initiatives, reputation-sensitive events, compliance/legal deadlines, and personal commitments with relational significance."
+      ]},
+      { h: "Revenue-Generating Activities", type: "bullets", items: [
+        "Prepare engagement letters.",
+        "Track and follow up on unsigned retainer agreements.",
+        "Ensure timely billing aligned with settlement disbursement timelines.",
+        "Draft billing summaries for high-value litigation clients.",
+        "Schedule consultation calls with qualified leads.",
+        "Prepare proposal packages for corporate compliance services.",
+        "Monitor contingency fee cases near resolution.",
+        "Follow up on unpaid invoices over 30 days.",
+        "Coordinate expert witness contracts for litigation.",
+        "Organize closing documentation for business acquisitions."
+      ]},
+      { h: "Strategic Growth Initiatives", type: "bullets", items: [
+        "Launch new estate planning services.",
+        "Research multi-state compliance requirements.",
+        "Prepare materials for an industry conference.",
+        "Draft an SOP manual for legal support.",
+        "Build a CRM pipeline tracking system.",
+        "Analyze competitor services.",
+        "Assist with M&A due diligence.",
+        "Develop an onboarding checklist for high-value clients.",
+        "Support new case management software implementation.",
+        "Prepare a quarterly executive strategy briefing deck."
+      ]},
+      { h: "Reputation-Sensitive Events", type: "bullets", items: [
+        "Coordinate media responses to litigation inquiries.",
+        "Manage logistics for board meetings.",
+        "Draft executive talking points for regulatory hearings.",
+        "Review communication tone and risks before anything goes out.",
+        "Address negative online reviews from high-profile clients.",
+        "Oversee coordination of high-profile client events.",
+        "Prepare crisis communication summaries post-compliance incidents.",
+        "Confirm key stakeholder attendance for investor meetings.",
+        "Manage the confidential exit of senior executives.",
+        "Ensure executive readiness for keynote presentations."
+      ]},
+      { h: "Communication — Managing Information Flow", type: "bullets", items: [
+        "Effective communication focuses on thoughtful engagement, not simply talking more at executives.",
+        "Structured executive updates should distill intelligence, not dump data. Three components: Situation (what happened), Impact (why it matters), Recommendation (what should be done).",
+        "This approach transforms the assistant from a messenger into a strategic advisor."
+      ]},
+      { h: "Proactive vs. Reactive Communication", type: "bullets", items: [
+        "Proactive communication involves: anticipating conflicts before they arise, providing pre-meeting briefs, delivering post-meeting summaries, sending daily priority snapshots, and giving early alerts for reputational or operational risks.",
+        "Reactive assistants, by contrast, only report problems after they've already happened."
+      ]},
+      { h: "Proactive Communication — Worked Example", type: "paragraph", text: "Instead of: \"There's a scheduling conflict.\" Say: \"You're double-booked at 3 PM. I recommend prioritizing the investor call due to revenue impact. I've drafted a message for the internal team.\" The second version is executive-level communication — it names the problem, makes a recommendation, and shows the work is already in motion." },
+      { h: "Gatekeeping Language", type: "bullets", items: [
+        "Gatekeeping is about maintaining strategic focus, not blocking access. Diplomatic language protects time while minimizing friction:",
+        "\"He's fully committed this week. What specific outcome are you hoping to achieve?\"",
+        "\"To make this productive, can you send an agenda?\"",
+        "\"Given current priorities, I can offer next Thursday.\""
+      ]},
+      { h: "Communication in Hybrid Roles — Corporate Mode", type: "bullets", items: [
+        "Formal, documented, structured, and risk-aware. Used for board communications, client correspondence, court matters, compliance reporting, vendor contracts, and investor updates.",
+        "Tone characteristics: structured, direct, a clear action step, documentable."
+      ]},
+      { h: "Communication in Hybrid Roles — Personal Mode", type: "bullets", items: [
+        "Discreet, flexible, relationship-based, and emotionally intelligent. Used for family matters, medical scheduling, household coordination, sensitive personal events, milestone planning.",
+        "Key attributes: discreet, flexible, relationship-based, emotionally intelligent, softer tone, service-oriented.",
+        "Sample personal tone: \"I've secured a quiet table at your preferred restaurant for Saturday evening. Let me know if you'd like any additional arrangements handled.\""
+      ]},
+      { h: "Communication in Hybrid Roles — Legal EA Complexity", type: "bullets", items: [
+        "Complexity arises when legal authority intersects with personal matters — e.g. an executive's personal real estate purchase needing legal review, estate planning updates for the family, personal litigation involving the executive, or corporate funds used for hybrid travel.",
+        "In these situations, the Legal EA must: maintain documentation standards, preserve privilege where applicable, separate business and personal records, apply compliance safeguards, and avoid casual language in sensitive legal matters.",
+        "Tone can be layered: externally formal (\"Please review the attached draft trust amendment for the Executive's personal estate file. Execution timeline requested by Friday.\") while internally controlled but supportive (\"The updated trust amendment is ready for your review. I'll coordinate signing at your convenience.\").",
+        "Without tone discipline: casual language reduces authority, informal communication creates legal risk, overly formal language in personal matters can damage trust, and blurred boundaries create governance challenges. Hybrid roles need intentional tone switching, not accidental blending."
+      ]},
+      { h: "Credibility — Influence Without Authority", type: "bullets", items: [
+        "Credibility enables assistants to manage confidently, earned through consistent execution and mature judgment.",
+        "Operational reliability is built on: accuracy, follow-through, on-time execution, anticipation of next steps, and zero-drama problem solving.",
+        "A single missed detail can damage months of built-up trust."
+      ]},
+      { h: "The No-Surprises Rule", type: "bullets", items: [
+        "Executives and attorneys should never be caught off guard by information their assistant already knew about — anything relevant needs to reach them proactively, good or bad."
+      ]},
+      { h: "Judgment Under Pressure", type: "bullets", items: [
+        "Assistants make micro-decisions that impact financial exposure, legal risk, reputation, and relationships.",
+        "Credibility grows specifically when an assistant diplomatically protects others from potential pitfalls — not just when things go smoothly."
+      ]},
+      { h: "Discretion & Confidentiality — Where It Matters Most", type: "bullets", items: [
+        "Discretion and confidentiality are especially critical in: investor relations, legal matters, family logistics, M&A activity, and medical or personal information.",
+        "Essential skills: information compartmentalization, secure communication protocols, document handling standards, digital hygiene.",
+        "In hybrid roles, credibility is compromised the moment personal information leaks into corporate channels."
+      ]},
+      { h: "Executive Energy Management", type: "bullets", items: [
+        "Advanced assistants manage energy alongside time, which is what fosters long-term influence and credibility.",
+        "Key roles: buffering transitions, preventing decision fatigue, limiting unnecessary meetings, shielding from emotional volatility, and knowing when to intervene quietly."
+      ]},
+      { h: "Judgment-Based Tasks — Legal Executive Assistant", type: "bullets", items: [
+        "Re-prioritizing calendars for unexpected investor meetings.",
+        "Diplomatically declining low-value meetings.",
+        "Resolving scheduling conflicts to maintain executive reputation.",
+        "Flagging overcommitment risks to prevent burnout.",
+        "Suggesting alternative travel routes to avoid delays before keynotes.",
+        "Identifying missing signature blocks in contracts.",
+        "Flagging statute of limitations risks in litigation calendars.",
+        "Escalating potential privilege breaches in email chains.",
+        "Noticing inconsistencies between settlement drafts and term sheets.",
+        "Identifying conflicts of interest from client intake information."
+      ]}
+    ]
   }
 ];
 
@@ -10531,9 +13250,11 @@ function renderAdmin(){
   const tabBar = `
     <div style="display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line);">
       <button class="admin-tab-btn ${tab==='audit'?'active':''}" onclick="setAdminTab('audit')">Trainee Audit</button>
+      <button class="admin-tab-btn ${tab==='rankings'?'active':''}" onclick="setAdminTab('rankings')">Rankings</button>
       <button class="admin-tab-btn ${tab==='sop'?'active':''}" onclick="setAdminTab('sop')">SOP Reference</button>
     </div>`;
   if(tab==="sop") return tabBar + renderAdminSOP();
+  if(tab==="rankings") return tabBar + renderAdminRankings();
 
   if(state.adminLoading || !state.adminData){
     return tabBar + `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
@@ -10611,6 +13332,77 @@ async function downloadCohortPdf(){
   buildAndSavePdf("LSH EA / PA Upskill Program", "Admin — Cohort Report", lines, "LSH_Cohort_Report");
 }
 window.downloadCohortPdf = downloadCohortPdf;
+
+function renderAdminRankings(){
+  if(state.adminLoading || !state.adminData){
+    return `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
+  }
+  let rows = state.adminData.filter(r=>!r.archived);
+  if(state.adminBatchFilter) rows = rows.filter(r=>r.batch===state.adminBatchFilter);
+  if(!rows.length){
+    return `
+      <p class="eyebrow">Admin Dashboard</p>
+      <h1 style="color:var(--navy);font-size:26px;margin:6px 0 16px;">Rankings</h1>
+      <div class="empty-note">No trainees to rank yet — once someone sets their name in the app, they'll show up here.</div>`;
+  }
+  const ranked = rows.map(rec=>{
+    const day = adminDayStats(rec);
+    const practice = adminPracticeStats(rec);
+    const completionPct = day.total ? (day.done/day.total)*100 : 0;
+    // Overall ranking score: weighted blend of how far they've progressed and
+    // how well they're actually performing — progress alone would rank a
+    // fast-but-sloppy trainee above a careful one who's slightly behind.
+    const overall = Math.round(completionPct*0.4 + day.avg*0.3 + practice.avg*0.3);
+    return {rec, day, practice, overall};
+  }).sort((a,b)=>b.overall-a.overall);
+
+  const totalTrainees = ranked.length;
+  const avgOverall = Math.round(ranked.reduce((a,r)=>a+r.overall,0)/totalTrainees);
+  const topScore = ranked[0].overall;
+  const fullyDone = ranked.filter(r=>r.day.done===r.day.total).length;
+
+  const medals = ["🥇","🥈","🥉"];
+  return `
+    <p class="eyebrow">Admin Dashboard</p>
+    <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Rankings</h1>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Ranked by a blended score — 40% program completion, 30% average quiz score, 30% average Practice Lab competency. Meant as a coaching signal, not a formal evaluation.</p>
+
+    <div class="stat-row">
+      <div class="card stat"><div class="num">${totalTrainees}</div><div class="lbl">Trainees ranked</div></div>
+      <div class="card stat"><div class="num">${topScore}%</div><div class="lbl">Top overall score</div></div>
+      <div class="card stat"><div class="num">${avgOverall}%</div><div class="lbl">Cohort avg. score</div></div>
+      <div class="card stat"><div class="num">${fullyDone}</div><div class="lbl">Finished all 10 days</div></div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      ${renderBatchFilter()}
+      <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
+    </div>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="display:grid;grid-template-columns:56px 1fr 100px 100px 100px 110px;gap:12px;align-items:center;padding:10px 18px;background:#F8F9FC;border-bottom:1px solid var(--line);">
+        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Rank</div>
+        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Trainee</div>
+        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Overall</div>
+        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Days</div>
+        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Quiz Avg</div>
+        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Lab Avg</div>
+      </div>
+      ${ranked.map(({rec,day,practice,overall},i)=>`
+        <div style="display:grid;grid-template-columns:56px 1fr 100px 100px 100px 110px;gap:12px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line);">
+          <div style="font-size:${i<3?'20px':'14px'};font-weight:700;color:${i<3?'inherit':'var(--ink-soft)'};">${medals[i] || `#${i+1}`}</div>
+          <div>
+            <b style="color:var(--navy);font-size:13.5px;">${esc(rec.name||"Unnamed")}</b>
+            <div style="font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';">${rec.batch?esc(rec.batch):""}</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:var(--navy);">${overall}%</div>
+          <div style="font-size:13px;">${day.done}/${day.total}</div>
+          <div style="font-size:13px;">${day.avg}%</div>
+          <div style="font-size:13px;">${practice.avg}%</div>
+        </div>`).join("")}
+    </div>
+  `;
+}
 
 function renderAdminRows(){
   const search = (state.adminSearch||"").toLowerCase();
@@ -10748,8 +13540,91 @@ function renderAdminDetail(rec){
         <div class="sidebar-section-lbl" style="padding-left:0;">AI-Generated Ranking &amp; Review</div>
         <div id="aiReviewWrap-${esc(rec.id)}">${renderAiReviewBlock(rec)}</div>
       </div>
+
+      <div style="margin-top:16px;">
+        <div class="sidebar-section-lbl" style="padding-left:0;">Live Roleplay Performance &amp; Assignment</div>
+        ${renderAdminRoleplayPanel(rec)}
+      </div>
     </div>`;
 }
+function renderAdminRoleplayPanel(rec){
+  const history = rec.roleplayHistory||[];
+  const byCategory = {};
+  history.forEach(h=>{
+    if(!byCategory[h.categoryId]) byCategory[h.categoryId] = {label:h.categoryLabel, scores:[]};
+    byCategory[h.categoryId].scores.push(h.score);
+  });
+  const catSummary = ROLEPLAY_CATEGORIES.map(c=>{
+    const data = byCategory[c.id];
+    const avg = data ? Math.round(data.scores.reduce((a,b)=>a+b,0)/data.scores.length) : null;
+    return {id:c.id, label:c.label, icon:c.icon, avg, runs: data?data.scores.length:0};
+  });
+  return `
+    ${history.length ? `
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:8px;margin-bottom:14px;">
+      ${catSummary.map(c=>`
+        <div style="padding:8px 10px;border-radius:8px;background:#fff;border:1px solid var(--line);">
+          <div style="font-size:11px;color:var(--ink-soft);">${c.icon} ${esc(c.label)}</div>
+          <div style="font-size:15px;font-weight:700;color:${c.avg===null?'var(--ink-soft)':c.avg<85?'var(--danger)':'var(--navy)'};">${c.avg===null?"—":c.avg+"%"}</div>
+          <div style="font-size:10.5px;color:var(--ink-soft);">${c.runs} run${c.runs===1?"":"s"}</div>
+        </div>`).join("")}
+    </div>` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 14px;">No independent roleplay sessions logged yet.</p>`}
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <select id="assignCategorySelect-${esc(rec.id)}" onchange="renderAssignTopicOptions('${esc(rec.id)}')" style="padding:7px 10px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;">
+        <option value="">Assign a category…</option>
+        ${ROLEPLAY_CATEGORIES.map(c=>`<option value="${c.id}">${c.icon} ${esc(c.label)}</option>`).join("")}
+      </select>
+      <select id="assignTopicSelect-${esc(rec.id)}" style="padding:7px 10px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;min-width:200px;">
+        <option value="">Pick a category first…</option>
+      </select>
+      <button class="btn btn-navy btn-sm" onclick="assignRoleplayToTrainee('${esc(rec.id)}')">Assign</button>
+    </div>
+    ${rec.assignedRoleplay ? `
+      <div style="margin-top:10px;padding:8px 12px;border-radius:8px;background:var(--orange-soft);font-size:12px;color:var(--orange-deep);">
+        Currently assigned: <b>${esc(rec.assignedRoleplay.topicLabel)}</b> — the trainee will see this flagged the next time they open the Live Roleplay Dashboard.
+        <button class="btn btn-sm btn-ghost" style="margin-left:8px;" onclick="clearAssignedRoleplay('${esc(rec.id)}')">Clear</button>
+      </div>` : ""}
+  `;
+}
+function renderAssignTopicOptions(traineeId){
+  const categoryId = document.getElementById(`assignCategorySelect-${traineeId}`).value;
+  const topicSelect = document.getElementById(`assignTopicSelect-${traineeId}`);
+  const category = ROLEPLAY_CATEGORIES.find(c=>c.id===categoryId);
+  if(!category){ topicSelect.innerHTML = `<option value="">Pick a category first…</option>`; return; }
+  topicSelect.innerHTML = category.topics.map(t=>`<option value="${t.id}">${esc(t.label)}</option>`).join("");
+}
+window.renderAssignTopicOptions = renderAssignTopicOptions;
+async function assignRoleplayToTrainee(traineeId){
+  const categoryId = document.getElementById(`assignCategorySelect-${traineeId}`).value;
+  const topicId = document.getElementById(`assignTopicSelect-${traineeId}`).value;
+  if(!categoryId || !topicId){ toast("Pick a category and a topic first."); return; }
+  const category = ROLEPLAY_CATEGORIES.find(c=>c.id===categoryId);
+  const topic = category.topics.find(t=>t.id===topicId);
+  const rec = await sharedGet("trainee:"+traineeId);
+  if(!rec) return;
+  rec.assignedRoleplay = {categoryId, topicId, categoryLabel:category.label, topicLabel:topic.label, assignedAt:new Date().toISOString()};
+  await sharedSet("trainee:"+traineeId, rec);
+  if(state.adminData){
+    const idx = state.adminData.findIndex(r=>r.id===traineeId);
+    if(idx!==-1) state.adminData[idx] = rec;
+    const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+  }
+  toast(`Assigned "${topic.label}" to ${rec.name||"trainee"}.`);
+}
+window.assignRoleplayToTrainee = assignRoleplayToTrainee;
+async function clearAssignedRoleplay(traineeId){
+  const rec = await sharedGet("trainee:"+traineeId);
+  if(!rec) return;
+  rec.assignedRoleplay = null;
+  await sharedSet("trainee:"+traineeId, rec);
+  if(state.adminData){
+    const idx = state.adminData.findIndex(r=>r.id===traineeId);
+    if(idx!==-1) state.adminData[idx] = rec;
+    const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+  }
+}
+window.clearAssignedRoleplay = clearAssignedRoleplay;
 function renderAiReviewBlock(rec){
   const r = rec.aiReview;
   const btnLabel = r ? "Regenerate AI Review" : "Generate AI Review";
@@ -11257,6 +14132,7 @@ async function finishEmailSim(){
     toast(`File and process every message first (${f}/${total} filed, ${h}/${total} processed).`);
     return;
   }
+  if(!(await useLabAttempt(2))) return;
   await ensureTraineeName();
   const e = toolState.esim;
   e.phase = "evaluating";
@@ -11287,28 +14163,34 @@ async function finishEmailSim(){
     return `- "${m.subj}": ${outcome}`;
   }).join("\n");
 
-  const prompt = `You are evaluating a Legal Executive Assistant trainee's performance in an email management exercise for a company called Legal Support Help (LSH).
-
-Evaluate strictly under these two headers, in this order, using short bullet points under each:
+  const prompt = `Evaluate strictly under these two headers, in this order, using short bullet points under each:
 
 1. Writing DNA Match — for each client email below, assess how well the trainee's reply mirrored THAT SPECIFIC client's tone, formatting, and communication style. The clients intentionally differ: one is terse and formal, one is casual and rambling, one is frustrated/upset, one is detailed and itemized. Note where the trainee matched or mismatched the register.
 2. Professionalism — grammar, clarity, completeness, and etiquette across their replies. Note if any actionable client email was left without a reply.
 
-Do not evaluate filing or security awareness — those are scored separately and shown elsewhere.
+Do not evaluate filing or security awareness — those are scored separately and shown elsewhere.`;
 
-${actionableSummary}
-
-Keep it concise — a handful of bullets per section — and end with one overall takeaway sentence. Be constructive and specific.`;
-
+  let rubricScore = 0;
   try{
-    e.report = (await callAIText(prompt, 800)) || "No feedback returned — try again in a moment.";
+    const report = await runRubricEvaluation(
+      "Inbox Triage — Writing DNA Match & Professionalism",
+      `This is one part of a larger inbox-triage exercise. Filing accuracy and security/phishing awareness are scored separately and objectively elsewhere — grade only the writing quality shown in these replies.`,
+      actionableSummary,
+      prompt
+    );
+    e.reportCard = report;
+    e.report = `<b>Strengths</b><ul>${report.strengths.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` +
+      (report.blindspots.length ? `<b>Blindspots</b><ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : "") +
+      (report.growthSuggestions.length ? `<b>Growth Suggestions</b><ul>${report.growthSuggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : "");
+    rubricScore = report.totalScore;
   }catch(err){
     e.report = "Couldn't reach the AI review service to assess Writing DNA Match and Professionalism — check your connection and try again. (Your Filing Accuracy and Security Awareness scores above were still computed normally.)";
+    rubricScore = null;
   }
   e.phase = "evaluated";
-  const overall = Math.round((e.filingScore + e.securityScore)/2);
+  const overall = rubricScore!==null ? Math.round((e.filingScore + e.securityScore + rubricScore)/3) : Math.round((e.filingScore + e.securityScore)/2);
   await bumpPracticeProgress("forcemultiplier2", overall);
-  if(overall===100) burstConfetti();
+  if(overall>=85) burstConfetti();
   renderEsimBody(document.getElementById(toolState.esimContainerId));
 }
 window.finishEmailSim = finishEmailSim;
@@ -11666,6 +14548,7 @@ async function crSendChat(){
   const input = document.getElementById("crChatInput");
   const text = input.value.trim();
   if(!text) return;
+  if(!(await useLabAttempt(toolIdToDayId(toolState.cr.setKey)))) return;
   toolState.cr.chatHistory.push({role:"ea", text});
   input.value = "";
   crRenderChatWindow();
@@ -11702,25 +14585,19 @@ window.crSendChat = crSendChat;
 async function crEndDebrief(){
   const el = document.getElementById("crDebrief");
   if((toolState.cr.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message first."); return; }
+  if(!(await useLabAttempt(toolIdToDayId(toolState.cr.setKey)))) return;
   el.innerHTML = `<div class="ai-loading">Preparing your debrief…</div>`;
   const s = crCurrentScenario();
   const transcript = toolState.cr.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"CLIENT: ":"EA: ")+m.text).join("\n");
-  const prompt = `You are debriefing a trainee Executive Assistant after a crisis roleplay exercise.
-
-SCENARIO: ${s.title} — ${s.setup}
-WHAT "GOOD" LOOKS LIKE:
-- Recommendation: ${s.objective.recommendation}
-- Risks & Trade-offs: ${s.objective.risksTradeoffs}
-- Model BLUF Statement: ${s.objective.blufStatement}
-
-FULL TRANSCRIPT:
-${transcript}
-
-Give a short debrief: 3-4 bullets on what the trainee did well or should improve (composure, escalation judgment, avoiding over-promising, warmth vs. procedure balance), then one overall verdict sentence on whether they stayed a calm, reliable operational anchor under pressure.`;
   try{
-    const feedback = await callAIText(prompt, 500);
-    el.innerHTML = `<div class="ai-result"><b>Debrief</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress(toolState.cr.setKey, 100);
+    const report = await runRubricEvaluation(
+      "Crisis Roleplay Debrief",
+      `SCENARIO: ${s.title} — ${s.setup}\n\nWHAT "GOOD" LOOKS LIKE:\n- Recommendation: ${s.objective.recommendation}\n- Risks & Trade-offs: ${s.objective.risksTradeoffs}\n- Model BLUF Statement: ${s.objective.blufStatement}`,
+      transcript,
+      `Assess composure, escalation judgment, avoiding over-promising, and warmth vs. procedure balance across the trainee's side of the transcript. Did they stay a calm, reliable operational anchor under pressure?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Debrief</b>` + renderEvaluationReport(report, toolIdToDayId(toolState.cr.setKey));
+    await bumpPracticeProgress(toolState.cr.setKey, report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't generate a debrief</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -11878,6 +14755,7 @@ async function d6crSendChat(){
   const input = document.getElementById("d6crChatInput");
   const text = input.value.trim();
   if(!text) return;
+  if(!(await useLabAttempt(6))) return;
   toolState.c6cr.chatHistory.push({role:"ea", text});
   input.value = "";
   d6crRenderChatWindow();
@@ -11914,25 +14792,19 @@ window.d6crSendChat = d6crSendChat;
 async function d6crEndDebrief(){
   const el = document.getElementById("d6crDebrief");
   if((toolState.c6cr.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message first."); return; }
+  if(!(await useLabAttempt(6))) return;
   el.innerHTML = `<div class="ai-loading">Preparing your debrief…</div>`;
   const s = d6crCurrentScenario();
   const transcript = toolState.c6cr.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"EXECUTIVE/STAKEHOLDER: ":"EA: ")+m.text).join("\n");
-  const prompt = `You are debriefing a trainee Executive Assistant after a business-compliance crisis roleplay exercise.
-
-SCENARIO: ${s.title} — ${s.setup}
-WHAT "GOOD" LOOKS LIKE:
-- Recommendation: ${s.objective.recommendation}
-- Risks & Trade-offs: ${s.objective.risksTradeoffs}
-- Model BLUF Statement: ${s.objective.blufStatement}
-
-FULL TRANSCRIPT:
-${transcript}
-
-Give a short debrief: 3-4 bullets on what the trainee did well or should improve (composure, escalation judgment, avoiding blame-shifting, giving concrete next steps vs. vague reassurance), then one overall verdict sentence on whether they stayed a calm, reliable operational anchor under pressure.`;
   try{
-    const feedback = await callAIText(prompt, 500);
-    el.innerHTML = `<div class="ai-result"><b>Debrief</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("projectcompliance6", 100);
+    const report = await runRubricEvaluation(
+      "Business-Compliance Crisis Roleplay Debrief",
+      `SCENARIO: ${s.title} — ${s.setup}\n\nWHAT "GOOD" LOOKS LIKE:\n- Recommendation: ${s.objective.recommendation}\n- Risks & Trade-offs: ${s.objective.risksTradeoffs}\n- Model BLUF Statement: ${s.objective.blufStatement}`,
+      transcript,
+      `Assess composure, escalation judgment, avoiding blame-shifting, and giving concrete next steps vs. vague reassurance across the trainee's side of the transcript. Did they stay a calm, reliable operational anchor under pressure?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Debrief</b>` + renderEvaluationReport(report, 6);
+    await bumpPracticeProgress("projectcompliance6", report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't generate a debrief</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -11988,7 +14860,8 @@ const AI8_LEAK_SCENARIO = {
 
 function initAccessIncident8(body){
   toolState.ai8 = {auditAnswers:{}, verifyAnswer:null, containmentDraft:""};
-  body.innerHTML = `
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Least-Privilege Access Audit</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each person below, decide: is their current access Appropriate for their role, or Excessive and something that should be revoked?</p>
     <div class="card" style="padding:14px 16px;">
@@ -12004,8 +14877,9 @@ function initAccessIncident8(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkAi8Audit()">Check My Answers</button>
     <div id="ai8AuditResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Verify Before You Disclose</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Verify Before You Disclose</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(AI8_VERIFY_SCENARIO.setup)}</p>
     </div>
@@ -12016,8 +14890,9 @@ function initAccessIncident8(body){
       </label>`).join("")}
     <button class="btn btn-ghost btn-sm" style="margin-top:8px;" onclick="checkAi8Verify()">Check My Answer</button>
     <div id="ai8VerifyResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Contain the Leak</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Contain the Leak</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(AI8_LEAK_SCENARIO.text)}</p>
     </div>
@@ -12025,9 +14900,13 @@ function initAccessIncident8(body){
     <textarea id="ai8ContainmentDraft" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="First, I would..."></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewAi8Containment()">Get AI Feedback</button>
     <div id="ai8ContainmentResult" style="margin-top:14px;"></div>
-
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadAi8Pdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderToolWizard(8, [
+    {label:"Least-Privilege Access Audit", html:partA},
+    {label:"Verify Before You Disclose", html:partB},
+    {label:"Contain the Leak", html:partC}
+  ]);
 }
 
 async function checkAi8Audit(){
@@ -12059,20 +14938,18 @@ async function reviewAi8Containment(){
   const draft = document.getElementById("ai8ContainmentDraft").value.trim();
   const el = document.getElementById("ai8ContainmentResult");
   if(draft.length < 20){ toast("Write out your steps first."); return; }
+  if(!(await useLabAttempt(8))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
-  const prompt = `You are evaluating a trainee Executive Assistant's incident-response plan for a legal-industry EA training program.
-
-SCENARIO: ${AI8_LEAK_SCENARIO.text}
-
-TRAINEE'S RESPONSE:
-${draft}
-
-Evaluate whether they prioritized CONTAINMENT and SCOPE ASSESSMENT first (stopping further spread, figuring out exactly what was exposed and to whom) before moving to blame-assignment or process review. Flag if they jumped straight to "who's at fault" instead of containing the exposure first. Give 3-4 short bullet points of feedback, then one overall verdict sentence.`;
   try{
-    const feedback = await callAIText(prompt, 500);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("accessincident8", 100);
-    burstConfetti();
+    const report = await runRubricEvaluation(
+      "Incident Response Plan — Confidentiality Leak",
+      `SCENARIO: ${AI8_LEAK_SCENARIO.text}`,
+      draft,
+      `Did the trainee prioritize CONTAINMENT and SCOPE ASSESSMENT first (stopping further spread, figuring out exactly what was exposed and to whom) before moving to blame-assignment or process review? Score Risk Mitigation & SOP Compliance low if they jumped straight to "who's at fault" instead of containing the exposure first.`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Response</b>` + renderEvaluationReport(report, 8);
+    await bumpPracticeProgress("accessincident8", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12094,7 +14971,8 @@ window.downloadAi8Pdf = downloadAi8Pdf;
 function initCompliance9(body){
   toolState.c9 = {cle:{}, reg:{}, reviewReport:null};
   toolState.cr = {setKey:"compliance9", activeScenario: CRISIS_SCENARIO_SETS.compliance9[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.compliance9[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
-  body.innerHTML = `
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. CLE Compliance Dashboard</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each attorney, decide: On Track, or Needs Follow-up.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
@@ -12117,8 +14995,9 @@ function initCompliance9(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Cle()">Check CLE Dashboard</button>
     <div id="c9CleResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Event Registration Follow-Up</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Event Registration Follow-Up</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Mark which registrants still need a follow-up email before the event.</p>
     <div class="card" style="padding:14px 16px;">
       ${EVENT_REGISTRANTS.map((r,i)=>`
@@ -12128,8 +15007,9 @@ function initCompliance9(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Reg()">Check Follow-Up List</button>
     <div id="c9RegResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Respond to a Negative Review</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Respond to a Negative Review</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--ink);">${esc(NEGATIVE_REVIEW.author)}</b> <span style="color:var(--orange-deep);">${"★".repeat(NEGATIVE_REVIEW.stars)}${"☆".repeat(5-NEGATIVE_REVIEW.stars)}</span>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;font-style:italic;">"${esc(NEGATIVE_REVIEW.text)}"</p>
@@ -12137,8 +15017,9 @@ function initCompliance9(body){
     <textarea id="c9ReviewReply" placeholder="Type your public response here…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC9Review(this)">Get AI Feedback</button>
     <div id="c9ReviewResult" style="margin-top:10px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">D. Awards &amp; Recognition Deadline Tracker</h3>
+  `;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Awards &amp; Recognition Deadline Tracker</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Today's date for this exercise is treated as March 15. For each award below, decide: still time to apply, or the deadline has already passed.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
@@ -12160,10 +15041,16 @@ function initCompliance9(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC9Awards()">Check Awards Tracker</button>
     <div id="c9AwardsResult" style="margin-top:8px;font-size:13px;"></div>
-
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadCompliance9Pdf()">⬇ Download My Work</button>
-    ${renderCrisisRoleplaySection("compliance9", "E. Live Crisis Roleplay — Compliance & Reputation")}
   `;
+  const partE = renderCrisisRoleplaySection("compliance9", "E. Live Crisis Roleplay — Compliance & Reputation");
+  body.innerHTML = renderToolWizard(9, [
+    {label:"CLE Compliance Dashboard", html:partA},
+    {label:"Event Follow-Up", html:partB},
+    {label:"Negative Review Response", html:partC},
+    {label:"Awards Tracker", html:partD},
+    {label:"Crisis Roleplay", html:partE}
+  ]);
 }
 const AWARDS_TRACKER = [
   {name:"State Bar Excellence in Litigation Award", deadline:"March 1"},
@@ -12231,21 +15118,20 @@ window.checkC9Reg = checkC9Reg;
 async function checkC9Review(btn){
   const text = document.getElementById("c9ReviewReply").value.trim();
   if(text.length<15){ toast("Write a fuller response first."); return; }
+  if(!(await useLabAttempt(9))) return;
   btn.disabled = true; btn.textContent = "Reviewing…";
   const resultEl = document.getElementById("c9ReviewResult");
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your response for professionalism and de-escalation…</div>`;
-  const prompt = `You are reviewing a Legal Executive Assistant trainee's draft public response to a negative online review for a law firm called Legal Support Help (LSH).
-
-The review (${NEGATIVE_REVIEW.stars} stars): "${NEGATIVE_REVIEW.text}"
-
-The trainee's draft public response: "${text}"
-
-Evaluate against the standard taught: respond professionally and factually, without escalating the conflict, and without admitting fault or making promises the firm may not be able to keep. Give 3-4 short bullet points of feedback and one overall verdict sentence (would this response protect the firm's reputation or risk making things worse?).`;
   try{
-    const feedback = (await callAIText(prompt, 500)) || "No feedback returned.";
-    toolState.c9.reviewReport = feedback;
-    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("compliance9", 100);
+    const report = await runRubricEvaluation(
+      "Public Response to a Negative Online Review",
+      `The review (${NEGATIVE_REVIEW.stars} stars): "${NEGATIVE_REVIEW.text}"`,
+      text,
+      `Evaluate against the standard taught: respond professionally and factually, without escalating the conflict, and without admitting fault or making promises the firm may not be able to keep. Would this response protect the firm's reputation or risk making things worse?`
+    );
+    toolState.c9.reviewReport = report;
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Response</b>` + renderEvaluationReport(report, 9);
+    await bumpPracticeProgress("compliance9", report.totalScore);
   }catch(e){
     toolState.c9.reviewReport = "Couldn't reach the AI review service.";
     resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
@@ -12306,12 +15192,8 @@ const FM2_FULL_SCENARIO = {
 
 function initForceMultiplier2(body){
   toolState.fm2 = {checklistSelected:{}, promptDraft:"", promptOutput:null, planDraft:""};
-  body.innerHTML = `
-    ${renderProminentDisclaimer({
-      label: "Before you use AI in this exercise",
-      text: "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
-    })}
-
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Anticipate the Real Need</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias sends one line: <i>"Get me ready for the Meridian Dynamics board update Thursday."</i> That's it — no other detail. Select every action below that shows genuine force-multiplier thinking, not just reactive task-completion.</p>
     <div class="card" style="padding:14px 16px;">
@@ -12323,8 +15205,9 @@ function initForceMultiplier2(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkFm2Checklist()">Check My Selections</button>
     <div id="fm2ChecklistResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Prompt Engineering Challenge — This Actually Runs</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Prompt Engineering Challenge — This Actually Runs</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">${esc(FM2_PROMPT_TASK.brief)} Write the exact prompt you'd give an AI tool to do this — then run it for real and see what it actually produces.</p>
     <div class="card" style="padding:14px 16px;margin-bottom:10px;background:#F8F9FC;">
       <b style="font-size:12.5px;color:var(--navy);">The messy source email</b>
@@ -12333,8 +15216,9 @@ function initForceMultiplier2(body){
     <textarea id="fm2PromptDraft" style="width:100%;min-height:90px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Write the exact prompt you'd type into an AI tool..."></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="runFm2Prompt()">Run This Prompt</button>
     <div id="fm2PromptOutput" style="margin-top:14px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. The Full Scenario</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. The Full Scenario</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(FM2_FULL_SCENARIO.text)}</p>
     </div>
@@ -12342,13 +15226,22 @@ function initForceMultiplier2(body){
     <textarea id="fm2PlanDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="What you'd do, and the AI prompt you'd use as part of it..."></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewFm2Plan()">Get AI Feedback</button>
     <div id="fm2PlanResult" style="margin-top:14px;"></div>
-
-    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">D. Inbox Triage</h3>
+  `;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Inbox Triage</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A real inbox — apply the Digital Edge and AI Proficiency skills from this day to actually clear it. Build your own filing system, draft real replies, and catch a hidden phishing attempt.</p>
     <div id="fm2EmailWrap"></div>
-
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadFm2Pdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderProminentDisclaimer({
+      label: "Before you use AI in this exercise",
+      text: "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
+    }) + renderToolWizard(2, [
+      {label:"Anticipate the Real Need", html:partA},
+      {label:"Prompt Engineering", html:partB},
+      {label:"The Full Scenario", html:partC},
+      {label:"Inbox Triage", html:partD}
+    ]);
   initEmailSim(document.getElementById("fm2EmailWrap"));
 }
 
@@ -12370,23 +15263,23 @@ async function runFm2Prompt(){
   const draft = document.getElementById("fm2PromptDraft").value.trim();
   const el = document.getElementById("fm2PromptOutput");
   if(draft.length < 10){ toast("Write your prompt first."); return; }
+  if(!(await useLabAttempt(2))) return;
   el.innerHTML = `<div class="ai-loading">Running your prompt…</div>`;
   const executionPrompt = `${draft}\n\nHere is the text to work with:\n"${FM2_PROMPT_TASK.sourceText}"`;
   try{
     const output = await callAIText(executionPrompt, 300);
-    const critiquePrompt = `A trainee Executive Assistant wrote the following prompt to turn a messy client email into 3 clean bullet points (no more than 15 words per bullet, action items only) for an executive's morning briefing.
-
-THEIR PROMPT: "${draft}"
-
-WHAT THAT PROMPT ACTUALLY PRODUCED: "${output}"
-
-Evaluate: did their prompt specify the output format clearly (bullet points)? Did it specify the length constraint (15 words)? Did it correctly ask for extraction of action items rather than a general summary? Give 2-3 short bullet points of feedback on the PROMPT itself (not the output), then one verdict sentence on whether this prompt would reliably produce good results if run again on a different messy email.`;
-    const critique = await callAIText(critiquePrompt, 350);
+    const report = await runRubricEvaluation(
+      "Prompt Engineering — Turning a Messy Email into Action Bullets",
+      `The trainee was asked to write a prompt that turns a messy client email into 3 clean bullet points (no more than 15 words per bullet, action items only) for an executive's morning briefing.`,
+      `THEIR PROMPT: "${draft}"\n\nWHAT THAT PROMPT ACTUALLY PRODUCED: "${output}"`,
+      `Grade the PROMPT itself, not the output text. Did it specify the output format clearly (bullet points)? Did it specify the length constraint (15 words)? Did it correctly ask for extraction of action items rather than a general summary? Would this prompt reliably produce good results if run again on a different messy email?`
+    );
     el.innerHTML = `
       <div class="ai-result"><b>What Your Prompt Actually Produced</b><div class="ai-result-body">${esc(output).replace(/\n/g,"<br>")}</div></div>
-      <div class="ai-result" style="margin-top:10px;"><b>Feedback on Your Prompt</b><div class="ai-result-body">${esc(critique).replace(/\n/g,"<br>")}</div></div>
+      <b style="font-size:13px;color:var(--navy);display:block;margin:14px 0 8px;">Evaluation Report — Your Prompt</b>
+      ${renderEvaluationReport(report, 2)}
     `;
-    await bumpPracticeProgress("forcemultiplier2", null);
+    await bumpPracticeProgress("forcemultiplier2", report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't run your prompt</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12397,24 +15290,18 @@ async function reviewFm2Plan(){
   const draft = document.getElementById("fm2PlanDraft").value.trim();
   const el = document.getElementById("fm2PlanResult");
   if(draft.length < 30){ toast("Write out your plan first."); return; }
+  if(!(await useLabAttempt(2))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your plan…</div>`;
-  const prompt = `You are evaluating a trainee Executive Assistant's response to a deliberately ambiguous instruction, for a legal-industry EA training program testing both "Managing Up" judgment and "AI Proficiency."
-
-SCENARIO: ${FM2_FULL_SCENARIO.text}
-
-TRAINEE'S PLAN:
-${draft}
-
-Evaluate two things together:
-1. Managing Up: did they correctly read "deal with this" as needing real judgment (assessing the client's actual concern, likely needing to loop in the attorney handling the filing, and communicating proactively) rather than either ignoring it or escalating everything blindly?
-2. AI Proficiency: did they include a specific, well-constructed AI prompt as part of their plan (e.g., drafting a client response, summarizing the thread) rather than either skipping AI entirely or using it vaguely?
-
-Give 4-5 short bullet points of feedback covering both dimensions, then one overall verdict sentence.`;
   try{
-    const feedback = await callAIText(prompt, 600);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("forcemultiplier2", 100);
-    burstConfetti();
+    const report = await runRubricEvaluation(
+      "Managing Up & AI Proficiency — Ambiguous Instruction Response",
+      `SCENARIO: ${FM2_FULL_SCENARIO.text}`,
+      draft,
+      `Evaluate two things together: (1) Managing Up — did they correctly read "deal with this" as needing real judgment (assessing the client's actual concern, likely needing to loop in the attorney handling the filing, and communicating proactively) rather than either ignoring it or escalating everything blindly? (2) AI Proficiency — did they include a specific, well-constructed AI prompt as part of their plan (e.g., drafting a client response, summarizing the thread) rather than either skipping AI entirely or using it vaguely?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Plan</b>` + renderEvaluationReport(report, 2);
+    await bumpPracticeProgress("forcemultiplier2", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12435,7 +15322,8 @@ window.downloadFm2Pdf = downloadFm2Pdf;
 
 function initSocial10(body){
   toolState.s10 = {ratesChecked:false, bestPick:"", versionMatch:{}};
-  body.innerHTML = `
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Engagement Rate: Which Post Actually Won?</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Engagement Rate = (Likes + Comments + Shares) ÷ Followers × 100. Compute each, then pick the real top performer.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
@@ -12459,8 +15347,9 @@ function initSocial10(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkS10Rates()">Check Engagement Rates</button>
     <div id="s10RateResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Match the Version to the Platform</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Match the Version to the Platform</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same announcement, two different versions. Which platform does each belong on?</p>
     ${PLATFORM_VERSIONS.map((v,i)=>`
       <div class="card" style="padding:14px 16px;margin-bottom:10px;">
@@ -12473,8 +15362,9 @@ function initSocial10(body){
       </div>`).join("")}
     <button class="btn btn-ghost btn-sm" onclick="checkS10Versions()">Check Platform Match</button>
     <div id="s10VersionResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Campaign Math</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Campaign Math</h3>
     <div class="card" style="padding:16px 20px;">
       <div class="field-row"><label>Total Spend ($)</label><input type="number" id="s10Spend" value="${CAMPAIGN_DATA.spend}" oninput="recalcS10Campaign()"></div>
       <div class="field-row"><label>Leads Generated</label><input type="number" id="s10Leads" value="${CAMPAIGN_DATA.leads}" oninput="recalcS10Campaign()"></div>
@@ -12483,8 +15373,9 @@ function initSocial10(body){
       <div class="calc-total" style="font-size:13px;border-top:none;padding-top:4px;"><span>Revenue (all leads convert)</span><span id="s10Rev" class="mono">$0</span></div>
       <div class="calc-total"><span>ROI</span><span id="s10Roi">0%</span></div>
     </div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">D. Build a Brand Kit</h3>
+  `;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Build a Brand Kit</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Before any content gets published, a real social media presence needs a defined Brand Kit — the reference that keeps every post consistent, whoever writes it. Define one for Elias's professional presence.</p>
     <div class="card" style="padding:16px 20px;">
       <div class="field-row"><label>Primary color(s)</label><input type="text" id="s10BkColors" placeholder="e.g. Navy #1B2340, Warm Gold #C9A24B"></div>
@@ -12495,15 +15386,22 @@ function initSocial10(body){
     </div>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewS10BrandKit()">Get AI Feedback</button>
     <div id="s10BrandKitResult" style="margin-top:10px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">E. Write a Comprehensive Social Media Marketing Plan</h3>
+  `;
+  const partE = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">E. Write a Comprehensive Social Media Marketing Plan</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Pull everything from this day together into one real plan — goals, target audience, platforms, content pillars, posting cadence, and how success will be measured.</p>
     <textarea id="s10PlanDraft" style="width:100%;min-height:200px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="1. Goals&#10;2. Target audience&#10;3. Platforms &amp; why each one&#10;4. Content pillars&#10;5. Posting cadence&#10;6. Success metrics / KPIs"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewS10MarketingPlan()">Get AI Feedback</button>
     <div id="s10PlanResult" style="margin-top:10px;"></div>
-
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadSocial10Pdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderToolWizard(10, [
+    {label:"Engagement Rate", html:partA},
+    {label:"Version Matching", html:partB},
+    {label:"Campaign Math", html:partC},
+    {label:"Brand Kit", html:partD},
+    {label:"Marketing Plan", html:partE}
+  ]);
   recalcS10Campaign();
 }
 
@@ -12565,24 +15463,17 @@ async function reviewS10BrandKit(){
   };
   const el = document.getElementById("s10BrandKitResult");
   if(!fields.colors || !fields.voice || !fields.tagline){ toast("Fill in at least colors, voice, and tagline first."); return; }
+  if(!(await useLabAttempt(10))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your Brand Kit…</div>`;
-  const prompt = `You are reviewing a trainee Executive Assistant's Brand Kit for their executive's professional social media presence, for a legal-industry EA training program.
-
-CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group, known for blunt/direct communication, "uncompromising excellence" firm culture):
-${CLIENT_DOSSIER_MD}
-
-TRAINEE'S BRAND KIT:
-- Primary color(s): ${fields.colors || "(not specified)"}
-- Typography: ${fields.fonts || "(not specified)"}
-- Voice & tone: ${fields.voice || "(not specified)"}
-- Tagline: ${fields.tagline || "(not specified)"}
-- Visual style notes: ${fields.visual || "(not specified)"}
-
-Evaluate whether this Brand Kit is genuinely consistent with Elias's actual personality and firm culture (direct, credible, uncompromising — not casual, trendy, or generic), and whether it's specific enough that someone else could follow it consistently. Give 3-4 short bullet points of feedback, then one overall verdict sentence.`;
   try{
-    const feedback = await callAIText(prompt, 500);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("socialmedia10", null);
+    const report = await runRubricEvaluation(
+      "Brand Kit — Professional Social Media Presence",
+      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group, known for blunt/direct communication, "uncompromising excellence" firm culture):\n${CLIENT_DOSSIER_MD}`,
+      `- Primary color(s): ${fields.colors || "(not specified)"}\n- Typography: ${fields.fonts || "(not specified)"}\n- Voice & tone: ${fields.voice || "(not specified)"}\n- Tagline: ${fields.tagline || "(not specified)"}\n- Visual style notes: ${fields.visual || "(not specified)"}`,
+      `Is this Brand Kit genuinely consistent with Elias's actual personality and firm culture (direct, credible, uncompromising — not casual, trendy, or generic)? Is it specific enough that someone else could follow it consistently, rather than vague or generic?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Brand Kit</b>` + renderEvaluationReport(report, 10);
+    await bumpPracticeProgress("socialmedia10", report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12593,20 +15484,17 @@ async function reviewS10MarketingPlan(){
   const draft = document.getElementById("s10PlanDraft").value.trim();
   const el = document.getElementById("s10PlanResult");
   if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
+  if(!(await useLabAttempt(10))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your marketing plan…</div>`;
-  const prompt = `You are reviewing a trainee Executive Assistant's comprehensive social media marketing plan for their executive, for a legal-industry EA training program.
-
-CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
-${CLIENT_DOSSIER_MD}
-
-TRAINEE'S MARKETING PLAN DRAFT:
-${draft}
-
-Evaluate whether the plan genuinely covers: clear goals, a defined target audience, platform choices with reasoning (not just "post everywhere"), content pillars, a realistic posting cadence, and concrete success metrics/KPIs — not just vague aspirations. Flag anything missing entirely. Give 4-5 short bullet points of feedback, then one overall verdict sentence.`;
   try{
-    const feedback = await callAIText(prompt, 600);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("socialmedia10", null);
+    const report = await runRubricEvaluation(
+      "Comprehensive Social Media Marketing Plan",
+      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}`,
+      draft,
+      `Does the plan genuinely cover: clear goals, a defined target audience, platform choices with reasoning (not just "post everywhere"), content pillars, a realistic posting cadence, and concrete success metrics/KPIs — not just vague aspirations? Flag anything missing entirely.`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Marketing Plan</b>` + renderEvaluationReport(report, 10);
+    await bumpPracticeProgress("socialmedia10", report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12645,7 +15533,8 @@ window.downloadSocial10Pdf = downloadSocial10Pdf;
 function initDossier1(body){
   toolState.d1 = {dossierScore:undefined, trackerScore:undefined};
   toolState.calls = {};
-  body.innerHTML = `
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Draft the Client Dossier</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Write the dossier in your own words, organized under the four sections below — reference the Client Profile page any time you need to check a fact or preference.</p>
     ${DOSSIER_SECTIONS.map((sec,si)=>`
@@ -12659,8 +15548,9 @@ function initDossier1(body){
     </div>
     <div id="d1DossierResult" style="margin-top:8px;font-size:13px;"></div>
     <div id="d1DossierAIResult" style="margin-top:10px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Set Up the Preference Trackers</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Set Up the Preference Trackers</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn Elias's operational details into three live trackers, written in your own words, using the Client Profile page as your reference.</p>
     ${TRACKER_SECTIONS.map((sec,si)=>`
       <div style="margin-bottom:14px;">
@@ -12669,8 +15559,9 @@ function initDossier1(body){
       </div>`).join("")}
     <button class="btn btn-ghost btn-sm" onclick="checkD1Tracker()">Check My Trackers</button>
     <div id="d1TrackerResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Sample Task — Responding with an ACT Email</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Sample Task — Responding with an ACT Email</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias just sent this. It's unstructured on purpose — real requests from him arrive exactly like this. Your job is to send back an <b>ACT email</b>: <b>A</b>cknowledge what he needs, <b>C</b>larify what's still unknown, and lay out the <b>T</b>imeline for what happens next.</p>
     <div class="act-box">
       <div class="act-card"><b>A</b>Acknowledge the ask in one line — show him you understood it, not just that you received it.</div>
@@ -12691,10 +15582,17 @@ function initDossier1(body){
       <button class="btn btn-navy btn-sm" onclick="reviewD1ActEmail()">Get AI Feedback</button>
     </div>
     <div id="d1ActFeedback" style="margin-top:14px;"></div>
+  `;
+  const partD = `
     ${renderGatekeepingSection('D')}
-
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
   `;
+  body.innerHTML = renderToolWizard(1, [
+    {label:"Client Dossier", html:partA},
+    {label:"Preference Trackers", html:partB},
+    {label:"ACT Email", html:partC},
+    {label:"Gatekeeping Practice", html:partD}
+  ]);
 }
 
 /* ---------- coverage-based scoring for free text ---------- */
@@ -12754,28 +15652,19 @@ window.checkD1Tracker = checkD1Tracker;
 
 /* ---------- AI feedback: dossier draft ---------- */
 async function reviewD1DossierAI(){
+  if(!(await useLabAttempt(1))) return;
   const texts = DOSSIER_SECTIONS.map((sec,si)=>`## ${sec}\n${document.getElementById(`d1sec${si}`).value.trim()||"(not written)"}`).join("\n\n");
   const el = document.getElementById("d1DossierAIResult");
   el.innerHTML = `<div class="ai-loading">Reviewing your dossier draft…</div>`;
-  const prompt = `You are grading a trainee Executive Assistant's free-text client dossier for a legal-industry EA training program.
-
-REFERENCE MATERIAL they were given (the source of truth):
-${CLIENT_DOSSIER_MD}
-
-TRAINEE'S DOSSIER DRAFT (their own words):
-${texts}
-
-Evaluate against these criteria:
-1. Coverage — does it address Firm & Role, Personal & Family, Standing Instructions, and Known Quirks (or reasonably equivalent groupings)?
-2. Accuracy — does it contradict or misstate anything in the reference material?
-3. Operational usefulness — does it explain why facts matter (e.g. "no back-to-back court dates" as a hard rule), not just restate them as trivia?
-4. Own words — is this genuinely rewritten, not copy-pasted?
-
-Give 4-5 short bullet points of specific feedback, then one overall verdict sentence (ready to use / needs another pass, and why).`;
   try{
-    const feedback = await callAIText(prompt, 600);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Dossier</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("dossier1", null);
+    const report = await runRubricEvaluation(
+      "Client Dossier Draft",
+      `REFERENCE MATERIAL the trainee was given (the source of truth):\n${CLIENT_DOSSIER_MD}`,
+      texts,
+      `Coverage — does it address Firm & Role, Personal & Family, Standing Instructions, and Known Quirks (or reasonably equivalent groupings)? Operational usefulness — does it explain why facts matter (e.g. "no back-to-back court dates" as a hard rule), not just restate them as trivia? Own words — is this genuinely rewritten, not copy-pasted?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Dossier</b>` + renderEvaluationReport(report, 1);
+    await bumpPracticeProgress("dossier1", report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12787,31 +15676,17 @@ async function reviewD1ActEmail(){
   const draft = document.getElementById("d1ActDraft").value.trim();
   const el = document.getElementById("d1ActFeedback");
   if(draft.length < 20){ toast("Write your ACT email first."); return; }
+  if(!(await useLabAttempt(1))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your ACT email…</div>`;
-  const prompt = `You are grading a trainee Executive Assistant's reply email, using the ACT framework (Acknowledge, Clarify, Timeline), for a legal-industry EA training program.
-
-CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
-${CLIENT_DOSSIER_MD}
-
-THE UNSTRUCTURED VOICE NOTE ELIAS SENT:
-"Need something set up in Singapore — the arbitration team wants to get in front of the client before the hearing. Figure out what makes sense, sometime in the back half of next month probably. Sarah's going to want to know if I'm back for Maya's recital — check that. Also tell David I need ten minutes before end of day, whenever he's free, not urgent but don't let it slide."
-
-Note: this voice note actually contains THREE separate asks (a Singapore client meeting to arrange, a travel/family conflict to check, and a message to relay to David Reyes, Head of Litigation). A strong reply should separate them rather than treating it as one task.
-
-TRAINEE'S ACT EMAIL DRAFT:
-${draft}
-
-Evaluate:
-1. Acknowledge — did they restate what he actually needs (all three threads, not just one)?
-2. Clarify — did they ask only for genuinely missing information, and avoid asking things answerable from the dossier (e.g. flight/hotel preferences, Paleo requirements)?
-3. Timeline — is there a clear "by when" and "who owns it" for each thread?
-4. Tone/format — BLUF-appropriate for someone who reads on his phone between meetings?
-
-Give 4-5 short bullet points of specific feedback, then one overall verdict sentence.`;
   try{
-    const feedback = await callAIText(prompt, 650);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your ACT Email</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("dossier1", null);
+    const report = await runRubricEvaluation(
+      "ACT Framework Reply Email",
+      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}\n\nTHE UNSTRUCTURED VOICE NOTE ELIAS SENT:\n"Need something set up in Singapore — the arbitration team wants to get in front of the client before the hearing. Figure out what makes sense, sometime in the back half of next month probably. Sarah's going to want to know if I'm back for Maya's recital — check that. Also tell David I need ten minutes before end of day, whenever he's free, not urgent but don't let it slide."\n\nNote: this voice note actually contains THREE separate asks (a Singapore client meeting to arrange, a travel/family conflict to check, and a message to relay to David Reyes, Head of Litigation). A strong reply should separate them rather than treating it as one task.`,
+      draft,
+      `Acknowledge — did they restate what he actually needs (all three threads, not just one)? Clarify — did they ask only for genuinely missing information, and avoid asking things answerable from the dossier (e.g. flight/hotel preferences, Paleo requirements)? Timeline — is there a clear "by when" and "who owns it" for each thread? Tone/format — BLUF-appropriate for someone who reads on his phone between meetings?`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your ACT Email</b>` + renderEvaluationReport(report, 1);
+    await bumpPracticeProgress("dossier1", report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -12856,20 +15731,23 @@ window.downloadDossier1Pdf = downloadDossier1Pdf;
 function initInsurance5(body){
   toolState.i5 = {category:{}, strategy:{}};
   toolState.cr = {setKey:"insurance5", activeScenario: CRISIS_SCENARIO_SETS.insurance5[0].id, chatHistory:[{role:"client", text: CRISIS_SCENARIO_SETS.insurance5[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
-  body.innerHTML = `
+  toolState.wizardIndex = 0;
+  const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Classify the Risk</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Something crosses your desk about the Thorne household almost every week. Drag each card into the risk category it belongs to.</p>
     ${renderMatchBoard("i5cat", RISK_SCENARIOS.map(s=>s.text), RISK_CATEGORIES)}
     <button class="btn btn-ghost btn-sm" style="margin-top:14px;" onclick="checkI5Category()">Check Categories</button>
     <div id="i5CategoryResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Match the Strategy</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Match the Strategy</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">For each real decision, drag it onto the risk-management strategy actually being used.</p>
     ${renderMatchBoard("i5strat", RISK_STRATEGY_SCENARIOS.map(s=>s.text), RISK_STRATEGIES)}
     <button class="btn btn-ghost btn-sm" style="margin-top:14px;" onclick="checkI5Strategy()">Check Strategies</button>
     <div id="i5StrategyResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Build a Home Binder Section</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Build a Home Binder Section</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">Elias is traveling for two weeks and wants a real Home Binder ready in case someone else — a substitute PA, a family member — needs to step in while he's gone. Fill in each section below using what you actually know about the household.</p>
     </div>
@@ -12881,10 +15759,17 @@ function initInsurance5(body){
       </div>`).join("")}
     <button class="btn btn-navy btn-sm" onclick="reviewI5Binder()">Get AI Feedback</button>
     <div id="i5BinderResult" style="margin-top:10px;"></div>
-
-    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
-    ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
   `;
+  const partD = `
+    ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
+  `;
+  body.innerHTML = renderToolWizard(5, [
+    {label:"Classify the Risk", html:partA},
+    {label:"Match the Strategy", html:partB},
+    {label:"Home Binder", html:partC},
+    {label:"Crisis Roleplay", html:partD}
+  ]);
 }
 const HOME_BINDER_SECTIONS = ["Household Operations", "Family & Medical", "Financial & Legal Reference", "Emergency Contacts"];
 async function reviewI5Binder(){
@@ -12892,26 +15777,17 @@ async function reviewI5Binder(){
   const written = HOME_BINDER_SECTIONS.filter((_,si)=>document.getElementById(`i5binder${si}`).value.trim().length>10).length;
   const el = document.getElementById("i5BinderResult");
   if(written < HOME_BINDER_SECTIONS.length){ toast("Write something real in every section first."); return; }
+  if(!(await useLabAttempt(5))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your Home Binder draft…</div>`;
-  const prompt = `You are grading a trainee Executive Assistant's Home Binder draft for the Thorne household, for a legal-industry EA training program.
-
-CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):
-${CLIENT_DOSSIER_MD}
-
-TRAINEE'S HOME BINDER DRAFT:
-${texts}
-
-Evaluate against these criteria:
-1. Usability — could a substitute PA or family member actually use this to find what they need in an emergency, or is it too vague to act on?
-2. Coverage — does it reasonably address all four sections (Household Operations, Family & Medical, Financial & Legal Reference, Emergency Contacts)?
-3. CRITICAL SECURITY CHECK — does the draft contain any actual sensitive numbers written out (account numbers, passwords, SSNs, full card numbers)? This is a hard fail if present — the binder should only ever reference WHERE to find such information securely, never the number itself. Flag this explicitly and prominently if it occurs, even if everything else is strong.
-4. Accuracy — does it contradict anything in the reference material?
-
-Give 4-5 short bullet points of specific feedback (leading with the security check result), then one overall verdict sentence.`;
   try{
-    const feedback = await callAIText(prompt, 650);
-    el.innerHTML = `<div class="ai-result"><b>AI Feedback on Your Home Binder</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("insurance5", null);
+    const report = await runRubricEvaluation(
+      "Home Binder Draft — Thorne Household",
+      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}`,
+      texts,
+      `Usability — could a substitute PA or family member actually use this to find what they need in an emergency, or is it too vague to act on? Coverage — does it reasonably address all four sections (Household Operations, Family & Medical, Financial & Legal Reference, Emergency Contacts)? CRITICAL SECURITY CHECK (treat as a hard fail on Accuracy & Technical Precision specifically if present) — does the draft contain any actual sensitive numbers written out (account numbers, passwords, SSNs, full card numbers)? The binder should only ever reference WHERE to find such information securely, never the number itself — if this occurs, cap the Accuracy score at 10/35 regardless of other quality, and flag it explicitly and prominently as a blindspot.`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Home Binder</b>` + renderEvaluationReport(report, 5);
+    await bumpPracticeProgress("insurance5", report.totalScore);
   }catch(e){
     el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
   }
@@ -13019,8 +15895,10 @@ window.downloadInsurance5Pdf = downloadInsurance5Pdf;
 
 function initProjectCompliance6(body){
   toolState.c6 = {license:{}, kpi:{}, recoveryReport:null};
+  toolState.c6audit = {verdicts:{}, risks:{}};
   toolState.c6cr = {activeScenario: DAY6_CRISIS_SCENARIOS[0].id, chatHistory:[{role:"client", text: DAY6_CRISIS_SCENARIOS[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
-  body.innerHTML = `
+  toolState.wizardIndex = 0;
+  const partA = `
     <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">📅 Month-End, Thorne &amp; Partners</b>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">It's month-end compliance review. Two routine checks land on your desk at the same time — a license status sweep across all four jurisdictions, and this month's KPI dashboard. Neither looks urgent on its own. But by the end of this exercise, you'll see they're both pointing at the same thing: the Meridian Dynamics arbitration is under real strain, and it's already showing up elsewhere before anyone's said so out loud.</p>
@@ -13049,8 +15927,9 @@ function initProjectCompliance6(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6License()">Check Licenses</button>
     <div id="c6LicenseResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">B. Read the Operational Warning Signs</h3>
+  `;
+  const partB = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Read the Operational Warning Signs</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">This month's numbers just came in. Flag which metrics are On Target vs. Off Target — and notice which categories are slipping together.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
@@ -13072,8 +15951,9 @@ function initProjectCompliance6(body){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6Kpi()">Check Dashboard</button>
     <div id="c6KpiResult" style="margin-top:8px;font-size:13px;"></div>
-
-    <h3 style="margin:30px 0 6px;color:var(--navy);font-size:15px;">C. Write the Recovery &amp; Escalation Memo</h3>
+  `;
+  const partC = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Write the Recovery &amp; Escalation Memo</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:10px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">${esc(TRIAL_RECOVERY_SCENARIO.matter)}</b>
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRIAL_RECOVERY_SCENARIO.text)}</p>
@@ -13083,10 +15963,33 @@ function initProjectCompliance6(body){
     <textarea id="c6RecoveryReply" placeholder="Draft your message to Elias here — reference what you found in Parts A and B, not just the trial delay on its own…" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC6Recovery(this)">Get AI Feedback</button>
     <div id="c6RecoveryResult" style="margin-top:10px;"></div>
-
-    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadProjectCompliance6Pdf()">⬇ Download My Work</button>
-    ${renderDay6CrisisRoleplaySection()}
   `;
+  const partD = `
+    ${renderDay6CrisisRoleplaySection()}
+    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadProjectCompliance6Pdf()">⬇ Download My Work</button>
+  `;
+  const partE = `
+    <div class="card" style="padding:16px 18px;margin-bottom:20px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">🔍 15-Case Compliance Audit Simulation</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">Bookkeeping and case management just forwarded 15 case files for a routine compliance sweep across multiple jurisdictions. Some are filed correctly. Some aren't — a missed deadline, an incorrect form, a missing notarization, a late regulatory filing. Review each case and decide: clean, or an issue worth flagging.</p>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;">If you flag a case, you'll also classify how serious the issue actually is — Moderate, High, or Critical. Getting the severity right matters as much as catching the issue in the first place.</p>
+    </div>
+    <div id="complianceAuditQueue">${renderComplianceAuditQueue()}</div>
+    <button class="btn btn-primary" style="margin-top:6px;" onclick="checkComplianceAudit()">Check My Audit</button>
+    <div id="complianceAuditResult"></div>
+    <h3 style="margin:28px 0 6px;color:var(--navy);font-size:15px;">Escalation & Prevention</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Once you've completed the case review: name the single most severe finding, describe the real escalation pathway for it (who, how fast, why), and recommend one concrete preventive control that would stop this class of error from recurring.</p>
+    <textarea id="complianceAuditWritten" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Most severe finding: ...&#10;&#10;Escalation pathway: ...&#10;&#10;Preventive control recommendation: ..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewComplianceAuditResponse()">Get AI Feedback</button>
+    <div id="complianceAuditWrittenResult" style="margin-top:14px;"></div>
+  `;
+  body.innerHTML = renderToolWizard(6, [
+    {label:"Compliance Risk", html:partA},
+    {label:"Operational Warning Signs", html:partB},
+    {label:"Recovery Memo", html:partC},
+    {label:"Crisis Roleplay", html:partD},
+    {label:"Compliance Audit Simulation", html:partE}
+  ]);
 }
 
 function setC6License(i,v){ toolState.c6.license[i]=v; }
@@ -13120,31 +16023,21 @@ window.checkC6Kpi = checkC6Kpi;
 async function checkC6Recovery(btn){
   const text = document.getElementById("c6RecoveryReply").value.trim();
   if(text.length<15){ toast("Write a fuller message first."); return; }
+  if(!(await useLabAttempt(6))) return;
   btn.disabled = true; btn.textContent = "Reviewing…";
   const resultEl = document.getElementById("c6RecoveryResult");
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your recovery plan…</div>`;
-  const prompt = `You are reviewing a Legal Executive Assistant trainee's draft message to their principal, Elias Thorne (Managing Owner & CEO of Thorne & Partners Law Group), about a project that has fallen behind schedule.
-
-FULL SITUATION (the trainee was given all three pieces together, as one connected scenario):
-1. License check: the D.C. Bar Foreign Legal Consultant Registration — which specifically covers international arbitration work — is coming up for renewal soon.
-2. KPI dashboard: Executive Inbox Response Time and Client Retention Rate are both off target this month, consistent with the team being stretched thin.
-3. The trigger event: ${TRIAL_RECOVERY_SCENARIO.text}
-
-The trainee's draft message: "${text}"
-
-Evaluate against the standard taught:
-1. Does the message connect the dots — referencing the license renewal risk and/or the KPI strain as part of the same picture, not just reporting the trial delay in isolation? A message that ignores Parts A and B entirely is missing the actual point of this exercise.
-2. Does it identify the root cause of the delay before reassigning blame?
-3. Is the plan structured and specific, not vague reassurance?
-4. Does it match Elias's known preference for BLUF (bottom-line-up-front) communication — the key point and required action immediately clear, detail available but not front-loaded?
-
-Give 4-5 short bullet points of feedback — explicitly call out whether they connected Parts A/B to the recovery message or treated it as a standalone report — then one overall verdict sentence.`;
   try{
-    const feedback = (await callAIText(prompt, 550)) || "No feedback returned.";
-    toolState.c6.recoveryReport = feedback;
-    resultEl.innerHTML = `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(feedback).replace(/\n/g,"<br>")}</div></div>`;
-    await bumpPracticeProgress("projectcompliance6", 100);
-    burstConfetti();
+    const report = await runRubricEvaluation(
+      "Project Recovery Message — Trial Delay",
+      `FULL SITUATION (the trainee was given all three pieces together, as one connected scenario):\n1. License check: the D.C. Bar Foreign Legal Consultant Registration — which specifically covers international arbitration work — is coming up for renewal soon.\n2. KPI dashboard: Executive Inbox Response Time and Client Retention Rate are both off target this month, consistent with the team being stretched thin.\n3. The trigger event: ${TRIAL_RECOVERY_SCENARIO.text}\n\nElias Thorne (Managing Owner & CEO) has a known preference for BLUF (bottom-line-up-front) communication.`,
+      text,
+      `Does the message connect the dots — referencing the license renewal risk and/or the KPI strain as part of the same picture, not just reporting the trial delay in isolation? A message that ignores Parts A and B entirely is missing the actual point of this exercise, and should score low on Risk Mitigation & SOP Compliance specifically. Does it identify the root cause of the delay before reassigning blame? Is the plan structured and specific, not vague reassurance? Does it match the BLUF preference — key point and required action immediately clear, detail available but not front-loaded?`
+    );
+    toolState.c6.recoveryReport = report;
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Recovery Message</b>` + renderEvaluationReport(report, 6);
+    await bumpPracticeProgress("projectcompliance6", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
   }catch(e){
     toolState.c6.recoveryReport = "Couldn't reach the AI review service.";
     resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
