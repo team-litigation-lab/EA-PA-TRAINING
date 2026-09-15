@@ -8703,7 +8703,7 @@ function dismissNotifBanner(){ state.notifDismissed = true; render(); }
 window.dismissNotifBanner = dismissNotifBanner;
 
 function renderTopbar(){
-  let views = [["dashboard","Dashboard"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Crisis Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
+  let views = [["dashboard","Dashboard"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
   if(state.isAdmin){
     // Admin is a trainer monitoring dashboard, not a trainee workspace — hide
     // the trainee-facing-only views that have no role here.
@@ -8812,11 +8812,6 @@ const ROLEPLAY_MODES = [
 ];
 
 function renderCrisisRoleplayHub(){
-  const featured = [
-    {toolId:"insurance5", dayId:5, wizardIdx:3, title:"Household Risk & Crisis", desc:"A live, unscripted crisis scenario tied to Day 5's household risk-management practice — pressure-test your composure and judgment as the Thorne household PA."},
-    {toolId:"projectcompliance6", dayId:6, wizardIdx:3, title:"Business Compliance Crisis", desc:"A live, unscripted crisis scenario tied to Day 6's compliance practice — an escalating operational or compliance situation demanding a calm, structured response."},
-    {toolId:"compliance9", dayId:9, wizardIdx:4, title:"Reputation & Compliance Crisis", desc:"A live, unscripted crisis scenario tied to Day 9's compliance & reputation practice — a public-facing situation testing discretion under real pressure."}
-  ];
   const rp = state.rpHub || {step:"category", categoryId:null, topicId:null};
 
   if(rp.step==="category" || !rp.categoryId){
@@ -8832,17 +8827,7 @@ function renderCrisisRoleplayHub(){
         <button class="btn btn-navy btn-sm" onclick="rpStartAssigned()">Start This Now &rarr;</button>
       </div>` : ""}
 
-      <h3 style="font-size:13px;color:var(--navy);margin:0 0 10px;">Featured Scenarios</h3>
-      <div class="crisis-hub-grid" style="margin-bottom:32px;">
-        ${featured.map(o=>`
-          <div class="card crisis-hub-card">
-            <b>${esc(o.title)}</b>
-            <p>${esc(o.desc)}</p>
-            <button class="btn btn-navy btn-sm" onclick="goToCrisisScenario('${o.toolId}', ${o.wizardIdx})">Start This Scenario &rarr;</button>
-          </div>`).join("")}
-      </div>
-
-      <h3 style="font-size:13px;color:var(--navy);margin:0 0 10px;">Or Build Your Own — Pick a Category</h3>
+      <h3 style="font-size:13px;color:var(--navy);margin:0 0 10px;">Pick a Category</h3>
       <div class="rp-category-grid">
         ${ROLEPLAY_CATEGORIES.map(c=>`
           <div class="card rp-category-card" onclick="rpSelectCategory('${c.id}')">
@@ -9174,11 +9159,6 @@ function rpSubmitRapidTask(){
 }
 window.rpSubmitRapidTask = rpSubmitRapidTask;
 
-function goToCrisisScenario(toolId, wizardIdx){
-  goto("tool", toolId);
-  setTimeout(()=>{ wizardGoTo(wizardIdx); }, 30);
-}
-window.goToCrisisScenario = goToCrisisScenario;
 
 /* ---------- dashboard ---------- */
 function renderDashboard(){
