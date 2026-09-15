@@ -8870,6 +8870,7 @@ async function syncToLedger(){
     practiceProgress: state.practiceProgress,
     submissions: state.submissions||[],
     roleplayHistory: state.roleplayHistory||[],
+    completedLabActions: state.completedLabActions||{},
     lastActive: new Date().toISOString(),
     approved: existing ? existing.approved : false,
     registeredAt: existing ? existing.registeredAt : new Date().toISOString(),
@@ -8940,6 +8941,8 @@ async function loadAll(){
   }
   const nt = await storeGet("notes");
   state.notes = nt || [];
+  const cla = await storeGet("completed-lab-actions");
+  state.completedLabActions = (cla && typeof cla === "object") ? cla : {};
   const sb = await storeGet("submissions");
   state.submissions = sb || [];
   const rph = await storeGet("roleplayHistory");
@@ -9966,9 +9969,11 @@ async function submitLogin(){
       }else{
         state.labAttemptsGlobal = 0;
       }
+      state.completedLabActions = (existing.completedLabActions && typeof existing.completedLabActions === "object") ? existing.completedLabActions : {};
       await storeSet("day-progress", state.progress);
       await storeSet("practice-progress", state.practiceProgress);
       await storeSet("lab-attempts-global", state.labAttemptsGlobal);
+      await storeSet("completed-lab-actions", state.completedLabActions);
       if(existing.batch){ state.traineeBatch = existing.batch; await storeSet("trainee-batch", existing.batch); }
       state.assignedRoleplay = existing.assignedRoleplay || null;
     }
@@ -10914,14 +10919,26 @@ function labAttemptsUsed(){
 function labAttemptsRemaining(){
   return Math.max(0, LAB_ATTEMPT_CAP - labAttemptsUsed());
 }
-async function useLabAttempt(dayId){
+async function useLabAttempt(dayId, actionId){
   if(dayId === 7) return true; // Day7 is explicitly exempt from the cap — unlimited runs, never counted
-  if(labAttemptsRemaining() <= 0){
-    toast(`No Practice Lab attempts remaining — you've used all ${LAB_ATTEMPT_CAP} for the entire program.`);
-    return false;
+  if(!state.completedLabActions) state.completedLabActions = {};
+  // The cap exists to limit REPEATING an exercise, not to limit how many
+  // distinct exercises a trainee can complete once. The first time any given
+  // action is ever submitted, it's free — only a second-or-later submission
+  // of that SAME action consumes one of the 3 global attempts.
+  const isRepeat = actionId ? !!state.completedLabActions[actionId] : false;
+  if(isRepeat){
+    if(labAttemptsRemaining() <= 0){
+      toast(`No Practice Lab attempts remaining — you've used all ${LAB_ATTEMPT_CAP} for the entire program.`);
+      return false;
+    }
+    state.labAttemptsGlobal = labAttemptsUsed() + 1;
+    await storeSet("lab-attempts-global", state.labAttemptsGlobal);
   }
-  state.labAttemptsGlobal = labAttemptsUsed() + 1;
-  await storeSet("lab-attempts-global", state.labAttemptsGlobal);
+  if(actionId && !isRepeat){
+    state.completedLabActions[actionId] = true;
+    await storeSet("completed-lab-actions", state.completedLabActions);
+  }
   await syncToLedger();
   refreshLabAttemptBanners();
   return true;
@@ -11695,7 +11712,7 @@ window.calReset = calReset;
 async function checkCalendarPrompt(btn){
   const prompt = document.getElementById("calPromptInput").value.trim();
   if(prompt.length<15){ toast("Write a fuller prompt first."); return; }
-  if(!(await useLabAttempt(3))) return;
+  if(!(await useLabAttempt(3, "checkCalendarPrompt"))) return;
   const events = calMergedEvents();
   const scheduleSummary = DAY_ORDER.map(day=>{
     const dayEvents = events.filter(e=>e.day===day).sort((a,b)=>a.s-b.s);
@@ -11726,7 +11743,7 @@ async function checkCalendarPrompt(btn){
 window.checkCalendarPrompt = checkCalendarPrompt;
 
 async function generateProactiveTasks(){
-  if(!(await useLabAttempt(3))) return;
+  if(!(await useLabAttempt(3, "generateProactiveTasks"))) return;
   const el = document.getElementById("proactiveResult");
   el.innerHTML = `<div class="ai-loading">Reviewing the calendar for gaps…</div>`;
   const events = calMergedEvents();
@@ -12360,7 +12377,7 @@ async function reviewItinerary(){
   const btn = document.getElementById("travelReviewBtn");
   const { legs, hotels, groundTransport, stops } = toolState.travel;
   if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
-  if(!(await useLabAttempt(3))) return;
+  if(!(await useLabAttempt(3, "reviewItinerary"))) return;
   btn.disabled = true;
   el.innerHTML = `<div class="ai-loading">Reviewing for meticulousness and resourcefulness…</div>`;
   const legsSummary = legs.map(l=>`- ${l.route||"(route TBD)"} on ${l.date||"(date TBD)"}, seat "${l.seat||"(not set)"}", ${l.direct?"direct":"connecting"}, screenshot: ${l.screenshotUrl?"provided":"MISSING"}, booking link: ${l.bookingLink?"provided":"MISSING"}. Notes: ${l.notes||"(none)"}`).join("\n");
@@ -12390,7 +12407,7 @@ async function reviewTravelActEmail(){
   const draft = document.getElementById("travelActDraft").value.trim();
   const el = document.getElementById("travelActFeedback");
   if(draft.length < 20){ toast("Write your ACT email first."); return; }
-  if(!(await useLabAttempt(3))) return;
+  if(!(await useLabAttempt(3, "reviewTravelActEmail"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your ACT email…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -12533,7 +12550,7 @@ async function reviewLeadGenPlan(){
   const draft = document.getElementById("leadGenDraft").value.trim();
   const el = document.getElementById("leadGenResult");
   if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
-  if(!(await useLabAttempt(4))) return;
+  if(!(await useLabAttempt(4, "reviewLeadGenPlan"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your lead generation plan…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -14590,7 +14607,7 @@ async function finishEmailSim(){
     toast(`File and process every message first (${f}/${total} filed, ${h}/${total} processed).`);
     return;
   }
-  if(!(await useLabAttempt(2))) return;
+  if(!(await useLabAttempt(2, "finishEmailSim"))) return;
   await ensureTraineeName();
   const e = toolState.esim;
   e.phase = "evaluating";
@@ -15006,7 +15023,7 @@ async function crSendChat(){
   const input = document.getElementById("crChatInput");
   const text = input.value.trim();
   if(!text) return;
-  if(!(await useLabAttempt(toolIdToDayId(toolState.cr.setKey)))) return;
+  if(!(await useLabAttempt(toolIdToDayId(toolState.cr.setKey), "crSendChat_"+toolState.cr.setKey))) return;
   toolState.cr.chatHistory.push({role:"ea", text});
   input.value = "";
   crRenderChatWindow();
@@ -15043,7 +15060,7 @@ window.crSendChat = crSendChat;
 async function crEndDebrief(){
   const el = document.getElementById("crDebrief");
   if((toolState.cr.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message first."); return; }
-  if(!(await useLabAttempt(toolIdToDayId(toolState.cr.setKey)))) return;
+  if(!(await useLabAttempt(toolIdToDayId(toolState.cr.setKey), "crEndDebrief_"+toolState.cr.setKey))) return;
   el.innerHTML = `<div class="ai-loading">Preparing your debrief…</div>`;
   const s = crCurrentScenario();
   const transcript = toolState.cr.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"CLIENT: ":"EA: ")+m.text).join("\n");
@@ -15213,7 +15230,7 @@ async function d6crSendChat(){
   const input = document.getElementById("d6crChatInput");
   const text = input.value.trim();
   if(!text) return;
-  if(!(await useLabAttempt(6))) return;
+  if(!(await useLabAttempt(6, "d6crSendChat"))) return;
   toolState.c6cr.chatHistory.push({role:"ea", text});
   input.value = "";
   d6crRenderChatWindow();
@@ -15250,7 +15267,7 @@ window.d6crSendChat = d6crSendChat;
 async function d6crEndDebrief(){
   const el = document.getElementById("d6crDebrief");
   if((toolState.c6cr.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message first."); return; }
-  if(!(await useLabAttempt(6))) return;
+  if(!(await useLabAttempt(6, "d6crEndDebrief"))) return;
   el.innerHTML = `<div class="ai-loading">Preparing your debrief…</div>`;
   const s = d6crCurrentScenario();
   const transcript = toolState.c6cr.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"EXECUTIVE/STAKEHOLDER: ":"EA: ")+m.text).join("\n");
@@ -15396,7 +15413,7 @@ async function reviewAi8Containment(){
   const draft = document.getElementById("ai8ContainmentDraft").value.trim();
   const el = document.getElementById("ai8ContainmentResult");
   if(draft.length < 20){ toast("Write out your steps first."); return; }
-  if(!(await useLabAttempt(8))) return;
+  if(!(await useLabAttempt(8, "reviewAi8Containment"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -15576,7 +15593,7 @@ window.checkC9Reg = checkC9Reg;
 async function checkC9Review(btn){
   const text = document.getElementById("c9ReviewReply").value.trim();
   if(text.length<15){ toast("Write a fuller response first."); return; }
-  if(!(await useLabAttempt(9))) return;
+  if(!(await useLabAttempt(9, "checkC9Review"))) return;
   btn.disabled = true; btn.textContent = "Reviewing…";
   const resultEl = document.getElementById("c9ReviewResult");
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your response for professionalism and de-escalation…</div>`;
@@ -15721,7 +15738,7 @@ async function runFm2Prompt(){
   const draft = document.getElementById("fm2PromptDraft").value.trim();
   const el = document.getElementById("fm2PromptOutput");
   if(draft.length < 10){ toast("Write your prompt first."); return; }
-  if(!(await useLabAttempt(2))) return;
+  if(!(await useLabAttempt(2, "runFm2Prompt"))) return;
   el.innerHTML = `<div class="ai-loading">Running your prompt…</div>`;
   const executionPrompt = `${draft}\n\nHere is the text to work with:\n"${FM2_PROMPT_TASK.sourceText}"`;
   try{
@@ -15748,7 +15765,7 @@ async function reviewFm2Plan(){
   const draft = document.getElementById("fm2PlanDraft").value.trim();
   const el = document.getElementById("fm2PlanResult");
   if(draft.length < 30){ toast("Write out your plan first."); return; }
-  if(!(await useLabAttempt(2))) return;
+  if(!(await useLabAttempt(2, "reviewFm2Plan"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your plan…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -15921,7 +15938,7 @@ async function reviewS10BrandKit(){
   };
   const el = document.getElementById("s10BrandKitResult");
   if(!fields.colors || !fields.voice || !fields.tagline){ toast("Fill in at least colors, voice, and tagline first."); return; }
-  if(!(await useLabAttempt(10))) return;
+  if(!(await useLabAttempt(10, "reviewS10BrandKit"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your Brand Kit…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -15942,7 +15959,7 @@ async function reviewS10MarketingPlan(){
   const draft = document.getElementById("s10PlanDraft").value.trim();
   const el = document.getElementById("s10PlanResult");
   if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
-  if(!(await useLabAttempt(10))) return;
+  if(!(await useLabAttempt(10, "reviewS10MarketingPlan"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your marketing plan…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -16110,7 +16127,7 @@ window.checkD1Tracker = checkD1Tracker;
 
 /* ---------- AI feedback: dossier draft ---------- */
 async function reviewD1DossierAI(){
-  if(!(await useLabAttempt(1))) return;
+  if(!(await useLabAttempt(1, "reviewD1DossierAI"))) return;
   const texts = DOSSIER_SECTIONS.map((sec,si)=>`## ${sec}\n${document.getElementById(`d1sec${si}`).value.trim()||"(not written)"}`).join("\n\n");
   const el = document.getElementById("d1DossierAIResult");
   el.innerHTML = `<div class="ai-loading">Reviewing your dossier draft…</div>`;
@@ -16134,7 +16151,7 @@ async function reviewD1ActEmail(){
   const draft = document.getElementById("d1ActDraft").value.trim();
   const el = document.getElementById("d1ActFeedback");
   if(draft.length < 20){ toast("Write your ACT email first."); return; }
-  if(!(await useLabAttempt(1))) return;
+  if(!(await useLabAttempt(1, "reviewD1ActEmail"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your ACT email…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -16235,7 +16252,7 @@ async function reviewI5Binder(){
   const written = HOME_BINDER_SECTIONS.filter((_,si)=>document.getElementById(`i5binder${si}`).value.trim().length>10).length;
   const el = document.getElementById("i5BinderResult");
   if(written < HOME_BINDER_SECTIONS.length){ toast("Write something real in every section first."); return; }
-  if(!(await useLabAttempt(5))) return;
+  if(!(await useLabAttempt(5, "reviewI5Binder"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your Home Binder draft…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -16481,7 +16498,7 @@ window.checkC6Kpi = checkC6Kpi;
 async function checkC6Recovery(btn){
   const text = document.getElementById("c6RecoveryReply").value.trim();
   if(text.length<15){ toast("Write a fuller message first."); return; }
-  if(!(await useLabAttempt(6))) return;
+  if(!(await useLabAttempt(6, "checkC6Recovery"))) return;
   btn.disabled = true; btn.textContent = "Reviewing…";
   const resultEl = document.getElementById("c6RecoveryResult");
   resultEl.innerHTML = `<div class="ai-loading">Evaluating your recovery plan…</div>`;
