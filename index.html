@@ -342,6 +342,11 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-grid{display:grid;gap:14px;margin-bottom:8px;}
 .lesson-card{padding:20px 22px;}
 
+.lc-part-dots{display:flex;gap:6px;margin-bottom:16px;}
+.lc-part-dot{width:22px;height:4px;border-radius:2px;background:var(--line);transition:background .2s ease;}
+.lc-part-dot.active{background:var(--orange);}
+.lc-part-nav{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);}
+
 .fp-section{margin-bottom:16px;}
 .fp-section:last-of-type{margin-bottom:0;}
 .fp-label{
@@ -9186,7 +9191,7 @@ function renderTopbar(){
         </div>
         <div class="nav">
           ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}</button>`).join("")}
-          <button class="${state.view==='admin'?'active':''}" onclick="openAdmin()" style="opacity:.85;">🛡 Admin</button>
+          <button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>
         </div>
         <div class="trainee-chip" onclick="promptName()">
           <span class="dot"></span> ${state.traineeName ? esc(state.traineeName) : "Set your name"}
@@ -9734,6 +9739,7 @@ function returnToLessonCard(dayId){
   // opened this tool directly (a different or no prior day), that index
   // would be meaningless here, so start from the top instead.
   if(!sameDay || typeof state.lessonSlide !== "number") state.lessonSlide = 0;
+  state.lessonCardPart = 1;
   state.slideInterstitial = null;
   window.scrollTo({top:0, behavior:"smooth"});
   render();
@@ -9931,7 +9937,8 @@ function renderLogin(){
         <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') document.getElementById('loginBatchInput').focus();">
         <input type="text" id="loginBatchInput" placeholder="Batch (e.g. B050225)" style="margin-top:10px;" onkeydown="if(event.key==='Enter') submitLogin();">
         <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;margin-top:14px;" onclick="submitLogin()">Begin Training</button>
-        <div style="margin-top:20px;font-size:12px;color:var(--ink-soft);">Administrator? <a href="#" onclick="event.preventDefault(); openAdmin();" style="color:var(--navy);font-weight:600;">Sign in here</a> instead.</div>
+        <button class="btn btn-ghost" style="width:100%;justify-content:center;padding:11px;margin-top:12px;border:1.5px solid var(--line);" onclick="openAdmin()">🛡 Sign in as Administrator</button>
+        <div style="margin-top:10px;font-size:11.5px;color:var(--ink-soft);">Admins go straight to the admin dashboard — no trainee name or batch needed.</div>
       </div>
     </div>`;
 }
@@ -9982,6 +9989,7 @@ async function submitLogin(){
   const status = await getApprovalStatus(state.traineeId);
   if(status==="approved"){
     state.view = "clientprofile";
+    startApprovalPolling(state.traineeId);
   }else if(status==="rejected"){
     state.view = "registrationDenied";
   }else{
@@ -10023,6 +10031,7 @@ async function recheckApproval(){
   const status = await getApprovalStatus(state.traineeId);
   if(status==="approved"){
     state.view = "clientprofile";
+    startApprovalPolling(state.traineeId);
     render();
   }else if(status==="rejected"){
     state.view = "registrationDenied";
@@ -10051,6 +10060,40 @@ async function logout(){
 }
 window.logout = logout;
 
+async function forceRevokedLogout(){
+  if(state.approvalPollInterval){ clearInterval(state.approvalPollInterval); state.approvalPollInterval = null; }
+  state.traineeName = "";
+  state.traineeId = "";
+  state.progress = {};
+  state.practiceProgress = {};
+  state.notes = [];
+  state.isAdmin = false;
+  await storeSet("trainee-name", "");
+  await storeSet("trainee-id", "");
+  await storeSet("day-progress", {});
+  await storeSet("practice-progress", {});
+  await storeSet("notes", []);
+  state.view = "login";
+  render();
+  toast("Your access to this program has been revoked. Contact your trainer if you believe this is a mistake.");
+}
+function startApprovalPolling(traineeId){
+  // Catches a mid-session revoke: without this, an already-open, already-approved
+  // session has no way to learn its access was pulled until the trainee happens
+  // to refresh — this check runs in the background so revocation takes effect
+  // even if they never do.
+  if(state.approvalPollInterval) clearInterval(state.approvalPollInterval);
+  state.approvalPollInterval = setInterval(async ()=>{
+    if(state.traineeId !== traineeId) return; // a different trainee logged in since this was scheduled
+    try{
+      const status = await getApprovalStatus(traineeId);
+      if(status !== "approved"){
+        await forceRevokedLogout();
+      }
+    }catch(e){ /* transient network issue — try again next interval, don't force a logout on a fetch failure */ }
+  }, 90000);
+}
+
 /* ---------- boot ---------- */
 (async function init(){
   await loadAll();
@@ -10064,6 +10107,7 @@ window.logout = logout;
         const rec = await sharedGet("trainee:"+state.traineeId);
         if(rec) state.assignedRoleplay = rec.assignedRoleplay || null;
       }catch(e){ /* best-effort — don't block app load on this */ }
+      startApprovalPolling(state.traineeId);
     }else if(status==="rejected"){
       state.view = "registrationDenied";
     }else{
@@ -10169,6 +10213,7 @@ function backToSlidesFromKnowledgeCheck(){
   state.dayViewMode = "slides";
   const d = DAYS.find(x=>x.id===state.dayId);
   state.lessonSlide = buildDaySlides(d).length-1;
+  state.lessonCardPart = 1;
   render();
 }
 window.backToSlidesFromKnowledgeCheck = backToSlidesFromKnowledgeCheck;
@@ -10177,15 +10222,15 @@ window.backToSlidesFromKnowledgeCheck = backToSlidesFromKnowledgeCheck;
 function buildDaySlides(d){
   const slides = [];
   if(d.taskOverview) slides.push({type:"taskOverview"});
-  slides.push({type:"video"});
   if(d.id===1) slides.push({type:"meetClient"});
   d.lessons.forEach((l,i)=> slides.push({type:"topic", lessonIndex:i}));
+  slides.push({type:"video"});
   if(relatedTools(d.id).length) slides.push({type:"practiceLab"});
   if(d.discussionQuestion && state.isAdmin) slides.push({type:"discussion"});
   return slides;
 }
 function daySlideTitle(d, slide){
-  if(slide.type==="video") return "Video Training";
+  if(slide.type==="video") return "Video Recap";
   if(slide.type==="taskOverview") return "Legal EA Task Overview";
   if(slide.type==="meetClient") return "Meet Elias Thorne — Live Q&A";
   if(slide.type==="topic") return d.lessons[slide.lessonIndex].h;
@@ -10197,7 +10242,7 @@ function renderDaySlideContent(d, slide, idx){
   if(slide.type==="video") return renderVideoPlaceholder(d);
   if(slide.type==="taskOverview") return renderTaskOverview(d.taskOverview);
   if(slide.type==="meetClient") return renderMeetClientSlide();
-  if(slide.type==="topic") return renderLessonCard(d.lessons[slide.lessonIndex], slide.lessonIndex, d) + renderQuickChecksAfter(d, slide.lessonIndex);
+  if(slide.type==="topic") return renderLessonCard(d.lessons[slide.lessonIndex], slide.lessonIndex, d, renderQuickChecksAfter(d, slide.lessonIndex));
   if(slide.type==="practiceLab") return renderPracticeLabSlide(d);
   if(slide.type==="discussion") return renderDiscussionSlide(d);
   return "";
@@ -10241,10 +10286,10 @@ function renderMeetClientTrainerGuide(){
 function renderVideoPlaceholder(d){
   return `
     <div class="video-placeholder">
-      <div class="vp-play">▶</div>
-      <div class="vp-label">VIDEO TRAINING</div>
+      <div class="vp-play">🔗</div>
+      <div class="vp-label">VIDEO LINK — TO BE ADDED</div>
       <div class="vp-title">Day ${d.id}: ${esc(d.title)}</div>
-      <p class="vp-note">Recorded video training for this day goes here. This placeholder marks where a video module will be embedded — it's kept entirely separate from the reading topics that follow so video and text content never blend into one cluttered screen.</p>
+      <p class="vp-note">This is a placeholder for a recorded video recap of today's material — the actual video link will be added here once it's ready. It sits after today's lessons, right before the Practice Lab, so it can serve as a wrap-up before you move into applying what you just covered.</p>
     </div>
   `;
 }
@@ -10313,8 +10358,8 @@ function renderDaySlideshow(d){
       <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
       <span class="slide-counter">Step ${idx+1} of ${total}</span>
       ${isLast
-        ? `<button class="btn btn-primary" onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
-        : `<button class="btn btn-primary" onclick="nextSlide()">Next &rarr;</button>`}
+        ? `<button class="btn btn-primary" ${slide.type==="topic" && state.lessonCardPart!==2 ? 'disabled title="Finish this topic\'s second part above first"' : ''} onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
+        : `<button class="btn btn-primary" ${slide.type==="topic" && state.lessonCardPart!==2 ? 'disabled title="Finish this topic\'s second part above first"' : ''} onclick="nextSlide()">Next &rarr;</button>`}
     </div>
     ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.</div>` : ""}
   `;
@@ -10327,6 +10372,7 @@ function goToSlide(i){
   }
   state.slideDir = i>(state.lessonSlide||0) ? "next" : "prev";
   state.lessonSlide = i;
+  state.lessonCardPart = 1;
   refreshLessonSlide();
 }
 window.goToSlide = goToSlide;
@@ -10345,6 +10391,7 @@ function nextSlide(){
     setTimeout(()=>{
       state.slideInterstitial = null;
       state.lessonSlide = nextIdx;
+      state.lessonCardPart = 1;
       refreshLessonSlide();
     }, 2200);
   }
@@ -10365,6 +10412,7 @@ function prevSlide(){
   if((state.lessonSlide||0) > 0){
     state.slideDir = "prev";
     state.lessonSlide = (state.lessonSlide||0)-1;
+    state.lessonCardPart = 1;
     refreshLessonSlide();
   }
 }
@@ -10410,8 +10458,7 @@ function deriveFourPartStructure(l){
     },
     discussionCase: {
       example: l.example || null,
-      table: l.table || null,
-      trainerCue: l.trainerCue || null
+      table: l.table || null
     }
   };
 }
@@ -10423,62 +10470,64 @@ function renderFourPartSection(num, label, content){
       <div class="fp-body">${content}</div>
     </div>`;
 }
-function renderLessonCard(l,i,d){
+function renderLessonCard(l,i,d,quickCheckHtml){
   // Explicit, hand-authored fourPart content (simple string/array shape) takes
   // priority for new topics. Existing topics without it fall back to the
   // tested automatic derivation from their visual/bullets/example data.
+  let corePrinciplesHtml, howToHtml, bestPracticesHtml, discussionHtml;
   if(l.fourPart){
     const fp = l.fourPart;
-    return `
-    <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}</div>
-    <div class="card lesson-card">
-      <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
-      ${renderFourPartSection(1, "Core Principles", fp.corePrinciples && fp.corePrinciples.length ? `<ul>${fp.corePrinciples.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "")}
-      ${renderFourPartSection(2, "Step-by-Step How-To Framework", fp.howTo && fp.howTo.length ? `<ol class="fp-howto-list">${fp.howTo.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>` : "")}
-      ${renderFourPartSection(3, "Executive Best Practices & Pitfalls", fp.bestPractices && fp.bestPractices.length ? `<ul>${fp.bestPractices.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "")}
-      ${renderFourPartSection(4, "Applied Discussion Case", fp.discussionCase ? `<p class="fp-discussion-prompt">${esc(fp.discussionCase)}</p>` : "")}
-      ${l.trainerCue && state.isAdmin ?`
-      <div class="trainer-checkpoint">
-        <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
-        <p>${esc(l.trainerCue)}</p>
-      </div>` : ""}
-    </div>`;
+    corePrinciplesHtml = fp.corePrinciples && fp.corePrinciples.length ? `<ul>${fp.corePrinciples.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "";
+    howToHtml = fp.howTo && fp.howTo.length ? `<ol class="fp-howto-list">${fp.howTo.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>` : "";
+    bestPracticesHtml = fp.bestPractices && fp.bestPractices.length ? `<ul>${fp.bestPractices.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "";
+    discussionHtml = fp.discussionCase ? `<p class="fp-discussion-prompt">${esc(fp.discussionCase)}</p>` : "";
+  }else{
+    const fp = deriveFourPartStructure(l);
+    corePrinciplesHtml = fp.corePrinciples.visualHtml ||
+      (fp.corePrinciples.fallbackText ? `<p class="fp-fallback-text">${esc(fp.corePrinciples.fallbackText)}</p>` : "");
+    howToHtml = fp.howTo.visualHtml ||
+      (fp.howTo.fallbackText ? `<p class="fp-fallback-text">${esc(fp.howTo.fallbackText)}</p>` : "");
+    const bestPracticesParts = [];
+    if(fp.bestPractices.bullets && fp.bestPractices.bullets.length) bestPracticesParts.push(`<ul>${fp.bestPractices.bullets.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`);
+    if(fp.bestPractices.callout) bestPracticesParts.push(fp.bestPractices.callout.prominent ? renderProminentDisclaimer(fp.bestPractices.callout) : renderCallout(fp.bestPractices.callout));
+    bestPracticesHtml = bestPracticesParts.join("");
+    const discussionParts = [];
+    if(fp.discussionCase.example) discussionParts.push(renderExample(fp.discussionCase.example));
+    if(fp.discussionCase.table) discussionParts.push(renderTable(fp.discussionCase.table));
+    if(!discussionParts.length) discussionParts.push(`<p class="fp-discussion-prompt">Discuss with your trainer or a peer: describe a real situation from your own work (or a hypothetical one) where "${esc(l.h)}" would directly apply — what would you actually do?</p>`);
+    discussionHtml = discussionParts.join("");
   }
-  const fp = deriveFourPartStructure(l);
 
-  const corePrinciplesHtml = fp.corePrinciples.visualHtml ||
-    (fp.corePrinciples.fallbackText ? `<p class="fp-fallback-text">${esc(fp.corePrinciples.fallbackText)}</p>` : "");
-
-  const howToHtml = fp.howTo.visualHtml ||
-    (fp.howTo.fallbackText ? `<p class="fp-fallback-text">${esc(fp.howTo.fallbackText)}</p>` : "");
-
-  const bestPracticesParts = [];
-  if(fp.bestPractices.bullets && fp.bestPractices.bullets.length) bestPracticesParts.push(`<ul>${fp.bestPractices.bullets.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`);
-  if(fp.bestPractices.callout) bestPracticesParts.push(fp.bestPractices.callout.prominent ? renderProminentDisclaimer(fp.bestPractices.callout) : renderCallout(fp.bestPractices.callout));
-  const bestPracticesHtml = bestPracticesParts.join("");
-
-  const discussionParts = [];
-  if(fp.discussionCase.example) discussionParts.push(renderExample(fp.discussionCase.example));
-  if(fp.discussionCase.table) discussionParts.push(renderTable(fp.discussionCase.table));
-  if(fp.discussionCase.trainerCue) discussionParts.push(`<p class="fp-discussion-prompt">${esc(fp.discussionCase.trainerCue)}</p>`);
-  if(!discussionParts.length) discussionParts.push(`<p class="fp-discussion-prompt">Discuss with your trainer or a peer: describe a real situation from your own work (or a hypothetical one) where "${esc(l.h)}" would directly apply — what would you actually do?</p>`);
-  const discussionHtml = discussionParts.join("");
+  const partAHtml = renderFourPartSection(1, "Core Principles", corePrinciplesHtml) + renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml);
+  const partBHtml = renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml) + renderFourPartSection(4, "Applied Discussion Case", discussionHtml);
+  const part = (state.lessonCardPart===2) ? 2 : 1;
 
   return `
     <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}</div>
     <div class="card lesson-card">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
-      ${renderFourPartSection(1, "Core Principles", corePrinciplesHtml)}
-      ${renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml)}
-      ${renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml)}
-      ${renderFourPartSection(4, "Applied Discussion Case", discussionHtml)}
+      <div class="lc-part-dots">
+        <span class="lc-part-dot ${part===1?'active':''}"></span>
+        <span class="lc-part-dot ${part===2?'active':''}"></span>
+      </div>
+      ${part===1 ? partAHtml : partBHtml}
+      <div class="lc-part-nav">
+        ${part===2 ? `<button class="btn btn-ghost btn-sm" onclick="lessonCardGoToPart(1)">&larr; Back</button>` : `<span></span>`}
+        ${part===1 ? `<button class="btn btn-navy btn-sm" onclick="lessonCardGoToPart(2)">Continue &rarr;</button>` : `<span></span>`}
+      </div>
       ${l.trainerCue && state.isAdmin ?`
       <div class="trainer-checkpoint">
         <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
         <p>${esc(l.trainerCue)}</p>
       </div>` : ""}
-    </div>`;
+    </div>
+    ${part===2 && quickCheckHtml ? quickCheckHtml : ""}`;
 }
+function lessonCardGoToPart(p){
+  state.lessonCardPart = p;
+  refreshLessonSlide();
+}
+window.lessonCardGoToPart = lessonCardGoToPart;
 function renderLessonVisual(l){
   switch(l.layout){
     case "QUADRANT": return renderQuadrantVisual(l.quadrants);
@@ -10488,35 +10537,9 @@ function renderLessonVisual(l){
     case "STAT": return renderStatVisual(l.statNumber, l.statLabel);
     case "PALETTE": return renderPaletteVisual(l.palette);
     case "ICONLIST": return renderIconListVisual(l.icons);
-    case "VIDEO": return renderVideoPlaceholderCard(l.video);
     case "TABLE": return (l.tableHeaders && l.tableRows) ? renderTable({headers:l.tableHeaders, rows:l.tableRows}) : "";
     default: return "";
   }
-}
-function renderVideoPlaceholderCard(video){
-  // Zero raw video files ever ship with this portal — every video lesson is
-  // this lightweight placeholder card, pointing out to wherever the actual
-  // file is hosted (Drive, etc.). Nothing here downloads or embeds video.
-  if(!video) return "";
-  const initials = (video.title||"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
-  return `
-    <div class="video-placeholder-card">
-      <div class="vpc-thumb">
-        <div class="vpc-thumb-initials">${esc(initials)}</div>
-        <div class="vpc-play-btn">▶</div>
-        ${video.duration ? `<div class="vpc-duration">${esc(video.duration)}</div>` : ""}
-      </div>
-      <div class="vpc-body">
-        <div class="vpc-title">${esc(video.title||"Untitled Video Lesson")}</div>
-        ${video.tags && video.tags.length ? `<div class="vpc-tags">${video.tags.map(t=>`<span class="vpc-tag">${esc(t)}</span>`).join("")}</div>` : ""}
-        ${video.driveUrl ? `<a class="btn btn-navy btn-sm vpc-watch-btn" href="${esc(video.driveUrl)}" target="_blank" rel="noopener noreferrer">▶ Watch Video on Drive</a>` : ""}
-        ${video.takeaways && video.takeaways.length ? `
-        <div class="vpc-takeaways">
-          <b>Key Takeaways</b>
-          <ul>${video.takeaways.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
-        </div>` : ""}
-      </div>
-    </div>`;
 }
 function renderIconListVisual(icons){
   if(!icons || !icons.length) return "";
