@@ -126,6 +126,37 @@ button{font-family:inherit;cursor:pointer;}
 .crisis-hub-card{padding:20px 22px;}
 .crisis-hub-card b{display:block;font-family:'Fraunces';font-size:16px;color:var(--navy);margin-bottom:8px;}
 .crisis-hub-card p{font-size:13px;color:var(--ink-soft);margin:0 0 16px;line-height:1.5;}
+
+.rp-category-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;}
+.rp-category-card{padding:20px 18px;text-align:center;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+.rp-category-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(0,0,0,.15);}
+.rp-cat-icon{font-size:28px;margin-bottom:8px;}
+.rp-category-card b{display:block;font-family:'Fraunces';font-size:14.5px;color:var(--navy);margin-bottom:4px;}
+.rp-category-card p{font-size:12px;color:var(--ink-soft);margin:0;}
+
+.rp-topic-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:12px;}
+.rp-topic-card{padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:transform .15s ease, box-shadow .15s ease;}
+.rp-topic-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(0,0,0,.15);}
+.rp-topic-card b{font-family:'Fraunces';font-size:14px;color:var(--navy);}
+.rp-topic-arrow{font-size:11.5px;color:var(--orange-deep);font-weight:600;}
+
+.rp-mode-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:14px;}
+.rp-mode-card{padding:20px 20px;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+.rp-mode-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(0,0,0,.15);}
+.rp-mode-icon{font-size:24px;margin-bottom:6px;}
+.rp-mode-card b{display:block;font-family:'Fraunces';font-size:15px;color:var(--navy);}
+.rp-mode-sub{display:block;font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin:2px 0 8px;}
+.rp-mode-card p{font-size:12.5px;color:var(--ink-soft);margin:0;line-height:1.5;}
+
+.rp-session-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.rp-session-tag{font-size:11.5px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+.rp-timer{font-family:'IBM Plex Mono';font-size:20px;font-weight:700;color:var(--navy);background:#F8F9FC;border-radius:10px;padding:8px 16px;}
+.rp-coach-panel{padding:16px 18px;align-self:start;position:sticky;top:20px;}
+.rp-coach-panel ul{margin:0;padding-left:18px;}
+.rp-coach-panel li{font-size:12.3px;color:#37394A;margin-bottom:6px;line-height:1.4;}
+@media(max-width:900px){
+  .rp-coach-panel{position:static;}
+}
 .step-node{display:flex;align-items:center;}
 .step-circle{
   width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -8380,6 +8411,7 @@ async function syncToLedger(){
     dayProgress: state.progress,
     practiceProgress: state.practiceProgress,
     submissions: state.submissions||[],
+    roleplayHistory: state.roleplayHistory||[],
     lastActive: new Date().toISOString(),
     approved: existing ? existing.approved : false,
     registeredAt: existing ? existing.registeredAt : new Date().toISOString(),
@@ -8452,6 +8484,8 @@ async function loadAll(){
   state.notes = nt || [];
   const sb = await storeGet("submissions");
   state.submissions = sb || [];
+  const rph = await storeGet("roleplayHistory");
+  state.roleplayHistory = rph || [];
   const sp = await storeGet("slide-progress");
   state.slideProgress = sp || {};
   let tid = await storeGet("trainee-id");
@@ -8744,25 +8778,402 @@ function jumpToSearchResult(view,id){
 window.jumpToSearchResult = jumpToSearchResult;
 
 /* ---------- crisis roleplay hub ---------- */
+const ROLEPLAY_CATEGORIES = [
+  {id:"legal", icon:"⚖️", label:"Legal Operations", topics:[
+    {id:"docketing", label:"Court Docketing Escalations", context:"A court deadline is at risk — either a filing that's about to be missed, or a docketing error just discovered that needs immediate correction. The other party is an attorney or court clerk applying real time pressure."},
+    {id:"iolta", label:"IOLTA / Trust Account Disputes", context:"A client is disputing a charge or withdrawal from their trust account, or questioning why funds haven't been disbursed. This requires careful, precise language given trust accounting's strict compliance rules — no vague reassurances."},
+    {id:"deposition", label:"Deposition Scheduling Friction", context:"A deposition needs to be rescheduled or is double-booked, and opposing counsel's office or a witness is pushing back hard on the timeline. Real scheduling stakes with a legal deadline attached."},
+    {id:"privilege", label:"Attorney-Client Privilege Inquiries", context:"Someone (a family member, a vendor, an outside party) is asking for information that may be privileged or confidential, and is applying social or emotional pressure to get an answer."},
+    {id:"upl", label:"UPL Boundaries", context:"A client or contact is pushing the EA/PA to give something that sounds like legal advice, or to make a legal judgment call — testing whether the trainee holds the line on the Unauthorized Practice of Law boundary under pressure."}
+  ]},
+  {id:"corporate", icon:"💼", label:"Corporate EA & Stakeholder", topics:[
+    {id:"boardgatekeeping", label:"Board Member Gatekeeping", context:"A board member wants time with the executive that isn't currently available, and is pushing back on being told 'no' or redirected — testing diplomatic but firm gatekeeping language."},
+    {id:"investorupdate", label:"Investor Update Clarification", context:"An investor is calling directly, confused or frustrated about something in a recent update, wanting immediate clarification the EA isn't fully authorized to give."},
+    {id:"inboxtriage", label:"High-Priority Inbox Triage", context:"A flood of messages just landed simultaneously, at least one genuinely urgent, several merely marked urgent — the caller is pressing about which one is being handled first."},
+    {id:"calendarcollision", label:"Calendar Collision Management", context:"Two high-priority commitments just collided on the calendar, and the person on the other end of this call is the one who's about to lose the slot — they're not happy about it."},
+    {id:"vendornegotiation", label:"Vendor Negotiation", context:"A vendor is pushing for a price increase, a contract change, or immediate payment terms the EA isn't authorized to agree to alone — real negotiation pressure, not just an information request."}
+  ]},
+  {id:"lifestyle", icon:"🏡", label:"Lifestyle & Estate PA", topics:[
+    {id:"domesticstaff", label:"Domestic Staff Oversight", context:"A household staff scheduling or performance issue has come to a head, and the person calling (a staff member, or a family member unhappy about staff) wants it resolved right now."},
+    {id:"householdemergency", label:"Household Emergency Triage", context:"A household emergency (a major repair, a security issue) is competing directly with the executive's professional obligations for the same window of time — e.g., estate repairs colliding with trial prep. The caller wants an immediate decision."},
+    {id:"traveldisruption", label:"Private Travel Disruption", context:"A private or family travel plan has just been disrupted (a cancelled flight, a closed venue, a missing reservation) and the caller is stranded or anxious, needing a real-time solution."},
+    {id:"familylogistics", label:"Confidential Family Logistics", context:"A sensitive, private family matter needs coordinating, and the caller is pressing for details or involvement that may not be appropriate to share — testing discretion under social pressure."}
+  ]},
+  {id:"revenue", icon:"📈", label:"Revenue & Outreach", topics:[
+    {id:"coldobjections", label:"Cold Calling Objections", context:"The trainee is the one making the call, and the prospect on the other end is throwing out real objections — not interested, bad timing, already have a provider — testing whether the trainee holds their ground without being pushy."},
+    {id:"bantqualifying", label:"BANT Lead Qualification", context:"The trainee is qualifying an inbound lead who's cagey and evasive about budget, authority, and timeline, but is eager to move fast anyway — testing whether the trainee actually qualifies before scheduling."},
+    {id:"pushyprospect", label:"Pushy Sales Prospects", context:"A prospect on the other end is aggressive and demanding — pushing for a discount, an immediate answer, or special treatment outside the normal process — testing composure without folding or being combative."}
+  ]}
+];
+const ROLEPLAY_MODES = [
+  {id:"guided", label:"Guided Practice", sub:"Self-Paced", icon:"🧭", desc:"Prompt cards, suggested BLUF responses, and real-time coaching tips stay visible on screen as you go — this mode is for learning the pattern, not testing yourself under pressure."},
+  {id:"blitz", label:"Unscripted Call Blitz", sub:"Timed", icon:"⏱️", desc:"A live, ticking timer and no help text. The AI plays whoever's calling — Elias, a vendor, a board member — with unpredictable, realistic responses. This is the pressure-test version."},
+  {id:"twopart", label:"2-Part Challenge", sub:"Crisis + Rapid Delegation", icon:"🎯", desc:"Part 1 is a high-stakes crisis call. Part 2 drops 3-4 unrelated tasks on you back-to-back, no break in between — testing whether you can context-switch cleanly under load."}
+];
+
 function renderCrisisRoleplayHub(){
-  const options = [
+  const featured = [
     {toolId:"insurance5", dayId:5, wizardIdx:3, title:"Household Risk & Crisis", desc:"A live, unscripted crisis scenario tied to Day 5's household risk-management practice — pressure-test your composure and judgment as the Thorne household PA."},
     {toolId:"projectcompliance6", dayId:6, wizardIdx:3, title:"Business Compliance Crisis", desc:"A live, unscripted crisis scenario tied to Day 6's compliance practice — an escalating operational or compliance situation demanding a calm, structured response."},
     {toolId:"compliance9", dayId:9, wizardIdx:4, title:"Reputation & Compliance Crisis", desc:"A live, unscripted crisis scenario tied to Day 9's compliance & reputation practice — a public-facing situation testing discretion under real pressure."}
   ];
+  const rp = state.rpHub || {step:"category", categoryId:null, topicId:null};
+
+  if(rp.step==="category" || !rp.categoryId){
+    return `
+      <h2 class="section-title">🔥 Live Roleplay Dashboard</h2>
+      <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">An on-demand practice sandbox, separate from your daily Practice Lab tasks. Pick a category, a specific situation, and how hard you want to be pushed — then jump straight into a live, unscripted call.</p>
+
+      ${state.assignedRoleplay ? `
+      <div class="card" style="padding:16px 18px;margin-bottom:24px;background:var(--orange-soft);border:1px solid var(--orange);">
+        <div style="font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;">🧑‍🏫 Assigned by Your Trainer</div>
+        <b style="display:block;font-size:15px;color:var(--navy);margin:4px 0 2px;">${esc(state.assignedRoleplay.topicLabel)}</b>
+        <p style="font-size:12.5px;color:#5A4A32;margin:0 0 10px;">Your trainer flagged this as extra practice based on your performance so far — worth prioritizing this one.</p>
+        <button class="btn btn-navy btn-sm" onclick="rpStartAssigned()">Start This Now &rarr;</button>
+      </div>` : ""}
+
+      <h3 style="font-size:13px;color:var(--navy);margin:0 0 10px;">Featured Scenarios</h3>
+      <div class="crisis-hub-grid" style="margin-bottom:32px;">
+        ${featured.map(o=>`
+          <div class="card crisis-hub-card">
+            <b>${esc(o.title)}</b>
+            <p>${esc(o.desc)}</p>
+            <button class="btn btn-navy btn-sm" onclick="goToCrisisScenario('${o.toolId}', ${o.wizardIdx})">Start This Scenario &rarr;</button>
+          </div>`).join("")}
+      </div>
+
+      <h3 style="font-size:13px;color:var(--navy);margin:0 0 10px;">Or Build Your Own — Pick a Category</h3>
+      <div class="rp-category-grid">
+        ${ROLEPLAY_CATEGORIES.map(c=>`
+          <div class="card rp-category-card" onclick="rpSelectCategory('${c.id}')">
+            <div class="rp-cat-icon">${c.icon}</div>
+            <b>${esc(c.label)}</b>
+            <p>${c.topics.length} situations</p>
+          </div>`).join("")}
+      </div>
+    `;
+  }
+
+  const category = ROLEPLAY_CATEGORIES.find(c=>c.id===rp.categoryId);
+
+  if(rp.step==="topic" || !rp.topicId){
+    return `
+      <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpBackToCategories()">&larr; All Categories</button>
+      <h2 class="section-title">${category.icon} ${esc(category.label)}</h2>
+      <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Pick the specific situation you want to practice.</p>
+      <div class="rp-topic-grid">
+        ${category.topics.map(t=>`
+          <div class="card rp-topic-card" onclick="rpSelectTopic('${t.id}')">
+            <b>${esc(t.label)}</b>
+            <span class="rp-topic-arrow">Choose a mode &rarr;</span>
+          </div>`).join("")}
+      </div>
+    `;
+  }
+
+  // mode selection
+  const topic = category.topics.find(t=>t.id===rp.topicId);
   return `
-    <h2 class="section-title">🔥 Live Crisis Roleplay</h2>
-    <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Three high-pressure, unscripted scenarios pulled from across the program — pick one to jump straight in. Your trainer may run any of these live in person, or you can rehearse solo against the AI first.</p>
-    <div class="crisis-hub-grid">
-      ${options.map(o=>`
-        <div class="card crisis-hub-card">
-          <b>${esc(o.title)}</b>
-          <p>${esc(o.desc)}</p>
-          <button class="btn btn-navy btn-sm" onclick="goToCrisisScenario('${o.toolId}', ${o.wizardIdx})">Start This Scenario &rarr;</button>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpBackToTopics()">&larr; ${esc(category.label)}</button>
+    <h2 class="section-title">${esc(topic.label)}</h2>
+    <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Choose how you want to run this one.</p>
+    <div class="rp-mode-grid">
+      ${ROLEPLAY_MODES.map(m=>`
+        <div class="card rp-mode-card" onclick="rpLaunchRoleplay('${m.id}')">
+          <div class="rp-mode-icon">${m.icon}</div>
+          <b>${esc(m.label)}</b>
+          <span class="rp-mode-sub">${esc(m.sub)}</span>
+          <p>${esc(m.desc)}</p>
         </div>`).join("")}
     </div>
   `;
 }
+function rpStartAssigned(){
+  if(!state.assignedRoleplay) return;
+  state.rpHub = {step:"mode", categoryId: state.assignedRoleplay.categoryId, topicId: state.assignedRoleplay.topicId};
+  render();
+}
+window.rpStartAssigned = rpStartAssigned;
+function rpSelectCategory(categoryId){
+  state.rpHub = {step:"topic", categoryId, topicId:null};
+  render();
+}
+window.rpSelectCategory = rpSelectCategory;
+function rpSelectTopic(topicId){
+  state.rpHub.step = "mode";
+  state.rpHub.topicId = topicId;
+  render();
+}
+window.rpSelectTopic = rpSelectTopic;
+function rpBackToCategories(){
+  state.rpHub = {step:"category", categoryId:null, topicId:null};
+  render();
+}
+window.rpBackToCategories = rpBackToCategories;
+function rpBackToTopics(){
+  state.rpHub.step = "topic";
+  state.rpHub.topicId = null;
+  render();
+}
+window.rpBackToTopics = rpBackToTopics;
+
+/* ---------- open roleplay engine (generative, topic+mode driven) ---------- */
+function rpLaunchRoleplay(modeId){
+  const category = ROLEPLAY_CATEGORIES.find(c=>c.id===state.rpHub.categoryId);
+  const topic = category.topics.find(t=>t.id===state.rpHub.topicId);
+  const mode = ROLEPLAY_MODES.find(m=>m.id===modeId);
+  state.rpSession = {
+    category, topic, mode,
+    chatHistory: [],
+    startedAt: Date.now(),
+    part: 1,
+    rapidTasks: [],
+    rapidIndex: 0,
+    rapidResponses: []
+  };
+  if(state.rpTimerInterval) clearInterval(state.rpTimerInterval);
+  if(mode.id==="blitz"){
+    state.rpTimerInterval = setInterval(()=>{
+      const el = document.getElementById("rpTimer");
+      if(!el || !state.rpSession){ clearInterval(state.rpTimerInterval); return; }
+      const elapsed = Math.floor((Date.now()-state.rpSession.startedAt)/1000);
+      const mm = String(Math.floor(elapsed/60)).padStart(2,"0");
+      const ss = String(elapsed%60).padStart(2,"0");
+      el.textContent = `⏱️ ${mm}:${ss}`;
+    }, 1000);
+  }
+  goto("openroleplay");
+  rpGenerateOpening();
+}
+window.rpLaunchRoleplay = rpLaunchRoleplay;
+
+async function rpGenerateOpening(){
+  const s = state.rpSession;
+  s.chatHistory.push({role:"client", text:"…connecting…", pending:true});
+  render();
+  const prompt = `You are generating the OPENING LINE for a live, unscripted roleplay training call for an Executive/Personal Assistant. You are playing the person calling or messaging in — stay fully in character, no meta-commentary, no scenario description, just the actual opening line someone would say.
+
+CLIENT BACKGROUND (for context on who might be calling — Elias Thorne, his firm, his household):
+${CLIENT_DOSSIER_MD}
+
+SITUATION TYPE: ${s.topic.label} (category: ${s.category.label})
+${s.topic.context}
+
+Write ONLY the opening line this caller would actually say — 1-3 sentences, realistic, dropping the EA/PA straight into the situation with no preamble. Do not narrate the scene or explain who's calling — just speak as them.`;
+  try{
+    const opening = await callAIText(prompt, 150);
+    s.chatHistory = [{role:"client", text: opening.trim()}];
+  }catch(e){
+    s.chatHistory = [{role:"client", text:"[Connection issue generating the scenario — try Restart below.]"}];
+  }
+  render();
+}
+
+function renderOpenRoleplay(){
+  const s = state.rpSession;
+  if(!s) return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">No active roleplay — head back to the dashboard to start one.</div>`;
+  const elapsed = Math.floor((Date.now()-s.startedAt)/1000);
+  const mm = String(Math.floor(elapsed/60)).padStart(2,"0");
+  const ss = String(elapsed%60).padStart(2,"0");
+
+  if(s.mode.id==="twopart" && s.part===2){
+    return renderRapidDelegationPart(s);
+  }
+
+  return `
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpExitToHub()">&larr; Back to Dashboard</button>
+    <div class="rp-session-header">
+      <div>
+        <div class="rp-session-tag">${s.category.icon} ${esc(s.category.label)} · ${esc(s.mode.label)}</div>
+        <h2 style="margin:2px 0 0;color:var(--navy);">${esc(s.topic.label)}</h2>
+      </div>
+      ${s.mode.id==="blitz" ? `<div class="rp-timer" id="rpTimer">⏱️ ${mm}:${ss}</div>` : ""}
+    </div>
+
+    <div style="display:grid;grid-template-columns:${s.mode.id==='guided'?'1fr 300px':'1fr'};gap:18px;align-items:start;">
+      <div class="card" style="padding:16px 18px;">
+        <div class="cr-chat-window" id="rpChatWindow">${renderRpChat(s)}</div>
+        <div class="cr-chat-input-row">
+          <textarea id="rpChatInput" placeholder="Respond as the EA/PA..."></textarea>
+          <button class="btn btn-orange btn-sm" onclick="rpSendMessage()">Send</button>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-ghost btn-sm" onclick="rpRestart()">Restart</button>
+          ${s.mode.id==="twopart" ? `<button class="btn btn-navy btn-sm" onclick="rpAdvanceToPart2()">Part 1 Done — Start Part 2: Rapid Delegation &rarr;</button>` : `<button class="btn btn-navy btn-sm" onclick="rpEndDebrief()">End &amp; Get Debrief</button>`}
+        </div>
+        <div id="rpDebrief" style="margin-top:14px;"></div>
+      </div>
+      ${s.mode.id==="guided" ? `
+      <div class="card rp-coach-panel">
+        <b style="font-size:12.5px;color:var(--navy);">🧭 Coaching Tips</b>
+        <ul style="margin:8px 0 0;padding-left:18px;">
+          <li>Lead with BLUF — bottom line first, context after.</li>
+          <li>Acknowledge the concern before redirecting it.</li>
+          <li>Offer a concrete next step, not just reassurance.</li>
+          <li>Never promise something you're not authorized to promise.</li>
+        </ul>
+        <b style="font-size:12.5px;color:var(--navy);display:block;margin-top:14px;">Suggested Opening Pattern</b>
+        <p style="font-size:12.3px;color:#37394A;background:#F8F9FC;border-radius:8px;padding:10px 12px;margin:6px 0 0;">"I hear you on [concern] — here's where things stand: [bottom line]. Here's what I'm doing next: [action]."</p>
+      </div>` : ""}
+    </div>
+  `;
+}
+function renderRpChat(s){
+  return (s.chatHistory||[]).map(m=>`<div class="cr-msg ${m.role==='client'?'cr-client':'cr-ea'}">${esc(m.text)}</div>`).join("");
+}
+function rpRenderChatWindow(){
+  const win = document.getElementById("rpChatWindow");
+  if(!win) return;
+  win.innerHTML = renderRpChat(state.rpSession);
+  win.scrollTop = win.scrollHeight;
+}
+async function rpSendMessage(){
+  const input = document.getElementById("rpChatInput");
+  const text = input.value.trim();
+  if(!text) return;
+  const s = state.rpSession;
+  s.chatHistory.push({role:"ea", text});
+  input.value = "";
+  rpRenderChatWindow();
+  s.chatHistory.push({role:"client", text:"…thinking…", pending:true});
+  rpRenderChatWindow();
+  const transcript = s.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"CALLER: ":"EA: ")+m.text).join("\n");
+  const prompt = `You are roleplaying as the caller/contact in a live, unscripted training call for an Executive/Personal Assistant. Stay fully in character. No meta-commentary.
+
+CLIENT BACKGROUND:
+${CLIENT_DOSSIER_MD}
+
+SITUATION TYPE: ${state.rpSession.topic.label} (${state.rpSession.category.label})
+${state.rpSession.topic.context}
+
+CONVERSATION SO FAR:
+${transcript}
+
+Respond with the next line only — 1-3 sentences, realistic in tone for this situation. If the EA/PA is handling it well, you may show some de-escalation. If they're vague, evasive, or clearly wrong, apply more pressure or push back.`;
+  try{
+    const reply = await callAIText(prompt, 200);
+    s.chatHistory = s.chatHistory.filter(m=>!m.pending);
+    s.chatHistory.push({role:"client", text: reply.trim()});
+  }catch(e){
+    s.chatHistory = s.chatHistory.filter(m=>!m.pending);
+    s.chatHistory.push({role:"client", text:"[Connection issue — try sending again.]"});
+  }
+  rpRenderChatWindow();
+}
+window.rpSendMessage = rpSendMessage;
+function rpRestart(){
+  state.rpSession.chatHistory = [];
+  state.rpSession.startedAt = Date.now();
+  const dEl = document.getElementById("rpDebrief");
+  if(dEl) dEl.innerHTML = "";
+  rpGenerateOpening();
+}
+window.rpRestart = rpRestart;
+function rpExitToHub(){
+  if(state.rpTimerInterval){ clearInterval(state.rpTimerInterval); state.rpTimerInterval = null; }
+  state.rpSession = null;
+  state.rpHub = {step:"category", categoryId:null, topicId:null};
+  goto("crisisroleplay");
+}
+window.rpExitToHub = rpExitToHub;
+
+async function rpEndDebrief(){
+  const s = state.rpSession;
+  const el = document.getElementById("rpDebrief");
+  if((s.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message first."); return; }
+  el.innerHTML = `<div class="ai-loading">Reviewing the exchange…</div>`;
+  const transcript = s.chatHistory.filter(m=>!m.pending).map(m=>(m.role==="client"?"CALLER: ":"EA: ")+m.text).join("\n");
+  try{
+    const report = await runRoleplayRubricEvaluation(s, transcript);
+    el.innerHTML = renderRoleplayEvaluationReport(report);
+    await rpRecordSessionScore(s, report, transcript);
+  }catch(e){
+    el.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  }
+}
+window.rpEndDebrief = rpEndDebrief;
+
+async function rpRecordSessionScore(s, report, transcript){
+  // Record this session's category + score so the trainer can see per-category
+  // roleplay performance on the Admin side and assign targeted practice.
+  if(!state.roleplayHistory) state.roleplayHistory = [];
+  state.roleplayHistory.push({
+    categoryId: s.category.id, categoryLabel: s.category.label,
+    topicId: s.topic.id, topicLabel: s.topic.label,
+    modeId: s.mode.id, score: report.totalScore, date: new Date().toISOString()
+  });
+  await storeSet("roleplayHistory", state.roleplayHistory);
+  try{ await syncToLedger(); }catch(e){ /* best-effort sync, don't block on it */ }
+}
+
+async function rpAdvanceToPart2(){
+  const s = state.rpSession;
+  if((s.chatHistory||[]).filter(m=>m.role==="ea").length < 1){ toast("Exchange at least one message in Part 1 first."); return; }
+  s.part = 2;
+  s.rapidTasks = [];
+  s.rapidIndex = 0;
+  s.rapidResponses = [];
+  render();
+  await rpGenerateRapidTasks();
+}
+window.rpAdvanceToPart2 = rpAdvanceToPart2;
+
+async function rpGenerateRapidTasks(){
+  const s = state.rpSession;
+  const prompt = `Generate exactly 4 short, unrelated, back-to-back task requests that would realistically drop on an Executive/Personal Assistant's desk in quick succession — the kind of rapid-fire context-switching moment where several different people all need something at once. Keep loose thematic proximity to this general category: ${s.category.label}, but the 4 tasks should be clearly distinct from each other and from this scenario: ${s.topic.label}.
+
+Return ONLY a JSON array of 4 strings, each a short, realistic incoming request (1-2 sentences), nothing else — no markdown, no explanation.`;
+  try{
+    const raw = await callAIText(prompt, 300);
+    const cleaned = raw.replace(/```json|```/g,"").trim();
+    s.rapidTasks = JSON.parse(cleaned).slice(0,4);
+  }catch(e){
+    s.rapidTasks = [
+      "A vendor just texted asking for same-day payment confirmation on an overdue invoice.",
+      "Elias's spouse is calling about a scheduling conflict with tonight's dinner reservation.",
+      "A colleague needs the quarterly report reformatted and resent in the next 10 minutes.",
+      "The building manager left a voicemail about an access badge issue for tomorrow."
+    ];
+  }
+  render();
+}
+function renderRapidDelegationPart(s){
+  const task = s.rapidTasks[s.rapidIndex];
+  const done = s.rapidIndex >= s.rapidTasks.length;
+  return `
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpExitToHub()">&larr; Back to Dashboard</button>
+    <div class="rp-session-header">
+      <div>
+        <div class="rp-session-tag">${s.category.icon} Part 2: Rapid Delegation</div>
+        <h2 style="margin:2px 0 0;color:var(--navy);">${done ? "All Tasks Handled" : `Task ${s.rapidIndex+1} of ${s.rapidTasks.length}`}</h2>
+      </div>
+    </div>
+    ${!s.rapidTasks.length ? `<div class="ai-loading">Generating your rapid-fire tasks…</div>` : done ? `
+      <div class="card" style="padding:18px 20px;">
+        <p style="font-size:13px;color:#37394A;">You handled all ${s.rapidTasks.length} tasks. Ready for feedback on how you did across the full session?</p>
+        <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="rpEndDebrief()">Get Full-Session Debrief</button>
+        <div id="rpDebrief" style="margin-top:14px;"></div>
+      </div>
+    ` : `
+      <div class="card" style="padding:18px 20px;">
+        <p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px;">${esc(task)}</p>
+        <textarea id="rpRapidInput" placeholder="How do you handle this — right now, no time to overthink it..." style="width:100%;min-height:80px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;"></textarea>
+        <button class="btn btn-orange btn-sm" style="margin-top:10px;" onclick="rpSubmitRapidTask()">Next Task &rarr;</button>
+      </div>
+    `}
+  `;
+}
+function rpSubmitRapidTask(){
+  const s = state.rpSession;
+  const input = document.getElementById("rpRapidInput");
+  const text = input.value.trim();
+  if(!text){ toast("Enter a quick response first."); return; }
+  s.rapidResponses.push({task: s.rapidTasks[s.rapidIndex], response: text});
+  s.rapidIndex++;
+  render();
+}
+window.rpSubmitRapidTask = rpSubmitRapidTask;
+
 function goToCrisisScenario(toolId, wizardIdx){
   goto("tool", toolId);
   setTimeout(()=>{ wizardGoTo(wizardIdx); }, 30);
@@ -9050,6 +9461,7 @@ function render(){
   else if(state.view==="notes") body=renderNotes();
   else if(state.view==="clientprofile") body=renderClientProfile();
   else if(state.view==="crisisroleplay") body=renderCrisisRoleplayHub();
+  else if(state.view==="openroleplay") body=renderOpenRoleplay();
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
   app.innerHTML = renderNotifBanner() + renderTopbar() + `<main>${body}</main>` + renderFooter();
@@ -9120,6 +9532,7 @@ async function submitLogin(){
       await storeSet("practice-progress", state.practiceProgress);
       await storeSet("lab-attempts-global", state.labAttemptsGlobal);
       if(existing.batch){ state.traineeBatch = existing.batch; await storeSet("trainee-batch", existing.batch); }
+      state.assignedRoleplay = existing.assignedRoleplay || null;
     }
   }
   await syncToLedger();
@@ -9204,6 +9617,10 @@ window.logout = logout;
     const status = await getApprovalStatus(state.traineeId);
     if(status==="approved"){
       // leave state.view at its default (clientprofile) for an approved returning trainee
+      try{
+        const rec = await sharedGet("trainee:"+state.traineeId);
+        if(rec) state.assignedRoleplay = rec.assignedRoleplay || null;
+      }catch(e){ /* best-effort — don't block app load on this */ }
     }else if(status==="rejected"){
       state.view = "registrationDenied";
     }else{
@@ -10138,6 +10555,83 @@ Return ONLY a JSON object with this exact shape, no other text:
     growthSuggestions: Array.isArray(raw.growthSuggestions) ? raw.growthSuggestions : []
   };
 }
+async function runRoleplayRubricEvaluation(scenario, transcript){
+  const prompt = `You are an automated evaluator grading a trainee Executive/Personal Assistant's performance in a live, unscripted roleplay call. Grade rigorously and realistically — do not default to the same score every time, and don't award high marks just because the trainee said something plausible-sounding.
+
+SITUATION TYPE: ${scenario.topic.label} (category: ${scenario.category.label})
+${scenario.topic.context}
+
+FULL TRANSCRIPT:
+${transcript}
+
+Score this performance on a 100-point rubric across these four EQUALLY weighted categories (0-25 points each):
+- BLUF Adherence (0-25): did the trainee lead with the bottom line early, rather than burying it in context or hedging? A response that opens with background before the actual point should score low here.
+- Risk & Privilege Identification (0-25): did the trainee protect confidential or privileged information, avoid anything resembling unauthorized legal advice (UPL), and correctly flag any financial/trust-account (IOLTA) risk where relevant to this specific situation? Not every scenario involves all three — judge only what's actually relevant here.
+- Composure & Tone (0-25): did the trainee stay professionally diplomatic under pressure, even if the caller was rude, aggressive, or emotional? Visible defensiveness, over-apologizing, or matching hostile tone should score low.
+- ACT Protocol Execution (0-25): did the trainee Acknowledge the concern, Clarify what's actually needed, and establish a Timeline — before committing to anything? Committing to a task or promise without first doing this should score low here specifically.
+
+A generic or minimal-effort performance should score well below 70 overall. Reserve 85+ for genuinely strong performance across all four categories, not just adequate.
+
+Return ONLY a JSON object with this exact shape, no other text:
+{
+  "blufScore": <integer 0-25>,
+  "riskPrivilegeScore": <integer 0-25>,
+  "composureScore": <integer 0-25>,
+  "actProtocolScore": <integer 0-25>,
+  "strengths": ["...", "..."],
+  "blindspots": ["...", "..."],
+  "growthSuggestions": ["...", "..."]
+}`;
+  const raw = await callAIJson(prompt, 900);
+  const blufScore = Math.max(0, Math.min(25, Math.round(raw.blufScore||0)));
+  const riskPrivilegeScore = Math.max(0, Math.min(25, Math.round(raw.riskPrivilegeScore||0)));
+  const composureScore = Math.max(0, Math.min(25, Math.round(raw.composureScore||0)));
+  const actProtocolScore = Math.max(0, Math.min(25, Math.round(raw.actProtocolScore||0)));
+  const totalScore = blufScore + riskPrivilegeScore + composureScore + actProtocolScore;
+  return {
+    blufScore, riskPrivilegeScore, composureScore, actProtocolScore, totalScore,
+    gradeTier: gradeTierFor(totalScore),
+    strengths: Array.isArray(raw.strengths) ? raw.strengths : [],
+    blindspots: Array.isArray(raw.blindspots) ? raw.blindspots : [],
+    growthSuggestions: Array.isArray(raw.growthSuggestions) ? raw.growthSuggestions : []
+  };
+}
+function renderRoleplayEvaluationReport(report){
+  const tierColor = GRADE_TIER_COLOR[report.gradeTier] || "var(--ink-soft)";
+  return `
+    <div class="eval-report">
+      <div class="eval-report-header">
+        <div class="eval-score-ring" style="--ring-color:${tierColor};">
+          <span>${report.totalScore}</span>
+        </div>
+        <div>
+          <div class="eval-tier" style="color:${tierColor};">${esc(report.gradeTier)}</div>
+          <div class="eval-subscore-row">
+            <span>BLUF Adherence ${report.blufScore}/25</span>
+            <span>Risk &amp; Privilege ${report.riskPrivilegeScore}/25</span>
+            <span>Composure &amp; Tone ${report.composureScore}/25</span>
+            <span>ACT Protocol ${report.actProtocolScore}/25</span>
+          </div>
+        </div>
+      </div>
+      ${report.strengths.length ? `
+      <div class="eval-section">
+        <b>Strengths</b>
+        <ul>${report.strengths.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+      ${report.blindspots.length ? `
+      <div class="eval-section">
+        <b>Blindspots</b>
+        <ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+      ${report.growthSuggestions.length ? `
+      <div class="eval-section">
+        <b>Growth Suggestions</b>
+        <ul>${report.growthSuggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      </div>` : ""}
+    </div>`;
+}
+
 function renderEvaluationReport(report, dayId){
   const tierColor = GRADE_TIER_COLOR[report.gradeTier] || "var(--ink-soft)";
   if(dayId){ toolState.lastEvalReport = {report, dayId}; }
@@ -13066,8 +13560,91 @@ function renderAdminDetail(rec){
         <div class="sidebar-section-lbl" style="padding-left:0;">AI-Generated Ranking &amp; Review</div>
         <div id="aiReviewWrap-${esc(rec.id)}">${renderAiReviewBlock(rec)}</div>
       </div>
+
+      <div style="margin-top:16px;">
+        <div class="sidebar-section-lbl" style="padding-left:0;">Live Roleplay Performance &amp; Assignment</div>
+        ${renderAdminRoleplayPanel(rec)}
+      </div>
     </div>`;
 }
+function renderAdminRoleplayPanel(rec){
+  const history = rec.roleplayHistory||[];
+  const byCategory = {};
+  history.forEach(h=>{
+    if(!byCategory[h.categoryId]) byCategory[h.categoryId] = {label:h.categoryLabel, scores:[]};
+    byCategory[h.categoryId].scores.push(h.score);
+  });
+  const catSummary = ROLEPLAY_CATEGORIES.map(c=>{
+    const data = byCategory[c.id];
+    const avg = data ? Math.round(data.scores.reduce((a,b)=>a+b,0)/data.scores.length) : null;
+    return {id:c.id, label:c.label, icon:c.icon, avg, runs: data?data.scores.length:0};
+  });
+  return `
+    ${history.length ? `
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:8px;margin-bottom:14px;">
+      ${catSummary.map(c=>`
+        <div style="padding:8px 10px;border-radius:8px;background:#fff;border:1px solid var(--line);">
+          <div style="font-size:11px;color:var(--ink-soft);">${c.icon} ${esc(c.label)}</div>
+          <div style="font-size:15px;font-weight:700;color:${c.avg===null?'var(--ink-soft)':c.avg<85?'var(--danger)':'var(--navy)'};">${c.avg===null?"—":c.avg+"%"}</div>
+          <div style="font-size:10.5px;color:var(--ink-soft);">${c.runs} run${c.runs===1?"":"s"}</div>
+        </div>`).join("")}
+    </div>` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 14px;">No independent roleplay sessions logged yet.</p>`}
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <select id="assignCategorySelect-${esc(rec.id)}" onchange="renderAssignTopicOptions('${esc(rec.id)}')" style="padding:7px 10px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;">
+        <option value="">Assign a category…</option>
+        ${ROLEPLAY_CATEGORIES.map(c=>`<option value="${c.id}">${c.icon} ${esc(c.label)}</option>`).join("")}
+      </select>
+      <select id="assignTopicSelect-${esc(rec.id)}" style="padding:7px 10px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;min-width:200px;">
+        <option value="">Pick a category first…</option>
+      </select>
+      <button class="btn btn-navy btn-sm" onclick="assignRoleplayToTrainee('${esc(rec.id)}')">Assign</button>
+    </div>
+    ${rec.assignedRoleplay ? `
+      <div style="margin-top:10px;padding:8px 12px;border-radius:8px;background:var(--orange-soft);font-size:12px;color:var(--orange-deep);">
+        Currently assigned: <b>${esc(rec.assignedRoleplay.topicLabel)}</b> — the trainee will see this flagged the next time they open the Live Roleplay Dashboard.
+        <button class="btn btn-sm btn-ghost" style="margin-left:8px;" onclick="clearAssignedRoleplay('${esc(rec.id)}')">Clear</button>
+      </div>` : ""}
+  `;
+}
+function renderAssignTopicOptions(traineeId){
+  const categoryId = document.getElementById(`assignCategorySelect-${traineeId}`).value;
+  const topicSelect = document.getElementById(`assignTopicSelect-${traineeId}`);
+  const category = ROLEPLAY_CATEGORIES.find(c=>c.id===categoryId);
+  if(!category){ topicSelect.innerHTML = `<option value="">Pick a category first…</option>`; return; }
+  topicSelect.innerHTML = category.topics.map(t=>`<option value="${t.id}">${esc(t.label)}</option>`).join("");
+}
+window.renderAssignTopicOptions = renderAssignTopicOptions;
+async function assignRoleplayToTrainee(traineeId){
+  const categoryId = document.getElementById(`assignCategorySelect-${traineeId}`).value;
+  const topicId = document.getElementById(`assignTopicSelect-${traineeId}`).value;
+  if(!categoryId || !topicId){ toast("Pick a category and a topic first."); return; }
+  const category = ROLEPLAY_CATEGORIES.find(c=>c.id===categoryId);
+  const topic = category.topics.find(t=>t.id===topicId);
+  const rec = await sharedGet("trainee:"+traineeId);
+  if(!rec) return;
+  rec.assignedRoleplay = {categoryId, topicId, categoryLabel:category.label, topicLabel:topic.label, assignedAt:new Date().toISOString()};
+  await sharedSet("trainee:"+traineeId, rec);
+  if(state.adminData){
+    const idx = state.adminData.findIndex(r=>r.id===traineeId);
+    if(idx!==-1) state.adminData[idx] = rec;
+    const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+  }
+  toast(`Assigned "${topic.label}" to ${rec.name||"trainee"}.`);
+}
+window.assignRoleplayToTrainee = assignRoleplayToTrainee;
+async function clearAssignedRoleplay(traineeId){
+  const rec = await sharedGet("trainee:"+traineeId);
+  if(!rec) return;
+  rec.assignedRoleplay = null;
+  await sharedSet("trainee:"+traineeId, rec);
+  if(state.adminData){
+    const idx = state.adminData.findIndex(r=>r.id===traineeId);
+    if(idx!==-1) state.adminData[idx] = rec;
+    const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+  }
+}
+window.clearAssignedRoleplay = clearAssignedRoleplay;
 function renderAiReviewBlock(rec){
   const r = rec.aiReview;
   const btnLabel = r ? "Regenerate AI Review" : "Generate AI Review";
