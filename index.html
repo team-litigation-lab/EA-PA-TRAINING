@@ -342,11 +342,6 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 .lesson-grid{display:grid;gap:14px;margin-bottom:8px;}
 .lesson-card{padding:20px 22px;}
 
-.lc-part-dots{display:flex;gap:6px;margin-bottom:16px;}
-.lc-part-dot{width:22px;height:4px;border-radius:2px;background:var(--line);transition:background .2s ease;}
-.lc-part-dot.active{background:var(--orange);}
-.lc-part-nav{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);}
-
 .fp-section{margin-bottom:16px;}
 .fp-section:last-of-type{margin-bottom:0;}
 .fp-label{
@@ -9739,7 +9734,6 @@ function returnToLessonCard(dayId){
   // opened this tool directly (a different or no prior day), that index
   // would be meaningless here, so start from the top instead.
   if(!sameDay || typeof state.lessonSlide !== "number") state.lessonSlide = 0;
-  state.lessonCardPart = 1;
   state.slideInterstitial = null;
   window.scrollTo({top:0, behavior:"smooth"});
   render();
@@ -10213,7 +10207,6 @@ function backToSlidesFromKnowledgeCheck(){
   state.dayViewMode = "slides";
   const d = DAYS.find(x=>x.id===state.dayId);
   state.lessonSlide = buildDaySlides(d).length-1;
-  state.lessonCardPart = 1;
   render();
 }
 window.backToSlidesFromKnowledgeCheck = backToSlidesFromKnowledgeCheck;
@@ -10223,7 +10216,10 @@ function buildDaySlides(d){
   const slides = [];
   if(d.taskOverview) slides.push({type:"taskOverview"});
   if(d.id===1) slides.push({type:"meetClient"});
-  d.lessons.forEach((l,i)=> slides.push({type:"topic", lessonIndex:i}));
+  d.lessons.forEach((l,i)=>{
+    slides.push({type:"topic", lessonIndex:i, part:1});
+    slides.push({type:"topic", lessonIndex:i, part:2});
+  });
   slides.push({type:"video"});
   if(relatedTools(d.id).length) slides.push({type:"practiceLab"});
   if(d.discussionQuestion && state.isAdmin) slides.push({type:"discussion"});
@@ -10233,7 +10229,7 @@ function daySlideTitle(d, slide){
   if(slide.type==="video") return "Video Recap";
   if(slide.type==="taskOverview") return "Legal EA Task Overview";
   if(slide.type==="meetClient") return "Meet Elias Thorne — Live Q&A";
-  if(slide.type==="topic") return d.lessons[slide.lessonIndex].h;
+  if(slide.type==="topic") return d.lessons[slide.lessonIndex].h + (slide.part===1 ? " (Part 1 of 2)" : " (Part 2 of 2)");
   if(slide.type==="practiceLab") return "Practice Lab";
   if(slide.type==="discussion") return "Trainer Checkpoint";
   return "";
@@ -10242,7 +10238,7 @@ function renderDaySlideContent(d, slide, idx){
   if(slide.type==="video") return renderVideoPlaceholder(d);
   if(slide.type==="taskOverview") return renderTaskOverview(d.taskOverview);
   if(slide.type==="meetClient") return renderMeetClientSlide();
-  if(slide.type==="topic") return renderLessonCard(d.lessons[slide.lessonIndex], slide.lessonIndex, d, renderQuickChecksAfter(d, slide.lessonIndex));
+  if(slide.type==="topic") return renderLessonCard(d.lessons[slide.lessonIndex], slide.lessonIndex, d, slide.part===2 ? renderQuickChecksAfter(d, slide.lessonIndex) : "", slide.part);
   if(slide.type==="practiceLab") return renderPracticeLabSlide(d);
   if(slide.type==="discussion") return renderDiscussionSlide(d);
   return "";
@@ -10358,8 +10354,8 @@ function renderDaySlideshow(d){
       <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
       <span class="slide-counter">Step ${idx+1} of ${total}</span>
       ${isLast
-        ? `<button class="btn btn-primary" ${slide.type==="topic" && state.lessonCardPart!==2 ? 'disabled title="Finish this topic\'s second part above first"' : ''} onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
-        : `<button class="btn btn-primary" ${slide.type==="topic" && state.lessonCardPart!==2 ? 'disabled title="Finish this topic\'s second part above first"' : ''} onclick="nextSlide()">Next &rarr;</button>`}
+        ? `<button class="btn btn-primary" onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
+        : `<button class="btn btn-primary" onclick="nextSlide()">Next &rarr;</button>`}
     </div>
     ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.</div>` : ""}
   `;
@@ -10372,7 +10368,6 @@ function goToSlide(i){
   }
   state.slideDir = i>(state.lessonSlide||0) ? "next" : "prev";
   state.lessonSlide = i;
-  state.lessonCardPart = 1;
   refreshLessonSlide();
 }
 window.goToSlide = goToSlide;
@@ -10391,7 +10386,6 @@ function nextSlide(){
     setTimeout(()=>{
       state.slideInterstitial = null;
       state.lessonSlide = nextIdx;
-      state.lessonCardPart = 1;
       refreshLessonSlide();
     }, 2200);
   }
@@ -10412,7 +10406,6 @@ function prevSlide(){
   if((state.lessonSlide||0) > 0){
     state.slideDir = "prev";
     state.lessonSlide = (state.lessonSlide||0)-1;
-    state.lessonCardPart = 1;
     refreshLessonSlide();
   }
 }
@@ -10470,7 +10463,7 @@ function renderFourPartSection(num, label, content){
       <div class="fp-body">${content}</div>
     </div>`;
 }
-function renderLessonCard(l,i,d,quickCheckHtml){
+function renderLessonCard(l,i,d,quickCheckHtml,part){
   // Explicit, hand-authored fourPart content (simple string/array shape) takes
   // priority for new topics. Existing topics without it fall back to the
   // tested automatic derivation from their visual/bullets/example data.
@@ -10500,34 +10493,21 @@ function renderLessonCard(l,i,d,quickCheckHtml){
 
   const partAHtml = renderFourPartSection(1, "Core Principles", corePrinciplesHtml) + renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml);
   const partBHtml = renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml) + renderFourPartSection(4, "Applied Discussion Case", discussionHtml);
-  const part = (state.lessonCardPart===2) ? 2 : 1;
+  const p = (part===2) ? 2 : 1;
 
   return `
-    <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}</div>
+    <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length} &middot; PART ${p} OF 2</div>
     <div class="card lesson-card">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
-      <div class="lc-part-dots">
-        <span class="lc-part-dot ${part===1?'active':''}"></span>
-        <span class="lc-part-dot ${part===2?'active':''}"></span>
-      </div>
-      ${part===1 ? partAHtml : partBHtml}
-      <div class="lc-part-nav">
-        ${part===2 ? `<button class="btn btn-ghost btn-sm" onclick="lessonCardGoToPart(1)">&larr; Back</button>` : `<span></span>`}
-        ${part===1 ? `<button class="btn btn-navy btn-sm" onclick="lessonCardGoToPart(2)">Continue &rarr;</button>` : `<span></span>`}
-      </div>
-      ${l.trainerCue && state.isAdmin ?`
+      ${p===1 ? partAHtml : partBHtml}
+      ${l.trainerCue && state.isAdmin && p===2 ?`
       <div class="trainer-checkpoint">
         <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
         <p>${esc(l.trainerCue)}</p>
       </div>` : ""}
     </div>
-    ${part===2 && quickCheckHtml ? quickCheckHtml : ""}`;
+    ${p===2 && quickCheckHtml ? quickCheckHtml : ""}`;
 }
-function lessonCardGoToPart(p){
-  state.lessonCardPart = p;
-  refreshLessonSlide();
-}
-window.lessonCardGoToPart = lessonCardGoToPart;
 function renderLessonVisual(l){
   switch(l.layout){
     case "QUADRANT": return renderQuadrantVisual(l.quadrants);
