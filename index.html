@@ -781,6 +781,11 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 }
 .directions-link:hover{text-decoration:underline;}
 
+.tool-day-banner{
+  position:sticky;top:8px;z-index:5;display:inline-block;
+  background:var(--navy);color:#fff;font-family:'IBM Plex Mono';font-size:12px;font-weight:700;
+  letter-spacing:.03em;padding:6px 14px;border-radius:20px;margin:0 0 12px;
+}
 .tool-shell{padding:26px 28px;}
 
 /* dossier builder: instant feedback rows */
@@ -8943,6 +8948,8 @@ async function loadAll(){
   state.notes = nt || [];
   const cla = await storeGet("completed-lab-actions");
   state.completedLabActions = (cla && typeof cla === "object") ? cla : {};
+  const d10w = await storeGet("day10-window");
+  state.day10Window = (d10w && typeof d10w === "object") ? d10w : null;
   const sb = await storeGet("submissions");
   state.submissions = sb || [];
   const rph = await storeGet("roleplayHistory");
@@ -9279,6 +9286,11 @@ function renderCrisisRoleplayHub(){
     return `
       <h2 class="section-title">🔥 Live Roleplay Dashboard</h2>
       <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">An on-demand practice sandbox, separate from your daily Practice Lab tasks. Pick a category, a specific situation, and how hard you want to be pushed — then jump straight into a live, unscripted call.</p>
+
+      <div class="card" style="padding:14px 18px;margin-bottom:22px;background:#F8F9FC;border-left:4px solid var(--navy);">
+        <b style="font-size:12px;color:var(--navy);text-transform:uppercase;letter-spacing:.03em;">A note before you begin</b>
+        <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;font-style:italic;">Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval.</p>
+      </div>
 
       ${state.assignedRoleplay ? `
       <div class="card" style="padding:16px 18px;margin-bottom:24px;background:var(--orange-soft);border:1px solid var(--orange);">
@@ -9737,6 +9749,39 @@ async function submitSurpriseTask(){
 window.submitSurpriseTask = submitSurpriseTask;
 
 const LAB_CAP_DAYS = [1,2,3,4,5,6,8,9,10]; // Day7's tool has no AI-graded actions, so no cap applies
+
+/* ---------- Day 10: strict single-attempt, 90-minute window ---------- */
+const DAY10_WINDOW_MS = 90*60*1000;
+async function startDay10Window(){
+  if(!state.day10Window){
+    state.day10Window = {startedAt: Date.now(), expiresAt: Date.now()+DAY10_WINDOW_MS};
+    await storeSet("day10-window", state.day10Window);
+  }
+}
+function day10WindowExpired(){
+  return state.day10Window && Date.now() > state.day10Window.expiresAt;
+}
+function day10WindowRemainingLabel(){
+  if(!state.day10Window) return "";
+  const ms = state.day10Window.expiresAt - Date.now();
+  if(ms<=0) return "Window closed";
+  const mins = Math.floor(ms/60000), secs = Math.floor((ms%60000)/1000);
+  return `${mins}:${String(secs).padStart(2,"0")} remaining`;
+}
+function checkDay10SingleAttempt(actionId){
+  if(day10WindowExpired()){
+    toast("The 90-minute Day 10 lab window has closed — this submission can no longer be graded.");
+    return false;
+  }
+  if(!state.completedLabActions) state.completedLabActions = {};
+  if(state.completedLabActions[actionId]){
+    toast("Day 10's lab allows exactly one attempt per section — this one's already been submitted.");
+    return false;
+  }
+  state.completedLabActions[actionId] = true;
+  storeSet("completed-lab-actions", state.completedLabActions);
+  return true;
+}
 function moduleCard(d){
   const prog = state.progress[d.id];
   const unlocked = dayUnlocked(d.id);
@@ -10250,7 +10295,6 @@ function renderDay(id){
     <div class="day-head-compact">
       <span class="dhc-eyebrow">Day ${d.id} of 10</span>
       <span class="dhc-title">${esc(d.title)}</span>
-      <button class="btn btn-ghost btn-xs" onclick="downloadDayPdf(${d.id})">⬇ PDF</button>
     </div>`;
 
   if(state.dayViewMode==="knowledgeCheck"){
@@ -10284,6 +10328,7 @@ function buildDaySlides(d){
   d.lessons.forEach((l,i)=>{
     slides.push({type:"topic", lessonIndex:i, part:1});
     slides.push({type:"topic", lessonIndex:i, part:2});
+    if((d.quickChecks||[]).some(q=>q.afterIndex===i)) slides.push({type:"quickCheck", lessonIndex:i});
   });
   slides.push({type:"video"});
   if(relatedTools(d.id).length) slides.push({type:"practiceLab"});
@@ -10295,6 +10340,7 @@ function daySlideTitle(d, slide){
   if(slide.type==="taskOverview") return "Legal EA Task Overview";
   if(slide.type==="meetClient") return "Meet Elias Thorne — Live Q&A";
   if(slide.type==="topic") return d.lessons[slide.lessonIndex].h + (slide.part===1 ? " (Part 1 of 2)" : " (Part 2 of 2)");
+  if(slide.type==="quickCheck") return "Quick Check";
   if(slide.type==="practiceLab") return "Practice Lab";
   if(slide.type==="discussion") return "Trainer Checkpoint";
   return "";
@@ -10303,7 +10349,10 @@ function renderDaySlideContent(d, slide, idx){
   if(slide.type==="video") return renderVideoPlaceholder(d);
   if(slide.type==="taskOverview") return renderTaskOverview(d.taskOverview);
   if(slide.type==="meetClient") return renderMeetClientSlide();
-  if(slide.type==="topic") return renderLessonCard(d.lessons[slide.lessonIndex], slide.lessonIndex, d, slide.part===2 ? renderQuickChecksAfter(d, slide.lessonIndex) : "", slide.part);
+  if(slide.type==="topic") return renderLessonCard(d.lessons[slide.lessonIndex], slide.lessonIndex, d, "", slide.part);
+  if(slide.type==="quickCheck") return `
+    <div class="topic-separator">DAY ${d.id} &middot; QUICK CHECK</div>
+    ${renderQuickChecksAfter(d, slide.lessonIndex)}`;
   if(slide.type==="practiceLab") return renderPracticeLabSlide(d);
   if(slide.type==="discussion") return renderDiscussionSlide(d);
   return "";
@@ -10528,7 +10577,7 @@ function renderFourPartSection(num, label, content){
       <div class="fp-body">${content}</div>
     </div>`;
 }
-function renderLessonCard(l,i,d,quickCheckHtml,part){
+function renderLessonCard(l,i,d,unused,part){
   // Explicit, hand-authored fourPart content (simple string/array shape) takes
   // priority for new topics. Existing topics without it fall back to the
   // tested automatic derivation from their visual/bullets/example data.
@@ -10570,8 +10619,7 @@ function renderLessonCard(l,i,d,quickCheckHtml,part){
         <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
         <p>${esc(l.trainerCue)}</p>
       </div>` : ""}
-    </div>
-    ${p===2 && quickCheckHtml ? quickCheckHtml : ""}`;
+    </div>`;
 }
 function renderLessonVisual(l){
   switch(l.layout){
@@ -10904,6 +10952,10 @@ function renderPracticeHub(){
     <p class="eyebrow">Practice Lab</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">Let's Practice the Principles</h1>
     <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 26px;">Hands-on tools for the skills that show up every day on the job. Available any time — no day needs to be unlocked first.</p>
+    <div class="card" style="padding:14px 18px;margin-bottom:22px;background:#F8F9FC;border-left:4px solid var(--navy);">
+      <b style="font-size:12px;color:var(--navy);text-transform:uppercase;letter-spacing:.03em;">A note before you begin</b>
+      <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;font-style:italic;">Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval.</p>
+    </div>
     <div class="tool-grid" id="toolGridWrap">${renderToolCards(PRACTICE_TOOLS)}</div>
   `;
 }
@@ -10931,6 +10983,7 @@ function toolHead(t){
   const relatedDayId = t.relates ? parseInt(t.relates.replace(/[^0-9]/g,""), 10) : null;
   return `
     <a class="back-link" onclick="goto('practice')">&larr; Back to Practice Lab</a>
+    ${relatedDayId ? `<div class="tool-day-banner">[ Day ${relatedDayId} Practice Lab ]</div>` : ""}
     <div class="card tool-shell">
       <div class="toolhead">
         <div><h2>${t.icon} ${esc(t.title)}</h2><p>${esc(t.desc)}</p></div>
@@ -12946,33 +12999,6 @@ async function downloadFullPortfolioPdf(){
 }
 window.downloadFullPortfolioPdf = downloadFullPortfolioPdf;
 
-async function downloadDayPdf(dayId){
-  await ensureTraineeName();
-  const d = DAYS.find(x=>x.id===dayId);
-  const prog = state.progress[dayId];
-  const lines = [`## Day ${d.id} — ${d.title}`, d.objective, "---", "## Lessons"];
-  d.lessons.forEach(l=>{
-    lines.push(`## ${l.h}`);
-    l.b.forEach(b=>lines.push(`   • ${b}`));
-    if(l.callout) lines.push(`   Note: ${l.callout.text}`);
-    if(l.example){
-      lines.push(`   Example — ${l.example.label||""}`);
-      l.example.lines.forEach(x=>lines.push(`     ${x}`));
-    }
-    if(l.table){
-      lines.push(`   ${l.table.headers.join(" | ")}`);
-      l.table.rows.forEach(r=>lines.push(`   ${r.join(" | ")}`));
-    }
-  });
-  lines.push("---", "## Knowledge Check");
-  if(prog){
-    lines.push(`Score: ${prog.score}%  (${prog.done?"Passed":"Not yet passed"})`, `Date: ${fmtDate(prog.date)}`);
-  }else{
-    lines.push("Not yet attempted.");
-  }
-  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${d.id} — ${d.title}`, lines, `LSH_Day${d.id}_Summary`);
-}
-window.downloadDayPdf = downloadDayPdf;
 
 /* ============================================================
    MY NOTES / ACTION PLAN — with AI review
@@ -15910,6 +15936,7 @@ window.downloadFm2Pdf = downloadFm2Pdf;
 function initSocial10(body){
   toolState.s10 = {ratesChecked:false, bestPick:"", versionMatch:{}};
   toolState.wizardIndex = 0;
+  startDay10Window();
   const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Engagement Rate: Which Post Actually Won?</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Engagement Rate = (Likes + Comments + Shares) ÷ Followers × 100. Compute each, then pick the real top performer.</p>
@@ -15982,7 +16009,12 @@ function initSocial10(body){
     <div id="s10PlanResult" style="margin-top:10px;"></div>
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadSocial10Pdf()">⬇ Download My Work</button>
   `;
-  body.innerHTML = renderToolWizard(10, [
+  body.innerHTML = `
+    <div class="card" style="padding:12px 16px;margin-bottom:16px;background:var(--danger-bg);border:1.5px solid var(--danger);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <div style="font-size:12.5px;color:var(--danger);font-weight:600;">⏱️ Day 10 lab: one attempt per section, closes 90 minutes after you started it.</div>
+      <div id="day10WindowTimer" style="font-family:'IBM Plex Mono';font-size:16px;font-weight:700;color:var(--danger);">${esc(day10WindowRemainingLabel())}</div>
+    </div>
+  ` + renderToolWizard(10, [
     {label:"Engagement Rate", html:partA},
     {label:"Version Matching", html:partB},
     {label:"Campaign Math", html:partC},
@@ -15990,6 +16022,12 @@ function initSocial10(body){
     {label:"Marketing Plan", html:partE}
   ]);
   recalcS10Campaign();
+  if(state.day10TimerInterval) clearInterval(state.day10TimerInterval);
+  state.day10TimerInterval = setInterval(()=>{
+    const el = document.getElementById("day10WindowTimer");
+    if(!el){ clearInterval(state.day10TimerInterval); return; }
+    el.textContent = day10WindowRemainingLabel();
+  }, 1000);
 }
 
 async function checkS10Rates(){
@@ -16050,7 +16088,7 @@ async function reviewS10BrandKit(){
   };
   const el = document.getElementById("s10BrandKitResult");
   if(!fields.colors || !fields.voice || !fields.tagline){ toast("Fill in at least colors, voice, and tagline first."); return; }
-  if(!(await useLabAttempt(10, "reviewS10BrandKit"))) return;
+  if(!(await checkDay10SingleAttempt("reviewS10BrandKit"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your Brand Kit…</div>`;
   try{
     const report = await runRubricEvaluation(
@@ -16071,7 +16109,7 @@ async function reviewS10MarketingPlan(){
   const draft = document.getElementById("s10PlanDraft").value.trim();
   const el = document.getElementById("s10PlanResult");
   if(draft.length < 40){ toast("Write out a fuller plan first."); return; }
-  if(!(await useLabAttempt(10, "reviewS10MarketingPlan"))) return;
+  if(!(await checkDay10SingleAttempt("reviewS10MarketingPlan"))) return;
   el.innerHTML = `<div class="ai-loading">Reviewing your marketing plan…</div>`;
   try{
     const report = await runRubricEvaluation(
