@@ -1,0 +1,15 @@
+name = "ea-pa-training"
+compatibility_date = "2024-09-23"
+main = "worker.js"
+
+[assets]
+directory = "."
+binding = "ASSETS"
+
+[[kv_namespaces]]
+binding = "LSH_KV"
+id = "b121aa911590471bbad351d03274d7f4"
+
+[[r2_buckets]]
+binding = "DOCUMENTS"
+bucket_name = "lshtraining"
