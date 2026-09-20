@@ -1424,6 +1424,8 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
 <div id="toast" class="toast"></div>
 <script>
 
+
+
 const DAY1 = {
   "id": 1,
   "title": "Foundations of the Legal Executive Assistant Role",
@@ -4128,6 +4130,28 @@ const DAY4 = {
           "A task queue or simple running list of 'in progress, paused here' items is a lightweight system that prevents most of the real damage from frequent injections."
         ],
         "discussionCase": "You're halfway through drafting a detailed client response when an urgent, unrelated request comes in. What's your actual process for handling the interruption without losing your place or dropping either task?"
+      }
+    },
+    {
+      "h": "Client Relationship Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Client Relationship Management (CRM) is the discipline of maintaining and growing a relationship after the first contact — everything covered so far in this day gets someone to say yes; CRM is what happens after that.",
+          "A CRM system's real value isn't the software itself — it's the discipline of logging every interaction, so the next touchpoint (yours or a colleague's) starts from an accurate picture instead of a guess.",
+          "Relationship management is proactive, not reactive: reaching out at a meaningful moment (a renewal date, a follow-up you promised, a relevant update) is what separates a maintained relationship from one that quietly goes cold."
+        ],
+        "howTo": [
+          "Log every substantive interaction in the CRM immediately after it happens — what was discussed, what was promised, and what the next step is — not from memory at the end of the day.",
+          "Segment contacts by relationship stage (new lead, active client, dormant, past client) so outreach can be tailored to where they actually are, not treated identically.",
+          "Set concrete follow-up reminders tied to specific commitments (\"check in after their trial ends,\" \"confirm renewal 30 days out\") rather than a vague recurring \"touch base\" task.",
+          "Before any client-facing call or email, pull up their history in the CRM first — referencing something specific from a past interaction signals the relationship is actually being tracked, not restarted each time."
+        ],
+        "bestPractices": [
+          "Pitfall: treating the CRM as a place data goes to die — entering it once at intake and never updating it makes every future interaction start from stale information.",
+          "A relationship that's gone quiet for months is far more expensive to reactivate than one that got one well-timed check-in — proactive maintenance is cheaper than reactive recovery.",
+          "Never let a promised follow-up slip because it wasn't logged as a task — a missed commitment damages trust more than if the offer had never been made at all."
+        ],
+        "discussionCase": "A client you closed three months ago hasn't been contacted since — no follow-up was ever logged. They just emailed with a question that suggests they might be considering a competitor. What's your actual first move: respond to the immediate question only, or use this as an opening to rebuild the relationship? What would you say?"
       }
     }
   ],
@@ -8933,11 +8957,11 @@ async function loadAll(){
     state.labAttemptsGlobal = laGlobal;
   }else{
     // Migrate any existing per-day attempt data (from before the cap became
-    // program-wide) into the new global counter — sum every day's usage
-    // except Day7, which was always exempt and should never count here.
+    // program-wide) into the new global counter — sum every day's usage,
+    // Day 7 included, since the cap now applies strictly with no exceptions.
     const laOld = await storeGet("lab-attempts");
     if(laOld && typeof laOld === "object"){
-      const migrated = Object.entries(laOld).reduce((sum,[dayId,count])=> parseInt(dayId,10)===7 ? sum : sum + (count||0), 0);
+      const migrated = Object.entries(laOld).reduce((sum,[dayId,count])=> sum + (count||0), 0);
       state.labAttemptsGlobal = Math.min(migrated, LAB_ATTEMPT_CAP);
       await storeSet("lab-attempts-global", state.labAttemptsGlobal);
     }else{
@@ -9249,7 +9273,7 @@ window.jumpToSearchResult = jumpToSearchResult;
 const ROLEPLAY_CATEGORIES = [
   {id:"legal", icon:"⚖️", label:"Legal Operations", topics:[
     {id:"docketing", label:"Court Docketing Escalations", context:"A court deadline is at risk — either a filing that's about to be missed, or a docketing error just discovered that needs immediate correction. The other party is an attorney or court clerk applying real time pressure."},
-    {id:"iolta", label:"IOLTA / Trust Account Disputes", context:"A client is disputing a charge or withdrawal from their trust account, or questioning why funds haven't been disbursed. This requires careful, precise language given trust accounting's strict compliance rules — no vague reassurances."},
+    {id:"iolta", label:"IOLTA / Trust Account Disputes", context:"A client is disputing a charge or withdrawal from their trust account, or questioning why funds haven't been disbursed. This requires careful, precise language given trust accounting's strict compliance rules — no vague reassurances.", fixedOpening:"Accounting just flagged a $5,000 transfer out of our client trust account marked for 'office supplies.' This is a massive legal compliance red flag! Did you authorize this billing entry?"},
     {id:"deposition", label:"Deposition Scheduling Friction", context:"A deposition needs to be rescheduled or is double-booked, and opposing counsel's office or a witness is pushing back hard on the timeline. Real scheduling stakes with a legal deadline attached."},
     {id:"privilege", label:"Attorney-Client Privilege Inquiries", context:"Someone (a family member, a vendor, an outside party) is asking for information that may be privileged or confidential, and is applying social or emotional pressure to get an answer."},
     {id:"upl", label:"UPL Boundaries", context:"A client or contact is pushing the EA/PA to give something that sounds like legal advice, or to make a legal judgment call — testing whether the trainee holds the line on the Unauthorized Practice of Law boundary under pressure."}
@@ -9259,7 +9283,11 @@ const ROLEPLAY_CATEGORIES = [
     {id:"investorupdate", label:"Investor Update Clarification", context:"An investor is calling directly, confused or frustrated about something in a recent update, wanting immediate clarification the EA isn't fully authorized to give."},
     {id:"inboxtriage", label:"High-Priority Inbox Triage", context:"A flood of messages just landed simultaneously, at least one genuinely urgent, several merely marked urgent — the caller is pressing about which one is being handled first."},
     {id:"calendarcollision", label:"Calendar Collision Management", context:"Two high-priority commitments just collided on the calendar, and the person on the other end of this call is the one who's about to lose the slot — they're not happy about it."},
-    {id:"vendornegotiation", label:"Vendor Negotiation", context:"A vendor is pushing for a price increase, a contract change, or immediate payment terms the EA isn't authorized to agree to alone — real negotiation pressure, not just an information request."}
+    {id:"vendornegotiation", label:"Vendor Negotiation", context:"A vendor is pushing for a price increase, a contract change, or immediate payment terms the EA isn't authorized to agree to alone — real negotiation pressure, not just an information request."},
+    {id:"slippeddeadline", label:"Furious Stakeholder, Slipped Deadline", context:"A board package deadline was just missed, and the chairman is now calling the executive's personal cell directly — the executive is furious and embarrassed in front of leadership, demanding an immediate fix.", fixedOpening:"Why hasn't the board package been sent out yet? We are twenty minutes past the deadline, the chairman is calling my personal cell, and I look completely unprepared. Fix this right now — what is going on?"},
+    {id:"licenselapse", label:"License Lapse, Mid-Meeting", context:"A live video call with opposing counsel just dropped because the enterprise Zoom license expired mid-meeting, and everyone is now sitting in an empty waiting room — the executive needs this fixed immediately, not explained.", fixedOpening:"I'm in the middle of presenting to opposing counsel and our Zoom just cut out saying our enterprise license expired. Everyone is sitting in an empty waiting room. Get us back online immediately!"},
+    {id:"contradictingorders", label:"Two Executives, Contradicting Orders", context:"Two executives gave directly conflicting instructions about the same calendar slot, and the one who was overridden just found out — they want to know who authorized the change and are not interested in an apology, only an answer.", fixedOpening:"Elias just told me you rescheduled our 2:00 PM strategy call to make room for his private client dinner, but I explicitly told you yesterday that 2:00 PM was non-negotiable. Who authorized this change?"},
+    {id:"medialeakprobe", label:"Media Leak Probe & Investor Rumors", context:"A journalist is calling with a rumor about an internal breach and an imminent merger withdrawal, working a short deadline to force a statement before verifying anything — testing whether the trainee holds the standard no-comment line under real time pressure.", fixedOpening:"Hi, this is Sarah from Law360. We have confirmation that Elias Thorne's firm is pulling out of the merger due to an ongoing internal breach. I'm publishing in 10 minutes — what is your official statement?"}
   ]},
   {id:"lifestyle", icon:"🏡", label:"Lifestyle & Estate PA", topics:[
     {id:"domesticstaff", label:"Domestic Staff Oversight", context:"A household staff scheduling or performance issue has come to a head, and the person calling (a staff member, or a family member unhappy about staff) wants it resolved right now."},
@@ -9272,6 +9300,11 @@ const ROLEPLAY_CATEGORIES = [
     {id:"bantqualifying", label:"BANT Lead Qualification", context:"The trainee is qualifying an inbound lead who's cagey and evasive about budget, authority, and timeline, but is eager to move fast anyway — testing whether the trainee actually qualifies before scheduling."},
     {id:"pushyprospect", label:"Pushy Sales Prospects", context:"A prospect on the other end is aggressive and demanding — pushing for a discount, an immediate answer, or special treatment outside the normal process — testing composure without folding or being combative."}
   ]}
+];
+const ROLEPLAY_PERSONAS = [
+  {id:"elias", label:"Elias Thorne", sub:"Managing Partner — Fast/Direct", desc:"Demands BLUF within 10 seconds, zero excuses, immediate options."},
+  {id:"board", label:"Impatient Board Member", sub:"High Pressure", desc:"High emotional volatility, will attempt to breach gatekeeping boundaries."},
+  {id:"thirdparty", label:"Investigative Reporter / Unvetted Third-Party", sub:"Probing", desc:"Probes for confidential details, may attempt to bait a UPL violation."}
 ];
 const ROLEPLAY_MODES = [
   {id:"guided", label:"Guided Practice", sub:"Self-Paced", icon:"🧭", desc:"Prompt cards, suggested BLUF responses, and real-time coaching tips stay visible on screen as you go — this mode is for learning the pattern, not testing yourself under pressure."},
@@ -9331,17 +9364,34 @@ function renderCrisisRoleplayHub(){
 
   // mode selection
   const topic = category.topics.find(t=>t.id===rp.topicId);
+  if(rp.step==="mode" || !rp.modeId){
+    return `
+      <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpBackToTopics()">&larr; ${esc(category.label)}</button>
+      <h2 class="section-title">${esc(topic.label)}</h2>
+      <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Choose how you want to run this one.</p>
+      <div class="rp-mode-grid">
+        ${ROLEPLAY_MODES.map(m=>`
+          <div class="card rp-mode-card" onclick="rpSelectMode('${m.id}')">
+            <div class="rp-mode-icon">${m.icon}</div>
+            <b>${esc(m.label)}</b>
+            <span class="rp-mode-sub">${esc(m.sub)}</span>
+            <p>${esc(m.desc)}</p>
+          </div>`).join("")}
+      </div>
+    `;
+  }
+
+  // persona selection
   return `
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpBackToTopics()">&larr; ${esc(category.label)}</button>
+    <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpBackToModes()">&larr; Choose a Different Mode</button>
     <h2 class="section-title">${esc(topic.label)}</h2>
-    <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Choose how you want to run this one.</p>
+    <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">Who's on the other end of this one?</p>
     <div class="rp-mode-grid">
-      ${ROLEPLAY_MODES.map(m=>`
-        <div class="card rp-mode-card" onclick="rpLaunchRoleplay('${m.id}')">
-          <div class="rp-mode-icon">${m.icon}</div>
-          <b>${esc(m.label)}</b>
-          <span class="rp-mode-sub">${esc(m.sub)}</span>
-          <p>${esc(m.desc)}</p>
+      ${ROLEPLAY_PERSONAS.map(p=>`
+        <div class="card rp-mode-card" onclick="rpLaunchRoleplay('${p.id}')">
+          <b>${esc(p.label)}</b>
+          <span class="rp-mode-sub">${esc(p.sub)}</span>
+          <p>${esc(p.desc)}</p>
         </div>`).join("")}
     </div>
   `;
@@ -9371,17 +9421,31 @@ window.rpBackToCategories = rpBackToCategories;
 function rpBackToTopics(){
   state.rpHub.step = "topic";
   state.rpHub.topicId = null;
+  state.rpHub.modeId = null;
   render();
 }
 window.rpBackToTopics = rpBackToTopics;
+function rpSelectMode(modeId){
+  state.rpHub.step = "persona";
+  state.rpHub.modeId = modeId;
+  render();
+}
+window.rpSelectMode = rpSelectMode;
+function rpBackToModes(){
+  state.rpHub.step = "mode";
+  state.rpHub.modeId = null;
+  render();
+}
+window.rpBackToModes = rpBackToModes;
 
 /* ---------- open roleplay engine (generative, topic+mode driven) ---------- */
-function rpLaunchRoleplay(modeId){
+function rpLaunchRoleplay(personaId){
   const category = ROLEPLAY_CATEGORIES.find(c=>c.id===state.rpHub.categoryId);
   const topic = category.topics.find(t=>t.id===state.rpHub.topicId);
-  const mode = ROLEPLAY_MODES.find(m=>m.id===modeId);
+  const mode = ROLEPLAY_MODES.find(m=>m.id===state.rpHub.modeId);
+  const persona = ROLEPLAY_PERSONAS.find(p=>p.id===personaId) || null;
   state.rpSession = {
-    category, topic, mode,
+    category, topic, mode, persona,
     chatHistory: [],
     startedAt: Date.now(),
     part: 1,
@@ -9407,6 +9471,14 @@ window.rpLaunchRoleplay = rpLaunchRoleplay;
 
 async function rpGenerateOpening(){
   const s = state.rpSession;
+  if(s.topic.fixedOpening){
+    // This scenario has an exact, hand-written opening — use it verbatim rather
+    // than generating one, so the trainee is dropped straight into the specific
+    // crisis with no generic time-pressure preamble.
+    s.chatHistory = [{role:"client", text: s.topic.fixedOpening}];
+    render();
+    return;
+  }
   s.chatHistory.push({role:"client", text:"…connecting…", pending:true});
   render();
   const prompt = `You are generating the OPENING LINE for a live, unscripted roleplay training call for an Executive/Personal Assistant. You are playing the person calling or messaging in — stay fully in character, no meta-commentary, no scenario description, just the actual opening line someone would say.
@@ -9416,8 +9488,9 @@ ${CLIENT_DOSSIER_MD}
 
 SITUATION TYPE: ${s.topic.label} (category: ${s.category.label})
 ${s.topic.context}
+${s.persona ? `\nCALLER PERSONA: ${s.persona.label} — ${s.persona.desc}` : ""}
 
-Write ONLY the opening line this caller would actually say — 1-3 sentences, realistic, dropping the EA/PA straight into the situation with no preamble. Do not narrate the scene or explain who's calling — just speak as them.`;
+Open immediately with the specific, in-character problem itself — never a generic time-pressure line like "What is it, I have ninety seconds." Write ONLY the opening line this caller would actually say — 1-3 sentences, realistic, dropping the EA/PA straight into the situation with no preamble. Do not narrate the scene or explain who's calling — just speak as them.`;
   try{
     const opening = await callAIText(prompt, 150);
     s.chatHistory = [{role:"client", text: opening.trim()}];
@@ -9442,7 +9515,7 @@ function renderOpenRoleplay(){
     <button class="btn btn-ghost btn-sm" style="margin-bottom:14px;" onclick="rpExitToHub()">&larr; Back to Dashboard</button>
     <div class="rp-session-header">
       <div>
-        <div class="rp-session-tag">${s.category.icon} ${esc(s.category.label)} · ${esc(s.mode.label)}</div>
+        <div class="rp-session-tag">${s.category.icon} ${esc(s.category.label)} · ${esc(s.mode.label)}${s.persona ? ` · with ${esc(s.persona.label)}` : ""}</div>
         <h2 style="margin:2px 0 0;color:var(--navy);">${esc(s.topic.label)}</h2>
       </div>
       ${s.mode.id==="blitz" ? `<div class="rp-timer" id="rpTimer">⏱️ ${mm}:${ss}</div>` : ""}
@@ -9503,11 +9576,12 @@ ${CLIENT_DOSSIER_MD}
 
 SITUATION TYPE: ${state.rpSession.topic.label} (${state.rpSession.category.label})
 ${state.rpSession.topic.context}
+${state.rpSession.persona ? `\nCALLER PERSONA — stay consistent with this throughout: ${state.rpSession.persona.label}. ${state.rpSession.persona.desc}` : ""}
 
 CONVERSATION SO FAR:
 ${transcript}
 
-Respond with the next line only — 1-3 sentences, realistic in tone for this situation. If the EA/PA is handling it well, you may show some de-escalation. If they're vague, evasive, or clearly wrong, apply more pressure or push back.`;
+Respond with the next line only — 1-3 sentences, realistic in tone for this situation and persona. If the EA/PA is handling it well, you may show some de-escalation. If they're vague, evasive, or clearly wrong, apply more pressure or push back.`;
   try{
     const reply = await callAIText(prompt, 200);
     s.chatHistory = s.chatHistory.filter(m=>!m.pending);
@@ -9664,7 +9738,7 @@ function renderDashboard(){
     <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
     <div class="card stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
     <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
-    <div class="card stat"><div class="num">${labAttemptsRemaining()} / ${LAB_ATTEMPT_CAP}</div><div class="lbl">Practice Lab attempts left <span style="font-weight:400;">(program-wide — Day 7 unlimited)</span></div></div>
+    <div class="card stat"><div class="num">${labAttemptsRemaining()} / ${LAB_ATTEMPT_CAP}</div><div class="lbl">Practice Lab attempts left <span style="font-weight:400;">(program-wide, all 10 days)</span></div></div>
   </div>
 
   <div class="pill-tabs">
@@ -10068,8 +10142,9 @@ async function submitLogin(){
         state.labAttemptsGlobal = existing.labAttemptsGlobal;
       }else if(existing.labAttempts && typeof existing.labAttempts === "object"){
         // Old-format ledger record from before the cap was program-wide.
+        // Every day's usage counts, Day 7 included — no exceptions.
         state.labAttemptsGlobal = Math.min(
-          Object.entries(existing.labAttempts).reduce((sum,[dayId,count])=> parseInt(dayId,10)===7 ? sum : sum + (count||0), 0),
+          Object.entries(existing.labAttempts).reduce((sum,[dayId,count])=> sum + (count||0), 0),
           LAB_ATTEMPT_CAP
         );
       }else{
@@ -10582,6 +10657,7 @@ function renderLessonCard(l,i,d,unused,part){
   // priority for new topics. Existing topics without it fall back to the
   // tested automatic derivation from their visual/bullets/example data.
   let corePrinciplesHtml, howToHtml, bestPracticesHtml, discussionHtml;
+  let derivedTrainerDiscussionPrompt = null; // admin-only "discuss with the room" version, only set when the trainee side used the generic fallback (no real example/table)
   if(l.fourPart){
     const fp = l.fourPart;
     corePrinciplesHtml = fp.corePrinciples && fp.corePrinciples.length ? `<ul>${fp.corePrinciples.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "";
@@ -10601,7 +10677,10 @@ function renderLessonCard(l,i,d,unused,part){
     const discussionParts = [];
     if(fp.discussionCase.example) discussionParts.push(renderExample(fp.discussionCase.example));
     if(fp.discussionCase.table) discussionParts.push(renderTable(fp.discussionCase.table));
-    if(!discussionParts.length) discussionParts.push(`<p class="fp-discussion-prompt">Discuss with your trainer or a peer: describe a real situation from your own work (or a hypothetical one) where "${esc(l.h)}" would directly apply — what would you actually do?</p>`);
+    if(!discussionParts.length){
+      discussionParts.push(`<p class="fp-discussion-prompt">Reflect: describe a real situation from your own work (or a hypothetical one) where "${esc(l.h)}" would directly apply — what would you actually do?</p>`);
+      derivedTrainerDiscussionPrompt = `Ask the room to discuss: has anyone run into a real situation where "${l.h}" applied? Have a volunteer walk through what they actually did.`;
+    }
     discussionHtml = discussionParts.join("");
   }
 
@@ -10614,10 +10693,11 @@ function renderLessonCard(l,i,d,unused,part){
     <div class="card lesson-card">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
       ${p===1 ? partAHtml : partBHtml}
-      ${l.trainerCue && state.isAdmin && p===2 ?`
+      ${(l.trainerCue || derivedTrainerDiscussionPrompt) && state.isAdmin && p===2 ?`
       <div class="trainer-checkpoint">
         <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
-        <p>${esc(l.trainerCue)}</p>
+        ${l.trainerCue ? `<p>${esc(l.trainerCue)}</p>` : ""}
+        ${derivedTrainerDiscussionPrompt ? `<p>${esc(derivedTrainerDiscussionPrompt)}</p>` : ""}
       </div>` : ""}
     </div>`;
 }
@@ -10796,7 +10876,7 @@ function renderQuiz(d){
     <div class="quiz-nav">
       <button class="btn btn-ghost" ${qi===0?'disabled':''} onclick="goToQuizQuestion(${qi-1})">&larr; Back</button>
       ${isLast
-        ? `<button class="btn btn-primary" style="padding:13px 28px;" onclick="submitQuiz(${d.id})">Submit Knowledge Check</button>`
+        ? `<button class="btn btn-primary" style="padding:13px 28px;" ${state.quizSubmitting?'disabled':''} onclick="submitQuiz(${d.id})">Submit Knowledge Check</button>`
         : `<button class="btn btn-primary" style="padding:13px 28px;" ${answered?'':'disabled'} onclick="goToQuizQuestion(${qi+1})">Next &rarr;</button>`}
     </div>
   `;
@@ -10815,33 +10895,39 @@ function setAnswer(qi, oi){
 window.setAnswer = setAnswer;
 
 async function submitQuiz(dayId){
-  const d = DAYS.find(x=>x.id===dayId);
-  const total = d.quiz.length;
-  const answered = Object.keys(state.quizAnswers).length;
-  if(answered<total){ toast(`Answer all ${total} questions first (${answered}/${total} done).`); return; }
-  let correct=0;
-  d.quiz.forEach((q,i)=>{ if(state.quizAnswers[i]===q.a) correct++; });
-  const score = Math.round((correct/total)*100);
-  const passed = score>=70;
-  state.quizSubmitted=true;
-  state.lastScore=score; state.lastCorrect=correct; state.lastTotal=total; state.lastPassed=passed;
+  if(state.quizSubmitting) return; // guards against a double-click or rapid repeat click creating duplicate history entries
+  state.quizSubmitting = true;
+  try{
+    const d = DAYS.find(x=>x.id===dayId);
+    const total = d.quiz.length;
+    const answered = Object.keys(state.quizAnswers).length;
+    if(answered<total){ toast(`Answer all ${total} questions first (${answered}/${total} done).`); return; }
+    let correct=0;
+    d.quiz.forEach((q,i)=>{ if(state.quizAnswers[i]===q.a) correct++; });
+    const score = Math.round((correct/total)*100);
+    const passed = score>=70;
+    state.quizSubmitted=true;
+    state.lastScore=score; state.lastCorrect=correct; state.lastTotal=total; state.lastPassed=passed;
 
-  const prevBest = state.progress[dayId]?.score || 0;
-  const prevHistory = state.progress[dayId]?.history || [];
-  const newRecord = {
-    done: passed || (state.progress[dayId]?.done||false),
-    score: Math.max(score, prevBest),
-    date: new Date().toISOString(),
-    history: [...prevHistory, {score, passed, date: new Date().toISOString()}]
-  };
-  state.progress[dayId]=newRecord;
-  await storeSet("day-progress", state.progress);
-  await syncToLedger();
+    const prevBest = state.progress[dayId]?.score || 0;
+    const prevHistory = state.progress[dayId]?.history || [];
+    const newRecord = {
+      done: passed || (state.progress[dayId]?.done||false),
+      score: Math.max(score, prevBest),
+      date: new Date().toISOString(),
+      history: [...prevHistory, {score, passed, date: new Date().toISOString()}]
+    };
+    state.progress[dayId]=newRecord;
+    await storeSet("day-progress", state.progress);
+    await syncToLedger();
 
-  document.getElementById("quizWrap").innerHTML = renderQuiz(d);
-  document.getElementById("quizWrap").scrollIntoView({behavior:"smooth",block:"start"});
-  renderAnswerFeedback(d);
-  if(passed) burstConfetti();
+    document.getElementById("quizWrap").innerHTML = renderQuiz(d);
+    document.getElementById("quizWrap").scrollIntoView({behavior:"smooth",block:"start"});
+    renderAnswerFeedback(d);
+    if(passed) burstConfetti();
+  }finally{
+    state.quizSubmitting = false;
+  }
 }
 window.submitQuiz = submitQuiz;
 
@@ -11041,7 +11127,6 @@ function labAttemptsRemaining(){
   return Math.max(0, LAB_ATTEMPT_CAP - labAttemptsUsed());
 }
 async function useLabAttempt(dayId, actionId){
-  if(dayId === 7) return true; // Day7 is explicitly exempt from the cap — unlimited runs, never counted
   if(!state.completedLabActions) state.completedLabActions = {};
   // The cap exists to limit REPEATING an exercise, not to limit how many
   // distinct exercises a trainee can complete once. The first time any given
@@ -11368,7 +11453,7 @@ function renderLabAttemptBanner(dayId){
       <div class="lab-attempt-body">
         <b>${locked?'No attempts remaining — read-only mode':'Program-Wide Tool Utilization Limit'}</b>
         <p>${locked
-          ? `You've used all ${LAB_ATTEMPT_CAP} Practice Lab attempts allocated for the entire program. You can still view any completed results below, but no further submissions will be graded — except Day 7, which is unlimited.`
+          ? `You've used all ${LAB_ATTEMPT_CAP} Practice Lab attempts allocated for the entire program. You can still view any completed results below, but no further submissions will be graded.`
           : `You are allocated a total of ${LAB_ATTEMPT_CAP} Practice Lab attempts across the <b>entire 10-day program</b> (Day 7 is exempt and unlimited). Use your attempts strategically — review all background materials, instructions, and details thoroughly before initiating a submission. <b>${remaining} of ${LAB_ATTEMPT_CAP} attempts remaining, program-wide.</b>`}</p>
       </div>
     </div>`;
@@ -12068,6 +12153,7 @@ async function submitAttnDetail(){
   const msgEl = document.getElementById("attnDetailSubmitMsg");
   const resultEl = document.getElementById("attnDetailResult");
   if(val.length < 10){ toast("Write out what you found before submitting."); return; }
+  if(!(await useLabAttempt(7, "submitAttnDetail"))) return;
   toolState.audit.attnDetailFindings = val;
   await storeSet("attn-detail-findings", val);
   msgEl.innerHTML = "";
@@ -12187,6 +12273,9 @@ function renderComplianceAuditCard(c,i){
   const ca = toolState.c6audit;
   const verdict = ca.verdicts[i];
   const risk = ca.risks[i];
+  const action = ca.actions[i] || "";
+  const actionLen = action.length;
+  const actionMin = 250;
   return `
     <div class="card audit-card" id="caCard${i}">
       <div class="audit-head">
@@ -12203,9 +12292,29 @@ function renderComplianceAuditCard(c,i){
           <option value="MODERATE" ${risk==='MODERATE'?"selected":""}>Moderate</option>
           <option value="HIGH" ${risk==='HIGH'?"selected":""}>High</option>
           <option value="CRITICAL" ${risk==='CRITICAL'?"selected":""}>Critical</option>
-        </select>`:""}
+        </select>
+        <div style="margin-top:10px;">
+          <label style="font-size:12px;font-weight:700;color:var(--navy);display:block;margin-bottom:5px;">✍️ Proposed Next Action (BLUF Standard):</label>
+          <textarea id="caAction${i}" rows="2" placeholder="State your immediate next action using the BLUF standard (e.g., who to notify, document to draft, or escalation step)..."
+            style="width:100%;font-size:12.5px;padding:9px 11px;border-radius:8px;border:1px solid var(--line);font-family:inherit;resize:vertical;"
+            oninput="setComplianceAction(${i}, this.value)">${esc(action)}</textarea>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+            <span id="caActionCounter${i}" style="font-size:11px;color:${actionLen>=actionMin?'var(--navy)':'var(--ink-soft)'};">Character Limit: ${actionLen} / ${actionMin} min</span>
+            ${actionLen>=actionMin ? `<span style="font-size:11px;color:var(--navy);font-weight:600;">✓ Action Drafted</span>` : ""}
+          </div>
+        </div>`:""}
     </div>`;
 }
+function setComplianceAction(i, val){
+  toolState.c6audit.actions[i] = val;
+  const counterEl = document.getElementById(`caActionCounter${i}`);
+  if(counterEl){
+    const min = 250;
+    counterEl.textContent = `Character Limit: ${val.length} / ${min} min`;
+    counterEl.style.color = val.length>=min ? "var(--navy)" : "var(--ink-soft)";
+  }
+}
+window.setComplianceAction = setComplianceAction;
 function setComplianceVerdict(i, verdict){
   toolState.c6audit.verdicts[i] = verdict;
   if(verdict!=="issue") delete toolState.c6audit.risks[i];
@@ -12223,6 +12332,9 @@ async function checkComplianceAudit(){
   if(unhandled>0){ toast(`Classify all 15 cases first (${unhandled} left).`); return; }
   const needsRisk = COMPLIANCE_AUDIT_CASES.filter((_,i)=>ca.verdicts[i]==="issue" && !ca.risks[i]).length;
   if(needsRisk>0){ toast(`Pick a risk level for each flagged case (${needsRisk} left).`); return; }
+  const ACTION_MIN = 250;
+  const needsAction = COMPLIANCE_AUDIT_CASES.filter((_,i)=>ca.verdicts[i]==="issue" && (ca.actions[i]||"").length < ACTION_MIN).length;
+  if(needsAction>0){ toast(`Write a Proposed Next Action (${ACTION_MIN}+ characters) for each flagged case (${needsAction} left).`); return; }
 
   // Points per the provided scoring breakdown: each specific issue type earns
   // its designated points when correctly flagged; a separate risk-classification
@@ -12267,18 +12379,29 @@ async function checkComplianceAudit(){
 window.checkComplianceAudit = checkComplianceAudit;
 
 async function reviewComplianceAuditResponse(){
-  const val = document.getElementById("complianceAuditWritten").value.trim();
+  const ca = toolState.c6audit;
+  const flaggedCases = COMPLIANCE_AUDIT_CASES.filter((c,i)=>ca.verdicts[i]==="issue");
   const resultEl = document.getElementById("complianceAuditWrittenResult");
-  if(val.length < 20){ toast("Write out your escalation pathway and preventive control recommendation first."); return; }
-  resultEl.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
+  if(!flaggedCases.length){ toast("Flag at least one case as an issue and write a Proposed Next Action for it first."); return; }
+  const ACTION_MIN = 250;
+  const missing = COMPLIANCE_AUDIT_CASES.filter((c,i)=>ca.verdicts[i]==="issue" && (ca.actions[i]||"").length < ACTION_MIN).length;
+  if(missing>0){ toast(`Write a Proposed Next Action (${ACTION_MIN}+ characters) for each flagged case first (${missing} left).`); return; }
+  if(!(await useLabAttempt(6, "reviewComplianceAuditResponse"))) return;
+
+  const actionsText = COMPLIANCE_AUDIT_CASES.map((c,i)=> ca.verdicts[i]==="issue"
+    ? `Case ${c.id} (${c.jurisdiction} · ${c.matterType}) — flagged ${ca.risks[i] || "unclassified"} risk:\n"${ca.actions[i]}"`
+    : null
+  ).filter(Boolean).join("\n\n");
+
+  resultEl.innerHTML = `<div class="ai-loading">Reviewing your proposed actions…</div>`;
   try{
     const report = await runRubricEvaluation(
-      "Compliance Audit — Escalation Pathway & Preventive Control",
-      `The trainee just completed a 15-case compliance audit simulation. The most severe findings were: a missing notary seal on an Illinois will (CRITICAL — a validity risk that becomes uncorrectable after the testator's death), a wrong jurisdictional form used on a Florida complaint (HIGH), and two missed deadlines (HIGH). The trainee is now asked to name a real escalation pathway for the most severe finding, and recommend one concrete preventive control that would stop this class of error from recurring.`,
-      val,
-      `Did they correctly identify the missing notarization as the single most severe finding (not just list findings without prioritizing)? Is the escalation pathway specific — who gets notified, how fast, and why that's the right chain — rather than a vague "escalate to a supervisor"? Is the preventive control concrete and actually preventive (e.g. a notarization checklist step built into the filing SOP) rather than a generic "be more careful" statement?`
+      "Compliance Audit — Proposed Next Actions",
+      `The trainee just completed a 15-case compliance audit simulation and flagged ${flaggedCases.length} case(s) as having an issue. For each flagged case, they wrote a Proposed Next Action using the BLUF standard. Here are their proposed actions:\n\n${actionsText}`,
+      actionsText,
+      `Escalation Accuracy — for each case, did they identify the correct primary contact (e.g. notifying Elias Thorne for an internal/financial matter vs. contacting the state authority directly for a filing issue), matched to the actual case detail rather than a generic "notify someone"? BLUF Framing — is each action direct, actionable, and outcome-first, rather than burying the actual next step in background explanation? Risk Containment — does each proposed action actually mitigate the immediate legal or financial liability the case describes (e.g. an amended filing for a form error, an urgent cure request for a missed deadline), rather than a vague "look into it" response?`
     );
-    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Escalation & Prevention</b>` + renderEvaluationReport(report, 6);
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Proposed Next Actions</b>` + renderEvaluationReport(report, 6);
     await bumpPracticeProgress("projectcompliance6", report.totalScore);
   }catch(e){
     resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
@@ -15248,7 +15371,7 @@ const DAY6_CRISIS_SCENARIOS = [
     title:"License Lapse, Mid-Meeting",
     setup:"You're in a client meeting with Elias when a compliance alert lands in your inbox: the firm's D.C. bar registration lapsed two days ago and nobody caught it. Elias steps out to take the call from you.",
     stakes:"He has to walk back into that meeting in 90 seconds. He needs to know whether this is a real problem for the current matter or a paperwork delay he can ignore until after the meeting.",
-    script:`OPENING LINE (client, played live, low and urgent): "What is it. I have ninety seconds."
+    script:`OPENING LINE (client, played live, low and urgent): "I'm in the middle of presenting to opposing counsel and our Zoom just cut out saying our enterprise license expired. Everyone is sitting in an empty waiting room. Get us back online immediately!"
 FOLLOW-UP PRESSURE: "Is this going to blow up the matter I'm sitting in right now, yes or no?"
 CURVEBALL: "Who let this happen, and why am I hearing about it from you instead of already having it fixed?"`,
     objective:{
@@ -16520,7 +16643,7 @@ window.downloadInsurance5Pdf = downloadInsurance5Pdf;
 
 function initProjectCompliance6(body){
   toolState.c6 = {license:{}, kpi:{}, recoveryReport:null};
-  toolState.c6audit = {verdicts:{}, risks:{}};
+  toolState.c6audit = {verdicts:{}, risks:{}, actions:{}};
   toolState.c6cr = {activeScenario: DAY6_CRISIS_SCENARIOS[0].id, chatHistory:[{role:"client", text: DAY6_CRISIS_SCENARIOS[0].script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
   toolState.wizardIndex = 0;
   const partA = `
@@ -16602,10 +16725,9 @@ function initProjectCompliance6(body){
     <div id="complianceAuditQueue">${renderComplianceAuditQueue()}</div>
     <button class="btn btn-primary" style="margin-top:6px;" onclick="checkComplianceAudit()">Check My Audit</button>
     <div id="complianceAuditResult"></div>
-    <h3 style="margin:28px 0 6px;color:var(--navy);font-size:15px;">Escalation & Prevention</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Once you've completed the case review: name the single most severe finding, describe the real escalation pathway for it (who, how fast, why), and recommend one concrete preventive control that would stop this class of error from recurring.</p>
-    <textarea id="complianceAuditWritten" style="width:100%;min-height:140px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Most severe finding: ...&#10;&#10;Escalation pathway: ...&#10;&#10;Preventive control recommendation: ..."></textarea>
-    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewComplianceAuditResponse()">Get AI Feedback</button>
+    <h3 style="margin:28px 0 6px;color:var(--navy);font-size:15px;">Get Feedback on Your Proposed Actions</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Once every flagged case has a Proposed Next Action written above, get AI feedback on all of them together — graded on Escalation Accuracy, BLUF Framing, and Risk Containment.</p>
+    <button class="btn btn-navy btn-sm" onclick="reviewComplianceAuditResponse()">Get AI Feedback on My Actions</button>
     <div id="complianceAuditWrittenResult" style="margin-top:14px;"></div>
   `;
   body.innerHTML = renderToolWizard(6, [
@@ -16685,9 +16807,20 @@ async function downloadProjectCompliance6Pdf(){
   });
   lines.push("---", "## C. Recovery & Escalation Memo", `Scenario: ${TRIAL_RECOVERY_SCENARIO.text}`, `Your message: ${document.getElementById("c6RecoveryReply").value.trim()||"(not written)"}`);
   if(c6.recoveryReport) lines.push("", "AI Feedback:", c6.recoveryReport);
+  const ca = toolState.c6audit;
+  if(ca && Object.keys(ca.verdicts||{}).length){
+    lines.push("---", "## E. 15-Case Compliance Audit Simulation");
+    COMPLIANCE_AUDIT_CASES.forEach((c,i)=>{
+      const verdict = ca.verdicts[i] || "(not answered)";
+      lines.push(`Case ${c.id} (${c.jurisdiction} · ${c.matterType}) — your call: ${verdict}${verdict==="issue" ? `, risk: ${ca.risks[i]||"(not set)"}` : ""}`);
+      if(verdict==="issue") lines.push(`  Proposed Next Action: ${ca.actions[i]||"(not written)"}`);
+    });
+  }
   buildAndSavePdf("LSH EA / PA Upskill Program", "Business Compliance & Project Recovery — Results", lines, "LSH_Project_Compliance");
 }
 window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
+
+
 
 
 </script>
