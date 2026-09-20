@@ -2150,12 +2150,6 @@ const DAY2 = {
   "lessons": [
     {
       "h": "Before You Begin: AI Use in the Legal Industry",
-      "callout": {
-        "type": "warning",
-        "prominent": true,
-        "label": "Read before using AI in this program",
-        "text": "Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval."
-      },
       "b": [
         "This isn't a one-time rule to memorize and move past — it's the frame every AI topic in this program sits inside. What follows will show you how AI can genuinely help, but every technique still has to clear the standard set here first.",
         "Firm and attorney preference comes first: some attorneys are comfortable with AI-assisted drafting, others aren't, and some restrict it to narrow, specific uses. Know the actual preference for the specific attorney and matter you're working on — never assume based on what a different attorney or a different firm allows.",
@@ -10656,14 +10650,15 @@ function renderLessonCard(l,i,d,unused,part){
   // Explicit, hand-authored fourPart content (simple string/array shape) takes
   // priority for new topics. Existing topics without it fall back to the
   // tested automatic derivation from their visual/bullets/example data.
+  // The Applied Discussion Case (section 4) is admin-only facilitation
+  // content — it never renders in the trainee-facing part of the card.
   let corePrinciplesHtml, howToHtml, bestPracticesHtml, discussionHtml;
-  let derivedTrainerDiscussionPrompt = null; // admin-only "discuss with the room" version, only set when the trainee side used the generic fallback (no real example/table)
   if(l.fourPart){
     const fp = l.fourPart;
     corePrinciplesHtml = fp.corePrinciples && fp.corePrinciples.length ? `<ul>${fp.corePrinciples.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "";
     howToHtml = fp.howTo && fp.howTo.length ? `<ol class="fp-howto-list">${fp.howTo.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>` : "";
     bestPracticesHtml = fp.bestPractices && fp.bestPractices.length ? `<ul>${fp.bestPractices.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "";
-    discussionHtml = fp.discussionCase ? `<p class="fp-discussion-prompt">${esc(fp.discussionCase)}</p>` : "";
+    discussionHtml = fp.discussionCase ? `<p>${esc(fp.discussionCase)}</p>` : "";
   }else{
     const fp = deriveFourPartStructure(l);
     corePrinciplesHtml = fp.corePrinciples.visualHtml ||
@@ -10678,14 +10673,13 @@ function renderLessonCard(l,i,d,unused,part){
     if(fp.discussionCase.example) discussionParts.push(renderExample(fp.discussionCase.example));
     if(fp.discussionCase.table) discussionParts.push(renderTable(fp.discussionCase.table));
     if(!discussionParts.length){
-      discussionParts.push(`<p class="fp-discussion-prompt">Reflect: describe a real situation from your own work (or a hypothetical one) where "${esc(l.h)}" would directly apply — what would you actually do?</p>`);
-      derivedTrainerDiscussionPrompt = `Ask the room to discuss: has anyone run into a real situation where "${l.h}" applied? Have a volunteer walk through what they actually did.`;
+      discussionParts.push(`<p>Ask the room to discuss: has anyone run into a real situation where "${esc(l.h)}" applied? Have a volunteer walk through what they actually did.</p>`);
     }
     discussionHtml = discussionParts.join("");
   }
 
   const partAHtml = renderFourPartSection(1, "Core Principles", corePrinciplesHtml) + renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml);
-  const partBHtml = renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml) + renderFourPartSection(4, "Applied Discussion Case", discussionHtml);
+  const partBHtml = renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml);
   const p = (part===2) ? 2 : 1;
 
   return `
@@ -10693,11 +10687,11 @@ function renderLessonCard(l,i,d,unused,part){
     <div class="card lesson-card">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
       ${p===1 ? partAHtml : partBHtml}
-      ${(l.trainerCue || derivedTrainerDiscussionPrompt) && state.isAdmin && p===2 ?`
+      ${(l.trainerCue || discussionHtml) && state.isAdmin && p===2 ?`
       <div class="trainer-checkpoint">
         <div class="tc-tag">🧑‍🏫 Trainer Cue</div>
         ${l.trainerCue ? `<p>${esc(l.trainerCue)}</p>` : ""}
-        ${derivedTrainerDiscussionPrompt ? `<p>${esc(derivedTrainerDiscussionPrompt)}</p>` : ""}
+        ${discussionHtml ? `<div style="margin-top:${l.trainerCue?'10px':'0'};"><b style="font-size:11.5px;color:var(--navy);display:block;margin-bottom:4px;">Applied Discussion Case</b>${discussionHtml}</div>` : ""}
       </div>` : ""}
     </div>`;
 }
@@ -13863,6 +13857,151 @@ const SOP_DATA = [
         "Escalating potential privilege breaches in email chains.",
         "Noticing inconsistencies between settlement drafts and term sheets.",
         "Identifying conflicts of interest from client intake information."
+      ]}
+    ]
+  },
+  {
+    id: 3,
+    title: "Time, Calendar & Travel Management",
+    introduction: "Welcome to LSH EA PA Upskill Training Day 3. My name is ___ and I am your upskill coach.",
+    objectives: [
+      "Apply prioritization frameworks to resolve competing demands on the executive's time.",
+      "Build and defend a calendar that holds up under real-world pressure, not just on paper.",
+      "Plan and execute complex, multi-leg travel itineraries with built-in contingency for the disruptions that always happen."
+    ],
+    discussionInfo: { duration: "Approximately 1-2 hours", ppt: "EA PA Day 3", canvaLabel: "EA PA Day 3", video: "Video Discussion EA PA Day 3" },
+    topics: [
+      "Prioritization Frameworks & Time Tracking",
+      "Calendar Management That Holds Under Pressure",
+      "Energy Management vs. Time Management",
+      "Handling Interruptions Without Losing the Day",
+      "Weekly Planning & the Cost of Context-Switching",
+      "Recurring Meeting Hygiene & Buffer Time",
+      "Time Zone Management & Multi-Calendar Coordination",
+      "International Travel Planning End-to-End",
+      "Travel Risk Contingency & Ground Transportation",
+      "The Weekly Time Audit & Setting Realistic Deadlines"
+    ],
+    sections: [
+      { h: "Why Time Management Alone Isn't Enough", type: "paragraph", text: "A perfectly clean calendar can still fail an executive if it doesn't account for energy, interruptions, and real-world disruption. Today's session treats calendar management as a system that has to survive contact with a real day — not just a tidy static artifact." },
+      { h: "Prioritization Frameworks", type: "bullets", items: [
+        "The Eisenhower Matrix: sort every incoming task by urgent/important, not just by who asked or how loudly.",
+        "Time-blocking: protect deep-work windows on the calendar itself, not just tasks in a to-do list.",
+        "The 80/20 lens: identify which 20% of tasks are actually driving the executive's outcomes this week."
+      ]},
+      { h: "Time Tracking Done Right", type: "bullets", items: [
+        "Track time at the category level (meetings, deep work, admin, travel), not just a raw hours log — categories are what make a time audit actionable.",
+        "Log in real time or same-day; reconstructing a week from memory produces unreliable data.",
+        "The point of tracking isn't surveillance — it's finding where the calendar's stated priorities and the actual time spent diverge."
+      ]},
+      { h: "When Time Management Fails Despite a Clean Calendar", type: "paragraph", text: "A common failure mode: the calendar looks perfectly organized, but the executive is still overwhelmed. This almost always means the calendar is tracking commitments, not capacity — it has no buffer, no accounting for energy level, and no room for the inevitable unplanned item." },
+      { h: "Calendar Management That Holds", type: "bullets", items: [
+        "Every meeting on the calendar should have a stated purpose — an unclear meeting purpose is the first thing to question before accepting an invite on the executive's behalf.",
+        "Default to shorter meetings (25/50 minutes instead of 30/60) to build in natural buffer between commitments.",
+        "Batch similar meeting types on the same day where possible, rather than scattering one-on-ones, external calls, and internal reviews across every day of the week."
+      ]},
+      { h: "Calendar Conflict & Prioritization Discipline", type: "paragraph", text: "When two commitments collide, the EA/PA's job is not to silently pick one — it's to surface the conflict with enough context that the executive (or the EA/PA, if pre-authorized) can make a real trade-off decision, fast." },
+      { h: "Resolving a Genuine Conflict — the Script", type: "bullets", items: [
+        "State both commitments and their real stakes in one sentence each.",
+        "Recommend a specific resolution, don't just present the conflict and wait.",
+        "Confirm the resolution back to both parties in writing, same day."
+      ]},
+      { h: "Energy Management vs. Time Management", type: "bullets", items: [
+        "Time management asks \"is this slot free?\" — energy management asks \"is this the right slot for this kind of work?\"",
+        "Protect the executive's highest-focus hours for their highest-stakes work, not whatever request came in first.",
+        "A calendar that's technically full but energy-mismatched still produces poor decisions and missed details."
+      ]},
+      { h: "Handling Interruptions Without Losing the Day", type: "bullets", items: [
+        "Distinguish a genuine interruption (something that changes today's plan) from a request that can wait for the next natural check-in.",
+        "Keep a running \"parking lot\" for non-urgent items that surface mid-task, so they're captured without breaking focus.",
+        "After any real interruption, explicitly re-confirm what's still on track for the day rather than assuming."
+      ]},
+      { h: "The Two-Minute Rule", type: "paragraph", text: "If a task genuinely takes two minutes or less, do it immediately rather than logging it for later — the overhead of tracking it exceeds the cost of just finishing it. Anything longer gets scheduled or delegated, not done reactively." },
+      { h: "Weekly Planning Rituals", type: "bullets", items: [
+        "Set aside a fixed weekly block (same day, same time) to review the coming week's calendar for conflicts, gaps, and prep needs before the week starts, not during it.",
+        "Confirm the top 3 priorities for the week with the executive before Monday, so daily triage has a clear reference point."
+      ]},
+      { h: "Saying No Without Damaging Relationships", type: "bullets", items: [
+        "Decline on behalf of the executive with a reason and an alternative, never a bare no.",
+        "Example: \"The executive can't join Thursday's call, but I can get you 15 minutes Friday morning if that works.\""
+      ]},
+      { h: "Batch Processing Similar Tasks", type: "bullets", items: [
+        "Group similar small tasks (expense approvals, short replies, scheduling requests) into one focused block rather than handling them as they trickle in.",
+        "Batching reduces the number of times you have to mentally switch categories of work, which is where the real time loss happens."
+      ]},
+      { h: "The Cost of Context-Switching", type: "paragraph", text: "Every switch between unrelated types of work — from a legal filing question to a personal travel request to a board deck — carries a real refocusing cost, not just the minutes the interruption itself takes. Protecting blocks of same-category work is a genuine productivity lever, not a nice-to-have." },
+      { h: "Recurring Meeting Hygiene", type: "bullets", items: [
+        "Audit standing meetings quarterly — a recurring meeting that's lost its original purpose should be shortened, merged, or cancelled, not left on the calendar by default.",
+        "Every recurring meeting needs a clear owner and agenda; if neither exists, that's the first thing to flag."
+      ]},
+      { h: "Buffer Time Between Meetings", type: "bullets", items: [
+        "Never schedule back-to-back meetings with zero gap for an executive who needs prep time, travel time between locations, or simply a moment to reset.",
+        "Buffer is not wasted time — it's what prevents every day from running late by the afternoon."
+      ]},
+      { h: "Time Zone Management for Distributed Teams", type: "bullets", items: [
+        "Always display meeting times in the executive's local time zone by default, and confirm the other party's zone explicitly when scheduling across regions.",
+        "Watch for daylight saving transitions — a meeting that was correct last week can silently shift by an hour."
+      ]},
+      { h: "Calendar Blocking for Deep Work", type: "bullets", items: [
+        "Block real, protected time for focus work the same way you'd block a client meeting — an unprotected block gets overwritten by the next incoming request.",
+        "Label deep-work blocks clearly enough that other staff know not to book over them without checking first."
+      ]},
+      { h: "Handling Last-Minute Calendar Changes", type: "bullets", items: [
+        "Confirm the change with all affected parties immediately, not just internally — a silent reschedule creates more problems than the original conflict.",
+        "Always check what the change displaces before confirming it; a last-minute yes to one request can silently break another commitment."
+      ]},
+      { h: "Multi-Calendar Coordination", type: "paragraph", text: "Executives with both business and personal calendars, or who work across multiple entities, need those calendars overlaid — not managed in isolation — so a personal commitment and a business commitment are never accidentally double-booked against each other." },
+      { h: "International Travel Considerations", type: "bullets", items: [
+        "Confirm visa and passport validity requirements for every destination well before booking — some countries require 6 months of passport validity beyond the travel dates.",
+        "Check destination-specific documentation requirements (visas, health declarations, business invitation letters) early enough to resolve any issue before departure."
+      ]},
+      { h: "Visa & Documentation Requirements", type: "table", headers: ["Document", "Lead Time", "Owner"], rows: [
+        ["Passport validity check", "60+ days before travel", "EA/PA"],
+        ["Visa application (if required)", "30-45 days before travel", "EA/PA, executive signs"],
+        ["Business invitation letter", "As required by destination", "EA/PA drafts, executive/firm signs"]
+      ]},
+      { h: "Managing Multi-City, Multi-Leg Itineraries", type: "bullets", items: [
+        "Build in realistic connection buffers between legs — never book the minimum legal connection time for an executive itinerary.",
+        "Sequence the itinerary around the executive's actual obligations at each stop, not just the cheapest or fastest routing."
+      ]},
+      { h: "Ground Transportation Coordination", type: "bullets", items: [
+        "Confirm ground transport is booked and confirmed at every leg before departure — arriving to no car is a preventable failure.",
+        "Always have a backup ground transport option on file for high-stakes trips (trial weeks, closings, board meetings)."
+      ]},
+      { h: "Loyalty Programs & Travel Preferences", type: "bullets", items: [
+        "Maintain a standing preference sheet (airline, seat, hotel chain, dietary, room type) so it never has to be re-collected for each trip.",
+        "Apply loyalty numbers to every booking automatically — this is a small detail that meaningfully affects the executive's travel experience."
+      ]},
+      { h: "Building a Real Travel Checklist", type: "bullets", items: [
+        "Itinerary confirmed and shared 48+ hours ahead.",
+        "Ground transportation confirmed at every leg.",
+        "Documents (passport, visa, invitation letters) verified.",
+        "Emergency contact and backup plan on file for the trip."
+      ]},
+      { h: "Travel Risk Contingency Planning", type: "paragraph", text: "Every high-stakes trip — especially trial-week or deposition travel — needs a contingency plan built in before departure, not improvised after a flight cancels. That means knowing the next available flight options, having a backup hotel or ground transport on file, and knowing who to notify immediately if the itinerary breaks." },
+      { h: "Handling a Canceled or Delayed Flight — the Script", type: "bullets", items: [
+        "Immediately check rebooking options across all reasonably nearby airports, not just the original one.",
+        "Notify everyone downstream of the disruption (co-counsel, court, meeting host) before they have to ask.",
+        "Confirm the revised arrival time in writing to the executive with the new plan, not just \"working on it.\""
+      ]},
+      { h: "Crisis Travel Protocol — Weather, Cancellations & Delays", type: "table", headers: ["Disruption", "Immediate Action", "Who to Notify"], rows: [
+        ["Flight canceled", "Rebook on next available across nearby airports", "Executive, any waiting party at destination"],
+        ["Severe weather delay", "Monitor and pre-stage a backup routing", "Executive, ground transport at destination"],
+        ["Missed connection", "Secure hotel + rebooking simultaneously", "Executive, next-day meeting contacts"]
+      ]},
+      { h: "War Room & Trial Support Travel Logistics", type: "bullets", items: [
+        "Out-of-state deposition or trial travel requires the same discipline as executive travel, with added coordination for co-counsel, court reporters, and exhibit materials.",
+        "Confirm the war room / hotel block logistics (Wi-Fi, printing, conference space) days ahead, not the morning of arrival.",
+        "Keep a single point of contact on file for the local venue in case anything needs same-day resolution."
+      ]},
+      { h: "Post-Trip Debrief & Follow-Up", type: "bullets", items: [
+        "Log what actually happened on the trip (delays, issues, what worked) so the next itinerary for this executive improves rather than repeats the same problem.",
+        "Reconcile travel expenses and receipts within a set window after return, not left to accumulate."
+      ]},
+      { h: "The Weekly Time Audit", type: "paragraph", text: "Close every week by comparing planned time allocation against what actually happened — this is where prioritization frameworks, calendar discipline, and travel logistics all get checked against reality, and where next week's plan gets corrected." },
+      { h: "Setting Realistic Deadlines", type: "bullets", items: [
+        "Build in buffer before committing a deadline on the executive's behalf — an optimistic deadline that slips damages trust more than a realistic one set further out.",
+        "When a deadline is genuinely fixed and tight (a court date, a filing window), flag that explicitly rather than treating it like a normal target."
       ]}
     ]
   }
