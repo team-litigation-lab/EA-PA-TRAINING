@@ -182,20 +182,21 @@ button{font-family:inherit;cursor:pointer;}
   background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
   box-shadow:var(--shadow);display:flex;flex-direction:column;
   transition:transform .18s ease, box-shadow .18s ease;
+  height:520px;
 }
 .module-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px -12px rgba(38,43,69,.28);}
 .module-banner{
-  height:110px;display:flex;align-items:center;justify-content:center;font-size:42px;position:relative;
+  height:110px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:42px;position:relative;
   background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
 }
 .module-card:nth-child(3n+2) .module-banner{background:linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);}
 .module-card:nth-child(3n+3) .module-banner{background:linear-gradient(135deg, var(--navy-soft) 0%, var(--navy) 100%);}
 .module-card .module-lock{position:absolute;inset:0;background:rgba(22,24,41,.55);display:flex;align-items:center;justify-content:center;font-size:26px;}
-.module-body{padding:14px 16px 8px;flex:1;display:flex;flex-direction:column;}
-.module-body .mnum{font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--orange-deep);font-weight:700;letter-spacing:.04em;margin-bottom:4px;}
-.module-body p{font-size:var(--font-body);color:var(--ink);line-height:1.4;margin:0 0 6px;}
+.module-body{padding:14px 16px 8px;flex:1;display:flex;flex-direction:column;min-height:0;}
+.module-body .mnum{font-family:'IBM Plex Mono';font-size:var(--font-sub);color:var(--orange-deep);font-weight:700;letter-spacing:.04em;margin-bottom:4px;flex-shrink:0;}
+.module-body p{font-size:var(--font-body);color:var(--ink);line-height:1.4;margin:0 0 6px;flex-shrink:0;}
 .module-body p b{color:var(--navy);}
-.module-topic-list{list-style:none;margin:0;padding:0;flex:1;}
+.module-topic-list{list-style:none;margin:0;padding:0 4px 0 0;flex:1;min-height:0;overflow-y:auto;}
 .module-topic-list li{
   font-size:var(--font-sub);color:#37394A;line-height:1.45;margin-bottom:5px;padding-left:14px;position:relative;
 }
@@ -204,7 +205,7 @@ button{font-family:inherit;cursor:pointer;}
 }
 .module-lab-uses{
   font-size:var(--font-sub);color:var(--orange-deep);font-weight:600;
-  margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
+  margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);flex-shrink:0;
 }
 .module-start-btn{
   margin:0 16px 16px;width:calc(100% - 32px);justify-content:center;padding:10px;font-weight:700;
