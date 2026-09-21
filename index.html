@@ -11051,7 +11051,7 @@ function renderTopbar(){
       <div class="topbar-right">
         <div class="topbar-search">
           <span class="sicon">🔍</span>
-          <input type="text" id="topSearchInput" placeholder="Search days, topics, tools…" value="${esc(state.searchQuery||'')}" oninput="setTopSearch(this.value)" onkeydown="if(event.key==='Escape') clearTopSearch();">
+          <input type="text" id="topSearchInput" name="topSearchInput" autocomplete="off" placeholder="Search days, topics, tools…" value="${esc(state.searchQuery||'')}" oninput="setTopSearch(this.value)" onkeydown="if(event.key==='Escape') clearTopSearch();">
           ${state.searchQuery ? `<div class="search-results" id="searchResultsWrap">${renderSearchResults(state.searchQuery)}</div>` : ""}
         </div>
         <div class="nav">
