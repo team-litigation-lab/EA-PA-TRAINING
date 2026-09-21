@@ -367,7 +367,7 @@ main{flex:1;max-width:1120px;margin:0 auto;padding:36px 24px 80px;width:100%;ani
   color:var(--orange);background:var(--navy);padding:5px 12px;border-radius:14px;margin:26px 0 10px;
 }
 .lesson-grid>.topic-separator:first-child{margin-top:0;}
-.lesson-card h4{margin:0 0 10px;font-size:18px;color:var(--navy);display:flex;gap:10px;align-items:baseline;}
+.lesson-card h4{margin:0 0 10px;font-size:24px;color:var(--navy);display:flex;gap:10px;align-items:baseline;}
 .lesson-card h4 .lnum{font-family:'IBM Plex Mono';font-size:var(--font-body);color:var(--orange-deep);}
 .lesson-card ul{margin:0;padding:0;list-style:none;}
 .lesson-card li{
@@ -4147,6 +4147,132 @@ const DAY4 = {
         ],
         "discussionCase": "A client you closed three months ago hasn't been contacted since — no follow-up was ever logged. They just emailed with a question that suggests they might be considering a competitor. What's your actual first move: respond to the immediate question only, or use this as an opening to rebuild the relationship? What would you say?"
       }
+    },
+    {
+      "h": "CRM Software Fundamentals",
+      "fourPart": {
+        "corePrinciples": [
+          "A CRM is only as good as what actually gets entered into it — the tool itself doesn't create discipline, the person using it does.",
+          "Every CRM organizes around the same core objects regardless of vendor: contacts, deals/opportunities, and activities — learn those three concepts once and most platforms become navigable.",
+          "The CRM should be the single source of truth for a lead's status — if the real status lives in someone's memory or a side spreadsheet instead, the CRM has already failed its purpose."
+        ],
+        "howTo": [
+          "Before touching a new CRM, map its pipeline stages against your actual sales process — a mismatched pipeline produces meaningless reports later.",
+          "Set up one custom field for anything you're tracking that the default fields don't cover, rather than jamming that information into a notes field where it can't be searched or reported on.",
+          "Use the CRM's built-in reminder/task features instead of a separate to-do list — a second, parallel tracking system is exactly what causes things to fall through."
+        ],
+        "bestPractices": [
+          "Pitfall: letting duplicate contact records accumulate — always search before creating a new contact, since duplicates silently fragment a person's history across two records.",
+          "Keep deal stages honest — moving a deal forward because you want it to happen, not because it actually has, corrupts every forecast built on that pipeline.",
+          "Run a monthly data-hygiene pass: stale deals with no activity in 60+ days should be closed out or explicitly reactivated, not left open indefinitely."
+        ],
+        "discussionCase": "You inherit a CRM from a previous assistant with 40 open deals, most untouched in months. Elias asks for an accurate pipeline forecast by end of day. What's your actual triage process for turning that mess into a number you can stand behind?"
+      }
+    },
+    {
+      "h": "Email Outreach Sequencing & Follow-Up Cadence",
+      "fourPart": {
+        "corePrinciples": [
+          "A single outreach email rarely gets a response — the follow-up sequence is where most real replies actually come from, not the first touch.",
+          "A good sequence adds new information or a new angle at each step; simply repeating \"just following up\" gives the recipient no new reason to respond.",
+          "There's a real point of diminishing returns — a sequence that goes on too long or too aggressively damages the relationship it's trying to build."
+        ],
+        "howTo": [
+          "Space follow-ups out (typically 3-5 business days apart), not daily — daily follow-ups read as pressure, not persistence.",
+          "Vary the angle at each touch: the first email states the offer, the second adds a relevant proof point, the third asks a genuine, low-pressure question rather than repeating the ask.",
+          "Build in a clear final message that explicitly closes the loop (\"I'll leave this here unless I hear from you\") rather than letting the sequence just quietly stop."
+        ],
+        "bestPractices": [
+          "Pitfall: sending the exact same message repeatedly — recipients notice, and it reads as automated rather than personal, even when it's genuinely written by a person.",
+          "Track reply rate by sequence step, not just overall — this tells you which step in the sequence is actually doing the work and which ones are dead weight.",
+          "Always leave an easy, low-friction way to opt out of further contact — a recipient who can't easily say no becomes a complaint, not a lead."
+        ],
+        "discussionCase": "A prospect opened your first three emails (tracked) but never replied. Your sequence has one email left. What do you actually say in that final message, and what would make you decide to extend the sequence instead of closing it out?"
+      }
+    },
+    {
+      "h": "Handling Sales Objections Beyond the Script",
+      "fourPart": {
+        "corePrinciples": [
+          "A scripted objection response only works when the objection matches the script exactly — real conversations rarely stay on script, so the underlying skill is diagnosing what the objection actually means.",
+          "Most objections are really one of three things in disguise: not enough information, not enough trust, or genuinely not the right timing — treating all three the same way loses deals that were actually winnable.",
+          "Pushing past a real \"no\" damages the relationship for any future opportunity; the skill is distinguishing a real no from a reflexive one."
+        ],
+        "howTo": [
+          "When an objection lands, ask one clarifying question before responding — reacting to the surface objection before understanding it usually answers the wrong concern.",
+          "Acknowledge the objection specifically before addressing it (\"that makes sense given...\") rather than immediately pivoting into a rebuttal, which reads as not having listened.",
+          "If the real issue is timing, not fit, get a specific date to follow back up rather than leaving it as a vague \"maybe later.\""
+        ],
+        "bestPractices": [
+          "Pitfall: treating every objection as something to overcome — sometimes an objection is accurate information that the offer genuinely isn't the right fit right now.",
+          "Never argue with a prospect's stated concern, even when you believe it's mistaken — correct the information, don't contest their right to have the concern.",
+          "Log the actual objection language in the CRM, not just \"objected\" — the specific wording helps refine outreach messaging over time."
+        ],
+        "discussionCase": "A prospect says \"we already have a vendor for this.\" That could mean they're happy, locked into a contract, or just being polite to end the call. What's your actual next question, and how does the answer change your approach?"
+      }
+    },
+    {
+      "h": "Pipeline Reporting & Forecasting Basics",
+      "fourPart": {
+        "corePrinciples": [
+          "A pipeline report is only useful if the underlying deal stages reflect reality — a forecast built on outdated or overly optimistic stage assignments will be wrong in a predictable direction.",
+          "Forecasting isn't about guessing the future — it's about applying a consistent, honest probability to what's actually in the pipeline right now.",
+          "A weekly pipeline review catches drift (deals that should have moved stages, or should have been closed out) before it distorts the whole forecast."
+        ],
+        "howTo": [
+          "Assign a realistic close probability to each deal stage (not every deal at 50%) based on what's actually happened historically at that stage, not optimism.",
+          "Separate \"committed\" from \"best case\" in any forecast you report upward — conflating the two sets someone up to be surprised later.",
+          "Flag any deal that's been stuck in the same stage far longer than typical — that's usually a sign it needs direct attention, not just continued tracking."
+        ],
+        "bestPractices": [
+          "Pitfall: reporting a pipeline total without any probability weighting — a raw sum of all open deal values wildly overstates what's actually likely to close.",
+          "Never let a single large deal dominate the forecast narrative without flagging its actual risk level explicitly.",
+          "Keep the reporting cadence consistent (same day, same format, weekly) — inconsistent reporting makes trend comparison meaningless."
+        ],
+        "discussionCase": "Elias asks for this quarter's realistic revenue forecast from the pipeline you manage. Two deals make up 60% of the raw total, and both are still in early stages. How do you actually present this number so it's useful, not misleading?"
+      }
+    },
+    {
+      "h": "Data Hygiene & Deduplication",
+      "fourPart": {
+        "corePrinciples": [
+          "Duplicate or stale records aren't a cosmetic problem — they fragment a contact's history across multiple entries, so no one sees the full picture of past interactions.",
+          "Data decays on its own: job changes, email changes, and company moves happen constantly, so a contact list that's never audited becomes less accurate every month by default.",
+          "The cost of bad data compounds — every outreach sent to a stale contact wastes effort and can damage deliverability for future campaigns."
+        ],
+        "howTo": [
+          "Before adding a new contact, search by name, company, and email domain — not just exact name match — to catch likely duplicates that a simple search would miss.",
+          "When merging duplicate records, preserve the complete interaction history from both, don't just keep the newer record and discard the older one's history.",
+          "Run a periodic bounce/unsubscribe cleanup — remove or flag contacts whose email is confirmed dead rather than continuing to send to them."
+        ],
+        "bestPractices": [
+          "Pitfall: merging duplicates by just deleting the one with less information — always merge forward, preserving everything from both records.",
+          "Standardize data entry format from the start (how names, phone numbers, and company names get entered) — inconsistent formatting is what makes duplicates hard to find later.",
+          "Schedule data hygiene as a recurring task, not a one-time cleanup — untended lists degrade again within months."
+        ],
+        "discussionCase": "You find three separate contact records for what appears to be the same person at the same company, each with different interaction history. How do you verify they're actually the same person before merging, and what do you do if you're not fully certain?"
+      }
+    },
+    {
+      "h": "Outreach Compliance Basics",
+      "fourPart": {
+        "corePrinciples": [
+          "Cold outreach isn't unregulated — email and call outreach are both subject to real compliance rules (like CAN-SPAM for email, and do-not-call and TCPA considerations for phone/text), and violating them carries real legal and financial risk to the firm.",
+          "Compliance requirements vary meaningfully between email, phone, and text outreach — what's required for one channel isn't automatically covered by following the rules for another.",
+          "This is genuinely a case where the specific compliance requirements should be confirmed with the firm's actual policy or counsel, not assumed from general knowledge — the details and penalties change and vary by jurisdiction."
+        ],
+        "howTo": [
+          "Confirm the firm's actual outreach compliance policy before running any new outreach campaign — don't assume the previous campaign's approach was fully compliant just because it ran without incident.",
+          "Always include a working, honored unsubscribe/opt-out mechanism on outreach email, and honor opt-out requests immediately, not on a delay.",
+          "Keep a record of consent or existing-relationship basis for any outreach list you're using — this is what you'd need to show if a complaint were ever raised."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming a purchased or scraped contact list is automatically safe to email — list provenance matters for compliance, not just for outreach quality.",
+          "Never treat an opt-out or do-not-call request as something to interpret narrowly — honor it completely and promptly.",
+          "When in doubt about whether an outreach approach is compliant, escalate and confirm before sending — the cost of asking is far lower than the cost of a violation."
+        ],
+        "discussionCase": "A colleague hands you a contact list from a conference for a new outreach campaign, with no notes on how it was collected. What do you actually need to know before you're comfortable sending to it?"
+      }
     }
   ],
   "quickChecks": [
@@ -5433,6 +5559,229 @@ const DAY6 = {
         ],
         "discussionCase": "During a routine audit, you discover that three different team members are each following a slightly different version of the same filing SOP — none of them realized there was a discrepancy. What does this reveal about the current version control process, and what would you actually change to prevent it from happening again?"
       }
+    },
+    {
+      "h": "Entity Formation Step-by-Step",
+      "fourPart": {
+        "corePrinciples": [
+          "Forming a new legal entity isn't a single filing — it's a sequence: choose the structure, reserve the name, file formation documents with the state, obtain an EIN, then complete the internal governance documents.",
+          "The formation date on paper and the date the entity is actually operational for banking, contracts, and hiring purposes are often different — track both.",
+          "A missed step early in formation (an unfiled initial report, a skipped EIN application) can quietly block later, more urgent actions like opening a bank account or signing a lease."
+        ],
+        "howTo": [
+          "Confirm the entity name is available and not confusingly similar to an existing registered name in that state before filing anything.",
+          "File the formation document itself (Articles of Organization for an LLC, Articles of Incorporation for a corporation) with the correct state agency, then confirm receipt and approval — don't assume filing equals approval.",
+          "Apply for the EIN through the IRS directly once the entity is approved — this is required before a business bank account can be opened.",
+          "Complete the entity's internal governance document (Operating Agreement for an LLC, Bylaws for a corporation) even though it isn't filed with the state — it's what actually governs how the entity runs."
+        ],
+        "bestPractices": [
+          "Pitfall: treating the state filing as the finish line and skipping the EIN or the internal governance document — an entity without an Operating Agreement or Bylaws has no documented internal rules if a dispute ever arises.",
+          "Keep every formation document (filed articles, EIN confirmation letter, initial governance document) in one accessible folder from day one — these get requested repeatedly by banks, lenders, and other counterparties.",
+          "Confirm the registered agent is set up correctly at formation, not as an afterthought — a formation filing with no valid registered agent can be rejected or later flagged."
+        ],
+        "discussionCase": "Elias is forming a new consulting entity and wants to open a business bank account \"as soon as possible.\" The state filing was approved yesterday, but the EIN application hasn't been submitted yet. What do you tell him about the actual sequence and realistic timeline?"
+      }
+    },
+    {
+      "h": "Multi-State Registration & Foreign Qualification",
+      "fourPart": {
+        "corePrinciples": [
+          "An entity is only automatically authorized to do business in the state where it was formed — operating in any other state requires \"foreign qualification,\" a separate registration in that state.",
+          "\"Doing business\" in a state is a legal threshold, not just a physical office — hiring an employee, signing a lease, or maintaining a registered presence can all trigger the requirement.",
+          "Operating in a state without proper foreign qualification puts the entity's ability to enforce contracts and bring lawsuits in that state at risk, on top of potential penalties."
+        ],
+        "howTo": [
+          "Identify every state where the entity has employees, a physical presence, or is otherwise meeting that state's \"doing business\" threshold.",
+          "File a Certificate of Authority (or that state's equivalent) in each state, along with a Certificate of Good Standing from the home state.",
+          "Appoint a registered agent in every state where the entity is foreign-qualified — this is a separate, per-state requirement.",
+          "Track each state's own annual report and franchise tax obligations separately once foreign-qualified there — qualification isn't a one-time task."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming a filing in the home state covers operations everywhere — it doesn't, and this is one of the most common gaps that surfaces during a compliance audit.",
+          "Maintain a single tracker listing every state the entity is qualified in, each state's registered agent, and each state's renewal deadlines — scattered records are how a lapse gets missed."
+        ],
+        "discussionCase": "The firm just hired a remote employee based in a state where the entity has never operated before. What actually needs to happen from a compliance standpoint before that hire's start date, and who needs to be looped in?"
+      }
+    },
+    {
+      "h": "Annual Report & Franchise Tax Deadlines Across Jurisdictions",
+      "fourPart": {
+        "corePrinciples": [
+          "Annual report and franchise tax deadlines are set independently by each state — there is no single, unified due date across a multi-state entity's obligations.",
+          "Missing one state's deadline doesn't just risk a penalty — it can trigger \"Loss of Good Standing,\" which blocks the entity from executing contracts or bringing legal action in that state until reinstated.",
+          "A grace period existing in one state doesn't mean every state offers one — treat each jurisdiction's deadline as hard unless explicitly confirmed otherwise."
+        ],
+        "howTo": [
+          "Build a master compliance calendar listing every state the entity operates in, that state's specific annual report/franchise tax deadline, and the filing method.",
+          "Set a reminder well ahead of each deadline — not on the deadline itself — to leave room to resolve any last-minute issue (a missing document, a payment problem).",
+          "Confirm actual filing acceptance, not just submission — a rejected or incomplete filing that isn't caught can be functionally the same as never filing."
+        ],
+        "bestPractices": [
+          "Pitfall: relying on memory or a single person's calendar for multi-state deadlines — this is exactly the kind of gap that a shared, owned compliance tracker exists to close.",
+          "If a deadline is ever genuinely missed, address it immediately rather than waiting — most states have a reinstatement process, but the entity is exposed the entire time it's not in good standing."
+        ],
+        "discussionCase": "You're auditing the firm's multi-state compliance calendar and find that Delaware's annual report was filed on time, but Texas's franchise report deadline passed three weeks ago with no record of filing. What's your actual first move?"
+      }
+    },
+    {
+      "h": "Business Licensing & Permits",
+      "fourPart": {
+        "corePrinciples": [
+          "Formation with the state and business licensing are two separate systems — being properly formed as an LLC or corporation doesn't automatically grant the licenses or permits needed to actually operate.",
+          "Licensing requirements stack: federal, state, county, and city levels can each impose their own separate requirement depending on the industry and location.",
+          "Operating without a required license exposes the business to fines, forced closure, and in some cases invalidates contracts entered into during the unlicensed period."
+        ],
+        "howTo": [
+          "Identify every license or permit the specific industry and location require — a general business license is often just the starting point, not the whole requirement.",
+          "Track each license's renewal cycle separately, since they rarely all renew on the same schedule.",
+          "Confirm any license tied to a specific individual (a professional license, for example) stays current independently of the business's own licensing."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming a license once obtained never needs attention again — most require periodic renewal, and some require continuing education or reporting to stay active.",
+          "Keep copies of every current license and permit in the same central compliance folder as the entity's formation documents, not scattered by department."
+        ],
+        "discussionCase": "The firm is opening a satellite office in a new city. What licensing and permit questions do you need answered before that office can actually open its doors, and who do you need to ask?"
+      }
+    },
+    {
+      "h": "Operating Agreements & Corporate Bylaws Basics",
+      "fourPart": {
+        "corePrinciples": [
+          "An Operating Agreement (LLC) or Bylaws (corporation) is the entity's internal rulebook — it governs decision-making, ownership changes, and dispute resolution, and it isn't filed with the state.",
+          "Without this document, an entity defaults to that state's generic statutory rules, which are rarely what the actual owners intended.",
+          "This document is what gets requested first if there's ever an internal ownership dispute, a request from a lender, or an investor due-diligence request."
+        ],
+        "howTo": [
+          "Confirm the document explicitly covers ownership percentages, voting rights, how major decisions get approved, and what happens if an owner wants to leave or sell their stake.",
+          "Have the document formally executed by all owners/officers, not just drafted and left unsigned.",
+          "Store the executed original securely and keep it with the rest of the entity's formation records."
+        ],
+        "bestPractices": [
+          "Pitfall: using a generic template without adapting it to the entity's actual ownership structure — a mismatch here creates real ambiguity exactly when it matters most.",
+          "Any amendment to ownership or governance terms should update this document formally, not just live in a side email or verbal agreement."
+        ],
+        "discussionCase": "A lender reviewing the firm's loan application asks for the entity's Operating Agreement, and you realize the version on file is three years old and doesn't reflect a partner who left last year. What's the actual risk here, and what do you do before sending anything?"
+      }
+    },
+    {
+      "h": "Registered Agent Responsibilities & Service of Process",
+      "fourPart": {
+        "corePrinciples": [
+          "A registered agent is the official point of contact designated to receive legal notices and service of process on behalf of the entity — this role has real legal consequences, not just administrative ones.",
+          "If a lawsuit's service of process is never received because the registered agent information is outdated, the entity can still be found in default — \"we never got it\" isn't automatically a valid defense.",
+          "Every state where the entity is formed or foreign-qualified requires its own valid registered agent."
+        ],
+        "howTo": [
+          "Confirm the registered agent's address is current and monitored — a registered agent that's stopped operating or moved without notice creates a real gap.",
+          "When a registered agent does receive a notice, route it immediately to the right internal contact — a delay here compounds whatever deadline the notice itself carries.",
+          "Update the registered agent designation with the state promptly any time it changes — this isn't optional paperwork, it's how legal notice actually reaches the entity."
+        ],
+        "bestPractices": [
+          "Pitfall: using a registered agent service and then never confirming who actually monitors that inbox internally — the notice can sit unread even when it's technically received on time.",
+          "Keep registered agent information in the same compliance tracker as annual report deadlines, since a lapsed registered agent can itself trigger loss of good standing."
+        ],
+        "discussionCase": "You receive a forwarded notice from the registered agent service that looks like a lawsuit was just served. What's your actual first move in the next 30 minutes, and who needs to know immediately?"
+      }
+    },
+    {
+      "h": "Corporate Recordkeeping & Minute Books",
+      "fourPart": {
+        "corePrinciples": [
+          "A minute book is the entity's official historical record — formation documents, ownership records, meeting minutes, and resolutions — and it's one of the first things requested in due diligence, a sale, or litigation.",
+          "Corporations generally have a stricter formal requirement to document board and shareholder meetings than LLCs, but both benefit from consistent recordkeeping discipline.",
+          "A gap in the minute book doesn't just look disorganized — in a real dispute, it can undermine the entity's ability to show that major decisions were properly authorized."
+        ],
+        "howTo": [
+          "Document every major corporate action (an ownership change, a major contract, an officer appointment) with a written resolution or meeting minutes, even when the action is otherwise informal.",
+          "Keep the minute book current in real time, not reconstructed after the fact when a document is suddenly requested.",
+          "Store the minute book with the same care as the formation documents — accessible, backed up, and centrally owned."
+        ],
+        "bestPractices": [
+          "Pitfall: treating minute book maintenance as unnecessary for a small or closely-held entity — due diligence and lending processes ask for it regardless of company size.",
+          "When in doubt about whether an action needs to be documented, document it — a written record that turns out to be unnecessary costs far less than a missing one that turns out to matter."
+        ],
+        "discussionCase": "The firm is in early conversations about a potential investor, and their due diligence checklist asks for two years of board meeting minutes. The firm has never formally documented its meetings. What's the actual scope of the problem, and how would you start closing the gap?"
+      }
+    },
+    {
+      "h": "Project Scope Creep & Change Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Scope creep is what happens when a project's requirements quietly expand past what was originally agreed, usually one small addition at a time rather than one big change.",
+          "Every scope addition has a real cost — time, budget, or both — even when it seems small in isolation; the danger is in the accumulation, not any single request.",
+          "A documented scope isn't there to say no to every new request — it's there to make the trade-off visible so it can be a deliberate decision, not an invisible one."
+        ],
+        "howTo": [
+          "Document the original project scope clearly enough that a new request can actually be compared against it, not just judged by feel.",
+          "When a new request comes in mid-project, name it as a scope change explicitly and surface the real trade-off (timeline, budget, or resourcing) before agreeing to it.",
+          "Log every approved scope change with what was added and why — this becomes the record for why the final delivery differs from the original plan."
+        ],
+        "bestPractices": [
+          "Pitfall: quietly absorbing small scope additions to avoid an awkward conversation — this is exactly how a project ends up over budget or late with no single moment anyone can point to as the cause.",
+          "A scope change conversation doesn't have to be adversarial — framing it as \"here's what this addition means for the timeline\" is enough to make the trade-off real."
+        ],
+        "discussionCase": "A stakeholder asks for \"just one more small addition\" to a project that's already three similar small additions deep. What do you actually say, and how do you handle the fact that each individual addition really did seem reasonable on its own?"
+      }
+    },
+    {
+      "h": "Stakeholder Communication During Project Delays",
+      "fourPart": {
+        "corePrinciples": [
+          "A delay handled with early, clear communication is a manageable problem — a delay discovered by the stakeholder before being told is a trust problem on top of the original issue.",
+          "Stakeholders can generally absorb bad news about timeline far better than they can absorb the feeling of being the last to know.",
+          "The goal of a delay update isn't to make the news sound better than it is — it's to give the stakeholder an accurate picture and a real plan."
+        ],
+        "howTo": [
+          "As soon as a delay becomes likely (not just certain), flag it — waiting for full certainty usually means the stakeholder finds out later than they should have.",
+          "Lead the update with the bottom line (what's delayed, by how much) before the explanation of why — burying the headline in context reads as avoidance.",
+          "Always pair the delay update with a concrete next step or revised timeline — a delay notice with no plan attached leaves the stakeholder with nothing to act on."
+        ],
+        "bestPractices": [
+          "Pitfall: waiting until the original deadline has already passed to say anything — this converts a manageable delay into a credibility issue.",
+          "Keep a consistent communication cadence during an extended delay (weekly, biweekly) rather than going quiet between the initial notice and the eventual resolution."
+        ],
+        "discussionCase": "A project you're supporting is now going to miss its deadline by two weeks, and you only just found out this morning. The stakeholder has a standing call in one hour. What do you do between now and that call?"
+      }
+    },
+    {
+      "h": "Root Cause Analysis Basics",
+      "fourPart": {
+        "corePrinciples": [
+          "Root cause analysis exists to answer \"why did this actually happen\" rather than stopping at the first, most visible explanation.",
+          "The \"5 Whys\" technique — asking \"why\" repeatedly until the answer stops being a symptom and starts being a real, addressable cause — is a simple, usable version of this for day-to-day operational problems.",
+          "A fix aimed at a symptom instead of the root cause tends to produce the same problem again in a slightly different form."
+        ],
+        "howTo": [
+          "State the problem precisely and factually before analyzing it — a vague problem statement makes it easy to land on a vague, unhelpful root cause.",
+          "Ask \"why\" repeatedly, treating each answer as the next thing to interrogate rather than stopping at the first plausible-sounding cause.",
+          "Confirm the identified root cause would actually have prevented the problem if it had been addressed beforehand — if not, keep digging."
+        ],
+        "bestPractices": [
+          "Pitfall: stopping at \"human error\" as the root cause — that's almost always a symptom of a missing process, unclear ownership, or inadequate training, not the actual root cause itself.",
+          "Root cause analysis works best done in the same session as the incident review, while details are still fresh, rather than reconstructed weeks later."
+        ],
+        "discussionCase": "A filing deadline was missed last week. The first explanation offered is \"the person responsible forgot.\" Walk through how you'd actually use the 5 Whys to get past that answer to something genuinely fixable."
+      }
+    },
+    {
+      "h": "Change Management for New SOPs",
+      "fourPart": {
+        "corePrinciples": [
+          "A well-written SOP that nobody actually adopts has the same practical effect as no SOP at all — writing the document is only the first half of the work.",
+          "People resist process change most when they don't understand why it's happening or weren't involved in shaping it, not necessarily because the new process itself is worse.",
+          "Rollout of a new or revised SOP needs its own plan — it doesn't happen automatically just because the document exists in the shared folder."
+        ],
+        "howTo": [
+          "Explain the \"why\" behind a new or changed SOP explicitly when introducing it — people adopt a new process faster when they understand the problem it's solving.",
+          "Roll out significant SOP changes with a real introduction (a walkthrough, a training moment) rather than a silent document update nobody notices.",
+          "Check back after rollout to confirm the SOP is actually being followed as written, not just that it was announced once."
+        ],
+        "bestPractices": [
+          "Pitfall: updating a widely-used SOP and only notifying people by editing the shared document — most people won't see the change until they're already doing it the old way.",
+          "Where possible, involve the people who'll actually use the new SOP in shaping it — adoption is significantly easier when it doesn't feel imposed from outside."
+        ],
+        "discussionCase": "You've just finalized a revised filing SOP that fixes a real, recurring error — but the team has been doing it the old way for two years. What's your actual rollout plan, beyond just sharing the new document?"
+      }
     }
   ],
   "quickChecks": [
@@ -5924,6 +6273,166 @@ const DAY7 = {
           "This connects directly to the contract-aware billing principles covered elsewhere in this day — accurate time tracking is the input that makes accurate billing possible in the first place."
         ],
         "discussionCase": "It's the end of a busy day and you realize you haven't logged time for several separate tasks. How do you reconstruct this as accurately as possible, and what would you do differently tomorrow to avoid the same gap?"
+      }
+    },
+    {
+      "h": "Client Trust Accounts (IOLTA) — Core Rules & Commingling Risk",
+      "fourPart": {
+        "corePrinciples": [
+          "An IOLTA (Interest on Lawyers' Trust Accounts) holds client funds — retainers, settlement proceeds, advance costs — that belong to the client or a third party, not to the firm, until they're actually earned or disbursed.",
+          "Commingling — mixing client trust funds with the firm's own operating funds, even briefly or accidentally — is one of the most serious ethics violations in legal practice and can lead to disbarment.",
+          "Money moves out of a trust account only when it's actually earned (per an invoice) or disbursed for its intended purpose — never as a shortcut for firm cash flow, no matter how temporary."
+        ],
+        "howTo": [
+          "Keep trust account funds and operating account funds in genuinely separate accounts — this is a structural requirement, not just a bookkeeping preference.",
+          "Move funds out of trust only against a specific, documented trigger — an approved invoice, a signed disbursement authorization, a settlement instruction — never as a general transfer.",
+          "Maintain a running ledger per client showing exactly what's held in trust for them at any given moment, not just one pooled total for the whole account."
+        ],
+        "bestPractices": [
+          "Pitfall: treating a trust account shortfall as an internal cash-flow problem to \"fix later\" — a trust account must never go negative for any client, even temporarily, even if it's corrected the same day.",
+          "Any transaction touching a trust account should feel slower and more deliberate than a normal operating transaction — that friction is intentional, not inefficiency."
+        ],
+        "discussionCase": "You notice the trust account balance is $200 lower than the ledger says it should be for one specific client. What's your actual first move, and who needs to know before you do anything else?"
+      }
+    },
+    {
+      "h": "Trust Account Reconciliation Discipline",
+      "fourPart": {
+        "corePrinciples": [
+          "Trust account reconciliation means confirming three numbers match: the bank's statement balance, the trust account's own ledger, and the sum of every individual client's sub-ledger balance.",
+          "Trust accounts require more frequent, more rigorous reconciliation than a normal operating account — monthly at minimum, and immediately after any unusual transaction.",
+          "A discrepancy in a trust account reconciliation is never \"probably fine\" — it has to be identified and resolved down to the specific transaction, every time."
+        ],
+        "howTo": [
+          "Reconcile the bank statement against the internal trust ledger on a fixed schedule, not only when something seems off.",
+          "Cross-check the ledger total against the sum of all individual client sub-ledgers — these two numbers must always match exactly.",
+          "Document every reconciliation, even when it's clean — a clean reconciliation record is itself part of the compliance trail."
+        ],
+        "bestPractices": [
+          "Pitfall: reconciling the account total without reconciling each client's individual sub-ledger — the account can balance overall while one client's specific funds are actually short.",
+          "Any reconciliation discrepancy gets escalated immediately, regardless of size — a one-dollar unexplained difference in a trust account is treated with the same urgency as a large one."
+        ],
+        "discussionCase": "This month's trust reconciliation shows the bank balance and the internal ledger match, but when you check individual client sub-ledgers, one client's balance doesn't match what was actually deposited for them. Walk through how you'd trace this down."
+      }
+    },
+    {
+      "h": "Expense Report Auditing & Approval Workflows",
+      "fourPart": {
+        "corePrinciples": [
+          "An expense report audit exists to confirm each expense is legitimate, properly documented, and correctly categorized before it's reimbursed or booked — not to catch fraud after the fact.",
+          "A missing receipt isn't a minor formatting issue — without it, there's no independent confirmation the expense actually happened as described.",
+          "Approval workflows exist so no single person can submit and approve their own expense — this separation is what makes the whole system trustworthy."
+        ],
+        "howTo": [
+          "Check every expense report line against its receipt before approval — amount, date, and business purpose should all match.",
+          "Flag any expense missing a receipt or business justification and hold it for clarification rather than approving it on the assumption it's fine.",
+          "Route every expense report through its proper approval chain — never approve an expense for yourself or bypass the assigned approver."
+        ],
+        "bestPractices": [
+          "Pitfall: approving expense reports in bulk without actually reviewing individual line items — this defeats the entire purpose of the audit step.",
+          "Watch for split transactions (one expense broken into several smaller ones) — this is a known pattern for working around approval thresholds."
+        ],
+        "discussionCase": "An expense report crosses your desk with a receipt for exactly $499 — one dollar under the $500 threshold that would require additional approval. What do you actually do with that observation?"
+      }
+    },
+    {
+      "h": "Vendor Payment Terms & Cash Flow Timing",
+      "fourPart": {
+        "corePrinciples": [
+          "Payment terms (Net 30, Net 60, due on receipt) directly affect cash flow timing — paying earlier than required or later than agreed both have real consequences.",
+          "Early payment can sometimes unlock a discount, but paying early with no such benefit ties up cash that could otherwise be used elsewhere.",
+          "Late payment risks late fees, damaged vendor relationships, and in some cases suspended service — the terms exist for a reason on both sides."
+        ],
+        "howTo": [
+          "Confirm the actual payment terms on file for each vendor rather than assuming a default — terms can vary significantly vendor to vendor.",
+          "Time payments to align with the agreed terms, not arbitrarily earlier or later, unless there's a specific reason (an early-payment discount) to do otherwise.",
+          "Track upcoming payment due dates against expected cash inflows so a payment obligation doesn't collide with a cash-flow gap."
+        ],
+        "bestPractices": [
+          "Pitfall: paying every invoice immediately on receipt regardless of terms — this can unnecessarily strain cash flow with no actual benefit.",
+          "Flag any vendor payment that would need to happen outside its normal terms (early or late) so it can be a deliberate decision, not a default."
+        ],
+        "discussionCase": "A vendor invoice with Net 30 terms arrives, but the person who normally handles payments defaults to paying everything within 48 hours \"to be safe.\" Is that actually the right call here, and what would you say?"
+      }
+    },
+    {
+      "h": "Financial Record Retention Requirements",
+      "fourPart": {
+        "corePrinciples": [
+          "Financial records — invoices, receipts, bank statements, trust account records — have minimum retention periods that vary by document type and jurisdiction, and trust account records in particular often carry longer requirements than general business records.",
+          "Retention isn't just about keeping records long enough — it's also about being able to actually retrieve a specific document when it's needed, not just knowing it exists somewhere.",
+          "Destroying a financial record before its retention period has passed can create real problems in an audit, a dispute, or a regulatory inquiry."
+        ],
+        "howTo": [
+          "Know the specific retention period for each category of financial record the practice handles, rather than applying one blanket rule to everything.",
+          "Store financial records in a system that's both durable and searchable — a record that technically exists but can't be found on demand isn't meeting the actual purpose of retention.",
+          "Build retention into the filing process itself (a labeled retention date, a scheduled review) rather than relying on remembering to check later."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming digital storage means retention is automatically handled — files can still be lost, misfiled, or accidentally deleted without a deliberate retention system.",
+          "When in doubt about whether a record's retention period has passed, keep it — the cost of over-retaining is far lower than the cost of needing a destroyed record."
+        ],
+        "discussionCase": "You're doing a records cleanup and find trust account records from several years ago. Before deleting anything to save space, what do you actually need to confirm first?"
+      }
+    },
+    {
+      "h": "Handling a Billing Dispute",
+      "fourPart": {
+        "corePrinciples": [
+          "A billing dispute is a request for information and resolution, not an accusation to get defensive about — most disputes come from a genuine misunderstanding, not bad faith.",
+          "The invoice's own backup documentation (time entries, receipts, the engagement terms) is what actually resolves a dispute — an opinion about what's fair, without documentation, doesn't settle anything.",
+          "How a billing dispute is handled affects the client relationship well beyond the dollar amount in question."
+        ],
+        "howTo": [
+          "Pull the actual supporting documentation for the disputed charge before responding — the underlying time entries, receipts, or engagement terms, not a summary from memory.",
+          "Acknowledge the dispute promptly, even before it's fully resolved — silence reads as dismissiveness regardless of intent.",
+          "Present the resolution with the supporting detail included, so the client can see exactly what the charge was based on, not just be told the answer."
+        ],
+        "bestPractices": [
+          "Pitfall: responding defensively before actually pulling the documentation — this can turn a legitimate misunderstanding into a genuine relationship problem.",
+          "If the dispute reveals a real billing error, correct it plainly and promptly — protecting the relationship matters more than protecting the original invoice."
+        ],
+        "discussionCase": "A client emails disputing a charge on their latest invoice, saying it doesn't match what they remember agreeing to. What's your actual first move before responding to them?"
+      }
+    },
+    {
+      "h": "Payroll Basics for EA/PA Support Roles",
+      "fourPart": {
+        "corePrinciples": [
+          "An EA/PA rarely runs payroll directly, but frequently touches its edges — onboarding paperwork, timesheet accuracy, expense reimbursements that flow through payroll — and errors in that supporting work create real payroll problems downstream.",
+          "Payroll has hard, recurring deadlines (a specific pay date, tax deposit dates) that don't move — a delay anywhere in the supporting workflow risks missing them.",
+          "Payroll-adjacent information (salary, withholding elections, personal banking details) is some of the most sensitive data handled in a support role and needs to be treated accordingly."
+        ],
+        "howTo": [
+          "Confirm any timesheet or hours data feeding into payroll is accurate and submitted before the actual payroll cutoff, not after.",
+          "Handle payroll-adjacent paperwork (new hire forms, direct deposit changes) with the same confidentiality discipline as any other sensitive financial document.",
+          "Flag any payroll-related deadline clearly on the compliance calendar alongside other hard financial deadlines."
+        ],
+        "bestPractices": [
+          "Pitfall: treating a payroll-adjacent task as low priority because it's \"someone else's system\" — a late timesheet submission on your end can still cause a real payroll delay.",
+          "Never discuss or forward payroll or compensation details outside the specific people who need them for the specific task at hand."
+        ],
+        "discussionCase": "A new hire's onboarding paperwork is sitting incomplete two days before the payroll cutoff that would get them on the next pay run. What do you actually do to make sure they're not accidentally missed?"
+      }
+    },
+    {
+      "h": "Fraud Red Flags in Financial Documents",
+      "fourPart": {
+        "corePrinciples": [
+          "Most financial fraud isn't dramatic — it shows up as small, plausible-looking inconsistencies that are easy to miss without deliberately looking for them.",
+          "A single red flag is often just an error; a pattern of red flags across multiple documents is what actually warrants real concern.",
+          "The EA/PA reviewing financial documents day to day is frequently the first line of defense simply by virtue of being the one who sees the most detail."
+        ],
+        "howTo": [
+          "Watch for classic red flags: invoices from an unfamiliar vendor with no prior history, round-number amounts that seem too clean, duplicate invoice numbers, or a sudden change in a vendor's payment details.",
+          "Cross-check any changed payment information (a new bank account for a known vendor) through a separate, verified channel before acting on it — never confirm a payment change using only the contact info on the request itself.",
+          "Escalate a genuine concern promptly rather than trying to fully resolve it alone — pattern recognition across multiple people often catches what one person alone would miss."
+        ],
+        "bestPractices": [
+          "Pitfall: dismissing a single odd detail as probably nothing — a pattern is only visible if individual anomalies actually get tracked, not each one privately explained away.",
+          "Never let being wrong about a false alarm discourage raising the next real concern — the cost of a false alarm is far lower than the cost of a missed one."
+        ],
+        "discussionCase": "A long-standing vendor emails asking to update their bank account details for future payments. What's your actual verification process before that change gets made — and why does the request coming from their known email address not fully settle it?"
       }
     }
   ],
@@ -7268,6 +7777,106 @@ const DAY9 = {
         ],
         "discussionCase": "A vendor sends an expensive holiday gift to the office. What do you actually do with it, and what would you want to check before deciding?"
       }
+    },
+    {
+      "h": "Speaker & Panelist Logistics for Conferences",
+      "fourPart": {
+        "corePrinciples": [
+          "When an executive is speaking at an event, the EA's job extends well beyond the calendar entry — travel, materials, technical requirements, and the actual content deadline all need active coordination.",
+          "Conference organizers have their own deadlines and requirements (bio, headshot, slide deck format, AV needs) that arrive on the organizer's timeline, not the executive's — missing one can jeopardize the speaking slot itself."
+        ],
+        "howTo": [
+          "Build a single checklist per speaking engagement covering: bio/headshot submission, slide deck deadline, AV/tech requirements, and travel logistics, each with its own due date.",
+          "Confirm the actual format expected (keynote, panel, fireside chat) early — the prep required differs significantly, and assuming the wrong format wastes real prep time.",
+          "Send the executive a single, consolidated briefing before the event: what time, what format, who else is on the panel, and what's expected of them."
+        ],
+        "bestPractices": [
+          "Pitfall: treating a speaking engagement as just another calendar item — the prep requirements are what actually determine whether it goes well.",
+          "Confirm AV and tech requirements with the venue directly, not just the organizer — the person you're coordinating with may not have the technical details.",
+          "Always have the slide deck finalized and sent at least 24-48 hours ahead of any deadline the organizer states, since these deadlines are rarely flexible."
+        ],
+        "discussionCase": "Elias is confirmed as a panelist at a conference in three weeks, and the organizer just emailed asking for his bio, headshot, and pre-submitted questions by end of week. What's your actual process for getting this handled without it becoming a fire drill?"
+      }
+    },
+    {
+      "h": "Sponsorship & Vendor Contract Basics for Events",
+      "fourPart": {
+        "corePrinciples": [
+          "Event sponsorships and vendor agreements are real contracts with real obligations on both sides — treating them as informal arrangements creates risk when expectations aren't met.",
+          "The EA/PA is often the first to notice when a sponsorship deliverable (logo placement, speaking slot, booth space) hasn't actually been fulfilled as agreed — catching this early matters more than catching it after the event."
+        ],
+        "howTo": [
+          "Before an event, confirm every deliverable the firm is owed as a sponsor (logo placement, attendee list, speaking slot) against what's actually being provided.",
+          "Keep the signed sponsorship agreement accessible during the event itself, not just filed away — you need it on hand if a deliverable dispute comes up in real time.",
+          "Track sponsorship costs against the value actually delivered so post-event ROI conversations have real data behind them, not just impressions."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming a sponsorship deliverable happened just because it was promised — verify it directly (check the signage, confirm the attendee list arrived) rather than trusting it occurred.",
+          "Never let a sponsorship renewal get automatically approved without a real assessment of whether the last one delivered value.",
+          "Flag any deliverable gap to the organizer in writing, promptly — a verbal complaint after the event has much less leverage than a real-time written flag."
+        ],
+        "discussionCase": "At a sponsored event, you notice the firm's logo is missing from the printed program, despite the sponsorship agreement guaranteeing it. What's your actual move in the moment, versus what you follow up on afterward?"
+      }
+    },
+    {
+      "h": "Post-Event Follow-Up & ROI Tracking",
+      "fourPart": {
+        "corePrinciples": [
+          "An event's real value is determined by what happens after it, not during it — the follow-up window is where relationships actually convert into something.",
+          "Without a structured follow-up process, the connections made at an event decay at the same rate as any other untouched contact — the event itself doesn't create lasting value on its own."
+        ],
+        "howTo": [
+          "Build a follow-up list during the event itself (notes on who was met and what was discussed), not reconstructed from memory afterward.",
+          "Send follow-up outreach within 48-72 hours while the interaction is still fresh for the other person too — waiting a week meaningfully reduces response rates.",
+          "Log event attendance and outcomes in the same system used for other relationship tracking, so this doesn't become a separate, disconnected record."
+        ],
+        "bestPractices": [
+          "Pitfall: collecting a stack of business cards with no notes on the actual conversation — without context, the card is nearly useless a week later.",
+          "Track a simple ROI measure per event (leads generated, relationships deepened, deals influenced) so future event budget decisions have real data behind them.",
+          "Don't let follow-up become generic — reference the specific conversation, not just \"great meeting you at the conference.\""
+        ],
+        "discussionCase": "Elias returns from a 3-day conference with 40 new contacts and no notes on any of them. What's your actual process for turning that stack into real, useful follow-up rather than a bulk generic email to everyone?"
+      }
+    },
+    {
+      "h": "Professional Liability & Insurance Awareness",
+      "fourPart": {
+        "corePrinciples": [
+          "An EA/PA doesn't need to be an insurance expert, but should know that professional liability (malpractice) coverage exists, what it generally protects against, and who to flag a potential issue to.",
+          "Recognizing a situation that might implicate coverage early — before it becomes a formal claim — gives the firm meaningfully more options than catching it late."
+        ],
+        "howTo": [
+          "Know where the firm's insurance policy documents and renewal dates are filed, even without needing to understand every clause.",
+          "If a client or matter raises language suggesting dissatisfaction that could escalate (threats of complaint, mention of damages), flag it to the appropriate person immediately rather than treating it as routine correspondence.",
+          "Keep renewal and policy review dates on the compliance calendar the same way other hard deadlines are tracked."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming any client complaint is just routine and doesn't need escalation — the EA/PA is often the first point of contact for language that should actually be flagged.",
+          "Never attempt to assess coverage or liability questions yourself — this is squarely outside EA/PA scope and should always go to the attorney or firm's designated contact.",
+          "Keep this kind of correspondence confidential and handled with the same discretion as any other privileged matter."
+        ],
+        "discussionCase": "A client's email includes language like \"we're considering our options given how this was handled.\" What's your actual read on this, and what do you do with the email — beyond just replying to it normally?"
+      }
+    },
+    {
+      "h": "Building an Executive's Media & Speaking Kit",
+      "fourPart": {
+        "corePrinciples": [
+          "A ready-to-send media kit (bio, headshot, key talking points, past coverage) turns a speaking or press opportunity from a scramble into a same-day response.",
+          "Keeping this kit current is what makes it useful — an outdated bio or old headshot sent to a journalist or event organizer reflects poorly and often needs an awkward follow-up correction."
+        ],
+        "howTo": [
+          "Maintain a standing folder with the current bio (in both short and long versions), a recent headshot, and a one-page background summary, updated whenever anything material changes.",
+          "Keep a running log of past media coverage and speaking engagements — this becomes useful both for media kit content and for tracking the executive's public profile over time.",
+          "Review and refresh the kit on a set schedule (quarterly is reasonable) rather than only when a request suddenly surfaces the outdated version."
+        ],
+        "bestPractices": [
+          "Pitfall: only updating the bio when someone specifically asks for it — by then it's often been stale for months.",
+          "Keep multiple headshot formats and resolutions ready (print vs. web) since different requesters need different specs.",
+          "Never send out media kit materials without a quick review — a stale detail (an old title, a completed project listed as ongoing) undermines credibility."
+        ],
+        "discussionCase": "A journalist emails asking for Elias's bio and headshot for a feature — due in two hours. You find the bio on file is over a year old and references a role he no longer holds. What's your actual move given the deadline?"
+      }
     }
   ],
   "quickChecks": [
@@ -7856,6 +8465,128 @@ const DAY10 = {
         "Know both numbers before calling any campaign a success — raw lead count alone can make a losing campaign look impressive."
       ],
       "trainerCue": "Do the campaign-math worked example live as a group — it's a fitting, concrete way to close out the analytics content before the program's final wrap-up topic."
+    },
+    {
+      "h": "Crisis Response on Social Media",
+      "fourPart": {
+        "corePrinciples": [
+          "A negative comment thread or review pile-on moves fast — the window to respond thoughtfully before it escalates is often measured in hours, not days.",
+          "The instinct to delete or ignore negative feedback is usually the wrong one — visible, measured engagement almost always reads better than silence or a scrubbed comment section.",
+          "Not every negative comment needs a public response — distinguishing a genuine complaint worth addressing from noise or bait is itself part of the skill."
+        ],
+        "howTo": [
+          "When a negative comment or review surfaces, assess it before reacting: is this a legitimate complaint, a misunderstanding, or clearly bad-faith? Each calls for a different response.",
+          "Respond publicly with a brief, calm acknowledgment and move detailed resolution to a private channel — a long public back-and-forth rarely helps.",
+          "Loop in the executive or appropriate decision-maker immediately for anything beyond a routine complaint — crisis-level situations aren't a call to make alone."
+        ],
+        "bestPractices": [
+          "Pitfall: responding defensively or emotionally in the heat of the moment — a hasty public reply is far harder to walk back than a delayed, considered one.",
+          "Never delete a legitimate negative comment just because it's unflattering — this often escalates the situation and looks worse than the original comment.",
+          "Document the situation and response as it unfolds — a clear record matters if the situation continues to develop or needs escalation."
+        ],
+        "discussionCase": "A former client posts a detailed, public complaint about the firm that's gaining traction in the comments. Some of what they say is accurate, some is exaggerated. What's your actual first move in the next 30 minutes, before anyone senior weighs in?"
+      }
+    },
+    {
+      "h": "Endorsement & Disclosure Rules",
+      "fourPart": {
+        "corePrinciples": [
+          "When a third party (an influencer, a partner, an employee) promotes the firm or executive online, disclosure rules (like the FTC's endorsement guidelines) can apply — and non-compliance carries real regulatory risk.",
+          "The core principle behind most disclosure rules is simple: an audience should be able to tell when a post exists because of a relationship or payment, not just organic enthusiasm.",
+          "This is another area where the specific, current regulatory requirements should be confirmed with actual firm policy or counsel — the rules and enforcement details change and vary by context."
+        ],
+        "howTo": [
+          "Before agreeing to any paid or reciprocal promotional arrangement, confirm what disclosure language is required and where it needs to appear (in the post itself, not just a linked page).",
+          "Keep records of any compensated or reciprocal promotional relationship, since this is what would need to be shown if disclosure adequacy were ever questioned.",
+          "When reviewing content from a partner or affiliate promoting the firm, check that required disclosure is actually present and clearly visible, not buried."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming a simple mention or tag doesn't require disclosure just because no direct payment changed hands — many reciprocal or in-kind relationships still qualify.",
+          "Never draft or approve promotional content without checking the disclosure requirement first — retrofitting disclosure after the fact is far more visible and awkward.",
+          "When genuinely uncertain whether a relationship requires disclosure, treat it as if it does — the downside of over-disclosing is minimal compared to the downside of not disclosing at all."
+        ],
+        "discussionCase": "A former client with a large social following offers to post about the firm in exchange for a discount on future services. What do you need to confirm before this arrangement moves forward?"
+      }
+    },
+    {
+      "h": "Video Content Basics for Executive Presence",
+      "fourPart": {
+        "corePrinciples": [
+          "Video carries more of an executive's actual presence than text ever can — tone, pacing, and body language all read through, which raises both the opportunity and the risk.",
+          "Short-form video doesn't require production value to work — clarity, a genuine tone, and a clear point matter far more than polish for executive thought-leadership content."
+        ],
+        "howTo": [
+          "Before recording, confirm the specific point the video needs to make — a video without one clear takeaway tends to ramble and underperforms even with good production.",
+          "Check the background and audio quality before hitting record — a compliance audit of the visible background (per the earlier security topic) applies to video exactly as it does to photos.",
+          "Keep executive video content short (60-90 seconds for social) — a longer video needs a much stronger hook to hold attention past the first few seconds."
+        ],
+        "bestPractices": [
+          "Pitfall: publishing video with no captions — a meaningful share of viewers watch with sound off, and captions are also a basic accessibility requirement.",
+          "Never publish executive video without a full watch-through first — an off-hand comment or visible background detail is much harder to catch by skimming.",
+          "Keep a consistent visual setup (lighting, background) across videos so the executive's content reads as a recognizable, consistent presence."
+        ],
+        "discussionCase": "Elias records a 90-second video answering a common client question, but during the recording, a notification with a client's name flashes across his visible monitor in the background. What's your actual process before this gets published?"
+      }
+    },
+    {
+      "h": "Social Listening & Monitoring",
+      "fourPart": {
+        "corePrinciples": [
+          "Social listening means actively tracking what's being said about the executive or firm across platforms — not just monitoring the firm's own posted content and its direct replies.",
+          "Catching a mention or emerging conversation early gives far more options for response than discovering it only after it's already gained traction."
+        ],
+        "howTo": [
+          "Set up alerts or a regular check for the executive's and firm's name across the platforms most relevant to their audience, not just the primary posting platform.",
+          "Distinguish routine mentions from ones that need attention — most mentions need no action at all; a small number genuinely do.",
+          "Log recurring themes in what's being said, not just individual mentions — a pattern across multiple mentions is often more informative than any single one."
+        ],
+        "bestPractices": [
+          "Pitfall: only checking the firm's own account notifications — most relevant conversation happens in comments, shares, and posts that never directly tag the firm.",
+          "Never treat social listening as a one-time setup — the tools and what's worth tracking evolve, and a periodic review keeps it actually useful.",
+          "Flag any concerning trend early to the appropriate person rather than waiting until it's escalated into something that needs crisis response."
+        ],
+        "discussionCase": "While doing a routine listening check, you notice several posts in the last week referencing a specific complaint about the firm that hasn't been directly reported to anyone. What's your actual next step?"
+      }
+    },
+    {
+      "h": "Accessibility in Digital Content",
+      "fourPart": {
+        "corePrinciples": [
+          "Accessible content (alt text on images, captions on video, readable color contrast) isn't a niche add-on — it determines whether a meaningful share of the audience can actually engage with the content at all.",
+          "Building accessibility in from the start costs very little extra effort; retrofitting it after a large body of content already exists is far more work."
+        ],
+        "howTo": [
+          "Add descriptive alt text to every image posted — describe what's actually in the image and its relevant context, not just a generic label.",
+          "Add captions to all video content, not just relying on platform auto-captions, which are frequently inaccurate enough to misrepresent what was said.",
+          "Check color contrast on any graphics or text-on-image content — low-contrast text is unreadable for a meaningful portion of any audience."
+        ],
+        "bestPractices": [
+          "Pitfall: treating alt text as a formality and writing something generic like \"image\" — this provides no real value and defeats the purpose entirely.",
+          "Never rely solely on auto-generated captions without reviewing them — an inaccurate caption misrepresenting a quote can create real problems.",
+          "Make accessibility review a standard step in the content approval process, not an afterthought applied only when someone happens to raise it."
+        ],
+        "discussionCase": "You're finalizing a graphic-heavy LinkedIn post with a data visualization and no alt text. What's your actual process for writing a description that's genuinely useful, not just a placeholder?"
+      }
+    },
+    {
+      "h": "Personal vs. Firm Brand Account Separation",
+      "fourPart": {
+        "corePrinciples": [
+          "An executive's personal brand and the firm's institutional brand are related but distinct — content, tone, and even account ownership decisions should reflect that distinction deliberately, not by default.",
+          "Account ownership and access matter practically, not just conceptually — who actually controls login credentials to an executive's \"personal\" account has real implications if that person ever leaves the firm."
+        ],
+        "howTo": [
+          "Clarify explicitly, in writing, which accounts are the executive's personal property versus firm-owned assets — this avoids a genuinely difficult dispute later.",
+          "Keep credentials and access management consistent with that ownership structure — a firm-owned account should have firm-controlled access, even if the executive is the primary poster.",
+          "Apply consistent, but distinct, voice guidelines to each: personal accounts can carry more individual personality, while firm accounts stay closer to institutional voice."
+        ],
+        "bestPractices": [
+          "Pitfall: leaving account ownership ambiguous until a departure or dispute forces the question — this is exactly the situation where clarity should have existed from the start.",
+          "Never mix firm-confidential content into what's treated as a personal account without the same review process firm content would get.",
+          "Document access credentials and account ownership in the firm's standard systems, not just in the executive's personal notes."
+        ],
+        "discussionCase": "An executive with a large personal following on a platform is preparing to leave the firm. The account has been used for both personal thought leadership and firm announcements. What questions does this raise that should have been settled long before this moment?"
+      }
     },
     {
       "h": "Legal Advertising & UPL Rules",
@@ -10508,20 +11239,6 @@ function renderDaySlideshow(d){
   const idx = Math.min(state.lessonSlide||0, total-1);
   const isLast = idx===total-1;
 
-  if(state.slideInterstitial){
-    const it = state.slideInterstitial;
-    return `
-      <div class="slide-dots">
-        ${slides.map((_,i)=>`<span class="slide-dot ${i===idx?'active':i<idx?'visited':''}"></span>`).join("")}
-      </div>
-      <div class="slide-interstitial">
-        <div class="si-icon">${it.toKnowledgeCheck?"📝":"→"}</div>
-        <div class="si-label">${it.toKnowledgeCheck?"Wrapping up":"Up Next"}</div>
-        <div class="si-title">${esc(it.title)}</div>
-      </div>
-    `;
-  }
-
   const slide = slides[idx];
   return `
     <div class="slide-dots">
@@ -10564,25 +11281,15 @@ function nextSlide(){
     state.slideProgress = state.slideProgress || {};
     state.slideProgress[state.dayId] = state.maxSlideReached;
     storeSet("slide-progress", state.slideProgress);
-    state.slideInterstitial = { title: daySlideTitle(d, slides[nextIdx]), toKnowledgeCheck:false };
-    render();
-    setTimeout(()=>{
-      state.slideInterstitial = null;
-      state.lessonSlide = nextIdx;
-      refreshLessonSlide();
-    }, 2200);
+    state.lessonSlide = nextIdx;
+    refreshLessonSlide();
   }
 }
 window.nextSlide = nextSlide;
 function goToKnowledgeCheckWithInterstitial(){
-  state.slideInterstitial = { title: "Knowledge Check", toKnowledgeCheck:true };
+  state.dayViewMode = "knowledgeCheck";
   render();
-  setTimeout(()=>{
-    state.slideInterstitial = null;
-    state.dayViewMode = "knowledgeCheck";
-    render();
-    window.scrollTo({top:0, behavior:"smooth"});
-  }, 2200);
+  window.scrollTo({top:0, behavior:"smooth"});
 }
 window.goToKnowledgeCheckWithInterstitial = goToKnowledgeCheckWithInterstitial;
 function prevSlide(){
