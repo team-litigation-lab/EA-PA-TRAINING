@@ -343,11 +343,11 @@ main{flex:1;max-width:1400px;margin:0 auto;padding:36px 20px 80px;width:100%;ani
 
 /* animated inline SVG diagram blocks — knowledge-retention visuals */
 .svg-diagram-card{
-  background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:6px 0 16px;
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:6px 0 16px;
   transition:transform .2s ease, box-shadow .2s ease;position:relative;overflow:visible;
 }
 .svg-diagram-card:hover{transform:scale(1.03);box-shadow:0 14px 32px -12px rgba(38,43,69,.28);}
-.svg-diagram-card svg{width:100%;height:auto;display:block;overflow:visible;}
+.svg-diagram-card svg{width:100%;max-width:440px;height:auto;display:block;margin:0 auto;overflow:visible;}
 .svg-diagram-label{
   display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;
   letter-spacing:.05em;color:var(--orange-deep);margin-bottom:10px;
@@ -11693,8 +11693,8 @@ function renderDashboard(){
   <div class="hero">
     <div>
       <p class="eyebrow">EA / PA Upskill Program</p>
-      <h1>Ten days to become an indispensable force multiplier.</h1>
-      <p>Condensed lessons, a knowledge check for every day, and a Practice Lab where you can actually run email triage, calendar rescues, financial reconciliation, travel contingency planning, and call handling before you do it for real.</p>
+      <h1>Elevate from executive support to indispensable strategic partner in 10 days.</h1>
+      <p>Go beyond standard admin work with daily, high-yield lessons and real-time knowledge checks. Step into our simulated Practice Lab to master high-stakes email triage, complex calendar rescues, financial reconciliations, emergency travel contingency planning, and executive call handling—so you execute flawlessly when it counts.</p>
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="goto('day',${nextDayId()})">${done===0?"Start Day 1":"Continue training"}</button>
         <button class="btn btn-ghost" onclick="goto('practice')">Open Practice Lab</button>
@@ -11708,11 +11708,8 @@ function renderDashboard(){
     </div>
   </div>
 
-  <div class="stat-row" style="grid-template-columns:repeat(2,1fr);margin-bottom:14px;">
+  <div class="stat-row" style="grid-template-columns:repeat(4,1fr);">
     <div class="card stat"><div class="num">${done} / 10</div><div class="lbl">Days completed</div></div>
-    <div class="card stat"><div class="num">${labAttemptsRemaining()} / ${LAB_ATTEMPT_CAP}</div><div class="lbl">Practice Lab attempts left <span style="font-weight:400;">(program-wide, all 10 days)</span></div></div>
-  </div>
-  <div class="stat-row" style="grid-template-columns:repeat(3,1fr);">
     <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
     <div class="card stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
     <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
@@ -11798,8 +11795,6 @@ async function submitSurpriseTask(){
   }
 }
 window.submitSurpriseTask = submitSurpriseTask;
-
-const LAB_CAP_DAYS = [1,2,3,4,5,6,8,9,10]; // Day7's tool has no AI-graded actions, so no cap applies
 
 /* ---------- Day 10: strict single-attempt, 90-minute window ---------- */
 const DAY10_WINDOW_MS = 90*60*1000;
@@ -13070,7 +13065,7 @@ async function bumpPracticeProgress(toolId, score){
 /* ============================================================
    PRACTICE LAB USAGE CAP — 3 AI-graded attempts per day's module.
    ============================================================ */
-const LAB_ATTEMPT_CAP = 3; // program-wide cap, shared across all capped days combined — Day7 remains exempt
+const LAB_ATTEMPT_CAP = 3; // program-wide cap, shared across all 10 days combined, no exceptions
 function labAttemptsUsed(){
   return state.labAttemptsGlobal || 0;
 }
@@ -13280,7 +13275,7 @@ function renderEvaluationReport(report, dayId){
       </div>` : ""}
       ${dayId ? `
       <div class="eval-action-row">
-        <button class="btn btn-ghost btn-sm" onclick="repeatActivity()" ${labAttemptsRemaining()<=0 && dayId!==7 ? 'disabled title="No Practice Lab attempts remaining"' : ''}>🔁 Repeat Activity</button>
+        <button class="btn btn-ghost btn-sm" onclick="repeatActivity()" ${labAttemptsRemaining()<=0 ? 'disabled title="No Practice Lab attempts remaining"' : ''}>🔁 Repeat Activity</button>
         <button class="btn btn-navy btn-sm" onclick="retainScoreAndAdvance()">✅ Retain Score &amp; Advance</button>
       </div>
       <div class="eval-action-row" style="border-top:none;padding-top:0;margin-top:8px;">
@@ -13405,7 +13400,7 @@ function renderLabAttemptBanner(dayId){
         <b>${locked?'No attempts remaining — read-only mode':'Program-Wide Tool Utilization Limit'}</b>
         <p>${locked
           ? `You've used all ${LAB_ATTEMPT_CAP} Practice Lab attempts allocated for the entire program. You can still view any completed results below, but no further submissions will be graded.`
-          : `You are allocated a total of ${LAB_ATTEMPT_CAP} Practice Lab attempts across the <b>entire 10-day program</b> (Day 7 is exempt and unlimited). Use your attempts strategically — review all background materials, instructions, and details thoroughly before initiating a submission. <b>${remaining} of ${LAB_ATTEMPT_CAP} attempts remaining, program-wide.</b>`}</p>
+          : `You are allocated a total of ${LAB_ATTEMPT_CAP} Practice Lab attempts across the <b>entire 10-day program</b>. Use your attempts strategically — review all background materials, instructions, and details thoroughly before initiating a submission. <b>${remaining} of ${LAB_ATTEMPT_CAP} attempts remaining, program-wide.</b>`}</p>
       </div>
     </div>`;
 }
