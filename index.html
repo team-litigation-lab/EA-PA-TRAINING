@@ -290,18 +290,82 @@ main{flex:1;max-width:1400px;margin:0 auto;padding:36px 20px 80px;width:100%;ani
 
 /* ---------- hero / dashboard ---------- */
 .hero{
-  display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:start;
+  position:relative;
+  min-height:480px;
+  border-radius:20px;
+  overflow:hidden;
   margin-bottom:44px;
+  padding:28px;
+  display:grid;
+  grid-template-columns:240px 1fr 240px;
+  gap:20px;
+  align-items:stretch;
+  background-image:
+    linear-gradient(120deg, rgba(22,24,41,.82) 0%, rgba(22,24,41,.55) 42%, rgba(22,24,41,.28) 68%, rgba(22,24,41,.08) 100%),
+    var(--hero-photo, none),
+    linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  background-size:cover, cover, cover;
+  background-position:center, center, center;
+  background-repeat:no-repeat;
+  box-shadow:var(--shadow);
 }
-@media(max-width:820px){.hero{grid-template-columns:1fr;}}
-.hero h1{font-size:34px;margin:0 0 14px;color:var(--navy);}
-.hero p{color:var(--ink-soft);font-size:var(--font-body);max-width:52ch;margin:0 0 22px;}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
-.hero-seal-wrap{display:flex;flex-direction:column;align-items:center;gap:22px;}
+/* Drop your own photo in without touching the layout above — point this
+   at a real image (data URI or file path) and it renders behind the
+   overlay gradient automatically. Left as none = navy gradient fallback. */
+:root{ --hero-photo:none; }
 
-.hero-stat-stack{display:flex;flex-direction:column;gap:10px;width:100%;}
-.hero-stat{padding:14px 16px;min-height:76px;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;}
-.hero-stat .num{font-size:21px;}
+.hero-top-row{
+  grid-column:1 / -1;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:auto;
+}
+.hero-title-block .eyebrow{color:var(--orange-soft);}
+.hero-title-block h1{
+  font-size:30px;line-height:1.15;margin:0;color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.35);
+}
+.hero-title-block p{
+  color:rgba(255,255,255,.82);font-size:var(--font-body);max-width:38ch;margin:10px 0 0;
+}
+.hero-logo-wrap{
+  background:rgba(255,255,255,.94);border-radius:12px;padding:10px 16px;
+  box-shadow:var(--shadow);flex:0 0 auto;
+}
+.hero-logo-wrap img{display:block;width:120px;height:auto;}
+
+.hero-lesson-col{display:flex;flex-direction:column;gap:14px;justify-content:center;}
+.hero-lesson-card{
+  background:rgba(255,255,255,.96);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);
+}
+.hero-lesson-card.compact{padding:10px 14px;}
+.hero-lesson-card .hlc-eyebrow{
+  font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin:0 0 4px;
+}
+.hero-lesson-card.compact .hlc-eyebrow{margin-bottom:2px;}
+.hero-lesson-card h4{margin:0;font-size:15px;color:var(--navy);line-height:1.3;}
+.hero-lesson-card.compact h4{font-size:13.5px;}
+.hero-lesson-card ul{margin:8px 0 0;padding:0;list-style:none;}
+.hero-lesson-card li{
+  font-size:12.5px;color:var(--ink-soft);padding-left:14px;position:relative;margin-bottom:5px;line-height:1.35;
+}
+.hero-lesson-card li:last-child{margin-bottom:0;}
+.hero-lesson-card li::before{content:"—";position:absolute;left:0;color:var(--orange-deep);}
+
+.hero-score-col{display:flex;flex-direction:column;gap:12px;justify-content:center;align-self:stretch;}
+.hero-score-card{
+  background:rgba(255,255,255,.96);border-radius:14px;padding:13px 16px;box-shadow:var(--shadow);
+  flex:1;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;min-height:0;
+}
+.hero-score-card .num{font-family:'Fraunces';font-size:22px;color:var(--navy);}
+.hero-score-card .lbl{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+.hero-score-card .lbl .sub{display:block;font-weight:400;text-transform:none;letter-spacing:0;margin-top:2px;font-size:11px;}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:20px;min-height:0;}
+  .hero-top-row{flex-direction:column;gap:14px;}
+  .hero-lesson-col,.hero-score-col{flex-direction:row;flex-wrap:wrap;}
+  .hero-lesson-card,.hero-score-card{flex:1 1 200px;}
+}
 
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:38px;}
 .admin-tab-btn{
@@ -11709,20 +11773,48 @@ function renderDashboard(){
   return `
   ${renderSurpriseTaskCard()}
   <div class="hero">
-    <div>
-      <p class="eyebrow">Legal EA / PA Accelerator</p>
-      <h1>Executive Assistant/Personal Assistant Professional Development Workspace .</h1>
-      <p>Unlock your full potential as a Strategic Go-To Person to your Attorney. Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
-    </div>
-    <div class="hero-seal-wrap">
-      <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px;height:auto;">
-      ${sealSvg({size:120,label:pct+"%",sub:"COMPLETE",done:pct>0,pulse:pct===100})}
-      <div class="hero-stat-stack">
-        <div class="card stat hero-stat"><div class="num">${done} / 10</div><div class="lbl">Days completed</div></div>
-        <div class="card stat hero-stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
-        <div class="card stat hero-stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
-        <div class="card stat hero-stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
+    <div class="hero-top-row">
+      <div class="hero-title-block">
+        <p class="eyebrow">Legal EA / PA Accelerator</p>
+        <h1>Exec Assistant<br>On Line</h1>
+        <p>Unlock your full potential as a Strategic Go-To Person to your Attorney. Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
       </div>
+      <div class="hero-logo-wrap">
+        <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help">
+      </div>
+    </div>
+
+    <div class="hero-lesson-col">
+      ${(()=>{
+        const nd = DAYS.find(d=>d.id===nextDayId());
+        return nd ? `
+        <div class="hero-lesson-card compact">
+          <p class="hlc-eyebrow">Continue — Day ${nd.id} of 10</p>
+          <h4>${esc(nd.title)}</h4>
+        </div>` : `
+        <div class="hero-lesson-card compact">
+          <p class="hlc-eyebrow">Program</p>
+          <h4>All 10 days complete</h4>
+        </div>`;
+      })()}
+      ${(()=>{
+        const nd = DAYS.find(d=>d.id===nextDayId()) || DAYS[DAYS.length-1];
+        if(!nd) return "";
+        const topics = (nd.lessons||[]).slice(0,4);
+        return `
+        <div class="hero-lesson-card">
+          <p class="hlc-eyebrow">Lesson Cards — Day ${nd.id}</p>
+          <h4>${esc(nd.title)}</h4>
+          <ul>${topics.map(l=>`<li>${esc(l.h)}</li>`).join("")}</ul>
+        </div>`;
+      })()}
+    </div>
+
+    <div class="hero-score-col">
+      <div class="hero-score-card"><div class="num">${done} / 10</div><div class="lbl">Days completed</div></div>
+      <div class="hero-score-card"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
+      <div class="hero-score-card"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span class="sub">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
+      <div class="hero-score-card"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
     </div>
   </div>
 
