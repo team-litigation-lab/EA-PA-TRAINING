@@ -11702,12 +11702,7 @@ function renderDashboard(){
       <p>Unlock your full potential as a Strategic Go-To Person to your Attorney.<br>Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
       </div>
     </div>
-    <div class="hero-seal-wrap">
-      <div style="display:flex;flex-direction:column;align-items:right;gap:18px;">
-        <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px;height:auto;">
-     </div>
-  </div>
-  <div class="stat-row" style="grid-template-columns:repeat(4,1fr);">
+     <div class="stat-row" style="grid-template-columns:repeat(4,1fr);">
     <div class="card stat"><div class="num">${done} / 10</div><div class="lbl">Days completed</div></div>
     <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
     <div class="card stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
