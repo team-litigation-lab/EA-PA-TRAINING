@@ -11701,9 +11701,6 @@ function renderDashboard(){
       <p class="eyebrow">LEGAL EA / PA ACCELERATOR</p>
       <h1>Executive Assistant/ Personal Assistant Professional Development Workspace .</h1>
       <p>Unlock your full potential as a Strategic Go-To Person to your Attorney.<br>Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
-      <div class="hero-actions">
-        <button class="btn btn-primary" onclick="goto('day',${nextDayId()})">${done===0?"Start Day 1":"Continue training"}</button>
-        <button class="btn btn-ghost" onclick="goto('practice')">Open Practice Lab</button>
       </div>
     </div>
     <div class="hero-seal-wrap">
@@ -11720,14 +11717,6 @@ function renderDashboard(){
     <div class="card stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
     <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
   </div>
-
-  <div class="pill-tabs">
-    <button class="active">📘 Training Roadmap</button>
-    <button onclick="goto('practice')">🧰 Practice Lab</button>
-    <button onclick="goto('notes')">📝 My Notes</button>
-  </div>
-
-  <h2 class="section-title" style="justify-content:center;">Complete Your Training In <span class="tag">10 EASY STEPS</span></h2>
   <div class="step-timeline">
     ${DAYS.map((d,i)=>{
       const prog = state.progress[d.id];
