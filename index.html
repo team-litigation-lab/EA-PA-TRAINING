@@ -11703,13 +11703,10 @@ function renderDashboard(){
       </div>
     </div>
     <div class="hero-seal-wrap">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:18px;">
+      <div style="display:flex;flex-direction:column;align-items:right;gap:18px;">
         <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px;height:auto;">
-        ${sealSvg({size:120,label:pct+"%",sub:"COMPLETE",done:pct>0,pulse:pct===100})}
-      </div>
-    </div>
+     </div>
   </div>
-
   <div class="stat-row" style="grid-template-columns:repeat(4,1fr);">
     <div class="card stat"><div class="num">${done} / 10</div><div class="lbl">Days completed</div></div>
     <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
