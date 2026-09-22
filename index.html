@@ -290,7 +290,24 @@ main{flex:1;max-width:1400px;margin:0 auto;padding:36px 20px 80px;width:100%;ani
 .hero p{color:var(--ink-soft);font-size:var(--font-body);max-width:52ch;margin:0 0 22px;}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
 .hero-seal-wrap{display:flex;justify-content:center;}
+<div class="hero">
+  <div>
+    <p class="eyebrow">STRATEGIC LEGAL SUPPORT</p>
+    <h1>Executive Assistant / Personal Assistant Workspace</h1>
+    <p>Unlock your full potential as a strategic partner to your attorney.<br>Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="goto('day',${nextDayId()})">${done===0?"Start Day 1":"Continue training"}</button>
+      <button class="btn btn-ghost" onclick="goto('practice')">Open Practice Lab</button>
+    </div>
+  </div>
 
+  <div class="hero-seal-wrap">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:18px;">
+      <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px; height:auto;">
+      ${sealSvg({size:120, label:pct+"%", sub:"COMPLETE", done:pct>0, pulse:pct===100})}
+    </div>
+  </div>
+</div>
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:38px;}
 .admin-tab-btn{
   background:none;border:none;padding:10px 4px;margin-right:22px;font-size:14px;font-weight:600;color:var(--ink-soft);
