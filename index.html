@@ -282,7 +282,7 @@ main{flex:1;max-width:1400px;margin:0 auto;padding:36px 20px 80px;width:100%;ani
 
 /* ---------- hero / dashboard ---------- */
 .hero{
-  display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center;
+  display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:left;
   margin-bottom:44px;
 }
 @media(max-width:820px){.hero{grid-template-columns:1fr;}}
@@ -290,24 +290,6 @@ main{flex:1;max-width:1400px;margin:0 auto;padding:36px 20px 80px;width:100%;ani
 .hero p{color:var(--ink-soft);font-size:var(--font-body);max-width:52ch;margin:0 0 22px;}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
 .hero-seal-wrap{display:flex;justify-content:center;}
-<div class="hero">
-  <div>
-    <p class="eyebrow">STRATEGIC LEGAL SUPPORT</p>
-    <h1>Executive Assistant / Personal Assistant Workspace</h1>
-    <p>Unlock your full potential as a strategic partner to your attorney.<br>Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
-    <div class="hero-actions">
-      <button class="btn btn-primary" onclick="goto('day',${nextDayId()})">${done===0?"Start Day 1":"Continue training"}</button>
-      <button class="btn btn-ghost" onclick="goto('practice')">Open Practice Lab</button>
-    </div>
-  </div>
-
-  <div class="hero-seal-wrap">
-    <div style="display:flex; flex-direction:column; align-items:center; gap:18px;">
-      <img src="${LOGO_FULL_DATAURI}" alt="Legal Support Help" style="width:150px; height:auto;">
-      ${sealSvg({size:120, label:pct+"%", sub:"COMPLETE", done:pct>0, pulse:pct===100})}
-    </div>
-  </div>
-</div>
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:38px;}
 .admin-tab-btn{
   background:none;border:none;padding:10px 4px;margin-right:22px;font-size:14px;font-weight:600;color:var(--ink-soft);
@@ -18898,7 +18880,6 @@ async function reviewI5Binder(){
   }
 }
 window.reviewI5Binder = reviewI5Binder;
-
 /* ---------- reusable drag-and-drop matching board ---------- */
 function renderMatchBoard(prefix, cardTexts, zoneLabels){
   const store = prefix==="i5cat" ? toolState.i5.category : toolState.i5.strategy;
@@ -18940,7 +18921,6 @@ function matchDrop(ev, prefix, zone){
   }
 }
 window.matchDrop = matchDrop;
-
 /* ---------- Part A: category classification ---------- */
 async function checkI5Category(){
   const answered = Object.keys(toolState.i5.category).length;
@@ -18953,7 +18933,6 @@ async function checkI5Category(){
   await bumpPracticeProgress("insurance5", score);
 }
 window.checkI5Category = checkI5Category;
-
 /* ---------- Part B: strategy matching ---------- */
 async function checkI5Strategy(){
   const answered = Object.keys(toolState.i5.strategy).length;
@@ -18967,7 +18946,6 @@ async function checkI5Strategy(){
   if(score===100) burstConfetti();
 }
 window.checkI5Strategy = checkI5Strategy;
-
 async function downloadInsurance5Pdf(){
   await ensureTraineeName();
   const lines = ["## A. Risk Category Classification"];
@@ -19009,7 +18987,6 @@ function initProjectCompliance6(body){
       <p style="font-size:13px;color:#37394A;margin:8px 0 0;">It's month-end compliance review. Two routine checks land on your desk at the same time — a license status sweep across all four jurisdictions, and this month's KPI dashboard. Neither looks urgent on its own. But by the end of this exercise, you'll see they're both pointing at the same thing: the Meridian Dynamics arbitration is under real strain, and it's already showing up elsewhere before anyone's said so out loud.</p>
       <p style="font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;">Treat Parts A and B as evidence-gathering — what you find there is exactly what your recovery message in Part C needs to reference. This isn't three separate exercises; it's one situation seen from three angles.</p>
     </div>
-
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Spot the Compliance Risk</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Thorne &amp; Partners operates out of New York, D.C., London, and Singapore. For each registration, decide: Current, or Renew Soon. One of these is directly tied to international arbitration work — the kind Meridian Dynamics is.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
@@ -19095,7 +19072,6 @@ function initProjectCompliance6(body){
     {label:"Compliance Audit Simulation", html:partE}
   ]);
 }
-
 function setC6License(i,v){ toolState.c6.license[i]=v; }
 window.setC6License = setC6License;
 async function checkC6License(){
@@ -19109,7 +19085,6 @@ async function checkC6License(){
   await bumpPracticeProgress("projectcompliance6", score);
 }
 window.checkC6License = checkC6License;
-
 function setC6Kpi(i,v){ toolState.c6.kpi[i]=v; }
 window.setC6Kpi = setC6Kpi;
 async function checkC6Kpi(){
@@ -19123,7 +19098,6 @@ async function checkC6Kpi(){
   await bumpPracticeProgress("projectcompliance6", score);
 }
 window.checkC6Kpi = checkC6Kpi;
-
 async function checkC6Recovery(btn){
   const text = document.getElementById("c6RecoveryReply").value.trim();
   if(text.length<15){ toast("Write a fuller message first."); return; }
@@ -19150,7 +19124,6 @@ async function checkC6Recovery(btn){
   }
 }
 window.checkC6Recovery = checkC6Recovery;
-
 async function downloadProjectCompliance6Pdf(){
   await ensureTraineeName();
   const c6 = toolState.c6;
@@ -19176,10 +19149,6 @@ async function downloadProjectCompliance6Pdf(){
   buildAndSavePdf("LSH EA / PA Upskill Program", "Business Compliance & Project Recovery — Results", lines, "LSH_Project_Compliance");
 }
 window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
-
-
-
-
 </script>
 </body>
 </html>
