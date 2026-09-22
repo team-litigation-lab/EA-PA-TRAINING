@@ -75,13 +75,13 @@ button{font-family:inherit;cursor:pointer;}
   display:flex;align-items:center;justify-content:space-between;gap:16px;
   flex-wrap:wrap;row-gap:10px;
 }
-@media(min-width:1180px){.topbar-inner{flex-wrap:nowrap;}}
+@media(min-width:960px){.topbar-inner{flex-wrap:nowrap;}}
 .topbar-right{
   display:flex;align-items:center;gap:14px;flex-wrap:wrap;flex:1 1 auto;justify-content:flex-end;min-width:0;
 }
-@media(min-width:1180px){.topbar-right{flex-wrap:nowrap;}}
+@media(min-width:960px){.topbar-right{flex-wrap:nowrap;}}
 .topbar-search{
-  flex:1 1 220px;max-width:340px;display:flex;align-items:center;gap:8px;
+  flex:1 1 140px;max-width:340px;display:flex;align-items:center;gap:8px;
   background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;
   padding:8px 14px;position:relative;min-width:0;
 }
@@ -226,10 +226,11 @@ button{font-family:inherit;cursor:pointer;}
 }
 @keyframes previewIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
 
-.nav{display:flex;gap:4px;background:rgba(255,255,255,.06);padding:4px;border-radius:10px;flex-wrap:wrap;flex:0 1 auto;}
+.nav{display:flex;gap:2px;background:rgba(255,255,255,.06);padding:4px;border-radius:10px;flex-wrap:nowrap;flex:0 1 auto;min-width:0;}
+@media(max-width:900px){.nav{flex-wrap:wrap;}}
 .nav button{
-  background:transparent;border:none;color:#D7DAEC;font-size:var(--font-body);font-weight:600;
-  padding:8px 14px;border-radius:7px;transition:all .15s ease;white-space:nowrap;
+  background:transparent;border:none;color:#D7DAEC;font-size:13px;font-weight:600;
+  padding:8px 9px;border-radius:7px;transition:all .15s ease;white-space:nowrap;
 }
 .nav button.active{background:var(--orange);color:#241304;}
 .nav button:not(.active):hover{background:rgba(255,255,255,.09);color:#fff;}
@@ -1521,6 +1522,7 @@ const DAY1 = {
   "lessons": [
     {
       "h": "EA vs. PA: Two Mindsets",
+      "svgDiagram": "<svg viewBox=\"0 0 560 220\" xmlns=\"http://www.w3.org/2000/svg\"><style>.mh{font:800 16px Arial,sans-serif;fill:#fff;}.ms{font:400 11px Arial,sans-serif;fill:rgba(255,255,255,.85);}</style><rect x=\"20\" y=\"20\" width=\"250\" height=\"180\" rx=\"12\" fill=\"#262B45\"/><rect x=\"290\" y=\"20\" width=\"250\" height=\"180\" rx=\"12\" fill=\"#DB8437\"/><text x=\"145\" y=\"55\" text-anchor=\"middle\" class=\"mh\">EA</text><text x=\"145\" y=\"78\" text-anchor=\"middle\" class=\"ms\">Protects business performance</text><circle cx=\"145\" cy=\"110\" r=\"9\" fill=\"#fff\" class=\"svg-pulse-dot\"/><text x=\"145\" y=\"140\" text-anchor=\"middle\" class=\"ms\">Executive proxy</text><text x=\"145\" y=\"158\" text-anchor=\"middle\" class=\"ms\">Filters info &amp; priorities</text><text x=\"415\" y=\"55\" text-anchor=\"middle\" class=\"mh\">PA</text><text x=\"415\" y=\"78\" text-anchor=\"middle\" class=\"ms\">Protects personal life logistics</text><circle cx=\"415\" cy=\"110\" r=\"9\" fill=\"#fff\" class=\"svg-pulse-dot\"/><text x=\"415\" y=\"140\" text-anchor=\"middle\" class=\"ms\">Personal representative</text><text x=\"415\" y=\"158\" text-anchor=\"middle\" class=\"ms\">Day-to-day decisions</text><g transform=\"translate(200,90)\"><rect width=\"160\" height=\"26\" rx=\"13\" fill=\"#B5651F\" stroke=\"#F0C08A\" stroke-width=\"2\" class=\"svg-callout-badge\"/><text x=\"80\" y=\"17\" text-anchor=\"middle\" style=\"font:800 9px Arial,sans-serif;fill:#fff;\">&#9888; NEVER CONFLATE</text></g></svg>",
       "b": [
         "A VEA is a strategic partner: every action is measured by whether it increases the executive's efficiency and the business's performance.",
         "A VPA is a personal support specialist: success means the individual's life and logistics run smoothly.",
@@ -1646,6 +1648,7 @@ const DAY1 = {
     },
     {
       "h": "Gatekeeping Is Not 'No'",
+      "svgDiagram": "<svg viewBox=\"0 0 560 170\" xmlns=\"http://www.w3.org/2000/svg\"><style>.gt{font:700 13px Arial,sans-serif;fill:#fff;}.gs{font:400 10.5px Arial,sans-serif;fill:rgba(255,255,255,.85);}</style><rect x=\"20\" y=\"30\" width=\"220\" height=\"110\" rx=\"10\" fill=\"#B54A3F\"/><text x=\"130\" y=\"70\" text-anchor=\"middle\" style=\"font:800 26px Arial,sans-serif;fill:#fff;\">&#10005;</text><text x=\"130\" y=\"100\" text-anchor=\"middle\" class=\"gt\">Flat \"No\"</text><text x=\"130\" y=\"120\" text-anchor=\"middle\" class=\"gs\">Closes the door</text><path d=\"M250 85 L310 85\" stroke=\"#DB8437\" stroke-width=\"4\" class=\"svg-flow-arrow\" marker-end=\"url(#ahg)\"/><rect x=\"320\" y=\"30\" width=\"220\" height=\"110\" rx=\"10\" fill=\"#3F7D58\"/><text x=\"430\" y=\"68\" text-anchor=\"middle\" style=\"font:800 24px Arial,sans-serif;fill:#fff;\">&#10003;</text><circle cx=\"430\" cy=\"55\" r=\"8\" fill=\"none\" class=\"svg-pulse-dot\"/><text x=\"430\" y=\"100\" text-anchor=\"middle\" class=\"gt\">\"Not now, here's...\"</text><text x=\"430\" y=\"120\" text-anchor=\"middle\" class=\"gs\">Offers a real next step</text><defs><marker id=\"ahg\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#DB8437\"/></marker></defs></svg>",
       "b": [
         "Gatekeeping means 'not now' or 'here's a better option' — never an outright block.",
         "You represent the executive's authority; access is filtered, tone stays calm and confident.",
@@ -1785,6 +1788,7 @@ const DAY1 = {
     },
     {
       "h": "Boundaries & Authorization Protocols",
+      "svgDiagram": "<svg viewBox=\"0 0 560 210\" xmlns=\"http://www.w3.org/2000/svg\"><style>.bt{font:700 12px Arial,sans-serif;fill:#fff;}.bs{font:400 10px Arial,sans-serif;fill:rgba(255,255,255,.85);}</style><g transform=\"translate(200,10)\"><rect width=\"160\" height=\"46\" rx=\"23\" fill=\"#262B45\"/><text x=\"80\" y=\"28\" text-anchor=\"middle\" class=\"bt\">Request Arrives</text></g><path d=\"M280 56 L280 78 M280 78 L200 100 M280 78 L360 100\" stroke=\"#DCE0EA\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"280\" cy=\"78\" r=\"5\" fill=\"#DB8437\" class=\"svg-pulse-dot\"/><text x=\"140\" y=\"92\" text-anchor=\"middle\" style=\"font:600 9.5px Arial,sans-serif;fill:#5B6178;\">within limit</text><text x=\"420\" y=\"92\" text-anchor=\"middle\" style=\"font:600 9.5px Arial,sans-serif;fill:#5B6178;\">exceeds limit</text><g transform=\"translate(120,108)\"><rect width=\"160\" height=\"60\" rx=\"10\" fill=\"#3F7D58\"/><text x=\"80\" y=\"30\" text-anchor=\"middle\" class=\"bt\">Act &amp; Document</text><text x=\"80\" y=\"48\" text-anchor=\"middle\" class=\"bs\">Directly, on record</text></g><g transform=\"translate(280,108)\"><rect width=\"160\" height=\"60\" rx=\"10\" fill=\"#B54A3F\"/><text x=\"80\" y=\"30\" text-anchor=\"middle\" class=\"bt\">Escalate First</text><text x=\"80\" y=\"48\" text-anchor=\"middle\" class=\"bs\">Never assume approval</text></g></svg>",
       "b": [
         "Clear scope, written agreements, and checklists prevent role overlap.",
         "Authorization protocols define limits precisely (e.g., an EA approves vendor invoices under $500, escalates above).",
@@ -1849,6 +1853,7 @@ const DAY1 = {
     },
     {
       "h": "Command Hierarchy Across Different Tracks",
+      "svgDiagram": "<svg viewBox=\"0 0 580 260\" xmlns=\"http://www.w3.org/2000/svg\"><style>.ct{font:700 10px Arial,sans-serif;fill:#fff;}.ch{font:800 11px Arial,sans-serif;fill:#DB8437;}</style><text x=\"90\" y=\"18\" text-anchor=\"middle\" class=\"ch\">CORPORATE</text><text x=\"290\" y=\"18\" text-anchor=\"middle\" class=\"ch\">LEGAL</text><text x=\"490\" y=\"18\" text-anchor=\"middle\" class=\"ch\">HOUSEHOLD</text><g transform=\"translate(15,28)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#262B45\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">CEO / President</text></g><line x1=\"90\" y1=\"58\" x2=\"90\" y2=\"70\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(15,70)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#3C4268\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Senior EA</text></g><line x1=\"90\" y1=\"100\" x2=\"90\" y2=\"112\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(15,112)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#3C4268\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">EA</text></g><line x1=\"90\" y1=\"142\" x2=\"90\" y2=\"154\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(15,154)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#5B6178\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Admin Assistant</text></g><g transform=\"translate(215,28)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#B54A3F\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Managing Partner</text><circle cx=\"140\" cy=\"15\" r=\"6\" fill=\"#fff\" class=\"svg-pulse-dot\"/></g><line x1=\"290\" y1=\"58\" x2=\"290\" y2=\"70\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(215,70)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#3C4268\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Sr Legal Assistant</text></g><line x1=\"290\" y1=\"100\" x2=\"290\" y2=\"112\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(215,112)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#3C4268\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Legal EA</text></g><line x1=\"290\" y1=\"142\" x2=\"290\" y2=\"154\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(215,154)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#5B6178\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Paralegal</text></g><g transform=\"translate(415,28)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#262B45\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Family Head</text></g><line x1=\"490\" y1=\"58\" x2=\"490\" y2=\"70\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(415,70)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#3C4268\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Sr PA / Estate Mgr</text></g><line x1=\"490\" y1=\"100\" x2=\"490\" y2=\"112\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(415,112)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#3C4268\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">PA</text></g><line x1=\"490\" y1=\"142\" x2=\"490\" y2=\"154\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><g transform=\"translate(415,154)\"><rect width=\"150\" height=\"30\" rx=\"6\" fill=\"#5B6178\"/><text x=\"75\" y=\"20\" text-anchor=\"middle\" class=\"ct\">Household Staff</text></g><g transform=\"translate(215,196)\"><rect width=\"150\" height=\"22\" rx=\"11\" fill=\"#B5651F\" stroke=\"#F0C08A\" stroke-width=\"2\" class=\"svg-callout-badge\"/><text x=\"75\" y=\"15\" text-anchor=\"middle\" style=\"font:800 8.5px Arial,sans-serif;fill:#fff;\">&#9888; STRICT CHAIN</text></g></svg>",
       "b": [
         "Command hierarchy for a corporate/executive track: CEO/President → Senior EA → EA (reports to a specific executive) → Administrative Assistant.",
         "Command hierarchy for a legal track: Managing Partner/General Counsel → Senior Legal Assistant → Legal EA → Paralegal — the chain is strict, and unauthorized decisions can have real legal consequences.",
@@ -1865,6 +1870,7 @@ const DAY1 = {
     },
     {
       "h": "Serving as Liaison & Point of Contact",
+      "svgDiagram": "<svg viewBox=\"0 0 500 260\" xmlns=\"http://www.w3.org/2000/svg\"><style>.lt{font:700 11px Arial,sans-serif;fill:#fff;}</style><path d=\"M250 130 L110 60\" stroke=\"#DCE0EA\" stroke-width=\"2\" class=\"svg-flow-arrow\"/><path d=\"M250 130 L390 60\" stroke=\"#DCE0EA\" stroke-width=\"2\" class=\"svg-flow-arrow\"/><path d=\"M250 130 L110 200\" stroke=\"#DCE0EA\" stroke-width=\"2\" class=\"svg-flow-arrow\"/><path d=\"M250 130 L390 200\" stroke=\"#DCE0EA\" stroke-width=\"2\" class=\"svg-flow-arrow\"/><circle cx=\"250\" cy=\"130\" r=\"38\" fill=\"#DB8437\" class=\"svg-pulse-dot\"/><text x=\"250\" y=\"126\" text-anchor=\"middle\" class=\"lt\">YOU</text><text x=\"250\" y=\"140\" text-anchor=\"middle\" style=\"font:600 8px Arial,sans-serif;fill:#fff;\">accurate relay</text><g transform=\"translate(40,30)\"><rect width=\"140\" height=\"46\" rx=\"8\" fill=\"#262B45\"/><text x=\"70\" y=\"28\" text-anchor=\"middle\" class=\"lt\">Executive</text></g><g transform=\"translate(320,30)\"><rect width=\"140\" height=\"46\" rx=\"8\" fill=\"#262B45\"/><text x=\"70\" y=\"28\" text-anchor=\"middle\" class=\"lt\">Outside Contact</text></g><g transform=\"translate(40,180)\"><rect width=\"140\" height=\"46\" rx=\"8\" fill=\"#262B45\"/><text x=\"70\" y=\"28\" text-anchor=\"middle\" class=\"lt\">Vendor / Staff</text></g><g transform=\"translate(320,180)\"><rect width=\"140\" height=\"46\" rx=\"8\" fill=\"#262B45\"/><text x=\"70\" y=\"28\" text-anchor=\"middle\" class=\"lt\">Other Track</text></g></svg>",
       "layout": "COMPARE",
       "compareLeft": {
         "label": "Gatekeeping",
@@ -1994,6 +2000,7 @@ const DAY1 = {
     },
     {
       "h": "Setting Up Client Trackers",
+      "svgDiagram": "<svg viewBox=\"0 0 560 170\" xmlns=\"http://www.w3.org/2000/svg\"><style>.trt{font:700 13px Arial,sans-serif;fill:#fff;}.trs{font:400 10px Arial,sans-serif;fill:rgba(255,255,255,.85);}</style><g transform=\"translate(20,20)\"><rect width=\"160\" height=\"130\" rx=\"10\" fill=\"#262B45\"/><text x=\"80\" y=\"40\" text-anchor=\"middle\" style=\"font-size:26px;\">&#9992;</text><text x=\"80\" y=\"75\" text-anchor=\"middle\" class=\"trt\">Travel</text><circle cx=\"80\" cy=\"95\" r=\"6\" fill=\"#DB8437\" class=\"svg-pulse-dot\"/><text x=\"80\" y=\"115\" text-anchor=\"middle\" class=\"trs\">Seat, connections</text></g><g transform=\"translate(200,20)\"><rect width=\"160\" height=\"130\" rx=\"10\" fill=\"#3C4268\"/><text x=\"80\" y=\"40\" text-anchor=\"middle\" style=\"font-size:26px;\">&#9993;</text><text x=\"80\" y=\"75\" text-anchor=\"middle\" class=\"trt\">Inbox</text><circle cx=\"80\" cy=\"95\" r=\"6\" fill=\"#DB8437\" class=\"svg-pulse-dot\"/><text x=\"80\" y=\"115\" text-anchor=\"middle\" class=\"trs\">BLUF format</text></g><g transform=\"translate(380,20)\"><rect width=\"160\" height=\"130\" rx=\"10\" fill=\"#3C4268\"/><text x=\"80\" y=\"40\" text-anchor=\"middle\" style=\"font-size:26px;\">&#128197;</text><text x=\"80\" y=\"75\" text-anchor=\"middle\" class=\"trt\">Meetings</text><circle cx=\"80\" cy=\"95\" r=\"6\" fill=\"#DB8437\" class=\"svg-pulse-dot\"/><text x=\"80\" y=\"115\" text-anchor=\"middle\" class=\"trs\">Buffer rules</text></g></svg>",
       "b": [
         "A tracker turns the dossier into a live tool, updated in real time.",
         "Start with three: Travel Preferences, Inbox Preferences, Meeting Rhythms.",
@@ -2018,6 +2025,7 @@ const DAY1 = {
     },
     {
       "h": "The ACT Email Framework",
+      "svgDiagram": "<svg viewBox=\"0 0 560 150\" xmlns=\"http://www.w3.org/2000/svg\"><style>.at{font:800 20px Arial,sans-serif;fill:#fff;}.al{font:700 12px Arial,sans-serif;fill:#fff;}.as{font:400 9.5px Arial,sans-serif;fill:rgba(255,255,255,.85);}</style><g transform=\"translate(10,20)\"><rect width=\"160\" height=\"100\" rx=\"10\" fill=\"#262B45\"/><text x=\"80\" y=\"38\" text-anchor=\"middle\" class=\"at\">A</text><text x=\"80\" y=\"62\" text-anchor=\"middle\" class=\"al\">Acknowledge</text><text x=\"80\" y=\"80\" text-anchor=\"middle\" class=\"as\">Restate the ask</text></g><path d=\"M178 70 L208 70\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" marker-end=\"url(#ahact)\"/><g transform=\"translate(210,20)\"><rect width=\"160\" height=\"100\" rx=\"10\" fill=\"#3C4268\"/><text x=\"80\" y=\"38\" text-anchor=\"middle\" class=\"at\">C</text><text x=\"80\" y=\"62\" text-anchor=\"middle\" class=\"al\">Clarify</text><circle cx=\"80\" cy=\"78\" r=\"5\" fill=\"#DB8437\" class=\"svg-pulse-dot\"/><text x=\"80\" y=\"95\" text-anchor=\"middle\" class=\"as\">Only what's missing</text></g><path d=\"M378 70 L408 70\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" marker-end=\"url(#ahact)\"/><g transform=\"translate(410,20)\"><rect width=\"160\" height=\"100\" rx=\"10\" fill=\"#DB8437\"/><text x=\"80\" y=\"38\" text-anchor=\"middle\" class=\"at\">T</text><text x=\"80\" y=\"62\" text-anchor=\"middle\" class=\"al\">Timeline</text><text x=\"80\" y=\"80\" text-anchor=\"middle\" class=\"as\">What, when, who owns it</text></g><defs><marker id=\"ahact\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#DB8437\"/></marker></defs></svg>",
       "b": [
         "Executives like Elias issue requests in the shape they think in — fast, partial, sometimes three things tangled into one voice note. An ACT email turns that into something both people can act on without a confused back-and-forth.",
         "Acknowledge is not 'Got it, thanks!' — it's restating the actual ask in your own words, so any misunderstanding surfaces immediately instead of three days later.",
