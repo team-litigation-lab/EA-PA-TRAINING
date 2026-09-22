@@ -177,7 +177,8 @@ button{font-family:inherit;cursor:pointer;}
 @media(max-width:900px){.step-dash{width:18px;}}
 
 /* illustrated module card grid */
-.module-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));gap:18px;margin-bottom:8px;align-items:start;}
+.module-grid{display:grid;grid-template-columns:repeat(5, 1fr);gap:18px;margin-bottom:8px;align-items:start;}
+@media(max-width:1400px){.module-grid{grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));}}
 .module-card{
   background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
   box-shadow:var(--shadow);display:flex;flex-direction:column;
@@ -11023,7 +11024,7 @@ function renderNotifBanner(){
   const done = completedCount();
   if(done===0) return "";
   const msg = done===10
-    ? "🎉 You've completed all 10 days — download your Training Record any time from the dashboard."
+    ? "🎉 You've completed all 10 days — congratulations on finishing the program."
     : `You're on <b>Day ${nextDayId()} of 10</b> — pick up right where you left off.`;
   return `
   <div class="notif-banner">
@@ -11650,8 +11651,6 @@ function renderDashboard(){
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="goto('day',${nextDayId()})">${done===0?"Start Day 1":"Continue training"}</button>
         <button class="btn btn-ghost" onclick="goto('practice')">Open Practice Lab</button>
-        <button class="btn btn-navy" onclick="downloadRecordPdf()">⬇ Download Training Record</button>
-        <button class="btn btn-ghost" onclick="downloadFullPortfolioPdf()">⬇ Download Full Portfolio</button>
       </div>
     </div>
     <div class="hero-seal-wrap">
@@ -11662,12 +11661,14 @@ function renderDashboard(){
     </div>
   </div>
 
-  <div class="stat-row">
+  <div class="stat-row" style="grid-template-columns:repeat(2,1fr);margin-bottom:14px;">
     <div class="card stat"><div class="num">${done} / 10</div><div class="lbl">Days completed</div></div>
-    <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
-    <div class="card stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
-    <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
     <div class="card stat"><div class="num">${labAttemptsRemaining()} / ${LAB_ATTEMPT_CAP}</div><div class="lbl">Practice Lab attempts left <span style="font-weight:400;">(program-wide, all 10 days)</span></div></div>
+  </div>
+  <div class="stat-row" style="grid-template-columns:repeat(3,1fr);">
+    <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
+    <div class="card stat"><div class="num">${overallCompetencyScore().score}%</div><div class="lbl">${overallCompetencyScore().tier ? `Best Competency — ${esc(overallCompetencyScore().tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${averageCompetencyScore().score}%</span></div></div>
+    <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
   </div>
 
   <div class="pill-tabs">
