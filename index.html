@@ -13320,10 +13320,14 @@ function retainScoreAndAdvance(){
   }
 }
 window.retainScoreAndAdvance = retainScoreAndAdvance;
-function refreshLabAttemptBanners(){
-  document.querySelectorAll(".lab-attempt-banner").forEach(el=>{
-    const dayId = parseInt(el.dataset.dayId, 10);
-    el.outerHTML = renderLabAttemptBanner(dayId);
+
+function renderLabAttemptBanner(dayId) {
+  return ""; // Returns empty string so no banner is rendered
+}
+
+function refreshLabAttemptBanners() {
+  document.querySelectorAll(".lab-attempt-banner").forEach(el => {
+    el.remove(); // Removes any existing banner elements from the DOM
   });
 }
 
