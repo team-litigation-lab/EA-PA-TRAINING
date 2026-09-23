@@ -13391,8 +13391,7 @@ function renderLabAttemptBanner(dayId){
     <div class="lab-attempt-banner ${locked?'lab-attempt-locked':''}" data-day-id="${dayId}">
       <div class="lab-attempt-icon">${locked?'🔒':'⚠️'}</div>
       <div class="lab-attempt-body">
-        <b>${locked?'No attempts remaining — read-only mode':'Program-Wide Tool Utilization Limit'}</b>
-        <p>${locked
+                <p>${locked
           ? `You've used all ${LAB_ATTEMPT_CAP} Practice Lab attempts allocated for the entire program. You can still view any completed results below, but no further submissions will be graded.`
           : `You are allocated a total of ${LAB_ATTEMPT_CAP} Practice Lab attempts across the <b>entire 10-day program</b>. Use your attempts strategically — review all background materials, instructions, and details thoroughly before initiating a submission. <b>${remaining} of ${LAB_ATTEMPT_CAP} attempts remaining, program-wide.</b>`}</p>
       </div>
