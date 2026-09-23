@@ -116,10 +116,10 @@ button{font-family:inherit;cursor:pointer;}
 .search-results .sr-empty{padding:14px;font-size:var(--font-sub);color:var(--ink-soft);text-align:center;}
 
 .brand{display:flex;align-items:center;gap:12px;cursor:pointer;flex:0 0 auto;min-width:0;}
-.brand-mark{width:38px;height:38px;flex:0 0 auto;object-fit:contain;}
+.brand-mark{width:40px;height:40px;flex:0 0 auto;object-fit:contain;background:#fff;padding:3px;border-radius:7px;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.25);}
 .brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0;}
-.brand-text b{font-family:'Fraunces';font-size:var(--font-body);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
-.brand-text span{font-size:var(--font-sub);color:#B9BEDA;text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
+.brand-text b{font-family:'Fraunces';font-size:var(--font-body);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;}
+.brand-text span{font-size:var(--font-sub);color:#B9BEDA;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;}
 
 /* pill tabs (dashboard quick-nav, mirrors reference) */
 .pill-tabs{
@@ -1465,10 +1465,8 @@ rect.svg-callout-badge{animation:none;}
 .empty-note{
   font-size:var(--font-sub);color:var(--ink-soft);background:#F6F7FB;border:1px dashed var(--line);
   border-radius:10px;padding:14px 16px;margin-top:16px;
-  .lab-attempt-banner {
-  display: none !important;
 }
-}
+.lab-attempt-banner{display:none !important;}
 
 /* ---------- dashboard v2 (sidebar layout — structure only, original colours) ---------- */
 main.main-dash{max-width:1600px;}
@@ -12237,6 +12235,13 @@ async function submitLogin(){
   // sync below would overwrite their history with this session's empty state.
   if(isNewSession){
     const existing = await sharedGet("trainee:"+state.traineeId);
+    if(!existing){
+      const keepBatch = state.traineeBatch;
+      await resetTraineeSessionData();
+      state.progress = {}; state.practiceProgress = {};
+      await storeSet("day-progress", {}); await storeSet("practice-progress", {});
+      state.traineeBatch = keepBatch; await storeSet("trainee-batch", keepBatch);
+    }
     if(existing){
       state.progress = existing.dayProgress || {};
       state.practiceProgress = existing.practiceProgress || {};
@@ -12253,6 +12258,12 @@ async function submitLogin(){
         state.labAttemptsGlobal = 0;
       }
       state.completedLabActions = (existing.completedLabActions && typeof existing.completedLabActions === "object") ? existing.completedLabActions : {};
+      // Restore these too — otherwise the sync below would overwrite the
+      // trainee's saved submissions / roleplay history with an empty list.
+      state.submissions = Array.isArray(existing.submissions) ? existing.submissions : [];
+      state.roleplayHistory = Array.isArray(existing.roleplayHistory) ? existing.roleplayHistory : [];
+      await storeSet("submissions", state.submissions);
+      await storeSet("roleplayHistory", state.roleplayHistory);
       await storeSet("day-progress", state.progress);
       await storeSet("practice-progress", state.practiceProgress);
       await storeSet("lab-attempts-global", state.labAttemptsGlobal);
@@ -12319,6 +12330,23 @@ async function recheckApproval(){
 }
 window.recheckApproval = recheckApproval;
 
+async function resetTraineeSessionData(){
+  // Everything that belongs to ONE trainee and must not leak to the next
+  // person who logs in on the same device.
+  state.labAttemptsGlobal = 0;
+  state.completedLabActions = {};
+  state.submissions = [];
+  state.roleplayHistory = [];
+  state.assignedRoleplay = null;
+  state.day10Window = null;
+  state.traineeBatch = "";
+  await storeSet("lab-attempts-global", 0);
+  await storeSet("completed-lab-actions", {});
+  await storeSet("submissions", []);
+  await storeSet("roleplayHistory", []);
+  await storeSet("day10-window", null);
+  await storeSet("trainee-batch", "");
+}
 async function logout(){
   if(state.approvalPollInterval){ clearInterval(state.approvalPollInterval); state.approvalPollInterval = null; }
   state.activeSurpriseTask = null;
@@ -12337,6 +12365,7 @@ async function logout(){
   await storeSet("day-progress", {});
   await storeSet("practice-progress", {});
   await storeSet("notes", []);
+  await resetTraineeSessionData();
   state.view = "login";
   render();
 }
@@ -12360,6 +12389,7 @@ async function forceRevokedLogout(){
   await storeSet("day-progress", {});
   await storeSet("practice-progress", {});
   await storeSet("notes", []);
+  await resetTraineeSessionData();
   state.view = "login";
   render();
   toast("Your access to this program has been revoked. Contact your trainer if you believe this is a mistake.");
@@ -12780,7 +12810,7 @@ function renderLessonCard(l,i,d,unused,part){
     discussionHtml = discussionParts.join("");
   }
 
-  const partAHtml = renderFourPartSection(1, "Core Principles", corePrinciplesHtml) + renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml) + (l.svgDiagram ? `<div class="svg-diagram-card"><div class="svg-diagram-label">📊 Visual Reference</div>${l.svgDiagram}</div>` : "");
+  const partAHtml = renderFourPartSection(1, "Core Principles", corePrinciplesHtml) + renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml) + (l.svgDiagram ? `<div class="svg-diagram-card">${l.svgDiagram}</div>` : "");
   const partBHtml = renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml);
   const p = (part===2) ? 2 : 1;
 
@@ -13544,21 +13574,6 @@ function wizardGoTo(i){
   window.scrollTo({top:0, behavior:"smooth"});
 }
 window.wizardGoTo = wizardGoTo;
-function renderLabAttemptBanner(dayId){
-  const remaining = labAttemptsRemaining();
-  const LAB_ATTEMPT_CAP = 3;
-  const locked = remaining <= 0;
-  return `
-    <div class="lab-attempt-banner ${locked?'lab-attempt-locked':''}" data-day-id="${dayId}">
-      <div class="lab-attempt-icon">${locked?'🔒':'⚠️'}</div>
-      <div class="lab-attempt-body">
-                <p>${locked
-          ? `You've used all ${LAB_ATTEMPT_CAP} Practice Lab attempts allocated for the entire program. You can still view any completed results below, but no further submissions will be graded.`
-          : `You are allocated a total of ${LAB_ATTEMPT_CAP} Practice Lab attempts across the <b>entire 10-day program</b>. Use your attempts strategically — review all background materials, instructions, and details thoroughly before initiating a submission. <b>${remaining} of ${LAB_ATTEMPT_CAP} attempts remaining, program-wide.</b>`}</p>
-      </div>
-    </div>`;
-}
-
 /* ============================================================
    0. EA vs. PA DIFFERENCES DRILL
    ============================================================ */
