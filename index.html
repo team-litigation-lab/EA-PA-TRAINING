@@ -13378,6 +13378,7 @@ function wizardGoTo(i){
 window.wizardGoTo = wizardGoTo;
 function renderLabAttemptBanner(dayId){
   const remaining = labAttemptsRemaining();
+  const LAB_ATTEMPT_CAP = 3;
   const locked = remaining <= 0;
   return `
     <div class="lab-attempt-banner ${locked?'lab-attempt-locked':''}" data-day-id="${dayId}">
@@ -16438,7 +16439,6 @@ function renderAdminRankings(){
     </div>
   `;
 }
-
 function renderAdminRows(){
   const search = (state.adminSearch||"").toLowerCase();
   const sort = state.adminSort || "completion_desc";
@@ -16510,7 +16510,6 @@ ${dayLines}
 
 PRACTICE LAB RESULTS:
 ${practiceLines}
-
 Return ONLY a JSON object with this exact shape, no other text:
 {
   "strength": "2-4 sentences on their clearest strengths, grounded in which days/tools they excelled at",
@@ -16532,7 +16531,6 @@ Return ONLY a JSON object with this exact shape, no other text:
   }
 }
 window.generateAiReview = generateAiReview;
-
 function renderAdminDetail(rec){
   const dp = rec.dayProgress||{};
   const pp = rec.practiceProgress||{};
@@ -16570,12 +16568,10 @@ function renderAdminDetail(rec){
             ${s.stored && s.dataUrl ? `<a href="${s.dataUrl}" download="${esc(s.fileName)}" class="btn btn-sm btn-ghost">Download</a>` : `<span style="color:var(--ink-soft);font-size:11px;">Too large to store — filename on record only</span>`}
           </div>`).join("")}
       </div>` : ""}
-
       <div style="margin-top:16px;">
         <div class="sidebar-section-lbl" style="padding-left:0;">AI-Generated Ranking &amp; Review</div>
         <div id="aiReviewWrap-${esc(rec.id)}">${renderAiReviewBlock(rec)}</div>
       </div>
-
       <div style="margin-top:16px;">
         <div class="sidebar-section-lbl" style="padding-left:0;">Live Roleplay Performance &amp; Assignment</div>
         ${renderAdminRoleplayPanel(rec)}
@@ -16668,13 +16664,10 @@ async function injectSurpriseTask(){
   resultEl.innerHTML = `<div class="ai-loading">Generating a task grounded in Day ${dayId}'s material…</div>`;
   const topicList = day.lessons.map(l=>l.h).join("; ");
   const prompt = `Generate one unscripted, realistic task delegation for a Legal Executive/Personal Assistant trainee, to be dropped on them unannounced mid-session during live training. It must be answerable correctly ONLY by someone who has actually absorbed today's specific lesson material — not generic advice.
-
 TODAY'S LESSON TOPICS (Day ${dayId}: ${day.title}):
 ${topicList}
-
 CLIENT CONTEXT:
 ${CLIENT_DOSSIER_MD}
-
 Write a short (2-4 sentence), realistic incoming request or situation — the kind that would actually land on an EA/PA's desk — that specifically requires applying one or more of today's topics correctly. Return ONLY the task text itself, nothing else — no preamble, no explanation, no quotation marks around it.`;
   try{
     const task = await callAIText(prompt, 250);
