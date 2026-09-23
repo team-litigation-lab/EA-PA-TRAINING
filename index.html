@@ -1671,6 +1671,18 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .qns-ok{background:var(--success-bg);border-color:var(--success);} .qns-ok .qns-title{color:var(--success);}
 .qns-warn{background:#FFF4E8;border-color:var(--orange);} .qns-warn .qns-title{color:var(--orange-deep);}
 .qns-stop{background:var(--danger-bg);border-color:var(--danger);} .qns-stop .qns-title{color:var(--danger);}
+
+.script-block{margin-top:12px;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;background:#FFFCF8;padding:12px 14px;}
+.script-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--navy);font-size:13px;margin-bottom:6px;}
+.script-time{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--orange-deep);background:#FFF1E2;border-radius:20px;padding:2px 8px;}
+.script-row{margin-top:8px;}
+.script-row b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--orange-deep);margin-bottom:2px;}
+.script-row p{margin:0;font-size:13px;line-height:1.5;}
+.script-row ul{margin:2px 0 0;padding-left:18px;} .script-row li{font-size:13px;margin-bottom:3px;}
+.script-ai{margin-top:10px;}
+.script-ai-body{background:#fff;border:1px dashed var(--line);border-radius:8px;padding:10px 12px;}
+.script-ai-body b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);margin-bottom:4px;}
+.script-ai-body p{margin:4px 0;font-size:13px;line-height:1.5;}
 </style>
 </head>
 <body>
@@ -10900,6 +10912,63 @@ const state = {
 
 /* ---------- storage (persists across sessions) ---------- */
 const mem = {}; // in-memory fallback if window.storage is unavailable
+
+/* ============================================================
+   CLOUD PROGRESS — every trainee's progress is saved to the
+   server (Cloudflare KV, key "progress:<traineeId>"), not just to
+   this browser. Any change is saved within ~1.5s; logging in on
+   any device restores it; logging out flushes it first.
+   ============================================================ */
+const PERSONAL_KEYS = ["day-progress","practice-progress","lab-attempts-global","notes","completed-lab-actions",
+  "day10-window","submissions","roleplayHistory","slide-progress","last-slide","attn-detail-findings",
+  "calendar-custom","calendar-edits","call-log","inbox-filing","inbox-interactions","inbox-labels","trainee-batch"];
+const PERSONAL_KEY_SET = new Set(PERSONAL_KEYS);
+let cloudSaveTimer = null;
+function scheduleCloudSave(){
+  if(!state.traineeId || state.cloudRestoring || state.isAdmin && !state.traineeId) return;
+  clearTimeout(cloudSaveTimer);
+  setSaveStatus("saving");
+  cloudSaveTimer = setTimeout(()=>{ cloudSaveNow(); }, 1500);
+}
+async function cloudSaveNow(){
+  clearTimeout(cloudSaveTimer); cloudSaveTimer = null;
+  const id = state.traineeId; if(!id) return false;
+  const data = {};
+  for(const k of PERSONAL_KEYS){ const v = await storeGet(k); if(v!==null && v!==undefined) data[k] = v; }
+  const savedAt = new Date().toISOString();
+  const ok = await sharedSet("progress:"+id, {traineeId:id, savedAt, data});
+  if(ok){ try{ localStorage.setItem("lsh_progress-saved-at", savedAt); }catch(e){} state.lastCloudSave = savedAt; setSaveStatus("saved"); }
+  else setSaveStatus("offline");
+  return ok;
+}
+async function cloudRestore(traineeId){
+  let snap = null;
+  try{ snap = await sharedGet("progress:"+traineeId); }catch(e){ return false; }
+  if(!snap || !snap.data) return false;
+  let localAt = ""; try{ localAt = localStorage.getItem("lsh_progress-saved-at") || ""; }catch(e){}
+  const localOwner = await storeGet("trainee-id");
+  if(localOwner===traineeId && localAt && localAt >= snap.savedAt) return false; // this device is already newer
+  state.cloudRestoring = true;
+  try{
+    for(const k of PERSONAL_KEYS){ if(k in snap.data) await storeSet(k, snap.data[k]); }
+    try{ localStorage.setItem("lsh_progress-saved-at", snap.savedAt); }catch(e){}
+    state.lastCloudSave = snap.savedAt;
+  }finally{ state.cloudRestoring = false; }
+  return true;
+}
+function setSaveStatus(s){
+  state.saveStatus = s;
+  const el = document.getElementById("saveStatus"); if(el) el.innerHTML = saveStatusText();
+}
+function saveStatusText(){
+  if(!state.traineeId) return "Progress saves to your account once you sign in";
+  if(state.saveStatus==="saving") return "☁ Saving…";
+  if(state.saveStatus==="offline") return "⚠ Couldn't reach the server — saved on this device and will retry";
+  const t = state.lastCloudSave ? new Date(state.lastCloudSave).toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}) : "";
+  return t ? `☁ Progress saved to your account · ${t}` : "☁ Progress saves to your account automatically";
+}
+window.addEventListener("beforeunload", ()=>{ if(cloudSaveTimer){ cloudSaveNow(); } });
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="hidden" && cloudSaveTimer) cloudSaveNow(); });
 async function storeGet(key){
   let fromWindowStorage;
   try{
@@ -10934,6 +11003,7 @@ async function storeSet(key,val){
   if(!savedAnywhere){
     toast("Couldn't save — your device may be low on storage or in private browsing. Your work is kept for this session only.");
   }
+  if(PERSONAL_KEY_SET.has(key)) scheduleCloudSave();
   return savedAnywhere;
 }
 
@@ -11115,6 +11185,8 @@ async function loadAll(){
   state.roleplayHistory = rph || [];
   const sp = await storeGet("slide-progress");
   state.slideProgress = sp || {};
+  const ls = await storeGet("last-slide");
+  state.lastSlide = (ls && typeof ls==="object") ? ls : {};
   let tid = await storeGet("trainee-id");
   if(!tid && state.traineeName){
     tid = generateTraineeId(state.traineeName);
@@ -12469,18 +12541,23 @@ function scrollToModule(id){
   }, 30);
 }
 window.scrollToModule = scrollToModule;
+/* Where a trainee should land when they come back to a day: the slide they
+   were last on, falling back to the furthest slide they've reached. */
+function resumeSlideFor(dayId){
+  const d = DAYS.find(x=>x.id===dayId); if(!d) return 0;
+  const total = buildDaySlides(d).length;
+  const maxR = (state.slideProgress && state.slideProgress[dayId]) || 0;
+  const last = state.lastSlide && typeof state.lastSlide[dayId]==="number" ? state.lastSlide[dayId] : maxR;
+  return Math.max(0, Math.min(last, maxR, total-1));
+}
+window.resumeSlideFor = resumeSlideFor;
 function returnToLessonCard(dayId){
-  const sameDay = state.dayId === dayId;
   state.view = "day";
   state.dayId = dayId;
   state.dayViewMode = "slides";
   state.quizSubmitted = false;
-  // Only preserve state.lessonSlide when it's genuinely for this same day —
-  // goto('tool',...) and the Knowledge Check flow never reset it, so a
-  // same-day return restores the exact slide the trainee was on. If they
-  // opened this tool directly (a different or no prior day), that index
-  // would be meaningless here, so start from the top instead.
-  if(!sameDay || typeof state.lessonSlide !== "number") state.lessonSlide = 0;
+  state.maxSlideReached = Math.max(state.maxSlideReached||0, (state.slideProgress&&state.slideProgress[dayId])||0);
+  state.lessonSlide = resumeSlideFor(dayId);
   state.slideInterstitial = null;
   window.scrollTo({top:0, behavior:"smooth"});
   render();
@@ -12583,7 +12660,7 @@ function goto(view, id){
   if(VoiceCall.active && view!=="openroleplay") VoiceCall.hangup(true);
   state.view=view;
   if(view==="dashboard"){ state.surpriseTaskChecked = false; }
-  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false; state.lessonSlide=0; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; }
+  if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; state.lessonSlide=resumeSlideFor(id); }
   if(view==="tool"){ state.toolId=id; }
   window.scrollTo({top:0,behavior:"smooth"});
   render();
@@ -12663,7 +12740,7 @@ function render(){
   afterRender();
 }
 function renderFooter(){
-  return `<div class="footer-note">LSH EA / PA Upskill Program &middot; Internal Training Portal &middot; Progress saved automatically to this device</div>`;
+  return `<div class="footer-note">LSH EA / PA Upskill Program &middot; Internal Training Portal &middot; <span id="saveStatus">${saveStatusText()}</span></div>`;
 }
 function afterRender(){
   if(state.view==="tool") initTool(state.toolId);
@@ -12753,6 +12830,7 @@ async function submitLogin(){
       state.assignedRoleplay = existing.assignedRoleplay || null;
     }
   }
+  if(isNewSession && await cloudRestore(state.traineeId)){ const keepName = state.traineeName; await loadAll(); state.traineeName = keepName; }
   await syncToLedger(true);
   const status = await getApprovalStatus(state.traineeId);
   if(status==="approved"){
@@ -12829,6 +12907,7 @@ async function resetTraineeSessionData(){
   await storeSet("trainee-batch", "");
 }
 async function logout(){
+  try{ await cloudSaveNow(); }catch(e){}
   if(state.approvalPollInterval){ clearInterval(state.approvalPollInterval); state.approvalPollInterval = null; }
   state.activeSurpriseTask = null;
   state.surpriseResult = null;
@@ -12847,6 +12926,9 @@ async function logout(){
   await storeSet("practice-progress", {});
   await storeSet("notes", []);
   await resetTraineeSessionData();
+  for(const k of ["slide-progress","last-slide","attn-detail-findings","calendar-custom","calendar-edits","call-log","inbox-filing","inbox-interactions","inbox-labels"]) await storeSet(k, null);
+  state.slideProgress = {}; state.lastSlide = {}; state.lastCloudSave = null;
+  try{ localStorage.removeItem("lsh_progress-saved-at"); }catch(e){}
   state.view = "login";
   render();
 }
@@ -12918,6 +13000,7 @@ function startApprovalPolling(traineeId){
 /* ---------- boot ---------- */
 (async function init(){
   await loadAll();
+  if(state.traineeId && await cloudRestore(state.traineeId)) await loadAll();
   if(!state.traineeName){
     state.view = "login";
   }else if(state.traineeId){
@@ -13160,6 +13243,8 @@ function renderDaySlideshow(d){
   const isLast = idx===total-1;
 
   const slide = slides[idx];
+  state.lastSlide = state.lastSlide || {};
+  if(state.lastSlide[d.id] !== idx){ state.lastSlide[d.id] = idx; storeSet("last-slide", state.lastSlide); }
   return `
     <div class="slide-dots">
       ${slides.map((_,i)=>{
@@ -16466,6 +16551,7 @@ async function rejectTrainee(traineeId){
 async function confirmRevokeTrainee(traineeId, name){
   if(!confirm(`Permanently revoke and delete ${name}'s registration? This removes their entire record — approval status and all saved progress — from the system. This cannot be undone; if they come back, they'll need to register fresh. Continue?`)) return;
   await sharedDelete("trainee:"+traineeId);
+  await sharedDelete("progress:"+traineeId);
   toast(`Registration deleted for ${name}.`);
   await loadAdminLedger();
 }
@@ -17640,6 +17726,136 @@ window.setAdminBatchFilter = setAdminBatchFilter;
 function setAdminShowArchived(v){ state.adminShowArchived=v; render(); }
 window.setAdminShowArchived = setAdminShowArchived;
 
+
+/* ============================================================
+   VERBAL DISCUSSION SCRIPTS (admin-only) — a word-for-word script
+   for every lesson, built from the lesson's own content: what to
+   say, what to ask, what to listen for, how to probe, and how to
+   wrap up. Trainers can also generate a fuller AI script, which is
+   saved and shared with every trainer.
+   ============================================================ */
+function scriptShort(t, n){
+  t = String(t||"").split(" — ")[0].replace(/\s+/g," ").trim();
+  n = n || 150;
+  return t.length>n ? t.slice(0, t.lastIndexOf(" ", n)) + "…" : t;
+}
+function lessonParts(l){
+  const fp = l.fourPart || {};
+  const principles = fp.corePrinciples || (l.b||[]).slice(0,2);
+  const steps = fp.howTo || l.howTo || (l.processSteps||[]).map(p=>`${p.label}: ${p.desc}`);
+  const pool = fp.bestPractices || (l.b||[]).slice(1);
+  const pitfalls = pool.filter(x=>/\b(never|pitfall|don't|do not|mistake|avoid|instead of|isn't|is not|common error|failure)\b/i.test(x));
+  return {principles, steps, pitfalls, callout: l.callout && l.callout.text};
+}
+function buildDiscussionScript(d, l, i){
+  const {principles, steps, pitfalls, callout} = lessonParts(l);
+  const next = d.lessons[i+1];
+  const cue = l.trainerCue || "";
+  // Turn the trainer cue into something you can actually say out loud.
+  const quoted = cue.match(/[“"']([^“"']{12,}?\?)[”"']/);
+  const ask = quoted ? quoted[1]
+    : `Who can share a real example where ${l.h.replace(/[.:]$/,"")} mattered on the job — what happened, and what would you do now after this lesson?`;
+  const facilitator = (cue && !quoted) ? cue : "";
+  const listen = steps.slice(0,3).map(x=>scriptShort(x, 120));
+  const correct = pitfalls.map(x=>{ x=String(x).replace(/\s+/g," ").trim(); return x.length>240 ? x.slice(0, x.lastIndexOf(" ",240))+"…" : x; }).find(x=>!listen.some(y=>x.startsWith(y.replace(/…$/,"")))) || "";
+  const wrapSrc = callout || [...steps].reverse().find(x=>!/next topic|covered (earlier|elsewhere|in)|per day|day \d/i.test(x)) || principles[0] || l.h;
+  return {
+    open: `"Let's look at ${l.h}. ${principles[0] ? scriptShort(principles[0], 220) : ""}"`,
+    ask: `"${ask}"`,
+    facilitator,
+    listen,
+    probe: steps[1] ? `"What goes wrong if someone skips this step: ${scriptShort(steps[1], 110).replace(/[.?]$/,"").replace(/^./,c=>c.toLowerCase())}?"` : `"What would a less experienced assistant get wrong here?"`,
+    correct,
+    wrap: `"So the takeaway is: ${scriptShort(wrapSrc, 170).replace(/\.$/,"")}.${next ? ` Next, we'll move on to ${next.h}.` : " That wraps up today's topics."}"`,
+    minutes: (l.fourPart || (steps.length>3)) ? "5–7 min" : "3–5 min"
+  };
+}
+function renderDiscussionScript(d, l, i){
+  const sc = buildDiscussionScript(d, l, i);
+  const key = `script:${d.id}::${l.h}`;
+  const saved = (state.aiScripts||{})[key];
+  return `
+    <div class="script-block">
+      <div class="script-head"><span>🎙 Verbal Discussion Script</span><span class="script-time">${sc.minutes}</span></div>
+      <div class="script-row"><b>Say (open)</b><p>${esc(sc.open)}</p></div>
+      <div class="script-row"><b>Ask the room</b><p>${esc(sc.ask)}</p></div>
+      ${sc.listen.length ? `<div class="script-row"><b>Listen for</b><ul>${sc.listen.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+      <div class="script-row"><b>If the room is quiet, probe</b><p>${esc(sc.probe)}</p></div>
+      ${sc.correct ? `<div class="script-row"><b>Correct this misconception if it comes up</b><p>${esc(sc.correct)}</p></div>` : ""}
+      <div class="script-row"><b>Say (wrap-up &amp; bridge)</b><p>${esc(sc.wrap)}</p></div>
+      <div class="script-ai" id="scriptAi-${cssId(key)}">
+        ${saved ? renderAiScript(saved) : `<button class="btn btn-ghost btn-sm" onclick="generateAiScript(${d.id}, ${i})">✨ Write a fuller word-for-word script</button>`}
+      </div>
+    </div>`;
+}
+function renderAiScript(text){
+  return `<div class="script-ai-body"><b>Full script (saved for all trainers)</b>${esc(text).split(/\n+/).map(p=>`<p>${p}</p>`).join("")}</div>`;
+}
+async function loadSavedScripts(dayId){
+  state.aiScripts = state.aiScripts || {};
+  const d = DAYS.find(x=>x.id===dayId); if(!d) return;
+  const keys = await sharedList(`script:${dayId}::`);
+  let changed = false;
+  for(const k of keys){ if(state.aiScripts[k]) continue; const v = await sharedGet(k); if(v && v.text){ state.aiScripts[k] = v.text; changed = true; } }
+  if(changed && state.view==="admin" && state.adminTab==="cues") render();
+}
+async function generateAiScript(dayId, i){
+  const d = DAYS.find(x=>x.id===dayId); const l = d.lessons[i];
+  const key = `script:${d.id}::${l.h}`;
+  const el = document.getElementById("scriptAi-"+cssId(key));
+  if(el) el.innerHTML = `<div class="ai-loading">Writing the script…</div>`;
+  const {principles, steps, pitfalls} = lessonParts(l);
+  const prompt = `Write a word-for-word VERBAL discussion script a live trainer can read aloud to run a 5–7 minute group discussion on this lesson for Legal Executive/Personal Assistant trainees at Legal Support Help. The running client case is Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group).
+
+LESSON: ${l.h} (Day ${d.id}: ${d.title})
+KEY PRINCIPLES: ${principles.join(" | ")}
+STEPS: ${steps.join(" | ")}
+PITFALLS: ${pitfalls.slice(0,3).join(" | ")}
+${l.trainerCue ? "TRAINER CUE: "+l.trainerCue : ""}
+
+Format as short labelled paragraphs, one per line, exactly these labels:
+SAY: (warm, natural opening, 2–3 sentences)
+ASK: (one open question to the room)
+FOLLOW-UP: (two follow-up questions, tied to Elias Thorne's world)
+IF QUIET: (a concrete mini-scenario to react to)
+LISTEN FOR: (the 3 points a strong answer includes)
+CORRECT: (one likely misconception and how to correct it kindly)
+WRAP: (a 2-sentence summary the trainer says to close)
+Plain text only, no markdown, no bullet symbols.`;
+  try{
+    const text = await callAIText(prompt, 900, 60000);
+    state.aiScripts = state.aiScripts || {};
+    state.aiScripts[key] = text.trim();
+    await sharedSet(key, {text:text.trim(), at:new Date().toISOString()});
+    if(el) el.innerHTML = renderAiScript(text.trim());
+  }catch(e){
+    if(el) el.innerHTML = renderAiErrorBlock(e, "Couldn't write the script") + `<button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="generateAiScript(${d.id}, ${i})">Try again</button>`;
+  }
+}
+window.generateAiScript = generateAiScript;
+function buildDayScriptLines(d){
+  const lines = [`## Day ${d.id} — ${d.title}: Verbal Discussion Scripts`];
+  d.lessons.forEach((l,i)=>{
+    const sc = buildDiscussionScript(d,l,i);
+    lines.push(`## ${String(i+1).padStart(2,"0")}. ${l.h}  (${sc.minutes})`);
+    lines.push(`SAY: ${sc.open}`); lines.push(`ASK: ${sc.ask}`);
+    if(sc.facilitator) lines.push(`FACILITATOR MOVE: ${sc.facilitator}`);
+    if(sc.listen.length){ lines.push("LISTEN FOR:"); sc.listen.forEach(x=>lines.push("   • "+x)); }
+    lines.push(`IF QUIET: ${sc.probe}`);
+    if(sc.correct) lines.push(`CORRECT: ${sc.correct}`);
+    lines.push(`WRAP: ${sc.wrap}`);
+    const saved = (state.aiScripts||{})[`script:${d.id}::${l.h}`];
+    if(saved){ lines.push("FULL SCRIPT:"); saved.split(/\n+/).forEach(p=>lines.push("   "+p)); }
+    lines.push("---");
+  });
+  if(d.discussionQuestion){ lines.push("## End-of-Day Discussion"); lines.push(`SAY: "Before we close Day ${d.id}, let's step back and talk about this together."`); lines.push(`ASK: "${d.discussionQuestion}"`); lines.push(`WRAP: "Thank you — hold onto those examples; we'll build on them tomorrow."`); }
+  return lines;
+}
+function downloadDayScriptsPdf(dayId){
+  const d = DAYS.find(x=>x.id===dayId);
+  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${d.id} — Trainer Discussion Scripts`, buildDayScriptLines(d), `LSH_Day${d.id}_Discussion_Scripts`);
+}
+window.downloadDayScriptsPdf = downloadDayScriptsPdf;
 function trainerDiscussionHtml(l){
   if(l.fourPart) return l.fourPart.discussionCase ? `<p>${esc(l.fourPart.discussionCase)}</p>` : "";
   const fp = deriveFourPartStructure(l);
@@ -17652,16 +17868,17 @@ function setCuesDay(id){ state.cuesDay = id; render(); }
 window.setCuesDay = setCuesDay;
 function renderAdminTrainerCues(){
   const dayId = state.cuesDay || 1;
+  if(state.scriptsLoadedFor !== dayId){ state.scriptsLoadedFor = dayId; setTimeout(()=>loadSavedScripts(dayId), 0); }
   const d = DAYS.find(x=>x.id===dayId) || DAYS[0];
   const lessonBlocks = d.lessons.map((l,i)=>{
     const disc = trainerDiscussionHtml(l);
-    if(!l.trainerCue && !disc) return "";
     return `
       <details class="cue-item" ${i===0?"open":""}>
         <summary><span class="cue-num">${String(i+1).padStart(2,"0")}</span>${esc(l.h)}</summary>
         <div class="cue-body">
           ${l.trainerCue ? `<div class="tc-tag">🧑‍🏫 Trainer Cue</div><p>${esc(l.trainerCue)}</p>` : ""}
           ${disc ? `<b class="cue-sub">Applied Discussion Case</b>${disc}` : ""}
+          ${renderDiscussionScript(d, l, i)}
         </div>
       </details>`;
   }).join("");
@@ -17673,13 +17890,17 @@ function renderAdminTrainerCues(){
     <div class="cues-day-tabs">
       ${DAYS.map(x=>`<button class="${x.id===d.id?'active':''}" onclick="setCuesDay(${x.id})">Day ${x.id}</button>`).join("")}
     </div>
-    <h2 style="color:var(--navy);font-size:19px;margin:16px 0 10px;">Day ${d.id} — ${esc(d.title)}</h2>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0 10px;">
+      <h2 style="color:var(--navy);font-size:19px;margin:0;">Day ${d.id} — ${esc(d.title)}</h2>
+      <button class="btn btn-navy btn-sm" onclick="downloadDayScriptsPdf(${d.id})">⬇ Download Day ${d.id} Discussion Scripts (PDF)</button>
+    </div>
     ${d.id===1 ? `<div class="card" style="padding:14px 18px;margin-bottom:12px;">${renderMeetClientTrainerGuide()}</div>` : ""}
     ${d.discussionQuestion ? `
       <div class="card discussion-card" style="margin-bottom:12px;">
         <div class="discussion-tag">💬 End-of-Day Discussion Checkpoint</div>
         <p class="discussion-q">${esc(d.discussionQuestion)}</p>
         <p class="discussion-note">Pause the self-paced flow after the Practice Lab and raise this live with the cohort.</p>
+        <p class="discussion-note"><b>Say:</b> "Before we close Day ${d.id}, let's step back and talk about this together." <b>Then ask the question above.</b> Take 2–3 answers, connect each one to a lesson from today, and close with: "Hold onto those examples — we'll build on them tomorrow."</p>
       </div>` : ""}
     <div class="card" style="padding:6px 0;margin-bottom:18px;">${lessonBlocks || `<p style="padding:14px 18px;color:var(--ink-soft);">No trainer cues for this day.</p>`}</div>
     ${d.id===1 ? `
