@@ -1571,13 +1571,13 @@ button.module-more span{font-size:14px;margin-left:2px;}
 /* Headline marker highlight */
 .dash-hero h1 span.hl{background:linear-gradient(transparent 0%, #F0C08A 0%);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 6px;border-radius:3px;}
 
-/* Presenter character on every training slide — stands to the left, pointing at the content */
-.slide-stage{display:grid;grid-template-columns:clamp(170px,19vw,270px) minmax(0,1fr);gap:16px;align-items:end;}
-.slide-presenter{width:100%;height:auto;max-height:64vh;object-fit:contain;object-position:bottom left;align-self:end;user-select:none;pointer-events:none;
-  filter:drop-shadow(0 10px 18px rgba(38,43,69,.18));animation:presenterFloat 5s ease-in-out infinite;}
-@keyframes presenterFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-@media(max-width:900px){.slide-stage{grid-template-columns:1fr;}.slide-presenter{display:none;}}
-@media (prefers-reduced-motion: reduce){.slide-presenter{animation:none;}}
+/* Presenter character on every training slide — one fixed spot, lower right,
+   flipped so she points left toward the lesson. Content gets right padding so
+   she never covers text or the Next button. */
+.slide-presenter{position:fixed;right:10px;bottom:0;width:clamp(170px,16vw,250px);height:auto;transform:scaleX(-1);
+  z-index:5;pointer-events:none;user-select:none;filter:drop-shadow(0 10px 18px rgba(38,43,69,.18));}
+main.has-presenter{padding-right:calc(clamp(170px,16vw,250px) + 16px);}
+@media(max-width:1000px){.slide-presenter{display:none;} main.has-presenter{padding-right:20px;}}
 </style>
 </head>
 <body>
@@ -11105,10 +11105,27 @@ function burstConfetti(){
   }
 }
 window.burstConfetti = burstConfetti;
+/* Unlock rule: the next day opens once the previous day's Practice Lab has
+   been completed (at least one graded submission) — the score doesn't matter,
+   so a trainee who fails still moves on. Days with no Practice Lab fall back
+   to "Knowledge Check attempted" (any score). */
+function dayLabDone(dayId){
+  const tools = PRACTICE_TOOLS.filter(t=>(String(t.relates||"").match(/\d+/g)||[]).map(Number).includes(dayId));
+  if(!tools.length){ const p = state.progress[dayId]; return !!(p && (p.done || typeof p.score==="number")); }
+  const pp = state.practiceProgress || {};
+  return tools.every(t=>pp[t.id] && (pp[t.id].runs||0) >= 1);
+}
 function dayUnlocked(id){
   if(id <= 1) return true;
-  const prev = state.progress[id-1];
-  return !!(prev && prev.done);
+  // Never re-lock a day a trainee has already started under the old rule.
+  const own = state.progress[id];
+  if(own && (own.done || typeof own.score==="number")) return true;
+  if(state.slideProgress && state.slideProgress[id] > 0) return true;
+  return dayUnlocked(id-1) && dayLabDone(id-1);
+}
+function dayLockReason(id){
+  const t = PRACTICE_TOOLS.find(x=>(String(x.relates||"").match(/\d+/g)||[]).map(Number).includes(id-1));
+  return t ? `Complete the Day ${id-1} Practice Lab (“${t.title}”) to unlock — any score counts.` : `Take the Day ${id-1} Knowledge Check to unlock — any score counts.`;
 }
 function completedCount(){
   return Object.values(state.progress).filter(p=>p&&p.done).length;
@@ -12296,7 +12313,7 @@ function showDayTopics(dayId){
       </ol>
       <div class="topics-modal-foot">
         <button type="button" class="btn btn-ghost btn-sm" onclick="this.closest('.overlay').remove()">Close</button>
-        ${status!=='locked' ? `<button type="button" class="btn btn-navy btn-sm" onclick="this.closest('.overlay').remove(); goto('day',${d.id})">${status==='done'?'Review Day':'Start Day'} ${d.id}</button>` : `<span class="topics-locked-note">Finish Day ${d.id-1} to unlock</span>`}
+        ${status!=='locked' ? `<button type="button" class="btn btn-navy btn-sm" onclick="this.closest('.overlay').remove(); goto('day',${d.id})">${status==='done'?'Review Day':'Start Day'} ${d.id}</button>` : `<span class="topics-locked-note">${esc(dayLockReason(d.id))}</span>`}
       </div>
     </div>`;
   overlay.addEventListener("click",(e)=>{ if(e.target===overlay) overlay.remove(); });
@@ -12370,8 +12387,10 @@ function reviewMyScore(dayId){
 window.reviewMyScore = reviewMyScore;
 const DAY_ICONS = {1:"🗂",2:"📅",3:"💬",4:"📨",5:"🛡",6:"📊",7:"Σ",8:"☎",9:"📋",10:"📱"};
 function nextDayId(){
-  for(const d of DAYS){ if(!(state.progress[d.id]&&state.progress[d.id].done)) return d.id; }
-  return 10;
+  // The trainee's current day = the furthest day they've unlocked.
+  let cur = 1;
+  for(const d of DAYS){ if(dayUnlocked(d.id)) cur = d.id; }
+  return cur;
 }
 function avgScore(){
   const scores = Object.values(state.progress).filter(p=>p&&typeof p.score==="number").map(p=>p.score);
@@ -12500,7 +12519,8 @@ function render(){
   else if(state.view==="openroleplay") body=renderOpenRoleplay();
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
-  app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}">${body}</main>` + renderFooter();
+  const presenterView = state.view==="day" && state.dayViewMode!=="knowledgeCheck" && dayUnlocked(state.dayId);
+  app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}">${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "") + renderFooter();
   afterRender();
 }
 function renderFooter(){
@@ -12843,8 +12863,10 @@ function renderDay(id){
       <div class="card" style="padding:40px;text-align:center;">
         <div style="font-size:34px;margin-bottom:10px;">🔒</div>
         <h2 style="color:var(--navy);margin:0 0 8px;">Day ${id} is locked</h2>
-        <p style="color:var(--ink-soft);font-size:14px;">Complete Day ${id-1} with a passing score (70%+) to unlock this day.</p>
-        <button class="btn btn-primary" style="margin-top:14px;" onclick="goto('day',${id-1})">Go to Day ${id-1}</button>
+        <p style="color:var(--ink-soft);font-size:14px;">${esc(dayLockReason(id))}</p>
+        ${(()=>{ const t = relatedTools(id-1)[0]; return t && dayUnlocked(id-1)
+            ? `<button class="btn btn-primary" style="margin-top:14px;" onclick="goto('tool','${t.id}')">Open Day ${id-1} Practice Lab</button>`
+            : `<button class="btn btn-primary" style="margin-top:14px;" onclick="goto('day',${id-1})">Go to Day ${id-1}</button>`; })()}
       </div>`;
   }
   const prog = state.progress[id];
@@ -13006,11 +13028,8 @@ function renderDaySlideshow(d){
         return `<span class="slide-dot ${i===idx?'active':i<idx?'visited':''} ${locked?'locked':''}" onclick="goToSlide(${i})" title="${locked?'Complete the current topic first':'Step '+(i+1)}"></span>`;
       }).join("")}
     </div>
-    <div class="slide-stage">
-      <img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">
-      <div class="lesson-slide dir-${state.slideDir||'next'}" id="lessonSlideWrap">
-        ${renderDaySlideContent(d, slide, idx)}
-      </div>
+    <div class="lesson-slide dir-${state.slideDir||'next'}" id="lessonSlideWrap">
+      ${renderDaySlideContent(d, slide, idx)}
     </div>
     <div class="slide-nav">
       <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
@@ -13429,8 +13448,8 @@ window.submitQuiz = submitQuiz;
 
 function renderQuizResult(d){
   const {lastScore, lastCorrect, lastTotal, lastPassed} = state;
-  const passMsgs = ["Nice work — next day unlocked.", "Sharp — you've got this down.", "Solid pass. On to the next one.", "That's a wrap on Day "+d.id+" — well done."];
-  const failMsgs = ["Not quite 70% yet — review below and try again.", "Close, but not there yet — a quick review below should help.", "So close! Look over the answers below and give it another go."];
+  const passMsgs = ["Nice work — well done.", "Sharp — you've got this down.", "Solid pass. On to the next one.", "That's a wrap on Day "+d.id+" — well done."];
+  const failMsgs = ["Not quite 70% yet — review below, retake if you like, or keep going.", "Close, but not there yet — a quick review below should help. You can still move on.", "So close! Look over the answers below — a retake is optional."];
   const msg = lastPassed ? passMsgs[Math.floor(Math.random()*passMsgs.length)] : failMsgs[Math.floor(Math.random()*failMsgs.length)];
   const history = (state.progress[d.id] && state.progress[d.id].history) || [];
   return `
@@ -13442,7 +13461,9 @@ function renderQuizResult(d){
         <button class="btn btn-ghost" onclick="retakeQuiz(${d.id})">Retake Quiz</button>
         <button class="btn btn-ghost" onclick="downloadQuizResultPdf(${d.id})">⬇ Download PDF</button>
         <button class="btn btn-ghost" onclick="returnToLessonCard(${d.id})">Return to Progress</button>
-        ${lastPassed && d.id<10 ? `<button class="btn btn-primary" onclick="goToNextDay(${d.id})">Continue to Day ${d.id+1} &rarr;</button>`:""}
+        ${d.id<10 ? (dayUnlocked(d.id+1)
+            ? `<button class="btn btn-primary" onclick="goToNextDay(${d.id})">Continue to Day ${d.id+1} &rarr;</button>`
+            : `<button class="btn btn-primary" onclick="goToNextDay(${d.id})">Do the Day ${d.id} Practice Lab to unlock Day ${d.id+1} &rarr;</button>`) : ""}
         ${lastPassed && d.id===10 ? `<button class="btn btn-primary" onclick="downloadRecordPdf()">⬇ Download Completion Certificate</button>`:""}
       </div>
       ${history.length ? `
@@ -13483,11 +13504,10 @@ window.downloadQuizResultPdf = downloadQuizResultPdf;
 function goToNextDay(dayId){
   const nextId = dayId + 1;
   if(!dayUnlocked(nextId)){
-    // Defensive fallback: the trainee just passed dayId's quiz, which should
-    // always unlock nextId — but if state is ever inconsistent, force it
-    // rather than showing a confusing "locked" screen right after passing.
-    state.progress[nextId-1] = state.progress[nextId-1] || {};
-    state.progress[nextId-1].done = true;
+    // Next day opens only after this day's Practice Lab — send them there.
+    toast(dayLockReason(nextId));
+    const t = relatedTools(dayId)[0];
+    if(t){ goto("tool", t.id); return; }
   }
   goto("day", nextId);
 }
