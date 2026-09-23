@@ -1664,6 +1664,13 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .hero-spark{display:inline-block;width:.78em;height:.78em;margin-left:.28em;vertical-align:-.02em;animation:heroSpark 3.2s ease-in-out infinite;transform-origin:50% 50%;}
 @keyframes heroSpark{0%,100%{transform:rotate(0) scale(1);}50%{transform:rotate(18deg) scale(1.12);}}
 @media (prefers-reduced-motion: reduce){.hero-spark{animation:none;}}
+
+.quiz-next-step{margin:16px auto 0;max-width:560px;text-align:left;border-radius:12px;padding:14px 18px;border:1.5px solid;}
+.quiz-next-step .qns-title{font-weight:800;font-size:14.5px;margin-bottom:6px;}
+.quiz-next-step p{margin:4px 0 0;font-size:13.5px;line-height:1.5;color:var(--ink);}
+.qns-ok{background:var(--success-bg);border-color:var(--success);} .qns-ok .qns-title{color:var(--success);}
+.qns-warn{background:#FFF4E8;border-color:var(--orange);} .qns-warn .qns-title{color:var(--orange-deep);}
+.qns-stop{background:var(--danger-bg);border-color:var(--danger);} .qns-stop .qns-title{color:var(--danger);}
 </style>
 </head>
 <body>
@@ -13587,6 +13594,37 @@ async function submitQuiz(dayId){
 }
 window.submitQuiz = submitQuiz;
 
+/* Clear "what do I do now?" guidance after every Knowledge Check attempt. */
+function renderQuizNextStep(d, passed){
+  const prog = state.progress[d.id] || {};
+  const everPassed = !!prog.done;
+  const nextId = d.id + 1;
+  const isLast = d.id >= DAYS.length;
+  const labTool = relatedTools(d.id)[0];
+  const cleared = !isLast && dayUnlocked(nextId);
+  let tone, title, lines = [];
+  if(passed){
+    tone = "ok";
+    title = isLast ? "Program complete — you passed the final Knowledge Check." : `Passed — Day ${d.id} is marked complete ✓`;
+    if(!isLast) lines.push(cleared ? `<b>Next step:</b> you're cleared to proceed to <b>Day ${nextId}</b>.`
+                                   : `<b>Next step:</b> complete the <b>Day ${d.id} Practice Lab</b>${labTool?` (“${esc(labTool.title)}”)`:""} — that unlocks Day ${nextId}. Any score counts.`);
+    else lines.push(`<b>Next step:</b> download your completion certificate below.`);
+  }else{
+    tone = cleared ? "warn" : "stop";
+    title = `Not yet passing — 70% is required to mark Day ${d.id} complete.`;
+    if(isLast){
+      lines.push(`<b>Required:</b> retake this Knowledge Check. A pass on Day ${d.id} is needed for your completion certificate.`);
+    }else if(cleared){
+      lines.push(`<b>You are cleared to proceed to Day ${nextId}.</b> A retake is <b>not required</b> to continue.`);
+      lines.push(everPassed ? `You already passed this check earlier — your best score is kept.`
+                            : `Day ${d.id} will stay <i>unchecked</i> until you pass. You can come back and retake it any time; only your best score is kept.`);
+    }else{
+      lines.push(`<b>Required next step:</b> complete the <b>Day ${d.id} Practice Lab</b>${labTool?` (“${esc(labTool.title)}”)`:""} to unlock Day ${nextId}. Any score counts.`);
+      lines.push(`Retaking this Knowledge Check is <b>optional</b> — it isn't needed to move on, but you'll need a pass to mark Day ${d.id} complete.`);
+    }
+  }
+  return `<div class="quiz-next-step qns-${tone}"><div class="qns-title">${title}</div>${lines.map(x=>`<p>${x}</p>`).join("")}</div>`;
+}
 function renderQuizResult(d){
   const {lastScore, lastCorrect, lastTotal, lastPassed} = state;
   const passMsgs = ["Nice work — well done.", "Sharp — you've got this down.", "Solid pass. On to the next one.", "That's a wrap on Day "+d.id+" — well done."];
@@ -13598,6 +13636,7 @@ function renderQuizResult(d){
       ${sealSvg({size:84,label:lastScore+"%",done:lastPassed})}
       <div class="big" style="margin-top:10px;">${lastCorrect} / ${lastTotal} correct</div>
       <div class="sub">${msg}</div>
+      ${renderQuizNextStep(d, lastPassed)}
       <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;">
         <button class="btn btn-ghost" onclick="retakeQuiz(${d.id})">Retake Quiz</button>
         <button class="btn btn-ghost" onclick="downloadQuizResultPdf(${d.id})">⬇ Download PDF</button>
