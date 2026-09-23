@@ -1574,7 +1574,7 @@ button.module-more span{font-size:14px;margin-left:2px;}
 /* Presenter character on every training slide — one fixed spot, lower right,
    flipped so she points left toward the lesson. Content gets right padding so
    she never covers text or the Next button. */
-.slide-presenter{position:fixed;right:10px;bottom:0;width:clamp(170px,16vw,250px);height:auto;transform:scaleX(-1);
+.slide-presenter{position:fixed;right:max(18px, calc((100vw - 1400px) / 2 + 18px));bottom:0;width:clamp(170px,16vw,250px);height:auto;transform:scaleX(-1);
   z-index:5;pointer-events:none;user-select:none;filter:drop-shadow(0 10px 18px rgba(38,43,69,.18));}
 main.has-presenter{padding-right:calc(clamp(170px,16vw,250px) + 16px);}
 @media(max-width:1000px){.slide-presenter{display:none;} main.has-presenter{padding-right:20px;}}
@@ -1652,6 +1652,23 @@ main.has-presenter{padding-right:calc(clamp(170px,16vw,250px) + 16px);}
 
 .tap-selected{outline:3px solid var(--orange) !important;outline-offset:2px;box-shadow:0 0 0 6px rgba(219,132,55,.18) !important;}
 body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:-2px;}
+
+/* ---------- Balanced, transparent slide cards ---------- */
+.lesson-slide .card{background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.75);box-shadow:0 8px 28px -12px rgba(38,43,69,.22);}
+.lesson-slide .lesson-card .fp-section .card, .lesson-slide .lesson-card table{background:rgba(255,255,255,.7);}
+@media(min-width:761px){
+  .lesson-slide > .card, .lesson-slide > .lesson-card{min-height:min(54vh,540px);}
+  .lesson-card{display:flex;flex-direction:column;}
+  .lesson-card.density-xs, .lesson-card.density-s{justify-content:center;}
+  .lesson-card.density-xs h4, .lesson-card.density-s h4{margin-bottom:18px;}
+}
+/* short slides get larger, spotlight-style type */
+.lesson-card.density-xs h4{font-size:30px;}
+.lesson-card.density-xs li, .lesson-card.density-xs p{font-size:21px;line-height:1.5;margin-bottom:14px;}
+.lesson-card.density-xs .fp-label{font-size:13px;}
+.lesson-card.density-s h4{font-size:27px;}
+.lesson-card.density-s li, .lesson-card.density-s p{font-size:17.5px;line-height:1.55;margin-bottom:10px;}
+.lesson-card.density-xs li::before, .lesson-card.density-s li::before{top:.55em;}
 </style>
 </head>
 <body>
@@ -12203,7 +12220,7 @@ function renderDashboard(){
       <div class="dash-hero">
         <div class="dash-hero-text">
           <p class="eyebrow">LEGAL EA / PA ACCELERATOR</p>
-          <h1><span class="hl">Executive Assistant/ Personal Assistant Professional Development Workspace </span></h1>
+          <h1><span class="hl">Executive Assistant/ Personal Assistant Professional Development Workspace .</span></h1>
           <p>Unlock your full potential as a Strategic Go-To Person to your Attorney. Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
         </div>
         <div class="dash-hero-ribbon">
@@ -13321,10 +13338,15 @@ function renderLessonCard(l,i,d,unused,part){
   const partAHtml = renderFourPartSection(1, "Core Principles", corePrinciplesHtml) + renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml) + ((l.svgDiagram || (d && LESSON_DIAGRAMS[d.id+"::"+l.h])) ? `<div class="svg-diagram-card">${l.svgDiagram || LESSON_DIAGRAMS[d.id+"::"+l.h]}</div>` : "");
   const partBHtml = renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml);
   const p = (part===2) ? 2 : 1;
+  // Balance short slides: measure how much is actually on this slide and
+  // scale type / centre it so a 1–3 line slide doesn't look empty.
+  const bodyHtml = p===1 ? partAHtml : partBHtml;
+  const textLen = bodyHtml.replace(/<svg[\s\S]*?<\/svg>/g," ".repeat(500)).replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim().length;
+  const density = textLen < 280 ? "density-xs" : (textLen < 650 ? "density-s" : "density-m");
 
   return `
     <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length} &middot; PART ${p} OF 2</div>
-    <div class="card lesson-card">
+    <div class="card lesson-card ${density}">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
       ${p===1 ? partAHtml : partBHtml}
       ${(l.trainerCue || discussionHtml) && trainerInline() && p===2 ?`
