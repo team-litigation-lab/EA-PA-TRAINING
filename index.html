@@ -1859,6 +1859,39 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .tfb-dash-stars:hover button{color:#F0C08A;} .tfb-dash-stars button:hover ~ button{color:rgba(255,255,255,.35);}
 .tfb-dash-actions{display:flex;gap:8px;flex-wrap:wrap;}
 .dash-side .tfb-dash .btn-ghost{color:#fff;border-color:rgba(255,255,255,.35);background:transparent;}
+.cert{width:1056px;height:816px;background:#FFFDF8;position:relative;box-sizing:border-box;padding:20px;font-family:'Inter',system-ui,sans-serif;color:#37394A;box-shadow:0 20px 50px -20px rgba(0,0,0,.45);}
+.cert-inner{height:100%;box-sizing:border-box;border:8px solid #262B45;outline:1.5px solid #DB8437;outline-offset:-22px;display:flex;flex-direction:column;align-items:center;padding:34px 60px 22px;position:relative;text-align:center;}
+.cert-inner::before,.cert-inner::after{content:"";position:absolute;width:0;height:0;border-style:solid;}
+.cert-inner::before{top:8px;left:8px;border-width:44px 44px 0 0;border-color:#DB8437 transparent transparent transparent;}
+.cert-inner::after{bottom:8px;right:8px;border-width:0 0 44px 44px;border-color:transparent transparent #DB8437 transparent;}
+.cert-logo{width:130px;height:auto;margin-bottom:10px;}
+.cert-title{font-family:'Fraunces',Georgia,serif;font-size:44px;font-weight:700;color:#262B45;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid #DB8437;padding-bottom:6px;}
+.cert-sub{font-size:16px;color:#6E748C;margin-top:18px;}
+.cert-name{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:50px;font-weight:700;color:#262B45;margin:6px 0 4px;border-bottom:1px solid #C8CCD8;padding:0 40px 6px;min-width:520px;}
+.cert-text{font-size:16px;margin-top:10px;line-height:1.45;}
+.cert-program{font-size:27px;font-weight:800;color:#B5651F;margin-top:6px;}
+.cert-dist{color:#B5651F;}
+.cert-meta{font-size:13px;color:#6E748C;margin-top:14px;}
+.cert-sign{margin-top:auto;width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:40px;}
+.cert-sign>div:not(.cert-seal){display:flex;flex-direction:column;align-items:center;}
+.cert-line{display:block;width:260px;min-height:26px;border-bottom:1.5px solid #262B45;font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:20px;color:#262B45;}
+.cert-sign b{font-size:12.5px;margin-top:6px;color:#37394A;}
+.cert-seal{width:104px;height:104px;border-radius:50%;background:#DB8437;border:2px solid #262B45;box-shadow:inset 0 0 0 7px #DB8437, inset 0 0 0 9px #fff;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;margin-bottom:-6px;}
+.cert-seal span{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:26px;line-height:1;} .cert-seal small{font-size:8.5px;font-weight:800;letter-spacing:.12em;margin-top:2px;}
+.cert-foot{width:100%;display:flex;justify-content:space-between;font-size:11px;color:#6E748C;margin-top:18px;}
+.cert-overlay{align-items:flex-start;overflow:auto;}
+.cert-modal{margin:20px auto;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:100%;}
+.cert-scale{width:min(1056px, calc(100vw - 40px));aspect-ratio:1056/816;overflow:hidden;position:relative;}
+.cert-scale .cert{transform-origin:top left;position:absolute;top:0;left:0;}
+.cert-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.cert-actions .btn-ghost{background:#fff;}
+.cert-warn{background:#FFF4E8;border:1px solid var(--orange);border-radius:10px;padding:10px 14px;font-size:13px;max-width:900px;}
+.dash-side .cert-dash .sub{font-size:12px;color:#E4E6F0;margin:6px 0 10px;line-height:1.4;}
+.dash-side .cert-dash.ready{background:linear-gradient(135deg, rgba(63,125,88,.45), rgba(255,255,255,.06)) !important;border-color:rgba(120,200,150,.5) !important;}
+.cert-prog{height:6px;border-radius:6px;background:rgba(255,255,255,.14);margin-top:8px;overflow:hidden;} .cert-prog div{height:100%;background:#F0C08A;border-radius:6px;}
+.cert-settings{padding:16px 18px;margin-bottom:14px;} .cert-settings p{font-size:12.5px;color:var(--ink-soft);margin:4px 0 8px;}
+.cert-settings-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;} .cert-settings-grid input{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:7px 10px;}
+@media(max-width:900px){.cert-settings-grid{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
@@ -12865,6 +12898,7 @@ function renderDashboard(){
     </div>
 
     <aside class="dash-side"><div class="dash-side-inner">
+      ${renderCertificateDashCard()}
       ${renderFeedbackDashCard()}
       <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
       <div class="card stat"><div class="num">${ocs.score}%</div><div class="lbl">${ocs.tier ? `Best Competency — ${esc(displayTier(ocs.tier))}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${avgC}%</span></div></div>
@@ -14372,7 +14406,7 @@ function renderQuizNextStep(d, passed){
     title = isLast ? "Program complete — you passed the final Knowledge Check." : `Passed — Day ${d.id} is marked complete ✓`;
     if(!isLast) lines.push(cleared ? `<b>Next step:</b> you're cleared to proceed to <b>Day ${nextId}</b>.`
                                    : `<b>Next step:</b> complete the <b>Day ${d.id} Practice Lab</b>${labTool?` (“${esc(labTool.title)}”)`:""} — that unlocks Day ${nextId}. Any score counts.`);
-    else lines.push(`<b>Next step:</b> download your completion certificate below.`);
+    else lines.push(certData().eligible ? `<b>Next step:</b> view and download your Certificate of Completion below. 🎓` : `<b>Next step:</b> pass the remaining Knowledge Checks (${certData().passed}/10 so far) to unlock your certificate.`);
   }else{
     tone = cleared ? "warn" : "stop";
     title = `Not yet passing — 70% is required to mark Day ${d.id} complete.`;
@@ -14409,7 +14443,7 @@ function renderQuizResult(d){
         ${d.id<10 ? (dayUnlocked(d.id+1)
             ? `<button class="btn btn-primary" onclick="goToNextDay(${d.id})">Continue to Day ${d.id+1} &rarr;</button>`
             : `<button class="btn btn-primary" onclick="goToNextDay(${d.id})">Do the Day ${d.id} Practice Lab to unlock Day ${d.id+1} &rarr;</button>`) : ""}
-        ${lastPassed && d.id===10 ? `<button class="btn btn-primary" onclick="downloadRecordPdf()">⬇ Download Completion Certificate</button>`:""}
+        ${certData().eligible ? `<button class="btn btn-primary" onclick="openCertificate()">🎓 View Certificate of Completion</button>` : (d.id===10 && lastPassed ? `<button class="btn btn-ghost" onclick="openCertificate()">🎓 Certificate (${certData().passed}/10 passed)</button>` : "")}
       </div>
       ${history.length ? `
       <div class="quiz-history">
@@ -16752,22 +16786,19 @@ function pdfSafe(t){
     .replace(/[^\x09\x0A\x0D\x20-\x7E\xA0-\xFF]/g,"")
     .replace(/^[ \t]+(?=\S)/, m=>m);
 }
-(function patchJsPdfText(){
-  try{
-    const api = window.jspdf && window.jspdf.jsPDF && window.jspdf.jsPDF.API;
-    if(!api || api.__lshSafe) return;
-    const origText = api.text, origSplit = api.splitTextToSize;
-    api.text = function(text, ...rest){
-      const t = Array.isArray(text) ? text.map(pdfSafe) : pdfSafe(text);
-      return origText.call(this, t, ...rest);
-    };
-    if(origSplit) api.splitTextToSize = function(text, ...rest){ return origSplit.call(this, pdfSafe(text), ...rest); };
-    api.__lshSafe = true;
-  }catch(e){ /* PDF export still works, just without sanitising */ }
-})();
+function safeDoc(doc){
+  // Sanitise every string drawn into this PDF (emoji and some symbols can't be
+  // rendered by jsPDF's built-in fonts). Wraps the instance, not the prototype.
+  if(!doc || doc.__lshSafe) return doc;
+  const t = doc.text.bind(doc), sp = doc.splitTextToSize ? doc.splitTextToSize.bind(doc) : null;
+  doc.text = function(text, ...rest){ return t(Array.isArray(text) ? text.map(pdfSafe) : pdfSafe(text), ...rest); };
+  if(sp) doc.splitTextToSize = function(text, ...rest){ return sp(pdfSafe(text), ...rest); };
+  doc.__lshSafe = true;
+  return doc;
+}
 function buildAndSavePdf(title, subtitle, bodyLines, filenameBase){
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({unit:"pt", format:"letter"});
+  const doc = safeDoc(new jsPDF({unit:"pt", format:"letter"}));
   drawPdfHeader(doc, title, subtitle);
   const pageW = doc.internal.pageSize.getWidth();
   const pageH = doc.internal.pageSize.getHeight();
@@ -16803,11 +16834,173 @@ function buildAndSavePdf(title, subtitle, bodyLines, filenameBase){
   toast("Downloaded");
 }
 
+/* ============================================================
+   CERTIFICATE OF COMPLETION
+   Eligible when all 10 Knowledge Checks are passed (70%+).
+   Preview on screen, download as a landscape PDF, or print.
+   Each issued certificate gets an ID and a record at "cert:<id>".
+   Signatory names come from Admin → Trainee Audit (settings:certificate).
+   ============================================================ */
+function certHash(t){ let h=2166136261; for(const c of String(t)) { h^=c.charCodeAt(0); h=Math.imul(h,16777619)>>>0; } return h.toString(36).toUpperCase().padStart(6,"0").slice(-6); }
+function certData(src){
+  // src: {traineeId,name,batch,dayProgress} — defaults to the signed-in trainee
+  const id = src ? src.traineeId : state.traineeId;
+  const dp = src ? (src.dayProgress||{}) : (state.progress||{});
+  const passed = DAYS.filter(d=>dp[d.id] && dp[d.id].done).length;
+  const scores = DAYS.map(d=>dp[d.id] && dp[d.id].score).filter(v=>typeof v==="number");
+  const avg = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : 0;
+  const dates = DAYS.map(d=>dp[d.id] && dp[d.id].date).filter(Boolean).sort();
+  const completedOn = dates.length ? new Date(dates[dates.length-1]) : new Date();
+  return {traineeId:id, name: src ? src.name : state.traineeName, batch: cleanBatch(src ? src.batch : state.traineeBatch),
+    passed, total:DAYS.length, eligible: passed===DAYS.length, avg, distinction: avg>=90,
+    completedOn, certId:`LSH-EAPA-${completedOn.getFullYear()}-${certHash(id||"x")}`};
+}
+async function certSettings(){
+  if(state.certSettings) return state.certSettings;
+  const v = await sharedGet("settings:certificate").catch(()=>null);
+  state.certSettings = Object.assign({trainerName:"", trainerTitle:"Lead Trainer", directorName:"", directorTitle:"Program Director, Legal Support Help"}, v||{});
+  return state.certSettings;
+}
+function renderCertificateHtml(c, s){
+  const dateStr = c.completedOn.toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  return `<div class="cert" id="certSheet">
+    <div class="cert-inner">
+      <img class="cert-logo" src="${LOGO_FULL_SRC}" alt="Legal Support Help">
+      <div class="cert-title">Certificate of Completion</div>
+      <div class="cert-sub">This certifies that</div>
+      <div class="cert-name">${esc(c.name||"Trainee")}</div>
+      <div class="cert-text">has successfully completed the</div>
+      <div class="cert-program">LSH EA / PA Upskill Program</div>
+      <div class="cert-text">10-Day Legal Executive &amp; Personal Assistant Professional Development Training${c.distinction?`<br><b class="cert-dist">with Distinction</b>`:""}</div>
+      <div class="cert-meta">Completed ${esc(dateStr)}${c.batch?` &nbsp;·&nbsp; Batch ${esc(c.batch)}`:""} &nbsp;·&nbsp; ${c.total} training days &nbsp;·&nbsp; Knowledge Check average ${c.avg}%</div>
+      <div class="cert-sign">
+        <div><span class="cert-line">${esc(s.trainerName||"")}</span><b>${esc(s.trainerName?"":"")}${esc(s.trainerTitle||"Lead Trainer")}</b></div>
+        <div class="cert-seal"><span>LSH</span><small>CERTIFIED</small></div>
+        <div><span class="cert-line">${esc(s.directorName||"")}</span><b>${esc(s.directorTitle||"Program Director")}</b></div>
+      </div>
+      <div class="cert-foot"><span>Certificate ID: ${esc(c.certId)}</span><span>Legal Support Help · EA/PA Upskill Program</span></div>
+    </div>
+  </div>`;
+}
+async function openCertificate(src){
+  const c = certData(src);
+  const s = await certSettings();
+  const admin = !!src;
+  if(!c.eligible && !admin){
+    toast(`Your certificate unlocks when all ${c.total} Knowledge Checks are passed — ${c.passed}/${c.total} so far.`);
+    return;
+  }
+  document.querySelectorAll(".cert-overlay").forEach(o=>o.remove());
+  const overlay = document.createElement("div"); overlay.className = "overlay cert-overlay";
+  overlay.innerHTML = `<div class="cert-modal">
+    ${!c.eligible ? `<div class="cert-warn">⚠ ${esc(c.name)} has passed ${c.passed}/${c.total} Knowledge Checks. You can still issue this certificate as an admin.</div>` : ""}
+    <div class="cert-scale">${renderCertificateHtml(c, s)}</div>
+    <div class="cert-actions">
+      <button class="btn btn-primary" onclick="downloadCertificatePdf(${admin?`'${esc(src.traineeId)}'`:"null"})">⬇ Download PDF</button>
+      <button class="btn btn-ghost" onclick="printCertificate()">🖨 Print</button>
+      <button class="btn btn-ghost" onclick="this.closest('.overlay').remove()">Close</button>
+    </div></div>`;
+  overlay.addEventListener("click",(e)=>{ if(e.target===overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
+  state.certSrc = src || null;
+  const fit = ()=>{ const box = overlay.querySelector(".cert-scale"), sheet = overlay.querySelector(".cert"); if(box && sheet) sheet.style.transform = `scale(${box.clientWidth/1056})`; };
+  fit(); window.addEventListener("resize", fit);
+}
+function printCertificate(){
+  const sheet = document.getElementById("certSheet"); if(!sheet) return;
+  const css = [...document.querySelectorAll("style")].map(x=>x.textContent).filter(t=>t.includes(".cert")).join("\n");
+  const w = window.open("", "_blank");
+  if(!w){ toast("Allow pop-ups to print, or use Download PDF."); return; }
+  w.document.write(`<html><head><title>Certificate</title><style>${css} @page{size:letter landscape;margin:0} body{margin:0} .cert{width:11in;height:8.5in;box-shadow:none}</style></head><body>${sheet.outerHTML}</body></html>`);
+  w.document.close(); setTimeout(()=>{ w.focus(); w.print(); }, 400);
+}
+async function downloadCertificatePdf(adminTraineeId){
+  const src = adminTraineeId ? state.certSrc : null;
+  const c = certData(src);
+  const s = await certSettings();
+  if(!window.jspdf){ toast("PDF tools are still loading — try again in a moment."); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = safeDoc(new jsPDF({unit:"pt", format:"letter", orientation:"landscape"}));
+  const W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight();
+  const navy=[38,43,69], orange=[219,132,55], deep=[181,101,31], ink=[55,57,74], soft=[110,116,140];
+  doc.setFillColor(255,253,248); doc.rect(0,0,W,H,"F");
+  doc.setDrawColor(...navy); doc.setLineWidth(8); doc.rect(20,20,W-40,H-40);
+  doc.setDrawColor(...orange); doc.setLineWidth(1.5); doc.rect(36,36,W-72,H-72);
+  doc.setLineWidth(.6); doc.rect(42,42,W-84,H-84);
+  // corner accents
+  doc.setFillColor(...orange);
+  [[36,36,1,1],[W-36,36,-1,1],[36,H-36,1,-1],[W-36,H-36,-1,-1]].forEach(([x,y,sx,sy])=>{ doc.triangle(x,y, x+34*sx,y, x,y+34*sy, "F"); });
+  try{ doc.addImage(LOGO_FULL_DATAURI, "PNG", W/2-52, 58, 104, 68); }catch(e){}
+  doc.setTextColor(...navy); doc.setFont("times","bold"); doc.setFontSize(36);
+  doc.text("CERTIFICATE OF COMPLETION", W/2, 162, {align:"center"});
+  doc.setDrawColor(...orange); doc.setLineWidth(1.2); doc.line(W/2-150, 174, W/2+150, 174);
+  doc.setFont("helvetica","normal"); doc.setFontSize(13); doc.setTextColor(...soft);
+  doc.text("This certifies that", W/2, 204, {align:"center"});
+  doc.setFont("times","bolditalic"); doc.setFontSize(38); doc.setTextColor(...navy);
+  doc.text(pdfSafe(c.name||"Trainee"), W/2, 250, {align:"center"});
+  doc.setDrawColor(200,204,216); doc.setLineWidth(.8); doc.line(W/2-210, 262, W/2+210, 262);
+  doc.setFont("helvetica","normal"); doc.setFontSize(13); doc.setTextColor(...ink);
+  doc.text("has successfully completed the", W/2, 290, {align:"center"});
+  doc.setFont("helvetica","bold"); doc.setFontSize(21); doc.setTextColor(...deep);
+  doc.text("LSH EA / PA Upskill Program", W/2, 318, {align:"center"});
+  doc.setFont("helvetica","normal"); doc.setFontSize(12); doc.setTextColor(...ink);
+  doc.text("10-Day Legal Executive & Personal Assistant Professional Development Training", W/2, 340, {align:"center"});
+  let y = 360;
+  if(c.distinction){ doc.setFont("helvetica","bold"); doc.setTextColor(...deep); doc.text("with Distinction", W/2, y, {align:"center"}); y += 18; }
+  const dateStr = c.completedOn.toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  doc.setFont("helvetica","normal"); doc.setFontSize(10.5); doc.setTextColor(...soft);
+  doc.text(pdfSafe(`Completed ${dateStr}${c.batch?`  ·  Batch ${c.batch}`:""}  ·  ${c.total} training days  ·  Knowledge Check average ${c.avg}%`), W/2, y+6, {align:"center"});
+  // signatures
+  const sy = H-128;
+  doc.setDrawColor(...navy); doc.setLineWidth(.8);
+  [[W*0.22],[W*0.78]].forEach(([x],i)=>{
+    doc.line(x-110, sy, x+110, sy);
+    const nm = i===0 ? s.trainerName : s.directorName, tt = i===0 ? (s.trainerTitle||"Lead Trainer") : (s.directorTitle||"Program Director");
+    if(nm){ doc.setFont("times","italic"); doc.setFontSize(16); doc.setTextColor(...navy); doc.text(pdfSafe(nm), x, sy-8, {align:"center"}); }
+    doc.setFont("helvetica","bold"); doc.setFontSize(10); doc.setTextColor(...ink); doc.text(pdfSafe(tt), x, sy+16, {align:"center"});
+  });
+  // seal
+  const cx=W/2, cy=sy-6;
+  doc.setFillColor(...orange); doc.circle(cx, cy, 44, "F");
+  doc.setDrawColor(255,255,255); doc.setLineWidth(1.5); doc.circle(cx, cy, 36);
+  doc.setDrawColor(...navy); doc.setLineWidth(1); doc.circle(cx, cy, 44);
+  doc.setFont("times","bold"); doc.setFontSize(20); doc.setTextColor(255,255,255); doc.text("LSH", cx, cy+2, {align:"center"});
+  doc.setFont("helvetica","bold"); doc.setFontSize(7); doc.text("CERTIFIED", cx, cy+14, {align:"center"});
+  doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(...soft);
+  doc.text(`Certificate ID: ${c.certId}`, 58, H-54);
+  doc.text("Legal Support Help  ·  EA/PA Upskill Program", W-58, H-54, {align:"right"});
+  const safeName = String(c.name||"Trainee").replace(/[^A-Za-z0-9]+/g,"_");
+  doc.save(`LSH_Certificate_${safeName}.pdf`);
+  try{ await sharedSet("cert:"+c.certId, {certId:c.certId, traineeId:c.traineeId, name:c.name, batch:c.batch, avg:c.avg, eligible:c.eligible, issuedAt:new Date().toISOString(), issuedBy: adminTraineeId ? (state.traineeName||"Admin") : "self"}); }catch(e){}
+  toast("Certificate downloaded. 🎓");
+}
+async function saveCertSettings(){
+  const g = (id)=> (document.getElementById(id)||{}).value || "";
+  state.certSettings = {trainerName:g("certTrainer").trim(), trainerTitle:g("certTrainerTitle").trim()||"Lead Trainer", directorName:g("certDirector").trim(), directorTitle:g("certDirectorTitle").trim()||"Program Director, Legal Support Help"};
+  await sharedSet("settings:certificate", state.certSettings);
+  toast("Certificate signatories saved.");
+}
+function adminOpenCertificate(id){
+  const rec = (state.adminData||[]).find(r=>r.id===id); if(!rec) return;
+  openCertificate({traineeId:rec.id, name:rec.name, batch:rec.batch, dayProgress:rec.dayProgress||{}});
+}
+Object.assign(window, {openCertificate, downloadCertificatePdf, printCertificate, saveCertSettings, adminOpenCertificate});
+function renderCertificateDashCard(){
+  if(!state.traineeId || state.isAdmin) return "";
+  const c = certData();
+  if(c.eligible) return `<div class="card stat cert-dash ready"><div class="lbl">🎓 Certificate of Completion</div>
+    <div class="sub">Congratulations${c.distinction?" — with Distinction":""}! Your certificate is ready.</div>
+    <button class="btn btn-primary btn-sm" onclick="openCertificate()">View &amp; download</button></div>`;
+  return `<div class="card stat cert-dash"><div class="lbl">🎓 Certificate of Completion</div>
+    <div class="cert-prog"><div style="width:${Math.round(c.passed/c.total*100)}%"></div></div>
+    <div class="sub">${c.passed}/${c.total} Knowledge Checks passed — pass all ${c.total} (70%+) to unlock your certificate.</div></div>`;
+}
+
 async function downloadRecordPdf(){
   await ensureTraineeName();
 
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({unit:"pt", format:"letter"});
+  const doc = safeDoc(new jsPDF({unit:"pt", format:"letter"}));
   const navy = [38,43,69], soft=[110,116,140];
   const pageW = doc.internal.pageSize.getWidth();
   const marginX = 54;
@@ -17061,7 +17254,7 @@ window.getAIFeedback = getAIFeedback;
 
 function downloadNotesPdf(){
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({unit:"pt", format:"letter"});
+  const doc = safeDoc(new jsPDF({unit:"pt", format:"letter"}));
   drawPdfHeader(doc, "My Notes & Action Plan", state.traineeName||"LSH Trainee");
   let y = 118;
   const pageW = doc.internal.pageSize.getWidth();
@@ -18146,6 +18339,17 @@ function renderAdmin(){
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Audit</h1>
     <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Lightweight session access, not secure authentication — see the note behind the Admin login. Data reflects what's been synced from each trainee's device.</p>
 
+    <div class="card cert-settings">
+      <b style="color:var(--navy);font-size:13.5px;">🎓 Certificate signatories</b>
+      <p>Printed on every Certificate of Completion. Leave a name blank to show an empty line for a wet signature.</p>
+      <div class="cert-settings-grid">
+        <input id="certTrainer" placeholder="Trainer name" value="${esc((state.certSettings||{}).trainerName||"")}">
+        <input id="certTrainerTitle" placeholder="Trainer title" value="${esc((state.certSettings||{}).trainerTitle||"Lead Trainer")}">
+        <input id="certDirector" placeholder="Director name" value="${esc((state.certSettings||{}).directorName||"")}">
+        <input id="certDirectorTitle" placeholder="Director title" value="${esc((state.certSettings||{}).directorTitle||"Program Director, Legal Support Help")}">
+      </div>
+      <div style="margin-top:8px;"><button class="btn btn-navy btn-sm" onclick="saveCertSettings()">Save signatories</button></div>
+    </div>
     <div class="card fb-settings">
       <b style="color:var(--navy);font-size:13.5px;">💬 Daily reviews</b>
       <p>Every trainee gets a written review for each day they work on. Choose how it reaches them:</p>
@@ -18341,6 +18545,7 @@ function renderAdminRow(rec, day, practice){
         <div style="font-size:11.5px;color:var(--ink-soft);">${rec.lastActive?fmtDate(rec.lastActive):"—"}</div>
         <div style="display:flex;gap:6px;">
           <button class="btn btn-sm btn-ghost" onclick="toggleAdminDetail('${rec.id}')">${expanded?"Hide":"View"} Detail</button>
+          <button class="btn btn-sm btn-ghost" onclick="adminOpenCertificate('${rec.id}')" title="Preview / download this trainee's Certificate of Completion">🎓 Certificate</button>
           <button class="btn btn-sm btn-ghost" title="Give this trainee a fresh set of ${LAB_ATTEMPT_CAP} Practice Lab repeat attempts" onclick="resetTraineeLabAttempts('${rec.id}')">↺ Reset Attempts${typeof rec.labAttemptsGlobal==="number" ? ` (${Math.max(0,LAB_ATTEMPT_CAP-rec.labAttemptsGlobal)} left)` : ""}</button>
           <button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee('${rec.id}', '${esc(rec.name||"this trainee").replace(/'/g,"\\'")}')">Revoke</button>
         </div>
@@ -18615,6 +18820,7 @@ async function saveFeedbackSettings(){
 }
 window.saveFeedbackSettings = saveFeedbackSettings;
 function renderFeedbackAdmin(rec){
+  if(!state.certSettings){ certSettings().then(()=>{ const m={certTrainer:"trainerName",certTrainerTitle:"trainerTitle",certDirector:"directorName",certDirectorTitle:"directorTitle"}; Object.entries(m).forEach(([id,k])=>{ const el=document.getElementById(id); if(el && !el.value) el.value = state.certSettings[k]||""; }); }); }
   if(!state.fbSettings){ feedbackSettings().then(()=>{ const a=document.getElementById("fbAutoDraft"), b=document.getElementById("fbAutoSend"); if(a) a.checked = state.fbSettings.autoDraft!==false; if(b) b.checked = !!state.fbSettings.autoSend; }); }
   const work = state.traineeWork[rec.id];
   if(!work || work.loading){ setTimeout(()=>loadTraineeWork(rec.id), 0); return `<div class="fb-admin"><div class="sidebar-section-lbl" style="padding-left:0;">Day-by-Day Feedback</div><p style="font-size:12.5px;color:var(--ink-soft);">Loading this trainee's work…</p></div>`; }
@@ -21844,7 +22050,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-l";
+var APP_BUILD = "2026.09.24-m";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
