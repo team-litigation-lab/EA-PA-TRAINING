@@ -1733,6 +1733,9 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .fb-modal-body p{font-size:14px;line-height:1.55;margin:8px 0;} .fb-modal-body li{font-size:14px;margin-bottom:5px;}
 .fb-rating{display:inline-block;border:1.5px solid;border-radius:20px;padding:3px 12px;font-size:12px;font-weight:800;}
 .fb-meta{font-size:12px !important;color:var(--ink-soft);}
+
+.studio-diag{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 0;font-size:12.5px;color:var(--ink-soft);}
+.studio-progress:not(:empty){background:#FFF8EF;border:1px solid #F0D2AE;border-radius:10px;padding:10px 14px;margin:10px 0 14px;}
 </style>
 </head>
 <body>
@@ -11318,7 +11321,7 @@ async function callAIText(prompt, maxTokens, timeoutMs){
   for(let attempt=0;;attempt++){
     try{ return await callAITextOnce(prompt, maxTokens, timeoutMs); }
     catch(e){
-      const retryable = e && (e.status===429 || e.status===529 || e.status===503 || e.status===502 || e.status===500);
+      const retryable = e && (e.status===429 || e.status===529 || e.status===503 || e.status===502 || (e.status===500 && !/not configured|api key|x-api-key/i.test(e.message||"")));
       if(!retryable || attempt>=waits.length) throw e;
       await new Promise(r=>setTimeout(r, waits[attempt] + Math.random()*800));
     }
@@ -11697,6 +11700,10 @@ function renderSearchResults(q){
     d.lessons.some(l=>l.h.toLowerCase().includes(query)));
   const toolHits = PRACTICE_TOOLS.filter(t => t.title.toLowerCase().includes(query) || t.desc.toLowerCase().includes(query));
   const rows = [];
+  if(state.isAdmin && Array.isArray(state.adminData)){
+    state.adminData.filter(r=>String(r.name||"").toLowerCase().includes(query) || String(r.id||"").includes(query)).slice(0,5)
+      .forEach(r=>rows.push(`<div class="sr-item" onclick="jumpToTrainee('${esc(r.id)}')"><b>👤 ${esc(r.name||r.id)}</b><span>Trainee${r.batch?` &middot; Batch ${esc(r.batch)}`:""} &middot; open in Trainee Audit</span></div>`));
+  }
   dayHits.slice(0,5).forEach(d=>rows.push(`<div class="sr-item" onclick="jumpToSearchResult('day',${d.id})"><b>Day ${d.id} — ${esc(d.title)}</b><span>${esc(d.theme)}</span></div>`));
   toolHits.slice(0,5).forEach(t=>rows.push(`<div class="sr-item" onclick="jumpToSearchResult('tool','${t.id}')"><b>${t.icon} ${esc(t.title)}</b><span>Practice Lab &middot; ${esc(t.relates)}</span></div>`));
   if(!rows.length) return `<div class="sr-empty">No matches for "${esc(q)}"</div>`;
@@ -11706,6 +11713,16 @@ function jumpToSearchResult(view,id){
   state.searchQuery = "";
   goto(view,id);
 }
+function jumpToTrainee(id){
+  state.searchQuery = ""; state.adminTab = "audit"; state.adminSearch = ""; state.adminExpandedId = id;
+  goto("admin");
+  setTimeout(()=>{ const el = document.getElementById("adminRowsWrap"); if(el) el.scrollIntoView({behavior:"smooth", block:"start"}); }, 150);
+}
+window.jumpToTrainee = jumpToTrainee;
+document.addEventListener("click", (e)=>{
+  if(state.searchQuery && !e.target.closest(".topbar-search")){ clearTopSearch(); }
+});
+document.addEventListener("keydown", (e)=>{ if(e.key==="Escape" && state.searchQuery) clearTopSearch(); });
 window.jumpToSearchResult = jumpToSearchResult;
 
 /* ---------- crisis roleplay hub ---------- */
@@ -12847,6 +12864,7 @@ function dayRow(d){
 /* ---------- router ---------- */
 function goto(view, id){
   state.mobileNavOpen = false;
+  state.searchQuery = "";
   if(VoiceCall.active && view!=="openroleplay") VoiceCall.hangup(true);
   state.view=view;
   if(view==="dashboard"){ state.surpriseTaskChecked = false; }
@@ -12944,7 +12962,7 @@ function renderFooter(){
 const RESUMABLE_VIEWS = ["day","tool","practice","dashboard","clientprofile","notes","handouts","openroleplay","crisisroleplay"];
 function bookmarkView(){
   if(!state.traineeId || state.isAdmin || state.resumePending) return;
-  if(!RESUMABLE_VIEWS.includes(state.view)) return;
+  if(state.view!=="day" && state.view!=="tool") return; // bookmark real work, not menus
   const bm = {view:state.view, dayId:state.dayId||null, toolId:state.toolId||null,
               wizardIndex:(state.view==="tool" && typeof toolState!=="undefined" && toolState.wizardIndex) || 0, at:Date.now()};
   if(state.view==="openroleplay") bm.view = "crisisroleplay"; // a live call can't be resumed mid-call
@@ -18499,7 +18517,7 @@ async function runPool(items, worker, limit, onProgress){
 }
 function studioResultMessage(what, res){
   if(!res.failed) return `✅ ${res.ok} ${what} drafted — review them below, then publish.`;
-  const why = res.errors[0] || "unknown error";
+  const why = String(res.errors[0] || "unknown error").replace(/[.\s]+$/,"");
   const hint = /401|x-api-key|authentication/i.test(why) ? " The AI key on the server looks invalid — check ANTHROPIC_API_KEY on the Worker."
     : /ANTHROPIC_API_KEY/i.test(why) ? " The AI key isn't set on the server (ANTHROPIC_API_KEY)."
     : /429|rate/i.test(why) ? " The AI service is rate-limiting — wait a minute and run it again; finished items are kept."
@@ -18508,6 +18526,15 @@ function studioResultMessage(what, res){
   return `${res.ok ? "⚠ "+res.ok+" "+what+" drafted, " : "❌ "}${res.failed} failed — ${why}.${hint}`;
 }
 function studioShow(msg){ state.studioMsg = msg; studioProgress(msg); }
+async function studioTestAI(){
+  studioShow("Testing the AI connection…");
+  const t0 = Date.now();
+  try{
+    const out = await callAIText("Reply with exactly: OK", 10, 30000);
+    studioShow(`✅ AI connection works (${((Date.now()-t0)/1000).toFixed(1)}s, reply: "${out.slice(0,20)}"). The Studio buttons will draft content.`);
+  }catch(e){ studioShow(studioResultMessage("test", {ok:0, failed:1, errors:[e.message||String(e)]})); }
+}
+window.studioTestAI = studioTestAI;
 function studioProgress(text){ const el=document.getElementById("studioProgress"); if(el) el.textContent = text; }
 let studioSaveChain = Promise.resolve();
 function studioSave(key, value){ studioSaveChain = studioSaveChain.then(()=>sharedSet(key, value)); return studioSaveChain; }
@@ -18612,6 +18639,7 @@ function renderAdminStudio(){
       <div class="card stat"><div class="num">${expPub} / ${pubTopics}</div><div class="lbl">Explanations live${expDraft?` · ${expDraft} in review`:""}</div></div>
       <div class="card stat"><div class="num">${scripts} / ${pubTopics}</div><div class="lbl">Full trainer scripts</div></div>
     </div>
+    <div class="studio-diag"><button class="btn btn-ghost btn-sm" onclick="studioTestAI()">🩺 Test AI connection</button><span>Run this first if the buttons below don't seem to work.</span></div>
     <div id="studioProgress" class="studio-progress">${esc(state.studioMsg||"")}</div>
     <div class="card studio-card">
       <h3>1 · Topics</h3>
