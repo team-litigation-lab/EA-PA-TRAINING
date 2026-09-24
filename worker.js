@@ -1,107 +1,209 @@
+/**
+ * LSH EA/PA Upskill Program — Cloudflare Worker (secured)
+ *
+ * Secrets (set once with `wrangler secret put <NAME>`):
+ *   ANTHROPIC_API_KEY  — AI features
+ *   ADMIN_PASSPHRASE   — trainer/admin sign-in. Setting this switches the portal
+ *                        into SECURE MODE: every storage and AI request must carry
+ *                        a signed session token.
+ *   SESSION_SECRET     — optional; signs session tokens (defaults to ADMIN_PASSPHRASE)
+ *
+ * Without ADMIN_PASSPHRASE the Worker runs in the old open mode so nothing breaks
+ * before you've configured it (the Admin screen shows a warning).
+ */
+const JSON_HEADERS = { "Content-Type": "application/json", "Cache-Control": "no-store" };
+const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: JSON_HEADERS });
+const enc = new TextEncoder();
+
+/* ---------- tokens: "<role>.<subject>.<expiry>.<hmac>" ---------- */
+async function hmac(secret, msg) {
+  const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, enc.encode(msg));
+  return btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+function secretOf(env) { return env.SESSION_SECRET || env.ADMIN_PASSPHRASE || ""; }
+async function makeToken(env, role, subject, hours) {
+  const exp = Date.now() + hours * 3600 * 1000;
+  const body = `${role}.${encodeURIComponent(subject)}.${exp}`;
+  return `${body}.${await hmac(secretOf(env), body)}`;
+}
+async function readToken(env, request) {
+  const h = request.headers.get("Authorization") || "";
+  const t = h.startsWith("Bearer ") ? h.slice(7) : "";
+  const parts = t.split(".");
+  if (parts.length !== 4) return null;
+  const [role, subj, exp, sig] = parts;
+  if (Date.now() > Number(exp)) return null;
+  const good = await hmac(secretOf(env), `${role}.${subj}.${exp}`);
+  if (!safeEqual(good, sig)) return null;
+  return { role, id: decodeURIComponent(subj) };
+}
+function safeEqual(a, b) {
+  a = String(a); b = String(b);
+  if (a.length !== b.length) return false;
+  let r = 0; for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return r === 0;
+}
+
+/* ---------- trainee IDs (must match the portal's generateTraineeId) ---------- */
+function slugPart(t) {
+  return String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+function candidateIds(name, batch) {
+  let slug = slugPart(name).slice(0, 40);
+  if (!slug) { let h = 0; for (const c of String(name || "")) h = (h * 31 + c.codePointAt(0)) >>> 0; slug = "trainee-" + h.toString(36); }
+  const b = slugPart(batch).slice(0, 20);
+  return { newId: b ? `${slug}--${b}` : slug, legacyId: slugPart(name).slice(0, 40) || "trainee" };
+}
+
+/* ---------- what a trainee may touch ---------- */
+const PUBLIC_READ = [/^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
+const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
+const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemptsResetAt", "certTrainer", "aiReview", "flaggedInvalidInput", "assignedRoleplay", "registeredAt"];
+
+function canRead(tok, key) {
+  if (tok.role === "a") return true;
+  return OWN(tok.id).includes(key) || PUBLIC_READ.some((re) => re.test(key));
+}
+async function traineeWrite(env, tok, key, value) {
+  const id = tok.id;
+  let incoming; try { incoming = JSON.parse(value); } catch (e) { return "Invalid JSON"; }
+  const existingRaw = await env.LSH_KV.get(key);
+  const existing = existingRaw ? JSON.parse(existingRaw) : null;
+  if (key === `trainee:${id}`) {
+    // Trainees keep their own record current, but can never change approval, attempts resets, etc.
+    const merged = Object.assign({}, incoming);
+    PROTECTED_TRAINEE_FIELDS.forEach((f) => { if (existing && f in existing) merged[f] = existing[f]; else delete merged[f]; });
+    if (!existing) { merged.approved = false; merged.registeredAt = new Date().toISOString(); }
+    merged.id = id;
+    await env.LSH_KV.put(key, JSON.stringify(merged)); return null;
+  }
+  if (key === `progress:${id}`) { await env.LSH_KV.put(key, value); return null; }
+  if (key === `feedback:${id}`) {
+    // Trainees (auto-review) may add days and mark reviews read — never rewrite a trainer's review.
+    const out = existing && existing.days ? JSON.parse(JSON.stringify(existing)) : { days: {} };
+    const inDays = (incoming && incoming.days) || {};
+    for (const [d, v] of Object.entries(inDays)) {
+      const cur = out.days[d];
+      const trainerOwned = cur && (cur.editedByTrainer || (cur.status === "sent" && !cur.auto));
+      if (trainerOwned) { if (v && v.readAt && !cur.readAt) cur.readAt = v.readAt; continue; }
+      if (v && typeof v === "object") { delete v.editedByTrainer; out.days[d] = v; }
+    }
+    await env.LSH_KV.put(key, JSON.stringify(out)); return null;
+  }
+  if (key === `focus:${id}`) {
+    // Trainees may only mark trainer focus items as seen/done.
+    const out = existing && Array.isArray(existing.items) ? existing : { items: [] };
+    const byId = Object.fromEntries(((incoming && incoming.items) || []).map((x) => [x.id, x]));
+    out.items.forEach((x) => { const u = byId[x.id]; if (u) { x.seenAt = u.seenAt || x.seenAt || null; x.doneAt = u.doneAt || null; } });
+    await env.LSH_KV.put(key, JSON.stringify(out)); return null;
+  }
+  if (/^tfeedback:[a-z0-9]+$/.test(key) || /^cert:LSH-EAPA-\d{4}-[A-Z0-9]{6}$/.test(key)) {
+    if (existing && /^tfeedback:/.test(key)) return "Already submitted";
+    await env.LSH_KV.put(key, value); return null;
+  }
+  return "Not allowed";
+}
+
+async function listAll(env, prefix) {
+  const keys = []; let cursor;
+  do { const r = await env.LSH_KV.list({ prefix, cursor }); r.keys.forEach((k) => keys.push(k.name)); cursor = r.list_complete ? null : r.cursor; } while (cursor);
+  return keys;
+}
+
 export default {
   async fetch(request, env) {
     try {
       const url = new URL(request.url);
+      const path = url.pathname;
+      const secure = !!env.ADMIN_PASSPHRASE;
+      if (!path.startsWith("/api/")) return await env.ASSETS.fetch(request);
+      if (request.method !== "POST") return json({ error: "POST only" }, 405);
+      if (!env.LSH_KV && path.startsWith("/api/storage")) return json({ error: "LSH_KV namespace is not bound on this Worker." }, 500);
 
-      if (url.pathname === "/api/claude" && request.method === "POST") {
-        if (!env.ANTHROPIC_API_KEY) {
-          return new Response(
-            JSON.stringify({ error: "ANTHROPIC_API_KEY is not configured on this Worker." }),
-            { status: 500, headers: { "Content-Type": "application/json" } }
-          );
+      /* ---------- auth ---------- */
+      if (path === "/api/auth/status") return json({ secure });
+      if (path === "/api/auth/admin") {
+        if (!secure) return json({ error: "not-configured" }, 501);
+        const { passphrase } = await request.json();
+        await new Promise((r) => setTimeout(r, 400)); // slow down guessing
+        if (!safeEqual(String(passphrase || ""), env.ADMIN_PASSPHRASE)) return json({ error: "Incorrect passphrase" }, 401);
+        return json({ token: await makeToken(env, "a", "admin", 12) });
+      }
+      if (path === "/api/auth/trainee") {
+        if (!secure) return json({ error: "not-configured" }, 501);
+        const { name, batch, id } = await request.json();
+        if (!name || !batch) return json({ error: "Name and batch are required" }, 400);
+        const { newId, legacyId } = candidateIds(name, batch);
+        let chosen = newId, existing = await env.LSH_KV.get(`trainee:${newId}`);
+        if (!existing) {
+          const legacy = await env.LSH_KV.get(`trainee:${legacyId}`);
+          const lrec = legacy ? JSON.parse(legacy) : null;
+          if (lrec && (!lrec.batch || slugPart(lrec.batch) === slugPart(batch))) { chosen = legacyId; existing = legacy; }
         }
-        try {
-          const body = await request.text();
-          const anthropicResponse = await fetch("https://api.anthropic.com/v1/messages", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-api-key": env.ANTHROPIC_API_KEY,
-              "anthropic-version": "2023-06-01"
-            },
-            body
-          });
-          const responseText = await anthropicResponse.text();
-          return new Response(responseText, {
-            status: anthropicResponse.status,
-            headers: { "Content-Type": "application/json" }
-          });
-        } catch (e) {
-          return new Response(
-            JSON.stringify({ error: "Proxy request to Anthropic failed.", detail: String(e) }),
-            { status: 502, headers: { "Content-Type": "application/json" } }
-          );
-        }
+        if (id && id !== chosen && id !== newId && id !== legacyId) return json({ error: "Name/batch don't match this session" }, 403);
+        if (id && (id === newId || id === legacyId)) chosen = id;
+        return json({ id: chosen, token: await makeToken(env, "t", chosen, 24 * 30), existing: existing ? JSON.parse(existing) : null });
       }
 
-      // Shared, cross-trainee storage backing the Admin Dashboard.
-      // Real persistence via Cloudflare KV — required because the app runs
-      // as a standalone site with no other server-side database.
-      if (url.pathname === "/api/storage/set" && request.method === "POST") {
-        if (!env.LSH_KV) {
-          return new Response(JSON.stringify({ error: "LSH_KV namespace is not bound on this Worker." }), { status: 500, headers: { "Content-Type": "application/json" } });
-        }
-        try {
-          const { key, value } = await request.json();
-          if (!key) return new Response(JSON.stringify({ error: "Missing key" }), { status: 400, headers: { "Content-Type": "application/json" } });
-          await env.LSH_KV.put(key, value);
-          return new Response(JSON.stringify({ ok: true }), { headers: { "Content-Type": "application/json" } });
-        } catch (e) {
-          return new Response(JSON.stringify({ error: "KV write failed.", detail: String(e) }), { status: 500, headers: { "Content-Type": "application/json" } });
-        }
+      const tok = secure ? await readToken(env, request) : { role: "a", id: "open-mode" };
+      if (!tok) return json({ error: "Sign-in required" }, 401);
+
+      /* ---------- AI proxy (signed-in users only, so strangers can't spend your credits) ---------- */
+      if (path === "/api/claude") {
+        if (!env.ANTHROPIC_API_KEY) return json({ error: "ANTHROPIC_API_KEY is not configured on this Worker." }, 500);
+        const body = await request.text();
+        const r = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-api-key": env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01" },
+          body
+        });
+        return new Response(await r.text(), { status: r.status, headers: JSON_HEADERS });
       }
 
-      if (url.pathname === "/api/storage/get" && request.method === "POST") {
-        if (!env.LSH_KV) {
-          return new Response(JSON.stringify({ error: "LSH_KV namespace is not bound on this Worker." }), { status: 500, headers: { "Content-Type": "application/json" } });
+      /* ---------- cohort ranking (first name + initial only) ---------- */
+      if (path === "/api/ranking") {
+        const me = tok.role === "t" ? JSON.parse((await env.LSH_KV.get(`trainee:${tok.id}`)) || "null") : null;
+        const batch = me ? slugPart(me.batch) : "";
+        const out = [];
+        for (const k of await listAll(env, "trainee:")) {
+          const r = JSON.parse((await env.LSH_KV.get(k)) || "null");
+          if (!r || r.approved !== true || r.archived) continue;
+          if (batch && slugPart(r.batch) !== batch) continue;
+          const parts = String(r.name || "Trainee").trim().split(/\s+/);
+          const short = parts.length > 1 ? `${parts[0]} ${parts[parts.length - 1][0]}.` : parts[0];
+          const dp = {}; Object.entries(r.dayProgress || {}).forEach(([d, v]) => { if (v) dp[d] = { done: !!v.done, score: v.score }; });
+          const pp = {}; Object.entries(r.practiceProgress || {}).forEach(([t, v]) => { if (v) pp[t] = { runs: v.runs || 0, bestScore: v.bestScore }; });
+          out.push({ me: r.id === tok.id, id: r.id === tok.id ? tok.id : "", name: short, batch: r.batch || "", approved: true, dayProgress: dp, practiceProgress: pp });
         }
-        try {
-          const { key } = await request.json();
-          if (!key) return new Response(JSON.stringify({ error: "Missing key" }), { status: 400, headers: { "Content-Type": "application/json" } });
-          const value = await env.LSH_KV.get(key);
-          return new Response(JSON.stringify({ value }), { headers: { "Content-Type": "application/json" } });
-        } catch (e) {
-          return new Response(JSON.stringify({ error: "KV read failed.", detail: String(e) }), { status: 500, headers: { "Content-Type": "application/json" } });
-        }
+        return json({ batch: me ? me.batch : "", trainees: out });
       }
 
-      if (url.pathname === "/api/storage/list" && request.method === "POST") {
-        if (!env.LSH_KV) {
-          return new Response(JSON.stringify({ error: "LSH_KV namespace is not bound on this Worker." }), { status: 500, headers: { "Content-Type": "application/json" } });
-        }
-        try {
-          const { prefix } = await request.json();
-          const listResult = await env.LSH_KV.list({ prefix: prefix || "" });
-          const keys = listResult.keys.map(k => k.name);
-          return new Response(JSON.stringify({ keys }), { headers: { "Content-Type": "application/json" } });
-        } catch (e) {
-          return new Response(JSON.stringify({ error: "KV list failed.", detail: String(e) }), { status: 500, headers: { "Content-Type": "application/json" } });
-        }
+      /* ---------- storage ---------- */
+      const body = await request.json().catch(() => ({}));
+      const key = String(body.key || "");
+      if (path === "/api/storage/get") {
+        if (!key) return json({ error: "Missing key" }, 400);
+        if (!canRead(tok, key)) return json({ error: "Not allowed" }, 403);
+        return json({ value: await env.LSH_KV.get(key) });
       }
-
-      if (url.pathname === "/api/storage/delete" && request.method === "POST") {
-        if (!env.LSH_KV) {
-          return new Response(JSON.stringify({ error: "LSH_KV namespace is not bound on this Worker." }), { status: 500, headers: { "Content-Type": "application/json" } });
-        }
-        try {
-          const { key } = await request.json();
-          if (!key) return new Response(JSON.stringify({ error: "Missing key" }), { status: 400, headers: { "Content-Type": "application/json" } });
-          await env.LSH_KV.delete(key);
-          return new Response(JSON.stringify({ ok: true }), { headers: { "Content-Type": "application/json" } });
-        } catch (e) {
-          return new Response(JSON.stringify({ error: "KV delete failed.", detail: String(e) }), { status: 500, headers: { "Content-Type": "application/json" } });
-        }
+      if (path === "/api/storage/set") {
+        if (!key) return json({ error: "Missing key" }, 400);
+        if (tok.role === "a") { await env.LSH_KV.put(key, body.value); return json({ ok: true }); }
+        const err = await traineeWrite(env, tok, key, body.value);
+        return err ? json({ error: err }, 403) : json({ ok: true });
       }
-
-      // Every other request: serve the static site as before.
-      return await env.ASSETS.fetch(request);
-    } catch (outerError) {
-      // Last-resort safety net: no exception should ever escape as Cloudflare's
-      // generic "Worker threw exception" page — always return something readable.
-      return new Response(
-        JSON.stringify({ error: "Unhandled Worker exception.", detail: String(outerError && outerError.stack || outerError) }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
+      if (path === "/api/storage/list") {
+        if (tok.role !== "a") return json({ keys: [] });
+        return json({ keys: await listAll(env, body.prefix || "") });
+      }
+      if (path === "/api/storage/delete") {
+        if (tok.role !== "a") return json({ error: "Not allowed" }, 403);
+        await env.LSH_KV.delete(key); return json({ ok: true });
+      }
+      return json({ error: "Unknown endpoint" }, 404);
+    } catch (e) {
+      return json({ error: "Unhandled Worker exception.", detail: String((e && e.stack) || e) }, 500);
     }
   }
 };
