@@ -11214,15 +11214,19 @@ function scheduleCloudSave(){
   if(!state.traineeId || state.cloudRestoring || state.isAdmin && !state.traineeId) return;
   clearTimeout(cloudSaveTimer);
   setSaveStatus("saving");
-  cloudSaveTimer = setTimeout(()=>{ cloudSaveNow(); }, 1500);
+  cloudSaveTimer = setTimeout(()=>{ cloudSaveNow(); }, 4000);
 }
 async function cloudSaveNow(){
   clearTimeout(cloudSaveTimer); cloudSaveTimer = null;
   const id = state.traineeId; if(!id) return false;
   const data = {};
   for(const k of PERSONAL_KEYS){ const v = await storeGet(k); if(v!==null && v!==undefined) data[k] = v; }
+  // Skip the write entirely if nothing changed since the last save (saves KV write quota).
+  const sig = certHash(JSON.stringify(data)) + ":" + JSON.stringify(data).length;
+  if(sig === state.lastCloudSig && state.lastCloudSaveOk){ setSaveStatus("saved"); return true; }
   const savedAt = new Date().toISOString();
   const ok = await sharedSet("progress:"+id, {traineeId:id, savedAt, data});
+  state.lastCloudSig = sig; state.lastCloudSaveOk = !!ok;
   if(ok){ try{ localStorage.setItem("lsh_progress-saved-at", savedAt); }catch(e){} state.lastCloudSave = savedAt; setSaveStatus("saved"); }
   else setSaveStatus("offline");
   return ok;
@@ -11263,6 +11267,43 @@ function saveStatusText(){
 }
 window.addEventListener("beforeunload", ()=>{ if(cloudSaveTimer){ cloudSaveNow(); } });
 document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="hidden" && cloudSaveTimer) cloudSaveNow(); });
+
+/* ============================================================
+   SECURE MODE — every storage/AI request carries a signed session
+   token from the Worker (trainee: from name + batch; admin: from the
+   passphrase checked on the server). If the Worker has no
+   ADMIN_PASSPHRASE set, the portal runs in the old open mode.
+   ============================================================ */
+state.authToken = (()=>{ try{ return localStorage.getItem("lsh_auth_token")||""; }catch(e){ return ""; } })();
+state.adminToken = (()=>{ try{ return sessionStorage.getItem("lsh_admin_token")||""; }catch(e){ return ""; } })();
+function authHeaders(){
+  const t = (state.isAdmin && state.adminToken) || state.authToken;
+  return Object.assign({"Content-Type":"application/json"}, t ? {"Authorization":"Bearer "+t} : {});
+}
+function setTraineeToken(t){ state.authToken = t||""; try{ t ? localStorage.setItem("lsh_auth_token", t) : localStorage.removeItem("lsh_auth_token"); }catch(e){} }
+function setAdminToken(t){ state.adminToken = t||""; try{ t ? sessionStorage.setItem("lsh_admin_token", t) : sessionStorage.removeItem("lsh_admin_token"); }catch(e){} }
+async function authStatus(){
+  if(typeof state.secureMode === "boolean") return state.secureMode;
+  try{ const r = await fetch("/api/auth/status", {method:"POST", headers:{"Content-Type":"application/json"}, body:"{}"}); const j = r.ok ? await r.json() : {}; state.secureMode = !!j.secure; }
+  catch(e){ state.secureMode = false; }
+  return state.secureMode;
+}
+async function traineeAuth(name, batch, id){
+  const r = await fetch("/api/auth/trainee", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({name, batch, id})});
+  if(r.status===501) return null;                       // open mode
+  if(!r.ok){ const j = await r.json().catch(()=>({})); const e = new Error(j.error || ("sign-in failed ("+r.status+")")); e.status = r.status; throw e; }
+  const j = await r.json(); setTraineeToken(j.token); return j;
+}
+async function reauthTrainee(){
+  if(!state.traineeId || !state.traineeName) return false;
+  try{ const j = await traineeAuth(state.traineeName, state.traineeBatch, state.traineeId); return !!(j && j.token); }catch(e){ return false; }
+}
+async function authFetch(url, payload){
+  const doFetch = ()=>fetch(url, {method:"POST", headers:authHeaders(), body: JSON.stringify(payload)});
+  let res = await doFetch();
+  if(res.status===401 && !state.isAdmin && await reauthTrainee()) res = await doFetch();
+  return res;
+}
 async function storeGet(key){
   let fromWindowStorage;
   try{
@@ -11312,10 +11353,7 @@ async function sharedSet(key,val){
   // read from. window.storage (when present, e.g. previewing in Claude.ai)
   // is a separate store and must never be treated as a substitute for it.
   try{
-    const response = await fetch("/api/storage/set", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ key, value: JSON.stringify(val) })
-    });
+    const response = await authFetch("/api/storage/set", { key, value: JSON.stringify(val) });
     if(response.ok) savedAnywhere = true;
   }catch(e){ console.warn("shared storage set failed",e); }
   return savedAnywhere;
@@ -11327,10 +11365,7 @@ async function sharedGet(key){
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
   if(fromWindowStorage !== undefined) return fromWindowStorage;
   try{
-    const response = await fetch("/api/storage/get", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ key })
-    });
+    const response = await authFetch("/api/storage/get", { key });
     if(!response.ok) return null;
     const data = await response.json();
     return data.value ? JSON.parse(data.value) : null;
@@ -11343,10 +11378,7 @@ async function sharedList(prefix){
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
   let fromKv = [];
   try{
-    const response = await fetch("/api/storage/list", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ prefix })
-    });
+    const response = await authFetch("/api/storage/list", { prefix });
     if(response.ok){ const data = await response.json(); fromKv = data.keys || []; }
   }catch(e){ console.warn("shared storage list failed",e); }
   // Merge and dedupe — a key may exist in either store depending on which
@@ -11359,10 +11391,7 @@ async function sharedDelete(key){
     if(window.storage){ await window.storage.delete(key,true); deletedAnywhere = true; }
   }catch(e){ /* window.storage unavailable, fall through to the KV-backed API */ }
   try{
-    const response = await fetch("/api/storage/delete", {
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ key })
-    });
+    const response = await authFetch("/api/storage/delete", { key });
     if(response.ok) deletedAnywhere = true;
   }catch(e){ console.warn("shared storage delete failed",e); }
   return deletedAnywhere;
@@ -11383,7 +11412,7 @@ async function sharedGetStrict(key){
   // Like sharedGet, but a server/network failure throws instead of looking
   // like "no record" — so a blip can't make a returning trainee look new.
   if(window.storage){ try{ const r = await window.storage.get(key,true); if(r) return JSON.parse(r.value); }catch(e){} }
-  const response = await fetch("/api/storage/get", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({key})});
+  const response = await authFetch("/api/storage/get", {key});
   if(!response.ok) throw new Error("storage "+response.status);
   const data = await response.json();
   return data.value ? JSON.parse(data.value) : null;
@@ -11415,7 +11444,7 @@ async function syncToLedger(allowCreate){
   // A missing record after registration means an admin revoked/deleted it —
   // don't silently re-create it from this device. Only login may create one.
   if(!existing && !allowCreate) return;
-  await sharedSet("trainee:"+state.traineeId, Object.assign({}, existing||{}, {
+  const next = Object.assign({}, existing||{}, {
     id: state.traineeId,
     certName: state.certName || (existing ? existing.certName : "") || "",
     firstName: (state.regName && state.regName.first) || (existing ? existing.firstName : "") || "",
@@ -11434,7 +11463,11 @@ async function syncToLedger(allowCreate){
     aiReview: existing ? existing.aiReview : null,
     labAttemptsGlobal: (typeof state.labAttemptsGlobal === "number") ? state.labAttemptsGlobal : (existing ? (existing.labAttemptsGlobal||0) : 0),
     labAttemptsResetAt: existing ? (existing.labAttemptsResetAt||null) : null
-  }));
+  });
+  const strip = (o)=>{ const c = Object.assign({}, o||{}); delete c.lastActive; return JSON.stringify(c); };
+  // Only write when something real changed, or at most every 10 minutes to refresh "last active".
+  if(existing && strip(existing)===strip(next) && Date.now()-new Date(existing.lastActive||0).getTime() < 10*60*1000) return;
+  await sharedSet("trainee:"+state.traineeId, next);
 }
 async function getApprovalStatus(traineeId){
   const rec = await sharedGet("trainee:"+traineeId);
@@ -11552,7 +11585,7 @@ async function callAITextOnce(prompt, maxTokens, timeoutMs){
   const timeoutId = setTimeout(()=>controller.abort(), timeoutMs || Math.max(30000, (maxTokens||600) * 25));
   try{
     const response = await fetch("/api/claude", {
-      method:"POST", headers:{"Content-Type":"application/json"},
+      method:"POST", headers:authHeaders(),
       body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] }),
       signal: controller.signal
     });
@@ -11790,7 +11823,7 @@ function renderFacilitatorGuide(){
     <div class="card fg-card">
       <h3>Access, Security &amp; Troubleshooting</h3>
       <ul>
-        <li><b>Admin passphrase</b> unlocks the Admin tabs for that browser session only. It's no longer readable in the page source and signing in no longer auto-approves anyone.</li>
+        <li><b>Secure mode:</b> once <code>ADMIN_PASSPHRASE</code> is set on the Worker, the passphrase is checked on the server, every request needs a signed session, trainees can only read and change their own records (never approval or attempt resets), and the AI can only be used by signed-in users. Admin shows a red warning while this is off.</li>
         <li><b>Which version is live?</b> The footer shows the build number. If a fix "doesn't work", check the build first — a renamed download (e.g. <i>index (1).html</i>) is the usual cause.</li>
         <li><b>AI features failing?</b> Every AI button shows the real reason. "Key isn't set / invalid" means <code>ANTHROPIC_API_KEY</code> needs setting on the Worker (<code>wrangler secret put ANTHROPIC_API_KEY</code>).</li>
         <li><b>Revoke</b> deletes a trainee's record and saved progress; invalid names/batches are cleaned automatically.</li>
@@ -12715,8 +12748,10 @@ async function loadTraineeRanking(force){
   if(!state.traineeId || state.isAdmin) return;
   if(!force && state.rankData && Date.now()-state.rankData.at < 5*60*1000) return;
   try{
-    const keys = await sharedList("trainee:");
-    const recs = (await Promise.all(keys.map(k=>sharedGet(k).catch(()=>null)))).filter(Boolean);
+    let recs;
+    const rr = await authFetch("/api/ranking", {});
+    if(rr.ok){ const j = await rr.json(); recs = (j.trainees||[]).map(x=>Object.assign({}, x, {id: x.me ? state.traineeId : ("other-"+Math.random().toString(36).slice(2))})); }
+    else{ const keys = await sharedList("trainee:"); recs = (await Promise.all(keys.map(k=>sharedGet(k).catch(()=>null)))).filter(Boolean); }
     const me = recs.find(x=>x.id===state.traineeId);
     const batch = cleanBatch((me && me.batch) || state.traineeBatch);
     const pool = recs.filter(x=>x.approved===true && !x.archived && (!batch || cleanBatch(x.batch)===batch));
@@ -13560,7 +13595,10 @@ async function submitLoginInner(){
   if(isNewSession && !batchVal){ toast("Enter your batch to continue."); return; }
   if(isNewSession && !cleanBatch(batchVal)){ toast("Enter a valid batch code, e.g. B050225 (letters, numbers, spaces or dashes, max 24)."); return; }
   let resolved = null;
-  if(isNewSession) resolved = await resolveTraineeId(v, batchVal);   // throws on a server error → handled above
+  if(isNewSession){
+    const au = (await authStatus()) ? await traineeAuth(v, batchVal) : null;   // throws on a server error → handled above
+    resolved = au ? {id:au.id, existing:au.existing} : await resolveTraineeId(v, batchVal);
+  }
   state.traineeName = v;
   await storeSet("trainee-name", v);
   if(regLast){ state.regName = {first:regFirst, last:regLast}; await storeSet("reg-name", state.regName); }
@@ -13692,6 +13730,7 @@ async function resetTraineeSessionData(){
 }
 async function logout(){
   try{ await cloudSaveNow(); }catch(e){}
+  setTraineeToken("");
   if(state.approvalPollInterval){ clearInterval(state.approvalPollInterval); state.approvalPollInterval = null; }
   state.activeSurpriseTask = null;
   state.surpriseResult = null;
@@ -13784,6 +13823,10 @@ function startApprovalPolling(traineeId){
 /* ---------- boot ---------- */
 (async function init(){
   await loadAll();
+  if(state.adminToken && (await authStatus())) state.isAdmin = true;
+  if(state.traineeId && (await authStatus()) && !state.authToken){
+    if(!(await reauthTrainee())){ state.traineeId = ""; await storeSet("trainee-id", ""); state.view = "login"; render(); return; }
+  }
   if(state.traineeId && await cloudRestore(state.traineeId)) await loadAll();
   loadPublishedContent().then(()=>{ if(["day","dashboard","admin"].includes(state.view)) render(); });
   if(!state.traineeName){
@@ -17714,6 +17757,14 @@ function openAdmin(){
   document.getElementById("cancelAdmin").onclick=()=>overlay.remove();
   const tryLogin=async ()=>{
     const v=document.getElementById("adminPass").value;
+    if(await authStatus()){
+      try{
+        const res = await fetch("/api/auth/admin", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({passphrase:v})});
+        if(res.ok){ const j = await res.json(); setAdminToken(j.token); state.isAdmin=true; overlay.remove(); goto("admin"); }
+        else toast("Incorrect passphrase.");
+      }catch(e){ toast("Couldn't reach the server — try again."); }
+      return;
+    }
     if((await sha256Hex(v))===ADMIN_PASSPHRASE_SHA256){
       state.isAdmin=true;
       overlay.remove();
@@ -17729,6 +17780,7 @@ function openAdmin(){
 window.openAdmin = openAdmin;
 
 function adminLogout(){
+  setAdminToken("");
   state.isAdmin=false;
   state.adminData=null;
   goto("dashboard");
@@ -18716,6 +18768,7 @@ function renderAdmin(){
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Audit</h1>
     <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Lightweight session access, not secure authentication — see the note behind the Admin login. Data reflects what's been synced from each trainee's device.</p>
 
+    ${state.secureMode===false ? `<div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--danger);background:var(--danger-bg);"><b style="color:var(--danger);">⚠ Security not enabled.</b> <span style="font-size:13px;">Storage and AI are open to anyone who finds the API. Run <code>wrangler secret put ADMIN_PASSPHRASE</code> (and redeploy the updated worker.js) to require sign-in.</span></div>` : ""}
     <div class="card cert-settings">
       <b style="color:var(--navy);font-size:13.5px;">🎓 Certificate signatories</b>
       <p>Signatures are generated automatically from these names. The trainer can also be set per trainee in <b>View Detail → Certificate details</b>.</p>
@@ -19201,6 +19254,7 @@ async function saveFeedbackSettings(){
 }
 window.saveFeedbackSettings = saveFeedbackSettings;
 function renderFeedbackAdmin(rec){
+  if(typeof state.secureMode!=="boolean") authStatus().then(()=>{ if(state.view==="admin") render(); });
   if(!state.fbSettings) feedbackSettings();
   if(!state.certSettings){ certSettings().then(()=>{ const m={certTrainer:"trainerName",certTrainerTitle:"trainerTitle",certHead:"headName",certHeadTitle:"headTitle",certGm:"gmName",certGmTitle:"gmTitle"}; Object.entries(m).forEach(([id,k])=>{ const el=document.getElementById(id); if(el && !el.value) el.value = state.certSettings[k]||""; }); }); }
   if(!state.fbSettings){ feedbackSettings().then(()=>{ const a=document.getElementById("fbAutoDraft"), b=document.getElementById("fbAutoSend"); if(a) a.checked = state.fbSettings.autoDraft!==false; if(b) b.checked = !!state.fbSettings.autoSend; }); }
@@ -20916,7 +20970,8 @@ function crSelectScenario(id){
   toolState.cr.activeScenario = id;
   const scenarios = CRISIS_SCENARIO_SETS[toolState.cr.setKey];
   document.getElementById("crTabs").querySelectorAll("button").forEach(b=>b.classList.toggle("active", b.textContent===scenarios.find(s=>s.id===id).title));
-  document.getElementById("crScenarioBody").innerHTML = renderCrScenarioBody(toolState.cr.setKey, id);
+  const crBody = document.getElementById("crScenarioBody"); // trainer-only script panel; absent on trainee view
+  if(crBody) crBody.innerHTML = renderCrScenarioBody(toolState.cr.setKey, id);
   crStartRoleplay();
 }
 window.crSelectScenario = crSelectScenario;
@@ -21123,7 +21178,8 @@ function renderD6CrScenarioBody(activeId){
 function d6crSelectScenario(id){
   toolState.c6cr.activeScenario = id;
   document.getElementById("d6crTabs").querySelectorAll("button").forEach(b=>b.classList.toggle("active", b.textContent===DAY6_CRISIS_SCENARIOS.find(s=>s.id===id).title));
-  document.getElementById("d6crScenarioBody").innerHTML = renderD6CrScenarioBody(id);
+  const d6Body = document.getElementById("d6crScenarioBody"); // trainer-only script panel; absent on trainee view
+  if(d6Body) d6Body.innerHTML = renderD6CrScenarioBody(id);
   d6crStartRoleplay();
 }
 window.d6crSelectScenario = d6crSelectScenario;
@@ -22466,7 +22522,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-v";
+var APP_BUILD = "2026.09.24-x";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
