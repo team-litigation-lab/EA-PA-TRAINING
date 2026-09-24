@@ -1987,6 +1987,41 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
 .comp-cell-top b{font-family:'IBM Plex Mono',monospace;color:#fff;white-space:nowrap;}
 @media(max-width:1300px){.comp-strip-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
 @media(max-width:760px){.comp-strip-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+/* ================= Dashboard hero — professional panel ================= */
+.dash-top{position:relative;overflow:hidden;border-radius:20px;padding:30px 34px 22px;margin-bottom:22px;
+  background:radial-gradient(900px 320px at 85% -20%, rgba(219,132,55,.28), transparent 60%),
+             radial-gradient(600px 300px at -5% 120%, rgba(120,132,190,.25), transparent 60%),
+             linear-gradient(135deg, #1F2440 0%, #2B3158 55%, #353C68 100%);
+  box-shadow:0 18px 40px -22px rgba(20,24,48,.65);}
+.dash-top::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:linear-gradient(rgba(255,255,255,.9) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.9) 1px, transparent 1px);background-size:28px 28px;
+  -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 55%, transparent 100%);mask-image:linear-gradient(90deg, transparent 0%, #000 55%, transparent 100%);}
+.dash-top > *{position:relative;z-index:1;}
+.dash-hero{grid-template-columns:120px minmax(0,1fr) !important;gap:28px !important;margin-bottom:22px !important;}
+.dash-hero-ribbon svg{max-width:112px;height:auto;filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));}
+.dash-top .eyebrow{display:inline-block;margin:0 0 12px !important;padding:5px 12px;border-radius:999px;background:rgba(219,132,55,.16);border:1px solid rgba(240,192,138,.45);color:#F5C99A !important;font-size:11.5px;letter-spacing:.14em;}
+.dash-hero h1{color:#fff !important;font-size:clamp(26px, 2.6vw, 38px) !important;line-height:1.18 !important;letter-spacing:-.01em;margin:0 0 12px !important;font-weight:700;}
+.dash-hero h1 span.hl{background:none !important;padding:0 !important;}
+.dash-hero .hero-spark{width:.62em;height:.62em;vertical-align:.08em;}
+.dash-hero p{color:#C9CDE3 !important;font-size:15px !important;line-height:1.6;max-width:68ch;}
+/* progress track inside the panel */
+.dash-top .step-timeline{margin:0 !important;padding:16px 0 4px;border-top:1px solid rgba(255,255,255,.12);}
+.dash-top .step-circle{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.28);color:#C9CDE3;}
+.dash-top .step-circle.st-done{background:linear-gradient(135deg,#E39A52,#C9742F);border-color:#F0C08A;color:#fff;box-shadow:0 4px 10px -4px rgba(219,132,55,.8);}
+.dash-top .step-circle.st-open{background:rgba(255,255,255,.1);border-color:#F0C08A;color:#fff;}
+.dash-top .step-circle.st-locked{background:transparent;border-color:rgba(255,255,255,.16);color:rgba(255,255,255,.35);}
+.dash-top .step-dash{border-top-color:rgba(255,255,255,.2);}
+.dash-top .step-dash.filled{border-top-color:#E39A52;}
+@media(max-width:760px){
+  .dash-top{padding:20px 16px 14px;border-radius:16px;}
+  .dash-hero{grid-template-columns:1fr !important;gap:10px !important;margin-bottom:14px !important;}
+  .dash-hero h1{font-size:22px !important;}
+  .dash-hero p{font-size:14px !important;}
+  .dash-top .step-circle{width:25px;height:25px;font-size:11px;}
+  .dash-top .step-dash{width:4px;margin:0 1px;}
+  .dash-top .step-timeline{flex-wrap:nowrap;}
+}
 </style>
 </head>
 <body>
@@ -11767,12 +11802,19 @@ function completionRibbonSvg(pct, done){
   path += "Z";
   const finished = pct>=100;
   return `<svg class="seal completion-ribbon" viewBox="0 0 120 160" role="img" aria-label="${pct}% of program complete">
-    <path d="M38,82 L22,152 L40,140 L50,158 L62,92 Z" fill="var(--navy)"/>
-    <path d="M82,82 L98,152 L80,140 L70,158 L58,92 Z" fill="var(--orange-deep)"/>
-    <path d="${path}" fill="var(--orange)" stroke="var(--navy)" stroke-width="1.5"/>
-    <circle cx="${cx}" cy="${cy}" r="33" fill="none" stroke="#241304" stroke-width="1" opacity=".5"/>
-    <text x="${cx}" y="${cy+3}" text-anchor="middle" font-family="Fraunces" font-weight="700" font-size="${String(pct).length>2?19:23}" fill="#241304">${pct}%</text>
-    <text x="${cx}" y="${cy+16}" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="7.5" letter-spacing=".3" fill="#241304" opacity=".85">${finished?"DONE":"COMPLETE"}</text>
+    <defs>
+      <linearGradient id="crStar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7E08A"/><stop offset=".5" stop-color="#D4AF37"/><stop offset="1" stop-color="#A8841F"/></linearGradient>
+      <radialGradient id="crFace" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#FFF4C4"/><stop offset=".55" stop-color="#E7C458"/><stop offset="1" stop-color="#B8911F"/></radialGradient>
+      <linearGradient id="crTailL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9C95A"/><stop offset="1" stop-color="#B08A22"/></linearGradient>
+      <linearGradient id="crTailR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#8F6E14"/></linearGradient>
+    </defs>
+    <path d="M38,82 L22,152 L40,140 L50,158 L62,92 Z" fill="url(#crTailL)"/>
+    <path d="M82,82 L98,152 L80,140 L70,158 L58,92 Z" fill="url(#crTailR)"/>
+    <path d="${path}" fill="url(#crStar)" stroke="#8A6A12" stroke-width="1.2"/>
+    <circle cx="${cx}" cy="${cy}" r="35" fill="url(#crFace)" stroke="#8A6A12" stroke-width="1"/>
+    <circle cx="${cx}" cy="${cy}" r="30" fill="none" stroke="#FFF6CF" stroke-width="1.1" opacity=".85"/>
+    <text x="${cx}" y="${cy+4}" text-anchor="middle" font-family="Fraunces" font-weight="700" font-size="${String(pct).length>2?19:23}" fill="#3A2A05">${pct}%</text>
+    <text x="${cx}" y="${cy+16}" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="7" letter-spacing=".4" fill="#3A2A05" opacity=".85">${finished?"DONE":"COMPLETE"}</text>
   </svg>`;
 }
 function brandMark(){
@@ -13042,7 +13084,7 @@ function renderDashboard(){
       <div class="dash-hero">
         <div class="dash-hero-text">
           <p class="eyebrow">LEGAL EA / PA ACCELERATOR</p>
-          <h1><span class="hl"><svg class="hero-spark hero-spark-lead" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg>Executive Assistant/ Personal Assistant Professional Development Workspace<svg class="hero-spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg></span></h1>
+          <h1><span class="hl"><svg class="hero-spark hero-spark-lead" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#F0C08A"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg>Executive Assistant/ Personal Assistant Professional Development Workspace<svg class="hero-spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#F0C08A"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg></span></h1>
           <p>Unlock your full potential as a Strategic Go-To Person to your Attorney. Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
         </div>
         <div class="dash-hero-ribbon">
@@ -13082,12 +13124,11 @@ function renderDashboard(){
     </div>
 
     <aside class="dash-side"><div class="dash-side-inner">
-      ${renderCertificateDashCard()}
-      ${renderFeedbackDashCard()}
       <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
       <div class="card stat"><div class="num">${ocs.score}%</div><div class="lbl">${ocs.tier ? `Best Competency — ${esc(displayTier(ocs.tier))}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${avgC}%</span></div></div>
       <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
       <div class="card stat"><div class="num">${done} / ${DAYS.length}</div><div class="lbl">Days completed</div></div>
+      ${renderFeedbackDashCard()}
       ${renderRankingCard()}
     </div></aside>
   </div>
@@ -22616,7 +22657,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-d";
+var APP_BUILD = "2026.09.25-h";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -22658,4 +22699,4 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 </body>
-</html>
+</html>c
