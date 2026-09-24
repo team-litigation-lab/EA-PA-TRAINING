@@ -1892,6 +1892,13 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .cert-settings{padding:16px 18px;margin-bottom:14px;} .cert-settings p{font-size:12.5px;color:var(--ink-soft);margin:4px 0 8px;}
 .cert-settings-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;} .cert-settings-grid input{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:7px 10px;}
 @media(max-width:900px){.cert-settings-grid{grid-template-columns:1fr 1fr;}}
+
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px;}
+.hero-actions .resume-btn{margin-top:0;}
+.cert-hero-btn{background:#3F7D58;color:#fff;border:none;font-weight:800;box-shadow:0 8px 18px -8px rgba(63,125,88,.7);}
+.cert-hero-btn:hover{background:#346a4a;color:#fff;}
+.cert-hero-view{background:#fff;}
+.cert-hero-locked{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--ink-soft);background:rgba(255,255,255,.7);border:1px dashed var(--line);border-radius:20px;padding:7px 12px;}
 </style>
 </head>
 <body>
@@ -12867,7 +12874,13 @@ function renderDashboard(){
           <p class="eyebrow">LEGAL EA / PA ACCELERATOR</p>
           <h1><span class="hl"><svg class="hero-spark hero-spark-lead" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg>Executive Assistant/ Personal Assistant Professional Development Workspace<svg class="hero-spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg></span></h1>
           <p>Unlock your full potential as a Strategic Go-To Person to your Attorney. Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
-          ${resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : ""}
+          <div class="hero-actions">
+            ${resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : ""}
+            ${(()=>{ if(!state.traineeId || state.isAdmin) return ""; const c = certData();
+              return c.eligible
+                ? `<button class="btn cert-hero-btn" onclick="downloadCertificatePdf(null)">🎓 Download my Certificate</button><button class="btn btn-ghost cert-hero-view" onclick="openCertificate()">View</button>`
+                : `<span class="cert-hero-locked" title="Pass all ${c.total} Knowledge Checks (70%+) to unlock">🎓 Certificate · ${c.passed}/${c.total} Knowledge Checks passed</span>`; })()}
+          </div>
         </div>
         <div class="dash-hero-ribbon">
           ${completionRibbonSvg(pct, done)}
@@ -16914,11 +16927,32 @@ function printCertificate(){
   w.document.write(`<html><head><title>Certificate</title><style>${css} @page{size:letter landscape;margin:0} body{margin:0} .cert{width:11in;height:8.5in;box-shadow:none}</style></head><body>${sheet.outerHTML}</body></html>`);
   w.document.close(); setTimeout(()=>{ w.focus(); w.print(); }, 400);
 }
+async function ensureJsPdf(){
+  if(window.jspdf && window.jspdf.jsPDF) return true;
+  const urls = ["https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js","https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"];
+  for(const u of urls){
+    try{
+      await new Promise((res,rej)=>{ const sc=document.createElement("script"); sc.src=u; sc.onload=res; sc.onerror=rej; document.head.appendChild(sc); setTimeout(rej, 12000); });
+      if(window.jspdf && window.jspdf.jsPDF) return true;
+    }catch(e){}
+  }
+  return false;
+}
 async function downloadCertificatePdf(adminTraineeId){
+  try{ return await downloadCertificatePdfInner(adminTraineeId); }
+  catch(e){
+    console.error("Certificate PDF failed:", e);
+    toast("Couldn't build the PDF here — opening the print view instead. Choose “Save as PDF”.");
+    if(!document.getElementById("certSheet")) await openCertificate(adminTraineeId ? state.certSrc : undefined);
+    setTimeout(printCertificate, 300);
+  }
+}
+async function downloadCertificatePdfInner(adminTraineeId){
   const src = adminTraineeId ? state.certSrc : null;
   const c = certData(src);
   const s = await certSettings();
-  if(!window.jspdf){ toast("PDF tools are still loading — try again in a moment."); return; }
+  if(!c.eligible && !adminTraineeId){ toast(`Your certificate unlocks when all ${c.total} Knowledge Checks are passed — ${c.passed}/${c.total} so far.`); return; }
+  if(!(await ensureJsPdf())) throw new Error("PDF library unavailable");
   const { jsPDF } = window.jspdf;
   const doc = safeDoc(new jsPDF({unit:"pt", format:"letter", orientation:"landscape"}));
   const W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight();
@@ -16930,7 +16964,7 @@ async function downloadCertificatePdf(adminTraineeId){
   // corner accents
   doc.setFillColor(...orange);
   [[36,36,1,1],[W-36,36,-1,1],[36,H-36,1,-1],[W-36,H-36,-1,-1]].forEach(([x,y,sx,sy])=>{ doc.triangle(x,y, x+34*sx,y, x,y+34*sy, "F"); });
-  try{ doc.addImage(LOGO_FULL_DATAURI, "PNG", W/2-52, 58, 104, 68); }catch(e){}
+  try{ doc.addImage(LOGO_FULL_DATAURI, "PNG", W/2-52, 58, 104, 68); }catch(e){ console.warn("logo skipped", e); }
   doc.setTextColor(...navy); doc.setFont("times","bold"); doc.setFontSize(36);
   doc.text("CERTIFICATE OF COMPLETION", W/2, 162, {align:"center"});
   doc.setDrawColor(...orange); doc.setLineWidth(1.2); doc.line(W/2-150, 174, W/2+150, 174);
@@ -16969,8 +17003,9 @@ async function downloadCertificatePdf(adminTraineeId){
   doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(...soft);
   doc.text(`Certificate ID: ${c.certId}`, 58, H-54);
   doc.text("Legal Support Help  ·  EA/PA Upskill Program", W-58, H-54, {align:"right"});
-  const safeName = String(c.name||"Trainee").replace(/[^A-Za-z0-9]+/g,"_");
-  doc.save(`LSH_Certificate_${safeName}.pdf`);
+  const safeName = String(c.name||"Trainee").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-Za-z0-9]+/g,"_");
+  try{ doc.save(`LSH_Certificate_${safeName}.pdf`); }
+  catch(e){ const url = doc.output("bloburl"); window.open(url, "_blank"); }
   try{ await sharedSet("cert:"+c.certId, {certId:c.certId, traineeId:c.traineeId, name:c.name, batch:c.batch, avg:c.avg, eligible:c.eligible, issuedAt:new Date().toISOString(), issuedBy: adminTraineeId ? (state.traineeName||"Admin") : "self"}); }catch(e){}
   toast("Certificate downloaded. 🎓");
 }
@@ -22050,7 +22085,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-m";
+var APP_BUILD = "2026.09.24-n";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
