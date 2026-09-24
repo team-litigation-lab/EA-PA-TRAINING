@@ -1736,6 +1736,18 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 
 .studio-diag{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 0;font-size:12.5px;color:var(--ink-soft);}
 .studio-progress:not(:empty){background:#FFF8EF;border:1px solid #F0D2AE;border-radius:10px;padding:10px 14px;margin:10px 0 14px;}
+.build-tag{opacity:.6;font-family:'IBM Plex Mono',monospace;font-size:11px;}
+
+.dash-side .comp-card .lbl{margin-bottom:8px;}
+.comp-row{margin:8px 0;} .comp-top{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:#E4E6F0;}
+.comp-top b{font-family:'IBM Plex Mono',monospace;color:#fff;font-size:12px;white-space:nowrap;flex-shrink:0;}
+.comp-track{height:6px;border-radius:6px;background:rgba(255,255,255,.12);margin-top:4px;overflow:hidden;}
+.comp-fill{height:100%;border-radius:6px;} .comp-fill.strong{background:#5FB27F;} .comp-fill.ok{background:#E8B54A;} .comp-fill.build{background:var(--orange);} .comp-fill.none{background:transparent;}
+.dash-side .comp-card .sub{font-size:11px;color:#9EA3BD;margin-top:8px;line-height:1.4;}
+.next-list{list-style:none;margin:0;padding:0;}
+.next-list li{font-size:12.5px;color:#E4E6F0;line-height:1.45;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.05);margin-bottom:6px;}
+.next-list li span{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:#F0C08A;font-weight:800;margin-bottom:2px;}
+.next-list li.clickable{cursor:pointer;} .next-list li.clickable:hover{background:rgba(255,255,255,.1);}
 </style>
 </head>
 <body>
@@ -12472,6 +12484,63 @@ async function loadTraineeRanking(force){
   }catch(e){ state.rankData = {at:Date.now(), error:true, ranked:[]}; }
   if(state.view==="dashboard") render();
 }
+
+/* ---------- Competency profile + "Work on next" (dashboard sidebar) ---------- */
+const COMPETENCIES = [
+  {id:"knowledge", label:"Knowledge Retention", tip:"Review the lesson slides for any day under 70% and retake its Knowledge Check."},
+  {id:"accuracy", label:"Accuracy & Precision", tip:"Double-check names, dates, figures and details against the source before submitting."},
+  {id:"presence", label:"Executive Presence & Judgment", tip:"Lead with a recommendation, not just options — write as if Elias will act on it immediately."},
+  {id:"risk", label:"Risk, Confidentiality & SOPs", tip:"Before sending, ask: is anything confidential, who else needs to know, and what's the escalation path?"},
+  {id:"efficiency", label:"Efficiency & Structure", tip:"Cut padding: bottom line first, then the few details that matter, in short scannable lines."},
+  {id:"communication", label:"Communication (BLUF & ACT)", tip:"Open every update with the bottom line, then Acknowledge–Clarify–Timeline."},
+  {id:"composure", label:"Composure Under Pressure", tip:"Slow down on tense calls: acknowledge, state facts, offer options — then practice a Live Roleplay."}
+];
+function competencyProfile(){
+  const buckets = {}; const add=(k,v)=>{ if(typeof v==="number" && !isNaN(v)){ (buckets[k]=buckets[k]||[]).push(Math.max(0,Math.min(100,v))); } };
+  Object.values(state.progress||{}).forEach(p=>{ if(p && typeof p.score==="number") add("knowledge", p.score); });
+  (state.workLog||[]).forEach(e=>{
+    const s = e.subs||{};
+    if(e.kind==="lab"){ add("accuracy", s.accuracy); add("presence", s.presence); add("risk", s.risk); add("efficiency", s.efficiency); }
+    if(e.kind==="roleplay"){ add("communication", s.bluf); add("communication", s.act); add("risk", s.risk); add("composure", s.composure); }
+  });
+  return COMPETENCIES.map(c=>{ const arr = buckets[c.id]||[]; return Object.assign({}, c, {score: arr.length ? Math.round(arr.reduce((a,b)=>a+b,0)/arr.length) : null, n: arr.length}); });
+}
+function workOnNextItems(){
+  const items = [];
+  // 1) trainer feedback (most recent sent day)
+  const fbDays = Object.entries(state.myFeedback||{}).sort((a,b)=>(b[1].sentAt||"").localeCompare(a[1].sentAt||""));
+  if(fbDays.length){ (fbDays[0][1].areasToBuild||[]).slice(0,2).forEach(x=>items.push({src:`Trainer · Day ${fbDays[0][0]}`, text:x})); }
+  // 2) Knowledge Checks not yet passed
+  DAYS.forEach(d=>{ const p = (state.progress||{})[d.id]; if(p && typeof p.score==="number" && !p.done) items.push({src:`Day ${d.id} Knowledge Check`, text:`Not yet at 70% (best ${p.score}%) — review and retake when ready.`, action:`goto('day',${d.id})`}); });
+  // 3) latest graded-work gaps
+  const recent = (state.workLog||[]).filter(e=>e.kind!=="quiz" && (e.growth||e.gaps||[]).length).slice(-3).reverse();
+  recent.forEach(e=>{ const t = (e.growth && e.growth[0]) || (e.gaps && e.gaps[0]); if(t) items.push({src:e.label, text:t}); });
+  // 4) weakest competency tip
+  const weakest = competencyProfile().filter(c=>c.score!==null).sort((a,b)=>a.score-b.score)[0];
+  if(weakest && weakest.score < 80) items.push({src:`Lowest area · ${weakest.label}`, text:weakest.tip});
+  const seen = new Set(); return items.filter(x=>{ const k=x.text.slice(0,60); if(seen.has(k)) return false; seen.add(k); return true; }).slice(0,5);
+}
+function renderCompetencyCards(){
+  const prof = competencyProfile();
+  const any = prof.some(c=>c.score!==null);
+  const band = (v)=> v>=85 ? "strong" : v>=70 ? "ok" : "build";
+  const bars = prof.map(c=>`<div class="comp-row" title="${c.n} data point(s)">
+      <div class="comp-top"><span>${esc(c.label)}</span><b>${c.score===null ? "—" : c.score+"%"}</b></div>
+      <div class="comp-track"><div class="comp-fill ${c.score===null?"none":band(c.score)}" style="width:${c.score||0}%"></div></div>
+    </div>`).join("");
+  const next = workOnNextItems();
+  return `
+    <div class="card stat comp-card">
+      <div class="lbl">Competency profile</div>
+      ${any ? bars : `<div class="sub">Complete a Knowledge Check or a graded Practice Lab to see your competency profile.</div>`}
+      ${any ? `<div class="sub">Green 85%+ · Amber 70–84% · Orange = not yet</div>` : ""}
+    </div>
+    <div class="card stat comp-card">
+      <div class="lbl">Work on next</div>
+      ${next.length ? `<ul class="next-list">${next.map(x=>`<li ${x.action?`onclick="${x.action}" class="clickable"`:""}><span>${esc(x.src)}</span>${esc(x.text)}</li>`).join("")}</ul>`
+        : `<div class="sub">Nothing flagged yet — keep going. Suggestions appear here as your work is graded and reviewed.</div>`}
+    </div>`;
+}
 function renderRankingCard(){
   if(!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>loadMyFeedback(), 0); }
   const rd = state.rankData;
@@ -12537,6 +12606,7 @@ function renderDashboard(){
       <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
       <div class="card stat"><div class="num">${done} / ${DAYS.length}</div><div class="lbl">Days completed</div></div>
       ${renderRankingCard()}
+      ${renderCompetencyCards()}
     </div></aside>
   </div>
   `;
@@ -12948,7 +13018,7 @@ function render(){
   afterRender();
 }
 function renderFooter(){
-  return `<div class="footer-note">LSH EA / PA Upskill Program &middot; Internal Training Portal &middot; <span id="saveStatus">${saveStatusText()}</span></div>`;
+  return `<div class="footer-note">LSH EA / PA Upskill Program &middot; Internal Training Portal &middot; <span id="saveStatus">${saveStatusText()}</span> &middot; <span class="build-tag">build ${typeof APP_BUILD!=="undefined"?APP_BUILD:""}</span></div>`;
 }
 
 /* ============================================================
@@ -17903,7 +17973,8 @@ function logWork(entry){
   runRubricEvaluation = async function(label, ctx, text, notes){
     const rep = await origLab(label, ctx, text, notes);
     try{ logWork({kind:"lab", dayId:workDayFromContext(label), toolId:state.toolId||null, label, score:rep.totalScore, tier:rep.gradeTier,
-      strengths:(rep.strengths||[]).slice(0,3), gaps:(rep.blindspots||[]).slice(0,3), growth:(rep.growthSuggestions||[]).slice(0,2), excerpt:String(text||"").slice(0,700)}); }catch(e){}
+      strengths:(rep.strengths||[]).slice(0,3), gaps:(rep.blindspots||[]).slice(0,3), growth:(rep.growthSuggestions||[]).slice(0,2), excerpt:String(text||"").slice(0,700),
+      subs:{accuracy:Math.round(rep.accuracyScore/35*100), presence:Math.round(rep.presenceScore/30*100), risk:Math.round(rep.riskScore/20*100), efficiency:Math.round(rep.efficiencyScore/15*100)}}); }catch(e){}
     return rep;
   };
   if(typeof runRoleplayRubricEvaluation==="function"){
@@ -17911,7 +17982,8 @@ function logWork(entry){
     runRoleplayRubricEvaluation = async function(scenario, transcript){
       const rep = await origRp(scenario, transcript);
       try{ logWork({kind:"roleplay", dayId:nextDayId(), label:`Roleplay — ${scenario.topic&&scenario.topic.label||""}`, score:rep.totalScore, tier:rep.gradeTier,
-        strengths:(rep.strengths||[]).slice(0,3), gaps:(rep.blindspots||[]).slice(0,3), excerpt:String(transcript||"").slice(0,700)}); }catch(e){}
+        strengths:(rep.strengths||[]).slice(0,3), gaps:(rep.blindspots||[]).slice(0,3), excerpt:String(transcript||"").slice(0,700),
+        subs:{bluf:Math.round((rep.blufScore||0)/25*100), risk:Math.round((rep.riskPrivilegeScore||0)/25*100), composure:Math.round((rep.composureScore||0)/25*100), act:Math.round((rep.actProtocolScore||0)/25*100)}}); }catch(e){}
       return rep;
     };
   }
@@ -17922,7 +17994,8 @@ state.traineeWork = state.traineeWork || {};
 async function loadTraineeWork(id, force){
   if(!force && state.traineeWork[id] && !state.traineeWork[id].loading) return;
   state.traineeWork[id] = {loading:true};
-  const [snap, fb] = await Promise.all([sharedGet("progress:"+id).catch(()=>null), sharedGet("feedback:"+id).catch(()=>null)]);
+  let snap = null, fb = null;
+  try{ [snap, fb] = await Promise.all([sharedGet("progress:"+id).catch(()=>null), sharedGet("feedback:"+id).catch(()=>null)]); }catch(e){}
   state.traineeWork[id] = {snap: snap&&snap.data || {}, feedback: fb && fb.days ? fb : {days:{}}};
   const wrap = document.getElementById("adminRowsWrap"); if(wrap && state.view==="admin") wrap.innerHTML = renderAdminRows();
 }
@@ -17953,9 +18026,11 @@ function evidenceText(ev){
   return L.join("\n");
 }
 async function draftDayFeedback(id, dayId, silent){
-  const rec = (state.adminData||[]).find(r=>r.id===id); if(!rec) return;
+  const rec = (state.adminData||[]).find(r=>r.id===id);
+  if(!rec) throw new Error("trainee record not loaded — click Refresh on the Trainee Audit and try again");
   await loadTraineeWork(id);
   const work = state.traineeWork[id];
+  if(!work || work.loading || !work.feedback) throw new Error("couldn't load this trainee's work — click ↻ Refresh work and try again");
   const ev = dayEvidence(rec, work, dayId);
   if(!ev.active){ if(!silent) toast(`No Day ${dayId} activity to review yet.`); return; }
   const prompt = `You are an experienced trainer at Legal Support Help (LSH) reviewing one trainee's work for Day ${dayId} ("${ev.d.title}") of a 10-day Legal Executive/Personal Assistant program. Write specific, encouraging, honest feedback based ONLY on the evidence below — do not invent work they didn't do. If evidence is thin, say what's missing.
@@ -17972,10 +18047,13 @@ Return ONLY JSON (no markdown):
  "areasToBuild":["2-3 'not yet' areas, each with a concrete next step"],
  "nextDayFocus":["2 things to focus on next"],
  "trainerNote":"1-2 sentences for the trainer only (private): what to watch or discuss live"}`;
-  const fb = await callAIJson(prompt, 1300, 90000);
+  const fb = await callAIJson(prompt, 1600, 120000);
+  if(!fb || typeof fb!=="object" || !fb.summary) throw new Error("the AI reply didn't include a summary — try again");
   work.feedback.days[dayId] = Object.assign({rating:"On Track", summary:"", strengths:[], areasToBuild:[], nextDayFocus:[], trainerNote:""}, fb, {status:"draft", draftedAt:new Date().toISOString()});
-  await sharedSet("feedback:"+id, work.feedback);
+  const ok = await sharedSet("feedback:"+id, work.feedback);
+  if(!ok) throw new Error("the draft was written but couldn't be saved to the server");
   const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+  if(!silent) toast(`Day ${dayId} feedback drafted — review it below.`);
 }
 async function draftAllFeedback(id){
   const rec = (state.adminData||[]).find(r=>r.id===id); if(!rec) return;
@@ -17984,8 +18062,9 @@ async function draftAllFeedback(id){
   const days = DAYS.map(d=>d.id).filter(n=>dayEvidence(rec, work, n).active && !(work.feedback.days[n] && work.feedback.days[n].status==="sent"));
   if(!days.length){ toast("No new days to review."); return; }
   toast(`Drafting feedback for ${days.length} day(s)…`);
-  await runPool(days, async (n)=>{ await draftDayFeedback(id, n, true); }, 2);
-  toast("Feedback drafted — review, edit and send each day.");
+  const res = await runPool(days, async (n)=>{ await draftDayFeedback(id, n, true); }, 2);
+  if(res.failed) showActionError(new Error(`${res.failed} of ${days.length} day(s) failed — ${res.errors[0]}`), "Drafting feedback");
+  else toast(`Feedback drafted for ${res.ok} day(s) — review, edit and send each one.`);
 }
 function readFeedbackForm(id, dayId){
   const g = (k)=>{ const el=document.getElementById(`fb_${cssId(id)}_${dayId}_${k}`); return el ? el.value : ""; };
@@ -21154,6 +21233,52 @@ async function downloadProjectCompliance6Pdf(){
   buildAndSavePdf("LSH EA / PA Upskill Program", "Business Compliance & Project Recovery — Results", lines, "LSH_Project_Compliance");
 }
 window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
+
+/* ============================================================
+   BUTTON FEEDBACK + ERROR VISIBILITY
+   Every long-running admin action shows "⏳ Working…" on the button
+   that was clicked, and any failure is shown on screen instead of
+   disappearing silently in the browser console.
+   ============================================================ */
+var APP_BUILD = "2026.09.24-c";
+let busyDepth = 0;
+function showActionError(e, label){
+  const msg = (e && e.message) || String(e||"Unknown error");
+  const friendly = /ANTHROPIC_API_KEY|not configured/i.test(msg) ? "The AI key isn't set on the server (ANTHROPIC_API_KEY)."
+    : /401|x-api-key|authentication/i.test(msg) ? "The AI key on the server is invalid (ANTHROPIC_API_KEY)."
+    : /429|rate/i.test(msg) ? "The AI service is busy — wait a minute and try again."
+    : /timed out/i.test(msg) ? "The AI service took too long — try again."
+    : /Failed to fetch|NetworkError|Load failed/i.test(msg) ? "Couldn't reach the server — check your connection."
+    : "";
+  const text = `${label ? label+" failed: " : ""}${friendly || msg}`;
+  toast("⚠ "+text);
+  const box = document.getElementById("studioProgress"); if(box && state.view==="admin" && state.adminTab==="studio"){ state.studioMsg = "❌ "+text+(friendly?` (${msg})`:""); box.textContent = state.studioMsg; }
+  console.error(label||"Action failed", e);
+}
+function busyWrap(name, label){
+  const orig = window[name]; if(typeof orig!=="function" || orig.__busy) return;
+  const wrapped = async function(...args){
+    if(busyDepth > 0) return orig.apply(this, args); // nested call (e.g. "draft all" → each day): run plainly
+    const btn = (document.activeElement && document.activeElement.tagName==="BUTTON") ? document.activeElement : null;
+    const oldHtml = btn ? btn.innerHTML : "";
+    if(btn){ if(btn.dataset.busy==="1") return; btn.dataset.busy="1"; btn.disabled = true; btn.innerHTML = "⏳ Working…"; }
+    busyDepth++;
+    try{ return await orig.apply(this, args); }
+    catch(e){ showActionError(e, label); }
+    finally{ busyDepth--; if(btn && btn.isConnected){ btn.disabled = false; btn.innerHTML = oldHtml; delete btn.dataset.busy; } }
+  };
+  wrapped.__busy = true;
+  window[name] = wrapped;
+}
+[["studioDraftExpansions","Drafting explanations"],["studioProposeTopics","Proposing topics"],["studioDraftSelectedTopics","Drafting lessons"],
+ ["studioWriteAllScripts","Writing scripts"],["studioRegenerateExpansion","Rewriting"],["studioPublishAllExpansions","Publishing"],
+ ["studioToggleExpansion","Publishing"],["studioSetExtraStatus","Updating lesson"],["studioTestAI","AI test"],
+ ["draftDayFeedback","Drafting feedback"],["draftAllFeedback","Drafting feedback"],["saveDayFeedback","Saving feedback"],
+ ["generateAiScript","Writing script"],["resetTraineeLabAttempts","Reset"],["downloadDayScriptsPdf","PDF download"]]
+ .forEach(([n,l])=>busyWrap(n,l));
+window.addEventListener("unhandledrejection", (ev)=>{ const e = ev.reason; if(e && e.invalidInput) return; if(state.isAdmin) showActionError(e, ""); });
+window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message && !/ResizeObserver|Script error/.test(ev.message)) showActionError(new Error(ev.message), ""); });
+
 </script>
 </body>
 </html>
