@@ -1760,6 +1760,39 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .won-actions{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
 .won-more,.won-go{background:none;border:none;padding:0;font:inherit;font-size:12px;font-weight:800;cursor:pointer;color:var(--navy);}
 .won-go{color:var(--orange-deep);}
+.fb-summary{font-size:12.5px;color:var(--ink-soft);margin:6px 0 2px;}
+
+.won-fbrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 12px;}
+.won-fblbl{font-size:12px;font-weight:800;color:var(--navy);margin-right:4px;}
+.won-chip{font:inherit;font-size:12px;font-weight:800;border-radius:20px;padding:4px 11px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;}
+.won-chip.new{background:#FFF1E2;border-color:var(--orange);color:var(--orange-deep);}
+.won-chip.off{background:transparent;color:#A7AAB8;cursor:default;border-style:dashed;}
+
+.nav-focus{position:relative;}
+.nav-badge{display:inline-block;min-width:18px;height:18px;line-height:18px;border-radius:9px;background:var(--orange);color:#fff;font-size:11px;font-weight:800;text-align:center;margin-left:6px;padding:0 5px;}
+.overlay .card.focus-modal{max-width:980px;width:min(980px,100%);padding:0;background:transparent;box-shadow:none;border:none;position:relative;max-height:88vh;overflow:auto;}
+.focus-modal .won-panel{background:#fff;margin:0;}
+.focus-close{position:absolute;top:10px;right:12px;z-index:2;background:#EEF0F6;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:14px;color:var(--navy);}
+
+/* keep the top bar from overlapping as nav items grow */
+@media(min-width:761px){
+  .topbar .nav{flex:0 0 auto;}
+  .topbar-search{min-width:120px;}
+}
+@media(min-width:761px) and (max-width:1500px){
+  .nav button{padding:8px 7px;font-size:12.5px;}
+  .brand-text b{max-width:180px;} .brand-text span{max-width:180px;}
+}
+@media(min-width:761px) and (max-width:1300px){
+  .brand-text{display:none;}
+}
+
+@media(min-width:761px) and (max-width:1180px){
+  .topbar-inner{flex-wrap:wrap;row-gap:8px;}
+  .topbar-right{flex-wrap:wrap;width:100%;justify-content:space-between;row-gap:8px;}
+  .topbar-search{flex:1 1 100%;max-width:none;order:-1;}
+  .brand-text{display:flex;}
+}
 </style>
 </head>
 <body>
@@ -11640,6 +11673,7 @@ function renderTopbar(){
         </div>
         <div class="nav">
           ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}</button>`).join("")}
+          ${(state.traineeId && !state.isAdmin) ? `<button type="button" class="nav-focus" onclick="openFocusPanel()" title="My Focus — trainer feedback and what to work on next">🎯 Focus${focusNewCount()?`<span class="nav-badge">${focusNewCount()}</span>`:""}</button>` : ""}
           <button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>
         </div>
         <div class="trainee-chip" onclick="promptName()">
@@ -12532,11 +12566,35 @@ function workOnNextItems(){
   if(weakest && weakest.score < 80) items.push({src:`Lowest area · ${weakest.label}`, text:weakest.tip});
   const seen = new Set(); return items.filter(x=>{ const k=x.text.slice(0,60); if(seen.has(k)) return false; seen.add(k); return true; }).slice(0,5);
 }
+function focusNewCount(){ return Object.values(state.myFeedback||{}).filter(f=>!f.readAt).length; }
+function openFocusPanel(){
+  if(!state.feedbackLoadedAt){ state.feedbackLoadedAt = Date.now(); loadMyFeedback(); }
+  const body = renderWorkOnNextPanel() || `<section class="won-panel"><div class="won-head"><h3>🎯 My Focus</h3></div><p style="font-size:13.5px;color:var(--ink-soft);margin:0;">Nothing flagged yet — keep going. Your trainer's feedback and personal focus areas will appear here as your work is reviewed.</p></section>`;
+  document.querySelectorAll(".focus-overlay").forEach(o=>o.remove());
+  const overlay = document.createElement("div"); overlay.className = "overlay topics-overlay focus-overlay";
+  overlay.innerHTML = `<div class="card topics-modal focus-modal" role="dialog" aria-modal="true" aria-label="My Focus">
+      <button type="button" class="focus-close" aria-label="Close" onclick="this.closest('.overlay').remove()">✕</button>
+      ${body}
+    </div>`;
+  overlay.addEventListener("click",(e)=>{ if(e.target===overlay) overlay.remove(); });
+  // opening feedback from inside the panel closes the panel first
+  overlay.querySelectorAll("[onclick*='openDayFeedback'],[onclick*='goto(']").forEach(b=>b.addEventListener("click",()=>overlay.remove()));
+  document.body.appendChild(overlay);
+}
+window.openFocusPanel = openFocusPanel;
 function renderWorkOnNextPanel(){
   const next = workOnNextItems();
-  if(!next.length) return "";
+  const fb = state.myFeedback || {};
+  const fbDays = DAYS.filter(d=>fb[d.id]);
+  if(!next.length && !fbDays.length) return "";
+  const chips = fbDays.length ? `<div class="won-fbrow"><span class="won-fblbl">Trainer feedback:</span>
+      ${DAYS.map(d=>{ const f = fb[d.id]; return f
+        ? `<button type="button" class="won-chip ${f.readAt?"":"new"}" onclick="openDayFeedback(${d.id})" title="${esc(f.rating||"")}">Day ${d.id}${f.readAt?"":" •"}</button>`
+        : `<span class="won-chip off" title="No feedback sent yet">Day ${d.id}</span>`; }).join("")}
+    </div>` : "";
   return `<section class="won-panel">
-    <div class="won-head"><h3>🎯 Work on next</h3><span>Personal focus areas from your trainer, Knowledge Checks and graded work</span></div>
+    <div class="won-head"><h3>🎯 Work on next</h3><span>Your top focus areas right now — from your latest trainer feedback, Knowledge Checks and graded work</span></div>
+    ${chips}
     <div class="won-grid">${next.map((x,i)=>`
       <div class="won-card" id="won_${i}">
         <div class="won-src">${esc(x.src)}</div>
@@ -12619,7 +12677,6 @@ function renderDashboard(){
   </div>
   <div class="dash-layout">
     <div class="dash-main">
-      ${renderWorkOnNextPanel()}
       <div class="module-grid">
         ${DAYS.map(d=>moduleCard(d)).join("")}
       </div>
@@ -13118,6 +13175,7 @@ document.addEventListener("change", e=>captureLabField(e.target), true);
 new MutationObserver(()=>{ if(state.view==="tool") restoreLabFields(); }).observe(document.documentElement, {childList:true, subtree:true});
 function afterRender(){
   bookmarkView();
+  if(state.traineeId && !state.isAdmin && (!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000)){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>loadMyFeedback(), 0); }
   if(state.view==="tool"){
     initTool(state.toolId);
     if(state.pendingWizardIndex){ const wi = state.pendingWizardIndex; state.pendingWizardIndex = 0; setTimeout(()=>{ try{ wizardGoTo(wi); }catch(e){} }, 60); }
@@ -18107,7 +18165,21 @@ async function saveDayFeedback(id, dayId, send){
   toast(send ? `Day ${dayId} feedback sent to the trainee.` : "Draft saved.");
   const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
 }
-Object.assign(window, {draftDayFeedback, draftAllFeedback, saveDayFeedback, loadTraineeWork});
+async function sendAllDrafts(id){
+  const work = state.traineeWork[id]; if(!work) return;
+  const drafts = Object.entries(work.feedback.days).filter(([k,v])=>v && v.status==="draft");
+  if(!drafts.length){ toast("No drafts waiting to be sent."); return; }
+  if(!confirm(`Send ${drafts.length} drafted day(s) of feedback to this trainee? Make sure you've reviewed them.`)) return;
+  drafts.forEach(([k])=>{
+    // pick up any unsaved edits in open forms first
+    if(document.getElementById(`fb_${cssId(id)}_${k}_summary`)) Object.assign(work.feedback.days[k], readFeedbackForm(id, parseInt(k,10)));
+    Object.assign(work.feedback.days[k], {status:"sent", sentAt:new Date().toISOString(), readAt:null, sentBy:state.traineeName||"Trainer"});
+  });
+  await sharedSet("feedback:"+id, work.feedback);
+  toast(`Sent feedback for ${drafts.length} day(s).`);
+  const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+}
+Object.assign(window, {draftDayFeedback, draftAllFeedback, saveDayFeedback, loadTraineeWork, sendAllDrafts});
 function renderFeedbackAdmin(rec){
   const work = state.traineeWork[rec.id];
   if(!work || work.loading){ setTimeout(()=>loadTraineeWork(rec.id), 0); return `<div class="fb-admin"><div class="sidebar-section-lbl" style="padding-left:0;">Day-by-Day Feedback</div><p style="font-size:12.5px;color:var(--ink-soft);">Loading this trainee's work…</p></div>`; }
@@ -18142,8 +18214,11 @@ function renderFeedbackAdmin(rec){
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
       <div class="sidebar-section-lbl" style="padding-left:0;">Day-by-Day Feedback</div>
       <div style="display:flex;gap:8px;"><button class="btn btn-ghost btn-sm" onclick="loadTraineeWork('${rec.id}', true)">↻ Refresh work</button>
-      <button class="btn btn-navy btn-sm" onclick="draftAllFeedback('${rec.id}')">✨ Draft feedback for all active days</button></div>
+      <button class="btn btn-navy btn-sm" onclick="draftAllFeedback('${rec.id}')">✨ Draft feedback for all active days</button>
+      ${Object.values(work.feedback.days).some(v=>v&&v.status==="draft") ? `<button class="btn btn-primary btn-sm" onclick="sendAllDrafts('${rec.id}')">📤 Send all ${Object.values(work.feedback.days).filter(v=>v&&v.status==="draft").length} drafts</button>` : ""}</div>
     </div>
+    ${(()=>{ const act = DAYS.filter(d=>dayEvidence(rec, work, d.id).active).length; const sent = Object.values(work.feedback.days).filter(v=>v&&v.status==="sent").length; const dr = Object.values(work.feedback.days).filter(v=>v&&v.status==="draft").length;
+      return act ? `<p class="fb-summary">${act} active day(s) · <b>${sent} sent</b> · ${dr} draft(s) · ${Math.max(0,act-sent-dr)} not reviewed — trainees only see days marked <b>Sent</b>.</p>` : ""; })()}
     ${rows || `<p style="font-size:12.5px;color:var(--ink-soft);">No activity yet — feedback becomes available once the trainee starts a day.</p>`}
   </div>`;
 }
@@ -18158,7 +18233,7 @@ async function loadMyFeedback(){
   const changed = JSON.stringify(sent) !== JSON.stringify(state.myFeedback||{});
   state.myFeedback = sent; state.myFeedbackRaw = fb;
   if(newOnes.length && !state.feedbackToastShown){ state.feedbackToastShown = true; toast(`💬 New trainer feedback for Day ${newOnes.join(", Day ")}.`); }
-  if(changed && state.view==="dashboard") render();
+  if(changed) render();
 }
 function feedbackButton(dayId){
   const f = (state.myFeedback||{})[dayId]; if(!f) return "";
