@@ -21340,7 +21340,8 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-c";
+var APP_BUILD = "2026.09.24-f";
+console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
   const msg = (e && e.message) || String(e||"Unknown error");
