@@ -1963,6 +1963,13 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
   .tfb-fab{width:46px;height:46px;padding:0;border-radius:50%;font-size:20px;display:flex;align-items:center;justify-content:center;}
   .tfb-fab .fab-label{display:none;}
 }
+
+/* bottom action bar lines up with the bottom of the stats panel */
+@media(min-width:1001px){
+  .dash-layout{align-items:stretch;}
+  .dash-main{display:flex;flex-direction:column;}
+  .dash-main .bottom-actions{margin-top:auto;margin-bottom:0;}
+}
 </style>
 </head>
 <body>
@@ -22536,7 +22543,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-y";
+var APP_BUILD = "2026.09.24-z";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
