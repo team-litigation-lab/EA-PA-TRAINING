@@ -1709,6 +1709,15 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .resume-btn span{font-weight:600;opacity:.9;font-size:12.5px;}
 .mindset-note{background:#FFF4E8;border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:13.5px;}
 .mindset-note b{color:var(--orange-deep);}
+
+.dash-side .rank-card .num span{font-size:14px;color:#9EA3BD;font-family:inherit;}
+.dash-side .rank-card .sub{font-size:11px;color:#9EA3BD;margin-top:6px;}
+.rank-list{list-style:none;margin:10px 0 0;padding:0;}
+.rank-list li{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;font-size:13px;color:#E4E6F0;}
+.rank-list li .rk{width:26px;font-size:14px;} .rank-list li .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rank-list li .sc{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#F0C08A;}
+.rank-list li.me{background:rgba(219,132,55,.22);font-weight:800;color:#fff;}
+.rank-list li.gap{justify-content:center;padding:0;color:#9EA3BD;}
 </style>
 </head>
 <body>
@@ -12370,6 +12379,46 @@ window.rpSubmitRapidTask = rpSubmitRapidTask;
 
 
 /* ---------- dashboard ---------- */
+
+/* ---------- Trainee-facing ranking (dashboard sidebar) ----------
+   Same scoring as Admin → Rankings: 40% completion + 30% Knowledge Check
+   average + 30% Practice Lab average, within the trainee's own batch.
+   Other trainees are shown as first name + last initial only. */
+function rankOverall(rec){
+  const day = adminDayStats(rec), practice = adminPracticeStats(rec);
+  const completionPct = day.total ? (day.done/day.total)*100 : 0;
+  return Math.round(completionPct*0.4 + day.avg*0.3 + practice.avg*0.3);
+}
+function shortName(n){ const p = String(n||"Trainee").trim().split(/\s+/); return p.length>1 ? `${p[0]} ${p[p.length-1][0]}.` : p[0]; }
+async function loadTraineeRanking(force){
+  if(!state.traineeId || state.isAdmin) return;
+  if(!force && state.rankData && Date.now()-state.rankData.at < 5*60*1000) return;
+  try{
+    const keys = await sharedList("trainee:");
+    const recs = (await Promise.all(keys.map(k=>sharedGet(k).catch(()=>null)))).filter(Boolean);
+    const me = recs.find(x=>x.id===state.traineeId);
+    const batch = cleanBatch((me && me.batch) || state.traineeBatch);
+    const pool = recs.filter(x=>x.approved===true && !x.archived && (!batch || cleanBatch(x.batch)===batch));
+    const ranked = pool.map(x=>({id:x.id, name:x.name, overall:rankOverall(x)})).sort((a,b)=>b.overall-a.overall);
+    state.rankData = {at:Date.now(), batch, ranked};
+  }catch(e){ state.rankData = {at:Date.now(), error:true, ranked:[]}; }
+  if(state.view==="dashboard") render();
+}
+function renderRankingCard(){
+  const rd = state.rankData;
+  if(!rd){ setTimeout(()=>loadTraineeRanking(), 0); return `<div class="card stat rank-card"><div class="lbl">Ranking</div><div class="sub">Loading your cohort…</div></div>`; }
+  if(rd.error || !rd.ranked.length) return `<div class="card stat rank-card"><div class="num">—</div><div class="lbl">Cohort ranking</div><div class="sub">Available once your batch has approved trainees.</div></div>`;
+  const pos = rd.ranked.findIndex(x=>x.id===state.traineeId);
+  const medals = ["🥇","🥈","🥉"];
+  const top = rd.ranked.slice(0,3);
+  const row = (x,i)=>`<li class="${x.id===state.traineeId?'me':''}"><span class="rk">${medals[i]||"#"+(i+1)}</span><span class="nm">${x.id===state.traineeId?"You":esc(shortName(x.name))}</span><span class="sc">${x.overall}</span></li>`;
+  return `<div class="card stat rank-card">
+    <div class="num">${pos>=0 ? `#${pos+1}` : "—"} <span>of ${rd.ranked.length}</span></div>
+    <div class="lbl">Ranking${rd.batch ? ` · Batch ${esc(rd.batch)}` : ""}</div>
+    <ol class="rank-list">${top.map(row).join("")}${pos>2 ? `<li class="gap">…</li>${row(rd.ranked[pos],pos)}` : ""}</ol>
+    <div class="sub">Score = 40% progress · 30% quizzes · 30% Practice Lab</div>
+  </div>`;
+}
 function renderDashboard(){
   const done = completedCount();
   const pct = Math.round((done/DAYS.length)*100);
@@ -12418,6 +12467,7 @@ function renderDashboard(){
       <div class="card stat"><div class="num">${ocs.score}%</div><div class="lbl">${ocs.tier ? `Best Competency — ${esc(displayTier(ocs.tier))}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${avgC}%</span></div></div>
       <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
       <div class="card stat"><div class="num">${done} / ${DAYS.length}</div><div class="lbl">Days completed</div></div>
+      ${renderRankingCard()}
     </div></aside>
   </div>
   `;
