@@ -1699,6 +1699,16 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .studio-preview{margin:10px 0;} .studio-actions{display:flex;gap:8px;}
 .script-lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--orange-deep);}
 @media(max-width:760px){.studio-stats{grid-template-columns:1fr;}}
+
+.quiz-opt.selected{border-color:var(--navy);background:#EEF0F8;box-shadow:inset 0 0 0 1px var(--navy);}
+.qc-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;}
+.qc-hint{font-size:12.5px;color:var(--ink-soft);}
+.toolhead-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.lab-save-status{font-size:12px;font-weight:700;color:var(--success);}
+.resume-btn{margin-top:12px;display:inline-flex;align-items:center;gap:10px;}
+.resume-btn span{font-weight:600;opacity:.9;font-size:12.5px;}
+.mindset-note{background:#FFF4E8;border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:13.5px;}
+.mindset-note b{color:var(--orange-deep);}
 </style>
 </head>
 <body>
@@ -10956,7 +10966,8 @@ const mem = {}; // in-memory fallback if window.storage is unavailable
    ============================================================ */
 const PERSONAL_KEYS = ["day-progress","practice-progress","lab-attempts-global","notes","completed-lab-actions",
   "day10-window","submissions","roleplayHistory","slide-progress","last-slide","attn-detail-findings",
-  "calendar-custom","calendar-edits","call-log","inbox-filing","inbox-interactions","inbox-labels","trainee-batch"];
+  "calendar-custom","calendar-edits","call-log","inbox-filing","inbox-interactions","inbox-labels","trainee-batch",
+  "quick-check-answers","last-view","lab-drafts"];
 const PERSONAL_KEY_SET = new Set(PERSONAL_KEYS);
 let cloudSaveTimer = null;
 function scheduleCloudSave(){
@@ -10985,7 +10996,15 @@ async function cloudRestore(traineeId){
   if(localOwner===traineeId && localAt && localAt >= snap.savedAt) return false; // this device is already newer
   state.cloudRestoring = true;
   try{
-    for(const k of PERSONAL_KEYS){ if(k in snap.data) await storeSet(k, snap.data[k]); }
+    for(const k of PERSONAL_KEYS){
+      if(!(k in snap.data)) continue;
+      if(k==="submissions" || k==="roleplayHistory"){
+        // never let a snapshot shrink these lists below what the ledger already restored
+        const cur = await storeGet(k);
+        if(Array.isArray(cur) && Array.isArray(snap.data[k]) && cur.length > snap.data[k].length) continue;
+      }
+      await storeSet(k, snap.data[k]);
+    }
     try{ localStorage.setItem("lsh_progress-saved-at", snap.savedAt); }catch(e){}
     state.lastCloudSave = snap.savedAt;
   }finally{ state.cloudRestoring = false; }
@@ -11109,9 +11128,35 @@ async function sharedDelete(key){
   return deletedAnywhere;
 }
 
-function generateTraineeId(name){
-  const slug = (name||"trainee").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,40) || "trainee";
-  return slug;
+function slugPart(t){
+  return String(t||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+}
+function generateTraineeId(name, batch){
+  // Name + batch, accents folded (María → maria). Two people with the same
+  // name in different batches no longer share (and overwrite) one record.
+  let slug = slugPart(name).slice(0,40);
+  if(!slug){ let h=0; for(const c of String(name||"")) h=(h*31+c.codePointAt(0))>>>0; slug = "trainee-"+h.toString(36); }
+  const b = slugPart(batch).slice(0,20);
+  return b ? `${slug}--${b}` : slug;
+}
+async function sharedGetStrict(key){
+  // Like sharedGet, but a server/network failure throws instead of looking
+  // like "no record" — so a blip can't make a returning trainee look new.
+  if(window.storage){ try{ const r = await window.storage.get(key,true); if(r) return JSON.parse(r.value); }catch(e){} }
+  const response = await fetch("/api/storage/get", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({key})});
+  if(!response.ok) throw new Error("storage "+response.status);
+  const data = await response.json();
+  return data.value ? JSON.parse(data.value) : null;
+}
+async function resolveTraineeId(name, batch){
+  const newId = generateTraineeId(name, batch);
+  const rec = await sharedGetStrict("trainee:"+newId);
+  if(rec) return {id:newId, existing:rec};
+  // Legacy records were keyed by name only — reuse one if it's the same batch.
+  const legacyId = slugPart(name).slice(0,40) || "trainee";
+  const legacy = await sharedGetStrict("trainee:"+legacyId);
+  if(legacy && (!legacy.batch || slugPart(legacy.batch)===slugPart(batch))) return {id:legacyId, existing:legacy};
+  return {id:newId, existing:null};
 }
 
 /** Mirrors this trainee's progress into shared storage so the Admin
@@ -11122,7 +11167,7 @@ function cleanBatch(b){
 }
 function cleanName(n){
   const v = String(n||"").trim().replace(/\s+/g," ");
-  return (v.length<=60 && /^[\p{L}][\p{L} .'\-]*$/u.test(v)) ? v : "";
+  return (v.length<=60 && /^[\p{L}][\p{L}\p{M} .'’\-]*$/u.test(v)) ? v : "";
 }
 async function syncToLedger(allowCreate){
   if(!state.traineeId) return;
@@ -11222,9 +11267,15 @@ async function loadAll(){
   state.slideProgress = sp || {};
   const ls = await storeGet("last-slide");
   state.lastSlide = (ls && typeof ls==="object") ? ls : {};
+  const qa = await storeGet("quick-check-answers");
+  state.qcAnswers = (qa && typeof qa==="object") ? qa : {};
+  const lv = await storeGet("last-view");
+  state.lastView = (lv && typeof lv==="object") ? lv : null;
+  const ld = await storeGet("lab-drafts");
+  state.labDrafts = (ld && typeof ld==="object") ? ld : {};
   let tid = await storeGet("trainee-id");
   if(!tid && state.traineeName){
-    tid = generateTraineeId(state.traineeName);
+    tid = generateTraineeId(state.traineeName, state.traineeBatch);
     await storeSet("trainee-id", tid);
   }
   state.traineeId = tid || "";
@@ -12332,6 +12383,7 @@ function renderDashboard(){
           <p class="eyebrow">LEGAL EA / PA ACCELERATOR</p>
           <h1><span class="hl">Executive Assistant/ Personal Assistant Professional Development Workspace<svg class="hero-spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg></span></h1>
           <p>Unlock your full potential as a Strategic Go-To Person to your Attorney. Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
+          ${resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : ""}
         </div>
         <div class="dash-hero-ribbon">
           ${completionRibbonSvg(pct, done)}
@@ -12363,7 +12415,7 @@ function renderDashboard(){
 
     <aside class="dash-side"><div class="dash-side-inner">
       <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
-      <div class="card stat"><div class="num">${ocs.score}%</div><div class="lbl">${ocs.tier ? `Best Competency — ${esc(ocs.tier)}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${avgC}%</span></div></div>
+      <div class="card stat"><div class="num">${ocs.score}%</div><div class="lbl">${ocs.tier ? `Best Competency — ${esc(displayTier(ocs.tier))}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${avgC}%</span></div></div>
       <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
       <div class="card stat"><div class="num">${done} / ${DAYS.length}</div><div class="lbl">Days completed</div></div>
     </div></aside>
@@ -12728,7 +12780,7 @@ async function promptName(){
     state.traineeName=v;
     await storeSet("trainee-name", v);
     if(!state.traineeId && v){
-      state.traineeId = generateTraineeId(v);
+      state.traineeId = generateTraineeId(v, state.traineeBatch);
       await storeSet("trainee-id", state.traineeId);
     }
     if(state.traineeId) await syncToLedger(true);
@@ -12777,8 +12829,84 @@ function render(){
 function renderFooter(){
   return `<div class="footer-note">LSH EA / PA Upskill Program &middot; Internal Training Portal &middot; <span id="saveStatus">${saveStatusText()}</span></div>`;
 }
+
+/* ============================================================
+   RESUME + PRACTICE LAB AUTO-SAVE
+   - The page a trainee is on is bookmarked ("last-view"), so a refresh
+     or a closed tab brings them back to it (and the exact slide).
+   - Every field typed into a Practice Lab tool is auto-saved
+     ("lab-drafts") and restored when the tool is reopened.
+   Both are part of the cloud progress record.
+   ============================================================ */
+const RESUMABLE_VIEWS = ["day","tool","practice","dashboard","clientprofile","notes","handouts","openroleplay","crisisroleplay"];
+function bookmarkView(){
+  if(!state.traineeId || state.isAdmin || state.resumePending) return;
+  if(!RESUMABLE_VIEWS.includes(state.view)) return;
+  const bm = {view:state.view, dayId:state.dayId||null, toolId:state.toolId||null,
+              wizardIndex:(state.view==="tool" && typeof toolState!=="undefined" && toolState.wizardIndex) || 0, at:Date.now()};
+  if(state.view==="openroleplay") bm.view = "crisisroleplay"; // a live call can't be resumed mid-call
+  const prev = state.lastView;
+  if(prev && prev.view===bm.view && prev.dayId===bm.dayId && prev.toolId===bm.toolId && prev.wizardIndex===bm.wizardIndex) return;
+  state.lastView = bm; storeSet("last-view", bm);
+}
+function resumeLabel(){
+  const lv = state.lastView; if(!lv) return "";
+  if(lv.view==="day" && lv.dayId){ const idx = resumeSlideFor(lv.dayId); const d = DAYS.find(x=>x.id===lv.dayId); const sl = buildDaySlides(d)[idx]; return `Day ${lv.dayId} · ${sl ? daySlideTitle(d, sl) : "Lesson"}`; }
+  if(lv.view==="tool" && lv.toolId){ const t = PRACTICE_TOOLS.find(x=>x.id===lv.toolId); return t ? `Practice Lab · ${t.title}` : ""; }
+  return "";
+}
+function resumeWhereLeftOff(saved){
+  const lv = saved || state.lastView; state.resumePending = false; if(!lv) return;
+  if(lv.view==="day" && lv.dayId){ goto("day", lv.dayId); return; }
+  if(lv.view==="tool" && lv.toolId){ state.pendingWizardIndex = lv.wizardIndex||0; goto("tool", lv.toolId); return; }
+  goto(lv.view);
+}
+window.resumeWhereLeftOff = resumeWhereLeftOff;
+
+const LAB_AUTOSAVE_SKIP = /^(intakeCallInput|rpChatInput|crChatInput|surpriseTaskInput|adminPass|loginNameInput|loginBatchInput|topSearch)/;
+let labSaveTimer = null;
+function labFieldKey(el){ return el && el.id && !LAB_AUTOSAVE_SKIP.test(el.id) && el.type!=="file" && el.type!=="password" ? el.id : null; }
+function captureLabField(el){
+  if(state.view!=="tool" || !state.toolId) return;
+  const k = labFieldKey(el); if(!k) return;
+  state.labDrafts = state.labDrafts || {};
+  const bucket = state.labDrafts[state.toolId] = state.labDrafts[state.toolId] || {};
+  bucket[k] = (el.type==="checkbox" || el.type==="radio") ? {c:el.checked} : el.value;
+  setLabSaveStatus("Saving…");
+  clearTimeout(labSaveTimer);
+  labSaveTimer = setTimeout(()=>{ storeSet("lab-drafts", state.labDrafts); setLabSaveStatus("💾 All changes saved"); }, 700);
+}
+function setLabSaveStatus(t){ const el = document.getElementById("labSaveStatus"); if(el) el.textContent = t; }
+function restoreLabFields(root){
+  if(state.view!=="tool" || !state.toolId) return;
+  const bucket = (state.labDrafts||{})[state.toolId]; if(!bucket) return;
+  (root||document).querySelectorAll("#toolBody input[id], #toolBody textarea[id], #toolBody select[id]").forEach(el=>{
+    const k = labFieldKey(el); if(!k || !(k in bucket) || el.dataset.restored) return;
+    el.dataset.restored = "1";
+    const v = bucket[k];
+    if(v && typeof v==="object" && "c" in v){ if(el.checked!==v.c){ el.checked = v.c; el.dispatchEvent(new Event("change",{bubbles:true})); } }
+    else if(typeof v==="string" && v!=="" && !el.value){ el.value = v; el.dispatchEvent(new Event("input",{bubbles:true})); }
+  });
+}
+async function saveLabNow(){
+  clearTimeout(labSaveTimer);
+  document.querySelectorAll("#toolBody input[id], #toolBody textarea[id], #toolBody select[id]").forEach(el=>{ const k=labFieldKey(el); if(k){ state.labDrafts[state.toolId] = state.labDrafts[state.toolId]||{}; state.labDrafts[state.toolId][k] = (el.type==="checkbox"||el.type==="radio") ? {c:el.checked} : el.value; } });
+  await storeSet("lab-drafts", state.labDrafts);
+  const ok = await cloudSaveNow();
+  setLabSaveStatus(ok ? "💾 Saved to your account" : "💾 Saved on this device");
+  toast(ok ? "Practice Lab progress saved." : "Saved on this device — it will sync when you're back online.");
+}
+window.saveLabNow = saveLabNow;
+document.addEventListener("input", e=>captureLabField(e.target), true);
+document.addEventListener("change", e=>captureLabField(e.target), true);
+new MutationObserver(()=>{ if(state.view==="tool") restoreLabFields(); }).observe(document.documentElement, {childList:true, subtree:true});
 function afterRender(){
-  if(state.view==="tool") initTool(state.toolId);
+  bookmarkView();
+  if(state.view==="tool"){
+    initTool(state.toolId);
+    if(state.pendingWizardIndex){ const wi = state.pendingWizardIndex; state.pendingWizardIndex = 0; setTimeout(()=>{ try{ wizardGoTo(wi); }catch(e){} }, 60); }
+    setTimeout(()=>restoreLabFields(), 80);
+  }
   if(state.view==="admin" && state.isAdmin && !state.adminData && !state.adminLoading) loadAdminLedger();
   if(state.view==="dashboard" && state.traineeId && !state.isAdmin && !state.surpriseTaskChecked){
     state.surpriseTaskChecked = true;
@@ -12800,25 +12928,42 @@ function renderLogin(){
         <p style="font-size:13.5px;color:var(--ink-soft);margin:0 0 22px;">Enter your name to begin. This identifies your progress on the training record — no password needed.</p>
         <input type="text" id="loginNameInput" placeholder="Your full name" onkeydown="if(event.key==='Enter') document.getElementById('loginBatchInput').focus();">
         <input type="text" id="loginBatchInput" placeholder="Batch (e.g. B050225)" style="margin-top:10px;" onkeydown="if(event.key==='Enter') submitLogin();">
-        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;margin-top:14px;" onclick="submitLogin()">Begin Training</button>
+        <button id="loginSubmitBtn" class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;margin-top:14px;" onclick="submitLogin()">Begin Training</button>
         <button class="btn btn-ghost" style="width:100%;justify-content:center;padding:11px;margin-top:12px;border:1.5px solid var(--line);" onclick="openAdmin()">🛡 Sign in as Administrator</button>
         <div style="margin-top:10px;font-size:11.5px;color:var(--ink-soft);">Admins go straight to the admin dashboard — no trainee name or batch needed.</div>
       </div>
     </div>`;
 }
 async function submitLogin(){
-  const v = document.getElementById("loginNameInput").value.trim().replace(/\s+/g," ");
+  if(state.loginBusy) return;
+  const btn = document.querySelector("#loginSubmitBtn, .login-card .btn-primary");
+  state.loginBusy = true; if(btn){ btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = "Please wait…"; }
+  try{ await submitLoginInner(); }
+  catch(e){
+    console.error("Registration/login failed:", e);
+    toast("We couldn't reach the server to register you. Check your connection and try again — nothing was lost.");
+    if(state.view==="login"){ state.traineeId = ""; await storeSet("trainee-id", ""); }
+  }finally{
+    state.loginBusy = false;
+    const b2 = document.querySelector("#loginSubmitBtn, .login-card .btn-primary");
+    if(b2){ b2.disabled = false; if(b2.dataset.label) b2.textContent = b2.dataset.label; }
+  }
+}
+async function submitLoginInner(){
+  const v = document.getElementById("loginNameInput").value.trim().replace(/\s+/g," ").replace(/[’‘`]/g,"'");
   if(!v){ toast("Enter your name to continue."); return; }
-  if(v.length>60 || !/^[\p{L}][\p{L} .'\-]*$/u.test(v)){ toast("Enter your real name using letters only (max 60 characters)."); return; }
+  if(v.length>60 || !/^[\p{L}][\p{L}\p{M} .'\-]*$/u.test(v)){ toast("Enter your name using letters, spaces, hyphens or apostrophes (max 60 characters)."); return; }
   const isNewSession = !state.traineeId;
   const batchInput = document.getElementById("loginBatchInput");
   const batchVal = batchInput ? batchInput.value.trim() : "";
   if(isNewSession && !batchVal){ toast("Enter your batch to continue."); return; }
-  if(isNewSession && !cleanBatch(batchVal)){ toast("Enter a valid batch code, e.g. B050225 (letters, numbers and dashes, max 24)."); return; }
+  if(isNewSession && !cleanBatch(batchVal)){ toast("Enter a valid batch code, e.g. B050225 (letters, numbers, spaces or dashes, max 24)."); return; }
+  let resolved = null;
+  if(isNewSession) resolved = await resolveTraineeId(v, batchVal);   // throws on a server error → handled above
   state.traineeName = v;
   await storeSet("trainee-name", v);
   if(isNewSession){
-    state.traineeId = generateTraineeId(v);
+    state.traineeId = resolved.id;
     await storeSet("trainee-id", state.traineeId);
     state.traineeBatch = batchVal;
     await storeSet("trainee-batch", batchVal);
@@ -12827,7 +12972,7 @@ async function submitLogin(){
   // back in), restore their real progress before syncing — otherwise the
   // sync below would overwrite their history with this session's empty state.
   if(isNewSession){
-    const existing = await sharedGet("trainee:"+state.traineeId);
+    const existing = resolved.existing;
     if(!existing){
       const keepBatch = state.traineeBatch;
       await resetTraineeSessionData();
@@ -12871,6 +13016,7 @@ async function submitLogin(){
   if(status==="approved"){
     state.view = "clientprofile";
     startApprovalPolling(state.traineeId);
+    if(state.lastView && RESUMABLE_VIEWS.includes(state.lastView.view) && state.lastView.view!=="clientprofile"){ const lv = state.lastView; resumeWhereLeftOff(lv); toast("Welcome back — picking up where you left off."); return; }
   }else if(status==="rejected"){
     state.view = "registrationDenied";
   }else{
@@ -13042,7 +13188,8 @@ function startApprovalPolling(traineeId){
   }else if(state.traineeId){
     const status = await getApprovalStatus(state.traineeId);
     if(status==="approved"){
-      // leave state.view at its default (clientprofile) for an approved returning trainee
+      // Returning trainee: reopen the page they were on (refresh / closed tab).
+      if(state.lastView && RESUMABLE_VIEWS.includes(state.lastView.view) && state.lastView.view!=="clientprofile"){ const lv = state.lastView; state.resumePending = true; setTimeout(()=>resumeWhereLeftOff(lv), 0); }
       try{
         const rec = await sharedGet("trainee:"+state.traineeId);
         if(rec) state.assignedRoleplay = rec.assignedRoleplay || null;
@@ -13618,33 +13765,55 @@ function renderTable(t){
 function renderQuickChecksAfter(d, lessonIndex){
   const checks = (d.quickChecks||[]).filter(c=>c.afterIndex===lessonIndex);
   if(!checks.length) return "";
+  state.qcAnswers = state.qcAnswers || {};
   return checks.map((c,ci)=>{
     const gi = `${d.id}_${lessonIndex}_${ci}`;
+    const st = state.qcAnswers[gi] || {};
+    const checked = !!st.checked;
     return `
     <div class="qcheck-card" id="qc_${gi}">
       <div class="qc-tag"><span class="dot"></span>Quick Check</div>
       <p class="quiz-q" style="margin-bottom:10px;">${esc(c.q)}</p>
       <div class="quiz-opts">
-        ${c.opts.map((o,oi)=>`<div class="quiz-opt" onclick="answerQuickCheck('${gi}',${oi},${c.a})" style="cursor:pointer;">${esc(o)}</div>`).join("")}
+        ${c.opts.map((o,oi)=>{
+          let cls = "";
+          if(checked){ if(oi===c.a) cls="correct"; else if(oi===st.picked) cls="incorrect"; }
+          else if(oi===st.picked) cls="selected";
+          return `<div class="quiz-opt ${cls}" ${checked?"":`onclick="selectQuickCheck('${gi}',${oi})" style="cursor:pointer;"`}>${esc(o)}</div>`;
+        }).join("")}
       </div>
-      <div class="quiz-rationale" id="qcr_${gi}">${esc(c.r)}</div>
+      ${checked ? "" : `<div class="qc-actions">
+        <span class="qc-hint">${typeof st.picked==="number" ? "You can still change your answer." : "Pick an answer, then check it."}</span>
+        <button type="button" class="btn btn-navy btn-sm" ${typeof st.picked==="number"?"":"disabled"} onclick="checkQuickCheck('${gi}',${c.a})">Check Answer</button>
+      </div>`}
+      <div class="quiz-rationale ${checked?"show":""}" id="qcr_${gi}">${esc(c.r)}</div>
     </div>`;
   }).join("");
 }
-function answerQuickCheck(gi, picked, correctIdx){
-  const card = document.getElementById(`qc_${gi}`);
-  if(!card || card.dataset.answered) return;
-  card.dataset.answered = "1";
-  const opts = card.querySelectorAll(".quiz-opt");
-  opts.forEach((el,oi)=>{
-    el.style.cursor="default";
-    el.onclick=null;
-    if(oi===correctIdx) el.classList.add("correct");
-    else if(oi===picked) el.classList.add("incorrect");
-  });
-  document.getElementById(`qcr_${gi}`).classList.add("show");
+function refreshQuickCheck(gi){
+  const [dayId, lessonIndex] = gi.split("_").map(Number);
+  const d = DAYS.find(x=>x.id===dayId); if(!d) return;
+  const card = document.getElementById(`qc_${gi}`); if(!card) return;
+  const wrap = document.createElement("div"); wrap.innerHTML = renderQuickChecksAfter(d, lessonIndex);
+  const fresh = wrap.querySelector(`#qc_${gi}`); if(fresh) card.replaceWith(fresh);
 }
-window.answerQuickCheck = answerQuickCheck;
+function selectQuickCheck(gi, picked){
+  state.qcAnswers = state.qcAnswers || {};
+  const st = state.qcAnswers[gi] || {};
+  if(st.checked) return;
+  state.qcAnswers[gi] = {picked};
+  storeSet("quick-check-answers", state.qcAnswers);
+  refreshQuickCheck(gi);
+}
+function checkQuickCheck(gi, correctIdx){
+  const st = (state.qcAnswers||{})[gi];
+  if(!st || typeof st.picked!=="number") return;
+  st.checked = true; st.correct = st.picked===correctIdx;
+  storeSet("quick-check-answers", state.qcAnswers);
+  refreshQuickCheck(gi);
+}
+function answerQuickCheck(gi, picked, correctIdx){ selectQuickCheck(gi, picked); checkQuickCheck(gi, correctIdx); } // legacy
+Object.assign(window, {selectQuickCheck, checkQuickCheck, answerQuickCheck});
 
 function renderQuiz(d){
   if(state.quizSubmitted){
@@ -13906,7 +14075,11 @@ function toolHead(t){
     <div class="card tool-shell">
       <div class="toolhead">
         <div><h2>${t.icon} ${esc(t.title)}</h2><p>${esc(t.desc)}</p></div>
-        ${relatedDayId ? `<button class="btn btn-ghost btn-sm" onclick="returnToLessonCard(${relatedDayId})">Return to Progress</button>` : ""}
+        <div class="toolhead-actions">
+          <span class="lab-save-status" id="labSaveStatus">💾 Auto-save on</span>
+          <button class="btn btn-ghost btn-sm" onclick="saveLabNow()">💾 Save</button>
+          ${relatedDayId ? `<button class="btn btn-ghost btn-sm" onclick="returnToLessonCard(${relatedDayId})">Return to Progress</button>` : ""}
+        </div>
       </div>
       <div id="toolBody"></div>
     </div>
@@ -14041,12 +14214,18 @@ function toolIdToDayId(toolId){
 function gradeTierFor(score){
   if(score >= 85) return "Executive Lead";
   if(score >= 65) return "Proficient Assistant";
-  return "Requires Remediation";
+  return "Not Yet — Keep Building";
+}
+function displayTier(t){ return t==="Requires Remediation" ? "Not Yet — Keep Building" : (t||""); }
+function mindsetNote(score){
+  if(score >= 85) return "";
+  return `<div class="mindset-note"><b>${score>=65 ? "Not this way — yet." : "Not yet — not no."}</b> ${score>=65 ? "You're close. The notes below show the better way to handle the parts that fell short." : "This isn't a fail stamp. It shows exactly what to build next — work through the notes below and try again."}</div>`;
 }
 const GRADE_TIER_COLOR = {
   "Executive Lead": "var(--success)",
   "Proficient Assistant": "var(--orange)",
-  "Requires Remediation": "var(--danger)"
+  "Requires Remediation": "var(--danger)",
+  "Not Yet — Keep Building": "var(--danger)"
 };
 async function runRubricEvaluation(exerciseLabel, exerciseContext, submissionText, criteriaNotes){
   const quality = assessSubmissionQuality(submissionText);
@@ -14055,6 +14234,7 @@ async function runRubricEvaluation(exerciseLabel, exerciseContext, submissionTex
     const err = new Error(quality.msg); err.invalidInput = true; throw err;
   }
   state.lastLabAttempt = null;
+  criteriaNotes = (criteriaNotes||"") + " FEEDBACK STYLE: frame every gap as 'not yet' or 'not this way — here is the better way', never as a flat 'no' or a verdict on the person; each blindspot must point to a concrete next step.";
   const prompt = `You are an automated competency evaluator grading a trainee Executive Assistant's submission for a legal-industry EA training program. Grade rigorously and realistically — a submission that is merely present or generic should score low; do not award high marks simply because something was submitted. Vary scores genuinely based on submission quality; do not default to the same score every time.
 
 EXERCISE: ${exerciseLabel}
@@ -14150,7 +14330,7 @@ function renderRoleplayEvaluationReport(report){
           <span>${report.totalScore}</span>
         </div>
         <div>
-          <div class="eval-tier" style="color:${tierColor};">${esc(report.gradeTier)}</div>
+          <div class="eval-tier" style="color:${tierColor};">${esc(displayTier(report.gradeTier))}</div>
           <div class="eval-subscore-row">
             <span>BLUF Adherence ${report.blufScore}/25</span>
             <span>Risk &amp; Privilege ${report.riskPrivilegeScore}/25</span>
@@ -14159,6 +14339,7 @@ function renderRoleplayEvaluationReport(report){
           </div>
         </div>
       </div>
+      ${mindsetNote(report.totalScore)}
       ${report.strengths.length ? `
       <div class="eval-section">
         <b>Strengths</b>
@@ -14166,7 +14347,7 @@ function renderRoleplayEvaluationReport(report){
       </div>` : ""}
       ${report.blindspots.length ? `
       <div class="eval-section">
-        <b>Blindspots</b>
+        <b>Not this way — what to change</b>
         <ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
       </div>` : ""}
       ${report.growthSuggestions.length ? `
@@ -14187,7 +14368,7 @@ function renderEvaluationReport(report, dayId){
           <span>${report.totalScore}</span>
         </div>
         <div>
-          <div class="eval-tier" style="color:${tierColor};">${esc(report.gradeTier)}</div>
+          <div class="eval-tier" style="color:${tierColor};">${esc(displayTier(report.gradeTier))}</div>
           <div class="eval-subscore-row">
             <span>Accuracy ${report.accuracyScore}/35</span>
             <span>Executive Presence ${report.presenceScore}/30</span>
@@ -14196,6 +14377,7 @@ function renderEvaluationReport(report, dayId){
           </div>
         </div>
       </div>
+      ${mindsetNote(report.totalScore)}
       ${report.strengths.length ? `
       <div class="eval-section">
         <b>Strengths</b>
@@ -14203,7 +14385,7 @@ function renderEvaluationReport(report, dayId){
       </div>` : ""}
       ${report.blindspots.length ? `
       <div class="eval-section">
-        <b>Blindspots</b>
+        <b>Not this way — what to change</b>
         <ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
       </div>` : ""}
       ${report.growthSuggestions.length ? `
@@ -14228,7 +14410,7 @@ async function downloadEvaluationReportPdf(){
   await ensureTraineeName();
   const {report, dayId} = stored;
   const lines = [
-    `Overall Score: ${report.totalScore}/100 — ${report.gradeTier}`,
+    `Overall Score: ${report.totalScore}/100 — ${displayTier(report.gradeTier)}`,
     "---",
     `Accuracy & Technical Precision: ${report.accuracyScore}/35`,
     `Executive Presence & Judgment: ${report.presenceScore}/30`,
@@ -14312,6 +14494,7 @@ function wizardGoTo(i){
   const labels = toolState.wizardLabels || [];
   if(i<0 || i>=labels.length) return;
   toolState.wizardIndex = i;
+  setTimeout(bookmarkView, 0);
   document.querySelectorAll(".wizard-screen").forEach(el=>{
     el.style.display = (parseInt(el.dataset.wizardIdx,10)===i) ? "block" : "none";
   });
@@ -15982,7 +16165,7 @@ function renderIntakeCallEvaluationReport(report){
           <span>${report.totalScore}</span>
         </div>
         <div>
-          <div class="eval-tier" style="color:${tierColor};">${esc(report.gradeTier)}</div>
+          <div class="eval-tier" style="color:${tierColor};">${esc(displayTier(report.gradeTier))}</div>
           <div class="eval-subscore-row">
             <span>Boundary Setting ${report.boundaryScore}/25</span>
             <span>Stress Management ${report.stressScore}/25</span>
@@ -15991,6 +16174,7 @@ function renderIntakeCallEvaluationReport(report){
           </div>
         </div>
       </div>
+      ${mindsetNote(report.totalScore)}
       ${report.strengths.length ? `
       <div class="eval-section">
         <b>Strengths</b>
@@ -15998,7 +16182,7 @@ function renderIntakeCallEvaluationReport(report){
       </div>` : ""}
       ${report.blindspots.length ? `
       <div class="eval-section">
-        <b>Blindspots</b>
+        <b>Not this way — what to change</b>
         <ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
       </div>` : ""}
       ${report.growthSuggestions.length ? `
@@ -16055,7 +16239,7 @@ async function ensureTraineeName(){
       state.traineeName=v;
       await storeSet("trainee-name", v);
       if(!state.traineeId){
-        state.traineeId = generateTraineeId(v);
+        state.traineeId = generateTraineeId(v, state.traineeBatch);
         await storeSet("trainee-id", state.traineeId);
       }
       await syncToLedger();
@@ -18708,7 +18892,7 @@ Do not evaluate filing or security awareness — those are scored separately and
     );
     e.reportCard = report;
     e.report = `<b>Strengths</b><ul>${report.strengths.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` +
-      (report.blindspots.length ? `<b>Blindspots</b><ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : "") +
+      (report.blindspots.length ? `<b>Not this way — what to change</b><ul>${report.blindspots.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : "") +
       (report.growthSuggestions.length ? `<b>Growth Suggestions</b><ul>${report.growthSuggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : "");
     rubricScore = report.totalScore;
   }catch(err){
