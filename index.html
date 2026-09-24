@@ -1748,6 +1748,18 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .next-list li{font-size:12.5px;color:#E4E6F0;line-height:1.45;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.05);margin-bottom:6px;}
 .next-list li span{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:#F0C08A;font-weight:800;margin-bottom:2px;}
 .next-list li.clickable{cursor:pointer;} .next-list li.clickable:hover{background:rgba(255,255,255,.1);}
+
+.won-panel{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.7);border-radius:14px;padding:14px 16px;margin-bottom:18px;box-shadow:0 6px 20px -12px rgba(38,43,69,.25);}
+.won-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.won-head h3{margin:0;color:var(--navy);font-size:17px;} .won-head span{font-size:12.5px;color:var(--ink-soft);}
+.won-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}
+.won-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;}
+.won-src{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--orange-deep);font-weight:800;margin-bottom:4px;}
+.won-text{font-size:13px;line-height:1.45;color:var(--ink);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;flex:1;}
+.won-card.open .won-text{-webkit-line-clamp:unset;display:block;}
+.won-actions{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+.won-more,.won-go{background:none;border:none;padding:0;font:inherit;font-size:12px;font-weight:800;cursor:pointer;color:var(--navy);}
+.won-go{color:var(--orange-deep);}
 </style>
 </head>
 <body>
@@ -12509,7 +12521,7 @@ function workOnNextItems(){
   const items = [];
   // 1) trainer feedback (most recent sent day)
   const fbDays = Object.entries(state.myFeedback||{}).sort((a,b)=>(b[1].sentAt||"").localeCompare(a[1].sentAt||""));
-  if(fbDays.length){ (fbDays[0][1].areasToBuild||[]).slice(0,2).forEach(x=>items.push({src:`Trainer · Day ${fbDays[0][0]}`, text:x})); }
+  if(fbDays.length){ (fbDays[0][1].areasToBuild||[]).slice(0,2).forEach(x=>items.push({src:`Trainer · Day ${fbDays[0][0]}`, text:x, action:`openDayFeedback(${fbDays[0][0]})`})); }
   // 2) Knowledge Checks not yet passed
   DAYS.forEach(d=>{ const p = (state.progress||{})[d.id]; if(p && typeof p.score==="number" && !p.done) items.push({src:`Day ${d.id} Knowledge Check`, text:`Not yet at 70% (best ${p.score}%) — review and retake when ready.`, action:`goto('day',${d.id})`}); });
   // 3) latest graded-work gaps
@@ -12519,6 +12531,22 @@ function workOnNextItems(){
   const weakest = competencyProfile().filter(c=>c.score!==null).sort((a,b)=>a.score-b.score)[0];
   if(weakest && weakest.score < 80) items.push({src:`Lowest area · ${weakest.label}`, text:weakest.tip});
   const seen = new Set(); return items.filter(x=>{ const k=x.text.slice(0,60); if(seen.has(k)) return false; seen.add(k); return true; }).slice(0,5);
+}
+function renderWorkOnNextPanel(){
+  const next = workOnNextItems();
+  if(!next.length) return "";
+  return `<section class="won-panel">
+    <div class="won-head"><h3>🎯 Work on next</h3><span>Personal focus areas from your trainer, Knowledge Checks and graded work</span></div>
+    <div class="won-grid">${next.map((x,i)=>`
+      <div class="won-card" id="won_${i}">
+        <div class="won-src">${esc(x.src)}</div>
+        <div class="won-text">${esc(x.text)}</div>
+        <div class="won-actions">
+          ${x.text.length>140 ? `<button type="button" class="won-more" onclick="this.closest('.won-card').classList.toggle('open'); this.textContent=this.closest('.won-card').classList.contains('open')?'Show less':'Read more'">Read more</button>` : "<span></span>"}
+          ${x.action ? `<button type="button" class="won-go" onclick="${x.action}">Open →</button>` : ""}
+        </div>
+      </div>`).join("")}</div>
+  </section>`;
 }
 function renderCompetencyCards(){
   const prof = competencyProfile();
@@ -12535,11 +12563,7 @@ function renderCompetencyCards(){
       ${any ? bars : `<div class="sub">Complete a Knowledge Check or a graded Practice Lab to see your competency profile.</div>`}
       ${any ? `<div class="sub">Green 85%+ · Amber 70–84% · Orange = not yet</div>` : ""}
     </div>
-    <div class="card stat comp-card">
-      <div class="lbl">Work on next</div>
-      ${next.length ? `<ul class="next-list">${next.map(x=>`<li ${x.action?`onclick="${x.action}" class="clickable"`:""}><span>${esc(x.src)}</span>${esc(x.text)}</li>`).join("")}</ul>`
-        : `<div class="sub">Nothing flagged yet — keep going. Suggestions appear here as your work is graded and reviewed.</div>`}
-    </div>`;
+`;
 }
 function renderRankingCard(){
   if(!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>loadMyFeedback(), 0); }
@@ -12595,6 +12619,7 @@ function renderDashboard(){
   </div>
   <div class="dash-layout">
     <div class="dash-main">
+      ${renderWorkOnNextPanel()}
       <div class="module-grid">
         ${DAYS.map(d=>moduleCard(d)).join("")}
       </div>
