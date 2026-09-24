@@ -1926,6 +1926,27 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 
 .bottom-actions{justify-content:center;margin:22px 0 6px;padding:16px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.75);border-radius:14px;}
 .bottom-actions:empty{display:none;}
+
+.ho-search{width:100%;max-width:420px;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:16px;background:#fff;}
+.ho-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.ho-card{padding:16px 18px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--navy);}
+.ho-card:nth-child(even){border-top-color:var(--orange);}
+.ho-card.current{box-shadow:0 0 0 2px var(--orange), var(--shadow);}
+.ho-top{display:flex;gap:12px;align-items:flex-start;}
+.ho-icon{font-size:26px;line-height:1;width:44px;height:44px;border-radius:12px;background:#F3F4F8;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ho-day{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--orange-deep);}
+.ho-top h4{margin:2px 0;color:var(--navy);font-size:15px;} .ho-top span{font-size:12px;color:var(--ink-soft);}
+.ho-desc{font-size:13px;color:var(--ink);line-height:1.5;margin:0;flex:1;}
+.ho-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.ho-admin{display:flex;gap:6px;} .ho-admin input{flex:1;font:inherit;font-size:12px;border:1px dashed var(--line);border-radius:8px;padding:6px 8px;}
+.overlay .card.ho-modal{max-width:820px;padding:0;}
+.ho-body{padding:16px 22px;overflow:auto;} .ho-body h4{color:var(--navy);margin:16px 0 6px;font-size:14px;}
+.ho-intro{font-size:13.5px;color:var(--ink-soft);font-style:italic;margin:0;}
+.ho-check{list-style:none;padding:0;margin:0;} .ho-check li{font-size:13.5px;padding:3px 0;}
+.ho-script{font-style:italic;border-left:3px solid var(--orange);padding-left:10px;margin:6px 0;font-size:13.5px;}
+.ho-line{font-family:'IBM Plex Mono',monospace;font-size:12.5px;margin:4px 0;}
+.ho-table td{height:22px;}
+main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button */
 </style>
 </head>
 <body>
@@ -16780,20 +16801,203 @@ function renderIntakeCallEvaluationReport(report){
 /* ============================================================
    HANDOUTS
    ============================================================ */
+/* ============================================================
+   HANDOUTS & TEMPLATES — real, downloadable resources.
+   Each handout: printable branded PDF (with fill-in lines / blank
+   table rows) and, for trackers, a spreadsheet (.csv that opens in
+   Excel / Google Sheets). Admins can point any handout at their own
+   file instead (Admin → Handouts link override, "handouts:links").
+   ============================================================ */
+const HANDOUT_CONTENT = {
+ 1:{title:"Command Hierarchy & Escalation Checklist", icon:"⛓", kind:"Checklist + template",
+  intro:"Use this before you escalate anything. The goal: the right person hears the right thing, once, with a recommendation attached.",
+  blocks:[
+   {type:"table", h:"Who decides what", headers:["Level","Who","Decides","Escalate to them when…"], rows:[
+     ["1","You (EA/PA)","Routine scheduling, vendor follow-ups, approved spend","—"],
+     ["2","Office / Operations Manager","Budget over your limit, staff issues","It affects cost, people or policy"],
+     ["3","Supervising Attorney","Anything touching a matter, client or deadline","Legal risk, client impact, court dates"],
+     ["4","Managing Partner (Elias)","Firm-level decisions, reputation, major clients","Only the executive can decide or sign"]], blank:0},
+   {type:"checklist", h:"Before you escalate", items:["I know exactly what decision is needed","I've checked the dossier / standing instructions","I have the facts: who, what, when, deadline","I have 2 options and a recommendation","I know what happens if we wait","I'm using the agreed channel for this urgency"]},
+   {type:"template", h:"Escalation message (BLUF)", lines:["Decision needed: ______________________________ by ______","Why now: _____________________________________________","Options: A) __________________  B) __________________","I recommend: ______ because ___________________________","If no reply by ______, I will ___________________________"]},
+   {type:"table", h:"My escalation contacts", headers:["Role","Name","Best channel","After-hours rule"], rows:[], blank:5}]},
+ 2:{title:"Managing Up: One-Day Schedule Worksheet", icon:"📋", kind:"Worksheet",
+  intro:"Plan the executive's day and your own support actions side by side. Fill it in the evening before; review it at the morning briefing.",
+  blocks:[
+   {type:"template", h:"Today's top 3 (for the executive)", lines:["1. ______________________________________________","2. ______________________________________________","3. ______________________________________________"]},
+   {type:"table", h:"Hour by hour", headers:["Time","Executive commitment","My prep / action","Notes"], rows:["7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"].map(t=>[t,"","",""]), blank:0},
+   {type:"checklist", h:"The Three C's check before sending any update", items:["Clarity — bottom line first, one clear ask","Consistency — same format as my usual updates","Credibility — facts verified, or I've said when I'll confirm"]}]},
+ 3:{title:"Gatekeeping Script Card", icon:"🗂", kind:"Printable card",
+  intro:"Gatekeeping is not 'no' — it's 'not now, and here's the next step'. Keep this card by your desk.",
+  blocks:[
+   {type:"script", h:"Screening questions", lines:["\"May I ask what this is regarding?\"","\"Is this connected to a current matter, and is there a deadline?\"","\"Who else is involved, and what outcome are you hoping for?\""]},
+   {type:"script", h:"Redirect without alienating", lines:["\"Mr. Thorne isn't available right now. I can get this in front of him today — what's the one thing he needs to know?\"","\"The fastest route is a short email with the key dates. I'll make sure he sees it by 3 PM.\"","\"I can offer 15 minutes on Thursday at 10, or I can relay a message now — which works better?\""]},
+   {type:"script", h:"Holding line (when you can't share)", lines:["\"I'm not able to share that, but I can pass your request along and confirm when it's received.\""]},
+   {type:"table", h:"Do / Don't", headers:["Do","Don't"], rows:[["Offer a concrete next step","Say 'he's busy' and stop"],["Confirm details back","Confirm confidential information"],["Log every request","Promise what you can't deliver"]], blank:0}]},
+ 4:{title:"Client Data Cleanup Template", icon:"🧮", kind:"Spreadsheet template", csv:true,
+  intro:"Order matters: de-duplicate → standardize → filter → sort. Record a source and consent basis for every contact.",
+  blocks:[
+   {type:"checklist", h:"Cleanup steps", items:["De-duplicate (same person, same email)","Standardize names, phone formats, states, dates","Filter out opposing parties / conflicts and unsubscribed contacts","Sort by segment (Client, Referral Partner, Prospect)","Spot-check 10 rows against the source"]},
+   {type:"table", h:"Contact list", headers:["Last name","First name","Company","Email","Phone","Segment","Source","Consent basis","Last verified","Notes"], rows:[], blank:12}]},
+ 5:{title:"Household Vendor & Insurance Tracker", icon:"🏠", kind:"Spreadsheet template", csv:true,
+  intro:"One place for every household service and policy — with a backup for each critical vendor.",
+  blocks:[
+   {type:"table", h:"Vendors", headers:["Service","Vendor","Contact","Contract end","Rate","Backup vendor","Last reviewed"], rows:[["Cleaning","","","","","",""],["Security","","","","","",""],["Landscaping","","","","","",""],["HVAC / Repairs","","","","","",""],["Childcare","","","","","",""]], blank:4},
+   {type:"table", h:"Insurance", headers:["Policy type","Insurer","Policy # (last 4 only)","Renewal date","Coverage summary","Agent / contact"], rows:[["Home","","","","",""],["Auto","","","","",""],["Umbrella","","","","",""],["Valuables","","","","",""]], blank:2}]},
+ 6:{title:"Business Compliance Action Plan", icon:"📑", kind:"Spreadsheet template", csv:true,
+  intro:"Track every filing, license and renewal that keeps the business in good standing. Confirm requirements with the firm's accountant or counsel.",
+  blocks:[
+   {type:"table", h:"Compliance calendar", headers:["Entity","Jurisdiction","Requirement / filing","Due date","Owner","Status","Proof filed (link)"], rows:[], blank:12},
+   {type:"checklist", h:"Monthly check", items:["Upcoming 60-day deadlines reviewed","Registered agent details current","Licenses and permits not expiring","Annual reports / franchise taxes scheduled","Owner confirmed for every open item"]}]},
+ 7:{title:"Trust Ledger & Invoice Templates", icon:"💵", kind:"Spreadsheet template", csv:true,
+  intro:"Client trust (e.g., IOLTA) money must be tracked per client and reconciled regularly. Follow your state bar's trust-account rules and your firm's policy — confirm specifics with the supervising attorney.",
+  blocks:[
+   {type:"table", h:"Client trust ledger", headers:["Date","Client / Matter","Description","Deposit","Withdrawal","Running balance","Reference #","Approved by"], rows:[], blank:12},
+   {type:"template", h:"Invoice checklist", lines:["Firm details, client name, matter #, invoice # and date","Itemized entries: date, description, hours, rate","Expenses listed separately; discounts on their own line","Total due, due date and payment terms (e.g., Net 30)","Checked against the engagement letter (caps, billing codes)"]}]},
+ 8:{title:"Credential Log Template", icon:"🔐", kind:"Spreadsheet template", csv:true,
+  intro:"Track who has access to what — never record passwords here. Review access whenever a role changes or someone leaves.",
+  blocks:[
+   {type:"table", h:"Access log", headers:["System","User","Access level","Granted on","Granted by","MFA on?","Last reviewed","Revoked on"], rows:[], blank:14},
+   {type:"checklist", h:"Quarterly access review", items:["Every user still needs this access","Admin rights limited to the fewest people","MFA enabled everywhere it's available","Leavers fully removed","No shared logins without an owner"]}]},
+ 9:{title:"CLE & Membership Renewal Tracker", icon:"🎓", kind:"Spreadsheet template", csv:true,
+  intro:"CLE rules vary by state bar — confirm each attorney's current requirements and deadlines. Keep every certificate.",
+  blocks:[
+   {type:"table", h:"CLE tracker", headers:["Attorney","State bar","Period ends","Hours required","Hours completed","Ethics hours","Certificates filed?","Reported on"], rows:[], blank:8},
+   {type:"table", h:"Memberships", headers:["Organization","Member","Level","Renewal date","Annual cost","Auto-renew?","Still valuable?"], rows:[], blank:6}]},
+ 10:{title:"Weekly Social Content Calendar", icon:"📱", kind:"Spreadsheet template", csv:true,
+  intro:"Plan a week of posts against the executive's content pillars. Nothing goes live without approval.",
+  blocks:[
+   {type:"table", h:"This week", headers:["Day","Platform","Content pillar","Post idea / hook","Asset needed","Status","Approved by"], rows:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d=>[d,"","","","","",""]), blank:0},
+   {type:"table", h:"Weekly results", headers:["Post","Reach","Engagements","Engagement rate","Clicks","Notes"], rows:[], blank:5}]}
+};
+function handoutList(){ return DAYS.map(d=>Object.assign({day:d.id, dayTitle:d.title}, HANDOUT_CONTENT[d.id]||{title:`Day ${d.id} handout`, icon:"📄", blocks:[]})); }
+function handoutLink(day){ return ((state.handoutLinks||{})[day]||"").trim(); }
+async function loadHandoutLinks(){ const v = await sharedGet("handouts:links").catch(()=>null); state.handoutLinks = v||{}; state.handoutLinksLoaded = true; if(state.view==="handouts") render(); }
+function handoutHtml(h){
+  const blk = (b)=>{
+    if(b.type==="table"){ const rows = b.rows.concat(Array.from({length:b.blank||0},()=>b.headers.map(()=>""))); return `<h4>${esc(b.h)}</h4><div class="mini-table-wrap"><table class="mini-table ho-table"><thead><tr>${b.headers.map(x=>`<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`; }
+    if(b.type==="checklist") return `<h4>${esc(b.h)}</h4><ul class="ho-check">${b.items.map(i=>`<li>☐ ${esc(i)}</li>`).join("")}</ul>`;
+    if(b.type==="script") return `<h4>${esc(b.h)}</h4>${b.lines.map(l=>`<p class="ho-script">${esc(l)}</p>`).join("")}`;
+    return `<h4>${esc(b.h)}</h4>${b.lines.map(l=>`<p class="ho-line">${esc(l)}</p>`).join("")}`;
+  };
+  return `<p class="ho-intro">${esc(h.intro||"")}</p>${(h.blocks||[]).map(blk).join("")}`;
+}
+function previewHandout(day){
+  const h = handoutList().find(x=>x.day===day); if(!h) return;
+  const overlay = document.createElement("div"); overlay.className = "overlay topics-overlay";
+  overlay.innerHTML = `<div class="card topics-modal ho-modal"><div class="module-head topics-modal-head"><div class="mh-day">Day ${day} · ${esc(h.kind||"Handout")}</div><div class="mh-title">${esc(h.icon)} ${esc(h.title)}</div>
+    <button type="button" class="topics-close" onclick="this.closest('.overlay').remove()">✕</button></div>
+    <div class="ho-body">${handoutHtml(h)}</div>
+    <div class="topics-modal-foot"><button class="btn btn-ghost btn-sm" onclick="this.closest('.overlay').remove()">Close</button>
+      ${h.csv?`<button class="btn btn-ghost btn-sm" onclick="downloadHandoutCsv(${day})">⬇ Spreadsheet (.csv)</button>`:""}
+      <button class="btn btn-primary btn-sm" onclick="downloadHandoutPdf(${day})">⬇ Download PDF</button></div></div>`;
+  overlay.addEventListener("click",(e)=>{ if(e.target===overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
+}
+async function downloadHandoutPdf(day){
+  const h = handoutList().find(x=>x.day===day); if(!h) return;
+  if(!(await ensureJsPdf())){ toast("Couldn't load the PDF tools — try again."); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = safeDoc(new jsPDF({unit:"pt", format:"letter"}));
+  const W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight(), M = 48;
+  const navy=[38,43,69], orange=[219,132,55], ink=[40,42,58], soft=[110,116,140], line=[210,214,226];
+  let y;
+  const header = (first)=>{ drawPdfHeader(doc, pdfSafe(h.title), pdfSafe(`LSH EA / PA Upskill Program · Day ${day} handout${first?"":" (continued)"}`)); y = 112; };
+  const need = (n)=>{ if(y+n > H-50){ footer(); doc.addPage(); header(false); } };
+  let page = 1;
+  const footer = ()=>{ doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(...soft); doc.text(`Legal Support Help · ${h.title} · page ${page}`, W/2, H-24, {align:"center"}); page++; };
+  header(true);
+  doc.setFont("helvetica","italic"); doc.setFontSize(10.5); doc.setTextColor(...soft);
+  doc.splitTextToSize(h.intro||"", W-2*M).forEach(l=>{ need(14); doc.text(l, M, y); y+=14; }); y+=8;
+  for(const b of (h.blocks||[])){
+    need(40);
+    doc.setFont("helvetica","bold"); doc.setFontSize(12.5); doc.setTextColor(...navy); doc.text(pdfSafe(b.h), M, y);
+    doc.setDrawColor(...orange); doc.setLineWidth(1.2); doc.line(M, y+5, M+40, y+5); y += 20;
+    doc.setFontSize(10); doc.setTextColor(...ink);
+    if(b.type==="checklist"){
+      doc.setFont("helvetica","normal");
+      b.items.forEach(it=>{ const ls = doc.splitTextToSize(it, W-2*M-22); need(ls.length*13+6); doc.setDrawColor(...navy); doc.setLineWidth(.8); doc.rect(M, y-9, 10, 10); ls.forEach((l,i)=>doc.text(l, M+20, y+i*13)); y += ls.length*13+6; });
+    }else if(b.type==="script"){
+      b.lines.forEach(t=>{ doc.setFont("helvetica","italic"); const ls = doc.splitTextToSize(t, W-2*M-16); need(ls.length*13+8); doc.setFillColor(...orange); doc.rect(M, y-9, 3, ls.length*13, "F"); ls.forEach((l,i)=>doc.text(l, M+12, y+i*13)); y += ls.length*13+8; });
+    }else if(b.type==="template"){
+      doc.setFont("helvetica","normal");
+      b.lines.forEach(t=>{ const ls = doc.splitTextToSize(t, W-2*M); need(ls.length*16+4); ls.forEach((l,i)=>doc.text(l, M, y+i*16)); y += ls.length*16+4; });
+    }else if(b.type==="table"){
+      const rows = b.rows.concat(Array.from({length:b.blank||0},()=>b.headers.map(()=>"")));
+      const cols = b.headers.length, cw = (W-2*M)/cols, fs = cols>6 ? 7.5 : 9;
+      const drawHead = ()=>{ doc.setFillColor(...navy); doc.rect(M, y-11, W-2*M, 18, "F"); doc.setTextColor(255,255,255); doc.setFont("helvetica","bold"); doc.setFontSize(fs);
+        b.headers.forEach((hd,i)=>doc.text(doc.splitTextToSize(hd, cw-6)[0], M+i*cw+3, y+1)); y += 12; doc.setTextColor(...ink); doc.setFont("helvetica","normal"); };
+      need(40); drawHead();
+      rows.forEach(r=>{
+        const cellLines = r.map(c=>doc.splitTextToSize(String(c||""), cw-6));
+        const rh = Math.max(20, Math.max(...cellLines.map(l=>l.length))*10+8);
+        if(y+rh > H-50){ footer(); doc.addPage(); header(false); drawHead(); }
+        doc.setDrawColor(...line); doc.setLineWidth(.6);
+        for(let i=0;i<cols;i++){ doc.rect(M+i*cw, y-6, cw, rh); cellLines[i].forEach((l,k)=>doc.text(l, M+i*cw+3, y+6+k*10)); }
+        y += rh;
+      });
+      y += 10;
+    }
+    y += 8;
+  }
+  footer();
+  doc.save(`LSH_Day${day}_${h.title.replace(/[^A-Za-z0-9]+/g,"_")}.pdf`);
+  toast("Handout downloaded.");
+}
+function saveBlob(blob, filename){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = filename; a.style.display = "none";
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ a.remove(); URL.revokeObjectURL(url); }, 1500);
+}
+function downloadHandoutCsv(day){
+  const h = handoutList().find(x=>x.day===day); if(!h) return;
+  const q = (v)=>`"${String(v??"").replace(/"/g,'""')}"`;
+  const out = [];
+  (h.blocks||[]).filter(b=>b.type==="table").forEach(b=>{
+    out.push(q(b.h)); out.push(b.headers.map(q).join(","));
+    b.rows.concat(Array.from({length:Math.max(b.blank||0, 5)},()=>b.headers.map(()=>""))).forEach(r=>out.push(r.map(q).join(",")));
+    out.push("");
+  });
+  const blob = new Blob(["\ufeff"+out.join("\n")], {type:"text/csv;charset=utf-8"});
+  saveBlob(blob, `LSH_Day${day}_${h.title.replace(/[^A-Za-z0-9]+/g,"_")}.csv`);
+  toast("Spreadsheet downloaded — open it in Excel or Google Sheets.");
+}
+async function saveHandoutLink(day){
+  const v = ((document.getElementById("hoLink_"+day)||{}).value||"").trim();
+  if(v && !/^https:\/\//i.test(v)){ toast("Use a full https:// link (e.g. a Google Drive or SharePoint share link)."); return; }
+  state.handoutLinks = state.handoutLinks || {}; if(v) state.handoutLinks[day] = v; else delete state.handoutLinks[day];
+  await sharedSet("handouts:links", state.handoutLinks);
+  toast(v ? `Day ${day} handout now opens your file.` : `Day ${day} handout reset to the built-in version.`);
+  render();
+}
+Object.assign(window, {previewHandout, downloadHandoutPdf, downloadHandoutCsv, saveHandoutLink});
+
 function renderHandouts(){
+  if(!state.handoutLinksLoaded){ setTimeout(()=>loadHandoutLinks(), 0); }
+  const cur = state.traineeId ? nextDayId() : 1;
+  const q = (state.hoQuery||"").toLowerCase();
+  const list = handoutList().filter(h=>!q || h.title.toLowerCase().includes(q) || String(h.dayTitle).toLowerCase().includes(q));
   return `
     <p class="eyebrow">Reference Library</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">Handouts &amp; Templates</h1>
-    <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 24px;">Downloadable companions for each day. This section is wired up and ready — link your finished files here as they're produced.</p>
-    ${HANDOUTS.map(h=>`
-      <div class="card handout-card">
-        <div class="h-info">
-          <div class="h-icon">${h.icon}</div>
-          <div><h4>${esc(h.title)}</h4><span>Day ${h.day} companion resource</span></div>
+    <p style="color:var(--ink-soft);font-size:14.5px;max-width:72ch;margin:0 0 16px;">Printable checklists, scripts and ready-to-use templates for each day. Download the PDF to print or fill in, or grab the spreadsheet version of any tracker for Excel or Google Sheets.</p>
+    <input class="ho-search" placeholder="Search handouts…" value="${esc(state.hoQuery||"")}" oninput="state.hoQuery=this.value; clearTimeout(window.__hoT); window.__hoT=setTimeout(()=>{render(); const el=document.querySelector('.ho-search'); if(el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length);} },250)">
+    <div class="ho-grid">
+    ${list.map(h=>{ const link = handoutLink(h.day); return `
+      <div class="card ho-card ${h.day===cur?"current":""}">
+        <div class="ho-top"><div class="ho-icon">${h.icon}</div><div><div class="ho-day">Day ${h.day}${h.day===cur?" · you're here":""}</div><h4>${esc(h.title)}</h4><span>${esc(h.kind||"Handout")} · ${esc(h.dayTitle)}</span></div></div>
+        <p class="ho-desc">${esc(h.intro||"")}</p>
+        <div class="ho-actions">
+          ${link ? `<a class="btn btn-primary btn-sm" href="${esc(link)}" target="_blank" rel="noopener">⬇ Open file</a>` : `
+          <button class="btn btn-primary btn-sm" onclick="downloadHandoutPdf(${h.day})">⬇ PDF</button>
+          ${h.csv?`<button class="btn btn-ghost btn-sm" onclick="downloadHandoutCsv(${h.day})">⬇ Spreadsheet</button>`:""}`}
+          <button class="btn btn-ghost btn-sm" onclick="previewHandout(${h.day})">Preview</button>
         </div>
-        <button class="btn btn-sm btn-ghost" disabled>Coming soon</button>
-      </div>`).join("")}
-    <div class="empty-note">These are placeholder slots — once a handout PDF exists, replace the "Coming soon" button with a real link (or an uploaded file) and it's live for trainees.</div>
+        ${state.isAdmin ? `<div class="ho-admin"><input id="hoLink_${h.day}" placeholder="Admin: https:// link to your own file (optional)" value="${esc(link)}"><button class="btn btn-ghost btn-sm" onclick="saveHandoutLink(${h.day})">Save link</button></div>` : ""}
+      </div>`; }).join("")}
+    </div>
+    ${list.length ? "" : `<div class="empty-note">No handouts match "${esc(state.hoQuery)}".</div>`}
+    ${state.isAdmin ? `<div class="empty-note">Admins: each handout downloads a built-in branded PDF (and spreadsheet for trackers). To use your own version instead, paste a share link (Google Drive, SharePoint, Dropbox) — trainees will get your file.</div>` : ""}
   `;
 }
 
@@ -18366,7 +18570,7 @@ function tfbExportCsv(){
   const q = (v)=>`"${String(v??"").replace(/"/g,'""')}"`;
   const rows = items.map(x=>[x.at, x.name, x.batch, x.dayId||"Overall", ...TFB_AREAS.map(a=>x.ratings&&x.ratings[a.id]||""), x.good, x.improve, x.facilitator, x.status].map(q).join(","));
   const blob = new Blob([[head.map(q).join(","), ...rows].join("\n")], {type:"text/csv"});
-  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "LSH_trainee_feedback.csv"; a.click();
+  saveBlob(blob, "LSH_trainee_feedback.csv");
 }
 Object.assign(window, {tfbSetStatus, tfbExportCsv, loadTraineeFeedbackAdmin});
 function renderAdminTraineeFeedback(){
@@ -22226,7 +22430,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-s";
+var APP_BUILD = "2026.09.24-u";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
