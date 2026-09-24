@@ -1851,6 +1851,14 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .tfb-item-ratings{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;margin:8px 0;} .tfb-item-ratings b{color:#E8A13A;letter-spacing:1px;}
 .tfb-item p{font-size:13.5px;margin:6px 0;line-height:1.5;}
 @media(max-width:760px){.tfb-fab{left:10px;bottom:10px;padding:9px 13px;}}
+
+.dash-side .tfb-dash{background:linear-gradient(135deg, rgba(219,132,55,.28), rgba(255,255,255,.06)) !important;border-color:rgba(240,192,138,.5) !important;}
+.dash-side .tfb-dash .sub{font-size:12px;color:#E4E6F0;line-height:1.4;}
+.tfb-dash-stars{display:flex;gap:4px;margin-bottom:10px;}
+.tfb-dash-stars button{background:none;border:none;font-size:26px;line-height:1;color:rgba(255,255,255,.35);cursor:pointer;padding:0;}
+.tfb-dash-stars:hover button{color:#F0C08A;} .tfb-dash-stars button:hover ~ button{color:rgba(255,255,255,.35);}
+.tfb-dash-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.dash-side .tfb-dash .btn-ghost{color:#fff;border-color:rgba(255,255,255,.35);background:transparent;}
 </style>
 </head>
 <body>
@@ -12857,6 +12865,7 @@ function renderDashboard(){
     </div>
 
     <aside class="dash-side"><div class="dash-side-inner">
+      ${renderFeedbackDashCard()}
       <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
       <div class="card stat"><div class="num">${ocs.score}%</div><div class="lbl">${ocs.tier ? `Best Competency — ${esc(displayTier(ocs.tier))}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${avgC}%</span></div></div>
       <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
@@ -13271,7 +13280,7 @@ function render(){
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
   const presenterView = state.view==="day" && state.dayViewMode!=="knowledgeCheck" && dayUnlocked(state.dayId);
   app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}">${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "")
-    + ((state.traineeId && !state.isAdmin && !["login","pendingApproval","registrationDenied"].includes(state.view)) ? `<button type="button" class="tfb-fab" onclick="openTraineeFeedback(${state.view==="day"?state.dayId:"null"})" title="Share feedback about the platform, lessons or facilitator">💬 Feedback</button>` : "")
+    + ((state.traineeId && !state.isAdmin && !["login","pendingApproval","registrationDenied","dashboard"].includes(state.view)) ? `<button type="button" class="tfb-fab" onclick="openTraineeFeedback(${state.view==="day"?state.dayId:"null"})" title="Share feedback about the platform, lessons or facilitator">💬 Feedback</button>` : "")
     + renderFooter();
   afterRender();
 }
@@ -17910,9 +17919,9 @@ function tfbSetStar(name, n){
   state.tfbDraft.ratings[name] = n;
   document.querySelectorAll(`.tfb-stars[data-name="${name}"] button`).forEach((b,i)=>b.classList.toggle("on", i<n));
 }
-function openTraineeFeedback(dayId){
+function openTraineeFeedback(dayId, presetStars){
   if(!state.traineeId){ toast("Sign in first to send feedback."); return; }
-  state.tfbDraft = {ratings:{}, dayId: dayId || null};
+  state.tfbDraft = {ratings: presetStars ? {platform:presetStars} : {}, dayId: dayId || null};
   document.querySelectorAll(".tfb-overlay").forEach(o=>o.remove());
   const overlay = document.createElement("div"); overlay.className = "overlay topics-overlay tfb-overlay";
   overlay.innerHTML = `<div class="card topics-modal tfb-modal" role="dialog" aria-modal="true" aria-label="Share your feedback">
@@ -17922,7 +17931,7 @@ function openTraineeFeedback(dayId){
       <p class="tfb-intro">Rate any area you have an opinion on — skip the rest. Honest feedback helps us fix what isn't working.</p>
       <label class="tfb-field">About which day?
         <select id="tfbDay"><option value="">The program overall</option>${DAYS.map(d=>`<option value="${d.id}" ${dayId===d.id?"selected":""}>Day ${d.id} — ${esc(d.title)}</option>`).join("")}</select></label>
-      <div class="tfb-grid">${TFB_AREAS.map(a=>`<div class="tfb-row"><span>${a.icon} ${esc(a.label)}</span>${tfbStars(a.id, 0)}</div>`).join("")}</div>
+      <div class="tfb-grid">${TFB_AREAS.map(a=>`<div class="tfb-row"><span>${a.icon} ${esc(a.label)}</span>${tfbStars(a.id, (state.tfbDraft.ratings||{})[a.id]||0)}</div>`).join("")}</div>
       <label class="tfb-field">What worked well?<textarea id="tfbGood" rows="2" placeholder="e.g. The voice-call roleplays felt realistic."></textarea></label>
       <label class="tfb-field">What should we improve?<textarea id="tfbImprove" rows="3" placeholder="e.g. Day 3 slides were long; the inbox tool was slow to load."></textarea></label>
       <label class="tfb-field">Anything for your facilitator?<textarea id="tfbFacil" rows="2" placeholder="Pace, clarity, support, examples…"></textarea></label>
@@ -17949,10 +17958,26 @@ async function submitTraineeFeedback(){
   if(!ok){ if(btn){ btn.disabled=false; btn.textContent="Send feedback"; } toast("Couldn't send — check your connection and try again."); return; }
   document.querySelectorAll(".tfb-overlay").forEach(o=>o.remove());
   if(rec.dayId){ state.tfbGivenDays = state.tfbGivenDays || {}; state.tfbGivenDays[rec.dayId] = true; }
+  state.tfbLastSent = rec.at;
   toast("Thank you — your feedback was sent to the training team. 🙏");
+  if(state.view==="dashboard") render();
   if(state.view==="day") render();
 }
 Object.assign(window, {openTraineeFeedback, submitTraineeFeedback, tfbSetStar});
+function renderFeedbackDashCard(){
+  if(!state.traineeId || state.isAdmin) return "";
+  const cur = nextDayId();
+  return `<div class="card stat tfb-dash">
+    <div class="lbl">💬 Your feedback</div>
+    <div class="sub" style="margin:4px 0 10px;">Tell us how the platform, lessons and your facilitator are working for you.</div>
+    <div class="tfb-dash-stars">${[1,2,3,4,5].map(n=>`<button type="button" aria-label="${n} stars" onclick="openTraineeFeedback(null, ${n})">★</button>`).join("")}</div>
+    <div class="tfb-dash-actions">
+      <button type="button" class="btn btn-primary btn-sm" onclick="openTraineeFeedback(null)">Write feedback</button>
+      <button type="button" class="btn btn-ghost btn-sm" onclick="openTraineeFeedback(${cur})">Rate Day ${cur}</button>
+    </div>
+    ${state.tfbLastSent ? `<div class="sub">Last sent ${new Date(state.tfbLastSent).toLocaleDateString()} — thank you!</div>` : ""}
+  </div>`;
+}
 function renderQuickDayFeedback(dayId){
   if(!state.traineeId || state.isAdmin) return "";
   if((state.tfbGivenDays||{})[dayId]) return `<div class="tfb-inline done">🙏 Thanks for your feedback on Day ${dayId}.</div>`;
@@ -21819,7 +21844,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-k";
+var APP_BUILD = "2026.09.24-l";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
