@@ -1976,6 +1976,17 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
 .focus-reviews-row .muted{color:var(--ink-soft);}
 .focus-status{flex-basis:100%;font-size:12.5px;font-weight:700;color:var(--success);min-height:0;}
 .focus-status.err{color:var(--danger);}
+
+.comp-strip{margin-top:14px;padding:16px 18px;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);border-radius:14px;color:#fff;box-shadow:var(--shadow);}
+.comp-strip-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+.comp-strip-head h3{margin:0;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#C9CCDD;font-family:inherit;}
+.comp-strip-head span{font-size:11.5px;color:#9EA3BD;}
+.comp-strip-empty{font-size:12.5px;color:#C9CCDD;margin:0 0 8px;}
+.comp-strip-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:14px;}
+.comp-cell-top{display:flex;justify-content:space-between;align-items:flex-end;gap:6px;min-height:34px;font-size:12px;color:#E4E6F0;font-weight:700;line-height:1.3;}
+.comp-cell-top b{font-family:'IBM Plex Mono',monospace;color:#fff;white-space:nowrap;}
+@media(max-width:1300px){.comp-strip-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+@media(max-width:760px){.comp-strip-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 </style>
 </head>
 <body>
@@ -12973,6 +12984,20 @@ function renderWorkOnNextPanel(){
       </div>`).join("")}</div>
   </section>`;
 }
+function renderCompetencyStrip(){
+  if(!state.traineeId || state.isAdmin) return "";
+  const prof = competencyProfile();
+  const any = prof.some(c=>c.score!==null);
+  const band = (v)=> v>=85 ? "strong" : v>=70 ? "ok" : "build";
+  return `<section class="comp-strip">
+    <div class="comp-strip-head"><h3>Competency profile</h3><span>Green 85%+ · Amber 70–84% · Orange = not yet</span></div>
+    ${any ? "" : `<p class="comp-strip-empty">Complete a Knowledge Check or a graded Practice Lab to see your competency profile.</p>`}
+    <div class="comp-strip-grid">${prof.map(c=>`<div class="comp-cell" title="${c.n} data point(s)">
+        <div class="comp-cell-top"><span>${esc(c.label)}</span><b>${c.score===null ? "—" : c.score+"%"}</b></div>
+        <div class="comp-track"><div class="comp-fill ${c.score===null?"none":band(c.score)}" style="width:${c.score||0}%"></div></div>
+      </div>`).join("")}</div>
+  </section>`;
+}
 function renderCompetencyCards(){
   const prof = competencyProfile();
   const any = prof.some(c=>c.score!==null);
@@ -13053,6 +13078,7 @@ function renderDashboard(){
                 ? `<button class="btn cert-hero-btn" onclick="downloadCertificatePdf(null)">🎓 Download my Certificate</button><button class="btn btn-ghost cert-hero-view" onclick="openCertificate()">View</button>`
                 : `<span class="cert-hero-locked" title="Pass all ${c.total} Knowledge Checks (70%+) to unlock">🎓 Certificate · ${c.passed}/${c.total} Knowledge Checks passed</span>`; })()}
           </div>
+          ${renderCompetencyStrip()}
     </div>
 
     <aside class="dash-side"><div class="dash-side-inner">
@@ -13063,7 +13089,6 @@ function renderDashboard(){
       <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
       <div class="card stat"><div class="num">${done} / ${DAYS.length}</div><div class="lbl">Days completed</div></div>
       ${renderRankingCard()}
-      ${renderCompetencyCards()}
     </div></aside>
   </div>
   `;
@@ -22591,7 +22616,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-c";
+var APP_BUILD = "2026.09.25-d";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
