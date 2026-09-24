@@ -1819,6 +1819,38 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .won-grid + .won-sub{margin-top:14px;}
 .hero-spark-lead{margin-left:0;margin-right:.28em;transform:scaleX(-1);animation-name:heroSparkLead;}
 @keyframes heroSparkLead{0%,100%{transform:scaleX(-1) rotate(0) scale(1);}50%{transform:scaleX(-1) rotate(18deg) scale(1.12);}}
+
+.fg-card{padding:22px 24px;margin-bottom:16px;} .fg-card h3{color:var(--navy);margin:0 0 10px;}
+.fg-card p,.fg-card li{font-size:13.5px;color:var(--ink);line-height:1.6;} .fg-card ul,.fg-card ol{padding-left:20px;margin:0;}
+.fg-card code{font-size:12px;background:#F3F4F8;padding:1px 5px;border-radius:4px;}
+.studio-checklist{margin:0 0 12px;background:#F8F9FC;border:1px solid var(--line);border-radius:10px;padding:8px 14px;}
+.studio-checklist summary{cursor:pointer;font-weight:800;color:var(--navy);font-size:13px;}
+.studio-checklist li{font-size:13px;margin:4px 0;}
+
+.tfb-fab{position:fixed;left:16px;bottom:16px;z-index:6;background:var(--navy);color:#fff;border:none;border-radius:24px;padding:10px 16px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px -6px rgba(38,43,69,.45);}
+.tfb-fab:hover{background:var(--orange);}
+.overlay .card.tfb-modal{max-width:620px;padding:0;}
+.tfb-body{padding:16px 22px;overflow:auto;}
+.tfb-intro{font-size:13px;color:var(--ink-soft);margin:0 0 10px;}
+.tfb-field{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:800;color:var(--navy);margin:10px 0;}
+.tfb-field select,.tfb-field textarea{font:inherit;font-size:13.5px;font-weight:400;border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 !important;}
+.tfb-grid{border:1px solid var(--line);border-radius:10px;padding:6px 12px;}
+.tfb-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13.5px;}
+.tfb-row:last-child{border-bottom:none;}
+.tfb-stars{display:flex;gap:2px;} .tfb-stars button{background:none;border:none;font-size:22px;line-height:1;color:#D5D8E3;cursor:pointer;padding:0 2px;}
+.tfb-stars button.on{color:#E8A13A;}
+.tfb-check{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:6px;}
+.tfb-inline{max-width:560px;margin:14px auto 0;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:#F3F5FB;border-radius:10px;padding:10px 14px;font-size:13px;text-align:left;}
+.tfb-inline.done{justify-content:center;color:var(--success);font-weight:700;}
+.tfb-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;}
+.tfb-summary .sub{font-size:11.5px;color:var(--ink-soft);margin-top:4px;}
+.tfb-days{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:6px;font-size:12.5px;} .tfb-days em{color:var(--ink-soft);font-style:normal;} .tfb-days .low b{color:var(--danger);}
+.tfb-filters{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px;} .tfb-filters select{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;}
+.tfb-item{padding:14px 16px;margin-bottom:10px;border-left:4px solid var(--orange);} .tfb-item.actioned{border-left-color:var(--success);opacity:.85;} .tfb-item.acknowledged{border-left-color:var(--navy-soft);}
+.tfb-item-head{font-size:13px;color:var(--ink);display:flex;gap:6px;flex-wrap:wrap;align-items:center;} .tfb-item-head span{color:var(--ink-soft);font-size:12px;}
+.tfb-item-ratings{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;margin:8px 0;} .tfb-item-ratings b{color:#E8A13A;letter-spacing:1px;}
+.tfb-item p{font-size:13.5px;margin:6px 0;line-height:1.5;}
+@media(max-width:760px){.tfb-fab{left:10px;bottom:10px;padding:9px 13px;}}
 </style>
 </head>
 <body>
@@ -11601,31 +11633,63 @@ function renderFacilitatorGuide(){
       <button class="btn btn-navy btn-sm" onclick="goto('admin'); setAdminTab('sop');">📋 Open SOP Reference</button>
     </div>
 
-    <div class="card" style="padding:22px 24px;margin-bottom:16px;">
-      <h3 style="color:var(--navy);margin:0 0 10px;">What Trainees See vs. What You See</h3>
-      <p style="font-size:13.5px;color:var(--ink);line-height:1.6;">Trainees get a clean, self-paced flow: one topic per screen, no scrolling, routing straight from the last topic into Practice Lab and then the Knowledge Check. <b>Trainer Cues and Discussion Checkpoints are invisible to them entirely</b> — not hidden by styling, genuinely absent from what loads on their screen. Only an account signed in with the trainer passphrase (the same one that unlocks the Admin dashboard) sees this guide, the Trainer Cue on every topic, and the Discussion slide at the end of each day's lesson sequence.</p>
+    <div class="card fg-card">
+      <h3>What Trainees See vs. What You See</h3>
+      <p>Trainees get a clean, self-paced flow: one topic per slide (with a 📖 Full explanation panel where you've published one), Quick Checks, the Practice Lab, then the Knowledge Check. <b>Trainer Cues, Applied Discussion Cases, verbal scripts, answer keys and crisis scripts never appear in the lesson slides — even when you're signed in as admin.</b> They live only in <b>Admin → Trainer Cues</b>, so screen-sharing the lesson is always safe.</p>
     </div>
 
-    <div class="card" style="padding:22px 24px;margin-bottom:16px;">
-      <h3 style="color:var(--navy);margin:0 0 10px;">Recommended Session Structure (per day)</h3>
-      <ul style="font-size:13.5px;color:var(--ink);line-height:1.7;padding-left:20px;margin:0;">
-        <li><b>~75–90 minutes total</b> — this matches the depth built into each day's content. Don't rush; the Trainer Cues are written assuming you'll pause and engage the room, not read through slides.</li>
-        <li><b>Screen-share the trainee view</b> (or have trainees follow along on their own devices) while you narrate using the Trainer Cue on each topic as your talking point.</li>
-        <li><b>Practice Lab is a hard stop, not a soft suggestion.</b> When the sequence reaches that slide, have trainees actually complete the exercise before continuing — the Trainer Checkpoint note there exists because the debrief afterward is where the real learning happens, not the exercise itself.</li>
-        <li><b>The Discussion slide is the last thing before Knowledge Check</b> — and it's marked as a Trainer Checkpoint for a reason: don't let trainees read past it silently. Read the question out loud and actually run the discussion live.</li>
-        <li><b>Knowledge Check is self-graded and retakeable</b> — trainees can retry it on their own after the session if they don't pass; you don't need to gate that live.</li>
+    <div class="card fg-card">
+      <h3>Recommended Session Structure (per day)</h3>
+      <ul>
+        <li><b>~75–120 minutes,</b> depending on the day's topic count. Each day's timing plan is in <b>Admin → SOP Reference</b> (every day now has one, auto-built from the live content).</li>
+        <li><b>Screen-share the trainee view</b> while you keep <b>Admin → Trainer Cues</b> open in a second window: each topic has a Trainer Cue, an Applied Discussion Case and a <b>🎙 Verbal Discussion Script</b> (open, ask, listen for, probe, correct, wrap). Use "✨ Write the full conversational script" for a 7–10 minute word-for-word version, or download the day's scripts as a PDF.</li>
+        <li><b>Practice Lab is where the learning sticks.</b> Have trainees complete it live, then debrief. Their work auto-saves (💾) and they can resume after a refresh.</li>
+        <li><b>End-of-day discussion</b> is in Trainer Cues for each day — raise it live before the Knowledge Check.</li>
+        <li><b>Knowledge Check:</b> 70% marks the day complete ✓. Failing doesn't block progress — trainees see a clear "cleared to proceed / retake optional" message.</li>
       </ul>
     </div>
 
-    <div class="card" style="padding:22px 24px;margin-bottom:16px;">
-      <h3 style="color:var(--navy);margin:0 0 10px;">Using the Trainer Cues Well</h3>
-      <p style="font-size:13.5px;color:var(--ink);line-height:1.6;margin:0 0 8px;"><b>Where to find them:</b> Admin → <b>Trainer Cues</b> tab, by day. They never appear inside the lesson slides — keep that tab open in a second window while you screen-share the trainee view.</p>
-      <p style="font-size:13.5px;color:var(--ink);line-height:1.6;">Each cue is one of three types — a live roleplay/demo prompt, a question to pose to the room, or a pacing flag telling you where to slow down. They're written to be used cold, without prep, but reading them once before a session helps. They are NOT a script to read verbatim to trainees — they're notes to YOU.</p>
+    <div class="card fg-card">
+      <h3>Progression Rules Trainees Follow</h3>
+      <ul>
+        <li><b>Next day unlocks</b> when the previous day's <b>Practice Lab</b> has been submitted and graded — any score counts.</li>
+        <li><b>Practice Lab attempts:</b> the first submission of each exercise is free; repeats use one of <b>3 program-wide attempts</b>. Reset them per trainee in Trainee Audit (↺ Reset Attempts).</li>
+        <li><b>Feedback style:</b> grades below 85% are framed as <b>"Not yet"</b> or <b>"Not this way"</b> with concrete next steps — never a flat "no".</li>
+        <li><b>Progress is saved to the server</b> (not just the browser): trainees can log in on any device and pick up on the exact slide or tool they left.</li>
+      </ul>
     </div>
 
-    <div class="card" style="padding:22px 24px;">
-      <h3 style="color:var(--navy);margin:0 0 10px;">Access &amp; Roles</h3>
-      <p style="font-size:13.5px;color:var(--ink);line-height:1.6;">There isn't a separate "trainer login" — anyone who enters the same passphrase used for the Admin dashboard gets trainer-level visibility across the whole portal for that session. If you need to change who has that access, update the passphrase in the app's source and redeploy; there's no per-person permission system beyond that single shared passphrase.</p>
+    <div class="card fg-card">
+      <h3>Your Daily Trainer Workflow</h3>
+      <ol>
+        <li><b>Approve new registrations</b> in Trainee Audit (registration is name + batch).</li>
+        <li><b>Run the session</b> using the SOP plan, Trainer Cues and scripts.</li>
+        <li><b>Review daily feedback:</b> when a trainee finishes a day's Knowledge Check or Practice Lab, a review is auto-drafted (setting: <b>💬 Daily reviews</b> at the top of Trainee Audit). Open <b>View Detail → Day-by-Day Feedback</b>, edit, and <b>Send</b> — or use <b>✨ Draft for all active days</b> and <b>📤 Send all drafts</b>. Trainees see it on the day card and in <b>🎯 Focus</b>.</li>
+        <li><b>Set personal Focus items</b> in View Detail → <b>🎯 Trainer focus</b> (priority + day). They're pinned at the top of the trainee's Focus panel; you'll see when they're seen and marked done.</li>
+        <li><b>Check Rankings</b> and each trainee's competency picture; trainees see their own rank within their batch and a 7-skill Competency Profile.</li>
+        <li><b>Surprise tasks</b> (optional): broadcast from Trainee Audit with a live window; end them any time.</li>
+        <li><b>Read trainee feedback</b> about the platform, lessons and facilitation in <b>Admin → Trainee Feedback</b> (star averages by area and day, comments, status, CSV export). Trainees send it from the 💬 Feedback button or right after each Knowledge Check, and can choose to be anonymous.</li>
+      </ol>
+    </div>
+
+    <div class="card fg-card">
+      <h3>Live Calls &amp; Roleplays</h3>
+      <p>The Day 4 Intake Call and Live Roleplay run as real voice calls: ringtone, the caller speaks, trainees answer out loud (Chrome/Edge; they can also type), and Hang Up triggers the evaluation. A headset works best. If a caller is silent, the call card shows a warning and a ↻ Replay button.</p>
+    </div>
+
+    <div class="card fg-card">
+      <h3>Growing the Content (Content Studio)</h3>
+      <p><b>Admin → Content Studio</b>, per day: 🩺 test the AI connection, propose and draft new topics toward 40 per day, draft full explanations, add Knowledge Check questions for new topics, and write conversational scripts for every topic. <b>Everything is a draft until you publish it</b> — use the review checklist in the Studio, and have the supervising attorney check any legal or regulatory statement.</p>
+    </div>
+
+    <div class="card fg-card">
+      <h3>Access, Security &amp; Troubleshooting</h3>
+      <ul>
+        <li><b>Admin passphrase</b> unlocks the Admin tabs for that browser session only. It's no longer readable in the page source and signing in no longer auto-approves anyone.</li>
+        <li><b>Which version is live?</b> The footer shows the build number. If a fix "doesn't work", check the build first — a renamed download (e.g. <i>index (1).html</i>) is the usual cause.</li>
+        <li><b>AI features failing?</b> Every AI button shows the real reason. "Key isn't set / invalid" means <code>ANTHROPIC_API_KEY</code> needs setting on the Worker (<code>wrangler secret put ANTHROPIC_API_KEY</code>).</li>
+        <li><b>Revoke</b> deletes a trainee's record and saved progress; invalid names/batches are cleaned automatically.</li>
+      </ul>
     </div>
   `;
 }
@@ -13206,7 +13270,9 @@ function render(){
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
   const presenterView = state.view==="day" && state.dayViewMode!=="knowledgeCheck" && dayUnlocked(state.dayId);
-  app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}">${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "") + renderFooter();
+  app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}">${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "")
+    + ((state.traineeId && !state.isAdmin && !["login","pendingApproval","registrationDenied"].includes(state.view)) ? `<button type="button" class="tfb-fab" onclick="openTraineeFeedback(${state.view==="day"?state.dayId:"null"})" title="Share feedback about the platform, lessons or facilitator">💬 Feedback</button>` : "")
+    + renderFooter();
   afterRender();
 }
 function renderFooter(){
@@ -14326,6 +14392,7 @@ function renderQuizResult(d){
       <div class="big" style="margin-top:10px;">${lastCorrect} / ${lastTotal} correct</div>
       <div class="sub">${msg}</div>
       ${renderQuizNextStep(d, lastPassed)}
+      ${renderQuickDayFeedback(d.id)}
       <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;">
         <button class="btn btn-ghost" onclick="retakeQuiz(${d.id})">Retake Quiz</button>
         <button class="btn btn-ghost" onclick="downloadQuizResultPdf(${d.id})">⬇ Download PDF</button>
@@ -17780,10 +17847,178 @@ const SOP_DATA = [
   }
 ];
 
+
+/* SOP for any day: the hand-written SOP where one exists (Days 1–3), plus an
+   auto-built session plan from the live portal content so every day — and
+   every topic added later in Content Studio — is always covered. */
+function sopLiveSections(d){
+  const tools = relatedTools(d.id);
+  const lessons = d.lessons;
+  const minutes = Math.round(lessons.length*2.5 + 25);
+  const sec = [];
+  sec.push({h:"Session plan (auto-built from the portal)", type:"table", headers:["Segment","Time","What happens"], rows:[
+    ["Open & recap", "5 min", `Welcome, recap yesterday's Focus items, state today's objective: ${d.objective||d.title}.`],
+    ["Topics 1–"+lessons.length, `~${Math.round(lessons.length*2.5)} min`, "Screen-share the lesson slides; use each topic's Trainer Cue and Verbal Discussion Script (Admin → Trainer Cues)."],
+    ["Practice Lab", "15–20 min", tools.length ? `${tools.map(t=>t.title).join(", ")} — trainees complete it live; debrief afterwards.` : "No Practice Lab for this day."],
+    ["End-of-day discussion", "5–10 min", d.discussionQuestion || "Open discussion on the day's hardest topic."],
+    ["Knowledge Check", "10 min", `${d.quiz.length} questions · 70% marks the day complete (not required to move on).`]
+  ]});
+  sec.push({h:`Topics covered in the portal (${lessons.length})`, type:"table", headers:["#","Topic","Key teaching point","Trainer cue"], rows:
+    lessons.map((l,i)=>{ const {principles} = lessonParts(l); return [String(i+1), l.h + (l.__extra?" (added in Content Studio)":""), scriptShort(principles[0]||"", 160), scriptShort(l.trainerCue||"—", 140)]; })});
+  if(tools.length) sec.push({h:"Practice Lab", type:"bullets", items: tools.map(t=>`${t.title} — ${t.desc}`).concat(["First submission of each exercise is free; repeats use one of the trainee's 3 program-wide attempts (reset them in Trainee Audit if needed).","Completing the Practice Lab (any score) unlocks the next day."])});
+  sec.push({h:"After the session (trainer checklist)", type:"bullets", items:[
+    "Trainee Audit → View Detail: review each trainee's Day-by-Day Feedback (auto-drafted when they finish) and click Send.",
+    "Add any personal Focus items for trainees who need a specific next step.",
+    "Check Rankings and the Knowledge Check column for anyone below 70% — they can move on, but schedule a retake.",
+    "Reset Practice Lab attempts for anyone blocked by technical issues."
+  ]});
+  return sec;
+}
+function sopForDay(id){
+  const hand = SOP_DATA.find(x=>x.id===id);
+  const d = DAYS.find(x=>x.id===id);
+  if(hand) return Object.assign({}, hand, {sections: hand.sections.concat(sopLiveSections(d)), handWritten:true});
+  const lessons = d.lessons;
+  return {id, title:d.title, handWritten:false,
+    introduction:`Welcome to LSH EA PA Upskill Training Day ${id}. My name is ___ and I am your upskill coach. Today is about ${d.title}.`,
+    objectives:[d.objective || `Apply the Day ${id} concepts to real EA/PA work for Elias Thorne.`,
+      `Work through ${lessons.length} topics, from ${lessons[0].h} to ${lessons[lessons.length-1].h}.`,
+      relatedTools(id).length ? `Complete the ${relatedTools(id)[0].title} Practice Lab to a professional standard.` : "Apply the day's learning in a live discussion."],
+    discussionInfo:{duration:`Approximately ${Math.max(1, Math.round((lessons.length*2.5+60)/60))}–${Math.max(2, Math.round((lessons.length*2.5+90)/60))} hours`, ppt:`EA PA Day ${id}`, canvaLabel:`EA PA Day ${id}`, video:`Video Discussion EA PA Day ${id}`},
+    topics: lessons.slice(0,8).map(l=>l.h).concat(lessons.length>8?[`…and ${lessons.length-8} more (see the table below)`]:[]),
+    sections: sopLiveSections(d)};
+}
+/* ============================================================
+   TRAINEE FEEDBACK (about the program itself)
+   Trainees rate & comment on the Platform, Lessons, Facilitator,
+   Practice Lab and Knowledge Checks — any time (floating button) or
+   right after a Knowledge Check. Stored per submission at
+   "tfeedback:<id>"; admins review in Admin → Trainee Feedback.
+   ============================================================ */
+const TFB_AREAS = [
+  {id:"platform", label:"Platform & ease of use", icon:"💻"},
+  {id:"lessons", label:"Lessons & content", icon:"📚"},
+  {id:"facilitator", label:"Facilitator / trainer", icon:"🧑‍🏫"},
+  {id:"practice", label:"Practice Lab & roleplays", icon:"🧪"},
+  {id:"assessment", label:"Knowledge Checks & feedback", icon:"✅"}
+];
+function tfbStars(name, val){
+  return `<div class="tfb-stars" data-name="${name}">${[1,2,3,4,5].map(n=>`<button type="button" class="${n<=(val||0)?"on":""}" aria-label="${n} star${n>1?"s":""}" onclick="tfbSetStar('${name}',${n})">★</button>`).join("")}</div>`;
+}
+function tfbSetStar(name, n){
+  state.tfbDraft = state.tfbDraft || {ratings:{}};
+  state.tfbDraft.ratings[name] = n;
+  document.querySelectorAll(`.tfb-stars[data-name="${name}"] button`).forEach((b,i)=>b.classList.toggle("on", i<n));
+}
+function openTraineeFeedback(dayId){
+  if(!state.traineeId){ toast("Sign in first to send feedback."); return; }
+  state.tfbDraft = {ratings:{}, dayId: dayId || null};
+  document.querySelectorAll(".tfb-overlay").forEach(o=>o.remove());
+  const overlay = document.createElement("div"); overlay.className = "overlay topics-overlay tfb-overlay";
+  overlay.innerHTML = `<div class="card topics-modal tfb-modal" role="dialog" aria-modal="true" aria-label="Share your feedback">
+    <div class="module-head topics-modal-head"><div class="mh-day">Help us improve</div><div class="mh-title">Share your feedback</div>
+      <button type="button" class="topics-close" onclick="this.closest('.overlay').remove()">✕</button></div>
+    <div class="tfb-body">
+      <p class="tfb-intro">Rate any area you have an opinion on — skip the rest. Honest feedback helps us fix what isn't working.</p>
+      <label class="tfb-field">About which day?
+        <select id="tfbDay"><option value="">The program overall</option>${DAYS.map(d=>`<option value="${d.id}" ${dayId===d.id?"selected":""}>Day ${d.id} — ${esc(d.title)}</option>`).join("")}</select></label>
+      <div class="tfb-grid">${TFB_AREAS.map(a=>`<div class="tfb-row"><span>${a.icon} ${esc(a.label)}</span>${tfbStars(a.id, 0)}</div>`).join("")}</div>
+      <label class="tfb-field">What worked well?<textarea id="tfbGood" rows="2" placeholder="e.g. The voice-call roleplays felt realistic."></textarea></label>
+      <label class="tfb-field">What should we improve?<textarea id="tfbImprove" rows="3" placeholder="e.g. Day 3 slides were long; the inbox tool was slow to load."></textarea></label>
+      <label class="tfb-field">Anything for your facilitator?<textarea id="tfbFacil" rows="2" placeholder="Pace, clarity, support, examples…"></textarea></label>
+      <label class="tfb-check"><input type="checkbox" id="tfbAnon"> Send anonymously (your name won't be shown to trainers)</label>
+    </div>
+    <div class="topics-modal-foot"><button class="btn btn-ghost btn-sm" onclick="this.closest('.overlay').remove()">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="tfbSubmit" onclick="submitTraineeFeedback()">Send feedback</button></div>
+  </div>`;
+  overlay.addEventListener("click",(e)=>{ if(e.target===overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
+}
+async function submitTraineeFeedback(){
+  const d = state.tfbDraft || {ratings:{}};
+  const val = (id)=> (document.getElementById(id)||{}).value || "";
+  const good = val("tfbGood").trim(), improve = val("tfbImprove").trim(), facil = val("tfbFacil").trim();
+  if(!Object.keys(d.ratings).length && !good && !improve && !facil){ toast("Add at least one rating or comment."); return; }
+  const anon = !!(document.getElementById("tfbAnon")||{}).checked;
+  const id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+  const rec = {id, at:new Date().toISOString(), dayId: parseInt(val("tfbDay"),10) || null, ratings:d.ratings,
+    good:good.slice(0,1500), improve:improve.slice(0,1500), facilitator:facil.slice(0,1500), anonymous:anon,
+    traineeId: anon ? null : state.traineeId, name: anon ? "Anonymous" : state.traineeName, batch: anon ? "" : (cleanBatch(state.traineeBatch)||""), status:"new"};
+  const btn = document.getElementById("tfbSubmit"); if(btn){ btn.disabled = true; btn.textContent = "Sending…"; }
+  const ok = await sharedSet("tfeedback:"+id, rec);
+  if(!ok){ if(btn){ btn.disabled=false; btn.textContent="Send feedback"; } toast("Couldn't send — check your connection and try again."); return; }
+  document.querySelectorAll(".tfb-overlay").forEach(o=>o.remove());
+  if(rec.dayId){ state.tfbGivenDays = state.tfbGivenDays || {}; state.tfbGivenDays[rec.dayId] = true; }
+  toast("Thank you — your feedback was sent to the training team. 🙏");
+  if(state.view==="day") render();
+}
+Object.assign(window, {openTraineeFeedback, submitTraineeFeedback, tfbSetStar});
+function renderQuickDayFeedback(dayId){
+  if(!state.traineeId || state.isAdmin) return "";
+  if((state.tfbGivenDays||{})[dayId]) return `<div class="tfb-inline done">🙏 Thanks for your feedback on Day ${dayId}.</div>`;
+  return `<div class="tfb-inline"><span>How was <b>Day ${dayId}</b> for you? Your feedback shapes the program.</span>
+    <button class="btn btn-ghost btn-sm" onclick="openTraineeFeedback(${dayId})">💬 Rate Day ${dayId}</button></div>`;
+}
+/* ---------- Admin → Trainee Feedback ---------- */
+async function loadTraineeFeedbackAdmin(){
+  state.tfbAdmin = {loading:true, items:[]};
+  const keys = await sharedList("tfeedback:");
+  const items = (await Promise.all(keys.map(k=>sharedGet(k).catch(()=>null)))).filter(Boolean).sort((a,b)=>(b.at||"").localeCompare(a.at||""));
+  state.tfbAdmin = {items};
+  if(state.view==="admin" && state.adminTab==="tfeedback") render();
+}
+async function tfbSetStatus(id, status){
+  const it = ((state.tfbAdmin||{}).items||[]).find(x=>x.id===id); if(!it) return;
+  it.status = status; await sharedSet("tfeedback:"+id, it); render();
+}
+function tfbExportCsv(){
+  const items = (state.tfbAdmin||{}).items||[];
+  const head = ["Date","Name","Batch","Day",...TFB_AREAS.map(a=>a.label),"Worked well","Improve","For facilitator","Status"];
+  const q = (v)=>`"${String(v??"").replace(/"/g,'""')}"`;
+  const rows = items.map(x=>[x.at, x.name, x.batch, x.dayId||"Overall", ...TFB_AREAS.map(a=>x.ratings&&x.ratings[a.id]||""), x.good, x.improve, x.facilitator, x.status].map(q).join(","));
+  const blob = new Blob([[head.map(q).join(","), ...rows].join("\n")], {type:"text/csv"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "LSH_trainee_feedback.csv"; a.click();
+}
+Object.assign(window, {tfbSetStatus, tfbExportCsv, loadTraineeFeedbackAdmin});
+function renderAdminTraineeFeedback(){
+  if(!state.tfbAdmin){ setTimeout(()=>loadTraineeFeedbackAdmin(), 0); return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">Loading trainee feedback…</div>`; }
+  if(state.tfbAdmin.loading) return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">Loading trainee feedback…</div>`;
+  let items = state.tfbAdmin.items;
+  const f = state.tfbFilter || {};
+  if(f.day) items = items.filter(x=>String(x.dayId||"overall")===f.day);
+  if(f.area) items = items.filter(x=>x.ratings && x.ratings[f.area]);
+  if(f.status) items = items.filter(x=>(x.status||"new")===f.status);
+  const avg = (area, list)=>{ const v = list.map(x=>x.ratings&&x.ratings[area]).filter(Boolean); return v.length ? (v.reduce((a,b)=>a+b,0)/v.length) : null; };
+  const all = state.tfbAdmin.items;
+  const stars = (v)=> v===null ? "—" : `${v.toFixed(1)} ★`;
+  const perDay = DAYS.map(d=>{ const l = all.filter(x=>x.dayId===d.id); const vals = l.flatMap(x=>Object.values(x.ratings||{})); return {d, n:l.length, avg: vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null}; });
+  return `
+    <p class="eyebrow">Admin Dashboard</p>
+    <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Feedback</h1>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:75ch;margin:0 0 16px;">What trainees think of the platform, lessons, facilitator, Practice Lab and assessments. Anonymous submissions hide the trainee's name.</p>
+    <div class="tfb-summary">${TFB_AREAS.map(a=>`<div class="card stat"><div class="num">${stars(avg(a.id, all))}</div><div class="lbl">${a.icon} ${esc(a.label)}</div><div class="sub">${all.filter(x=>x.ratings&&x.ratings[a.id]).length} rating(s)</div></div>`).join("")}</div>
+    <div class="card" style="padding:14px 16px;margin:12px 0;"><b style="font-size:13px;color:var(--navy);">By day</b>
+      <div class="tfb-days">${perDay.map(p=>`<span class="${p.avg!==null && p.avg<3.5?"low":""}">Day ${p.d.id}: <b>${stars(p.avg)}</b> <em>(${p.n})</em></span>`).join("")}</div></div>
+    <div class="tfb-filters">
+      <select onchange="state.tfbFilter=Object.assign(state.tfbFilter||{},{day:this.value});render()"><option value="">All days</option><option value="overall" ${f.day==="overall"?"selected":""}>Program overall</option>${DAYS.map(d=>`<option value="${d.id}" ${f.day===String(d.id)?"selected":""}>Day ${d.id}</option>`).join("")}</select>
+      <select onchange="state.tfbFilter=Object.assign(state.tfbFilter||{},{area:this.value});render()"><option value="">All areas</option>${TFB_AREAS.map(a=>`<option value="${a.id}" ${f.area===a.id?"selected":""}>${esc(a.label)}</option>`).join("")}</select>
+      <select onchange="state.tfbFilter=Object.assign(state.tfbFilter||{},{status:this.value});render()"><option value="">Any status</option>${["new","acknowledged","actioned"].map(s=>`<option ${f.status===s?"selected":""}>${s}</option>`).join("")}</select>
+      <button class="btn btn-ghost btn-sm" onclick="loadTraineeFeedbackAdmin()">↻ Refresh</button>
+      <button class="btn btn-navy btn-sm" onclick="tfbExportCsv()" ${all.length?"":"disabled"}>⬇ Export CSV</button>
+    </div>
+    ${items.length ? items.map(x=>`<div class="card tfb-item ${x.status||"new"}">
+      <div class="tfb-item-head"><b>${esc(x.name||"Trainee")}</b>${x.batch?` · Batch ${esc(x.batch)}`:""} · ${x.dayId?`Day ${x.dayId}`:"Program overall"} · <span>${new Date(x.at).toLocaleString()}</span>
+        <span class="studio-badge ${x.status==="actioned"?"published":""}">${esc(x.status||"new")}</span></div>
+      <div class="tfb-item-ratings">${TFB_AREAS.filter(a=>x.ratings&&x.ratings[a.id]).map(a=>`<span>${a.icon} ${esc(a.label)}: <b>${"★".repeat(x.ratings[a.id])}${"☆".repeat(5-x.ratings[a.id])}</b></span>`).join("")}</div>
+      ${x.good?`<p><b>Worked well:</b> ${esc(x.good)}</p>`:""}${x.improve?`<p><b>Improve:</b> ${esc(x.improve)}</p>`:""}${x.facilitator?`<p><b>For facilitator:</b> ${esc(x.facilitator)}</p>`:""}
+      <div class="studio-actions">${["acknowledged","actioned"].filter(s=>s!==x.status).map(s=>`<button class="btn btn-ghost btn-sm" onclick="tfbSetStatus('${x.id}','${s}')">Mark ${s}</button>`).join("")}</div>
+    </div>`).join("") : `<div class="empty-note">No feedback ${all.length?"matches these filters":"yet — trainees can send it from the 💬 Feedback button or after each Knowledge Check"}.</div>`}`;
+}
+
 function renderAdminSOP(){
   const day = state.sopDay || 1;
-  const d = SOP_DATA.find(x=>x.id===day);
-  const availableDays = SOP_DATA.map(x=>x.id);
+  const d = sopForDay(day);
+  const availableDays = DAYS.map(x=>x.id);
   return `
     <p class="eyebrow">Admin — Reference</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">SOP Reference</h1>
@@ -17822,6 +18057,7 @@ function renderSopDayContent(d){
         ${d.topics.map(t=>`<li style="font-size:13px;margin-bottom:4px;">${esc(t)}</li>`).join("")}
       </ul>
     </div>
+    ${d.handWritten ? "" : `<div class="empty-note" style="margin-bottom:12px;">This day's SOP is generated from the live portal content, so it always matches what trainees see. Add a hand-written script for it any time and it will appear above the auto-built plan.</div>`}
     ${d.sections.map(renderSopSection).join("")}
   `;
 }
@@ -17858,10 +18094,12 @@ function renderAdmin(){
       <button class="admin-tab-btn ${tab==='sop'?'active':''}" onclick="setAdminTab('sop')">SOP Reference</button>
       <button class="admin-tab-btn ${tab==='cues'?'active':''}" onclick="setAdminTab('cues')">Trainer Cues</button>
       <button class="admin-tab-btn ${tab==='studio'?'active':''}" onclick="setAdminTab('studio')">Content Studio</button>
+      <button class="admin-tab-btn ${tab==='tfeedback'?'active':''}" onclick="setAdminTab('tfeedback')">Trainee Feedback</button>
     </div>`;
   if(tab==="sop") return tabBar + renderAdminSOP();
   if(tab==="cues") return tabBar + renderAdminTrainerCues();
   if(tab==="studio") return tabBar + renderAdminStudio();
+  if(tab==="tfeedback") return tabBar + renderAdminTraineeFeedback();
   if(tab==="rankings") return tabBar + renderAdminRankings();
 
   if(state.adminLoading || !state.adminData){
@@ -18810,6 +19048,7 @@ async function loadPublishedContent(){
     try{
       const e = await sharedGet("lessonx:day"+d.id); if(e && typeof e==="object") state.lessonExp[d.id] = e;
       const x = await sharedGet("extralessons:day"+d.id); if(x && Array.isArray(x.lessons)){ state.extraLessons[d.id] = x.lessons; mergeExtraLessons(d); }
+      const q = await sharedGet("extraquiz:day"+d.id); if(q && Array.isArray(q.questions)){ state.extraQuiz = state.extraQuiz||{}; state.extraQuiz[d.id] = q.questions; mergeExtraQuiz(d); }
     }catch(err){ /* add-on content is optional */ }
   }));
   state.contentLoaded = true;
@@ -18966,6 +19205,50 @@ async function studioWriteAllScripts(dayId){
   const res = await runPool(todo, async ({i})=>{ await generateAiScript(dayId, i, true); }, 2, (n,t,rs)=>studioShow(`Writing scripts… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
   state.studioMsg = studioResultMessage("scripts", res).replace("review them below, then publish.","they're in Trainer Cues."); render();
 }
+
+/* extraquiz:day<N> = {questions:[{q,opts,a,r,forLesson,status}]} — published ones join the day's Knowledge Check */
+function mergeExtraQuiz(d){
+  d.quiz = d.quiz.filter(q=>!q.__extra);
+  ((state.extraQuiz||{})[d.id]||[]).filter(q=>q.status==="published").forEach(q=>d.quiz.push(Object.assign({}, q, {__extra:true})));
+}
+function quizPrompt(d, l){
+  const {principles, steps, pitfalls} = lessonParts(l);
+  return `${studioContext(d)}
+Write 2 multiple-choice Knowledge Check questions for the lesson "${l.h}".
+Key points: ${principles.join(" | ")}
+Steps: ${steps.join(" | ")}
+Pitfalls: ${pitfalls.join(" | ")}
+Test application and judgment (short realistic situations with Elias Thorne), not word-for-word recall. Exactly one correct option; three plausible distractors.
+Return ONLY a JSON array: [{"q":"question","opts":["A","B","C","D"],"a":<index 0-3 of the correct option>,"r":"one-sentence rationale"}]`;
+}
+async function studioDraftQuiz(dayId){
+  const d = DAYS.find(x=>x.id===dayId);
+  state.extraQuiz = state.extraQuiz || {};
+  const list = state.extraQuiz[dayId] = state.extraQuiz[dayId] || [];
+  const covered = new Set(list.map(q=>q.forLesson));
+  const todo = d.lessons.filter(l=>l.__extra && !covered.has(l.h));
+  if(!todo.length){ studioShow("Every published new topic already has Knowledge Check questions."); return; }
+  studioShow(`Drafting questions… 0/${todo.length}`);
+  const res = await runPool(todo, async (l)=>{
+    const qs = await callAIJson(quizPrompt(d, l), 1400, 90000);
+    const ok = (Array.isArray(qs)?qs:[]).filter(q=>q && q.q && Array.isArray(q.opts) && q.opts.length>=3 && Number.isInteger(q.a) && q.a>=0 && q.a<q.opts.length);
+    if(!ok.length) throw new Error("the AI reply had no usable questions");
+    ok.slice(0,2).forEach(q=>list.push({q:q.q, opts:q.opts.slice(0,4), a:q.a, r:q.r||"", forLesson:l.h, status:"draft"}));
+    await studioSave("extraquiz:day"+dayId, {questions:list}); studioRefreshList();
+  }, 2, (n,t,rs)=>studioShow(`Drafting questions… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
+  state.studioMsg = studioResultMessage("question sets", res); render();
+}
+async function studioSetQuizStatus(dayId, idx, status){
+  const d = DAYS.find(x=>x.id===dayId); const list = (state.extraQuiz||{})[dayId]; if(!list||!list[idx]) return;
+  if(status==="delete"){ list.splice(idx,1); } else list[idx].status = status;
+  await studioSave("extraquiz:day"+dayId, {questions:list}); mergeExtraQuiz(d); render();
+}
+async function studioPublishAllQuiz(dayId){
+  const d = DAYS.find(x=>x.id===dayId); const list = (state.extraQuiz||{})[dayId]||[];
+  list.forEach(q=>q.status="published"); await studioSave("extraquiz:day"+dayId, {questions:list}); mergeExtraQuiz(d); render();
+  toast("Questions published — they're now part of the day's Knowledge Check.");
+}
+Object.assign(window, {studioDraftQuiz, studioSetQuizStatus, studioPublishAllQuiz});
 function setStudioDay(id){ state.studioDay = id; state.studioProposals = null; state.studioMsg = ""; render(); }
 let studioListTimer = null;
 function studioRefreshList(){ clearTimeout(studioListTimer); studioListTimer = setTimeout(()=>{ if(state.view==="admin" && state.adminTab==="studio"){ const keep = state.studioMsg; render(); state.studioMsg = keep; } }, 400); }
@@ -18986,7 +19269,15 @@ function renderAdminStudio(){
   return `
     <p class="eyebrow">Admin Only</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Content Studio</h1>
-    <p style="color:var(--ink-soft);font-size:13px;max-width:80ch;margin:0 0 14px;">Grow every day to ${TARGET_TOPICS} topics, add full explanations (introduction, purpose, context, laws &amp; rules, challenges, scenario) and conversational trainer scripts. AI drafts everything; <b>nothing reaches trainees until you publish it</b> — review legal and regulatory statements before publishing.</p>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:80ch;margin:0 0 10px;">Grow every day to ${TARGET_TOPICS} topics, add full explanations (introduction, purpose, context, laws &amp; rules, challenges, scenario), Knowledge Check questions and conversational trainer scripts. AI drafts everything; <b>nothing reaches trainees until you publish it</b>.</p>
+    <details class="studio-checklist"><summary>✅ Review checklist before you publish</summary><ul>
+      <li><b>Accuracy:</b> names, figures, deadlines and steps are correct for your firm's practice.</li>
+      <li><b>Laws &amp; rules:</b> any statute, bar rule or regulation named genuinely applies — check anything you're unsure of with the supervising attorney.</li>
+      <li><b>No duplication:</b> the new topic doesn't repeat an existing one.</li>
+      <li><b>Tone:</b> growth-minded ("not yet / not this way"), plain English, Elias Thorne scenarios are realistic.</li>
+      <li><b>Confidentiality:</b> no real client names or matters.</li>
+      <li><b>Knowledge Check:</b> exactly one correct answer; the rationale explains why.</li>
+    </ul></details>
     <div class="cues-day-tabs">${DAYS.map(x=>`<button class="${x.id===dayId?'active':''}" onclick="setStudioDay(${x.id})">Day ${x.id}</button>`).join("")}</div>
     <div class="studio-stats">
       <div class="card stat"><div class="num">${pubTopics} / ${TARGET_TOPICS}</div><div class="lbl">Published topics${pendingNew?` · ${pendingNew} in review`:""}</div></div>
@@ -19026,8 +19317,21 @@ function renderAdminStudio(){
           </div>
         </details>`).join("")}</div>
     </div>
+    ${(()=>{ const qs = (state.extraQuiz||{})[dayId]||[]; const qDraft = qs.filter(q=>q.status!=="published").length; const newTopics = d.lessons.filter(l=>l.__extra).length;
+      return `<div class="card studio-card">
+      <h3>3 · Knowledge Check questions for new topics</h3>
+      <p>Adds 2 questions for each topic published from this Studio, so new material is tested too. The day's check currently has <b>${d.quiz.length}</b> questions${qs.filter(q=>q.status==="published").length?` (${qs.filter(q=>q.status==="published").length} added here)`:""}.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-navy btn-sm" onclick="studioDraftQuiz(${dayId})" ${newTopics?"":"disabled title='Publish new topics first'"}>✨ Draft questions for new topics</button>
+        ${qDraft ? `<button class="btn btn-primary btn-sm" onclick="studioPublishAllQuiz(${dayId})">Publish all ${qDraft} questions</button>` : ""}
+      </div>
+      ${qs.length ? `<div class="studio-list">${qs.map((q,i)=>`<details><summary><span class="studio-badge ${q.status}">${q.status}</span> ${esc(q.q)}</summary>
+          <div class="studio-preview"><div style="font-size:12px;color:var(--ink-soft);margin-bottom:4px;">Topic: ${esc(q.forLesson||"")}</div><ol type="A" style="margin:0;padding-left:20px;">${q.opts.map((o,oi)=>`<li style="font-size:13px;${oi===q.a?"font-weight:800;color:var(--success);":""}">${esc(o)}${oi===q.a?" ✓":""}</li>`).join("")}</ol><p style="font-size:12.5px;color:var(--ink-soft);">${esc(q.r||"")}</p></div>
+          <div class="studio-actions">${q.status==="published"?`<button class="btn btn-ghost btn-sm" onclick="studioSetQuizStatus(${dayId},${i},'draft')">Unpublish</button>`:`<button class="btn btn-primary btn-sm" onclick="studioSetQuizStatus(${dayId},${i},'published')">Publish</button>`}
+          <button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="studioSetQuizStatus(${dayId},${i},'delete')">Delete</button></div></details>`).join("")}</div>` : ""}
+    </div>`; })()}
     <div class="card studio-card">
-      <h3>3 · Conversational trainer scripts</h3>
+      <h3>4 · Conversational trainer scripts</h3>
       <p>Writes a full, conversational speaker script for every topic — thorough explanation, rules to know, a scenario, questions and a wrap-up. Scripts appear under each lesson in <b>Trainer Cues</b> and in the day's script PDF.</p>
       <button class="btn btn-navy btn-sm" onclick="studioWriteAllScripts(${dayId})">✨ Write scripts for every topic without one</button>
     </div>`;
@@ -21515,7 +21819,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-i";
+var APP_BUILD = "2026.09.24-k";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
