@@ -1793,6 +1793,32 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
   .topbar-search{flex:1 1 100%;max-width:none;order:-1;}
   .brand-text{display:flex;}
 }
+
+.fb-settings{padding:16px 18px;margin-bottom:14px;}
+.fb-settings p{font-size:12.5px;color:var(--ink-soft);margin:4px 0 8px;}
+.fb-settings label{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:6px 0;color:var(--ink);font-weight:600;}
+.fb-settings-note{font-size:12px !important;}
+.fb-chip.auto{background:#EEF0F8;color:var(--navy);}
+
+.focus-admin{margin-top:18px;border-top:1px solid var(--line);padding-top:12px;}
+.focus-admin-help{font-size:12.5px;color:var(--ink-soft);margin:2px 0 8px;}
+.focus-admin-list{list-style:none;margin:0 0 10px;padding:0;}
+.focus-admin-list li{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:13px;}
+.focus-admin-list li.done .fa-text{text-decoration:line-through;color:var(--ink-soft);}
+.fa-pri{font-size:10px;font-weight:800;text-transform:uppercase;border-radius:20px;padding:2px 8px;background:#EEF0F6;color:var(--navy);}
+.fa-pri.high{background:var(--danger-bg);color:var(--danger);} .fa-pri.low{background:#F3F4F8;color:var(--ink-soft);}
+.fa-text em{color:var(--ink-soft);font-style:normal;font-size:12px;} .fa-state{font-size:11.5px;color:var(--ink-soft);white-space:nowrap;}
+.focus-admin-form{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:start;}
+.focus-admin-form textarea,.focus-admin-form select{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;}
+@media(max-width:760px){.focus-admin-form{grid-template-columns:1fr;} .focus-admin-list li{grid-template-columns:1fr;}}
+.won-sub{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);margin:6px 0 8px;}
+.won-card.trainer-set{border-left-color:var(--navy);background:#F7F8FC;}
+.won-card.trainer-set.high{border-left-color:var(--danger);}
+.won-card.trainer-set.done{opacity:.6;} .won-card.trainer-set.done .won-text{text-decoration:line-through;}
+.won-new{background:var(--orange);color:#fff;border-radius:10px;padding:0 6px;font-size:10px;margin-left:4px;}
+.won-grid + .won-sub{margin-top:14px;}
+.hero-spark-lead{margin-left:0;margin-right:.28em;transform:scaleX(-1);animation-name:heroSparkLead;}
+@keyframes heroSparkLead{0%,100%{transform:scaleX(-1) rotate(0) scale(1);}50%{transform:scaleX(-1) rotate(18deg) scale(1.12);}}
 </style>
 </head>
 <body>
@@ -12566,7 +12592,88 @@ function workOnNextItems(){
   if(weakest && weakest.score < 80) items.push({src:`Lowest area · ${weakest.label}`, text:weakest.tip});
   const seen = new Set(); return items.filter(x=>{ const k=x.text.slice(0,60); if(seen.has(k)) return false; seen.add(k); return true; }).slice(0,5);
 }
-function focusNewCount(){ return Object.values(state.myFeedback||{}).filter(f=>!f.readAt).length; }
+
+/* ---------- Trainer-set focus items ----------
+   focus:<traineeId> = {items:[{id,text,day,priority,by,createdAt,seenAt,doneAt}]}
+   Trainers add them in Trainee Audit → View Detail; trainees see them
+   pinned at the top of 🎯 Focus and can tick them off. */
+async function loadFocusItems(id){ const v = await sharedGet("focus:"+id).catch(()=>null); return (v && Array.isArray(v.items)) ? v : {items:[]}; }
+async function adminAddFocus(id){
+  const sid = cssId(id);
+  const text = (document.getElementById(`focusText_${sid}`)||{}).value || "";
+  if(text.trim().length < 5){ toast("Write the focus item first."); return; }
+  const day = parseInt((document.getElementById(`focusDay_${sid}`)||{}).value||"0",10) || null;
+  const priority = (document.getElementById(`focusPri_${sid}`)||{}).value || "normal";
+  const f = await loadFocusItems(id);
+  f.items.push({id:"f"+Date.now().toString(36), text:text.trim().slice(0,600), day, priority, by:state.traineeName||"Trainer", createdAt:new Date().toISOString(), seenAt:null, doneAt:null});
+  await sharedSet("focus:"+id, f);
+  state.traineeFocus = state.traineeFocus || {}; state.traineeFocus[id] = f;
+  toast("Focus item added — the trainee will see it in 🎯 Focus.");
+  const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+}
+async function adminRemoveFocus(id, fid){
+  const f = await loadFocusItems(id); f.items = f.items.filter(x=>x.id!==fid);
+  await sharedSet("focus:"+id, f); state.traineeFocus[id] = f;
+  const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+}
+function renderFocusAdmin(rec){
+  state.traineeFocus = state.traineeFocus || {};
+  const f = state.traineeFocus[rec.id];
+  if(!f){ state.traineeFocus[rec.id] = {items:[], loading:true}; loadFocusItems(rec.id).then(v=>{ state.traineeFocus[rec.id]=v; const w=document.getElementById("adminRowsWrap"); if(w) w.innerHTML = renderAdminRows(); }); }
+  const items = (f && f.items) || [];
+  const sid = cssId(rec.id);
+  return `<div class="focus-admin">
+    <div class="sidebar-section-lbl" style="padding-left:0;">🎯 Trainer focus for ${esc(shortName(rec.name))}</div>
+    <p class="focus-admin-help">Add anything you want this trainee to work on — it's pinned at the top of their 🎯 Focus panel.</p>
+    ${items.length ? `<ul class="focus-admin-list">${items.map(x=>`<li class="${x.doneAt?"done":""}">
+        <span class="fa-pri ${x.priority}">${x.priority==="high"?"High":x.priority==="low"?"Low":"Normal"}</span>
+        <span class="fa-text">${esc(x.text)}${x.day?` <em>· Day ${x.day}</em>`:""}</span>
+        <span class="fa-state">${x.doneAt?"✓ Done by trainee":x.seenAt?"Seen":"Not seen yet"}</span>
+        <button class="btn btn-ghost btn-sm" onclick="adminRemoveFocus('${rec.id}','${x.id}')">Remove</button></li>`).join("")}</ul>` : ""}
+    <div class="focus-admin-form">
+      <textarea id="focusText_${sid}" rows="2" placeholder="e.g. Practise BLUF: rewrite your last two status updates so the decision needed is in the first line."></textarea>
+      <select id="focusDay_${sid}"><option value="0">Any day</option>${DAYS.map(d=>`<option value="${d.id}">Day ${d.id}</option>`).join("")}</select>
+      <select id="focusPri_${sid}"><option value="normal">Normal</option><option value="high">High priority</option><option value="low">Low</option></select>
+      <button class="btn btn-navy btn-sm" onclick="adminAddFocus('${rec.id}')">➕ Add to Focus</button>
+    </div>
+  </div>`;
+}
+async function loadMyFocus(){
+  if(!state.traineeId || state.isAdmin) return;
+  const f = await loadFocusItems(state.traineeId);
+  const changed = JSON.stringify(f.items) !== JSON.stringify((state.myFocus||{}).items||[]);
+  state.myFocus = f;
+  if(changed) render();
+}
+async function markFocusSeen(){
+  const f = state.myFocus; if(!f || !f.items.some(x=>!x.seenAt)) return;
+  const now = new Date().toISOString();
+  const fresh = await loadFocusItems(state.traineeId);
+  fresh.items.forEach(x=>{ if(!x.seenAt) x.seenAt = now; });
+  await sharedSet("focus:"+state.traineeId, fresh); state.myFocus = fresh; render();
+}
+async function toggleFocusDone(fid){
+  const fresh = await loadFocusItems(state.traineeId);
+  const it = fresh.items.find(x=>x.id===fid); if(!it) return;
+  it.doneAt = it.doneAt ? null : new Date().toISOString(); if(!it.seenAt) it.seenAt = it.doneAt || new Date().toISOString();
+  await sharedSet("focus:"+state.traineeId, fresh); state.myFocus = fresh;
+  toast(it.doneAt ? "Marked as done — your trainer can see it." : "Marked as not done.");
+  openFocusPanel();
+}
+Object.assign(window, {adminAddFocus, adminRemoveFocus, toggleFocusDone});
+function renderTrainerFocusCards(hasNext){
+  const items = ((state.myFocus||{}).items||[]).slice().sort((a,b)=>(!!a.doneAt-!!b.doneAt) || ((b.priority==="high")-(a.priority==="high")) || (b.createdAt||"").localeCompare(a.createdAt||""));
+  if(!items.length) return "";
+  return `<div class="won-sub">📌 From your trainer</div>
+    <div class="won-grid">${items.map(x=>`
+      <div class="won-card trainer-set ${x.priority} ${x.doneAt?"done":""}">
+        <div class="won-src">${x.priority==="high"?"High priority · ":""}${esc(x.by||"Trainer")}${x.day?` · Day ${x.day}`:""}${x.seenAt?"":` <span class="won-new">new</span>`}</div>
+        <div class="won-text">${esc(x.text)}</div>
+        <div class="won-actions"><span></span><button type="button" class="won-go" onclick="toggleFocusDone('${x.id}')">${x.doneAt?"↺ Not done":"✓ Mark done"}</button></div>
+      </div>`).join("")}</div>
+    ${hasNext ? `<div class="won-sub">✨ Suggested from your work</div>` : ""}`;
+}
+function focusNewCount(){ return Object.values(state.myFeedback||{}).filter(f=>!f.readAt).length + ((state.myFocus||{}).items||[]).filter(x=>!x.seenAt).length; }
 function openFocusPanel(){
   if(!state.feedbackLoadedAt){ state.feedbackLoadedAt = Date.now(); loadMyFeedback(); }
   const body = renderWorkOnNextPanel() || `<section class="won-panel"><div class="won-head"><h3>🎯 My Focus</h3></div><p style="font-size:13.5px;color:var(--ink-soft);margin:0;">Nothing flagged yet — keep going. Your trainer's feedback and personal focus areas will appear here as your work is reviewed.</p></section>`;
@@ -12580,13 +12687,15 @@ function openFocusPanel(){
   // opening feedback from inside the panel closes the panel first
   overlay.querySelectorAll("[onclick*='openDayFeedback'],[onclick*='goto(']").forEach(b=>b.addEventListener("click",()=>overlay.remove()));
   document.body.appendChild(overlay);
+  setTimeout(()=>markFocusSeen(), 1200);
 }
 window.openFocusPanel = openFocusPanel;
 function renderWorkOnNextPanel(){
   const next = workOnNextItems();
   const fb = state.myFeedback || {};
   const fbDays = DAYS.filter(d=>fb[d.id]);
-  if(!next.length && !fbDays.length) return "";
+  const trainerCards = renderTrainerFocusCards(next.length>0);
+  if(!next.length && !fbDays.length && !trainerCards) return "";
   const chips = fbDays.length ? `<div class="won-fbrow"><span class="won-fblbl">Trainer feedback:</span>
       ${DAYS.map(d=>{ const f = fb[d.id]; return f
         ? `<button type="button" class="won-chip ${f.readAt?"":"new"}" onclick="openDayFeedback(${d.id})" title="${esc(f.rating||"")}">Day ${d.id}${f.readAt?"":" •"}</button>`
@@ -12595,6 +12704,7 @@ function renderWorkOnNextPanel(){
   return `<section class="won-panel">
     <div class="won-head"><h3>🎯 Work on next</h3><span>Your top focus areas right now — from your latest trainer feedback, Knowledge Checks and graded work</span></div>
     ${chips}
+    ${trainerCards}
     <div class="won-grid">${next.map((x,i)=>`
       <div class="won-card" id="won_${i}">
         <div class="won-src">${esc(x.src)}</div>
@@ -12650,7 +12760,7 @@ function renderDashboard(){
       <div class="dash-hero">
         <div class="dash-hero-text">
           <p class="eyebrow">LEGAL EA / PA ACCELERATOR</p>
-          <h1><span class="hl">Executive Assistant/ Personal Assistant Professional Development Workspace<svg class="hero-spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg></span></h1>
+          <h1><span class="hl"><svg class="hero-spark hero-spark-lead" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg>Executive Assistant/ Personal Assistant Professional Development Workspace<svg class="hero-spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg></span></h1>
           <p>Unlock your full potential as a Strategic Go-To Person to your Attorney. Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
           ${resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : ""}
         </div>
@@ -13175,7 +13285,7 @@ document.addEventListener("change", e=>captureLabField(e.target), true);
 new MutationObserver(()=>{ if(state.view==="tool") restoreLabFields(); }).observe(document.documentElement, {childList:true, subtree:true});
 function afterRender(){
   bookmarkView();
-  if(state.traineeId && !state.isAdmin && (!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000)){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>loadMyFeedback(), 0); }
+  if(state.traineeId && !state.isAdmin && (!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000)){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>{ loadMyFeedback(); loadMyFocus(); }, 0); }
   if(state.view==="tool"){
     initTool(state.toolId);
     if(state.pendingWizardIndex){ const wi = state.pendingWizardIndex; state.pendingWizardIndex = 0; setTimeout(()=>{ try{ wizardGoTo(wi); }catch(e){} }, 60); }
@@ -14159,6 +14269,7 @@ async function submitQuiz(dayId){
     };
     state.progress[dayId]=newRecord;
     logWork({kind:"quiz", dayId, label:`Day ${dayId} Knowledge Check`, score, correct, total, missed: d.quiz.map((q,i)=>state.quizAnswers[i]!==q.a ? q.q : null).filter(Boolean).slice(0,6)});
+    setTimeout(()=>autoReviewDay(dayId), 3000);
     await storeSet("day-progress", state.progress);
     await syncToLedger();
 
@@ -17772,6 +17883,13 @@ function renderAdmin(){
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Audit</h1>
     <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Lightweight session access, not secure authentication — see the note behind the Admin login. Data reflects what's been synced from each trainee's device.</p>
 
+    <div class="card fb-settings">
+      <b style="color:var(--navy);font-size:13.5px;">💬 Daily reviews</b>
+      <p>Every trainee gets a written review for each day they work on. Choose how it reaches them:</p>
+      <label><input type="checkbox" id="fbAutoDraft" ${(!state.fbSettings || state.fbSettings.autoDraft!==false)?"checked":""} onchange="if(!this.checked) document.getElementById('fbAutoSend').checked=false; saveFeedbackSettings()"> Automatically draft a review when a trainee finishes a day's Knowledge Check or Practice Lab</label>
+      <label><input type="checkbox" id="fbAutoSend" ${(state.fbSettings && state.fbSettings.autoSend)?"checked":""} onchange="if(this.checked) document.getElementById('fbAutoDraft').checked=true; saveFeedbackSettings()"> Send it to the trainee straight away (skip trainer review)</label>
+      <p class="fb-settings-note">Drafts appear under each trainee's <b>View Detail → Day-by-Day Feedback</b>. Days a trainer has edited or sent are never overwritten. For days already completed, use <b>✨ Draft feedback for all active days</b> then <b>📤 Send all drafts</b>.</p>
+    </div>
     <div class="card" style="padding:16px 18px;margin-bottom:20px;background:#FFF4E8;border-color:var(--orange-soft);">
       <b style="color:var(--navy);font-size:13.5px;">🎲 Random Task Injection</b>
       <p style="font-size:12.5px;color:#5A4A32;margin:6px 0 12px;">Generates one unscripted task grounded in that day's actual lesson material and broadcasts it to every trainee currently on that day — an unannounced, real-time test of what they just learned. Timing is up to you; trigger it whenever fits the live session.</p>
@@ -18055,7 +18173,7 @@ function logWork(entry){
   const origLab = runRubricEvaluation;
   runRubricEvaluation = async function(label, ctx, text, notes){
     const rep = await origLab(label, ctx, text, notes);
-    try{ logWork({kind:"lab", dayId:workDayFromContext(label), toolId:state.toolId||null, label, score:rep.totalScore, tier:rep.gradeTier,
+    try{ const wd = workDayFromContext(label); setTimeout(()=>autoReviewDay(wd), 4000); logWork({kind:"lab", dayId:wd, toolId:state.toolId||null, label, score:rep.totalScore, tier:rep.gradeTier,
       strengths:(rep.strengths||[]).slice(0,3), gaps:(rep.blindspots||[]).slice(0,3), growth:(rep.growthSuggestions||[]).slice(0,2), excerpt:String(text||"").slice(0,700),
       subs:{accuracy:Math.round(rep.accuracyScore/35*100), presence:Math.round(rep.presenceScore/30*100), risk:Math.round(rep.riskScore/20*100), efficiency:Math.round(rep.efficiencyScore/15*100)}}); }catch(e){}
     return rep;
@@ -18116,7 +18234,13 @@ async function draftDayFeedback(id, dayId, silent){
   if(!work || work.loading || !work.feedback) throw new Error("couldn't load this trainee's work — click ↻ Refresh work and try again");
   const ev = dayEvidence(rec, work, dayId);
   if(!ev.active){ if(!silent) toast(`No Day ${dayId} activity to review yet.`); return; }
-  const prompt = `You are an experienced trainer at Legal Support Help (LSH) reviewing one trainee's work for Day ${dayId} ("${ev.d.title}") of a 10-day Legal Executive/Personal Assistant program. Write specific, encouraging, honest feedback based ONLY on the evidence below — do not invent work they didn't do. If evidence is thin, say what's missing.
+  const prompt = feedbackPrompt(rec, ev, dayId);
+  const fb = await callAIJson(prompt, 1600, 120000);
+  if(!fb || typeof fb!=="object" || !fb.summary) throw new Error("the AI reply didn't include a summary — try again");
+  return finishDraft(id, work, dayId, fb, silent);
+}
+function feedbackPrompt(rec, ev, dayId){
+  return `You are an experienced trainer at Legal Support Help (LSH) reviewing one trainee's work for Day ${dayId} ("${ev.d.title}") of a 10-day Legal Executive/Personal Assistant program. Write specific, encouraging, honest feedback based ONLY on the evidence below — do not invent work they didn't do. If evidence is thin, say what's missing.
 
 TRAINEE: ${rec.name}
 EVIDENCE:
@@ -18130,8 +18254,8 @@ Return ONLY JSON (no markdown):
  "areasToBuild":["2-3 'not yet' areas, each with a concrete next step"],
  "nextDayFocus":["2 things to focus on next"],
  "trainerNote":"1-2 sentences for the trainer only (private): what to watch or discuss live"}`;
-  const fb = await callAIJson(prompt, 1600, 120000);
-  if(!fb || typeof fb!=="object" || !fb.summary) throw new Error("the AI reply didn't include a summary — try again");
+}
+async function finishDraft(id, work, dayId, fb, silent){
   work.feedback.days[dayId] = Object.assign({rating:"On Track", summary:"", strengths:[], areasToBuild:[], nextDayFocus:[], trainerNote:""}, fb, {status:"draft", draftedAt:new Date().toISOString()});
   const ok = await sharedSet("feedback:"+id, work.feedback);
   if(!ok) throw new Error("the draft was written but couldn't be saved to the server");
@@ -18157,7 +18281,7 @@ function readFeedbackForm(id, dayId){
 async function saveDayFeedback(id, dayId, send){
   const work = state.traineeWork[id]; if(!work) return;
   const cur = work.feedback.days[dayId] || {};
-  const upd = Object.assign({}, cur, readFeedbackForm(id, dayId));
+  const upd = Object.assign({}, cur, readFeedbackForm(id, dayId), {editedByTrainer:true});
   if(send){ upd.status = "sent"; upd.sentAt = new Date().toISOString(); upd.readAt = null; upd.sentBy = state.traineeName || "Trainer"; }
   else if(!upd.status) upd.status = "draft";
   work.feedback.days[dayId] = upd;
@@ -18180,7 +18304,55 @@ async function sendAllDrafts(id){
   const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
 }
 Object.assign(window, {draftDayFeedback, draftAllFeedback, saveDayFeedback, loadTraineeWork, sendAllDrafts});
+
+/* ---------- Automatic daily review ----------
+   settings:feedback = {autoDraft:true, autoSend:false}
+   When a trainee finishes a day's Knowledge Check or Practice Lab, their
+   browser asks the AI for that day's review and stores it — as a draft for
+   the trainer (default) or sent straight to the trainee (autoSend). A day
+   is never overwritten once a trainer has sent or edited it. */
+async function feedbackSettings(){
+  if(state.fbSettings && Date.now()-state.fbSettings.at < 5*60*1000) return state.fbSettings;
+  const v = await sharedGet("settings:feedback").catch(()=>null);
+  state.fbSettings = Object.assign({autoDraft:true, autoSend:false}, v||{}, {at:Date.now()});
+  return state.fbSettings;
+}
+async function autoReviewDay(dayId){
+  try{
+    if(!state.traineeId || state.isAdmin || !dayId) return;
+    const cfg = await feedbackSettings(); if(!cfg.autoDraft) return;
+    await cloudSaveNow();                                   // make sure the evidence is on the server
+    const fbAll = (await sharedGet("feedback:"+state.traineeId)) || {days:{}};
+    fbAll.days = fbAll.days || {};
+    const cur = fbAll.days[dayId];
+    if(cur && (cur.status==="sent" || cur.editedByTrainer)) return;
+    if(cur && cur.auto && Date.now()-new Date(cur.draftedAt||0).getTime() < 10*60*1000) return; // just done
+    const rec = (await sharedGet("trainee:"+state.traineeId)) || {id:state.traineeId, name:state.traineeName};
+    const snap = await sharedGet("progress:"+state.traineeId);
+    const work = {snap: snap&&snap.data || {}, feedback: fbAll};
+    const ev = dayEvidence(rec, work, dayId); if(!ev.active) return;
+    const fb = await callAIJson(feedbackPrompt(rec, ev, dayId), 1600, 120000);
+    if(!fb || !fb.summary) return;
+    const latest = (await sharedGet("feedback:"+state.traineeId)) || {days:{}};  // re-read to avoid clobbering a trainer edit
+    latest.days = latest.days || {};
+    if(latest.days[dayId] && (latest.days[dayId].status==="sent" || latest.days[dayId].editedByTrainer)) return;
+    latest.days[dayId] = Object.assign({rating:"On Track", strengths:[], areasToBuild:[], nextDayFocus:[], trainerNote:""}, fb,
+      {auto:true, draftedAt:new Date().toISOString(), status: cfg.autoSend ? "sent" : "draft"},
+      cfg.autoSend ? {sentAt:new Date().toISOString(), sentBy:"LSH Training (auto-review)", readAt:null} : {});
+    await sharedSet("feedback:"+state.traineeId, latest);
+    if(cfg.autoSend){ state.feedbackLoadedAt = 0; loadMyFeedback(); }
+  }catch(e){ console.warn("auto-review skipped:", e); }
+}
+async function saveFeedbackSettings(){
+  const autoDraft = document.getElementById("fbAutoDraft").checked;
+  const autoSend = document.getElementById("fbAutoSend").checked;
+  await sharedSet("settings:feedback", {autoDraft, autoSend});
+  state.fbSettings = {autoDraft, autoSend, at:Date.now()};
+  toast(autoSend ? "Daily reviews will be written and sent automatically." : autoDraft ? "Daily reviews will be drafted automatically for you to send." : "Automatic daily reviews are off.");
+}
+window.saveFeedbackSettings = saveFeedbackSettings;
 function renderFeedbackAdmin(rec){
+  if(!state.fbSettings){ feedbackSettings().then(()=>{ const a=document.getElementById("fbAutoDraft"), b=document.getElementById("fbAutoSend"); if(a) a.checked = state.fbSettings.autoDraft!==false; if(b) b.checked = !!state.fbSettings.autoSend; }); }
   const work = state.traineeWork[rec.id];
   if(!work || work.loading){ setTimeout(()=>loadTraineeWork(rec.id), 0); return `<div class="fb-admin"><div class="sidebar-section-lbl" style="padding-left:0;">Day-by-Day Feedback</div><p style="font-size:12.5px;color:var(--ink-soft);">Loading this trainee's work…</p></div>`; }
   const sid = cssId(rec.id);
@@ -18188,8 +18360,9 @@ function renderFeedbackAdmin(rec){
     const ev = dayEvidence(rec, work, d.id);
     const fb = work.feedback.days[d.id];
     if(!ev.active && !fb) return "";
+    if(!document.getElementById("fbAutoDraft")) {}
     const st = fb ? fb.status : "none";
-    const chip = st==="sent" ? `<span class="fb-chip sent">Sent${fb.readAt?" · read":""}</span>` : st==="draft" ? `<span class="fb-chip draft">Draft</span>` : `<span class="fb-chip none">Not reviewed</span>`;
+    const chip = (st==="sent" ? `<span class="fb-chip sent">Sent${fb.readAt?" · read":""}</span>` : st==="draft" ? `<span class="fb-chip draft">Draft</span>` : `<span class="fb-chip none">Not reviewed</span>`) + (fb && fb.auto && !fb.editedByTrainer ? `<span class="fb-chip auto">auto</span>` : "");
     const f = fb || {};
     const ta = (k, v, rows)=>`<textarea id="fb_${sid}_${d.id}_${k}" rows="${rows}">${esc(v)}</textarea>`;
     return `<details class="fb-day" ${fb && st!=="sent" ? "open" : ""}>
@@ -18226,6 +18399,7 @@ function renderFeedbackAdmin(rec){
 /* ---------- trainee side ---------- */
 async function loadMyFeedback(){
   if(!state.traineeId || state.isAdmin) return;
+  loadMyFocus();
   const fb = await sharedGet("feedback:"+state.traineeId).catch(()=>null);
   const sent = {};
   if(fb && fb.days) Object.entries(fb.days).forEach(([k,v])=>{ if(v && v.status==="sent") sent[k]=v; });
@@ -18313,7 +18487,8 @@ function renderAdminDetail(rec){
         <div class="sidebar-section-lbl" style="padding-left:0;">Live Roleplay Performance &amp; Assignment</div>
         ${renderAdminRoleplayPanel(rec)}
       </div>
-      ${renderFeedbackAdmin(rec)}
+      ${renderFocusAdmin(rec)}
+  ${renderFeedbackAdmin(rec)}
     </div>`;
 }
 function renderAdminRoleplayPanel(rec){
@@ -21340,7 +21515,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-f";
+var APP_BUILD = "2026.09.24-i";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
