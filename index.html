@@ -1923,6 +1923,9 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .cert-fmt select{font:inherit;font-size:13px;font-weight:400;border:1px solid var(--line);border-radius:8px;padding:6px 10px;}
 .overlay .card #certLastInput{margin-bottom:8px;}
 @media(max-width:420px){.login-name-row{grid-template-columns:1fr;}}
+
+.bottom-actions{justify-content:center;margin:22px 0 6px;padding:16px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.75);border-radius:14px;}
+.bottom-actions:empty{display:none;}
 </style>
 </head>
 <body>
@@ -12930,13 +12933,6 @@ function renderDashboard(){
           <p class="eyebrow">LEGAL EA / PA ACCELERATOR</p>
           <h1><span class="hl"><svg class="hero-spark hero-spark-lead" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg>Executive Assistant/ Personal Assistant Professional Development Workspace<svg class="hero-spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L24.5 15.5 L38 20 L24.5 24.5 L20 38 L15.5 24.5 L2 20 L15.5 15.5 Z" fill="#262B45"/><path d="M33 3 L34.6 7.4 L39 9 L34.6 10.6 L33 15 L31.4 10.6 L27 9 L31.4 7.4 Z" fill="#fff"/><circle cx="6" cy="33" r="2.4" fill="#B5651F"/></svg></span></h1>
           <p>Unlock your full potential as a Strategic Go-To Person to your Attorney. Minimize cognitive load, streamline execution, and act as a true force multiplier.</p>
-          <div class="hero-actions">
-            ${resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : ""}
-            ${(()=>{ if(!state.traineeId || state.isAdmin) return ""; const c = certData();
-              return c.eligible
-                ? `<button class="btn cert-hero-btn" onclick="downloadCertificatePdf(null)">🎓 Download my Certificate</button><button class="btn btn-ghost cert-hero-view" onclick="openCertificate()">View</button>`
-                : `<span class="cert-hero-locked" title="Pass all ${c.total} Knowledge Checks (70%+) to unlock">🎓 Certificate · ${c.passed}/${c.total} Knowledge Checks passed</span>`; })()}
-          </div>
         </div>
         <div class="dash-hero-ribbon">
           ${completionRibbonSvg(pct, done)}
@@ -12964,6 +12960,13 @@ function renderDashboard(){
       <div class="module-grid">
         ${DAYS.map(d=>moduleCard(d)).join("")}
       </div>
+          <div class="hero-actions bottom-actions">
+            ${resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : ""}
+            ${(()=>{ if(!state.traineeId || state.isAdmin) return ""; const c = certData();
+              return c.eligible
+                ? `<button class="btn cert-hero-btn" onclick="downloadCertificatePdf(null)">🎓 Download my Certificate</button><button class="btn btn-ghost cert-hero-view" onclick="openCertificate()">View</button>`
+                : `<span class="cert-hero-locked" title="Pass all ${c.total} Knowledge Checks (70%+) to unlock">🎓 Certificate · ${c.passed}/${c.total} Knowledge Checks passed</span>`; })()}
+          </div>
     </div>
 
     <aside class="dash-side"><div class="dash-side-inner">
@@ -22223,7 +22226,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.24-r";
+var APP_BUILD = "2026.09.24-s";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
