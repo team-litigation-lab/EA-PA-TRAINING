@@ -1970,6 +1970,12 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
   .dash-main{display:flex;flex-direction:column;}
   .dash-main .bottom-actions{margin-top:auto;margin-bottom:0;}
 }
+
+.won-chip.withtrainer{border-style:solid;color:var(--navy-soft);}
+.focus-reviews-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:-4px 0 12px;font-size:12.5px;color:var(--ink);}
+.focus-reviews-row .muted{color:var(--ink-soft);}
+.focus-status{flex-basis:100%;font-size:12.5px;font-weight:700;color:var(--success);min-height:0;}
+.focus-status.err{color:var(--danger);}
 </style>
 </head>
 <body>
@@ -12949,8 +12955,9 @@ function renderWorkOnNextPanel(){
   const chips = (fbDays.length || DAYS.some(d=>dayHasActivity(d.id))) ? `<div class="won-fbrow"><span class="won-fblbl">Trainer feedback:</span>
       ${DAYS.map(d=>{ const f = fb[d.id]; return f
         ? `<button type="button" class="won-chip ${f.readAt?"":"new"}" onclick="openDayFeedback(${d.id})" title="${esc(f.rating||"")}">Day ${d.id}${f.readAt?"":" •"}</button>`
-        : ((state.reviewsPending||[]).includes(d.id) ? `<span class="won-chip off pending" title="Your review is being prepared">Day ${d.id} ⏳</span>` : `<span class="won-chip off" title="${dayHasActivity(d.id)?"Review coming soon":"Available once you complete this day"}">Day ${d.id}</span>`); }).join("")}
-    </div>` : "";
+        : `<span class="won-chip off" title="${dayHasActivity(d.id)?"Your trainer hasn't added feedback for this day yet":"Available once you complete this day"}">Day ${d.id}</span>`; }).join("")}
+    </div>
+    <div class="focus-reviews-row"><span class="muted">Your trainer adds written feedback after reviewing each day's work — days light up here when it's ready.</span></div>` : "";
   return `<section class="won-panel">
     <div class="won-head"><h3>🎯 Work on next</h3><span>Your top focus areas right now — from your latest trainer feedback, Knowledge Checks and graded work</span></div>
     ${chips}
@@ -18815,11 +18822,9 @@ function renderAdmin(){
       <div style="margin-top:8px;"><button class="btn btn-navy btn-sm" onclick="saveCertSettings()">Save signatories</button></div>
     </div>
     <div class="card fb-settings">
-      <b style="color:var(--navy);font-size:13.5px;">💬 Daily reviews</b>
-      <p>Every trainee gets a written review for each day they work on. Choose how it reaches them:</p>
-      <label><input type="checkbox" id="fbAutoDraft" ${(!state.fbSettings || state.fbSettings.autoDraft!==false)?"checked":""} onchange="if(!this.checked) document.getElementById('fbAutoSend').checked=false; saveFeedbackSettings()"> Automatically draft a review when a trainee finishes a day's Knowledge Check or Practice Lab</label>
-      <label><input type="checkbox" id="fbAutoSend" ${(!state.fbSettings || state.fbSettings.autoSend!==false)?"checked":""} onchange="if(this.checked) document.getElementById('fbAutoDraft').checked=true; saveFeedbackSettings()"> Send it to the trainee straight away (you can still edit and resend any review)</label>
-      <p class="fb-settings-note">Drafts appear under each trainee's <b>View Detail → Day-by-Day Feedback</b>. Days a trainer has edited or sent are never overwritten. For days already completed, use <b>✨ Draft feedback for all active days</b> then <b>📤 Send all drafts</b>.</p>
+      <b style="color:var(--navy);font-size:13.5px;">💬 Trainer feedback</b>
+      <p>Trainers write each trainee's day-by-day feedback in <b>View Detail → Day-by-Day Feedback → ✍ Write feedback</b>, then click <b>Send to trainee</b>. Trainees only ever see feedback a trainer has sent.</p>
+      <label><input type="checkbox" id="fbAutoDraft" ${(state.fbSettings && state.fbSettings.autoDraft)?"checked":""} onchange="saveFeedbackSettings()"> Optional: pre-fill a suggested draft (from the trainee's work) for trainers to edit — never sent automatically</label>
     </div>
     <div class="card" style="padding:16px 18px;margin-bottom:20px;background:#FFF4E8;border-color:var(--orange-soft);">
       <b style="color:var(--navy);font-size:13.5px;">🎲 Random Task Injection</b>
@@ -19214,6 +19219,9 @@ async function saveDayFeedback(id, dayId, send){
   const work = state.traineeWork[id]; if(!work) return;
   const cur = work.feedback.days[dayId] || {};
   const upd = Object.assign({}, cur, readFeedbackForm(id, dayId), {editedByTrainer:true});
+  if(upd.status==="new") delete upd.status;
+  if(!upd.summary && !(upd.strengths||[]).length && !(upd.areasToBuild||[]).length){ toast("Write at least a summary, a strength or an area to build."); return; }
+  if(state.fbManual) delete state.fbManual[id+":"+dayId];
   if(send){ upd.status = "sent"; upd.sentAt = new Date().toISOString(); upd.readAt = null; upd.sentBy = state.traineeName || "Trainer"; }
   else if(!upd.status) upd.status = "draft";
   work.feedback.days[dayId] = upd;
@@ -19221,6 +19229,12 @@ async function saveDayFeedback(id, dayId, send){
   toast(send ? `Day ${dayId} feedback sent to the trainee.` : "Draft saved.");
   const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
 }
+function startManualFeedback(id, dayId){
+  state.fbManual = state.fbManual || {}; state.fbManual[id+":"+dayId] = true;
+  const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
+  setTimeout(()=>{ const el = document.getElementById(`fb_${cssId(id)}_${dayId}_summary`); if(el){ el.closest("details").open = true; el.focus(); } }, 50);
+}
+window.startManualFeedback = startManualFeedback;
 async function sendAllDrafts(id){
   const work = state.traineeWork[id]; if(!work) return;
   const drafts = Object.entries(work.feedback.days).filter(([k,v])=>v && v.status==="draft");
@@ -19229,7 +19243,7 @@ async function sendAllDrafts(id){
   drafts.forEach(([k])=>{
     // pick up any unsaved edits in open forms first
     if(document.getElementById(`fb_${cssId(id)}_${k}_summary`)) Object.assign(work.feedback.days[k], readFeedbackForm(id, parseInt(k,10)));
-    Object.assign(work.feedback.days[k], {status:"sent", sentAt:new Date().toISOString(), readAt:null, sentBy:state.traineeName||"Trainer"});
+    Object.assign(work.feedback.days[k], {status:"sent", sentAt:new Date().toISOString(), readAt:null, sentBy:state.traineeName||"Trainer", editedByTrainer:true});
   });
   await sharedSet("feedback:"+id, work.feedback);
   toast(`Sent feedback for ${drafts.length} day(s).`);
@@ -19246,10 +19260,10 @@ Object.assign(window, {draftDayFeedback, draftAllFeedback, saveDayFeedback, load
 async function feedbackSettings(){
   if(state.fbSettings && Date.now()-state.fbSettings.at < 5*60*1000) return state.fbSettings;
   const v = await sharedGet("settings:feedback").catch(()=>null);
-  state.fbSettings = Object.assign({autoDraft:true, autoSend:true}, v||{}, {at:Date.now()});
+  state.fbSettings = Object.assign({autoDraft:false}, v||{}, {autoSend:false, at:Date.now()});   // trainer feedback is written and sent manually
   return state.fbSettings;
 }
-async function autoReviewDay(dayId){
+async function autoReviewDay(dayId, loud){
   try{
     if(!state.traineeId || state.isAdmin || !dayId) return;
     const cfg = await feedbackSettings(); if(!cfg.autoDraft) return;
@@ -19264,45 +19278,70 @@ async function autoReviewDay(dayId){
     const work = {snap: snap&&snap.data || {}, feedback: fbAll};
     const ev = dayEvidence(rec, work, dayId); if(!ev.active) return;
     const fb = await callAIJson(feedbackPrompt(rec, ev, dayId), 1600, 120000);
-    if(!fb || !fb.summary) return;
+    if(!fb || !fb.summary){ if(loud) throw new Error("the AI reply didn't include a review — try again"); return; }
     const latest = (await sharedGet("feedback:"+state.traineeId)) || {days:{}};  // re-read to avoid clobbering a trainer edit
     latest.days = latest.days || {};
     if(latest.days[dayId] && (latest.days[dayId].status==="sent" || latest.days[dayId].editedByTrainer)) return;
     latest.days[dayId] = Object.assign({rating:"On Track", strengths:[], areasToBuild:[], nextDayFocus:[], trainerNote:""}, fb,
-      {auto:true, draftedAt:new Date().toISOString(), status: cfg.autoSend ? "sent" : "draft"},
-      cfg.autoSend ? {sentAt:new Date().toISOString(), sentBy:"LSH Training (auto-review)", readAt:null} : {});
-    await sharedSet("feedback:"+state.traineeId, latest);
-    if(cfg.autoSend){ state.feedbackLoadedAt = 0; loadMyFeedback(); }
-  }catch(e){ console.warn("auto-review skipped:", e); }
+      {auto:true, draftedAt:new Date().toISOString(), status:"draft"});
+    const ok = await sharedSet("feedback:"+state.traineeId, latest);
+    if(!ok && loud) throw new Error("the review was written but couldn't be saved to the server");
+    if(cfg.autoSend){ state.feedbackLoadedAt = 0; loadMyFeedbackCore(); }
+    return true;
+  }catch(e){ console.warn("auto-review skipped:", e); state.reviewError = (e && e.message) || String(e); if(loud) throw e; }
 }
+/* Trainee-triggered: write reviews for every worked day that has none yet, with visible progress/errors. */
+async function prepareMyReviews(){
+  const raw = (state.myFeedbackRaw && state.myFeedbackRaw.days) || {};
+  const todo = DAYS.map(d=>d.id).filter(n=>dayHasActivity(n) && !raw[n]);
+  const box = ()=>document.getElementById("focusStatus");
+  const say = (t, err)=>{ const b = box(); if(b){ b.textContent = t; b.className = "focus-status" + (err?" err":""); } };
+  if(!todo.length){ say("All your completed days already have a review."); return; }
+  state.reviewsPending = todo.slice(); let done = 0, failed = 0, lastErr = "";
+  say(`Preparing ${todo.length} review(s)… this takes about 20 seconds each.`);
+  for(const n of todo){
+    try{ await autoReviewDay(n, true); done++; }catch(e){ failed++; lastErr = e.message||String(e); }
+    state.reviewsPending = state.reviewsPending.filter(x=>x!==n);
+    say(`Prepared ${done} of ${todo.length}${failed?` · ${failed} failed`:""}…`);
+  }
+  state.feedbackLoadedAt = 0; await loadMyFeedbackCore();
+  document.querySelectorAll(".focus-overlay").forEach(o=>o.remove()); openFocusPanel();
+  setTimeout(()=>{
+    if(failed){
+      const friendly = /ANTHROPIC_API_KEY|not configured/i.test(lastErr) ? "The AI service isn't set up on the server yet — please tell your trainer."
+        : /401|403|sign-in/i.test(lastErr) ? "Your session needs refreshing — sign out and back in, then try again."
+        : /429|rate|busy/i.test(lastErr) ? "The AI service is busy — try again in a minute."
+        : lastErr;
+      say(`${done} review(s) ready · ${failed} couldn't be prepared: ${friendly}`, true);
+    }else say(`✅ ${done} review(s) ready — tap a day above to read it.`);
+  }, 50);
+}
+window.prepareMyReviews = prepareMyReviews;
 async function saveFeedbackSettings(){
   const autoDraft = document.getElementById("fbAutoDraft").checked;
-  const autoSend = document.getElementById("fbAutoSend").checked;
-  await sharedSet("settings:feedback", {autoDraft, autoSend});
-  state.fbSettings = {autoDraft, autoSend, at:Date.now()};
-  toast(autoSend ? "Daily reviews will be written and sent automatically." : autoDraft ? "Daily reviews will be drafted automatically for you to send." : "Automatic daily reviews are off.");
+  await sharedSet("settings:feedback", {autoDraft, autoSend:false});
+  state.fbSettings = {autoDraft, autoSend:false, at:Date.now()};
+  toast(autoDraft ? "Suggested drafts will be prepared for trainers to edit and send." : "Feedback is fully manual.");
 }
 window.saveFeedbackSettings = saveFeedbackSettings;
 function renderFeedbackAdmin(rec){
   if(typeof state.secureMode!=="boolean") authStatus().then(()=>{ if(state.view==="admin") render(); });
   if(!state.fbSettings) feedbackSettings();
   if(!state.certSettings){ certSettings().then(()=>{ const m={certTrainer:"trainerName",certTrainerTitle:"trainerTitle",certHead:"headName",certHeadTitle:"headTitle",certGm:"gmName",certGmTitle:"gmTitle"}; Object.entries(m).forEach(([id,k])=>{ const el=document.getElementById(id); if(el && !el.value) el.value = state.certSettings[k]||""; }); }); }
-  if(!state.fbSettings){ feedbackSettings().then(()=>{ const a=document.getElementById("fbAutoDraft"), b=document.getElementById("fbAutoSend"); if(a) a.checked = state.fbSettings.autoDraft!==false; if(b) b.checked = !!state.fbSettings.autoSend; }); }
+  if(!state.fbSettings){ feedbackSettings().then(()=>{ const a=document.getElementById("fbAutoDraft"), b=null; if(a) a.checked = !!state.fbSettings.autoDraft; if(b) b.checked = !!state.fbSettings.autoSend; }); }
   const work = state.traineeWork[rec.id];
   if(!work || work.loading){ setTimeout(()=>loadTraineeWork(rec.id), 0); return `<div class="fb-admin"><div class="sidebar-section-lbl" style="padding-left:0;">Day-by-Day Feedback</div><p style="font-size:12.5px;color:var(--ink-soft);">Loading this trainee's work…</p></div>`; }
   const sid = cssId(rec.id);
   const rows = DAYS.map(d=>{
     const ev = dayEvidence(rec, work, d.id);
-    const fb = work.feedback.days[d.id];
-    if(!ev.active && !fb) return "";
-    if(!document.getElementById("fbAutoDraft")) {}
+    const fb = work.feedback.days[d.id] || ((state.fbManual||{})[rec.id+":"+d.id] ? {status:"new", summary:"", strengths:[], areasToBuild:[], nextDayFocus:[], trainerNote:"", rating:"On Track"} : null);
     const st = fb ? fb.status : "none";
-    const chip = (st==="sent" ? `<span class="fb-chip sent">Sent${fb.readAt?" · read":""}</span>` : st==="draft" ? `<span class="fb-chip draft">Draft</span>` : `<span class="fb-chip none">Not reviewed</span>`) + (fb && fb.auto && !fb.editedByTrainer ? `<span class="fb-chip auto">auto</span>` : "");
+    const chip = (st==="new" ? `<span class="fb-chip draft">Writing…</span>` : st==="sent" ? `<span class="fb-chip sent">Sent${fb.readAt?" · read":""}</span>` : st==="draft" ? `<span class="fb-chip draft">Draft</span>` : `<span class="fb-chip none">Not reviewed</span>`) + (fb && fb.auto && !fb.editedByTrainer ? `<span class="fb-chip auto">auto</span>` : "");
     const f = fb || {};
     const ta = (k, v, rows)=>`<textarea id="fb_${sid}_${d.id}_${k}" rows="${rows}">${esc(v)}</textarea>`;
     return `<details class="fb-day" ${fb && st!=="sent" ? "open" : ""}>
-      <summary><b>Day ${d.id}</b> — ${esc(d.title)} ${chip}</summary>
-      <div class="fb-evidence">${esc(evidenceText(ev)).split("\n").map(x=>`<div>• ${x}</div>`).join("")}</div>
+      <summary><b>Day ${d.id}</b> — ${esc(d.title)} ${chip}${ev.active?"":` <span class="fb-chip none">no work yet</span>`}</summary>
+      ${ev.active ? `<div class="fb-evidence"><b>Their work this day:</b>${esc(evidenceText(ev)).split("\n").map(x=>`<div>• ${x}</div>`).join("")}</div>` : ""}
       ${fb ? `<div class="fb-form">
         <label>Overall<select id="fb_${sid}_${d.id}_rating">${["Strong","On Track","Needs Support"].map(o=>`<option ${f.rating===o?"selected":""}>${o}</option>`).join("")}</select></label>
         <label>Summary${ta("summary", f.summary||"", 3)}</label>
@@ -19312,7 +19351,8 @@ function renderFeedbackAdmin(rec){
         <label>Private trainer note (not shown to trainee)${ta("note", f.trainerNote||"", 2)}</label>
       </div>` : ""}
       <div class="fb-actions">
-        <button class="btn btn-ghost btn-sm" onclick="draftDayFeedback('${rec.id}', ${d.id})">${fb?"↻ Redraft with AI":"✨ Draft with AI"}</button>
+        ${!fb ? `<button class="btn btn-navy btn-sm" onclick="startManualFeedback('${rec.id}', ${d.id})">✍ Write feedback</button>` : ""}
+        ${ev.active ? `<button class="btn btn-ghost btn-sm" onclick="draftDayFeedback('${rec.id}', ${d.id})" title="Optional: pre-fill the form from their work, then edit it">${fb&&st!=="new"?"↻ Suggest wording (AI)":"✨ Suggest wording (AI)"}</button>` : ""}
         ${fb ? `<button class="btn btn-ghost btn-sm" onclick="saveDayFeedback('${rec.id}', ${d.id}, false)">Save draft</button>
         <button class="btn btn-primary btn-sm" onclick="saveDayFeedback('${rec.id}', ${d.id}, true)">${st==="sent"?"Update & resend":"Send to trainee"}</button>` : ""}
       </div>
@@ -19322,12 +19362,12 @@ function renderFeedbackAdmin(rec){
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
       <div class="sidebar-section-lbl" style="padding-left:0;">Day-by-Day Feedback</div>
       <div style="display:flex;gap:8px;"><button class="btn btn-ghost btn-sm" onclick="loadTraineeWork('${rec.id}', true)">↻ Refresh work</button>
-      <button class="btn btn-navy btn-sm" onclick="draftAllFeedback('${rec.id}')">✨ Draft feedback for all active days</button>
+      <button class="btn btn-ghost btn-sm" onclick="draftAllFeedback('${rec.id}')" title="Optional: pre-fill forms with AI-suggested wording for you to edit">✨ Suggest wording for all days (AI)</button>
       ${Object.values(work.feedback.days).some(v=>v&&v.status==="draft") ? `<button class="btn btn-primary btn-sm" onclick="sendAllDrafts('${rec.id}')">📤 Send all ${Object.values(work.feedback.days).filter(v=>v&&v.status==="draft").length} drafts</button>` : ""}</div>
     </div>
     ${(()=>{ const act = DAYS.filter(d=>dayEvidence(rec, work, d.id).active).length; const sent = Object.values(work.feedback.days).filter(v=>v&&v.status==="sent").length; const dr = Object.values(work.feedback.days).filter(v=>v&&v.status==="draft").length;
-      return act ? `<p class="fb-summary">${act} active day(s) · <b>${sent} sent</b> · ${dr} draft(s) · ${Math.max(0,act-sent-dr)} not reviewed — trainees only see days marked <b>Sent</b>.</p>` : ""; })()}
-    ${rows || `<p style="font-size:12.5px;color:var(--ink-soft);">No activity yet — feedback becomes available once the trainee starts a day.</p>`}
+      return act ? `<p class="fb-summary">${act} active day(s) · <b>${sent} sent</b> · ${dr} draft(s) · ${Math.max(0,act-sent-dr)} not reviewed — trainees only see feedback you <b>send</b>. Click <b>✍ Write feedback</b> on a day to write it yourself.</p>` : ""; })()}
+    ${rows}
   </div>`;
 }
 
@@ -19364,13 +19404,12 @@ async function loadMyFeedback(){
   if(!state.traineeId || state.isAdmin) return;
   loadMyFocus();
   await loadMyFeedbackCore();
-  setTimeout(()=>backfillReviews(), 1500);
 }
 async function loadMyFeedbackCore(){
   if(!state.traineeId || state.isAdmin) return;
   const fb = await sharedGet("feedback:"+state.traineeId).catch(()=>null);
   const sent = {};
-  if(fb && fb.days) Object.entries(fb.days).forEach(([k,v])=>{ if(v && v.status==="sent") sent[k]=v; });
+  if(fb && fb.days) Object.entries(fb.days).forEach(([k,v])=>{ if(v && v.status==="sent" && (!v.auto || v.editedByTrainer)) sent[k]=v; });
   const newOnes = Object.entries(sent).filter(([k,v])=>!v.readAt).map(([k])=>k);
   const changed = JSON.stringify(sent) !== JSON.stringify(state.myFeedback||{});
   state.myFeedback = sent; state.myFeedbackRaw = fb;
@@ -22552,7 +22591,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-a";
+var APP_BUILD = "2026.09.25-c";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
