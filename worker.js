@@ -59,7 +59,7 @@ function candidateIds(name, batch) {
 }
 
 /* ---------- what a trainee may touch ---------- */
-const PUBLIC_READ = [/^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
+const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
 const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemptsResetAt", "certTrainer", "aiReview", "flaggedInvalidInput", "assignedRoleplay", "registeredAt"];
 
@@ -166,6 +166,14 @@ export default {
       const url = new URL(request.url);
       const path = url.pathname;
       const secure = !!env.ADMIN_PASSPHRASE;
+      if (path === "/blueprint.pdf") {
+        // The Platform Blueprint PDF, rebuilt automatically by the portal after each update (trainee-safe content).
+        const raw = env.LSH_KV ? await env.LSH_KV.get("blueprint:pdf") : null;
+        if (!raw) return new Response("The Platform Blueprint hasn't been generated yet — an admin opening the portal builds it automatically within a minute.", { status: 404, headers: { "Content-Type": "text/plain" } });
+        const { b64, build } = JSON.parse(raw);
+        const bin = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+        return new Response(bin, { headers: { "Content-Type": "application/pdf", "Content-Disposition": `inline; filename="LSH_EA-PA_Platform_Blueprint_${build}.pdf"`, "Cache-Control": "no-cache" } });
+      }
       if (path === "/version" || path === "/api/version") {
         // Diagnostic: shows which portal build is actually deployed.
         const page = await env.ASSETS.fetch(new Request(new URL("/", request.url)));
@@ -237,7 +245,7 @@ export default {
           if (batch && slugPart(r.batch) !== batch) continue;
           const parts = String(r.name || "Trainee").trim().split(/\s+/);
           const short = parts.length > 1 ? `${parts[0]} ${parts[parts.length - 1][0]}.` : parts[0];
-          const dp = {}; Object.entries(r.dayProgress || {}).forEach(([d, v]) => { if (v) dp[d] = { done: !!v.done, score: v.score }; });
+          const dp = {}; Object.entries(r.dayProgress || {}).forEach(([d, v]) => { if (v) dp[d] = { done: !!v.done, score: v.score, surpriseTaskScore: v.surpriseTaskScore }; });
           const pp = {}; Object.entries(r.practiceProgress || {}).forEach(([t, v]) => { if (v) pp[t] = { runs: v.runs || 0, bestScore: v.bestScore }; });
           out.push({ me: r.id === tok.id, id: r.id === tok.id ? tok.id : "", name: short, batch: r.batch || "", approved: true, dayProgress: dp, practiceProgress: pp });
         }
