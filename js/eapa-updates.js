@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "v" (2026-09-26)
+   LSH EA/PA portal — update pack "x" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -10,11 +10,11 @@
      4. Presenter view: share only the slides in Meet, see trainer cues yourself.
      5. All lesson content centred; Orientation deck + Blueprint refreshed.
      6. Email Outreach: capstone Day 4 topic + Email Outreach Simulator (Day 4 lab, Part 4).
-     7. Inbox Zero works like Gmail (Day 2 lab).
+     7. Inbox Triage + Inbox Zero merged into one Gmail inbox with labels & sub-labels (Day 2 lab).
      8. Day 3 "Proactive EA Tasks" is now a written, graded exercise.
      9. Practice Lab pages in the platform page style (hero, activity headings, cards, buttons).
    ============================================================ */
-window.EAPA_UPDATE_PACK = "v";
+window.EAPA_UPDATE_PACK = "x";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
@@ -1208,7 +1208,12 @@ window.initColdCalling4 = function(body){
   if(t){ t.title = "Cold-Calling, Lead Generation & Email Outreach"; t.desc = "Log a full round of cold-calling outreach, draft a real lead-generation plan, handle a live intake call, then run an email outreach sequence against a prospect who replies — or doesn't — the way a busy professional really would."; }
 })();
 
-/* ---------- 7. Inbox Zero, Gmail-style (Day 2 lab) ----------
+/* ---------- 7. Inbox Triage + Inbox Zero, one Gmail-style inbox (Day 2 lab) ----------
+   The 10 scenario emails (filing, client replies, a phishing trap) and 15
+   generated "overnight" emails live in ONE inbox. Trainees file with Gmail
+   labels (create folders, nest sub-labels), and clear the inbox with one
+   decision per email. One submission grades filing, security, triage and
+   reply writing.
    The drag-into-quadrants board is replaced by an inbox that behaves like
    Gmail: list rows with hover actions, bold unread mail, an open-email reading
    view, toolbar, snooze menu, forward window, Undo snackbar, Gmail keyboard
@@ -1290,6 +1295,34 @@ window.initColdCalling4 = function(body){
 @media(max-width:860px){.gm-body{grid-template-columns:1fr;} .gm-nav{display:flex;gap:4px;overflow-x:auto;padding:4px 8px;} .gm-nav .gm-compose{display:none;} .gm-folder{width:auto;white-space:nowrap;border-radius:16px;} .gm-folder small{display:none;} .gm-main{margin:0 8px 8px;} .gm-from{width:110px;} .gm-logo{min-width:0;} .gm-logo span{display:none;} .gm-read h2, .gm-msg, .gm-replybar{margin-left:20px;}}
 `; document.head.appendChild(s); })();
 
+(function(){ const s = document.createElement("style"); s.id = "eapa-gmail-2"; s.textContent = `
+.gm-lblhead{display:flex;align-items:center;justify-content:space-between;padding:14px 12px 4px 16px;font-size:14px;font-weight:600;color:#202124;}
+.gm-lblhead button{border:none;background:none;font-size:20px;line-height:1;cursor:pointer;color:#444746;width:28px;height:28px;border-radius:50%;} .gm-lblhead button:hover{background:#e9eaed;}
+.gm-lbl{display:flex;align-items:center;gap:10px;width:100%;border:none;background:none;font:inherit;font-size:13.5px;color:#202124;height:30px;border-radius:0 16px 16px 0;cursor:pointer;text-align:left;padding-right:12px;}
+.gm-lbl:hover{background:#e9eaed;} .gm-lbl.on{background:#d3e3fd;font-weight:700;}
+.gm-lbl i{width:10px;height:10px;border-radius:2px;flex-shrink:0;} .gm-lbl span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} .gm-lbl em{font-style:normal;font-size:12px;color:#5f6368;}
+.gm-chip{display:inline-block;font-size:11.5px;font-weight:600;border-radius:4px;padding:1px 6px;margin-right:6px;color:#fff;vertical-align:1px;}
+.gm-dialog{position:absolute;inset:0;background:rgba(32,33,36,.45);display:flex;align-items:center;justify-content:center;z-index:40;}
+.gm-dialog > div{background:#fff;border-radius:24px;padding:22px 24px;width:min(400px,92%);box-shadow:0 8px 24px rgba(0,0,0,.25);}
+.gm-dialog h6{margin:0 0 14px;font-size:20px;font-weight:400;color:#202124;}
+.gm-dialog label{display:block;font-size:12.5px;color:#444746;margin:10px 0 4px;}
+.gm-dialog input[type=text], .gm-dialog select{width:100%;box-sizing:border-box;font:inherit;font-size:14px;border:1px solid #747775;border-radius:4px;padding:10px;}
+.gm-dialog .row{display:flex;justify-content:flex-end;gap:8px;margin-top:18px;}
+.gm-dialog .row button{border:none;background:none;font:inherit;font-weight:600;color:#0b57d0;padding:9px 16px;border-radius:18px;cursor:pointer;} .gm-dialog .row button.pri{background:#0b57d0;color:#fff;}
+.gm-lblmenu button .ind{display:inline-block;} .gm-lblmenu button.on{background:#e8f0fe;font-weight:700;}
+.gm-loading{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13px;color:#5f6368;background:#fff8e1;border-bottom:1px solid #f1f3f4;}
+.gm-loading.err{background:#fce8e6;color:#a50e0e;} .gm-loading button{border:none;background:none;color:#0b57d0;font:inherit;font-weight:600;cursor:pointer;}
+.gm-link{color:#0b57d0;text-decoration:underline;cursor:pointer;}
+.gm-howto{background:#fff;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:12px;padding:12px 16px;margin:0 0 12px;font-size:13.5px;line-height:1.6;color:#37394A;}
+.gm-howto b{color:var(--navy);}
+.gm-fail{background:#fce8e6;border:1px solid #f5c2bd;border-radius:14px;padding:18px 20px;color:#7a352c;}
+.gm-fail h3{margin:0 0 6px !important;color:#a50e0e !important;font-size:19px !important;}
+.gm-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 14px;}
+.gm-tiles div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;} .gm-tiles b{display:block;font-size:24px;color:var(--navy);font-family:'Fraunces',Georgia,serif;} .gm-tiles span{font-size:12px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+.gm-tiles div.all{background:var(--navy);border-color:var(--navy);} .gm-tiles div.all b, .gm-tiles div.all span{color:#fff;}
+@media(max-width:860px){.gm-lblhead, .gm-lbl{display:none;}}
+`; document.head.appendChild(s); })();
+
 const GM_ICON = {
   archive:'<svg viewBox="0 0 24 24"><path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM12 17.5L6.5 12H10v-2h4v2h3.5L12 17.5zM5.12 5l.81-1h12l.94 1H5.12z"/></svg>',
   trash:'<svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>',
@@ -1303,7 +1336,9 @@ const GM_ICON = {
   unread:'<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>',
   search:'<svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>',
   pencil:'<svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 000-1.41l-2.34-2.34a.996.996 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>',
-  refresh:'<svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>'
+  refresh:'<svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>',
+  label:'<svg viewBox="0 0 24 24"><path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16zM16 17H5V7h11l3.55 5L16 17z"/></svg>',
+  report:'<svg viewBox="0 0 24 24"><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM19 14.9L14.9 19H9.1L5 14.9V9.1L9.1 5h5.8L19 9.1v5.8zM11 7h2v6h-2zm0 8h2v2h-2z"/></svg>'
 };
 const GM_ACTIONS = {
   reply:  {q:"1", folder:"starred",   verb:"Replied",   done:"Reply sent."},
@@ -1311,7 +1346,8 @@ const GM_ACTIONS = {
   snooze: {q:"2", folder:"snoozed",   verb:"Snoozed",   done:"Snoozed"},
   forward:{q:"3", folder:"forwarded", verb:"Forwarded", done:"Message forwarded."},
   archive:{q:"4", folder:"archive",   verb:"Archived",  done:"Conversation archived."},
-  trash:  {q:"4", folder:"trash",     verb:"Deleted",   done:"Conversation moved to Trash."}
+  trash:  {q:"4", folder:"trash",     verb:"Deleted",   done:"Conversation moved to Trash."},
+  report: {q:"R", folder:"spam",      verb:"Reported",  done:"Reported as phishing and moved to Spam."}
 };
 const GM_FOLDERS = [
   {id:"inbox", name:"Inbox", icon:"inbox"},
@@ -1319,118 +1355,161 @@ const GM_FOLDERS = [
   {id:"snoozed", name:"Snoozed", sub:"Schedule", icon:"snooze"},
   {id:"forwarded", name:"Forwarded", sub:"Delegate", icon:"forward"},
   {id:"archive", name:"All mail", sub:"Archived — defer", icon:"archive"},
-  {id:"trash", name:"Trash", sub:"Delete", icon:"trash"}
+  {id:"trash", name:"Trash", sub:"Delete", icon:"trash"},
+  {id:"spam", name:"Spam", sub:"Reported phishing", icon:"report"}
 ];
 const GM_SNOOZE = [["Later today","6:00 PM"],["Tomorrow","Tue, 8:00 AM"],["This weekend","Sat, 8:00 AM"],["Next week","Mon, 8:00 AM"]];
 const GM_DELEGATES = ["Priya Nair — Communications & PR", "Litigation associate on the matter", "Billing & Finance team", "Office Manager / IT", "Household Manager", "Paralegal team"];
+const GM_PALETTE = ["#B54A3F","#6B4FA0","#DB8437","#3F7D58","#3C4268","#2C7A7B","#7C82A0","#A8ADBD","#4A2545","#0b57d0","#e37400","#188038"];
+const GM_STORE = "inbox-gmail-v2";
+const GM_RUSH = 15;
 
-function gmIz(){ const iz = toolState.iz || (toolState.iz = {inbox:[], placements:{}}); iz.meta = iz.meta || {}; iz.read = iz.read || {}; iz.sel = iz.sel || {}; iz.folder = iz.folder || "inbox"; return iz; }
-function gmSave(){ const iz = gmIz(); storeSet("iz-gmail", {inbox:iz.inbox, placements:iz.placements, meta:iz.meta, read:iz.read, startedAt:iz.startedAt, result:iz.result||null}); }
+/* ----- state ----- */
+function gmMinutes(t){ const m = String(t||"").match(/(\d+):(\d+)\s*(AM|PM)/i); if(!m) return 0; let h = +m[1]%12; if(/pm/i.test(m[3])) h += 12; return h*60 + +m[2]; }
+function gmFixedEmails(){
+  return EMAIL_SIM_MESSAGES.map((m,i)=>({id:"s"+i, fixed:true, fi:i, type:m.type, correctLabel:m.correctLabel, from:m.from, subject:m.subj,
+    preview:String(m.body).replace(/\{\{LINK:(.*?)\}\}/g,"$1").replace(/\s+/g," ").slice(0,110), body:m.body, time:m.meta,
+    idealQuadrant: m.type==="actionable" ? "1" : (m.type==="phishing" ? "R" : "4")}));
+}
+function gmIz(){
+  const iz = toolState.iz || (toolState.iz = {inbox:[], placements:{}});
+  iz.meta = iz.meta || {}; iz.read = iz.read || {}; iz.sel = iz.sel || {}; iz.folder = iz.folder || "inbox"; iz.lab = iz.lab || {}; iz.notes = iz.notes || {};
+  if(!iz.inbox.some(e=>e.fixed)) iz.inbox = gmFixedEmails().concat(iz.inbox.filter(e=>!e.fixed));
+  if(!iz.labels) iz.labels = (toolState.esim && toolState.esim.labels && toolState.esim.labels.length) ? toolState.esim.labels : LABEL_LEGEND.map((l,i)=>({id:"default_"+i, name:l.label, parentId:null, color:l.color}));
+  iz.rush = iz.rush || "idle";
+  return iz;
+}
+function gmSave(){ const iz = gmIz(); storeSet(GM_STORE, {inbox:iz.inbox, placements:iz.placements, meta:iz.meta, read:iz.read, lab:iz.lab, notes:iz.notes, startedAt:iz.startedAt, result:iz.result||"", rush:iz.rush==="done"?"done":"idle", fail:iz.fail||null}); storeSet("inbox-labels", iz.labels); }
+function gmSorted(list){ return list.slice().sort((a,b)=>gmMinutes(b.time)-gmMinutes(a.time)); }
 function gmFolderOf(e){ const m = gmIz().meta[e.id]; return m ? GM_ACTIONS[m.action].folder : "inbox"; }
+function gmLabel(id){ return gmIz().labels.find(l=>l.id===id); }
+function gmLabelChildren(pid){ return gmIz().labels.filter(l=>(l.parentId||null)===(pid||null)); }
+function gmLabelChain(id){ const out = []; let c = gmLabel(id); while(c){ out.push(c.name); c = c.parentId ? gmLabel(c.parentId) : null; } return out; }
+function gmLabelPath(id){ return gmLabelChain(id).reverse().join(" / "); }
+function gmLabelDesc(id){ const out = [id]; gmLabelChildren(id).forEach(c=>out.push(...gmLabelDesc(c.id))); return out; }
+function gmLabelTree(pid, depth, out){ out = out || []; gmLabelChildren(pid).forEach(l=>{ out.push({l, depth:depth||0}); gmLabelTree(l.id, (depth||0)+1, out); }); return out; }
 function gmVisible(){
   const iz = gmIz(), q = (iz.search||"").toLowerCase();
-  return iz.inbox.filter(e=>gmFolderOf(e)===iz.folder && (!q || (e.from+" "+e.subject+" "+(e.body||e.preview)).toLowerCase().includes(q)));
+  const inFolder = (e)=> iz.folder.startsWith("label:") ? gmLabelDesc(iz.folder.slice(6)).includes(iz.lab[e.id]) : gmFolderOf(e)===iz.folder;
+  return gmSorted(iz.inbox.filter(e=>inFolder(e) && (!q || (e.from+" "+e.subject+" "+(e.body||e.preview)+" "+(iz.lab[e.id]?gmLabelPath(iz.lab[e.id]):"")).toLowerCase().includes(q))));
 }
 function gmName(from){ const m = String(from).match(/^\s*"?([^"<]+?)"?\s*<([^>]+)>/); return m ? {name:m[1].trim(), email:m[2].trim()} : {name:String(from), email:""}; }
+function gmChip(id){ const l = gmLabel(id); return l ? `<span class="gm-chip" style="background:${l.color||"#7C82A0"}">${esc(gmLabelPath(id))}</span>` : ""; }
 
-function renderInboxZeroSection(){
+/* ----- the merged inbox replaces both the old Inbox Triage box and the separate Inbox Zero board ----- */
+function renderInboxZeroSection(){ return ""; }
+window.renderEsimBody = function(body){
+  if(!body) return;
   const iz = gmIz();
-  if(!iz.inbox.length && !toolState.gmRestoreTried){
+  if(!toolState.gmRestoreTried){
     toolState.gmRestoreTried = true;
-    storeGet("iz-gmail").then(v=>{ if(v && v.inbox && v.inbox.length && !gmIz().inbox.length){ Object.assign(toolState.iz, v); gmRender(); } });
+    storeGet(GM_STORE).then(v=>{ if(v && v.inbox && v.inbox.length){ Object.assign(toolState.iz, v); if(toolState.iz.rush!=="done") toolState.iz.rush = "idle"; } gmRender(); gmMaybeRush(); });
   }
-  return `
-    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">Inbox Zero — Eisenhower Matrix Challenge</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias's inbox after a red-eye: 25 overlapping, conflicting, urgent emails — different every time. Work it exactly like Gmail until you reach Inbox Zero. Every email leaves the Inbox through one decision.</p>
-    <div id="gmZone">${gmView()}</div>`;
-}
+  body.innerHTML = `<div class="gm-howto">This is Elias's real inbox. <b>File every email under a label</b> (create your own folders and nest sub-labels under them), then clear the Inbox with <b>one decision per email</b>: Reply or ⭐ Star = Do · 🕒 Snooze = Schedule · ↪ Forward = Delegate · Archive or 🗑 = Delete/Defer · 🚩 Report phishing. Reply to clients in <b>their</b> style (ACT: Acknowledge, Clarify, Timeline). More mail arrives while you work. Watch for anything suspicious.</div><div id="gmZone">${gmView()}</div>`;
+};
 function gmRender(){ const z = document.getElementById("gmZone"); if(z){ const hadFocus = document.activeElement && document.activeElement.id==="gmShell"; z.innerHTML = gmView(); if(hadFocus){ const s = document.getElementById("gmShell"); if(s) s.focus({preventScroll:true}); } } }
 function gmView(){
   const iz = gmIz();
-  if(!iz.inbox.length){
-    return `<div class="card" style="padding:16px 18px;">
-      <b style="font-size:13px;color:var(--navy);">Load Elias's inbox</b>
-      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 10px;">25 emails landed while he was offline. Nothing is pre-sorted.</p>
-      <button class="btn btn-orange btn-sm" id="izGenBtn" onclick="izGenerateInbox()">Generate 25-Email Inbox</button>
-      <span id="izGenStatus" style="margin-left:10px;font-size:12px;color:var(--ink-soft);"></span>
-    </div>`;
+  if(iz.fail){
+    return `<div class="gm-fail"><h3>❌ Exercise failed — the phishing attempt succeeded</h3><p>${esc(iz.fail.reason)}</p>
+      <p><b>What gave it away:</b></p><ul>${(iz.fail.redFlags||[]).map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+      <button class="btn btn-primary" onclick="gmRestart()">Try again</button></div>`;
   }
-  const handled = iz.inbox.filter(e=>iz.meta[e.id]).length, total = iz.inbox.length;
+  const total = iz.inbox.length, handled = iz.inbox.filter(e=>iz.meta[e.id]).length;
+  const fixed = iz.inbox.filter(e=>e.fixed), filed = fixed.filter(e=>iz.lab[e.id]).length;
   const unreadIn = iz.inbox.filter(e=>gmFolderOf(e)==="inbox" && !iz.read[e.id]).length;
   const counts = {}; iz.inbox.forEach(e=>{ const f = gmFolderOf(e); counts[f] = (counts[f]||0)+1; });
+  const lblCount = {}; Object.values(iz.lab).forEach(id=>{ lblCount[id] = (lblCount[id]||0)+1; });
   const open = iz.open && iz.inbox.find(e=>e.id===iz.open);
+  const ready = handled===total && filed===fixed.length && iz.rush!=="loading";
   return `<div class="gm" id="gmShell" tabindex="0" onkeydown="gmKey(event)">
     <div class="gm-top">
       <div class="gm-logo"><b>M</b><span>Mail</span></div>
       <label class="gm-search">${GM_ICON.search}<input placeholder="Search mail" value="${esc(iz.search||"")}" oninput="gmSearch(this.value)"></label>
       <div class="gm-avatar" title="Elias Thorne's mailbox — you have delegate access">ET</div>
     </div>
-    <div class="gm-progress"><i style="width:${Math.round(handled/total*100)}%"></i></div>
+    <div class="gm-progress"><i style="width:${Math.round(handled/Math.max(total,1)*100)}%"></i></div>
     <div class="gm-body">
       <nav class="gm-nav">
         <button class="gm-compose" title="Not needed for this exercise" disabled>${GM_ICON.pencil} Compose</button>
         ${GM_FOLDERS.map(f=>`<button class="gm-folder ${f.sub?"two":""} ${iz.folder===f.id?"on":""}" onclick="gmFolder('${f.id}')">${GM_ICON[f.icon]}<span>${f.name}${f.sub?`<small>${f.sub}</small>`:""}</span><em>${f.id==="inbox" ? (unreadIn||"") : (counts[f.id]||"")}</em></button>`).join("")}
+        <div class="gm-lblhead">Labels <button title="Create new label" onclick="gmNewLabel()">+</button></div>
+        ${gmLabelTree(null).map(({l,depth})=>`<button class="gm-lbl ${iz.folder==="label:"+l.id?"on":""}" style="padding-left:${16+depth*16}px" onclick="gmFolder('label:${l.id}')" title="${esc(gmLabelPath(l.id))}"><i style="background:${l.color||"#7C82A0"}"></i><span>${esc(l.name)}</span><em>${lblCount[l.id]||""}</em></button>`).join("")}
       </nav>
       <section class="gm-main">${open ? gmReaderHtml(open) : gmListHtml()}</section>
     </div>
     <div class="gm-legend">
-      <span><b>Do:</b> Reply or ⭐ Star</span><span><b>Schedule:</b> 🕒 Snooze</span><span><b>Delegate:</b> ↪ Forward</span><span><b>Delete/Defer:</b> Archive or 🗑</span>
-      <span title="Gmail keyboard shortcuts">⌨ <span class="gm-kbd">j</span>/<span class="gm-kbd">k</span> move · <span class="gm-kbd">o</span> open · <span class="gm-kbd">u</span> back · <span class="gm-kbd">e</span> archive · <span class="gm-kbd">#</span> delete · <span class="gm-kbd">s</span> star · <span class="gm-kbd">b</span> snooze · <span class="gm-kbd">f</span> forward · <span class="gm-kbd">r</span> reply · <span class="gm-kbd">z</span> undo</span>
-      <span class="gm-submit">${handled}/${total} handled ${handled===total ? `<button class="btn btn-navy btn-sm" onclick="izSubmitSort()">Submit for Grading</button>` : ""}</span>
+      <span><b>Do:</b> Reply or ⭐</span><span><b>Schedule:</b> 🕒 Snooze</span><span><b>Delegate:</b> ↪ Forward</span><span><b>Defer:</b> Archive / 🗑</span><span><b>Suspicious:</b> 🚩 Report</span><span><b>File:</b> 🏷 Label</span>
+      <span title="Gmail keyboard shortcuts">⌨ <span class="gm-kbd">j</span>/<span class="gm-kbd">k</span> · <span class="gm-kbd">o</span> open · <span class="gm-kbd">u</span> back · <span class="gm-kbd">e</span> archive · <span class="gm-kbd">#</span> delete · <span class="gm-kbd">s</span> star · <span class="gm-kbd">b</span> snooze · <span class="gm-kbd">f</span> forward · <span class="gm-kbd">r</span> reply · <span class="gm-kbd">l</span> label · <span class="gm-kbd">!</span> report · <span class="gm-kbd">z</span> undo</span>
+      <span class="gm-submit">${handled}/${total} handled · ${filed}/${fixed.length} filed ${ready ? `<button class="btn btn-navy btn-sm" onclick="gmSubmit()">Submit for Grading</button>` : ""}</span>
     </div>
-    ${iz.menu ? gmMenuHtml() : ""}
+    ${iz.menu ? (iz.menu.type==="label" ? gmLabelMenuHtml() : gmMenuHtml()) : ""}
     ${iz.compose ? gmComposeHtml() : ""}
-    ${iz.snack ? `<div class="gm-snack"><span>${esc(iz.snack)}</span><button onclick="gmUndo()">Undo</button></div>` : ""}
+    ${iz.dialog ? gmDialogHtml() : ""}
+    ${iz.snack ? `<div class="gm-snack"><span>${esc(iz.snack)}</span>${iz.undo ? `<button onclick="gmUndo()">Undo</button>` : ""}</div>` : ""}
   </div>
-  <div id="izSortResult" style="margin-top:14px;">${iz.result || ""}</div>
-  <div style="margin-top:8px;"><button class="btn btn-ghost btn-sm" onclick="gmRegenerate()">↻ Generate a new inbox</button> <span id="izGenStatus" style="margin-left:8px;font-size:12px;color:var(--ink-soft);"></span></div>`;
+  <div id="izSortResult" style="margin-top:14px;">${iz.result || ""}</div>`;
+}
+function gmRushRow(){
+  const iz = gmIz();
+  if(iz.folder!=="inbox") return "";
+  if(iz.rush==="loading") return `<div class="gm-loading">⏳ New mail is arriving…</div>`;
+  if(iz.rush==="failed") return `<div class="gm-loading err">Couldn't load the overnight emails. <button onclick="gmRush()">Retry</button> <span>— or work the ${iz.inbox.filter(e=>e.fixed).length} emails you have.</span></div>`;
+  return "";
 }
 function gmListHtml(){
   const iz = gmIz(), rows = gmVisible();
   const selIds = rows.filter(e=>iz.sel[e.id]).map(e=>e.id);
   const inInbox = iz.folder==="inbox";
-  const bulk = (a, tip)=>`<button class="gm-ib" data-tip="${tip}" ${selIds.length?"":"disabled"} onclick="gmBulk('${a}')">${GM_ICON[a==="star"?"star":a]}</button>`;
+  const bulk = (a, tip, icon)=>`<button class="gm-ib" data-tip="${tip}" ${selIds.length?"":"disabled"} onclick="gmBulk('${a}')">${GM_ICON[icon||a]}</button>`;
   let body;
   if(!rows.length){
+    const allDone = iz.inbox.every(e=>iz.meta[e.id]);
+    const unfiled = iz.inbox.filter(e=>e.fixed && !iz.lab[e.id]).length;
     body = inInbox && !iz.search
-      ? `<div class="gm-done"><div class="sun">☀️</div><b>You're all done!</b><div>Nothing in Inbox — that's Inbox Zero.</div>${iz.inbox.every(e=>iz.meta[e.id]) ? `<button class="btn btn-navy" style="margin-top:12px;" onclick="izSubmitSort()">Submit for Grading</button>` : ""}</div>`
-      : `<div class="gm-empty">${iz.search ? "No messages matched your search." : "No conversations in "+esc(GM_FOLDERS.find(f=>f.id===iz.folder).name)+"."}</div>`;
+      ? `<div class="gm-done"><div class="sun">☀️</div><b>You're all done!</b><div>Nothing in Inbox — that's Inbox Zero.</div>${allDone && !unfiled && iz.rush!=="loading" ? `<button class="btn btn-navy" style="margin-top:12px;" onclick="gmSubmit()">Submit for Grading</button>` : (unfiled ? `<div style="margin-top:8px;color:#b06000;">${unfiled} email${unfiled>1?"s":""} still need a label — find them in All mail, Starred or the other folders.</div>` : "")}</div>`
+      : `<div class="gm-empty">${iz.search ? "No messages matched your search." : "No conversations here."}</div>`;
   }else{
     body = rows.map((e,i)=>{
-      const n = gmName(e.from), m = iz.meta[e.id], unread = !iz.read[e.id];
+      const n = gmName(e.from), m = iz.meta[e.id], unread = !iz.read[e.id], live = !m;
       return `<div class="gm-row ${unread?"unread":""} ${iz.focus===i?"focus":""} ${iz.sel[e.id]?"sel":""}" onclick="gmOpen('${e.id}')">
         <input type="checkbox" class="gm-chk" ${iz.sel[e.id]?"checked":""} onclick="event.stopPropagation();gmSelect('${e.id}',this.checked)" aria-label="Select">
-        <button class="gm-ib gm-star ${m && m.action==="star"?"on":""}" onclick="event.stopPropagation();${inInbox?`gmAct(['${e.id}'],'star')`:""}" title="${inInbox?"Star (Do now)":""}">${m && m.action==="star" ? GM_ICON.starOn : GM_ICON.star}</button>
+        <button class="gm-ib gm-star ${m && m.action==="star"?"on":""}" onclick="event.stopPropagation();${live?`gmAct(['${e.id}'],'star')`:""}" title="${live?"Star (Do now)":""}">${m && m.action==="star" ? GM_ICON.starOn : GM_ICON.star}</button>
         <div class="gm-from">${esc(n.name)}</div>
-        <div class="gm-snip">${m && !inInbox ? `<span class="gm-tag">${esc(GM_ACTIONS[m.action].verb)}${m.detail?" · "+esc(m.detail):""}</span>` : ""}<span class="gm-subj">${esc(e.subject)}</span> — ${esc(e.preview||"")}</div>
+        <div class="gm-snip">${m && !inInbox ? `<span class="gm-tag">${esc(GM_ACTIONS[m.action].verb)}${m.detail?" · "+esc(m.detail):""}</span>` : ""}${iz.lab[e.id] ? gmChip(iz.lab[e.id]) : ""}<span class="gm-subj">${esc(e.subject)}</span> — ${esc(e.preview||"")}</div>
         <div class="gm-time">${esc(e.time||"")}</div>
-        <div class="gm-hover">${inInbox
-          ? `<button class="gm-ib" data-tip="Archive" onclick="event.stopPropagation();gmAct(['${e.id}'],'archive')">${GM_ICON.archive}</button><button class="gm-ib" data-tip="Delete" onclick="event.stopPropagation();gmAct(['${e.id}'],'trash')">${GM_ICON.trash}</button><button class="gm-ib" data-tip="Mark as unread" onclick="event.stopPropagation();gmUnread('${e.id}')">${GM_ICON.unread}</button><button class="gm-ib" data-tip="Snooze" onclick="event.stopPropagation();gmMenu(['${e.id}'])">${GM_ICON.snooze}</button>`
-          : `<button class="gm-ib" data-tip="Move to Inbox" onclick="event.stopPropagation();gmToInbox(['${e.id}'])">${GM_ICON.inbox}</button>`}</div>
+        <div class="gm-hover">${live
+          ? `<button class="gm-ib" data-tip="Archive" onclick="event.stopPropagation();gmAct(['${e.id}'],'archive')">${GM_ICON.archive}</button><button class="gm-ib" data-tip="Delete" onclick="event.stopPropagation();gmAct(['${e.id}'],'trash')">${GM_ICON.trash}</button><button class="gm-ib" data-tip="Label" onclick="event.stopPropagation();gmLabelMenu(['${e.id}'])">${GM_ICON.label}</button><button class="gm-ib" data-tip="Snooze" onclick="event.stopPropagation();gmMenu(['${e.id}'])">${GM_ICON.snooze}</button>`
+          : `<button class="gm-ib" data-tip="Label" onclick="event.stopPropagation();gmLabelMenu(['${e.id}'])">${GM_ICON.label}</button><button class="gm-ib" data-tip="Move to Inbox" onclick="event.stopPropagation();gmToInbox(['${e.id}'])">${GM_ICON.inbox}</button>`}</div>
       </div>`;
     }).join("");
   }
+  const title = iz.folder.startsWith("label:") ? `<span class="gm-count" style="margin-left:6px;">${gmChip(iz.folder.slice(6))}</span>` : "";
   return `<div class="gm-bar">
       <input type="checkbox" class="gm-chk" ${rows.length && selIds.length===rows.length?"checked":""} onclick="gmSelectAll(this.checked)" aria-label="Select all">
       <button class="gm-ib" data-tip="Refresh" onclick="gmRender()">${GM_ICON.refresh}</button>
-      ${inInbox ? bulk("archive","Archive")+bulk("trash","Delete")+`<button class="gm-ib" data-tip="Snooze" ${selIds.length?"":"disabled"} onclick="gmMenu(null)">${GM_ICON.snooze}</button>`+bulk("star","Star") : `<button class="gm-ib" data-tip="Move to Inbox" ${selIds.length?"":"disabled"} onclick="gmToInbox(null)">${GM_ICON.inbox}</button>`}
-      <span class="gm-count">${rows.length ? `1–${rows.length} of ${rows.length}` : ""}</span>
+      ${inInbox ? bulk("archive","Archive")+bulk("report","Report phishing")+bulk("trash","Delete")+`<button class="gm-ib" data-tip="Snooze" ${selIds.length?"":"disabled"} onclick="gmMenu(null)">${GM_ICON.snooze}</button>`+bulk("star","Star") : `<button class="gm-ib" data-tip="Move to Inbox" ${selIds.length?"":"disabled"} onclick="gmToInbox(null)">${GM_ICON.inbox}</button>`}
+      <button class="gm-ib" data-tip="Label as" ${selIds.length?"":"disabled"} onclick="gmLabelMenu(null)">${GM_ICON.label}</button>
+      ${title}<span class="gm-count">${rows.length ? `1–${rows.length} of ${rows.length}` : ""}</span>
     </div>
+    ${gmRushRow()}
     <div class="gm-list">${body}</div>`;
 }
 function gmReaderHtml(e){
-  const iz = gmIz(), n = gmName(e.from), m = iz.meta[e.id], inInbox = !m;
-  const paras = String(e.body || e.preview || "").split(/\n+/).map(p=>`<p>${esc(p)}</p>`).join("");
+  const iz = gmIz(), n = gmName(e.from), m = iz.meta[e.id], live = !m;
+  const paras = String(e.body || e.preview || "").split(/\n+/).map(p=>`<p>${esc(p).replace(/\{\{LINK:(.*?)\}\}/g, (_, t)=>`<a class="gm-link" onclick="gmPhishClick('${e.id}')">${t}</a>`)}</p>`).join("");
   const tb = (a, tip, fn)=>`<button class="gm-ib" data-tip="${tip}" onclick="${fn}">${GM_ICON[a]}</button>`;
   return `<div class="gm-bar">
-      ${tb("back","Back to "+esc(GM_FOLDERS.find(f=>f.id===iz.folder).name),"gmBack()")}
-      ${inInbox ? tb("archive","Archive",`gmAct(['${e.id}'],'archive')`)+tb("trash","Delete",`gmAct(['${e.id}'],'trash')`)+tb("unread","Mark as unread",`gmUnread('${e.id}')`)+tb("snooze","Snooze",`gmMenu(['${e.id}'])`)+tb("star","Star (Do now)",`gmAct(['${e.id}'],'star')`) : tb("inbox","Move to Inbox",`gmToInbox(['${e.id}'])`)}
+      ${tb("back","Back","gmBack()")}
+      ${live ? tb("archive","Archive",`gmAct(['${e.id}'],'archive')`)+tb("report","Report phishing",`gmAct(['${e.id}'],'report')`)+tb("trash","Delete",`gmAct(['${e.id}'],'trash')`)+tb("unread","Mark as unread",`gmUnread('${e.id}')`)+tb("snooze","Snooze",`gmMenu(['${e.id}'])`)+tb("star","Star (Do now)",`gmAct(['${e.id}'],'star')`) : tb("inbox","Move to Inbox",`gmToInbox(['${e.id}'])`)}
+      ${tb("label","Label as",`gmLabelMenu(['${e.id}'])`)}
     </div>
     <div class="gm-read">
-      <h2>${esc(e.subject)} <span class="gm-tag">${m ? esc(GM_ACTIONS[m.action].verb)+(m.detail?" · "+esc(m.detail):"") : "Inbox"}</span></h2>
-      <div class="gm-sender"><div class="gm-av">${esc((n.name[0]||"?").toUpperCase())}</div><div><b>${esc(n.name)}</b> <span>&lt;${esc(n.email)}&gt;</span><br><span>to Elias Thorne</span></div><span class="gm-when">${esc(e.time||"")}</span></div>
+      <h2>${esc(e.subject)} <span class="gm-tag">${m ? esc(GM_ACTIONS[m.action].verb)+(m.detail?" · "+esc(m.detail):"") : "Inbox"}</span>${iz.lab[e.id] ? gmChip(iz.lab[e.id]) : ""}</h2>
+      <div class="gm-sender"><div class="gm-av">${esc((n.name[0]||"?").toUpperCase())}</div><div><b>${esc(n.name)}</b> <span>${n.email ? "&lt;"+esc(n.email)+"&gt;" : ""}</span><br><span>to me</span></div><span class="gm-when">${esc(e.time||"")}</span></div>
       <div class="gm-msg">${paras}</div>
-      ${inInbox ? `<div class="gm-replybar"><button class="gm-pill" onclick="gmCompose('${e.id}','reply')">${GM_ICON.reply} Reply</button><button class="gm-pill" onclick="gmCompose('${e.id}','forward')">${GM_ICON.forward} Forward</button></div>` : ""}
+      ${iz.notes[e.id] ? `<div class="gm-msg" style="border-left:3px solid #dadce0;padding-left:12px;color:#5f6368;"><b>${m && m.action==="forward" ? "Your handoff note" : "Your reply"}:</b><br>${esc(iz.notes[e.id]).replace(/\n/g,"<br>")}</div>` : ""}
+      ${live ? `<div class="gm-replybar"><button class="gm-pill" onclick="gmCompose('${e.id}','reply')">${GM_ICON.reply} Reply</button><button class="gm-pill" onclick="gmCompose('${e.id}','forward')">${GM_ICON.forward} Forward</button></div>` : ""}
     </div>`;
 }
 function gmMenuHtml(){
@@ -1438,6 +1517,25 @@ function gmMenuHtml(){
     ${GM_SNOOZE.map(([a,b])=>`<button onclick="gmSnooze('${a}')">${a}<span>${b}</span></button>`).join("")}
     <button onclick="gmSnooze('Pick date & time')">📅 Pick date &amp; time</button>
     <button onclick="gmCloseMenu()" style="justify-content:center;color:#0b57d0;">Cancel</button></div>`;
+}
+function gmLabelMenuHtml(){
+  const iz = gmIz(), ids = iz.menu.ids, cur = ids.length===1 ? iz.lab[ids[0]] : null;
+  return `<div class="gm-menu gm-lblmenu" onclick="event.stopPropagation()" style="max-height:380px;overflow:auto;"><h6>Label as:</h6>
+    ${gmLabelTree(null).map(({l,depth})=>`<button class="${cur===l.id?"on":""}" onclick="gmSetLabel('${l.id}')"><span class="ind" style="padding-left:${depth*16}px"><i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${l.color||"#7C82A0"};margin-right:8px;"></i>${esc(l.name)}</span>${cur===l.id?"<span>✓</span>":""}</button>`).join("")}
+    ${cur ? `<button onclick="gmSetLabel('')" style="color:#5f6368;">Remove label</button>` : ""}
+    <button onclick="gmNewLabel(true)" style="color:#0b57d0;">+ Create new</button>
+    <button onclick="gmCloseMenu()" style="justify-content:center;color:#0b57d0;">Cancel</button></div>`;
+}
+function gmDialogHtml(){
+  const iz = gmIz(), d = iz.dialog;
+  return `<div class="gm-dialog" onclick="if(event.target===this) gmCloseDialog()"><div>
+    <h6>New label</h6>
+    <label for="gmLblName">Please enter a new label name:</label>
+    <input type="text" id="gmLblName" value="${esc(d.name||"")}" onkeydown="if(event.key==='Enter') gmCreateLabel(); event.stopPropagation();">
+    <label style="display:flex;align-items:center;gap:8px;margin-top:14px;"><input type="checkbox" id="gmLblNest" ${d.parent?"checked":""} onchange="document.getElementById('gmLblParent').disabled=!this.checked"> Nest label under:</label>
+    <select id="gmLblParent" ${d.parent?"":"disabled"}>${gmLabelTree(null).map(({l,depth})=>`<option value="${l.id}" ${d.parent===l.id?"selected":""}>${"— ".repeat(depth)}${esc(l.name)}</option>`).join("")}</select>
+    <div class="row"><button onclick="gmCloseDialog()">Cancel</button><button class="pri" onclick="gmCreateLabel()">Create</button></div>
+  </div></div>`;
 }
 function gmComposeHtml(){
   const iz = gmIz(), c = iz.compose, e = iz.inbox.find(x=>x.id===c.id), n = gmName(e.from);
@@ -1447,11 +1545,12 @@ function gmComposeHtml(){
     <div class="gm-cw-row">To ${fwd
       ? `<input id="gmTo" list="gmDelegates" placeholder="Who should handle this?" value="${esc(c.to||"")}"><datalist id="gmDelegates">${GM_DELEGATES.map(d=>`<option value="${esc(d)}">`).join("")}</datalist>`
       : `<input id="gmTo" value="${esc(n.name)}" readonly>`}</div>
+    ${!fwd && e.fixed ? `<div class="gm-cw-row" style="font-size:12px;font-style:italic;">Reminder: ACT — Acknowledge, Clarify, Timeline — in this sender's own style.</div>` : ""}
     <textarea id="gmNote" placeholder="${fwd ? "Add a short handoff note: what you need and by when…" : "Write your reply…"}">${esc(c.note||"")}</textarea>
     <div class="gm-cw-foot"><button class="gm-send" onclick="gmSendCompose()">Send</button><span style="font-size:12px;color:#5f6368;">${fwd ? "Forwarding = Delegate" : "Replying now = Do"}</span></div>
   </div>`;
 }
-/* ---- actions ---- */
+/* ----- actions ----- */
 function gmAct(ids, action, detail){
   const iz = gmIz(); ids = ids.filter(id=>!iz.meta[id]); if(!ids.length) return;
   if(!iz.startedAt) iz.startedAt = Date.now();
@@ -1467,13 +1566,13 @@ function gmAct(ids, action, detail){
 }
 function gmUndo(){
   const iz = gmIz(); if(!iz.undo) return;
-  iz.undo.forEach(u=>{ delete iz.meta[u.id]; if(u.placement) iz.placements[u.id] = u.placement; else delete iz.placements[u.id]; });
+  iz.undo.forEach(u=>{ delete iz.meta[u.id]; delete iz.notes[u.id]; if(u.placement) iz.placements[u.id] = u.placement; else delete iz.placements[u.id]; });
   iz.undo = null; iz.snack = "Action undone."; clearTimeout(gmAct.t); gmAct.t = setTimeout(()=>{ gmIz().snack = null; gmRender(); }, 3000);
   gmSave(); gmRender();
 }
 function gmToInbox(ids){
   const iz = gmIz(); ids = ids || gmVisible().filter(e=>iz.sel[e.id]).map(e=>e.id);
-  ids.forEach(id=>{ delete iz.meta[id]; delete iz.placements[id]; delete iz.sel[id]; });
+  ids.forEach(id=>{ delete iz.meta[id]; delete iz.placements[id]; delete iz.sel[id]; delete iz.notes[id]; });
   if(iz.open && ids.includes(iz.open)) iz.open = null;
   iz.snack = ids.length>1 ? `${ids.length} conversations moved to Inbox.` : "Conversation moved to Inbox."; iz.undo = null;
   gmSave(); gmRender();
@@ -1481,27 +1580,59 @@ function gmToInbox(ids){
 function gmBulk(a){ const iz = gmIz(); const ids = gmVisible().filter(e=>iz.sel[e.id]).map(e=>e.id); if(ids.length) gmAct(ids, a); }
 function gmOpen(id){ const iz = gmIz(); iz.open = id; iz.read[id] = true; iz.menu = null; gmSave(); gmRender(); const s = document.getElementById("gmShell"); if(s) s.focus({preventScroll:true}); }
 function gmBack(){ const iz = gmIz(); iz.open = null; iz.compose = null; gmRender(); }
-function gmUnread(id){ const iz = gmIz(); delete iz.read[id]; if(iz.open===id) iz.open = null; iz.snack = "Marked as unread."; gmSave(); gmRender(); }
+function gmUnread(id){ const iz = gmIz(); delete iz.read[id]; if(iz.open===id) iz.open = null; iz.snack = "Marked as unread."; iz.undo = null; gmSave(); gmRender(); }
 function gmFolder(f){ const iz = gmIz(); iz.folder = f; iz.open = null; iz.sel = {}; iz.focus = 0; iz.menu = null; gmRender(); }
 function gmSearch(v){ const iz = gmIz(); iz.search = v; iz.focus = 0; const z = document.getElementById("gmZone"); if(!z) return; const main = z.querySelector(".gm-main"); if(main && !iz.open) main.innerHTML = gmListHtml(); }
 function gmSelect(id, on){ const iz = gmIz(); if(on) iz.sel[id] = true; else delete iz.sel[id]; gmRender(); }
 function gmSelectAll(on){ const iz = gmIz(); iz.sel = {}; if(on) gmVisible().forEach(e=>iz.sel[e.id] = true); gmRender(); }
-function gmMenu(ids){ const iz = gmIz(); iz.menu = {ids: ids || gmVisible().filter(e=>iz.sel[e.id]).map(e=>e.id)}; if(!iz.menu.ids.length){ iz.menu = null; return; } gmRender(); }
+function gmMenu(ids){ const iz = gmIz(); ids = ids || gmVisible().filter(e=>iz.sel[e.id]).map(e=>e.id); if(!ids.length) return; iz.menu = {type:"snooze", ids}; gmRender(); }
+function gmLabelMenu(ids){ const iz = gmIz(); ids = ids || gmVisible().filter(e=>iz.sel[e.id]).map(e=>e.id); if(!ids.length) return; iz.menu = {type:"label", ids}; gmRender(); }
 function gmCloseMenu(){ gmIz().menu = null; gmRender(); }
 function gmSnooze(label){ const iz = gmIz(); if(!iz.menu) return; const opt = GM_SNOOZE.find(x=>x[0]===label); gmAct(iz.menu.ids, "snooze", opt ? opt[1] : "a date you picked"); }
+function gmSetLabel(labelId){
+  const iz = gmIz(); if(!iz.menu) return; const ids = iz.menu.ids;
+  ids.forEach(id=>{ if(labelId) iz.lab[id] = labelId; else delete iz.lab[id]; });
+  iz.menu = null; iz.undo = null;
+  iz.snack = labelId ? `${ids.length>1 ? ids.length+" conversations" : "Conversation"} labelled "${gmLabelPath(labelId)}".` : "Label removed.";
+  clearTimeout(gmAct.t); gmAct.t = setTimeout(()=>{ gmIz().snack = null; gmRender(); }, 5000);
+  gmSave(); gmRender();
+}
+function gmNewLabel(fromMenu){ const iz = gmIz(); iz.dialog = {name:"", parent:null, applyTo: fromMenu && iz.menu ? iz.menu.ids : null}; iz.menu = null; gmRender(); setTimeout(()=>{ const i = document.getElementById("gmLblName"); if(i) i.focus(); }, 30); }
+function gmCloseDialog(){ gmIz().dialog = null; gmRender(); }
+function gmCreateLabel(){
+  const iz = gmIz(), name = ((document.getElementById("gmLblName")||{}).value||"").trim();
+  const nest = (document.getElementById("gmLblNest")||{}).checked, parent = nest ? (document.getElementById("gmLblParent")||{}).value : null;
+  if(!name){ toast("Enter a label name."); return; }
+  if(gmLabelChildren(parent).some(l=>l.name.toLowerCase()===name.toLowerCase())){ toast("That label already exists here."); return; }
+  const pl = parent ? gmLabel(parent) : null;
+  const l = {id:"lbl_"+Date.now().toString(36), name, parentId:parent||null, color: pl ? pl.color : GM_PALETTE[iz.labels.length % GM_PALETTE.length]};
+  iz.labels.push(l);
+  const apply = iz.dialog && iz.dialog.applyTo; iz.dialog = null;
+  if(apply){ iz.menu = {type:"label", ids:apply}; gmSetLabel(l.id); } else { iz.snack = `Label "${gmLabelPath(l.id)}" created.`; gmSave(); gmRender(); }
+}
 function gmCompose(id, mode){ const iz = gmIz(); iz.compose = {id, mode, to:"", note:""}; gmRender(); setTimeout(()=>{ const el = document.getElementById(mode==="forward" ? "gmTo" : "gmNote"); if(el) el.focus(); }, 30); }
 function gmCloseCompose(){ gmIz().compose = null; gmRender(); }
+function gmFailWith(e, reason){ const iz = gmIz(); const m = EMAIL_SIM_MESSAGES[e.fi] || {}; iz.fail = {reason, redFlags:m.redFlags||[]}; iz.compose = null; iz.open = null; gmSave(); gmRender(); bumpPracticeProgress("forcemultiplier2", 0); }
+function gmPhishClick(id){ const e = gmIz().inbox.find(x=>x.id===id); if(e) gmFailWith(e, `You clicked the link in "${e.subject}" — a simulated phishing email. In a real scenario this could have installed malware or handed over your credentials.`); }
 function gmSendCompose(){
   const iz = gmIz(), c = iz.compose; if(!c) return;
   const to = (document.getElementById("gmTo")||{}).value || "", note = (document.getElementById("gmNote")||{}).value || "";
   if(c.mode==="forward" && !to.trim()){ toast("Add who you're forwarding it to."); return; }
   if(note.trim().length < 3){ toast(c.mode==="forward" ? "Add a short handoff note." : "Write your reply first."); return; }
-  iz.notes = iz.notes || {}; iz.notes[c.id] = note.trim();
+  const e = iz.inbox.find(x=>x.id===c.id);
+  if(e && e.type==="phishing" && SENSITIVE_REPLY_PATTERN.test(note)){ gmFailWith(e, `Your reply to "${e.subject}" included sensitive information (account/routing details, a password, or similar). A real attacker would now have exactly what they were after.`); return; }
+  iz.notes[c.id] = note.trim();
   gmAct([c.id], c.mode==="forward" ? "forward" : "reply", c.mode==="forward" ? to.trim() : "");
+}
+function gmRestart(){
+  const labels = gmIz().labels;
+  toolState.iz = {inbox:[], placements:{}, labels};
+  gmIz(); gmSave(); gmRender(); gmMaybeRush();
 }
 function gmKey(ev){
   const t = ev.target; if(t && (t.tagName==="INPUT" || t.tagName==="TEXTAREA" || t.tagName==="SELECT")) return;
-  const iz = gmIz(); const rows = gmVisible(); const inInbox = iz.folder==="inbox";
+  const iz = gmIz(); if(iz.dialog) return;
+  const rows = gmVisible();
   const cur = iz.open || (rows[iz.focus||0] && rows[iz.focus||0].id);
   const k = ev.key; let hit = true;
   if(k==="j" || k==="ArrowDown"){ if(iz.open){ const i = rows.findIndex(e=>e.id===iz.open); if(rows[i+1]) gmOpen(rows[i+1].id); } else { iz.focus = Math.min((iz.focus||0)+1, rows.length-1); gmRender(); } }
@@ -1510,22 +1641,19 @@ function gmKey(ev){
   else if(k==="u" || k==="Escape"){ if(iz.menu) gmCloseMenu(); else if(iz.compose) gmCloseCompose(); else gmBack(); }
   else if(k==="z") gmUndo();
   else if(k==="x" && !iz.open && cur){ gmSelect(cur, !iz.sel[cur]); }
-  else if(inInbox && cur && !iz.meta[cur]){
-    if(k==="e") gmAct([cur],"archive"); else if(k==="#") gmAct([cur],"trash"); else if(k==="s") gmAct([cur],"star");
+  else if(k==="l" && cur) gmLabelMenu([cur]);
+  else if(cur && !iz.meta[cur]){
+    if(k==="e") gmAct([cur],"archive"); else if(k==="#") gmAct([cur],"trash"); else if(k==="s") gmAct([cur],"star"); else if(k==="!") gmAct([cur],"report");
     else if(k==="b") gmMenu([cur]); else if(k==="f") gmCompose(cur,"forward"); else if(k==="r") gmCompose(cur,"reply"); else hit = false;
   } else hit = false;
   if(hit){ ev.preventDefault(); ev.stopPropagation(); }
 }
-async function gmRegenerate(){
-  const iz = gmIz();
-  if(iz.inbox.length && Object.keys(iz.meta).length && !confirm("Generate a brand-new inbox? Your current progress in this one will be cleared.")) return;
-  izGenerateInbox();
-}
-/* generation: same themed batches as before, plus a full body for the reading view */
-async function izGenerateInbox(){
-  const btn = document.getElementById("izGenBtn"), status = document.getElementById("izGenStatus");
-  if(btn) btn.disabled = true;
-  if(status) status.textContent = "Generating… (about 15–30 seconds)";
+/* ----- more mail arrives: 15 generated overnight emails join the 10 scenario emails ----- */
+let __gmRushInFlight = false;
+function gmMaybeRush(){ const iz = gmIz(); if(__gmRushInFlight){ iz.rush = "loading"; gmRender(); return; } if(iz.rush==="idle" && !iz.inbox.some(e=>!e.fixed) && !iz.fail) gmRush(); }
+async function gmRush(){
+  if(__gmRushInFlight) return; __gmRushInFlight = true;
+  const iz = gmIz(); iz.rush = "loading"; gmRender();
   const themes = [
     "client matters and court/arbitration deadlines — include at least one genuine emergency tied to the Meridian Dynamics arbitration",
     "scheduling: overlapping meeting requests, calendar conflicts, reschedules, and travel changes",
@@ -1538,55 +1666,84 @@ async function izGenerateInbox(){
 CLIENT CONTEXT:
 ${CLIENT_DOSSIER_MD}
 
-Generate EXACTLY 5 realistic, varied emails for this theme: ${theme}. They landed while he was offline overnight on a red-eye. Vary sender, tone, and urgency; invent plausible names, firms, and specifics.
+Generate EXACTLY 3 realistic, varied emails for this theme: ${theme}. They landed early this morning. Vary sender, tone, and urgency; invent plausible names, firms, and specifics.
 
 For EACH email, privately classify the Eisenhower quadrant from the EA's perspective: "1" = Urgent & Important (Do), "2" = Important Not Urgent (Schedule), "3" = Urgent Not Important (Delegate), "4" = Neither (Delete/Defer).
 
-Return ONLY a JSON array of exactly 5 objects — no preamble, no markdown fences. Each object:
+Return ONLY a JSON array of exactly 3 objects — no preamble, no markdown fences. Each object:
 {"from":"Name <email>", "subject":"...", "preview":"one sentence preview", "body":"the full email, 2-5 short sentences, written the way this sender really would (greeting and sign-off included)", "idealQuadrant":"1"}`;
   try{
     const results = [];
-    for(let k=0;k<themes.length;k+=2){ results.push(...await Promise.allSettled(themes.slice(k,k+2).map(t=>callAIJson(makePrompt(t), 2200, 70000)))); }
+    for(let k=0;k<themes.length;k+=2){ results.push(...await Promise.allSettled(themes.slice(k,k+2).map(t=>callAIJson(makePrompt(t), 1600, 70000)))); }
     const emails = results.filter(x=>x.status==="fulfilled" && Array.isArray(x.value)).flatMap(x=>x.value);
-    if(emails.length < 10) throw new Error("only "+emails.length+" emails returned");
-    for(let i=emails.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [emails[i],emails[j]]=[emails[j],emails[i]]; }
-    let mins = 6*60+52;   // newest first, like a real inbox the morning after a red-eye
-    const iz = gmIz();
-    iz.inbox = emails.slice(0,25).map((e,i)=>{ mins -= 4 + Math.floor(Math.random()*22); const h = Math.floor(((mins%1440)+1440)%1440/60), m = ((mins%60)+60)%60;
+    if(emails.length < 6) throw new Error("only "+emails.length+" emails returned");
+    let mins = 8*60+58;
+    const add = emails.slice(0, GM_RUSH).map((e,i)=>{ mins -= 5 + Math.floor(Math.random()*20); const h = Math.floor(mins/60), m = mins%60;
       return {id:"m"+i, from:e.from||"Unknown", subject:e.subject||"(no subject)", preview:e.preview||"", body:e.body||e.preview||"", time:`${h%12||12}:${String(m).padStart(2,"0")} ${h<12?"AM":"PM"}`, idealQuadrant:String(e.idealQuadrant||"4").replace(/[^1-4]/g,"")||"4"}; });
-    iz.placements = {}; iz.meta = {}; iz.read = {}; iz.sel = {}; iz.folder = "inbox"; iz.open = null; iz.focus = 0; iz.result = ""; iz.startedAt = 0; iz.snack = null;
+    const cur = gmIz(); cur.inbox = cur.inbox.filter(e=>e.fixed).concat(add); cur.rush = "done";
+    cur.snack = `${add.length} new messages`; clearTimeout(gmAct.t); gmAct.t = setTimeout(()=>{ gmIz().snack = null; gmRender(); }, 4000);
     gmSave(); gmRender();
-    const failed = results.filter(x=>x.status!=="fulfilled").length;
-    if(failed) toast(`${iz.inbox.length} emails loaded (${failed} batch${failed>1?"es":""} timed out — the inbox is a little smaller, that's fine).`);
-    const sh = document.getElementById("gmShell"); if(sh) sh.focus({preventScroll:true});
   }catch(e){
-    console.error("Inbox generation failed:", e);
-    const st = document.getElementById("izGenStatus");
-    if(st) st.textContent = /timed out/i.test(e.message||"") ? "The service is responding slowly — please try again in a moment." : "Couldn't generate the inbox — please try again.";
-  }finally{
-    const b = document.getElementById("izGenBtn"); if(b) b.disabled = false;
-  }
+    console.error("Overnight mail failed:", e);
+    gmIz().rush = "failed"; gmRender();
+  }finally{ __gmRushInFlight = false; }
 }
-async function izSubmitSort(){
+/* ----- grading: filing + security + triage + reply writing, in one submission ----- */
+async function gmSubmit(){
   const iz = gmIz(), total = iz.inbox.length, handled = iz.inbox.filter(e=>iz.meta[e.id]).length;
-  if(handled < total){ toast(`Get to Inbox Zero first (${total-handled} left in the Inbox).`); return; }
-  let correct = 0; iz.inbox.forEach(e=>{ if(iz.placements[e.id]===e.idealQuadrant) correct++; });
-  const score = Math.round(correct/total*100);
+  const fixed = iz.inbox.filter(e=>e.fixed);
+  if(handled < total){ toast(`Get to Inbox Zero first (${total-handled} left).`); return; }
+  if(fixed.some(e=>!iz.lab[e.id])){ toast("Give every scenario email a label first."); return; }
+  if(!(await useLabAttempt(2, "finishEmailSim"))) return;
+  if(typeof ensureTraineeName==="function") await ensureTraineeName();
+  const el = document.getElementById("izSortResult"); if(el) el.innerHTML = `<div class="ai-loading">Grading your filing, triage decisions, phishing handling and replies…</div>`;
+  const filingOk = fixed.filter(e=>gmLabelChain(iz.lab[e.id]).includes(e.correctLabel)).length;
+  const filing = Math.round(filingOk/fixed.length*100);
+  const phish = fixed.filter(e=>e.type==="phishing");
+  const security = phish.length ? Math.round(phish.reduce((a,e)=>a + (iz.meta[e.id] && iz.meta[e.id].action==="report" ? 100 : 60), 0)/phish.length) : 100;
+  const decided = (e)=> iz.placements[e.id]==="R" && !e.fixed ? "4" : iz.placements[e.id];
+  const triageOk = iz.inbox.filter(e=>decided(e)===e.idealQuadrant).length;
+  const triage = Math.round(triageOk/total*100);
+  const replies = fixed.filter(e=>e.type==="actionable").map(e=>`--- Client Email ---\nFrom: ${e.from}\nSubject: ${e.subject}\nOriginal message:\n${e.body}\n\nTrainee's reply:\n${iz.meta[e.id] && iz.meta[e.id].action==="reply" ? iz.notes[e.id] : "(No reply was sent — this client email was handled without a response.)"}`).join("\n\n");
+  let writing = null, reportHtml = "";
+  try{
+    const report = await runRubricEvaluation(
+      "Inbox Triage — Writing DNA Match & Professionalism",
+      "This is one part of a larger inbox exercise. Filing, triage and phishing awareness are scored separately — grade only the writing quality of these client replies.",
+      replies,
+      "1. Writing DNA Match — for each client email, how well did the reply mirror THAT client's tone, formatting and communication style (the clients intentionally differ: terse and formal, casual and rambling, frustrated and escalating)? 2. Professionalism — grammar, clarity, completeness, etiquette, and use of ACT (Acknowledge, Clarify, Timeline). Note any client email left without a reply."
+    );
+    writing = report.totalScore; reportHtml = renderEvaluationReport(report, 2);
+  }catch(err){
+    reportHtml = renderAiErrorBlock(err, "Couldn't grade the replies — the other scores are still shown");
+  }
+  const parts = [filing, security, triage].concat(writing!=null ? [writing] : []);
+  const overall = Math.round(parts.reduce((a,b)=>a+b,0)/parts.length);
+  const decision = (q)=>({"1":"Do (reply / star)","2":"Schedule (snooze)","3":"Delegate (forward)","4":"Delete/Defer (archive / delete)","R":"Report phishing"}[q]);
+  const mism = iz.inbox.filter(e=>decided(e)!==e.idealQuadrant);
+  const misfiled = fixed.filter(e=>!gmLabelChain(iz.lab[e.id]).includes(e.correctLabel));
   const secs = iz.startedAt ? Math.round((Date.now()-iz.startedAt)/1000) : 0;
-  const decision = (q)=>({"1":"Do (reply / star)","2":"Schedule (snooze)","3":"Delegate (forward)","4":"Delete/Defer (archive / delete)"}[q]);
-  const mism = iz.inbox.filter(e=>iz.placements[e.id]!==e.idealQuadrant);
-  iz.result = `<div class="iz-score-banner">
-      <div class="iz-score-num">${score}%</div>
-      <div><b>${correct} / ${total} matched expert triage</b>${secs ? ` · Inbox Zero in ${Math.floor(secs/60)}m ${secs%60}s` : ""}<div class="iz-score-note">A mismatch isn't automatically wrong — the point is defensible judgment. Review any surprises below.</div></div>
+  iz.result = `<div class="gm-tiles">
+      <div class="all"><b>${overall}%</b><span>Overall</span></div>
+      <div><b>${filing}%</b><span>Filing</span></div>
+      <div><b>${security}%</b><span>Security</span></div>
+      <div><b>${triage}%</b><span>Triage</span></div>
+      <div><b>${writing!=null ? writing+"%" : "—"}</b><span>Reply writing</span></div>
     </div>
-    <div style="margin-top:12px;">${mism.length ? mism.map(e=>`<div class="gm-res-row"><b>${esc(e.subject)}</b><span>You: ${esc(GM_ACTIONS[iz.meta[e.id].action].verb)} → ${esc(decision(iz.placements[e.id]))} · Expert: <b>${esc(decision(e.idealQuadrant))}</b></span></div>`).join("") : `<p class="iz-empty">Perfect match on every email.</p>`}</div>`;
+    ${secs ? `<p style="font-size:13px;color:var(--ink-soft);margin:0 0 10px;">Inbox Zero in ${Math.floor(secs/60)}m ${secs%60}s. A custom sub-label counts as correct filing when it's nested under the right label.</p>` : ""}
+    ${misfiled.length ? `<b style="color:var(--navy);">Filing to revisit</b>${misfiled.map(e=>`<div class="gm-res-row"><b>${esc(e.subject)}</b><span>You: ${esc(gmLabelPath(iz.lab[e.id]))} · Expected under: <b>${esc(e.correctLabel)}</b></span></div>`).join("")}` : ""}
+    ${mism.length ? `<b style="color:var(--navy);display:block;margin-top:12px;">Triage decisions to revisit</b>${mism.map(e=>`<div class="gm-res-row"><b>${esc(e.subject)}</b><span>You: ${esc(GM_ACTIONS[iz.meta[e.id].action].verb)} → ${esc(decision(decided(e)))} · Expected: <b>${esc(decision(e.idealQuadrant))}</b></span></div>`).join("")}` : ""}
+    <div style="margin-top:14px;">${reportHtml}</div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:12px;" onclick="gmRestart()">↻ Run it again with a fresh inbox</button>`;
   gmSave(); gmRender();
   const r = document.getElementById("izSortResult"); if(r) r.scrollIntoView({behavior:"smooth", block:"start"});
-  await bumpPracticeProgress("forcemultiplier2", score);
-  if(score===100) burstConfetti();
+  await bumpPracticeProgress("forcemultiplier2", overall);
+  if(overall>=85) burstConfetti();
 }
-Object.assign(window, {izGenerateInbox, izSubmitSort, gmAct, gmUndo, gmToInbox, gmBulk, gmOpen, gmBack, gmUnread, gmFolder, gmSearch, gmSelect, gmSelectAll, gmMenu, gmCloseMenu, gmSnooze, gmCompose, gmCloseCompose, gmSendCompose, gmKey, gmRegenerate, gmRender});
-document.addEventListener("click", (e)=>{ const iz = toolState && toolState.iz; if(iz && iz.menu && !e.target.closest(".gm-menu") && !e.target.closest(".gm-ib")){ iz.menu = null; gmRender(); } });
+async function izGenerateInbox(){ return gmRush(); }
+async function izSubmitSort(){ return gmSubmit(); }
+Object.assign(window, {izGenerateInbox, izSubmitSort, gmSubmit, gmRush, gmRestart, gmAct, gmUndo, gmToInbox, gmBulk, gmOpen, gmBack, gmUnread, gmFolder, gmSearch, gmSelect, gmSelectAll, gmMenu, gmLabelMenu, gmCloseMenu, gmSnooze, gmSetLabel, gmNewLabel, gmCloseDialog, gmCreateLabel, gmCompose, gmCloseCompose, gmSendCompose, gmPhishClick, gmKey, gmRender});
+document.addEventListener("click", (e)=>{ const iz = toolState && toolState.iz; if(iz && iz.menu && !e.target.closest(".gm-menu") && !e.target.closest(".gm-ib") && !e.target.closest(".gm-dialog")){ iz.menu = null; gmRender(); } });
 
 /* ---------- 8. Day 3 lab, Part 3: Proactive EA Tasks becomes a real exercise ----------
    Before: one button — the AI wrote the task list and the trainee only read it.
