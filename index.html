@@ -2275,6 +2275,56 @@ em.warn{font-style:normal;color:var(--danger);}
 @media(min-width:1561px){.topbar-inner{max-width:min(1760px, calc(100vw - 40px)) !important;}}
 .topbar .brand{flex:0 1 auto;min-width:0;} .topbar .brand-text{min-width:0;overflow:hidden;} .topbar .brand-text b,.topbar .brand-text span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;}
 @media(min-width:761px) and (max-width:1180px){.topbar .nav{flex-wrap:wrap;row-gap:4px;max-width:100%;} .topbar .nav button{padding:7px 8px;}}
+
+/* ================= Lesson slides in the Orientation format =================
+   The whole slide is one cream "page" (like the Orientation deck): mono kicker,
+   big serif title, lead text, and content laid out as cards. */
+.lesson-stage #lessonSlideWrap{position:relative;background:#FFFDF8;border-radius:16px;padding:30px 40px 34px;min-height:min(64vh,640px);max-height:none;overflow:auto;box-shadow:none;}
+.lesson-stage #lessonSlideWrap::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--navy),var(--orange));}
+.lesson-stage #lessonSlideWrap > .card, .lesson-stage #lessonSlideWrap > .qcheck-card, .lesson-stage #lessonSlideWrap .lesson-card, .lesson-stage #lessonSlideWrap .meet-client-card{background:transparent !important;border:none !important;box-shadow:none !important;padding:0 !important;margin:0 !important;min-height:0 !important;}
+.lesson-stage #lessonSlideWrap .lesson-card::before{display:none;}
+/* kicker + title */
+.lesson-stage #lessonSlideWrap .topic-separator{display:block;background:none !important;border:none !important;padding:0 !important;margin:0 0 6px !important;color:var(--orange-deep) !important;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-align:left;}
+.lesson-stage #lessonSlideWrap .lesson-card h4, .lesson-stage #lessonSlideWrap h2.section-title, .lesson-stage #lessonSlideWrap .meet-client-card h3, .lesson-stage #lessonSlideWrap > .card > b:first-child{display:block;font-family:'Fraunces',Georgia,serif !important;font-size:clamp(26px,2.4vw,38px) !important;line-height:1.15;color:var(--navy) !important;margin:2px 0 16px !important;font-weight:700;}
+.lesson-stage #lessonSlideWrap .lesson-card h4 .lnum{font-family:'IBM Plex Mono',monospace;font-size:.45em;color:var(--orange-deep);vertical-align:middle;margin-right:10px;}
+/* section labels */
+.lesson-stage #lessonSlideWrap .fp-section{margin:0 0 18px;}
+.lesson-stage #lessonSlideWrap .fp-label{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-deep);margin:0 0 10px;}
+.lesson-stage #lessonSlideWrap .fp-label::after{content:"";flex:1;height:1px;background:#EADFD2;}
+.lesson-stage #lessonSlideWrap .fp-num{background:var(--navy) !important;color:#fff !important;}
+/* lead text (core principles) */
+.lesson-stage #lessonSlideWrap .fp-section:first-of-type p, .lesson-stage #lessonSlideWrap .fp-section:first-of-type > div > p{font-size:17px;line-height:1.6;color:var(--ink);max-width:90ch;}
+.lesson-stage #lessonSlideWrap .fp-section ul li{font-size:15.5px;line-height:1.6;}
+/* how-to steps as numbered cards (Orientation "flow" style) */
+.lesson-stage #lessonSlideWrap ol.fp-howto-list, .lesson-stage #lessonSlideWrap .fp-section ol{list-style:none;counter-reset:st;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;padding:0;margin:4px 0 0;}
+.lesson-stage #lessonSlideWrap ol.fp-howto-list > li, .lesson-stage #lessonSlideWrap .fp-section ol > li{counter-increment:st;position:relative;background:#fff;border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:12px;padding:16px 14px 14px;font-size:14px;line-height:1.5;margin:0;}
+.lesson-stage #lessonSlideWrap ol.fp-howto-list > li:nth-child(even), .lesson-stage #lessonSlideWrap .fp-section ol > li:nth-child(even){border-top-color:var(--orange);}
+.lesson-stage #lessonSlideWrap ol.fp-howto-list > li::before, .lesson-stage #lessonSlideWrap .fp-section ol > li::before{content:counter(st);position:absolute;top:-11px;left:12px;width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:11.5px;display:flex;align-items:center;justify-content:center;}
+.lesson-stage #lessonSlideWrap .fp-section ol > li::marker{content:"";}
+.lesson-stage #lessonSlideWrap .vis-label, .lesson-stage #lessonSlideWrap .vis-flow{display:none;}   /* the step cards above replace the "at a glance" strip here */
+/* callouts & diagrams */
+.lesson-stage #lessonSlideWrap .callout{border-radius:12px;padding:14px 18px;font-size:14.5px;}
+.lesson-stage #lessonSlideWrap .svg-diagram-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:6px;}
+/* quick check */
+.lesson-stage #lessonSlideWrap .qc-tag{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--orange-deep);}
+.lesson-stage #lessonSlideWrap .quiz-q{font-family:'Fraunces',Georgia,serif;font-size:clamp(20px,1.8vw,28px) !important;color:var(--navy);line-height:1.3;margin:8px 0 16px !important;}
+.lesson-stage #lessonSlideWrap .quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.lesson-stage #lessonSlideWrap .quiz-opt{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;font-size:15px;text-align:left;margin:0;}
+/* task overview / meet client / practice slide */
+.lesson-stage #lessonSlideWrap > .card > p, .lesson-stage #lessonSlideWrap .meet-client-card p{font-size:16px;line-height:1.6;}
+.lesson-stage #lessonSlideWrap > .card > div > p{font-size:16px;line-height:1.6;}
+.lesson-stage #lessonSlideWrap .mc-tag{font-family:'IBM Plex Mono',monospace;letter-spacing:.12em;color:var(--orange-deep);}
+.lesson-stage #lessonSlideWrap > .card > div .btn{font-size:16px;padding:12px 22px;}
+/* full screen: the slide fills the screen, larger type */
+.lesson-stage:fullscreen .lesson-slide#lessonSlideWrap{display:block;justify-content:initial;font-size:1.2em;min-height:0;flex:1;}
+.lesson-stage:fullscreen .stage-body{flex:1;min-height:0;align-items:stretch;}
+.lesson-stage:fullscreen .stage-body > #lessonSlideWrap{height:100%;}
+@media(max-width:760px){.lesson-stage #lessonSlideWrap{padding:22px 16px 26px;min-height:0;} .lesson-stage #lessonSlideWrap .quiz-opts{grid-template-columns:1fr;}}
+
+.bp-status{font-size:12px;color:var(--ink-soft);} .bp-status a{color:var(--orange-deep);font-weight:700;}
+.ho-bp{display:flex;align-items:center;gap:14px;padding:14px 18px;margin-bottom:16px;border-left:5px solid var(--navy);}
+.ho-bp-i{font-size:30px;} .ho-bp b{display:block;color:var(--navy);font-size:15px;} .ho-bp span{font-size:13px;color:var(--ink-soft);} .ho-bp .btn{margin-left:auto;white-space:nowrap;}
+@media(max-width:760px){.ho-bp{flex-wrap:wrap;} .ho-bp .btn{margin-left:0;}}
 </style>
 </head>
 <body>
@@ -2873,6 +2923,52 @@ const DAY1 = {
       "trainerCue": "This topic doubles as your bridge to the Day 1 ACT email exercise — flag that explicitly so it doesn't feel like a random new topic dropped in."
     },
     {
+      "h": "BLUF: Bottom Line Up Front",
+      "svgDiagram": "<svg viewBox=\"0 0 560 190\" xmlns=\"http://www.w3.org/2000/svg\"><style>.t{font:800 15px Arial,sans-serif;fill:#fff}.s{font:600 11.5px Arial,sans-serif;fill:#fff;opacity:.92}.l{font:700 11px Arial,sans-serif;fill:#6E748C}</style><polygon points=\"60,20 500,20 440,70 120,70\" fill=\"#262B45\"/><text x=\"280\" y=\"42\" text-anchor=\"middle\" class=\"t\">BOTTOM LINE</text><text x=\"280\" y=\"60\" text-anchor=\"middle\" class=\"s\">the decision, answer or ask — first sentence</text><polygon points=\"124,76 436,76 386,120 174,120\" fill=\"#DB8437\"/><text x=\"280\" y=\"96\" text-anchor=\"middle\" class=\"t\">KEY DETAILS</text><text x=\"280\" y=\"112\" text-anchor=\"middle\" class=\"s\">only what’s needed to act</text><polygon points=\"178,126 382,126 340,166 220,166\" fill=\"#8E93AC\"/><text x=\"280\" y=\"146\" text-anchor=\"middle\" class=\"t\">BACKGROUND</text><text x=\"280\" y=\"160\" text-anchor=\"middle\" class=\"s\">optional / attached</text><text x=\"515\" y=\"45\" class=\"l\">read by all</text><text x=\"448\" y=\"100\" class=\"l\">skimmed</text><text x=\"394\" y=\"150\" class=\"l\">if needed</text></svg>",
+      "b": [
+        "BLUF means the first sentence carries the point — the decision needed, the answer to the question, or the action taken. Everything after it is supporting detail the reader can stop at any time.",
+        "Executives like Elias read on phones, between meetings, often only the preview line. If the ask sits in paragraph three, it effectively doesn't exist.",
+        "BLUF isn't being blunt or skipping courtesy — it's respecting the reader's time. A warm one-line greeting is fine; a warm three-paragraph run-up is not.",
+        "Pitfall: writing in the order things happened (chronological) instead of the order the reader needs them (decision first)."
+      ],
+      "callout": {
+        "type": "tip",
+        "label": "The one-line test",
+        "text": "If Elias only reads the first line, does he know exactly what you need from him and by when? If not, it isn't BLUF yet."
+      },
+      "howTo": [
+        "Before writing, finish this sentence: 'The one thing Elias needs to know or decide is…' — that becomes your first line.",
+        "Label the ask when there is one: 'Decision needed:', 'FYI — no action:', 'Action taken:' or 'Approval by 3 PM:'.",
+        "Add only the details needed to act — dates, amounts, names, options — in two to four short lines or bullets.",
+        "Move background, history and long context below a clear break or into an attachment.",
+        "End with the exact next step and deadline (for example 'Reply YES/NO by 3 PM'), then re-read just your first line as Elias would."
+      ],
+      "trainerCue": "Show the pyramid, then read a real rambling email aloud and have the room rewrite only the first sentence. Time them: 60 seconds."
+    },
+    {
+      "h": "BLUF in Practice: Emails, Updates & Voice Notes",
+      "svgDiagram": "<svg viewBox=\"0 0 560 150\" xmlns=\"http://www.w3.org/2000/svg\"><style>.h{font:800 13px Arial,sans-serif}.b{font:600 11.5px Arial,sans-serif;fill:#37394A}</style><rect x=\"10\" y=\"10\" width=\"255\" height=\"130\" rx=\"12\" fill=\"#FDECEA\" stroke=\"#C0392B\"/><text x=\"24\" y=\"34\" class=\"h\" fill=\"#C0392B\">✗ BURIED LEAD</text><text x=\"24\" y=\"58\" class=\"b\">\"Hi Elias, following up on several</text><text x=\"24\" y=\"74\" class=\"b\">items from this week’s calls…</text><text x=\"24\" y=\"90\" class=\"b\">… (4 paragraphs) … so could you</text><text x=\"24\" y=\"106\" class=\"b\">approve the $6,200 retainer by 3 PM?\"</text><rect x=\"295\" y=\"10\" width=\"255\" height=\"130\" rx=\"12\" fill=\"#E7F2EA\" stroke=\"#3F7D58\"/><text x=\"309\" y=\"34\" class=\"h\" fill=\"#3F7D58\">✓ BLUF</text><text x=\"309\" y=\"58\" class=\"b\">\"Decision needed by 3 PM: approve</text><text x=\"309\" y=\"74\" class=\"b\">the $6,200 expert retainer?</text><text x=\"309\" y=\"90\" class=\"b\">Why: deposition is Thursday.</text><text x=\"309\" y=\"106\" class=\"b\">Quote attached. Reply YES / NO.\"</text></svg>",
+      "b": [
+        "BLUF works across every channel: email subject lines, Slack messages, status updates, voice-note replies and even phone calls ('Quick one — I need a yes or no on…').",
+        "Subject lines carry BLUF too: 'DECISION by 3 PM: expert retainer $6,200' beats 'Following up'.",
+        "Status updates lead with the state, not the story: 'On track — filed today, confirmation attached' or 'At risk — courier delayed, new ETA 4 PM, backup ready'.",
+        "BLUF and ACT work together: in an ACT reply, the Acknowledge line is written BLUF-style — the restated ask comes first."
+      ],
+      "callout": {
+        "type": "tip",
+        "label": "Decision → Why → Details → Next step",
+        "text": "Decision or answer first, one line on why it matters, only the details needed to act, and a clear next step with a deadline."
+      },
+      "howTo": [
+        "Write the subject line or first line as the bottom line: DECISION / FYI / ACTION TAKEN / AT RISK, plus the topic.",
+        "Follow with one line of 'why now' — the deadline or consequence that makes it matter today.",
+        "Give only the details needed to act, as short bullets — options, amounts, times, who is involved.",
+        "Close with the exact next step and who owns it, and attach or link the background instead of pasting it.",
+        "Proofread for the preview: on a phone, the first 80 characters should tell the whole story."
+      ],
+      "trainerCue": "Hand out the Day 1 BLUF template and have pairs convert one of their own recent messages. Compare subject lines out loud."
+    },
+    {
       "h": "Why One Client, All Ten Days",
       "b": [
         "Every exercise from today forward uses Elias Thorne. That's deliberate: in a real role, your value compounds — the calendar rules you learn on Day 1 inform how you triage his inbox on Day 4, and the travel preferences you document today are what make the Day 3 itinerary gradeable on accuracy rather than guesswork.",
@@ -2916,6 +3012,71 @@ const DAY1 = {
     }
   ],
   "quiz": [
+    {
+
+      "q": "Elias gets your email on his phone between hearings. Which opening line is BLUF?",
+
+      "opts": [
+
+        "Hi Elias, hope your morning is going well — a few things came up today.",
+
+        "Decision needed by 3 PM: approve the $6,200 expert retainer for Thursday's deposition?",
+
+        "Following up on our call last week about the expert witness situation.",
+
+        "FYI, please see the attached documents regarding several matters."
+
+      ],
+
+      "a": 1,
+
+      "r": "BLUF puts the decision, the deadline and the ask in the first line, so Elias can act from the preview alone."
+
+    },
+
+    {
+
+      "q": "What does BLUF stand for, and what does it change?",
+
+      "opts": [
+
+        "Brief, Legal, Useful, Formal — the tone of an email",
+
+        "Bottom Line Up Front — the order: the point comes first, detail after",
+
+        "Background, Lead, Update, Follow-up — a four-part template",
+
+        "Bold, Lists, Underline, Font — how an email is formatted"
+
+      ],
+
+      "a": 1,
+
+      "r": "Bottom Line Up Front is about order: lead with the decision, answer or action; supporting detail follows."
+
+    },
+
+    {
+
+      "q": "Which status update follows BLUF?",
+
+      "opts": [
+
+        "This morning I contacted the courier, then called the clerk, and after lunch…",
+
+        "At risk: filing courier delayed — new ETA 4 PM (deadline 5 PM); backup e-filing ready if it slips.",
+
+        "Just wanted to give you a quick update on how the day has been going.",
+
+        "Please call me when you have a moment to discuss the filing."
+
+      ],
+
+      "a": 1,
+
+      "r": "It leads with the state (at risk), then the key facts and the backup plan — no chronological story."
+
+    },
     {
       "q": "A vendor asks for sensitive information and you can't confirm an NDA is actually in place covering that specific request. Correct move?",
       "opts": [
@@ -12164,6 +12325,17 @@ async function downloadOrientationPdf(){
   const say = (t)=>{ if(btn) btn.innerHTML = t; };
   try{
     say("⏳ Preparing…");
+    const doc = await buildOrientationPdfDoc(say);
+    doc.save("LSH_EA-PA_Platform_Orientation.pdf");
+    toast("Orientation blueprint downloaded (PDF).");
+  }catch(e){
+    console.error(e); document.querySelectorAll(".or-export-host").forEach(x=>x.remove());
+    toast("Couldn't build the PDF here — use Print instead and choose “Save as PDF”.");
+  }finally{ if(btn) btn.innerHTML = label; }
+}
+async function buildOrientationPdfDoc(say){
+  say = say || (()=>{});
+  {
     if(!(await ensureJsPdf()) || !(await ensureHtml2Canvas())) throw new Error("PDF tools couldn't load");
     const slides = orientSlides();
     const W = 1280, H = 720;
@@ -12188,13 +12360,32 @@ async function downloadOrientationPdf(){
       doc.addImage(canvas.toDataURL("image/jpeg", 0.92), "JPEG", 0, 0, W, H);
     }
     host.remove();
-    doc.save("LSH_EA-PA_Platform_Orientation.pdf");
-    toast("Orientation blueprint downloaded (PDF).");
-  }catch(e){
-    console.error(e); document.querySelectorAll(".or-export-host").forEach(x=>x.remove());
-    toast("Couldn't build the PDF here — use Print instead and choose “Save as PDF”.");
-  }finally{ if(btn) btn.innerHTML = label; }
+    return doc;
+  }
 }
+/* ---------- Auto-publish the blueprint on every platform update ----------
+   When an admin opens the portal and the stored blueprint is from an older
+   build, their browser quietly rebuilds the PDF and uploads it. Everyone
+   (trainers and trainees) always gets the latest at /blueprint.pdf. */
+async function autoPublishBlueprint(){
+  if(!state.isAdmin || state.blueprintJob) return;
+  try{
+    const meta = await sharedGet("blueprint:meta");
+    state.blueprintMeta = meta || null;
+    if(meta && meta.build===APP_BUILD) return;
+    if(meta && meta.lockUntil && Date.now() < meta.lockUntil && meta.lockBuild===APP_BUILD) return;   // another admin is building it
+    state.blueprintJob = true;
+    await sharedSet("blueprint:meta", Object.assign({}, meta||{}, {lockUntil:Date.now()+5*60*1000, lockBuild:APP_BUILD}));
+    const doc = await buildOrientationPdfDoc();
+    const b64 = doc.output("datauristring").split(",")[1];
+    const at = new Date().toISOString();
+    const ok = await sharedSet("blueprint:pdf", {build:APP_BUILD, at, b64});
+    if(ok){ state.blueprintMeta = {build:APP_BUILD, at, pages:orientSlides().length}; await sharedSet("blueprint:meta", state.blueprintMeta); if(state.view==="orientation") render(); }
+  }catch(e){ console.warn("blueprint auto-publish skipped:", e); }
+  finally{ state.blueprintJob = false; }
+}
+async function republishBlueprint(){ state.blueprintMeta = null; await sharedSet("blueprint:meta", {build:"", at:""}); toast("Rebuilding the blueprint PDF…"); await autoPublishBlueprint(); toast(state.blueprintMeta && state.blueprintMeta.build===APP_BUILD ? "✅ Blueprint PDF updated." : "Couldn't rebuild the blueprint — try Download PDF instead."); }
+window.republishBlueprint = republishBlueprint;
 function printOrientation(){
   const slides = orientSlides();
   const css = [...document.querySelectorAll("style")].map(x=>x.textContent).join("\n");
@@ -12207,12 +12398,14 @@ function printOrientation(){
 }
 Object.assign(window, {downloadOrientationPdf, printOrientation});
 function renderOrientation(){
+  if(state.isAdmin && !state.blueprintMeta && !state.blueprintMetaLoading){ state.blueprintMetaLoading = true; sharedGet("blueprint:meta").then(m=>{ state.blueprintMeta = m||null; if(state.view==="orientation") render(); }).finally(()=>{ state.blueprintMetaLoading=false; }); }
   const slides = orientSlides();
   const i = Math.max(0, Math.min(state.orientIdx||0, slides.length-1)); state.orientIdx = i;
   const s = slides[i];
   return `
     <div class="or-top"><div><p class="eyebrow">Admin · for screen sharing</p><h1 style="color:var(--navy);font-size:24px;margin:4px 0 0;">🧭 Platform Orientation</h1></div>
-      <div class="or-top-actions"><span class="or-tip">Share this tab in Google Meet — nothing private is shown here.</span><button class="btn btn-ghost btn-sm" onclick="printOrientation()">🖨 Print</button><button class="btn btn-primary btn-sm" id="orPdfBtn" onclick="downloadOrientationPdf()">⬇ Download PDF</button><button class="btn btn-navy btn-sm" onclick="orientFullscreen()">⛶ Present full screen</button></div></div>
+      <div class="or-top-actions"><span class="or-tip">Share this tab in Google Meet — nothing private is shown here.</span><span class="bp-status">${state.blueprintMeta && state.blueprintMeta.build ? `📘 Published blueprint: build ${esc(state.blueprintMeta.build)}${state.blueprintMeta.build===APP_BUILD?" (latest)":" — updating…"} · <a href="/blueprint.pdf" target="_blank" rel="noopener">open</a> · <a href="#" onclick="event.preventDefault();republishBlueprint()">rebuild</a>` : `📘 Blueprint PDF publishes automatically after each update`}</span>
+      <button class="btn btn-ghost btn-sm" onclick="printOrientation()">🖨 Print</button><button class="btn btn-primary btn-sm" id="orPdfBtn" onclick="downloadOrientationPdf()">⬇ Download PDF</button><button class="btn btn-navy btn-sm" onclick="orientFullscreen()">⛶ Present full screen</button></div></div>
     <div class="or-stage" id="orStage">
       <div class="or-slide" id="orSlide">
         <div class="or-kicker">${String(i+1).padStart(2,"0")} · ${esc(s.k)}</div>
@@ -14648,6 +14841,8 @@ function restoreAfterUpdate(){
   setTimeout(()=>{ window.scrollTo(0, st.scroll||0); toast("✨ Updated to the latest version."); }, 300);
   return true;
 }
+setInterval(()=>{ if(state.isAdmin && document.visibilityState==="visible" && !isTyping()) autoPublishBlueprint(); }, 10*60*1000);
+setTimeout(()=>{ if(state.isAdmin) autoPublishBlueprint(); }, 15000);
 function startUpdateChecks(){
   if(updateTimer) return;
   updateTimer = setInterval(()=>{ if(updatePendingBuild) tryAutoUpdate(); else checkForUpdate(); }, 120000);
@@ -17938,7 +18133,7 @@ function renderIntakeCallEvaluationReport(report){
    file instead (Admin → Handouts link override, "handouts:links").
    ============================================================ */
 const HANDOUT_CONTENT = {
- 1:{title:"Command Hierarchy & Escalation Checklist", icon:"⛓", kind:"Checklist + template",
+ 1:{title:"Command Hierarchy, Escalation & BLUF Checklist", icon:"⛓", kind:"Checklist + templates",
   intro:"Use this before you escalate anything. The goal: the right person hears the right thing, once, with a recommendation attached.",
   blocks:[
    {type:"table", h:"Who decides what", headers:["Level","Who","Decides","Escalate to them when…"], rows:[
@@ -17948,6 +18143,8 @@ const HANDOUT_CONTENT = {
      ["4","Managing Partner (Elias)","Firm-level decisions, reputation, major clients","Only the executive can decide or sign"]], blank:0},
    {type:"checklist", h:"Before you escalate", items:["I know exactly what decision is needed","I've checked the dossier / standing instructions","I have the facts: who, what, when, deadline","I have 2 options and a recommendation","I know what happens if we wait","I'm using the agreed channel for this urgency"]},
    {type:"template", h:"Escalation message (BLUF)", lines:["Decision needed: ______________________________ by ______","Why now: _____________________________________________","Options: A) __________________  B) __________________","I recommend: ______ because ___________________________","If no reply by ______, I will ___________________________"]},
+   {type:"template", h:"BLUF message template (any email, Slack or update)", lines:["Subject / first line:  DECISION · FYI · ACTION TAKEN · AT RISK — ____________________","Why now (one line): ___________________________________________","Details to act on:  • ______________  • ______________  • ______________","Next step & owner: ___________________ by ______ (time/date)","Background: attached / below the line (optional)"]},
+   {type:"checklist", h:"BLUF check before you hit send", items:["The first line alone tells Elias what I need and by when","The ask is labelled (Decision / FYI / Action taken / At risk)","Only the details needed to act are in the body","Background is attached or below a clear break","It reads cleanly in a phone preview (first ~80 characters)"]},
    {type:"table", h:"My escalation contacts", headers:["Role","Name","Best channel","After-hours rule"], rows:[], blank:5}]},
  2:{title:"Managing Up: One-Day Schedule Worksheet", icon:"📋", kind:"Worksheet",
   intro:"Plan the executive's day and your own support actions side by side. Fill it in the evening before; review it at the morning briefing.",
@@ -18120,6 +18317,7 @@ function renderHandouts(){
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">Handouts &amp; Templates</h1>
     <p style="color:var(--ink-soft);font-size:14.5px;max-width:72ch;margin:0 0 16px;">Printable checklists, scripts and ready-to-use templates for each day. Download the PDF to print or fill in, or grab the ready-made Excel workbook for any tracker (opens in Excel or Google Sheets).</p>
     <input class="ho-search" placeholder="Search handouts…" value="${esc(state.hoQuery||"")}" oninput="state.hoQuery=this.value; clearTimeout(window.__hoT); window.__hoT=setTimeout(()=>{render(); const el=document.querySelector('.ho-search'); if(el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length);} },250)">
+    <div class="card ho-bp"><div class="ho-bp-i">📘</div><div><b>Platform Blueprint (PDF)</b><span>How the portal works — the 10-day roadmap, how each day runs, grading, certificate and ground rules. Always the latest version.</span></div><a class="btn btn-primary btn-sm" href="/blueprint.pdf" target="_blank" rel="noopener">⬇ Open PDF</a></div>
     <div class="ho-grid">
     ${list.map(h=>{ const link = handoutLink(h.day); return `
       <div class="card ho-card ${h.day===cur?"current":""}">
@@ -23838,7 +24036,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.26-m";
+var APP_BUILD = "2026.09.26-o";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
