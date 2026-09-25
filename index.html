@@ -2154,6 +2154,41 @@ em.warn{font-style:normal;color:var(--danger);}
 .page-hero p:not(.eyebrow){color:#C9CDE3 !important;font-size:14.5px !important;line-height:1.6;margin:10px 0 0 !important;max-width:80ch;}
 .page-hero p:not(.eyebrow) b{color:#fff;}
 @media(max-width:760px){.page-hero{padding:18px 16px;border-radius:16px;} .page-hero h1{font-size:22px !important;}}
+
+/* ---------- visual learning ---------- */
+.vis-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin:14px 0 6px;}
+.vis-flow{display:flex;align-items:stretch;gap:6px;margin:0 0 16px;flex-wrap:wrap;}
+.vis-step{flex:1 1 130px;min-width:120px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;position:relative;}
+.vis-step:nth-child(4n+1){border-top-color:var(--orange);}
+.vis-n{position:absolute;top:-9px;left:10px;width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.vis-i{font-size:22px;line-height:1;margin-top:4px;} .vis-step b{font-size:12.5px;color:var(--navy);line-height:1.35;}
+.vis-arrow{align-self:center;font-style:normal;color:var(--orange);font-size:18px;}
+.vis-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:6px 0 8px;}
+.vis-card{background:#fff;border-radius:12px;padding:12px 14px;border:1px solid var(--line);border-left:5px solid #3F7D58;}
+.vis-card.bad{border-left-color:var(--orange);background:#FFF9F2;}
+.vis-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.vis-badge{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#3F7D58;} .vis-card.bad .vis-badge{color:var(--orange-deep);}
+.vis-card-i{font-size:22px;line-height:1;} .vis-card p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink);}
+.vis-chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 6px;} .vis-chip{background:var(--navy);color:#fff;border-radius:999px;padding:6px 14px;font-weight:800;font-size:12.5px;letter-spacing:.04em;} .vis-chips i{font-style:normal;color:var(--orange);font-weight:800;}
+/* ---------- audio controls ---------- */
+.audio-bar{display:inline-flex;align-items:center;gap:6px;margin-right:auto;}
+.audio-rate{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:5px 6px;background:#fff;}
+#audioModeBtn.on{background:var(--orange);color:#fff;border-color:var(--orange);}
+.ls-top{justify-content:space-between !important;}
+/* ---------- full-screen alignment: no big empty card, content centred and larger ---------- */
+.lesson-stage:fullscreen .lesson-slide{display:flex;flex-direction:column;justify-content:center;font-size:1.4em;}
+.lesson-stage:fullscreen .lesson-card{min-height:0 !important;width:100%;max-width:1600px;margin:0 auto;padding:34px 44px !important;}
+.lesson-stage:fullscreen .topic-separator{align-self:center;}
+.lesson-stage:fullscreen .vis-step b{font-size:15px;} .lesson-stage:fullscreen .vis-card p{font-size:16px;}
+.lesson-stage .lesson-slide > .card, .lesson-stage .lesson-card{min-height:0 !important;}
+@media(max-width:760px){.audio-bar{margin-right:0;} .vis-flow{flex-direction:column;} .vis-arrow{transform:rotate(90deg);align-self:center;}}
+
+/* presenter inside the lesson stage, standing beside the card and pointing at it */
+.stage-body{display:grid;grid-template-columns:minmax(0,1fr) clamp(150px,13vw,230px);gap:8px;align-items:end;}
+.stage-presenter{width:100%;height:auto;transform:scaleX(-1);align-self:end;pointer-events:none;user-select:none;filter:drop-shadow(0 10px 16px rgba(0,0,0,.35));margin-bottom:-6px;}
+.lesson-stage:fullscreen .stage-body{flex:1;min-height:0;align-items:center;grid-template-columns:minmax(0,1fr) clamp(220px,17vw,340px);}
+.lesson-stage:fullscreen .stage-presenter{align-self:end;}
+@media(max-width:1000px){.stage-body{grid-template-columns:1fr;} .stage-presenter{display:none;}}
 </style>
 </head>
 <body>
@@ -13844,7 +13879,7 @@ function render(){
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
   else if(state.view==="orientation") body = state.isAdmin ? renderOrientation() : renderDashboard();
-  const presenterView = state.view==="day" && state.dayViewMode!=="knowledgeCheck" && dayUnlocked(state.dayId);
+  const presenterView = false;   // the presenter now lives inside the lesson stage
   app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}">${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "")
     + ((state.traineeId && !state.isAdmin && !["login","pendingApproval","registrationDenied","dashboard","day"].includes(state.view)) ? `<button type="button" class="tfb-fab" onclick="openTraineeFeedback(${state.view==="day"?state.dayId:"null"})" title="Share feedback about the platform, lessons or facilitator" aria-label="Share feedback">💬<span class="fab-label"> Feedback</span></button>` : "")
     + renderFooter();
@@ -13956,6 +13991,7 @@ function applyPageHero(){
 }
 function afterRender(){
   applyPageHero();
+  narratorAfterRender();
   bookmarkView();
   if(state.view==="dashboard"){ fitHeroText(); setTimeout(fitHeroText, 250); setTimeout(fitHeroText, 1200); if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeroText); }
   if(state.traineeId && !state.isAdmin && (!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000)){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>{ loadMyFeedback(); loadMyFocus(); }, 0); }
@@ -14661,8 +14697,11 @@ function renderDaySlideshow(d){
         return `<span class="slide-dot ${i===idx?'active':i<idx?'visited':''} ${locked?'locked':''}" onclick="goToSlide(${i})" title="${locked?'Complete the current topic first':'Step '+(i+1)}"></span>`;
       }).join("")}
     </div>
-    <div class="lesson-slide dir-${state.slideDir||'next'}" id="lessonSlideWrap">
-      ${renderDaySlideContent(d, slide, idx)}
+    <div class="stage-body">
+      <div class="lesson-slide dir-${state.slideDir||'next'}" id="lessonSlideWrap">
+        ${renderDaySlideContent(d, slide, idx)}
+      </div>
+      <img class="stage-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">
     </div>
     <div class="slide-nav">
       <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
@@ -14677,6 +14716,11 @@ function renderDaySlideshow(d){
   return `
     <div class="ls-top">
       <span class="or-tip">${state.isAdmin ? "Share this tab in Google Meet — trainer cues are never shown here." : "Tip: use ← → keys to move between slides."}</span>
+      <span class="audio-bar">
+        <button class="btn btn-ghost btn-sm" id="narrBtn" onclick="narrToggle()">▶ Listen</button>
+        <select class="audio-rate" onchange="setAudioRate(this.value)" title="Reading speed">${["0.85","1","1.15","1.3"].map(v=>`<option value="${v}" ${String(Narrator.rate())===v?"selected":""}>${v}×</option>`).join("")}</select>
+        <button class="btn btn-ghost btn-sm ${state.audioMode?"on":""}" id="audioModeBtn" onclick="toggleAudioMode()" title="Read every slide aloud and move on automatically">${state.audioMode?"🎧 Audio mode: on":"🎧 Audio mode"}</button>
+      </span>
       <button class="btn btn-navy btn-sm" onclick="lessonFullscreen()">⛶ Present full screen</button>
     </div>
     <div class="lesson-stage" id="lessonStage">${inner}</div>`;
@@ -14687,6 +14731,7 @@ function updateLessonStage(){
   if(!st || !d) return false;
   state.stageInnerOnly = true;
   st.innerHTML = renderDaySlideshow(d);
+  decorateCallouts(st);
   st.scrollTop = 0; const ls = document.getElementById("lessonSlideWrap"); if(ls) ls.scrollTop = 0;
   return true;
 }
@@ -14741,8 +14786,20 @@ function prevSlide(){
   }
 }
 window.prevSlide = prevSlide;
+function decorateCallouts(root){
+  (root||document).querySelectorAll(".lesson-card .callout-title, .lesson-card .mindset-title, .lesson-card [class*='callout'] b:first-child, .lesson-card [class*='callout'] .fp-label").forEach(el=>{
+    if(el.dataset.vis) return; const chips = renderCalloutFlow(el.textContent); if(chips){ el.dataset.vis = "1"; el.insertAdjacentHTML("afterend", chips); }
+  });
+}
+let __lastNarrKey = "";
+function narratorAfterRender(){
+  if(state.view!=="day"){ if(Narrator.playing) Narrator.stop(true); __lastNarrKey = ""; return; }
+  decorateCallouts();
+  const key = state.dayId+":"+(state.lessonSlide||0)+":"+state.dayViewMode;
+  if(key!==__lastNarrKey){ __lastNarrKey = key; Narrator.afterSlideChange(); } else Narrator.paint();
+}
 function refreshLessonSlide(){
-  if(document.fullscreenElement && document.fullscreenElement.id==="lessonStage" && updateLessonStage()) return;
+  if(document.fullscreenElement && document.fullscreenElement.id==="lessonStage" && updateLessonStage()){ narratorAfterRender(); return; }
   render();
   setTimeout(()=>{
     const el = document.getElementById("lessonSlideWrap");
@@ -14841,6 +14898,96 @@ LESSON_DIAGRAMS["3::Recovery, Workload Conversations & Support Resources"] = "<s
 /* ---------- /LESSON_DIAGRAMS ---------- */
 /* Additional learning content for lessons whose Part 2 was only 1–3 lines. Keyed "day::lesson title". */
 const LESSON_EXTRA_LEARNING = {"1::EA vs. PA: Side-by-Side Work Context": {"t": "Reading the Room: Context Signals", "p": ["Channel is a clue: requests through firm email, the practice-management system, or a matter number are almost always EA work; texts about school pickup, a dinner reservation, or a family trip are PA work.", "Audience is a clue: if the output will be seen by clients, partners, opposing counsel, or a board, default to EA-level formality and confidentiality — even if the task itself looks small.", "Blended roles are common in small firms. When one person holds both, keep two separate task lists and two tones — mixing them is how a personal detail ends up in a client-facing thread."]}, "1::The Filtering Matrix": {"t": "Applying the Four Questions Under Pressure", "p": ["Revenue impact asks whether money is gained or lost if this waits a day. Legal risk asks whether a deadline, privilege, or liability is involved. Either one alone usually means 'now'.", "Executive authority asks whether only the attorney can decide or sign. If not, it's a candidate to delegate or handle yourself within your approved limits.", "Relationship sensitivity catches what the other three miss: a long-time client's minor request can deserve priority because of who is asking, not what is asked."]}, "1::EA vs. PA Decision Principles": {"t": "Side-by-Side: The EA Decision Principles", "p": ["EA principle 1 — business-critical first: anything touching revenue, deadlines, or legal exposure outranks convenience requests, including the executive's own.", "EA principle 2 — filter before escalating: arrive with the question already narrowed to a decision (options + recommendation), not a raw forward.", "EA principle 3 — document the decision: a one-line note of what was decided and why protects the executive and lets anyone else pick up the thread."]}, "1::Serving as Liaison & Point of Contact": {"t": "The Liaison Loop", "p": ["Receive: capture the request in the sender's words, including deadline and who else is involved — ambiguity at intake becomes an error at delivery.", "Translate: restate it for the recipient in their language — a partner needs the decision point; a vendor needs specs and timing; a family member needs the plain-English version.", "Close the loop: confirm back to the original sender when it's done. Most liaison failures are not wrong answers — they're silence after the handoff."]}, "1::Creating a Comprehensive Client Dossier": {"t": "What a Strong Dossier Entry Looks Like", "p": ["Specific beats general: 'Prefers aisle seats, rows 1–10, never red-eyes before court days' is usable; 'likes comfortable flights' is not.", "Every entry has a source and a date — 'confirmed by Elias, March' — so the next assistant knows what's verified and what may have changed.", "Keep sensitive items (health, family matters, finances) in a restricted section with access limited to who genuinely needs it, and never copy them into shared calendars or email."]}, "1::Setting Up Client Trackers": {"t": "Keeping Trackers Alive", "p": ["Assign an update trigger to each tracker: after every trip (Travel), after any feedback on an email (Inbox), after each recurring meeting changes (Meeting Rhythms).", "Add a 'last reviewed' date at the top of each tracker and review monthly — the date itself tells a colleague how far to trust the contents.", "Grow deliberately: add a new tracker (gift preferences, vendor contacts, key dates) only when a real need repeats, not in anticipation."]}, "2::The Three C's of Managing Up": {"t": "The Three C's in a Real Update", "p": ["Clarity in practice: open with the status and the ask — 'The filing is ready; I need your signature by 3 PM' — then add context below.", "Consistency in practice: use the same format for recurring updates (daily brief, weekly summary) so the executive knows exactly where to look.", "Credibility in practice: if you're unsure, say so and give a time you'll confirm by. One wrong 'it's done' costs more trust than ten honest 'confirming by noon'."]}, "2::Reframing Reactive Language": {"t": "A Reframing Toolkit", "p": ["Swap reports for actions: 'I couldn't reach the client' → 'The client hasn't responded; I've emailed and will call again at 2 PM.'", "Swap blame for plans: 'The vendor messed up the order' → 'The order arrived incomplete; replacement is confirmed for Thursday.'", "Swap open questions for decisions: 'What should I do about the conflict?' → 'Two options: move the call or send a delegate. I recommend moving the call.'"]}, "2::Email Is a Control System, Not Cleanup": {"t": "The Three Access Levels", "p": ["Full Access: read, reply, archive, and send on the executive's behalf within agreed rules — the highest trust level, used only after rules are written down.", "Draft & Review: you prepare replies and flag priority; nothing leaves until the executive approves. Common in the first months and for legal matters.", "Read & Flag: you monitor and surface what matters but don't reply. Useful for sensitive inboxes or when a new assistant is still learning the relationships."]}, "2::Core AI Terms an EA/PA Needs": {"t": "Five Terms in Plain English", "p": ["Prompt — the instruction you give the tool. Context window — how much text it can consider at once. Token — a small chunk of text the tool counts toward that limit.", "Hallucination — confident output that is simply wrong or invented, such as a fake case citation. Always verify names, figures, dates, and citations against the source.", "Training data vs. your data — tools learn from past data; what you paste may be stored depending on the account type. Never paste privileged client information into unapproved tools."]}, "3::Prioritization Frameworks": {"t": "Choosing the Right Framework", "p": ["Eisenhower Matrix — best when the list is overwhelming and you need to decide what not to do. Sort by urgent/important, then delegate or drop two of the four quadrants.", "Pomodoro — best when the priorities are clear but focus is the problem: 25 minutes of single-task work, a 5-minute break, repeat.", "Time Blocking — best for protecting the few tasks that matter most this week by giving them a fixed calendar slot before other requests fill the day."]}, "3::Time Tracking Done Right": {"t": "Writing a Useful Time Entry", "p": ["Formula: verb + object + purpose — 'Drafted deposition notice for Harlow matter; circulated to counsel for review' tells a reviewer exactly what was done and why.", "Record in increments your firm uses (often 0.1 hour = 6 minutes) and round honestly — consistent small inaccuracies distort a whole month's billing.", "Tag each entry with the client/matter as you log it; assigning time to matters days later is where the most write-offs and disputes begin."]}, "4::Data Entry That Holds Up": {"t": "Why the Order Matters", "p": ["De-duplicate first: standardizing or sorting duplicates just produces neat duplicates, and each one can trigger a double email or double invoice.", "Standardize before filtering: 'St.' vs 'Street', 'CA' vs 'California' — filters silently miss records whose formatting differs.", "Validate against the source, not memory: check a sample of entries against the original document, especially numbers, dates, and names."]}, "4::The Priority Matrix": {"t": "Tier 3 and Below: What Can Wait", "p": ["Tier 3 (Routine): newsletters, internal FYIs, non-urgent scheduling — batch these into one daily block instead of handling them as they arrive.", "Tier 4 (Archive/Delegate): promotional mail, automated notifications, requests another team owns — file or forward without executive involvement.", "Re-tier when facts change: a routine vendor email becomes Tier 1 the moment it mentions a missed payment or a contract deadline."]}, "4::The Daily Routine": {"t": "Making the Routine Stick", "p": ["Protect the Morning Scan on the calendar like a meeting; if it slips, the executive starts the day reacting instead of informed.", "Keep one running 'carry-over' list between the End-of-Day Review and the next Morning Scan so nothing depends on memory overnight.", "Adjust to the executive's rhythm: if they start at 7 AM, your briefing must be ready by 6:45 — the routine serves their day, not yours."]}, "4::The Morning Briefing, In Practice": {"t": "Anatomy of a One-Page Briefing", "p": ["Top: 'Needs you today' — decisions, signatures, and calls only the executive can handle, each with a deadline.", "Middle: 'Handled / in progress' — one line per item so they know it's covered without reading the thread.", "Bottom: 'Heads-up' — upcoming deadlines, travel, and anything that could become urgent later in the week."]}, "4::How to Generate Leads for Business": {"t": "Common Lead Sources for a Law Firm", "p": ["Referral sources: past clients, other attorneys, accountants, and financial advisors — usually the highest-quality leads and worth tracking by source.", "Public and professional sources: bar association directories, court filings, business registries, and industry association member lists.", "Inbound sources: website inquiries, webinars, published articles, and speaking events — log each with where it came from so the firm learns which channels work."]}, "4::Creating and Maintaining a Comprehensive Contact List": {"t": "Fields Worth Capturing", "p": ["Core: full name, title, organization, best phone, best email, preferred channel, and time zone.", "Context: how they're connected to the executive, last interaction date, and any sensitivities (e.g., opposing party in a matter — never contact directly).", "Maintenance: a 'last verified' date and owner for each entry, plus a quarterly sweep to remove duplicates and update role changes."]}, "5::Running a Household Like a Business": {"t": "The Household Operating System", "p": ["A master calendar for family, staff schedules, school events, and maintenance — one source of truth, shared with the right people.", "A household budget with categories (utilities, staff, maintenance, subscriptions) and monthly reconciliation, just like a business cost center.", "A vendor and staff directory with contracts, rates, emergency contacts, and backup providers for every critical service."]}, "5::Procurement and Vendor/Supplier Management": {"t": "The Procurement Cycle", "p": ["Define the need and budget first, then gather at least three quotes for anything non-trivial so price and quality can be compared.", "Check references, insurance, and licensing before hiring — especially for anyone working inside the home.", "Record terms in writing (scope, price, schedule, cancellation) and review vendor performance at least annually before renewing."]}, "5::When a Vendor Falls Through": {"t": "Building a Backup Bench", "p": ["For each critical service (cleaning, security, childcare, repairs), keep one pre-vetted backup with current contact details and rates.", "Test the backup occasionally with a small job so you know they're reliable before an emergency depends on them.", "After any failure, record what happened and why — a vendor that fails twice should be replaced, not tolerated."]}, "5::The PA Risk Management Framework": {"t": "The Five Risk Categories at a Glance", "p": ["Financial (fraud, unpaid bills, lapsed insurance) and Legal & Liability (injuries at the home, staff contracts, disputes).", "Operational (missed deadlines, travel disruption, vendor failure) and Reputational (privacy leaks, social media exposure).", "Physical & Safety (home security, travel safety, emergencies). Map each real incident to all categories it touches — a burglary is physical, financial, and privacy risk at once."]}, "5::The Four Core Risk Strategies": {"t": "Avoidance — and How to Choose", "p": ["Avoidance means not doing the risky thing at all — e.g., skipping a destination under a travel advisory. It's the right choice when the benefit doesn't justify any level of risk.", "Choose by comparing likelihood and impact: high impact → transfer or avoid; low impact and low cost → retain; frequent but manageable → reduce.", "Most real situations combine strategies: insure the car (transfer), add a tracker (reduce), and accept the deductible (retain)."]}, "5::Travel Risk Management": {"t": "Building an Emergency Contact Sheet", "p": ["Include local emergency numbers, the nearest embassy or consulate, the hotel's direct line, and the travel insurer's 24/7 assistance number.", "Add copies of passport and visa pages, medication and allergy notes (stored securely), and the executive's emergency contact at home.", "Share it with the traveler and one designated person at home — and keep a printed copy in case phones die or are lost."]}, "5::Lifestyle & Personal Support": {"t": "Typical Lifestyle Support Tasks", "p": ["Gifts and occasions: birthdays, anniversaries, holiday gifts for staff and clients — tracked with dates, budgets, and what was given last year.", "Errands and appointments: dry cleaning, car service, medical and personal appointments coordinated around the work calendar.", "Events and experiences: restaurant reservations, event tickets, and family celebrations — confirmed in writing and added to the shared calendar."]}, "6::Choosing a Business Structure": {"t": "Common Structures Compared", "p": ["Sole proprietorship: simplest to set up, but the owner is personally liable for all business debts and claims.", "LLC: separates personal and business liability and offers flexible tax treatment; a common default for small firms and holding entities.", "Corporation (C or S): formal governance (board, bylaws, minutes) and share structure; often chosen when outside investment or specific tax treatment is planned. Final choice is always made with the attorney and CPA."]}, "6::Staying in Good Standing": {"t": "What 'Good Standing' Requires", "p": ["Annual or biennial reports filed with the state on time, with current officer and address information.", "Franchise taxes or fees paid, and a registered agent maintained in every state where the entity is registered.", "Business licenses and permits renewed before expiry. Losing good standing can block contracts, bank actions, and even the right to sue in that state."]}, "6::Frameworks Worth Knowing": {"t": "Four Frameworks in One Line Each", "p": ["Lean — remove waste: steps, waiting, rework, and handoffs that add no value.", "Six Sigma — reduce errors and variation using data (DMAIC: Define, Measure, Analyze, Improve, Control).", "PMI/PMBOK — structure large projects with scope, schedule, budget, and risk plans. Agile — deliver in short cycles and adjust based on feedback."]}, "6::Operational Optimization": {"t": "Choosing KPIs That Matter", "p": ["Pick measures tied to outcomes: calendar accuracy rate, email response time, on-time filings, invoice turnaround.", "Limit to four or five KPIs and give each a target and an owner — a KPI without an owner is just a number.", "Review on a fixed cadence (weekly or monthly) and act on trends, not single bad days."]}, "6::The KPI Dashboard Template": {"t": "Example KPIs by Area", "p": ["Executive Productivity: calendar accuracy ≥ 98%, briefing delivered by 8 AM daily.", "Client Service: response to client inquiries within 4 business hours; zero missed follow-ups.", "Operations & Finance: invoices issued within 3 days of month-end; SOPs reviewed at least every 6 months."]}, "7::The EA/PA's Role in Finance": {"t": "Where the EA/PA Touches the Money", "p": ["Accounts payable: collecting invoices, matching them to approvals, and routing for payment.", "Accounts receivable: preparing client invoices, tracking what's outstanding, and sending polite reminders on schedule.", "Expenses and reimbursements: gathering receipts, coding them to the right matter or cost center, and flagging anything outside policy."]}, "7::SOA Reconciliation": {"t": "A Worked Example", "p": ["Opening balance $4,000 + new invoices $6,500 − payments received $5,000 ± adjustments (credit note −$250) = closing balance $5,250.", "If the client's records show $5,000, look for the difference ($250) first — here, the credit note wasn't recorded on their side.", "Document the reconciliation (date, items matched, differences found, resolution) so the next month starts from an agreed opening balance."]}, "7::What an SOP Actually Needs": {"t": "The Five Elements Explained", "p": ["Purpose: why the procedure exists. Scope: who and what it covers — and what it doesn't.", "Procedure: numbered steps anyone can follow. Controls: checks, approvals, and records that prove it was done correctly.", "Escalation: who to contact when something goes wrong, and by when. A good test: could a temp follow it on day one?"]}, "7::The Financial Calendar": {"t": "Typical Recurring Financial Deadlines (US)", "p": ["Monthly: client invoicing, month-end close, bank and trust account reconciliation.", "Quarterly: estimated tax payments (generally April, June, September, and January) and quarterly payroll filings.", "Annually: 1099/W-2 issuance (end of January), year-end close, and business license or registration renewals. Confirm exact dates with the firm's accountant each year."]}, "7::Billing & Invoicing": {"t": "Anatomy of a Clean Invoice", "p": ["Header: firm details, client name, matter number, invoice number, and invoice date.", "Body: itemized entries (date, description, hours, rate) plus expenses, with any discount shown as its own line.", "Footer: total due, due date, payment terms (e.g., Net 30), accepted payment methods, and late-fee terms if they apply."]}, "7::QuickBooks How-Tos — Step by Step": {"t": "The Four Everyday Workflows", "p": ["Create an invoice: + New → Invoice → select customer → add products/services → set terms and due date → Save and send.", "Record a payment: + New → Receive payment → select customer → apply to the matching open invoice → Save.", "Enter a bill and reconcile: + New → Bill for vendor invoices; Settings → Reconcile monthly against the bank statement. (Menu names may vary slightly by QuickBooks version.)"]}, "7::Contract-Aware Billing": {"t": "Contract Terms to Check Before Billing", "p": ["Billing arrangement: hourly, flat fee, contingency, or retainer — each changes what goes on the invoice.", "Caps and budgets: any hour cap or fee estimate the client agreed to, and the notice required before exceeding it.", "Payment and late-fee terms: due dates, interest on late payments, and any required invoice format or billing codes (common with corporate clients)."]}, "7::Bookkeeping Basics & Compliance": {"t": "Core Bookkeeping Concepts", "p": ["Double-entry: every transaction affects at least two accounts (e.g., cash up, revenue up), which is what makes errors detectable.", "Cash vs. accrual: cash basis records when money moves; accrual records when it's earned or owed. Know which your firm uses.", "Chart of accounts: the categorized list of accounts every transaction is coded to — consistent coding is what makes reports trustworthy."]}, "8::Credential Management": {"t": "Common Credential Roles", "p": ["Admin: full control, including adding users and changing security settings — limited to a very small number of people.", "Standard/Editor: can create and edit content but can't change permissions. Viewer/Read-only: can see but not change.", "Review access when roles change or someone leaves — access that outlives the job is one of the most common security gaps."]}, "8::Responding to a Suspicious Data Request": {"t": "Red Flags in a Data Request", "p": ["Urgency and secrecy: 'Send this in the next 10 minutes and don't tell anyone' is a classic pressure tactic.", "Mismatched details: a display name that looks right but an email domain that's slightly off, or a new phone number.", "Unusual asks: requests for passwords, client lists, wire changes, or gift cards. Verify through a known channel — call the number you already have, not the one in the message."]}, "8::Containing a Confidentiality Leak": {"t": "The First-Hour Checklist", "p": ["Stop further spread: recall or delete messages where possible, revoke shared links, and change access on affected files.", "Capture facts: what was exposed, to whom, when, and how — before details are forgotten.", "Notify the right roles (supervising attorney, IT/security, compliance) promptly; legal notification duties to clients or regulators may apply and are their call to make."]}, "8::Fixing a Broken Workflow": {"t": "Signs a Workflow Is Broken", "p": ["Status questions: people keep asking 'where is this?' because no single place shows the answer.", "Duplicate effort: the same information is re-typed into email, a spreadsheet, and a calendar.", "Hand-off gaps: tasks stall when they move between people, and no one owns the step in between."]}, "9::Running an Event End-to-End": {"t": "The Event Timeline", "p": ["8–12 weeks out: goals, budget, date, venue, and invitation list. 4–6 weeks: invitations, speakers, catering, AV.", "1 week: confirm numbers, run-of-show, name badges, and materials. Day of: arrive early, run a tech check, and track check-ins.", "After: thank-you notes within 48 hours, collect feedback, reconcile the budget, and log lessons for next time."]}, "9::Four SOPs That Keep Professional Development on Track": {"t": "The Four SOPs at a Glance", "p": ["Event Registration: vet the provider, confirm budget and approval, register, and calendar it with materials.", "Attendance Tracking: record attendance, export reports, and store completion certificates where an auditor can find them.", "Team Upskilling and Evaluation: assess needs quarterly, choose providers deliberately, and measure whether the training changed performance."]}, "9::CLE / Compliance Tracking": {"t": "How CLE Requirements Typically Work", "p": ["Each state bar sets its own rules: total hours per reporting period (often 1–3 years) plus required categories such as ethics.", "Hours usually must come from accredited providers and be reported by a deadline; some states allow carry-over of extra hours, others don't.", "Keep certificates for every course — they're the proof if the bar audits. Always confirm the current rules for each attorney's state."]}, "9::Membership Renewals": {"t": "What to Track for Each Membership", "p": ["Organization, member name, membership level, renewal date, annual cost, and who approves the renewal.", "Auto-renew status and the payment method on file — expired cards are a common reason memberships lapse silently.", "Value check: is the membership still used? A yearly review stops paying for associations no one attends."]}, "9::Planning Professional Development": {"t": "Measuring Effectiveness", "p": ["Level 1 — Reaction: did participants find it useful? Level 2 — Learning: can they demonstrate the new skill?", "Level 3 — Behavior: are they using it on the job weeks later? Level 4 — Results: did performance or outcomes improve?", "Even a simple before/after check on one skill tells you more than attendance numbers ever will."]}, "10::The Executive Personal Brand Style Guide": {"t": "What Goes in the Style Guide", "p": ["North Star and audience: the primary goal and who the content is for.", "Voice and tone rules, content pillars (3–5 topics), and a 'Never' list of banned topics, words, and formats.", "Visual rules: colors, fonts, photo style, and approved headshots — plus an approval workflow for who signs off before posting."]}, "10::Defining and Maintaining Brand Voice, Tone & Messaging": {"t": "Voice vs. Tone vs. Messaging", "p": ["Voice is the constant personality — e.g., direct, credible, unhurried. It doesn't change from post to post.", "Tone flexes with context — celebratory for a team win, measured for industry news, empathetic for a difficult topic.", "Messaging is the recurring core ideas the executive wants to be known for. Audit a sample of posts quarterly against all three."]}, "10::Visual Brand Assets — Sample Color Palette": {"t": "Using a Palette Correctly", "p": ["The 60-30-10 rule: roughly 60% background/neutral, 30% primary brand color, 10% accent for calls-to-action.", "Record exact color codes (HEX for web, CMYK for print) so every designer and tool reproduces the same shade.", "Check contrast for readability — text must stand out clearly against its background, especially on mobile."]}, "10::Platform Proficiencies — Tool-Specific Best Practices": {"t": "Platform Snapshot", "p": ["LinkedIn: professional insight and thought leadership; text posts, articles, and documents perform well.", "Instagram: visual storytelling — behind-the-scenes, events, and culture; strong images and short captions.", "X/Threads and newsletters: timely commentary and direct relationship-building; newsletters are the channel the executive owns outright."]}, "10::Reading the Numbers — Engagement Rate": {"t": "Interpreting the Result", "p": ["Compare against the account's own average first — a 3.6% post is strong if the usual rate is 2%, weak if it's 6%.", "Look at which interactions drove it: comments and shares signal deeper interest than likes alone.", "Use rates, not raw counts, to compare posts or platforms — a small, engaged audience often outperforms a large, passive one."]}, "10::SEO, GEO & Funneling for Executives": {"t": "The Content Funnel in Practice", "p": ["Top (awareness): social posts, podcasts, PR mentions — reach people who don't know the executive yet.", "Middle (consideration): articles, webinars, and newsletters that show expertise in depth.", "Bottom (decision): case studies, testimonials, and a clear contact path — each stage links naturally to the next."]}, "10::GEO Tactics & Consistency": {"t": "What Is GEO?", "p": ["Generative Engine Optimization (GEO) means making content easy for AI assistants to find, trust, and quote when people ask questions.", "AI tools favor clear, well-structured, factual content from consistent, authoritative sources — the same signals good SEO relies on.", "Practical test: ask an AI assistant 'Who is [executive] and what are they known for?' monthly and note what it gets wrong — that's your update list."]}};
+/* ============================================================
+   VISUAL LEARNING — every lesson slide gets a graphic:
+   • Part 1: "Steps at a glance" flow (unless the lesson already has a diagram)
+   • Part 2: best practices shown as Do ✓ / Watch-out ⚠ cards with icons
+   • Callouts written as "A → B → C" become a flow of chips
+   ============================================================ */
+const VIS_ICONS = [
+  [/e-?mail|inbox|message|reply/i,"✉️"],[/calendar|schedul|meeting|agenda/i,"📅"],[/call|phone|voice/i,"📞"],
+  [/confidential|privacy|privileg|secure|password|access|credential/i,"🔒"],[/deadline|time|minute|hour|urgent|today/i,"⏱"],
+  [/invoice|budget|expense|pay|bill|cost|\$|financ|trust/i,"💵"],[/travel|flight|hotel|trip|itinerar/i,"✈️"],
+  [/client|relationship|stakeholder|partner/i,"🤝"],[/risk|escalat|crisis|emergenc/i,"⚠️"],[/document|file|record|log|dossier|note/i,"📄"],
+  [/verify|check|confirm|review|audit/i,"✅"],[/ask|question|clarif/i,"❓"],[/\bAI\b|prompt|model|tool/i,"🤖"],
+  [/team|staff|vendor|colleague/i,"👥"],[/priorit|first|order|rank/i,"🎯"],[/brand|social|post|content/i,"📣"]
+];
+function visIcon(t, fallback){ for(const [re,ic] of VIS_ICONS) if(re.test(t)) return ic; return fallback; }
+function isPitfall(t){ return /^pitfall:|\bnever\b|\bdon'?t\b|\bdo not\b|\bavoid\b|\bmistake\b|\bisn'?t\b|\bnot\b.*\bbut\b|\bwrong\b|\bfail/i.test(String(t)); }
+function renderStepsGlance(steps){
+  const items = (steps||[]).slice(0,6).map(x=>shortPhrase(splitLabel(x).label || x, 46)).filter(Boolean);
+  if(items.length < 2) return "";
+  return `<div class="vis-flow" aria-hidden="true">${items.map((t,i)=>`<div class="vis-step"><span class="vis-n">${i+1}</span><span class="vis-i">${visIcon(t,"▸")}</span><b>${esc(asSentence(t).replace(/\.$/,""))}</b></div>${i<items.length-1?'<i class="vis-arrow">➜</i>':""}`).join("")}</div>`;
+}
+function renderPracticeCards(list){
+  const items = (list||[]).filter(Boolean);
+  if(!items.length) return "";
+  return `<div class="vis-cards">${items.map(t=>{ const bad = isPitfall(t); const txt = String(t).replace(/^pitfall:\s*/i,"");
+    return `<div class="vis-card ${bad?"bad":"good"}"><div class="vis-card-top"><span class="vis-badge">${bad?"⚠ Watch out":"✓ Do this"}</span><span class="vis-card-i">${visIcon(txt, bad?"⚠️":"✅")}</span></div><p>${esc(txt)}</p></div>`; }).join("")}</div>`;
+}
+function renderCalloutFlow(title){
+  const parts = String(title||"").split(/\s*(?:→|->|➜)\s*/).filter(Boolean);
+  if(parts.length < 2) return "";
+  return `<div class="vis-chips">${parts.map((p,i)=>`<span class="vis-chip">${esc(p)}</span>${i<parts.length-1?'<i>→</i>':""}`).join("")}</div>`;
+}
+/* ============================================================
+   AUDIO MODE — listen to lessons instead of (or while) reading.
+   ▶ Listen reads the current slide aloud; Audio mode reads every
+   slide automatically and moves on when each one finishes.
+   ============================================================ */
+const Narrator = {
+  playing:false, utts:[], token:0,
+  get supported(){ return "speechSynthesis" in window; },
+  rate(){ return parseFloat(localStorage.getItem("lsh_audio_rate")||"1") || 1; },
+  voice(){
+    const vs = speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));
+    return vs.find(v=>/natural|neural|aria|jenny|google us english|samantha/i.test(v.name)) || vs.find(v=>/en-US/i.test(v.lang)) || vs[0] || null;
+  },
+  slideText(){
+    const card = document.querySelector("#lessonSlideWrap"); if(!card) return "";
+    const clone = card.cloneNode(true);
+    clone.querySelectorAll("svg, .svg-diagram-card, .vis-flow, .vis-chips, .vis-label, .topic-separator, .fp-num, .lnum, .vis-badge, .vis-card-i, .qc-actions, .quiz-rationale:not(.show), button, .lx-panel:not([open])").forEach(n=>n.remove());
+    return clone.innerText.replace(/\s*\n+\s*/g, ". ").replace(/(\.\s*){2,}/g, ". ").replace(/[→➜]/g, ", then ").replace(/\s+/g," ").trim();
+  },
+  play(){
+    if(!this.supported){ toast("Audio isn't supported in this browser — try Chrome or Edge."); return; }
+    const text = this.slideText(); if(!text) return;
+    this.stop(true); this.playing = true; const tok = ++this.token;
+    const chunks = text.match(/[^.!?]+[.!?]*/g) || [text];
+    const v = this.voice();
+    this.utts = chunks.map((c,i)=>{ const u = new SpeechSynthesisUtterance(c.trim()); if(v) u.voice = v; u.rate = this.rate();
+      if(i===chunks.length-1) u.onend = ()=>{ if(tok!==this.token) return; this.playing = false; this.paint(); this.finished(); };
+      u.onerror = (e)=>{ if(e && e.error==="interrupted") return; };
+      return u; });
+    setTimeout(()=>{ if(tok!==this.token) return; try{ speechSynthesis.resume(); }catch(e){} this.utts.forEach(u=>speechSynthesis.speak(u)); }, 60);
+    this.paint();
+  },
+  pause(){ if(speechSynthesis.speaking && !speechSynthesis.paused){ speechSynthesis.pause(); this.paint(); } else if(speechSynthesis.paused){ speechSynthesis.resume(); this.paint(); } },
+  stop(silent){ this.token++; this.playing = false; try{ speechSynthesis.cancel(); }catch(e){} if(!silent) this.paint(); },
+  finished(){
+    if(!state.audioMode || state.view!=="day") return;
+    const d = DAYS.find(x=>x.id===state.dayId); const total = buildDaySlides(d).length;
+    if((state.lessonSlide||0) < total-1){ setTimeout(()=>{ if(state.audioMode && state.view==="day") nextSlide(); }, 900); }
+    else toast("🎧 That's the last slide — the Knowledge Check is next.");
+  },
+  afterSlideChange(){ this.stop(true); if(state.audioMode && state.view==="day" && state.dayViewMode!=="knowledgeCheck") setTimeout(()=>this.play(), 350); else this.paint(); },
+  paint(){
+    const b = document.getElementById("narrBtn"); if(b) b.innerHTML = this.playing ? (speechSynthesis.paused ? "▶ Resume" : "⏸ Pause") : "▶ Listen";
+    const m = document.getElementById("audioModeBtn"); if(m){ m.classList.toggle("on", !!state.audioMode); m.innerHTML = state.audioMode ? "🎧 Audio mode: on" : "🎧 Audio mode"; }
+  }
+};
+state.audioMode = localStorage.getItem("lsh_audio_mode")==="1";
+function narrToggle(){ if(Narrator.playing) Narrator.pause(); else Narrator.play(); }
+function toggleAudioMode(){
+  state.audioMode = !state.audioMode; localStorage.setItem("lsh_audio_mode", state.audioMode ? "1" : "0");
+  if(state.audioMode){ toast("🎧 Audio mode on — each slide is read aloud and moves on by itself. Press Pause any time."); Narrator.play(); }
+  else { Narrator.stop(); toast("Audio mode off."); }
+  Narrator.paint();
+}
+function setAudioRate(v){ localStorage.setItem("lsh_audio_rate", v); if(Narrator.playing) Narrator.play(); }
+Object.assign(window, {narrToggle, toggleAudioMode, setAudioRate});
+if("speechSynthesis" in window) speechSynthesis.onvoiceschanged = ()=>{};
+
 function renderLessonCard(l,i,d,unused,part){
   // Explicit, hand-authored fourPart content (simple string/array shape) takes
   // priority for new topics. Existing topics without it fall back to the
@@ -14873,9 +15020,13 @@ function renderLessonCard(l,i,d,unused,part){
     discussionHtml = discussionParts.join("");
   }
 
-  const partAHtml = renderFourPartSection(1, "Core Principles", corePrinciplesHtml) + renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml) + ((l.svgDiagram || (d && LESSON_DIAGRAMS[d.id+"::"+l.h])) ? `<div class="svg-diagram-card">${l.svgDiagram || LESSON_DIAGRAMS[d.id+"::"+l.h]}</div>` : "");
+  const hasDiagram = !!(l.svgDiagram || (d && LESSON_DIAGRAMS[d.id+"::"+l.h]) || /svg|lesson-quadrant|lesson-process|lesson-compare|lesson-threebox|lesson-iconlist/.test(howToHtml||""));
+  const glance = hasDiagram ? "" : renderStepsGlance((l.fourPart && l.fourPart.howTo) || l.howTo || []);
+  const partAHtml = renderFourPartSection(1, "Core Principles", corePrinciplesHtml) + (glance ? `<div class="vis-label">Steps at a glance</div>${glance}` : "") + renderFourPartSection(2, "Step-by-Step How-To Framework", howToHtml) + ((l.svgDiagram || (d && LESSON_DIAGRAMS[d.id+"::"+l.h])) ? `<div class="svg-diagram-card">${l.svgDiagram || LESSON_DIAGRAMS[d.id+"::"+l.h]}</div>` : "");
   const extra = d && LESSON_EXTRA_LEARNING[d.id+"::"+l.h];
-  const partBHtml = renderFourPartSection(3, "Executive Best Practices & Pitfalls", bestPracticesHtml)
+  const bpList = (l.fourPart && l.fourPart.bestPractices) || null;
+  const bpVisual = bpList ? renderPracticeCards(bpList) : bestPracticesHtml.replace(/<ul>([\s\S]*?)<\/ul>/, (m, inner)=>renderPracticeCards([...inner.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(x=>x[1].replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/&#39;/g,"'").replace(/&quot;/g,'"'))));
+  const partBHtml = renderFourPartSection(3, "Executive Best Practices & Pitfalls", bpVisual || bestPracticesHtml)
     + (extra ? renderFourPartSection(4, "Go Deeper — " + extra.t, `<ul>${extra.p.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`) : "");
   const p = (part===2) ? 2 : 1;
   // Balance short slides: measure how much is actually on this slide and
@@ -14887,7 +15038,7 @@ function renderLessonCard(l,i,d,unused,part){
 
   return `
     <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length} &middot; PART ${p} OF 2</div>
-    <div class="card lesson-card ${expSec ? "density-m" : density}">
+    <div class="card lesson-card ${expSec ? "density-m" : density}" data-part="${p}">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
       ${expSec ? renderExpansionPanel(expSec) : ""}
       ${p===1 ? partAHtml : partBHtml}
@@ -23325,7 +23476,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.26-d";
+var APP_BUILD = "2026.09.26-g";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
