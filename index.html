@@ -2257,6 +2257,8 @@ em.warn{font-style:normal;color:var(--danger);}
 
 .tk-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 16px;}
 .tk-stats > div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;} .tk-stats b{display:block;font-family:'Fraunces',serif;font-size:26px;color:var(--navy);} .tk-stats span{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);font-weight:700;}
+.tk-arch-btn{margin-left:8px;border:1px solid var(--line);background:#fff;border-radius:999px;font:inherit;font-size:11.5px;font-weight:700;color:var(--ink-soft);padding:2px 10px;cursor:pointer;} .tk-arch-btn:hover{border-color:var(--navy);color:var(--navy);}
+.tk-archived{margin:18px 0 8px;} .tk-archived > summary{cursor:pointer;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:700;margin-bottom:10px;} .tk-archived .tk-card{opacity:.85;}
 .tk-sec{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin:18px 0 8px;}
 .tk-card{padding:16px 18px;margin-bottom:12px;border-left:5px solid var(--navy);}
 .tk-card.new{border-left-color:var(--orange);} .tk-card.progress{border-left-color:#E8B54A;} .tk-card.resolved{border-left-color:#3F7D58;} .tk-card.missed{border-left-color:var(--danger);opacity:.85;}
@@ -11701,7 +11703,7 @@ const mem = {}; // in-memory fallback if window.storage is unavailable
 const PERSONAL_KEYS = ["day-progress","practice-progress","lab-attempts-global","notes","completed-lab-actions",
   "day10-window","submissions","roleplayHistory","slide-progress","last-slide","attn-detail-findings",
   "calendar-custom","calendar-edits","call-log","inbox-filing","inbox-interactions","inbox-labels","trainee-batch",
-  "quick-check-answers","last-view","lab-drafts","work-log","cert-name","reg-name","intro-seen","task-log"];
+  "quick-check-answers","last-view","lab-drafts","work-log","cert-name","reg-name","intro-seen","task-log","task-day-since"];
 const PERSONAL_KEY_SET = new Set(PERSONAL_KEYS);
 let cloudSaveTimer = null;
 function scheduleCloudSave(){
@@ -12043,6 +12045,7 @@ async function loadAll(){
   const lv = await storeGet("last-view");
   state.lastView = (lv && typeof lv==="object") ? lv : null;
   const tl = await storeGet("task-log"); state.taskLog = Array.isArray(tl) ? tl : [];
+  state.taskDaySince = (await storeGet("task-day-since")) || {};
   const isn = await storeGet("intro-seen"); state.introSeen = (isn && typeof isn==="object") ? isn : {};
   const rn = await storeGet("reg-name");
   state.regName = (rn && rn.last) ? rn : null;
@@ -13785,7 +13788,12 @@ function syncTaskFromBroadcast(t){
   if(!t || !t.generatedAt) return;
   const log = taskLog();
   let e = log.find(x=>x.id===t.generatedAt);
-  if(!e){ e = {id:t.generatedAt, dayId:t.dayId, task:t.task, receivedAt:new Date().toISOString(), expiresAt:t.expiresAt, status:"new", notes:"", response:""}; log.unshift(e); saveTaskLog(); toast("🎲 New task assigned — open 🎲 Tasks to handle it."); }
+  if(!e){
+    const over = t.expiresAt && Date.now() > new Date(t.expiresAt).getTime();
+    e = {id:t.generatedAt, dayId:t.dayId, task:t.task, receivedAt:new Date().toISOString(), expiresAt:t.expiresAt, status:"new", notes:"", response:""};
+    log.unshift(e); log.sort((a,b)=>new Date(b.id).getTime()-new Date(a.id).getTime()); saveTaskLog();
+    toast(over ? "🎲 A task was sent while you were away and its time ran out — it's logged under Missed in 🎲 Tasks." : "🎲 New task assigned — open 🎲 Tasks to handle it.");
+  }
   e.expiresAt = t.expiresAt || e.expiresAt;
 }
 function refreshTaskStatuses(){
@@ -13805,13 +13813,14 @@ function taskStatusChip(e){ return {new:`<span class="tk-chip new">● New</span
 function renderTasksPage(){
   refreshTaskStatuses();
   const log = taskLog();
-  const open = log.filter(e=>e.status==="new"||e.status==="progress"), done = log.filter(e=>e.status==="resolved"), missed = log.filter(e=>e.status==="missed");
-  const avg = done.length ? Math.round(done.reduce((a,e)=>a+(e.score||0),0)/done.length) : null;
+  const open = log.filter(e=>e.status==="new"||e.status==="progress"), doneAll = log.filter(e=>e.status==="resolved"), missedAll = log.filter(e=>e.status==="missed");
+  const done = doneAll.filter(e=>!e.archived), missed = missedAll.filter(e=>!e.archived), archived = log.filter(e=>e.archived && (e.status==="resolved"||e.status==="missed"));
+  const avg = doneAll.length ? Math.round(doneAll.reduce((a,e)=>a+(e.score||0),0)/doneAll.length) : null;
   const card = (e)=>{
     const live = e.status==="new"||e.status==="progress";
     const left = e.expiresAt ? new Date(e.expiresAt).getTime()-Date.now() : 0;
     return `<div class="card tk-card ${e.status}" id="tk_${cssId(e.id)}">
-      <div class="tk-head"><div><span class="tk-day">Day ${e.dayId}</span> ${taskStatusChip(e)}</div>
+      <div class="tk-head"><div><span class="tk-day">Day ${e.dayId}</span> ${taskStatusChip(e)}${!live ? ` <button class="tk-arch-btn" onclick="taskArchive('${esc(e.id)}', ${e.archived?"false":"true"})" title="${e.archived?"Move back to the list":"Hide from the list — it still counts in your scores"}">${e.archived?"↩ Unarchive":"🗄 Archive"}</button>` : ""}</div>
         <div class="tk-times">Received ${fmtDate(e.receivedAt)}${live && e.expiresAt ? ` · <b class="tk-left" data-exp="${esc(e.expiresAt)}">${fmtLeft(left)}</b>` : ""}${e.submittedAt ? ` · Resolved in ${Math.max(1,Math.round((new Date(e.submittedAt)-new Date(e.receivedAt))/60000))} min` : ""}</div></div>
       <p class="tk-task">${esc(e.task)}</p>
       ${live ? `
@@ -13831,17 +13840,20 @@ function renderTasksPage(){
     <h1>🎲 My Tasks</h1>
     <p>Unannounced tasks your trainer drops in during training. Acknowledge fast, plan, then resolve before the timer runs out — each one is graded and counts toward your assessment.</p>
     <div class="tk-stats">
-      <div><b>${open.length}</b><span>Open</span></div><div><b>${done.length}</b><span>Resolved</span></div><div><b>${missed.length}</b><span>Missed</span></div><div><b>${avg===null?"—":avg+"%"}</b><span>Average score</span></div>
+      <div><b>${open.length}</b><span>Open</span></div><div><b>${doneAll.length}</b><span>Resolved</span></div><div><b>${missedAll.length}</b><span>Missed</span></div><div><b>${avg===null?"—":avg+"%"}</b><span>Average score</span></div>
     </div>
     ${log.length ? `
       ${open.length ? `<h3 class="tk-sec">Open now</h3>${open.map(card).join("")}` : ""}
       ${done.length ? `<h3 class="tk-sec">Resolved</h3>${done.map(card).join("")}` : ""}
-      ${missed.length ? `<h3 class="tk-sec">Missed</h3>${missed.map(card).join("")}` : ""}` :
+      ${missed.length ? `<h3 class="tk-sec">Missed</h3>${missed.map(card).join("")}` : ""}
+      ${archived.length ? `<details class="tk-archived"><summary>🗄 Archived (${archived.length}) — still counted in your scores</summary>${archived.map(card).join("")}</details>` : ""}` :
       `<div class="card" style="padding:26px;text-align:center;color:var(--ink-soft);">No random tasks yet. When your trainer sends one, it appears here and on your dashboard — you'll have a limited time to handle it.</div>`}
     <div class="card tk-how"><b>How random tasks are assessed</b>
       <ul><li><b>Timeliness</b> — acknowledged quickly and resolved inside the live window.</li><li><b>Prioritisation</b> — the right first move, deadlines and people.</li><li><b>Applying today's lesson</b> — not just common sense.</li><li><b>Communication</b> — clear, bottom-line-first, ready to send.</li><li><b>Risk &amp; confidentiality</b> — nothing unsafe, the right escalation.</li></ul>
       <span>Scores feed your Competency Profile (<i>Real-Time Task Handling</i>) and your ranking. Missed tasks count as 0.</span></div>`;
 }
+async function taskArchive(id, on){ const e = taskLog().find(x=>x.id===id); if(!e) return; e.archived = !!on; await saveTaskLog(); render(); toast(on ? "Task archived — it still counts in your scores." : "Task moved back to the list."); }
+window.taskArchive = taskArchive;
 async function taskAck(id){ const e = taskLog().find(x=>x.id===id); if(!e) return; e.status = "progress"; e.ackAt = new Date().toISOString(); await saveTaskLog(); render(); setTimeout(()=>{ const t = document.querySelector(`#tk_${cssId(id)} textarea`); if(t) t.focus(); }, 60); }
 const __tkTimers = {};
 function taskNotes(id, v){ const e = taskLog().find(x=>x.id===id); if(!e) return; e.notes = v; clearTimeout(__tkTimers[id]); __tkTimers[id] = setTimeout(saveTaskLog, 700); }
@@ -13945,6 +13957,21 @@ async function checkSurpriseTask(){
     const rec = await sharedGet("surprise-task-day"+dayId);
     state.activeSurpriseTask = surpriseTaskIsLive(rec) ? rec : null;
     if(state.activeSurpriseTask) syncTaskFromBroadcast(state.activeSurpriseTask);
+    // Every task sent to this day since the trainee reached it is logged — including
+    // ones replaced by a newer task or whose timer ran out while they were away
+    // (those land under Missed). Tasks the trainer ended early before the trainee
+    // ever saw them are not held against anyone.
+    state.taskDaySince = state.taskDaySince || {};
+    if(!state.taskDaySince[dayId]){ state.taskDaySince[dayId] = new Date().toISOString(); storeSet("task-day-since", state.taskDaySince); }
+    const since = new Date(state.taskDaySince[dayId]).getTime();
+    const reg = state.traineeRegisteredAt ? new Date(state.traineeRegisteredAt).getTime() : 0;
+    const seen = new Set(taskLog().map(x=>x.id));
+    ((rec && rec.history) || []).concat(rec && rec.generatedAt ? [rec] : []).forEach(t=>{
+      if(!t || !t.generatedAt || seen.has(t.generatedAt)) return;
+      const g = new Date(t.generatedAt).getTime();
+      if(g < since || g < reg || t.endedAt) return;
+      syncTaskFromBroadcast(t); seen.add(t.generatedAt);
+    });
   }catch(e){
     state.activeSurpriseTask = null;
   }
@@ -20995,7 +21022,8 @@ Write a short (2-4 sentence), realistic incoming request or situation — the ki
     const task = await callAIText(prompt, 400, 150000);
     const mins = parseInt((document.getElementById("surpriseTaskDuration")||{}).value, 10) || 30;
     const now = Date.now();
-    const record = {task: task.trim(), dayId, generatedAt: new Date(now).toISOString(), expiresAt: new Date(now + mins*60000).toISOString(), active: true};
+    const prev = await sharedGet("surprise-task-day"+dayId).catch(()=>null);
+    const record = {task: task.trim(), dayId, generatedAt: new Date(now).toISOString(), expiresAt: new Date(now + mins*60000).toISOString(), active: true, history: surpriseTaskHistory(prev, false)};
     await sharedSet("surprise-task-day"+dayId, record);
     resultEl.innerHTML = `<div class="card" style="padding:10px 14px;background:#fff;border-color:var(--line);font-size:12.5px;color:#37394A;"><b style="color:var(--navy);">Broadcast live:</b> ${esc(task.trim())}</div>`;
     toast(`Surprise task broadcast to Day ${dayId} trainees.`);
@@ -21004,8 +21032,20 @@ Write a short (2-4 sentence), realistic incoming request or situation — the ki
   }
 }
 window.injectSurpriseTask = injectSurpriseTask;
+/* Previous tasks for a day stay in the record's history (last 20), so a trainee
+   who wasn't online when one was sent still gets it logged. */
+function surpriseTaskHistory(prev, endedNow){
+  const hist = (prev && Array.isArray(prev.history)) ? prev.history.slice() : [];
+  if(prev && prev.generatedAt && !hist.some(x=>x.generatedAt===prev.generatedAt)){
+    const item = {task:prev.task, dayId:prev.dayId, generatedAt:prev.generatedAt, expiresAt:prev.expiresAt};
+    if(endedNow && prev.active && prev.expiresAt && Date.now() < new Date(prev.expiresAt).getTime()) item.endedAt = new Date().toISOString();
+    hist.push(item);
+  }
+  return hist.slice(-20);
+}
 async function clearSurpriseTask(dayId){
-  await sharedSet("surprise-task-day"+dayId, {active:false, dayId});
+  const prev = await sharedGet("surprise-task-day"+dayId).catch(()=>null);
+  await sharedSet("surprise-task-day"+dayId, {active:false, dayId, history: surpriseTaskHistory(prev, true)});
   toast(`Surprise task cleared for Day ${dayId}.`);
 }
 window.clearSurpriseTask = clearSurpriseTask;
@@ -24045,7 +24085,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.26-x";
+var APP_BUILD = "2026.09.26-y";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -24088,6 +24128,6 @@ window.addEventListener("unhandledrejection", (ev)=>{ const e = ev.reason; if(e 
 window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message && !/ResizeObserver|Script error/.test(ev.message)) showActionError(new Error(ev.message), ""); });
 
 </script>
-<script src="/js/eapa-updates.js?v=x"></script>
+<script src="/js/eapa-updates.js?v=y"></script>
 </body>
 </html>

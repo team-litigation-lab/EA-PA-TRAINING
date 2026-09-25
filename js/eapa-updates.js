@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "x" (2026-09-26)
+   LSH EA/PA portal — update pack "y" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -14,7 +14,7 @@
      8. Day 3 "Proactive EA Tasks" is now a written, graded exercise.
      9. Practice Lab pages in the platform page style (hero, activity headings, cards, buttons).
    ============================================================ */
-window.EAPA_UPDATE_PACK = "x";
+window.EAPA_UPDATE_PACK = "y";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
