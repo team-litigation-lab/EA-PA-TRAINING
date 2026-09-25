@@ -11390,6 +11390,7 @@ async function authFetch(url, payload){
   const doFetch = ()=>fetch(url, {method:"POST", headers:authHeaders(), body: JSON.stringify(payload)});
   let res = await doFetch();
   if(res.status===401 && !state.isAdmin && await reauthTrainee()) res = await doFetch();
+  if(res.status===401 && state.isAdmin){ setAdminToken(""); state.isAdmin = false; toast("Your admin session expired — click 🛡 Admin and sign in again."); }
   return res;
 }
 async function storeGet(key){
@@ -14026,6 +14027,7 @@ function startLiveUpdates(){
   startLiveUpdates();
   await loadAll();
   if(state.adminToken && (await authStatus())) state.isAdmin = true;
+  if(state.isAdmin && !state.adminToken && (await authStatus())){ state.isAdmin = false; setTimeout(()=>{ toast("Secure mode is on — please sign in to Admin again with the passphrase."); }, 600); }
   if(state.traineeId && (await authStatus()) && !state.authToken){
     if(!(await reauthTrainee())){ state.traineeId = ""; await storeSet("trainee-id", ""); state.view = "login"; render(); return; }
   }
@@ -15007,11 +15009,25 @@ function assessSubmissionQuality(text){
   if(alpha.length >= 10 && uniq/alpha.length < 0.3) return bad("This repeats the same few words. Write a genuine response before submitting.");
   return {ok:true};
 }
+/* Plain-English reason for an AI failure (shown instead of a generic "check your connection"). */
+function friendlyAiError(e){
+  const m = String((e && e.message) || e || "");
+  if(/401|sign-in required|unauthor/i.test(m)) return (state.isAdmin || state.view==="admin") ? "Your admin sign-in has expired or was made before secure mode was switched on. Click 🛡 Admin → Sign out, then sign in again with the passphrase and retry." : "Your session needs refreshing — sign out and back in, then try again.";
+  if(/403|not allowed/i.test(m)) return "The server refused this request for your account type. Sign out and back in, then try again.";
+  if(/ANTHROPIC_API_KEY|not configured/i.test(m)) return "The AI key isn't set on the server — add ANTHROPIC_API_KEY as a Secret in Cloudflare (Workers & Pages → ea-pa-training → Settings → Variables and Secrets).";
+  if(/x-api-key|authentication_error|invalid api key/i.test(m)) return "The AI key on the server is invalid — replace ANTHROPIC_API_KEY in Cloudflare with a valid key.";
+  if(/credit|billing|balance/i.test(m)) return "The Anthropic account is out of credit — top up at console.anthropic.com, then retry.";
+  if(/429|rate|overloaded|529/i.test(m)) return "The AI service is busy right now — wait a minute and try again.";
+  if(/timed out|abort/i.test(m)) return "The AI took too long to respond — try again (long scripts can take up to a minute).";
+  if(/404|model/i.test(m)) return "The AI model name wasn't recognised by the service: " + m.slice(0,160);
+  if(/Failed to fetch|NetworkError|Load failed/i.test(m)) return "Couldn't reach the server — check your internet connection and try again.";
+  return m ? ("The AI request failed: " + m.slice(0,200)) : "Something went wrong — try again.";
+}
 function renderAiErrorBlock(e, title){
   if(e && e.invalidInput){
     return `<div class="ai-result ai-error"><b>Not graded — please revise</b><div class="ai-result-body">${esc(e.message)} No attempt was used.</div></div>`;
   }
-  return `<div class="ai-result ai-error"><b>${esc(title||"Couldn't get feedback")}</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
+  return `<div class="ai-result ai-error"><b>${esc(title||"Couldn't get feedback")}</b><div class="ai-result-body">${esc(friendlyAiError(e))}</div></div>`;
 }
 function refundLastLabAttempt(){
   const la = state.lastLabAttempt;
@@ -22821,7 +22837,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-q";
+var APP_BUILD = "2026.09.25-r";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
