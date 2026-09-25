@@ -127,13 +127,18 @@ async function callGemini(env, rawBody) {
   let last = null;
   for (const model of models) {
     const p = JSON.parse(JSON.stringify(payload));
-    if (/2\.5-flash/.test(model)) p.generationConfig.thinkingConfig = { thinkingBudget: 0 };   // 2.5 only: switch thinking off
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+    if (/2\.5-flash/.test(model)) p.generationConfig.thinkingConfig = { thinkingBudget: 0 };   // 2.5: thinking off
+    else p.generationConfig.thinkingConfig = { thinkingLevel: "low" };                         // 3.x: think briefly → much faster replies
+    const send = (body) => fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
-      body: JSON.stringify(p)
+      body: JSON.stringify(body)
     });
-    const data = await r.json().catch(() => ({}));
+    let r = await send(p);
+    let data = await r.json().catch(() => ({}));
+    if (r.status === 400 && /thinking/i.test((data.error && data.error.message) || "")) {   // model doesn't accept that setting → send without it
+      delete p.generationConfig.thinkingConfig; r = await send(p); data = await r.json().catch(() => ({}));
+    }
     if (r.ok) {
       const cand = (data.candidates || [])[0] || {};
       const text = ((cand.content && cand.content.parts) || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
