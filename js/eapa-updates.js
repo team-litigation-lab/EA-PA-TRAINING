@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "t" (2026-09-26)
+   LSH EA/PA portal — update pack "u" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -13,7 +13,7 @@
      7. Inbox Zero works like Gmail (Day 2 lab).
      8. Day 3 "Proactive EA Tasks" is now a written, graded exercise.
    ============================================================ */
-window.EAPA_UPDATE_PACK = "t";
+window.EAPA_UPDATE_PACK = "u";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
@@ -998,7 +998,7 @@ function eoWords(t){ return (String(t||"").trim().match(/\S+/g)||[]).length; }
 
 function renderEmailOutreachSection(){
   return `<h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Email Outreach Simulator</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Write a real outreach sequence on Elias Thorne's behalf. The prospect is played by AI and reacts the way a busy professional really would — most weak emails simply get no reply.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Write a real outreach sequence on Elias Thorne's behalf. The prospect reacts the way a busy professional really would — most weak emails simply get no reply.</p>
     <div id="eoSim">${eoView()}</div>`;
 }
 function eoRender(){ const el = document.getElementById("eoSim"); if(el) el.innerHTML = eoView(); }
@@ -1204,7 +1204,7 @@ window.initColdCalling4 = function(body){
 };
 (function(){
   const t = PRACTICE_TOOLS.find(x=>x.id==="coldcalling4");
-  if(t){ t.title = "Cold-Calling, Lead Generation & Email Outreach"; t.desc = "Log a full round of cold-calling outreach, draft a real lead-generation plan, handle a live intake call, then run an email outreach sequence against an AI prospect who replies — or doesn't — the way a busy professional really would."; }
+  if(t){ t.title = "Cold-Calling, Lead Generation & Email Outreach"; t.desc = "Log a full round of cold-calling outreach, draft a real lead-generation plan, handle a live intake call, then run an email outreach sequence against a prospect who replies — or doesn't — the way a busy professional really would."; }
 })();
 
 /* ---------- 7. Inbox Zero, Gmail-style (Day 2 lab) ----------
@@ -1561,7 +1561,7 @@ Return ONLY a JSON array of exactly 5 objects — no preamble, no markdown fence
   }catch(e){
     console.error("Inbox generation failed:", e);
     const st = document.getElementById("izGenStatus");
-    if(st) st.textContent = /timed out/i.test(e.message||"") ? "The AI service is responding slowly — please try again in a moment." : "Couldn't generate the inbox — please try again.";
+    if(st) st.textContent = /timed out/i.test(e.message||"") ? "The service is responding slowly — please try again in a moment." : "Couldn't generate the inbox — please try again.";
   }finally{
     const b = document.getElementById("izGenBtn"); if(b) b.disabled = false;
   }
@@ -1659,7 +1659,7 @@ Return ONLY a JSON array of objects like: [{"task":"...", "why":"..."}]`;
     let tasks = await callAIJson(prompt, 1400, 90000);
     if(tasks && !Array.isArray(tasks)){ const arr = Object.values(tasks).find(v=>Array.isArray(v)); if(arr) tasks = arr; }
     tasks = (Array.isArray(tasks)?tasks:[]).map(t=> typeof t==="string" ? {task:t, why:""} : t).filter(t=>t && t.task);
-    if(!tasks.length) throw new Error("the AI reply had no tasks");
+    if(!tasks.length) throw new Error("the reply had no tasks");
     el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:6px;">An expert EA's list — which of these did you catch?</b>` + tasks.map(t=>`
       <div class="task-item"><span class="task-dot">●</span><div><b>${esc(t.task)}</b><div class="task-why">${esc(t.why||"")}</div></div></div>`).join("");
   }catch(e){
