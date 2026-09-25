@@ -1318,6 +1318,13 @@ rect.svg-callout-badge{animation:none;}
 }
 .wizard-dot.done{background:var(--success);}
 .wizard-dot.active{background:var(--orange);width:22px;border-radius:5px;}
+/* labelled activity buttons (every lab) */
+.wizard-tabs{flex-wrap:wrap;gap:8px;margin:6px 0 14px;}
+.wizard-dot.wizard-tab{width:auto;height:auto;border-radius:999px;background:#fff;border:1px solid var(--line);padding:5px 14px 5px 5px;display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:12.5px;font-weight:700;color:var(--navy);}
+.wizard-dot.wizard-tab:hover{border-color:var(--orange);}
+.wizard-tab .wt-n{width:22px;height:22px;border-radius:50%;background:#EEF0F6;color:var(--navy);display:inline-flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;}
+.wizard-dot.wizard-tab.done{background:#fff;border-color:var(--success);} .wizard-tab.done .wt-n{background:var(--success);color:#fff;}
+.wizard-dot.wizard-tab.active{background:var(--navy);border-color:var(--navy);color:#fff;width:auto;border-radius:999px;} .wizard-tab.active .wt-n{background:var(--orange);color:#fff;}
 .wizard-part-label{
   text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
   color:var(--navy-soft);margin-bottom:18px;
@@ -11063,9 +11070,9 @@ const PRACTICE_TOOLS = [
   {id:"dossier1", icon:"🗂", title:"Client Dossier & Gatekeeping Practice", relates:"Day 1",
    desc:"Build a comprehensive client dossier and preference trackers for Elias Thorne, respond to a real ACT-framework voice note, then practice inbound gatekeeping under pressure."},
   {id:"forcemultiplier2", icon:"⚡", title:"The Force Multiplier Challenge", relates:"Day 2",
-   desc:"Anticipate what a vague executive request really needs, write an AI prompt that actually runs and produces real output, handle a messy combined scenario, then clear a real inbox — building your own filing system and catching a hidden phishing attempt."},
+   desc:"Anticipate what a vague executive request really needs, write a prompt that actually runs and produces real output, handle a messy combined scenario, then clear a real inbox — building your own filing system and catching a hidden phishing attempt."},
   {id:"calendar", icon:"◫", title:"Calendar Conflict Resolver & Travel Planning", relates:"Day 3",
-   desc:"A full attorney's week with overlapping commitments to resolve and turn into an AI-drafted BLUF briefing, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
+   desc:"A full attorney's week with overlapping commitments to resolve and turn into a BLUF briefing, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
   {id:"coldcalling4", icon:"☎", title:"Cold-Calling & Lead Generation", relates:"Day 4",
    desc:"Log a full round of cold-calling outreach with a reference opening line, then draft a real lead-generation plan — specific sources, qualifying criteria, and a first-contact approach for a new practice area launch."},
   {id:"insurance5", icon:"🛡", title:"Household Risk Assessment", relates:"Day 5",
@@ -12089,7 +12096,7 @@ async function callAITextOnce(prompt, maxTokens, timeoutMs){
     if(data.stop_reason==="max_tokens") console.warn("AI response hit the token limit and may be cut off.");
     return (data.content||[]).map(b=>b.text||"").join("\n").trim();
   }catch(e){
-    if(e.name==="AbortError") throw new Error("Request timed out — the AI service took too long to respond.");
+    if(e.name==="AbortError") throw new Error("Request timed out — the service took too long to respond.");
     throw e;
   }finally{
     clearTimeout(timeoutId);
@@ -12742,7 +12749,7 @@ const ROLEPLAY_PERSONAS = [
 ];
 const ROLEPLAY_MODES = [
   {id:"guided", label:"Guided Practice", sub:"Self-Paced", icon:"🧭", desc:"Prompt cards, suggested BLUF responses, and real-time coaching tips stay visible on screen as you go — this mode is for learning the pattern, not testing yourself under pressure."},
-  {id:"blitz", label:"Unscripted Call Blitz", sub:"Timed", icon:"⏱️", desc:"A live, ticking timer and no help text. The AI plays whoever's calling — Elias, a vendor, a board member — with unpredictable, realistic responses. This is the pressure-test version."},
+  {id:"blitz", label:"Unscripted Call Blitz", sub:"Timed", icon:"⏱️", desc:"A live, ticking timer and no help text. Anyone could be calling — Elias, a vendor, a board member — with unpredictable, realistic responses. This is the pressure-test version."},
   {id:"twopart", label:"2-Part Challenge", sub:"Crisis + Rapid Delegation", icon:"🎯", desc:"Part 1 is a high-stakes crisis call. Part 2 drops 3-4 unrelated tasks on you back-to-back, no break in between — testing whether you can context-switch cleanly under load."}
 ];
 
@@ -16053,11 +16060,11 @@ function friendlyAiError(e){
   if(/403|not allowed/i.test(m)) return "The server refused this request for your account type. Sign out and back in, then try again.";
   if(/ANTHROPIC_API_KEY|GEMINI_API_KEY|not configured|No AI key/i.test(m)) return "No AI key is set on the server — add GEMINI_API_KEY (free, from Google AI Studio) as a Secret in Cloudflare (Workers & Pages → ea-pa-training → Settings → Variables and Secrets).";
   if(/credit|billing|balance/i.test(m)) return "The Anthropic account is out of credit — top up at console.anthropic.com, then retry.";
-  if(/429|rate|overloaded|529/i.test(m)) return "The AI service is busy right now — wait a minute and try again.";
-  if(/timed out|abort/i.test(m)) return "The AI took too long to respond — try again (long scripts can take up to a minute).";
-  if(/404|model/i.test(m)) return "The AI model name wasn't recognised by the service: " + m.slice(0,160);
+  if(/429|rate|overloaded|529/i.test(m)) return "The service is busy right now — wait a minute and try again.";
+  if(/timed out|abort/i.test(m)) return "The review took too long to respond — try again (long scripts can take up to a minute).";
+  if(/404|model/i.test(m)) return "The model name wasn't recognised by the service: " + m.slice(0,160);
   if(/Failed to fetch|NetworkError|Load failed/i.test(m)) return "Couldn't reach the server — check your internet connection and try again.";
-  return m ? ("The AI request failed: " + m.slice(0,200)) : "Something went wrong — try again.";
+  return m ? ("The request failed: " + m.slice(0,200)) : "Something went wrong — try again.";
 }
 function renderAiErrorBlock(e, title){
   if(e && e.invalidInput){
@@ -16335,7 +16342,7 @@ async function downloadEvaluationReportPdf(){
     lines.push("Growth Suggestions:");
     report.growthSuggestions.forEach(s=>lines.push("   • "+s));
   }
-  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${dayId} — AI Evaluation Report`, lines, `LSH_Day${dayId}_Evaluation_Report`);
+  buildAndSavePdf("LSH EA / PA Upskill Program", `Day ${dayId} — Evaluation Report`, lines, `LSH_Day${dayId}_Evaluation_Report`);
 }
 window.downloadEvaluationReportPdf = downloadEvaluationReportPdf;
 function repeatActivity(){
@@ -16378,19 +16385,16 @@ function refreshLabAttemptBanners() {
    ============================================================ */
 function renderToolWizard(dayId, parts){
   toolState.wizardLabels = parts.map(p=>p.label);
+  toolState.wizardDayId = dayId || 0;
   const idx = Math.min(toolState.wizardIndex||0, parts.length-1);
   return `
     ${dayId ? renderLabAttemptBanner(dayId) : ""}
-    <div class="wizard-dots">
-      ${parts.map((p,i)=>`<span class="wizard-dot ${i===idx?'active':i<idx?'done':''}" onclick="wizardGoTo(${i})" title="${esc(p.label)}"></span>`).join("")}
+    <div class="wizard-dots wizard-tabs" role="tablist">
+      ${parts.map((p,i)=>`<button type="button" class="wizard-dot wizard-tab ${i===idx?'active':i<idx?'done':''}" onclick="wizardGoTo(${i})"><span class="wt-n">${i<idx?'✓':i+1}</span><span class="wt-l">${esc(p.label)}</span></button>`).join("")}
     </div>
     <div class="wizard-part-label" id="wizardPartLabel">Part ${idx+1} of ${parts.length} — ${esc(parts[idx].label)}</div>
     ${parts.map((p,i)=>`<div class="wizard-screen" style="display:${i===idx?'block':'none'};" data-wizard-idx="${i}">${p.html}</div>`).join("")}
-    <div class="wizard-nav">
-      <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="wizardGoTo(${idx-1})">&larr; Back</button>
-      <span class="wizard-nav-counter">${idx+1} / ${parts.length}</span>
-      ${idx<parts.length-1 ? `<button class="btn btn-primary" onclick="wizardGoTo(${idx+1})">Next &rarr;</button>` : `<span style="width:88px;"></span>`}
-    </div>
+    <div class="wizard-nav">${wizardNavHtml(idx)}</div>
   `;
 }
 function wizardGoTo(i){
@@ -16404,20 +16408,25 @@ function wizardGoTo(i){
   document.querySelectorAll(".wizard-dot").forEach((el,idx)=>{
     el.classList.toggle("active", idx===i);
     el.classList.toggle("done", idx<i);
+    const n = el.querySelector(".wt-n"); if(n) n.textContent = idx<i ? "✓" : String(idx+1);
   });
   const labelEl = document.getElementById("wizardPartLabel");
   if(labelEl) labelEl.textContent = `Part ${i+1} of ${labels.length} — ${labels[i]}`;
   const navWrap = document.querySelector(".wizard-nav");
-  if(navWrap){
-    navWrap.innerHTML = `
-      <button class="btn btn-ghost" ${i===0?'disabled':''} onclick="wizardGoTo(${i-1})">&larr; Back</button>
-      <span class="wizard-nav-counter">${i+1} / ${labels.length}</span>
-      ${i<labels.length-1 ? `<button class="btn btn-primary" onclick="wizardGoTo(${i+1})">Next &rarr;</button>` : `<span style="width:88px;"></span>`}
-    `;
-  }
+  if(navWrap) navWrap.innerHTML = wizardNavHtml(i);
   window.scrollTo({top:0, behavior:"smooth"});
 }
 window.wizardGoTo = wizardGoTo;
+/* Bottom navigation for every lab: Back · Next: <next activity> · and on the last activity, Return to Progress */
+function wizardNavHtml(i){
+  const labels = toolState.wizardLabels || [], n = labels.length, dayId = toolState.wizardDayId;
+  return `
+      <button class="btn btn-ghost" ${i===0?'disabled':''} onclick="wizardGoTo(${i-1})">&larr; Back</button>
+      <span class="wizard-nav-counter">${i+1} / ${n}</span>
+      ${i<n-1 ? `<button class="btn btn-primary" onclick="wizardGoTo(${i+1})">Next: ${esc(labels[i+1]||"")} &rarr;</button>`
+              : `<button class="btn btn-primary" onclick="${dayId ? `returnToLessonCard(${dayId})` : `goto('practice')`}">✓ Return to Progress</button>`}
+    `;
+}
 /* ============================================================
    0. EA vs. PA DIFFERENCES DRILL
    ============================================================ */
@@ -16600,7 +16609,7 @@ function renderCalendarBody(body){
     <div id="calResult"></div>
   `;
   const partB = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">AI-Assisted Daily Briefing</h3>
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Daily Briefing Prompt</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias only reads BLUF-style summaries. Instead of writing the briefing yourself, write the <b>prompt</b> you'd give an AI tool to draft it — using your finished weekly schedule from Part 1 as the source material. This is Generative mode, but disciplined: the AI should draft from what's actually on the calendar, not invent meetings that aren't there.</p>
     <textarea id="calPromptInput" placeholder="Write your AI prompt here — e.g. what to draft, for whom, in what format, using what source…" style="width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkCalendarPrompt(this)">Get Review</button>
@@ -16608,7 +16617,7 @@ function renderCalendarBody(body){
   `;
   const partC = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Proactive EA Tasks</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Get a fresh, AI-generated read on the current calendar and see what independent admin work it implies.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Work out what independent admin work the calendar implies.</p>
     <button class="btn btn-orange btn-sm" onclick="generateProactiveTasks()">Generate Proactive Tasks</button>
     <div id="proactiveResult" style="margin-top:14px;"></div>
   `;
@@ -16631,7 +16640,7 @@ function renderCalendarBody(body){
     </div>
 
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the AI review checks whether your notes actually match Elias's stated preferences.</p>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the review checks whether your notes actually match Elias's stated preferences.</p>
     <div id="legList">${renderLegs()}</div>
     <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
 
@@ -16674,7 +16683,7 @@ function renderCalendarBody(body){
   `;
   body.innerHTML = renderToolWizard(3, [
     {label:"Calendar Conflict Resolver", html:partA},
-    {label:"AI-Assisted Daily Briefing", html:partB},
+    {label:"Daily Briefing Prompt", html:partB},
     {label:"Proactive EA Tasks", html:partC},
     {label:"Travel Management", html:partD}
   ]);
@@ -16912,7 +16921,7 @@ async function checkCalendarPrompt(btn){
     await bumpPracticeProgress("calendar", report.totalScore);
     if(report.totalScore>=85) burstConfetti();
   }catch(e){
-    toolState.calPromptReport = "Couldn't reach the AI review service.";
+    toolState.calPromptReport = "Couldn't reach the review service.";
     resultEl.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
   }finally{
     btn.disabled = false; btn.textContent = "Get Review";
@@ -16943,7 +16952,7 @@ Return ONLY a JSON array of objects like: [{"task":"...", "why":"..."}]`;
     let tasks = await callAIJson(prompt, 1400, 90000);
     if(tasks && !Array.isArray(tasks)){ const arr = Object.values(tasks).find(v=>Array.isArray(v)); if(arr) tasks = arr; }
     tasks = (Array.isArray(tasks)?tasks:[]).map(t=> typeof t==="string" ? {task:t, why:""} : t).filter(t=>t && t.task);
-    if(!tasks.length) throw new Error("the AI reply had no tasks");
+    if(!tasks.length) throw new Error("the reply had no tasks");
     el.innerHTML = tasks.map(t=>`
       <div class="task-item"><span class="task-dot">●</span>
         <div><b>${esc(t.task)}</b><div class="task-why">${esc(t.why||"")}</div></div>
@@ -16958,7 +16967,7 @@ Return ONLY a JSON array of objects like: [{"task":"...", "why":"..."}]`;
       else if(/client|board|meeting/i.test(ev.t+ev.type)) starter.push({task:`Send an agenda / confirmation for “${ev.t}” (${ev.day} ${fmtHr12(ev.s)})`, why:"Confirmed attendees and a clear agenda keep meetings on time."});
     });
     const uniq = [...new Map(starter.map(x=>[x.task,x])).values()].slice(0,5);
-    el.innerHTML = renderAiErrorBlock(e, "Couldn't generate AI tasks") + (uniq.length ? `<div class="task-fallback"><b>Starter tasks from your calendar (no attempt used):</b>${uniq.map(t=>`
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't generate tasks") + (uniq.length ? `<div class="task-fallback"><b>Starter tasks from your calendar (no attempt used):</b>${uniq.map(t=>`
       <div class="task-item"><span class="task-dot">●</span><div><b>${esc(t.task)}</b><div class="task-why">${esc(t.why)}</div></div></div>`).join("")}</div>` : "");
   }
 }
@@ -17006,8 +17015,8 @@ async function downloadCalendarPdf(){
     lines.push(`${day}:`);
     dayEvents.forEach(e=>lines.push(`   ${fmtHr(e.s)}–${fmtHr(e.e)}  ${e.t}  (${e.p} priority, ${e.type})`));
   });
-  lines.push("---", "## AI-Assisted Daily Briefing Prompt", document.getElementById("calPromptInput")?.value.trim() || "(not written)");
-  if(toolState.calPromptReport) lines.push("", "AI Feedback:", toolState.calPromptReport);
+  lines.push("---", "## Daily Briefing Prompt", document.getElementById("calPromptInput")?.value.trim() || "(not written)");
+  if(toolState.calPromptReport) lines.push("", "Feedback:", toolState.calPromptReport);
   buildAndSavePdf("LSH EA / PA Upskill Program", "Weekly Calendar — Results", lines, "LSH_Calendar_Plan");
 }
 window.downloadCalendarPdf = downloadCalendarPdf;
@@ -17685,7 +17694,7 @@ async function downloadTravelPdf(){
     if(s.insight) lines.push(`   Why it fits: ${s.insight}`);
   });
   if(typeof toolState.travel.score === "number"){
-    lines.push("---", `AI Review Score: ${toolState.travel.score}%`);
+    lines.push("---", `Review Score: ${toolState.travel.score}%`);
   }
   buildAndSavePdf("LSH EA / PA Upskill Program", "Advanced Travel Itinerary — Elias Thorne", lines, "LSH_Travel_Itinerary");
 }
@@ -18862,7 +18871,7 @@ function renderNotes(){
   return `
     <p class="eyebrow">Personal Workspace</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">My Notes &amp; Action Plan</h1>
-    <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 22px;">Jot down your action plan, takeaways, or anything else worth keeping. Notes save automatically to this device, and you can get quick AI feedback on quality, professionalism, and compliance before you finalize anything.</p>
+    <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 22px;">Jot down your action plan, takeaways, or anything else worth keeping. Notes save automatically to this device, and you can get quick feedback on quality, professionalism, and compliance before you finalize anything.</p>
     <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
       <button class="btn btn-primary" onclick="addNote()">+ Add Note</button>
       <button class="btn btn-ghost" onclick="downloadNotesPdf()">⬇ Download All Notes (PDF)</button>
@@ -18955,12 +18964,12 @@ ${n.content}
   try{
     const text = await callAIText(prompt, 600);
     fb.innerHTML = text
-      ? `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">${esc(text).replace(/\n/g,"<br>")}</div></div>`
-      : `<div class="ai-result"><b>AI Feedback</b><div class="ai-result-body">No feedback returned — try again in a moment.</div></div>`;
+      ? `<div class="ai-result"><b>Feedback</b><div class="ai-result-body">${esc(text).replace(/\n/g,"<br>")}</div></div>`
+      : `<div class="ai-result"><b>Feedback</b><div class="ai-result-body">No feedback returned — try again in a moment.</div></div>`;
   }catch(e){
     fb.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">The review service didn't respond. Check your connection and try again.</div></div>`;
   }finally{
-    btn.disabled = false; btn.textContent = "✨ Get AI Feedback";
+    btn.disabled = false; btn.textContent = "✨ Get Feedback";
   }
 }
 window.getAIFeedback = getAIFeedback;
@@ -20505,7 +20514,7 @@ async function draftDayFeedback(id, dayId, silent){
   if(!ev.active){ if(!silent) toast(`No Day ${dayId} activity to review yet.`); return; }
   const prompt = feedbackPrompt(rec, ev, dayId);
   const fb = await callAIJson(prompt, 1600, 120000);
-  if(!fb || typeof fb!=="object" || !fb.summary) throw new Error("the AI reply didn't include a summary — try again");
+  if(!fb || typeof fb!=="object" || !fb.summary) throw new Error("the reply didn't include a summary — try again");
   return finishDraft(id, work, dayId, fb, silent);
 }
 function feedbackPrompt(rec, ev, dayId){
@@ -20610,7 +20619,7 @@ async function autoReviewDay(dayId, loud){
     const work = {snap: snap&&snap.data || {}, feedback: fbAll};
     const ev = dayEvidence(rec, work, dayId); if(!ev.active) return;
     const fb = await callAIJson(feedbackPrompt(rec, ev, dayId), 1600, 120000);
-    if(!fb || !fb.summary){ if(loud) throw new Error("the AI reply didn't include a review — try again"); return; }
+    if(!fb || !fb.summary){ if(loud) throw new Error("the reply didn't include a review — try again"); return; }
     const latest = (await sharedGet("feedback:"+state.traineeId)) || {days:{}};  // re-read to avoid clobbering a trainer edit
     latest.days = latest.days || {};
     if(latest.days[dayId] && (latest.days[dayId].status==="sent" || latest.days[dayId].editedByTrainer)) return;
@@ -21353,7 +21362,7 @@ async function studioDraftExpansions(dayId){
   studioShow(`Drafting explanations… 0/${todo.length} (about 15–40 seconds each, 2 at a time)`);
   const res = await runPool(todo, async (l)=>{
     const sec = await callAIJson(expansionPrompt(d, l), 2500, 120000);
-    if(!sec || typeof sec!=="object" || !(sec.introduction || sec.explanation)) throw new Error("the AI reply was missing the expected sections");
+    if(!sec || typeof sec!=="object" || !(sec.introduction || sec.explanation)) throw new Error("the reply was missing the expected sections");
     bundle[l.h] = {sections:sec, status:"draft", at:new Date().toISOString()};
     await studioSave("lessonx:day"+dayId, bundle);
     studioRefreshList();
@@ -21399,7 +21408,7 @@ async function studioDraftSelectedTopics(dayId){
   studioShow(`Drafting new lessons… 0/${picks.length}`);
   const res = await runPool(picks, async (title)=>{
     const lesson = await callAIJson(newLessonPrompt(d, title), 2200, 120000);
-    if(!lesson || !lesson.fourPart) throw new Error("the AI reply wasn't a complete lesson");
+    if(!lesson || !lesson.fourPart) throw new Error("the reply wasn't a complete lesson");
     lesson.h = title; lesson.status = "draft"; list.push(lesson); await studioSave("extralessons:day"+dayId, {lessons:list});
   }, 1, (n,t,rs)=>studioShow(`Drafting new lessons… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
   state.studioProposals = null; state.studioMsg = studioResultMessage("new lessons", res); render();
@@ -21446,7 +21455,7 @@ async function studioDraftQuiz(dayId){
   const res = await runPool(todo, async (l)=>{
     const qs = await callAIJson(quizPrompt(d, l), 1400, 90000);
     const ok = (Array.isArray(qs)?qs:[]).filter(q=>q && q.q && Array.isArray(q.opts) && q.opts.length>=3 && Number.isInteger(q.a) && q.a>=0 && q.a<q.opts.length);
-    if(!ok.length) throw new Error("the AI reply had no usable questions");
+    if(!ok.length) throw new Error("the reply had no usable questions");
     ok.slice(0,2).forEach(q=>list.push({q:q.q, opts:q.opts.slice(0,4), a:q.a, r:q.r||"", forLesson:l.h, status:"draft"}));
     await studioSave("extraquiz:day"+dayId, {questions:list}); studioRefreshList();
   }, 1, (n,t,rs)=>studioShow(`Drafting questions… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
@@ -21759,7 +21768,7 @@ function renderEsimBody(body){
           <div><b style="color:var(--navy);font-size:15px;">Security Awareness: ${e.securityScore}%</b></div>
         </div>
         <p style="font-size:12.5px;color:var(--ink-soft);margin:4px 0 16px;">Filing is graded against LSH's baseline categories (a custom sub-label still counts, as long as it's nested under the right one). Security awareness rewards reporting the phishing emails — safely ignoring them without falling for the trap still counts, just not as the strongest response.</p>
-        <div class="ai-result"><b>AI-Assessed Evaluation — Writing DNA Match &amp; Professionalism</b><div class="ai-result-body">${esc(e.report).replace(/\n/g,"<br>")}</div></div>
+        <div class="ai-result"><b>Evaluation — Writing DNA Match &amp; Professionalism</b><div class="ai-result-body">${esc(e.report).replace(/\n/g,"<br>")}</div></div>
         <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
           <button class="btn btn-ghost" onclick="initEmailSim(document.getElementById('toolBody'))">Run It Again</button>
           <button class="btn btn-navy" onclick="downloadEmailSimPdf()">⬇ Download My Work</button>
@@ -22137,7 +22146,7 @@ Do not evaluate filing or security awareness — those are scored separately and
       (report.growthSuggestions.length ? `<b>Growth Suggestions</b><ul>${report.growthSuggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>` : "");
     rubricScore = report.totalScore;
   }catch(err){
-    e.report = "Couldn't reach the AI review service to assess Writing DNA Match and Professionalism — check your connection and try again. (Your Filing Accuracy and Security Awareness scores above were still computed normally.)";
+    e.report = "Couldn't reach the review service to assess Writing DNA Match and Professionalism — check your connection and try again. (Your Filing Accuracy and Security Awareness scores above were still computed normally.)";
     rubricScore = null;
   }
   e.phase = "evaluated";
@@ -22155,7 +22164,7 @@ async function downloadEmailSimPdf(){
   if(e.phase==="failed"){
     lines.push(`RESULT: FAILED`, e.failReason.reason, "---");
   }else if(e.phase==="evaluated"){
-    lines.push(`Filing Accuracy: ${e.filingScore}%  ·  Security Awareness: ${e.securityScore}%`, "---", "## AI-Assessed Evaluation", e.report, "---");
+    lines.push(`Filing Accuracy: ${e.filingScore}%  ·  Security Awareness: ${e.securityScore}%`, "---", "## Evaluation", e.report, "---");
   }
   lines.push("## Your Filing System");
   labelChildren(null).forEach(l=>{
@@ -22189,7 +22198,7 @@ function renderInboxZeroSection(){
   const hasInbox = iz.inbox.length > 0;
   return `
     <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">Inbox Zero — Eisenhower Matrix Challenge</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A fresh, AI-generated inbox of 25 overlapping, conflicting, urgent emails — different every time you run this. Drag each one into the right quadrant.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">A fresh inbox of 25 overlapping, conflicting, urgent emails — different every time you run this. Drag each one into the right quadrant.</p>
     <div class="card" style="padding:16px 18px;margin-bottom:14px;">
       <b style="font-size:13px;color:var(--navy);">Step 1 — Generate the Inbox</b>
       <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 10px;">Elias's inbox after a red-eye — 25 emails, all landed while he was offline. Nothing here is pre-sorted.</p>
@@ -22267,7 +22276,7 @@ Return ONLY a JSON array of exactly 5 objects — no preamble, no markdown fence
     izRenderBoard();
   }catch(e){
     console.error("Inbox generation failed:", e);
-    status.textContent = /timed out/i.test(e.message||"") ? "The AI service is responding slowly — please try again in a moment." : "Couldn't generate the inbox — please try again. If it keeps failing, the AI service key may be missing on the server.";
+    status.textContent = /timed out/i.test(e.message||"") ? "The service is responding slowly — please try again in a moment." : "Couldn't generate the inbox — please try again. If it keeps failing, let your trainer know.";
   }finally{
     btn.disabled = false;
   }
@@ -22433,7 +22442,7 @@ function renderCrisisRoleplaySection(setKey, sectionLabel){
   const cr = toolState.cr || {setKey, activeScenario: scenarios[0].id, chatHistory:[]};
   return `
     <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">${esc(sectionLabel)}</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Three high-pressure, conflicting scenarios designed to test how you hold up under pressure — not to teach you the "correct" line in advance. Pick one below. Your trainer may run this live in person, or you can rehearse solo against the AI first.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Three high-pressure, conflicting scenarios designed to test how you hold up under pressure — not to teach you the "correct" line in advance. Pick one below. Your trainer may run this live in person, or you can rehearse solo first.</p>
 
     <div class="cr-tabs" id="crTabs">
       ${scenarios.map(s=>`<button class="${s.id===cr.activeScenario?'active':''}" onclick="crSelectScenario('${s.id}')">${esc(s.title)}</button>`).join("")}
@@ -22451,8 +22460,8 @@ function renderCrisisRoleplaySection(setKey, sectionLabel){
     </div>`}
 
     <div class="card" style="padding:16px 18px;">
-      <b style="font-size:13px;color:var(--navy);">AI Rehearsal Mode</b>
-      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 12px;">The AI will play the conflicting party for the scenario selected above. Respond as the EA — stay calm, give options, don't over-promise.</p>
+      <b style="font-size:13px;color:var(--navy);">Solo Rehearsal Mode</b>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 12px;">Your practice partner will play the conflicting party for the scenario selected above. Respond as the EA — stay calm, give options, don't over-promise.</p>
       <div class="cr-chat-window" id="crChatWindow">${renderCrChat()}</div>
       <div class="cr-chat-input-row">
         <textarea id="crChatInput" placeholder="Type your response as the EA..."></textarea>
@@ -22642,7 +22651,7 @@ function renderDay6CrisisRoleplaySection(){
   const cr = toolState.c6cr || {activeScenario: DAY6_CRISIS_SCENARIOS[0].id, chatHistory:[]};
   return `
     <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">D. Business Compliance Crisis Roleplay</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Three high-pressure, conflicting scenarios built around today's material, designed to test how you hold up under pressure — not to teach you the "correct" line in advance. Your trainer may run this live in person, or rehearse solo against the AI first.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Three high-pressure, conflicting scenarios built around today's material, designed to test how you hold up under pressure — not to teach you the "correct" line in advance. Your trainer may run this live in person, or rehearse solo first.</p>
 
     <div class="cr-tabs" id="d6crTabs">
       ${DAY6_CRISIS_SCENARIOS.map(s=>`<button class="${s.id===cr.activeScenario?'active':''}" onclick="d6crSelectScenario('${s.id}')">${esc(s.title)}</button>`).join("")}
@@ -22660,8 +22669,8 @@ function renderDay6CrisisRoleplaySection(){
     </div>`}
 
     <div class="card" style="padding:16px 18px;">
-      <b style="font-size:13px;color:var(--navy);">AI Rehearsal Mode</b>
-      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 12px;">The AI will play the executive/stakeholder for the scenario selected above. Respond as the EA — stay calm, give options, don't over-promise.</p>
+      <b style="font-size:13px;color:var(--navy);">Solo Rehearsal Mode</b>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 12px;">Your practice partner will play the executive/stakeholder for the scenario selected above. Respond as the EA — stay calm, give options, don't over-promise.</p>
       <div class="cr-chat-window" id="d6crChatWindow">${renderD6CrChat()}</div>
       <div class="cr-chat-input-row">
         <textarea id="d6crChatInput" placeholder="Type your response as the EA..."></textarea>
@@ -23098,7 +23107,7 @@ async function checkC9Review(btn){
     resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Response</b>` + renderEvaluationReport(report, 9);
     await bumpPracticeProgress("compliance9", report.totalScore);
   }catch(e){
-    toolState.c9.reviewReport = "Couldn't reach the AI review service.";
+    toolState.c9.reviewReport = "Couldn't reach the review service.";
     resultEl.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
   }finally{
     btn.disabled = false; btn.textContent = "Get Review";
@@ -23119,7 +23128,7 @@ async function downloadCompliance9Pdf(){
     lines.push(`${r.name} — confirmed: ${r.confirmed?"yes":"no"} — flagged for follow-up: ${c9.reg[i]?"yes":"no"}`);
   });
   lines.push("---", "## C. Negative Review Response", `Review: "${NEGATIVE_REVIEW.text}"`, `Your reply: ${document.getElementById("c9ReviewReply").value.trim()||"(not written)"}`);
-  if(c9.reviewReport) lines.push("", "AI Feedback:", c9.reviewReport);
+  if(c9.reviewReport) lines.push("", "Feedback:", c9.reviewReport);
   lines.push("---", "## D. Awards & Recognition Deadline Tracker");
   AWARDS_TRACKER.forEach((a,i)=>{
     lines.push(`${a.name} — deadline ${a.deadline} — your call: ${(c9.awards&&c9.awards[i])||"(not answered)"}`);
@@ -23940,7 +23949,7 @@ function initProjectCompliance6(body){
     <button class="btn btn-primary" style="margin-top:6px;" onclick="checkComplianceAudit()">Check My Audit</button>
     <div id="complianceAuditResult"></div>
     <h3 style="margin:28px 0 6px;color:var(--navy);font-size:15px;">Get Feedback on Your Proposed Actions</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Once every flagged case has a Proposed Next Action written above, get AI feedback on all of them together — graded on Escalation Accuracy, BLUF Framing, and Risk Containment.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Once every flagged case has a Proposed Next Action written above, get feedback on all of them together — graded on Escalation Accuracy, BLUF Framing, and Risk Containment.</p>
     <button class="btn btn-navy btn-sm" onclick="reviewComplianceAuditResponse()">Get Review on My Actions</button>
     <div id="complianceAuditWrittenResult" style="margin-top:14px;"></div>
   `;
@@ -23997,7 +24006,7 @@ async function checkC6Recovery(btn){
     await bumpPracticeProgress("projectcompliance6", report.totalScore);
     if(report.totalScore>=85) burstConfetti();
   }catch(e){
-    toolState.c6.recoveryReport = "Couldn't reach the AI review service.";
+    toolState.c6.recoveryReport = "Couldn't reach the review service.";
     resultEl.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
   }finally{
     btn.disabled = false; btn.textContent = "Get Review";
@@ -24016,7 +24025,7 @@ async function downloadProjectCompliance6Pdf(){
     lines.push(`${k.category} — ${k.kpi}: target ${k.target}, actual ${k.actual} — your call: ${c6.kpi[i]||"(not answered)"} (correct: ${k.correctStatus})`);
   });
   lines.push("---", "## C. Recovery & Escalation Memo", `Scenario: ${TRIAL_RECOVERY_SCENARIO.text}`, `Your message: ${document.getElementById("c6RecoveryReply").value.trim()||"(not written)"}`);
-  if(c6.recoveryReport) lines.push("", "AI Feedback:", c6.recoveryReport);
+  if(c6.recoveryReport) lines.push("", "Feedback:", c6.recoveryReport);
   const ca = toolState.c6audit;
   if(ca && Object.keys(ca.verdicts||{}).length){
     lines.push("---", "## E. 15-Case Compliance Audit Simulation");
@@ -24036,7 +24045,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.26-t";
+var APP_BUILD = "2026.09.26-u";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -24045,8 +24054,8 @@ function showActionError(e, label){
     : /x-api-key|API key not valid/i.test(msg) ? "The AI key on the server is invalid (GEMINI_API_KEY)."
     : /quota|RESOURCE_EXHAUSTED|free tier/i.test(msg) ? "The free Gemini limit is reached for now — wait a minute and try again."
     : /401|sign-in/i.test(msg) ? "Your admin sign-in expired — click 🛡 Admin and sign in again."
-    : /429|rate/i.test(msg) ? "The AI service is busy — wait a minute and try again."
-    : /timed out/i.test(msg) ? "The AI service took too long — try again."
+    : /429|rate/i.test(msg) ? "The service is busy — wait a minute and try again."
+    : /timed out/i.test(msg) ? "The service took too long — try again."
     : /Failed to fetch|NetworkError|Load failed/i.test(msg) ? "Couldn't reach the server — check your connection."
     : "";
   const text = `${label ? label+" failed: " : ""}${friendly || msg}`;
@@ -24079,6 +24088,6 @@ window.addEventListener("unhandledrejection", (ev)=>{ const e = ev.reason; if(e 
 window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message && !/ResizeObserver|Script error/.test(ev.message)) showActionError(new Error(ev.message), ""); });
 
 </script>
-<script src="/js/eapa-updates.js?v=t"></script>
+<script src="/js/eapa-updates.js?v=u"></script>
 </body>
 </html>
