@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "r" (2026-09-26)
+   LSH EA/PA portal — update pack "s" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -9,8 +9,9 @@
      3. SOP Reference: readable layout + a "Present" mode for live discussion.
      4. Presenter view: share only the slides in Meet, see trainer cues yourself.
      5. All lesson content centred; Orientation deck + Blueprint refreshed.
+     6. Email Outreach: capstone Day 4 topic + Email Outreach Simulator (Day 4 lab, Part 4).
    ============================================================ */
-window.EAPA_UPDATE_PACK = "r";
+window.EAPA_UPDATE_PACK = "s";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
@@ -874,6 +875,335 @@ window.afterRender = function(){
   if(tag && !tag.querySelector(".eapa-ok")) tag.insertAdjacentHTML("beforeend", ` · <span class="eapa-ok">updates ✓</span>`);
   return r;
 };
+
+/* ---------- 6. Email Outreach: capstone topic (Day 4) + Email Outreach Simulator ----------
+   Topic: appended as the LAST Day 4 topic so trainees' saved places don't shift.
+   Simulator: Part 4 of the Day 4 Practice Lab. The trainee picks a prospect,
+   writes a real 3-touch sequence (first email → follow-up → close-out), and an
+   AI plays the prospect — ignoring, replying, objecting, opting out or booking
+   the call depending on how good each email is. Then a debrief and a graded
+   evaluation (same rubric system and attempt rules as every other lab). */
+const EO_TOPIC_TITLE = "Email Outreach End-to-End: Research, Write, Follow Up";
+(function addEmailOutreachTopic(){
+  const d = DAYS.find(x=>x.id===4); if(!d || d.lessons.some(l=>l.h===EO_TOPIC_TITLE)) return;
+  d.lessons.push({
+    h: EO_TOPIC_TITLE,
+    trainerCue: "Before the Practice Lab, read one weak and one strong outreach email aloud and have the room vote on which they'd actually open on their phone — then ask what exactly made the difference.",
+    fourPart: {
+      corePrinciples: [
+        "An outreach email is judged in about three seconds on a phone screen — the subject line and first sentence decide whether the rest gets read.",
+        "Relevance beats polish: one specific, verified fact about the recipient's situation does more than any clever phrasing.",
+        "Every email has exactly one job — usually a small, easy yes (a 15-minute call with Elias), never a hard sell.",
+        "Most replies come from the follow-ups, not the first touch — so the sequence is planned before the first email goes out."
+      ],
+      howTo: [
+        "Research first: confirm the person's current role and find one recent, specific trigger (an expansion, funding, a new hire, public news). Log the source in the CRM.",
+        "Write a subject line of 3–7 specific words — no clickbait, no ALL CAPS (e.g. \"Contracts for your Denver expansion\").",
+        "Write the body in 50–125 words: open with their situation, one line on how Elias can help, then one clear, low-friction ask.",
+        "Sign off on Elias's behalf and include a simple opt-out line — compliance is part of the craft, not an afterthought.",
+        "Plan the cadence: a follow-up around day 3–4 with a new angle or useful resource, and a short, courteous close-out around day 8–10.",
+        "Stop the moment they reply or opt out. Log the outcome and route any interest to Elias with a one-line summary."
+      ],
+      bestPractices: [
+        "Write about the recipient's priorities, not the firm's — \"you\" should appear more often than \"we\".",
+        "Each follow-up adds something new — an insight, a relevant article, a narrower question — never just \"bumping this to the top of your inbox\".",
+        "Read it on a phone before sending: if the ask isn't visible without scrolling, it's too long.",
+        "Pitfall: the same template to everyone with only the name swapped — recipients can tell, and it trains them to ignore the firm.",
+        "Pitfall: guilt-trip or pressure follow-ups (\"I'm surprised I haven't heard back\") — they burn the relationship for any future opportunity.",
+        "Pitfall: promising outcomes or giving legal advice in outreach — only the attorney speaks to a matter; the assistant's job is to open the door."
+      ],
+      discussionCase: "Elias wants you to email the operations director of a regional construction company that just announced a two-state expansion. Your first email got no reply after four days. Walk through what your follow-up says, what new angle it uses, and when you'd stop."
+    }
+  });
+  LESSON_EXTRA_LEARNING["4::"+EO_TOPIC_TITLE] = {t:"The 3-touch cadence", p:[
+    "Touch 1 (day 1): the specific trigger + one line of value + one small ask.",
+    "Touch 2 (day 3–4): a new angle — a relevant resource, a sharper question, or a different benefit. Same small ask.",
+    "Touch 3 (day 8–10): a short, courteous close-out that makes it easy to say \"not now\" — it often gets the most replies.",
+    "Then stop. Log the outcome and set a reminder only if they asked you to follow up later."
+  ]};
+  d.quickChecks = d.quickChecks || [];
+  d.quickChecks.push({afterIndex: d.lessons.length-1,
+    q: "Your first outreach email got no reply after four days. What's the strongest follow-up?",
+    opts: ["\"Just bumping this to the top of your inbox.\"", "A short note with a new, relevant angle and the same small ask", "A longer email re-explaining every service the firm offers", "Wait a month, then resend the original email"],
+    a: 1,
+    r: "A follow-up should add something new and keep the ask small. A bare \"bump\" adds nothing, a longer pitch adds friction, and waiting a month loses the trigger that made the timing relevant."});
+})();
+
+
+(function(){ const s = document.createElement("style"); s.id = "eapa-email-outreach"; s.textContent = `
+.eo-pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.eo-pcard{padding:18px;display:flex;flex-direction:column;gap:6px;border-top:4px solid var(--navy);}
+.eo-pcard:nth-child(2){border-top-color:var(--orange);}
+.eo-pcard b{font-size:16px;color:var(--navy);} .eo-pcard > span{font-size:13px;color:var(--ink-soft);}
+.eo-pcard ul{margin:6px 0 10px;padding-left:18px;font-size:13px;line-height:1.5;flex:1;} .eo-pcard .btn{align-self:flex-start;}
+.eo-av{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;}
+.eo-grid{display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr);gap:16px;align-items:start;}
+.eo-brief{padding:16px 18px;font-size:13px;line-height:1.5;position:sticky;top:80px;}
+.eo-brief ul{margin:0 0 6px;padding-left:18px;} .eo-brief p{margin:0 0 6px;}
+.eo-k{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-deep);margin:12px 0 4px;}
+.eo-brief .eo-k:first-child{margin-top:0;}
+.eo-name{font-size:16px;color:var(--navy);display:block;} .eo-sub{color:var(--ink-soft);}
+.eo-cad{margin:0 0 12px;padding-left:20px;} .eo-cad li{color:var(--ink-soft);} .eo-cad li.done{color:#3F7D58;text-decoration:line-through;} .eo-cad li.now{color:var(--navy);font-weight:800;}
+.eo-thread{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.eo-empty{border:1px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--ink-soft);font-size:13px;}
+.eo-msg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;max-width:92%;}
+.eo-msg.mine{align-self:flex-end;border-left:4px solid var(--navy);} .eo-msg.theirs{align-self:flex-start;border-left:4px solid var(--orange);background:#FFFBF5;}
+.eo-mh{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-soft);margin-bottom:4px;} .eo-mh b{color:var(--navy);}
+.eo-subj{font-weight:800;font-size:13.5px;margin-bottom:4px;} .eo-body{font-size:13.5px;line-height:1.55;white-space:normal;}
+.eo-sys{align-self:center;font-size:12.5px;color:var(--ink-soft);background:#F3F4F9;border-radius:999px;padding:5px 12px;}
+.eo-compose{padding:14px 16px;display:flex;flex-direction:column;gap:8px;}
+.eo-ch{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);} .eo-ch b{color:var(--navy);font-size:14px;}
+.eo-compose input, .eo-compose textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;}
+.eo-compose textarea{min-height:170px;resize:vertical;line-height:1.5;}
+.eo-checks{display:flex;flex-wrap:wrap;gap:6px;} .eo-checks span{font-size:12px;border-radius:999px;padding:3px 10px;background:#F3F4F9;color:var(--ink-soft);} .eo-checks span.ok{background:#EAF6EF;color:#2F6B47;font-weight:700;}
+.eo-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px;}
+.eo-debrief{padding:16px 18px;}
+.eo-out{display:flex;gap:12px;align-items:center;} .eo-out > span{font-size:30px;} .eo-out b{font-size:16px;color:var(--navy);} .eo-out p{margin:2px 0 0;font-size:13px;color:var(--ink-soft);}
+.eo-thoughts{margin:0 0 12px;padding-left:20px;} .eo-thoughts li{margin-bottom:8px;font-size:13px;line-height:1.5;} .eo-thoughts b{display:block;color:var(--navy);} .eo-thoughts span{font-style:italic;color:#37394A;}
+@media(max-width:860px){.eo-grid{grid-template-columns:1fr;} .eo-brief{position:static;} .eo-msg{max-width:100%;}}
+`; document.head.appendChild(s); })();
+
+const EO_PROSPECTS = [
+  {id:"dana", name:"Dana Whitfield", first:"Dana", role:"Director of Operations", company:"Ridgeline Builders",
+   facts:["Regional commercial construction company, ~180 employees","Announced last week: expanding into Colorado and Arizona next quarter","Currently uses one outside law firm, mainly for lien disputes"],
+   need:"New-state subcontractor agreements and licensing for the expansion",
+   persona:"Practical and very busy — reads email on her phone between site visits. Ignores anything that looks like a template or runs past one screen. Replies to short, specific notes that clearly understand the expansion. Dislikes vague 'synergy' language. If interested she asks one practical question before agreeing to a call."},
+  {id:"marcus", name:"Marcus Lee", first:"Marcus", role:"Founder & CEO", company:"Brightpath Health Tech",
+   facts:["Health-tech startup, 40 employees, closed a $12M Series A two weeks ago","Hiring fast: 15 open roles on their careers page","No in-house counsel yet"],
+   need:"Employment agreements, equity paperwork and vendor contracts as they scale",
+   persona:"Gets 50+ cold emails a day and deletes most unread. Responds only to emails that are under ~100 words, mention something real about his company, and ask for something small. Allergic to flattery and long firm bios. If intrigued he replies in one line; might ask 'what would this cost?'."},
+  {id:"priya", name:"Priya Raman", first:"Priya", role:"General Counsel", company:"Lakeshore Regional Health",
+   facts:["Regional hospital group, 3 hospitals and 12 clinics","Posted publicly about a backlog of vendor-contract reviews","Legal team of 2 attorneys — stretched thin"],
+   need:"Overflow review of routine vendor and service contracts",
+   persona:"A lawyer herself — skeptical of cold outreach and alert to compliance. Notices if there's no opt-out line and if the email over-promises or gives anything resembling legal advice. Respects precision, relevance and brevity. May reply with a sharp question (conflicts, rates, turnaround) before agreeing to anything."}
+];
+const EO_TOUCHES = [{day:1, label:"First email"}, {day:4, label:"Follow-up — new angle"}, {day:9, label:"Close-out"}];
+const EO_MAX_SENDS = 5;
+
+function eoState(){ return toolState.eo || (toolState.eo = {prospectId:null, thread:[], done:false, outcome:"", report:null}); }
+function eoSave(){ storeSet("email-outreach-sim", toolState.eo||null); }
+function eoProspect(){ return EO_PROSPECTS.find(p=>p.id===eoState().prospectId); }
+function eoMine(){ return eoState().thread.filter(m=>m.from==="you"); }
+function eoNextSend(){
+  const s = eoState(), mine = eoMine(), last = s.thread[s.thread.length-1];
+  const lastDay = last ? last.day : 0;
+  if(last && last.from==="prospect") return {kind:"reply", day:lastDay+1, label:`Reply to ${eoProspect().first}`};
+  const touchNo = mine.filter(m=>m.kind==="touch").length;
+  const t = EO_TOUCHES[touchNo];
+  return t ? {kind:"touch", day:Math.max(t.day, lastDay+1), label:t.label, n:touchNo+1} : null;
+}
+function eoWords(t){ return (String(t||"").trim().match(/\S+/g)||[]).length; }
+
+function renderEmailOutreachSection(){
+  return `<h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Email Outreach Simulator</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Write a real outreach sequence on Elias Thorne's behalf. The prospect is played by AI and reacts the way a busy professional really would — most weak emails simply get no reply.</p>
+    <div id="eoSim">${eoView()}</div>`;
+}
+function eoRender(){ const el = document.getElementById("eoSim"); if(el) el.innerHTML = eoView(); }
+function eoView(){
+  const s = eoState();
+  if(!s.prospectId){
+    return `<div class="eo-pick">${EO_PROSPECTS.map(p=>`
+      <div class="card eo-pcard">
+        <div class="eo-av">${esc(p.name.split(" ").map(x=>x[0]).join(""))}</div>
+        <b>${esc(p.name)}</b><span>${esc(p.role)} · ${esc(p.company)}</span>
+        <ul>${p.facts.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+        <button class="btn btn-navy btn-sm" onclick="eoChoose('${p.id}')">Write to ${esc(p.first)} →</button>
+      </div>`).join("")}</div>`;
+  }
+  const p = eoProspect(), next = s.done ? null : eoNextSend();
+  const sentTouches = eoMine().filter(m=>m.kind==="touch").length;
+  return `<div class="eo-grid">
+    <aside class="card eo-brief">
+      <div class="eo-k">Prospect brief</div>
+      <b class="eo-name">${esc(p.name)}</b><div class="eo-sub">${esc(p.role)} · ${esc(p.company)}</div>
+      <div class="eo-k">Your research</div><ul>${p.facts.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+      <div class="eo-k">Likely need</div><p>${esc(p.need)}</p>
+      <div class="eo-k">Your goal</div><p>A 15-minute intro call with <b>Elias Thorne</b>, Managing Owner &amp; CEO of Thorne &amp; Partners Law Group.</p>
+      <div class="eo-k">Cadence</div>
+      <ol class="eo-cad">${EO_TOUCHES.map((t,i)=>`<li class="${i<sentTouches?"done":(next && next.kind==="touch" && next.n===i+1?"now":"")}">Day ${t.day} · ${t.label}</li>`).join("")}</ol>
+      <button class="btn btn-ghost btn-sm" onclick="eoReset()">↺ Start over / another prospect</button>
+    </aside>
+    <section class="eo-main">
+      <div class="eo-thread">${s.thread.length ? s.thread.map(eoMsgHtml).join("") : `<div class="eo-empty">Your sent emails and ${esc(p.first)}'s replies will appear here.</div>`}</div>
+      ${s.done ? eoDebriefHtml() : (next ? eoComposerHtml(next) : "")}
+    </section>
+  </div>`;
+}
+function eoMsgHtml(m){
+  const p = eoProspect();
+  if(m.from==="system") return `<div class="eo-sys">📭 ${esc(m.body)}</div>`;
+  const mine = m.from==="you";
+  return `<div class="eo-msg ${mine?"mine":"theirs"}">
+    <div class="eo-mh"><b>${mine ? "You (for Elias Thorne)" : esc(p.name)}</b><span>Day ${m.day}${mine && m.kind==="touch" ? " · "+esc(m.label) : ""}</span></div>
+    ${m.subject ? `<div class="eo-subj">${esc(m.subject)}</div>` : ""}
+    <div class="eo-body">${esc(m.body).replace(/\n/g,"<br>")}</div>
+  </div>`;
+}
+function eoComposerHtml(next){
+  const s = eoState(), p = eoProspect();
+  const first = eoMine()[0];
+  const subj = s.draftSubject != null ? s.draftSubject : (first ? (/^re:/i.test(first.subject) ? first.subject : "Re: "+first.subject) : "");
+  return `<div class="card eo-compose">
+    <div class="eo-ch"><b>✉ ${esc(next.label)}</b><span>Day ${next.day} · to ${esc(p.name)} &lt;${esc(p.first.toLowerCase())}@${esc(p.company.toLowerCase().replace(/[^a-z]/g,""))}.com&gt;</span></div>
+    <input id="eoSubject" placeholder="Subject line (3–7 specific words)" value="${esc(subj)}" oninput="eoDraft()">
+    <textarea id="eoBody" placeholder="Hi ${esc(p.first)}, …" oninput="eoDraft()">${esc(s.draftBody||"")}</textarea>
+    <div class="eo-checks" id="eoChecks">${eoChecksHtml(subj, s.draftBody||"", next)}</div>
+    <div class="eo-actions">
+      ${eoMine().length ? `<button class="btn btn-ghost btn-sm" onclick="eoFinish()">End sequence &amp; get feedback</button>` : "<span></span>"}
+      <button class="btn btn-primary" id="eoSendBtn" onclick="eoSend()">Send ✉</button>
+    </div>
+    <div id="eoErr"></div>
+  </div>`;
+}
+function eoChecksHtml(subject, body, next){
+  const p = eoProspect(), w = eoWords(body), sw = eoWords(String(subject).replace(/^re:\s*/i,""));
+  const hay = (subject+" "+body).toLowerCase();
+  const personal = [p.company, ...p.facts.join(" ").match(/\b(Colorado|Arizona|expansion|Series A|\$12M|hiring|roles|backlog|vendor|clinics|hospitals|lien)\b/gi)||[]].some(k=>hay.includes(String(k).toLowerCase()));
+  const ask = /\?|call|chat|15|minutes|time (this|next)|calendar|worth a/i.test(body);
+  const optout = /unsubscribe|opt[- ]?out|not the right (person|time)|prefer not|won't (email|follow up)|stop (emailing|hearing)|no longer|let me know if (this|you'd)/i.test(body);
+  const chip = (ok, t)=>`<span class="${ok?"ok":""}">${ok?"✓":"○"} ${t}</span>`;
+  const range = next && next.kind==="touch" && next.n===3 ? [25,90] : [50,125];
+  return chip(w>=range[0] && w<=range[1], `${w} words (aim ${range[0]}–${range[1]})`)
+    + (next && next.kind==="reply" ? "" : chip(sw>=3 && sw<=7, "Subject 3–7 words"))
+    + chip(personal, "Specific to them")
+    + chip(ask, "One clear ask")
+    + (next && next.kind==="reply" ? "" : chip(optout, "Opt-out line"));
+}
+function eoDraft(){
+  const s = eoState();
+  s.draftSubject = (document.getElementById("eoSubject")||{}).value || "";
+  s.draftBody = (document.getElementById("eoBody")||{}).value || "";
+  const c = document.getElementById("eoChecks"); if(c) c.innerHTML = eoChecksHtml(s.draftSubject, s.draftBody, eoNextSend());
+  clearTimeout(eoDraft.t); eoDraft.t = setTimeout(eoSave, 600);
+}
+function eoChoose(id){ toolState.eo = {prospectId:id, thread:[], done:false, outcome:"", report:null}; eoSave(); eoRender(); }
+function eoReset(){
+  if(eoState().thread.length && !confirm("Start over? Your current email thread will be cleared.")) return;
+  toolState.eo = {prospectId:null, thread:[], done:false, outcome:"", report:null}; eoSave(); eoRender();
+}
+async function eoSend(){
+  const s = eoState(), p = eoProspect(), next = eoNextSend(); if(!next) return;
+  const subject = (document.getElementById("eoSubject").value||"").trim(), body = (document.getElementById("eoBody").value||"").trim();
+  if(eoWords(body) < 12){ toast("Write the email first — at least a couple of sentences."); return; }
+  if(next.kind==="touch" && !subject){ toast("Add a subject line."); return; }
+  const btn = document.getElementById("eoSendBtn"); if(btn){ btn.disabled = true; btn.textContent = "Sending…"; }
+  const msg = {from:"you", kind:next.kind, label:next.label, day:next.day, subject: next.kind==="touch" ? subject : "", body};
+  const threadText = s.thread.concat([msg]).map(m=> m.from==="system" ? `[${m.body}]` : `--- Day ${m.day} · ${m.from==="you" ? "FROM the assistant (for Elias Thorne)" : "FROM "+p.name} ---\n${m.subject ? "Subject: "+m.subject+"\n" : ""}${m.body}`).join("\n\n");
+  const prompt = `You are role-playing a real prospect who receives cold outreach email, inside a training simulation for executive assistants at a law firm. Stay fully in character.
+
+PROSPECT: ${p.name}, ${p.role} at ${p.company}.
+Facts about you: ${p.facts.join("; ")}.
+What you might genuinely need: ${p.need}.
+Personality and inbox reality: ${p.persona}
+
+The sender is an assistant writing on behalf of Elias Thorne, Managing Owner & CEO of Thorne & Partners Law Group. Their goal is a 15-minute intro call with Elias.
+
+THE EMAIL THREAD SO FAR (the LAST message is the one you are reacting to now):
+${threadText}
+
+Decide realistically what you do with the LAST email. Real cold-email reply rates are low:
+- Generic, long, vague, self-focused, flattering or pushy emails get NO reply.
+- A short, specific, relevant email with one small, clear ask MAY get a reply: interest, a practical question, an objection, or "not right now".
+- A follow-up that only "bumps" the thread gets no reply; one that adds a genuinely new, relevant angle may.
+- A short, courteous close-out email often prompts a brief reply (even "not now, thanks").
+- If you already replied and the sender answered you well and proposed a concrete time, you may agree to the call ("booked").
+- If the email gives legal advice, promises outcomes, guilt-trips you or is careless (wrong facts, wrong name), become less likely to reply or opt out.
+Never be cartoonishly easy: a merely decent email should often still get no reply.
+
+Return ONLY JSON:
+{"action":"no_reply" | "reply" | "booked" | "unsubscribe",
+ "reply":"your reply email text when action is reply, booked or unsubscribe (1-4 short sentences, in character, sign with your first name); empty string for no_reply",
+ "thought":"1-2 sentences, first person, about how this specific email landed with you and why — honest and concrete (shown to the trainee afterwards)"}`;
+  try{
+    const r = await callAIJson(prompt, 500);
+    const action = ["no_reply","reply","booked","unsubscribe"].includes(r.action) ? r.action : "no_reply";
+    msg.thought = String(r.thought||"").slice(0,400);
+    s.thread.push(msg); s.draftSubject = null; s.draftBody = "";
+    if(action==="no_reply"){
+      const nx = eoNextSend();
+      s.thread.push({from:"system", day:msg.day, body: nx ? `No reply from ${p.first} by Day ${nx.day}.` : `No reply from ${p.first}. The sequence is complete.`});
+      if(!nx) { s.done = true; s.outcome = "no_reply"; }
+    }else{
+      s.thread.push({from:"prospect", day:msg.day + (action==="booked" ? 0 : 1), body:String(r.reply||"").trim() || "Thanks — not right now."});
+      if(action==="booked"){ s.done = true; s.outcome = "booked"; }
+      if(action==="unsubscribe"){ s.done = true; s.outcome = "unsubscribe"; }
+    }
+    if(!s.done && eoMine().length >= EO_MAX_SENDS){ s.done = true; s.outcome = s.outcome || "ended"; }
+    eoSave(); eoRender();
+    if(s.outcome==="booked") burstConfetti();
+  }catch(e){
+    if(btn){ btn.disabled = false; btn.textContent = "Send ✉"; }
+    const el = document.getElementById("eoErr"); if(el) el.innerHTML = renderAiErrorBlock(e, "The prospect couldn't be reached");
+  }
+}
+function eoFinish(){ const s = eoState(); if(!eoMine().length) return; s.done = true; s.outcome = s.outcome || "ended"; eoSave(); eoRender(); }
+function eoDebriefHtml(){
+  const s = eoState(), p = eoProspect();
+  const banner = {booked:["🎉","Call booked","Elias has a 15-minute intro call on the calendar."], unsubscribe:["🚫","Opted out",`${p.first} asked not to be contacted — log it and stop.`], no_reply:["📭","No reply",`${p.first} never replied. That's common — the feedback shows what might change it.`], ended:["✋","Sequence ended","You ended the sequence."]}[s.outcome||"ended"];
+  return `<div class="card eo-debrief">
+    <div class="eo-out"><span>${banner[0]}</span><div><b>${banner[1]}</b><p>${esc(banner[2])}</p></div></div>
+    <div class="eo-k">How each email landed — in ${esc(p.first)}'s words</div>
+    <ol class="eo-thoughts">${eoMine().map(m=>`<li><b>${esc(m.kind==="touch" ? m.label : "Your reply")} (Day ${m.day})</b><span>“${esc(m.thought||"—")}”</span></li>`).join("")}</ol>
+    <div class="eo-actions"><button class="btn btn-ghost btn-sm" onclick="eoReset()">↺ Try again / another prospect</button>
+      <button class="btn btn-navy" onclick="eoEvaluate()">Get Evaluation</button></div>
+    <div id="eoResult">${s.reportHtml || ""}</div>
+  </div>`;
+}
+async function eoEvaluate(){
+  const s = eoState(), p = eoProspect(), el = document.getElementById("eoResult");
+  if(!(await useLabAttempt(4, "emailOutreachSim"))) return;
+  el.innerHTML = `<div class="ai-loading">Evaluating your outreach sequence…</div>`;
+  const thread = s.thread.map(m=> m.from==="system" ? `[${m.body}]` : `--- Day ${m.day} · ${m.from==="you" ? "TRAINEE" : "PROSPECT ("+p.name+")"}${m.label && m.from==="you" ? " · "+m.label : ""} ---\n${m.subject ? "Subject: "+m.subject+"\n" : ""}${m.body}`).join("\n\n");
+  try{
+    const report = await runRubricEvaluation(
+      "Email Outreach Sequence",
+      `PROSPECT BRIEF: ${p.name}, ${p.role} at ${p.company}. Research: ${p.facts.join("; ")}. Likely need: ${p.need}. GOAL: a 15-minute intro call with Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group). Planned cadence: first email day 1, follow-up with a new angle day 3–4, courteous close-out day 8–10. OUTCOME: ${s.outcome}.`,
+      thread,
+      `Score the whole sequence, not one email. (1) Research & relevance: does the first email use a specific, accurate fact from the brief and connect it to a real need? (2) Brevity & structure: roughly 50–125 words per email, a specific 3–7 word subject line, the ask visible early. (3) One clear, low-friction ask (a 15-minute call with Elias, ideally with a concrete time option). (4) Follow-ups: each adds a genuinely new angle or value instead of "just bumping"; sensible spacing; a courteous, final close-out. (5) Tone: confident and warm, never pushy, flattering or guilt-tripping; writes appropriately on Elias's behalf; no legal advice or promised outcomes. (6) Compliance: a simple opt-out line in the outreach emails; stops after an opt-out. (7) Handling replies: if the prospect replied, did the trainee answer the actual question or objection and move toward a booked call? Do not reward or penalise the outcome itself — judge the quality of what the trainee wrote.`
+    );
+    s.reportHtml = `<b style="font-size:13px;color:var(--navy);display:block;margin:12px 0 8px;">Evaluation Report — Your Outreach Sequence</b>` + renderEvaluationReport(report, 4);
+    el.innerHTML = s.reportHtml; eoSave();
+    await bumpPracticeProgress("coldcalling4", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }
+}
+Object.assign(window, {eoChoose, eoReset, eoSend, eoDraft, eoFinish, eoEvaluate});
+
+/* Day 4 Practice Lab: add the simulator as Part 4 */
+window.initColdCalling4 = function(body){
+  toolState.calls = {};
+  toolState.wizardIndex = 0;
+  toolState.intakeCall = toolState.intakeCall || {step:"pick", personaId:null, chatHistory:[], startedAt:null};
+  const partA = renderColdCallingSection('A');
+  const partB = `
+    <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">${esc(LEAD_GEN_SCENARIO.text)}</p>
+    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Write your plan: at least 3 specific lead sources you'd actually use, your qualifying criteria (what makes a lead worth pursuing), and your first-contact approach.</p>
+    <textarea id="leadGenDraft" style="width:100%;min-height:160px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Lead sources...&#10;&#10;Qualifying criteria...&#10;&#10;First-contact approach..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewLeadGenPlan()">Get Review</button>
+    <div id="leadGenResult" style="margin-top:14px;"></div>
+  `;
+  const partC = renderIntakeCallSection();
+  const partD = renderEmailOutreachSection();
+  body.innerHTML = renderToolWizard(4, [
+    {label:"Cold-Calling Log", html:partA},
+    {label:"Lead Generation Practice", html:partB},
+    {label:"Live Intake Call Simulator", html:partC},
+    {label:"Email Outreach Simulator", html:partD}
+  ]);
+  loadCallLog();
+  // the portal rebuilds the lab on every redraw — bring the saved email thread back
+  if(!(toolState.eo && toolState.eo.prospectId)) storeGet("email-outreach-sim").then(v=>{ if(v && v.prospectId && !(toolState.eo && toolState.eo.prospectId)){ toolState.eo = v; eoRender(); } });
+};
+(function(){
+  const t = PRACTICE_TOOLS.find(x=>x.id==="coldcalling4");
+  if(t){ t.title = "Cold-Calling, Lead Generation & Email Outreach"; t.desc = "Log a full round of cold-calling outreach, draft a real lead-generation plan, handle a live intake call, then run an email outreach sequence against an AI prospect who replies — or doesn't — the way a busy professional really would."; }
+})();
 
 /* if the portal already drew itself before this file loaded, redraw with the updates */
 if(document.querySelector(".topbar")) render();
