@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "y" (2026-09-26)
+   LSH EA/PA portal — update pack "z" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -13,8 +13,9 @@
      7. Inbox Triage + Inbox Zero merged into one Gmail inbox with labels & sub-labels (Day 2 lab).
      8. Day 3 "Proactive EA Tasks" is now a written, graded exercise.
      9. Practice Lab pages in the platform page style (hero, activity headings, cards, buttons).
+    10. SOP: Program flow page + a timed run of show for every day.
    ============================================================ */
-window.EAPA_UPDATE_PACK = "y";
+window.EAPA_UPDATE_PACK = "z";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
@@ -424,27 +425,28 @@ window.sopLiveSections = function(d){
    • Present — for live discussion: one short slide at a time, big type, long
      sections split into balanced parts, ← → keys and full screen. */
 function renderAdminSOP(){
-  const day = state.sopDay || 1;
-  const d = sopForDay(day);
+  const day = state.sopDay==null ? 0 : state.sopDay;
+  const d = day ? sopForDay(day) : null;
   const availableDays = DAYS.map(x=>x.id);
   const mode = state.sopMode || "read";
   return `
     <p class="eyebrow">Admin — Reference</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">SOP Reference</h1>
-    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">The trainer-facing Upskill Training Guide SOP. Use <b>Present</b> during a live session — it shows one short point at a time in large type.</p>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">How to facilitate this training. Start with <b>🧭 Program flow</b>, then each day's <b>Run of show</b> — a timed, step-by-step plan built from that day's content — followed by the detailed script. Use <b>Present</b> to show a day's content to the room.</p>
     <div class="sopx-bar">
       <div class="sopx-days">
+        <button class="btn btn-sm ${day===0?'btn-navy':'btn-ghost'}" onclick="setSopDay(0)">🧭 Program flow</button>
         ${Array.from({length:10},(_,i)=>i+1).map(n=>{
           const has = availableDays.includes(n);
           return `<button class="btn btn-sm ${n===day?'btn-navy':'btn-ghost'}" ${has?'':'disabled title="Not yet added"'} onclick="setSopDay(${n})">Day ${n}${has?'':' (soon)'}</button>`;
         }).join("")}
       </div>
-      <div class="sopx-mode" role="tablist">
+      <div class="sopx-mode" role="tablist" style="${day===0?"display:none":""}">
         <button class="${mode==="read"?"on":""}" onclick="setSopMode('read')">📖 Reference</button>
         <button class="${mode==="present"?"on":""}" onclick="setSopMode('present')">🎤 Present</button>
       </div>
     </div>
-    ${!d ? `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">Day ${day}'s SOP content hasn't been added yet.</div>`
+    ${day===0 ? sopProgramFlow() : !d ? `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">Day ${day}'s SOP content hasn't been added yet.</div>`
       : mode==="present" ? renderSopPresent(d) : renderSopDayContent(d)}
   `;
 }
@@ -470,6 +472,7 @@ function renderSopDayContent(d){
           <div class="sopx-chips">${(d.topics||[]).map(t=>`<span>${esc(t)}</span>`).join("")}</div></div>
       </div>
     </div>
+    ${sopRunOfShow(d)}
     ${d.handWritten ? "" : `<div class="empty-note" style="margin-bottom:12px;">This day's SOP is generated from the live portal content, so it always matches what trainees see. Add a hand-written script for it any time and it will appear above the auto-built plan.</div>`}
     <nav class="sopx-toc"><b>Jump to</b>${d.sections.map((s,i)=>`<a href="#sopsec-${i}" onclick="event.preventDefault();document.getElementById('sopsec-${i}').scrollIntoView({behavior:'smooth',block:'start'})">${i+1}. ${esc(s.h)}</a>`).join("")}</nav>
     <div class="sopx-grid">${d.sections.map(renderSopSection).join("")}</div>
@@ -1949,6 +1952,184 @@ window.afterRender = function(){
   }
   return r;
 };
+
+/* ---------- 10. SOP: how to facilitate — program flow + a run of show per day ----------
+   Trainer-only. The run of show is built from each day's live content (topics,
+   Quick Checks, Practice Lab activities, discussion question, Knowledge Check),
+   so it always matches what trainees see. Clock times follow a start time the
+   trainer picks. Never shown in Present mode. */
+const SOP_LAB_ACTIVITIES = {
+  dossier1:["Client Dossier","Preference Trackers","ACT Email","Gatekeeping Practice"],
+  forcemultiplier2:["Anticipate the Real Need","Prompt Engineering","The Full Scenario","Inbox Triage"],
+  calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel Management"],
+  coldcalling4:["Cold-Calling Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator"],
+  insurance5:["Classify the Risk","Match the Strategy","Home Binder","Crisis Roleplay"],
+  projectcompliance6:["Compliance Risk","Operational Warning Signs","Recovery Memo","Crisis Roleplay","Compliance Audit Simulation"],
+  financial:["Trust Ledger Reconciliation","Invoice & Bill Audit","Attention to Detail Test"],
+  accessincident8:["Least-Privilege Access Audit","Verify Before You Disclose","Contain the Leak"],
+  compliance9:["CLE Compliance Dashboard","Event Follow-Up","Negative Review Response","Awards Tracker","Crisis Roleplay"],
+  socialmedia10:["Engagement Rate","Version Matching","Campaign Math","Brand Kit","Marketing Plan"]
+};
+(function(){ const s = document.createElement("style"); s.id = "eapa-sop-flow"; s.textContent = `
+.sopf{padding:22px 26px;margin-bottom:16px;border-top:6px solid var(--orange);}
+.sopf-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+.sopf-head h2{font-family:'Fraunces',Georgia,serif;color:var(--navy);font-size:24px;margin:2px 0 0;}
+.sopf-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px;} .sopf-meta span{background:#F3F4F9;border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:700;color:var(--navy);}
+.sopf-start{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);} .sopf-start input{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:5px 8px;}
+.sopf-steps{list-style:none;margin:0;padding:0;counter-reset:sf;}
+.sopf-steps > li{display:grid;grid-template-columns:118px minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px dashed #E3DDD2;}
+.sopf-time{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:700;color:var(--orange-deep);line-height:1.5;}
+.sopf-time small{display:block;color:var(--ink-soft);font-weight:600;}
+.sopf-step h4{margin:0 0 6px;font-size:16px;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.sopf-step h4 .n{counter-increment:sf;} .sopf-step h4 .n::before{content:counter(sf);display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;}
+.sopf-rows{display:grid;gap:5px;font-size:14px;line-height:1.55;}
+.sopf-rows div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:10px;}
+.sopf-rows > div > b{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding-top:3px;} .sopf-rows li b{color:var(--navy);}
+.sopf-rows ul{margin:0;padding-left:18px;}
+.sopf-step.brk h4{color:#3F7D58;} .sopf-step.brk h4 .n::before{background:#3F7D58;}
+.sopf-step.opt h4::after{content:"Optional";font-size:11px;font-weight:700;color:#B06000;background:#FFF1E2;border-radius:999px;padding:2px 8px;}
+.sopf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+.sopf-card{padding:18px 20px;} .sopf-card h3{font-family:'Fraunces',Georgia,serif;color:var(--navy);font-size:19px;margin:0 0 10px;}
+.sopf-card ol, .sopf-card ul{margin:0;padding-left:20px;font-size:14px;line-height:1.6;} .sopf-card li{margin-bottom:6px;}
+.sopf-map td, .sopf-map th{font-size:13.5px;vertical-align:top;}
+@media(max-width:760px){.sopf-steps > li{grid-template-columns:1fr;gap:6px;} .sopf-rows div{grid-template-columns:1fr;}}
+@media print{.topbar, .admin-tabs, .sopx-bar, .page-hero, .footer-note, .sopx-toc, .sopf-start{display:none !important;} .sopf{box-shadow:none;border:1px solid #ccc;}}
+`; document.head.appendChild(s); })();
+
+function sopClock(startMin, off){ const t = startMin + off; const h = Math.floor(t/60)%24, m = t%60; return `${h%12||12}:${String(m).padStart(2,"0")} ${h<12?"AM":"PM"}`; }
+function sopStartMin(){ const v = state.sopStart || "09:00"; const [h,m] = v.split(":").map(Number); return (h||9)*60 + (m||0); }
+function setSopStart(v){ state.sopStart = v; try{ localStorage.setItem("lsh_sop_start", v); }catch(e){} render(); }
+try{ state.sopStart = state.sopStart || localStorage.getItem("lsh_sop_start") || "09:00"; }catch(e){}
+function sopRunOfShow(dRaw){
+  const d = DAYS.find(x=>x.id===dRaw.id); if(!d) return "";
+  const tools = relatedTools(d.id), lab = tools[0];
+  const acts = lab ? (SOP_LAB_ACTIVITIES[lab.id] || []) : [];
+  const n = d.lessons.length, qcs = (d.quickChecks||[]).slice().sort((a,b)=>a.afterIndex-b.afterIndex);
+  const kc = (d.quiz||[]).length;
+  const steps = []; let t = 0;
+  const add = (mins, s)=>{ steps.push(Object.assign({from:t, to:t+mins}, s)); t += mins; };
+  add(15, {pre:true, title:"Before trainees join", do:[
+    `Admin → <b>Trainee Audit</b>: approve anyone new; check everyone has Day ${d.id} unlocked (the previous day's Practice Lab submitted).`,
+    `Open <b>Admin → Trainer Cues → Day ${d.id}</b> in a second window, or use Presenter view (below) which shows the cues for each slide.`,
+    `Open Day ${d.id} → slides → <b>🖥 Presenter view</b>. Allow pop-ups. In Google Meet: <b>Present now → A window</b> → “LSH Slides — share this window”.`,
+    `Pick your random-task moment (step marked below) and how long trainees get (15–30 min).`]});
+  add(5, {title:"Welcome, recap & today's objectives", do:[
+    `Show the <b>📋 Objectives</b> page (button above the slides) — it lists what trainees will be able to do by the end of today.`,
+    `Recap yesterday in one minute: the 1–2 things most people found hard (check Rankings / Knowledge Check scores).`],
+    say:`“By the end of today you'll be able to ${esc(String(d.objective||d.title).replace(/\.$/,"").replace(/^[A-Z](?=[a-z])/, c=>c.toLowerCase()))}.”`,
+    watch:"Anyone who hasn't opened today's day yet — ask them to open it now so they can follow along."});
+  if(d.id===1) add(8, {title:"Meet Elias Thorne — live roleplay", do:[`Step into the role of Elias for 5–8 minutes. The full in-character guide (opening line, tone, sample answers) is in your notes on this slide.`, `Drop character explicitly at the end: “Okay, that's Elias — now let's build the real dossier.”`], watch:"Trainees asking vague questions — prompt them to ask what would lose his trust fastest."});
+  // teaching blocks of ~45 minutes, with the Quick Checks where they fall and breaks in between
+  const perTopic = 2.5, blockTopics = Math.max(8, Math.round(45/perTopic));
+  let i = 0, block = 1; const blocks = Math.ceil(n/blockTopics);
+  const midBlock = Math.max(1, Math.ceil(blocks/2));
+  const taskStep = {opt:true, title:"Send today's random task", do:[`Admin → <b>Trainee Audit → 🎲 Random Task Injection</b>: choose <b>Day ${d.id}</b>, set 15–30 minutes, <b>Generate &amp; Broadcast</b>. Keep teaching — trainees handle it in 🎲 Tasks alongside the session.`, `Anyone who doesn't submit before the timer ends gets it logged as Missed (0).`]};
+  while(i < n){
+    const j = Math.min(n, i+blockTopics);
+    if(block===midBlock+1) add(0, taskStep);   // right after the break, as teaching resumes
+    const inBlock = qcs.filter(q=>q.afterIndex>=i && q.afterIndex<j);
+    add(Math.round((j-i)*perTopic + inBlock.length*1.5), {title:`Teach topics ${i+1}–${j} of ${n}`, do:[
+      `Present each topic's two parts (principles & steps, then best practices & pitfalls). Longer topics continue on a second page — press Next.`,
+      `Use your notes for each slide: the Trainer Cue, Applied Discussion Case and the Say / Ask / Listen for / If quiet script. Take one or two answers per topic, not a round-robin.`,
+      inBlock.length ? `Quick Check${inBlock.length>1?"s":""} after topic${inBlock.length>1?"s":""} ${inBlock.map(q=>q.afterIndex+1).join(", ")}: let the room answer first, then reveal (the answer and rationale are in your notes).` : "",
+      `Topics: ${d.lessons.slice(i,j).map((l,k)=>`${i+k+1}. ${esc(l.h)}`).join(" · ")}`].filter(Boolean),
+      watch:"Silence usually means the example is too abstract — use the Applied Discussion Case from your notes."});
+    i = j; block++;
+    if(i >= n && blocks===1) add(0, taskStep);
+    if(i < n) add(10, {brk:true, title:"Break", do:["10 minutes. Tell the room the exact time you'll restart."]});
+  }
+  add(5, {title:"Video recap", do:["Play the day's recap video on the Video slide (or, until it's added, summarise the three biggest ideas in one minute each)."]});
+  if(lab){
+    const labMins = Math.max(20, acts.length*10);
+    add(labMins, {title:`Practice Lab — ${esc(lab.title)}`, do:[
+      `Trainees open it from the Practice Lab slide (or 🧪 Practice Lab). They work in their own portal; stop presenting or leave the Practice Lab slide up.`,
+      acts.length ? `Activities (≈10 min each): ${acts.map((a,k)=>`<b>${k+1}. ${esc(a)}</b>`).join(" · ")}.` : "",
+      acts.some(a=>/Roleplay/i.test(a)) ? `The Crisis Roleplay can be run live by you, or trainees rehearse solo first.` : "",
+      `First submission of each exercise is free; repeats use one of 3 program-wide attempts (reset in Trainee Audit if someone is blocked by a technical issue).`].filter(Boolean),
+      watch:"Anyone stuck on the same activity for more than 10 minutes — nudge them to submit and move on; the debrief is where the learning lands."});
+    add(10, {title:"Practice Lab debrief", do:[`Ask 2–3 trainees to walk through what they did and why, and where their judgment differed from the model answer.`, `Point to the Evaluation Report's “Not this way — what to change” section: it's the next step, not a verdict.`]});
+  }
+  if(d.discussionQuestion) add(8, {title:"End-of-day discussion", say:`“Before we close Day ${d.id}, let's step back and talk about this together: ${esc(d.discussionQuestion)}”`, do:[`Take 2–3 answers, connect each one to a lesson from today, then move on.`]});
+  add(10, {title:`Knowledge Check (${kc} questions)`, do:[`Trainees click <b>Continue to Knowledge Check</b> on the last slide. 70% marks the day complete ✓.`, `Below 70% is a “not yet”: they can still move on and retake it any time; their best score counts.`], watch:"Stop presenting while they answer, so no one reads answers off the shared screen."});
+  add(5, {title:"Close", do:[`Ask everyone to send quick feedback with the 💬 Feedback button.`, `Preview tomorrow: Day ${d.id+1<=DAYS.length ? `${d.id+1} — ${esc((DAYS.find(x=>x.id===d.id+1)||{}).title||"")}` : "certificates and wrap-up"}.`, `Click <b>■ End</b> in Presenter view.`]});
+  add(20, {pre:true, title:"After the session", do:[
+    `<b>Trainee Audit → View Detail → Day-by-Day Feedback</b>: review each trainee's Day ${d.id} feedback, edit and <b>Send</b>.`,
+    `Add a <b>🎯 Focus</b> item for anyone who needs one specific next step.`,
+    `Check <b>Rankings</b> and the Knowledge Check column; schedule retakes for anyone under 70%.`,
+    `Read <b>Trainee Feedback</b> for today and note one thing to change tomorrow.`]});
+  const start = sopStartMin(), live = steps.filter(s=>!s.pre), liveMins = live.reduce((a,s)=>a+(s.to-s.from),0);
+  const rows = steps.map(s=>{
+    const from = s.pre && s.title==="Before trainees join" ? -15 : s.from - 15;
+    const to = from + (s.to-s.from);
+    const when = s.pre && s.title==="After the session" ? `After<small>≈20 min</small>` : (s.to===s.from ? `${sopClock(start, from)}<small>as teaching resumes</small>` : `${sopClock(start, from)}<small>${s.to-s.from} min</small>`);
+    const cls = s.brk ? "brk" : (s.opt ? "opt" : "");
+    return `<li><div class="sopf-time">${when}</div><div class="sopf-step ${cls}"><h4><span class="n"></span>${s.title}</h4><div class="sopf-rows">
+      ${s.do && s.do.length ? `<div><b>Do</b><ul>${s.do.map(x=>`<li>${x}</li>`).join("")}</ul></div>` : ""}
+      ${s.say ? `<div><b>Say</b><span>${s.say}</span></div>` : ""}
+      ${s.watch ? `<div><b>Watch for</b><span>${esc(s.watch)}</span></div>` : ""}
+    </div></div></li>`;
+  }).join("");
+  const endClock = sopClock(start, liveMins);
+  return `<section class="card sopf">
+    <div class="sopf-head"><div><div class="sopx-kicker">Day ${d.id} · How to run this session</div><h2>Run of show</h2></div>
+      <label class="sopf-start">Session starts at <input type="time" value="${esc(state.sopStart||"09:00")}" onchange="setSopStart(this.value)"> <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨 Print</button></label></div>
+    <div class="sopf-meta"><span>⏱ About ${Math.round(liveMins/60*10)/10} hours live · ends ≈ ${endClock}</span><span>📚 ${n} topics</span><span>✔ ${qcs.length} Quick Checks</span>${lab?`<span>🧪 ${esc(lab.title)}</span>`:""}<span>📝 ${kc}-question Knowledge Check</span></div>
+    <ol class="sopf-steps">${rows}</ol>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:12px 0 0;">Timings assume about 2½ minutes per topic. Built from the live portal content, so it updates automatically when topics are added in Content Studio. The detailed script for each day follows below.</p>
+  </section>`;
+}
+function sopProgramFlow(){
+  const days = DAYS.map(d=>{ const lab = relatedTools(d.id)[0]; return `<tr><td><b>Day ${d.id}</b></td><td>${esc(d.title)}</td><td>${d.lessons.length}</td><td>${lab?esc(lab.title):"—"}</td><td><button class="btn btn-ghost btn-sm" onclick="setSopDay(${d.id})">Run of show →</button></td></tr>`; }).join("");
+  return `
+    <section class="card sopf"><div class="sopx-kicker">Trainer reference · The whole program</div><h2 style="font-family:'Fraunces',Georgia,serif;color:var(--navy);font-size:26px;margin:4px 0 8px;">How to facilitate the LSH EA / PA Upskill Program</h2>
+      <p style="font-size:14.5px;line-height:1.6;margin:0;max-width:85ch;">Ten live sessions, one realistic client (Elias Thorne), one rhythm every day: <b>teach → check → practise → debrief → assess → follow up</b>. This page is the big picture; open any day for its minute-by-minute run of show.</p></section>
+    <div class="sopf-grid">
+      <section class="card sopf-card"><h3>1 · Before the program</h3><ol>
+        <li>Open <b>/version</b> on the portal: it should show the current build and <b>AI provider: Google Gemini</b>. If not, add <code>GEMINI_API_KEY</code> in Cloudflare.</li>
+        <li>Sign in to <b>🛡 Admin</b>. In Trainee Audit set the certificate signatories and the daily-review setting.</li>
+        <li>Send trainees the portal link. They register with name + batch code; <b>approve them in Trainee Audit</b>.</li>
+        <li>Rehearse once: open Day 1 → <b>🖥 Presenter view</b>, share the slides window in a test Meet, step through a few slides.</li>
+        <li>Try <b>👁 Trainee view</b> (top bar) to see exactly what trainees see, then switch back.</li></ol></section>
+      <section class="card sopf-card"><h3>2 · Kick-off (≈20 min, before Day 1)</h3><ol>
+        <li>Admin → <b>🧭 Orientation</b> → <b>Present full screen</b>. It covers the roadmap, how a day works, live sessions, the dashboard, grading and ground rules.</li>
+        <li>Share the <b>Blueprint PDF</b> (link on the Orientation page) as the take-home version.</li>
+        <li>Everyone reads the <b>Client Profile</b> before Day 1 — it's graded against all program long.</li></ol></section>
+      <section class="card sopf-card"><h3>3 · Every day, the same rhythm</h3><ol>
+        <li><b>Before:</b> approvals, unlocks, open Presenter view (≈15 min early).</li>
+        <li><b>Open:</b> recap + today's objectives (5 min).</li>
+        <li><b>Teach:</b> topics in ~45-minute blocks with breaks; Quick Checks where they fall; one random task mid-way.</li>
+        <li><b>Practise:</b> the day's Practice Lab, then a live debrief.</li>
+        <li><b>Discuss:</b> the end-of-day question.</li>
+        <li><b>Assess:</b> Knowledge Check (70% = day complete).</li>
+        <li><b>Close:</b> feedback button, preview tomorrow.</li></ol></section>
+      <section class="card sopf-card"><h3>4 · Between sessions</h3><ul>
+        <li>Send each trainee's <b>Day-by-Day Feedback</b> (Trainee Audit → View Detail).</li>
+        <li>Set <b>🎯 Focus</b> items for anyone who needs a specific next step.</li>
+        <li>Check <b>Rankings</b>, Knowledge Check scores and Missed tasks; schedule retakes under 70%.</li>
+        <li>Reset <b>Practice Lab attempts</b> only for technical problems.</li>
+        <li>Read <b>Trainee Feedback</b> and adjust the next session.</li></ul></section>
+      <section class="card sopf-card"><h3>5 · Program close</h3><ul>
+        <li>Certificates unlock when all 10 Knowledge Checks are passed (70%+); “With Distinction” at a 90%+ average.</li>
+        <li>Check names in Trainee Audit — the certificate uses the registered name exactly.</li>
+        <li>Generate each trainee's review (Rankings → AI review) and send final feedback.</li>
+        <li>Export Trainee Feedback (CSV) for the program retrospective.</li></ul></section>
+    </div>
+    <section class="card sopf-card" style="margin-top:14px;"><h3>I want to… → go here</h3>
+      <table class="log-table sopx-table sopf-map"><thead><tr><th>I want to…</th><th>Where</th></tr></thead><tbody>
+        <tr><td>Share only the slides while I see my notes</td><td>Day → slides → <b>🖥 Presenter view</b></td></tr>
+        <tr><td>See cues, discussion cases and scripts for a day</td><td>Admin → <b>Trainer Cues</b> (or Presenter view)</td></tr>
+        <tr><td>Show the day's plan to the room</td><td>Admin → SOP Reference → <b>🎤 Present</b></td></tr>
+        <tr><td>Drop an unannounced task on trainees</td><td>Admin → Trainee Audit → <b>🎲 Random Task Injection</b></td></tr>
+        <tr><td>Approve, reset attempts, write feedback, set focus</td><td>Admin → <b>Trainee Audit</b> → View Detail</td></tr>
+        <tr><td>See who is ahead or behind</td><td>Admin → <b>Rankings</b></td></tr>
+        <tr><td>Add or improve lesson content</td><td>Admin → <b>Content Studio</b></td></tr>
+        <tr><td>Read what trainees think of the program</td><td>Admin → <b>Trainee Feedback</b></td></tr>
+        <tr><td>See the portal as a trainee does</td><td>Top bar → <b>👁 Trainee view</b></td></tr>
+      </tbody></table></section>
+    <section class="card sopf-card" style="margin-top:14px;"><h3>The 10 days</h3>
+      <table class="log-table sopx-table sopf-map"><thead><tr><th>Day</th><th>Title</th><th>Topics</th><th>Practice Lab</th><th></th></tr></thead><tbody>${days}</tbody></table></section>`;
+}
+window.setSopStart = setSopStart;
 
 /* if the portal already drew itself before this file loaded, redraw with the updates */
 if(document.querySelector(".topbar")) render();
