@@ -2037,6 +2037,24 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
 .cue-steps{margin-left:auto;padding-left:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--orange-deep);white-space:nowrap;}
 .cue-item > summary{display:flex;align-items:center;gap:8px;}
 .script-slides{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--orange-deep);font-weight:700;margin-left:6px;}
+
+.audit-strip{display:grid;grid-template-columns:1.2fr 1.1fr 2fr 1.2fr 1fr 1.9fr;gap:14px;padding:4px 18px 14px;align-items:start;}
+.audit-strip.loading{display:block;font-size:12px;color:var(--ink-soft);}
+.as-block b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:3px;}
+.as-block span{font-size:12.5px;color:var(--ink);font-weight:700;line-height:1.45;}
+.as-now span{color:var(--navy);}
+.as-bar{height:5px;border-radius:4px;background:#E7E9F2;margin-top:5px;overflow:hidden;} .as-bar div{height:100%;background:var(--orange);border-radius:4px;}
+.ad-cells{display:flex;gap:2px;flex-wrap:nowrap;}
+.ad-cell{position:relative;width:20px;height:20px;flex:0 0 20px;border-radius:6px;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:default;}
+.ad-cell.ok{background:#3F7D58;color:#fff;} .ad-cell.low{background:#E8B54A;color:#3A2A05;} .ad-cell.wip{background:#FFF1E2;color:var(--orange-deep);border:1px solid var(--orange);} .ad-cell.none{background:#F1F2F7;color:#A7AAB8;}
+.ad-cell i{position:absolute;right:-2px;bottom:-2px;width:8px;height:8px;border-radius:50%;background:var(--navy);border:1.5px solid #fff;}
+.as-review span{display:flex;flex-wrap:wrap;gap:4px;}
+.rv{font-style:normal;font-size:11px;font-weight:800;border-radius:12px;padding:2px 8px;}
+.rv.sent{background:var(--success-bg);color:var(--success);} .rv.draft{background:#FFF1E2;color:var(--orange-deep);} .rv.todo{background:var(--danger-bg);color:var(--danger);} .rv.done{background:#EEF0F6;color:var(--ink-soft);} .rv.focus{background:#EEF0F8;color:var(--navy);}
+em.warn{font-style:normal;color:var(--danger);}
+@media(max-width:1200px){.audit-strip{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(max-width:760px){.audit-strip{grid-template-columns:1fr 1fr;}}
+@media(max-width:760px){.cert-settings-grid{grid-template-columns:1fr !important;} .cert-settings-grid input{min-width:0;width:100%;box-sizing:border-box;}}
 </style>
 </head>
 <body>
@@ -15012,10 +15030,11 @@ function assessSubmissionQuality(text){
 /* Plain-English reason for an AI failure (shown instead of a generic "check your connection"). */
 function friendlyAiError(e){
   const m = String((e && e.message) || e || "");
+  if(/x-api-key|authentication_error|invalid api key|API key not valid/i.test(m)) return /gemini/i.test(m) ? "The Gemini API key on the server is invalid — replace GEMINI_API_KEY in Cloudflare (Workers & Pages → ea-pa-training → Settings → Variables and Secrets)." : "The AI key on the server is invalid — replace it in Cloudflare (Settings → Variables and Secrets).";
+  if(/quota|RESOURCE_EXHAUSTED|free tier/i.test(m)) return "The free Gemini limit has been reached for now (it allows a limited number of requests per minute and per day). Wait a minute and try again — or enable billing in Google AI Studio for higher limits.";
   if(/401|sign-in required|unauthor/i.test(m)) return (state.isAdmin || state.view==="admin") ? "Your admin sign-in has expired or was made before secure mode was switched on. Click 🛡 Admin → Sign out, then sign in again with the passphrase and retry." : "Your session needs refreshing — sign out and back in, then try again.";
   if(/403|not allowed/i.test(m)) return "The server refused this request for your account type. Sign out and back in, then try again.";
-  if(/ANTHROPIC_API_KEY|not configured/i.test(m)) return "The AI key isn't set on the server — add ANTHROPIC_API_KEY as a Secret in Cloudflare (Workers & Pages → ea-pa-training → Settings → Variables and Secrets).";
-  if(/x-api-key|authentication_error|invalid api key/i.test(m)) return "The AI key on the server is invalid — replace ANTHROPIC_API_KEY in Cloudflare with a valid key.";
+  if(/ANTHROPIC_API_KEY|GEMINI_API_KEY|not configured|No AI key/i.test(m)) return "No AI key is set on the server — add GEMINI_API_KEY (free, from Google AI Studio) as a Secret in Cloudflare (Workers & Pages → ea-pa-training → Settings → Variables and Secrets).";
   if(/credit|billing|balance/i.test(m)) return "The Anthropic account is out of credit — top up at console.anthropic.com, then retry.";
   if(/429|rate|overloaded|529/i.test(m)) return "The AI service is busy right now — wait a minute and try again.";
   if(/timed out|abort/i.test(m)) return "The AI took too long to respond — try again (long scripts can take up to a minute).";
@@ -19165,6 +19184,7 @@ function renderAdminRankings(){
   `;
 }
 function renderAdminRows(){
+  if(state.adminData && state.adminData.length && state.adminData.some(r=>!state.auditExtra[r.id] || Date.now()-state.auditExtra[r.id].at>60000)) setTimeout(()=>loadAuditExtras(), 0);
   const search = (state.adminSearch||"").toLowerCase();
   const sort = state.adminSort || "completion_desc";
   let rows = state.adminData.filter(r=>!search || (r.name||"").toLowerCase().includes(search));
@@ -19189,6 +19209,73 @@ function renderAdminRows(){
     </div>`;
 }
 
+
+/* ---------- Trainee Audit: exact progress + review overview per trainee ---------- */
+state.auditExtra = state.auditExtra || {};
+async function loadAuditExtras(force){
+  const recs = state.adminData || []; if(!recs.length) return;
+  if(state.auditExtraLoading) return; state.auditExtraLoading = true;
+  try{
+    await Promise.all(recs.map(async rec=>{
+      const cur = state.auditExtra[rec.id];
+      if(cur && !force && Date.now()-cur.at < 60000) return;
+      const [snap, fb, fo] = await Promise.all([sharedGet("progress:"+rec.id).catch(()=>null), sharedGet("feedback:"+rec.id).catch(()=>null), sharedGet("focus:"+rec.id).catch(()=>null)]);
+      state.auditExtra[rec.id] = {at:Date.now(), data:(snap&&snap.data)||{}, savedAt:snap&&snap.savedAt, fb:(fb&&fb.days)||{}, focus:(fo&&fo.items)||[]};
+    }));
+  }finally{ state.auditExtraLoading = false; }
+  const wrap = document.getElementById("adminRowsWrap"); if(wrap && state.view==="admin" && !isTyping()) wrap.innerHTML = renderAdminRows();
+}
+function auditSummary(rec){
+  const x = state.auditExtra[rec.id]; const data = (x && x.data) || {};
+  const dp = data["day-progress"] || rec.dayProgress || {};
+  const sp = data["slide-progress"] || {}, ls = data["last-slide"] || {}, lv = data["last-view"] || null;
+  const pp = data["practice-progress"] || rec.practiceProgress || {};
+  let seen = 0, total = 0;
+  const days = DAYS.map(d=>{
+    const n = buildDaySlides(d).length; total += n;
+    const reached = Math.min(n, (sp[d.id]||0) + ((sp[d.id]||dp[d.id]) ? 1 : 0)); seen += reached;
+    const kc = dp[d.id] || null; const labs = relatedTools(d.id); const labDone = labs.some(t=>pp[t.id] && (pp[t.id].runs||0)>0);
+    return {id:d.id, n, reached, passed:!!(kc&&kc.done), score:kc&&typeof kc.score==="number"?kc.score:null, labDone};
+  });
+  let where = "Not started";
+  if(lv && lv.view==="tool" && lv.toolId){ const t = PRACTICE_TOOLS.find(y=>y.id===lv.toolId); where = t ? `Practice Lab · ${t.title}` : "Practice Lab"; }
+  else { const cand = lv && lv.view==="day" && lv.dayId ? lv.dayId : (DAYS.filter(d=>sp[d.id]||dp[d.id]).map(d=>d.id).pop()||null);
+    if(cand){ const d = DAYS.find(z=>z.id===cand); const n = buildDaySlides(d).length; const at = (typeof ls[cand]==="number" ? ls[cand] : (sp[cand]||0)) + 1; where = `Day ${cand} · Step ${Math.min(at,n)} of ${n}`; } }
+  const fb = (x && x.fb) || {};
+  const worked = days.filter(d=>d.reached>0 || d.score!==null || d.labDone).map(d=>d.id);
+  const sent = Object.values(fb).filter(v=>v && v.status==="sent" && (!v.auto || v.editedByTrainer));
+  const drafts = Object.values(fb).filter(v=>v && v.status!=="sent");
+  const toWrite = worked.filter(n=>!fb[n]);
+  const focus = (x && x.focus) || [];
+  const wl = (data["work-log"]||[]).filter(e=>e.kind==="lab" && typeof e.score==="number");
+  return {loaded: !!x, days, seen, total, pct: total ? Math.round(seen/total*100) : 0, where,
+    kcPassed: days.filter(d=>d.passed).length, kcBelow: days.filter(d=>d.score!==null && !d.passed).map(d=>d.id),
+    labsDone: days.filter(d=>d.labDone).length, labAvg: wl.length ? Math.round(wl.reduce((a,e)=>a+e.score,0)/wl.length) : null,
+    sent: sent.length, read: sent.filter(v=>v.readAt).length, drafts: drafts.length, toWrite,
+    focusOpen: focus.filter(f=>!f.doneAt).length, focusDone: focus.filter(f=>f.doneAt).length,
+    lastSave: x && x.savedAt};
+}
+function renderAuditStrip(rec){
+  const a = auditSummary(rec);
+  if(!a.loaded) return `<div class="audit-strip loading">Loading exact progress…</div>`;
+  const cell = (d)=>{
+    const cls = d.passed ? "ok" : (d.score!==null ? "low" : (d.reached>0 ? "wip" : "none"));
+    const tip = `Day ${d.id}: ${d.reached}/${d.n} slides · ${d.score!==null ? `Knowledge Check ${d.score}%${d.passed?" ✓":" (below 70%)"}` : "Knowledge Check not taken"} · Practice Lab ${d.labDone?"done":"not done"}`;
+    return `<span class="ad-cell ${cls}" title="${esc(tip)}">${d.id}${d.labDone?`<i></i>`:""}</span>`;
+  };
+  return `<div class="audit-strip">
+    <div class="as-block as-now"><b>📍 Now</b><span>${esc(a.where)}</span></div>
+    <div class="as-block"><b>Lessons</b><span>${a.seen} / ${a.total} slides · ${a.pct}%</span><div class="as-bar"><div style="width:${a.pct}%"></div></div></div>
+    <div class="as-block as-days"><b>Days</b><div class="ad-cells">${a.days.map(cell).join("")}</div></div>
+    <div class="as-block"><b>Knowledge Checks</b><span>${a.kcPassed} passed${a.kcBelow.length?` · <em class="warn">below 70%: Day ${a.kcBelow.join(", ")}</em>`:""}</span></div>
+    <div class="as-block"><b>Practice Labs</b><span>${a.labsDone} / ${DAYS.length} done${a.labAvg!==null?` · avg ${a.labAvg}%`:""}</span></div>
+    <div class="as-block as-review"><b>Review</b><span>
+      <em class="rv sent">${a.sent} sent${a.sent?` (${a.read} read)`:""}</em>
+      ${a.drafts?`<em class="rv draft">${a.drafts} draft</em>`:""}
+      ${a.toWrite.length?`<em class="rv todo" title="Days with work but no feedback yet">to write: Day ${a.toWrite.join(", ")}</em>`:(a.seen||a.kcPassed||a.labsDone ? `<em class="rv done">all worked days covered</em>` : `<em class="rv done">no work yet</em>`)}
+      <em class="rv focus">Focus: ${a.focusOpen} open · ${a.focusDone} done</em></span></div>
+  </div>`;
+}
 function renderAdminRow(rec, day, practice){
   const expanded = state.adminExpandedId===rec.id;
   return `
@@ -19209,6 +19296,7 @@ function renderAdminRow(rec, day, practice){
           <button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee('${rec.id}', '${esc(rec.name||"this trainee").replace(/'/g,"\\'")}')">Revoke</button>
         </div>
       </div>
+      ${renderAuditStrip(rec)}
       ${expanded?renderAdminDetail(rec):""}
     </div>`;
 }
@@ -20127,8 +20215,9 @@ async function runPool(items, worker, limit, onProgress){
 function studioResultMessage(what, res){
   if(!res.failed) return `✅ ${res.ok} ${what} drafted — review them below, then publish.`;
   const why = String(res.errors[0] || "unknown error").replace(/[.\s]+$/,"");
-  const hint = /401|x-api-key|authentication/i.test(why) ? " The AI key on the server looks invalid — check ANTHROPIC_API_KEY on the Worker."
-    : /ANTHROPIC_API_KEY/i.test(why) ? " The AI key isn't set on the server (ANTHROPIC_API_KEY)."
+  const hint = /x-api-key|API key not valid/i.test(why) ? " The AI key on the server looks invalid — check GEMINI_API_KEY in Cloudflare."
+    : /ANTHROPIC_API_KEY|GEMINI_API_KEY|No AI key|not configured/i.test(why) ? " No AI key is set on the server — add GEMINI_API_KEY in Cloudflare."
+    : /401|sign-in/i.test(why) ? " Your admin sign-in expired — sign in to Admin again."
     : /429|rate/i.test(why) ? " The AI service is rate-limiting — wait a minute and run it again; finished items are kept."
     : /timed out/i.test(why) ? " Some requests were slow — run it again to finish the rest; finished items are kept."
     : " Run it again to retry the rest; finished items are kept.";
@@ -20159,7 +20248,7 @@ async function studioDraftExpansions(dayId){
     bundle[l.h] = {sections:sec, status:"draft", at:new Date().toISOString()};
     await studioSave("lessonx:day"+dayId, bundle);
     studioRefreshList();
-  }, 2, (n,t,rs)=>studioShow(`Drafting explanations… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
+  }, 1, (n,t,rs)=>studioShow(`Drafting explanations… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
   state.studioMsg = studioResultMessage("explanations", res);
   render();
 }
@@ -20203,7 +20292,7 @@ async function studioDraftSelectedTopics(dayId){
     const lesson = await callAIJson(newLessonPrompt(d, title), 2200, 120000);
     if(!lesson || !lesson.fourPart) throw new Error("the AI reply wasn't a complete lesson");
     lesson.h = title; lesson.status = "draft"; list.push(lesson); await studioSave("extralessons:day"+dayId, {lessons:list});
-  }, 2, (n,t,rs)=>studioShow(`Drafting new lessons… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
+  }, 1, (n,t,rs)=>studioShow(`Drafting new lessons… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
   state.studioProposals = null; state.studioMsg = studioResultMessage("new lessons", res); render();
 }
 async function studioSetExtraStatus(dayId, idx, status){
@@ -20218,7 +20307,7 @@ async function studioWriteAllScripts(dayId){
   const todo = d.lessons.map((l,i)=>({l,i})).filter(({l})=>!(state.aiScripts||{})[`script:${d.id}::${l.h}`]);
   if(!todo.length){ toast("Every topic already has a full script."); return; }
   studioShow(`Writing scripts… 0/${todo.length}`);
-  const res = await runPool(todo, async ({i})=>{ await generateAiScript(dayId, i, true); }, 2, (n,t,rs)=>studioShow(`Writing scripts… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
+  const res = await runPool(todo, async ({i})=>{ await generateAiScript(dayId, i, true); }, 1, (n,t,rs)=>studioShow(`Writing scripts… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
   state.studioMsg = studioResultMessage("scripts", res).replace("review them below, then publish.","they're in Trainer Cues."); render();
 }
 
@@ -20251,7 +20340,7 @@ async function studioDraftQuiz(dayId){
     if(!ok.length) throw new Error("the AI reply had no usable questions");
     ok.slice(0,2).forEach(q=>list.push({q:q.q, opts:q.opts.slice(0,4), a:q.a, r:q.r||"", forLesson:l.h, status:"draft"}));
     await studioSave("extraquiz:day"+dayId, {questions:list}); studioRefreshList();
-  }, 2, (n,t,rs)=>studioShow(`Drafting questions… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
+  }, 1, (n,t,rs)=>studioShow(`Drafting questions… ${n}/${t}${rs.failed?` (${rs.failed} failed so far)`:""}`));
   state.studioMsg = studioResultMessage("question sets", res); render();
 }
 async function studioSetQuizStatus(dayId, idx, status){
@@ -21054,7 +21143,8 @@ For EACH email, privately classify the Eisenhower quadrant from the EA's perspec
 Return ONLY a JSON array of exactly 5 objects — no preamble, no markdown fences. Each object:
 {"from":"Name <email>", "subject":"...", "preview":"one sentence preview", "idealQuadrant":"1"}`;
   try{
-    const results = await Promise.allSettled(themes.map(t=>callAIJson(makePrompt(t), 1400, 60000)));
+    const results = [];
+    for(let k=0;k<themes.length;k+=2){ results.push(...await Promise.allSettled(themes.slice(k,k+2).map(t=>callAIJson(makePrompt(t), 1400, 60000)))); }
     const emails = results.filter(x=>x.status==="fulfilled" && Array.isArray(x.value)).flatMap(x=>x.value);
     if(emails.length < 10) throw new Error("only "+emails.length+" emails returned");
     // shuffle so themes are mixed like a real inbox
@@ -22837,13 +22927,15 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-r";
+var APP_BUILD = "2026.09.25-u";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
   const msg = (e && e.message) || String(e||"Unknown error");
-  const friendly = /ANTHROPIC_API_KEY|not configured/i.test(msg) ? "The AI key isn't set on the server (ANTHROPIC_API_KEY)."
-    : /401|x-api-key|authentication/i.test(msg) ? "The AI key on the server is invalid (ANTHROPIC_API_KEY)."
+  const friendly = /ANTHROPIC_API_KEY|GEMINI_API_KEY|No AI key|not configured/i.test(msg) ? "No AI key is set on the server (add GEMINI_API_KEY in Cloudflare)."
+    : /x-api-key|API key not valid/i.test(msg) ? "The AI key on the server is invalid (GEMINI_API_KEY)."
+    : /quota|RESOURCE_EXHAUSTED|free tier/i.test(msg) ? "The free Gemini limit is reached for now — wait a minute and try again."
+    : /401|sign-in/i.test(msg) ? "Your admin sign-in expired — click 🛡 Admin and sign in again."
     : /429|rate/i.test(msg) ? "The AI service is busy — wait a minute and try again."
     : /timed out/i.test(msg) ? "The AI service took too long — try again."
     : /Failed to fetch|NetworkError|Load failed/i.test(msg) ? "Couldn't reach the server — check your connection."
