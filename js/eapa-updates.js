@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "q" (2026-09-26)
+   LSH EA/PA portal — update pack "r" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -8,8 +8,9 @@
      2. Admin ↔ Trainee view switch (top bar) without signing out.
      3. SOP Reference: readable layout + a "Present" mode for live discussion.
      4. Presenter view: share only the slides in Meet, see trainer cues yourself.
+     5. All lesson content centred; Orientation deck + Blueprint refreshed.
    ============================================================ */
-window.EAPA_UPDATE_PACK = "q";
+window.EAPA_UPDATE_PACK = "r";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
@@ -827,6 +828,52 @@ if(PV_IS_AUDIENCE){
   document.addEventListener("fullscreenchange", reshow);
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(reshow);
 }
+
+/* ---------- 5. Lessons fully centred · Orientation + Blueprint refresh ---------- */
+(function(){ const s = document.createElement("style"); s.id = "eapa-update-centre"; s.textContent = `
+.lesson-stage #lessonSlideWrap .lesson-card, .lesson-stage #lessonSlideWrap .meet-client-card, .lesson-stage #lessonSlideWrap > .card, .lesson-stage #lessonSlideWrap .qcheck-card, .lesson-stage #lessonSlideWrap .video-placeholder, .lesson-stage #lessonSlideWrap .discussion-card{text-align:center;}
+.lesson-stage #lessonSlideWrap .fp-label{justify-content:center;}
+.lesson-stage #lessonSlideWrap .fp-label::before{content:"";flex:1;height:1px;background:#EADFD2;}
+.lesson-stage #lessonSlideWrap p{margin-left:auto;margin-right:auto;}
+.lesson-stage #lessonSlideWrap .fp-body > p, .lesson-stage #lessonSlideWrap .fp-body > div > p{max-width:80ch;}
+.lesson-stage #lessonSlideWrap .lesson-card li, .lesson-stage #lessonSlideWrap .meet-client-card li{padding-left:0;text-align:center;}
+.lesson-stage #lessonSlideWrap .lesson-card ul > li::before, .lesson-stage #lessonSlideWrap .meet-client-card ul > li::before{position:static;display:inline-block;width:9px;height:9px;margin:0 10px 2px 0;vertical-align:middle;}
+.lesson-stage #lessonSlideWrap .meet-client-card ul{list-style:none;padding:0;}
+.lesson-stage #lessonSlideWrap ol.fp-howto-list > li, .lesson-stage #lessonSlideWrap .fp-section ol > li{text-align:center;padding-top:20px;}
+.lesson-stage #lessonSlideWrap ol.fp-howto-list > li::before, .lesson-stage #lessonSlideWrap .fp-section ol > li::before{left:50%;transform:translateX(-50%);}
+.lesson-stage #lessonSlideWrap .vis-card{text-align:center;} .lesson-stage #lessonSlideWrap .vis-card-top{justify-content:center;gap:10px;}
+.lesson-stage #lessonSlideWrap .callout, .lesson-stage #lessonSlideWrap [class*="callout"]{text-align:center;}
+.lesson-stage #lessonSlideWrap table{margin-left:auto;margin-right:auto;text-align:left;}
+.lesson-stage #lessonSlideWrap .quiz-opt{text-align:center;justify-content:center;align-items:center;}
+.lesson-stage #lessonSlideWrap .qcheck-card .qc-tag{justify-content:center;}
+.lesson-stage #lessonSlideWrap .lx-panel, .lesson-stage #lessonSlideWrap details{text-align:center;}
+.build-tag .eapa-ok{color:#3F7D58;font-weight:700;}
+`; document.head.appendChild(s); })();
+
+/* Orientation deck (and the Blueprint PDF, which is built from it and republishes
+   itself when the build changes): explain split pages and live sessions. */
+const __eapaOrientSlides = window.orientSlides;
+window.orientSlides = function(){
+  const slides = __eapaOrientSlides();
+  const i = slides.findIndex(x=>x.k==="A day");
+  if(i >= 0){
+    slides[i] = Object.assign({}, slides[i], {body: slides[i].body.replace("One topic at a time. Next / Previous at the bottom; your place is saved.", "One topic at a time, every slide the same size. Longer topics continue on a second page — watch for the PAGE 1 / 2 badge. Your place is saved.")});
+    const pill = (ic,t,d)=>`<div class="or-pill"><div>${ic}</div><b>${t}</b><span>${d}</span></div>`;
+    slides.splice(i+1, 0, {k:"Live sessions", h:"Live sessions with your trainer", body:`
+     <div class="or-3">${pill("🖥","Follow the shared slides","Your trainer presents the day's slides in Google Meet. They're the same slides you have in the portal — nothing extra to install.")}${pill("💬","Talk it through","At each checkpoint your trainer pauses for discussion. Answer out loud — a first answer is never wrong, it's where the learning starts.")}${pill("📄","Pages & pace","Longer topics have a second page (PAGE 1 / 2). On your own, use Next or the ← → keys, 🔊 Listen, or ⛶ Full screen.")}</div>
+     <div class="or-note"><b>Missed something live?</b> Every slide stays in your portal — reopen the day any time and pick up exactly where you left off.</div>`});
+  }
+  return slides;
+};
+
+/* footer: shows at a glance that this update pack is running */
+const __eapaAfterRender3 = window.afterRender;
+window.afterRender = function(){
+  const r = __eapaAfterRender3.apply(this, arguments);
+  const tag = document.querySelector(".build-tag");
+  if(tag && !tag.querySelector(".eapa-ok")) tag.insertAdjacentHTML("beforeend", ` · <span class="eapa-ok">updates ✓</span>`);
+  return r;
+};
 
 /* if the portal already drew itself before this file loaded, redraw with the updates */
 if(document.querySelector(".topbar")) render();
