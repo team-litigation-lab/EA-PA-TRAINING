@@ -2235,6 +2235,18 @@ em.warn{font-style:normal;color:var(--danger);}
 .fbc-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
 .fb-days-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:6px 0 2px;}
 @media(max-width:900px){.fbc-row3{grid-template-columns:1fr;}}
+
+/* Trainee Audit: table-style gridlines */
+.audit-row{border-bottom:1px solid #D9DCE8;}
+.audit-row:nth-child(even){background:#F8F9FC;}
+.audit-row:hover{background:#FFF8EF;}
+.audit-row.expanded{background:#FFFDF8;box-shadow:inset 4px 0 0 var(--orange);}
+.audit-row .admin-row-grid > div:not(:first-child):not(:last-child){border-left:1px solid #E3E6EF;padding-left:12px;align-self:stretch;display:flex;align-items:center;}
+.audit-strip{border-top:1px dashed #D9DCE8;margin:0 18px;padding:10px 0 14px !important;}
+.audit-strip .as-block{padding:0 12px;}
+.audit-strip .as-block:first-child{padding-left:0;}
+.audit-strip .as-block + .as-block{border-left:1px solid #E3E6EF;}
+@media(max-width:1200px){.audit-strip .as-block{border-left:none !important;padding:6px 0;} .audit-strip .as-block + .as-block{border-top:1px solid #EEF0F5;}}
 </style>
 </head>
 <body>
@@ -19953,7 +19965,7 @@ function renderAuditStrip(rec){
 function renderAdminRow(rec, day, practice){
   const expanded = state.adminExpandedId===rec.id;
   return `
-    <div style="border-bottom:1px solid var(--line);">
+    <div class="audit-row ${expanded?"expanded":""}">
       <div class="admin-row-grid" style="display:grid;grid-template-columns:minmax(0,1fr) 110px 110px 110px 140px auto;gap:12px;align-items:center;padding:14px 18px;">
         <div style="min-width:0;overflow:hidden;">
           <b class="admin-name" title="${esc(String(rec.name||"Unnamed").slice(0,200))}" style="color:var(--navy);font-size:13.5px;">${esc(String(rec.name||"Unnamed").slice(0,60))}${String(rec.name||"").length>60?"…":""}</b>${rec.archived?' <span style="font-size:10px;color:var(--ink-soft);">(archived)</span>':''}${rec.flaggedInvalidInput?' <span style="font-size:10px;color:var(--danger);font-weight:700;">⚠ invalid input removed</span>':''}
@@ -23657,7 +23669,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.26-i";
+var APP_BUILD = "2026.09.26-j";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
