@@ -1,0 +1,9 @@
+worker.js
+wrangler.toml
+wrangler.json
+index.ts
+*.md
+.git
+.github
+.assetsignore
+node_modules
