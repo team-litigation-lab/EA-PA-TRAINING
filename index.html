@@ -2055,6 +2055,58 @@ em.warn{font-style:normal;color:var(--danger);}
 @media(max-width:1200px){.audit-strip{grid-template-columns:repeat(3,minmax(0,1fr));}}
 @media(max-width:760px){.audit-strip{grid-template-columns:1fr 1fr;}}
 @media(max-width:760px){.cert-settings-grid{grid-template-columns:1fr !important;} .cert-settings-grid input{min-width:0;width:100%;box-sizing:border-box;}}
+
+.tool-card.locked{opacity:.62;cursor:not-allowed;filter:grayscale(.35);}
+.tool-card.locked .module-head{background:linear-gradient(135deg,#7A7F96,#9CA0B3) !important;}
+.tool-status-row.st-locked{color:var(--ink-soft);}
+.or-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.or-top-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;} .or-tip{font-size:12.5px;color:var(--ink-soft);}
+.or-stage{background:linear-gradient(135deg,#1F2440 0%,#2B3158 60%,#353C68 100%);border-radius:20px;padding:22px;box-shadow:0 18px 40px -22px rgba(20,24,48,.65);}
+.or-stage:fullscreen{border-radius:0;padding:3vh 3vw;display:flex;flex-direction:column;justify-content:center;}
+.or-slide{position:relative;background:#FFFDF8;border-radius:16px;padding:34px 42px 40px;min-height:520px;overflow:hidden;}
+.or-stage:fullscreen .or-slide{min-height:0;flex:1;font-size:1.15em;}
+.or-slide::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--navy),var(--orange));}
+.or-kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-deep);}
+.or-slide h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(26px,2.4vw,38px);color:var(--navy);margin:6px 0 18px;}
+.or-lead{font-size:17px;line-height:1.6;color:var(--ink);max-width:70ch;}
+.or-logo{position:absolute;right:26px;top:22px;width:64px;opacity:.9;}
+.or-slide h2{padding-right:80px;}
+.or-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0;}
+.or-pill{background:#fff;border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:14px;padding:18px;}
+.or-pill > div{font-size:30px;} .or-pill b{display:block;color:var(--navy);font-size:17px;margin:6px 0 4px;} .or-pill span{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+.or-note{background:#F3F5FB;border-left:4px solid var(--navy);border-radius:10px;padding:12px 16px;font-size:14.5px;color:var(--ink);margin-top:14px;max-width:90ch;}
+.or-days{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.or-day{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;}
+.or-day:nth-child(odd){border-top:4px solid var(--navy);} .or-day:nth-child(even){border-top:4px solid var(--orange);}
+.or-day span{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--orange-deep);} .or-day b{font-size:14px;color:var(--navy);line-height:1.3;} .or-day em{font-style:normal;font-size:11.5px;color:var(--ink-soft);}
+.or-foot{font-size:13.5px;color:var(--ink-soft);margin-top:14px;}
+.or-flow{display:flex;align-items:stretch;gap:8px;margin:10px 0;} .or-flow > i{align-self:center;font-style:normal;font-size:24px;color:var(--orange);}
+.or-flow.start{justify-content:center;} .or-flow.start .or-step{max-width:240px;}
+.or-step{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;text-align:center;}
+.or-step-n{position:absolute;top:-10px;left:-10px;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.or-step-i{font-size:28px;} .or-step b{display:block;color:var(--navy);font-size:15px;margin:6px 0;} .or-step span{font-size:13px;color:var(--ink-soft);line-height:1.45;}
+.or-bp{display:grid;grid-template-columns:3fr 1.2fr;gap:14px;} .or-bp-main,.or-bp-side{display:grid;gap:10px;align-content:start;}
+.or-bp-side{background:var(--navy);border-radius:14px;padding:12px;}
+.or-box{position:relative;background:#fff;border:2px dashed #C9CDE3;border-radius:12px;padding:14px 16px 14px 48px;}
+.or-box.or-hero{background:linear-gradient(135deg,#2B3158,#353C68);border:none;color:#fff;} .or-box.or-hero b,.or-box.or-hero em{color:#fff !important;}
+.or-box.or-cards{min-height:90px;} .or-box.dark{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.25);} .or-box.dark b{color:#fff;} .or-box.dark em{color:#C9CDE3;}
+.or-box b{display:block;color:var(--navy);font-size:15px;} .or-box em{font-style:normal;font-size:13px;color:var(--ink-soft);}
+.or-num{position:absolute;left:12px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.or-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;} .or-nav > div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;}
+.or-nav b{display:block;color:var(--navy);font-size:15px;margin-bottom:4px;} .or-nav span{font-size:13px;color:var(--ink-soft);line-height:1.45;}
+.or-client,.or-cert{display:flex;gap:26px;align-items:flex-start;}
+.or-avatar{flex:0 0 120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-soft));color:#fff;font-family:'Fraunces',serif;font-size:42px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px #F0C08A;}
+.or-ribbon{font-size:96px;line-height:1;}
+.or-list{margin:10px 0 0;padding-left:20px;} .or-list li{font-size:15.5px;line-height:1.6;margin-bottom:6px;color:var(--ink);}
+.or-list.big{list-style:none;padding:0;} .or-list.big li{font-size:18px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px;}
+.or-controls{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;}
+.or-controls .btn-ghost{background:#fff;}
+.or-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;} .or-dots button{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.35);cursor:pointer;padding:0;} .or-dots button.on{background:#F0C08A;width:24px;border-radius:6px;}
+@media(max-width:1100px){.or-days{grid-template-columns:repeat(2,1fr);} .or-flow{flex-direction:column;} .or-flow > i{transform:rotate(90deg);} .or-3,.or-nav{grid-template-columns:1fr 1fr;} .or-bp{grid-template-columns:1fr;}}
+@media(max-width:760px){.or-slide{padding:24px 18px 60px;} .or-3,.or-nav{grid-template-columns:1fr;} .or-client,.or-cert{flex-direction:column;}}
+
+.update-banner{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:300;display:flex;align-items:center;gap:14px;background:var(--navy);color:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 14px 34px -12px rgba(20,24,48,.6);font-size:13.5px;max-width:min(680px, calc(100vw - 24px));}
+.update-banner button{background:var(--orange);color:#fff;border:none;border-radius:9px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -11792,6 +11844,7 @@ function dayLabDone(dayId){
 }
 function dayUnlocked(id){
   if(id <= 1) return true;
+  if(state.isAdmin) return true;   // locks are for trainees only
   // Never re-lock a day a trainee has already started under the old rule.
   const own = state.progress[id];
   if(own && (own.done || typeof own.score==="number")) return true;
@@ -11864,6 +11917,109 @@ function clientAvatarSvg(){
    Admin → Trainer Cues. Nothing trainer-facing renders inside lessons or the
    Practice Lab, so a screen-share or a shared device can never expose them. */
 function trainerInline(){ return false; }
+/* ============================================================
+   ORIENTATION (admin) — a screen-shareable blueprint of the platform
+   for the first session. Trainee-safe: no answers, cues or data.
+   Arrow keys / buttons to move; ⛶ for full screen.
+   ============================================================ */
+function orientSlides(){
+  const topics = DAYS.reduce((a,d)=>a+d.lessons.length,0);
+  const dayTile = (d)=>`<div class="or-day"><span>Day ${d.id}</span><b>${esc(d.title)}</b><em>${d.lessons.length} topics${relatedTools(d.id)[0]?` · Lab: ${esc(relatedTools(d.id)[0].title)}`:""}</em></div>`;
+  const step = (n, icon, t, d)=>`<div class="or-step"><div class="or-step-n">${n}</div><div class="or-step-i">${icon}</div><b>${t}</b><span>${d}</span></div>`;
+  const pill = (i,t,d)=>`<div class="or-pill"><div>${i}</div><b>${t}</b><span>${d}</span></div>`;
+  return [
+   {k:"Welcome", h:"Welcome to the LSH EA / PA Upskill Program", body:`
+     <p class="or-lead">Ten days to work like a strategic, trusted Executive &amp; Personal Assistant to an attorney — built around one realistic client, from Day 1 to Day 10.</p>
+     <div class="or-3">${pill("📚","Learn",`${topics} short topics across 10 days`)}${pill("🧪","Practice",`${PRACTICE_TOOLS.length} hands-on Practice Labs & live calls`)}${pill("✅","Prove","A Knowledge Check each day — and a certificate at the end")}</div>
+     <div class="or-note"><b>You'll need:</b> Chrome or Edge on a computer, a headset with a microphone for the live calls, and a stable connection. Your progress saves to your account automatically.</div>`},
+   {k:"Roadmap", h:"Your 10-day roadmap", body:`<div class="or-days">${DAYS.map(dayTile).join("")}</div>
+     <p class="or-foot">Days open one at a time — each builds on the one before.</p>`},
+   {k:"A day", h:"How every day works", body:`
+     <div class="or-flow">${step(1,"🖥","Lesson slides","One topic at a time. Next / Previous at the bottom; your place is saved.")}<i>→</i>${step(2,"✔","Quick Checks","Short questions between topics. Pick, change your mind, then Check Answer.")}<i>→</i>${step(3,"🧪","Practice Lab","Do the real task. Graded with written feedback. Auto-saves as you type.")}<i>→</i>${step(4,"📝","Knowledge Check","Pass at 70% to mark the day complete ✓.")}<i>→</i>${step(5,"🔓","Next day opens","Finishing the Practice Lab unlocks tomorrow.")}</div>
+     <div class="or-note">Didn't pass the Knowledge Check? That's a <b>“not yet”</b>, not a “no” — you can still move on, and retake it any time. Your best score counts.</div>`},
+   {k:"Dashboard", h:"Your dashboard at a glance", body:`
+     <div class="or-bp">
+       <div class="or-bp-main">
+         <div class="or-box or-hero"><span class="or-num">1</span><b>Progress track</b><em>Days 1–10 · ✓ = passed · 🔒 = not open yet</em></div>
+         <div class="or-box or-cards"><span class="or-num">2</span><b>Day cards</b><em>Start / Review a day · 💬 trainer feedback appears here</em></div>
+         <div class="or-box"><span class="or-num">3</span><b>Resume &amp; certificate</b><em>Jump back to where you left off · download your certificate when earned</em></div>
+         <div class="or-box"><span class="or-num">4</span><b>Competency profile</b><em>Seven skills that grow as your work is graded</em></div>
+       </div>
+       <div class="or-bp-side">
+         <div class="or-box dark"><span class="or-num">5</span><b>Your stats</b><em>Completion · quiz average · days done</em></div>
+         <div class="or-box dark"><span class="or-num">6</span><b>💬 Your feedback</b><em>Tell us about the platform, lessons &amp; trainer</em></div>
+         <div class="or-box dark"><span class="or-num">7</span><b>Ranking</b><em>Your place in your batch</em></div>
+       </div>
+     </div>`},
+   {k:"Navigation", h:"Getting around", body:`
+     <div class="or-nav">
+       ${[["Dashboard","Your home: progress, days, stats."],["Client Profile","Everything about your client, Elias Thorne. Read it first."],["Practice Lab","All hands-on tools — each opens with its day."],["🔥 Live Roleplay","Voice calls with realistic clients and crises."],["My Notes","Your private notes — download them as a PDF."],["Handouts","Printable checklists and Excel templates for each day."],["🎯 Focus","Your trainer's feedback and what to work on next."],["💬 Feedback","Tell us what's working and what isn't — anonymously if you like."]].map(([a,b])=>`<div><b>${a}</b><span>${b}</span></div>`).join("")}
+     </div>
+     <p class="or-foot">On a phone, everything is under <b>☰ Menu</b>. Search (top bar) finds any topic or tool.</p>`},
+   {k:"Client", h:"Meet your client: Elias Thorne", body:`
+     <div class="or-client">
+       <div class="or-avatar">ET</div>
+       <div><p class="or-lead" style="margin-top:0">Managing Owner &amp; CEO, <b>Thorne &amp; Partners Law Group</b>. Every dossier, calendar, email and crisis in this program is for him.</p>
+       <ul class="or-list"><li>Read the <b>Client Profile</b> before Day 1 and keep it handy — his preferences are graded.</li><li>If a later task seems to contradict the profile, raise it — spotting that is the job.</li><li>Treat everything about him as confidential, like a real client.</li></ul></div>
+     </div>`},
+   {k:"Practice", h:"Practice Labs: how grading works", body:`
+     <div class="or-3">${pill("🆓","First try is free","Your first submission of each exercise never uses an attempt.")}${pill("🔁",`${LAB_ATTEMPT_CAP} repeat attempts`,"Shared across the whole program — use them wisely. Your trainer can reset them.")}${pill("💾","Auto-saves","Close the tab or switch devices — your work is still there.")}</div>
+     <div class="or-note"><b>Feedback, not just a score:</b> every graded submission shows strengths, what to change (“not this way — here's the better way”) and next steps. Nonsense or copy-paste answers aren't graded.</div>`},
+   {k:"Calls", h:"Live calls & roleplays", body:`
+     <ul class="or-list big"><li>🎧 Use a headset. The caller <b>speaks</b>; you answer out loud (Chrome/Edge) or type.</li><li>🔊 Can't hear the caller? Check your volume and press <b>↻ Replay</b>.</li><li>🙋 Hands-free mode listens automatically after the caller finishes.</li><li>📞 <b>Hang Up</b> ends the call and gives you your evaluation.</li></ul>`},
+   {k:"Feedback", h:"Feedback, focus & your growth", body:`
+     <div class="or-3">${pill("💬","Trainer feedback","Your trainer writes feedback on each day's work — it lights up on the day card and in 🎯 Focus.")}${pill("🎯","Focus","Your trainer's priorities for you, plus suggestions from your own work. Tick items off as you go.")}${pill("📈","Competency profile","Seven skills — accuracy, judgment, risk, efficiency, communication, composure, knowledge.")}</div>`},
+   {k:"Certificate", h:"Earning your certificate", body:`
+     <div class="or-cert"><div class="or-ribbon">🏅</div><div>
+       <p class="or-lead" style="margin-top:0">Pass all <b>10 Knowledge Checks</b> (70%+) and your <b>Certificate of Completion</b> unlocks — download it as a PDF from your dashboard.</p>
+       <ul class="or-list"><li>It shows your name <b>exactly as you registered it</b> — check your spelling.</li><li>Signed by your trainer, the Training Head and the General Manager.</li><li>“With Distinction” for a 90%+ average.</li></ul></div></div>`},
+   {k:"Ground rules", h:"Ground rules", body:`
+     <ul class="or-list big"><li>🔒 <b>Confidentiality first</b> — never paste real client or firm information into any tool.</li><li>🤖 <b>AI is a tool, not the answer</b> — its use depends on each attorney's preferences; always review its output.</li><li>✍ <b>Your own work</b> — the feedback only helps if it's your thinking.</li><li>🙋 <b>Stuck?</b> Ask your trainer, or use 💬 Feedback to tell us what's unclear.</li></ul>`},
+   {k:"Start", h:"Let's begin", body:`
+     <div class="or-flow start">${step(1,"👤","Sign in","Last name, first name and your batch code.")}<i>→</i>${step(2,"📇","Client Profile","Read about Elias Thorne.")}<i>→</i>${step(3,"🚀","Day 1","Open Day 1 from your dashboard and press Start.")}</div>
+     <p class="or-lead" style="text-align:center;margin-top:26px">Questions before we start?</p>`}
+  ];
+}
+function renderOrientation(){
+  const slides = orientSlides();
+  const i = Math.max(0, Math.min(state.orientIdx||0, slides.length-1)); state.orientIdx = i;
+  const s = slides[i];
+  return `
+    <div class="or-top"><div><p class="eyebrow">Admin · for screen sharing</p><h1 style="color:var(--navy);font-size:24px;margin:4px 0 0;">🧭 Platform Orientation</h1></div>
+      <div class="or-top-actions"><span class="or-tip">Share this tab in Google Meet — nothing private is shown here.</span><button class="btn btn-navy btn-sm" onclick="orientFullscreen()">⛶ Present full screen</button></div></div>
+    <div class="or-stage" id="orStage">
+      <div class="or-slide" id="orSlide">
+        <div class="or-kicker">${String(i+1).padStart(2,"0")} · ${esc(s.k)}</div>
+        <h2>${esc(s.h)}</h2>
+        ${s.body}
+        <img class="or-logo" src="${LOGO_FULL_SRC}" alt="">
+      </div>
+      <div class="or-controls">
+        <button class="btn btn-ghost btn-sm" onclick="orientGo(-1)" ${i===0?"disabled":""}>← Previous</button>
+        <div class="or-dots">${slides.map((x,k)=>`<button class="${k===i?"on":""}" title="${esc(x.k)}" onclick="orientGo(${k-i})"></button>`).join("")}</div>
+        <button class="btn btn-primary btn-sm" onclick="orientGo(1)" ${i===slides.length-1?"disabled":""}>Next →</button>
+      </div>
+    </div>`;
+}
+function orientGo(delta){
+  const n = orientSlides().length;
+  state.orientIdx = Math.max(0, Math.min((state.orientIdx||0)+delta, n-1));
+  const stage = document.getElementById("orStage");
+  if(stage){ const wrap = document.createElement("div"); wrap.innerHTML = renderOrientation(); stage.replaceWith(wrap.querySelector("#orStage")); }
+  else render();
+}
+function orientFullscreen(){
+  const el = document.getElementById("orStage");
+  if(!document.fullscreenElement && el && el.requestFullscreen) el.requestFullscreen().catch(()=>{});
+  else if(document.exitFullscreen) document.exitFullscreen();
+}
+document.addEventListener("keydown", (e)=>{
+  if(state.view!=="orientation" || isTyping()) return;
+  if(e.key==="ArrowRight" || e.key==="PageDown" || e.key===" "){ e.preventDefault(); orientGo(1); }
+  if(e.key==="ArrowLeft" || e.key==="PageUp"){ e.preventDefault(); orientGo(-1); }
+});
+Object.assign(window, {orientGo, orientFullscreen});
+
 function renderFacilitatorGuide(){
   if(!state.isAdmin){
     return `
@@ -11997,6 +12153,7 @@ function renderTopbar(){
     // Admin is a trainer monitoring dashboard, not a trainee workspace — hide
     // the trainee-facing-only views that have no role here.
     views = views.filter(([id]) => !["crisisroleplay","notes","handouts"].includes(id));
+    views.push(["orientation","🧭 Orientation"]);
     views.push(["facilitatorguide","Facilitator Guide"]);
   }
   return `
@@ -13496,7 +13653,16 @@ function goto(view, id){
   state.view=view;
   if(view==="dashboard"){ state.surpriseTaskChecked = false; }
   if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; state.lessonSlide=resumeSlideFor(id); }
-  if(view==="tool"){ state.toolId=id; }
+  if(view==="tool"){
+    const t = PRACTICE_TOOLS.find(x=>x.id===id);
+    if(t && !toolUnlocked(t)){
+      const dn = toolDayOf(t);
+      toast(`🔒 The Day ${dn} Practice Lab opens when Day ${dn} unlocks — ${dayLockReason(dn).replace(/ — any score counts\.?/,"")}.`);
+      state.view = "practice"; render(); return;
+    }
+    state.toolId=id;
+  }
+  if(view==="day" && state.isAdmin){ state.maxSlideReached = 9999; }
   window.scrollTo({top:0,behavior:"smooth"});
   render();
 }
@@ -13570,6 +13736,7 @@ function render(){
   else if(state.view==="openroleplay") body=renderOpenRoleplay();
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
+  else if(state.view==="orientation") body = state.isAdmin ? renderOrientation() : renderDashboard();
   const presenterView = state.view==="day" && state.dayViewMode!=="knowledgeCheck" && dayUnlocked(state.dayId);
   app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}">${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "")
     + ((state.traineeId && !state.isAdmin && !["login","pendingApproval","registrationDenied","dashboard"].includes(state.view)) ? `<button type="button" class="tfb-fab" onclick="openTraineeFeedback(${state.view==="day"?state.dayId:"null"})" title="Share feedback about the platform, lessons or facilitator" aria-label="Share feedback">💬<span class="fab-label"> Feedback</span></button>` : "")
@@ -14040,9 +14207,76 @@ function startLiveUpdates(){
   liveTimer = setInterval(liveTick, 8000);
   document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible"){ state.liveFbAt = 0; state.liveAdminAt = 0; liveTick(); } });
 }
+
+/* ============================================================
+   AUTO-UPDATE — checks every 2 minutes (and when the tab comes back
+   into view) whether a newer build has been deployed. If so, it saves
+   everything and reloads by itself at a safe moment — never mid-call,
+   mid-quiz, while typing or with a pop-up open. Until then a banner
+   offers "Update now". After reloading, the user lands where they were.
+   ============================================================ */
+let updateTimer = null, updatePendingBuild = null;
+async function checkForUpdate(){
+  try{
+    const r = await fetch("/version?ts="+Date.now(), {cache:"no-store"});
+    if(!r.ok) return;
+    const txt = await r.text();
+    const m = txt.match(/Portal build deployed:\s*([0-9.]+-[a-z0-9]+)/i);
+    if(!m || m[1]===APP_BUILD) return;
+    updatePendingBuild = m[1];
+    showUpdateBanner();
+    tryAutoUpdate();
+  }catch(e){ /* offline — try again later */ }
+}
+function updateIsSafe(){
+  if(typeof VoiceCall!=="undefined" && VoiceCall.active) return false;
+  if(state.view==="day" && state.dayViewMode==="knowledgeCheck" && !state.quizSubmitted && Object.keys(state.quizAnswers||{}).length) return false;
+  if(isTyping()) return false;
+  if(document.querySelector(".overlay")) return false;
+  if(state.loginBusy || state.studioBusy) return false;
+  if(document.querySelector('[data-busy="1"]')) return false;
+  return true;
+}
+async function applyUpdate(){
+  try{
+    if(state.view==="tool" && typeof saveLabNow==="function" && state.labDrafts){ await storeSet("lab-drafts", state.labDrafts); }
+    if(state.traineeId && !state.isAdmin) await cloudSaveNow();
+    sessionStorage.setItem("lsh_resume_after_update", JSON.stringify({view:state.view, dayId:state.dayId, lessonSlide:state.lessonSlide, toolId:state.toolId, adminTab:state.adminTab, cuesDay:state.cuesDay, sopDay:state.sopDay, studioDay:state.studioDay, orientIdx:state.orientIdx, scroll:window.scrollY}));
+  }catch(e){}
+  location.reload();
+}
+function tryAutoUpdate(){
+  if(!updatePendingBuild) return;
+  if(updateIsSafe()) applyUpdate();
+}
+function showUpdateBanner(){
+  if(document.getElementById("updateBanner")) return;
+  const b = document.createElement("div"); b.id = "updateBanner"; b.className = "update-banner";
+  b.innerHTML = `<span>✨ A new version of the portal is ready. It will update automatically in a moment — your progress is saved.</span><button type="button" onclick="applyUpdate()">Update now</button>`;
+  document.body.appendChild(b);
+}
+function restoreAfterUpdate(){
+  let st = null; try{ st = JSON.parse(sessionStorage.getItem("lsh_resume_after_update")||"null"); sessionStorage.removeItem("lsh_resume_after_update"); }catch(e){}
+  if(!st || !st.view || st.view==="login") return false;
+  ["adminTab","cuesDay","sopDay","studioDay","orientIdx"].forEach(k=>{ if(st[k]!=null) state[k] = st[k]; });
+  if(st.view==="day" && st.dayId){ goto("day", st.dayId); if(typeof st.lessonSlide==="number"){ state.lessonSlide = Math.min(st.lessonSlide, Math.max(state.maxSlideReached||0, st.lessonSlide)); render(); } }
+  else if(st.view==="tool" && st.toolId) goto("tool", st.toolId);
+  else goto(st.view);
+  setTimeout(()=>{ window.scrollTo(0, st.scroll||0); toast("✨ Updated to the latest version."); }, 300);
+  return true;
+}
+function startUpdateChecks(){
+  if(updateTimer) return;
+  updateTimer = setInterval(()=>{ if(updatePendingBuild) tryAutoUpdate(); else checkForUpdate(); }, 120000);
+  setInterval(()=>{ if(updatePendingBuild) tryAutoUpdate(); }, 15000);
+  document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible"){ if(updatePendingBuild) tryAutoUpdate(); else checkForUpdate(); } });
+  setTimeout(checkForUpdate, 20000);
+}
+window.applyUpdate = applyUpdate;
 /* ---------- boot ---------- */
 (async function init(){
   startLiveUpdates();
+  startUpdateChecks();
   await loadAll();
   if(state.adminToken && (await authStatus())) state.isAdmin = true;
   if(state.isAdmin && !state.adminToken && (await authStatus())){ state.isAdmin = false; setTimeout(()=>{ toast("Secure mode is on — please sign in to Admin again with the passphrase."); }, 600); }
@@ -14051,6 +14285,7 @@ function startLiveUpdates(){
   }
   if(state.traineeId && await cloudRestore(state.traineeId)) await loadAll();
   loadPublishedContent().then(()=>{ if(["day","dashboard","admin"].includes(state.view)) render(); });
+  if(sessionStorage.getItem("lsh_resume_after_update") && (state.isAdmin || state.traineeId)) setTimeout(()=>restoreAfterUpdate(), 400);
   if(!state.traineeName){
     state.view = "login";
   }else if(state.traineeId){
@@ -14907,7 +15142,7 @@ function renderPracticeHub(){
   return `
     <p class="eyebrow">Practice Lab</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">Let's Practice the Principles</h1>
-    <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 26px;">Hands-on tools for the skills that show up every day on the job. Available any time — no day needs to be unlocked first.</p>
+    <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 26px;">Hands-on tools for the skills that show up every day on the job. Each day's Practice Lab opens when you reach that day${state.isAdmin ? " — as an admin you can open all of them" : ""}.</p>
     <div class="card" style="padding:14px 18px;margin-bottom:22px;background:#F8F9FC;border-left:4px solid var(--navy);">
       <b style="font-size:12px;color:var(--navy);text-transform:uppercase;letter-spacing:.03em;">A note before you begin</b>
       <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;font-style:italic;">Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval.</p>
@@ -14915,6 +15150,8 @@ function renderPracticeHub(){
     <div class="tool-grid" id="toolGridWrap">${renderToolCards(PRACTICE_TOOLS)}</div>
   `;
 }
+function toolDayOf(t){ const n = t && t.relates ? parseInt(String(t.relates).replace(/[^0-9]/g,""),10) : 0; return n || 0; }
+function toolUnlocked(t){ const n = toolDayOf(t); return state.isAdmin || !n || dayUnlocked(n); }
 function renderToolCards(tools){
   if(!tools.length) return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">No tools for this day yet.</div>`;
   return tools.map(t=>{
@@ -14922,6 +15159,21 @@ function renderToolCards(tools){
     const statusClass = p ? "st-done" : "st-notstarted";
     const statusIcon = p ? "✅" : "◻";
     const statusLabel = p ? `Completed — best score ${p.bestScore}% (${p.runs} run${p.runs===1?"":"s"})` : "Not started";
+    const locked = !toolUnlocked(t);
+    const dn = toolDayOf(t);
+    if(locked) return `
+    <div class="card tool-card locked" onclick="goto('tool','${t.id}')" title="Opens when Day ${dn} unlocks">
+      <div class="module-head tool-head">
+        <div class="mh-day">Day ${dn} &middot; Practice Lab &middot; 🔒 Locked</div>
+        <div class="mh-title">${esc(t.title)}</div>
+      </div>
+      <div class="tool-body2">
+        <div class="module-icon">🔒</div>
+        <p class="tool-desc2">${esc(t.desc)}</p>
+        <div class="tool-status-row st-locked"><span>🔒</span> Opens when Day ${dn} unlocks</div>
+        <button class="btn tool-open-btn" disabled>Locked</button>
+      </div>
+    </div>`;
     return `
     <div class="card tool-card" onclick="goto('tool','${t.id}')">
       <div class="module-head tool-head">
@@ -22922,7 +23174,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-w";
+var APP_BUILD = "2026.09.25-z";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
