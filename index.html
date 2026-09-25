@@ -11894,7 +11894,7 @@ function renderFacilitatorGuide(){
       <h3>Recommended Session Structure (per day)</h3>
       <ul>
         <li><b>~75–120 minutes,</b> depending on the day's topic count. Each day's timing plan is in <b>Admin → SOP Reference</b> (every day now has one, auto-built from the live content).</li>
-        <li><b>Screen-share the trainee view</b> while you keep <b>Admin → Trainer Cues</b> open in a second window: each topic has a Trainer Cue, an Applied Discussion Case and a <b>🎙 Verbal Discussion Script</b> (open, ask, listen for, probe, correct, wrap). Use "✨ Write the full conversational script" for a 7–10 minute word-for-word version, or download the day's scripts as a PDF.</li>
+        <li><b>Screen-share the trainee view</b> while you keep <b>Admin → Trainer Cues</b> open in a second window: each topic has a Trainer Cue, an Applied Discussion Case and a <b>🎙 Verbal Discussion Script</b> (open, ask, listen for, probe, correct, wrap). Use "✨ Write a short speaker script" for a 7–10 minute word-for-word version, or download the day's scripts as a PDF.</li>
         <li><b>Practice Lab is where the learning sticks.</b> Have trainees complete it live, then debrief. Their work auto-saves (💾) and they can resume after a refresh.</li>
         <li><b>End-of-day discussion</b> is in Trainer Cues for each day — raise it live before the Knowledge Check.</li>
         <li><b>Knowledge Check:</b> 70% marks the day complete ✓. Failing doesn't block progress — trainees see a clear "cleared to proceed / retake optional" message.</li>
@@ -19986,10 +19986,11 @@ function speakable(t, max){
   }
   if(firstSentence && firstSentence.length <= max) return firstSentence;
   const cut = t.slice(0, max);
-  const at = Math.max(cut.lastIndexOf("; "), cut.lastIndexOf(" — "), cut.lastIndexOf(", "));
+  const strong = Math.max(cut.lastIndexOf("; "), cut.lastIndexOf(" — "));
+  const at = strong > 60 ? strong : cut.lastIndexOf(", ");
   let out = at > 60 ? cut.slice(0, at) : cut.slice(0, cut.lastIndexOf(" "));
   const open = out.lastIndexOf("("); if(open > -1 && out.indexOf(")", open) === -1) out = out.slice(0, open);   // drop an unfinished "(e.g. …"
-  out = out.replace(/\s+(e\.g|i\.e|vs|etc)\.?$/i, "").replace(/[,;:\s—-]+$/,"");
+  for(let k=0;k<4;k++) out = out.replace(/\s+(vs|e\.g|i\.e|etc|to|and|or|nor|the|a|an|of|for|with|specifically|before|after|so|that|which|by|in|on|at|without|than|when|if|as|from|into|about|unless|until|while|is|are|be|not|no|just|only|also|then|per|via|every|each|any|its|their|your|our|\d+)\.?$/i, "").replace(/[,;:\s—-]+$/,"");
   return out + ".";
 }
 function asSentence(t){ t = String(t||"").trim(); if(!t) return ""; t = t[0].toUpperCase()+t.slice(1); return /[.!?]["”’')]?$/.test(t) ? t : t+"."; }
@@ -20003,7 +20004,7 @@ function shortPhrase(t, max){
     t = c > 30 ? cut.slice(0, c) : cut.slice(0, cut.lastIndexOf(" "));
   }
   // never end on a dangling word
-  for(let k=0;k<3;k++) t = t.replace(/\s+(vs|e\.g|i\.e|to|and|or|the|a|an|of|for|with|specifically|before|after|so|that|which|by|in|on|at|without|than|when|if|as|from|into|about|unless|until|while|is|are|be)\.?$/i,"").replace(/[,;:\s]+$/,"");
+  for(let k=0;k<4;k++) t = t.replace(/\s+(vs|e\.g|i\.e|etc|to|and|or|nor|the|a|an|of|for|with|specifically|before|after|so|that|which|by|in|on|at|without|than|when|if|as|from|into|about|unless|until|while|is|are|be|not|no|just|only|also|then|per|via|every|each|any|its|their|your|our|\d+)\.?$/i,"").replace(/[,;:\s]+$/,"");
   return t;
 }
 function lowerFirst(t){ t = String(t||"").trim(); return /^[A-Z][a-z]/.test(t) ? t[0].toLowerCase()+t.slice(1) : t; }
@@ -20020,9 +20021,9 @@ function buildDiscussionScript(d, l, i){
     "Which part of this feels hardest to do consistently, and why?"
   ];
   const ask = quoted ? quoted[1] : (direct || asks[i % asks.length]);
-  const p0 = speakable(principles[0] || "", 240);
-  const p1 = principles[1] ? speakable(principles[1], 200) : "";
-  const listen = steps.slice(0,3).map(x=>asSentence(speakable(x, 150)));
+  const p0 = speakable(splitLabel(principles[0] || "").rest || principles[0] || "", 150);
+  const p1 = "";
+  const listen = steps.slice(0,2).map(x=>asSentence(shortPhrase(splitLabel(x).label || x, 90)));
   const probeStep = steps[1] ? shortPhrase(steps[1], 80) : "";
   const correctRaw = pitfalls.map(x=>String(x).replace(/^pitfall:\s*/i,"")).find(x=>!listen.some(y=>x.startsWith(y.slice(0,30))));
   const wrapSrc = splitLabel(callout || [...steps].reverse().find(x=>!/next topic|covered (earlier|elsewhere|in)|per day|day \d/i.test(x)) || principles[0] || "").rest;
@@ -20033,10 +20034,10 @@ function buildDiscussionScript(d, l, i){
     ask: `"${ask}"`,
     facilitator: (cue && !quoted && !direct) ? cue : "",
     listen,
-    probe: probeStep ? `"Why does this step matter — ${lowerFirst(probeStep)}? What goes wrong when it's skipped?"` : `"What would a less experienced assistant get wrong here?"`,
-    correct: correctRaw ? asSentence(speakable(correctRaw, 230)) : "",
-    wrap: `"To sum up: ${lowerFirst(speakable(wrapSrc, 190)).replace(/[.!?]["”’')]?$/,"")}.${next ? ` Next, we'll look at ${next.h.replace(/[.?!:]+$/,"")}.` : " That's the last topic for today — next is the Practice Lab."}"`,
-    minutes: (l.fourPart || (steps.length>3)) ? "5–7 min" : "3–5 min"
+    probe: probeStep ? `"What goes wrong if we skip this — ${lowerFirst(shortPhrase(probeStep, 55))}?"` : `"What would a less experienced assistant get wrong here?"`,
+    correct: correctRaw ? asSentence(speakable(correctRaw, 120)) : "",
+    wrap: `"To sum up: ${lowerFirst(speakable(wrapSrc, 150)).replace(/[.!?]["”’')]?$/,"")}.${next ? ` Next, we'll look at ${next.h.replace(/[.?!:]+$/,"")}.` : " That's the last topic for today — next is the Practice Lab."}"`,
+    minutes: "2–3 min"
   };
 }
 function renderDiscussionScript(d, l, i){
@@ -20046,19 +20047,19 @@ function renderDiscussionScript(d, l, i){
   return `
     <div class="script-block">
       <div class="script-head"><span>🎙 Verbal Discussion Script${sc.slides ? ` <span class="script-slides">for ${sc.slides}</span>` : ""}</span><span class="script-time">${sc.minutes}</span></div>
-      <div class="script-row"><b>Say (open)</b><p>${esc(sc.open)}</p></div>
-      <div class="script-row"><b>Ask the room</b><p>${esc(sc.ask)}</p></div>
+      <div class="script-row"><b>Say</b><p>${esc(sc.open)}</p></div>
+      <div class="script-row"><b>Ask</b><p>${esc(sc.ask)}</p></div>
       ${sc.listen.length ? `<div class="script-row"><b>Listen for</b><ul>${sc.listen.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
-      <div class="script-row"><b>If the room is quiet, probe</b><p>${esc(sc.probe)}</p></div>
-      ${sc.correct ? `<div class="script-row"><b>Correct this misconception if it comes up</b><p>${esc(sc.correct)}</p></div>` : ""}
-      <div class="script-row"><b>Say (wrap-up &amp; bridge)</b><p>${esc(sc.wrap)}</p></div>
+      <div class="script-row"><b>If quiet</b><p>${esc(sc.probe)}</p></div>
+      ${sc.correct ? `<div class="script-row"><b>Watch for</b><p>${esc(sc.correct)}</p></div>` : ""}
+      <div class="script-row"><b>Wrap</b><p>${esc(sc.wrap)}</p></div>
       <div class="script-ai" id="scriptAi-${cssId(key)}">
-        ${saved ? renderAiScript(saved) + `<button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="generateAiScript(${d.id}, ${i})">↻ Rewrite script</button>` : `<button class="btn btn-ghost btn-sm" onclick="generateAiScript(${d.id}, ${i})">✨ Write the full conversational script</button>`}
+        ${saved ? renderAiScript(saved) + `<button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="generateAiScript(${d.id}, ${i})">↻ Rewrite (short)</button>` : `<button class="btn btn-ghost btn-sm" onclick="generateAiScript(${d.id}, ${i})">✨ Write a short speaker script</button>`}
       </div>
     </div>`;
 }
 function renderAiScript(text){
-  return `<div class="script-ai-body"><b>Full conversational script (saved for all trainers)</b>${esc(text).split(/\n+/).map(p=>{ const m=p.match(/^([A-Z][A-Z &\/-]{2,24}):\s*(.*)$/); return m ? `<p><span class="script-lbl">${m[1]}</span> ${m[2]}</p>` : `<p>${p}</p>`; }).join("")}</div>`;
+  return `<div class="script-ai-body"><b>Short speaker script (saved for all trainers)</b>${esc(text).split(/\n+/).map(p=>{ const m=p.match(/^([A-Z][A-Z &\/-]{2,24}):\s*(.*)$/); return m ? `<p><span class="script-lbl">${m[1]}</span> ${m[2]}</p>` : `<p>${p}</p>`; }).join("")}</div>`;
 }
 async function loadSavedScripts(dayId){
   state.aiScripts = state.aiScripts || {};
@@ -20075,31 +20076,25 @@ async function generateAiScript(dayId, i, quiet){
   if(el) el.innerHTML = `<div class="ai-loading">Writing the script…</div>`;
   const {principles, steps, pitfalls} = lessonParts(l);
   const exp = lessonExpansion(d, l);
-  const prompt = `Write a word-for-word, CONVERSATIONAL speaker script a live trainer reads aloud to teach this topic to Legal Executive/Personal Assistant trainees at Legal Support Help (LSH). Sound like a warm, experienced trainer talking to a room: contractions, short sentences, natural transitions, no lecturing tone. Running client case: Elias Thorne, Managing Owner & CEO of Thorne & Partners Law Group. Aim for about 7-10 minutes spoken.
+  const prompt = `Write a SHORT, on-point speaker script (about 2 minutes spoken, under 160 words total) that a live trainer reads aloud for this topic in the Legal Support Help EA/PA program. Warm, plain, conversational — no filler, no repetition, no lecturing. Running client case: Elias Thorne, Managing Owner & CEO of Thorne & Partners Law Group.
 
-LESSON: ${l.h} (Day ${d.id}: ${d.title}) — shown on ${slideLabel(d, i)} of the day's slides
+LESSON: ${l.h} (Day ${d.id}: ${d.title}) — shown on ${slideLabel(d, i)}
 KEY PRINCIPLES: ${principles.join(" | ")}
 STEPS: ${steps.join(" | ")}
-PITFALLS: ${pitfalls.slice(0,3).join(" | ")}
-${exp ? "RULES/CONTEXT: "+(exp.lawsAndRules||"")+" "+(exp.context||"") : ""}
+PITFALLS: ${pitfalls.slice(0,2).join(" | ")}
+${exp ? "RULES/CONTEXT: "+(exp.lawsAndRules||"") : ""}
 ${l.trainerCue ? "TRAINER CUE: "+l.trainerCue : ""}
 
-Use exactly these labels, each starting a new line:
-SAY: (opening - hook the room and introduce the topic, 3-4 sentences)
-WHY IT MATTERS: (the purpose in plain terms, 2-3 sentences)
-EXPLAIN: (a thorough, conversational explanation of the concept and each step, with one concrete example - 2 short paragraphs)
-RULES TO KNOW: (genuinely relevant laws or professional rules in plain English, or say none specifically apply; remind them to follow firm policy)
-SCENARIO: (a realistic 3-4 sentence scenario involving Elias Thorne to read out)
-ASK: (one open question about the scenario)
-FOLLOW-UP: (two follow-up questions)
-LISTEN FOR: (the 3 points a strong answer includes)
-IF QUIET: (what the trainer says to get the room talking)
-CORRECT: (one likely misconception and a kind correction)
-PRACTICE LINK: (one sentence connecting this to the day's Practice Lab or real work)
-WRAP: (a 2-3 sentence summary and bridge to the next topic)
+Use exactly these labels, one per line, and keep each to the length shown:
+SAY: (2 sentences — what this is and why it matters)
+KEY POINTS: (the 3 things to remember, separated by " / ", each under 12 words)
+ASK: (1 question to the room, ideally about Elias)
+LISTEN FOR: (2 short points a good answer includes, separated by " / ")
+IF QUIET: (1 short prompt)
+WRAP: (1 sentence)
 Plain text only, no markdown, no bullet symbols.`;
   try{
-    const text = await callAIText(prompt, 2200, 120000);
+    const text = await callAIText(prompt, 700, 60000);
     state.aiScripts = state.aiScripts || {};
     state.aiScripts[key] = text.trim();
     await sharedSet(key, {text:text.trim(), at:new Date().toISOString()});
@@ -20436,8 +20431,8 @@ function renderAdminStudio(){
           <button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="studioSetQuizStatus(${dayId},${i},'delete')">Delete</button></div></details>`).join("")}</div>` : ""}
     </div>`; })()}
     <div class="card studio-card">
-      <h3>4 · Conversational trainer scripts</h3>
-      <p>Writes a full, conversational speaker script for every topic — thorough explanation, rules to know, a scenario, questions and a wrap-up. Scripts appear under each lesson in <b>Trainer Cues</b> and in the day's script PDF.</p>
+      <h3>4 · Short speaker scripts</h3>
+      <p>Writes a short, on-point speaker script (about 2 minutes) for every topic — what to say, 3 key points, one question, what to listen for and a one-line wrap. Scripts appear under each lesson in <b>Trainer Cues</b> and in the day's script PDF.</p>
       <button class="btn btn-navy btn-sm" onclick="studioWriteAllScripts(${dayId})">✨ Write scripts for every topic without one</button>
     </div>`;
 }
@@ -22927,7 +22922,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-u";
+var APP_BUILD = "2026.09.25-w";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
