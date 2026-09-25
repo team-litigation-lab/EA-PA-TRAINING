@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "r" (2026-09-26)
+   LSH EA/PA portal — update pack "t" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -9,8 +9,11 @@
      3. SOP Reference: readable layout + a "Present" mode for live discussion.
      4. Presenter view: share only the slides in Meet, see trainer cues yourself.
      5. All lesson content centred; Orientation deck + Blueprint refreshed.
+     6. Email Outreach: capstone Day 4 topic + Email Outreach Simulator (Day 4 lab, Part 4).
+     7. Inbox Zero works like Gmail (Day 2 lab).
+     8. Day 3 "Proactive EA Tasks" is now a written, graded exercise.
    ============================================================ */
-window.EAPA_UPDATE_PACK = "r";
+window.EAPA_UPDATE_PACK = "t";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
@@ -872,6 +875,808 @@ window.afterRender = function(){
   const r = __eapaAfterRender3.apply(this, arguments);
   const tag = document.querySelector(".build-tag");
   if(tag && !tag.querySelector(".eapa-ok")) tag.insertAdjacentHTML("beforeend", ` · <span class="eapa-ok">updates ✓</span>`);
+  return r;
+};
+
+/* ---------- 6. Email Outreach: capstone topic (Day 4) + Email Outreach Simulator ----------
+   Topic: appended as the LAST Day 4 topic so trainees' saved places don't shift.
+   Simulator: Part 4 of the Day 4 Practice Lab. The trainee picks a prospect,
+   writes a real 3-touch sequence (first email → follow-up → close-out), and an
+   AI plays the prospect — ignoring, replying, objecting, opting out or booking
+   the call depending on how good each email is. Then a debrief and a graded
+   evaluation (same rubric system and attempt rules as every other lab). */
+const EO_TOPIC_TITLE = "Email Outreach End-to-End: Research, Write, Follow Up";
+(function addEmailOutreachTopic(){
+  const d = DAYS.find(x=>x.id===4); if(!d || d.lessons.some(l=>l.h===EO_TOPIC_TITLE)) return;
+  d.lessons.push({
+    h: EO_TOPIC_TITLE,
+    trainerCue: "Before the Practice Lab, read one weak and one strong outreach email aloud and have the room vote on which they'd actually open on their phone — then ask what exactly made the difference.",
+    fourPart: {
+      corePrinciples: [
+        "An outreach email is judged in about three seconds on a phone screen — the subject line and first sentence decide whether the rest gets read.",
+        "Relevance beats polish: one specific, verified fact about the recipient's situation does more than any clever phrasing.",
+        "Every email has exactly one job — usually a small, easy yes (a 15-minute call with Elias), never a hard sell.",
+        "Most replies come from the follow-ups, not the first touch — so the sequence is planned before the first email goes out."
+      ],
+      howTo: [
+        "Research first: confirm the person's current role and find one recent, specific trigger (an expansion, funding, a new hire, public news). Log the source in the CRM.",
+        "Write a subject line of 3–7 specific words — no clickbait, no ALL CAPS (e.g. \"Contracts for your Denver expansion\").",
+        "Write the body in 50–125 words: open with their situation, one line on how Elias can help, then one clear, low-friction ask.",
+        "Sign off on Elias's behalf and include a simple opt-out line — compliance is part of the craft, not an afterthought.",
+        "Plan the cadence: a follow-up around day 3–4 with a new angle or useful resource, and a short, courteous close-out around day 8–10.",
+        "Stop the moment they reply or opt out. Log the outcome and route any interest to Elias with a one-line summary."
+      ],
+      bestPractices: [
+        "Write about the recipient's priorities, not the firm's — \"you\" should appear more often than \"we\".",
+        "Each follow-up adds something new — an insight, a relevant article, a narrower question — never just \"bumping this to the top of your inbox\".",
+        "Read it on a phone before sending: if the ask isn't visible without scrolling, it's too long.",
+        "Pitfall: the same template to everyone with only the name swapped — recipients can tell, and it trains them to ignore the firm.",
+        "Pitfall: guilt-trip or pressure follow-ups (\"I'm surprised I haven't heard back\") — they burn the relationship for any future opportunity.",
+        "Pitfall: promising outcomes or giving legal advice in outreach — only the attorney speaks to a matter; the assistant's job is to open the door."
+      ],
+      discussionCase: "Elias wants you to email the operations director of a regional construction company that just announced a two-state expansion. Your first email got no reply after four days. Walk through what your follow-up says, what new angle it uses, and when you'd stop."
+    }
+  });
+  LESSON_EXTRA_LEARNING["4::"+EO_TOPIC_TITLE] = {t:"The 3-touch cadence", p:[
+    "Touch 1 (day 1): the specific trigger + one line of value + one small ask.",
+    "Touch 2 (day 3–4): a new angle — a relevant resource, a sharper question, or a different benefit. Same small ask.",
+    "Touch 3 (day 8–10): a short, courteous close-out that makes it easy to say \"not now\" — it often gets the most replies.",
+    "Then stop. Log the outcome and set a reminder only if they asked you to follow up later."
+  ]};
+  d.quickChecks = d.quickChecks || [];
+  d.quickChecks.push({afterIndex: d.lessons.length-1,
+    q: "Your first outreach email got no reply after four days. What's the strongest follow-up?",
+    opts: ["\"Just bumping this to the top of your inbox.\"", "A short note with a new, relevant angle and the same small ask", "A longer email re-explaining every service the firm offers", "Wait a month, then resend the original email"],
+    a: 1,
+    r: "A follow-up should add something new and keep the ask small. A bare \"bump\" adds nothing, a longer pitch adds friction, and waiting a month loses the trigger that made the timing relevant."});
+})();
+
+
+(function(){ const s = document.createElement("style"); s.id = "eapa-email-outreach"; s.textContent = `
+.eo-pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.eo-pcard{padding:18px;display:flex;flex-direction:column;gap:6px;border-top:4px solid var(--navy);}
+.eo-pcard:nth-child(2){border-top-color:var(--orange);}
+.eo-pcard b{font-size:16px;color:var(--navy);} .eo-pcard > span{font-size:13px;color:var(--ink-soft);}
+.eo-pcard ul{margin:6px 0 10px;padding-left:18px;font-size:13px;line-height:1.5;flex:1;} .eo-pcard .btn{align-self:flex-start;}
+.eo-av{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;}
+.eo-grid{display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr);gap:16px;align-items:start;}
+.eo-brief{padding:16px 18px;font-size:13px;line-height:1.5;position:sticky;top:80px;}
+.eo-brief ul{margin:0 0 6px;padding-left:18px;} .eo-brief p{margin:0 0 6px;}
+.eo-k{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-deep);margin:12px 0 4px;}
+.eo-brief .eo-k:first-child{margin-top:0;}
+.eo-name{font-size:16px;color:var(--navy);display:block;} .eo-sub{color:var(--ink-soft);}
+.eo-cad{margin:0 0 12px;padding-left:20px;} .eo-cad li{color:var(--ink-soft);} .eo-cad li.done{color:#3F7D58;text-decoration:line-through;} .eo-cad li.now{color:var(--navy);font-weight:800;}
+.eo-thread{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.eo-empty{border:1px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--ink-soft);font-size:13px;}
+.eo-msg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;max-width:92%;}
+.eo-msg.mine{align-self:flex-end;border-left:4px solid var(--navy);} .eo-msg.theirs{align-self:flex-start;border-left:4px solid var(--orange);background:#FFFBF5;}
+.eo-mh{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-soft);margin-bottom:4px;} .eo-mh b{color:var(--navy);}
+.eo-subj{font-weight:800;font-size:13.5px;margin-bottom:4px;} .eo-body{font-size:13.5px;line-height:1.55;white-space:normal;}
+.eo-sys{align-self:center;font-size:12.5px;color:var(--ink-soft);background:#F3F4F9;border-radius:999px;padding:5px 12px;}
+.eo-compose{padding:14px 16px;display:flex;flex-direction:column;gap:8px;}
+.eo-ch{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);} .eo-ch b{color:var(--navy);font-size:14px;}
+.eo-compose input, .eo-compose textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;}
+.eo-compose textarea{min-height:170px;resize:vertical;line-height:1.5;}
+.eo-checks{display:flex;flex-wrap:wrap;gap:6px;} .eo-checks span{font-size:12px;border-radius:999px;padding:3px 10px;background:#F3F4F9;color:var(--ink-soft);} .eo-checks span.ok{background:#EAF6EF;color:#2F6B47;font-weight:700;}
+.eo-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px;}
+.eo-debrief{padding:16px 18px;}
+.eo-out{display:flex;gap:12px;align-items:center;} .eo-out > span{font-size:30px;} .eo-out b{font-size:16px;color:var(--navy);} .eo-out p{margin:2px 0 0;font-size:13px;color:var(--ink-soft);}
+.eo-thoughts{margin:0 0 12px;padding-left:20px;} .eo-thoughts li{margin-bottom:8px;font-size:13px;line-height:1.5;} .eo-thoughts b{display:block;color:var(--navy);} .eo-thoughts span{font-style:italic;color:#37394A;}
+@media(max-width:860px){.eo-grid{grid-template-columns:1fr;} .eo-brief{position:static;} .eo-msg{max-width:100%;}}
+`; document.head.appendChild(s); })();
+
+const EO_PROSPECTS = [
+  {id:"dana", name:"Dana Whitfield", first:"Dana", role:"Director of Operations", company:"Ridgeline Builders",
+   facts:["Regional commercial construction company, ~180 employees","Announced last week: expanding into Colorado and Arizona next quarter","Currently uses one outside law firm, mainly for lien disputes"],
+   need:"New-state subcontractor agreements and licensing for the expansion",
+   persona:"Practical and very busy — reads email on her phone between site visits. Ignores anything that looks like a template or runs past one screen. Replies to short, specific notes that clearly understand the expansion. Dislikes vague 'synergy' language. If interested she asks one practical question before agreeing to a call."},
+  {id:"marcus", name:"Marcus Lee", first:"Marcus", role:"Founder & CEO", company:"Brightpath Health Tech",
+   facts:["Health-tech startup, 40 employees, closed a $12M Series A two weeks ago","Hiring fast: 15 open roles on their careers page","No in-house counsel yet"],
+   need:"Employment agreements, equity paperwork and vendor contracts as they scale",
+   persona:"Gets 50+ cold emails a day and deletes most unread. Responds only to emails that are under ~100 words, mention something real about his company, and ask for something small. Allergic to flattery and long firm bios. If intrigued he replies in one line; might ask 'what would this cost?'."},
+  {id:"priya", name:"Priya Raman", first:"Priya", role:"General Counsel", company:"Lakeshore Regional Health",
+   facts:["Regional hospital group, 3 hospitals and 12 clinics","Posted publicly about a backlog of vendor-contract reviews","Legal team of 2 attorneys — stretched thin"],
+   need:"Overflow review of routine vendor and service contracts",
+   persona:"A lawyer herself — skeptical of cold outreach and alert to compliance. Notices if there's no opt-out line and if the email over-promises or gives anything resembling legal advice. Respects precision, relevance and brevity. May reply with a sharp question (conflicts, rates, turnaround) before agreeing to anything."}
+];
+const EO_TOUCHES = [{day:1, label:"First email"}, {day:4, label:"Follow-up — new angle"}, {day:9, label:"Close-out"}];
+const EO_MAX_SENDS = 5;
+
+function eoState(){ return toolState.eo || (toolState.eo = {prospectId:null, thread:[], done:false, outcome:"", report:null}); }
+function eoSave(){ storeSet("email-outreach-sim", toolState.eo||null); }
+function eoProspect(){ return EO_PROSPECTS.find(p=>p.id===eoState().prospectId); }
+function eoMine(){ return eoState().thread.filter(m=>m.from==="you"); }
+function eoNextSend(){
+  const s = eoState(), mine = eoMine(), last = s.thread[s.thread.length-1];
+  const lastDay = last ? last.day : 0;
+  if(last && last.from==="prospect") return {kind:"reply", day:lastDay+1, label:`Reply to ${eoProspect().first}`};
+  const touchNo = mine.filter(m=>m.kind==="touch").length;
+  const t = EO_TOUCHES[touchNo];
+  return t ? {kind:"touch", day:Math.max(t.day, lastDay+1), label:t.label, n:touchNo+1} : null;
+}
+function eoWords(t){ return (String(t||"").trim().match(/\S+/g)||[]).length; }
+
+function renderEmailOutreachSection(){
+  return `<h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Email Outreach Simulator</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Write a real outreach sequence on Elias Thorne's behalf. The prospect is played by AI and reacts the way a busy professional really would — most weak emails simply get no reply.</p>
+    <div id="eoSim">${eoView()}</div>`;
+}
+function eoRender(){ const el = document.getElementById("eoSim"); if(el) el.innerHTML = eoView(); }
+function eoView(){
+  const s = eoState();
+  if(!s.prospectId){
+    return `<div class="eo-pick">${EO_PROSPECTS.map(p=>`
+      <div class="card eo-pcard">
+        <div class="eo-av">${esc(p.name.split(" ").map(x=>x[0]).join(""))}</div>
+        <b>${esc(p.name)}</b><span>${esc(p.role)} · ${esc(p.company)}</span>
+        <ul>${p.facts.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+        <button class="btn btn-navy btn-sm" onclick="eoChoose('${p.id}')">Write to ${esc(p.first)} →</button>
+      </div>`).join("")}</div>`;
+  }
+  const p = eoProspect(), next = s.done ? null : eoNextSend();
+  const sentTouches = eoMine().filter(m=>m.kind==="touch").length;
+  return `<div class="eo-grid">
+    <aside class="card eo-brief">
+      <div class="eo-k">Prospect brief</div>
+      <b class="eo-name">${esc(p.name)}</b><div class="eo-sub">${esc(p.role)} · ${esc(p.company)}</div>
+      <div class="eo-k">Your research</div><ul>${p.facts.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+      <div class="eo-k">Likely need</div><p>${esc(p.need)}</p>
+      <div class="eo-k">Your goal</div><p>A 15-minute intro call with <b>Elias Thorne</b>, Managing Owner &amp; CEO of Thorne &amp; Partners Law Group.</p>
+      <div class="eo-k">Cadence</div>
+      <ol class="eo-cad">${EO_TOUCHES.map((t,i)=>`<li class="${i<sentTouches?"done":(next && next.kind==="touch" && next.n===i+1?"now":"")}">Day ${t.day} · ${t.label}</li>`).join("")}</ol>
+      <button class="btn btn-ghost btn-sm" onclick="eoReset()">↺ Start over / another prospect</button>
+    </aside>
+    <section class="eo-main">
+      <div class="eo-thread">${s.thread.length ? s.thread.map(eoMsgHtml).join("") : `<div class="eo-empty">Your sent emails and ${esc(p.first)}'s replies will appear here.</div>`}</div>
+      ${s.done ? eoDebriefHtml() : (next ? eoComposerHtml(next) : "")}
+    </section>
+  </div>`;
+}
+function eoMsgHtml(m){
+  const p = eoProspect();
+  if(m.from==="system") return `<div class="eo-sys">📭 ${esc(m.body)}</div>`;
+  const mine = m.from==="you";
+  return `<div class="eo-msg ${mine?"mine":"theirs"}">
+    <div class="eo-mh"><b>${mine ? "You (for Elias Thorne)" : esc(p.name)}</b><span>Day ${m.day}${mine && m.kind==="touch" ? " · "+esc(m.label) : ""}</span></div>
+    ${m.subject ? `<div class="eo-subj">${esc(m.subject)}</div>` : ""}
+    <div class="eo-body">${esc(m.body).replace(/\n/g,"<br>")}</div>
+  </div>`;
+}
+function eoComposerHtml(next){
+  const s = eoState(), p = eoProspect();
+  const first = eoMine()[0];
+  const subj = s.draftSubject != null ? s.draftSubject : (first ? (/^re:/i.test(first.subject) ? first.subject : "Re: "+first.subject) : "");
+  return `<div class="card eo-compose">
+    <div class="eo-ch"><b>✉ ${esc(next.label)}</b><span>Day ${next.day} · to ${esc(p.name)} &lt;${esc(p.first.toLowerCase())}@${esc(p.company.toLowerCase().replace(/[^a-z]/g,""))}.com&gt;</span></div>
+    <input id="eoSubject" placeholder="Subject line (3–7 specific words)" value="${esc(subj)}" oninput="eoDraft()">
+    <textarea id="eoBody" placeholder="Hi ${esc(p.first)}, …" oninput="eoDraft()">${esc(s.draftBody||"")}</textarea>
+    <div class="eo-checks" id="eoChecks">${eoChecksHtml(subj, s.draftBody||"", next)}</div>
+    <div class="eo-actions">
+      ${eoMine().length ? `<button class="btn btn-ghost btn-sm" onclick="eoFinish()">End sequence &amp; get feedback</button>` : "<span></span>"}
+      <button class="btn btn-primary" id="eoSendBtn" onclick="eoSend()">Send ✉</button>
+    </div>
+    <div id="eoErr"></div>
+  </div>`;
+}
+function eoChecksHtml(subject, body, next){
+  const p = eoProspect(), w = eoWords(body), sw = eoWords(String(subject).replace(/^re:\s*/i,""));
+  const hay = (subject+" "+body).toLowerCase();
+  const personal = [p.company, ...p.facts.join(" ").match(/\b(Colorado|Arizona|expansion|Series A|\$12M|hiring|roles|backlog|vendor|clinics|hospitals|lien)\b/gi)||[]].some(k=>hay.includes(String(k).toLowerCase()));
+  const ask = /\?|call|chat|15|minutes|time (this|next)|calendar|worth a/i.test(body);
+  const optout = /unsubscribe|opt[- ]?out|not the right (person|time)|prefer not|won't (email|follow up)|stop (emailing|hearing)|no longer|let me know if (this|you'd)/i.test(body);
+  const chip = (ok, t)=>`<span class="${ok?"ok":""}">${ok?"✓":"○"} ${t}</span>`;
+  const range = next && next.kind==="touch" && next.n===3 ? [25,90] : [50,125];
+  return chip(w>=range[0] && w<=range[1], `${w} words (aim ${range[0]}–${range[1]})`)
+    + (next && next.kind==="reply" ? "" : chip(sw>=3 && sw<=7, "Subject 3–7 words"))
+    + chip(personal, "Specific to them")
+    + chip(ask, "One clear ask")
+    + (next && next.kind==="reply" ? "" : chip(optout, "Opt-out line"));
+}
+function eoDraft(){
+  const s = eoState();
+  s.draftSubject = (document.getElementById("eoSubject")||{}).value || "";
+  s.draftBody = (document.getElementById("eoBody")||{}).value || "";
+  const c = document.getElementById("eoChecks"); if(c) c.innerHTML = eoChecksHtml(s.draftSubject, s.draftBody, eoNextSend());
+  clearTimeout(eoDraft.t); eoDraft.t = setTimeout(eoSave, 600);
+}
+function eoChoose(id){ toolState.eo = {prospectId:id, thread:[], done:false, outcome:"", report:null}; eoSave(); eoRender(); }
+function eoReset(){
+  if(eoState().thread.length && !confirm("Start over? Your current email thread will be cleared.")) return;
+  toolState.eo = {prospectId:null, thread:[], done:false, outcome:"", report:null}; eoSave(); eoRender();
+}
+async function eoSend(){
+  const s = eoState(), p = eoProspect(), next = eoNextSend(); if(!next) return;
+  const subject = (document.getElementById("eoSubject").value||"").trim(), body = (document.getElementById("eoBody").value||"").trim();
+  if(eoWords(body) < 12){ toast("Write the email first — at least a couple of sentences."); return; }
+  if(next.kind==="touch" && !subject){ toast("Add a subject line."); return; }
+  const btn = document.getElementById("eoSendBtn"); if(btn){ btn.disabled = true; btn.textContent = "Sending…"; }
+  const msg = {from:"you", kind:next.kind, label:next.label, day:next.day, subject: next.kind==="touch" ? subject : "", body};
+  const threadText = s.thread.concat([msg]).map(m=> m.from==="system" ? `[${m.body}]` : `--- Day ${m.day} · ${m.from==="you" ? "FROM the assistant (for Elias Thorne)" : "FROM "+p.name} ---\n${m.subject ? "Subject: "+m.subject+"\n" : ""}${m.body}`).join("\n\n");
+  const prompt = `You are role-playing a real prospect who receives cold outreach email, inside a training simulation for executive assistants at a law firm. Stay fully in character.
+
+PROSPECT: ${p.name}, ${p.role} at ${p.company}.
+Facts about you: ${p.facts.join("; ")}.
+What you might genuinely need: ${p.need}.
+Personality and inbox reality: ${p.persona}
+
+The sender is an assistant writing on behalf of Elias Thorne, Managing Owner & CEO of Thorne & Partners Law Group. Their goal is a 15-minute intro call with Elias.
+
+THE EMAIL THREAD SO FAR (the LAST message is the one you are reacting to now):
+${threadText}
+
+Decide realistically what you do with the LAST email. Real cold-email reply rates are low:
+- Generic, long, vague, self-focused, flattering or pushy emails get NO reply.
+- A short, specific, relevant email with one small, clear ask MAY get a reply: interest, a practical question, an objection, or "not right now".
+- A follow-up that only "bumps" the thread gets no reply; one that adds a genuinely new, relevant angle may.
+- A short, courteous close-out email often prompts a brief reply (even "not now, thanks").
+- If you already replied and the sender answered you well and proposed a concrete time, you may agree to the call ("booked").
+- If the email gives legal advice, promises outcomes, guilt-trips you or is careless (wrong facts, wrong name), become less likely to reply or opt out.
+Never be cartoonishly easy: a merely decent email should often still get no reply.
+
+Return ONLY JSON:
+{"action":"no_reply" | "reply" | "booked" | "unsubscribe",
+ "reply":"your reply email text when action is reply, booked or unsubscribe (1-4 short sentences, in character, sign with your first name); empty string for no_reply",
+ "thought":"1-2 sentences, first person, about how this specific email landed with you and why — honest and concrete (shown to the trainee afterwards)"}`;
+  try{
+    const r = await callAIJson(prompt, 500);
+    const action = ["no_reply","reply","booked","unsubscribe"].includes(r.action) ? r.action : "no_reply";
+    msg.thought = String(r.thought||"").slice(0,400);
+    s.thread.push(msg); s.draftSubject = null; s.draftBody = "";
+    if(action==="no_reply"){
+      const nx = eoNextSend();
+      s.thread.push({from:"system", day:msg.day, body: nx ? `No reply from ${p.first} by Day ${nx.day}.` : `No reply from ${p.first}. The sequence is complete.`});
+      if(!nx) { s.done = true; s.outcome = "no_reply"; }
+    }else{
+      s.thread.push({from:"prospect", day:msg.day + (action==="booked" ? 0 : 1), body:String(r.reply||"").trim() || "Thanks — not right now."});
+      if(action==="booked"){ s.done = true; s.outcome = "booked"; }
+      if(action==="unsubscribe"){ s.done = true; s.outcome = "unsubscribe"; }
+    }
+    if(!s.done && eoMine().length >= EO_MAX_SENDS){ s.done = true; s.outcome = s.outcome || "ended"; }
+    eoSave(); eoRender();
+    if(s.outcome==="booked") burstConfetti();
+  }catch(e){
+    if(btn){ btn.disabled = false; btn.textContent = "Send ✉"; }
+    const el = document.getElementById("eoErr"); if(el) el.innerHTML = renderAiErrorBlock(e, "The prospect couldn't be reached");
+  }
+}
+function eoFinish(){ const s = eoState(); if(!eoMine().length) return; s.done = true; s.outcome = s.outcome || "ended"; eoSave(); eoRender(); }
+function eoDebriefHtml(){
+  const s = eoState(), p = eoProspect();
+  const banner = {booked:["🎉","Call booked","Elias has a 15-minute intro call on the calendar."], unsubscribe:["🚫","Opted out",`${p.first} asked not to be contacted — log it and stop.`], no_reply:["📭","No reply",`${p.first} never replied. That's common — the feedback shows what might change it.`], ended:["✋","Sequence ended","You ended the sequence."]}[s.outcome||"ended"];
+  return `<div class="card eo-debrief">
+    <div class="eo-out"><span>${banner[0]}</span><div><b>${banner[1]}</b><p>${esc(banner[2])}</p></div></div>
+    <div class="eo-k">How each email landed — in ${esc(p.first)}'s words</div>
+    <ol class="eo-thoughts">${eoMine().map(m=>`<li><b>${esc(m.kind==="touch" ? m.label : "Your reply")} (Day ${m.day})</b><span>“${esc(m.thought||"—")}”</span></li>`).join("")}</ol>
+    <div class="eo-actions"><button class="btn btn-ghost btn-sm" onclick="eoReset()">↺ Try again / another prospect</button>
+      <button class="btn btn-navy" onclick="eoEvaluate()">Get Evaluation</button></div>
+    <div id="eoResult">${s.reportHtml || ""}</div>
+  </div>`;
+}
+async function eoEvaluate(){
+  const s = eoState(), p = eoProspect(), el = document.getElementById("eoResult");
+  if(!(await useLabAttempt(4, "emailOutreachSim"))) return;
+  el.innerHTML = `<div class="ai-loading">Evaluating your outreach sequence…</div>`;
+  const thread = s.thread.map(m=> m.from==="system" ? `[${m.body}]` : `--- Day ${m.day} · ${m.from==="you" ? "TRAINEE" : "PROSPECT ("+p.name+")"}${m.label && m.from==="you" ? " · "+m.label : ""} ---\n${m.subject ? "Subject: "+m.subject+"\n" : ""}${m.body}`).join("\n\n");
+  try{
+    const report = await runRubricEvaluation(
+      "Email Outreach Sequence",
+      `PROSPECT BRIEF: ${p.name}, ${p.role} at ${p.company}. Research: ${p.facts.join("; ")}. Likely need: ${p.need}. GOAL: a 15-minute intro call with Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group). Planned cadence: first email day 1, follow-up with a new angle day 3–4, courteous close-out day 8–10. OUTCOME: ${s.outcome}.`,
+      thread,
+      `Score the whole sequence, not one email. (1) Research & relevance: does the first email use a specific, accurate fact from the brief and connect it to a real need? (2) Brevity & structure: roughly 50–125 words per email, a specific 3–7 word subject line, the ask visible early. (3) One clear, low-friction ask (a 15-minute call with Elias, ideally with a concrete time option). (4) Follow-ups: each adds a genuinely new angle or value instead of "just bumping"; sensible spacing; a courteous, final close-out. (5) Tone: confident and warm, never pushy, flattering or guilt-tripping; writes appropriately on Elias's behalf; no legal advice or promised outcomes. (6) Compliance: a simple opt-out line in the outreach emails; stops after an opt-out. (7) Handling replies: if the prospect replied, did the trainee answer the actual question or objection and move toward a booked call? Do not reward or penalise the outcome itself — judge the quality of what the trainee wrote.`
+    );
+    s.reportHtml = `<b style="font-size:13px;color:var(--navy);display:block;margin:12px 0 8px;">Evaluation Report — Your Outreach Sequence</b>` + renderEvaluationReport(report, 4);
+    el.innerHTML = s.reportHtml; eoSave();
+    await bumpPracticeProgress("coldcalling4", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }
+}
+Object.assign(window, {eoChoose, eoReset, eoSend, eoDraft, eoFinish, eoEvaluate});
+
+/* Day 4 Practice Lab: add the simulator as Part 4 */
+window.initColdCalling4 = function(body){
+  toolState.calls = {};
+  toolState.wizardIndex = 0;
+  toolState.intakeCall = toolState.intakeCall || {step:"pick", personaId:null, chatHistory:[], startedAt:null};
+  const partA = renderColdCallingSection('A');
+  const partB = `
+    <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
+    <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
+      <p style="font-size:13px;color:#37394A;margin:0;">${esc(LEAD_GEN_SCENARIO.text)}</p>
+    </div>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">Write your plan: at least 3 specific lead sources you'd actually use, your qualifying criteria (what makes a lead worth pursuing), and your first-contact approach.</p>
+    <textarea id="leadGenDraft" style="width:100%;min-height:160px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Lead sources...&#10;&#10;Qualifying criteria...&#10;&#10;First-contact approach..."></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewLeadGenPlan()">Get Review</button>
+    <div id="leadGenResult" style="margin-top:14px;"></div>
+  `;
+  const partC = renderIntakeCallSection();
+  const partD = renderEmailOutreachSection();
+  body.innerHTML = renderToolWizard(4, [
+    {label:"Cold-Calling Log", html:partA},
+    {label:"Lead Generation Practice", html:partB},
+    {label:"Live Intake Call Simulator", html:partC},
+    {label:"Email Outreach Simulator", html:partD}
+  ]);
+  loadCallLog();
+  // the portal rebuilds the lab on every redraw — bring the saved email thread back
+  if(!(toolState.eo && toolState.eo.prospectId)) storeGet("email-outreach-sim").then(v=>{ if(v && v.prospectId && !(toolState.eo && toolState.eo.prospectId)){ toolState.eo = v; eoRender(); } });
+};
+(function(){
+  const t = PRACTICE_TOOLS.find(x=>x.id==="coldcalling4");
+  if(t){ t.title = "Cold-Calling, Lead Generation & Email Outreach"; t.desc = "Log a full round of cold-calling outreach, draft a real lead-generation plan, handle a live intake call, then run an email outreach sequence against an AI prospect who replies — or doesn't — the way a busy professional really would."; }
+})();
+
+/* ---------- 7. Inbox Zero, Gmail-style (Day 2 lab) ----------
+   The drag-into-quadrants board is replaced by an inbox that behaves like
+   Gmail: list rows with hover actions, bold unread mail, an open-email reading
+   view, toolbar, snooze menu, forward window, Undo snackbar, Gmail keyboard
+   shortcuts and the "You're all done" empty inbox. Every email leaves the
+   Inbox through one real Gmail action, which is the triage decision:
+     Reply / ⭐ Star = Do (urgent & important)      🕒 Snooze = Schedule
+     ↪ Forward to a delegate = Delegate            Archive / 🗑 Delete = Delete/Defer
+   Grading is the same expert comparison as before. */
+(function(){ const s = document.createElement("style"); s.id = "eapa-gmail"; s.textContent = `
+.gm{border:1px solid #dadce0;border-radius:14px;background:#f6f8fc;overflow:hidden;font-family:Roboto,'Segoe UI',Arial,sans-serif;color:#202124;position:relative;outline:none;}
+.gm:focus-visible{box-shadow:0 0 0 2px #0b57d0;}
+.gm svg{width:20px;height:20px;fill:currentColor;flex-shrink:0;}
+.gm-top{display:flex;align-items:center;gap:14px;padding:8px 14px;}
+.gm-logo{display:flex;align-items:center;gap:6px;font-size:20px;color:#444746;min-width:170px;} .gm-logo b{display:inline-flex;width:28px;height:22px;border-radius:4px;background:linear-gradient(135deg,#ea4335 0 25%,#fbbc04 25% 50%,#34a853 50% 75%,#4285f4 75%);color:#fff;font-size:13px;align-items:center;justify-content:center;}
+.gm-search{flex:1;max-width:720px;display:flex;align-items:center;gap:10px;background:#e9eef6;border-radius:24px;padding:10px 16px;color:#444746;}
+.gm-search input{border:none;background:transparent;outline:none;font:inherit;font-size:15px;flex:1;color:#202124;}
+.gm-avatar{margin-left:auto;width:32px;height:32px;border-radius:50%;background:#1F2440;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+.gm-body{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:560px;}
+.gm-nav{padding:4px 10px 12px 8px;}
+.gm-compose{display:inline-flex;align-items:center;gap:10px;background:#c2e7ff;border:none;border-radius:16px;padding:16px 22px;font:inherit;font-weight:600;font-size:14px;color:#001d35;margin:4px 0 14px;cursor:not-allowed;opacity:.85;}
+.gm-folder{display:flex;align-items:center;gap:14px;width:100%;border:none;background:none;font:inherit;font-size:14px;color:#202124;padding:0 12px 0 16px;height:32px;border-radius:0 16px 16px 0;cursor:pointer;text-align:left;}
+.gm-folder:hover{background:#e9eaed;} .gm-folder.on{background:#d3e3fd;font-weight:700;color:#001d35;}
+.gm-folder span{flex:1;} .gm-folder em{font-style:normal;font-size:12px;font-weight:700;}
+.gm-folder small{display:block;font-size:10.5px;color:#5f6368;font-weight:400;margin-top:-3px;}
+.gm-folder.two{height:40px;}
+.gm-main{background:#fff;border-radius:16px;margin:0 12px 12px 0;display:flex;flex-direction:column;min-width:0;}
+.gm-bar{display:flex;align-items:center;gap:4px;padding:6px 10px;border-bottom:1px solid #f1f3f4;min-height:44px;}
+.gm-ib{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:none;background:none;color:#444746;cursor:pointer;position:relative;}
+.gm-ib:hover{background:#f1f3f4;} .gm-ib[disabled]{opacity:.35;cursor:default;background:none;}
+.gm-ib[data-tip]:hover::after{content:attr(data-tip);position:absolute;top:38px;left:50%;transform:translateX(-50%);background:#3c4043;color:#fff;font-size:11.5px;padding:4px 8px;border-radius:4px;white-space:nowrap;z-index:5;}
+.gm-count{margin-left:auto;font-size:12px;color:#5f6368;}
+.gm-chk{width:16px;height:16px;accent-color:#0b57d0;cursor:pointer;margin:0 8px;}
+.gm-list{flex:1;overflow:auto;}
+.gm-row{display:flex;align-items:center;gap:4px;padding:0 12px 0 6px;height:40px;border-bottom:1px solid #f1f3f4;cursor:pointer;background:#f2f6fc;position:relative;font-size:14px;}
+.gm-row.unread{background:#fff;} .gm-row.unread .gm-from, .gm-row.unread .gm-subj, .gm-row.unread .gm-time{font-weight:700;color:#202124;}
+.gm-row:hover{box-shadow:inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15);z-index:1;}
+.gm-row.focus{box-shadow:inset 3px 0 0 #0b57d0;} .gm-row.sel{background:#c2dbff;}
+.gm-star{color:#5f6368;} .gm-star.on{color:#f4b400;}
+.gm-from{width:190px;flex-shrink:0;color:#202124;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:4px;}
+.gm-snip{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#5f6368;}
+.gm-subj{color:#202124;}
+.gm-time{width:84px;text-align:right;font-size:12px;color:#5f6368;flex-shrink:0;}
+.gm-tag{font-size:11px;border-radius:4px;padding:1px 6px;margin-right:6px;background:#e8eaed;color:#3c4043;font-weight:600;}
+.gm-hover{display:none;position:absolute;right:8px;top:2px;background:inherit;gap:2px;}
+.gm-row:hover .gm-hover{display:flex;} .gm-row:hover .gm-time{visibility:hidden;}
+.gm-read{flex:1;overflow:auto;padding:4px 0 20px;}
+.gm-read h2{font-family:'Google Sans',Roboto,Arial,sans-serif;font-size:22px;font-weight:400;margin:14px 20px 16px 72px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.gm-read h2 .gm-tag{font-size:12px;font-weight:500;}
+.gm-sender{display:flex;align-items:flex-start;gap:14px;padding:0 20px;}
+.gm-av{width:40px;height:40px;border-radius:50%;background:#e8710a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;}
+.gm-sender b{font-size:14px;} .gm-sender span{font-size:12px;color:#5f6368;}
+.gm-sender .gm-when{margin-left:auto;font-size:12px;color:#5f6368;white-space:nowrap;}
+.gm-msg{margin:14px 20px 0 74px;font-size:14px;line-height:1.6;color:#222;}
+.gm-msg p{margin:0 0 10px;}
+.gm-replybar{display:flex;gap:10px;margin:22px 20px 0 74px;flex-wrap:wrap;}
+.gm-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #747775;border-radius:18px;background:#fff;padding:8px 18px;font:inherit;font-size:14px;color:#444746;cursor:pointer;}
+.gm-pill:hover{background:#f1f3f4;}
+.gm-done{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;color:#5f6368;gap:8px;}
+.gm-done .sun{font-size:64px;} .gm-done b{font-size:20px;color:#202124;font-weight:400;}
+.gm-empty{padding:40px 20px;text-align:center;color:#5f6368;font-size:14px;}
+.gm-menu{position:absolute;z-index:20;background:#fff;border-radius:8px;box-shadow:0 4px 8px 3px rgba(60,64,67,.15),0 1px 3px rgba(60,64,67,.3);padding:8px 0;min-width:260px;top:96px;right:40px;}
+.gm-menu h6{margin:4px 16px 8px;font-size:14px;font-weight:500;color:#202124;}
+.gm-menu button{display:flex;justify-content:space-between;width:100%;border:none;background:none;font:inherit;font-size:14px;padding:8px 16px;cursor:pointer;color:#202124;} .gm-menu button:hover{background:#f1f3f4;} .gm-menu button span{color:#5f6368;}
+.gm-compose-win{position:absolute;right:24px;bottom:0;width:min(460px,90%);background:#fff;border-radius:8px 8px 0 0;box-shadow:0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);z-index:25;display:flex;flex-direction:column;}
+.gm-cw-h{background:#f2f6fc;border-radius:8px 8px 0 0;padding:10px 14px;font-size:14px;font-weight:500;display:flex;justify-content:space-between;align-items:center;}
+.gm-cw-h button{border:none;background:none;font-size:18px;cursor:pointer;color:#444746;}
+.gm-cw-row{display:flex;align-items:center;gap:8px;border-bottom:1px solid #f1f3f4;padding:6px 14px;font-size:14px;color:#5f6368;}
+.gm-cw-row input, .gm-cw-row select{flex:1;border:none;outline:none;font:inherit;font-size:14px;color:#202124;background:transparent;}
+.gm-compose-win textarea{border:none;outline:none;font:inherit;font-size:14px;padding:10px 14px;min-height:130px;resize:vertical;}
+.gm-cw-foot{padding:10px 14px;display:flex;align-items:center;gap:10px;}
+.gm-send{background:#0b57d0;color:#fff;border:none;border-radius:18px;padding:9px 22px;font:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.gm-snack{position:absolute;left:16px;bottom:16px;background:#3c4043;color:#fff;border-radius:4px;padding:12px 16px;font-size:14px;display:flex;gap:22px;align-items:center;z-index:30;box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14);}
+.gm-snack button{border:none;background:none;color:#a8c7fa;font:inherit;font-weight:600;cursor:pointer;}
+.gm-legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:10px 14px;border-top:1px solid #e3e3e3;background:#fff;font-size:12.5px;color:#444746;}
+.gm-legend b{color:#202124;} .gm-legend .gm-kbd{font-family:monospace;background:#f1f3f4;border-radius:3px;padding:0 4px;}
+.gm-legend .gm-submit{margin-left:auto;}
+.gm-progress{height:4px;background:#e8eaed;} .gm-progress i{display:block;height:100%;background:#0b57d0;transition:width .3s;}
+.gm-res-row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:8px 0;font-size:13px;flex-wrap:wrap;} .gm-res-row b{color:var(--navy);}
+@media(max-width:860px){.gm-body{grid-template-columns:1fr;} .gm-nav{display:flex;gap:4px;overflow-x:auto;padding:4px 8px;} .gm-nav .gm-compose{display:none;} .gm-folder{width:auto;white-space:nowrap;border-radius:16px;} .gm-folder small{display:none;} .gm-main{margin:0 8px 8px;} .gm-from{width:110px;} .gm-logo{min-width:0;} .gm-logo span{display:none;} .gm-read h2, .gm-msg, .gm-replybar{margin-left:20px;}}
+`; document.head.appendChild(s); })();
+
+const GM_ICON = {
+  archive:'<svg viewBox="0 0 24 24"><path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM12 17.5L6.5 12H10v-2h4v2h3.5L12 17.5zM5.12 5l.81-1h12l.94 1H5.12z"/></svg>',
+  trash:'<svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>',
+  snooze:'<svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>',
+  star:'<svg viewBox="0 0 24 24"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>',
+  starOn:'<svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>',
+  forward:'<svg viewBox="0 0 24 24"><path d="M14 8V4l7 7-7 7v-4.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z"/></svg>',
+  reply:'<svg viewBox="0 0 24 24"><path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z"/></svg>',
+  back:'<svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>',
+  inbox:'<svg viewBox="0 0 24 24"><path d="M19 3H4.99c-1.11 0-1.98.89-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10z"/></svg>',
+  unread:'<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+  search:'<svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>',
+  pencil:'<svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 000-1.41l-2.34-2.34a.996.996 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>',
+  refresh:'<svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>'
+};
+const GM_ACTIONS = {
+  reply:  {q:"1", folder:"starred",   verb:"Replied",   done:"Reply sent."},
+  star:   {q:"1", folder:"starred",   verb:"Starred",   done:"Starred — on your Do-now list."},
+  snooze: {q:"2", folder:"snoozed",   verb:"Snoozed",   done:"Snoozed"},
+  forward:{q:"3", folder:"forwarded", verb:"Forwarded", done:"Message forwarded."},
+  archive:{q:"4", folder:"archive",   verb:"Archived",  done:"Conversation archived."},
+  trash:  {q:"4", folder:"trash",     verb:"Deleted",   done:"Conversation moved to Trash."}
+};
+const GM_FOLDERS = [
+  {id:"inbox", name:"Inbox", icon:"inbox"},
+  {id:"starred", name:"Starred", sub:"Do now", icon:"starOn"},
+  {id:"snoozed", name:"Snoozed", sub:"Schedule", icon:"snooze"},
+  {id:"forwarded", name:"Forwarded", sub:"Delegate", icon:"forward"},
+  {id:"archive", name:"All mail", sub:"Archived — defer", icon:"archive"},
+  {id:"trash", name:"Trash", sub:"Delete", icon:"trash"}
+];
+const GM_SNOOZE = [["Later today","6:00 PM"],["Tomorrow","Tue, 8:00 AM"],["This weekend","Sat, 8:00 AM"],["Next week","Mon, 8:00 AM"]];
+const GM_DELEGATES = ["Priya Nair — Communications & PR", "Litigation associate on the matter", "Billing & Finance team", "Office Manager / IT", "Household Manager", "Paralegal team"];
+
+function gmIz(){ const iz = toolState.iz || (toolState.iz = {inbox:[], placements:{}}); iz.meta = iz.meta || {}; iz.read = iz.read || {}; iz.sel = iz.sel || {}; iz.folder = iz.folder || "inbox"; return iz; }
+function gmSave(){ const iz = gmIz(); storeSet("iz-gmail", {inbox:iz.inbox, placements:iz.placements, meta:iz.meta, read:iz.read, startedAt:iz.startedAt, result:iz.result||null}); }
+function gmFolderOf(e){ const m = gmIz().meta[e.id]; return m ? GM_ACTIONS[m.action].folder : "inbox"; }
+function gmVisible(){
+  const iz = gmIz(), q = (iz.search||"").toLowerCase();
+  return iz.inbox.filter(e=>gmFolderOf(e)===iz.folder && (!q || (e.from+" "+e.subject+" "+(e.body||e.preview)).toLowerCase().includes(q)));
+}
+function gmName(from){ const m = String(from).match(/^\s*"?([^"<]+?)"?\s*<([^>]+)>/); return m ? {name:m[1].trim(), email:m[2].trim()} : {name:String(from), email:""}; }
+
+function renderInboxZeroSection(){
+  const iz = gmIz();
+  if(!iz.inbox.length && !toolState.gmRestoreTried){
+    toolState.gmRestoreTried = true;
+    storeGet("iz-gmail").then(v=>{ if(v && v.inbox && v.inbox.length && !gmIz().inbox.length){ Object.assign(toolState.iz, v); gmRender(); } });
+  }
+  return `
+    <h3 style="margin:36px 0 6px;color:var(--navy);font-size:15px;">Inbox Zero — Eisenhower Matrix Challenge</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias's inbox after a red-eye: 25 overlapping, conflicting, urgent emails — different every time. Work it exactly like Gmail until you reach Inbox Zero. Every email leaves the Inbox through one decision.</p>
+    <div id="gmZone">${gmView()}</div>`;
+}
+function gmRender(){ const z = document.getElementById("gmZone"); if(z){ const hadFocus = document.activeElement && document.activeElement.id==="gmShell"; z.innerHTML = gmView(); if(hadFocus){ const s = document.getElementById("gmShell"); if(s) s.focus({preventScroll:true}); } } }
+function gmView(){
+  const iz = gmIz();
+  if(!iz.inbox.length){
+    return `<div class="card" style="padding:16px 18px;">
+      <b style="font-size:13px;color:var(--navy);">Load Elias's inbox</b>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 10px;">25 emails landed while he was offline. Nothing is pre-sorted.</p>
+      <button class="btn btn-orange btn-sm" id="izGenBtn" onclick="izGenerateInbox()">Generate 25-Email Inbox</button>
+      <span id="izGenStatus" style="margin-left:10px;font-size:12px;color:var(--ink-soft);"></span>
+    </div>`;
+  }
+  const handled = iz.inbox.filter(e=>iz.meta[e.id]).length, total = iz.inbox.length;
+  const unreadIn = iz.inbox.filter(e=>gmFolderOf(e)==="inbox" && !iz.read[e.id]).length;
+  const counts = {}; iz.inbox.forEach(e=>{ const f = gmFolderOf(e); counts[f] = (counts[f]||0)+1; });
+  const open = iz.open && iz.inbox.find(e=>e.id===iz.open);
+  return `<div class="gm" id="gmShell" tabindex="0" onkeydown="gmKey(event)">
+    <div class="gm-top">
+      <div class="gm-logo"><b>M</b><span>Mail</span></div>
+      <label class="gm-search">${GM_ICON.search}<input placeholder="Search mail" value="${esc(iz.search||"")}" oninput="gmSearch(this.value)"></label>
+      <div class="gm-avatar" title="Elias Thorne's mailbox — you have delegate access">ET</div>
+    </div>
+    <div class="gm-progress"><i style="width:${Math.round(handled/total*100)}%"></i></div>
+    <div class="gm-body">
+      <nav class="gm-nav">
+        <button class="gm-compose" title="Not needed for this exercise" disabled>${GM_ICON.pencil} Compose</button>
+        ${GM_FOLDERS.map(f=>`<button class="gm-folder ${f.sub?"two":""} ${iz.folder===f.id?"on":""}" onclick="gmFolder('${f.id}')">${GM_ICON[f.icon]}<span>${f.name}${f.sub?`<small>${f.sub}</small>`:""}</span><em>${f.id==="inbox" ? (unreadIn||"") : (counts[f.id]||"")}</em></button>`).join("")}
+      </nav>
+      <section class="gm-main">${open ? gmReaderHtml(open) : gmListHtml()}</section>
+    </div>
+    <div class="gm-legend">
+      <span><b>Do:</b> Reply or ⭐ Star</span><span><b>Schedule:</b> 🕒 Snooze</span><span><b>Delegate:</b> ↪ Forward</span><span><b>Delete/Defer:</b> Archive or 🗑</span>
+      <span title="Gmail keyboard shortcuts">⌨ <span class="gm-kbd">j</span>/<span class="gm-kbd">k</span> move · <span class="gm-kbd">o</span> open · <span class="gm-kbd">u</span> back · <span class="gm-kbd">e</span> archive · <span class="gm-kbd">#</span> delete · <span class="gm-kbd">s</span> star · <span class="gm-kbd">b</span> snooze · <span class="gm-kbd">f</span> forward · <span class="gm-kbd">r</span> reply · <span class="gm-kbd">z</span> undo</span>
+      <span class="gm-submit">${handled}/${total} handled ${handled===total ? `<button class="btn btn-navy btn-sm" onclick="izSubmitSort()">Submit for Grading</button>` : ""}</span>
+    </div>
+    ${iz.menu ? gmMenuHtml() : ""}
+    ${iz.compose ? gmComposeHtml() : ""}
+    ${iz.snack ? `<div class="gm-snack"><span>${esc(iz.snack)}</span><button onclick="gmUndo()">Undo</button></div>` : ""}
+  </div>
+  <div id="izSortResult" style="margin-top:14px;">${iz.result || ""}</div>
+  <div style="margin-top:8px;"><button class="btn btn-ghost btn-sm" onclick="gmRegenerate()">↻ Generate a new inbox</button> <span id="izGenStatus" style="margin-left:8px;font-size:12px;color:var(--ink-soft);"></span></div>`;
+}
+function gmListHtml(){
+  const iz = gmIz(), rows = gmVisible();
+  const selIds = rows.filter(e=>iz.sel[e.id]).map(e=>e.id);
+  const inInbox = iz.folder==="inbox";
+  const bulk = (a, tip)=>`<button class="gm-ib" data-tip="${tip}" ${selIds.length?"":"disabled"} onclick="gmBulk('${a}')">${GM_ICON[a==="star"?"star":a]}</button>`;
+  let body;
+  if(!rows.length){
+    body = inInbox && !iz.search
+      ? `<div class="gm-done"><div class="sun">☀️</div><b>You're all done!</b><div>Nothing in Inbox — that's Inbox Zero.</div>${iz.inbox.every(e=>iz.meta[e.id]) ? `<button class="btn btn-navy" style="margin-top:12px;" onclick="izSubmitSort()">Submit for Grading</button>` : ""}</div>`
+      : `<div class="gm-empty">${iz.search ? "No messages matched your search." : "No conversations in "+esc(GM_FOLDERS.find(f=>f.id===iz.folder).name)+"."}</div>`;
+  }else{
+    body = rows.map((e,i)=>{
+      const n = gmName(e.from), m = iz.meta[e.id], unread = !iz.read[e.id];
+      return `<div class="gm-row ${unread?"unread":""} ${iz.focus===i?"focus":""} ${iz.sel[e.id]?"sel":""}" onclick="gmOpen('${e.id}')">
+        <input type="checkbox" class="gm-chk" ${iz.sel[e.id]?"checked":""} onclick="event.stopPropagation();gmSelect('${e.id}',this.checked)" aria-label="Select">
+        <button class="gm-ib gm-star ${m && m.action==="star"?"on":""}" onclick="event.stopPropagation();${inInbox?`gmAct(['${e.id}'],'star')`:""}" title="${inInbox?"Star (Do now)":""}">${m && m.action==="star" ? GM_ICON.starOn : GM_ICON.star}</button>
+        <div class="gm-from">${esc(n.name)}</div>
+        <div class="gm-snip">${m && !inInbox ? `<span class="gm-tag">${esc(GM_ACTIONS[m.action].verb)}${m.detail?" · "+esc(m.detail):""}</span>` : ""}<span class="gm-subj">${esc(e.subject)}</span> — ${esc(e.preview||"")}</div>
+        <div class="gm-time">${esc(e.time||"")}</div>
+        <div class="gm-hover">${inInbox
+          ? `<button class="gm-ib" data-tip="Archive" onclick="event.stopPropagation();gmAct(['${e.id}'],'archive')">${GM_ICON.archive}</button><button class="gm-ib" data-tip="Delete" onclick="event.stopPropagation();gmAct(['${e.id}'],'trash')">${GM_ICON.trash}</button><button class="gm-ib" data-tip="Mark as unread" onclick="event.stopPropagation();gmUnread('${e.id}')">${GM_ICON.unread}</button><button class="gm-ib" data-tip="Snooze" onclick="event.stopPropagation();gmMenu(['${e.id}'])">${GM_ICON.snooze}</button>`
+          : `<button class="gm-ib" data-tip="Move to Inbox" onclick="event.stopPropagation();gmToInbox(['${e.id}'])">${GM_ICON.inbox}</button>`}</div>
+      </div>`;
+    }).join("");
+  }
+  return `<div class="gm-bar">
+      <input type="checkbox" class="gm-chk" ${rows.length && selIds.length===rows.length?"checked":""} onclick="gmSelectAll(this.checked)" aria-label="Select all">
+      <button class="gm-ib" data-tip="Refresh" onclick="gmRender()">${GM_ICON.refresh}</button>
+      ${inInbox ? bulk("archive","Archive")+bulk("trash","Delete")+`<button class="gm-ib" data-tip="Snooze" ${selIds.length?"":"disabled"} onclick="gmMenu(null)">${GM_ICON.snooze}</button>`+bulk("star","Star") : `<button class="gm-ib" data-tip="Move to Inbox" ${selIds.length?"":"disabled"} onclick="gmToInbox(null)">${GM_ICON.inbox}</button>`}
+      <span class="gm-count">${rows.length ? `1–${rows.length} of ${rows.length}` : ""}</span>
+    </div>
+    <div class="gm-list">${body}</div>`;
+}
+function gmReaderHtml(e){
+  const iz = gmIz(), n = gmName(e.from), m = iz.meta[e.id], inInbox = !m;
+  const paras = String(e.body || e.preview || "").split(/\n+/).map(p=>`<p>${esc(p)}</p>`).join("");
+  const tb = (a, tip, fn)=>`<button class="gm-ib" data-tip="${tip}" onclick="${fn}">${GM_ICON[a]}</button>`;
+  return `<div class="gm-bar">
+      ${tb("back","Back to "+esc(GM_FOLDERS.find(f=>f.id===iz.folder).name),"gmBack()")}
+      ${inInbox ? tb("archive","Archive",`gmAct(['${e.id}'],'archive')`)+tb("trash","Delete",`gmAct(['${e.id}'],'trash')`)+tb("unread","Mark as unread",`gmUnread('${e.id}')`)+tb("snooze","Snooze",`gmMenu(['${e.id}'])`)+tb("star","Star (Do now)",`gmAct(['${e.id}'],'star')`) : tb("inbox","Move to Inbox",`gmToInbox(['${e.id}'])`)}
+    </div>
+    <div class="gm-read">
+      <h2>${esc(e.subject)} <span class="gm-tag">${m ? esc(GM_ACTIONS[m.action].verb)+(m.detail?" · "+esc(m.detail):"") : "Inbox"}</span></h2>
+      <div class="gm-sender"><div class="gm-av">${esc((n.name[0]||"?").toUpperCase())}</div><div><b>${esc(n.name)}</b> <span>&lt;${esc(n.email)}&gt;</span><br><span>to Elias Thorne</span></div><span class="gm-when">${esc(e.time||"")}</span></div>
+      <div class="gm-msg">${paras}</div>
+      ${inInbox ? `<div class="gm-replybar"><button class="gm-pill" onclick="gmCompose('${e.id}','reply')">${GM_ICON.reply} Reply</button><button class="gm-pill" onclick="gmCompose('${e.id}','forward')">${GM_ICON.forward} Forward</button></div>` : ""}
+    </div>`;
+}
+function gmMenuHtml(){
+  return `<div class="gm-menu" onclick="event.stopPropagation()"><h6>Snooze until…</h6>
+    ${GM_SNOOZE.map(([a,b])=>`<button onclick="gmSnooze('${a}')">${a}<span>${b}</span></button>`).join("")}
+    <button onclick="gmSnooze('Pick date & time')">📅 Pick date &amp; time</button>
+    <button onclick="gmCloseMenu()" style="justify-content:center;color:#0b57d0;">Cancel</button></div>`;
+}
+function gmComposeHtml(){
+  const iz = gmIz(), c = iz.compose, e = iz.inbox.find(x=>x.id===c.id), n = gmName(e.from);
+  const fwd = c.mode==="forward";
+  return `<div class="gm-compose-win">
+    <div class="gm-cw-h">${fwd ? "Fwd: " : "Re: "}${esc(e.subject)}<button onclick="gmCloseCompose()" title="Close">✕</button></div>
+    <div class="gm-cw-row">To ${fwd
+      ? `<input id="gmTo" list="gmDelegates" placeholder="Who should handle this?" value="${esc(c.to||"")}"><datalist id="gmDelegates">${GM_DELEGATES.map(d=>`<option value="${esc(d)}">`).join("")}</datalist>`
+      : `<input id="gmTo" value="${esc(n.name)}" readonly>`}</div>
+    <textarea id="gmNote" placeholder="${fwd ? "Add a short handoff note: what you need and by when…" : "Write your reply…"}">${esc(c.note||"")}</textarea>
+    <div class="gm-cw-foot"><button class="gm-send" onclick="gmSendCompose()">Send</button><span style="font-size:12px;color:#5f6368;">${fwd ? "Forwarding = Delegate" : "Replying now = Do"}</span></div>
+  </div>`;
+}
+/* ---- actions ---- */
+function gmAct(ids, action, detail){
+  const iz = gmIz(); ids = ids.filter(id=>!iz.meta[id]); if(!ids.length) return;
+  if(!iz.startedAt) iz.startedAt = Date.now();
+  iz.undo = ids.map(id=>({id, placement:iz.placements[id]}));
+  ids.forEach(id=>{ iz.meta[id] = {action, detail:detail||""}; iz.placements[id] = GM_ACTIONS[action].q; iz.read[id] = true; delete iz.sel[id]; });
+  if(iz.open && ids.includes(iz.open)) iz.open = null;
+  const d = GM_ACTIONS[action];
+  iz.snack = (ids.length>1 ? `${ids.length} conversations ` + d.verb.toLowerCase()+"." : d.done) + (action==="snooze" && detail ? " until "+detail+"." : "");
+  iz.menu = null; iz.compose = null;
+  clearTimeout(gmAct.t); gmAct.t = setTimeout(()=>{ gmIz().snack = null; gmRender(); }, 7000);
+  const vis = gmVisible(); iz.focus = Math.min(iz.focus||0, Math.max(0, vis.length-1));
+  gmSave(); gmRender();
+}
+function gmUndo(){
+  const iz = gmIz(); if(!iz.undo) return;
+  iz.undo.forEach(u=>{ delete iz.meta[u.id]; if(u.placement) iz.placements[u.id] = u.placement; else delete iz.placements[u.id]; });
+  iz.undo = null; iz.snack = "Action undone."; clearTimeout(gmAct.t); gmAct.t = setTimeout(()=>{ gmIz().snack = null; gmRender(); }, 3000);
+  gmSave(); gmRender();
+}
+function gmToInbox(ids){
+  const iz = gmIz(); ids = ids || gmVisible().filter(e=>iz.sel[e.id]).map(e=>e.id);
+  ids.forEach(id=>{ delete iz.meta[id]; delete iz.placements[id]; delete iz.sel[id]; });
+  if(iz.open && ids.includes(iz.open)) iz.open = null;
+  iz.snack = ids.length>1 ? `${ids.length} conversations moved to Inbox.` : "Conversation moved to Inbox."; iz.undo = null;
+  gmSave(); gmRender();
+}
+function gmBulk(a){ const iz = gmIz(); const ids = gmVisible().filter(e=>iz.sel[e.id]).map(e=>e.id); if(ids.length) gmAct(ids, a); }
+function gmOpen(id){ const iz = gmIz(); iz.open = id; iz.read[id] = true; iz.menu = null; gmSave(); gmRender(); const s = document.getElementById("gmShell"); if(s) s.focus({preventScroll:true}); }
+function gmBack(){ const iz = gmIz(); iz.open = null; iz.compose = null; gmRender(); }
+function gmUnread(id){ const iz = gmIz(); delete iz.read[id]; if(iz.open===id) iz.open = null; iz.snack = "Marked as unread."; gmSave(); gmRender(); }
+function gmFolder(f){ const iz = gmIz(); iz.folder = f; iz.open = null; iz.sel = {}; iz.focus = 0; iz.menu = null; gmRender(); }
+function gmSearch(v){ const iz = gmIz(); iz.search = v; iz.focus = 0; const z = document.getElementById("gmZone"); if(!z) return; const main = z.querySelector(".gm-main"); if(main && !iz.open) main.innerHTML = gmListHtml(); }
+function gmSelect(id, on){ const iz = gmIz(); if(on) iz.sel[id] = true; else delete iz.sel[id]; gmRender(); }
+function gmSelectAll(on){ const iz = gmIz(); iz.sel = {}; if(on) gmVisible().forEach(e=>iz.sel[e.id] = true); gmRender(); }
+function gmMenu(ids){ const iz = gmIz(); iz.menu = {ids: ids || gmVisible().filter(e=>iz.sel[e.id]).map(e=>e.id)}; if(!iz.menu.ids.length){ iz.menu = null; return; } gmRender(); }
+function gmCloseMenu(){ gmIz().menu = null; gmRender(); }
+function gmSnooze(label){ const iz = gmIz(); if(!iz.menu) return; const opt = GM_SNOOZE.find(x=>x[0]===label); gmAct(iz.menu.ids, "snooze", opt ? opt[1] : "a date you picked"); }
+function gmCompose(id, mode){ const iz = gmIz(); iz.compose = {id, mode, to:"", note:""}; gmRender(); setTimeout(()=>{ const el = document.getElementById(mode==="forward" ? "gmTo" : "gmNote"); if(el) el.focus(); }, 30); }
+function gmCloseCompose(){ gmIz().compose = null; gmRender(); }
+function gmSendCompose(){
+  const iz = gmIz(), c = iz.compose; if(!c) return;
+  const to = (document.getElementById("gmTo")||{}).value || "", note = (document.getElementById("gmNote")||{}).value || "";
+  if(c.mode==="forward" && !to.trim()){ toast("Add who you're forwarding it to."); return; }
+  if(note.trim().length < 3){ toast(c.mode==="forward" ? "Add a short handoff note." : "Write your reply first."); return; }
+  iz.notes = iz.notes || {}; iz.notes[c.id] = note.trim();
+  gmAct([c.id], c.mode==="forward" ? "forward" : "reply", c.mode==="forward" ? to.trim() : "");
+}
+function gmKey(ev){
+  const t = ev.target; if(t && (t.tagName==="INPUT" || t.tagName==="TEXTAREA" || t.tagName==="SELECT")) return;
+  const iz = gmIz(); const rows = gmVisible(); const inInbox = iz.folder==="inbox";
+  const cur = iz.open || (rows[iz.focus||0] && rows[iz.focus||0].id);
+  const k = ev.key; let hit = true;
+  if(k==="j" || k==="ArrowDown"){ if(iz.open){ const i = rows.findIndex(e=>e.id===iz.open); if(rows[i+1]) gmOpen(rows[i+1].id); } else { iz.focus = Math.min((iz.focus||0)+1, rows.length-1); gmRender(); } }
+  else if(k==="k" || k==="ArrowUp"){ if(iz.open){ const i = rows.findIndex(e=>e.id===iz.open); if(i>0) gmOpen(rows[i-1].id); } else { iz.focus = Math.max((iz.focus||0)-1, 0); gmRender(); } }
+  else if((k==="o" || k==="Enter") && !iz.open && cur) gmOpen(cur);
+  else if(k==="u" || k==="Escape"){ if(iz.menu) gmCloseMenu(); else if(iz.compose) gmCloseCompose(); else gmBack(); }
+  else if(k==="z") gmUndo();
+  else if(k==="x" && !iz.open && cur){ gmSelect(cur, !iz.sel[cur]); }
+  else if(inInbox && cur && !iz.meta[cur]){
+    if(k==="e") gmAct([cur],"archive"); else if(k==="#") gmAct([cur],"trash"); else if(k==="s") gmAct([cur],"star");
+    else if(k==="b") gmMenu([cur]); else if(k==="f") gmCompose(cur,"forward"); else if(k==="r") gmCompose(cur,"reply"); else hit = false;
+  } else hit = false;
+  if(hit){ ev.preventDefault(); ev.stopPropagation(); }
+}
+async function gmRegenerate(){
+  const iz = gmIz();
+  if(iz.inbox.length && Object.keys(iz.meta).length && !confirm("Generate a brand-new inbox? Your current progress in this one will be cleared.")) return;
+  izGenerateInbox();
+}
+/* generation: same themed batches as before, plus a full body for the reading view */
+async function izGenerateInbox(){
+  const btn = document.getElementById("izGenBtn"), status = document.getElementById("izGenStatus");
+  if(btn) btn.disabled = true;
+  if(status) status.textContent = "Generating… (about 15–30 seconds)";
+  const themes = [
+    "client matters and court/arbitration deadlines — include at least one genuine emergency tied to the Meridian Dynamics arbitration",
+    "scheduling: overlapping meeting requests, calendar conflicts, reschedules, and travel changes",
+    "internal firm operations: partners, associates, billing, finance approvals, HR and IT",
+    "family and household logistics, personal appointments, and one media or PR inquiry",
+    "vendors, newsletters, event invitations, subscriptions, and other low-priority noise"
+  ];
+  const makePrompt = (theme)=>`You are generating part of a training inbox for an Executive Assistant training simulation. The EA works for Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group).
+
+CLIENT CONTEXT:
+${CLIENT_DOSSIER_MD}
+
+Generate EXACTLY 5 realistic, varied emails for this theme: ${theme}. They landed while he was offline overnight on a red-eye. Vary sender, tone, and urgency; invent plausible names, firms, and specifics.
+
+For EACH email, privately classify the Eisenhower quadrant from the EA's perspective: "1" = Urgent & Important (Do), "2" = Important Not Urgent (Schedule), "3" = Urgent Not Important (Delegate), "4" = Neither (Delete/Defer).
+
+Return ONLY a JSON array of exactly 5 objects — no preamble, no markdown fences. Each object:
+{"from":"Name <email>", "subject":"...", "preview":"one sentence preview", "body":"the full email, 2-5 short sentences, written the way this sender really would (greeting and sign-off included)", "idealQuadrant":"1"}`;
+  try{
+    const results = [];
+    for(let k=0;k<themes.length;k+=2){ results.push(...await Promise.allSettled(themes.slice(k,k+2).map(t=>callAIJson(makePrompt(t), 2200, 70000)))); }
+    const emails = results.filter(x=>x.status==="fulfilled" && Array.isArray(x.value)).flatMap(x=>x.value);
+    if(emails.length < 10) throw new Error("only "+emails.length+" emails returned");
+    for(let i=emails.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [emails[i],emails[j]]=[emails[j],emails[i]]; }
+    let mins = 6*60+52;   // newest first, like a real inbox the morning after a red-eye
+    const iz = gmIz();
+    iz.inbox = emails.slice(0,25).map((e,i)=>{ mins -= 4 + Math.floor(Math.random()*22); const h = Math.floor(((mins%1440)+1440)%1440/60), m = ((mins%60)+60)%60;
+      return {id:"m"+i, from:e.from||"Unknown", subject:e.subject||"(no subject)", preview:e.preview||"", body:e.body||e.preview||"", time:`${h%12||12}:${String(m).padStart(2,"0")} ${h<12?"AM":"PM"}`, idealQuadrant:String(e.idealQuadrant||"4").replace(/[^1-4]/g,"")||"4"}; });
+    iz.placements = {}; iz.meta = {}; iz.read = {}; iz.sel = {}; iz.folder = "inbox"; iz.open = null; iz.focus = 0; iz.result = ""; iz.startedAt = 0; iz.snack = null;
+    gmSave(); gmRender();
+    const failed = results.filter(x=>x.status!=="fulfilled").length;
+    if(failed) toast(`${iz.inbox.length} emails loaded (${failed} batch${failed>1?"es":""} timed out — the inbox is a little smaller, that's fine).`);
+    const sh = document.getElementById("gmShell"); if(sh) sh.focus({preventScroll:true});
+  }catch(e){
+    console.error("Inbox generation failed:", e);
+    const st = document.getElementById("izGenStatus");
+    if(st) st.textContent = /timed out/i.test(e.message||"") ? "The AI service is responding slowly — please try again in a moment." : "Couldn't generate the inbox — please try again.";
+  }finally{
+    const b = document.getElementById("izGenBtn"); if(b) b.disabled = false;
+  }
+}
+async function izSubmitSort(){
+  const iz = gmIz(), total = iz.inbox.length, handled = iz.inbox.filter(e=>iz.meta[e.id]).length;
+  if(handled < total){ toast(`Get to Inbox Zero first (${total-handled} left in the Inbox).`); return; }
+  let correct = 0; iz.inbox.forEach(e=>{ if(iz.placements[e.id]===e.idealQuadrant) correct++; });
+  const score = Math.round(correct/total*100);
+  const secs = iz.startedAt ? Math.round((Date.now()-iz.startedAt)/1000) : 0;
+  const decision = (q)=>({"1":"Do (reply / star)","2":"Schedule (snooze)","3":"Delegate (forward)","4":"Delete/Defer (archive / delete)"}[q]);
+  const mism = iz.inbox.filter(e=>iz.placements[e.id]!==e.idealQuadrant);
+  iz.result = `<div class="iz-score-banner">
+      <div class="iz-score-num">${score}%</div>
+      <div><b>${correct} / ${total} matched expert triage</b>${secs ? ` · Inbox Zero in ${Math.floor(secs/60)}m ${secs%60}s` : ""}<div class="iz-score-note">A mismatch isn't automatically wrong — the point is defensible judgment. Review any surprises below.</div></div>
+    </div>
+    <div style="margin-top:12px;">${mism.length ? mism.map(e=>`<div class="gm-res-row"><b>${esc(e.subject)}</b><span>You: ${esc(GM_ACTIONS[iz.meta[e.id].action].verb)} → ${esc(decision(iz.placements[e.id]))} · Expert: <b>${esc(decision(e.idealQuadrant))}</b></span></div>`).join("") : `<p class="iz-empty">Perfect match on every email.</p>`}</div>`;
+  gmSave(); gmRender();
+  const r = document.getElementById("izSortResult"); if(r) r.scrollIntoView({behavior:"smooth", block:"start"});
+  await bumpPracticeProgress("forcemultiplier2", score);
+  if(score===100) burstConfetti();
+}
+Object.assign(window, {izGenerateInbox, izSubmitSort, gmAct, gmUndo, gmToInbox, gmBulk, gmOpen, gmBack, gmUnread, gmFolder, gmSearch, gmSelect, gmSelectAll, gmMenu, gmCloseMenu, gmSnooze, gmCompose, gmCloseCompose, gmSendCompose, gmKey, gmRegenerate, gmRender});
+document.addEventListener("click", (e)=>{ const iz = toolState && toolState.iz; if(iz && iz.menu && !e.target.closest(".gm-menu") && !e.target.closest(".gm-ib")){ iz.menu = null; gmRender(); } });
+
+/* ---------- 8. Day 3 lab, Part 3: Proactive EA Tasks becomes a real exercise ----------
+   Before: one button — the AI wrote the task list and the trainee only read it.
+   Now: the trainee writes their own 4–6 proactive tasks from the week they just
+   resolved, gets a graded review, then can compare with an expert EA's list. */
+const PT_ROWS = 6;
+function ptCalendarSummary(){ return calMergedEvents().map(e=>`- ${e.day} ${fmtHr12(e.s)}-${fmtHr12(e.e)} [${e.p} priority] ${e.t}${e.loc&&e.loc!=="—"?" — "+e.loc:""}`).join("\n"); }
+function ptPartHtml(){
+  const d = toolState.ptDraft || [];
+  return `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Proactive EA Tasks</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 10px;">A good EA doesn't just manage what's on the calendar — they spot what's <i>missing</i> from it. Look at the week you just resolved in Parts 1–2 and write the <b>4–6 tasks you'd add to your own to-do list</b>: admin work the calendar implies, but that isn't itself a calendar event.</p>
+    <div class="card" style="padding:12px 16px;margin-bottom:12px;background:#F8F9FC;font-size:12.8px;line-height:1.55;">
+      <b style="color:var(--navy);">What counts:</b> “Confirm the dairy-free menu with the restaurant for Thursday's client dinner — Elias is Paleo.” · “Book the car to the airport for Friday's 6 AM flight.”<br>
+      <b style="color:var(--navy);">Doesn't count:</b> “Attend the board meeting” (already on the calendar) · “Check email” (not tied to anything specific).
+    </div>
+    <div class="pt-rows">${Array.from({length:PT_ROWS},(_,i)=>`
+      <div class="pt-row"><span>${i+1}</span>
+        <input id="ptTask${i}" placeholder="Task — what you'll do, for which event" value="${esc((d[i]||{}).task||"")}" oninput="ptDraftSave()">
+        <input id="ptWhy${i}" placeholder="Why — what on the calendar (or in the dossier) triggers it" value="${esc((d[i]||{}).why||"")}" oninput="ptDraftSave()">
+      </div>`).join("")}</div>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="ptSubmit()">Submit my list for review</button>
+    <div id="ptResult" style="margin-top:14px;"></div>
+    <div id="proactiveResult" style="margin-top:14px;"></div>`;
+}
+(function(){ const s = document.createElement("style"); s.id = "eapa-proactive"; s.textContent = `
+.pt-rows{display:flex;flex-direction:column;gap:8px;}
+.pt-row{display:grid;grid-template-columns:24px minmax(0,1.2fr) minmax(0,1fr);gap:8px;align-items:center;}
+.pt-row span{font-weight:800;color:var(--orange-deep);text-align:center;}
+.pt-row input{width:100%;box-sizing:border-box;font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;}
+@media(max-width:760px){.pt-row{grid-template-columns:20px 1fr;} .pt-row input:last-child{grid-column:2;}}
+`; document.head.appendChild(s); })();
+function ptRead(){ return Array.from({length:PT_ROWS},(_,i)=>({task:((document.getElementById("ptTask"+i)||{}).value||"").trim(), why:((document.getElementById("ptWhy"+i)||{}).value||"").trim()})); }
+function ptDraftSave(){ toolState.ptDraft = ptRead(); clearTimeout(ptDraftSave.t); ptDraftSave.t = setTimeout(()=>storeSet("proactive-tasks-draft", toolState.ptDraft), 500); }
+async function ptSubmit(){
+  const rows = ptRead().filter(r=>r.task);
+  if(rows.length < 4){ toast("Write at least 4 tasks first."); return; }
+  if(!(await useLabAttempt(3, "proactiveTaskList"))) return;
+  const el = document.getElementById("ptResult");
+  el.innerHTML = `<div class="ai-loading">Reviewing your task list against the calendar…</div>`;
+  try{
+    const report = await runRubricEvaluation(
+      "Proactive EA Task List",
+      `CURRENT CALENDAR (the week the trainee just resolved):\n${ptCalendarSummary() || "(empty)"}\n\nCLIENT CONTEXT:\n${CLIENT_DOSSIER_MD}`,
+      rows.map((r,i)=>`${i+1}. ${r.task}${r.why ? " — WHY: "+r.why : ""}`).join("\n"),
+      `Judge each task. A strong task is (a) PROACTIVE admin work implied by a specific calendar event — not the event itself; (b) SPECIFIC — names the event or day and the concrete action; (c) JUSTIFIED by a real trigger: travel logistics, filing or court deadlines, prep materials, buffers after long sessions, confirmations, or the client's documented preferences (e.g. dietary needs, communication rules); (d) sensibly prioritised. Reward tasks that use the client's documented preferences. Mark down generic tasks ("check email", "stay organised"), duplicates, and tasks that just restate a calendar event.`
+    );
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Proactive Task List</b>` + renderEvaluationReport(report, 3)
+      + `<button class="btn btn-ghost btn-sm" style="margin-top:12px;" onclick="ptCompare(this)">Compare with an expert EA's list</button>`;
+    await bumpPracticeProgress("calendar", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }
+}
+async function ptCompare(btn){
+  const el = document.getElementById("proactiveResult"); if(btn) btn.disabled = true;
+  el.innerHTML = `<div class="ai-loading">Asking an expert EA to review the same calendar…</div>`;
+  const prompt = `You are an expert Executive Assistant reviewing your principal's calendar for a training exercise.
+
+CLIENT CONTEXT:
+${CLIENT_DOSSIER_MD}
+
+CURRENT CALENDAR:
+${ptCalendarSummary() || "(empty)"}
+
+List the 5 most valuable PROACTIVE tasks an EA should independently add to their own to-do list — administrative work the calendar implies is needed but that isn't itself a calendar event. Be specific to the events above and to the client's documented preferences.
+
+Return ONLY a JSON array of objects like: [{"task":"...", "why":"..."}]`;
+  try{
+    let tasks = await callAIJson(prompt, 1400, 90000);
+    if(tasks && !Array.isArray(tasks)){ const arr = Object.values(tasks).find(v=>Array.isArray(v)); if(arr) tasks = arr; }
+    tasks = (Array.isArray(tasks)?tasks:[]).map(t=> typeof t==="string" ? {task:t, why:""} : t).filter(t=>t && t.task);
+    if(!tasks.length) throw new Error("the AI reply had no tasks");
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:6px;">An expert EA's list — which of these did you catch?</b>` + tasks.map(t=>`
+      <div class="task-item"><span class="task-dot">●</span><div><b>${esc(t.task)}</b><div class="task-why">${esc(t.why||"")}</div></div></div>`).join("");
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't load the expert list");
+    if(btn) btn.disabled = false;
+  }
+}
+Object.assign(window, {ptSubmit, ptCompare, ptDraftSave});
+const __eapaInitCalendar = window.initCalendar;
+window.initCalendar = async function(body){
+  const r = await __eapaInitCalendar(body);
+  const old = body.querySelector("#proactiveResult");
+  const screen = old && old.closest(".wizard-screen");
+  if(screen){
+    if(!toolState.ptDraft){ const saved = await storeGet("proactive-tasks-draft"); if(saved) toolState.ptDraft = saved; }
+    screen.innerHTML = ptPartHtml();
+  }
   return r;
 };
 
