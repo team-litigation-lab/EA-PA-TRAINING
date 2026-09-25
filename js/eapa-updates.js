@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "u" (2026-09-26)
+   LSH EA/PA portal — update pack "v" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -12,8 +12,9 @@
      6. Email Outreach: capstone Day 4 topic + Email Outreach Simulator (Day 4 lab, Part 4).
      7. Inbox Zero works like Gmail (Day 2 lab).
      8. Day 3 "Proactive EA Tasks" is now a written, graded exercise.
+     9. Practice Lab pages in the platform page style (hero, activity headings, cards, buttons).
    ============================================================ */
-window.EAPA_UPDATE_PACK = "u";
+window.EAPA_UPDATE_PACK = "v";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
@@ -1676,6 +1677,118 @@ window.initCalendar = async function(body){
   if(screen){
     if(!toolState.ptDraft){ const saved = await storeGet("proactive-tasks-draft"); if(saved) toolState.ptDraft = saved; }
     screen.innerHTML = ptPartHtml();
+  }
+  return r;
+};
+
+/* ---------- 9. Practice Lab pages in the platform's page style ----------
+   Lab pages get the same navy hero banner as every other page (day kicker,
+   serif title, summary, save / return controls and status chips), then a
+   standard body: activity tabs on a rail, an "Activity N of M" kicker +
+   serif heading per activity, readable instructions, uniform cards and
+   clear primary buttons. A small polisher applies this to whatever each
+   lab renders, so the labs' own logic is untouched. */
+(function(){ const s = document.createElement("style"); s.id = "eapa-lab-style"; s.textContent = `
+.lab-hero{margin-top:10px;}
+.lab-hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
+.lab-hero-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.lab-hero .lab-save-status{color:#9FE0B8;font-size:12.5px;font-weight:700;}
+.lab-hero .lab-hbtn{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.28);}
+.lab-hero .lab-hbtn:hover{background:rgba(255,255,255,.2);}
+.lab-hero h1 .lab-ic{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:rgba(240,192,138,.16);border:1px solid rgba(240,192,138,.35);font-size:22px;margin-right:10px;vertical-align:middle;}
+.lab-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.lab-chips span{font-size:12.5px;font-weight:700;border-radius:999px;padding:5px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#E4E7F5;}
+.lab-chips span.ok{background:rgba(88,190,130,.18);border-color:rgba(143,224,174,.45);color:#9FE0B8;}
+.lab-shell{padding:22px 28px 26px;}
+.lab-shell .wizard-tabs{background:#F6F4EF;border-radius:16px;padding:8px;margin:0 0 20px;}
+.lab-shell .wizard-part-label{display:none;}
+.lab-kicker{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-deep);margin:0 0 4px;display:flex;align-items:center;gap:10px;}
+.lab-kicker::after{content:"";flex:1;height:1px;background:#EADFD2;}
+#toolBody h3{font-family:'Fraunces',Georgia,serif !important;color:var(--navy) !important;font-size:21px !important;line-height:1.25;margin:0 0 8px !important;font-weight:700;}
+#toolBody h3.lab-sub{font-size:18px !important;margin-top:30px !important;}
+#toolBody .wizard-screen > p, #toolBody p[style*="font-size:12"], #toolBody p[style*="font-size:13px"]{font-size:14.5px !important;line-height:1.6 !important;color:#4A4E63 !important;max-width:90ch;}
+#toolBody li[style*="font-size:12"], #toolBody li[style*="font-size:13px"], #toolBody label[style*="font-size:12"]{font-size:14px !important;line-height:1.55;}
+#toolBody .card{border-radius:14px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(31,36,64,.05);}
+#toolBody .card[style*="#F8F9FC"], #toolBody .card[style*="#FFFBF3"], #toolBody .card[style*="#FFFCF8"]{border-left:4px solid var(--orange) !important;background:#FFFBF5 !important;}
+#toolBody textarea, #toolBody input[type="text"], #toolBody input:not([type]), #toolBody select{border-radius:10px;}
+#toolBody textarea:focus, #toolBody input:focus, #toolBody select:focus{outline:2px solid rgba(219,132,55,.35);outline-offset:1px;border-color:var(--orange);}
+#toolBody .btn.lab-cta{background:var(--navy) !important;color:#fff !important;border:1px solid var(--navy) !important;font-size:14px !important;padding:10px 20px !important;border-radius:10px !important;font-weight:700;}
+#toolBody .btn.lab-cta:hover{background:#2B3158 !important;}
+#toolBody .btn.lab-cta[disabled]{opacity:.55;}
+.lab-shell .wizard-nav{border-top:1px solid var(--line);padding-top:16px;margin-top:26px;}
+/* Practice Lab list: same card language as the dashboard */
+.tool-card .tool-open-btn{background:var(--navy);color:#fff;border-color:var(--navy);border-radius:10px;padding:11px;font-size:14px;}
+.tool-card:hover .tool-open-btn{background:var(--orange);border-color:var(--orange);}
+.tool-card .tool-status-row{font-weight:700;font-size:12.5px;border-radius:999px;padding:4px 10px;align-self:flex-start;background:#F3F4F9;}
+.tool-card .tool-status-row.st-done{background:#EAF6EF;}
+.tool-card .tool-desc2{font-size:13.5px;line-height:1.5;}
+.tool-card.locked .tool-open-btn{background:#EEF0F6;color:var(--ink-soft);border-color:#EEF0F6;}
+@media(max-width:760px){.lab-shell{padding:16px 14px;} .lab-hero h1 .lab-ic{width:36px;height:36px;font-size:18px;}}
+`; document.head.appendChild(s); })();
+
+window.toolHead = function(t){
+  const d = t.relates ? parseInt(String(t.relates).replace(/[^0-9]/g,""), 10) : null;
+  return `
+    <a class="back-link" onclick="goto('practice')">&larr; Back to Practice Lab</a>
+    <section class="page-hero lab-hero">
+      <div class="lab-hero-top">
+        <p class="eyebrow">${d ? `Day ${d} · Practice Lab` : "Practice Lab"}</p>
+        <div class="lab-hero-actions">
+          <span class="lab-save-status" id="labSaveStatus">💾 Auto-save on</span>
+          <button class="btn btn-sm lab-hbtn" onclick="saveLabNow()">💾 Save</button>
+          ${d ? `<button class="btn btn-sm lab-hbtn" onclick="returnToLessonCard(${d})">Return to Progress</button>` : ""}
+        </div>
+      </div>
+      <h1><span class="lab-ic">${t.icon}</span>${esc(t.title)}</h1>
+      <p>${esc(t.desc)}</p>
+      <div class="lab-chips" id="labChips">${labChipsHtml(t)}</div>
+    </section>
+    <div class="card tool-shell lab-shell"><div id="toolBody"></div></div>`;
+};
+function labChipsHtml(t){
+  const p = (state.practiceProgress||{})[t.id];
+  const n = (toolState && toolState.wizardLabels) ? toolState.wizardLabels.length : 0;
+  const left = typeof labAttemptsRemaining==="function" ? labAttemptsRemaining() : null;
+  return (n ? `<span>🧩 ${n} activities</span>` : "")
+    + (p ? `<span class="ok">✓ Best score ${p.bestScore}% · ${p.runs} run${p.runs===1?"":"s"}</span>` : `<span>◻ Not started</span>`)
+    + (left!=null ? `<span>🔁 ${left} of ${LAB_ATTEMPT_CAP} repeat attempts left</span>` : "")
+    + `<span>🆓 First try of each exercise is free</span>`;
+}
+const LAB_CTA = /^\s*(check|submit|get review|get evaluation|get feedback|finish|evaluate|grade|review my|send for review)/i;
+function labPolish(){
+  const body = document.getElementById("toolBody"); if(!body) return;
+  const screens = [...body.querySelectorAll(".wizard-screen")];
+  const n = screens.length;
+  // every activity opens with "Activity N of M" + a heading (its own, or the tab name)
+  const labels = (toolState && toolState.wizardLabels) || [];
+  screens.forEach((screen,i)=>{
+    if(screen.dataset.labPolished) return; screen.dataset.labPolished = "1";
+    const first = screen.firstElementChild;
+    if(first && first.tagName==="H3") first.dataset.labLead = "1";
+    else screen.insertAdjacentHTML("afterbegin", `<h3 data-lab-lead="1">${esc(labels[i]||"")}</h3>`);
+    screen.querySelector("h3[data-lab-lead]").insertAdjacentHTML("beforebegin", `<div class="lab-kicker">Activity ${i+1} of ${n}</div>`);
+  });
+  // drop the old "A. / B." letter prefixes; later headings become sub-headings
+  body.querySelectorAll("h3").forEach(h=>{
+    if(h.dataset.labPolished) return; h.dataset.labPolished = "1";
+    const tn = [...h.childNodes].find(x=>x.nodeType===3 && x.textContent.trim());
+    if(tn) tn.textContent = tn.textContent.replace(/^\s*[A-H]\.\s+/, "");
+    if(!h.dataset.labLead && h.closest(".wizard-screen")) h.classList.add("lab-sub");
+  });
+  body.querySelectorAll("button.btn").forEach(b=>{ if(!b.dataset.labCta && LAB_CTA.test(b.textContent||"") && !b.closest(".wizard-nav") && !b.closest(".gm")){ b.dataset.labCta = "1"; b.classList.add("lab-cta"); } });
+  const chips = document.getElementById("labChips"), t = PRACTICE_TOOLS.find(x=>x.id===state.toolId);
+  if(chips && t){ const html = labChipsHtml(t); if(chips.innerHTML !== html) chips.innerHTML = html; }
+}
+let __labObs = null, __labT = null;
+const __eapaAfterRender4 = window.afterRender;
+window.afterRender = function(){
+  const r = __eapaAfterRender4.apply(this, arguments);
+  if(__labObs){ __labObs.disconnect(); __labObs = null; }
+  const body = state.view==="tool" && document.getElementById("toolBody");
+  if(body){
+    labPolish();
+    __labObs = new MutationObserver(()=>{ clearTimeout(__labT); __labT = setTimeout(labPolish, 40); });
+    __labObs.observe(body, {childList:true, subtree:true});
   }
   return r;
 };
