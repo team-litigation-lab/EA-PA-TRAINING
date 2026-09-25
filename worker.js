@@ -2,7 +2,9 @@
  * LSH EA/PA Upskill Program — Cloudflare Worker (secured)
  *
  * Secrets (set once with `wrangler secret put <NAME>`):
- *   ANTHROPIC_API_KEY  — AI features
+ *   GEMINI_API_KEY     — AI features via Google Gemini (free tier). Takes priority if set.
+ *   GEMINI_MODEL       — optional, default "gemini-2.5-flash"
+ *   ANTHROPIC_API_KEY  — AI features via Claude (used only if GEMINI_API_KEY is not set)
  *   ADMIN_PASSPHRASE   — trainer/admin sign-in. Setting this switches the portal
  *                        into SECURE MODE: every storage and AI request must carry
  *                        a signed session token.
@@ -105,6 +107,46 @@ async function traineeWrite(env, tok, key, value) {
   return "Not allowed";
 }
 
+/* ---------- Google Gemini (free tier) ----------
+   The portal speaks the Anthropic message format; this translates each
+   request to Gemini's generateContent and the reply back, so nothing in
+   the portal needs to change. Model: GEMINI_MODEL (default gemini-2.5-flash),
+   falling back to gemini-2.5-flash-lite if the first is busy or unavailable. */
+async function callGemini(env, rawBody) {
+  let req; try { req = JSON.parse(rawBody); } catch (e) { return json({ error: "Invalid request" }, 400); }
+  const toText = (c) => typeof c === "string" ? c : (Array.isArray(c) ? c.map((p) => p && p.text ? p.text : "").join("\n") : "");
+  const contents = (req.messages || []).map((m) => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: toText(m.content) }] }));
+  const payload = {
+    contents,
+    generationConfig: { maxOutputTokens: Math.min(Math.max(Number(req.max_tokens) || 1024, 256), 8192), temperature: 0.7 }
+  };
+  if (req.system) payload.systemInstruction = { parts: [{ text: toText(req.system) }] };
+  const models = [env.GEMINI_MODEL || "gemini-2.5-flash", "gemini-2.5-flash-lite"].filter((v, i, a) => a.indexOf(v) === i);
+  let last = null;
+  for (const model of models) {
+    const p = JSON.parse(JSON.stringify(payload));
+    if (/2\.5-flash/.test(model)) p.generationConfig.thinkingConfig = { thinkingBudget: 0 };   // faster, and thinking doesn't eat the output budget
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
+      body: JSON.stringify(p)
+    });
+    const data = await r.json().catch(() => ({}));
+    if (r.ok) {
+      const cand = (data.candidates || [])[0] || {};
+      const text = ((cand.content && cand.content.parts) || []).map((x) => x.text || "").join("");
+      if (!text) { last = { status: 502, msg: `Gemini returned no text (${cand.finishReason || "blocked"})` }; continue; }
+      return json({ content: [{ type: "text", text }], model, stop_reason: cand.finishReason === "MAX_TOKENS" ? "max_tokens" : "end_turn", provider: "gemini" });
+    }
+    const msg = (data.error && data.error.message) || `Gemini error ${r.status}`;
+    last = { status: r.status, msg };
+    if (r.status === 400 && /API key/i.test(msg)) break;            // bad key: no point trying another model
+    if (![404, 429, 500, 503].includes(r.status)) break;
+  }
+  const status = last.status === 400 && /API key/i.test(last.msg) ? 502 : last.status;   // 502, not 401: a bad AI key is not a portal sign-in problem
+  return json({ error: { message: (status === 502 && /API key/i.test(last.msg) ? "invalid x-api-key (Gemini): " : status === 429 ? "rate limit (Gemini free tier): " : "") + last.msg } }, status);
+}
+
 async function listAll(env, prefix) {
   const keys = []; let cursor;
   do { const r = await env.LSH_KV.list({ prefix, cursor }); r.keys.forEach((k) => keys.push(k.name)); cursor = r.list_complete ? null : r.cursor; } while (cursor);
@@ -122,7 +164,7 @@ export default {
         const page = await env.ASSETS.fetch(new Request(new URL("/", request.url)));
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
-        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${env.GEMINI_API_KEY ? "Google Gemini (" + (env.GEMINI_MODEL || "gemini-2.5-flash") + ")" : (env.ANTHROPIC_API_KEY ? "Anthropic Claude" : "none configured")}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
@@ -166,8 +208,9 @@ export default {
 
       /* ---------- AI proxy (signed-in users only, so strangers can't spend your credits) ---------- */
       if (path === "/api/claude") {
-        if (!env.ANTHROPIC_API_KEY) return json({ error: "ANTHROPIC_API_KEY is not configured on this Worker." }, 500);
         const body = await request.text();
+        if (env.GEMINI_API_KEY) return await callGemini(env, body);   // Gemini takes priority when its key is set
+        if (!env.ANTHROPIC_API_KEY) return json({ error: "No AI key is configured on this Worker. Add GEMINI_API_KEY (free) or ANTHROPIC_API_KEY as a Secret." }, 500);
         const r = await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
           headers: { "Content-Type": "application/json", "x-api-key": env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01" },
