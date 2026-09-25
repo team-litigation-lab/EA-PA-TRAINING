@@ -1,5 +1,5 @@
 /* ============================================================
-   LSH EA/PA portal — update pack "p" (2026-09-26)
+   LSH EA/PA portal — update pack "q" (2026-09-26)
    Loaded by index.html right after the main script. Everything here
    replaces or extends functions in the main script, so the big
    index.html only needs one extra <script> line.
@@ -7,8 +7,9 @@
         don't fit continue on balanced extra pages (Next/Prev step pages first).
      2. Admin ↔ Trainee view switch (top bar) without signing out.
      3. SOP Reference: readable layout + a "Present" mode for live discussion.
+     4. Presenter view: share only the slides in Meet, see trainer cues yourself.
    ============================================================ */
-window.EAPA_UPDATE_PACK = "p";
+window.EAPA_UPDATE_PACK = "q";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
 .nav .nav-viewswitch{background:rgba(240,192,138,.16) !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45) !important;font-weight:700;}
 .nav .nav-viewswitch:hover{background:rgba(240,192,138,.28) !important;}
@@ -100,6 +101,45 @@ ol.sopx-s-list li{padding-left:58px;} ol.sopx-s-list li::before{content:counter(
 .sopx-stage:fullscreen .sopx-slide{flex:1;height:auto;font-size:1.15em;}
 .sopx-stage:fullscreen .sopx-s-list li, .sopx-stage:fullscreen .sopx-s-para{font-size:clamp(20px,1.8vw,28px);}
 @media(max-width:760px){.sopx-slide{height:auto;min-height:60vh;padding:26px 18px;} .sopx-s-list.two{grid-template-columns:1fr;} .sopx-jump{max-width:48%;}}
+/* ---- Presenter view (trainer console) ---- */
+.pv{background:linear-gradient(135deg,#1F2440 0%,#2B3158 60%,#353C68 100%);border-radius:20px;padding:16px 18px 18px;color:#fff;}
+.pv-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.pv-title{font-size:14px;} .pv-title b{color:#F0C08A;}
+.pv-meta{display:flex;gap:10px;align-items:center;margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#C9CDE3;}
+.pv-meta .pv-timer{background:rgba(255,255,255,.1);border-radius:8px;padding:4px 9px;color:#fff;font-weight:700;}
+.pv-aud{border-radius:999px;padding:4px 10px;font-weight:700;} .pv-aud.on{background:rgba(88,190,130,.2);color:#8FE0AE;} .pv-aud.off{background:rgba(240,120,90,.2);color:#FFB39E;}
+.pv-actions{display:flex;gap:8px;} .pv-actions .btn-ghost{background:#fff;}
+.pv-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:16px;align-items:start;}
+.pv-label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F0C08A;margin:0 0 8px;}
+.pv-mirror{position:relative;width:100%;aspect-ratio:16/9;background:#141833;border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px rgba(240,192,138,.45);}
+.pv-frame{position:absolute;top:0;left:0;width:1280px;height:720px;border:0;transform-origin:0 0;pointer-events:none;background:#1F2440;}
+.pv-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;} .pv-nav .btn-ghost{background:#fff;}
+.pv-nav select{font:inherit;font-size:13px;border-radius:8px;border:none;padding:7px 8px;max-width:52%;color:var(--navy);}
+.pv-next{margin-top:10px;font-size:13px;color:#C9CDE3;} .pv-next b{color:#fff;}
+.pv-cues{background:#FFFDF8;color:var(--ink);border-radius:14px;padding:16px 18px;max-height:calc(100vh - 150px);overflow:auto;position:sticky;top:80px;}
+.pv-cues .pv-label{color:var(--orange-deep);}
+.pv-cues h3{font-family:'Fraunces',Georgia,serif;color:var(--navy);font-size:19px;margin:0 0 10px;line-height:1.25;}
+.pv-cues p, .pv-cues li{font-size:14.5px;line-height:1.55;}
+.pv-cues .tc-tag, .pv-cues .cue-sub{display:block;margin:12px 0 4px;font-size:12px;font-weight:800;color:var(--navy);}
+.pv-cues .pv-empty{color:var(--ink-soft);font-size:14px;}
+.pv-ans{background:#EAF6EF;border-left:4px solid #3F7D58;border-radius:8px;padding:8px 12px;margin:6px 0 10px;}
+.pv-tip{margin:12px 0 0;font-size:12.5px;color:#C9CDE3;} .pv-tip b{color:#fff;}
+@media(max-width:1000px){.pv-grid{grid-template-columns:1fr;} .pv-cues{position:static;max-height:none;}}
+/* ---- Audience window (shared in Google Meet) ---- */
+body.audience-mode{overflow:hidden;background:#1F2440;}
+body.audience-mode > *:not(#audienceRoot):not(.aud-hint){display:none !important;}
+#audienceRoot{position:fixed;inset:0;}
+#audienceRoot .lesson-stage{height:100vh;border-radius:0;display:flex;flex-direction:column;padding:2.5vh 2.5vw;box-sizing:border-box;}
+#audienceRoot .stage-body{flex:1;min-height:0;align-items:stretch;grid-template-rows:minmax(0,1fr);}
+#audienceRoot .stage-presenter{align-self:end;}
+#audienceRoot #lessonSlideWrap{height:100% !important;font-size:1.08em;}
+#audienceRoot .slide-nav .btn, #audienceRoot .slide-done-banner{visibility:hidden;}
+#audienceRoot .slide-dot{pointer-events:none;}
+.aud-wait{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;font-size:18px;text-align:center;padding:20px;}
+.aud-wait b{font-family:'Fraunces',Georgia,serif;font-size:30px;color:#F0C08A;}
+.aud-hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:rgba(0,0,0,.72);color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;z-index:5;transition:opacity .6s;}
+.aud-hint.gone{opacity:0;pointer-events:none;}
+
 `; document.head.appendChild(s); })();
 
 /* ---------- 1. standard-size slides ---------- */
@@ -555,6 +595,238 @@ Object.assign(window, {sopGo, sopFullscreen, setSopMode});
 function setSopDay(d){ state.sopDay=d; state.sopSlide=0; render(); }
 const __eapaAfterRender = window.afterRender;
 window.afterRender = function(){ if(document.getElementById("sopSlide")) fitSopSlide(); return __eapaAfterRender.apply(this, arguments); };
+
+
+/* ---------- 4. Presenter view (like Canva's) ----------
+   The trainer clicks "🖥 Presenter view" on a lesson. A second window opens
+   showing ONLY the slides — that's the window you share in Google Meet. This
+   tab turns into the presenter console: a live mirror of what the room sees
+   (a small copy of the slides window, rendered at its exact size), the trainer
+   cues / discussion script for the current slide, what's next, a timer and the
+   controls. The windows talk over a BroadcastChannel.
+     ?audience=1       the slides window you share
+     ?audience=mirror  the small live copy inside the presenter console */
+const PV_CHANNEL = "lsh-present-v1";
+const PV_MODE = new URLSearchParams(location.search).get("audience") || "";
+const PV_IS_AUDIENCE = PV_MODE === "1" || PV_MODE === "mirror";
+const PV = {ch:null, win:null, size:null, startedAt:0, tick:null};
+function pvChannel(){ if(!PV.ch && "BroadcastChannel" in window) PV.ch = new BroadcastChannel(PV_CHANNEL); return PV.ch; }
+
+/* ----- presenter side ----- */
+function pvOpenSlidesWindow(){
+  PV.win = window.open(`/?audience=1&day=${state.dayId}`, "lshAudience", "popup=yes,width=1280,height=760");
+  return !!PV.win;
+}
+function presenterStart(){
+  if(!state.isAdmin){ toast("Presenter view is for trainers — sign in to Admin first."); return; }
+  if(!pvChannel()){ toast("This browser can't run Presenter view — use Chrome or Edge."); return; }
+  const d = DAYS.find(x=>x.id===state.dayId); if(!d) return;
+  if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen();
+  if(!pvOpenSlidesWindow()){ toast("Your browser blocked the slides window — allow pop-ups for this site, then click Presenter view again."); return; }
+  state.presenting = true; state.dayViewMode = "slides"; state.maxSlideReached = 9999;
+  state.presentPage = 0; state.presentPages = 1; PV.startedAt = Date.now();
+  if(typeof Narrator!=="undefined" && Narrator.playing) Narrator.stop(true);
+  clearInterval(PV.tick); PV.tick = setInterval(presenterTick, 1000);
+  render(); presenterSend();
+}
+function presenterSend(){ const ch = pvChannel(); if(ch) ch.postMessage({type:"show", dayId:state.dayId, slide:state.lessonSlide||0, page:state.presentPage||0}); }
+function presenterStep(dir){
+  const d = DAYS.find(x=>x.id===state.dayId); if(!d) return;
+  const total = buildDaySlides(d).length, slide = state.lessonSlide||0, page = state.presentPage||0, pages = state.presentPages||1;
+  if(dir > 0){
+    if(page < pages-1){ state.presentPage = page+1; }
+    else if(slide < total-1){ state.lessonSlide = slide+1; state.presentPage = 0; state.presentPages = 1; }
+    else return;
+  }else{
+    if(page > 0){ state.presentPage = page-1; }
+    else if(slide > 0){ state.lessonSlide = slide-1; state.presentPage = -1; state.presentPages = 1; }
+    else return;
+  }
+  presenterSend(); presenterRefresh();
+}
+function presenterJump(i){ state.lessonSlide = +i; state.presentPage = 0; state.presentPages = 1; presenterSend(); presenterRefresh(); }
+function presenterReopen(){
+  if(!pvOpenSlidesWindow()) toast("Your browser blocked the slides window — allow pop-ups for this site.");
+  setTimeout(presenterSend, 600);
+}
+function presenterEnd(silent){
+  state.presenting = false; clearInterval(PV.tick);
+  const ch = pvChannel(); if(ch) ch.postMessage({type:"end"});
+  try{ if(PV.win && !PV.win.closed) PV.win.close(); }catch(e){}
+  PV.win = null;
+  if(!silent){ render(); toast("Presentation ended."); }
+}
+function presenterTick(){
+  const t = document.getElementById("pvTimer"); if(t){ const s = Math.floor((Date.now()-PV.startedAt)/1000); t.textContent = `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`; }
+  const a = document.getElementById("pvAud"); if(a){ const live = !!(PV.win && !PV.win.closed); a.className = "pv-aud " + (live?"on":"off"); a.textContent = live ? "● Slides window open" : "● Slides window closed"; }
+}
+function presenterCountText(d){
+  const total = buildDaySlides(d).length, pages = state.presentPages||1;
+  return `Step ${(state.lessonSlide||0)+1} of ${total}` + (pages > 1 ? ` · Page ${Math.max(0,state.presentPage||0)+1} of ${pages}` : "");
+}
+function presenterCues(d, slide){
+  const out = [];
+  if(slide.type==="topic"){
+    const l = d.lessons[slide.lessonIndex];
+    out.push(`<h3>${esc(l.h)} <small style="font-size:12px;color:var(--ink-soft);">Part ${slide.part} of 2</small></h3>`);
+    if(l.trainerCue) out.push(`<div class="tc-tag">🧑‍🏫 Trainer Cue</div><p>${esc(l.trainerCue)}</p>`);
+    const disc = trainerDiscussionHtml(l); if(disc) out.push(`<b class="cue-sub">Applied Discussion Case</b>${disc}`);
+    out.push(renderDiscussionScript(d, l, slide.lessonIndex));
+  }else if(slide.type==="quickCheck"){
+    out.push(`<h3>Quick Check</h3><p>Let the room answer first — then reveal and use the rationale.</p>`);
+    (d.quickChecks||[]).filter(c=>c.afterIndex===slide.lessonIndex).forEach(c=>{
+      out.push(`<p><b>${esc(c.q)}</b></p><div class="pv-ans">✓ ${esc((c.opts||[])[c.a] || "")}</div>${c.r ? `<p>${esc(c.r)}</p>` : ""}`);
+    });
+  }else if(slide.type==="meetClient"){
+    out.push(`<h3>Meet Elias Thorne — Live Q&amp;A</h3>` + renderMeetClientTrainerGuide());
+  }else if(slide.type==="discussion"){
+    out.push(`<h3>Trainer Checkpoint</h3><p><b>Say:</b> "Before we close Day ${d.id}, let's step back and talk about this together."</p><p><b>Ask:</b> ${esc(d.discussionQuestion||"")}</p><p>Take 2–3 answers, connect each one to a lesson from today, then move on to the Knowledge Check.</p>`);
+  }else if(slide.type==="practiceLab"){
+    out.push(`<h3>Practice Lab</h3><p>Trainees complete the exercise now. Once it's finished, pause for a live debrief — have them walk through what they did, why, and where their judgment differed from the model answer.</p>`);
+  }else if(slide.type==="video"){
+    out.push(`<h3>Video Recap</h3><p>Play the recap video (or summarise the day's three biggest ideas if it isn't ready yet), then move to the Practice Lab.</p>`);
+  }else if(slide.type==="taskOverview"){
+    out.push(`<h3>Task Overview</h3><p>Walk the room through today's real-world task before the lessons start — ask who has done something like it before.</p>`);
+  }
+  return out.join("") || `<p class="pv-empty">No trainer cue for this slide.</p>`;
+}
+function presenterNextText(d){
+  const slides = buildDaySlides(d), idx = state.lessonSlide||0;
+  if((state.presentPages||1) > 1 && (state.presentPage||0) < state.presentPages-1) return `${esc(daySlideTitle(d, slides[idx]))} — page ${(state.presentPage||0)+2}`;
+  return slides[idx+1] ? esc(daySlideTitle(d, slides[idx+1])) : "End of today's slides — Knowledge Check";
+}
+function renderPresenterConsole(d){
+  const slides = buildDaySlides(d);
+  const idx = Math.min(state.lessonSlide||0, slides.length-1); state.lessonSlide = idx;
+  if(state.pvScriptsFor !== d.id){ state.pvScriptsFor = d.id; setTimeout(()=>loadSavedScripts(d.id).then(()=>presenterRefresh()), 0); }
+  return `
+    <div class="pv">
+      <div class="pv-head">
+        <div class="pv-title"><b>🖥 Presenter view</b> · Day ${d.id} — ${esc(d.title)}</div>
+        <div class="pv-meta"><span id="pvCount">${presenterCountText(d)}</span><span class="pv-timer" id="pvTimer">00:00</span><span class="pv-aud on" id="pvAud">● Slides window open</span></div>
+        <div class="pv-actions"><button class="btn btn-ghost btn-sm" onclick="presenterReopen()">↗ Re-open slides window</button><button class="btn btn-primary btn-sm" onclick="presenterEnd()">■ End</button></div>
+      </div>
+      <div class="pv-grid">
+        <section>
+          <div class="pv-label">Now showing to the room</div>
+          <div class="pv-mirror" id="pvMirror"><iframe class="pv-frame" id="pvFrame" src="/?audience=mirror&day=${d.id}" tabindex="-1" inert title="Live copy of the slides window"></iframe></div>
+          <div class="pv-nav">
+            <button class="btn btn-ghost" onclick="presenterStep(-1)">← Previous</button>
+            <select id="pvJump" onchange="presenterJump(this.value)" title="Jump to a slide">${slides.map((s,i)=>`<option value="${i}" ${i===idx?"selected":""}>${i+1}. ${esc(daySlideTitle(d,s))}</option>`).join("")}</select>
+            <button class="btn btn-primary" onclick="presenterStep(1)">Next →</button>
+          </div>
+          <div class="pv-next"><b>Up next:</b> <span id="pvNext">${presenterNextText(d)}</span></div>
+          <p class="pv-tip">In Google Meet: <b>Present now → A window</b> → pick <b>“LSH Slides — share this window”</b>. Keep this tab for yourself; use ← → keys here to move the slides.</p>
+        </section>
+        <aside class="pv-cues"><div class="pv-label">Your notes — only you can see these</div><div id="pvCues">${presenterCues(d, slides[idx])}</div></aside>
+      </div>
+    </div>`;
+}
+/* update the console in place (re-rendering would reload the live copy) */
+function presenterRefresh(){
+  const d = DAYS.find(x=>x.id===state.dayId); if(!d || !state.presenting) return;
+  const slides = buildDaySlides(d), idx = state.lessonSlide||0;
+  const c = document.getElementById("pvCount"); if(c) c.textContent = presenterCountText(d);
+  const n = document.getElementById("pvNext"); if(n) n.innerHTML = presenterNextText(d);
+  const j = document.getElementById("pvJump"); if(j) j.value = String(idx);
+  const cu = document.getElementById("pvCues"); if(cu && cu.dataset.slide !== String(idx)){ cu.dataset.slide = String(idx); cu.innerHTML = presenterCues(d, slides[idx]); cu.parentElement.scrollTop = 0; }
+}
+function presenterFitMirror(){
+  const box = document.getElementById("pvMirror"), f = document.getElementById("pvFrame"); if(!box || !f) return;
+  const w = (PV.size && PV.size.w) || 1280, h = (PV.size && PV.size.h) || 720;
+  box.style.aspectRatio = `${w} / ${h}`;
+  f.style.width = w+"px"; f.style.height = h+"px";
+  f.style.transform = `scale(${box.clientWidth / w})`;
+}
+Object.assign(window, {presenterStart, presenterStep, presenterJump, presenterReopen, presenterEnd});
+
+/* hook the existing slide controls so arrows / buttons drive the presentation */
+const __pvNextSlide = window.nextSlide, __pvPrevSlide = window.prevSlide, __pvGoToSlide = window.goToSlide;
+window.nextSlide = function(){ if(state.presenting) return presenterStep(1); return __pvNextSlide(); };
+window.prevSlide = function(){ if(state.presenting) return presenterStep(-1); return __pvPrevSlide(); };
+window.goToSlide = function(i){ if(state.presenting) return presenterJump(i); return __pvGoToSlide(i); };
+const __pvRenderDaySlideshow = window.renderDaySlideshow;
+window.renderDaySlideshow = function(d){ if(state.presenting && !state.stageInnerOnly && !PV_IS_AUDIENCE) return renderPresenterConsole(d); return __pvRenderDaySlideshow(d); };
+const __pvNarrAfter = window.narratorAfterRender;
+window.narratorAfterRender = function(pageOnly){ if(state.presenting && state.view==="day"){ presenterFitMirror(); presenterRefresh(); return; } return __pvNarrAfter(pageOnly); };
+const __pvPaginate = window.paginateLessonSlide;
+window.paginateLessonSlide = function(){ if(state.presenting && !PV_IS_AUDIENCE) return; return __pvPaginate(); };
+const __pvGoto2 = window.goto;
+window.goto = function(view, id){ if(state.presenting && (view!=="day" || id!==state.dayId)) presenterEnd(true); return __pvGoto2(view, id); };
+const __pvAfterRender2 = window.afterRender;
+window.afterRender = function(){
+  const r = __pvAfterRender2.apply(this, arguments);
+  // the "Presenter view" button sits next to "Present full screen" (trainers only)
+  const top = document.querySelector(".ls-top");
+  if(top && state.isAdmin && !state.presenting && !top.querySelector(".pv-open")){
+    top.insertAdjacentHTML("beforeend", `<button class="btn btn-primary btn-sm pv-open" onclick="presenterStart()" title="Share only the slides in Google Meet while you see the trainer cues here">🖥 Presenter view</button>`);
+  }
+  return r;
+};
+window.addEventListener("resize", ()=>{ if(state.presenting) presenterFitMirror(); });
+if(pvChannel() && !PV_IS_AUDIENCE){
+  PV.ch.addEventListener("message", (e)=>{
+    const m = e.data || {}; if(!state.presenting) return;
+    if(m.type==="hello") presenterSend();
+    if(m.type==="key") presenterStep(m.dir);
+    if(m.type==="rendered" && m.dayId===state.dayId && m.slide===(state.lessonSlide||0)){
+      state.presentPage = m.page; state.presentPages = m.pages;
+      if(!PV.size || PV.size.w!==m.w || PV.size.h!==m.h){ PV.size = {w:m.w, h:m.h}; presenterFitMirror(); }
+      presenterRefresh();
+    }
+  });
+  window.addEventListener("beforeunload", ()=>{ if(state.presenting && PV.ch) PV.ch.postMessage({type:"end"}); });
+}
+
+/* ----- the slides window (and its live copy) ----- */
+if(PV_IS_AUDIENCE){
+  const isMain = PV_MODE === "1";
+  if(isMain) document.title = "LSH Slides — share this window";
+  document.body.classList.add("audience-mode");
+  window.render = function(){};                          // the normal portal never draws here
+  window.autoPublishBlueprint = async function(){};       // leave background jobs to the trainer's own tab
+  const app = document.getElementById("app"); if(app) app.innerHTML = "";
+  const root = document.createElement("div"); root.id = "audienceRoot";
+  root.innerHTML = `<div class="aud-wait"><b>LSH EA/PA Upskill Program</b>Waiting for the presenter…</div>`;
+  document.body.appendChild(root);
+  // arrow keys pressed in the slides window (or while the live copy holds focus) drive the presentation
+  document.addEventListener("keydown", (e)=>{
+    const dir = ["ArrowRight","PageDown"," "].includes(e.key) ? 1 : (["ArrowLeft","PageUp"].includes(e.key) ? -1 : 0);
+    if(dir && pvChannel()){ e.preventDefault(); PV.ch.postMessage({type:"key", dir}); }
+  });
+  if(isMain){
+    const hint = document.createElement("div"); hint.className = "aud-hint"; hint.textContent = "Share this window in Google Meet · double-click for full screen";
+    document.body.appendChild(hint); setTimeout(()=>hint.classList.add("gone"), 7000);
+    document.addEventListener("dblclick", ()=>{ if(document.fullscreenElement) document.exitFullscreen(); else if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{}); });
+  }
+  let last = null;
+  const show = (m)=>{
+    const d = DAYS.find(x=>x.id===m.dayId); if(!d) return;
+    last = m;
+    // view is "audience", not "day", so the portal's own arrow-key handler stays out of it
+    state.view = "audience"; state.dayId = d.id; state.lessonSlide = m.slide; state.maxSlideReached = 9999;
+    state.slidePage = m.page; state.slidePageKey = d.id+":"+m.slide; state.slideDir = "next";
+    state.stageInnerOnly = true;
+    root.innerHTML = `<div class="lesson-stage" id="lessonStage">${renderDaySlideshow(d)}</div>`;
+    state.stageInnerOnly = false;
+    decorateCallouts(root);
+    paginateLessonSlide();
+    if(isMain) pvChannel().postMessage({type:"rendered", dayId:d.id, slide:m.slide, page:state.slidePage||0, pages:state.slidePages||1, w:root.clientWidth, h:root.clientHeight});
+  };
+  if(pvChannel()){
+    PV.ch.addEventListener("message", (e)=>{
+      const m = e.data || {};
+      if(m.type==="show") show(m);
+      if(m.type==="end") root.innerHTML = `<div class="aud-wait"><b>Thanks for joining</b>The presentation has ended.</div>`;
+    });
+    PV.ch.postMessage({type:"hello"});
+  }
+  let rt = null;
+  const reshow = ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ if(last) show(last); }, 200); };
+  window.addEventListener("resize", reshow);
+  document.addEventListener("fullscreenchange", reshow);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(reshow);
+}
 
 /* if the portal already drew itself before this file loaded, redraw with the updates */
 if(document.querySelector(".topbar")) render();
