@@ -12083,7 +12083,7 @@ async function callAITextOnce(prompt, maxTokens, timeoutMs){
   try{
     const response = await fetch("/api/claude", {
       method:"POST", headers:authHeaders(),
-      body: JSON.stringify({ model:"claude-sonnet-4-6", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] }),
+      body: JSON.stringify({ model:"gemini", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] }),
       signal: controller.signal
     });
     if(!response.ok){
@@ -12521,7 +12521,7 @@ function renderFacilitatorGuide(){
       <ul>
         <li><b>Secure mode:</b> once <code>ADMIN_PASSPHRASE</code> is set on the Worker, the passphrase is checked on the server, every request needs a signed session, trainees can only read and change their own records (never approval or attempt resets), and the AI can only be used by signed-in users. Admin shows a red warning while this is off.</li>
         <li><b>Which version is live?</b> The footer shows the build number. If a fix "doesn't work", check the build first — a renamed download (e.g. <i>index (1).html</i>) is the usual cause.</li>
-        <li><b>AI features failing?</b> Every AI button shows the real reason. "Key isn't set / invalid" means <code>ANTHROPIC_API_KEY</code> needs setting on the Worker (<code>wrangler secret put ANTHROPIC_API_KEY</code>).</li>
+        <li><b>AI features failing?</b> Every AI button shows the real reason. "Key isn't set / invalid" means <code>GEMINI_API_KEY</code> needs setting on the Worker (Cloudflare → Workers &amp; Pages → ea-pa-training → Settings → Variables and Secrets).</li>
         <li><b>Revoke</b> deletes a trainee's record and saved progress; invalid names/batches are cleaned automatically.</li>
       </ul>
     </div>
@@ -16058,8 +16058,8 @@ function friendlyAiError(e){
   if(/quota|RESOURCE_EXHAUSTED|free tier/i.test(m)) return "The free Gemini limit has been reached for now (it allows a limited number of requests per minute and per day). Wait a minute and try again — or enable billing in Google AI Studio for higher limits.";
   if(/401|sign-in required|unauthor/i.test(m)) return (state.isAdmin || state.view==="admin") ? "Your admin sign-in has expired or was made before secure mode was switched on. Click 🛡 Admin → Sign out, then sign in again with the passphrase and retry." : "Your session needs refreshing — sign out and back in, then try again.";
   if(/403|not allowed/i.test(m)) return "The server refused this request for your account type. Sign out and back in, then try again.";
-  if(/ANTHROPIC_API_KEY|GEMINI_API_KEY|not configured|No AI key/i.test(m)) return "No AI key is set on the server — add GEMINI_API_KEY (free, from Google AI Studio) as a Secret in Cloudflare (Workers & Pages → ea-pa-training → Settings → Variables and Secrets).";
-  if(/credit|billing|balance/i.test(m)) return "The Anthropic account is out of credit — top up at console.anthropic.com, then retry.";
+  if(/GEMINI_API_KEY|not configured|No AI key/i.test(m)) return "No AI key is set on the server — add GEMINI_API_KEY (free, from Google AI Studio) as a Secret in Cloudflare (Workers & Pages → ea-pa-training → Settings → Variables and Secrets).";
+  if(/credit|billing|balance/i.test(m)) return "The Gemini account has hit its quota or billing limit — check Google AI Studio, then retry.";
   if(/429|rate|overloaded|529/i.test(m)) return "The service is busy right now — wait a minute and try again.";
   if(/timed out|abort/i.test(m)) return "The review took too long to respond — try again (long scripts can take up to a minute).";
   if(/404|model/i.test(m)) return "The model name wasn't recognised by the service: " + m.slice(0,160);
@@ -20649,7 +20649,7 @@ async function prepareMyReviews(){
   document.querySelectorAll(".focus-overlay").forEach(o=>o.remove()); openFocusPanel();
   setTimeout(()=>{
     if(failed){
-      const friendly = /ANTHROPIC_API_KEY|not configured/i.test(lastErr) ? "The AI service isn't set up on the server yet — please tell your trainer."
+      const friendly = /GEMINI_API_KEY|No AI key|not configured/i.test(lastErr) ? "The AI service isn't set up on the server yet — please tell your trainer."
         : /401|403|sign-in/i.test(lastErr) ? "Your session needs refreshing — sign out and back in, then try again."
         : /429|rate|busy/i.test(lastErr) ? "The AI service is busy — try again in a minute."
         : lastErr;
@@ -21334,7 +21334,7 @@ function studioResultMessage(what, res){
   if(!res.failed) return `✅ ${res.ok} ${what} drafted — review them below, then publish.`;
   const why = String(res.errors[0] || "unknown error").replace(/[.\s]+$/,"");
   const hint = /x-api-key|API key not valid/i.test(why) ? " The AI key on the server looks invalid — check GEMINI_API_KEY in Cloudflare."
-    : /ANTHROPIC_API_KEY|GEMINI_API_KEY|No AI key|not configured/i.test(why) ? " No AI key is set on the server — add GEMINI_API_KEY in Cloudflare."
+    : /GEMINI_API_KEY|No AI key|not configured/i.test(why) ? " No AI key is set on the server — add GEMINI_API_KEY in Cloudflare."
     : /401|sign-in/i.test(why) ? " Your admin sign-in expired — sign in to Admin again."
     : /429|rate/i.test(why) ? " The AI service is rate-limiting — wait a minute and run it again; finished items are kept."
     : /timed out/i.test(why) ? " Some requests were slow — run it again to finish the rest; finished items are kept."
@@ -24045,12 +24045,12 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.26-v";
+var APP_BUILD = "2026.09.26-w";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
   const msg = (e && e.message) || String(e||"Unknown error");
-  const friendly = /ANTHROPIC_API_KEY|GEMINI_API_KEY|No AI key|not configured/i.test(msg) ? "No AI key is set on the server (add GEMINI_API_KEY in Cloudflare)."
+  const friendly = /GEMINI_API_KEY|No AI key|not configured/i.test(msg) ? "No AI key is set on the server (add GEMINI_API_KEY in Cloudflare)."
     : /x-api-key|API key not valid/i.test(msg) ? "The AI key on the server is invalid (GEMINI_API_KEY)."
     : /quota|RESOURCE_EXHAUSTED|free tier/i.test(msg) ? "The free Gemini limit is reached for now — wait a minute and try again."
     : /401|sign-in/i.test(msg) ? "Your admin sign-in expired — click 🛡 Admin and sign in again."
@@ -24088,6 +24088,6 @@ window.addEventListener("unhandledrejection", (ev)=>{ const e = ev.reason; if(e 
 window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message && !/ResizeObserver|Script error/.test(ev.message)) showActionError(new Error(ev.message), ""); });
 
 </script>
-<script src="/js/eapa-updates.js?v=v"></script>
+<script src="/js/eapa-updates.js?v=w"></script>
 </body>
 </html>
