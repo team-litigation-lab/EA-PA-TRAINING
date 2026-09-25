@@ -2025,6 +2025,18 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
 
 .live-note{font-size:12.5px;color:var(--success);font-weight:700;margin:0 0 10px;}
 .live-note::first-letter{animation:ringPulse 1.6s ease-in-out infinite;}
+
+/* hero: headline and tagline each on one line (auto-sized to fit) on laptops/desktops */
+@media(min-width:1200px){
+  .dash-hero h1{white-space:nowrap;font-size:34px !important;}
+  .dash-hero p{white-space:nowrap;max-width:none !important;font-size:15px !important;}
+  .dash-hero > *{min-width:0;}
+  .dash-hero h1, .dash-hero p:not(.eyebrow){max-width:100% !important;overflow:hidden;}
+}
+
+.cue-steps{margin-left:auto;padding-left:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--orange-deep);white-space:nowrap;}
+.cue-item > summary{display:flex;align-items:center;gap:8px;}
+.script-slides{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--orange-deep);font-weight:700;margin-left:6px;}
 </style>
 </head>
 <body>
@@ -13619,8 +13631,24 @@ window.saveLabNow = saveLabNow;
 document.addEventListener("input", e=>captureLabField(e.target), true);
 document.addEventListener("change", e=>captureLabField(e.target), true);
 new MutationObserver(()=>{ if(state.view==="tool") restoreLabFields(); }).observe(document.documentElement, {childList:true, subtree:true});
+function fitHeroText(){
+  const hs = [document.querySelector(".dash-hero h1"), document.querySelector(".dash-hero p:not(.eyebrow)")];
+  if(window.innerWidth < 1200){ hs.forEach(el=>{ if(el){ el.style.removeProperty("font-size"); el.style.removeProperty("white-space"); } }); return; }
+  const fit = (el, max, min)=>{
+    if(!el) return;
+    el.style.whiteSpace = "nowrap"; el.style.setProperty("font-size", max+"px", "important");
+    let size = max;
+    while(el.scrollWidth > el.clientWidth + 1 && size > min){ size -= 0.5; el.style.setProperty("font-size", size+"px", "important"); }
+    if(el.scrollWidth > el.clientWidth + 1){ el.style.setProperty("font-size", max+"px", "important"); el.style.whiteSpace = "normal"; }  // can't fit one line legibly → wrap at full size
+  };
+  fit(document.querySelector(".dash-hero h1"), 34, 16);
+  fit(document.querySelector(".dash-hero p:not(.eyebrow)"), 15, 12.5);
+}
+window.addEventListener("resize", ()=>{ clearTimeout(window.__heroFitT); window.__heroFitT = setTimeout(fitHeroText, 120); });
+if(document.fonts && document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", ()=>fitHeroText());
 function afterRender(){
   bookmarkView();
+  if(state.view==="dashboard"){ fitHeroText(); setTimeout(fitHeroText, 250); setTimeout(fitHeroText, 1200); if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeroText); }
   if(state.traineeId && !state.isAdmin && (!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000)){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>{ loadMyFeedback(); loadMyFocus(); }, 0); }
   if(state.view==="tool"){
     initTool(state.toolId);
@@ -19828,26 +19856,82 @@ function lessonParts(l){
   const pitfalls = pool.filter(x=>/\b(never|pitfall|don't|do not|mistake|avoid|instead of|isn't|is not|common error|failure)\b/i.test(x));
   return {principles, steps, pitfalls, callout: l.callout && l.callout.text};
 }
+
+/* Which slides a lesson occupies, using the same numbering trainees see ("Step X of N"). */
+function lessonSlideSteps(d, i){
+  const slides = buildDaySlides(d);
+  const idx = slides.map((s,k)=>(s.type==="topic" && s.lessonIndex===i) ? k+1 : null).filter(Boolean);
+  return {first: idx[0]||null, last: idx[idx.length-1]||null, total: slides.length};
+}
+function slideLabel(d, i){
+  const st = lessonSlideSteps(d, i); if(!st.first) return "";
+  return st.first===st.last ? `Step ${st.first} of ${st.total}` : `Steps ${st.first}–${st.last} of ${st.total}`;
+}
+/* Speech-friendly text: whole sentences, never cut mid-thought, no "…". */
+function speakable(t, max){
+  t = String(t||"").replace(/\s+/g," ").trim().replace(/^[\-•*\d.)\s]+/, "");
+  max = max || 220;
+  if(t.length <= max) return t;
+  let firstSentence = "";
+  const re = /[.!?](?=\s|$)/g; let m;
+  while((m = re.exec(t))){
+    const before = t.slice(0, m.index+1);
+    if(before.length < 20) continue;
+    if(/\b(e\.g|i\.e|vs|etc|Mr|Mrs|Ms|Dr|approx|incl|No)\.$/i.test(before)) continue;
+    firstSentence = before; break;
+  }
+  if(firstSentence && firstSentence.length <= max) return firstSentence;
+  const cut = t.slice(0, max);
+  const at = Math.max(cut.lastIndexOf("; "), cut.lastIndexOf(" — "), cut.lastIndexOf(", "));
+  let out = at > 60 ? cut.slice(0, at) : cut.slice(0, cut.lastIndexOf(" "));
+  const open = out.lastIndexOf("("); if(open > -1 && out.indexOf(")", open) === -1) out = out.slice(0, open);   // drop an unfinished "(e.g. …"
+  out = out.replace(/\s+(e\.g|i\.e|vs|etc)\.?$/i, "").replace(/[,;:\s—-]+$/,"");
+  return out + ".";
+}
+function asSentence(t){ t = String(t||"").trim(); if(!t) return ""; t = t[0].toUpperCase()+t.slice(1); return /[.!?]["”’')]?$/.test(t) ? t : t+"."; }
+/* "Label: explanation" → {label, rest} so notes can use the natural half. */
+function splitLabel(t){ const m = String(t||"").match(/^([^:]{3,60}):\s+(.+)$/); return m ? {label:m[1].trim(), rest:m[2].trim()} : {label:"", rest:String(t||"").trim()}; }
+function shortPhrase(t, max){
+  max = max || 80;
+  t = String(t||"").split(/\s[—–-]\s|:\s|\s\(/)[0].replace(/[.!?]+$/,"").trim();
+  if(t.length > max){
+    const cut = t.slice(0, max); const c = cut.lastIndexOf(", ");
+    t = c > 30 ? cut.slice(0, c) : cut.slice(0, cut.lastIndexOf(" "));
+  }
+  // never end on a dangling word
+  for(let k=0;k<3;k++) t = t.replace(/\s+(vs|e\.g|i\.e|to|and|or|the|a|an|of|for|with|specifically|before|after|so|that|which|by|in|on|at|without|than|when|if|as|from|into|about|unless|until|while|is|are|be)\.?$/i,"").replace(/[,;:\s]+$/,"");
+  return t;
+}
+function lowerFirst(t){ t = String(t||"").trim(); return /^[A-Z][a-z]/.test(t) ? t[0].toLowerCase()+t.slice(1) : t; }
 function buildDiscussionScript(d, l, i){
   const {principles, steps, pitfalls, callout} = lessonParts(l);
   const next = d.lessons[i+1];
   const cue = l.trainerCue || "";
-  // Turn the trainer cue into something you can actually say out loud.
   const quoted = cue.match(/[“"']([^“"']{12,}?\?)[”"']/);
-  const ask = quoted ? quoted[1]
-    : `Who can share a real example where ${l.h.replace(/[.:]$/,"")} mattered on the job — what happened, and what would you do now after this lesson?`;
-  const facilitator = (cue && !quoted) ? cue : "";
-  const listen = steps.slice(0,3).map(x=>scriptShort(x, 120));
-  const correct = pitfalls.map(x=>{ x=String(x).replace(/\s+/g," ").trim(); return x.length>240 ? x.slice(0, x.lastIndexOf(" ",240))+"…" : x; }).find(x=>!listen.some(y=>x.startsWith(y.replace(/…$/,"")))) || "";
-  const wrapSrc = callout || [...steps].reverse().find(x=>!/next topic|covered (earlier|elsewhere|in)|per day|day \d/i.test(x)) || principles[0] || l.h;
+  const direct = /^(ask|have|invite)\b.*\?$/i.test(cue.trim()) ? cue.replace(/^(ask( the room| the group| trainees)?[:,]?\s*)/i,"").trim() : "";
+  const asks = [
+    "Think about your own work — when has this come up for you, and how did you handle it?",
+    "If Elias handed you this exact situation today, what would your first move be?",
+    "Where have you seen this go wrong in a real office — and what would have prevented it?",
+    "Which part of this feels hardest to do consistently, and why?"
+  ];
+  const ask = quoted ? quoted[1] : (direct || asks[i % asks.length]);
+  const p0 = speakable(principles[0] || "", 240);
+  const p1 = principles[1] ? speakable(principles[1], 200) : "";
+  const listen = steps.slice(0,3).map(x=>asSentence(speakable(x, 150)));
+  const probeStep = steps[1] ? shortPhrase(steps[1], 80) : "";
+  const correctRaw = pitfalls.map(x=>String(x).replace(/^pitfall:\s*/i,"")).find(x=>!listen.some(y=>x.startsWith(y.slice(0,30))));
+  const wrapSrc = splitLabel(callout || [...steps].reverse().find(x=>!/next topic|covered (earlier|elsewhere|in)|per day|day \d/i.test(x)) || principles[0] || "").rest;
+  const title = l.h.replace(/[.?!:]+$/,"");
   return {
-    open: `"Let's look at ${l.h}. ${principles[0] ? scriptShort(principles[0], 220) : ""}"`,
+    slides: slideLabel(d, i),
+    open: `"Next up: ${title}. ${asSentence(p0)}${p1 ? " "+asSentence(p1) : ""}"`,
     ask: `"${ask}"`,
-    facilitator,
+    facilitator: (cue && !quoted && !direct) ? cue : "",
     listen,
-    probe: steps[1] ? `"What goes wrong if someone skips this step: ${scriptShort(steps[1], 110).replace(/[.?]$/,"").replace(/^./,c=>c.toLowerCase())}?"` : `"What would a less experienced assistant get wrong here?"`,
-    correct,
-    wrap: `"So the takeaway is: ${scriptShort(wrapSrc, 170).replace(/\.$/,"")}.${next ? ` Next, we'll move on to ${next.h}.` : " That wraps up today's topics."}"`,
+    probe: probeStep ? `"Why does this step matter — ${lowerFirst(probeStep)}? What goes wrong when it's skipped?"` : `"What would a less experienced assistant get wrong here?"`,
+    correct: correctRaw ? asSentence(speakable(correctRaw, 230)) : "",
+    wrap: `"To sum up: ${lowerFirst(speakable(wrapSrc, 190)).replace(/[.!?]["”’')]?$/,"")}.${next ? ` Next, we'll look at ${next.h.replace(/[.?!:]+$/,"")}.` : " That's the last topic for today — next is the Practice Lab."}"`,
     minutes: (l.fourPart || (steps.length>3)) ? "5–7 min" : "3–5 min"
   };
 }
@@ -19857,7 +19941,7 @@ function renderDiscussionScript(d, l, i){
   const saved = (state.aiScripts||{})[key];
   return `
     <div class="script-block">
-      <div class="script-head"><span>🎙 Verbal Discussion Script</span><span class="script-time">${sc.minutes}</span></div>
+      <div class="script-head"><span>🎙 Verbal Discussion Script${sc.slides ? ` <span class="script-slides">for ${sc.slides}</span>` : ""}</span><span class="script-time">${sc.minutes}</span></div>
       <div class="script-row"><b>Say (open)</b><p>${esc(sc.open)}</p></div>
       <div class="script-row"><b>Ask the room</b><p>${esc(sc.ask)}</p></div>
       ${sc.listen.length ? `<div class="script-row"><b>Listen for</b><ul>${sc.listen.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
@@ -19889,7 +19973,7 @@ async function generateAiScript(dayId, i, quiet){
   const exp = lessonExpansion(d, l);
   const prompt = `Write a word-for-word, CONVERSATIONAL speaker script a live trainer reads aloud to teach this topic to Legal Executive/Personal Assistant trainees at Legal Support Help (LSH). Sound like a warm, experienced trainer talking to a room: contractions, short sentences, natural transitions, no lecturing tone. Running client case: Elias Thorne, Managing Owner & CEO of Thorne & Partners Law Group. Aim for about 7-10 minutes spoken.
 
-LESSON: ${l.h} (Day ${d.id}: ${d.title})
+LESSON: ${l.h} (Day ${d.id}: ${d.title}) — shown on ${slideLabel(d, i)} of the day's slides
 KEY PRINCIPLES: ${principles.join(" | ")}
 STEPS: ${steps.join(" | ")}
 PITFALLS: ${pitfalls.slice(0,3).join(" | ")}
@@ -19926,7 +20010,7 @@ function buildDayScriptLines(d){
   const lines = [`## Day ${d.id} — ${d.title}: Verbal Discussion Scripts`];
   d.lessons.forEach((l,i)=>{
     const sc = buildDiscussionScript(d,l,i);
-    lines.push(`## ${String(i+1).padStart(2,"0")}. ${l.h}  (${sc.minutes})`);
+    lines.push(`## ${String(i+1).padStart(2,"0")}. ${l.h}  ·  ${sc.slides||""}  (${sc.minutes})`);
     lines.push(`SAY: ${sc.open}`); lines.push(`ASK: ${sc.ask}`);
     if(sc.facilitator) lines.push(`FACILITATOR MOVE: ${sc.facilitator}`);
     if(sc.listen.length){ lines.push("LISTEN FOR:"); sc.listen.forEach(x=>lines.push("   • "+x)); }
@@ -20271,7 +20355,7 @@ function renderAdminTrainerCues(){
     const disc = trainerDiscussionHtml(l);
     return `
       <details class="cue-item" ${i===0?"open":""}>
-        <summary><span class="cue-num">${String(i+1).padStart(2,"0")}</span>${esc(l.h)}</summary>
+        <summary><span class="cue-num">${String(i+1).padStart(2,"0")}</span>${esc(l.h)}<span class="cue-steps">${slideLabel(d, i)}</span></summary>
         <div class="cue-body">
           ${l.trainerCue ? `<div class="tc-tag">🧑‍🏫 Trainer Cue</div><p>${esc(l.trainerCue)}</p>` : ""}
           ${disc ? `<b class="cue-sub">Applied Discussion Case</b>${disc}` : ""}
@@ -22737,7 +22821,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-j";
+var APP_BUILD = "2026.09.25-q";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
