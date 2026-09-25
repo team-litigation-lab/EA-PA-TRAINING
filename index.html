@@ -2138,6 +2138,22 @@ em.warn{font-style:normal;color:var(--danger);}
 .lesson-stage:fullscreen .lesson-card{min-height:calc(100vh - 190px) !important;}
 .lesson-stage:fullscreen .slide-nav{position:static;background:none;}
 @media(max-width:760px){.lesson-stage{padding:12px 10px;border-radius:14px;} .ls-top .or-tip{display:none;}}
+
+/* uniform page hero (matches the dashboard hero) */
+.page-hero{position:relative;overflow:hidden;border-radius:20px;padding:26px 32px 24px;margin:0 0 22px;
+  background:radial-gradient(900px 320px at 85% -20%, rgba(219,132,55,.28), transparent 60%),
+             radial-gradient(600px 300px at -5% 120%, rgba(120,132,190,.25), transparent 60%),
+             linear-gradient(135deg, #1F2440 0%, #2B3158 55%, #353C68 100%);
+  box-shadow:0 18px 40px -22px rgba(20,24,48,.65);}
+.page-hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:linear-gradient(rgba(255,255,255,.9) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.9) 1px, transparent 1px);background-size:28px 28px;
+  -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 55%, transparent 100%);mask-image:linear-gradient(90deg, transparent 0%, #000 55%, transparent 100%);}
+.page-hero > *{position:relative;z-index:1;}
+.page-hero .eyebrow{display:inline-block;margin:0 0 12px !important;padding:5px 12px;border-radius:999px;background:rgba(219,132,55,.16);border:1px solid rgba(240,192,138,.45);color:#F5C99A !important;font-size:11.5px;letter-spacing:.14em;}
+.page-hero h1{color:#fff !important;font-family:'Fraunces',Georgia,serif;font-size:clamp(24px,2.2vw,32px) !important;line-height:1.2 !important;margin:0 !important;font-weight:700;}
+.page-hero p:not(.eyebrow){color:#C9CDE3 !important;font-size:14.5px !important;line-height:1.6;margin:10px 0 0 !important;max-width:80ch;}
+.page-hero p:not(.eyebrow) b{color:#fff;}
+@media(max-width:760px){.page-hero{padding:18px 16px;border-radius:16px;} .page-hero h1{font-size:22px !important;}}
 </style>
 </head>
 <body>
@@ -12191,6 +12207,7 @@ function renderFacilitatorGuide(){
 function renderClientProfile(){
   return `
     <h1 style="color:var(--navy);font-size:28px;margin:0 0 22px;">Client Profile</h1>
+    <p>Everything about Elias Thorne, your client for all 10 days — read this before Day 1 and come back whenever you need a fact, a preference or a quirk.</p>
 
     <div class="client-intro-banner">
       <div class="cib-tag">📌 Read This First</div>
@@ -12417,7 +12434,7 @@ function renderCrisisRoleplayHub(){
 
   if(rp.step==="category" || !rp.categoryId){
     return `
-      <h2 class="section-title">🔥 Live Roleplay Dashboard</h2>
+      <h1>🔥 Live Roleplay</h1>
       <p style="font-size:13px;color:var(--ink-soft);max-width:70ch;margin:0 0 20px;">An on-demand practice sandbox, separate from your daily Practice Lab tasks. Pick a category, a specific situation, and how hard you want to be pushed — then jump straight into a live, unscripted call.</p>
 
       <div class="card" style="padding:14px 18px;margin-bottom:22px;background:#F8F9FC;border-left:4px solid var(--navy);">
@@ -13922,7 +13939,23 @@ function fitHeroText(){
 }
 window.addEventListener("resize", ()=>{ clearTimeout(window.__heroFitT); window.__heroFitT = setTimeout(fitHeroText, 120); });
 if(document.fonts && document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", ()=>fitHeroText());
+
+/* ---------- Uniform page heroes: every page title gets the dashboard hero look ---------- */
+const PAGE_EYEBROWS = {clientprofile:"Your Client", practice:"Practice Lab", notes:"My Notes", handouts:"Reference Library", crisisroleplay:"Live Roleplay", facilitatorguide:"For Trainers", admin:"Admin Dashboard"};
+function applyPageHero(){
+  if(["dashboard","day","login","pendingApproval","registrationDenied","orientation","tool"].includes(state.view)) return;
+  const main = document.querySelector("#app > main"); if(!main) return;
+  const h1 = main.querySelector(":scope > h1, :scope > div > h1:first-child"); if(!h1 || h1.closest(".page-hero")) return;
+  const parent = h1.parentElement;
+  let eyebrow = h1.previousElementSibling && h1.previousElementSibling.classList.contains("eyebrow") ? h1.previousElementSibling : null;
+  let sub = h1.nextElementSibling && h1.nextElementSibling.tagName==="P" && !h1.nextElementSibling.className ? h1.nextElementSibling : null;
+  const hero = document.createElement("section"); hero.className = "page-hero";
+  parent.insertBefore(hero, eyebrow || h1);
+  if(!eyebrow){ eyebrow = document.createElement("p"); eyebrow.className = "eyebrow"; eyebrow.textContent = PAGE_EYEBROWS[state.view] || "LSH EA / PA Upskill Program"; }
+  hero.appendChild(eyebrow); hero.appendChild(h1); if(sub) hero.appendChild(sub);
+}
 function afterRender(){
+  applyPageHero();
   bookmarkView();
   if(state.view==="dashboard"){ fitHeroText(); setTimeout(fitHeroText, 250); setTimeout(fitHeroText, 1200); if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeroText); }
   if(state.traineeId && !state.isAdmin && (!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000)){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>{ loadMyFeedback(); loadMyFocus(); }, 0); }
@@ -19382,7 +19415,7 @@ function renderAdmin(){
   return tabBar + `
     <p class="eyebrow">Admin Dashboard</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Audit</h1>
-    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Lightweight session access, not secure authentication — see the note behind the Admin login. Data reflects what's been synced from each trainee's device.</p>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Every trainee's registration, exact progress, Knowledge Checks, Practice Labs and your day-by-day feedback — refreshed automatically every 30 seconds.</p>
 
     ${state.secureMode===false ? `<div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--danger);background:var(--danger-bg);"><b style="color:var(--danger);">⚠ Security not enabled.</b> <span style="font-size:13px;">Storage and AI are open to anyone who finds the API. Run <code>wrangler secret put ADMIN_PASSPHRASE</code> (and redeploy the updated worker.js) to require sign-in.</span></div>` : ""}
     <div class="card cert-settings">
@@ -23292,7 +23325,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.26-b";
+var APP_BUILD = "2026.09.26-d";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
