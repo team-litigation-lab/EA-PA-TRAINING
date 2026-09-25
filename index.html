@@ -2107,6 +2107,37 @@ em.warn{font-style:normal;color:var(--danger);}
 
 .update-banner{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:300;display:flex;align-items:center;gap:14px;background:var(--navy);color:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 14px 34px -12px rgba(20,24,48,.6);font-size:13.5px;max-width:min(680px, calc(100vw - 24px));}
 .update-banner button{background:var(--orange);color:#fff;border:none;border-radius:9px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer;white-space:nowrap;}
+
+.or-export-host{position:fixed;left:-20000px;top:0;width:1280px;height:720px;overflow:hidden;z-index:-1;}
+.or-slide.or-export{width:1280px;height:720px;min-height:0;box-sizing:border-box;border-radius:0;padding:44px 56px 56px;}
+.or-slide.or-export .or-3{margin:14px 0;} 
+.or-export-foot{position:absolute;left:56px;bottom:20px;font-size:12px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+.or-slide.or-export .or-days{grid-template-columns:repeat(5,1fr);} .or-slide.or-export .or-flow{flex-direction:row;} .or-slide.or-export .or-flow > i{transform:none;}
+.or-slide.or-export .or-3{grid-template-columns:repeat(3,1fr);} .or-slide.or-export .or-nav{grid-template-columns:repeat(4,1fr);} .or-slide.or-export .or-bp{grid-template-columns:3fr 1.2fr;}
+.or-slide.or-export .or-client,.or-slide.or-export .or-cert{flex-direction:row;}
+
+/* ================= Lesson slides: presentation stage ================= */
+.ls-top{display:flex;justify-content:flex-end;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px;}
+.lesson-stage{background:linear-gradient(135deg,#1F2440 0%,#2B3158 60%,#353C68 100%);border-radius:20px;padding:18px 22px 16px;box-shadow:0 18px 40px -22px rgba(20,24,48,.65);}
+.lesson-stage .slide-dots{margin:0 0 12px;}
+.lesson-stage .slide-dot{background:rgba(255,255,255,.25);}
+.lesson-stage .slide-dot.visited{background:rgba(240,192,138,.7);}
+.lesson-stage .slide-dot.active{background:#F0C08A;}
+.lesson-stage .slide-dot.locked{background:rgba(255,255,255,.12);}
+.lesson-stage .lesson-slide{max-height:min(64vh,720px);}
+.lesson-stage .topic-separator{background:transparent !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45);font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;}
+.lesson-stage .lesson-slide > .card, .lesson-stage .lesson-slide .lesson-card{position:relative;background:#FFFDF8 !important;border:none !important;border-radius:16px;box-shadow:none;overflow:hidden;}
+.lesson-stage .lesson-slide > .card::before, .lesson-stage .lesson-slide .lesson-card::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--navy),var(--orange));}
+.lesson-stage .lesson-card h4{font-family:'Fraunces',Georgia,serif;}
+.lesson-stage .slide-nav{margin-top:14px;} .lesson-stage .slide-nav .btn-ghost{background:#fff;}
+.lesson-stage .slide-counter{color:#C9CDE3;}
+.lesson-stage .slide-done-banner{margin-top:10px;}
+/* full screen */
+.lesson-stage:fullscreen{border-radius:0;padding:2.5vh 3vw;display:flex;flex-direction:column;overflow:hidden;}
+.lesson-stage:fullscreen .lesson-slide{flex:1;max-height:none;overflow:auto;font-size:1.12em;}
+.lesson-stage:fullscreen .lesson-card{min-height:calc(100vh - 190px) !important;}
+.lesson-stage:fullscreen .slide-nav{position:static;background:none;}
+@media(max-width:760px){.lesson-stage{padding:12px 10px;border-radius:14px;} .ls-top .or-tip{display:none;}}
 </style>
 </head>
 <body>
@@ -11980,13 +12011,69 @@ function orientSlides(){
      <p class="or-lead" style="text-align:center;margin-top:26px">Questions before we start?</p>`}
   ];
 }
+
+/* ---------- Download the Orientation blueprint as a PDF (one landscape page per slide) ---------- */
+async function ensureHtml2Canvas(){
+  if(window.html2canvas) return true;
+  for(const u of ["https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js","https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"]){
+    try{ await new Promise((res,rej)=>{ const sc=document.createElement("script"); sc.src=u; sc.onload=res; sc.onerror=rej; document.head.appendChild(sc); setTimeout(rej,15000); }); if(window.html2canvas) return true; }catch(e){}
+  }
+  return false;
+}
+async function downloadOrientationPdf(){
+  const btn = document.getElementById("orPdfBtn"); const label = btn ? btn.innerHTML : "";
+  const say = (t)=>{ if(btn) btn.innerHTML = t; };
+  try{
+    say("⏳ Preparing…");
+    if(!(await ensureJsPdf()) || !(await ensureHtml2Canvas())) throw new Error("PDF tools couldn't load");
+    const slides = orientSlides();
+    const W = 1280, H = 720;
+    const host = document.createElement("div");
+    host.className = "or-export-host";
+    document.body.appendChild(host);
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({orientation:"landscape", unit:"px", format:[W, H], hotfixes:["px_scaling"]});
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;
+    for(let k=0;k<slides.length;k++){
+      const sl = slides[k];
+      say(`⏳ Page ${k+1} of ${slides.length}…`);
+      host.innerHTML = `<div class="or-slide or-export">
+        <div class="or-kicker">${String(k+1).padStart(2,"0")} · ${esc(sl.k)}</div>
+        <h2>${esc(sl.h)}</h2>${sl.body}
+        <img class="or-logo" src="${LOGO_FULL_SRC}" alt="">
+        <div class="or-export-foot">LSH EA / PA Upskill Program · Platform Orientation · ${k+1} / ${slides.length}</div>
+      </div>`;
+      await new Promise(r=>setTimeout(r, 60));
+      const canvas = await window.html2canvas(host.firstElementChild, {scale:2, backgroundColor:"#FFFDF8", useCORS:true, logging:false, width:W, height:H, windowWidth:W});
+      if(k) doc.addPage([W, H], "landscape");
+      doc.addImage(canvas.toDataURL("image/jpeg", 0.92), "JPEG", 0, 0, W, H);
+    }
+    host.remove();
+    doc.save("LSH_EA-PA_Platform_Orientation.pdf");
+    toast("Orientation blueprint downloaded (PDF).");
+  }catch(e){
+    console.error(e); document.querySelectorAll(".or-export-host").forEach(x=>x.remove());
+    toast("Couldn't build the PDF here — use Print instead and choose “Save as PDF”.");
+  }finally{ if(btn) btn.innerHTML = label; }
+}
+function printOrientation(){
+  const slides = orientSlides();
+  const css = [...document.querySelectorAll("style")].map(x=>x.textContent).join("\n");
+  const w = window.open("", "_blank"); if(!w){ toast("Allow pop-ups to print, or use Download PDF."); return; }
+  w.document.write(`<html><head><title>LSH EA/PA — Platform Orientation</title><style>${css}
+    @page{size:1280px 720px;margin:0} body{margin:0;background:#fff} .or-slide.or-export{page-break-after:always;break-after:page}</style></head><body>${
+    slides.map((sl,k)=>`<div class="or-slide or-export"><div class="or-kicker">${String(k+1).padStart(2,"0")} · ${esc(sl.k)}</div><h2>${esc(sl.h)}</h2>${sl.body}<img class="or-logo" src="${LOGO_FULL_SRC}" alt=""><div class="or-export-foot">LSH EA / PA Upskill Program · Platform Orientation · ${k+1} / ${slides.length}</div></div>`).join("")
+  }</body></html>`);
+  w.document.close(); setTimeout(()=>{ w.focus(); w.print(); }, 600);
+}
+Object.assign(window, {downloadOrientationPdf, printOrientation});
 function renderOrientation(){
   const slides = orientSlides();
   const i = Math.max(0, Math.min(state.orientIdx||0, slides.length-1)); state.orientIdx = i;
   const s = slides[i];
   return `
     <div class="or-top"><div><p class="eyebrow">Admin · for screen sharing</p><h1 style="color:var(--navy);font-size:24px;margin:4px 0 0;">🧭 Platform Orientation</h1></div>
-      <div class="or-top-actions"><span class="or-tip">Share this tab in Google Meet — nothing private is shown here.</span><button class="btn btn-navy btn-sm" onclick="orientFullscreen()">⛶ Present full screen</button></div></div>
+      <div class="or-top-actions"><span class="or-tip">Share this tab in Google Meet — nothing private is shown here.</span><button class="btn btn-ghost btn-sm" onclick="printOrientation()">🖨 Print</button><button class="btn btn-primary btn-sm" id="orPdfBtn" onclick="downloadOrientationPdf()">⬇ Download PDF</button><button class="btn btn-navy btn-sm" onclick="orientFullscreen()">⛶ Present full screen</button></div></div>
     <div class="or-stage" id="orStage">
       <div class="or-slide" id="orSlide">
         <div class="or-kicker">${String(i+1).padStart(2,"0")} · ${esc(s.k)}</div>
@@ -12005,7 +12092,7 @@ function orientGo(delta){
   const n = orientSlides().length;
   state.orientIdx = Math.max(0, Math.min((state.orientIdx||0)+delta, n-1));
   const stage = document.getElementById("orStage");
-  if(stage){ const wrap = document.createElement("div"); wrap.innerHTML = renderOrientation(); stage.replaceWith(wrap.querySelector("#orStage")); }
+  if(stage){ const wrap = document.createElement("div"); wrap.innerHTML = renderOrientation(); stage.innerHTML = wrap.querySelector("#orStage").innerHTML; }
   else render();
 }
 function orientFullscreen(){
@@ -13709,6 +13796,9 @@ window.promptName = promptName;
 /* ---------- main render dispatcher ---------- */
 function render(){
   const app=document.getElementById("app");
+  const fs = document.fullscreenElement;
+  if(fs && fs.id==="lessonStage" && state.view==="day" && updateLessonStage()) return;
+  if(fs && fs.id==="orStage" && state.view==="orientation"){ const w=document.createElement("div"); w.innerHTML=renderOrientation(); const n=w.querySelector("#orStage"); if(n){ fs.innerHTML=n.innerHTML; return; } }
   if(state.view==="login"){
     app.innerHTML = renderLogin();
     afterRender();
@@ -13739,7 +13829,7 @@ function render(){
   else if(state.view==="orientation") body = state.isAdmin ? renderOrientation() : renderDashboard();
   const presenterView = state.view==="day" && state.dayViewMode!=="knowledgeCheck" && dayUnlocked(state.dayId);
   app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}">${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "")
-    + ((state.traineeId && !state.isAdmin && !["login","pendingApproval","registrationDenied","dashboard"].includes(state.view)) ? `<button type="button" class="tfb-fab" onclick="openTraineeFeedback(${state.view==="day"?state.dayId:"null"})" title="Share feedback about the platform, lessons or facilitator" aria-label="Share feedback">💬<span class="fab-label"> Feedback</span></button>` : "")
+    + ((state.traineeId && !state.isAdmin && !["login","pendingApproval","registrationDenied","dashboard","day"].includes(state.view)) ? `<button type="button" class="tfb-fab" onclick="openTraineeFeedback(${state.view==="day"?state.dayId:"null"})" title="Share feedback about the platform, lessons or facilitator" aria-label="Share feedback">💬<span class="fab-label"> Feedback</span></button>` : "")
     + renderFooter();
   afterRender();
 }
@@ -14531,7 +14621,7 @@ function renderDaySlideshow(d){
   const slide = slides[idx];
   state.lastSlide = state.lastSlide || {};
   if(state.lastSlide[d.id] !== idx){ state.lastSlide[d.id] = idx; storeSet("last-slide", state.lastSlide); }
-  return `
+  const inner = `
     <div class="slide-dots">
       ${slides.map((_,i)=>{
         const locked = i > (state.maxSlideReached||0);
@@ -14550,7 +14640,34 @@ function renderDaySlideshow(d){
     </div>
     ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.</div>` : ""}
   `;
+  if(state.stageInnerOnly){ state.stageInnerOnly = false; return inner; }
+  return `
+    <div class="ls-top">
+      <span class="or-tip">${state.isAdmin ? "Share this tab in Google Meet — trainer cues are never shown here." : "Tip: use ← → keys to move between slides."}</span>
+      <button class="btn btn-navy btn-sm" onclick="lessonFullscreen()">⛶ Present full screen</button>
+    </div>
+    <div class="lesson-stage" id="lessonStage">${inner}</div>`;
 }
+/* Update only the stage contents (keeps full-screen mode alive while moving between slides). */
+function updateLessonStage(){
+  const st = document.getElementById("lessonStage"); const d = DAYS.find(x=>x.id===state.dayId);
+  if(!st || !d) return false;
+  state.stageInnerOnly = true;
+  st.innerHTML = renderDaySlideshow(d);
+  st.scrollTop = 0; const ls = document.getElementById("lessonSlideWrap"); if(ls) ls.scrollTop = 0;
+  return true;
+}
+function lessonFullscreen(){
+  const el = document.getElementById("lessonStage");
+  if(!document.fullscreenElement && el && el.requestFullscreen) el.requestFullscreen().catch(()=>toast("Your browser blocked full screen — press F11 instead."));
+  else if(document.exitFullscreen) document.exitFullscreen();
+}
+window.lessonFullscreen = lessonFullscreen;
+document.addEventListener("keydown", (e)=>{
+  if(state.view!=="day" || state.dayViewMode==="knowledgeCheck" || (typeof isTyping==="function" && isTyping()) || document.querySelector(".overlay")) return;
+  if(e.key==="ArrowRight" || e.key==="PageDown"){ e.preventDefault(); nextSlide(); }
+  else if(e.key==="ArrowLeft" || e.key==="PageUp"){ e.preventDefault(); prevSlide(); }
+});
 function goToSlide(i){
   const maxReached = state.maxSlideReached||0;
   if(i > maxReached){
@@ -14592,6 +14709,7 @@ function prevSlide(){
 }
 window.prevSlide = prevSlide;
 function refreshLessonSlide(){
+  if(document.fullscreenElement && document.fullscreenElement.id==="lessonStage" && updateLessonStage()) return;
   render();
   setTimeout(()=>{
     const el = document.getElementById("lessonSlideWrap");
@@ -23174,7 +23292,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.25-z";
+var APP_BUILD = "2026.09.26-b";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
