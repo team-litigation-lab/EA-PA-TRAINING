@@ -3,7 +3,7 @@
  *
  * Secrets (set once with `wrangler secret put <NAME>`):
  *   GEMINI_API_KEY     — AI features via Google Gemini (free tier). Takes priority if set.
- *   GEMINI_MODEL       — optional, default "gemini-2.5-flash"
+ *   GEMINI_MODEL       — optional, default "gemini-3.8-flash" (falls back to gemini-3.5-flash-lite)
  *   ANTHROPIC_API_KEY  — AI features via Claude (used only if GEMINI_API_KEY is not set)
  *   ADMIN_PASSPHRASE   — trainer/admin sign-in. Setting this switches the portal
  *                        into SECURE MODE: every storage and AI request must carry
@@ -110,22 +110,24 @@ async function traineeWrite(env, tok, key, value) {
 /* ---------- Google Gemini (free tier) ----------
    The portal speaks the Anthropic message format; this translates each
    request to Gemini's generateContent and the reply back, so nothing in
-   the portal needs to change. Model: GEMINI_MODEL (default gemini-2.5-flash),
-   falling back to gemini-2.5-flash-lite if the first is busy or unavailable. */
+   the portal needs to change. Model: GEMINI_MODEL (default gemini-3.8-flash),
+   falling back to gemini-3.5-flash-lite / gemini-3.5-flash if busy or unavailable. */
 async function callGemini(env, rawBody) {
   let req; try { req = JSON.parse(rawBody); } catch (e) { return json({ error: "Invalid request" }, 400); }
   const toText = (c) => typeof c === "string" ? c : (Array.isArray(c) ? c.map((p) => p && p.text ? p.text : "").join("\n") : "");
   const contents = (req.messages || []).map((m) => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: toText(m.content) }] }));
   const payload = {
     contents,
-    generationConfig: { maxOutputTokens: Math.min(Math.max(Number(req.max_tokens) || 1024, 256), 8192), temperature: 0.7 }
+    // extra headroom: newer Gemini models may spend part of the budget "thinking" before answering
+    generationConfig: { maxOutputTokens: Math.min(Math.max((Number(req.max_tokens) || 1024) * 2, 2048), 16384), temperature: 0.7 }
   };
   if (req.system) payload.systemInstruction = { parts: [{ text: toText(req.system) }] };
-  const models = [env.GEMINI_MODEL || "gemini-2.5-flash", "gemini-2.5-flash-lite"].filter((v, i, a) => a.indexOf(v) === i);
+  // Google limits the 2.5 models to accounts that already used them; new projects use 3.8 Flash / 3.5 Flash-Lite.
+  const models = [env.GEMINI_MODEL || "gemini-3.8-flash", "gemini-3.5-flash-lite", "gemini-3.5-flash"].filter((v, i, a) => a.indexOf(v) === i);
   let last = null;
   for (const model of models) {
     const p = JSON.parse(JSON.stringify(payload));
-    if (/2\.5-flash/.test(model)) p.generationConfig.thinkingConfig = { thinkingBudget: 0 };   // faster, and thinking doesn't eat the output budget
+    if (/2\.5-flash/.test(model)) p.generationConfig.thinkingConfig = { thinkingBudget: 0 };   // 2.5 only: switch thinking off
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
@@ -134,7 +136,7 @@ async function callGemini(env, rawBody) {
     const data = await r.json().catch(() => ({}));
     if (r.ok) {
       const cand = (data.candidates || [])[0] || {};
-      const text = ((cand.content && cand.content.parts) || []).map((x) => x.text || "").join("");
+      const text = ((cand.content && cand.content.parts) || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
       if (!text) { last = { status: 502, msg: `Gemini returned no text (${cand.finishReason || "blocked"})` }; continue; }
       return json({ content: [{ type: "text", text }], model, stop_reason: cand.finishReason === "MAX_TOKENS" ? "max_tokens" : "end_turn", provider: "gemini" });
     }
@@ -164,7 +166,7 @@ export default {
         const page = await env.ASSETS.fetch(new Request(new URL("/", request.url)));
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
-        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${env.GEMINI_API_KEY ? "Google Gemini (" + (env.GEMINI_MODEL || "gemini-2.5-flash") + ")" : (env.ANTHROPIC_API_KEY ? "Anthropic Claude" : "none configured")}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${env.GEMINI_API_KEY ? "Google Gemini (" + (env.GEMINI_MODEL || "gemini-3.8-flash") + ")" : (env.ANTHROPIC_API_KEY ? "Anthropic Claude" : "none configured")}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
