@@ -2038,7 +2038,7 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
 .cue-item > summary{display:flex;align-items:center;gap:8px;}
 .script-slides{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--orange-deep);font-weight:700;margin-left:6px;}
 
-.audit-strip{display:grid;grid-template-columns:1.2fr 1.1fr 2fr 1.2fr 1fr 1.9fr;gap:14px;padding:4px 18px 14px;align-items:start;}
+.audit-strip{display:grid;grid-template-columns:1.2fr 1.1fr 2fr 1.1fr 1fr 1.1fr 1.8fr;gap:14px;padding:4px 18px 14px;align-items:start;}
 .audit-strip.loading{display:block;font-size:12px;color:var(--ink-soft);}
 .as-block b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:3px;}
 .as-block span{font-size:12.5px;color:var(--ink);font-weight:700;line-height:1.45;}
@@ -2247,6 +2247,34 @@ em.warn{font-style:normal;color:var(--danger);}
 .audit-strip .as-block:first-child{padding-left:0;}
 .audit-strip .as-block + .as-block{border-left:1px solid #E3E6EF;}
 @media(max-width:1200px){.audit-strip .as-block{border-left:none !important;padding:6px 0;} .audit-strip .as-block + .as-block{border-top:1px solid #EEF0F5;}}
+
+.tk-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 16px;}
+.tk-stats > div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;} .tk-stats b{display:block;font-family:'Fraunces',serif;font-size:26px;color:var(--navy);} .tk-stats span{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);font-weight:700;}
+.tk-sec{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin:18px 0 8px;}
+.tk-card{padding:16px 18px;margin-bottom:12px;border-left:5px solid var(--navy);}
+.tk-card.new{border-left-color:var(--orange);} .tk-card.progress{border-left-color:#E8B54A;} .tk-card.resolved{border-left-color:#3F7D58;} .tk-card.missed{border-left-color:var(--danger);opacity:.85;}
+.tk-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;}
+.tk-day{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--orange-deep);text-transform:uppercase;letter-spacing:.1em;}
+.tk-chip{font-size:11px;font-weight:800;border-radius:12px;padding:2px 8px;margin-left:6px;} .tk-chip.new{background:#FFF1E2;color:var(--orange-deep);} .tk-chip.prog{background:#FFF6DA;color:#8A6A12;} .tk-chip.done{background:var(--success-bg);color:var(--success);} .tk-chip.missed{background:var(--danger-bg);color:var(--danger);}
+.tk-times{font-size:12px;color:var(--ink-soft);} .tk-left{color:var(--danger);}
+.tk-task{font-size:15px;font-weight:600;color:var(--navy);line-height:1.5;margin:10px 0;}
+.tk-steps{display:flex;gap:6px;list-style:none;padding:0;margin:0 0 12px;counter-reset:s;} .tk-steps li{counter-increment:s;font-size:12px;font-weight:700;color:var(--ink-soft);background:#F3F5FB;border-radius:999px;padding:4px 10px;} .tk-steps li::before{content:counter(s) ". ";} .tk-steps li.ok{background:var(--success-bg);color:var(--success);}
+.tk-lbl{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:800;color:var(--navy);margin:10px 0;} .tk-lbl span{font-weight:500;color:var(--ink-soft);} .tk-lbl textarea{font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;}
+.tk-actions{display:flex;justify-content:flex-end;}
+.tk-score{display:flex;align-items:baseline;gap:10px;} .tk-score b{font-family:'Fraunces',serif;font-size:28px;color:var(--navy);} .tk-score span{font-size:13px;color:var(--ink-soft);font-weight:700;}
+.tk-more summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:13px;margin-top:6px;} .tk-resp{white-space:pre-wrap;background:#F8F9FC;border-radius:8px;padding:10px;font-size:13px;}
+.tk-missed-note{font-size:13px;color:var(--danger);margin:4px 0 0;}
+.tk-how{padding:14px 18px;margin-top:18px;} .tk-how ul{margin:8px 0;padding-left:20px;} .tk-how li{font-size:13.5px;margin-bottom:4px;} .tk-how > span{font-size:12.5px;color:var(--ink-soft);}
+.tk-dash{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px;margin-bottom:20px;background:#FFF4E8;border:1.5px solid var(--orange);flex-wrap:wrap;}
+.tk-dash-k{font-size:11px;color:var(--orange-deep);font-weight:800;text-transform:uppercase;letter-spacing:.05em;} .tk-dash p{margin:6px 0 0;font-size:14px;font-weight:600;color:var(--navy);max-width:90ch;}
+.tk-admin-note{font-size:12.5px;color:#5B4A36;background:#fff;border:1px dashed #F0C08A;border-radius:10px;padding:8px 12px;margin-top:10px;}
+.comp-strip-grid{grid-template-columns:repeat(8,minmax(0,1fr)) !important;}
+@media(max-width:1300px){.comp-strip-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}}
+@media(max-width:760px){.tk-stats{grid-template-columns:1fr 1fr;} .comp-strip-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}}
+@media(min-width:1181px) and (max-width:1560px){.brand-text{display:none !important;} .topbar-search{max-width:240px;}}
+@media(min-width:1561px){.topbar-inner{max-width:min(1760px, calc(100vw - 40px)) !important;}}
+.topbar .brand{flex:0 1 auto;min-width:0;} .topbar .brand-text{min-width:0;overflow:hidden;} .topbar .brand-text b,.topbar .brand-text span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;}
+@media(min-width:761px) and (max-width:1180px){.topbar .nav{flex-wrap:wrap;row-gap:4px;max-width:100%;} .topbar .nav button{padding:7px 8px;}}
 </style>
 </head>
 <body>
@@ -11505,7 +11533,7 @@ const mem = {}; // in-memory fallback if window.storage is unavailable
 const PERSONAL_KEYS = ["day-progress","practice-progress","lab-attempts-global","notes","completed-lab-actions",
   "day10-window","submissions","roleplayHistory","slide-progress","last-slide","attn-detail-findings",
   "calendar-custom","calendar-edits","call-log","inbox-filing","inbox-interactions","inbox-labels","trainee-batch",
-  "quick-check-answers","last-view","lab-drafts","work-log","cert-name","reg-name","intro-seen"];
+  "quick-check-answers","last-view","lab-drafts","work-log","cert-name","reg-name","intro-seen","task-log"];
 const PERSONAL_KEY_SET = new Set(PERSONAL_KEYS);
 let cloudSaveTimer = null;
 function scheduleCloudSave(){
@@ -11846,6 +11874,7 @@ async function loadAll(){
   state.qcAnswers = (qa && typeof qa==="object") ? qa : {};
   const lv = await storeGet("last-view");
   state.lastView = (lv && typeof lv==="object") ? lv : null;
+  const tl = await storeGet("task-log"); state.taskLog = Array.isArray(tl) ? tl : [];
   const isn = await storeGet("intro-seen"); state.introSeen = (isn && typeof isn==="object") ? isn : {};
   const rn = await storeGet("reg-name");
   state.regName = (rn && rn.last) ? rn : null;
@@ -12084,7 +12113,7 @@ function orientSlides(){
          <div class="or-box or-hero"><span class="or-num">1</span><b>Progress track</b><em>Days 1–10 · ✓ = passed · 🔒 = not open yet</em></div>
          <div class="or-box or-cards"><span class="or-num">2</span><b>Day cards</b><em>Start / Review a day · 💬 trainer feedback appears here</em></div>
          <div class="or-box"><span class="or-num">3</span><b>Resume &amp; certificate</b><em>Jump back to where you left off · download your certificate when earned</em></div>
-         <div class="or-box"><span class="or-num">4</span><b>Competency profile</b><em>Seven skills that grow as your work is graded</em></div>
+         <div class="or-box"><span class="or-num">4</span><b>Competency profile</b><em>Eight skills that grow as your work is graded</em></div>
        </div>
        <div class="or-bp-side">
          <div class="or-box dark"><span class="or-num">5</span><b>Your stats</b><em>Completion · quiz average · days done</em></div>
@@ -12094,7 +12123,7 @@ function orientSlides(){
      </div>`},
    {k:"Navigation", h:"Getting around", body:`
      <div class="or-nav">
-       ${[["Dashboard","Your home: progress, days, stats."],["Client Profile","Everything about your client, Elias Thorne. Read it first."],["Practice Lab","All hands-on tools — each opens with its day."],["🔥 Live Roleplay","Voice calls with realistic clients and crises."],["My Notes","Your private notes — download them as a PDF."],["Handouts","Printable checklists and Excel templates for each day."],["🎯 Focus","Your trainer's feedback and what to work on next."],["💬 Feedback","Tell us what's working and what isn't — anonymously if you like."]].map(([a,b])=>`<div><b>${a}</b><span>${b}</span></div>`).join("")}
+       ${[["Dashboard","Your home: progress, days, stats."],["🎲 Tasks","Surprise tasks from your trainer — acknowledge, plan and resolve before the timer ends. Graded."],["Client Profile","Everything about your client, Elias Thorne. Read it first."],["Practice Lab","All hands-on tools — each opens with its day."],["🔥 Live Roleplay","Voice calls with realistic clients and crises."],["My Notes","Your private notes — download them as a PDF."],["Handouts","Printable checklists and Excel templates for each day."],["🎯 Focus","Your trainer's feedback and what to work on next."],["💬 Feedback","Tell us what's working and what isn't — anonymously if you like."]].map(([a,b])=>`<div><b>${a}</b><span>${b}</span></div>`).join("")}
      </div>
      <p class="or-foot">On a phone, everything is under <b>☰ Menu</b>. Search (top bar) finds any topic or tool.</p>`},
    {k:"Client", h:"Meet your client: Elias Thorne", body:`
@@ -12109,7 +12138,7 @@ function orientSlides(){
    {k:"Calls", h:"Live calls & roleplays", body:`
      <ul class="or-list big"><li>🎧 Use a headset. The caller <b>speaks</b>; you answer out loud (Chrome/Edge) or type.</li><li>🔊 Can't hear the caller? Check your volume and press <b>↻ Replay</b>.</li><li>🙋 Hands-free mode listens automatically after the caller finishes.</li><li>📞 <b>Hang Up</b> ends the call and gives you your evaluation.</li></ul>`},
    {k:"Feedback", h:"Feedback, focus & your growth", body:`
-     <div class="or-3">${pill("💬","Trainer feedback","Your trainer writes feedback on each day's work — it lights up on the day card and in 🎯 Focus.")}${pill("🎯","Focus","Your trainer's priorities for you, plus suggestions from your own work. Tick items off as you go.")}${pill("📈","Competency profile","Seven skills — accuracy, judgment, risk, efficiency, communication, composure, knowledge.")}</div>`},
+     <div class="or-3">${pill("💬","Trainer feedback","Your trainer writes feedback on each day's work — it lights up on the day card and in 🎯 Focus.")}${pill("🎯","Focus","Your trainer's priorities for you, plus suggestions from your own work. Tick items off as you go.")}${pill("📈","Competency profile","Eight skills — accuracy, judgment, risk, efficiency, communication, composure, knowledge and real-time task handling.")}</div>`},
    {k:"Certificate", h:"Earning your certificate", body:`
      <div class="or-cert"><div class="or-ribbon">🏅</div><div>
        <p class="or-lead" style="margin-top:0">Pass all <b>10 Knowledge Checks</b> (70%+) and your <b>Certificate of Completion</b> unlocks — download it as a PDF from your dashboard.</p>
@@ -12272,7 +12301,7 @@ function renderFacilitatorGuide(){
         <li><b>Review daily feedback:</b> when a trainee finishes a day's Knowledge Check or Practice Lab, a review is auto-drafted (setting: <b>💬 Daily reviews</b> at the top of Trainee Audit). Open <b>View Detail → Day-by-Day Feedback</b>, edit, and <b>Send</b> — or use <b>✨ Draft for all active days</b> and <b>📤 Send all drafts</b>. Trainees see it on the day card and in <b>🎯 Focus</b>.</li>
         <li><b>Set personal Focus items</b> in View Detail → <b>🎯 Trainer focus</b> (priority + day). They're pinned at the top of the trainee's Focus panel; you'll see when they're seen and marked done.</li>
         <li><b>Check Rankings</b> and each trainee's competency picture; trainees see their own rank within their batch and a 7-skill Competency Profile.</li>
-        <li><b>Surprise tasks</b> (optional): broadcast from Trainee Audit with a live window; end them any time.</li>
+        <li><b>Random tasks</b>: broadcast from Trainee Audit with a live window. Trainees handle them in <b>🎲 Tasks</b> (acknowledge → plan → resolve); each is graded on timeliness, prioritisation, applying the day's lesson, communication and risk. Missed tasks count as 0. Scores feed the Competency Profile (Real-Time Task Handling), Rankings and the Audit.</li>
         <li><b>Read trainee feedback</b> about the platform, lessons and facilitation in <b>Admin → Trainee Feedback</b> (star averages by area and day, comments, status, CSV export). Trainees send it from the 💬 Feedback button or right after each Knowledge Check, and can choose to be anonymous.</li>
       </ol>
     </div>
@@ -12346,11 +12375,11 @@ function dismissNotifBanner(){ state.notifDismissed = true; render(); }
 window.dismissNotifBanner = dismissNotifBanner;
 
 function renderTopbar(){
-  let views = [["dashboard","Dashboard"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
+  let views = [["dashboard","Dashboard"],["tasks","🎲 Tasks"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
   if(state.isAdmin){
     // Admin is a trainer monitoring dashboard, not a trainee workspace — hide
     // the trainee-facing-only views that have no role here.
-    views = views.filter(([id]) => !["crisisroleplay","notes","handouts"].includes(id));
+    views = views.filter(([id]) => !["crisisroleplay","notes","handouts","tasks"].includes(id));
     views.push(["orientation","🧭 Orientation"]);
     views.push(["facilitatorguide","Facilitator Guide"]);
   }
@@ -12369,7 +12398,7 @@ function renderTopbar(){
           ${state.searchQuery ? `<div class="search-results" id="searchResultsWrap">${renderSearchResults(state.searchQuery)}</div>` : ""}
         </div>
         <div class="nav">
-          ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}</button>`).join("")}
+          ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}${id==="tasks" && openTasksCount() ? `<span class="nav-badge">${openTasksCount()}</span>` : ""}</button>`).join("")}
           ${(state.traineeId && !state.isAdmin) ? `<button type="button" class="nav-focus" onclick="openFocusPanel()" title="My Focus — trainer feedback and what to work on next">🎯 Focus${focusNewCount()?`<span class="nav-badge">${focusNewCount()}</span>`:""}</button>` : ""}
           <button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>
           <button type="button" class="nav-fs" onclick="togglePageFullscreen()" title="Full screen (Esc to exit)">⛶</button>
@@ -13208,10 +13237,16 @@ window.rpSubmitRapidTask = rpSubmitRapidTask;
    Same scoring as Admin → Rankings: 40% completion + 30% Knowledge Check
    average + 30% Practice Lab average, within the trainee's own batch.
    Other trainees are shown as first name + last initial only. */
+function taskAvgOf(rec){
+  const v = Object.values((rec && rec.dayProgress)||{}).map(p=>p && p.surpriseTaskScore).filter(x=>typeof x==="number");
+  return v.length ? v.reduce((a,b)=>a+b,0)/v.length : null;
+}
 function rankOverall(rec){
   const day = adminDayStats(rec), practice = adminPracticeStats(rec);
   const completionPct = day.total ? (day.done/day.total)*100 : 0;
-  return Math.round(completionPct*0.4 + day.avg*0.3 + practice.avg*0.3);
+  const t = taskAvgOf(rec);
+  if(t===null) return Math.round(completionPct*0.4 + day.avg*0.3 + practice.avg*0.3);
+  return Math.round(completionPct*0.35 + day.avg*0.25 + practice.avg*0.25 + t*0.15);   // random tasks count once any are graded
 }
 function shortName(n){ const p = String(n||"Trainee").trim().split(/\s+/); return p.length>1 ? `${p[0]} ${p[p.length-1][0]}.` : p[0]; }
 async function loadTraineeRanking(force){
@@ -13239,7 +13274,8 @@ const COMPETENCIES = [
   {id:"risk", label:"Risk, Confidentiality & SOPs", tip:"Before sending, ask: is anything confidential, who else needs to know, and what's the escalation path?"},
   {id:"efficiency", label:"Efficiency & Structure", tip:"Cut padding: bottom line first, then the few details that matter, in short scannable lines."},
   {id:"communication", label:"Communication (BLUF & ACT)", tip:"Open every update with the bottom line, then Acknowledge–Clarify–Timeline."},
-  {id:"composure", label:"Composure Under Pressure", tip:"Slow down on tense calls: acknowledge, state facts, offer options — then practice a Live Roleplay."}
+  {id:"composure", label:"Composure Under Pressure", tip:"Slow down on tense calls: acknowledge, state facts, offer options — then practice a Live Roleplay."},
+  {id:"realtime", label:"Real-Time Task Handling", tip:"When a random task lands: acknowledge within minutes, jot a 3-step plan, then resolve before the timer ends."}
 ];
 function competencyProfile(){
   const buckets = {}; const add=(k,v)=>{ if(typeof v==="number" && !isNaN(v)){ (buckets[k]=buckets[k]||[]).push(Math.max(0,Math.min(100,v))); } };
@@ -13249,6 +13285,7 @@ function competencyProfile(){
     if(e.kind==="lab"){ add("accuracy", s.accuracy); add("presence", s.presence); add("risk", s.risk); add("efficiency", s.efficiency); }
     if(e.kind==="roleplay"){ add("communication", s.bluf); add("communication", s.act); add("risk", s.risk); add("composure", s.composure); }
   });
+  taskLog().forEach(e=>{ if(e.status==="resolved") add("realtime", e.score); else if(e.status==="missed") add("realtime", 0); });
   return COMPETENCIES.map(c=>{ const arr = buckets[c.id]||[]; return Object.assign({}, c, {score: arr.length ? Math.round(arr.reduce((a,b)=>a+b,0)/arr.length) : null, n: arr.length}); });
 }
 function workOnNextItems(){
@@ -13460,7 +13497,7 @@ function renderRankingCard(){
     <div class="num">${pos>=0 ? `#${pos+1}` : "—"} <span>of ${rd.ranked.length}</span></div>
     <div class="lbl">Ranking${rd.batch ? ` · Batch ${esc(rd.batch)}` : ""}</div>
     <ol class="rank-list">${top.map(row).join("")}${pos>2 ? `<li class="gap">…</li>${row(rd.ranked[pos],pos)}` : ""}</ol>
-    <div class="sub">Score = 40% progress · 30% quizzes · 30% Practice Lab</div>
+    <div class="sub">Score = 35% progress · 25% quizzes · 25% Practice Lab · 15% random tasks (40/30/30 until a task is graded)</div>
   </div>`;
 }
 function renderDashboard(){
@@ -13532,6 +13569,125 @@ function renderDashboard(){
 //   • this trainee was already registered when it was broadcast
 //     (so trainees who log in / register later never inherit it)
 //   • this trainee hasn't already answered it
+/* ============================================================
+   RANDOM TASK TRACKER (trainee) + assessment
+   Every random task a trainee receives is logged in "task-log" and
+   moves through: New → In progress (acknowledged) → Resolved (graded)
+   — or Missed if the live window ends first. Trainees plan in working
+   notes (auto-saved), then submit a resolution that is graded on
+   timeliness, prioritisation, applying the day's lesson, communication
+   and risk. Scores feed the Competency Profile ("Real-Time Task
+   Handling"), Rankings and the trainer's Trainee Audit.
+   ============================================================ */
+function taskLog(){ return state.taskLog || (state.taskLog = []); }
+function saveTaskLog(){ return storeSet("task-log", taskLog()); }
+function syncTaskFromBroadcast(t){
+  if(!t || !t.generatedAt) return;
+  const log = taskLog();
+  let e = log.find(x=>x.id===t.generatedAt);
+  if(!e){ e = {id:t.generatedAt, dayId:t.dayId, task:t.task, receivedAt:new Date().toISOString(), expiresAt:t.expiresAt, status:"new", notes:"", response:""}; log.unshift(e); saveTaskLog(); toast("🎲 New task assigned — open 🎲 Tasks to handle it."); }
+  e.expiresAt = t.expiresAt || e.expiresAt;
+}
+function refreshTaskStatuses(){
+  let changed = false;
+  taskLog().forEach(e=>{ if((e.status==="new"||e.status==="progress") && e.expiresAt && Date.now() > new Date(e.expiresAt).getTime()){
+    e.status = "missed"; e.missedAt = new Date().toISOString(); changed = true;
+    // a missed task counts as 0 in the day's random-task score (and therefore in rankings and the audit)
+    if(state.progress){ const p = state.progress[e.dayId] = state.progress[e.dayId] || {};
+      p.surpriseTaskScores = (p.surpriseTaskScores||[]).concat([0]); p.surpriseTaskScore = Math.round(p.surpriseTaskScores.reduce((a,b)=>a+b,0)/p.surpriseTaskScores.length); }
+    try{ logWork({kind:"task", dayId:e.dayId, label:`Random Task · Day ${e.dayId} (missed)`, score:0, tier:"Not Yet — Keep Building", subs:{task:0}}); }catch(x){}
+  } });
+  if(changed){ saveTaskLog(); storeSet("day-progress", state.progress); syncToLedger(); }
+}
+function openTasksCount(){ refreshTaskStatuses(); return taskLog().filter(e=>e.status==="new"||e.status==="progress").length; }
+function fmtLeft(ms){ if(ms<=0) return "ended"; const m = Math.floor(ms/60000), s = Math.floor(ms/1000)%60; return m>=60 ? `${Math.floor(m/60)}h ${m%60}m left` : `${m}m ${String(s).padStart(2,"0")}s left`; }
+function taskStatusChip(e){ return {new:`<span class="tk-chip new">● New</span>`, progress:`<span class="tk-chip prog">◐ In progress</span>`, resolved:`<span class="tk-chip done">✓ Resolved</span>`, missed:`<span class="tk-chip missed">✕ Missed</span>`}[e.status] || ""; }
+function renderTasksPage(){
+  refreshTaskStatuses();
+  const log = taskLog();
+  const open = log.filter(e=>e.status==="new"||e.status==="progress"), done = log.filter(e=>e.status==="resolved"), missed = log.filter(e=>e.status==="missed");
+  const avg = done.length ? Math.round(done.reduce((a,e)=>a+(e.score||0),0)/done.length) : null;
+  const card = (e)=>{
+    const live = e.status==="new"||e.status==="progress";
+    const left = e.expiresAt ? new Date(e.expiresAt).getTime()-Date.now() : 0;
+    return `<div class="card tk-card ${e.status}" id="tk_${cssId(e.id)}">
+      <div class="tk-head"><div><span class="tk-day">Day ${e.dayId}</span> ${taskStatusChip(e)}</div>
+        <div class="tk-times">Received ${fmtDate(e.receivedAt)}${live && e.expiresAt ? ` · <b class="tk-left" data-exp="${esc(e.expiresAt)}">${fmtLeft(left)}</b>` : ""}${e.submittedAt ? ` · Resolved in ${Math.max(1,Math.round((new Date(e.submittedAt)-new Date(e.receivedAt))/60000))} min` : ""}</div></div>
+      <p class="tk-task">${esc(e.task)}</p>
+      ${live ? `
+        <ol class="tk-steps"><li class="${e.status!=="new"?"ok":""}">Acknowledge</li><li class="${(e.notes||"").trim()?"ok":""}">Plan &amp; prioritise</li><li>Resolve &amp; submit</li></ol>
+        ${e.status==="new" ? `<button class="btn btn-navy btn-sm" onclick="taskAck('${esc(e.id)}')">✋ Acknowledge — I'm on it</button>` : `
+        <label class="tk-lbl">Working notes <span>(private, auto-saved — who to contact, what first, deadlines)</span><textarea rows="3" oninput="taskNotes('${esc(e.id)}', this.value)" placeholder="1) … 2) … 3) …">${esc(e.notes||"")}</textarea></label>
+        <label class="tk-lbl">Your resolution <span>(what you'd actually send or do — this is graded)</span><textarea id="tkResp_${cssId(e.id)}" rows="5" oninput="taskResp('${esc(e.id)}', this.value)" placeholder="Write the message / actions exactly as you'd handle it…">${esc(e.response||"")}</textarea></label>
+        <div class="tk-actions"><button class="btn btn-primary btn-sm" id="tkBtn_${cssId(e.id)}" onclick="submitTask('${esc(e.id)}')">Submit resolution for grading</button></div>
+        <div id="tkRes_${cssId(e.id)}"></div>`}` : ""}
+      ${e.status==="resolved" ? `<div class="tk-score"><b>${e.score}%</b> <span>${esc(displayTier(e.tier||""))}</span></div>
+        <details class="tk-more"><summary>Your resolution &amp; feedback</summary><p class="tk-resp">${esc(e.response||"")}</p>${e.reportHtml||""}</details>` : ""}
+      ${e.status==="missed" ? `<p class="tk-missed-note">The live window ended before this was resolved. On the job, even a quick “received — I'll have this to you by 3 PM” counts. Not yet — next time acknowledge right away.</p>` : ""}
+    </div>`;
+  };
+  return `
+    <p class="eyebrow">Random Tasks</p>
+    <h1>🎲 My Tasks</h1>
+    <p>Unannounced tasks your trainer drops in during training. Acknowledge fast, plan, then resolve before the timer runs out — each one is graded and counts toward your assessment.</p>
+    <div class="tk-stats">
+      <div><b>${open.length}</b><span>Open</span></div><div><b>${done.length}</b><span>Resolved</span></div><div><b>${missed.length}</b><span>Missed</span></div><div><b>${avg===null?"—":avg+"%"}</b><span>Average score</span></div>
+    </div>
+    ${log.length ? `
+      ${open.length ? `<h3 class="tk-sec">Open now</h3>${open.map(card).join("")}` : ""}
+      ${done.length ? `<h3 class="tk-sec">Resolved</h3>${done.map(card).join("")}` : ""}
+      ${missed.length ? `<h3 class="tk-sec">Missed</h3>${missed.map(card).join("")}` : ""}` :
+      `<div class="card" style="padding:26px;text-align:center;color:var(--ink-soft);">No random tasks yet. When your trainer sends one, it appears here and on your dashboard — you'll have a limited time to handle it.</div>`}
+    <div class="card tk-how"><b>How random tasks are assessed</b>
+      <ul><li><b>Timeliness</b> — acknowledged quickly and resolved inside the live window.</li><li><b>Prioritisation</b> — the right first move, deadlines and people.</li><li><b>Applying today's lesson</b> — not just common sense.</li><li><b>Communication</b> — clear, bottom-line-first, ready to send.</li><li><b>Risk &amp; confidentiality</b> — nothing unsafe, the right escalation.</li></ul>
+      <span>Scores feed your Competency Profile (<i>Real-Time Task Handling</i>) and your ranking. Missed tasks count as 0.</span></div>`;
+}
+async function taskAck(id){ const e = taskLog().find(x=>x.id===id); if(!e) return; e.status = "progress"; e.ackAt = new Date().toISOString(); await saveTaskLog(); render(); setTimeout(()=>{ const t = document.querySelector(`#tk_${cssId(id)} textarea`); if(t) t.focus(); }, 60); }
+const __tkTimers = {};
+function taskNotes(id, v){ const e = taskLog().find(x=>x.id===id); if(!e) return; e.notes = v; clearTimeout(__tkTimers[id]); __tkTimers[id] = setTimeout(saveTaskLog, 700); }
+function taskResp(id, v){ const e = taskLog().find(x=>x.id===id); if(!e) return; e.response = v; clearTimeout(__tkTimers["r"+id]); __tkTimers["r"+id] = setTimeout(saveTaskLog, 700); }
+async function submitTask(id){
+  const e = taskLog().find(x=>x.id===id); if(!e) return;
+  refreshTaskStatuses(); if(e.status==="missed"){ toast("This task's live window has ended."); render(); return; }
+  const val = (e.response||"").trim();
+  if(val.length < 25){ toast("Write out how you'd actually resolve it first."); return; }
+  const btn = document.getElementById("tkBtn_"+cssId(id)); const out = document.getElementById("tkRes_"+cssId(id));
+  if(btn){ btn.disabled = true; btn.textContent = "Grading…"; }
+  if(out) out.innerHTML = `<div class="ai-loading">Reviewing your resolution…</div>`;
+  const now = Date.now();
+  const ackMins = e.ackAt ? Math.max(0, Math.round((new Date(e.ackAt)-new Date(e.receivedAt))/60000)) : null;
+  const totalMins = Math.max(1, Math.round((now-new Date(e.receivedAt))/60000));
+  const windowMins = e.expiresAt ? Math.round((new Date(e.expiresAt)-new Date(e.receivedAt))/60000) : null;
+  try{
+    const day = DAYS.find(d=>d.id===e.dayId);
+    const report = await runRubricEvaluation(
+      `Random Task — Day ${e.dayId}`,
+      `Unannounced task dropped mid-session to test real-time handling of Day ${e.dayId} (${day.title}).\nTASK: ${e.task}\nTIMING: acknowledged after ${ackMins===null?"n/a":ackMins+" min"}; resolved after ${totalMins} min${windowMins?` of a ${windowMins}-minute window`:""}.\nTRAINEE'S WORKING NOTES: ${(e.notes||"(none)").slice(0,800)}`,
+      val,
+      `Assess on five criteria: (1) Timeliness — fast acknowledgement and resolution inside the window; (2) Prioritisation — correct first move, deadlines, who to involve; (3) Application of Day ${e.dayId}'s actual lesson content; (4) Communication — clear, bottom-line-first, ready to send; (5) Risk & confidentiality — safe handling and correct escalation. Be decisive about vague or hedging answers.`
+    );
+    Object.assign(e, {status:"resolved", submittedAt:new Date(now).toISOString(), score:report.totalScore, tier:report.gradeTier||report.tier||"", reportHtml:renderEvaluationReport(report)});
+    await saveTaskLog();
+    if(!state.progress[e.dayId]) state.progress[e.dayId] = {};
+    const p = state.progress[e.dayId];
+    p.surpriseTaskScores = (p.surpriseTaskScores||[]).concat([report.totalScore]);
+    p.surpriseTaskScore = Math.round(p.surpriseTaskScores.reduce((a,b)=>a+b,0)/p.surpriseTaskScores.length);
+    p.surpriseTaskAnsweredAt = e.id;
+    await storeSet("day-progress", state.progress);
+    try{ logWork({kind:"task", dayId:e.dayId, label:`Random Task · Day ${e.dayId}`, score:report.totalScore, tier:report.gradeTier||report.tier, subs:{task:report.totalScore}}); }catch(x){}
+    syncToLedger();
+    state.activeSurpriseTask = null;
+    if(report.totalScore>=85) burstConfetti();
+    render();
+    setTimeout(()=>{ const c = document.querySelector(`#tk_${cssId(id)} details`); if(c){ c.open = true; c.scrollIntoView({behavior:"smooth", block:"center"}); } }, 80);
+  }catch(err){
+    if(btn){ btn.disabled = false; btn.textContent = "Submit resolution for grading"; }
+    if(out) out.innerHTML = renderAiErrorBlock(err, "Couldn't grade your resolution");
+  }
+}
+Object.assign(window, {taskAck, taskNotes, taskResp, submitTask});
+setInterval(()=>{ document.querySelectorAll(".tk-left[data-exp]").forEach(el=>{ const ms = new Date(el.dataset.exp).getTime()-Date.now(); el.textContent = fmtLeft(ms); if(ms<=0 && state.view==="tasks" && !isTyping()) render(); }); }, 1000);
+
 function surpriseTaskIsLive(t){
   if(!t || !t.active) return false;
   if(t.expiresAt && Date.now() > new Date(t.expiresAt).getTime()) return false;
@@ -13555,9 +13711,14 @@ function renderSurpriseTaskCard(){
   }
   const t = state.activeSurpriseTask;
   if(!surpriseTaskIsLive(t)) return "";
-  const prog = state.progress[t.dayId];
-  const alreadyAnswered = prog && prog.surpriseTaskAnsweredAt === t.generatedAt;
-  if(alreadyAnswered) return "";
+  const le = taskLog().find(x=>x.id===t.generatedAt);
+  if(le && (le.status==="resolved" || le.status==="missed")) return "";
+  return `
+    <div class="card tk-dash">
+      <div><div class="tk-dash-k">🎲 Random Task — Day ${t.dayId} · <b class="tk-left" data-exp="${esc(t.expiresAt||"")}">${t.expiresAt?fmtLeft(new Date(t.expiresAt).getTime()-Date.now()):""}</b></div>
+      <p>${esc(t.task)}</p></div>
+      <button class="btn btn-primary" onclick="goto('tasks')">${le && le.status==="progress" ? "Continue in 🎲 Tasks →" : "Handle it in 🎲 Tasks →"}</button>
+    </div>`;
   return `
     <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#FFF4E8;border:1.5px solid var(--orange);">
       <div style="font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;">🎲 Surprise Task — Day ${t.dayId}</div>
@@ -13583,6 +13744,7 @@ async function checkSurpriseTask(){
     }
     const rec = await sharedGet("surprise-task-day"+dayId);
     state.activeSurpriseTask = surpriseTaskIsLive(rec) ? rec : null;
+    if(state.activeSurpriseTask) syncTaskFromBroadcast(state.activeSurpriseTask);
   }catch(e){
     state.activeSurpriseTask = null;
   }
@@ -13939,6 +14101,7 @@ function render(){
   else if(state.view==="openroleplay") body=renderOpenRoleplay();
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
+  else if(state.view==="tasks") body=renderTasksPage();
   else if(state.view==="orientation") body = state.isAdmin ? renderOrientation() : renderDashboard();
   const presenterView = false;   // the presenter now lives inside the lesson stage
   app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}">${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "")
@@ -19738,6 +19901,7 @@ function renderAdmin(){
         <button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="endSurpriseTaskFromAdmin()">⏹ End Task for This Day</button>
       </div>
       <p style="font-size:11.5px;color:#5A4A32;margin:8px 0 0;">Only trainees already registered at broadcast time receive it. It disappears automatically when the live window ends, or immediately when you end it.</p>
+      <div class="tk-admin-note">Trainees track each task in <b>🎲 Tasks</b>: acknowledge → plan → resolve before the timer ends. Resolutions are graded on timeliness, prioritisation, applying the day's lesson, communication and risk; missed tasks score 0. Results appear in each trainee's audit row, their Competency Profile and Rankings.</div>
       <div id="surpriseTaskInjectResult" style="margin-top:10px;"></div>
     </div>
 
@@ -19939,6 +20103,8 @@ function auditSummary(rec){
     labsDone: days.filter(d=>d.labDone).length, labAvg: wl.length ? Math.round(wl.reduce((a,e)=>a+e.score,0)/wl.length) : null,
     sent: sent.length, read: sent.filter(v=>v.readAt).length, drafts: drafts.length, toWrite,
     focusOpen: focus.filter(f=>!f.doneAt).length, focusDone: focus.filter(f=>f.doneAt).length,
+    ...(()=>{ const tl = (data["task-log"]||[]); const res = tl.filter(e=>e.status==="resolved"); const miss = tl.filter(e=>e.status==="missed" || ((e.status==="new"||e.status==="progress") && e.expiresAt && Date.now()>new Date(e.expiresAt).getTime()));
+      return {tasksTotal:tl.length, tasksDone:res.length, tasksMissed:miss.length, tasksOpen:tl.length-res.length-miss.length, tasksAvg: res.length ? Math.round(res.reduce((x,e)=>x+(e.score||0),0)/res.length) : null}; })(),
     lastSave: x && x.savedAt};
 }
 function renderAuditStrip(rec){
@@ -19955,6 +20121,7 @@ function renderAuditStrip(rec){
     <div class="as-block as-days"><b>Days</b><div class="ad-cells">${a.days.map(cell).join("")}</div></div>
     <div class="as-block"><b>Knowledge Checks</b><span>${a.kcPassed} passed${a.kcBelow.length?` · <em class="warn">below 70%: Day ${a.kcBelow.join(", ")}</em>`:""}</span></div>
     <div class="as-block"><b>Practice Labs</b><span>${a.labsDone} / ${DAYS.length} done${a.labAvg!==null?` · avg ${a.labAvg}%`:""}</span></div>
+    <div class="as-block"><b>Random tasks</b><span>${a.tasksTotal ? `${a.tasksDone}/${a.tasksTotal} resolved${a.tasksAvg!==null?` · avg ${a.tasksAvg}%`:""}${a.tasksMissed?` · <em class="warn">${a.tasksMissed} missed</em>`:""}${a.tasksOpen?` · ${a.tasksOpen} open`:""}` : "none yet"}</span></div>
     <div class="as-block as-review"><b>Review</b><span>
       <em class="rv sent">${a.sent} sent${a.sent?` (${a.read} read)`:""}</em>
       ${a.drafts?`<em class="rv draft">${a.drafts} draft</em>`:""}
@@ -20075,6 +20242,7 @@ function logWork(entry){
   const origLab = runRubricEvaluation;
   runRubricEvaluation = async function(label, ctx, text, notes){
     const rep = await origLab(label, ctx, text, notes);
+    if(/^Random Task/.test(label)) return rep;   // random tasks are logged by submitTask as their own kind
     try{ const wd = workDayFromContext(label); setTimeout(()=>autoReviewDay(wd), 4000); logWork({kind:"lab", dayId:wd, toolId:state.toolId||null, label, score:rep.totalScore, tier:rep.gradeTier,
       strengths:(rep.strengths||[]).slice(0,3), gaps:(rep.blindspots||[]).slice(0,3), growth:(rep.growthSuggestions||[]).slice(0,2), excerpt:String(text||"").slice(0,700),
       subs:{accuracy:Math.round(rep.accuracyScore/35*100), presence:Math.round(rep.presenceScore/30*100), risk:Math.round(rep.riskScore/20*100), efficiency:Math.round(rep.efficiencyScore/15*100)}}); }catch(e){}
@@ -20119,6 +20287,7 @@ function dayEvidence(rec, work, dayId){
 function evidenceText(ev){
   const L = [];
   L.push(`Lesson progress: reached slide ${Math.min(ev.slides+1, ev.totalSlides)} of ${ev.totalSlides}.`);
+  if(ev.dp && typeof ev.dp.surpriseTaskScore==="number") L.push(`Random task: ${ev.dp.surpriseTaskScore}% average`);
   if(ev.dp) L.push(`Knowledge Check: best ${ev.dp.score}% (${ev.dp.done?"passed":"not yet passed"}); attempts: ${(ev.dp.history||[]).map(h=>h.score+"%").join(", ")||"1"}.${typeof ev.dp.surpriseTaskScore==="number" ? ` Surprise task score: ${ev.dp.surpriseTaskScore}/100.` : ""}`);
   const quizLog = ev.log.filter(e=>e.kind==="quiz").slice(-1)[0];
   if(quizLog && quizLog.missed && quizLog.missed.length) L.push(`Missed on latest Knowledge Check: ${quizLog.missed.join(" | ")}`);
@@ -23669,7 +23838,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.26-j";
+var APP_BUILD = "2026.09.26-m";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
