@@ -7,13 +7,14 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#262B45;
   --navy-deep:#161829;
   --orange:#DB8437;
   --orange-deep:#B5651F;
+  --orange-soft:#F0C08A;
   --bg:#EEF0F6;
   --paper:#FFFFFF;
   --ink:#1B1E2E;
@@ -24,17 +25,19 @@
 }
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
 body{
   background:var(--bg);
   color:var(--ink);
   font-family:'Inter',system-ui,sans-serif;
   font-size:16px;
-  line-height:1.5;
+  line-height:1.55;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
   display:flex;
   flex-direction:column;
 }
+a{color:var(--orange-deep);}
 header{
   background:var(--navy);
   color:#fff;
@@ -71,14 +74,118 @@ main{
   margin:0 auto;
   padding:24px 16px 32px;
 }
-.lesson{
+
+/* Day agenda */
+.agenda{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:24px;
+}
+.agenda a{
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:999px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  color:var(--navy);
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
+}
+.agenda a:hover{border-color:var(--orange);color:var(--orange-deep);}
+
+/* Sections */
+.block{
   background:var(--paper);
   border:1px solid var(--line);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  padding:12px;
+  padding:22px 24px;
+  margin-bottom:20px;
+  scroll-margin-top:16px;
 }
-/* Canva's own embed layout: a 16:9 box the design scales into. */
+.block > h2{
+  margin:0 0 4px;
+  font-family:'Fraunces',Georgia,serif;
+  font-size:22px;
+  line-height:1.25;
+  color:var(--navy);
+}
+.when{
+  display:inline-block;
+  margin-bottom:10px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--orange-deep);
+}
+.block h3{
+  margin:22px 0 8px;
+  font-size:16px;
+  color:var(--navy);
+}
+.block p{margin:8px 0;}
+.block ol, .block ul{margin:8px 0;padding-left:22px;}
+.block li{margin:4px 0;}
+.naming{
+  background:#F6F7FB;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:10px 14px;
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:14px;
+  color:var(--navy);
+  margin:8px 0;
+  overflow-wrap:anywhere;
+}
+.naming div + div{margin-top:4px;}
+.note{
+  background:#FFFBF3;
+  border:1px solid var(--orange-soft);
+  border-radius:8px;
+  padding:12px 14px;
+  margin:12px 0;
+  font-size:15px;
+}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;}
+.link-btn{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  color:var(--navy);
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
+}
+.link-btn:hover{border-color:var(--orange);color:var(--orange-deep);}
+.link-btn small{font-weight:500;color:var(--ink-soft);}
+details{margin:10px 0;}
+summary{cursor:pointer;font-weight:600;color:var(--navy);}
+
+/* Screenshots */
+.shots{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:12px;
+  margin:10px 0;
+}
+.shots figure{margin:0;}
+.shots a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#F6F7FB;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:6px;
+  height:170px;
+}
+.shots img{max-width:100%;max-height:100%;object-fit:contain;}
+.shots figcaption{font-size:13px;color:var(--ink-soft);margin-top:4px;}
+
+/* Canva embeds (Canva's own 16:9 layout) */
 .canva-frame{
   position:relative;
   width:100%;
@@ -87,6 +194,7 @@ main{
   overflow:hidden;
   border-radius:8px;
   background:var(--navy-deep);
+  margin-top:10px;
 }
 .canva-frame iframe{
   position:absolute;
@@ -101,7 +209,7 @@ main{
   align-items:center;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:14px;
+  margin-top:12px;
   font-size:14px;
   color:var(--ink-soft);
 }
@@ -122,37 +230,40 @@ main{
 .btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--line);}
 .btn.ghost:hover{background:var(--bg);}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;}
-/* Recorded lecture card (same look as the Training Portal's lecture list) */
-.section-title{
-  margin:28px 0 12px;
-  font-family:'Fraunces',Georgia,serif;
-  font-size:20px;
-  color:var(--navy);
+
+/* Resource cards: open in the pop-out viewer (same look as the Training Portal's lecture list) */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:12px;
+  margin:10px 0;
 }
-.lecture-card{
+.res-card{
   background:var(--paper);
   border:1px solid var(--line);
   border-left:4px solid #dc2626;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:16px 18px;
+  border-radius:10px;
+  padding:12px 14px;
   cursor:pointer;
   transition:box-shadow .15s, transform .15s;
 }
-.lecture-card:hover{box-shadow:0 12px 32px rgba(15,33,72,.12);transform:translateY(-2px);}
-.lecture-card:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
-.lecture-head{
+.res-card.doc{border-left-color:var(--navy);}
+.res-card:hover{box-shadow:0 12px 32px rgba(15,33,72,.12);transform:translateY(-2px);}
+.res-card:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
+.res-head{
   display:inline-block;
-  padding:4px 10px;
+  padding:3px 9px;
   border-radius:6px;
   background:#fef2f2;
   color:#b91c1c;
-  font-size:13px;
+  font-size:12px;
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:.03em;
 }
-.lecture-card p{margin:8px 0 0;font-size:14px;color:var(--ink-soft);}
+.res-card.doc .res-head{background:#EEF0F6;color:var(--navy);}
+.res-card p{margin:6px 0 0;font-size:14px;color:var(--ink-soft);}
+.res-card.lecture{border-left-width:6px;}
 
 /* ===== RECORDED LECTURE VIEWER (draggable, small pop-out window) ===== */
 #lecture-viewer-pane{
@@ -226,7 +337,7 @@ body.lv-dragging{user-select:none;}
 }
 #lecture-viewer-frame-holder{display:contents;}
 #lecture-viewer-body iframe{
-  /* Fallback only: fitLectureIframeToBox() sets exact pixel sizes to keep 16:9. */
+  /* Fallback only: fitLectureIframeToBox() sets exact pixel sizes. */
   width:100%;
   height:100%;
   border:none;
@@ -248,7 +359,8 @@ footer{
 }
 @media (max-width:600px){
   h1{font-size:22px;}
-  .lesson{padding:8px;}
+  .block{padding:18px 16px;}
+  .block > h2{font-size:20px;}
 }
 </style>
 </head>
@@ -257,17 +369,146 @@ footer{
   <div class="bar">
     <img src="/favicon.png" alt="">
     <div>
-      <div class="eyebrow">LSH Standard Training</div>
-      <h1>VA Essentials</h1>
+      <div class="eyebrow">LSH Standard Training · 18-Day Foundational Training Program</div>
+      <h1>Day 1 — VA Essentials</h1>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="lesson" aria-label="VA Essentials lesson">
+  <nav class="agenda" aria-label="Day 1 agenda">
+    <a href="#expectations">Setting of Expectations</a>
+    <a href="#hubstaff">Hubstaff To-Do</a>
+    <a href="#reminders">Training Reminders</a>
+    <a href="#reading">Reading Task</a>
+    <a href="#discussion">Classroom Discussion</a>
+    <a href="#breakout">Breakout Session</a>
+    <a href="#monitoring">Monitoring Sheet</a>
+    <a href="#tools">PM: PDF Editor &amp; SA Plug-ins</a>
+    <a href="#homework">Homework</a>
+  </nav>
+
+  <!-- ===== Setting of Expectations ===== -->
+  <section class="block" id="expectations">
+    <h2>Setting of Expectations</h2>
+    <span class="when">8:00–9:00 AM</span>
+    <p>Brief meeting with the trainees to provide instructions for the typing &amp; spelling tests and to set expectations for the entire standardized classroom training.</p>
+
+    <h3>Typing &amp; Spelling Activity (8:00–8:10 AM)</h3>
+    <div class="links">
+      <a class="link-btn" href="https://www.typingclub.com/sportal/program-3.game" target="_blank" rel="noopener noreferrer">Typing test — TypingClub ↗</a>
+      <a class="link-btn" href="https://spellquiz.com/spelling-test/grade-12" target="_blank" rel="noopener noreferrer">Spelling test — SpellQuiz ↗</a>
+    </div>
+    <p><b>Alternative links:</b></p>
+    <div class="links">
+      <a class="link-btn" href="https://www.typingtest.com/" target="_blank" rel="noopener noreferrer">TypingTest.com ↗</a>
+      <a class="link-btn" href="https://spelling-test.com/spelling-exercise#question_16" target="_blank" rel="noopener noreferrer">Spelling-Test.com ↗</a>
+    </div>
+    <p><b>Naming Convention:</b></p>
+    <div class="naming">
+      <div>Spelling Test [date taken][AM/PM]</div>
+      <div>Typing Test [date taken][AM/PM]</div>
+    </div>
+    <p><b>Sample Screenshots</b></p>
+    <div class="shots">
+      <figure><a href="img/spelling-test-sample.png" target="_blank"><img src="img/spelling-test-sample.png" alt="Sample spelling test result screenshot" loading="lazy"></a><figcaption>Spelling test</figcaption></figure>
+      <figure><a href="img/typing-test-sample.png" target="_blank"><img src="img/typing-test-sample.png" alt="Sample typing test result screenshot" loading="lazy"></a><figcaption>Typing test</figcaption></figure>
+    </div>
+    <div class="note"><b>Note:</b> Typing tests are done twice a day, in the morning and before the end of the shift, while the spelling test is once a day only, either in the morning or in the afternoon. If you miss any tests, you must make up for them during your idle time. You may also take additional rounds of typing and spelling tests during your idle time or after the shift.</div>
+  </section>
+
+  <!-- ===== Hubstaff To-Do ===== -->
+  <section class="block" id="hubstaff">
+    <h2>Hubstaff To-Do Set-up (Daily Requirement)</h2>
+    <p>Trainees must set their HS To-Dos daily using the following templates:</p>
+    <p><b>Daily To-Do Templates</b></p>
+    <div class="naming"><div>[Session Type + Schedule Day]: [Program Name] – [Module Day]</div></div>
+    <p><b>Today:</b></p>
+    <div class="naming"><div>To-Do: Classroom Discussion : Virtual Assistant Essentials - Day 1</div></div>
+    <details>
+      <summary>All To-Dos for the training period</summary>
+      <div class="naming">
+        <div>To-Do: Classroom Discussion : Virtual Assistant Essentials - Day 1</div>
+        <div>To-Do: Classroom Discussion: Virtual Assistant Essentials - Day 2</div>
+        <div>To-Do: Classroom Discussion: Reception Training Day 1</div>
+        <div>To-Do: Classroom Discussion: Reception Training Day 2</div>
+        <div>To-Do: Classroom Discussion: Reception Training Day 3</div>
+        <div>To-Do: Classroom Discussion: Calendar Management Training</div>
+        <div>To-Do: Classroom Discussion: Intake Training Day 1</div>
+        <div>To-Do: Shadowing Intake Specialist Role (Arlene)</div>
+        <div>To-Do: Classroom Discussion: Intake Training Day 2</div>
+        <div>To-Do: Classroom Discussion: Intake Training Day 3</div>
+        <div>To-Do: Classroom Discussion: Insurance Communication Training Day 1</div>
+        <div>To-Do: Classroom Discussion: Insurance Communication Training Day 2</div>
+        <div>To-Do: Shadowing Insurance Communication Role (Edward)</div>
+        <div>To-Do: Classroom Discussion: Insurance Communication Training Day 3</div>
+        <div>To-Do: Classroom Discussion: Provider Communication Training Day 1</div>
+        <div>To-Do: Classroom Discussion: Provider Communication Training Day 2</div>
+        <div>To-Do: Classroom Discussion: Provider Communication Training Day 3</div>
+        <div>To-Do: Shadowing Provider Communication Role (Vince)</div>
+        <div>To-Do: Classroom Discussion: Provider Communication Training Day 4</div>
+        <div>To-Do: Shadowing Provider Communication Role (Allesa)</div>
+        <div>To-Do: Classroom Discussion: Lien Negotiator Training Day 1</div>
+        <div>To-Do: Classroom Discussion: Lien Negotiator Training Day 2</div>
+        <div>To-Do: Shadowing Lien Negotiator Role (Mario)</div>
+      </div>
+    </details>
+    <p><b>Shadowing Sessions:</b> for Shadowing activities, add the following in your HS To-Do:</p>
+    <div class="naming"><div>To-Do: Shadowing [Type of role or process the trainees are shadowing] (VA’s Name)</div></div>
+    <p>Example: Shadowing Intake Specialist Role/ Insurance Communication Role/ Provider Communication Role/ Lien Negotiator Role (Arlene/ Edward/ Vince/ Allesa/ Mario)</p>
+    <p>This routine helps the audit team review work easily and keeps clear records of what was completed each day — don’t miss it.</p>
+  </section>
+
+  <!-- ===== Training Reminders ===== -->
+  <section class="block" id="reminders">
+    <h2>Training Reminders</h2>
+    <p>Please be reminded to regularly check our <b>#training-reminders</b> so you’re always guided on the right things to do for your HS To-Do, deliverables, and other important reminders throughout the entire training period. Thank you.</p>
+    <div class="shots">
+      <figure><a href="img/training-reminders-channel.png" target="_blank"><img src="img/training-reminders-channel.png" alt="The #training-reminders channel" loading="lazy"></a><figcaption>#training-reminders</figcaption></figure>
+      <figure><a href="img/training-reminders-welcome.png" target="_blank"><img src="img/training-reminders-welcome.png" alt="Welcome message in #training-reminders" loading="lazy"></a><figcaption>Welcome to #training-reminders</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ===== Reading Task ===== -->
+  <section class="block" id="reading">
+    <h2>Reading Task: Personal Injury Cases (Overview: What is personal injury?)</h2>
+    <span class="when">To be completed within the 2nd – 3rd hour of the training day</span>
+    <p><b>A.</b> Go to this link and read on to get a good grasp of what we do here in the firm.</p>
+    <div class="cards">
+      <div class="res-card doc" data-kind="doc" data-title="Personal Injury Cases — Overview" data-url="https://drive.google.com/file/d/1VAn-xmcozdHqr-7pzpnY0Rlsc4-4T43O/view" role="button" tabindex="0">
+        <div class="res-head">Reading</div>
+        <p>Personal Injury Cases (Overview: What is personal injury?)</p>
+      </div>
+    </div>
+    <p><b>B.</b> Answer the following questions:</p>
+    <ol>
+      <li>What is personal injury and what are its types?</li>
+      <li>Can you enumerate the stages of a personal injury claim on your own understanding?</li>
+      <li>How much is the common compensation for a personal injury claim?</li>
+      <li>How long does it take for a personal injury case to resolve?</li>
+      <li>What are the common factors that affect a personal injury case?</li>
+      <li>What do you think are the advantages and disadvantages of pushing for a case to litigation (going to court)?</li>
+    </ol>
+    <div class="note"><b>Note:</b> Please send your answers in our group chat so we know that you are done. You may write your answers using a WORD document or NOTEPAD and use this naming convention:
+      <div class="naming"><div>PI Overview_Answers (VA’s name)</div></div>
+    </div>
+    <h3>Supplementary Tasks (while waiting)</h3>
+    <p>For those who are done with the reading task, you may review your training materials, your TAM or read through this article from VLF.</p>
+    <div class="cards">
+      <div class="res-card doc" data-kind="doc" data-title="VLF Article" data-url="https://drive.google.com/file/d/1ZOVrwOTPEz9WuwDRbBsBCNuHqf8wb8h4/view" role="button" tabindex="0">
+        <div class="res-head">Article</div>
+        <p>VLF article (supplementary reading)</p>
+      </div>
+    </div>
+    <p>Your facilitator will share the LSH Tettra log-in credentials in the training GC.</p>
+  </section>
+
+  <!-- ===== Classroom Discussion ===== -->
+  <section class="block" id="discussion">
+    <h2>Classroom Discussion: Virtual Assistants Essentials Training</h2>
+
     <div class="canva-frame" id="canvaFrame">
       <iframe
-        id="canvaEmbed"
         loading="lazy"
         title="VA Essentials lesson (Canva)"
         src="https://www.canva.com/design/DAGnZTxmWyk/sLRwYE5XE5EhyZvY98iQ2Q/view?embed"
@@ -278,18 +519,170 @@ footer{
     <div class="actions">
       <span>Use the arrows in the lesson to move between slides.</span>
       <div class="btn-row">
-        <button class="btn ghost" type="button" id="fullscreenBtn">⛶ Full screen</button>
+        <button class="btn ghost" type="button" data-fullscreen="canvaFrame">⛶ Full screen</button>
         <a class="btn" href="https://www.canva.com/design/DAGnZTxmWyk/sLRwYE5XE5EhyZvY98iQ2Q/view" target="_blank" rel="noopener noreferrer">Open in Canva ↗</a>
+      </div>
+    </div>
+
+    <h3>Recorded Lecture</h3>
+    <div class="cards">
+      <div class="res-card lecture" data-kind="lecture" data-title="VA Essentials — Recorded Lecture" data-url="https://drive.google.com/file/d/1nar59ncUsmmmfFfxyxNLU54ImruHzahF/view" role="button" tabindex="0">
+        <div class="res-head">VA Essentials — Recorded Lecture</div>
+        <p>Watch the recorded walkthrough of this lesson.</p>
+      </div>
+      <div class="res-card" data-kind="video" data-title="AI Assisted Discussion" data-url="https://drive.google.com/file/d/1aMGZdIwGh3uY4TdsHFomNzkgK4kRdiNr/view" role="button" tabindex="0">
+        <div class="res-head">AI Assisted Discussion</div>
+        <p>Virtual Assistants Essentials</p>
       </div>
     </div>
   </section>
 
-  <h2 class="section-title">Recorded Lecture</h2>
-  <div class="lecture-card" id="lectureCard" role="button" tabindex="0">
-    <div class="lecture-head">VA Essentials — Recorded Lecture</div>
-    <p>Watch the recorded walkthrough of this lesson.</p>
-  </div>
+  <!-- ===== Breakout Session ===== -->
+  <section class="block" id="breakout">
+    <h2>Breakout Session (Group Activity)</h2>
+    <span class="when">Afternoon (1:00–3:00 PM)</span>
+    <h3>Digital Handouts</h3>
+    <div class="cards">
+      <div class="res-card doc" data-kind="doc" data-title="1. US Legal System" data-url="https://drive.google.com/file/d/1lIZN9VxbkKHWDb-wkQp90l8GC60-7T0J/view" role="button" tabindex="0"><div class="res-head">Handout 1</div><p>US Legal System</p></div>
+      <div class="res-card doc" data-kind="doc" data-title="2. LSH Services and VA Task List" data-url="https://drive.google.com/file/d/12xvxXorgh_wjR9DidEewbnfokItzpzNY/view" role="button" tabindex="0"><div class="res-head">Handout 2</div><p>LSH Services and VA Task List</p></div>
+      <div class="res-card doc" data-kind="doc" data-title="3. LSH Clients and Clientele" data-url="https://drive.google.com/file/d/1-x8NMuG0sR994yqodr5xBgHaHDfrWv6v/view" role="button" tabindex="0"><div class="res-head">Handout 3</div><p>LSH Clients and Clientele</p></div>
+      <div class="res-card doc" data-kind="doc" data-title="4. Western Culture" data-url="https://drive.google.com/file/d/1EkJ1eqoZqccdThFJ0-O1tPXEyjLLeIX0/view" role="button" tabindex="0"><div class="res-head">Handout 4</div><p>Western Culture</p></div>
+      <div class="res-card doc" data-kind="doc" data-title="5. US States and Time Zones" data-url="https://drive.google.com/file/d/1gf1ieGAjHs6swYFwwx4mf1naWSrMKVn5/view" role="button" tabindex="0"><div class="res-head">Handout 5</div><p>US States and Time Zones</p></div>
+    </div>
+
+    <h3>Process Questions</h3>
+    <ol>
+      <li>Analyze a hypothetical case: A breach of contract with parties in two states. Which court system would have jurisdiction? Why?</li>
+      <li>Assess the advantages and disadvantages of pursuing a case in federal court instead of state court for a personal injury claim.</li>
+      <li>Examine the core responsibilities of a Legal VA and compare them with those of an in-house legal assistant. What are the operational implications for the firm?</li>
+      <li>Scrutinize the challenges that solo attorneys face without VA support. How does a Legal VA help resolve these?</li>
+      <li>Evaluate how Legal VAs contribute to law firm efficiency and client satisfaction. Which benefit do you think has the greatest long-term impact, and why?</li>
+      <li>Assess how firm size impacts the level of autonomy, multitasking, and specialization expected of a Legal VA.</li>
+      <li>Appraise the effectiveness of formal vs. informal communication strategies when working with different types of attorneys.</li>
+      <li>Analyze the key cultural values in U.S. professional settings (e.g., directness, time orientation, individualism) and compare them with typical Filipino and Latin American values.</li>
+      <li>Provide a scenario where a VA’s culturally influenced approach leads to miscommunication with a U.S.-based attorney. What were the causes?</li>
+      <li>Critique the statement: “Filipino and Latin American Legal VAs should completely adopt American communication styles to be effective.”</li>
+    </ol>
+    <p><b>Naming Convention:</b></p>
+    <div class="naming"><div>VA_Essentials_Process_Question_Answers (VA's first name)</div></div>
+
+    <h3>Client Identification Exercise</h3>
+    <div class="canva-frame" id="clientIdFrame">
+      <iframe
+        loading="lazy"
+        title="Client Identification Exercise (Canva)"
+        src="https://www.canva.com/design/DAGup_E9uu8/xfD7jj0btrcn5H_6_jZmAQ/view?embed"
+        allowfullscreen="allowfullscreen"
+        allow="fullscreen">
+      </iframe>
+    </div>
+    <div class="actions">
+      <span></span>
+      <div class="btn-row">
+        <button class="btn ghost" type="button" data-fullscreen="clientIdFrame">⛶ Full screen</button>
+        <a class="btn" href="https://www.canva.com/design/DAGup_E9uu8/xfD7jj0btrcn5H_6_jZmAQ/view" target="_blank" rel="noopener noreferrer">Open in Canva ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Monitoring Sheet ===== -->
+  <section class="block" id="monitoring">
+    <h2>Training Monitoring Sheet</h2>
+    <p>As soon as you are done with all the tasks, kindly download your monitoring sheet below and upload it to your respective trainees' folder. Once done, please update items #1–4. Thank you.</p>
+    <div class="links">
+      <a class="link-btn" href="https://docs.google.com/document/d/1Ty9HXeWRCxqM78quiiEHqFYxZwGeT9Uh/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Training Monitoring Sheet ↗</a>
+    </div>
+    <p>Once you upload the training monitoring sheet to your individual trainee folder, make sure to edit and update it directly there instead of using a separate file. This is to ensure that you are working on them on time. If you've already edited the file before uploading it to the folder, that's fine. Just upload the edited sheet and in the future, make edits directly in the uploaded file in your folder. It will save automatically as you edit.</p>
+    <p>Update items 1–5 with the date when each topic was covered or discussed. When updating these items, make sure to provide all 5 takeaways — not just 2, 3, or 4. Each takeaway should be written in complete sentences. A simple sentence will suffice, rather than just words or phrases. This also helps us to assess your writing skills as well.</p>
+    <div class="note"><b>REMINDER:</b> Please ensure that all 5 takeaways are provided, not just 3 or 4, and write your takeaways in complete sentences. This is one way to assess your writing skill. A simple sentence will suffice rather than just words or phrases. Thank you.</div>
+    <p><b>See sample below.</b></p>
+    <div class="shots">
+      <figure><a href="img/monitoring-sheet-sample-1.png" target="_blank"><img src="img/monitoring-sheet-sample-1.png" alt="Sample monitoring sheet entry: 5 major takeaways" loading="lazy"></a><figcaption>Sample 1</figcaption></figure>
+      <figure><a href="img/monitoring-sheet-sample-2.png" target="_blank"><img src="img/monitoring-sheet-sample-2.png" alt="Sample monitoring sheet entry: 5 major takeaways" loading="lazy"></a><figcaption>Sample 2</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ===== PM: PDF Editor & SA Plug-ins ===== -->
+  <section class="block" id="tools">
+    <h2>PM: PDF Editor and Smart Advocate Plug-ins</h2>
+    <p>After completing your task on Personal Injury Overview, please proceed to set up your PDF editor and install the Smart Advocate plug-ins. Carefully follow the instructions provided and the screenshots of the steps below. Thank you.</p>
+
+    <h3>PDF Editor (Nitro Pro 12)</h3>
+    <p>Your facilitator will share the Nitro Pro 12 installer and its installation video in the training GC. Watch the installation video first so you don't miss anything.</p>
+    <div class="note">For <b>Mac users</b>, since Nitro Pro is not compatible with the OS, you may use another PDF editor that has features such as text editing, file extraction, and combining documents. Alternatively, you can use this online PDF editor for your future activities:
+      <div class="links"><a class="link-btn" href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer">iLovePDF ↗</a></div>
+    </div>
+
+    <h3>How to install the Smart Advocate/SA plug-ins</h3>
+    <p><b>1.</b> Install the SA Document Handler/Launcher. Unzip its folder first, then right-click on the zipped file and select “Extract Here.” Proceed with the installation.</p>
+    <div class="links">
+      <a class="link-btn" href="https://drive.google.com/file/d/19eFGdoQNXJo2iE46M2G8s2bMJNEIeO8k/view" target="_blank" rel="noopener noreferrer">SA Document Handler/Launcher ↗</a>
+      <a class="link-btn" href="https://drive.google.com/drive/folders/1lJlDxRx_HjzuhHjcjymNbyw4yBr09qU_" target="_blank" rel="noopener noreferrer">Screenshots folder ↗</a>
+    </div>
+    <div class="shots">
+      <figure><a href="img/sa-00.png" target="_blank"><img src="img/sa-00.png" alt="SA Document Handler archive icon" loading="lazy"></a><figcaption>SADocumentHandler_2023</figcaption></figure>
+      <figure><a href="img/sa-01.png" target="_blank"><img src="img/sa-01.png" alt="SADocumentHandler_2023.rar file" loading="lazy"></a><figcaption>SADocumentHandler_2023.rar</figcaption></figure>
+      <figure><a href="img/sa-02.png" target="_blank"><img src="img/sa-02.png" alt="Screenshot 0" loading="lazy"></a><figcaption>0</figcaption></figure>
+      <figure><a href="img/sa-03.png" target="_blank"><img src="img/sa-03.png" alt="Screenshot 1: Extract Here" loading="lazy"></a><figcaption>1</figcaption></figure>
+      <figure><a href="img/sa-04.png" target="_blank"><img src="img/sa-04.png" alt="Screenshot 2: double-click the extracted folder" loading="lazy"></a><figcaption>2</figcaption></figure>
+      <figure><a href="img/sa-05.png" target="_blank"><img src="img/sa-05.png" alt="Screenshot 3: InstallShield Install" loading="lazy"></a><figcaption>3</figcaption></figure>
+      <figure><a href="img/sa-06.png" target="_blank"><img src="img/sa-06.png" alt="Screenshot 4: InstallShield Finish" loading="lazy"></a><figcaption>4</figcaption></figure>
+    </div>
+
+    <p><b>2.</b> For <b>Windows users</b>, access the link and download the 2nd hyperlink to install Microsoft Word, Excel, and Outlook plugins on your desktop. Follow steps 2–7 as indicated below the list of hyperlinks on this page:</p>
+    <div class="links"><a class="link-btn" href="https://smartadvocate.atlassian.net/wiki/spaces/KB/pages/71237633/Workstation+Configuration+SaaS+SmartAdvocate+Cloud+Links" target="_blank" rel="noopener noreferrer">Workstation Configuration SaaS (SmartAdvocate Cloud) Links ↗</a></div>
+    <div class="shots">
+      <figure><a href="img/sa-07.png" target="_blank"><img src="img/sa-07.png" alt="Screenshot 5.0" loading="lazy"></a><figcaption>5.0</figcaption></figure>
+      <figure><a href="img/sa-08.png" target="_blank"><img src="img/sa-08.png" alt="Screenshot 5.1" loading="lazy"></a><figcaption>5.1</figcaption></figure>
+    </div>
+    <p>For <b>Mac users</b>, access the link and download the plugin on your desktop. Follow the steps indicated below the link on this page:</p>
+    <div class="links"><a class="link-btn" href="https://smartadvocate.atlassian.net/wiki/spaces/KB/pages/876020096/Document+Handler+Mac" target="_blank" rel="noopener noreferrer">Document Handler Mac ↗</a></div>
+    <div class="shots">
+      <figure><a href="img/sa-09.png" target="_blank"><img src="img/sa-09.png" alt="Screenshot 5.2" loading="lazy"></a><figcaption>5.2</figcaption></figure>
+      <figure><a href="img/sa-10.png" target="_blank"><img src="img/sa-10.png" alt="Screenshot 5.3" loading="lazy"></a><figcaption>5.3</figcaption></figure>
+    </div>
+
+    <p><b>3.</b> Once you have downloaded the Microsoft Word, Excel, and Outlook plugins, double-click the “Set Up” application to install.</p>
+    <div class="shots">
+      <figure><a href="img/sa-11.png" target="_blank"><img src="img/sa-11.png" alt="Screenshot 6" loading="lazy"></a><figcaption>6</figcaption></figure>
+      <figure><a href="img/sa-12.png" target="_blank"><img src="img/sa-12.png" alt="Screenshot 7" loading="lazy"></a><figcaption>7</figcaption></figure>
+      <figure><a href="img/sa-13.png" target="_blank"><img src="img/sa-13.png" alt="Screenshot 8" loading="lazy"></a><figcaption>8</figcaption></figure>
+      <figure><a href="img/sa-14.png" target="_blank"><img src="img/sa-14.png" alt="Screenshot 9" loading="lazy"></a><figcaption>9</figcaption></figure>
+      <figure><a href="img/sa-15.png" target="_blank"><img src="img/sa-15.png" alt="Screenshot 10" loading="lazy"></a><figcaption>10</figcaption></figure>
+      <figure><a href="img/sa-16.png" target="_blank"><img src="img/sa-16.png" alt="Screenshot 11" loading="lazy"></a><figcaption>11</figcaption></figure>
+    </div>
+    <p><i>Note: This process may take a little longer to complete the download and installation.</i></p>
+
+    <p><b>4.</b> Lastly, double-click the Registry to install.</p>
+    <div class="shots">
+      <figure><a href="img/sa-17.png" target="_blank"><img src="img/sa-17.png" alt="Screenshot 12" loading="lazy"></a><figcaption>12</figcaption></figure>
+      <figure><a href="img/sa-18.png" target="_blank"><img src="img/sa-18.png" alt="Screenshot 13" loading="lazy"></a><figcaption>13</figcaption></figure>
+      <figure><a href="img/sa-19.png" target="_blank"><img src="img/sa-19.png" alt="Screenshot 14" loading="lazy"></a><figcaption>14</figcaption></figure>
+    </div>
+
+    <div class="note">For those who still have issues installing Nitro Pro despite carefully following the correct process, you may seek technical assistance from <b>Sanders</b>. For the SA plug-ins issue, you may reach out to <b>Ivan</b>. Message them on Discord at 8 AM PST — their shift starts at 8:00 AM PST.</div>
+
+    <p>Just a heads-up, for the SA plug-ins, for now, there is no way for us to check whether they have successfully installed. We will only know if the installation was successful when we start using the firm’s CMS (SA), which is scheduled for around the 8th or 9th day of your classroom training. As long as you have this in your list of installed apps then you're good for now.</p>
+    <div class="shots">
+      <figure><a href="img/sa-20.png" target="_blank"><img src="img/sa-20.png" alt="Installed apps showing SADocumentHandler_2023 and WordSADocumentMergeAddIn" loading="lazy"></a><figcaption>Installed apps</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ===== Homework ===== -->
+  <section class="block" id="homework">
+    <h2>Homework: Nitro Pro and Adobe Acrobat Pro</h2>
+    <span class="when">📌 To be accomplished outside training hours</span>
+    <p>Please watch the instructional videos on how to navigate either Nitro Pro or Adobe Acrobat Pro, depending on the software you are using. If you are using Nitro Pro, watch the Nitro Pro tutorials. If you are using Adobe Acrobat Pro, watch the Adobe Acrobat Pro tutorials. Focus on the version relevant to your available tool. Thank you.</p>
+    <div class="cards">
+      <div class="res-card" data-kind="video" data-title="How to Use Nitro Pro — Part 1" data-url="https://drive.google.com/file/d/1t1xyjsqum9HRv6c4TZDGmGct297WyAwb/view" role="button" tabindex="0"><div class="res-head">How to Use Nitro Pro</div><p>Part 1</p></div>
+      <div class="res-card" data-kind="video" data-title="How to Use Nitro Pro — Part 2" data-url="https://drive.google.com/file/d/1Y6TYfqzZ5kFHdvcxxi1XS2XgVwnXOdFd/view" role="button" tabindex="0"><div class="res-head">How to Use Nitro Pro</div><p>Part 2</p></div>
+      <div class="res-card" data-kind="video" data-title="Adobe Acrobat Pro Tutorial" data-url="https://drive.google.com/file/d/1DpbcYj7TtJkU7WhIdmety7Xqi3kegHl3/view" role="button" tabindex="0"><div class="res-head">Adobe Acrobat Pro Tutorial</div><p>For Adobe Acrobat Pro users</p></div>
+    </div>
+    <div class="note">*** Free Communication Upskill for 1 or 1 ½ hours</div>
+  </section>
 </main>
+
+<footer>Legal Support Help · VA Essentials · Day 1</footer>
 
 <div id="lecture-viewer-pane">
   <div id="lecture-viewer-header">
@@ -305,23 +698,22 @@ footer{
   </div>
 </div>
 
-<footer>Legal Support Help · VA Essentials</footer>
-
 <script>
-document.getElementById("fullscreenBtn").addEventListener("click", function(){
-  var el = document.getElementById("canvaFrame");
-  var req = el.requestFullscreen || el.webkitRequestFullscreen;
-  if (req) req.call(el);
+// Full screen for the Canva embeds.
+document.querySelectorAll("[data-fullscreen]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var el = document.getElementById(btn.getAttribute("data-fullscreen"));
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (req) req.call(el);
+  });
 });
 
-/* ===== RECORDED LECTURE (click + confirm + draggable pop-out viewer) =====
-   Same behavior as the Training Portal's Recorded Lectures. To swap the
-   video, change LECTURE.url: a Google Drive file link plays inline; a Drive
-   folder link shows the folder's contents in the pane. */
-var LECTURE = {
-  title: "VA Essentials — Recorded Lecture",
-  url: "https://drive.google.com/file/d/1nar59ncUsmmmfFfxyxNLU54ImruHzahF/view"
-};
+/* ===== POP-OUT VIEWER (click + confirm + draggable pop-out, as in the Training Portal) =====
+   Every card with data-url opens here. Videos ("lecture"/"video") ask first and
+   open small in the corner, keeping 16:9; documents open larger and fill the pane.
+   A Google Drive file link plays/previews inline via /preview; a folder link shows
+   Drive's folder view. */
+var currentKind = "video";
 
 function escapeHtml(s){
   return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
@@ -350,7 +742,6 @@ function getLectureEmbedUrl(rawUrl){
   if (m) return "https://drive.google.com/file/d/" + m[1] + "/preview";
   m = url.match(/drive\.google\.com\/(?:open|uc)\?[^#]*\bid=([a-zA-Z0-9_-]+)/i);
   if (m) return "https://drive.google.com/file/d/" + m[1] + "/preview";
-  // A Drive folder can't play inline; Drive's folder view lists its files.
   m = url.match(/drive\.google\.com\/drive\/(?:u\/\d+\/)?folders\/([a-zA-Z0-9_-]+)/i);
   if (m) return "https://drive.google.com/embeddedfolderview?id=" + m[1] + "#grid";
 
@@ -364,15 +755,19 @@ function getLectureEmbedUrl(rawUrl){
   return null;
 }
 
-// Keeps the video 16:9 at any pane size (letterboxed by the body's flex centering).
+// Videos keep 16:9 at any pane size (letterboxed by the body's flex centering);
+// documents fill the pane.
 function fitLectureIframeToBox(){
   var body = document.getElementById("lecture-viewer-body");
   var iframe = body ? body.querySelector("iframe") : null;
   if (!body || !iframe) return;
   var availW = body.clientWidth, availH = body.clientHeight;
   if (availW <= 0 || availH <= 0) return;
-  var w = availW, h = w / (16 / 9);
-  if (h > availH){ h = availH; w = h * (16 / 9); }
+  var w = availW, h = availH;
+  if (currentKind !== "doc"){
+    h = w / (16 / 9);
+    if (h > availH){ h = availH; w = h * (16 / 9); }
+  }
   iframe.style.width = Math.round(w) + "px";
   iframe.style.height = Math.round(h) + "px";
 }
@@ -382,40 +777,50 @@ if (window.ResizeObserver){
 
 function resetLectureViewerPosition(){
   var pane = document.getElementById("lecture-viewer-pane");
+  var isDoc = currentKind === "doc";
   pane.style.top = "";
   pane.style.left = "";
   pane.style.transform = "";
   pane.style.right = "24px";
   pane.style.bottom = "24px";
-  pane.style.width = "380px";
-  pane.style.height = "250px";
+  pane.style.width = isDoc ? "820px" : "380px";
+  pane.style.height = isDoc ? "600px" : "250px";
   pane.style.maxWidth = "";
   pane.style.maxHeight = "";
 }
 
-function confirmWatchLecture(){
-  if (!confirm('Do you want to watch this lecture?\n\n"' + LECTURE.title + '"')) return;
-  viewLecture(LECTURE);
+function openResource(card){
+  var item = {
+    kind: card.getAttribute("data-kind") || "video",
+    title: card.getAttribute("data-title"),
+    url: card.getAttribute("data-url")
+  };
+  if (item.kind !== "doc"){
+    var what = item.kind === "lecture" ? "lecture" : "video";
+    if (!confirm("Do you want to watch this " + what + "?\n\n\"" + item.title + "\"")) return;
+  }
+  viewLecture(item);
 }
 
-function viewLecture(lec){
+function viewLecture(item){
   var pane = document.getElementById("lecture-viewer-pane");
   var holder = document.getElementById("lecture-viewer-frame-holder");
   var openLink = document.getElementById("lecture-viewer-open-link");
-  document.getElementById("lecture-viewer-title").textContent = lec.title || "Recorded Lecture";
+  currentKind = item.kind === "doc" ? "doc" : "video";
+  document.getElementById("lecture-viewer-title").textContent = item.title || "Recorded Lecture";
 
   // The ↗ link always opens the original, even if the file's own sharing blocks the embed.
-  var cleanedUrl = lec.url ? extractSrcFromIframeSnippet(lec.url).trim() : "";
+  var cleanedUrl = item.url ? extractSrcFromIframeSnippet(item.url).trim() : "";
   if (cleanedUrl){ openLink.href = cleanedUrl; openLink.style.display = "inline-block"; }
   else { openLink.style.display = "none"; }
 
-  var embedUrl = getLectureEmbedUrl(lec.url);
+  var embedUrl = getLectureEmbedUrl(item.url);
   if (embedUrl){
     holder.innerHTML = '<iframe src="' + escapeHtml(embedUrl) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
   } else if (cleanedUrl){
     holder.innerHTML = '<div id="lecture-viewer-fallback">This link isn\'t a recognized YouTube or Google Drive link, so it can\'t be previewed inline.<br><a href="' + escapeHtml(cleanedUrl) + '" target="_blank" rel="noopener noreferrer">Open in a new tab &rarr;</a></div>';
   } else {
-    holder.innerHTML = '<div id="lecture-viewer-fallback">No video link has been attached to this lecture yet.</div>';
+    holder.innerHTML = '<div id="lecture-viewer-fallback">No link has been attached yet.</div>';
   }
 
   pane.classList.remove("maximized");
@@ -496,10 +901,11 @@ function toggleLectureFullscreen(){
   document.addEventListener("touchend", endDrag);
 })();
 
-var lectureCard = document.getElementById("lectureCard");
-lectureCard.addEventListener("click", confirmWatchLecture);
-lectureCard.addEventListener("keydown", function(e){
-  if (e.key === "Enter" || e.key === " "){ e.preventDefault(); confirmWatchLecture(); }
+document.querySelectorAll(".res-card[data-url]").forEach(function(card){
+  card.addEventListener("click", function(){ openResource(card); });
+  card.addEventListener("keydown", function(e){
+    if (e.key === "Enter" || e.key === " "){ e.preventDefault(); openResource(card); }
+  });
 });
 document.getElementById("lecture-viewer-fullscreen").addEventListener("click", toggleLectureFullscreen);
 document.getElementById("lecture-viewer-close").addEventListener("click", closeLectureViewer);
