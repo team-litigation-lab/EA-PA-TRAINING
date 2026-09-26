@@ -180,6 +180,15 @@ export default {
         const m = html.match(/APP_BUILD = "([^"]+)"/);
         return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${env.GEMINI_API_KEY ? "Google Gemini (" + (env.GEMINI_MODEL || "gemini-3.8-flash") + ")" : "none — add GEMINI_API_KEY"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
+      if (path.includes("/trainer/")) {
+        // Trainer-only files (facilitator notes): served only with an admin token in secure mode.
+        const who = secure ? await readToken(env, request) : { role: "a" };
+        if (!who || who.role !== "a") return new Response("Trainer sign-in required", { status: 401, headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        const res = await env.ASSETS.fetch(new Request(url.toString()));
+        const h = new Headers(res.headers);
+        h.set("Cache-Control", "no-store");
+        return new Response(res.body, { status: res.status, headers: h });
+      }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
         const type = res.headers.get("Content-Type") || "";
