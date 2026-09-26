@@ -122,6 +122,124 @@ main{
 .btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--line);}
 .btn.ghost:hover{background:var(--bg);}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;}
+/* Recorded lecture card (same look as the Training Portal's lecture list) */
+.section-title{
+  margin:28px 0 12px;
+  font-family:'Fraunces',Georgia,serif;
+  font-size:20px;
+  color:var(--navy);
+}
+.lecture-card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-left:4px solid #dc2626;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:16px 18px;
+  cursor:pointer;
+  transition:box-shadow .15s, transform .15s;
+}
+.lecture-card:hover{box-shadow:0 12px 32px rgba(15,33,72,.12);transform:translateY(-2px);}
+.lecture-card:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
+.lecture-head{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:6px;
+  background:#fef2f2;
+  color:#b91c1c;
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+}
+.lecture-card p{margin:8px 0 0;font-size:14px;color:var(--ink-soft);}
+
+/* ===== RECORDED LECTURE VIEWER (draggable, small pop-out window) ===== */
+#lecture-viewer-pane{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  width:380px;
+  max-width:calc(100vw - 48px);
+  height:250px;
+  max-height:calc(100vh - 48px);
+  background:#ffffff;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.35);
+  display:none;
+  flex-direction:column;
+  z-index:3000;
+  overflow:hidden;
+}
+#lecture-viewer-pane.open{display:flex;}
+/* While dragging, frames must not swallow the mouse (cross-origin iframes eat mousemove/mouseup). */
+body.lv-dragging iframe{pointer-events:none;}
+body.lv-dragging{user-select:none;}
+#lecture-viewer-header{
+  background:var(--navy-deep);
+  color:#fff;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:move;
+  user-select:none;
+  flex-shrink:0;
+  border-bottom:2px solid #dc2626;
+}
+#lecture-viewer-title{
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:0.03em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  padding-right:12px;
+}
+#lecture-viewer-actions{display:flex;gap:6px;flex-shrink:0;align-items:center;}
+#lecture-viewer-open-link, #lecture-viewer-fullscreen, #lecture-viewer-close{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.4);
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  font-family:inherit;
+  border-radius:5px;
+  padding:4px 8px;
+  cursor:pointer;
+  text-decoration:none;
+  line-height:1.4;
+  display:inline-block;
+}
+#lecture-viewer-open-link:hover, #lecture-viewer-fullscreen:hover{background:rgba(255,255,255,0.15);}
+#lecture-viewer-close:hover{background:#dc2626;border-color:#dc2626;}
+#lecture-viewer-body{
+  flex:1;
+  position:relative;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+#lecture-viewer-frame-holder{display:contents;}
+#lecture-viewer-body iframe{
+  /* Fallback only: fitLectureIframeToBox() sets exact pixel sizes to keep 16:9. */
+  width:100%;
+  height:100%;
+  border:none;
+  background:#fff;
+}
+#lecture-viewer-fallback{
+  padding:40px 24px;
+  text-align:center;
+  font-size:12px;
+  color:#94a3b8;
+}
+#lecture-viewer-fallback a{color:#dc2626;font-weight:700;}
+
 footer{
   text-align:center;
   font-size:12px;
@@ -165,7 +283,27 @@ footer{
       </div>
     </div>
   </section>
+
+  <h2 class="section-title">Recorded Lecture</h2>
+  <div class="lecture-card" id="lectureCard" role="button" tabindex="0">
+    <div class="lecture-head">VA Essentials — Recorded Lecture</div>
+    <p>Watch the recorded walkthrough of this lesson.</p>
+  </div>
 </main>
+
+<div id="lecture-viewer-pane">
+  <div id="lecture-viewer-header">
+    <span id="lecture-viewer-title">Recorded Lecture</span>
+    <div id="lecture-viewer-actions">
+      <a id="lecture-viewer-open-link" href="#" target="_blank" rel="noopener noreferrer" title="Open the original link in a new tab">↗</a>
+      <button id="lecture-viewer-fullscreen" type="button" title="Full Screen">⛶</button>
+      <button id="lecture-viewer-close" type="button" title="Close">✕</button>
+    </div>
+  </div>
+  <div id="lecture-viewer-body">
+    <div id="lecture-viewer-frame-holder"></div>
+  </div>
+</div>
 
 <footer>Legal Support Help · VA Essentials</footer>
 
@@ -175,6 +313,196 @@ document.getElementById("fullscreenBtn").addEventListener("click", function(){
   var req = el.requestFullscreen || el.webkitRequestFullscreen;
   if (req) req.call(el);
 });
+
+/* ===== RECORDED LECTURE (click + confirm + draggable pop-out viewer) =====
+   Same behavior as the Training Portal's Recorded Lectures. To swap the
+   video, change LECTURE.url: a Google Drive file link plays inline; a Drive
+   folder link shows the folder's contents in the pane. */
+var LECTURE = {
+  title: "VA Essentials — Recorded Lecture",
+  url: "https://drive.google.com/drive/folders/14jsvKOVrcU7LSH6v6qGes2kcQkL7V8yW"
+};
+
+function escapeHtml(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
+}
+
+// Accepts a pasted <iframe> embed snippet as well as a bare URL.
+function extractSrcFromIframeSnippet(rawUrl){
+  var str = String(rawUrl);
+  if (!/<iframe[\s>]/i.test(str)) return str;
+  var m = str.match(/\bsrc=["']([^"']+)["']/i);
+  return m ? m[1] : str;
+}
+
+function getLectureEmbedUrl(rawUrl){
+  if (!rawUrl) return null;
+  var url = extractSrcFromIframeSnippet(rawUrl).trim();
+  if (!url) return null;
+
+  if (/youtube(-nocookie)?\.com\/embed\//i.test(url)) return url;
+  if (/drive\.google\.com\/.*\/preview/i.test(url)) return url;
+  if (/drive\.google\.com\/embeddedfolderview/i.test(url)) return url;
+
+  var m = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/i);
+  if (m) return "https://drive.google.com/file/d/" + m[1] + "/preview";
+  m = url.match(/drive\.google\.com\/(?:open|uc)\?[^#]*\bid=([a-zA-Z0-9_-]+)/i);
+  if (m) return "https://drive.google.com/file/d/" + m[1] + "/preview";
+  // A Drive folder can't play inline; Drive's folder view lists its files.
+  m = url.match(/drive\.google\.com\/drive\/(?:u\/\d+\/)?folders\/([a-zA-Z0-9_-]+)/i);
+  if (m) return "https://drive.google.com/embeddedfolderview?id=" + m[1] + "#grid";
+
+  m = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+  if (m) return "https://www.youtube.com/embed/" + m[1];
+  m = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/i);
+  if (m) return "https://www.youtube.com/embed/" + m[1];
+  m = url.match(/youtube\.com\/(?:shorts|live)\/([a-zA-Z0-9_-]{6,})/i);
+  if (m) return "https://www.youtube.com/embed/" + m[1];
+
+  return null;
+}
+
+// Keeps the video 16:9 at any pane size (letterboxed by the body's flex centering).
+function fitLectureIframeToBox(){
+  var body = document.getElementById("lecture-viewer-body");
+  var iframe = body ? body.querySelector("iframe") : null;
+  if (!body || !iframe) return;
+  var availW = body.clientWidth, availH = body.clientHeight;
+  if (availW <= 0 || availH <= 0) return;
+  var w = availW, h = w / (16 / 9);
+  if (h > availH){ h = availH; w = h * (16 / 9); }
+  iframe.style.width = Math.round(w) + "px";
+  iframe.style.height = Math.round(h) + "px";
+}
+if (window.ResizeObserver){
+  new ResizeObserver(fitLectureIframeToBox).observe(document.getElementById("lecture-viewer-body"));
+}
+
+function resetLectureViewerPosition(){
+  var pane = document.getElementById("lecture-viewer-pane");
+  pane.style.top = "";
+  pane.style.left = "";
+  pane.style.transform = "";
+  pane.style.right = "24px";
+  pane.style.bottom = "24px";
+  pane.style.width = "380px";
+  pane.style.height = "250px";
+  pane.style.maxWidth = "";
+  pane.style.maxHeight = "";
+}
+
+function confirmWatchLecture(){
+  if (!confirm('Do you want to watch this lecture?\n\n"' + LECTURE.title + '"')) return;
+  viewLecture(LECTURE);
+}
+
+function viewLecture(lec){
+  var pane = document.getElementById("lecture-viewer-pane");
+  var holder = document.getElementById("lecture-viewer-frame-holder");
+  var openLink = document.getElementById("lecture-viewer-open-link");
+  document.getElementById("lecture-viewer-title").textContent = lec.title || "Recorded Lecture";
+
+  // The ↗ link always opens the original, even if the file's own sharing blocks the embed.
+  var cleanedUrl = lec.url ? extractSrcFromIframeSnippet(lec.url).trim() : "";
+  if (cleanedUrl){ openLink.href = cleanedUrl; openLink.style.display = "inline-block"; }
+  else { openLink.style.display = "none"; }
+
+  var embedUrl = getLectureEmbedUrl(lec.url);
+  if (embedUrl){
+    holder.innerHTML = '<iframe src="' + escapeHtml(embedUrl) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+  } else if (cleanedUrl){
+    holder.innerHTML = '<div id="lecture-viewer-fallback">This link isn\'t a recognized YouTube or Google Drive link, so it can\'t be previewed inline.<br><a href="' + escapeHtml(cleanedUrl) + '" target="_blank" rel="noopener noreferrer">Open in a new tab &rarr;</a></div>';
+  } else {
+    holder.innerHTML = '<div id="lecture-viewer-fallback">No video link has been attached to this lecture yet.</div>';
+  }
+
+  pane.classList.remove("maximized");
+  var fsBtn = document.getElementById("lecture-viewer-fullscreen");
+  fsBtn.textContent = "⛶"; fsBtn.title = "Full Screen";
+  resetLectureViewerPosition();
+  pane.classList.add("open");
+  fitLectureIframeToBox();
+}
+
+function closeLectureViewer(){
+  var pane = document.getElementById("lecture-viewer-pane");
+  pane.classList.remove("maximized");
+  pane.classList.remove("open");
+  document.getElementById("lecture-viewer-frame-holder").innerHTML = "";
+}
+
+// "Full Screen" fills the browser window (this page has no sidebar to leave room for).
+function toggleLectureFullscreen(){
+  var pane = document.getElementById("lecture-viewer-pane");
+  var btn = document.getElementById("lecture-viewer-fullscreen");
+  if (!pane.classList.contains("maximized")){
+    pane.classList.add("maximized");
+    pane.style.top = "0"; pane.style.left = "0"; pane.style.right = "0"; pane.style.bottom = "0";
+    pane.style.width = "auto"; pane.style.height = "auto";
+    pane.style.maxWidth = "none"; pane.style.maxHeight = "none";
+    pane.style.transform = "none";
+    btn.textContent = "⤢"; btn.title = "Exit Full Screen";
+  } else {
+    pane.classList.remove("maximized");
+    resetLectureViewerPosition();
+    btn.textContent = "⛶"; btn.title = "Full Screen";
+  }
+  fitLectureIframeToBox();
+}
+
+// Drag the pane by its header (mouse + touch).
+(function initDraggablePane(){
+  var pane = document.getElementById("lecture-viewer-pane");
+  var header = document.getElementById("lecture-viewer-header");
+  var nonDragIds = ["lecture-viewer-close", "lecture-viewer-fullscreen", "lecture-viewer-open-link"];
+  var dragging = false, offsetX = 0, offsetY = 0;
+
+  function canStart(target){ return nonDragIds.indexOf(target.id) === -1 && !pane.classList.contains("maximized"); }
+  function startDrag(x, y){
+    var rect = pane.getBoundingClientRect();
+    pane.style.transform = "none";
+    pane.style.right = ""; pane.style.bottom = "";
+    pane.style.left = rect.left + "px";
+    pane.style.top = rect.top + "px";
+    offsetX = x - rect.left; offsetY = y - rect.top;
+    dragging = true;
+    document.body.classList.add("lv-dragging");
+  }
+  function moveDrag(x, y){
+    if (!dragging) return;
+    var newLeft = Math.max(-pane.offsetWidth + 120, Math.min(x - offsetX, window.innerWidth - 60));
+    var newTop = Math.max(0, Math.min(y - offsetY, window.innerHeight - 40));
+    pane.style.left = newLeft + "px";
+    pane.style.top = newTop + "px";
+  }
+  function endDrag(){ dragging = false; document.body.classList.remove("lv-dragging"); }
+
+  header.addEventListener("mousedown", function(e){
+    if (!canStart(e.target)) return;
+    startDrag(e.clientX, e.clientY);
+    e.preventDefault();
+  });
+  document.addEventListener("mousemove", function(e){ moveDrag(e.clientX, e.clientY); });
+  document.addEventListener("mouseup", endDrag);
+  header.addEventListener("touchstart", function(e){
+    if (!canStart(e.target)) return;
+    startDrag(e.touches[0].clientX, e.touches[0].clientY);
+  }, {passive:true});
+  document.addEventListener("touchmove", function(e){
+    if (dragging) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+  }, {passive:true});
+  document.addEventListener("touchend", endDrag);
+})();
+
+var lectureCard = document.getElementById("lectureCard");
+lectureCard.addEventListener("click", confirmWatchLecture);
+lectureCard.addEventListener("keydown", function(e){
+  if (e.key === "Enter" || e.key === " "){ e.preventDefault(); confirmWatchLecture(); }
+});
+document.getElementById("lecture-viewer-fullscreen").addEventListener("click", toggleLectureFullscreen);
+document.getElementById("lecture-viewer-close").addEventListener("click", closeLectureViewer);
 </script>
 </body>
 </html>
