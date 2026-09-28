@@ -631,6 +631,10 @@ rect.svg-callout-badge{animation:none;}
   display:none;
 }
 .quiz-rationale.show{display:block;}
+.qc-mark{display:inline-block;margin-left:10px;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.02em;white-space:nowrap;background:#fff;}
+.qc-mark.ok{color:var(--success);} .qc-mark.no{color:var(--danger);}
+.qc-verdict{display:block;font-size:15px;margin-bottom:6px;color:var(--ink);}
+.qc-verdict.ok b{color:var(--success);} .qc-verdict.no b{color:var(--danger);} .qc-verdict b.qc-ans{color:var(--success);}
 
 .quiz-dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:4px 0 10px;max-width:480px;margin-left:auto;margin-right:auto;}
 .quiz-dot{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .15s ease;}
@@ -2333,6 +2337,10 @@ em.warn{font-style:normal;color:var(--danger);}
 .lesson-stage #lessonSlideWrap .quiz-q{font-family:'Fraunces',Georgia,serif;font-size:clamp(20px,1.8vw,28px) !important;color:var(--navy);line-height:1.3;margin:8px 0 16px !important;}
 .lesson-stage #lessonSlideWrap .quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .lesson-stage #lessonSlideWrap .quiz-opt{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;font-size:15px;text-align:left;margin:0;}
+.lesson-stage #lessonSlideWrap .quiz-opt.selected{border-color:var(--navy);background:#EEF0F8;box-shadow:inset 0 0 0 1px var(--navy);}
+.lesson-stage #lessonSlideWrap .quiz-opt.correct{border-color:var(--success);background:var(--success-bg);box-shadow:inset 0 0 0 1px var(--success);}
+.lesson-stage #lessonSlideWrap .quiz-opt.incorrect{border-color:var(--danger);background:var(--danger-bg);box-shadow:inset 0 0 0 1px var(--danger);}
+.lesson-stage #lessonSlideWrap .quiz-opt.dim{opacity:.6;}
 /* task overview / meet client / practice slide */
 .lesson-stage #lessonSlideWrap > .card > p, .lesson-stage #lessonSlideWrap .meet-client-card p{font-size:16px;line-height:1.6;}
 .lesson-stage #lessonSlideWrap > .card > div > p{font-size:16px;line-height:1.6;}
@@ -15268,7 +15276,7 @@ function warmupQuestionHtml(dayId, q, k){
       const cls = !done ? "" : oi===q.a ? " ok" : oi===picked ? " no" : " dim";
       return `<button type="button" class="di-wq-opt${cls}" ${done?"disabled":""} onclick="pickWarmup(${dayId},${k},${oi})"><span>${String.fromCharCode(65+oi)}</span>${esc(o)}${done&&oi===q.a?" ✓":""}${done&&oi===picked&&oi!==q.a?" ✗":""}</button>`;
     }).join("")}</div>
-    ${done ? `<div class="di-wq-fb ${picked===q.a?"ok":"no"}"><b>${picked===q.a?"✓ Correct.":"Not quite — you'll cover this today."}</b>${q.r?` ${esc(q.r)}`:""}</div>` : `<div class="di-wq-hint">Pick an answer to check yourself.</div>`}
+    ${done ? `<div class="di-wq-fb ${picked===q.a?"ok":"no"}"><b>${picked===q.a?"✓ Correct.":`Not quite — the correct answer is ${String.fromCharCode(65+q.a)}. You'll cover this today.`}</b>${q.r?` ${esc(q.r)}`:""}</div>` : `<div class="di-wq-hint">Pick an answer to check yourself.</div>`}
   </div>`;
 }
 function pickWarmup(dayId, k, oi){
@@ -15792,17 +15800,23 @@ function renderQuickChecksAfter(d, lessonIndex){
       <p class="quiz-q" style="margin-bottom:10px;">${esc(c.q)}</p>
       <div class="quiz-opts">
         ${c.opts.map((o,oi)=>{
-          let cls = "";
-          if(checked){ if(oi===c.a) cls="correct"; else if(oi===st.picked) cls="incorrect"; }
+          let cls = "", mark = "";
+          if(checked){
+            if(oi===c.a){ cls="correct"; mark = `<span class="qc-mark ok">✓ Correct answer${oi===st.picked?" · your answer":""}</span>`; }
+            else if(oi===st.picked){ cls="incorrect"; mark = `<span class="qc-mark no">✗ Your answer</span>`; }
+            else cls="dim";
+          }
           else if(oi===st.picked) cls="selected";
-          return `<div class="quiz-opt ${cls}" ${checked?"":`onclick="selectQuickCheck('${gi}',${oi})" style="cursor:pointer;"`}>${esc(o)}</div>`;
+          return `<div class="quiz-opt ${cls}" ${checked?"":`onclick="selectQuickCheck('${gi}',${oi})" style="cursor:pointer;"`}>${esc(o)}${mark}</div>`;
         }).join("")}
       </div>
       ${checked ? "" : `<div class="qc-actions">
         <span class="qc-hint">${typeof st.picked==="number" ? "You can still change your answer." : "Pick an answer, then check it."}</span>
         <button type="button" class="btn btn-navy btn-sm" ${typeof st.picked==="number"?"":"disabled"} onclick="checkQuickCheck('${gi}',${c.a})">Check Answer</button>
       </div>`}
-      <div class="quiz-rationale ${checked?"show":""}" id="qcr_${gi}">${esc(c.r)}</div>
+      <div class="quiz-rationale ${checked?"show":""}" id="qcr_${gi}">${checked ? (st.picked===c.a
+        ? `<span class="qc-verdict ok"><b>✓ Correct!</b></span>`
+        : `<span class="qc-verdict no"><b>✗ Not quite.</b> The correct answer is: <b class="qc-ans">${esc(c.opts[c.a])}</b></span>`) : ""}${esc(c.r)}</div>
     </div>`;
   }).join("");
 }
