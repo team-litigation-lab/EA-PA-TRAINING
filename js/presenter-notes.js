@@ -1356,5 +1356,447 @@ window.PRESENTER_NOTES = {
     "wrap": "Raise it early, plan real time off, and know your support resources.",
     "scenario": "You've worked 55-hour weeks for two months and your error rate is rising. Draft the first two sentences of a workload conversation with Elias, and list the options you'd bring."
   }
+},
+"4::Data Entry That Holds Up": {
+  "p1": {
+    "on": "This slide gives the four-step data cleaning order: De-duplicate (remove duplicate records first), Standardize (fix inconsistent formatting in every field), Filter (apply validation rules and check against source documents), then Sort (order by the relevant columns).",
+    "say": "De-duplicate, standardize, filter, sort, in that order.",
+    "ask": "Why would the order matter?"
+  },
+  "p2": {
+    "on": "This slide explains why the order matters. Sorting duplicates just gives you neat duplicates, each of which can trigger a double invoice. Filters miss records whose formatting differs, like \"St.\" versus \"Street.\" Validate a sample against the source document, not memory. The rule: never hand raw data downstream for someone else to fix.",
+    "say": "Never let someone downstream fix your data errors.",
+    "wrap": "Clean in order and validate against the source before the data goes anywhere.",
+    "scenario": "Live demo: this sample client list has 40 rows, including duplicates, \"CA\" and \"California,\" and two phone formats. Clean it in the four-step order and say what each step caught."
+  }
+},
+"4::The Priority Matrix": {
+  "p1": {
+    "on": "This slide sets up the tiers, with a diagram. Tier 1 (legal deadlines, high-value clients, media, financial approvals, crisis comms) means notify the executive immediately. Tier 2 (revenue opportunities, partnerships, board comms, vendor negotiations) means draft a response within 2–4 hours. If an item doesn't fit either, treat it as Tier 1 until confirmed.",
+    "say": "The tier decides the whole response timeline. When unsure, treat it as Tier 1.",
+    "ask": "Why is over-escalating cheaper than under-escalating?"
+  },
+  "p2": {
+    "on": "This slide adds the lower tiers. Tier 3 (newsletters, internal FYIs, non-urgent scheduling) gets batched into one daily block. Tier 4 (promotional mail, automated notices, other teams' requests) is filed or forwarded without the executive. Re-tier when facts change: a vendor email becomes Tier 1 the moment it mentions a missed payment.",
+    "say": "A routine email becomes Tier 1 the moment the facts change.",
+    "wrap": "Tier every item first, then respond on that tier's timeline.",
+    "scenario": "Speed round: I'll read five emails and you call the tier. A court clerk notice, a partnership inquiry, the bar association newsletter, a reporter asking for comment, and a vendor saying an invoice is 60 days overdue."
+  }
+},
+"4::The Daily Routine": {
+  "p1": {
+    "on": "This slide shows the three-phase daily routine. The Morning Scan (15–30 min) flags Tier 1 issues, clears spam and prepares a briefing summary. The Midday Review drafts responses, follows up on pending threads and confirms meetings. The End-of-Day Review confirms nothing urgent is left and preps tomorrow's summary.",
+    "say": "Scan, review, close out, every day.",
+    "ask": "What does your own morning look like against this?"
+  },
+  "p2": {
+    "on": "This slide explains how to make the routine stick: protect the Morning Scan on the calendar like a meeting, keep one carry-over list between the End-of-Day Review and the next morning, and fit the routine to the executive's rhythm. If they start at 7, the briefing is ready by 6:45.",
+    "say": "The routine serves the executive's day, not yours.",
+    "wrap": "Protect the morning scan, carry over in writing, and time it to the executive.",
+    "scenario": "Elias starts at 7 a.m. and is in court by 9 three days a week. Build your daily routine around his schedule: when does each phase happen, and what's ready when?"
+  }
+},
+"4::The Morning Briefing, In Practice": {
+  "p1": {
+    "on": "This slide shows how to write the morning briefing: scan the full inbox but never forward it raw, condense each item to one line with its status, order the lines by urgency with Tier 1 first, keep it to a handful of lines, and send it at the same time every morning.",
+    "say": "The briefing replaces the inbox. If it's as long as the inbox, it's failed.",
+    "ask": "What makes a briefing line useful rather than a copied excerpt?"
+  },
+  "p2": {
+    "on": "This slide gives the one-page layout: \"Needs you today\" (decisions, signatures and calls only the executive can do, each with a deadline), \"Handled / in progress\" (one line per item) and \"Heads-up\" (what could become urgent later in the week). The example briefing shows two client escalations with drafts ready, a vendor contract expiring Friday and a media request due tomorrow.",
+    "say": "Needs you, handled, heads-up.",
+    "wrap": "A short, ordered briefing beats forwarding dozens of raw emails.",
+    "scenario": "Compare the five-line briefing on screen with the 30-email raw inbox it came from. Then write tomorrow's version for Elias's inbox with the three sections."
+  }
+},
+"4::Research as a Core EA Skill": {
+  "p1": {
+    "on": "This slide presents research as the quiet discipline under most EA work, with a diagram: verify a new vendor or contact is legitimate before committing time or money, prepare a short brief on who's in the room before any meeting, verify claims before forwarding them as fact, go to the primary source first, and label anything unconfirmed.",
+    "say": "Primary source first, and label anything you couldn't confirm.",
+    "ask": "What's the first thing you'd check on a vendor you've never heard of?"
+  },
+  "p2": {
+    "on": "This slide makes the point that research isn't separate from the role: knowing who you're calling before you call, and who's in the room before a meeting, is the same skill.",
+    "say": "Forwarding an unverified claim puts your credibility on the line.",
+    "wrap": "Verify before you commit, brief before you meet, and flag what's unconfirmed.",
+    "scenario": "You have 90 seconds: a vendor called \"Apex Legal Print Solutions\" wants a $6,000 deposit for trial exhibits. Say out loud what you'd check first, and where."
+  }
+},
+"4::Research Method & the Real Failure Mode": {
+  "p1": {
+    "on": "This slide gives a fast, reliable research method: start at the primary source (the company's site, the filing, the original email), cross-check anything that drives a decision or dollar amount against a second independent source, match depth to the stakes, and never accept a vendor's claims about themselves as verification.",
+    "say": "Anything that drives money or a decision gets a second, independent source.",
+    "ask": "When did a single source turn out to be wrong for you?"
+  },
+  "p2": {
+    "on": "This slide names the real failure: not laziness, but mistaking one unverified source for confirmation. A vendor's own claims aren't verification. It links this to research-before-calling in the next topic.",
+    "say": "One source, especially their own, isn't confirmation.",
+    "wrap": "Primary source, second independent check, depth matched to stakes.",
+    "scenario": "A potential co-counsel's website says they've \"won over $50M in verdicts.\" Elias wants to partner with them next week. How do you verify that, and what do you tell Elias if you can't?"
+  }
+},
+"4::Cold Calling, Appointment Setting & Lead Generation": {
+  "p1": {
+    "on": "This slide covers cold calling: research the specific person or business first, open with a short value proposition tailored to what you found, aim for a warmer second conversation rather than the close, handle contact lists with the same discretion as email, and log every call outcome immediately.",
+    "say": "A specific, current reference beats a script.",
+    "ask": "What's the realistic goal of a first cold call?"
+  },
+  "p2": {
+    "on": "This slide says to open with value, not a pitch; the goal of a cold call is almost never the close but a warmer second conversation. It places cold calling, appointment setting and lead generation alongside secure document handling as core Day 4 skills.",
+    "say": "The goal is the second conversation, not the sale.",
+    "wrap": "Research first, open with value, and log every call.",
+    "scenario": "You're calling the office manager of a 12-doctor medical practice about Elias's employment-law services. You found they just opened a second location. Deliver the first 20 seconds of the call."
+  }
+},
+"4::How to Generate Leads for Business": {
+  "p1": {
+    "on": "This slide gives four steps: Identify Sources (referrals, past-client re-engagement, networking, directories, inbound content), Qualify the Lead (fit, need, authority, timeline), Make First Contact (research-backed, specific, brief), and Track and Follow Up (log every lead into the contact list).",
+    "say": "Find, qualify, contact, track.",
+    "ask": "Where have your own best professional leads come from?"
+  },
+  "p2": {
+    "on": "This slide separates lead generation from cold calling: cold calling works a lead you already have, lead generation finds it. It lists law-firm lead sources: referral sources (past clients, attorneys, accountants, advisors), public sources (bar directories, court filings, business registries) and inbound (website, webinars, articles). Log each with its source.",
+    "say": "Log where every lead came from, so the firm learns which channels work.",
+    "wrap": "Draw from several channels, qualify early, and track every lead by source.",
+    "scenario": "Name three referral sources Thorne & Partners should be tracking, and what one small action this month would warm up each."
+  }
+},
+"4::Lead Quality, Qualifying & Tracking": {
+  "p1": {
+    "on": "This slide says referrals are consistently the highest-quality leads because they come with built-in trust. The steps: actively ask satisfied clients for introductions, qualify every lead early on fit, need, authority and timeline, log leads the moment they exist, follow through consistently, and feed qualified leads into the contact list.",
+    "say": "An untracked lead is a lost lead.",
+    "ask": "How often do you actually ask satisfied clients for referrals?"
+  },
+  "p2": {
+    "on": "This slide warns that not every lead deserves equal effort, so qualify early. It says a lead that isn't tracked doesn't exist in practice, which is why lead generation and the contact list work together. It ends with a discussion prompt comparing good and poor follow-through.",
+    "say": "Qualify early, and put your effort where the fit is.",
+    "wrap": "Ask for referrals, qualify fast, log immediately and follow through.",
+    "scenario": "Share one business that followed up on a lead well and one that let a promising contact go cold. What exactly was different?"
+  }
+},
+"4::Creating and Maintaining a Comprehensive Contact List": {
+  "p1": {
+    "on": "This slide covers building a contact list, with a diagram: capture more than name and number (relationship context, preferred method, their assistant, standing notes), categorize every entry (business, personal, vendor, medical, legal), update it right after any interaction, and design it so anyone covering for you finds the right person in seconds.",
+    "say": "The test: could someone covering for you use it in seconds?",
+    "ask": "What's on your contact list beyond name and number?"
+  },
+  "p2": {
+    "on": "This slide calls a contact list operational infrastructure, not a phone book, and lists fields worth capturing. Core: name, title, organization, phone, email, preferred channel, time zone. Context: connection to the executive, last interaction, sensitivities such as an opposing party. Maintenance: a \"last verified\" date and a quarterly sweep.",
+    "say": "Flag the sensitivities, like an opposing party you must never contact directly.",
+    "wrap": "Capture context, categorize and keep it verified.",
+    "scenario": "Build Elias's contact entry for his estate-planning client's CPA: which fields you'd fill, and which sensitivity note you'd add if the CPA is also a witness in another matter."
+  }
+},
+"4::Contact List Failure Modes & Upkeep": {
+  "p1": {
+    "on": "This slide says the most common failure isn't missing contacts but stale ones: an old assistant's name, a changed number. The steps: watch for stale entries, centralize in one system (CRM, shared contacts or a synced address book), run a quarterly 10-minute audit, fix stale entries immediately, and consolidate fragmented lists.",
+    "say": "Stale beats missing as the most common failure.",
+    "ask": "Where do your contacts live today, and in how many places?"
+  },
+  "p2": {
+    "on": "This slide says to centralize in one system and run a light recurring audit to prevent slow rot. It ends with a discussion prompt: a time you couldn't reach the right person because contact info was missing, wrong or scattered.",
+    "say": "Three scattered lists are three incomplete lists.",
+    "wrap": "Centralize, audit quarterly, and fix stale entries on the spot.",
+    "scenario": "Tell us about a time you couldn't reach the right person quickly because the contact info was wrong or scattered. What would have prevented it?"
+  }
+},
+"4::Master Contact List Discipline": {
+  "p1": {
+    "on": "This slide says to keep one master contact list for the whole team, because personal copies drift out of sync invisibly. The steps: maintain one master, apply it to scheduling (who gets looped in for which meeting type), check nobody keeps a parallel copy, update the moment something changes, and treat any discrepancy as a reason to reinforce the rule.",
+    "say": "One master list. Personal copies drift.",
+    "ask": "Does anyone on your team keep their own copy?"
+  },
+  "p2": {
+    "on": "This slide links master-list discipline to calendar and scheduling. It describes a common failure: two assistants keep separate copies, one outdated, and a time-sensitive call goes to the wrong number.",
+    "say": "The outdated copy is the one used in a crisis.",
+    "wrap": "One source of truth, updated immediately, for the whole team.",
+    "scenario": "Opposing counsel's direct line changed last week. You updated your copy, but the paralegal's copy still has the old one, and she's scheduling tomorrow's meet-and-confer. What went wrong, and what's the fix?"
+  }
+},
+"4::Sales Mindset": {
+  "p1": {
+    "on": "This slide says supporting business development needs the right mindset: a sales conversation is about solving a real problem for the other person, not persuading them, and rejection is the normal outcome, treated as information. The steps: be clear on the recipient's problem, be genuinely curious, track outreach honestly including rejections, and separate the outcome from personal feelings.",
+    "say": "A \"no\" is information, not a verdict on you.",
+    "ask": "What problem does our outreach actually solve for the recipient?"
+  },
+  "p2": {
+    "on": "This slide lists pitfalls and habits: don't treat every attempt as equally important, never let a \"no\" change your tone for the next contact, curiosity has to be genuine because insincerity shows in writing, and the same skills apply internally when persuading a colleague or executive.",
+    "say": "Curiosity can't be faked, not even in writing.",
+    "wrap": "Lead with their problem, stay curious and track honestly.",
+    "scenario": "You've sent 15 cold outreach emails this week and received zero replies. What would a sales mindset say to do next, and what would the opposite look like right now?"
+  }
+},
+"4::Lead Generation & Data Sourcing": {
+  "p1": {
+    "on": "This slide calls data sourcing the research layer under lead generation, where data quality decides everything downstream. The steps: use enrichment and research tools (LinkedIn Sales Navigator, company sites, directories) to confirm role and context, verify contact details through the primary source, organize leads in a CRM with qualifying details, and focus on leads that meet real criteria.",
+    "say": "A great message sent to the wrong contact is wasted.",
+    "ask": "Which tool would you use to confirm someone's current role?"
+  },
+  "p2": {
+    "on": "This slide warns that outreach referencing an old job title or changed company undermines credibility. It says to use only legitimate professional information, refresh lists regularly (six months old is stale), and prefer a small list of well-qualified leads over a large, loosely verified one.",
+    "say": "Fifty verified leads beat 500 guesses.",
+    "wrap": "Verify at the source, capture qualifiers and keep the data fresh.",
+    "scenario": "You're asked for 50 leads by end of day. How do you balance verification against the volume target, and where won't you cut corners even under time pressure?"
+  }
+},
+"4::Cold Outbound Execution": {
+  "p1": {
+    "on": "This slide is about the moment research and mindset become an actual message or call. The steps: open with something specific to the recipient, keep the ask small (15 minutes, not \"let's connect sometime\"), log every attempt in the CRM or call tracker, and prepare for likely objections with genuine, unscripted responses.",
+    "say": "Specific opener, small ask, logged outcome.",
+    "ask": "Why does \"15 minutes next Tuesday\" beat \"let's connect\"?"
+  },
+  "p2": {
+    "on": "This slide warns against reciting a script word for word. It says to listen more than you talk, handle objections gracefully (offer to follow up rather than push), and log every attempt right away, not from memory at the end of the day.",
+    "say": "A script is a starting point, not a performance.",
+    "wrap": "Listen more than you talk, and log every attempt immediately.",
+    "scenario": "On a cold call, the prospect says \"I'm not interested\" right after your opening line. Push on, ask a clarifying question, or end gracefully? What would you want to know to decide?"
+  }
+},
+"4::Appointment Setting (BANT/MEDDPICC)": {
+  "p1": {
+    "on": "This slide explains qualifying before scheduling. BANT (Budget, Authority, Need, Timeline) is the quick check. MEDDPICC (Metrics, Economic buyer, Decision criteria, Decision process, Paper process, Identify pain, Champion, Competition) is for complex, high-stakes deals. The steps: book only qualified leads, use Calendly or Microsoft Bookings, and confirm the agenda and send a reminder 24–48 hours ahead.",
+    "say": "Qualify before you book. An unqualified meeting wastes everyone's time.",
+    "ask": "When would you use BANT, and when MEDDPICC?"
+  },
+  "p2": {
+    "on": "This slide warns that a quick yes isn't the same as a real fit. Use BANT for simple cases and MEDDPICC for complex ones. Never overpromise what the meeting covers, and confirm close to the meeting, because no-shows are among the most avoidable failures.",
+    "say": "A fast yes isn't a qualified yes.",
+    "wrap": "Qualify with the right framework, set honest expectations and remind before the meeting.",
+    "scenario": "A prospect replies enthusiastically and wants a call right away, but you don't know if they have budget or authority. Schedule it, qualify first, or something in between? Say what you'd write back."
+  }
+},
+"4::Dual-Role Context Switching": {
+  "p1": {
+    "on": "This slide explains that a hybrid EA/PA role switches between business-formal and personal-informal modes, often within an hour, linking to Corporate Mode versus Personal Mode. The steps: name the domain before responding, take a brief reset between domains, and keep business and personal task tracking separate.",
+    "say": "Name the domain before you answer.",
+    "ask": "Have you ever sent a message in the wrong tone because you'd just switched tasks?"
+  },
+  "p2": {
+    "on": "This slide warns that carrying formal language into a personal message, or the reverse, is a common result of switching too quickly. It says switching is a skill that improves with deliberate practice.",
+    "say": "Tone mismatch is the tell of a rushed switch.",
+    "wrap": "Identify the domain, reset, and keep the systems separate.",
+    "scenario": "You're mid-draft on a formal client email when Elias's spouse texts about a family birthday dinner. How do you switch so neither message ends up in the wrong tone?"
+  }
+},
+"4::Priority Collision Handling": {
+  "p1": {
+    "on": "This slide defines a collision: two genuinely important things that both need attention now, which is where the Priority Matrix runs out. The steps: quickly compare the real cost of delay on each side, partially address both where possible with an interim action, and escalate when it's too close to call.",
+    "say": "Ask what actually breaks if each one waits ten minutes.",
+    "ask": "When has working faster not solved a collision?"
+  },
+  "p2": {
+    "on": "This slide warns that some collisions are real trade-offs, and pretending speed solves them means both get handled badly. It says to document how a collision was resolved and why, so it becomes precedent.",
+    "say": "Some collisions are trade-offs, not speed problems.",
+    "wrap": "Weigh the cost of delay, cover both where you can, and escalate close calls.",
+    "scenario": "Within the same minute, Elias asks you to get opposing counsel on the phone now, and a major client emails that their wire transfer failed and closing is at noon. Walk through exactly what happens first."
+  }
+},
+"4::Mid-Stage Task Injections": {
+  "p1": {
+    "on": "This slide defines a mid-stage injection: an unrelated request that lands while you're partway through something else, where dropped threads are the common damage. The steps: triage whether it needs action now or can wait for a safe stopping point, leave a clear marker of where you stopped, and tell whoever is waiting on the original task if you fully switch.",
+    "say": "Mark where you stopped before you switch.",
+    "ask": "How do you keep your place when you get interrupted?"
+  },
+  "p2": {
+    "on": "This slide warns against holding several in-progress tasks in memory. It recommends a simple running list of \"in progress, paused here\" items to prevent most of the damage.",
+    "say": "Memory is where details get dropped.",
+    "wrap": "Triage, leave a marker, communicate, and return.",
+    "scenario": "You're halfway through drafting a detailed client response when an urgent, unrelated request comes in. Walk through your process so neither task gets dropped."
+  }
+},
+"4::Client Relationship Management": {
+  "p1": {
+    "on": "This slide says CRM is the discipline of keeping and growing a relationship after first contact; the value is logging every interaction, and the work is proactive. The steps: log each interaction right away (discussed, promised, next step), segment by relationship stage, set follow-up reminders tied to specific commitments, and check history before any client contact.",
+    "say": "Log what was promised, and set the reminder that keeps the promise.",
+    "ask": "What would you check in the CRM before calling a client?"
+  },
+  "p2": {
+    "on": "This slide warns against treating the CRM as a place data goes to die. It says a quiet relationship costs more to reactivate than one that got a timely check-in, and a missed promised follow-up damages trust more than never offering it.",
+    "say": "A broken follow-up promise costs more than no promise.",
+    "wrap": "Log everything, segment, set specific reminders and check history first.",
+    "scenario": "A client you signed three months ago was never followed up with. They just emailed a question that suggests they're looking at a competitor. Answer only the question, or use it to rebuild the relationship? What do you say?"
+  }
+},
+"4::CRM Software Fundamentals": {
+  "p1": {
+    "on": "This slide says a CRM is only as good as what goes in. Every CRM is built on contacts, deals and activities, and it must be the single source of truth for a lead's status. The steps: map pipeline stages to your real process before starting, add a custom field instead of burying data in notes, and use the CRM's own reminders instead of a separate to-do list.",
+    "say": "Contacts, deals, activities: learn those three and most CRMs make sense.",
+    "ask": "What happens when a lead's real status lives in someone's head?"
+  },
+  "p2": {
+    "on": "This slide warns against duplicate records, so search before creating a contact. It says to keep deal stages honest, because moving a deal forward on hope corrupts forecasts, and to run a monthly hygiene pass closing or reactivating deals idle for 60+ days.",
+    "say": "Stages move on facts, not hope.",
+    "wrap": "One source of truth, honest stages and a monthly cleanup.",
+    "scenario": "You inherit a CRM with 40 open deals, most untouched in months, and Elias wants an accurate pipeline forecast by end of day. What's your triage process for getting to a number you can stand behind?"
+  }
+},
+"4::Email Outreach Sequencing & Follow-Up Cadence": {
+  "p1": {
+    "on": "This slide says most replies come from follow-ups, not the first email, and each step should add something new, with diminishing returns if it goes on too long. The steps: space follow-ups 3–5 business days apart, vary the angle (offer, proof point, low-pressure question), and end with a clear close-the-loop message.",
+    "say": "Every follow-up needs a new reason to reply.",
+    "ask": "Why is \"just following up\" weak?"
+  },
+  "p2": {
+    "on": "This slide warns that repeating the same message reads as automated. It says to track reply rate by sequence step to see which step does the work, and to always offer an easy way to opt out.",
+    "say": "Make \"no\" easy, or it becomes a complaint.",
+    "wrap": "Space it out, change the angle and close the loop.",
+    "scenario": "A prospect opened your first three emails but never replied, and one email is left in the sequence. What does the final message say, and what would make you extend the sequence instead?"
+  }
+},
+"4::Handling Sales Objections Beyond the Script": {
+  "p1": {
+    "on": "This slide says scripted responses only work when the objection matches the script. Most objections are really about information, trust or timing, and pushing past a real no damages the relationship. The steps: ask one clarifying question first, acknowledge the objection specifically, and if it's timing, get a specific follow-up date.",
+    "say": "Understand the objection before you answer it.",
+    "ask": "Which of the three is behind most objections you've heard?"
+  },
+  "p2": {
+    "on": "This slide warns that some objections are accurate: the offer may not fit right now. It says never to argue with a stated concern (correct information instead) and to log the prospect's actual words in the CRM, not just \"objected.\"",
+    "say": "Correct the facts, never their right to the concern.",
+    "wrap": "Clarify, acknowledge, and get a date if it's timing.",
+    "scenario": "A prospect says, \"We already have a vendor for this.\" That could mean they're happy, under contract, or just ending the call politely. What's your next question, and how does the answer change your approach?"
+  }
+},
+"4::Pipeline Reporting & Forecasting Basics": {
+  "p1": {
+    "on": "This slide says a pipeline report is only as good as its deal stages, forecasting is applying consistent, honest probabilities, and a weekly review catches drift. The steps: assign realistic close probabilities per stage based on history, separate \"committed\" from \"best case,\" and flag deals stuck in one stage too long.",
+    "say": "Committed and best case are different numbers. Report both.",
+    "ask": "Why is the raw total of open deals misleading?"
+  },
+  "p2": {
+    "on": "This slide warns that an unweighted total wildly overstates what will close, and a single large deal shouldn't dominate the story without its risk flagged. It says to keep the reporting cadence and format consistent every week.",
+    "say": "Weight by probability and flag the big risky deal.",
+    "wrap": "Honest stages, weighted numbers, a consistent weekly cadence.",
+    "scenario": "Elias asks for this quarter's realistic revenue forecast. Two early-stage deals make up 60% of the raw total. How do you present the number so it's useful, not misleading?"
+  }
+},
+"4::Data Hygiene & Deduplication": {
+  "p1": {
+    "on": "This slide says duplicate and stale records split a contact's history, data decays constantly, and bad data costs more over time and hurts email deliverability. The steps: search by name, company and email domain before adding a contact, preserve the full history from both records when merging, and clean out bounces and unsubscribes regularly.",
+    "say": "Merge forward and keep the history from both records.",
+    "ask": "How would you search for a duplicate beyond an exact name match?"
+  },
+  "p2": {
+    "on": "This slide warns against merging by just deleting the record with less information. It says to standardize entry formats from the start so duplicates are easier to spot, and to schedule hygiene as a recurring task, because lists degrade again within months.",
+    "say": "Standard formats make duplicates visible.",
+    "wrap": "Search before adding, merge forward and clean on a schedule.",
+    "scenario": "You find three records that seem to be the same person at the same company, each with different interaction history. How do you confirm they're the same person before merging, and what if you're not sure?"
+  }
+},
+"4::Outreach Compliance Basics": {
+  "p1": {
+    "on": "This slide says cold outreach is regulated: CAN-SPAM for email, and do-not-call and TCPA rules for calls and texts. The rules differ by channel and should be confirmed with firm policy or counsel. The steps: confirm the firm's policy before each campaign, always include and honor an opt-out, and keep a record of consent or an existing relationship for every list.",
+    "say": "Confirm the policy before the campaign, not after a complaint.",
+    "ask": "What's different about texting a prospect versus emailing them?"
+  },
+  "p2": {
+    "on": "This slide warns that a purchased or scraped list isn't automatically safe, because provenance matters for compliance. It says to honor opt-outs and do-not-call requests completely and promptly, and to escalate before sending when you're unsure.",
+    "say": "Asking costs far less than a violation.",
+    "wrap": "Know the rules per channel, honor opt-outs and document consent.",
+    "scenario": "A colleague hands you a conference contact list with no notes on how it was collected. What do you need to know before you're comfortable sending to it?"
+  }
+},
+"4::Email Marketing vs. Cold Outreach": {
+  "p1": {
+    "on": "This slide separates the two, with a diagram. Email marketing is one message to many people who already know the firm, needing a subscribed audience and an unsubscribe. Cold outreach is individual messages to people who don't. The steps: name which it is before sending, route marketing through the email platform and outreach through the attorney's mailbox, keep separate lists, and get attorney approval, since this can count as attorney advertising.",
+    "say": "Did they ask to hear from us? That decides which one it is.",
+    "ask": "Is a webinar follow-up marketing or outreach?"
+  },
+  "p2": {
+    "on": "This slide warns against adding event attendees or business-card contacts to the newsletter without telling them, and against sending bulk email from the attorney's personal mailbox. It adds that a reply to a marketing email becomes a one-to-one conversation.",
+    "say": "Never send a bulk blast from the attorney's own mailbox.",
+    "wrap": "Name it, route it correctly, keep the lists separate and get approval.",
+    "scenario": "Elias hands you 400 business cards from a legal-tech conference and says \"send everyone our newsletter.\" What do you do instead, and what do you say to Elias?"
+  }
+},
+"4::Building & Segmenting an Email List": {
+  "p1": {
+    "on": "This slide says a small list of people who want to hear from the firm beats a large one that doesn't. Every contact needs a recorded source and consent basis, and segmentation sends the right content to each group. The steps: collect only through legitimate channels, tag contacts on entry, build starter segments (Clients, Referral Partners, Prospects) and clean the list quarterly.",
+    "say": "Every contact has a source, a date and a consent basis.",
+    "ask": "Which three segments would you start with?"
+  },
+  "p2": {
+    "on": "This slide warns against buying or scraping lists and against re-adding anyone who unsubscribed, even if they appear on a new event list. It says to keep opposing parties, adverse witnesses and anyone flagged in conflict checks off every marketing list.",
+    "say": "The unsubscribe always wins.",
+    "wrap": "Collect legitimately, tag on entry, segment and clean quarterly.",
+    "scenario": "A partner wants the next newsletter on a new estate-planning service sent \"to everyone\": 1,800 contacts, including corporate clients and opposing counsel from past matters. How do you segment it, and who should not receive it?"
+  }
+},
+"4::Writing Outreach Emails That Get Replies": {
+  "p1": {
+    "on": "This slide says strong outreach emails are 50–125 words, specific to the recipient and make one easy ask, with an honest, specific subject line. The steps with the diagram: open with why you're writing to them, state the value in their terms in one or two sentences, make one low-friction ask, and close with the attorney's details and an opt-out, then proofread.",
+    "say": "Short, specific and one clear ask.",
+    "ask": "What's wrong with opening with who the firm is?"
+  },
+  "p2": {
+    "on": "This slide warns against long paragraphs about the firm's history and spam-trigger habits (ALL CAPS, exclamation points, \"guaranteed,\" fake \"Re:\" subject lines, image-only emails). Never state or imply a guaranteed legal outcome, because that can breach attorney advertising rules.",
+    "say": "Never promise an outcome in outreach.",
+    "wrap": "Their situation first, value in their terms, one small ask.",
+    "scenario": "Rewrite this opener live for a founder whose startup just raised a Series A: \"Dear Sir/Madam, Thorne & Partners is a leading full-service law firm founded in 1998 with over 40 attorneys...\""
+  }
+},
+"4::Law Firm Email Newsletters": {
+  "p1": {
+    "on": "This slide says a newsletter keeps the firm top of mind between matters, consistency matters more than frequency, and newsletters are attorney communications that may need an \"Attorney Advertising\" label. The steps: agree the cadence and 2–3 recurring sections with the attorney, draft in an approved template, route every issue for sign-off, and send a test before scheduling.",
+    "say": "Reliable monthly or quarterly beats bursts and silence.",
+    "ask": "What three sections would you put in the firm's newsletter?"
+  },
+  "p2": {
+    "on": "This slide warns against newsletters that are only about the firm; lead with information the reader can use. Never mention a client, matter or outcome without documented consent and attorney approval. Keep an archive of every issue with its approval date.",
+    "say": "No client names without documented consent.",
+    "wrap": "Plan the cadence, get sign-off, test and archive.",
+    "scenario": "Elias wants this month's newsletter to celebrate a big settlement with the client's company in the headline. What do you need before it can go out, and what do you suggest if consent isn't available?"
+  }
+},
+"4::Email Deliverability Basics": {
+  "p1": {
+    "on": "This slide explains deliverability, meaning reaching the inbox rather than spam, which depends on domain reputation, authentication and engagement. The three DNS records are SPF, DKIM and DMARC. The steps: confirm all three with IT, include a one-click unsubscribe, keep hard bounces under about 2% and complaints well under 0.3%, and warm up new domains gradually.",
+    "say": "A damaged domain can send ordinary client emails to spam.",
+    "ask": "Who at the firm would you ask about SPF, DKIM and DMARC?"
+  },
+  "p2": {
+    "on": "This slide warns against sending a big campaign to an old, uncleaned list, which can get the account suspended, and against sending from a \"noreply\" address. It recommends separating marketing from day-to-day email, for example with a marketing subdomain.",
+    "say": "Protect client email by keeping marketing on its own domain.",
+    "wrap": "Authenticate, keep lists clean, watch the numbers and ramp up slowly.",
+    "scenario": "After the last newsletter, three clients say firm emails are landing in spam. What do you check first, who do you involve, and what do you pause?"
+  }
+},
+"4::Email Metrics & A/B Testing": {
+  "p1": {
+    "on": "This slide lists the key metrics: delivery, open, click-through, reply, unsubscribe and conversions such as consultations booked. It notes that Apple Mail Privacy Protection inflates open rates, so clicks and replies are more reliable. A/B testing changes one thing at a time. The steps: pick the goal metric first, test on a random sample, log results and review monthly.",
+    "say": "Pick the goal metric before you send, not after.",
+    "ask": "Why can't we trust open rates the way we used to?"
+  },
+  "p2": {
+    "on": "This slide warns against declaring a winner from tiny numbers (3 opens on 40 sends is noise) and against judging a newsletter by opens alone. It recommends small, regular tests rather than redesigning after one weak send.",
+    "say": "Replies and consultations beat opens.",
+    "wrap": "Test one thing, measure what matters and don't over-read small numbers.",
+    "scenario": "Subject A got a 42% open rate and 1 reply. Subject B got 31% and 6 replies. Which won, and what do you tell the attorney?"
+  }
+},
+"4::Email Marketing Tools & Approval Workflow": {
+  "p1": {
+    "on": "This slide lists the tools (Mailchimp and Constant Contact for newsletters, HubSpot or a CRM for combined tracking, Outlook or Gmail templates for one-to-one) and says a written approval workflow protects the firm. The steps: set up an approved template with footer and disclaimer, follow Draft → Content review → Compliance check → Schedule → Report, schedule in the recipient's business hours, and save every sent version.",
+    "say": "Draft, review, compliance check, schedule, report.",
+    "ask": "Who in your workflow presses send?"
+  },
+  "p2": {
+    "on": "This slide warns that a \"quick send\" skipping review can go to thousands instantly with the wrong segment or no disclaimer. It says to limit who has send permission and to test the unsubscribe link and every button before scheduling.",
+    "say": "One quick unreviewed send can reach thousands.",
+    "wrap": "Approved templates, a written workflow, limited send rights and tested links.",
+    "scenario": "Elias wants an event invitation sent tonight, and the reviewing associate isn't available until tomorrow. What are your options, and what do you recommend?"
+  }
+},
+"4::Email Outreach End-to-End: Research, Write, Follow Up": {
+  "p1": {
+    "on": "This slide walks through outreach from start to finish. An email is judged in about three seconds on a phone, relevance beats polish, and each email has one job. The steps: research the person and one recent trigger, write a 3–7 word subject line and a 50–125 word body with one small ask, sign off with an opt-out, plan the follow-ups, and stop when they reply or opt out.",
+    "say": "Research, one trigger, one small ask, and plan the follow-ups before you send.",
+    "ask": "What would count as a good trigger for outreach?"
+  },
+  "p2": {
+    "on": "This slide gives the rules: write about their priorities, add something new in each follow-up, check it on a phone, don't swap only the name in a template, never guilt-trip, and never promise outcomes. It lays out the 3-touch cadence: day 1 trigger and ask, day 3–4 new angle, day 8–10 courteous close-out, then stop and log.",
+    "say": "The close-out email often gets the most replies.",
+    "wrap": "Three touches, each with something new, then stop and log the outcome.",
+    "scenario": "Elias wants to reach the operations director of a regional construction company that just announced a two-state expansion. Your first email got no reply after four days. What does your follow-up say, what new angle does it use, and when do you stop?"
+  }
 }
 };
