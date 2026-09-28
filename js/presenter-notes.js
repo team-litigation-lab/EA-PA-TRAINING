@@ -3587,6 +3587,23 @@ window.PRESENTER_NOTES = {
     "say": "Calendar, budget, directory: the household's operating system.",
     "wrap": "One point of contact, simple systems and regular reviews.",
     "scenario": "Sarah Thorne asks you to take over running the household next week. What are the first three things you set up, and who do you tell that you're now the point of contact?"
+  },
+  "s1": {
+    "on": "This section's idea: household management uses real business discipline, meaning planning, organizing, budgeting and evaluation.",
+    "say": "Run the home like a business."
+  },
+  "s2": {
+    "on": "These steps apply it: be the main point of contact, build systems for recurring categories, review operations periodically, and document standing decisions.",
+    "say": "Systems, not reactions.",
+    "ask": "What recurring household task would you systematize first?"
+  },
+  "s3": {
+    "on": "This section's rule: the assistant is the main point of contact for family, staff and contractors.",
+    "say": "One point of contact: you."
+  },
+  "s4": {
+    "on": "This section lists the tools: a master calendar, a categorized household budget reconciled monthly, and a vendor and staff directory with backups.",
+    "say": "Calendar, budget, directory."
   }
 },
 "5::Recurring Household Admin: Utilities, Purchasing & Subscriptions": {
@@ -3600,6 +3617,19 @@ window.PRESENTER_NOTES = {
     "say": "Nothing breaks on any one day. That's the trap.",
     "wrap": "Calendar the payments, log the purchases and review renewals before they hit.",
     "scenario": "You find the Thorne household pays for three streaming services, two meal-kit subscriptions and a gym nobody uses. Walk through how you'd review them and what you'd bring to Sarah."
+  },
+  "s1": {
+    "on": "This section covers three categories: utilities that can't lapse, purchasing for business and personal needs, and the full subscription lifecycle.",
+    "say": "Utilities, purchasing, subscriptions."
+  },
+  "s2": {
+    "on": "These steps track them: utilities on a calendar with due dates, a purchase log, renewal dates logged at sign-up, a keep-or-cancel decision before each renewal, and equal attention to all three.",
+    "say": "Decide before auto-renew decides for you.",
+    "ask": "Which subscription renewed on you by surprise?"
+  },
+  "s3": {
+    "on": "This section names the shared failure: low-drama recurring tasks slide until a utility is shut off or a subscription renews at triple the rate.",
+    "say": "The risk is in the accumulation."
   }
 },
 "5::Household Staff Management": {
@@ -3613,6 +3643,19 @@ window.PRESENTER_NOTES = {
     "say": "Check in proactively. Many staff won't raise a problem themselves.",
     "wrap": "Written roles, a shared calendar, regular check-ins and real handoffs.",
     "scenario": "The Thorne housekeeper is going on six weeks of medical leave with two days' notice. What do you document and hand off so the temporary replacement doesn't need to ask Sarah a dozen basic questions in week one?"
+  },
+  "s1": {
+    "on": "This section says staff management is coordination, not supervision, that written expectations prevent most friction, and that schedules must respect staff boundaries.",
+    "say": "Coordinate, don't micromanage."
+  },
+  "s2": {
+    "on": "These steps set it up: a written role description per position, a shared staff calendar, regular check-ins, and emergency and medical info on file.",
+    "say": "Write the role down."
+  },
+  "s3": {
+    "on": "This section warns that schedules can't live in one person's memory and that staff may not raise conflicts, and asks for professionalism and real handoffs at turnover.",
+    "say": "Check in; many won't speak up.",
+    "ask": "How would you find out if a nanny's schedule isn't working?"
   }
 },
 "5::Home Maintenance & Repair Coordination": {
@@ -3626,6 +3669,19 @@ window.PRESENTER_NOTES = {
     "say": "Know your dollar limit before the repair call, not during it.",
     "wrap": "Schedule maintenance, triage repairs, get it in writing and keep records.",
     "scenario": "The HVAC annual service is due, but the household has declined the reminder for three months because \"it's working fine.\" What's the real risk, and how do you raise it again without it feeling like nagging?"
+  },
+  "s1": {
+    "on": "This section separates routine scheduled maintenance from reactive repairs, says a calendar keeps small fixes small, and applies procurement discipline to contractors.",
+    "say": "Routine and reactive need different handling."
+  },
+  "s2": {
+    "on": "These steps are the system: a maintenance calendar by service interval, a vetted contractor list, written scope and cost before work, and warranties in the Home Binder.",
+    "say": "Scope and cost in writing, every time."
+  },
+  "s3": {
+    "on": "This section warns against treating all repairs as equally urgent or spending past your threshold without sign-off, asks for repair records, and warns that an unchecked calendar is worse than none.",
+    "say": "A dripping faucet isn't a gas smell.",
+    "ask": "What's your approval threshold for repairs?"
   }
 },
 "5::Procurement and Vendor/Supplier Management": {
@@ -3639,6 +3695,22 @@ window.PRESENTER_NOTES = {
     "say": "Anyone working inside the home gets references, insurance and licensing checked.",
     "wrap": "Good procurement reduces how often vendors fail you.",
     "scenario": "The Thornes need a new landscaping company. Walk through the procurement cycle: what you'd ask for, what you'd check, and what goes into the written agreement."
+  },
+  "s1": {
+    "on": "This section says procurement is sequential: follow the steps in order.",
+    "say": "Four steps, in order."
+  },
+  "s2": {
+    "on": "These steps are the sequence: Source multiple options, Compare terms not just price, Formalize the agreement, and Manage the relationship with a backup ready.",
+    "say": "Source, compare, formalize, manage."
+  },
+  "s3": {
+    "on": "This section calls procurement the proactive counterpart to vendor-failure handling; good procurement means fewer failures.",
+    "say": "Prevention reduces failures."
+  },
+  "s4": {
+    "on": "This section adds detail: define need and budget, get three quotes, check references, insurance and licensing, and record terms and review annually.",
+    "say": "Three quotes for anything non-trivial."
   }
 },
 "5::Vendor Relationships Beyond the Signature": {
@@ -3652,6 +3724,18 @@ window.PRESENTER_NOTES = {
     "say": "Signing is the start of the relationship, not the end.",
     "wrap": "Track performance, renewals and backups for every vendor.",
     "scenario": "The Thornes' pool service has been paid on time every month, but the pool has turned green twice this summer. What should ongoing vendor management have caught, and what do you do now?"
+  },
+  "s1": {
+    "on": "This section says real comparison, not whoever's easiest to reach, is what makes procurement deliberate.",
+    "say": "Deliberate, not convenient."
+  },
+  "s2": {
+    "on": "These steps continue after signing: compare options, review terms, track performance, track renewals, and keep a backup.",
+    "say": "Paid invoices don't mean good performance."
+  },
+  "s3": {
+    "on": "This section says supplier management continues after signing and that renewal dates belong in a tracked reference.",
+    "say": "Track it; don't remember it."
   }
 },
 "5::Negotiating Vendor Contracts & Terms": {
@@ -3665,6 +3749,19 @@ window.PRESENTER_NOTES = {
     "say": "\"Only good today\" is a tactic, not a deadline.",
     "wrap": "Know your priorities, negotiate terms, get it in writing and revisit at renewal.",
     "scenario": "A vendor the household has used reliably for two years sends a renewal with a 15% increase and no explanation. You have one untested alternative. How do you approach the conversation, and what would justify staying versus switching?"
+  },
+  "s1": {
+    "on": "This section says negotiation is about protective terms, not just the lowest price; alternatives give leverage, and most terms can be negotiated.",
+    "say": "The default contract is a starting point."
+  },
+  "s2": {
+    "on": "These steps negotiate: know your priorities in order, ask for one term beyond price, get everything in writing, and renegotiate at renewal.",
+    "say": "Ask for one thing beyond price.",
+    "ask": "What term would you ask for besides price?"
+  },
+  "s3": {
+    "on": "This section warns against ignoring cancellation terms and 'today only' pressure, asks for a record of what was agreed, and says not to damage the relationship.",
+    "say": "How you negotiate matters too."
   }
 },
 "5::When a Vendor Falls Through": {
@@ -3678,6 +3775,23 @@ window.PRESENTER_NOTES = {
     "say": "Test your backup before an emergency depends on it.",
     "wrap": "Notify fast, bring options and keep a tested backup for every critical service.",
     "scenario": "The caterer for Sarah Thorne's dinner party for 20 cancels at 2 p.m. on the day. What do you do in the first five minutes, and what does your message to Sarah say?"
+  },
+  "s1": {
+    "on": "This section's rule: tell the household immediately and propose real alternatives.",
+    "say": "Notify and propose."
+  },
+  "s2": {
+    "on": "These steps respond: notify at once, offer specific alternatives, use the pre-identified backup, confirm it can deliver on time, and update the tracker.",
+    "say": "Don't quietly fix it first."
+  },
+  "s3": {
+    "on": "This section says to keep a backup identified for every recurring service.",
+    "say": "Backups before you need them."
+  },
+  "s4": {
+    "on": "This section adds detail: one pre-vetted backup per critical service, test it with small jobs, and replace a vendor that fails twice.",
+    "say": "Fails twice, replace it.",
+    "ask": "Who's your backup for cleaning or childcare?"
   }
 },
 "5::The PA Risk Management Framework": {
@@ -3691,6 +3805,23 @@ window.PRESENTER_NOTES = {
     "say": "A burglary is physical, financial and privacy risk all at once.",
     "wrap": "Map every incident to all the categories it touches.",
     "scenario": "A delivery driver slips on the Thornes' icy driveway and posts about it on social media. Map it to every risk category it touches, and say what you'd do first."
+  },
+  "s1": {
+    "on": "This section lays out four risk categories: Financial, Legal & Liability, Operational and Reputational, each with its main threats and response.",
+    "say": "Four kinds of risk."
+  },
+  "s2": {
+    "on": "These steps manage each: verify payments and renewals, watch for liability exposure, plan contingencies ahead, practice discretion, and check each incident against all four.",
+    "say": "Check every category, not just the obvious one."
+  },
+  "s3": {
+    "on": "This section's key point: most real incidents touch more than one category.",
+    "say": "Incidents overlap."
+  },
+  "s4": {
+    "on": "This section maps examples to each category, adds Physical & Safety, and shows a burglary touching physical, financial and privacy risk at once.",
+    "say": "Map incidents to every category they touch.",
+    "ask": "What categories would a lost laptop touch?"
   }
 },
 "5::The Four Core Risk Strategies": {
@@ -3704,6 +3835,23 @@ window.PRESENTER_NOTES = {
     "say": "Most situations use more than one strategy.",
     "wrap": "Compare likelihood and impact, then combine strategies where it makes sense.",
     "scenario": "Match each to a strategy: the Thornes' teenager starts driving, a family trip to a country under a Level 3 advisory, a $40 phone screen protector plan, and valuable art in the home."
+  },
+  "s1": {
+    "on": "This section starts with Avoidance: skip the risky activity.",
+    "say": "Strategy one: avoid."
+  },
+  "s2": {
+    "on": "These steps match strategies to risks: Avoid what can be skipped, Reduce what can be lowered, Transfer financial exposure to insurance, and Retain minor risks deliberately.",
+    "say": "Avoid, reduce, transfer, retain."
+  },
+  "s3": {
+    "on": "This section defines the other three: Reduction (alarms, defensive driving), Transfer (insurance) and Retention (accept small risks).",
+    "say": "Match the strategy to the risk."
+  },
+  "s4": {
+    "on": "This section explains choosing by likelihood and impact, and shows strategies combined: insure the car, add a tracker, accept the deductible.",
+    "say": "Most situations combine strategies.",
+    "ask": "Which strategy fits a small, frequent risk?"
   }
 },
 "5::Insurance & Risk at a Glance": {
@@ -3717,6 +3865,19 @@ window.PRESENTER_NOTES = {
     "say": "Every \"yes\" is a gap to close, not a note for later.",
     "wrap": "Track every policy, review twice a year and close each gap.",
     "scenario": "In the last six months the Thornes bought a lake house, hired a full-time nanny and started traveling abroad quarterly. Run the risk review: which gaps do you flag?"
+  },
+  "s1": {
+    "on": "This section's rule: track policy expirations and compare coverage to what's recommended.",
+    "say": "Track expirations, check coverage."
+  },
+  "s2": {
+    "on": "These steps build it: a secure Personal Insurance Policy Tracker with standard columns, active renewal tracking, a coverage check, the review checklist twice a year, and closing every 'yes' gap.",
+    "say": "Every 'yes' means call the broker."
+  },
+  "s3": {
+    "on": "This section gives the semi-annual review questions, the tracker's columns and the Annual Risk Review prompts: new property, marriage, dependents, business changes, net worth.",
+    "say": "Life changes mean coverage changes.",
+    "ask": "What life change would trigger a coverage review?"
   }
 },
 "5::Travel Risk Management": {
@@ -3730,6 +3891,22 @@ window.PRESENTER_NOTES = {
     "say": "Keep a printed copy in case the phone dies.",
     "wrap": "Plan all three phases and build the emergency sheet before departure.",
     "scenario": "Elias is taking his family to Italy for ten days. Build the emergency contact sheet with the room: what goes on it, and who gets a copy?"
+  },
+  "s1": {
+    "on": "This section says travel risk management is sequential: before, during, after.",
+    "say": "Three phases."
+  },
+  "s2": {
+    "on": "These steps are the phases: before (insurance, medical coverage, embassy registration if high-profile), during (emergency sheet, document copies, secure Wi-Fi), and after (reconcile and file claims).",
+    "say": "Before, during, after."
+  },
+  "s3": {
+    "on": "This section restates the key action in each phase.",
+    "say": "Each phase has one key job."
+  },
+  "s4": {
+    "on": "This section details the emergency contact sheet: local numbers, embassy, hotel, insurer's 24/7 line, document copies, medical notes, a home contact, and a printed copy.",
+    "say": "Print a copy; phones die."
   }
 },
 "5::Handling a Travel Claim": {
@@ -3745,6 +3922,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Secure safety, preserve evidence, never admit fault, then document and file.",
     "scenario": "Elias's rental car is rear-ended in Lisbon, and the other driver is insisting it was Elias's fault. He calls you from the roadside. What do you tell him to do, and in what order?"
+  },
+  "s1": {
+    "on": "This section says a claim is a risk event, and the PA is Coordinator, Document Controller and Executive Liaison.",
+    "say": "Three roles at once."
+  },
+  "s2": {
+    "on": "These steps handle it: safety first, preserve evidence (photos, report numbers, witnesses), never admit fault for the executive, and document only once things are secure.",
+    "say": "Never admit fault.",
+    "ask": "What evidence would you collect first?"
   }
 },
 "5::International Travel Risk & Duty of Care": {
@@ -3758,6 +3944,18 @@ window.PRESENTER_NOTES = {
     "say": "Decide in advance how long a silence is too long.",
     "wrap": "Plan before booking, cover health and evacuation, and set a check-in protocol.",
     "scenario": "Elias is traveling for an arbitration in a country with a moderate travel advisory and brushes off extra precautions because he's been before. What do you want in place before he leaves, and how do you raise it while respecting his experience?"
+  },
+  "s1": {
+    "on": "This section says international travel adds political, health, legal and communication risks, and duty of care means knowing where the traveler is and being able to help.",
+    "say": "Duty of care is an expectation."
+  },
+  "s2": {
+    "on": "These steps prepare: check advisories before booking, register the trip, confirm medical evacuation coverage, and build a destination emergency card with a check-in schedule.",
+    "say": "Standard insurance often excludes evacuation."
+  },
+  "s3": {
+    "on": "This section warns that it isn't the same checklist plus a passport, says to involve security for high-risk places, keep remote document copies, and set a missed check-in protocol.",
+    "say": "Decide the escalation before departure."
   }
 },
 "5::Lifestyle & Personal Support": {
@@ -3771,6 +3969,22 @@ window.PRESENTER_NOTES = {
     "say": "Track what was given last year, so you never repeat a gift.",
     "wrap": "Log it, own it and review it on a schedule.",
     "scenario": "In one week: Sarah's mother's birthday, the nanny's work anniversary, a client's holiday gift, dry cleaning before a gala and a dinner reservation for their anniversary. Put them in the tracker with owners and deadlines."
+  },
+  "s1": {
+    "on": "This section's rule: track errands, gifts and events in one shared tool with deadlines and owners.",
+    "say": "One tool, deadlines, owners."
+  },
+  "s2": {
+    "on": "These steps run it: log requests immediately, assign an owner, review regularly, and check it consistently.",
+    "say": "Log it when asked, not when urgent."
+  },
+  "s3": {
+    "on": "This section explains that things get dropped not from carelessness but because memory doesn't scale.",
+    "say": "Memory doesn't scale."
+  },
+  "s4": {
+    "on": "This section lists the areas: gifts and occasions with last year's record, errands and appointments around work, and events confirmed in writing.",
+    "say": "Remember what was given last year."
   }
 },
 "5::Creating a Home Binder for a Busy Executive": {
@@ -3784,6 +3998,19 @@ window.PRESENTER_NOTES = {
     "say": "Judge it by whether someone else can use it cold.",
     "wrap": "Four sections, pointers for sensitive data, tested by someone who isn't you.",
     "scenario": "You're unexpectedly unreachable for a day, and the Thornes' alarm goes off while the nanny is home with the kids. What does she need to find in the binder in the first two minutes?"
+  },
+  "s1": {
+    "on": "This section lays out four binder sections: Household Operations, Family & Medical, Financial & Legal Reference (pointers only) and Emergency Contacts.",
+    "say": "Four sections."
+  },
+  "s2": {
+    "on": "These steps build it section by section and end with the test: could a substitute PA or emergency responder use it cold?",
+    "say": "Pointers, not sensitive numbers."
+  },
+  "s3": {
+    "on": "This section says the binder exists for one moment, when someone else needs information and you're unavailable, and that usability is the test.",
+    "say": "Usable without calling you.",
+    "ask": "Who would use your binder in an emergency?"
   }
 },
 "5::Home Binder: Format, Security & Maintenance": {
@@ -3799,6 +4026,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Keep a digital master and a printed backup, store pointers not secrets, and update immediately.",
     "scenario": "You're reviewing the Thornes' binder and find the home safe combination and a bank account number written on the Financial page. What do you change, and where does that information go instead?"
+  },
+  "s1": {
+    "on": "This section weighs physical (works offline) against digital (easy updates, remote access); most households need both.",
+    "say": "Often both: digital master, physical backup."
+  },
+  "s2": {
+    "on": "These steps maintain it: choose by use case, keep both, never store sensitive numbers directly, update at every change, and check the security rule was followed.",
+    "say": "Outdated is worse than none."
   }
 },
 "5::Digital Home Binder Tools & Platforms": {
@@ -3812,6 +4047,18 @@ window.PRESENTER_NOTES = {
     "say": "Remove a departed employee's access the day they leave.",
     "wrap": "Pick a tool people already use, set permissions per section and keep a backup.",
     "scenario": "The Thornes are choosing between a shared Notion workspace they already use and a dedicated home-management app with built-in permissions. What do you need to know about who needs access to what before recommending one?"
+  },
+  "s1": {
+    "on": "This section says the tool should suit who needs access, structure matters more than platform, and permissions need a plan.",
+    "say": "Structure over software."
+  },
+  "s2": {
+    "on": "These steps set it up: use the workspace the household already uses, mirror the four sections, set permissions by section, and export a physical backup regularly.",
+    "say": "The driver doesn't need medical info."
+  },
+  "s3": {
+    "on": "This section warns against tools nobody else can use and single-login access, asks to revisit permissions when staff change, and suggests a usability test.",
+    "say": "Remove access when staff leave."
   }
 },
 "5::EA/PA Risk Framework: Information Security": {
@@ -3825,6 +4072,19 @@ window.PRESENTER_NOTES = {
     "say": "Report the near-miss early. It's far easier to contain.",
     "wrap": "Least privilege, verify identity, use secure channels and report early.",
     "scenario": "An email that looks like it's from Elias's bank asks you to confirm his account details to clear a \"security flag.\" It looks legitimate but arrived at an unusual time. What do you do before responding?"
+  },
+  "s1": {
+    "on": "This section defines information security risk, says EAs see more sensitive data than almost anyone, and aims for consistent handling plus an escalation path.",
+    "say": "Security is part of the role."
+  },
+  "s2": {
+    "on": "These steps are the habits: least privilege, verify identity before disclosing, use secure channels, and know containment steps (stop the spread, assess, escalate).",
+    "say": "A confident request isn't verification.",
+    "ask": "How would you verify a caller asking for account details?"
+  },
+  "s3": {
+    "on": "This section warns that most failures are human, forbids storing sensitive numbers casually, asks to report near-misses, and to review standing access.",
+    "say": "Report even the small ones."
   }
 },
 "5::EA/PA Risk Framework: Operational Continuity": {
@@ -3838,6 +4098,18 @@ window.PRESENTER_NOTES = {
     "say": "Test the plan by having someone else follow it.",
     "wrap": "Find the single points of failure, document them and test the handoff.",
     "scenario": "You're planning your first two-week vacation in over a year. What do you document and hand off so nothing critical falls through while you're away?"
+  },
+  "s1": {
+    "on": "This section defines continuity risk, warns about 'only I know how to do this', and calls SOPs, binders and contact lists continuity tools.",
+    "say": "No single point of failure."
+  },
+  "s2": {
+    "on": "These steps prepare: list what breaks if you're gone 48 hours, document critical processes, keep backup contacts, and set an 'if I'm unreachable' protocol.",
+    "say": "What breaks in 48 hours without you?"
+  },
+  "s3": {
+    "on": "This section warns that being indispensable is a risk, asks to test and update plans, and calls continuity planning risk reduction, not pessimism.",
+    "say": "Indispensable is a risk."
   }
 },
 "5::EA/PA Risk Framework: Reputational Risks": {
@@ -3851,6 +4123,18 @@ window.PRESENTER_NOTES = {
     "say": "Correct beats fast in a reputational situation.",
     "wrap": "Prevent, vet, escalate, and let only authorized people respond.",
     "scenario": "A journalist contacts you directly, outside the firm's usual channels, asking for comment on a sensitive matter involving Elias. They're polite but persistent. What do you do, and what do you deliberately avoid?"
+  },
+  "s1": {
+    "on": "This section defines reputational risk, notes it spreads fast and lasts, and says the EA/PA's role is mainly prevention.",
+    "say": "Prevention, not cleanup."
+  },
+  "s2": {
+    "on": "These steps prevent it: discretion by default, vetting guest lists and content for reputation, knowing the escalation path, and controlling information flow.",
+    "say": "Assume anything might be seen."
+  },
+  "s3": {
+    "on": "This section warns against fast wrong responses and assuming privacy, asks you to know the executive's sensitive topics, and to escalate when unsure.",
+    "say": "Correct beats quick."
   }
 },
 "5::EA/PA Risk Framework: Physical & Travel Safety": {
@@ -3864,6 +4148,18 @@ window.PRESENTER_NOTES = {
     "say": "Know the limits of your role and bring in security when the risk is real.",
     "wrap": "Scale the planning to the risk, and never skip the baseline.",
     "scenario": "Elias is attending a public event with heavy media attention, and the venue has confirmed only minimal security screening. What do you want confirmed or arranged beforehand, and who do you loop in?"
+  },
+  "s1": {
+    "on": "This section covers bodily risk to the executive or family, the highest-stakes category, where duty of care applies most.",
+    "say": "The highest stakes."
+  },
+  "s2": {
+    "on": "These steps protect: location visibility without intrusion, destination safety awareness, coordination with security, and current emergency and medical info.",
+    "say": "Findable in seconds."
+  },
+  "s3": {
+    "on": "This section says baseline awareness applies to every trip, never guess at emergency numbers, bring in professional security for high risk, and pre-agree missed check-in escalation.",
+    "say": "Scale planning to the real risk."
   }
 },
 "5::EA/PA Risk Framework: Financial Controls": {
@@ -3877,6 +4173,19 @@ window.PRESENTER_NOTES = {
     "say": "Urgency plus an unusual channel is the classic fraud pattern.",
     "wrap": "Know your limits, document everything and verify unusual requests another way.",
     "scenario": "An email that appears to be from Elias asks you to urgently wire funds to a vendor for a time-sensitive deal and to keep it discreet. The tone matches his, but something feels off. What do you do before taking any action?"
+  },
+  "s1": {
+    "on": "This section covers controls against unauthorized spending, fraud and billing errors, notes EAs often have real financial access, and says controls protect the EA too.",
+    "say": "Controls protect you as well."
+  },
+  "s2": {
+    "on": "These steps are the controls: know your approval limit, document every transaction, reconcile monthly, and flag anything unusual.",
+    "say": "Know your dollar limit in advance."
+  },
+  "s3": {
+    "on": "This section warns that urgency is a common fraud tactic and unusual channels are red flags, and asks for organized records and second-channel verification.",
+    "say": "Urgent and unusual? Verify first.",
+    "ask": "What would make you pause on a payment request?"
   }
 },
 "5::Private Expense Audit": {
@@ -3890,6 +4199,18 @@ window.PRESENTER_NOTES = {
     "say": "Private finances deserve the same care as business finances.",
     "wrap": "Review on a cadence, compare with expectations and flag the unclear.",
     "scenario": "During a routine review you find a recurring $89 monthly charge you don't recognize. What do you do before raising it with the household?"
+  },
+  "s1": {
+    "on": "This section defines a private expense audit, a periodic review of household spending, and ties it to financial controls.",
+    "say": "Review, don't just process."
+  },
+  "s2": {
+    "on": "These steps run it: a monthly cadence, actual charges compared with expected recurring costs, and anything unclear flagged.",
+    "say": "Catch the drift."
+  },
+  "s3": {
+    "on": "This section warns that private finances aren't lower stakes and must be kept as securely as any confidential record.",
+    "say": "Same security as anything confidential."
   }
 },
 "5::Vendor NDA Management": {
@@ -3903,6 +4224,18 @@ window.PRESENTER_NOTES = {
     "say": "A promise to sign later isn't an NDA.",
     "wrap": "Decide who needs one, track it and revisit when scope changes.",
     "scenario": "A new vendor needs temporary access to the Thornes' home security system for a multi-week project. What do you want confirmed or in place before granting that access?"
+  },
+  "s1": {
+    "on": "This section says vendors with access to sensitive information may need an NDA first, and managing NDAs means tracking them over time.",
+    "say": "An NDA is protection, not a formality."
+  },
+  "s2": {
+    "on": "These steps manage them: decide who needs one based on access, keep a tracker of signed NDAs and scope, and revisit when scope changes.",
+    "say": "Signed before access."
+  },
+  "s3": {
+    "on": "This section warns against treating NDAs as one-time boxes or granting access on a promise to sign later.",
+    "say": "Signed first, always."
   }
 },
 "5::Mid-Point 1-on-1 Performance Review": {
@@ -3916,6 +4249,19 @@ window.PRESENTER_NOTES = {
     "say": "Raise it now, while there's still time to fix it.",
     "wrap": "Be specific, use the data and leave with a concrete focus.",
     "scenario": "Look honestly at Days 1 through 5. Which day or Practice Lab tool would you most want to revisit before moving on, and what exactly still feels unclear?"
+  },
+  "s1": {
+    "on": "This section explains why Day 5 is the checkpoint and frames the review as a two-way conversation.",
+    "say": "It's a conversation, not a verdict."
+  },
+  "s2": {
+    "on": "These steps prepare: an honest sense of strong and shaky areas, using Knowledge Check, Practice Lab and roleplay data, and leaving with one named focus.",
+    "say": "Leave with one specific focus.",
+    "ask": "Which day feels shakiest to you so far?"
+  },
+  "s3": {
+    "on": "This section warns against treating it as a formality and encourages raising struggles now, while there's time to close the gap.",
+    "say": "Now is the time to raise it."
   }
 },
 "6::Choosing a Business Structure": {
