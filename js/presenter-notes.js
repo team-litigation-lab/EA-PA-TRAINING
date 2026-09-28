@@ -693,6 +693,19 @@ window.PRESENTER_NOTES = {
     "say": "Privileged information pasted into the wrong tool is a real legal problem, not a technicality.",
     "wrap": "Every AI technique today passes through this filter: preference, human judgment, confidentiality.",
     "scenario": "Elias asks you to \"run the Meridian deposition transcript through AI and pull out the contradictions.\" Before you do anything, what do you need to check, and what do you say to him?"
+  },
+  "s1": {
+    "on": "This section frames every AI topic in the program: AI can genuinely help, but every technique has to clear the standard set here first.",
+    "say": "Everything AI we cover today sits inside this frame."
+  },
+  "s2": {
+    "on": "These steps are the standard: confirm the firm or attorney's preference for this matter, keep legal judgment and client-facing work with the attorney, check for privileged content before pasting, and ask first when unsure.",
+    "say": "Preference first, human judgment on legal calls, nothing privileged pasted in.",
+    "ask": "Do you know your firm's AI policy?"
+  },
+  "s3": {
+    "on": "This section gives three watch-outs: preference varies by attorney and matter, human review isn't optional for legal judgment, and privileged information in an AI tool is real legal exposure.",
+    "say": "When in doubt, don't paste it. Ask first."
   }
 },
 "2::Bulletproof Basics": {
@@ -706,6 +719,19 @@ window.PRESENTER_NOTES = {
     "say": "Consistency under pressure is what makes the basics bulletproof.",
     "wrap": "Pick your weakest basic and name one real habit, not an intention, to fix it this week.",
     "scenario": "Pick the one basic you're weakest on today — Inbox Zero, the Travel What-If or the Meeting Lifecycle. What's the actual habit, not the intention, that would fix it this week?"
+  },
+  "s1": {
+    "on": "This section names the three basics: Inbox Zero (sort every email as Action, Information or Delegation and draft in the executive's voice), the travel \"What If\" plan, and the meeting lifecycle from agenda to deliverables.",
+    "say": "Three basics: inbox, travel backup, meeting follow-through."
+  },
+  "s2": {
+    "on": "These steps put each basic into practice: sort every email on first read, draft replies ready to send, keep a backup flight on hold, set the agenda before the meeting, and track deliverables to completion.",
+    "say": "The meeting isn't done until the follow-through is confirmed.",
+    "ask": "Which basic are you weakest on today?"
+  },
+  "s3": {
+    "on": "This section says consistency under pressure builds trust, and asks for the actual habit, not the intention, that would fix your weakest basic this week.",
+    "say": "A habit, not an intention."
   }
 },
 "2::The Three C's of Managing Up": {
@@ -719,6 +745,23 @@ window.PRESENTER_NOTES = {
     "say": "One wrong \"it's done\" costs more trust than ten honest \"confirming by noon\".",
     "wrap": "Clear, consistent and credible: check every update against all three before it goes out.",
     "scenario": "Elias asks, \"Is the Meridian binder at the courthouse?\" You think the courier picked it up but haven't confirmed. Write the reply that protects your credibility."
+  },
+  "s1": {
+    "on": "This section defines the Three C's: Clarity (say exactly what's happening and what you need), Consistency (the same procedure every time) and Credibility (reliable recommendations, no exceptions).",
+    "say": "Clarity, Consistency, Credibility."
+  },
+  "s2": {
+    "on": "These steps apply them: check clarity first, use your standard procedure, protect credibility when the C's conflict, restate the ask when clarity slips under pressure, and review your recent messages.",
+    "say": "When they conflict, credibility wins.",
+    "ask": "Which C slips first when you're busy?"
+  },
+  "s3": {
+    "on": "This section restates the three as rules: say exactly what you need, use the same procedure every time, and keep recommendations reliable.",
+    "say": "Three rules, every message."
+  },
+  "s4": {
+    "on": "This section shows each C in practice: open with the status and the ask, use the same format for recurring updates, and say \"confirming by noon\" when unsure — one wrong \"it's done\" costs more than ten honest ones.",
+    "say": "An honest \"confirming by noon\" beats a wrong \"it's done.\""
   }
 },
 "2::Reframing Reactive Language": {
@@ -732,6 +775,23 @@ window.PRESENTER_NOTES = {
     "say": "Swap the report for an action, the blame for a plan, and the open question for a recommendation.",
     "wrap": "Every message should sound like a status report, never a request to be rescued.",
     "scenario": "Go around the room: two or three people take the opening line of a real message they sent this week and rewrite it live, forward-looking."
+  },
+  "s1": {
+    "on": "This section states the principle: turn reactive language into forward-looking language.",
+    "say": "Report the next move, not just the problem."
+  },
+  "s2": {
+    "on": "These steps rewrite a message: find the reactive phrase, lead with what you're doing next, check it against the Three C's, make sure it reads as a status and not a rescue request, and practice on a real message.",
+    "say": "A status report builds credibility. A rescue request erodes it."
+  },
+  "s3": {
+    "on": "This section is a discussion prompt: rewrite the opening line of a recent message aloud the way the Three C's want it.",
+    "say": "Rewrite one opening line, out loud.",
+    "ask": "Who has a message from this week we can fix?"
+  },
+  "s4": {
+    "on": "This section gives three swaps: reports for actions, blame for plans, and open questions for decisions, each with a before and after.",
+    "say": "Swap the question for a recommendation."
   }
 },
 "2::Credibility Is Earned, Not Claimed": {
@@ -745,6 +805,19 @@ window.PRESENTER_NOTES = {
     "say": "Lost credibility comes back slowly, in proportion to how much was lost.",
     "wrap": "No surprises, discretion by default, and every small decision handled as if it matters.",
     "scenario": "Describe a real moment, from any job and anonymised, when a small, undramatic decision turned out to carry financial, legal or reputational risk. What would you do differently now?"
+  },
+  "s1": {
+    "on": "This section lists four sources of credibility: operational reliability, the No-Surprises Rule, judgment under pressure, and discretion in investor, legal, family and M&A matters.",
+    "say": "The executive should never be blindsided by something you knew."
+  },
+  "s2": {
+    "on": "These steps build credibility: reliability first, the No-Surprises Rule as a habit, treating every micro-decision as if it matters, discretion by default, and rebuilding slowly after damage.",
+    "say": "Treat small decisions as if they might matter. Some do."
+  },
+  "s3": {
+    "on": "This section says credibility comes only from consistent execution, never self-promotion, and damaged credibility takes a track record proportional to the damage to restore.",
+    "say": "One good week doesn't fix a lost week of trust.",
+    "ask": "When did a small decision of yours turn out to carry real weight?"
   }
 },
 "2::From Helper to Force Multiplier": {
@@ -758,6 +831,19 @@ window.PRESENTER_NOTES = {
     "say": "Nobody becomes a Force Multiplier overnight. It builds from reliable execution.",
     "wrap": "Anticipate the next need, prepare it alongside the task, and let reliability compound.",
     "scenario": "Elias asks you to book a conference room for Thursday's Meridian strategy meeting. What would the helper do, and what would the Force Multiplier have ready as well?"
+  },
+  "s1": {
+    "on": "This section defines a Force Multiplier: someone who expands the executive's impact by anticipating needs, not just completing tasks.",
+    "say": "Anticipate, don't just complete."
+  },
+  "s2": {
+    "on": "These steps make the shift: prepare the likely next need alongside the task, aim for \"I already have an answer ready,\" build it through consistent Three C's execution, and watch for requests that repeat.",
+    "say": "\"I already have an answer ready.\""
+  },
+  "s3": {
+    "on": "This section says the shift compounds from consistent execution rather than a switch, and asks you to define a Force Multiplier in one sentence of your own.",
+    "say": "It compounds. It isn't a switch.",
+    "ask": "In your own words, one sentence: what's a Force Multiplier?"
   }
 },
 "2::The Digital Edge": {
@@ -771,6 +857,19 @@ window.PRESENTER_NOTES = {
     "say": "If you fight the same fire every week, automate it.",
     "wrap": "Find one recurring task, automate it this week, and check for the next one every month.",
     "scenario": "Name one recurring task on your own plate that a simple automation, even an email rule or a template, could take off your hands this week. Walk through how you'd set it up."
+  },
+  "s1": {
+    "on": "This section names three digital capabilities: AI proficiency on real work end to end, automation such as a Zapier task created from a client email, and data visualization in Tableau or advanced Excel.",
+    "say": "AI, automation and visualization — used together."
+  },
+  "s2": {
+    "on": "These steps build them: use AI end to end on actual work, automate one recurring task, learn a visualization tool, combine the three, and look for a new automation monthly.",
+    "say": "Automate one recurring task this month."
+  },
+  "s3": {
+    "on": "This section says digital tools separate a reactive assistant who fights the same fire weekly from one who automated it away, and asks which of your tasks an email rule could take over.",
+    "say": "Automate the fire away.",
+    "ask": "What's one task an email rule could handle for you?"
   }
 },
 "2::Email Is a Control System, Not Cleanup": {
@@ -784,6 +883,23 @@ window.PRESENTER_NOTES = {
     "say": "Full Access is earned after the rules are written down.",
     "wrap": "Know your level, stay inside it, and ask when it isn't clear.",
     "scenario": "You're on Draft & Review. A client emails at 6 PM asking to confirm tomorrow's 9 AM meeting, and Elias is on a flight. What can you do, and what must wait for him?"
+  },
+  "s1": {
+    "on": "This section shows the three access levels: Full Access (read, respond, archive and send), Draft & Review (the executive approves first) and Triage Only (sort and escalate, the executive replies).",
+    "say": "Know which of the three you have."
+  },
+  "s2": {
+    "on": "These steps act within your level: confirm it first, stay inside Full Access boundaries, wait for approval under Draft & Review, don't draft under Triage Only, and clarify when unclear.",
+    "say": "Operating above your access is a boundary problem, not a shortcut.",
+    "ask": "Which level would you expect in your first month?"
+  },
+  "s3": {
+    "on": "This section's rule: know your access level before acting independently.",
+    "say": "Level first, action second."
+  },
+  "s4": {
+    "on": "This section explains when each level is used: Full Access only after rules are written, Draft & Review early on and for legal matters, and Read & Flag for sensitive inboxes or new relationships.",
+    "say": "Full Access comes after the rules are written down."
   }
 },
 "2::What High-Performing Inbox Triage Looks Like": {
@@ -799,6 +915,19 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Measure, close the gap one routine category at a time, and never trade a deadline or confidentiality for speed.",
     "scenario": "Look at the last 20 emails you escalated. Which routine categories could you have handled yourself, and what would you need in writing before you did?"
+  },
+  "s1": {
+    "on": "This section gives the benchmark: 80–90% of operational emails handled independently.",
+    "say": "The target is 80 to 90 percent handled without escalation."
+  },
+  "s2": {
+    "on": "These steps close the gap: know your baseline, find the routine categories you escalate unnecessarily, build judgment on them, guard the two failure modes, and keep the inbox near zero.",
+    "say": "Start by measuring your baseline.",
+    "ask": "What do you escalate that you could handle?"
+  },
+  "s3": {
+    "on": "This section repeats the target, inbox near zero daily, and names the two failures that erase months of trust: a missed critical deadline and a confidentiality breach.",
+    "say": "Two mistakes undo months of trust: a missed deadline or a leak."
   }
 },
 "2::Force Multiplier in the Wild": {
@@ -812,6 +941,19 @@ window.PRESENTER_NOTES = {
     "say": "The loop isn't closed until every owner has confirmed.",
     "wrap": "Prioritize, coordinate, close the loop: in order, every time.",
     "scenario": "The day before a pitch, a client adds last-minute requests touching three departments, and two of them are in different time zones. In 90 seconds, draft how you'd run the Coordinate step. Then compare with the model answer."
+  },
+  "s1": {
+    "on": "This section says this is a sequence: follow the three steps in order.",
+    "say": "Three steps, in order."
+  },
+  "s2": {
+    "on": "This section shows the sequence: Prioritize (assess urgency, flag dependencies, summarize options), Coordinate (shared boards and automated reminders) and Close the Loop (owners, one report, confirmed delivery).",
+    "say": "Prioritize, coordinate, close the loop."
+  },
+  "s3": {
+    "on": "This section works the scenario: a client adds last-minute requests touching three departments the day before a pitch, and asks how you'd coordinate across time zones with one department not responding.",
+    "say": "Walk me through the Coordinate step.",
+    "ask": "What if one department isn't answering?"
   }
 },
 "2::What Is a Large Language Model?": {
@@ -825,6 +967,20 @@ window.PRESENTER_NOTES = {
     "say": "The feature that makes it useful is the same one that makes it invent things.",
     "wrap": "Use it to draft, never to verify: check every fact before it reaches a client, court or Elias.",
     "scenario": "An AI summary of a contract says the notice period is 30 days. How do you verify that before it goes into Elias's briefing?"
+  },
+  "s1": {
+    "on": "This section defines an LLM: a prediction engine that predicts the next likely word from patterns, not a database of facts.",
+    "say": "It predicts. It doesn't look things up."
+  },
+  "s2": {
+    "on": "These steps follow from that: don't trust fluency as accuracy, verify every fact, date and figure, notice that hallucinations fill gaps, and ask \"how would I verify this?\" every time.",
+    "say": "Confidence isn't accuracy.",
+    "ask": "How would you verify an AI's date or figure?"
+  },
+  "s3": {
+    "on": "This section says LLMs can write useful original text or confidently invent things, and asks when an AI answer turned out to be wrong for you.",
+    "say": "It can invent things with total confidence.",
+    "ask": "What tipped you off the last time AI got it wrong?"
   }
 },
 "2::Core AI Terms an EA/PA Needs": {
@@ -838,6 +994,23 @@ window.PRESENTER_NOTES = {
     "say": "What you paste may be stored, depending on the account. Never paste privileged client information.",
     "wrap": "Know the five terms, and remember they all point to one habit: verify the output.",
     "scenario": "You paste a 40-page contract and ask for a summary of section 12, and the answer mixes in details from section 3. Using today's terms, what probably happened, and what do you do next?"
+  },
+  "s1": {
+    "on": "This section defines four terms: prompt (your instruction), hallucination (confident falsehood), context window (working memory limit) and tokens (about ¾ of a word).",
+    "say": "Four terms you'll hear constantly."
+  },
+  "s2": {
+    "on": "These steps put the terms to work: remember it predicts rather than retrieves, keep pastes within the context window, allow for token limits, verify everything, and connect the jargon to practice.",
+    "say": "Paste too much and precision drops at the end."
+  },
+  "s3": {
+    "on": "This section is a check: explain \"context window\" in one sentence to someone who's never used AI, without looking back.",
+    "say": "Explain it in one sentence.",
+    "ask": "Who'll try \"context window\"?"
+  },
+  "s4": {
+    "on": "This section restates the terms in plain language, gives the fake case citation as a hallucination example, and says what you paste may be stored, so never put privileged information into unapproved tools.",
+    "say": "A fake case citation is a hallucination. Always verify."
   }
 },
 "2::Your AI Toolkit — Three Modes, Different Jobs": {
@@ -851,6 +1024,19 @@ window.PRESENTER_NOTES = {
     "say": "When exact facts matter, use Extraction, not Generative.",
     "wrap": "Name the mode before you open the tool.",
     "scenario": "Three tasks: pull every deadline out of a 20-email thread, draft a thank-you note to a client, and send an alert whenever opposing counsel emails. Assign each to Generative, Extraction or Logic, then reveal the model answer."
+  },
+  "s1": {
+    "on": "This section shows three modes: Generative (new content such as drafts and summaries), Extraction & Analysis (pulls exact data without altering it) and Logic & Routing (triggers and automated actions).",
+    "say": "Create, extract or route."
+  },
+  "s2": {
+    "on": "These steps pick the mode: identify what the task needs, use Generative to create, Extraction for exact facts, Logic for automation, and default to Extraction when facts matter.",
+    "say": "When exact facts matter, use Extraction."
+  },
+  "s3": {
+    "on": "This section names the common mistake, using Generative when you need Extraction, and asks which mode a task from your week needed.",
+    "say": "Generative can quietly change a detail.",
+    "ask": "Which mode did your last AI task actually need?"
   }
 },
 "2::Claude, ChatGPT, and Gemini — Practical Differences": {
@@ -864,6 +1050,19 @@ window.PRESENTER_NOTES = {
     "say": "Start with the simplest automation that works. A Gmail filter beats a clever script nobody maintains.",
     "wrap": "Choose the tool by the task, apply the same risk checks to all three, and automate simply first.",
     "scenario": "Elias asks you to summarize a 70-page settlement agreement, draft three quick replies to scheduling emails, and set up something so every email labeled \"New Client\" becomes a task automatically. Which tool do you reach for on each, and what do you check first?"
+  },
+  "s1": {
+    "on": "This section's principle: the same core risks apply to all three tools (hallucination, context limits, training on inputs).",
+    "say": "Different tools, the same risks."
+  },
+  "s2": {
+    "on": "These steps choose a tool: Claude for long pastes and tone, ChatGPT for fast iteration, Gemini for live Gmail, Docs and Calendar data with stricter security, and simple Workspace automation before advanced tools.",
+    "say": "Pick the tool by the job.",
+    "ask": "Which of these have you used?"
+  },
+  "s3": {
+    "on": "This section compares the three, explains why Gemini's live-data access raises the security bar, and covers Workspace automation from Gmail filters to Apps Script and a Zap that turns labeled mail into a task.",
+    "say": "Start with the simplest automation that works."
   }
 },
 "2::Communication Mastery": {
@@ -877,6 +1076,19 @@ window.PRESENTER_NOTES = {
     "say": "Vague or wrong channel: that's where most breakdowns start.",
     "wrap": "Before you send, check clarity, channel and tone. When something misfires, name which one failed.",
     "scenario": "You texted Elias \"call moved, all good\" about a client meeting. He showed up at the original time. Was that a clarity, channel or tone problem, and what should the message have said?"
+  },
+  "s1": {
+    "on": "This section lists four habits: clarity over cleverness, match the medium, active listening (repeat it back), and read the room — tone flexes, facts don't.",
+    "say": "Tone can flex. Facts can't."
+  },
+  "s2": {
+    "on": "These steps apply the habits before and after sending: point in the first sentence, the right channel, repeat back before acting, adjust tone, and diagnose a misread message as clarity, channel or tone.",
+    "say": "Diagnose the misfire: clarity, channel or tone?"
+  },
+  "s3": {
+    "on": "This section says mastery is the message landing the first time, and most breakdowns come from vague messages or the wrong channel.",
+    "say": "Vague or wrong channel — that's where it breaks.",
+    "ask": "When was a message of yours misread, and why?"
   }
 },
 "2::Executive Presence": {
@@ -890,6 +1102,19 @@ window.PRESENTER_NOTES = {
     "say": "Calm, specific and accurate. That's what presence sounds like.",
     "wrap": "Presence means people don't feel the need to double-check you.",
     "scenario": "Role-play in pairs, 30 seconds each: you have to tell Elias that the court reporter for tomorrow's 9 a.m. deposition just cancelled. Deliver it calmly, with the facts and your next step."
+  },
+  "s1": {
+    "on": "This section defines presence in three parts: composed under pressure, decisive in ambiguity, and credible in small, routine moments.",
+    "say": "Presence is built in the small moments."
+  },
+  "s2": {
+    "on": "These steps practice it: stay composed on purpose, make the reasonable call and own it, build credibility in routine work, deliver bad news calmly and specifically, and connect it to Managing Up.",
+    "say": "Calm, specific, accurate."
+  },
+  "s3": {
+    "on": "This section says presence isn't imitating the executive, visible panic loses it fastest, and an EA with presence is someone nobody double-checks.",
+    "say": "Be someone nobody needs to double-check.",
+    "ask": "Who has worked with someone calm in a crisis? What did they do?"
   }
 },
 "2::Authority & Boundary Management — EA vs. Legal EA": {
@@ -903,6 +1128,19 @@ window.PRESENTER_NOTES = {
     "say": "If it carries money or legal weight, a verbal yes gets written down.",
     "wrap": "Know your line, hold it every time, and document the approvals that matter.",
     "scenario": "A vendor calls insisting an invoice be approved today to avoid a late fee, and the person who normally approves it can't be reached. What do you actually do, and how does it change if you're a Legal EA handling a client trust disbursement?"
+  },
+  "s1": {
+    "on": "This section explains that boundaries keep a high-trust role from becoming high-risk, and that Legal EAs carry extra formal requirements: conflict checks, trust accounting and client file access.",
+    "say": "Know what you decide alone and what needs approval."
+  },
+  "s2": {
+    "on": "This section lists the boundaries side by side. EA: decline unauthorized expenses, get budget exceptions in writing, document verbal approvals, redirect vendor pressure. Legal EA: decline unauthorized file requests, conflict check before any new matter, follow trust procedures.",
+    "say": "If it carries money or legal weight, get it in writing."
+  },
+  "s3": {
+    "on": "This section warns that a verbal \"go ahead\" isn't enough for anything weighty, vendor pressure is a pattern, and a skipped conflict check can't be fixed afterwards.",
+    "say": "A skipped conflict check can't be undone.",
+    "ask": "A vendor says the invoice must be approved today. What do you do?"
   }
 },
 "2::Proactive Risk Mitigation & Strategic Support — EA vs. Legal EA": {
@@ -916,6 +1154,19 @@ window.PRESENTER_NOTES = {
     "say": "A dashboard that highlights what matters is strategy. One that just lists numbers is admin.",
     "wrap": "Grow the proactive side of your workload, and make your support tell the executive what to look at.",
     "scenario": "Look at your own current workload. Which of your regular tasks are proactive risk mitigation and which are purely reactive? If the proactive list is short, what would you change to grow it?"
+  },
+  "s1": {
+    "on": "This section defines proactive risk mitigation (catching a problem before it becomes one) and strategic support (synthesis, analysis and recommendation), which differ for EAs and Legal EAs.",
+    "say": "Prevent the crisis. Then bring synthesis."
+  },
+  "s2": {
+    "on": "This section lists the tasks in four groups: EA and Legal EA risk tasks (renewals, typos, compliance and discovery deadlines, unsigned engagement letters) and EA and Legal EA strategic tasks (dashboards, 30-day summaries, exposure summaries, chronologies).",
+    "say": "Catch it before the deadline, not after.",
+    "ask": "Which of these do you already do?"
+  },
+  "s3": {
+    "on": "This section says proactive work is invisible when done well, and a dashboard of raw numbers isn't strategic support; one that highlights what needs attention is.",
+    "say": "Highlight what matters. Raw numbers aren't strategy."
   }
 },
 "2::Why the Force Multiplier Evolution Is Non-Negotiable": {
@@ -929,6 +1180,19 @@ window.PRESENTER_NOTES = {
     "say": "Being reachable at midnight isn't the same as multiplying anyone's output.",
     "wrap": "Close the gap between doing what was asked and making the outcome better.",
     "scenario": "Elias asks you to book a conference room for a client meeting. You book it. What would the force-multiplier version of that same task have looked like?"
+  },
+  "s1": {
+    "on": "This section argues that in a fast, visible, legally exposed environment a pure helper becomes a bottleneck, while a force multiplier becomes infrastructure the executive relies on.",
+    "say": "The helper role becomes a bottleneck here."
+  },
+  "s2": {
+    "on": "These steps recognize helper mode (waiting for instructions, needing approval inside your judgment, measuring by responsiveness) and shift out of it by attaching a recommendation to the next familiar request.",
+    "say": "Next familiar request: bring a recommendation.",
+    "ask": "Which sign of helper mode do you recognize?"
+  },
+  "s3": {
+    "on": "This section says the evolution isn't overstepping — it's improving the outcome beyond the literal instruction — and warns that constant availability isn't value.",
+    "say": "Being reachable at midnight isn't the same as adding value."
   }
 },
 "2::The Helper Identity vs. the Force Multiplier Identity": {
@@ -942,6 +1206,19 @@ window.PRESENTER_NOTES = {
     "say": "A helper makes life easier. A force multiplier makes performance stronger.",
     "wrap": "Pick one Helper habit and start replacing it this week.",
     "scenario": "Which identity better describes how you operate right now, and which one Helper habit will you consciously start replacing this week?"
+  },
+  "s1": {
+    "on": "This section contrasts two identities. The Helper seeks approval and waits for instruction; the Force Multiplier owns outcomes, frames decisions and measures success by executive leverage.",
+    "say": "It's an identity shift, not a title change."
+  },
+  "s2": {
+    "on": "These steps practice it: notice whether you ask \"what should I do?\" or propose an approach, and attach a recommendation to facts instead of just relaying them.",
+    "say": "Propose, then confirm.",
+    "ask": "Faced with an ambiguous request, what's your first sentence?"
+  },
+  "s3": {
+    "on": "This section says the shift takes deliberate practice, request by request, and a helper makes life easier while a force multiplier makes performance stronger.",
+    "say": "Easier versus stronger — different bars."
   }
 },
 "2::Strategic Time Engineering": {
@@ -955,6 +1232,19 @@ window.PRESENTER_NOTES = {
     "say": "Capital is invested on purpose, not spent as requests arrive.",
     "wrap": "Engineer the calendar up front, category by category, and revisit it regularly.",
     "scenario": "Look at a typical week on Elias's calendar. Which of the five categories is getting the least protection, and why might that be happening?"
+  },
+  "s1": {
+    "on": "This section reframes the calendar as capital with the assistant as portfolio manager, protecting revenue, growth, compliance deadlines, reputation events and personal commitments.",
+    "say": "Time is capital. You allocate it."
+  },
+  "s2": {
+    "on": "These steps say every protected block must name its category, and allocation is an ongoing decision you revisit.",
+    "say": "If you can't name what a block protects, it isn't protected.",
+    "ask": "Which category gets squeezed first in a busy week?"
+  },
+  "s3": {
+    "on": "This section warns against protecting time only after a disruption and says capital is invested on purpose, not spent as requests arrive.",
+    "say": "Engineer it up front, not after it breaks."
   }
 },
 "2::Reducing Cognitive Load for Executives": {
@@ -968,6 +1258,19 @@ window.PRESENTER_NOTES = {
     "say": "A list with no recommendation still leaves all the thinking to them.",
     "wrap": "Options, trade-offs, and your recommendation, every time.",
     "scenario": "You were about to ask Elias, \"What do you want to do about the Thursday conflict?\" Reframe it live with three options and a recommendation."
+  },
+  "s1": {
+    "on": "This section explains decision fatigue and how a force multiplier reduces it: structured options, trade-offs, pre-vetted risks, anticipated objections and second-order effects.",
+    "say": "Do the thinking before it reaches them."
+  },
+  "s2": {
+    "on": "These steps show the model line (\"Here are three viable options; Option B aligns best with Q2 revenue objectives\") and say to bring your own recommendation with the options.",
+    "say": "Options plus a recommendation, every time.",
+    "ask": "What would you recommend if you had to decide?"
+  },
+  "s3": {
+    "on": "This section says recommending isn't overstepping, since the executive can still choose, and a neutral list with no point of view leaves all the load on them.",
+    "say": "A list with no recommendation leaves them all the work."
   }
 },
 "2::\"If It Happens Twice, It Deserves a System\"": {
@@ -981,6 +1284,19 @@ window.PRESENTER_NOTES = {
     "say": "A checklist you actually use is a real system.",
     "wrap": "Spot the repeat, build the simplest system, and use it consistently.",
     "scenario": "Name one task you've done more than twice in the last month without a system. What would version one of that system look like, built in 15 minutes?"
+  },
+  "s1": {
+    "on": "This section says systems create scale and scale creates leverage, and the threshold is the second time you do something.",
+    "say": "Second time, build the system."
+  },
+  "s2": {
+    "on": "These steps spot repeats and systemize them with a checklist, template or dashboard, using common candidates (weekly reports, travel, contract approvals, vendor onboarding, investor updates), each with SOP steps, automation, checkpoints and escalation triggers.",
+    "say": "Same shape every time: steps, automation, checkpoints, escalation.",
+    "ask": "What have you done twice this month by hand?"
+  },
+  "s3": {
+    "on": "This section warns against waiting until a task is painful, and says a simple checklist used consistently is a real system.",
+    "say": "A checklist you use is a real system."
   }
 },
 "2::Managing Constant Executive Exposure": {
@@ -994,6 +1310,19 @@ window.PRESENTER_NOTES = {
     "say": "Exposure management starts with whoever sees the request first. Often that's you.",
     "wrap": "Scan everything that crosses your desk for exposure, not just what's labeled risky.",
     "scenario": "Elias is invited to speak on a panel sponsored by a company that's the opposing party in one of the firm's active cases. It lands in your inbox as a routine invitation. What do you do?"
+  },
+  "s1": {
+    "on": "This section lists the five exposures (legal, compliance, public perception, stakeholder scrutiny and brand) and says the assistant's job includes actively managing them.",
+    "say": "Exposure management is part of the job."
+  },
+  "s2": {
+    "on": "These steps are the actions: flag red-flag emails before they're sent, screen invitations for reputational fit, route contracts through review, monitor compliance calendars, and handle sensitive messages discreetly.",
+    "say": "Scan routine-looking things for risk.",
+    "ask": "Which of the five do you actually watch today?"
+  },
+  "s3": {
+    "on": "This section says it's a different mindset from task completion, and exposure management starts with whoever sees the request first — often you.",
+    "say": "Often you're the first to see it."
   }
 },
 "2::Time Management Requires Energy Management": {
@@ -1007,6 +1336,19 @@ window.PRESENTER_NOTES = {
     "say": "Hybrid roles lose natural boundaries, so you have to build them.",
     "wrap": "Schedule for energy, not just availability, and protect recovery on purpose.",
     "scenario": "Elias has a full-day mediation Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you insert a recovery buffer, and how do you justify it if they push back?"
+  },
+  "s1": {
+    "on": "This section says an exhausted executive makes expensive mistakes, and energy management means preventing overload, building recovery buffers, protecting deep work and filtering draining requests.",
+    "say": "A free slot isn't the same as available energy."
+  },
+  "s2": {
+    "on": "These steps look past free slots to fatigue from back-to-back intensity, build recovery buffers after demanding events, and raise draining patterns rather than silently accommodating them.",
+    "say": "Buffer after the hard meetings, not just between them.",
+    "ask": "What does a draining week look like for your executive?"
+  },
+  "s3": {
+    "on": "This section warns that hybrid business-and-personal roles blur the boundaries that create recovery, and against treating any open slot as available.",
+    "say": "Hybrid roles lose natural boundaries — build them."
   }
 },
 "2::Operational Excellence & Institutional Accountability": {
@@ -1020,6 +1362,19 @@ window.PRESENTER_NOTES = {
     "say": "Clear boundaries protect you when a decision gets questioned later.",
     "wrap": "Trust and boundaries work together. Write yours down.",
     "scenario": "Where is your current scope boundary genuinely fuzzy — a type of task or decision where you're not sure whether to decide or escalate? Name it, and say what you'd need clarified."
+  },
+  "s1": {
+    "on": "This section says high trust without governance becomes high risk, and a force multiplier works within scope, spending limits, data separation, escalation rules and approval chains.",
+    "say": "Trust needs boundaries to last."
+  },
+  "s2": {
+    "on": "These steps make boundaries explicit: know what's business, personal and ambiguous, and keep spending limits and escalation rules written down.",
+    "say": "Write the limits down.",
+    "ask": "Could you write your spending limit down right now?"
+  },
+  "s3": {
+    "on": "This section says trust isn't unlimited discretion, and clear boundaries protect you if a decision is questioned later.",
+    "say": "Boundaries protect you, too."
   }
 },
 "2::Language Signals Level": {
@@ -1033,6 +1388,19 @@ window.PRESENTER_NOTES = {
     "say": "The phrasing has to follow real judgment, not replace it.",
     "wrap": "Do the thinking first, and the language follows.",
     "scenario": "Take this message: \"Opposing counsel emailed about the deposition.\" Rewrite it in the force-multiplier pattern. What did you have to find out to write it?"
+  },
+  "s1": {
+    "on": "This section says your wording reveals and reinforces your identity: the helper reports and waits, the force multiplier frames facts with a recommendation.",
+    "say": "Your language shows your level."
+  },
+  "s2": {
+    "on": "These steps give paired examples (\"They want to meet\" versus three options and a recommendation; \"Should I respond?\" versus \"I've drafted a response; please review\") and say the shift adds structure, not length.",
+    "say": "Add structure and a recommendation, not length.",
+    "ask": "Which helper phrase do you use most?"
+  },
+  "s3": {
+    "on": "This section says the point is doing more thinking before the message goes out, and warns against confident phrasing with no analysis behind it.",
+    "say": "The phrasing has to follow real judgment."
   }
 },
 "2::Measuring the Force Multiplier Transformation": {
@@ -1046,6 +1414,19 @@ window.PRESENTER_NOTES = {
     "say": "If nobody measures it, nobody sees it.",
     "wrap": "Pick your metrics, track them, and use the numbers when you talk about your value.",
     "scenario": "Which one of the six metrics would be easiest for you to start tracking this week, and what would a month of tracking it likely show?"
+  },
+  "s1": {
+    "on": "This section lists measurable impacts: less inbox volume, more strategic time, fewer crises, fewer compliance misses, faster turnaround and clearer communication.",
+    "say": "It's measurable — so measure it."
+  },
+  "s2": {
+    "on": "These steps pick one or two metrics you can realistically track and use concrete change (\"reduced response time from X to Y\") when discussing your value.",
+    "say": "Concrete numbers beat \"I'm doing well.\"",
+    "ask": "Which metric could you track this week?"
+  },
+  "s3": {
+    "on": "This section warns that this work isn't visible unless someone names it, and says pick the metrics that fit your role rather than forcing all six.",
+    "say": "If nobody measures it, nobody sees it."
   }
 },
 "2::What Force Multiplier Autonomy Is — and Isn't": {
@@ -1059,6 +1440,19 @@ window.PRESENTER_NOTES = {
     "say": "Decisive inside the line, careful at the edge.",
     "wrap": "When in doubt about whether it's yours, check first.",
     "scenario": "A client asks you to move a filing deadline reminder back a week because \"Elias said it's fine.\" You weren't told that. Is acting on it structured empowerment or overstepping, and what do you do?"
+  },
+  "s1": {
+    "on": "This section defines autonomy both ways: it is not overstepping or playing executive; it is structured, pre-approved empowerment with calibrated confidence.",
+    "say": "Autonomy is earned and defined."
+  },
+  "s2": {
+    "on": "These steps confirm a new action falls within pre-approved boundaries, and treat your own doubt as a signal to check first.",
+    "say": "If you're unsure it's yours, check.",
+    "ask": "What have you been pre-approved to handle alone?"
+  },
+  "s3": {
+    "on": "This section warns against using \"I was being a force multiplier\" to excuse overstepping, and defines calibrated confidence as decisive inside the line and careful at its edge.",
+    "say": "Decisive inside the line, careful at the edge."
   }
 },
 "2::The Legal VA's Force Multiplier Evolution": {
@@ -1072,6 +1466,19 @@ window.PRESENTER_NOTES = {
     "say": "In legal work, staying in the traditional pattern costs more.",
     "wrap": "Pick one recurring legal task and shift it toward the force-multiplier pattern this week.",
     "scenario": "Of the four Legal Force Multiplier behaviors — filtering complexity, anticipating legal risk, protecting attorney time, structuring operations — which is furthest from how you work now, and what's making the gap hard to close?"
+  },
+  "s1": {
+    "on": "This section contrasts the Traditional Legal VA (waits, completes tasks, manages inbox, formats documents) with the Legal Force Multiplier (filters complexity, anticipates risk, protects attorney time, speeds decisions).",
+    "say": "Same shift, applied to legal work."
+  },
+  "s2": {
+    "on": "These steps place your current work on that spectrum and move one recurring legal task toward the force-multiplier pattern this week.",
+    "say": "Move one legal task this week.",
+    "ask": "Where does your legal-support work sit on this spectrum?"
+  },
+  "s3": {
+    "on": "This section says the stakes are higher in legal work, where a missed deadline carries real liability, and links back to the general Force Multiplier idea.",
+    "say": "In legal work, the traditional pattern costs more."
   }
 },
 "2::Cognitive Relief for Attorneys": {
@@ -1085,6 +1492,19 @@ window.PRESENTER_NOTES = {
     "say": "Forwarding isn't relief. Synthesis is.",
     "wrap": "Triage, summarize and lead with what needs a decision.",
     "scenario": "Elias returns from a two-day trial with 58 unread emails. Draft the three-line summary you'd give him before he opens his inbox."
+  },
+  "s1": {
+    "on": "This section explains that attorneys carry strategy, emotions, revenue, compliance and deadlines at once, and lists the relief a Legal VA offers: summaries, case briefs, issue-spotting, chronologies and flagged decisions.",
+    "say": "Remove mental clutter, don't add to it."
+  },
+  "s2": {
+    "on": "These steps show the model (\"Three need your decision, two are billing approvals, one is an extension request\" instead of \"42 unread\") and say to sort before passing anything on.",
+    "say": "Sort it before you hand it over.",
+    "ask": "How would you summarize your inbox in one line?"
+  },
+  "s3": {
+    "on": "This section warns that forwarding volume is just moving the load, and says consistent triage compounds as the attorney learns to trust your summaries.",
+    "say": "Forwarding isn't relief. Synthesis is."
   }
 },
 "2::Strategic Filtration for Legal Work": {
@@ -1098,6 +1518,19 @@ window.PRESENTER_NOTES = {
     "say": "The sender's label isn't the real urgency.",
     "wrap": "Classify the urgency yourself, and let statute-of-limitations risk jump the queue every time.",
     "scenario": "A client email marked \"URGENT\" asks a routine procedural question, while a quiet, polite email from opposing counsel mentions a deadline in passing. Which is actually more urgent, and how do you know?"
+  },
+  "s1": {
+    "on": "This section separates administrative, legal, revenue and reputational urgency, and says everything that reaches the attorney should have earned their attention.",
+    "say": "Four kinds of urgency — know which you're looking at."
+  },
+  "s2": {
+    "on": "These steps are the rules: flag statute-of-limitations risk immediately, deprioritize non-urgent items even if marked urgent, escalate media tied to active litigation, and route routine client requests to templates.",
+    "say": "SOL risk never waits.",
+    "ask": "Which urgency is hardest to recognize?"
+  },
+  "s3": {
+    "on": "This section warns that the sender's \"urgent\" and the real urgency often differ, and says this judgment improves with pattern recognition.",
+    "say": "The sender's label isn't the real urgency."
   }
 },
 "2::Operational Architecture for Legal Work": {
@@ -1111,6 +1544,19 @@ window.PRESENTER_NOTES = {
     "say": "A good spreadsheet is legitimate architecture.",
     "wrap": "Invest once in a system that handles the whole category.",
     "scenario": "Which of the five systems is most obviously missing where you work, and what real problem has that gap already caused?"
+  },
+  "s1": {
+    "on": "This section contrasts \"tell me what to do next\" with \"here's a workflow so this never becomes urgent again,\" and says systems prevent malpractice risk.",
+    "say": "Build the workflow so it never becomes urgent."
+  },
+  "s2": {
+    "on": "These steps list five systems: a litigation deadline dashboard, an intake-to-engagement SOP, a trust reconciliation checklist, naming conventions and a discovery tracking matrix.",
+    "say": "Five systems every legal team needs.",
+    "ask": "Which of the five does your team already have?"
+  },
+  "s3": {
+    "on": "This section warns against rebuilding the same ad hoc fix, and says a well-designed spreadsheet counts as operational architecture.",
+    "say": "A good spreadsheet counts."
   }
 },
 "2::Decision Compression": {
@@ -1124,6 +1570,19 @@ window.PRESENTER_NOTES = {
     "say": "Forwarding isn't compression. Highlighting is.",
     "wrap": "Lead with what changed and what needs a decision.",
     "scenario": "Opposing counsel sends back a redlined 40-page settlement agreement. Write the three-line note you'd send Elias with it."
+  },
+  "s1": {
+    "on": "This section says attorneys are paid for judgment, so a Legal VA prepares decisions in the most digestible form — shortening the path to clarity.",
+    "say": "Shorten the attorney's path to clarity."
+  },
+  "s2": {
+    "on": "These steps show the model: \"Three clauses deviate: indemnification expanded, payment terms shortened, venue changed; review Sections 4, 7 and 11,\" and say to lead with the three things the reviewer most needs.",
+    "say": "Lead with the three things that matter.",
+    "ask": "What would you flag first in a 60-page contract?"
+  },
+  "s3": {
+    "on": "This section warns that forwarding the full document isn't compression, and links it to BLUF applied to document review.",
+    "say": "Forwarding isn't compression. Highlighting is."
   }
 },
 "2::Risk Buffering for Legal Work": {
@@ -1137,6 +1596,19 @@ window.PRESENTER_NOTES = {
     "say": "Cheap to do every time, expensive to skip once.",
     "wrap": "Make the six buffering habits standard steps, not afterthoughts.",
     "scenario": "Of the six habits, which would be easiest to let slip under time pressure, and what would make it harder to skip?"
+  },
+  "s1": {
+    "on": "This section calls risk buffering credibility capital and lists the habits: jurisdiction deadlines, execution formalities, privilege boundaries, engagement letters, written approvals and trust monitoring.",
+    "say": "Protect the attorney from preventable exposure."
+  },
+  "s2": {
+    "on": "These steps make two habits standard: check signatures, notarization and witnesses every time, and require an engagement letter before any billable work, even for returning clients.",
+    "say": "No engagement letter, no billable work.",
+    "ask": "Which habit would slip first under pressure?"
+  },
+  "s3": {
+    "on": "This section warns against treating buffering as optional, and says each habit is cheap to do and expensive to skip once.",
+    "say": "Cheap to do, expensive to skip."
   }
 },
 "2::Stakeholder & Board Update Communications": {
@@ -1150,6 +1622,19 @@ window.PRESENTER_NOTES = {
     "say": "Board communication has governance weight. Treat it that way.",
     "wrap": "Confirm the audience and confidentiality, lead with the bottom line, and get a second review.",
     "scenario": "You're asked to draft a board update on a project that's six weeks behind schedule. What do you include so the board gets an accurate picture without downplaying the delay or causing unnecessary alarm?"
+  },
+  "s1": {
+    "on": "This section treats board updates as their own genre: read by people with governance authority, reviewed later, held to higher precision, using Situation/Impact/Recommendation with more context.",
+    "say": "Board updates carry governance weight."
+  },
+  "s2": {
+    "on": "These steps confirm the audience and distribution list, lead with the governance bottom line (decision, risk or milestone), give minimal context, and route it through high-stakes review.",
+    "say": "Lead with the decision, risk or milestone."
+  },
+  "s3": {
+    "on": "This section warns against treating a board update like a formal internal email, and says to confirm confidentiality classification before drafting.",
+    "say": "Confirm the confidentiality level before you write.",
+    "ask": "How would you report a project six weeks behind?"
   }
 },
 "2::Investor Briefing Preparation": {
@@ -1163,6 +1648,19 @@ window.PRESENTER_NOTES = {
     "say": "Verified figures only, and ask before sharing anything you're unsure about.",
     "wrap": "Verify every figure, flag tough questions early, and respect disclosure limits.",
     "scenario": "While preparing an investor briefing, you notice one figure you were given doesn't match the firm's own recent report. What do you do before the materials go out?"
+  },
+  "s1": {
+    "on": "This section says investors judge both the substance and the team's competence, and this is where Decision Compression and Cognitive Relief matter most.",
+    "say": "Investors check the numbers and the people."
+  },
+  "s2": {
+    "on": "These steps confirm scope and format first, use verified primary-source figures only, and give the executive a pre-brief flagging likely tough questions.",
+    "say": "Verified figures only.",
+    "ask": "What question would an investor push on?"
+  },
+  "s3": {
+    "on": "This section warns against materials built from memory or old drafts, and says investor communications may carry disclosure obligations, so escalate when unsure.",
+    "say": "When in doubt about disclosure, escalate."
   }
 },
 "3::Prioritization Frameworks": {
@@ -1176,6 +1674,23 @@ window.PRESENTER_NOTES = {
     "say": "Match the framework to the problem: too much, can't focus, or no protected time.",
     "wrap": "Choose one framework, build the habit, then layer in the next.",
     "scenario": "Monday morning: Elias has 14 open items, including a brief due Wednesday, three client callbacks, an expense report and a conference RSVP. Sort them in the Eisenhower Matrix out loud. What gets delegated or dropped?"
+  },
+  "s1": {
+    "on": "This section lays out four frameworks: the Eisenhower Matrix (urgency vs. importance), Pomodoro (25 on, 5 off), Time Blocking (deep work separate from email) and the 80/20 Rule.",
+    "say": "Four tools, each for a different problem."
+  },
+  "s2": {
+    "on": "These steps say when to reach for each: Eisenhower when the list is overwhelming, Pomodoro once priorities are clear, Time Blocking to protect the top work, 80/20 to step back. Start with one, not all four.",
+    "say": "Pick the one framework that fixes your biggest gap right now.",
+    "ask": "Which of the four would help you most this week?"
+  },
+  "s3": {
+    "on": "This section gives the stakes: executives spend 30–40% of their time in email, and good triage can reclaim 10+ hours a week.",
+    "say": "Ten hours a week is worth protecting."
+  },
+  "s4": {
+    "on": "This section matches each framework to its best use: Eisenhower to decide what not to do, Pomodoro when focus is the problem, Time Blocking to lock in this week's few key tasks.",
+    "say": "Match the tool to the problem."
   }
 },
 "3::Time Tracking Done Right": {
@@ -1189,6 +1704,23 @@ window.PRESENTER_NOTES = {
     "say": "Verb, object, purpose, and tag the matter while you log it.",
     "wrap": "Real-time, specific, matter-tagged entries protect the firm's billing.",
     "scenario": "Your entry for yesterday reads \"Emails — 1.0.\" Rewrite it as three proper entries using verb + object + purpose, tagged to the right matters."
+  },
+  "s1": {
+    "on": "This section names the common mistakes: logging at week's end, vague descriptions, underbilling small tasks and forgetting communications.",
+    "say": "Four mistakes, all avoidable."
+  },
+  "s2": {
+    "on": "These steps fix each one: log as you work, write specific descriptions, log the small tasks, include calls and emails, and build a weekly summary.",
+    "say": "Log it now, log it specifically, log it all.",
+    "ask": "When do you usually log your time?"
+  },
+  "s3": {
+    "on": "This section asks for a Weekly Time Summary even for non-billable work, because it shows where time actually goes.",
+    "say": "The summary shows the truth."
+  },
+  "s4": {
+    "on": "This section gives the entry formula (verb + object + purpose), honest rounding in the firm's increments, and tagging the client/matter as you log.",
+    "say": "Verb, object, purpose, matter, every entry."
   }
 },
 "3::Time Management": {
@@ -1202,6 +1734,19 @@ window.PRESENTER_NOTES = {
     "say": "Time management decides. Calendar management protects the decision.",
     "wrap": "Priorities only count once they're blocked and defended on the calendar.",
     "scenario": "Elias says his top priority this week is the Harlow summary judgment brief, but his calendar shows no time for it. Walk through Decide, Block, Protect, Review for his week."
+  },
+  "s1": {
+    "on": "This section says time management is sequential: follow the steps in order, not as a menu.",
+    "say": "Order matters here."
+  },
+  "s2": {
+    "on": "These steps are the sequence: Decide what deserves protected time, Block it before the day fills, Protect it like any commitment, and Review weekly whether it held.",
+    "say": "Decide, Block, Protect, Review.",
+    "ask": "Which step breaks down most often for you?"
+  },
+  "s3": {
+    "on": "This section separates the two skills: time management decides what deserves time; calendar management makes the calendar reflect and protect that decision.",
+    "say": "Deciding and protecting are different jobs."
   }
 },
 "3::When Time Management Fails Despite a Clean Calendar": {
@@ -1215,6 +1760,19 @@ window.PRESENTER_NOTES = {
     "say": "Travel weeks need the same protection before, during and after.",
     "wrap": "Diagnose failed weeks as decision or protection, and review weekly, not only when something breaks.",
     "scenario": "Share a real week where your calendar looked fine on paper but the actual priorities still didn't get done. Was it the decision or the protection that broke?"
+  },
+  "s1": {
+    "on": "This section warns that a conflict-free calendar can still fail if it's packed with reactive meetings and has no protected space for priority work.",
+    "say": "No conflicts doesn't mean no problems."
+  },
+  "s2": {
+    "on": "These steps are the check: look for reactive-meeting saturation, confirm protected space exists, apply the same check to travel weeks, diagnose whether the decision or the protection failed, and review weekly.",
+    "say": "Was it the decision or the protection?"
+  },
+  "s3": {
+    "on": "This section ties it to travel (a trip only works if the calendar around it is managed too) and poses the discussion prompt.",
+    "say": "Think of a week that looked fine on paper but still failed.",
+    "ask": "What broke, the decision or the protection?"
   }
 },
 "3::Calendar Management That Holds": {
@@ -1230,6 +1788,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "A second unofficial calendar is where conflicts breed. Centralize, buffer and review weekly.",
     "scenario": "Live exercise: on the sample calendar on screen, find every conflict and every missing buffer, then say what you'd change first."
+  },
+  "s1": {
+    "on": "This section's core rule is one synced calendar; a second unofficial one is where conflicts breed.",
+    "say": "One calendar, one source of truth."
+  },
+  "s2": {
+    "on": "These steps make it hold: one system, explicit buffers, scheduling tools like Calendly, CRM scheduling in one place, protected deep-work blocks, and a weekly drift check.",
+    "say": "Clean on Monday can be messy by Friday; check it.",
+    "ask": "How many calendars does your executive really use?"
   }
 },
 "3::Calendar Conflict & Prioritization Discipline": {
@@ -1245,6 +1812,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "A board update outranks a routine check-in, whichever was booked first.",
     "scenario": "Elias is double-booked Thursday at 2 p.m.: a standing check-in with an associate, booked three weeks ago, and a call with a new client's general counsel, requested this morning. What does \"strategic importance\" mean here, and what do you tell Elias?"
+  },
+  "s1": {
+    "on": "This section's rule: tell the executive about every conflict immediately, and never rebook or decline for them without asking, since they may know something you don't.",
+    "say": "Inform first, never decide alone."
+  },
+  "s2": {
+    "on": "These steps are the discipline: flag right away, weigh by strategic importance not booking order, present the trade-off with a recommendation, document the resolution and confirm with both parties.",
+    "say": "Bring the trade-off and your recommendation.",
+    "ask": "What would you recommend if a board update clashed with a routine check-in?"
   }
 },
 "3::Energy Management vs. Time Management": {
@@ -1260,6 +1836,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Put the hardest work in the sharpest window, and flag it when you can't.",
     "scenario": "Opposing counsel proposes 4 p.m. Friday for a settlement negotiation, and you know Elias fades late in the day after a full week. What do you say to Elias, and what do you propose instead?"
+  },
+  "s1": {
+    "on": "This section contrasts the two questions: time management asks when; energy management asks whether you can do it well right now.",
+    "say": "Most people only plan around the first question."
+  },
+  "s2": {
+    "on": "These steps apply it: find the energy pattern, protect the sharp-focus window, check high-stakes items against low-energy windows, flag the risk when you can't avoid one, and revisit as rhythms shift.",
+    "say": "An open slot isn't a neutral slot.",
+    "ask": "When is your sharpest hour of the day?"
   }
 },
 "3::Handling Interruptions Without Losing the Day": {
@@ -1273,6 +1858,19 @@ window.PRESENTER_NOTES = {
     "say": "Two minutes of interruption, fifteen minutes to recover.",
     "wrap": "Decide in seconds whether it's urgent, and capture everything else for later.",
     "scenario": "You're halfway through proofing a filing due at 5 p.m. when a colleague stops by about next month's office lunch. Walk through the four steps out loud."
+  },
+  "s1": {
+    "on": "This section says handling interruptions is sequential: follow the steps in order.",
+    "say": "Four steps, in order."
+  },
+  "s2": {
+    "on": "These steps are the sequence: Triage in seconds, Capture don't solve, Return deliberately, and Batch the non-urgent.",
+    "say": "Triage, capture, return, batch.",
+    "ask": "What interrupts you most often?"
+  },
+  "s3": {
+    "on": "This section gives the hidden cost (a two-minute interruption can cost fifteen minutes of focus) and the real skill: telling urgent from merely present in the first few seconds.",
+    "say": "Present isn't the same as urgent."
   }
 },
 "3::The Two-Minute Rule": {
@@ -1286,6 +1884,19 @@ window.PRESENTER_NOTES = {
     "say": "Be honest about the two minutes, or the rule backfires.",
     "wrap": "Finish true two-minute tasks immediately and stop small items from piling up.",
     "scenario": "Five items land in ten minutes: confirm a lunch reservation, reply \"received\" to a court notice, reformat a 20-page exhibit list, forward an invoice to billing, and update a contact's phone number. Which pass the Two-Minute Rule?"
+  },
+  "s1": {
+    "on": "This section states the rule: if it truly takes under two minutes, do it now; tracking it costs more than finishing it.",
+    "say": "Under two minutes, just do it."
+  },
+  "s2": {
+    "on": "These steps apply it honestly: estimate truthfully, do qualifying tasks at once, stop and schedule tasks that expand, apply it consistently, and check your list for items that should have been done.",
+    "say": "Honest estimates only.",
+    "ask": "What's on your list right now that takes under two minutes?"
+  },
+  "s3": {
+    "on": "This section warns that a 'two-minute' task that keeps growing needs scheduling, and explains the payoff: no silent backlog of small tasks.",
+    "say": "Small tasks pile up quietly."
   }
 },
 "3::Weekly Planning Rituals": {
@@ -1299,6 +1910,19 @@ window.PRESENTER_NOTES = {
     "say": "If the planning block keeps getting bumped, you don't have one.",
     "wrap": "Protect the weekly session, look ahead, and block lead time early.",
     "scenario": "It's Friday afternoon. Elias has a mediation next Thursday that needs a binder, two witness calls and a travel booking. Plan backwards: what goes on the calendar today, and for which days?"
+  },
+  "s1": {
+    "on": "This section says a short, consistent weekly session (what's coming, what didn't get done, what must happen) prevents the Monday scramble.",
+    "say": "One session a week saves the Monday panic."
+  },
+  "s2": {
+    "on": "These steps set it up: a fixed recurring time, a look at the whole week ahead, a deliberate keep-or-drop on last week's leftovers, blocking prep for multi-day lead times, and defending the block.",
+    "say": "Decide what rolls forward; don't let it roll by itself.",
+    "ask": "When would your weekly planning slot be?"
+  },
+  "s3": {
+    "on": "This section warns that weekly planning catches what daily planning misses, and that a session bumped every week isn't a ritual.",
+    "say": "Protect it, or it stops existing."
   }
 },
 "3::Saying No Without Damaging Relationships": {
@@ -1312,6 +1936,19 @@ window.PRESENTER_NOTES = {
     "say": "Yes to everything just delays the letdown.",
     "wrap": "Decline fast, give the real reason, and offer an alternative.",
     "scenario": "A partner asks for 30 minutes with Elias tomorrow, but his day is fully committed to trial prep. Say the no out loud, with the reason and an alternative."
+  },
+  "s1": {
+    "on": "This section compares what damages a relationship (a flat no, silence, agreeing then not delivering) with what protects it (a clear no with the reason and an alternative, a prompt reply, honesty up front).",
+    "say": "How you say no matters more than the no."
+  },
+  "s2": {
+    "on": "These steps are the method: reply promptly, give the specific reason, offer an alternative, never agree and quietly fail, and say plainly when you're at capacity.",
+    "say": "A fast, honest no beats a slow yes that slips.",
+    "ask": "How would you decline a request due Thursday you can't take on?"
+  },
+  "s3": {
+    "on": "This section warns that saying yes to everything only moves the disappointment later, and shows that a specific no reads as a real answer.",
+    "say": "Specific, not vague."
   }
 },
 "3::Batch Processing Similar Tasks": {
@@ -1325,6 +1962,19 @@ window.PRESENTER_NOTES = {
     "say": "Batch what can wait. Break the batch for what can't.",
     "wrap": "Batch recurring, non-urgent work into set blocks.",
     "scenario": "Across one day you get six expense approvals, four scheduling requests and three short client replies, spread out over the day. Design the batching blocks, and name the one item that would make you break a batch."
+  },
+  "s1": {
+    "on": "This section defines batching: grouping similar tasks (all calls, all replies) to cut the cost of switching.",
+    "say": "Same kind of work, same block."
+  },
+  "s2": {
+    "on": "These steps set it up: find recurring categories, group them into blocks, delay non-urgent items slightly to batch them, break the batch for true urgency, and review the categories.",
+    "say": "Urgent items still break the batch.",
+    "ask": "Which tasks could you batch tomorrow?"
+  },
+  "s3": {
+    "on": "This section says batching is a deliberate choice, not arrival order, and is for tasks without a hard individual deadline.",
+    "say": "It's a choice, with a trade-off."
   }
 },
 "3::The Cost of Context-Switching": {
@@ -1338,6 +1988,19 @@ window.PRESENTER_NOTES = {
     "say": "Multitasking feels fast and is almost always slower.",
     "wrap": "Reduce switches with batching, focus blocks and a clean close before each new task.",
     "scenario": "In one hour you touch a legal filing question, a personal travel request for Elias, a board deck edit and two Slack pings. How would you restructure that hour to cut the switching?"
+  },
+  "s1": {
+    "on": "This section's number: about 23 minutes on average to return to full focus after a significant interruption.",
+    "say": "Twenty-three minutes each time."
+  },
+  "s2": {
+    "on": "These steps reduce the cost: notice voluntary switching, use batching and focus blocks, resist multitasking, close out a task before starting the next, and count your switches for a day.",
+    "say": "Close one thing before opening the next.",
+    "ask": "How many times do you think you switch in a day?"
+  },
+  "s3": {
+    "on": "This section warns that voluntary switching costs the same as interruptions, makes the case for batching, and says multitasking is almost always slower in total.",
+    "say": "It feels productive; it isn't."
   }
 },
 "3::Recurring Meeting Hygiene": {
@@ -1351,6 +2014,19 @@ window.PRESENTER_NOTES = {
     "say": "You see the full pattern, so you're the one who can flag it.",
     "wrap": "Audit quarterly and propose a specific change: cancel, shorten or trim attendees.",
     "scenario": "Elias has a weekly 60-minute \"matter sync\" with eight attendees and no agenda. Half the attendees join camera-off. What do you propose, and how do you phrase it to him?"
+  },
+  "s1": {
+    "on": "This section says standing meetings pile up and rarely get removed; a quarterly audit catches the ones that have outlived their purpose.",
+    "say": "Audit every recurring meeting quarterly."
+  },
+  "s2": {
+    "on": "These steps are the audit: ask if it's still needed at this frequency with these people, check for an agenda, flag outdated ones, propose a specific change, and confirm the change stuck.",
+    "say": "Propose a fix, don't just point.",
+    "ask": "Which recurring meeting would you question first?"
+  },
+  "s3": {
+    "on": "This section warns that a meeting with no agenda is a common failure, and notes the EA sees the full calendar pattern first.",
+    "say": "If nobody can say what it's for, skip or reformat it."
   }
 },
 "3::Buffer Time Between Meetings": {
@@ -1364,6 +2040,18 @@ window.PRESENTER_NOTES = {
     "say": "For this client, the debrief buffer is a standing rule.",
     "wrap": "Default to buffers, flag when a day can't fit them, and check weekly for erosion.",
     "scenario": "On screen: Elias's Tuesday has six back-to-back meetings from 9 to 3. Where do you insert buffers first, and what do you move to make room?"
+  },
+  "s1": {
+    "on": "This section says zero buffer means every meeting starts late or ends abruptly; 5–10 minutes is what makes the calendar hold.",
+    "say": "Buffers aren't wasted time."
+  },
+  "s2": {
+    "on": "These steps make buffers standard: 5–10 minutes by default, used for debrief and prep, checked against the client's debrief-buffer rule, flagged when the day is too full, and reviewed weekly.",
+    "say": "Flag it when there's no room for buffers."
+  },
+  "s3": {
+    "on": "This section warns that buffers give room to debrief and prep, and that ignoring this client's debrief-buffer rule violates a documented preference.",
+    "say": "Here it's a stated rule, not a nice-to-have."
   }
 },
 "3::Time Zone Management for Distributed Teams": {
@@ -1379,6 +2067,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Name the reference time zone, watch daylight saving shifts, and schedule fairly.",
     "scenario": "Elias needs a call with co-counsel in London and a client in Manila this week. Find a time that's reasonable for all three, and write the invite line that names the reference time zone."
+  },
+  "s1": {
+    "on": "This section's rule: a convenient time in one zone can be unreasonable in another, so confirm local time for every participant.",
+    "say": "Check everyone's clock, not just yours."
+  },
+  "s2": {
+    "on": "These steps are the checks: every participant's local time, the reference zone named in the invite, recurring meetings across daylight saving changes, fairness to the most disadvantaged zone, and a quick confirmed fix when mistakes happen.",
+    "say": "Name the time zone in the invite.",
+    "ask": "Have you been caught by a daylight saving change?"
   }
 },
 "3::Calendar Blocking for Deep Work": {
@@ -1392,6 +2089,18 @@ window.PRESENTER_NOTES = {
     "say": "Protect it, and put the most important work in it.",
     "wrap": "Deep-work blocks are commitments. Enforce them, and review whether they're used.",
     "scenario": "Elias's Wednesday 9–11 deep-work block for brief writing gets a meeting request from a senior partner. How do you handle it using the conflict discipline from earlier today?"
+  },
+  "s1": {
+    "on": "This section says a calendar that tracks only meetings misses half the picture; blocking focus time protects it from other people's requests.",
+    "say": "Block the work, not just the meetings."
+  },
+  "s2": {
+    "on": "These steps make the block real: put it on the calendar, make it unbookable, reserve it for top priorities, treat a double-booking as a real conflict, and review blocks that keep getting skipped.",
+    "say": "A block anyone can book over isn't a block."
+  },
+  "s3": {
+    "on": "This section warns that a visible-but-unprotected block is only a suggestion, and says the block is only worth defending if it holds the highest-priority work.",
+    "say": "Protect the right thing."
   }
 },
 "3::Handling Last-Minute Calendar Changes": {
@@ -1407,6 +2116,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Check what's displaced, tell everyone affected, and reconfirm the rest of the day.",
     "scenario": "Roleplay: a client meeting scheduled 90 minutes from now just got moved to right now. Walk through what needs to happen in the next five minutes."
+  },
+  "s1": {
+    "on": "This section says a late change can cascade through the whole day if the ripple effects aren't checked right away.",
+    "say": "One change can move the whole day."
+  },
+  "s2": {
+    "on": "These steps handle it: check what it displaces before confirming, see how far it cascades, tell everyone affected, reconfirm the rest of the day, and log recurring causes.",
+    "say": "Check the ripple before you confirm.",
+    "ask": "What's the last change that knocked over your day?"
   }
 },
 "3::Multi-Calendar Coordination": {
@@ -1420,6 +2138,19 @@ window.PRESENTER_NOTES = {
     "say": "Separate systems still need one person coordinating them.",
     "wrap": "Build a master view and resolve cross-calendar conflicts the same way as any other.",
     "scenario": "A client asks for dinner with Elias next Thursday. His work calendar is clear, but his personal calendar has his daughter's recital that evening. What do you do, and what do you tell the client?"
+  },
+  "s1": {
+    "on": "This section says many executives run several calendars (professional, personal, board), and the real risk is a conflict you only see across all of them.",
+    "say": "The conflict hides between calendars."
+  },
+  "s2": {
+    "on": "These steps are the coordination: find every calendar, check new commitments against all, build a master view, keep business and personal separate but coordinated, and flag cross-calendar conflicts at once.",
+    "say": "Check all of them before you confirm.",
+    "ask": "How many calendars does your executive have?"
+  },
+  "s3": {
+    "on": "This section says a master view, even a manual cross-check, prevents double-bookings, and ties back to Day 1's Boundaries & Authorization: separate doesn't mean uncoordinated.",
+    "say": "Someone has to check both. That's you."
   }
 },
 "3::Visa & Documentation Requirements": {
@@ -1433,6 +2164,18 @@ window.PRESENTER_NOTES = {
     "say": "Six months of validity, and weeks of lead time.",
     "wrap": "Check validity and visa rules first, and start the paperwork early.",
     "scenario": "Elias is flying to Singapore for a deposition in five weeks. His passport expires in four months. What do you check, what do you do today, and what do you tell him?"
+  },
+  "s1": {
+    "on": "This section's rule: requirements differ by destination and change, so verify current rules for this trip, not the last similar one.",
+    "say": "Verify for this trip, every time."
+  },
+  "s2": {
+    "on": "These steps are the checks: current requirements, passport validity against the destination's rule, lead time for visas, supporting documents early, and a record for next time.",
+    "say": "Start visas early; they can take weeks."
+  },
+  "s3": {
+    "on": "This section warns about the six-month passport validity rule and says real lead time for visas keeps paperwork from sinking a trip.",
+    "say": "Unexpired isn't always valid enough."
   }
 },
 "3::International Travel Considerations": {
@@ -1446,6 +2189,19 @@ window.PRESENTER_NOTES = {
     "say": "Check the advisory again close to departure. It can change after you book.",
     "wrap": "Plan international trips deeper: health, money, norms and current advisories.",
     "scenario": "Elias is going to a client meeting in Mexico City next month. List what you'd check beyond flights and the hotel, and when you'd check the travel advisory."
+  },
+  "s1": {
+    "on": "This section lists three areas: health and safety, currency and payment, and cultural and business norms.",
+    "say": "Health, money, norms."
+  },
+  "s2": {
+    "on": "These steps work through them: vaccinations and advisories, currency logistics, local etiquette and dress, a fresh advisory check near the travel date, and deeper planning than a domestic trip.",
+    "say": "Re-check advisories close to departure.",
+    "ask": "What would you check first for a trip abroad?"
+  },
+  "s3": {
+    "on": "This section warns against treating international trips like domestic ones and calls the advisory check real diligence, not an extra.",
+    "say": "More variables, more planning."
   }
 },
 "3::Expense Tracking While Traveling": {
@@ -1461,6 +2217,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Travel expenses use the same reconciliation skill, under messier conditions. Capture and categorize in real time.",
     "scenario": "Elias returns from a three-day deposition trip with a pocket full of receipts, some for the Harlow matter and some personal. What should have happened each day of the trip, and what do you do now?"
+  },
+  "s1": {
+    "on": "This section says receipts get lost easily on the road; capture them immediately rather than reconstructing the trip later.",
+    "say": "Capture it the moment you get it."
+  },
+  "s2": {
+    "on": "These steps are the routine: capture every receipt, categorize as you go, apply the Day 7 SOA reconciliation discipline, do a nightly check, and submit within a set window after return.",
+    "say": "A few minutes each night saves hours later."
   }
 },
 "3::Travel Risk Contingency Planning": {
@@ -1476,6 +2240,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Identify disruptions and backups before departure, document them with the itinerary, and act on them fast.",
     "scenario": "Elias flies Chicago to Denver with a connection to Boise for a 10 a.m. hearing. Name the two most likely disruptions and the pre-arranged backup for each."
+  },
+  "s1": {
+    "on": "This section says a real travel plan covers what happens when things go wrong, not just the ideal itinerary.",
+    "say": "Plan for the bad day too."
+  },
+  "s2": {
+    "on": "These steps build it: name the likely disruptions, find backups in advance, document them with the itinerary, execute the backup at once, and apply the Day 5 backup-vendor principle.",
+    "say": "The backup exists before it's needed.",
+    "ask": "What's your backup if the first leg is cancelled?"
   }
 },
 "3::Loyalty Programs & Travel Preferences": {
@@ -1489,6 +2262,18 @@ window.PRESENTER_NOTES = {
     "say": "It's a small miss, but it's completely avoidable.",
     "wrap": "Put loyalty numbers and preferences on the travel checklist so they never depend on memory.",
     "scenario": "You book a last-minute flight for Elias from your phone. What three things from his Client Profile do you check before you hit confirm?"
+  },
+  "s1": {
+    "on": "This section says applying loyalty memberships every time adds up to real value in upgrades, priority service and status.",
+    "say": "Small step, compounding value."
+  },
+  "s2": {
+    "on": "These steps make it automatic: track every membership, apply numbers on every booking, check them alongside Client Profile preferences, put it on a checklist, and re-verify details now and then.",
+    "say": "Loyalty numbers are a standard booking step."
+  },
+  "s3": {
+    "on": "This section says loyalty numbers go on alongside seat, routing and hotel preferences every time, and that a missed number is a completely avoidable error.",
+    "say": "A good process never misses one."
   }
 },
 "3::Managing Multi-City, Multi-Leg Itineraries": {
@@ -1504,6 +2289,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Map every leg together, buffer the tightest connection, and hand the traveler one page.",
     "scenario": "Elias's itinerary: New York to Atlanta (50-minute connection) to Dallas for a two-day trial prep, then Dallas to Phoenix for a mediation. Find the tightest point and say what you'd change."
+  },
+  "s1": {
+    "on": "This section says multi-leg trips have more failure points; a delay on leg one can cascade, so the plan needs buffer.",
+    "say": "More legs, more ways to fail."
+  },
+  "s2": {
+    "on": "These steps manage it: map all legs together, add buffer at the tightest connection, align ground transport and check-ins with real arrivals, consolidate to one page, and re-check before departure.",
+    "say": "Find the tightest connection and pad it."
   }
 },
 "3::Ground Transportation Coordination": {
@@ -1517,6 +2310,19 @@ window.PRESENTER_NOTES = {
     "say": "Plan the ride around who's in the car.",
     "wrap": "Confirm specifics, account for the Client Profile, and reconfirm before travel.",
     "scenario": "Elias and his two young children land in Orlando at 9:40 p.m. Write the ground transport confirmation you'd send him, with every detail it needs."
+  },
+  "s1": {
+    "on": "This section calls ground transport the most under-planned part of a trip, the 'we'll figure out a car' problem.",
+    "say": "Don't leave the car to chance."
+  },
+  "s2": {
+    "on": "These steps fix it: plan it like flights and hotels, confirm a specific pickup time, place and contact, check family needs like car seats, add a backup for high-stakes trips, and reconfirm near departure.",
+    "say": "Specific time, place, contact.",
+    "ask": "What details would you confirm for a car service?"
+  },
+  "s3": {
+    "on": "This section says a specific pickup detail prevents the gap that ruins a trip, and that planning must fit who's actually traveling.",
+    "say": "Plan for everyone in the car."
   }
 },
 "3::Building a Real Travel Checklist": {
@@ -1532,6 +2338,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "A written, reusable checklist stops the same detail from being missed trip after trip.",
     "scenario": "As a group, build the first version of a travel checklist for Elias's international trips: five sections, two or three items each."
+  },
+  "s1": {
+    "on": "This section says a checklist in memory isn't a checklist; write it once and reuse it every trip.",
+    "say": "Write it down once."
+  },
+  "s2": {
+    "on": "These steps build it: a reusable written form, a documentation section, destination health and safety prep, loyalty and contingency confirmation steps, and refining it like the Day 5 Home Binder.",
+    "say": "Build it once, refine it every trip.",
+    "ask": "What would be on your first checklist?"
   }
 },
 "3::Post-Trip Debrief & Follow-Up": {
@@ -1547,6 +2362,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Close the trip: reconcile, follow up, write what went wrong, and update the checklist.",
     "scenario": "Elias's hotel in Denver had no quiet workspace, and his return connection was too tight. Write the debrief note, and say where each lesson gets recorded."
+  },
+  "s1": {
+    "on": "This section says a trip isn't done at home; expenses, thank-yous and lessons learned are the often-skipped final steps.",
+    "say": "The trip ends after the follow-up."
+  },
+  "s2": {
+    "on": "These steps close it out: reconcile expenses, send follow-ups while timely, note what worked and what didn't, feed it into preferences or the checklist, and treat it like the Day 6 seasonal playbook.",
+    "say": "Every trip should improve the next one."
   }
 },
 "3::The Weekly Time Audit": {
@@ -1560,6 +2383,19 @@ window.PRESENTER_NOTES = {
     "say": "An audit that doesn't change next week's plan hasn't done its job.",
     "wrap": "Audit a representative week occasionally, compare it with your priorities, and adjust.",
     "scenario": "Your audit shows 40% of your week went to rescheduling meetings and only 10% to Elias's top-priority matter. What two changes do you make next week?"
+  },
+  "s1": {
+    "on": "This section says most people's sense of where their time goes is wrong; tracking one real week reveals surprises.",
+    "say": "Intuition is usually off."
+  },
+  "s2": {
+    "on": "These steps run the audit: track a representative week, compare against your stated priorities, treat it as a periodic check, use accurate tracking data, and act on what you find.",
+    "say": "The gap between belief and data is the finding.",
+    "ask": "Where do you think most of your time goes?"
+  },
+  "s3": {
+    "on": "This section says the goal is a periodic check, like a budget review, and that it turns tracked data into real improvement.",
+    "say": "Audit to catch drift, then act."
   }
 },
 "3::Setting Realistic Deadlines": {
@@ -1573,6 +2409,19 @@ window.PRESENTER_NOTES = {
     "say": "Buffer for real risk, and never promise on someone else's behalf without asking.",
     "wrap": "Real estimate, real owner, honest buffer, early warning.",
     "scenario": "A client asks when they'll get the draft engagement agreement. The associate drafting it is in trial until Wednesday. What do you do before answering, and what do you tell the client?"
+  },
+  "s1": {
+    "on": "This section says a deadline that ignores the real work is a guess that creates false confidence.",
+    "say": "A guess isn't a deadline."
+  },
+  "s2": {
+    "on": "These steps set honest deadlines: account for the work, check with whoever does it, build buffer for real uncertainty, name an owner (as in Day 1's ACT Email), and flag risk early.",
+    "say": "Owner attached, risk flagged early.",
+    "ask": "Who do you check with before committing a date?"
+  },
+  "s3": {
+    "on": "This section says honest buffer makes a deadline plannable, and that EAs often set dates for work they don't do, so they must check first.",
+    "say": "Ask the person doing the work."
   }
 },
 "3::Court Docketing Workflows": {
@@ -1586,6 +2435,18 @@ window.PRESENTER_NOTES = {
     "say": "Docket from the court order itself, never from a secondhand date.",
     "wrap": "Primary source, multiple reminders, regular cross-checks.",
     "scenario": "You're docketing a response deadline from a court order, and the date looks unusually short compared with similar matters. What do you do before entering it?"
+  },
+  "s1": {
+    "on": "This section says docketing is calendar management with legal consequences; a missed deadline can mean malpractice or a lost right, so redundancy is built in.",
+    "say": "No single missed reminder should cause a missed filing."
+  },
+  "s2": {
+    "on": "These steps are the workflow: log every deadline from the primary source the moment it's known, set multiple reminders, and cross-check against the case file to close satisfied deadlines.",
+    "say": "Primary source, multiple reminders, cross-checked."
+  },
+  "s3": {
+    "on": "This section warns against docketing from secondhand dates or assuming a deadline is 'probably fine', and calls docketing one of the highest-stakes duties in the role.",
+    "say": "Secondhand dates cause errors."
   }
 },
 "3::Statute-of-Limitations Rules": {
@@ -1599,6 +2460,18 @@ window.PRESENTER_NOTES = {
     "say": "Verify against the actual rule, every time.",
     "wrap": "Calculate at intake, verify the rule, add redundancy, and escalate when unsure.",
     "scenario": "A new matter comes in and the parties are in different states, so you're not sure which state's statute of limitations applies. What do you do before calculating a deadline?"
+  },
+  "s1": {
+    "on": "This section explains the SOL: the outer deadline to file a claim, which varies by claim type and jurisdiction, and which bars the claim entirely if missed.",
+    "say": "Miss it and the claim is gone."
+  },
+  "s2": {
+    "on": "These steps protect it: calculate and log the SOL at intake from the actual trigger date and rule, flag it with extra lead time, and escalate to the attorney when the rule is unclear.",
+    "say": "Unclear rule? That's the attorney's call."
+  },
+  "s3": {
+    "on": "This section warns against copying a past matter's SOL, says 'probably right' isn't good enough, and requires the SOL to live in a redundant system.",
+    "say": "Verify against the rule, every time."
   }
 },
 "3::Deposition Scheduling": {
@@ -1612,6 +2485,19 @@ window.PRESENTER_NOTES = {
     "say": "Coordinate everyone up front, because rescheduling costs more.",
     "wrap": "Confirm every party, book scarce resources early, and document confirmations.",
     "scenario": "You've confirmed a deposition date with the attorney and the witness, but opposing counsel hasn't replied after several days. Do you send the formal notice or wait? What do you actually do?"
+  },
+  "s1": {
+    "on": "This section says depositions coordinate many parties (attorneys on all sides, the witness, the court reporter, an interpreter), building on multi-calendar coordination.",
+    "say": "Many parties, one date."
+  },
+  "s2": {
+    "on": "These steps are the process: confirm every party before locking the date, book the reporter and interpreter early, and send notices promptly and track confirmations.",
+    "say": "Silence isn't agreement; track confirmations.",
+    "ask": "Who's the hardest party to schedule?"
+  },
+  "s3": {
+    "on": "This section warns against booking around the attorney alone and says rescheduling is costly in time, money and sometimes strategy.",
+    "say": "Coordinate up front."
   }
 },
 "3::Executive Travel Logistics — Domestic & International Itineraries": {
@@ -1625,6 +2511,18 @@ window.PRESENTER_NOTES = {
     "say": "One consolidated itinerary, not a pile of confirmation emails.",
     "wrap": "Plan backward, check documents early, buffer connections and consolidate.",
     "scenario": "You're booking Elias a tight connection from an international arrival to a domestic flight. What do you want confirmed about that connection before you book it as is?"
+  },
+  "s1": {
+    "on": "This section says domestic and international travel share the same discipline, but international adds visas, customs, time zones and jurisdictions, and a complete itinerary covers the gaps between legs.",
+    "say": "The gaps are where trips fail."
+  },
+  "s2": {
+    "on": "These steps build it: plan backward from the destination, confirm visas early, and add buffer between legs, especially international-to-domestic connections.",
+    "say": "Work backward from arrival."
+  },
+  "s3": {
+    "on": "This section warns against treating international as domestic with a longer flight, and asks for one consolidated itinerary with every confirmation.",
+    "say": "One document, every leg."
   }
 },
 "3::War Room Trial Support": {
@@ -1638,6 +2536,19 @@ window.PRESENTER_NOTES = {
     "say": "It's not a busier week. It's a different mode.",
     "wrap": "Confirm needs, organize for instant retrieval, and agree the protocol before trial.",
     "scenario": "Trial starts in three days and you haven't confirmed Elias's support expectations for that window. What do you nail down, and how do you raise it now on a short timeline?"
+  },
+  "s1": {
+    "on": "This section says trial compresses the attorney's schedule; war-room support means being truly on call during trial hours.",
+    "say": "Trial is a different operating mode."
+  },
+  "s2": {
+    "on": "These steps prepare: confirm support needs in advance, keep every document, contact and logistic instantly retrievable, and set a trial-specific communication protocol.",
+    "say": "Nothing should need searching for during trial.",
+    "ask": "What would you prepare before day one of trial?"
+  },
+  "s3": {
+    "on": "This section warns that trial support isn't just a busier normal day, and notes it combines calendar, travel and document skills.",
+    "say": "Categorically different, prepare accordingly."
   }
 },
 "3::Emergency Flight Contingencies": {
@@ -1651,6 +2562,18 @@ window.PRESENTER_NOTES = {
     "say": "Reach them with a plan before the airline app does.",
     "wrap": "Prepare backups in advance, act fast, and communicate once, clearly.",
     "scenario": "Elias's flight to a trial appearance is cancelled, and the next available flight lands after the hearing starts. What do you do, and in what order?"
+  },
+  "s1": {
+    "on": "This section says a flight disruption on a high-stakes trip threatens what the trip is for, so the plan is prepared in advance.",
+    "say": "Prepared, not improvised."
+  },
+  "s2": {
+    "on": "These steps are the plan: identify the hard deadline first, know backups ahead of time, and send the executive one clear message with the plan when disruption hits.",
+    "say": "One clear message with the plan."
+  },
+  "s3": {
+    "on": "This section warns against waiting until disruption hits, and says the executive should never hear about a flight problem from an app before hearing from you.",
+    "say": "No surprises."
   }
 },
 "3::Recognizing Stress & Burnout in High-Pressure Roles": {
@@ -1664,6 +2587,19 @@ window.PRESENTER_NOTES = {
     "say": "Exhaustion isn't dedication. It's a risk to the work.",
     "wrap": "Check in weekly, name the stressor, and raise concerns early.",
     "scenario": "You've double-booked Elias twice this week, you're snapping at vendors, and you check email at 11 p.m. every night \"just in case.\" What's happening, and what are your first three steps?"
+  },
+  "s1": {
+    "on": "This section distinguishes stress (normal, sometimes useful) from burnout (chronic, with exhaustion, detachment and lower effectiveness), names EA/PA stressors and lists early signs.",
+    "say": "Early signs are easier to fix."
+  },
+  "s2": {
+    "on": "These steps are self-checks: a weekly two-minute check-in, naming the specific stressor, tracking patterns for two weeks, and raising it with your manager or an EAP if it persists.",
+    "say": "Name it specifically, then track it.",
+    "ask": "What's one stressor you could name today?"
+  },
+  "s3": {
+    "on": "This section warns against treating exhaustion as dedication and waiting for a crisis, and asks you to check on colleagues privately and kindly.",
+    "say": "Raise it early."
   }
 },
 "3::Stress Management Techniques That Work at a Desk": {
@@ -1677,6 +2613,19 @@ window.PRESENTER_NOTES = {
     "say": "Caffeine masks fatigue. It doesn't reduce the load.",
     "wrap": "Breathe, brain-dump, take micro-breaks and shut down properly.",
     "scenario": "Elias calls in a hurry: a court date moved, three meetings must shift and a family event overlaps. What do you do in the first five minutes to stay clear-headed before touching the calendar?"
+  },
+  "s1": {
+    "on": "This section says the best tools take two minutes between tasks: controlled breathing, a short walk, a task-list reset, plus structure that cuts decision load.",
+    "say": "Two-minute tools."
+  },
+  "s2": {
+    "on": "These steps are the techniques: slow breaths before tense calls, a brain dump when overwhelmed, micro-breaks every 60–90 minutes, and a shutdown ritual at day's end.",
+    "say": "Pick the single next action.",
+    "ask": "Which one will you try today?"
+  },
+  "s3": {
+    "on": "This section warns that caffeine and willpower only mask fatigue, calls sleep a work skill, and suggests a personal 'calm kit' list.",
+    "say": "Know your calm kit before you need it."
   }
 },
 "3::Setting Boundaries & Managing Executive Pressure": {
@@ -1690,6 +2639,19 @@ window.PRESENTER_NOTES = {
     "say": "Build the emergency path into the agreement.",
     "wrap": "Agree the rules in writing, use the calm script, and revisit as things change.",
     "scenario": "Elias texts at 10:40 p.m. asking you to \"quickly\" rebook tomorrow's 8 a.m. client meeting. Your after-hours rule covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?"
+  },
+  "s1": {
+    "on": "This section defines boundaries as agreements on availability, response times and scope, says undefined 'urgent' drives stress, and advises calm facts over matching the executive's urgency.",
+    "say": "Define urgent, together."
+  },
+  "s2": {
+    "on": "These steps set boundaries: agree availability in writing, ask 'which of these should move?' when priorities collide, and use the acknowledge–facts–options script.",
+    "say": "Acknowledge, state facts, offer options.",
+    "ask": "How would you use that script with an urgent late request?"
+  },
+  "s3": {
+    "on": "This section warns that instant late-night replies set the expectation, that boundaries never excuse missing a legal deadline, and that agreements need revisiting.",
+    "say": "Build the emergency path into the agreement."
   }
 },
 "3::Recovery, Workload Conversations & Support Resources": {
@@ -1703,6 +2665,18 @@ window.PRESENTER_NOTES = {
     "say": "You don't have to share a diagnosis to ask for a workload change.",
     "wrap": "Raise it early, plan real time off, and know your support resources.",
     "scenario": "You've worked 55-hour weeks for two months and your error rate is rising. Draft the first two sentences of a workload conversation with Elias, and list the options you'd bring."
+  },
+  "s1": {
+    "on": "This section says recovery is part of performance, workload issues are business issues to raise with data, and support exists (EAPs, healthcare providers, the 988 Lifeline in the US).",
+    "say": "Raising workload is professional, not a complaint."
+  },
+  "s2": {
+    "on": "These steps prepare: a workload conversation with tasks, hours and options, real time off with a coverage handover, and knowing where support is in advance.",
+    "say": "Bring data and options."
+  },
+  "s3": {
+    "on": "This section warns against waiting until exhausted, says health details can stay private, and asks the team to cover each other properly.",
+    "say": "A plan, not a crisis."
   }
 },
 "4::Data Entry That Holds Up": {
@@ -1716,6 +2690,23 @@ window.PRESENTER_NOTES = {
     "say": "Never let someone downstream fix your data errors.",
     "wrap": "Clean in order and validate against the source before the data goes anywhere.",
     "scenario": "Live demo: this sample client list has 40 rows, including duplicates, \"CA\" and \"California,\" and two phone formats. Clean it in the four-step order and say what each step caught."
+  },
+  "s1": {
+    "on": "This section says clean data entry is sequential: the steps below go in order.",
+    "say": "Order is the whole point."
+  },
+  "s2": {
+    "on": "These steps are the order: De-duplicate, Standardize formatting, Filter and validate against the source, then Sort.",
+    "say": "De-dupe, standardize, filter, sort.",
+    "ask": "Why would sorting first be a mistake?"
+  },
+  "s3": {
+    "on": "This section repeats the order and gives the rule: never submit raw data and let someone downstream fix it.",
+    "say": "Clean it before it leaves you."
+  },
+  "s4": {
+    "on": "This section explains why the order matters: sorting duplicates just gives neat duplicates, inconsistent formatting makes filters miss records, and validation means checking against the source, not memory.",
+    "say": "Check a sample against the original document."
   }
 },
 "4::The Priority Matrix": {
@@ -1729,6 +2720,23 @@ window.PRESENTER_NOTES = {
     "say": "A routine email becomes Tier 1 the moment the facts change.",
     "wrap": "Tier every item first, then respond on that tier's timeline.",
     "scenario": "Speed round: I'll read five emails and you call the tier. A court clerk notice, a partnership inquiry, the bar association newsletter, a reporter asking for comment, and a vendor saying an invoice is 60 days overdue."
+  },
+  "s1": {
+    "on": "This section defines two tiers: Tier 1 (legal deadlines, high-value clients, media, financial approvals, crisis comms) means notify the executive immediately; Tier 2 (revenue, partnerships, board, vendor negotiations) means draft within 2–4 hours.",
+    "say": "Tier 1 interrupts; Tier 2 doesn't."
+  },
+  "s2": {
+    "on": "These steps apply it: classify first, escalate Tier 1 at once, draft Tier 2 within 2–4 hours, treat unclear items as Tier 1, and review your calls later.",
+    "say": "When in doubt, treat it as Tier 1.",
+    "ask": "Where would a media inquiry go?"
+  },
+  "s3": {
+    "on": "This section restates the two tiers as the ones to act on.",
+    "say": "Know them by heart."
+  },
+  "s4": {
+    "on": "This section adds Tier 3 (routine, batched daily) and Tier 4 (archive or delegate), and says to re-tier when facts change, like a vendor email that mentions a missed payment.",
+    "say": "Tiers change when the facts do."
   }
 },
 "4::The Daily Routine": {
@@ -1742,6 +2750,23 @@ window.PRESENTER_NOTES = {
     "say": "The routine serves the executive's day, not yours.",
     "wrap": "Protect the morning scan, carry over in writing, and time it to the executive.",
     "scenario": "Elias starts at 7 a.m. and is in court by 9 three days a week. Build your daily routine around his schedule: when does each phase happen, and what's ready when?"
+  },
+  "s1": {
+    "on": "This section says the daily routine is sequential: the steps go in order.",
+    "say": "Same order, every day."
+  },
+  "s2": {
+    "on": "These steps are the routine: a Morning Scan (15–30 min) to flag Tier 1 and prepare the briefing, a Midday Review to draft and confirm, and an End-of-Day Review to clear urgent items and prep tomorrow.",
+    "say": "Morning scan, midday review, end-of-day review."
+  },
+  "s3": {
+    "on": "This section restates each checkpoint and what it produces.",
+    "say": "Each checkpoint has an output."
+  },
+  "s4": {
+    "on": "This section says to protect the Morning Scan like a meeting, keep a carry-over list overnight, and fit the executive's rhythm: a 7 AM start means the briefing is ready by 6:45.",
+    "say": "The routine serves their day, not yours.",
+    "ask": "When does your executive's day start?"
   }
 },
 "4::The Morning Briefing, In Practice": {
@@ -1755,6 +2780,23 @@ window.PRESENTER_NOTES = {
     "say": "Needs you, handled, heads-up.",
     "wrap": "A short, ordered briefing beats forwarding dozens of raw emails.",
     "scenario": "Compare the five-line briefing on screen with the 30-email raw inbox it came from. Then write tomorrow's version for Elias's inbox with the three sections."
+  },
+  "s1": {
+    "on": "This section introduces the briefing itself, covered in the steps that follow.",
+    "say": "Here's how to build it."
+  },
+  "s2": {
+    "on": "These steps build it: scan the whole inbox but never forward it raw, one line per item with its status, ordered by urgency, kept to a handful of lines, and sent at the same time every morning.",
+    "say": "One line per item, most urgent first."
+  },
+  "s3": {
+    "on": "This section's rule: a short briefing beats forwarding dozens of raw emails.",
+    "say": "Short wins."
+  },
+  "s4": {
+    "on": "This section gives the layout: 'Needs you today' at the top with deadlines, 'Handled / in progress' in the middle, 'Heads-up' at the bottom.",
+    "say": "Needs you, handled, heads-up.",
+    "ask": "What would be at the top of tomorrow's briefing?"
   }
 },
 "4::Research as a Core EA Skill": {
@@ -1768,6 +2810,19 @@ window.PRESENTER_NOTES = {
     "say": "Forwarding an unverified claim puts your credibility on the line.",
     "wrap": "Verify before you commit, brief before you meet, and flag what's unconfirmed.",
     "scenario": "You have 90 seconds: a vendor called \"Apex Legal Print Solutions\" wants a $6,000 deposit for trial exhibits. Say out loud what you'd check first, and where."
+  },
+  "s1": {
+    "on": "This section names three research jobs: vetting vendors and contacts, preparing meeting and attendee briefs, and fact-checking before forwarding.",
+    "say": "Vet, prep, fact-check."
+  },
+  "s2": {
+    "on": "These steps put it into practice: verify vendors independently, brief on who's in the room, verify claims before forwarding, go to the primary source first, and label anything unconfirmed.",
+    "say": "Primary source first. Flag what you can't confirm.",
+    "ask": "What would you check before booking a new vendor?"
+  },
+  "s3": {
+    "on": "This section says research is the quiet discipline under most of the EA role, not a separate skill.",
+    "say": "Know before you call, forward or book."
   }
 },
 "4::Research Method & the Real Failure Mode": {
@@ -1781,6 +2836,19 @@ window.PRESENTER_NOTES = {
     "say": "One source, especially their own, isn't confirmation.",
     "wrap": "Primary source, second independent check, depth matched to stakes.",
     "scenario": "A potential co-counsel's website says they've \"won over $50M in verdicts.\" Elias wants to partner with them next week. How do you verify that, and what do you tell Elias if you can't?"
+  },
+  "s1": {
+    "on": "This section's method: primary source first, cross-check anything tied to a decision or a dollar amount, and know when 'good enough' really is enough.",
+    "say": "Fast and reliable beats exhaustive."
+  },
+  "s2": {
+    "on": "These steps are the method: start at the primary source, confirm with a second independent source, match depth to stakes, never treat self-description as verification, and carry this into research-before-calling.",
+    "say": "Two independent sources for anything that matters."
+  },
+  "s3": {
+    "on": "This section names the real failure: mistaking one unverified source for confirmation, and says research-before-calling is this same skill.",
+    "say": "A vendor's claims about itself aren't proof.",
+    "ask": "Where have you seen a single source go wrong?"
   }
 },
 "4::Cold Calling, Appointment Setting & Lead Generation": {
@@ -1794,6 +2862,19 @@ window.PRESENTER_NOTES = {
     "say": "The goal is the second conversation, not the sale.",
     "wrap": "Research first, open with value, and log every call.",
     "scenario": "You're calling the office manager of a 12-doctor medical practice about Elias's employment-law services. You found they just opened a second location. Deliver the first 20 seconds of the call."
+  },
+  "s1": {
+    "on": "This section's rule: research before calling, because a specific, current reference beats a script.",
+    "say": "Research first."
+  },
+  "s2": {
+    "on": "These steps are the call: research the person, open with a tailored value proposition, aim for a warmer second conversation, handle contact lists discreetly, and log the outcome right away.",
+    "say": "The goal is the next conversation, not the close.",
+    "ask": "What would you research before a cold call?"
+  },
+  "s3": {
+    "on": "This section says to open with value, not a pitch, that the goal is rarely the close, and that outbound lists need the same discretion as confidential documents.",
+    "say": "Same discretion as email."
   }
 },
 "4::How to Generate Leads for Business": {
@@ -1807,6 +2888,23 @@ window.PRESENTER_NOTES = {
     "say": "Log where every lead came from, so the firm learns which channels work.",
     "wrap": "Draw from several channels, qualify early, and track every lead by source.",
     "scenario": "Name three referral sources Thorne & Partners should be tracking, and what one small action this month would warm up each."
+  },
+  "s1": {
+    "on": "This section says lead generation is sequential: the steps go in order.",
+    "say": "In order."
+  },
+  "s2": {
+    "on": "These steps are the sequence: Identify sources across channels, Qualify on fit, need, authority and timeline, Make first contact that's researched and brief, and Track and follow up.",
+    "say": "Identify, qualify, contact, track."
+  },
+  "s3": {
+    "on": "This section separates the two: lead generation finds the lead; cold calling works a lead you already have.",
+    "say": "Find it first, then call it."
+  },
+  "s4": {
+    "on": "This section lists sources: referrals (usually the best), public and professional directories and filings, and inbound interest, each logged by where it came from.",
+    "say": "Track which channel each lead came from.",
+    "ask": "Which source would you trust most?"
   }
 },
 "4::Lead Quality, Qualifying & Tracking": {
@@ -1820,6 +2918,19 @@ window.PRESENTER_NOTES = {
     "say": "Qualify early, and put your effort where the fit is.",
     "wrap": "Ask for referrals, qualify fast, log immediately and follow through.",
     "scenario": "Share one business that followed up on a lead well and one that let a promising contact go cold. What exactly was different?"
+  },
+  "s1": {
+    "on": "This section says referrals are the highest-quality leads, and asking satisfied clients for them is what makes it a habit.",
+    "say": "Ask for referrals; don't wait for them."
+  },
+  "s2": {
+    "on": "These steps are the habit: ask for referrals, qualify early, log every lead immediately, follow through consistently, and feed leads into the contact list.",
+    "say": "The difference is almost always the follow-through."
+  },
+  "s3": {
+    "on": "This section warns that not every lead deserves equal effort, that an untracked lead doesn't exist, and closes with a discussion prompt.",
+    "say": "Qualify early, track everything.",
+    "ask": "What made one business's follow-through work where another's didn't?"
   }
 },
 "4::Creating and Maintaining a Comprehensive Contact List": {
@@ -1833,6 +2944,22 @@ window.PRESENTER_NOTES = {
     "say": "Flag the sensitivities, like an opposing party you must never contact directly.",
     "wrap": "Capture context, categorize and keep it verified.",
     "scenario": "Build Elias's contact entry for his estate-planning client's CPA: which fields you'd fill, and which sensitivity note you'd add if the CPA is also a witness in another matter."
+  },
+  "s1": {
+    "on": "This section gives three practices: capture more than name and number, categorize on purpose, and maintain it like a system.",
+    "say": "Fields, categories, upkeep."
+  },
+  "s2": {
+    "on": "These steps build it: capture context, preferred method and assistant name, categorize from the start, update after every interaction, and design it so anyone could use it.",
+    "say": "The test: could someone covering for you find the right person in seconds?"
+  },
+  "s3": {
+    "on": "This section calls the contact list operational infrastructure, not a phone book.",
+    "say": "Infrastructure, not a phone book."
+  },
+  "s4": {
+    "on": "This section lists the fields: core details and time zone, context such as connection and sensitivities (an opposing party is never contacted directly), and maintenance with a last-verified date and quarterly sweep.",
+    "say": "Record sensitivities, like opposing parties."
   }
 },
 "4::Contact List Failure Modes & Upkeep": {
@@ -1846,6 +2973,19 @@ window.PRESENTER_NOTES = {
     "say": "Three scattered lists are three incomplete lists.",
     "wrap": "Centralize, audit quarterly, and fix stale entries on the spot.",
     "scenario": "Tell us about a time you couldn't reach the right person quickly because the contact info was wrong or scattered. What would have prevented it?"
+  },
+  "s1": {
+    "on": "This section names the most common failure: stale entries, not missing ones.",
+    "say": "Stale is worse than missing."
+  },
+  "s2": {
+    "on": "These steps prevent it: watch for stale entries, centralize in one system, run a light quarterly audit, fix stale entries immediately, and consolidate fragmented lists.",
+    "say": "Fix it now; it takes seconds."
+  },
+  "s3": {
+    "on": "This section explains that a list split across phone, spreadsheet and signatures is three incomplete lists, recommends a quarterly 10-minute audit, and closes with a discussion prompt.",
+    "say": "One system, audited.",
+    "ask": "When did missing or wrong contact info slow you down?"
   }
 },
 "4::Master Contact List Discipline": {
@@ -1859,6 +2999,18 @@ window.PRESENTER_NOTES = {
     "say": "The outdated copy is the one used in a crisis.",
     "wrap": "One source of truth, updated immediately, for the whole team.",
     "scenario": "Opposing counsel's direct line changed last week. You updated your copy, but the paralegal's copy still has the old one, and she's scheduling tomorrow's meet-and-confer. What went wrong, and what's the fix?"
+  },
+  "s1": {
+    "on": "This section's rule: one master list the whole team uses; personal copies drift invisibly.",
+    "say": "One master list."
+  },
+  "s2": {
+    "on": "These steps enforce it: one list, applied to scheduling too, checks for parallel copies, immediate updates, and treating any discrepancy as a reason to reinforce the rule.",
+    "say": "No private copies."
+  },
+  "s3": {
+    "on": "This section applies it to scheduling and describes the real failure: two assistants with different copies, and an urgent call goes to a dead number.",
+    "say": "Speed fails when the number is wrong."
   }
 },
 "4::Sales Mindset": {
@@ -1872,6 +3024,19 @@ window.PRESENTER_NOTES = {
     "say": "Curiosity can't be faked, not even in writing.",
     "wrap": "Lead with their problem, stay curious and track honestly.",
     "scenario": "You've sent 15 cold outreach emails this week and received zero replies. What would a sales mindset say to do next, and what would the opposite look like right now?"
+  },
+  "s1": {
+    "on": "This section says sales support needs the mindset, not just the tasks: solving a real problem for the other person, and treating rejection as normal information.",
+    "say": "Solve their problem; a no is information."
+  },
+  "s2": {
+    "on": "These steps apply it: know their problem before outreach, be genuinely curious, track outcomes honestly, and separate the result from personal feelings about rejection.",
+    "say": "Write for one specific person.",
+    "ask": "What problem might a prospect actually have?"
+  },
+  "s3": {
+    "on": "This section warns against treating every lead equally or taking a no personally, says curiosity must be real, and applies the mindset to internal buy-in too.",
+    "say": "The same skill works inside the firm."
   }
 },
 "4::Lead Generation & Data Sourcing": {
@@ -1885,6 +3050,18 @@ window.PRESENTER_NOTES = {
     "say": "Fifty verified leads beat 500 guesses.",
     "wrap": "Verify at the source, capture qualifiers and keep the data fresh.",
     "scenario": "You're asked for 50 leads by end of day. How do you balance verification against the volume target, and where won't you cut corners even under time pressure?"
+  },
+  "s1": {
+    "on": "This section says data sourcing is the research layer under lead generation, and data quality decides everything downstream.",
+    "say": "Bad data wastes a good message."
+  },
+  "s2": {
+    "on": "These steps are the sourcing: research tools like LinkedIn Sales Navigator, verification through the primary source, organized capture in a CRM, and focus on qualified leads.",
+    "say": "Capture the qualifying details when you source."
+  },
+  "s3": {
+    "on": "This section warns against stale data, requires respecting privacy, asks for regular refreshes, and says a small well-sourced list beats a big loose one.",
+    "say": "Quality over volume."
   }
 },
 "4::Cold Outbound Execution": {
@@ -1898,6 +3075,19 @@ window.PRESENTER_NOTES = {
     "say": "A script is a starting point, not a performance.",
     "wrap": "Listen more than you talk, and log every attempt immediately.",
     "scenario": "On a cold call, the prospect says \"I'm not interested\" right after your opening line. Push on, ask a clarifying question, or end gracefully? What would you want to know to decide?"
+  },
+  "s1": {
+    "on": "This section says execution is where research and mindset become the actual message or call; specifics and a clear next step matter more than volume.",
+    "say": "This is where the prep pays off."
+  },
+  "s2": {
+    "on": "These steps are the execution: a specific opening, a small ask like 15 minutes, every attempt tracked, and objections anticipated.",
+    "say": "Small, specific ask.",
+    "ask": "What's a good 15-minute ask for a prospect?"
+  },
+  "s3": {
+    "on": "This section warns against reciting a script, and asks you to listen more than talk, handle objections gracefully, and log every attempt immediately.",
+    "say": "A script is a starting point."
   }
 },
 "4::Appointment Setting (BANT/MEDDPICC)": {
@@ -1911,6 +3101,19 @@ window.PRESENTER_NOTES = {
     "say": "A fast yes isn't a qualified yes.",
     "wrap": "Qualify with the right framework, set honest expectations and remind before the meeting.",
     "scenario": "A prospect replies enthusiastically and wants a call right away, but you don't know if they have budget or authority. Schedule it, qualify first, or something in between? Say what you'd write back."
+  },
+  "s1": {
+    "on": "This section defines appointment setting as scheduling useful meetings with qualified prospects, and introduces BANT and MEDDPICC as qualifying frameworks.",
+    "say": "Qualify before you schedule."
+  },
+  "s2": {
+    "on": "These steps apply them: BANT for quick checks, MEDDPICC for complex deals, scheduling tools for qualified leads only, and confirmed agendas with reminders.",
+    "say": "Two or more BANT gaps means not yet.",
+    "ask": "What do the letters in BANT stand for?"
+  },
+  "s3": {
+    "on": "This section warns that a fast yes isn't a fit, matches the framework to the stakes, and warns against overpromising and skipping reminders.",
+    "say": "Remind close to the time; no-shows are avoidable."
   }
 },
 "4::Dual-Role Context Switching": {
@@ -1924,6 +3127,19 @@ window.PRESENTER_NOTES = {
     "say": "Tone mismatch is the tell of a rushed switch.",
     "wrap": "Identify the domain, reset, and keep the systems separate.",
     "scenario": "You're mid-draft on a formal client email when Elias's spouse texts about a family birthday dinner. How do you switch so neither message ends up in the wrong tone?"
+  },
+  "s1": {
+    "on": "This section says a hybrid EA/PA switches between business-formal and personal-informal modes, and ties this to Corporate vs. Personal Mode.",
+    "say": "Two modes, often in one hour."
+  },
+  "s2": {
+    "on": "These steps make it deliberate: name the domain before replying, reset between switches, and keep separate tracking systems.",
+    "say": "Name the domain first."
+  },
+  "s3": {
+    "on": "This section warns about tone bleeding across modes, and calls switching a skill that improves with practice.",
+    "say": "Small mismatches erode trust.",
+    "ask": "Have you ever sent the right message in the wrong tone?"
   }
 },
 "4::Priority Collision Handling": {
@@ -1937,6 +3153,19 @@ window.PRESENTER_NOTES = {
     "say": "Some collisions are trade-offs, not speed problems.",
     "wrap": "Weigh the cost of delay, cover both where you can, and escalate close calls.",
     "scenario": "Within the same minute, Elias asks you to get opposing counsel on the phone now, and a major client emails that their wire transfer failed and closing is at noon. Walk through exactly what happens first."
+  },
+  "s1": {
+    "on": "This section defines a collision: two important things at once, neither deferrable, when the Priority Matrix doesn't settle it.",
+    "say": "When the matrix doesn't decide it."
+  },
+  "s2": {
+    "on": "These steps handle it: weigh the cost of a ten-minute delay on each side, partly address both, and escalate when it's too close to call.",
+    "say": "A 30-second check-in beats a wrong guess."
+  },
+  "s3": {
+    "on": "This section warns that working faster doesn't solve every collision, and asks you to document how each was resolved.",
+    "say": "Some are real trade-offs.",
+    "ask": "How would you handle two Tier 1 items at once?"
   }
 },
 "4::Mid-Stage Task Injections": {
@@ -1950,6 +3179,18 @@ window.PRESENTER_NOTES = {
     "say": "Memory is where details get dropped.",
     "wrap": "Triage, leave a marker, communicate, and return.",
     "scenario": "You're halfway through drafting a detailed client response when an urgent, unrelated request comes in. Walk through your process so neither task gets dropped."
+  },
+  "s1": {
+    "on": "This section defines an injection: a new request mid-task, where the original can continue but not uninterrupted. Dropped threads are a major source of errors.",
+    "say": "Don't lose the first task."
+  },
+  "s2": {
+    "on": "These steps handle it: triage fast, leave a marker where you stopped, and tell whoever's waiting if the original stalls.",
+    "say": "Leave yourself a marker."
+  },
+  "s3": {
+    "on": "This section warns against holding tasks in memory, and recommends a simple 'in progress, paused here' list.",
+    "say": "Write down where you paused."
   }
 },
 "4::Client Relationship Management": {
@@ -1963,6 +3204,18 @@ window.PRESENTER_NOTES = {
     "say": "A broken follow-up promise costs more than no promise.",
     "wrap": "Log everything, segment, set specific reminders and check history first.",
     "scenario": "A client you signed three months ago was never followed up with. They just emailed a question that suggests they're looking at a competitor. Answer only the question, or use it to rebuild the relationship? What do you say?"
+  },
+  "s1": {
+    "on": "This section defines CRM as maintaining the relationship after the first yes: log every interaction and reach out proactively at meaningful moments.",
+    "say": "Everything before gets the yes; CRM keeps it."
+  },
+  "s2": {
+    "on": "These steps are the practice: log each interaction right away, segment by stage, set follow-ups tied to specific commitments, and review history before every contact.",
+    "say": "Reference something specific from last time."
+  },
+  "s3": {
+    "on": "This section warns against a CRM that's never updated, says proactive check-ins are cheaper than recovery, and says a missed promised follow-up damages trust.",
+    "say": "Log every promise as a task."
   }
 },
 "4::CRM Software Fundamentals": {
@@ -1976,6 +3229,18 @@ window.PRESENTER_NOTES = {
     "say": "Stages move on facts, not hope.",
     "wrap": "One source of truth, honest stages and a monthly cleanup.",
     "scenario": "You inherit a CRM with 40 open deals, most untouched in months, and Elias wants an accurate pipeline forecast by end of day. What's your triage process for getting to a number you can stand behind?"
+  },
+  "s1": {
+    "on": "This section says a CRM is only as good as its data, every CRM uses contacts, deals and activities, and it must be the single source of truth.",
+    "say": "Three objects: contacts, deals, activities."
+  },
+  "s2": {
+    "on": "These steps set it up: map pipeline stages to the real process, add custom fields rather than stuffing notes, and use its reminders instead of a separate list.",
+    "say": "No parallel to-do list."
+  },
+  "s3": {
+    "on": "This section warns about duplicates, asks for honest deal stages, and suggests a monthly hygiene pass closing deals idle 60+ days.",
+    "say": "Search before creating a contact."
   }
 },
 "4::Email Outreach Sequencing & Follow-Up Cadence": {
@@ -1989,6 +3254,18 @@ window.PRESENTER_NOTES = {
     "say": "Make \"no\" easy, or it becomes a complaint.",
     "wrap": "Space it out, change the angle and close the loop.",
     "scenario": "A prospect opened your first three emails but never replied, and one email is left in the sequence. What does the final message say, and what would make you extend the sequence instead?"
+  },
+  "s1": {
+    "on": "This section says most replies come from follow-ups, each should add something new, and too many becomes damaging.",
+    "say": "The follow-up does the work."
+  },
+  "s2": {
+    "on": "These steps are the cadence: 3–5 business days apart, a new angle each touch, and a clear closing message.",
+    "say": "Close the loop explicitly."
+  },
+  "s3": {
+    "on": "This section warns against repeating the same message, asks to track reply rate by step, and requires an easy opt-out.",
+    "say": "Easy to say no."
   }
 },
 "4::Handling Sales Objections Beyond the Script": {
@@ -2002,6 +3279,19 @@ window.PRESENTER_NOTES = {
     "say": "Correct the facts, never their right to the concern.",
     "wrap": "Clarify, acknowledge, and get a date if it's timing.",
     "scenario": "A prospect says, \"We already have a vendor for this.\" That could mean they're happy, under contract, or just ending the call politely. What's your next question, and how does the answer change your approach?"
+  },
+  "s1": {
+    "on": "This section says the real skill is diagnosing what an objection means (usually information, trust or timing) and telling a real no from a reflexive one.",
+    "say": "Diagnose before you respond."
+  },
+  "s2": {
+    "on": "These steps handle it: ask one clarifying question, acknowledge before addressing, and get a specific follow-up date for timing objections.",
+    "say": "One question first.",
+    "ask": "What would you ask if a prospect says 'not now'?"
+  },
+  "s3": {
+    "on": "This section warns that some objections are simply accurate, not to argue with a concern, and asks to log the exact wording.",
+    "say": "Correct information; don't contest concerns."
   }
 },
 "4::Pipeline Reporting & Forecasting Basics": {
@@ -2015,6 +3305,18 @@ window.PRESENTER_NOTES = {
     "say": "Weight by probability and flag the big risky deal.",
     "wrap": "Honest stages, weighted numbers, a consistent weekly cadence.",
     "scenario": "Elias asks for this quarter's realistic revenue forecast. Two early-stage deals make up 60% of the raw total. How do you present the number so it's useful, not misleading?"
+  },
+  "s1": {
+    "on": "This section says a forecast is only as good as its deal stages, forecasting applies honest probabilities, and weekly reviews catch drift.",
+    "say": "Honest stages, honest forecast."
+  },
+  "s2": {
+    "on": "These steps are the method: realistic probability per stage, committed kept separate from best case, and stuck deals flagged.",
+    "say": "Committed isn't best case."
+  },
+  "s3": {
+    "on": "This section warns against unweighted totals and one big deal dominating, and asks for consistent weekly reporting.",
+    "say": "Same day, same format."
   }
 },
 "4::Data Hygiene & Deduplication": {
@@ -2028,6 +3330,18 @@ window.PRESENTER_NOTES = {
     "say": "Standard formats make duplicates visible.",
     "wrap": "Search before adding, merge forward and clean on a schedule.",
     "scenario": "You find three records that seem to be the same person at the same company, each with different interaction history. How do you confirm they're the same person before merging, and what if you're not sure?"
+  },
+  "s1": {
+    "on": "This section says duplicates fragment history, data decays on its own, and bad data costs more over time.",
+    "say": "Data rots unless tended."
+  },
+  "s2": {
+    "on": "These steps are the hygiene: search broadly before adding, merge while keeping all history, and clean up bounces and unsubscribes.",
+    "say": "Search by name, company and domain."
+  },
+  "s3": {
+    "on": "This section warns against deleting instead of merging, asks for standard formatting from the start, and says to schedule hygiene as a recurring task.",
+    "say": "Merge forward, never discard."
   }
 },
 "4::Outreach Compliance Basics": {
@@ -2041,6 +3355,19 @@ window.PRESENTER_NOTES = {
     "say": "Asking costs far less than a violation.",
     "wrap": "Know the rules per channel, honor opt-outs and document consent.",
     "scenario": "A colleague hands you a conference contact list with no notes on how it was collected. What do you need to know before you're comfortable sending to it?"
+  },
+  "s1": {
+    "on": "This section says outreach is regulated (CAN-SPAM for email, do-not-call and TCPA for phone and text), rules differ by channel, and the firm's policy or counsel is the authority.",
+    "say": "Outreach has rules."
+  },
+  "s2": {
+    "on": "These steps comply: confirm the firm's policy, include and honor opt-outs immediately, and keep a record of consent or relationship.",
+    "say": "Honor opt-outs at once."
+  },
+  "s3": {
+    "on": "This section warns that bought or scraped lists aren't automatically safe, opt-outs must be honored in full, and says to escalate when unsure.",
+    "say": "Asking is cheaper than a violation.",
+    "ask": "Who would you ask about compliance at your firm?"
   }
 },
 "4::Email Marketing vs. Cold Outreach": {
@@ -2054,6 +3381,18 @@ window.PRESENTER_NOTES = {
     "say": "Never send a bulk blast from the attorney's own mailbox.",
     "wrap": "Name it, route it correctly, keep the lists separate and get approval.",
     "scenario": "Elias hands you 400 business cards from a legal-tech conference and says \"send everyone our newsletter.\" What do you do instead, and what do you say to Elias?"
+  },
+  "s1": {
+    "on": "This section contrasts marketing (one message to many who know the firm) with cold outreach (one-to-one to people who don't), with different rules, and names mixing them as the top mistake.",
+    "say": "Two different tools, two sets of rules."
+  },
+  "s2": {
+    "on": "These steps keep them apart: name which it is, send each through the right channel, keep separate CRM lists with join source, and get attorney approval, since this may be attorney advertising.",
+    "say": "Which is it: marketing or outreach?"
+  },
+  "s3": {
+    "on": "This section warns against silently adding event contacts to a newsletter or bulk-sending from the attorney's mailbox, and says a marketing reply becomes a personal conversation.",
+    "say": "Answer replies personally."
   }
 },
 "4::Building & Segmenting an Email List": {
@@ -2067,6 +3406,18 @@ window.PRESENTER_NOTES = {
     "say": "The unsubscribe always wins.",
     "wrap": "Collect legitimately, tag on entry, segment and clean quarterly.",
     "scenario": "A partner wants the next newsletter on a new estate-planning service sent \"to everyone\": 1,800 contacts, including corporate clients and opposing counsel from past matters. How do you segment it, and who should not receive it?"
+  },
+  "s1": {
+    "on": "This section says a small willing list beats a big one, every contact needs a source and consent basis, and segments get different content.",
+    "say": "Quality, consent, segments."
+  },
+  "s2": {
+    "on": "These steps build it: legitimate channels only, tags at entry, three starter segments (Clients, Referral Partners, Prospects), and quarterly cleaning.",
+    "say": "Tag at entry; it enables everything later."
+  },
+  "s3": {
+    "on": "This section warns never to buy lists or re-add unsubscribers, and says to keep opposing parties and conflicts off every list.",
+    "say": "The unsubscribe always wins."
   }
 },
 "4::Writing Outreach Emails That Get Replies": {
@@ -2080,6 +3431,19 @@ window.PRESENTER_NOTES = {
     "say": "Never promise an outcome in outreach.",
     "wrap": "Their situation first, value in their terms, one small ask.",
     "scenario": "Rewrite this opener live for a founder whose startup just raised a Series A: \"Dear Sir/Madam, Thorne & Partners is a leading full-service law firm founded in 1998 with over 40 attorneys...\""
+  },
+  "s1": {
+    "on": "This section says good outreach is short (50–125 words), specific and one clear ask, with an honest subject line and real personalization.",
+    "say": "Short, specific, one ask."
+  },
+  "s2": {
+    "on": "These steps write it: open with why them, give value in their terms, make one low-friction ask, and close with details and opt-out, then proofread.",
+    "say": "Why them, what for them, one small ask.",
+    "ask": "How would you rewrite 'Let me know if you'd like to learn more'?"
+  },
+  "s3": {
+    "on": "This section warns against firm biographies, spam-trigger habits and any implied guaranteed outcome, which can breach advertising rules.",
+    "say": "Never promise an outcome."
   }
 },
 "4::Law Firm Email Newsletters": {
@@ -2093,6 +3457,18 @@ window.PRESENTER_NOTES = {
     "say": "No client names without documented consent.",
     "wrap": "Plan the cadence, get sign-off, test and archive.",
     "scenario": "Elias wants this month's newsletter to celebrate a big settlement with the client's company in the headline. What do you need before it can go out, and what do you suggest if consent isn't available?"
+  },
+  "s1": {
+    "on": "This section says newsletters keep the firm top of mind, consistency beats frequency, and they're attorney communications that may need a disclaimer.",
+    "say": "Reliable beats frequent."
+  },
+  "s2": {
+    "on": "These steps produce it: agree cadence and sections, draft in an approved template, get attorney sign-off with any disclaimer, and test before scheduling.",
+    "say": "Attorney sign-off every issue."
+  },
+  "s3": {
+    "on": "This section warns against firm-only content and naming clients without consent, and asks to archive every issue with its approval date.",
+    "say": "Lead with something useful to the reader."
   }
 },
 "4::Email Deliverability Basics": {
@@ -2106,6 +3482,18 @@ window.PRESENTER_NOTES = {
     "say": "Protect client email by keeping marketing on its own domain.",
     "wrap": "Authenticate, keep lists clean, watch the numbers and ramp up slowly.",
     "scenario": "After the last newsletter, three clients say firm emails are landing in spam. What do you check first, who do you involve, and what do you pause?"
+  },
+  "s1": {
+    "on": "This section explains deliverability, the SPF, DKIM and DMARC records Gmail and Yahoo require for bulk senders, and how complaints and bounces damage the domain.",
+    "say": "Authentication plus reputation."
+  },
+  "s2": {
+    "on": "These steps protect it: confirm the DNS records with IT, use one-click unsubscribe, keep bounces under 2% and complaints under 0.3%, and warm up new senders.",
+    "say": "Warm up gradually."
+  },
+  "s3": {
+    "on": "This section warns against blasting old lists and noreply senders, and advises a separate marketing subdomain.",
+    "say": "Protect client email from campaign problems."
   }
 },
 "4::Email Metrics & A/B Testing": {
@@ -2119,6 +3507,18 @@ window.PRESENTER_NOTES = {
     "say": "Replies and consultations beat opens.",
     "wrap": "Test one thing, measure what matters and don't over-read small numbers.",
     "scenario": "Subject A got a 42% open rate and 1 reply. Subject B got 31% and 6 replies. Which won, and what do you tell the attorney?"
+  },
+  "s1": {
+    "on": "This section lists key metrics, notes opens are inflated by Apple's privacy feature, and explains A/B testing one change at a time.",
+    "say": "Clicks, replies, consultations beat opens."
+  },
+  "s2": {
+    "on": "These steps run it: pick the goal metric first, test one element on a random sample, keep a campaign log, and review monthly against the firm's own averages.",
+    "say": "Decide the goal before you send."
+  },
+  "s3": {
+    "on": "This section warns against winners from tiny samples and judging by opens alone, and recommends small, regular tests.",
+    "say": "Three opens on forty sends is noise."
   }
 },
 "4::Email Marketing Tools & Approval Workflow": {
@@ -2132,6 +3532,18 @@ window.PRESENTER_NOTES = {
     "say": "One quick unreviewed send can reach thousands.",
     "wrap": "Approved templates, a written workflow, limited send rights and tested links.",
     "scenario": "Elias wants an event invitation sent tonight, and the reviewing associate isn't available until tomorrow. What are your options, and what do you recommend?"
+  },
+  "s1": {
+    "on": "This section names common platforms, calls a written approval workflow protection, and says templates need periodic review.",
+    "say": "Tools plus a written workflow."
+  },
+  "s2": {
+    "on": "These steps set it up: an approved template with footer and disclaimer, Draft → Review → Compliance → Schedule → Report, sends timed for business hours, and saved versions.",
+    "say": "Draft, review, check, schedule, report."
+  },
+  "s3": {
+    "on": "This section warns that 'just a quick send' can reach thousands with an error, asks to limit send permission, and says to test links before scheduling.",
+    "say": "Least privilege applies here too."
   }
 },
 "4::Email Outreach End-to-End: Research, Write, Follow Up": {
@@ -2145,6 +3557,23 @@ window.PRESENTER_NOTES = {
     "say": "The close-out email often gets the most replies.",
     "wrap": "Three touches, each with something new, then stop and log the outcome.",
     "scenario": "Elias wants to reach the operations director of a regional construction company that just announced a two-state expansion. Your first email got no reply after four days. What does your follow-up say, what new angle does it use, and when do you stop?"
+  },
+  "s1": {
+    "on": "This section says an email is judged in about three seconds on a phone, relevance beats polish, each email has one job, and the sequence is planned up front.",
+    "say": "Three seconds, one job."
+  },
+  "s2": {
+    "on": "These steps run it end to end: research a trigger, a 3–7 word subject, a 50–125 word body, sign-off with opt-out, a planned cadence, and stopping on a reply or opt-out.",
+    "say": "Research, write, plan the follow-ups, stop on reply.",
+    "ask": "What trigger would you look for?"
+  },
+  "s3": {
+    "on": "This section gives the do's and don'ts: 'you' more than 'we', something new in each follow-up, a phone check, and no templates, guilt trips or legal promises.",
+    "say": "Only the attorney speaks to a matter."
+  },
+  "s4": {
+    "on": "This section lays out the sequence: Touch 1 on day 1, Touch 2 on day 3–4 with a new angle, Touch 3 on day 8–10 as a courteous close-out, then stop.",
+    "say": "Three touches, then stop."
   }
 },
 "5::Running a Household Like a Business": {
@@ -2158,6 +3587,23 @@ window.PRESENTER_NOTES = {
     "say": "Calendar, budget, directory: the household's operating system.",
     "wrap": "One point of contact, simple systems and regular reviews.",
     "scenario": "Sarah Thorne asks you to take over running the household next week. What are the first three things you set up, and who do you tell that you're now the point of contact?"
+  },
+  "s1": {
+    "on": "This section's idea: household management uses real business discipline, meaning planning, organizing, budgeting and evaluation.",
+    "say": "Run the home like a business."
+  },
+  "s2": {
+    "on": "These steps apply it: be the main point of contact, build systems for recurring categories, review operations periodically, and document standing decisions.",
+    "say": "Systems, not reactions.",
+    "ask": "What recurring household task would you systematize first?"
+  },
+  "s3": {
+    "on": "This section's rule: the assistant is the main point of contact for family, staff and contractors.",
+    "say": "One point of contact: you."
+  },
+  "s4": {
+    "on": "This section lists the tools: a master calendar, a categorized household budget reconciled monthly, and a vendor and staff directory with backups.",
+    "say": "Calendar, budget, directory."
   }
 },
 "5::Recurring Household Admin: Utilities, Purchasing & Subscriptions": {
@@ -2171,6 +3617,19 @@ window.PRESENTER_NOTES = {
     "say": "Nothing breaks on any one day. That's the trap.",
     "wrap": "Calendar the payments, log the purchases and review renewals before they hit.",
     "scenario": "You find the Thorne household pays for three streaming services, two meal-kit subscriptions and a gym nobody uses. Walk through how you'd review them and what you'd bring to Sarah."
+  },
+  "s1": {
+    "on": "This section covers three categories: utilities that can't lapse, purchasing for business and personal needs, and the full subscription lifecycle.",
+    "say": "Utilities, purchasing, subscriptions."
+  },
+  "s2": {
+    "on": "These steps track them: utilities on a calendar with due dates, a purchase log, renewal dates logged at sign-up, a keep-or-cancel decision before each renewal, and equal attention to all three.",
+    "say": "Decide before auto-renew decides for you.",
+    "ask": "Which subscription renewed on you by surprise?"
+  },
+  "s3": {
+    "on": "This section names the shared failure: low-drama recurring tasks slide until a utility is shut off or a subscription renews at triple the rate.",
+    "say": "The risk is in the accumulation."
   }
 },
 "5::Household Staff Management": {
@@ -2184,6 +3643,19 @@ window.PRESENTER_NOTES = {
     "say": "Check in proactively. Many staff won't raise a problem themselves.",
     "wrap": "Written roles, a shared calendar, regular check-ins and real handoffs.",
     "scenario": "The Thorne housekeeper is going on six weeks of medical leave with two days' notice. What do you document and hand off so the temporary replacement doesn't need to ask Sarah a dozen basic questions in week one?"
+  },
+  "s1": {
+    "on": "This section says staff management is coordination, not supervision, that written expectations prevent most friction, and that schedules must respect staff boundaries.",
+    "say": "Coordinate, don't micromanage."
+  },
+  "s2": {
+    "on": "These steps set it up: a written role description per position, a shared staff calendar, regular check-ins, and emergency and medical info on file.",
+    "say": "Write the role down."
+  },
+  "s3": {
+    "on": "This section warns that schedules can't live in one person's memory and that staff may not raise conflicts, and asks for professionalism and real handoffs at turnover.",
+    "say": "Check in; many won't speak up.",
+    "ask": "How would you find out if a nanny's schedule isn't working?"
   }
 },
 "5::Home Maintenance & Repair Coordination": {
@@ -2197,6 +3669,19 @@ window.PRESENTER_NOTES = {
     "say": "Know your dollar limit before the repair call, not during it.",
     "wrap": "Schedule maintenance, triage repairs, get it in writing and keep records.",
     "scenario": "The HVAC annual service is due, but the household has declined the reminder for three months because \"it's working fine.\" What's the real risk, and how do you raise it again without it feeling like nagging?"
+  },
+  "s1": {
+    "on": "This section separates routine scheduled maintenance from reactive repairs, says a calendar keeps small fixes small, and applies procurement discipline to contractors.",
+    "say": "Routine and reactive need different handling."
+  },
+  "s2": {
+    "on": "These steps are the system: a maintenance calendar by service interval, a vetted contractor list, written scope and cost before work, and warranties in the Home Binder.",
+    "say": "Scope and cost in writing, every time."
+  },
+  "s3": {
+    "on": "This section warns against treating all repairs as equally urgent or spending past your threshold without sign-off, asks for repair records, and warns that an unchecked calendar is worse than none.",
+    "say": "A dripping faucet isn't a gas smell.",
+    "ask": "What's your approval threshold for repairs?"
   }
 },
 "5::Procurement and Vendor/Supplier Management": {
@@ -2210,6 +3695,22 @@ window.PRESENTER_NOTES = {
     "say": "Anyone working inside the home gets references, insurance and licensing checked.",
     "wrap": "Good procurement reduces how often vendors fail you.",
     "scenario": "The Thornes need a new landscaping company. Walk through the procurement cycle: what you'd ask for, what you'd check, and what goes into the written agreement."
+  },
+  "s1": {
+    "on": "This section says procurement is sequential: follow the steps in order.",
+    "say": "Four steps, in order."
+  },
+  "s2": {
+    "on": "These steps are the sequence: Source multiple options, Compare terms not just price, Formalize the agreement, and Manage the relationship with a backup ready.",
+    "say": "Source, compare, formalize, manage."
+  },
+  "s3": {
+    "on": "This section calls procurement the proactive counterpart to vendor-failure handling; good procurement means fewer failures.",
+    "say": "Prevention reduces failures."
+  },
+  "s4": {
+    "on": "This section adds detail: define need and budget, get three quotes, check references, insurance and licensing, and record terms and review annually.",
+    "say": "Three quotes for anything non-trivial."
   }
 },
 "5::Vendor Relationships Beyond the Signature": {
@@ -2223,6 +3724,18 @@ window.PRESENTER_NOTES = {
     "say": "Signing is the start of the relationship, not the end.",
     "wrap": "Track performance, renewals and backups for every vendor.",
     "scenario": "The Thornes' pool service has been paid on time every month, but the pool has turned green twice this summer. What should ongoing vendor management have caught, and what do you do now?"
+  },
+  "s1": {
+    "on": "This section says real comparison, not whoever's easiest to reach, is what makes procurement deliberate.",
+    "say": "Deliberate, not convenient."
+  },
+  "s2": {
+    "on": "These steps continue after signing: compare options, review terms, track performance, track renewals, and keep a backup.",
+    "say": "Paid invoices don't mean good performance."
+  },
+  "s3": {
+    "on": "This section says supplier management continues after signing and that renewal dates belong in a tracked reference.",
+    "say": "Track it; don't remember it."
   }
 },
 "5::Negotiating Vendor Contracts & Terms": {
@@ -2236,6 +3749,19 @@ window.PRESENTER_NOTES = {
     "say": "\"Only good today\" is a tactic, not a deadline.",
     "wrap": "Know your priorities, negotiate terms, get it in writing and revisit at renewal.",
     "scenario": "A vendor the household has used reliably for two years sends a renewal with a 15% increase and no explanation. You have one untested alternative. How do you approach the conversation, and what would justify staying versus switching?"
+  },
+  "s1": {
+    "on": "This section says negotiation is about protective terms, not just the lowest price; alternatives give leverage, and most terms can be negotiated.",
+    "say": "The default contract is a starting point."
+  },
+  "s2": {
+    "on": "These steps negotiate: know your priorities in order, ask for one term beyond price, get everything in writing, and renegotiate at renewal.",
+    "say": "Ask for one thing beyond price.",
+    "ask": "What term would you ask for besides price?"
+  },
+  "s3": {
+    "on": "This section warns against ignoring cancellation terms and 'today only' pressure, asks for a record of what was agreed, and says not to damage the relationship.",
+    "say": "How you negotiate matters too."
   }
 },
 "5::When a Vendor Falls Through": {
@@ -2249,6 +3775,23 @@ window.PRESENTER_NOTES = {
     "say": "Test your backup before an emergency depends on it.",
     "wrap": "Notify fast, bring options and keep a tested backup for every critical service.",
     "scenario": "The caterer for Sarah Thorne's dinner party for 20 cancels at 2 p.m. on the day. What do you do in the first five minutes, and what does your message to Sarah say?"
+  },
+  "s1": {
+    "on": "This section's rule: tell the household immediately and propose real alternatives.",
+    "say": "Notify and propose."
+  },
+  "s2": {
+    "on": "These steps respond: notify at once, offer specific alternatives, use the pre-identified backup, confirm it can deliver on time, and update the tracker.",
+    "say": "Don't quietly fix it first."
+  },
+  "s3": {
+    "on": "This section says to keep a backup identified for every recurring service.",
+    "say": "Backups before you need them."
+  },
+  "s4": {
+    "on": "This section adds detail: one pre-vetted backup per critical service, test it with small jobs, and replace a vendor that fails twice.",
+    "say": "Fails twice, replace it.",
+    "ask": "Who's your backup for cleaning or childcare?"
   }
 },
 "5::The PA Risk Management Framework": {
@@ -2262,6 +3805,23 @@ window.PRESENTER_NOTES = {
     "say": "A burglary is physical, financial and privacy risk all at once.",
     "wrap": "Map every incident to all the categories it touches.",
     "scenario": "A delivery driver slips on the Thornes' icy driveway and posts about it on social media. Map it to every risk category it touches, and say what you'd do first."
+  },
+  "s1": {
+    "on": "This section lays out four risk categories: Financial, Legal & Liability, Operational and Reputational, each with its main threats and response.",
+    "say": "Four kinds of risk."
+  },
+  "s2": {
+    "on": "These steps manage each: verify payments and renewals, watch for liability exposure, plan contingencies ahead, practice discretion, and check each incident against all four.",
+    "say": "Check every category, not just the obvious one."
+  },
+  "s3": {
+    "on": "This section's key point: most real incidents touch more than one category.",
+    "say": "Incidents overlap."
+  },
+  "s4": {
+    "on": "This section maps examples to each category, adds Physical & Safety, and shows a burglary touching physical, financial and privacy risk at once.",
+    "say": "Map incidents to every category they touch.",
+    "ask": "What categories would a lost laptop touch?"
   }
 },
 "5::The Four Core Risk Strategies": {
@@ -2275,6 +3835,23 @@ window.PRESENTER_NOTES = {
     "say": "Most situations use more than one strategy.",
     "wrap": "Compare likelihood and impact, then combine strategies where it makes sense.",
     "scenario": "Match each to a strategy: the Thornes' teenager starts driving, a family trip to a country under a Level 3 advisory, a $40 phone screen protector plan, and valuable art in the home."
+  },
+  "s1": {
+    "on": "This section starts with Avoidance: skip the risky activity.",
+    "say": "Strategy one: avoid."
+  },
+  "s2": {
+    "on": "These steps match strategies to risks: Avoid what can be skipped, Reduce what can be lowered, Transfer financial exposure to insurance, and Retain minor risks deliberately.",
+    "say": "Avoid, reduce, transfer, retain."
+  },
+  "s3": {
+    "on": "This section defines the other three: Reduction (alarms, defensive driving), Transfer (insurance) and Retention (accept small risks).",
+    "say": "Match the strategy to the risk."
+  },
+  "s4": {
+    "on": "This section explains choosing by likelihood and impact, and shows strategies combined: insure the car, add a tracker, accept the deductible.",
+    "say": "Most situations combine strategies.",
+    "ask": "Which strategy fits a small, frequent risk?"
   }
 },
 "5::Insurance & Risk at a Glance": {
@@ -2288,6 +3865,19 @@ window.PRESENTER_NOTES = {
     "say": "Every \"yes\" is a gap to close, not a note for later.",
     "wrap": "Track every policy, review twice a year and close each gap.",
     "scenario": "In the last six months the Thornes bought a lake house, hired a full-time nanny and started traveling abroad quarterly. Run the risk review: which gaps do you flag?"
+  },
+  "s1": {
+    "on": "This section's rule: track policy expirations and compare coverage to what's recommended.",
+    "say": "Track expirations, check coverage."
+  },
+  "s2": {
+    "on": "These steps build it: a secure Personal Insurance Policy Tracker with standard columns, active renewal tracking, a coverage check, the review checklist twice a year, and closing every 'yes' gap.",
+    "say": "Every 'yes' means call the broker."
+  },
+  "s3": {
+    "on": "This section gives the semi-annual review questions, the tracker's columns and the Annual Risk Review prompts: new property, marriage, dependents, business changes, net worth.",
+    "say": "Life changes mean coverage changes.",
+    "ask": "What life change would trigger a coverage review?"
   }
 },
 "5::Travel Risk Management": {
@@ -2301,6 +3891,22 @@ window.PRESENTER_NOTES = {
     "say": "Keep a printed copy in case the phone dies.",
     "wrap": "Plan all three phases and build the emergency sheet before departure.",
     "scenario": "Elias is taking his family to Italy for ten days. Build the emergency contact sheet with the room: what goes on it, and who gets a copy?"
+  },
+  "s1": {
+    "on": "This section says travel risk management is sequential: before, during, after.",
+    "say": "Three phases."
+  },
+  "s2": {
+    "on": "These steps are the phases: before (insurance, medical coverage, embassy registration if high-profile), during (emergency sheet, document copies, secure Wi-Fi), and after (reconcile and file claims).",
+    "say": "Before, during, after."
+  },
+  "s3": {
+    "on": "This section restates the key action in each phase.",
+    "say": "Each phase has one key job."
+  },
+  "s4": {
+    "on": "This section details the emergency contact sheet: local numbers, embassy, hotel, insurer's 24/7 line, document copies, medical notes, a home contact, and a printed copy.",
+    "say": "Print a copy; phones die."
   }
 },
 "5::Handling a Travel Claim": {
@@ -2316,6 +3922,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Secure safety, preserve evidence, never admit fault, then document and file.",
     "scenario": "Elias's rental car is rear-ended in Lisbon, and the other driver is insisting it was Elias's fault. He calls you from the roadside. What do you tell him to do, and in what order?"
+  },
+  "s1": {
+    "on": "This section says a claim is a risk event, and the PA is Coordinator, Document Controller and Executive Liaison.",
+    "say": "Three roles at once."
+  },
+  "s2": {
+    "on": "These steps handle it: safety first, preserve evidence (photos, report numbers, witnesses), never admit fault for the executive, and document only once things are secure.",
+    "say": "Never admit fault.",
+    "ask": "What evidence would you collect first?"
   }
 },
 "5::International Travel Risk & Duty of Care": {
@@ -2329,6 +3944,18 @@ window.PRESENTER_NOTES = {
     "say": "Decide in advance how long a silence is too long.",
     "wrap": "Plan before booking, cover health and evacuation, and set a check-in protocol.",
     "scenario": "Elias is traveling for an arbitration in a country with a moderate travel advisory and brushes off extra precautions because he's been before. What do you want in place before he leaves, and how do you raise it while respecting his experience?"
+  },
+  "s1": {
+    "on": "This section says international travel adds political, health, legal and communication risks, and duty of care means knowing where the traveler is and being able to help.",
+    "say": "Duty of care is an expectation."
+  },
+  "s2": {
+    "on": "These steps prepare: check advisories before booking, register the trip, confirm medical evacuation coverage, and build a destination emergency card with a check-in schedule.",
+    "say": "Standard insurance often excludes evacuation."
+  },
+  "s3": {
+    "on": "This section warns that it isn't the same checklist plus a passport, says to involve security for high-risk places, keep remote document copies, and set a missed check-in protocol.",
+    "say": "Decide the escalation before departure."
   }
 },
 "5::Lifestyle & Personal Support": {
@@ -2342,6 +3969,22 @@ window.PRESENTER_NOTES = {
     "say": "Track what was given last year, so you never repeat a gift.",
     "wrap": "Log it, own it and review it on a schedule.",
     "scenario": "In one week: Sarah's mother's birthday, the nanny's work anniversary, a client's holiday gift, dry cleaning before a gala and a dinner reservation for their anniversary. Put them in the tracker with owners and deadlines."
+  },
+  "s1": {
+    "on": "This section's rule: track errands, gifts and events in one shared tool with deadlines and owners.",
+    "say": "One tool, deadlines, owners."
+  },
+  "s2": {
+    "on": "These steps run it: log requests immediately, assign an owner, review regularly, and check it consistently.",
+    "say": "Log it when asked, not when urgent."
+  },
+  "s3": {
+    "on": "This section explains that things get dropped not from carelessness but because memory doesn't scale.",
+    "say": "Memory doesn't scale."
+  },
+  "s4": {
+    "on": "This section lists the areas: gifts and occasions with last year's record, errands and appointments around work, and events confirmed in writing.",
+    "say": "Remember what was given last year."
   }
 },
 "5::Creating a Home Binder for a Busy Executive": {
@@ -2355,6 +3998,19 @@ window.PRESENTER_NOTES = {
     "say": "Judge it by whether someone else can use it cold.",
     "wrap": "Four sections, pointers for sensitive data, tested by someone who isn't you.",
     "scenario": "You're unexpectedly unreachable for a day, and the Thornes' alarm goes off while the nanny is home with the kids. What does she need to find in the binder in the first two minutes?"
+  },
+  "s1": {
+    "on": "This section lays out four binder sections: Household Operations, Family & Medical, Financial & Legal Reference (pointers only) and Emergency Contacts.",
+    "say": "Four sections."
+  },
+  "s2": {
+    "on": "These steps build it section by section and end with the test: could a substitute PA or emergency responder use it cold?",
+    "say": "Pointers, not sensitive numbers."
+  },
+  "s3": {
+    "on": "This section says the binder exists for one moment, when someone else needs information and you're unavailable, and that usability is the test.",
+    "say": "Usable without calling you.",
+    "ask": "Who would use your binder in an emergency?"
   }
 },
 "5::Home Binder: Format, Security & Maintenance": {
@@ -2370,6 +4026,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Keep a digital master and a printed backup, store pointers not secrets, and update immediately.",
     "scenario": "You're reviewing the Thornes' binder and find the home safe combination and a bank account number written on the Financial page. What do you change, and where does that information go instead?"
+  },
+  "s1": {
+    "on": "This section weighs physical (works offline) against digital (easy updates, remote access); most households need both.",
+    "say": "Often both: digital master, physical backup."
+  },
+  "s2": {
+    "on": "These steps maintain it: choose by use case, keep both, never store sensitive numbers directly, update at every change, and check the security rule was followed.",
+    "say": "Outdated is worse than none."
   }
 },
 "5::Digital Home Binder Tools & Platforms": {
@@ -2383,6 +4047,18 @@ window.PRESENTER_NOTES = {
     "say": "Remove a departed employee's access the day they leave.",
     "wrap": "Pick a tool people already use, set permissions per section and keep a backup.",
     "scenario": "The Thornes are choosing between a shared Notion workspace they already use and a dedicated home-management app with built-in permissions. What do you need to know about who needs access to what before recommending one?"
+  },
+  "s1": {
+    "on": "This section says the tool should suit who needs access, structure matters more than platform, and permissions need a plan.",
+    "say": "Structure over software."
+  },
+  "s2": {
+    "on": "These steps set it up: use the workspace the household already uses, mirror the four sections, set permissions by section, and export a physical backup regularly.",
+    "say": "The driver doesn't need medical info."
+  },
+  "s3": {
+    "on": "This section warns against tools nobody else can use and single-login access, asks to revisit permissions when staff change, and suggests a usability test.",
+    "say": "Remove access when staff leave."
   }
 },
 "5::EA/PA Risk Framework: Information Security": {
@@ -2396,6 +4072,19 @@ window.PRESENTER_NOTES = {
     "say": "Report the near-miss early. It's far easier to contain.",
     "wrap": "Least privilege, verify identity, use secure channels and report early.",
     "scenario": "An email that looks like it's from Elias's bank asks you to confirm his account details to clear a \"security flag.\" It looks legitimate but arrived at an unusual time. What do you do before responding?"
+  },
+  "s1": {
+    "on": "This section defines information security risk, says EAs see more sensitive data than almost anyone, and aims for consistent handling plus an escalation path.",
+    "say": "Security is part of the role."
+  },
+  "s2": {
+    "on": "These steps are the habits: least privilege, verify identity before disclosing, use secure channels, and know containment steps (stop the spread, assess, escalate).",
+    "say": "A confident request isn't verification.",
+    "ask": "How would you verify a caller asking for account details?"
+  },
+  "s3": {
+    "on": "This section warns that most failures are human, forbids storing sensitive numbers casually, asks to report near-misses, and to review standing access.",
+    "say": "Report even the small ones."
   }
 },
 "5::EA/PA Risk Framework: Operational Continuity": {
@@ -2409,6 +4098,18 @@ window.PRESENTER_NOTES = {
     "say": "Test the plan by having someone else follow it.",
     "wrap": "Find the single points of failure, document them and test the handoff.",
     "scenario": "You're planning your first two-week vacation in over a year. What do you document and hand off so nothing critical falls through while you're away?"
+  },
+  "s1": {
+    "on": "This section defines continuity risk, warns about 'only I know how to do this', and calls SOPs, binders and contact lists continuity tools.",
+    "say": "No single point of failure."
+  },
+  "s2": {
+    "on": "These steps prepare: list what breaks if you're gone 48 hours, document critical processes, keep backup contacts, and set an 'if I'm unreachable' protocol.",
+    "say": "What breaks in 48 hours without you?"
+  },
+  "s3": {
+    "on": "This section warns that being indispensable is a risk, asks to test and update plans, and calls continuity planning risk reduction, not pessimism.",
+    "say": "Indispensable is a risk."
   }
 },
 "5::EA/PA Risk Framework: Reputational Risks": {
@@ -2422,6 +4123,18 @@ window.PRESENTER_NOTES = {
     "say": "Correct beats fast in a reputational situation.",
     "wrap": "Prevent, vet, escalate, and let only authorized people respond.",
     "scenario": "A journalist contacts you directly, outside the firm's usual channels, asking for comment on a sensitive matter involving Elias. They're polite but persistent. What do you do, and what do you deliberately avoid?"
+  },
+  "s1": {
+    "on": "This section defines reputational risk, notes it spreads fast and lasts, and says the EA/PA's role is mainly prevention.",
+    "say": "Prevention, not cleanup."
+  },
+  "s2": {
+    "on": "These steps prevent it: discretion by default, vetting guest lists and content for reputation, knowing the escalation path, and controlling information flow.",
+    "say": "Assume anything might be seen."
+  },
+  "s3": {
+    "on": "This section warns against fast wrong responses and assuming privacy, asks you to know the executive's sensitive topics, and to escalate when unsure.",
+    "say": "Correct beats quick."
   }
 },
 "5::EA/PA Risk Framework: Physical & Travel Safety": {
@@ -2435,6 +4148,18 @@ window.PRESENTER_NOTES = {
     "say": "Know the limits of your role and bring in security when the risk is real.",
     "wrap": "Scale the planning to the risk, and never skip the baseline.",
     "scenario": "Elias is attending a public event with heavy media attention, and the venue has confirmed only minimal security screening. What do you want confirmed or arranged beforehand, and who do you loop in?"
+  },
+  "s1": {
+    "on": "This section covers bodily risk to the executive or family, the highest-stakes category, where duty of care applies most.",
+    "say": "The highest stakes."
+  },
+  "s2": {
+    "on": "These steps protect: location visibility without intrusion, destination safety awareness, coordination with security, and current emergency and medical info.",
+    "say": "Findable in seconds."
+  },
+  "s3": {
+    "on": "This section says baseline awareness applies to every trip, never guess at emergency numbers, bring in professional security for high risk, and pre-agree missed check-in escalation.",
+    "say": "Scale planning to the real risk."
   }
 },
 "5::EA/PA Risk Framework: Financial Controls": {
@@ -2448,6 +4173,19 @@ window.PRESENTER_NOTES = {
     "say": "Urgency plus an unusual channel is the classic fraud pattern.",
     "wrap": "Know your limits, document everything and verify unusual requests another way.",
     "scenario": "An email that appears to be from Elias asks you to urgently wire funds to a vendor for a time-sensitive deal and to keep it discreet. The tone matches his, but something feels off. What do you do before taking any action?"
+  },
+  "s1": {
+    "on": "This section covers controls against unauthorized spending, fraud and billing errors, notes EAs often have real financial access, and says controls protect the EA too.",
+    "say": "Controls protect you as well."
+  },
+  "s2": {
+    "on": "These steps are the controls: know your approval limit, document every transaction, reconcile monthly, and flag anything unusual.",
+    "say": "Know your dollar limit in advance."
+  },
+  "s3": {
+    "on": "This section warns that urgency is a common fraud tactic and unusual channels are red flags, and asks for organized records and second-channel verification.",
+    "say": "Urgent and unusual? Verify first.",
+    "ask": "What would make you pause on a payment request?"
   }
 },
 "5::Private Expense Audit": {
@@ -2461,6 +4199,18 @@ window.PRESENTER_NOTES = {
     "say": "Private finances deserve the same care as business finances.",
     "wrap": "Review on a cadence, compare with expectations and flag the unclear.",
     "scenario": "During a routine review you find a recurring $89 monthly charge you don't recognize. What do you do before raising it with the household?"
+  },
+  "s1": {
+    "on": "This section defines a private expense audit, a periodic review of household spending, and ties it to financial controls.",
+    "say": "Review, don't just process."
+  },
+  "s2": {
+    "on": "These steps run it: a monthly cadence, actual charges compared with expected recurring costs, and anything unclear flagged.",
+    "say": "Catch the drift."
+  },
+  "s3": {
+    "on": "This section warns that private finances aren't lower stakes and must be kept as securely as any confidential record.",
+    "say": "Same security as anything confidential."
   }
 },
 "5::Vendor NDA Management": {
@@ -2474,6 +4224,18 @@ window.PRESENTER_NOTES = {
     "say": "A promise to sign later isn't an NDA.",
     "wrap": "Decide who needs one, track it and revisit when scope changes.",
     "scenario": "A new vendor needs temporary access to the Thornes' home security system for a multi-week project. What do you want confirmed or in place before granting that access?"
+  },
+  "s1": {
+    "on": "This section says vendors with access to sensitive information may need an NDA first, and managing NDAs means tracking them over time.",
+    "say": "An NDA is protection, not a formality."
+  },
+  "s2": {
+    "on": "These steps manage them: decide who needs one based on access, keep a tracker of signed NDAs and scope, and revisit when scope changes.",
+    "say": "Signed before access."
+  },
+  "s3": {
+    "on": "This section warns against treating NDAs as one-time boxes or granting access on a promise to sign later.",
+    "say": "Signed first, always."
   }
 },
 "5::Mid-Point 1-on-1 Performance Review": {
@@ -2487,6 +4249,19 @@ window.PRESENTER_NOTES = {
     "say": "Raise it now, while there's still time to fix it.",
     "wrap": "Be specific, use the data and leave with a concrete focus.",
     "scenario": "Look honestly at Days 1 through 5. Which day or Practice Lab tool would you most want to revisit before moving on, and what exactly still feels unclear?"
+  },
+  "s1": {
+    "on": "This section explains why Day 5 is the checkpoint and frames the review as a two-way conversation.",
+    "say": "It's a conversation, not a verdict."
+  },
+  "s2": {
+    "on": "These steps prepare: an honest sense of strong and shaky areas, using Knowledge Check, Practice Lab and roleplay data, and leaving with one named focus.",
+    "say": "Leave with one specific focus.",
+    "ask": "Which day feels shakiest to you so far?"
+  },
+  "s3": {
+    "on": "This section warns against treating it as a formality and encourages raising struggles now, while there's time to close the gap.",
+    "say": "Now is the time to raise it."
   }
 },
 "6::Choosing a Business Structure": {
@@ -2500,6 +4275,23 @@ window.PRESENTER_NOTES = {
     "say": "The attorney and accountant decide; you gather what they need to decide.",
     "wrap": "Gather goals, states and plans, compare the trade-offs and document the reasoning.",
     "scenario": "Elias wants to set up a separate entity for his speaking and consulting work, which may expand to two other states next year. What do you gather before the attorney and accountant recommend a structure?"
+  },
+  "s1": {
+    "on": "This section's point: the entity type (sole prop, partnership, LLC, corporation) changes liability, taxes and compliance.",
+    "say": "Structure drives liability, tax and compliance."
+  },
+  "s2": {
+    "on": "These steps prepare a recommendation: gather goals, confirm every operating state, compare trade-offs, factor in expansion, and document the reasoning.",
+    "say": "Goals first, then structure."
+  },
+  "s3": {
+    "on": "This section's rule: goals, states and expansion plans come before any recommendation.",
+    "say": "Ask before you recommend."
+  },
+  "s4": {
+    "on": "This section compares the options: sole prop (personal liability), LLC (separation and flexible tax) and corporation (formal governance, shares). The attorney and CPA make the final call.",
+    "say": "The attorney and CPA decide.",
+    "ask": "Why might a small firm default to an LLC?"
   }
 },
 "6::Staying in Good Standing": {
@@ -2513,6 +4305,22 @@ window.PRESENTER_NOTES = {
     "say": "Lose good standing and you can lose the right to sue in that state.",
     "wrap": "Calendar every filing, remind early and act the same day on any lapse.",
     "scenario": "You discover the firm's city business license expired 10 days ago. Who do you tell, what do you do today, and what do you change so it can't happen again?"
+  },
+  "s1": {
+    "on": "This section's rule: compliance is ongoing filings and renewals, never a one-time step.",
+    "say": "Never one-and-done."
+  },
+  "s2": {
+    "on": "These steps keep it: a recurring deadline calendar, early reminders, same-day action on a lapse, checking for rule changes, and a current standing record.",
+    "say": "Remind well before the due date."
+  },
+  "s3": {
+    "on": "This section's rule: if a license lapses, tell the owner immediately and start fixing it.",
+    "say": "Report lapses at once."
+  },
+  "s4": {
+    "on": "This section lists what good standing needs: annual reports, franchise taxes, a registered agent in each state, and renewed licenses. Losing it can block contracts and lawsuits.",
+    "say": "Losing standing can block the right to sue."
   }
 },
 "6::Leading a Project Under Pressure": {
@@ -2526,6 +4334,19 @@ window.PRESENTER_NOTES = {
     "say": "You shape the decision even when you don't make it.",
     "wrap": "Root cause first, scheduled updates, and options with a recommendation.",
     "scenario": "Roleplay: the client's document production just slipped two days, and three stakeholders are emailing for status. What do you look for first, and what goes in your update?"
+  },
+  "s1": {
+    "on": "This section's rule: find the root cause of a delay before reassigning work; public blame fixes nothing.",
+    "say": "Cause before blame."
+  },
+  "s2": {
+    "on": "These steps lead: root cause first, scheduled updates, Strategic Alignment, Influence Without Authority, and Decision Support with a recommendation.",
+    "say": "Options plus a recommendation.",
+    "ask": "How do you influence a vendor you don't manage?"
+  },
+  "s3": {
+    "on": "This section defines the competencies: scheduled updates, Strategic Alignment, Influence Without Authority, and Decision Support that shapes decisions.",
+    "say": "You shape the decision, not make every one."
   }
 },
 "6::Seasonal Project Coordination": {
@@ -2539,6 +4360,19 @@ window.PRESENTER_NOTES = {
     "say": "A seasonal task should get easier every year.",
     "wrap": "Recognize, document, start early and update after every cycle.",
     "scenario": "Year-end billing close at Thorne & Partners ran late last December because partner approvals came in slowly. Build the first draft of the playbook: what starts when, and who owns it?"
+  },
+  "s1": {
+    "on": "This section says seasonal coordination is sequential: follow the steps in order.",
+    "say": "In order."
+  },
+  "s2": {
+    "on": "These steps are the cycle: Recognize the pattern, Build the playbook once, Start before it's urgent, and Debrief and update.",
+    "say": "Start earlier than last year.",
+    "ask": "What recurs every year in your role?"
+  },
+  "s3": {
+    "on": "This section separates seasonal work from one-off projects: it recurs and needs a system, not a fresh plan each time.",
+    "say": "A system, not a fresh plan."
   }
 },
 "6::Frameworks Worth Knowing": {
@@ -2552,6 +4386,22 @@ window.PRESENTER_NOTES = {
     "say": "Recognize what each solves. No belt required.",
     "wrap": "Know which framework fits which problem.",
     "scenario": "Quick sort: a filing process with four redundant approval steps, invoices with recurring number errors, and a six-month office move. Which framework fits each?"
+  },
+  "s1": {
+    "on": "This section introduces three frameworks: Lean (cut waste), Six Sigma (reduce defects) and PMI/PMBOK (standard project structure).",
+    "say": "Waste, defects, structure."
+  },
+  "s2": {
+    "on": "These steps match them: Lean for wasted steps, Six Sigma for recurring errors, PMBOK for big projects, one at a time, as name recognition.",
+    "say": "Match the framework to what's broken."
+  },
+  "s3": {
+    "on": "This section's reassurance: no certification needed, just know what each solves.",
+    "say": "Recognition, not certification."
+  },
+  "s4": {
+    "on": "This section defines each: Lean removes waste, Six Sigma uses DMAIC, PMBOK plans scope, schedule, budget and risk, and Agile delivers in short cycles.",
+    "say": "Define, Measure, Analyze, Improve, Control."
   }
 },
 "6::Lean Six Sigma in Practice — A Real Methodology, Not Just a Buzzword": {
@@ -2565,6 +4415,19 @@ window.PRESENTER_NOTES = {
     "say": "Lean removes waste. Six Sigma removes errors.",
     "wrap": "Use DMAIC to fix a broken process, and don't skip Control.",
     "scenario": "Live, 30 seconds: someone name a recurring problem from your work. As a group, call out what Define, Measure, Analyze, Improve and Control would look like for it."
+  },
+  "s1": {
+    "on": "This section says the method is sequential: follow the steps in order.",
+    "say": "Five steps, in order."
+  },
+  "s2": {
+    "on": "These steps are DMAIC with an invoice example: Define the problem in a sentence, Measure real numbers, Analyze the root cause, Improve the process, and Control so the fix sticks.",
+    "say": "Real numbers, not impressions.",
+    "ask": "What recurring problem would you run through DMAIC?"
+  },
+  "s3": {
+    "on": "This section explains the combination: Lean cuts waste, Six Sigma cuts defects; together, cut what doesn't matter, then fix what's broken.",
+    "say": "Cut waste, then fix defects."
   }
 },
 "6::DMAIC — Three Worked EA Examples": {
@@ -2578,6 +4441,19 @@ window.PRESENTER_NOTES = {
     "say": "Find the one field or step that actually causes it.",
     "wrap": "Measure first, find the real cause, then make the fix the standard.",
     "scenario": "Walk the intake-form example step by step with the room, then apply DMAIC to one process from your own work."
+  },
+  "s1": {
+    "on": "This section gives the Waiting waste example: a contract stuck on one partner's signature is fixed by a backup-approver rule, not by reminding harder.",
+    "say": "Fix the process, not the reminder."
+  },
+  "s2": {
+    "on": "These steps apply the examples: backup approvers, one filing location, a miniature DMAIC, isolating the one confusing form field, and making the fix the standard.",
+    "say": "Find the one broken step."
+  },
+  "s3": {
+    "on": "This section walks through three examples: Motion waste in filing, expense approvals fixed with a 48-hour reminder, and intake forms fixed by rewording one field.",
+    "say": "Small, specific fixes.",
+    "ask": "Which example sounds most like your office?"
   }
 },
 "6::Lean's 8 Wastes & Kaizen": {
@@ -2591,6 +4467,19 @@ window.PRESENTER_NOTES = {
     "say": "Waiting and Extra Processing are almost always the answer.",
     "wrap": "Fix small frictions daily and build in Control.",
     "scenario": "You enter every new client's details into the CRM, the billing system and a spreadsheet. Which waste is this, and what's the smallest Kaizen fix you could make this week?"
+  },
+  "s1": {
+    "on": "This section lists the 8 Wastes (DOWNTIME) and says the goal is spotting waste on sight, not memorizing the acronym.",
+    "say": "Spot waste on sight."
+  },
+  "s2": {
+    "on": "These steps build the habit: notice waste, watch for Waiting and Extra Processing, practice Kaizen daily, don't skip Control, and treat it as a way of thinking.",
+    "say": "Don't skip Control."
+  },
+  "s3": {
+    "on": "This section names the common office wastes, explains Kaizen as small continuous fixes, and says the Control step is the one people skip.",
+    "say": "Small fixes, every day.",
+    "ask": "Where do you re-enter the same data twice?"
   }
 },
 "6::Operational Optimization": {
@@ -2604,6 +4493,22 @@ window.PRESENTER_NOTES = {
     "say": "A KPI without an owner is just a number.",
     "wrap": "Automate first, own it, standardize it and measure a few things that matter.",
     "scenario": "Every Monday you manually compile a matter status report from five spreadsheets. Apply automate, own, standardize, and name the one KPI you'd track for it."
+  },
+  "s1": {
+    "on": "This section's order: automate repetitive tasks, clarify ownership, then standardize.",
+    "say": "Automate, own, standardize."
+  },
+  "s2": {
+    "on": "These steps follow it: find a manual task, automate it first, assign an owner, standardize last, and track a few reviewed KPIs.",
+    "say": "Order saves wasted documentation."
+  },
+  "s3": {
+    "on": "This section's rule: a few real KPIs on a fixed cadence beat a sprawling list.",
+    "say": "Few KPIs, reviewed."
+  },
+  "s4": {
+    "on": "This section says to pick outcome KPIs, limit to four or five with targets and owners, and review trends on a fixed cadence.",
+    "say": "A KPI without an owner is just a number."
   }
 },
 "6::The KPI Dashboard Template": {
@@ -2617,6 +4522,22 @@ window.PRESENTER_NOTES = {
     "say": "A KPI that keeps missing means the SOP needs updating.",
     "wrap": "Specific targets, a fixed review and a loop back into the SOPs.",
     "scenario": "Your dashboard shows client response time averaging 7 hours against a 4-hour target for three months. What does that tell you, and which SOP do you review first?"
+  },
+  "s1": {
+    "on": "This section says a real dashboard tracks a few numbers in four areas: Executive Productivity, Client Service, Operational Efficiency and Legal Compliance.",
+    "say": "Four areas, few numbers."
+  },
+  "s2": {
+    "on": "These steps run it: a few KPIs, a specific target each, a fixed review cadence, the SOP lifecycle, and missed KPIs feeding SOP review.",
+    "say": "A missed target means review the SOP."
+  },
+  "s3": {
+    "on": "This section lays out the SOP lifecycle: Creation, Review & Update, Approval, Monitoring & Audit, then back to Creation.",
+    "say": "SOPs are never finished."
+  },
+  "s4": {
+    "on": "This section gives example targets: 98% calendar accuracy, a briefing by 8 AM, 4-hour client response, invoices within 3 days, and SOP reviews every 6 months.",
+    "say": "Specific targets."
   }
 },
 "6::SOP Architecture & Trigger Mapping": {
@@ -2630,6 +4551,19 @@ window.PRESENTER_NOTES = {
     "say": "Owner, ID, version, trigger.",
     "wrap": "Numbered steps, a clear trigger and an owner who keeps it current.",
     "scenario": "You're writing an SOP for last-minute court filing deadlines. What's the trigger event, and what must the first three steps cover to be useful in the moment?"
+  },
+  "s1": {
+    "on": "This section defines an SOP and its parts (ID, Purpose, Scope, Definitions, Procedure, Roles, Tools, Compliance Notes, Revision History) and explains trigger mapping.",
+    "say": "Know exactly when it applies."
+  },
+  "s2": {
+    "on": "These steps write one: why it's needed, explicit scope, numbered steps not prose, and a specific trigger event.",
+    "say": "Steps, not paragraphs.",
+    "ask": "What trigger would start a deadline-management SOP?"
+  },
+  "s3": {
+    "on": "This section warns that an SOP with no trigger won't get used, and asks for an owner, an ID and version, and a length someone can follow live.",
+    "say": "Short enough to use under pressure."
   }
 },
 "6::Hybrid Screen-Recording Workflow (Loom + Text)": {
@@ -2643,6 +4577,18 @@ window.PRESENTER_NOTES = {
     "say": "An outdated recording is worse than none.",
     "wrap": "Short recording, written steps, stored together and kept current.",
     "scenario": "You need to document a multi-screen expense report process with non-obvious approval routing in the accounting platform. Hybrid, or text alone? What tips the decision?"
+  },
+  "s1": {
+    "on": "This section says some processes are easier shown than written; a short recording plus a text summary combines both, and the text is mandatory.",
+    "say": "Show it and write it."
+  },
+  "s2": {
+    "on": "These steps produce it: a short narrated recording, a numbered text summary, both stored together, and one recording per process.",
+    "say": "Under five minutes, one process each."
+  },
+  "s3": {
+    "on": "This section warns that a video alone isn't an SOP, asks to update both when things change, keep them easy to access, and use the format only where it helps.",
+    "say": "The recording illustrates the SOP."
   }
 },
 "6::Maintenance, Auditing & Version Control": {
@@ -2656,6 +4602,18 @@ window.PRESENTER_NOTES = {
     "say": "An audit finding that never reaches the SOP will happen again.",
     "wrap": "Review on schedule, version every change, audit adherence and assign an owner.",
     "scenario": "An audit finds three team members following three slightly different versions of the same filing SOP, without knowing it. What does that reveal, and what do you change?"
+  },
+  "s1": {
+    "on": "This section says SOPs have a lifecycle, version control shows which copy is current, and audits confirm SOPs are followed.",
+    "say": "Versioned and audited."
+  },
+  "s2": {
+    "on": "These steps maintain them: a review cadence, a revision log, off-cycle updates when triggers hit, and adherence KPIs.",
+    "say": "Log every change."
+  },
+  "s3": {
+    "on": "This section warns against editing without bumping the version, asks for one central repository, closing the loop after audits, and a named owner.",
+    "say": "Change the content, change the version."
   }
 },
 "6::Entity Formation Step-by-Step": {
@@ -2669,6 +4627,18 @@ window.PRESENTER_NOTES = {
     "say": "Approval from the state isn't the finish line.",
     "wrap": "Follow the sequence, keep every document together and set the agent up at formation.",
     "scenario": "Elias's new consulting entity was approved by the state yesterday, and he wants a business bank account \"as soon as possible.\" The EIN hasn't been applied for yet. What do you tell him about the sequence and a realistic timeline?"
+  },
+  "s1": {
+    "on": "This section says formation is a sequence (structure, name, state filing, EIN, governance documents), paper and operational dates can differ, and early gaps block later steps.",
+    "say": "It's a sequence, not one filing."
+  },
+  "s2": {
+    "on": "These steps form it: check name availability, file and confirm approval, get the EIN, and execute the Operating Agreement or Bylaws.",
+    "say": "Filing isn't approval; confirm it."
+  },
+  "s3": {
+    "on": "This section warns against stopping at the state filing, and asks for one formation folder and a valid registered agent from the start.",
+    "say": "Keep every document in one folder."
   }
 },
 "6::Multi-State Registration & Foreign Qualification": {
@@ -2682,6 +4652,18 @@ window.PRESENTER_NOTES = {
     "say": "The home-state filing doesn't cover everywhere.",
     "wrap": "Identify every state, qualify in each and track them in one place.",
     "scenario": "The firm just hired a remote employee in a state where it has never operated. What needs to happen from a compliance standpoint before the start date, and who do you loop in?"
+  },
+  "s1": {
+    "on": "This section explains that an entity is only authorized in its home state; elsewhere it needs foreign qualification, triggered by 'doing business' such as hiring or leasing.",
+    "say": "Home state only, until you qualify."
+  },
+  "s2": {
+    "on": "These steps qualify it: identify every triggering state, file a Certificate of Authority with good standing, appoint agents per state, and track each state's obligations.",
+    "say": "Each state has its own agent and deadlines."
+  },
+  "s3": {
+    "on": "This section warns that a home-state filing doesn't cover everywhere, and asks for one tracker of states, agents and deadlines.",
+    "say": "One tracker for every state."
   }
 },
 "6::Annual Report & Franchise Tax Deadlines Across Jurisdictions": {
@@ -2695,6 +4677,18 @@ window.PRESENTER_NOTES = {
     "say": "A missed deadline gets fixed today, not next week.",
     "wrap": "One master calendar, early reminders and confirmed acceptance.",
     "scenario": "Auditing the compliance calendar, you find Delaware's annual report was filed on time, but Texas's franchise report deadline passed three weeks ago with no record of filing. What's your first move?"
+  },
+  "s1": {
+    "on": "This section says each state sets its own deadlines, a miss can cost good standing, and grace periods aren't universal.",
+    "say": "No single due date."
+  },
+  "s2": {
+    "on": "These steps manage them: a master compliance calendar, reminders well ahead, and confirming acceptance, not just submission.",
+    "say": "Submitted isn't accepted."
+  },
+  "s3": {
+    "on": "This section warns against relying on memory and says to fix a missed deadline immediately through reinstatement.",
+    "say": "Exposed until reinstated."
   }
 },
 "6::Business Licensing & Permits": {
@@ -2708,6 +4702,18 @@ window.PRESENTER_NOTES = {
     "say": "Licenses renew. Track each one on its own cycle.",
     "wrap": "Map every license, track every renewal and keep copies centrally.",
     "scenario": "The firm is opening a satellite office in a new city. What licensing and permit questions need answering before it can open, and who do you ask?"
+  },
+  "s1": {
+    "on": "This section says formation and licensing are separate systems, requirements stack at every level of government, and operating unlicensed has serious consequences.",
+    "say": "Formed isn't licensed."
+  },
+  "s2": {
+    "on": "These steps track them: identify every license needed, track each renewal cycle, and keep individual professional licenses current.",
+    "say": "Each license has its own cycle."
+  },
+  "s3": {
+    "on": "This section warns that licenses need renewal and sometimes continuing education, and asks for copies in the central compliance folder.",
+    "say": "Licenses expire."
   }
 },
 "6::Operating Agreements & Corporate Bylaws Basics": {
@@ -2721,6 +4727,18 @@ window.PRESENTER_NOTES = {
     "say": "A side email isn't an amendment.",
     "wrap": "Make it specific, get it signed and keep it current.",
     "scenario": "A lender asks for the entity's Operating Agreement, and the version on file is three years old and doesn't reflect a partner who left last year. What's the risk, and what do you do before sending anything?"
+  },
+  "s1": {
+    "on": "This section explains the entity's internal rulebook: without it, generic state rules apply, and it's the first document requested in disputes and due diligence.",
+    "say": "The internal rulebook."
+  },
+  "s2": {
+    "on": "These steps check it: ownership, voting, major decisions and exits covered, executed by all owners, and stored securely.",
+    "say": "Drafted isn't signed."
+  },
+  "s3": {
+    "on": "This section warns against unadapted templates, and says amendments must update the document formally.",
+    "say": "No side-email amendments."
   }
 },
 "6::Registered Agent Responsibilities & Service of Process": {
@@ -2734,6 +4752,18 @@ window.PRESENTER_NOTES = {
     "say": "Know who reads the notices, not just who receives them.",
     "wrap": "Keep the agent current, monitored and tracked, and route notices immediately.",
     "scenario": "The registered agent service forwards what looks like a newly served lawsuit. What do you do in the next 30 minutes, and who needs to know immediately?"
+  },
+  "s1": {
+    "on": "This section defines the registered agent as the official recipient of legal notices; outdated info can still lead to default, and each state needs one.",
+    "say": "'We never got it' isn't a defense."
+  },
+  "s2": {
+    "on": "These steps manage it: a current, monitored address, immediate routing of notices, and prompt updates to the state.",
+    "say": "Route notices the same day."
+  },
+  "s3": {
+    "on": "This section warns about unmonitored agent inboxes, and asks to track agent info with annual report deadlines.",
+    "say": "Someone must actually watch the inbox."
   }
 },
 "6::Corporate Recordkeeping & Minute Books": {
@@ -2747,6 +4777,18 @@ window.PRESENTER_NOTES = {
     "say": "When in doubt, write it down.",
     "wrap": "Record every major action, keep it current and store it safely.",
     "scenario": "A potential investor's due diligence checklist asks for two years of board minutes, and the firm has never documented its meetings. How big is the problem, and how do you start closing the gap?"
+  },
+  "s1": {
+    "on": "This section defines the minute book as the official record, notes corporations have stricter requirements, and warns that gaps can undermine authorization.",
+    "say": "The entity's official history."
+  },
+  "s2": {
+    "on": "These steps maintain it: resolutions or minutes for major actions, updates in real time, and secure central storage.",
+    "say": "Document it as it happens."
+  },
+  "s3": {
+    "on": "This section warns that small entities still need one for due diligence, and says: when in doubt, document it.",
+    "say": "When in doubt, document."
   }
 },
 "6::Project Scope Creep & Change Management": {
@@ -2760,6 +4802,19 @@ window.PRESENTER_NOTES = {
     "say": "Quietly absorbing changes is how projects go late.",
     "wrap": "Document the scope, surface every trade-off and log every change.",
     "scenario": "A stakeholder asks for \"just one more small addition\" to a project already three small additions deep. What do you say, given each addition really did seem reasonable on its own?"
+  },
+  "s1": {
+    "on": "This section defines scope creep as small additions piling up, each with a real cost; documented scope makes the trade-off visible.",
+    "say": "Small additions add up."
+  },
+  "s2": {
+    "on": "These steps manage it: document the original scope, name new requests as scope changes with their trade-off, and log every approved change.",
+    "say": "Name it as a scope change.",
+    "ask": "How would you raise a small extra request mid-project?"
+  },
+  "s3": {
+    "on": "This section warns against quietly absorbing additions, and says the conversation needn't be adversarial.",
+    "say": "Here's what it means for the timeline."
   }
 },
 "6::Stakeholder Communication During Project Delays": {
@@ -2773,6 +4828,18 @@ window.PRESENTER_NOTES = {
     "say": "Silence between updates reads as bad news.",
     "wrap": "Flag early, lead with the bottom line and always bring a plan.",
     "scenario": "This morning you learned the project will miss its deadline by two weeks. The stakeholder has a standing call in one hour. What do you do between now and that call?"
+  },
+  "s1": {
+    "on": "This section says early communication keeps a delay manageable, being last to know hurts trust, and the goal is an accurate picture and a plan.",
+    "say": "Early and honest."
+  },
+  "s2": {
+    "on": "These steps communicate it: flag when likely, lead with the bottom line, and always include a next step or new timeline.",
+    "say": "Bottom line first, plan attached."
+  },
+  "s3": {
+    "on": "This section warns against waiting past the deadline, and asks for a steady update cadence during long delays.",
+    "say": "Don't go quiet."
   }
 },
 "6::Root Cause Analysis Basics": {
@@ -2786,6 +4853,19 @@ window.PRESENTER_NOTES = {
     "say": "\"Human error\" is where the analysis starts, not where it ends.",
     "wrap": "State it precisely, ask why repeatedly and test the root cause.",
     "scenario": "A filing deadline was missed last week, and the first explanation is \"the person responsible forgot.\" Use the 5 Whys out loud to get to something fixable."
+  },
+  "s1": {
+    "on": "This section explains root cause analysis and the 5 Whys, and warns that fixing symptoms brings the problem back.",
+    "say": "Ask why until it's a real cause."
+  },
+  "s2": {
+    "on": "These steps run it: state the problem precisely, keep asking why, and confirm the cause would have prevented the problem.",
+    "say": "Would fixing it have prevented this?",
+    "ask": "What's a problem you could run the 5 Whys on?"
+  },
+  "s3": {
+    "on": "This section warns that 'human error' is usually a symptom, and says to do the analysis while details are fresh.",
+    "say": "Human error is a symptom."
   }
 },
 "6::Change Management for New SOPs": {
@@ -2799,6 +4879,18 @@ window.PRESENTER_NOTES = {
     "say": "An edit nobody sees isn't a rollout.",
     "wrap": "Explain why, introduce it properly, involve the users and check adoption.",
     "scenario": "You've finalized a revised filing SOP that fixes a real recurring error, but the team has done it the old way for two years. What's your rollout plan beyond sharing the document?"
+  },
+  "s1": {
+    "on": "This section says an SOP nobody adopts is no SOP, resistance comes from not understanding why, and rollout needs its own plan.",
+    "say": "Writing it is half the work."
+  },
+  "s2": {
+    "on": "These steps roll it out: explain why, introduce it properly, and check afterward that it's followed.",
+    "say": "Explain the why."
+  },
+  "s3": {
+    "on": "This section warns against silent document edits, and suggests involving the people who'll use it.",
+    "say": "Involve the users."
   }
 },
 "7::The EA/PA's Role in Finance": {
@@ -2812,6 +4904,23 @@ window.PRESENTER_NOTES = {
     "say": "A transposed number here causes problems further down the chain.",
     "wrap": "Check the figures, track the task and flag what looks wrong.",
     "scenario": "A vendor invoice for $1,850 arrives, but the approved purchase order says $1,580. What do you do before it goes anywhere near payment?"
+  },
+  "s1": {
+    "on": "This section says financial tasks (invoices, expenses, reimbursements) make the EA/PA a real link in the firm's financial accuracy.",
+    "say": "You're a link in the chain."
+  },
+  "s2": {
+    "on": "These steps practice it: treat each task as real, double-check figures, track tasks like other recurring work, flag anything odd, and know what depends on you.",
+    "say": "Double-check before passing it on."
+  },
+  "s3": {
+    "on": "This section's reminder: this is a real link in the chain, not filing that happens to touch numbers.",
+    "say": "Not just filing."
+  },
+  "s4": {
+    "on": "This section lists the three areas: accounts payable, accounts receivable, and expenses and reimbursements.",
+    "say": "Payable, receivable, reimbursements.",
+    "ask": "Which of the three will you handle most?"
   }
 },
 "7::SOA Reconciliation": {
@@ -2825,6 +4934,23 @@ window.PRESENTER_NOTES = {
     "say": "Start from the difference and find what explains it.",
     "wrap": "Work the formula in order, tie out exactly and document the result.",
     "scenario": "On the board: opening $3,200, invoices $4,800, payments $6,000, and a $150 late fee added. What's the closing balance? The client says they owe $1,850. Where do you look first?"
+  },
+  "s1": {
+    "on": "This section gives the formula: Opening + Invoices − Payments ± Adjustments = Closing Balance.",
+    "say": "One formula, every time."
+  },
+  "s2": {
+    "on": "These steps work it: apply the formula in order, compare bank statements with revenue records first, work back from the mismatch, tie out exactly, and document adjustments.",
+    "say": "Don't round away a variance."
+  },
+  "s3": {
+    "on": "This section restates the formula and the shortcut: compare bank statements against revenue records before rebuilding reports.",
+    "say": "Start at the mismatch."
+  },
+  "s4": {
+    "on": "This section works an example: $4,000 + $6,500 − $5,000 − $250 credit = $5,250, and the $250 gap is the unrecorded credit note.",
+    "say": "Find the difference first.",
+    "ask": "Where would you look if the client shows $5,000?"
   }
 },
 "7::Reconciliation Discrepancy Detection": {
@@ -2838,6 +4964,18 @@ window.PRESENTER_NOTES = {
     "say": "A payment on the wrong client can become a legal dispute.",
     "wrap": "Compare line by line, check where credits landed and explain every variance.",
     "scenario": "Your reconciliation is $340 short. Walk through the checklist in order and name the three most likely causes."
+  },
+  "s1": {
+    "on": "This section lists techniques: ledger against bank statement, correctly applied credits, and reversed entries.",
+    "say": "Three places to look."
+  },
+  "s2": {
+    "on": "These steps detect it: line-by-line comparison, credits checked against the right party, reversed entries found, the full checklist, and duplicate-payment checks.",
+    "say": "Line by line, not just totals."
+  },
+  "s3": {
+    "on": "This section gives the checklist (invoices listed, payments recorded, no unmatched balances, variances explained) and a real case where a misapplied payment led to a legal dispute.",
+    "say": "A wrong-client credit became a lawsuit."
   }
 },
 "7::Credit Cards & Card Applications": {
@@ -2851,6 +4989,18 @@ window.PRESENTER_NOTES = {
     "say": "Precision on applications: exactly what they ask for.",
     "wrap": "Calendar the due dates, review before paying and keep receipts organized all year.",
     "scenario": "Reviewing Elias's card statement, you spot a $129 charge from an unfamiliar merchant and a hotel charged twice for the same night. What do you do before paying the bill?"
+  },
+  "s1": {
+    "on": "This section covers three areas: card payments on a real calendar, precise card applications, and year-round tax records.",
+    "say": "Payments, applications, tax records."
+  },
+  "s2": {
+    "on": "These steps are the discipline: due dates on the calendar, statement review before paying, exactly the documents requested, records organized as they happen, and the 90-day receipt test.",
+    "say": "Could you pull 90 days of receipts right now?"
+  },
+  "s3": {
+    "on": "This section says card payments follow the same recurring discipline, and applications need precision, not 'close enough'.",
+    "say": "Close enough causes delays."
   }
 },
 "7::Tax Season Support & Working with Accountants": {
@@ -2866,6 +5016,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Organize continuously so every accountant request is a retrieval, not a reconstruction.",
     "scenario": "The accountant emails asking for all charitable donation receipts and every home-office expense from last year, by Friday. If you've kept records continuously, what does that take? If you haven't, what does it take?"
+  },
+  "s1": {
+    "on": "This section says tax support is a year-round task: organize continuously so the accountant's request is a retrieval, not a reconstruction.",
+    "say": "Retrieve, don't reconstruct."
+  },
+  "s2": {
+    "on": "These steps do it: file records as they arrive, answer requests quickly, be the reliable point of contact, link it to reconciliation, and build a weekly habit.",
+    "say": "A small weekly habit beats a yearly scramble.",
+    "ask": "What would your weekly filing pass include?"
   }
 },
 "7::What an SOP Actually Needs": {
@@ -2879,6 +5038,22 @@ window.PRESENTER_NOTES = {
     "say": "Could a temp follow it on day one?",
     "wrap": "Five elements, numbered steps and controls that prove it was done.",
     "scenario": "Draft the five elements, one line each, for an SOP on processing a client's expense reimbursement."
+  },
+  "s1": {
+    "on": "This section says the SOP elements are sequential: follow them in order.",
+    "say": "Five elements, in order."
+  },
+  "s2": {
+    "on": "These steps are the elements: Purpose, Scope, Procedure, Controls and Escalation.",
+    "say": "Purpose, Scope, Procedure, Controls, Escalation."
+  },
+  "s3": {
+    "on": "This section restates the five and warns that without SOPs execution is inconsistent, which audits catch.",
+    "say": "Audits catch inconsistency."
+  },
+  "s4": {
+    "on": "This section explains each element and gives the test: could a temp follow it on day one?",
+    "say": "Could a temp follow it?"
   }
 },
 "7::The Financial Calendar": {
@@ -2892,6 +5067,22 @@ window.PRESENTER_NOTES = {
     "say": "Confirm the exact dates with the accountant every year.",
     "wrap": "One calendar, early reminders and a weekly review.",
     "scenario": "Build the next 90 days of the firm's financial calendar: which monthly, quarterly and annual items land in that window, and when does each reminder fire?"
+  },
+  "s1": {
+    "on": "This section's rule: track billing cycles, tax deadlines and monthly closes continuously.",
+    "say": "One continuous calendar."
+  },
+  "s2": {
+    "on": "These steps run it: one calendar, reminders 7–10 days ahead, weekly review, extra buffer for the category that slips, and a check for changed requirements.",
+    "say": "Seven to ten days' warning."
+  },
+  "s3": {
+    "on": "This section's key habit: automated reminders 7–10 days before each deadline.",
+    "say": "Lead time to fix issues."
+  },
+  "s4": {
+    "on": "This section lists the rhythm: monthly invoicing, close and reconciliations; quarterly estimated taxes and payroll filings; annual 1099/W-2s, year-end close and renewals.",
+    "say": "Confirm exact dates with the accountant."
   }
 },
 "7::Billing & Invoicing": {
@@ -2905,6 +5096,22 @@ window.PRESENTER_NOTES = {
     "say": "The discount gets its own line, so the client can see it.",
     "wrap": "Check the terms, check the math and send promptly.",
     "scenario": "Live: 12.5 hours at $350 an hour, $240 in filing fees and a 10% courtesy discount on fees only. Call out each step. What's the total, and what else must the invoice say?"
+  },
+  "s1": {
+    "on": "This section gives the formula: (Rate × Hours) + Expenses, then apply any discount.",
+    "say": "Rate times hours, plus expenses, minus discount."
+  },
+  "s2": {
+    "on": "These steps finalize it: calculate in order, include amount, due date and terms, check rate and hours against the engagement, recheck the math, and send promptly.",
+    "say": "An unsent invoice doesn't help cash flow."
+  },
+  "s3": {
+    "on": "This section restates the formula and the three must-haves: amount due, due date and payment terms.",
+    "say": "Three must-haves."
+  },
+  "s4": {
+    "on": "This section lays out the invoice: header with firm, client, matter and invoice details, itemized body with a separate discount line, and footer with total, due date and terms.",
+    "say": "Header, body, footer."
   }
 },
 "7::QuickBooks How-Tos — Step by Step": {
@@ -2918,6 +5125,23 @@ window.PRESENTER_NOTES = {
     "say": "You don't need the whole platform, just these workflows.",
     "wrap": "Learn the four click-paths, and reconcile to exactly $0.00.",
     "scenario": "Screen-share if you have access: create one invoice and reconcile one account live, then have a volunteer repeat the invoice click-path from memory."
+  },
+  "s1": {
+    "on": "This section says the QuickBooks workflows are sequential: follow the steps as written.",
+    "say": "Four workflows."
+  },
+  "s2": {
+    "on": "These steps are the workflows: create an invoice, record an expense with its receipt, reconcile to $0.00, and run AR Aging, checking the 61–90 and 90+ columns first.",
+    "say": "Reconcile to exactly zero.",
+    "ask": "Which AR Aging columns need calls first?"
+  },
+  "s3": {
+    "on": "This section says these four tasks cover most of what an EA does in QuickBooks.",
+    "say": "Know these four cold."
+  },
+  "s4": {
+    "on": "This section adds three quick paths: create an invoice, receive a payment against its open invoice, and enter bills and reconcile monthly.",
+    "say": "Menu names vary by version."
   }
 },
 "7::QuickBooks Common Mistakes & Tips": {
@@ -2931,6 +5155,18 @@ window.PRESENTER_NOTES = {
     "say": "Never force a reconciliation by adjusting an unrelated entry.",
     "wrap": "Categorize carefully, reconcile to $0.00 and check invoices against the contract.",
     "scenario": "Your reconciliation shows a $62.50 difference. A colleague suggests adjusting the office supplies line to make it balance. What do you say, and what do you look for instead?"
+  },
+  "s1": {
+    "on": "This section names the most common mistake: miscategorizing an expense, like a client-reimbursable cost filed as office expense.",
+    "say": "Ask before you categorize."
+  },
+  "s2": {
+    "on": "These steps avoid mistakes: confirm categories, find the missing or duplicate transaction when it isn't $0.00, check invoices against the engagement letter, remember QuickBooks Online saves automatically, and review for patterns.",
+    "say": "Never force the numbers."
+  },
+  "s3": {
+    "on": "This section explains the $0.00 rule, checking against the engagement letter, and that QuickBooks Online needs an edit or journal entry, not an undo.",
+    "say": "No Ctrl+Z in QuickBooks Online."
   }
 },
 "7::Contract-Aware Billing": {
@@ -2944,6 +5180,22 @@ window.PRESENTER_NOTES = {
     "say": "Corporate clients often require specific billing codes.",
     "wrap": "Read the contract first, track caps continuously and apply terms consistently.",
     "scenario": "The Harlow matter has a 40-hour cap with notice required at 80%. Time entries show 34.5 hours logged. What do you do today, and who do you tell?"
+  },
+  "s1": {
+    "on": "This section's rule: know payment terms, late fees and hour caps before billing starts.",
+    "say": "Know the terms first."
+  },
+  "s2": {
+    "on": "These steps bill to the contract: confirm terms up front, track hours against caps, flag an approaching cap early, apply terms consistently, and clarify ambiguity first.",
+    "say": "Flag the cap before you hit it."
+  },
+  "s3": {
+    "on": "This section's key point: flag an approaching hour cap proactively.",
+    "say": "No surprises over the cap."
+  },
+  "s4": {
+    "on": "This section lists what to know: billing arrangement, caps and required notice, and payment, late-fee and format terms.",
+    "say": "The arrangement changes the invoice."
   }
 },
 "7::Financial KPIs for EAs/PAs": {
@@ -2957,6 +5209,18 @@ window.PRESENTER_NOTES = {
     "say": "The 25% alert buys runway.",
     "wrap": "Track against targets, review on a cadence and fix the process when a KPI slips.",
     "scenario": "A client's $10,000 retainer is at $2,300 and they have a hearing next week. What does the KPI say you should have done already, and what do you do now?"
+  },
+  "s1": {
+    "on": "This section's first KPI: invoice turnaround of 24–72 hours from service to invoice sent.",
+    "say": "Invoice within 72 hours."
+  },
+  "s2": {
+    "on": "These steps track them: turnaround against target, 98–100% reconciliation accuracy, a 25% retainer alert, fixed-cadence review, and process fixes when a KPI keeps missing.",
+    "say": "Fix the process, not the effort."
+  },
+  "s3": {
+    "on": "This section gives the other targets: 98–100% reconciliation accuracy and an alert when a retainer drops below 25%.",
+    "say": "Set the retainer alert early."
   }
 },
 "7::Bookkeeping Basics & Compliance": {
@@ -2970,6 +5234,22 @@ window.PRESENTER_NOTES = {
     "say": "Know whether your firm is cash or accrual.",
     "wrap": "Classify, keep the audit trail, separate duties and reconcile.",
     "scenario": "You're asked to both enter and approve a $2,400 vendor payment because the usual approver is out. What do you do, and what do you suggest for next time?"
+  },
+  "s1": {
+    "on": "This section's rule: classify every transaction as income, expense or receivable.",
+    "say": "Classify every transaction."
+  },
+  "s2": {
+    "on": "These steps keep books clean: classify when recording, keep an audit trail, segregate duties, reconcile regularly, and flag compliance gaps.",
+    "say": "Never approve your own transactions."
+  },
+  "s3": {
+    "on": "This section's warning: keep audit trails and segregate duties.",
+    "say": "Separation keeps it honest."
+  },
+  "s4": {
+    "on": "This section explains double-entry, cash vs. accrual, and the chart of accounts.",
+    "say": "Know whether your firm is cash or accrual."
   }
 },
 "7::Quarterly Tax Schedules": {
@@ -2983,6 +5263,18 @@ window.PRESENTER_NOTES = {
     "say": "Ask the accountant early, not the week of.",
     "wrap": "Calendar all four, confirm early and keep the confirmations.",
     "scenario": "It's ten days before a quarterly estimated tax deadline, and you haven't heard from the accountant about the amount. What do you do?"
+  },
+  "s1": {
+    "on": "This section says quarterly estimated taxes have fixed dates with penalty exposure, and uses the same redundant reminders as court deadlines.",
+    "say": "Four separate deadlines."
+  },
+  "s2": {
+    "on": "These steps manage them: log all four at the start of the year with reminders, confirm readiness with the accountant early, and keep payment confirmations.",
+    "say": "Confirm with the accountant ahead of time."
+  },
+  "s3": {
+    "on": "This section warns against treating them as one annual concern, and asks to coordinate with the accountant early.",
+    "say": "Four deadlines, four preparations."
   }
 },
 "7::W-9/1099 Audits & Filing Deadlines": {
@@ -2996,6 +5288,18 @@ window.PRESENTER_NOTES = {
     "say": "W-9s hold sensitive tax data. Store them securely.",
     "wrap": "Collect up front, audit periodically and give the deadline lead time.",
     "scenario": "Preparing for the 1099 deadline, you find one vendor paid above the threshold never submitted a W-9. What do you do now, with the deadline approaching?"
+  },
+  "s1": {
+    "on": "This section says 1099 filings depend on accurate W-9s collected ahead of time, and a W-9 audit is a preventive check.",
+    "say": "W-9s first, 1099s later."
+  },
+  "s2": {
+    "on": "These steps run it: collect a W-9 before the first payment, audit vendors against the W-9 file, and track the 1099 deadline with lead time.",
+    "say": "No W-9, no payment."
+  },
+  "s3": {
+    "on": "This section warns against checking only near the deadline, and asks to secure W-9s as confidential.",
+    "say": "They hold sensitive tax data."
   }
 },
 "7::Real-Time Time Tracking for Billable Work": {
@@ -3009,6 +5313,18 @@ window.PRESENTER_NOTES = {
     "say": "Accurate time is the input to accurate billing.",
     "wrap": "Log in real time, with detail, and reconcile before invoicing.",
     "scenario": "It's the end of a busy day and you haven't logged time for several tasks. How do you reconstruct it as accurately as possible, and what do you change tomorrow?"
+  },
+  "s1": {
+    "on": "This section says billable time must be logged as it happens because it becomes a client invoice, which raises the accuracy bar.",
+    "say": "It becomes the invoice."
+  },
+  "s2": {
+    "on": "These steps practice it: log as you go, add enough detail for the invoice line, and reconcile against the billing calendar.",
+    "say": "Enough detail to support the line item."
+  },
+  "s3": {
+    "on": "This section warns that reconstructed entries are less accurate, and ties this to contract-aware billing.",
+    "say": "Accurate time makes accurate billing."
   }
 },
 "7::Client Trust Accounts (IOLTA) — Core Rules & Commingling Risk": {
@@ -3022,6 +5338,19 @@ window.PRESENTER_NOTES = {
     "say": "The friction on trust transactions is intentional.",
     "wrap": "Separate accounts, documented triggers and a ledger per client.",
     "scenario": "The trust account balance for one specific client is $200 lower than the ledger says it should be. What's your first move, and who needs to know before you do anything else?"
+  },
+  "s1": {
+    "on": "This section explains IOLTA: client funds that aren't the firm's; commingling is a serious ethics violation; money leaves only when earned or disbursed.",
+    "say": "Client money is never firm money."
+  },
+  "s2": {
+    "on": "These steps protect it: separate accounts, withdrawals only on a documented trigger, and a running ledger per client.",
+    "say": "Every withdrawal needs a documented trigger."
+  },
+  "s3": {
+    "on": "This section warns that a trust balance must never go negative for any client, even briefly, and says the extra friction is intentional.",
+    "say": "Slow and deliberate on purpose.",
+    "ask": "Why can't you borrow from trust for a day?"
   }
 },
 "7::Trust Account Reconciliation Discipline": {
@@ -3035,6 +5364,18 @@ window.PRESENTER_NOTES = {
     "say": "A one-dollar difference gets escalated too.",
     "wrap": "Three-way reconcile on schedule, check every sub-ledger and escalate any difference.",
     "scenario": "This month the bank balance and trust ledger match, but one client's sub-ledger doesn't match what was deposited for them. Walk through how you'd trace it."
+  },
+  "s1": {
+    "on": "This section defines the three-way match (bank statement, trust ledger, client sub-ledgers), at least monthly, with every discrepancy resolved.",
+    "say": "Three numbers must match."
+  },
+  "s2": {
+    "on": "These steps run it: reconcile on schedule, cross-check the ledger against the sub-ledger sum, and document every reconciliation.",
+    "say": "Document even clean ones."
+  },
+  "s3": {
+    "on": "This section warns that a balanced total can hide one client's shortfall, and says every discrepancy is escalated regardless of size.",
+    "say": "One dollar gets the same urgency."
   }
 },
 "7::Expense Report Auditing & Approval Workflows": {
@@ -3048,6 +5389,18 @@ window.PRESENTER_NOTES = {
     "say": "Split transactions are how thresholds get dodged.",
     "wrap": "Check every line, hold what's unsupported and route through the right approver.",
     "scenario": "An expense report shows a receipt for exactly $499, one dollar under the $500 threshold that needs extra approval. What do you do with that observation?"
+  },
+  "s1": {
+    "on": "This section says audits confirm expenses are legitimate, documented and categorized, a missing receipt is a real issue, and workflows separate submitter from approver.",
+    "say": "No receipt, no confirmation."
+  },
+  "s2": {
+    "on": "These steps audit: match each line to its receipt, hold anything unsupported, and route through the proper approver.",
+    "say": "Hold it until it's clear."
+  },
+  "s3": {
+    "on": "This section warns against bulk approvals and watches for split transactions used to dodge thresholds.",
+    "say": "Watch for splits."
   }
 },
 "7::Vendor Payment Terms & Cash Flow Timing": {
@@ -3061,6 +5414,18 @@ window.PRESENTER_NOTES = {
     "say": "Early or late should always be a decision, never a default.",
     "wrap": "Know the terms, time payments to them and flag exceptions.",
     "scenario": "A Net 30 vendor invoice arrives, and the person who handles payments always pays within 48 hours \"to be safe.\" Is that the right call here, and what would you say?"
+  },
+  "s1": {
+    "on": "This section says payment terms affect cash flow: early payment ties up cash unless there's a discount, and late payment carries fees and damage.",
+    "say": "Pay on terms."
+  },
+  "s2": {
+    "on": "These steps manage it: confirm each vendor's terms, pay on time, and track due dates against expected inflows.",
+    "say": "Match payments to cash flow."
+  },
+  "s3": {
+    "on": "This section warns against paying everything on receipt, and asks to flag off-terms payments as deliberate decisions.",
+    "say": "Early or late is a decision."
   }
 },
 "7::Financial Record Retention Requirements": {
@@ -3074,6 +5439,18 @@ window.PRESENTER_NOTES = {
     "say": "When in doubt, keep it.",
     "wrap": "Know the periods, store records searchably and label retention dates.",
     "scenario": "During a records cleanup you find trust account records from several years ago. Before deleting anything to save space, what do you need to confirm first?"
+  },
+  "s1": {
+    "on": "This section says retention periods vary by type and jurisdiction (trust records often longer), retention includes retrievability, and early destruction causes problems.",
+    "say": "Keep it, and be able to find it."
+  },
+  "s2": {
+    "on": "These steps manage it: know each category's period, use durable searchable storage, and build retention dates into filing.",
+    "say": "Label the retention date when filing."
+  },
+  "s3": {
+    "on": "This section warns that digital isn't automatically retained, and says: when in doubt, keep it.",
+    "say": "Over-retaining is cheaper."
   }
 },
 "7::Handling a Billing Dispute": {
@@ -3087,6 +5464,19 @@ window.PRESENTER_NOTES = {
     "say": "If it's our error, fix it plainly and quickly.",
     "wrap": "Acknowledge fast, show the backup and correct real errors.",
     "scenario": "A client emails disputing a charge, saying it doesn't match what they remember agreeing to. What's your first move before responding?"
+  },
+  "s1": {
+    "on": "This section frames a dispute as a request for information, resolved by documentation, and says handling affects the relationship beyond the dollars.",
+    "say": "Information, not accusation."
+  },
+  "s2": {
+    "on": "These steps resolve it: pull the documentation, acknowledge promptly, and present the resolution with the detail.",
+    "say": "Show what the charge was based on.",
+    "ask": "How would you reply to a client questioning a charge?"
+  },
+  "s3": {
+    "on": "This section warns against defensiveness before checking, and says to correct real errors plainly.",
+    "say": "The relationship beats the invoice."
   }
 },
 "7::Payroll Basics for EA/PA Support Roles": {
@@ -3100,6 +5490,18 @@ window.PRESENTER_NOTES = {
     "say": "Your late timesheet can become someone's missed paycheck.",
     "wrap": "Hit the cutoffs, protect the data and calendar the deadlines.",
     "scenario": "A new hire's onboarding paperwork is incomplete two days before the payroll cutoff for the next pay run. What do you do so they aren't accidentally missed?"
+  },
+  "s1": {
+    "on": "This section says EAs touch payroll's edges, payroll deadlines don't move, and payroll data is highly sensitive.",
+    "say": "The edges matter."
+  },
+  "s2": {
+    "on": "These steps support it: accurate timesheets before cutoff, confidential handling of paperwork, and payroll deadlines on the compliance calendar.",
+    "say": "Before the cutoff."
+  },
+  "s3": {
+    "on": "This section warns that a late timesheet still delays payroll, and never to share compensation details beyond need.",
+    "say": "Need-to-know only."
   }
 },
 "7::Fraud Red Flags in Financial Documents": {
@@ -3113,6 +5515,19 @@ window.PRESENTER_NOTES = {
     "say": "A false alarm is cheap. A missed fraud isn't.",
     "wrap": "Track anomalies, verify out of band and escalate early.",
     "scenario": "A long-standing vendor emails asking to update their bank details for future payments. What's your verification process, and why doesn't their known email address settle it?"
+  },
+  "s1": {
+    "on": "This section says fraud usually looks like small plausible inconsistencies, patterns matter more than one flag, and the EA is often first to see them.",
+    "say": "You see the detail first."
+  },
+  "s2": {
+    "on": "These steps catch it: watch for unfamiliar vendors, clean round numbers, duplicate invoice numbers and changed bank details; verify changes through a separate channel; and escalate.",
+    "say": "Verify payment changes through another channel.",
+    "ask": "What would you do with a vendor's new bank details?"
+  },
+  "s3": {
+    "on": "This section warns against explaining away single anomalies, and says a false alarm costs far less than a missed one.",
+    "say": "Raise it anyway."
   }
 },
 "8::Credential Management": {
@@ -3126,6 +5541,23 @@ window.PRESENTER_NOTES = {
     "say": "Access that outlives the job is a common security gap.",
     "wrap": "Grant the least role, turn on MFA and review access regularly.",
     "scenario": "A new paralegal needs to update the shared matter calendar and read the client folder. Which role do they get in each system, and what would make you revisit it later?"
+  },
+  "s1": {
+    "on": "This section defines three roles: Admin (full control and user management), Editor (content only) and Viewer (read-only).",
+    "say": "Admin, Editor, Viewer."
+  },
+  "s2": {
+    "on": "These steps assign them: the minimum role for the job, MFA everywhere, periodic reviews, narrow by default, and a record of who has what and why.",
+    "say": "Start narrow; expand only on real need."
+  },
+  "s3": {
+    "on": "This section's rule: every user gets MFA and the minimum role.",
+    "say": "MFA plus minimum role."
+  },
+  "s4": {
+    "on": "This section says to keep Admin to very few people, explains Editor and Viewer, and warns that access outliving the job is a top security gap.",
+    "say": "Review access when someone leaves.",
+    "ask": "Who in your office really needs admin?"
   }
 },
 "8::Least-Privilege Access": {
@@ -3139,6 +5571,18 @@ window.PRESENTER_NOTES = {
     "say": "Fix the role, not the person.",
     "wrap": "Grant what the role needs, review it and remove it when the need ends.",
     "scenario": "A contractor who finished a document-review project two months ago still has access to the firm's case management system. What do you do, and how do you prevent it next time?"
+  },
+  "s1": {
+    "on": "This section's warning: over-permissioning is how well-meaning people break systems by accident.",
+    "say": "No bad intent needed."
+  },
+  "s2": {
+    "on": "These steps apply it: grant what the role needs, flag excess access, fix the role rather than blame, review elevated access, and remove temporary access.",
+    "say": "Fix the role, not the person."
+  },
+  "s3": {
+    "on": "This section tells the story of a junior staffer with unneeded admin access who changed settings; the fix was correcting the role and checking others.",
+    "say": "Check who else is over-permissioned."
   }
 },
 "8::Responding to a Suspicious Data Request": {
@@ -3152,6 +5596,23 @@ window.PRESENTER_NOTES = {
     "say": "Call the number you already have, not the one in the message.",
     "wrap": "Verify through a known channel, escalate and close the gap.",
     "scenario": "Roleplay: someone calls saying they're from the firm's IT provider and need the client list exported \"before the migration tonight.\" Verify or comply? Play it out."
+  },
+  "s1": {
+    "on": "This section says the response is sequential: follow the steps in order.",
+    "say": "Three steps, in order."
+  },
+  "s2": {
+    "on": "These steps are the response: Verify the sender, Escalate through the right channel, and Close the gap that let it through.",
+    "say": "Verify, escalate, close the gap."
+  },
+  "s3": {
+    "on": "This section restates each step as a standalone rule.",
+    "say": "Verify before anything else."
+  },
+  "s4": {
+    "on": "This section lists red flags: urgency and secrecy, mismatched details like an off domain, and unusual asks like passwords or gift cards. Verify through a number you already have.",
+    "say": "Call the number you already have.",
+    "ask": "What's the first red flag you'd notice?"
   }
 },
 "8::Containing a Confidentiality Leak": {
@@ -3165,6 +5626,22 @@ window.PRESENTER_NOTES = {
     "say": "Whether to notify clients or regulators is the attorney's call, not yours.",
     "wrap": "Contain first, capture facts and notify the right roles.",
     "scenario": "You realize you emailed a settlement draft for the Harlow matter to the wrong \"Mark,\" who works at another firm. Walk through the first hour."
+  },
+  "s1": {
+    "on": "This section says leak response is sequential: follow the steps in order.",
+    "say": "In order."
+  },
+  "s2": {
+    "on": "These steps are the response: Contain the spread, Notify the right roles, and Prevent a repeat with policy.",
+    "say": "Contain, notify, prevent."
+  },
+  "s3": {
+    "on": "This section restates the three steps: contain first, notify roles not just names, and add a policy.",
+    "say": "Contain before anything else."
+  },
+  "s4": {
+    "on": "This section details it: recall messages and revoke links, capture the facts, and notify attorney, IT and compliance, who decide any legal notification.",
+    "say": "Notification duties are their call."
   }
 },
 "8::Fixing a Broken Workflow": {
@@ -3178,6 +5655,23 @@ window.PRESENTER_NOTES = {
     "say": "If people keep asking \"where is this?\", the workflow is broken.",
     "wrap": "Consolidate, name the manual steps, test and revisit.",
     "scenario": "Client document requests at the firm arrive by email, get logged in a spreadsheet and are tracked in someone's notes. Redesign it: what's the one system, and which steps stay manual?"
+  },
+  "s1": {
+    "on": "This section's point: disconnected tools (email, spreadsheet, notes) cause duplicate work even for careful people.",
+    "say": "Scattered tools create duplicates."
+  },
+  "s2": {
+    "on": "These steps fix it: find a split workflow, consolidate into one system, name the manual steps, test on a real task, and revisit later.",
+    "say": "One place for the real status."
+  },
+  "s3": {
+    "on": "This section's rule: consolidate into one tracked system and name what stays manual.",
+    "say": "Manual steps by choice, not accident."
+  },
+  "s4": {
+    "on": "This section lists warning signs: repeated 'where is this?', re-typed information, and hand-offs where nobody owns the gap.",
+    "say": "Who owns the step in between?",
+    "ask": "Which of these signs have you seen?"
   }
 },
 "8::The Golden Rules of Admin Data Security": {
@@ -3191,6 +5685,19 @@ window.PRESENTER_NOTES = {
     "say": "Same judgment as keeping a case detail out of casual conversation.",
     "wrap": "Settings off, sensitive data out, placeholders in.",
     "scenario": "Sanitize this together: a termination email naming the employee, their salary, their medical leave and the client they worked on. What do you redact or replace before asking an AI tool to improve the wording?"
+  },
+  "s1": {
+    "on": "This section's first rule: turn off training and data-improvement settings before real work goes into an AI tool.",
+    "say": "Settings off first."
+  },
+  "s2": {
+    "on": "These steps are the rules: settings off, no financial, health, SSN or password data, placeholders for names, AI treated as a third party, and unsure means unsafe.",
+    "say": "An AI tool is a third party."
+  },
+  "s3": {
+    "on": "This section restates the no-go data list and placeholders, then asks you to walk through anonymizing a termination email; Elias's firm's confidentiality still applies.",
+    "say": "Swap names for placeholders.",
+    "ask": "What would you swap out of a termination email?"
   }
 },
 "8::Multi-Factor Authentication Basics": {
@@ -3204,6 +5711,18 @@ window.PRESENTER_NOTES = {
     "say": "Old accounts are the usual gap.",
     "wrap": "MFA everywhere sensitive, email first, authenticator over SMS.",
     "scenario": "List the accounts you use for Elias's work: email, calendar, case management, bank portal and travel. Which would you check for MFA first, and why?"
+  },
+  "s1": {
+    "on": "This section says a password alone is a single point of failure; MFA means a stolen password isn't enough.",
+    "say": "Something you know plus something you have."
+  },
+  "s2": {
+    "on": "These steps apply it: MFA on anything sensitive, email first, older accounts checked, authenticator apps over SMS, and a self-audit.",
+    "say": "Email first; it resets everything else."
+  },
+  "s3": {
+    "on": "This section says MFA belongs on everything sensitive, and the common failure is old accounts never updated.",
+    "say": "Old accounts are the gap."
   }
 },
 "8::Password Manager Best Practices": {
@@ -3219,6 +5738,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Unique passwords, a guarded master password and sharing only through the manager.",
     "scenario": "A colleague asks you to email them the login for the firm's travel booking account. What do you do instead, and what do you check about how that login is stored?"
+  },
+  "s1": {
+    "on": "This section says reused passwords turn one breach into many; a password manager makes unique passwords practical.",
+    "say": "One breach shouldn't be everywhere."
+  },
+  "s2": {
+    "on": "These steps use it: unique passwords, a strong master password, sharing through the manager, moving stored passwords in, and changing any compromised one immediately.",
+    "say": "Never send a password in chat.",
+    "ask": "Where are passwords stored in plain text today?"
   }
 },
 "8::Offboarding Access Removal Checklist": {
@@ -3232,6 +5760,18 @@ window.PRESENTER_NOTES = {
     "say": "\"Probably fine for now\" is how stale access happens.",
     "wrap": "Written checklist, full pass, same-day revocation.",
     "scenario": "The firm's receptionist leaves on Friday. Build the offboarding checklist with the room: every system, shared login and physical access item."
+  },
+  "s1": {
+    "on": "This section says every system a departing person used must be revoked, not just email.",
+    "say": "Every system, not just email."
+  },
+  "s2": {
+    "on": "These steps offboard: a written checklist, used every time, revoking on the departure date, rotating shared credentials, and adding new systems.",
+    "say": "Revoke on the day."
+  },
+  "s3": {
+    "on": "This section says a checklist catches the small systems people forget, and 'fine to leave for now' is exactly the stale access least privilege prevents.",
+    "say": "No 'probably fine for now'."
   }
 },
 "8::Shared Account Risks": {
@@ -3245,6 +5785,18 @@ window.PRESENTER_NOTES = {
     "say": "Convenience today, confusion when something goes wrong.",
     "wrap": "Replace shared logins where you can, and log usage where you can't.",
     "scenario": "Three assistants share one login to the firm's courier account, and a $900 rush delivery nobody remembers ordering appears. What can you find out, and what do you change?"
+  },
+  "s1": {
+    "on": "This section says shared logins hide who did what, which matters the moment something goes wrong.",
+    "say": "Shared means no accountability."
+  },
+  "s2": {
+    "on": "These steps manage it: prefer individual accounts, log shared use, rotate on departures, look for replacements, and treat shared accounts as a risk.",
+    "say": "Individual accounts where possible."
+  },
+  "s3": {
+    "on": "This section notes shared accounts complicate offboarding, and says individual scoped accounts are almost always safer.",
+    "say": "Safer than convenient."
   }
 },
 "8::Physical Security Basics": {
@@ -3258,6 +5810,18 @@ window.PRESENTER_NOTES = {
     "say": "Least privilege applies to rooms too.",
     "wrap": "Lock it, limit access and report losses right away.",
     "scenario": "You realize your office badge wasn't in your bag this morning, and you last had it at a coffee shop. It's probably just misplaced. What do you do, and when?"
+  },
+  "s1": {
+    "on": "This section says digital discipline means little if a laptop or cabinet is left unlocked; physical access is still access.",
+    "say": "Physical access is access."
+  },
+  "s2": {
+    "on": "These steps secure the space: lock devices when stepping away, lock cabinets, report lost badges at once, limit visitor areas, and check your desk.",
+    "say": "Lock it, even for a minute."
+  },
+  "s3": {
+    "on": "This section treats badges like passwords and applies least privilege to visitor movement.",
+    "say": "A lost badge is a lost password."
   }
 },
 "8::Device Security Fundamentals": {
@@ -3271,6 +5835,18 @@ window.PRESENTER_NOTES = {
     "say": "Your phone with work email is a work device.",
     "wrap": "Short lock timeouts, encryption, updates and remote wipe.",
     "scenario": "Elias leaves his phone, which has his work email, in a taxi. What do you check and do in the next 30 minutes?"
+  },
+  "s1": {
+    "on": "This section says an unlocked device is an open door; short timeouts and a manual lock should be reflexes.",
+    "say": "Lock as a reflex."
+  },
+  "s2": {
+    "on": "These steps secure devices: short timeouts plus manual lock, full-disk encryption, work rules on personal devices, prompt updates, and remote wipe.",
+    "say": "Encrypt and enable remote wipe."
+  },
+  "s3": {
+    "on": "This section explains that encryption turns a lost laptop into a hardware loss, and personal devices carry the same obligations.",
+    "say": "Your phone counts too."
   }
 },
 "8::Classifying Information by Sensitivity Level": {
@@ -3284,6 +5860,19 @@ window.PRESENTER_NOTES = {
     "say": "Classify first, then handle accordingly.",
     "wrap": "Classify before sharing, and default up when unsure.",
     "scenario": "Classify these live: the firm's office address, Elias's travel itinerary, a draft motion in the Harlow matter, the holiday party date, and a client's settlement amount."
+  },
+  "s1": {
+    "on": "This section defines three levels: Public, Internal, and Confidential/Privileged.",
+    "say": "Three levels."
+  },
+  "s2": {
+    "on": "These steps apply them: classify before sharing, confirm public items are meant for release, keep Internal inside, treat Confidential with legal stakes in mind, and default higher when unsure.",
+    "say": "Unsure? Treat it as more sensitive.",
+    "ask": "Where would a court date on the calendar fall?"
+  },
+  "s3": {
+    "on": "This section says not everything needs maximum protection, but the safe default is more sensitive.",
+    "say": "Match protection to sensitivity."
   }
 },
 "8::Secure File Sharing Methods": {
@@ -3299,6 +5888,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Share through controlled links, set expiry, send passwords separately and revoke when done.",
     "scenario": "Elias asks you to send a client's financial disclosures to their accountant. Walk through exactly how you'd share it: method, permissions, expiry, and how the password gets there."
+  },
+  "s1": {
+    "on": "This section says email attachments are among the least secure ways to share; access-controlled links are better.",
+    "say": "Links over attachments."
+  },
+  "s2": {
+    "on": "These steps share securely: access-controlled links, expirations and permissions, passwords sent through a separate channel, revoking when done, and least privilege for recipients.",
+    "say": "Never send the password with the file."
   }
 },
 "8::Email Encryption Basics": {
@@ -3312,6 +5909,18 @@ window.PRESENTER_NOTES = {
     "say": "Encryption doesn't fix sending it to the wrong person.",
     "wrap": "Encrypt privileged content, and never let it replace judgment.",
     "scenario": "Which of these would you encrypt: a lunch confirmation, a privileged strategy memo to the client, a client's medical records for a personal-injury claim, and a routine scheduling email to opposing counsel?"
+  },
+  "s1": {
+    "on": "This section says standard email isn't secure; encrypted email adds real protection for sensitive content.",
+    "say": "Encrypt the sensitive ones."
+  },
+  "s2": {
+    "on": "These steps use it: decide if content is sensitive, encrypt privileged content, find your organization's option, keep judging what to send, and encrypt when unsure.",
+    "say": "Many firms have it and don't use it."
+  },
+  "s3": {
+    "on": "This section says knowing when to encrypt is a skill, and encryption is one layer, not a replacement for judgment.",
+    "say": "A layer, not a substitute."
   }
 },
 "8::Metadata Risks in Shared Documents": {
@@ -3327,6 +5936,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Clean every external document, especially for opposing counsel, and check that it worked.",
     "scenario": "You're about to send a proposed settlement agreement to opposing counsel. It has an internal comment: \"Client will go to $250K if pushed.\" Walk through the steps before it goes out."
+  },
+  "s1": {
+    "on": "This section warns that metadata (tracked changes, comments, authors, past edits) can leak what nobody meant to share.",
+    "say": "What you can't see can leak."
+  },
+  "s2": {
+    "on": "These steps clean it: check for metadata, remove it explicitly, take extra care with opposing counsel, make a clean export standard, and verify before sending.",
+    "say": "Looks clean isn't clean.",
+    "ask": "Have you ever received a document with comments left in?"
   }
 },
 "8::Clean Desk Policy": {
@@ -3340,6 +5958,18 @@ window.PRESENTER_NOTES = {
     "say": "The printer tray is the most forgotten risk.",
     "wrap": "Clear it, lock it and check at the end of every day.",
     "scenario": "You work from home two days a week, and your family walks past your desk. What does a clean desk policy look like there?"
+  },
+  "s1": {
+    "on": "This section says sensitive papers on a desk, in a printer tray or on an unlocked screen are a physical data leak.",
+    "say": "A physical leak."
+  },
+  "s2": {
+    "on": "These steps practice it: put documents away, check the printer, lock the screen, apply it at home, and do an end-of-day check.",
+    "say": "Check the printer tray."
+  },
+  "s3": {
+    "on": "This section flags printers as a forgotten risk and calls a clean desk the daily habit behind physical security.",
+    "say": "Policy becomes habit."
   }
 },
 "8::Secure Disposal of Sensitive Documents": {
@@ -3355,6 +5985,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Shred paper, securely delete digital files, and make it a habit, drafts included.",
     "scenario": "You printed three drafts of a client's estate plan while revising it. Where does each draft go when you're done, and what about the digital drafts on your desktop?"
+  },
+  "s1": {
+    "on": "This section says paper in the trash is still readable; shredding destroys the information.",
+    "say": "Shred it, don't bin it."
+  },
+  "s2": {
+    "on": "These steps dispose securely: shred paper, securely delete files, make disposal routine, keep a shredder handy, and include drafts.",
+    "say": "Drafts count too."
   }
 },
 "8::The First 10 Minutes of a Security Incident": {
@@ -3368,6 +6006,19 @@ window.PRESENTER_NOTES = {
     "say": "Notify early, even with an incomplete picture.",
     "wrap": "Contain first, notify fast and document as you go.",
     "scenario": "Roleplay, cold: you notice the firm's shared client folder has been publicly accessible by link for an unknown amount of time. What do you do in the first 10 minutes?"
+  },
+  "s1": {
+    "on": "This section says incident response is sequential: follow the steps in order.",
+    "say": "Four steps."
+  },
+  "s2": {
+    "on": "These steps are the first ten minutes: Contain, Assess what was exposed, Notify right away, and Document in real time.",
+    "say": "Contain, assess, notify, document."
+  },
+  "s3": {
+    "on": "This section says early notification with incomplete facts beats a late complete report, and extends the leak-containment principle.",
+    "say": "Tell early, even if incomplete.",
+    "ask": "Who would you notify first?"
   }
 },
 "8::Who to Notify and When": {
@@ -3383,6 +6034,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Know the contacts in advance, escalate when unsure and notify promptly.",
     "scenario": "Match each incident to who gets notified first: a laptop stolen from a car, an email with a client's SSN sent to the wrong person, a phishing email nobody clicked, and ransomware on the office file server."
+  },
+  "s1": {
+    "on": "This section says different incidents trigger different people, timelines and sometimes legal duties.",
+    "say": "Different incidents, different contacts."
+  },
+  "s2": {
+    "on": "These steps prepare: know the contact per incident type in advance, treat breaches as possibly carrying legal duties, escalate when unsure, confirm contacts ahead, and notify promptly.",
+    "say": "Know the contacts before you need them."
   }
 },
 "8::Documenting an Incident as It Unfolds": {
@@ -3396,6 +6055,18 @@ window.PRESENTER_NOTES = {
     "say": "A rough note now beats a polished one later.",
     "wrap": "Log facts in real time, including who was told and when, and keep the record.",
     "scenario": "Using the misdirected-email scenario from earlier, write the first five timestamped lines of the incident log."
+  },
+  "s1": {
+    "on": "This section says a real-time record beats a reconstruction days later.",
+    "say": "Write it as it happens."
+  },
+  "s2": {
+    "on": "These steps document: note what happened and when in real time, simple timestamps, who was notified, facts not blame, and preserve the record.",
+    "say": "Rough and real-time beats polished and late."
+  },
+  "s3": {
+    "on": "This section says the record isn't about blame; it supports review and compliance, and simple timestamps are enough.",
+    "say": "Timestamps and facts."
   }
 },
 "8::Post-Incident Review": {
@@ -3409,6 +6080,18 @@ window.PRESENTER_NOTES = {
     "say": "Blame teaches people to hide the next one.",
     "wrap": "Review the process, use the log and make one real change.",
     "scenario": "Run a five-minute review of the misdirected settlement email: what happened, what worked, what gap allowed it, and the one change you'd make."
+  },
+  "s1": {
+    "on": "This section says a real review after resolution stops the failure from repeating.",
+    "say": "Review, then change something."
+  },
+  "s2": {
+    "on": "These steps run it: cover what happened, worked and should change; focus on process; use the real-time notes; name one concrete change; and capture the lesson.",
+    "say": "One concrete change."
+  },
+  "s3": {
+    "on": "This section says blame-focused reviews discourage early reporting, and ties the habit to the Day 6 playbook.",
+    "say": "Process, not people."
   }
 },
 "8::Social Engineering Red Flags": {
@@ -3422,6 +6105,19 @@ window.PRESENTER_NOTES = {
     "say": "The strongest system fails if someone hands over the keys.",
     "wrap": "Verify authority independently, question the unusual and report attempts.",
     "scenario": "A caller says they're Elias's new banker and need you to confirm his date of birth and the last four digits of his SSN to \"finish setting up his account today.\" What are the red flags, and what do you say?"
+  },
+  "s1": {
+    "on": "This section names three red flags: urgency pressure, authority impersonation and unusual requests.",
+    "say": "Urgency, authority, unusual."
+  },
+  "s2": {
+    "on": "These steps respond: treat urgency as a flag, verify authority through a known channel, question out-of-pattern requests, verify independently, and report attempts.",
+    "say": "Report it even if you didn't fall for it.",
+    "ask": "How would you handle an 'urgent' call from 'IT'?"
+  },
+  "s3": {
+    "on": "This section says social engineering targets people, not systems, and independent verification is the defense.",
+    "say": "Verify through a separate channel."
   }
 },
 "8::Phishing Recognition Beyond Email": {
@@ -3435,6 +6131,18 @@ window.PRESENTER_NOTES = {
     "say": "Attackers switch channels to get around email filters.",
     "wrap": "Question every channel and verify through one you already trust.",
     "scenario": "You get a calendar invite titled \"Urgent: Review Updated Retainer Terms\" with a document link, from an address one letter off from a client's domain. What do you do?"
+  },
+  "s1": {
+    "on": "This section says phishing now comes by text, phone and calendar invite too.",
+    "say": "Every channel."
+  },
+  "s2": {
+    "on": "These steps apply the same skepticism: look for the usual tells, verify through a known channel, be more suspicious of unusual channels, and report.",
+    "say": "A channel switch is a warning sign."
+  },
+  "s3": {
+    "on": "This section restates the common tells and the safe default of verifying through a known number.",
+    "say": "Generic greeting, odd sender, unexpected link."
   }
 },
 "8::Recognizing Insider Threat Warning Signs": {
@@ -3448,6 +6156,18 @@ window.PRESENTER_NOTES = {
     "say": "Flag it to the right person. Don't confront or ignore it.",
     "wrap": "Observe role-fit, assume good intent and route it properly.",
     "scenario": "You notice a billing clerk has been downloading entire client case files, which their role doesn't need. What do you do, and what do you avoid doing?"
+  },
+  "s1": {
+    "on": "This section says some risk is internal: access that doesn't fit a role deserves attention without assuming malice.",
+    "say": "Notice without accusing."
+  },
+  "s2": {
+    "on": "These steps respond: note role mismatches, use the least-privilege lens, recognize most cases are shortcuts, flag to the right person, and focus on behavior.",
+    "say": "Flag it; don't confront."
+  },
+  "s3": {
+    "on": "This section says most insider incidents are well-meaning shortcuts, and this is least privilege, not suspicion.",
+    "say": "Role-fit, not suspicion."
   }
 },
 "8::Crisis Communication Principles": {
@@ -3461,6 +6181,18 @@ window.PRESENTER_NOTES = {
     "say": "Factual and incomplete beats confident and wrong.",
     "wrap": "Calm, confirmed, frequent, with a time for the next update.",
     "scenario": "The firm's email is down firm-wide on a filing day, and IT doesn't know why yet. Write the first update to the attorneys using ACT."
+  },
+  "s1": {
+    "on": "This section says crisis communication should be calm, factual and frequent; silence and vague reassurance increase anxiety.",
+    "say": "Calm, factual, frequent."
+  },
+  "s2": {
+    "on": "These steps communicate: a regular cadence, confirmed facts labeled, ACT (Acknowledge, Clarify, Timeline), no vague reassurance, and confirmed delivery.",
+    "say": "Acknowledge, Clarify, Timeline."
+  },
+  "s3": {
+    "on": "This section warns that labeled confirmed facts stop speculation, and ties back to Day 1's ACT framework.",
+    "say": "Label what's confirmed."
   }
 },
 "8::Maintaining Calm Under Pressure": {
@@ -3474,6 +6206,19 @@ window.PRESENTER_NOTES = {
     "say": "Calm is a skill, not a personality trait.",
     "wrap": "Pause, stay deliberate and practice before you need it.",
     "scenario": "Elias bursts in: the judge moved the hearing to this afternoon and the exhibit binders aren't printed. Show the room your first 30 seconds: what you say and what you do."
+  },
+  "s1": {
+    "on": "This section says your visible calm is often the only calm in the room, and it's contagious; so is panic.",
+    "say": "Calm spreads."
+  },
+  "s2": {
+    "on": "These steps build calm: pause before responding, stay deliberate, don't mistake calm for passive, practice a technique ahead, and debrief yourself.",
+    "say": "Pause a few seconds first.",
+    "ask": "What's your go-to technique under pressure?"
+  },
+  "s3": {
+    "on": "This section says calm is a practiced skill, not passivity, and the pause is a technique that works.",
+    "say": "A skill you can practice."
   }
 },
 "8::Chain of Command During a Crisis": {
@@ -3487,6 +6232,18 @@ window.PRESENTER_NOTES = {
     "say": "The routine hierarchy is the crisis hierarchy.",
     "wrap": "Use the known chain, with backups identified in advance.",
     "scenario": "A client's funds wire is flagged as possibly fraudulent at 4:45 p.m. Elias is on a flight and the managing partner isn't answering. Who's next in the chain, and what do you do?"
+  },
+  "s1": {
+    "on": "This section says a crisis is the wrong time to learn who decides what; know the chain in advance.",
+    "say": "Know it before you need it."
+  },
+  "s2": {
+    "on": "These steps prepare: know the chain, use the Day 1 Command Hierarchy, name backup contacts, escalate through the chain, and keep backups current.",
+    "say": "Don't skip steps under pressure."
+  },
+  "s3": {
+    "on": "This section ties this to Day 1's hierarchy and says a known backup path prevents a gap in authority.",
+    "say": "Have the backup path ready."
   }
 },
 "8::Business Continuity Basics": {
@@ -3500,6 +6257,18 @@ window.PRESENTER_NOTES = {
     "say": "A simple list covers most of the value.",
     "wrap": "List dependencies, name backups and fix single points of failure.",
     "scenario": "The firm's case management system goes down for a full day during trial week. What does the continuity plan need to say, and what should already be printed or backed up?"
+  },
+  "s1": {
+    "on": "This section frames continuity as a question: if a key system, person or resource disappeared tomorrow, what's the plan?",
+    "say": "What if it's gone tomorrow?"
+  },
+  "s2": {
+    "on": "These steps plan: identify critical dependencies, list contacts and backups, plan before you need it, find single points of failure, and revisit periodically.",
+    "say": "Find your single points of failure."
+  },
+  "s3": {
+    "on": "This section says a basic list covers most of the value, and ties this to Day 5 backup vendors and the Home Binder.",
+    "say": "Simple is enough."
   }
 },
 "8::Attorney-Client Privilege: What EAs Need to Know": {
@@ -3513,6 +6282,19 @@ window.PRESENTER_NOTES = {
     "say": "An accidental disclosure can't be undone.",
     "wrap": "Treat it as privileged, check every recipient and ask when unsure.",
     "scenario": "Elias asks you to forward his advice email to the client, and the client asks you to cc their business partner, who isn't a party to the matter. What do you do?"
+  },
+  "s1": {
+    "on": "This section defines privilege (confidential lawyer–client communications for legal advice) and warns it can be lost through carelessness.",
+    "say": "Strict, and easy to lose."
+  },
+  "s2": {
+    "on": "These steps protect it: treat such communications as privileged, check recipients, avoid being overheard, accept that you're inside the relationship, and ask when unsure.",
+    "say": "Check the recipient list."
+  },
+  "s3": {
+    "on": "This section warns that disclosure to the wrong person can waive privilege, the obligation extends to the EA, and says to ask the attorney when in doubt.",
+    "say": "A disclosure can't be undone.",
+    "ask": "Who shouldn't be on a privileged email?"
   }
 },
 "8::HIPAA in a Legal Context": {
@@ -3526,6 +6308,18 @@ window.PRESENTER_NOTES = {
     "say": "The firm doesn't need to be in healthcare for HIPAA to matter.",
     "wrap": "Recognize it, restrict it and ask when unsure.",
     "scenario": "A personal-injury client emails you their full hospital records and asks you to forward them to their chiropractor and their employer. What do you do?"
+  },
+  "s1": {
+    "on": "This section says HIPAA protects identifiable health information and applies whenever a matter touches medical records.",
+    "say": "Medical records mean HIPAA."
+  },
+  "s2": {
+    "on": "These steps apply it: spot medical content, apply it outside health practices too, share only on need, default to the highest tier, and ask the attorney.",
+    "say": "Highest sensitivity by default."
+  },
+  "s3": {
+    "on": "This section says HIPAA can apply without being a healthcare provider, handling matters as much as theory, and it links to classification.",
+    "say": "Discretion in practice."
   }
 },
 "8::GDPR & Data Privacy Regulations": {
@@ -3539,6 +6333,18 @@ window.PRESENTER_NOTES = {
     "say": "Recognize the trigger. The attorney handles the specifics.",
     "wrap": "Check at intake, respect data rights and flag early.",
     "scenario": "A new client is a German company with employees in Berlin and Chicago, and the matter involves employee records from both offices. What do you flag to Elias at intake?"
+  },
+  "s1": {
+    "on": "This section explains GDPR governs EU individuals' personal data and can apply to firms outside the EU.",
+    "say": "It follows the data, not the office."
+  },
+  "s2": {
+    "on": "These steps apply it: recognize reach, account for data rights, check at intake for non-US data, remember state laws like the CCPA, and flag early.",
+    "say": "Check at intake."
+  },
+  "s3": {
+    "on": "This section covers rights to know and delete, US state laws like the CCPA, and the takeaway: recognize and flag, don't memorize.",
+    "say": "Recognize and flag."
   }
 },
 "8::Other Relevant Compliance Frameworks": {
@@ -3552,6 +6358,18 @@ window.PRESENTER_NOTES = {
     "say": "Pattern recognition is the skill. Asking is always right.",
     "wrap": "Recognize sensitive categories, handle them carefully and ask about specifics.",
     "scenario": "A new matter involves a public company's internal financial controls and a student's school records. Which frameworks might apply, and what do you ask Elias?"
+  },
+  "s1": {
+    "on": "This section lists three groups: financial and corporate (SOX), sector privacy (GLBA, FERPA), and state bar ethics rules.",
+    "say": "SOX, GLBA, FERPA, bar rules."
+  },
+  "s2": {
+    "on": "These steps apply the pattern: recognize high-risk categories, handle them carefully by default, ask about unfamiliar areas, know the main frameworks, and remember bar rules apply regardless.",
+    "say": "Pattern recognition over memorization."
+  },
+  "s3": {
+    "on": "This section says no training covers every framework; the skill is spotting high-risk categories, and asking the attorney is always right.",
+    "say": "Ask; it's never wrong."
   }
 },
 "8::Work-Product Confidentiality": {
@@ -3565,6 +6383,18 @@ window.PRESENTER_NOTES = {
     "say": "Not a client communication doesn't mean shareable.",
     "wrap": "Handle it like privileged material, label it and keep it within the team.",
     "scenario": "A colleague on an unrelated matter asks to see a strategy memo from a case you support, saying it would help with a similar issue. What do you do?"
+  },
+  "s1": {
+    "on": "This section explains work product (strategy memos, drafts, internal analysis) is protected separately from privilege and can be waived by careless handling.",
+    "say": "Separate protection, same care."
+  },
+  "s2": {
+    "on": "These steps protect it: handle it like privileged material, keep it internal unless cleared, and label it in the DMS.",
+    "say": "Default: it stays internal."
+  },
+  "s3": {
+    "on": "This section warns that 'not a client communication' doesn't mean shareable, and says when in doubt treat it as protected.",
+    "say": "When in doubt, protected."
   }
 },
 "8::Investor Disclosure Confidentiality": {
@@ -3578,6 +6408,18 @@ window.PRESENTER_NOTES = {
     "say": "Interest isn't entitlement.",
     "wrap": "Confirm clearance, restrict access and escalate new requests.",
     "scenario": "An investor emails asking for details about an ongoing matter that hasn't been publicly disclosed. What do you do before responding?"
+  },
+  "s1": {
+    "on": "This section says investor information has its own boundaries (some shareable with investors only, some not at all) and ties to classification.",
+    "say": "Investors don't get everything."
+  },
+  "s2": {
+    "on": "These steps manage it: confirm what's cleared, keep materials access-controlled, and escalate requests beyond what's prepared.",
+    "say": "Escalate anything not cleared."
+  },
+  "s3": {
+    "on": "This section warns against assuming investors are entitled to everything, and links this to investor briefing prep.",
+    "say": "Confirm the boundaries first."
   }
 },
 "8::Crisis PR & Media Containment": {
@@ -3591,6 +6433,19 @@ window.PRESENTER_NOTES = {
     "say": "\"No comment, here's who to contact\" is the right fast answer.",
     "wrap": "Know the spokesperson, use the holding statement and escalate in parallel.",
     "scenario": "A journalist calls you directly, bypassing the firm's usual channels, asking for comment on a sensitive matter. What do you say, and who do you contact the moment you hang up?"
+  },
+  "s1": {
+    "on": "This section says media crises move in minutes, building on reputational risk and crisis communication.",
+    "say": "Minutes, not hours."
+  },
+  "s2": {
+    "on": "These steps contain it: confirm who's authorized to speak, give a prepared holding statement, and escalate in parallel.",
+    "say": "Holding line, then escalate in parallel.",
+    "ask": "What would your holding statement say?"
+  },
+  "s3": {
+    "on": "This section warns against handling media outside the authorization chain, and says a fast 'no comment, here's who to contact' protects everyone.",
+    "say": "Good intentions don't prevent damage."
   }
 },
 "9::Running an Event End-to-End": {
@@ -3604,6 +6459,23 @@ window.PRESENTER_NOTES = {
     "say": "Thank-you notes go out within 48 hours.",
     "wrap": "Plan on the timeline, track by name and log the lessons.",
     "scenario": "Thorne & Partners is hosting a client appreciation evening for 60 guests in 10 weeks. What's done by week 8, week 4 and the day before?"
+  },
+  "s1": {
+    "on": "This section's rule: track registration by name so gaps show up right away, not at the event.",
+    "say": "By name, not by headcount."
+  },
+  "s2": {
+    "on": "These steps run it: track by name, plan engagement ahead, follow up on incomplete registrations, reconcile against attendance, and feed lessons forward.",
+    "say": "Reconcile who registered with who came."
+  },
+  "s3": {
+    "on": "This section says to have the engagement-tracking plan ready before the event starts.",
+    "say": "Plan before the day."
+  },
+  "s4": {
+    "on": "This section gives the timeline: 8–12 weeks out for goals, budget and venue; 4–6 weeks for invitations and vendors; 1 week to confirm; the day itself; and thank-yous within 48 hours.",
+    "say": "Thank-yous within 48 hours.",
+    "ask": "What's the first thing you'd lock in 12 weeks out?"
   }
 },
 "9::Four SOPs That Keep Professional Development on Track": {
@@ -3617,6 +6489,22 @@ window.PRESENTER_NOTES = {
     "say": "Reputation & Recognition feels least urgent, so it's the one that gets skipped.",
     "wrap": "Run all four, especially the one that feels least urgent.",
     "scenario": "Elias wants to attend a $1,200 legal-tech summit from a provider you've never heard of. Walk through the Event Registration SOP before you book."
+  },
+  "s1": {
+    "on": "This section introduces four SOPs: Event Registration, Attendance Tracking, Team Upskilling, and Reputation & Recognition.",
+    "say": "Four SOPs."
+  },
+  "s2": {
+    "on": "These steps run each: verify provider and budget, track attendance and save certificates, assess needs quarterly and measure ROI, and track recognition while escalating bad press.",
+    "say": "Don't skip the one that feels least urgent."
+  },
+  "s3": {
+    "on": "This section says each SOP prevents a specific, predictable failure, from lost audit certificates to missed recognition.",
+    "say": "Each prevents a known failure."
+  },
+  "s4": {
+    "on": "This section summarizes three of them: vet and register, store certificates where auditors can find them, and measure whether training changed performance.",
+    "say": "Audit-ready storage."
   }
 },
 "9::CLE / Compliance Tracking": {
@@ -3630,6 +6518,23 @@ window.PRESENTER_NOTES = {
     "say": "The certificate is the proof. Keep every one.",
     "wrap": "Track per person, verify categories and keep the certificates.",
     "scenario": "Elias has 18 of 25 required hours, needs 2 more ethics hours, and his reporting deadline is in 7 weeks. What do you flag today, and what do you check about the hours he has?"
+  },
+  "s1": {
+    "on": "This section's rule: log completed hours, pending hours and the real deadline for each person.",
+    "say": "Per person, not in aggregate."
+  },
+  "s2": {
+    "on": "These steps track it: individual records, early flags, verifying hours qualify, long reminder lead times, and reconciling against certificates.",
+    "say": "Compliance deadlines rarely extend."
+  },
+  "s3": {
+    "on": "This section says to flag people approaching a deadline while there's still time to act.",
+    "say": "Not the week it's due."
+  },
+  "s4": {
+    "on": "This section explains that each state bar sets its own hours, categories, providers and carry-over rules, and certificates are the audit proof.",
+    "say": "Confirm each attorney's state rules.",
+    "ask": "What proof would the bar want in an audit?"
   }
 },
 "9::Protecting the Brand Online": {
@@ -3643,6 +6548,19 @@ window.PRESENTER_NOTES = {
     "say": "A well-handled bad review beats ten good ones.",
     "wrap": "Monitor, respond calmly and factually, and escalate what's beyond routine.",
     "scenario": "A former client posts a one-star review: \"Thorne & Partners never returned my calls and overcharged me.\" Draft the public reply live, then say what you'd check before posting it."
+  },
+  "s1": {
+    "on": "This section's rule: respond to negative reviews professionally and factually, never escalating in public.",
+    "say": "Never escalate publicly."
+  },
+  "s2": {
+    "on": "These steps protect it: monitor proactively, respond factually, apply need-to-know, draft carefully, and escalate legal threats or coordinated attacks.",
+    "say": "Draft before you respond.",
+    "ask": "How would you reply to an unfair review?"
+  },
+  "s3": {
+    "on": "This section says a well-handled negative review can outdo ten positive ones, and describes 'The Vault' and the 'Cone of Silence'.",
+    "say": "Need to know."
   }
 },
 "9::Awards, Recognition & Charitable Coordination": {
@@ -3658,6 +6576,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Track awards and charitable commitments like any deadline, and keep the documentation.",
     "scenario": "Elias pledged $5,000 to a legal aid gala and was nominated for a regional bar award due in three weeks. What goes in the tracker for each, and what documentation do you keep?"
+  },
+  "s1": {
+    "on": "This section says awards follow application discipline: exact eligibility, materials and deadline, or the nomination is out.",
+    "say": "Miss one, you're out."
+  },
+  "s2": {
+    "on": "These steps manage it: an awards tracker, early eligibility checks, confirmed charitable commitments, contribution records, and treating both as proactive reputation work.",
+    "say": "Track what was committed and fulfilled."
   }
 },
 "9::Membership Renewals": {
@@ -3671,6 +6597,22 @@ window.PRESENTER_NOTES = {
     "say": "Expired cards are why memberships lapse silently.",
     "wrap": "Track, remind early, check the payment method and review the value.",
     "scenario": "Elias's state bar membership, two practice-section memberships and a country club all renew within the next 60 days, and one card on file expires this month. Build the tracker rows and say what you'd do first."
+  },
+  "s1": {
+    "on": "This section's rule: a renewal tracker (name, expiration, status, follow-up) catches lapses early.",
+    "say": "Track, don't remember."
+  },
+  "s2": {
+    "on": "These steps run it: build the tracker, set early reminders, automate as volume grows, check terms, and review what's still worth keeping.",
+    "say": "Renewal isn't automatic approval."
+  },
+  "s3": {
+    "on": "This section says to automate reminders once volume grows.",
+    "say": "Automate."
+  },
+  "s4": {
+    "on": "This section lists tracker fields including auto-renew status and payment method, warns expired cards cause silent lapses, and suggests a yearly value check.",
+    "say": "Expired cards cause silent lapses."
   }
 },
 "9::Planning Professional Development": {
@@ -3684,6 +6626,22 @@ window.PRESENTER_NOTES = {
     "say": "One before-and-after check beats any attendance number.",
     "wrap": "Define the metric first, collect feedback fast and adjust.",
     "scenario": "The firm runs a lunch-and-learn on the new document management system. Define one measure at each of the four levels."
+  },
+  "s1": {
+    "on": "This section's rule: offer virtual and in-person options to fit different schedules.",
+    "say": "Fit the schedules."
+  },
+  "s2": {
+    "on": "These steps plan it: both formats, an effectiveness metric set ahead, feedback right after, tracking outcomes over time, and adjusting future sessions.",
+    "say": "Attendance isn't effectiveness."
+  },
+  "s3": {
+    "on": "This section says to measure each session against effectiveness metrics, not attendance.",
+    "say": "Measure what landed."
+  },
+  "s4": {
+    "on": "This section gives four levels: Reaction, Learning, Behavior and Results, plus a simple before/after check.",
+    "say": "Even a before/after check helps."
   }
 },
 "9::High-Stakes Travel Disruption Management": {
@@ -3697,6 +6655,19 @@ window.PRESENTER_NOTES = {
     "say": "Give them the plan, not the play-by-play.",
     "wrap": "Triage the fixed point, work options in parallel, send one message and fix the ripples.",
     "scenario": "Elias's connecting flight to a closing-day meeting is cancelled with no same-day rebooking, and the meeting can't move. Option one: a red-eye on another airline that lands two hours before. Option two: a private car for the last leg that costs much more but lets him sleep. How do you decide, and how do you present it?"
+  },
+  "s1": {
+    "on": "This section frames disruption as triage: solve for the downstream consequence, not just the flight, and rely on your prep.",
+    "say": "Solve for what they'd miss."
+  },
+  "s2": {
+    "on": "These steps respond: fix the time-critical commitment first, check app and phone in parallel, go through alternatives in order, and send one clear plan message.",
+    "say": "One message with the plan.",
+    "ask": "What's the fixed point if a deposition is at 9 AM?"
+  },
+  "s3": {
+    "on": "This section warns never to let the executive find out first, not to narrate every update, to re-confirm ripple effects, and to keep a note of hard constraints.",
+    "say": "Re-confirm the car and the hotel."
   }
 },
 "9::Board Meeting Preparation & Minute Drafting": {
@@ -3710,6 +6681,19 @@ window.PRESENTER_NOTES = {
     "say": "Vague motion language isn't a record.",
     "wrap": "Prepare early, capture the motions exactly and keep the minutes neutral.",
     "scenario": "A motion is raised, debated with real disagreement, amended once and passed 4–1. You're taking minutes live. What must you capture exactly, and what do you deliberately leave out?"
+  },
+  "s1": {
+    "on": "This section says board prep happens in the days before, and minutes are a legal record of decisions, not a transcript.",
+    "say": "Minutes record decisions."
+  },
+  "s2": {
+    "on": "These steps prepare and record: confirm the agenda early, a consistent packet, attendance, motions, seconds and votes captured, prompt neutral drafts, and review before filing.",
+    "say": "Motion, second, vote."
+  },
+  "s3": {
+    "on": "This section warns against narrative minutes and vague motions, asks for guidance on sensitive topics, and says a late packet can undermine a decision.",
+    "say": "'Passed 5–0' is a minute; 'discussed' isn't.",
+    "ask": "How would you minute a budget vote?"
   }
 },
 "9::Federal/State/Financial Infrastructure": {
@@ -3723,6 +6707,18 @@ window.PRESENTER_NOTES = {
     "say": "Commingling, even once, weakens the liability shield.",
     "wrap": "EIN, state registration, a separate bank account and books before day one.",
     "scenario": "Elias's new consulting LLC has its EIN and a bank account opening this week. He paid the filing attorney's invoice on his personal card \"to get it done faster\" and plans to reimburse himself. What's the risk, and how do you help him before it becomes a habit?"
+  },
+  "s1": {
+    "on": "This section says a new entity needs federal, state and banking infrastructure to operate, with business and personal finances kept separate.",
+    "say": "Formed isn't operational."
+  },
+  "s2": {
+    "on": "These steps set it up: EIN first, state tax and labor registration, a dedicated bank account, bookkeeping before the first transaction, and payroll registration if hiring.",
+    "say": "Never run business money through personal accounts."
+  },
+  "s3": {
+    "on": "This section warns that commingling undermines liability protection, state registration isn't automatic, registrations must be kept, and expansion may need new state registrations.",
+    "say": "Keep the separation absolute."
   }
 },
 "9::Video Conferencing: Platform Admin (Zoom/Teams/Meet)": {
@@ -3736,6 +6732,18 @@ window.PRESENTER_NOTES = {
     "say": "A sensitive call and a public webinar need different settings.",
     "wrap": "Configure per meeting type, test new formats and have a backup admin.",
     "scenario": "Elias's confidential strategy call with senior partners went out on a general meeting link with no waiting room or registration. What do you change before the call, and how do you raise it since the invite is already out?"
+  },
+  "s1": {
+    "on": "This section says platform admin means owning settings and configuration, platforms differ, and most problems are prevented by setup.",
+    "say": "Set up ahead, not live."
+  },
+  "s2": {
+    "on": "These steps administer: confirm core settings, a platform pre-meeting checklist, live participant management, and periodic account-setting reviews.",
+    "say": "Waiting room, sharing, recording: decide first."
+  },
+  "s3": {
+    "on": "This section warns against one-size defaults, asks to test new formats first, give a backup person access, and document quirks.",
+    "say": "Test new formats before they matter."
   }
 },
 "9::Live Event Moderation": {
@@ -3749,6 +6757,18 @@ window.PRESENTER_NOTES = {
     "say": "A visible checklist beats memory during a live event.",
     "wrap": "Check beforehand, monitor actively, document and follow up.",
     "scenario": "Ten minutes into a webinar where Elias is the featured speaker, his audio starts cutting out and the audience is commenting in the chat. What do you do, in what order, without disrupting him more than necessary?"
+  },
+  "s1": {
+    "on": "This section defines moderation as real-time management of a live event, with a fixed sequence: Reminder, Login, Attendance, Monitor, Document, Follow-Up.",
+    "say": "Six steps, each catches a failure."
+  },
+  "s2": {
+    "on": "These steps moderate: pre-checks before start, active monitoring, attendance tracking for CLE, and the post-event sequence.",
+    "say": "Catch problems before start."
+  },
+  "s3": {
+    "on": "This section warns against passive moderation, asks for a visible checklist and issue log, and adds speaking-engagement checks.",
+    "say": "Active, not passive."
   }
 },
 "9::Executive Meeting Etiquette": {
@@ -3762,6 +6782,19 @@ window.PRESENTER_NOTES = {
     "say": "The executive should never have to troubleshoot live.",
     "wrap": "Prepare them, join early, stay unobtrusive and handle the mechanics.",
     "scenario": "Thirty seconds before Elias's call with a prospective client, you notice the invite was for the wrong time zone and the client may have been waiting for an hour. What do you do right now?"
+  },
+  "s1": {
+    "on": "This section says executive video etiquette is a real skill with a higher standard; your conduct reflects on the executive, and the aim is removing friction.",
+    "say": "Remove the friction."
+  },
+  "s2": {
+    "on": "These steps practice it: a pre-call note, joining early to test, professional presence, and handling mechanics quietly.",
+    "say": "Join before the executive does."
+  },
+  "s3": {
+    "on": "This section warns that small lapses cost more at this level, asks for 24–48 hour reminders, confirmed participants, and never making tech the executive's problem.",
+    "say": "Tech is never their problem.",
+    "ask": "What goes in a pre-call note?"
   }
 },
 "9::Video Conferencing: Technical Troubleshooting": {
@@ -3775,6 +6808,18 @@ window.PRESENTER_NOTES = {
     "say": "Systematic beats random, even under pressure.",
     "wrap": "Triage in order, have a backup channel and document every issue.",
     "scenario": "Fifteen minutes before a critical client call, you find the meeting platform is down for planned maintenance you didn't know about. What's your triage sequence in the next five minutes?"
+  },
+  "s1": {
+    "on": "This section says most problems fall into a few categories, live triage beats perfect diagnosis, and documentation improves the system.",
+    "say": "Functional first, diagnose later."
+  },
+  "s2": {
+    "on": "These steps troubleshoot: login checks then support, audio and video checks in order, a backup channel, and documenting every issue.",
+    "say": "Work the likely causes in order."
+  },
+  "s3": {
+    "on": "This section warns against trying everything at once, asks for the support contact handy, test runs for new setups, and calm explanations to participants.",
+    "say": "Calm and clear during delays."
   }
 },
 "9::Shareholder & Investor Meeting (AGM) Logistics": {
@@ -3788,6 +6833,18 @@ window.PRESENTER_NOTES = {
     "say": "Proxy and voting procedures are never improvised.",
     "wrap": "Confirm notice, track quorum and settle voting procedures early.",
     "scenario": "You realize the AGM notice went out later than the jurisdiction's minimum notice period. What do you want confirmed before the meeting goes ahead as scheduled?"
+  },
+  "s1": {
+    "on": "This section says AGMs have formal requirements beyond board meetings (notice, quorum, bigger attendee lists) and build on board prep.",
+    "say": "Formal requirements apply."
+  },
+  "s2": {
+    "on": "These steps prepare: confirm notice periods, track RSVPs against quorum, and prepare a structured packet with proxy and voting materials.",
+    "say": "No quorum, no valid business."
+  },
+  "s3": {
+    "on": "This section warns against treating an AGM as a bigger board meeting, and asks to confirm voting and proxy procedures early.",
+    "say": "Don't improvise voting."
   }
 },
 "9::Ethics & Gift Compliance": {
@@ -3801,6 +6858,19 @@ window.PRESENTER_NOTES = {
     "say": "\"Everyone does this\" isn't a policy.",
     "wrap": "Check the policy, log the gift and ask when unsure.",
     "scenario": "A vendor sends an expensive bottle of whisky and a $300 restaurant voucher to the office for the holidays. What do you do with it, and what do you check first?"
+  },
+  "s1": {
+    "on": "This section says gifts and hospitality carry real compliance exposure, and the rules are stricter than intuition.",
+    "say": "Courtesy can cross a line."
+  },
+  "s2": {
+    "on": "These steps comply: know the policy, log gifts above threshold, and take extra care with officials and regulated parties.",
+    "say": "Log it even when it's fine."
+  },
+  "s3": {
+    "on": "This section warns that 'modest' or 'everyone does it' isn't a test, and says to ask before accepting or sending.",
+    "say": "Ask first.",
+    "ask": "Would you accept a gift basket from opposing counsel?"
   }
 },
 "9::Speaker & Panelist Logistics for Conferences": {
@@ -3814,6 +6884,18 @@ window.PRESENTER_NOTES = {
     "say": "Confirm AV with the venue, not just the organizer.",
     "wrap": "Checklist, confirmed format, early deliverables and one briefing.",
     "scenario": "Elias is a panelist in three weeks, and the organizer wants his bio, headshot and pre-submitted questions by Friday. What's your process so it doesn't become a fire drill?"
+  },
+  "s1": {
+    "on": "This section says speaking engagements need travel, materials, tech and content coordination, on the organizer's timeline.",
+    "say": "Their deadlines, not ours."
+  },
+  "s2": {
+    "on": "These steps coordinate: one checklist per engagement, the format confirmed early, and one consolidated briefing for the executive.",
+    "say": "One checklist, one briefing."
+  },
+  "s3": {
+    "on": "This section warns it's not just a calendar item, asks to confirm AV with the venue, and to send slides 24–48 hours before the deadline.",
+    "say": "Send the deck early."
   }
 },
 "9::Sponsorship & Vendor Contract Basics for Events": {
@@ -3827,6 +6909,18 @@ window.PRESENTER_NOTES = {
     "say": "A written flag on the day beats a complaint afterward.",
     "wrap": "Verify deliverables, keep the contract handy and flag gaps in writing.",
     "scenario": "At a sponsored event, the firm's logo is missing from the printed program even though the agreement guarantees it. What do you do in the moment, and what do you follow up on afterward?"
+  },
+  "s1": {
+    "on": "This section says sponsorships are real contracts, and the EA often first notices an unmet deliverable.",
+    "say": "Real contracts, real obligations."
+  },
+  "s2": {
+    "on": "These steps manage them: verify deliverables beforehand, keep the agreement on hand at the event, and track cost against value.",
+    "say": "Bring the agreement."
+  },
+  "s3": {
+    "on": "This section warns against assuming deliverables happened or auto-renewing, and says to flag gaps in writing promptly.",
+    "say": "Flag it in writing, in real time."
   }
 },
 "9::Post-Event Follow-Up & ROI Tracking": {
@@ -3840,6 +6934,18 @@ window.PRESENTER_NOTES = {
     "say": "Reference the actual conversation, not just the event.",
     "wrap": "Take notes live, follow up fast and track the ROI.",
     "scenario": "Elias returns from a three-day conference with 40 new contacts and no notes on any of them. How do you turn that stack into useful follow-up instead of one generic email to everyone?"
+  },
+  "s1": {
+    "on": "This section says an event's value comes from follow-up; without it, connections decay.",
+    "say": "The value is after."
+  },
+  "s2": {
+    "on": "These steps follow up: build the list during the event, reach out within 48–72 hours, and log outcomes in the main system.",
+    "say": "Within 48 to 72 hours."
+  },
+  "s3": {
+    "on": "This section warns against business cards without notes and generic follow-ups, and asks for a simple ROI measure per event.",
+    "say": "Reference the actual conversation."
   }
 },
 "9::Professional Liability & Insurance Awareness": {
@@ -3853,6 +6959,18 @@ window.PRESENTER_NOTES = {
     "say": "Coverage questions go to the attorney, always.",
     "wrap": "Know where the policy lives, flag early and keep it confidential.",
     "scenario": "A client's email says, \"We're considering our options given how this was handled.\" What's your read, and what do you do with the email beyond replying normally?"
+  },
+  "s1": {
+    "on": "This section says EAs should know malpractice coverage exists and whom to flag issues to; early recognition gives the firm options.",
+    "say": "Know it exists, know who to tell."
+  },
+  "s2": {
+    "on": "These steps prepare: know where policies and renewal dates are, flag escalation language immediately, and calendar renewals.",
+    "say": "Flag threats of complaint at once."
+  },
+  "s3": {
+    "on": "This section warns against treating complaints as routine or assessing coverage yourself, and asks for confidentiality.",
+    "say": "That's the attorney's call."
   }
 },
 "9::Building an Executive's Media & Speaking Kit": {
@@ -3866,6 +6984,18 @@ window.PRESENTER_NOTES = {
     "say": "Review before you send, every time.",
     "wrap": "Keep it current, keep formats ready and refresh quarterly.",
     "scenario": "A journalist needs Elias's bio and headshot in two hours for a feature. The bio on file is over a year old and names a role he no longer holds. What do you do, given the deadline?"
+  },
+  "s1": {
+    "on": "This section says a ready media kit turns a request into a same-day response, and it's only useful if current.",
+    "say": "Ready and current."
+  },
+  "s2": {
+    "on": "These steps maintain it: a standing folder with bios, headshot and summary, a coverage log, and a quarterly refresh.",
+    "say": "Refresh quarterly."
+  },
+  "s3": {
+    "on": "This section warns against updating only on request, asks for multiple headshot formats, and a quick review before sending.",
+    "say": "Review before it goes out."
   }
 },
 "10::Social Media Management vs. Marketing": {
@@ -3879,6 +7009,19 @@ window.PRESENTER_NOTES = {
     "say": "Measure each with its own metric, or good work looks like failure.",
     "wrap": "Name the task type, then use the right metric.",
     "scenario": "Elias asks you to \"handle his LinkedIn\" and also \"get more consultation leads from it this quarter.\" Split it: which parts are management, which are marketing, and how do you measure each?"
+  },
+  "s1": {
+    "on": "This section's table compares Management (consistency, engagement, ongoing presence) with Marketing (growth, leads, campaigns that start and end), each with its own content and metrics.",
+    "say": "Keeping the lights on vs. driving results."
+  },
+  "s2": {
+    "on": "These steps apply it: name the type first, prioritize consistency for Management, target the goal for Marketing, match the metric, and split tasks that span both.",
+    "say": "Wrong metric makes good work look bad.",
+    "ask": "Is replying to DMs management or marketing?"
+  },
+  "s3": {
+    "on": "This section's analogy: Management is the restaurant dining room, Marketing is the highway billboard. EAs usually own Management; PAs and marketers lean into Marketing.",
+    "say": "Dining room vs. billboard."
   }
 },
 "10::EA vs. PA Roles in Social Media": {
@@ -3892,6 +7035,18 @@ window.PRESENTER_NOTES = {
     "say": "Gatekeeper and moderator versus ghostwriter and promoter.",
     "wrap": "Divide the work clearly so strategy and creation don't collide.",
     "scenario": "In one morning: a journalist DMs Elias, a client comments on his post, event photos need editing, and his bio still lists an old title. Who handles each, the EA or the PA?"
+  },
+  "s1": {
+    "on": "This section contrasts the roles: the EA handles brand and strategy (calendar, DM filtering, tone review, first line on PR); the PA handles creation and execution (content, editing, bios, personal replies).",
+    "say": "Strategy vs. creation."
+  },
+  "s2": {
+    "on": "These steps split the work: the EA plans the calendar, filters DMs and reviews tone; the PA creates content and maintains platforms.",
+    "say": "Review tone before it posts."
+  },
+  "s3": {
+    "on": "This section sums it up: the EA is Gatekeeper & Moderator, the PA is Ghostwriter & Promoter, each with a crisis role.",
+    "say": "Gatekeeper and ghostwriter."
   }
 },
 "10::The Executive Personal Brand Style Guide": {
@@ -3905,6 +7060,23 @@ window.PRESENTER_NOTES = {
     "say": "An unwritten sense of the brand doesn't survive a second contributor.",
     "wrap": "Write down the goal, voice, Never list, engagement rules and visuals.",
     "scenario": "Draft the first version of Elias's Never List live: three banned topics, two banned buzzwords and one formatting rule."
+  },
+  "s1": {
+    "on": "This section lays out five parts: North Star, Voice & Tone, the 'Never' List, Engagement Protocol and Visual Standard.",
+    "say": "Five parts of the guide."
+  },
+  "s2": {
+    "on": "These steps build it: define the goal and three topics, write voice rules, list banned items, set the engagement rules, and fix the 70/30 visual mix.",
+    "say": "Written down, not left to instinct.",
+    "ask": "What would go on your executive's 'Never' list?"
+  },
+  "s3": {
+    "on": "This section's warning: a style guide only works if it's written where every contributor can see it.",
+    "say": "An unwritten sense doesn't transfer."
+  },
+  "s4": {
+    "on": "This section summarizes the guide: North Star and audience, voice and pillars with the Never list, and visual rules with an approval workflow.",
+    "say": "Include the approval workflow."
   }
 },
 "10::Content Pillars & Finding the Brand Voice": {
@@ -3918,6 +7090,18 @@ window.PRESENTER_NOTES = {
     "say": "Voice drift causes brand whiplash and unfollows.",
     "wrap": "Set the boundaries, place the spectrums and check every post against them.",
     "scenario": "Run \"This, Not That\" on the board for Elias: four pairs, then place him on each of the four spectrums."
+  },
+  "s1": {
+    "on": "This section gives four voice spectrums: funny vs. serious, formal vs. casual, detached vs. enthusiastic, irreverent vs. respectful.",
+    "say": "Place the voice on four spectrums."
+  },
+  "s2": {
+    "on": "These steps apply them: 'This, Not That' checks, a deliberate position on each spectrum, checking drafts against it, finding where it drifts, and remembering the cost of drift.",
+    "say": "Diagnose which spectrum is drifting."
+  },
+  "s3": {
+    "on": "This section defines 'This, Not That' (confident not sarcastic, witty not arrogant, accessible not simple, bold not aggressive) and warns about brand whiplash.",
+    "say": "Inconsistency causes unfollows."
   }
 },
 "10::Defining and Maintaining Brand Voice, Tone & Messaging": {
@@ -3931,6 +7115,23 @@ window.PRESENTER_NOTES = {
     "say": "Voice stays constant. Tone flexes. Messaging repeats.",
     "wrap": "Write direct and specific, cut hedging and audit quarterly.",
     "scenario": "Rewrite this line in Elias's voice live: \"We believe our innovative, client-first approach may potentially deliver amazing results for businesses navigating complex disputes.\""
+  },
+  "s1": {
+    "on": "This section contrasts Elias's real voice (direct, credible, unhurried) with a generic wrong one (hedging, buzzwords, trend-chasing).",
+    "say": "Direct, credible, unhurried."
+  },
+  "s2": {
+    "on": "These steps keep it: lead with the answer, back claims with specifics, skip trends, rewrite hedges, and compare drafts to a real example.",
+    "say": "Cut 'we believe'.",
+    "ask": "How would you rewrite 'We believe this may help'?"
+  },
+  "s3": {
+    "on": "This section says defining a voice is easy; keeping it across months and contributors is the discipline.",
+    "say": "Maintenance is the work."
+  },
+  "s4": {
+    "on": "This section separates voice (constant), tone (flexes with context) and messaging (recurring core ideas), with a quarterly audit.",
+    "say": "Voice stays; tone flexes."
   }
 },
 "10::Making a Voice Guide Actually Stick": {
@@ -3944,6 +7145,18 @@ window.PRESENTER_NOTES = {
     "say": "The guide is only as good as the review behind it.",
     "wrap": "Concrete examples, a named reviewer and a guide that evolves.",
     "scenario": "A new marketing contractor's first three LinkedIn drafts for Elias are full of exclamation points and \"game-changing.\" What's your review process, and what do you add to the guide?"
+  },
+  "s1": {
+    "on": "This section says a guide needs concrete 'this, not that' sentences, not just adjectives.",
+    "say": "Show it in a sentence."
+  },
+  "s2": {
+    "on": "These steps make it stick: real examples, a messaging layer, a named reviewer, close checks on new contributors, and updating the guide.",
+    "say": "Name the reviewer."
+  },
+  "s3": {
+    "on": "This section defines messaging as the consistent claims and framing, and says the review step is what keeps the guide alive.",
+    "say": "Without review it fades in a month."
   }
 },
 "10::Visual Brand Assets — Sample Color Palette": {
@@ -3957,6 +7170,22 @@ window.PRESENTER_NOTES = {
     "say": "60% neutral, 30% primary, 10% accent.",
     "wrap": "Keep the palette to four roles and record the exact codes.",
     "scenario": "Pull up the firm's recent social graphics. Do they follow one dominant, one accent, one text, one background? Where has a fifth color crept in?"
+  },
+  "s1": {
+    "on": "This section shows a four-color palette: Deep Navy (primary), Warm Gold (accent), Charcoal (text) and Warm Ivory (background).",
+    "say": "Four colors, four roles."
+  },
+  "s2": {
+    "on": "These steps use it: four roles only, the accent sparingly, consistent use everywhere, a neutral background, and checking other brands against this structure.",
+    "say": "No fifth color."
+  },
+  "s3": {
+    "on": "This section says visual identity is a small, deliberate set of colors, fonts and imagery rules, not just a logo.",
+    "say": "Recognizable without the name."
+  },
+  "s4": {
+    "on": "This section gives the 60-30-10 rule, asks for exact HEX and CMYK codes, and a contrast check, especially on mobile.",
+    "say": "60-30-10."
   }
 },
 "10::Brand Consistency: Palette, Typography & Imagery": {
@@ -3970,6 +7199,18 @@ window.PRESENTER_NOTES = {
     "say": "Consistency comes from rules decided in advance.",
     "wrap": "Limit colors and fonts, set imagery rules and check for drift.",
     "scenario": "Three recent posts for the firm used three different fonts and a stock photo of a gavel. Write the three rules you'd add to stop it happening again."
+  },
+  "s1": {
+    "on": "This section repeats the four-role palette pattern and says restraint keeps a brand deliberate.",
+    "say": "Restraint looks deliberate."
+  },
+  "s2": {
+    "on": "These steps keep it consistent: the four-color discipline, one heading and one body font, imagery rules up front, periodic drift reviews, and learning from others' mistakes.",
+    "say": "Two fonts, everywhere."
+  },
+  "s3": {
+    "on": "This section says mixed fonts make a brand look unmanaged, and imagery rules matter as much as color.",
+    "say": "Decide what's off-limits."
   }
 },
 "10::Platform Proficiencies — Tool-Specific Best Practices": {
@@ -3983,6 +7224,22 @@ window.PRESENTER_NOTES = {
     "say": "The newsletter is the only channel the executive fully owns.",
     "wrap": "Adapt to each platform and learn each tool's publishing flow.",
     "scenario": "Elias wrote a 600-word article on a new employment law. How do you adapt it for LinkedIn, Instagram and the newsletter?"
+  },
+  "s1": {
+    "on": "This section covers three tool types: social platforms with their own formats, CMS platforms, and newsletter platforms.",
+    "say": "Social, CMS, newsletter."
+  },
+  "s2": {
+    "on": "These steps build proficiency: adapt per platform, learn the CMS, learn newsletter basics, treat each as different, and walk through new tools first.",
+    "say": "Never copy-paste across platforms."
+  },
+  "s3": {
+    "on": "This section says 'good at social media' is really literacy across several different tools.",
+    "say": "Several skills, not one."
+  },
+  "s4": {
+    "on": "This section profiles each channel: LinkedIn for thought leadership, Instagram for visual stories, X/Threads and newsletters for timely commentary and owned relationships.",
+    "say": "The newsletter is the channel you own."
   }
 },
 "10::Platform Details & the One Rule That Applies to All Three": {
@@ -3996,6 +7253,18 @@ window.PRESENTER_NOTES = {
     "say": "A typo in a draft is invisible. One sent to a list isn't.",
     "wrap": "Respect each platform's format, and always preview before going live.",
     "scenario": "You need to fix a typo on the firm's live homepage and send the monthly newsletter to the Clients segment. Walk through the draft-first steps for each."
+  },
+  "s1": {
+    "on": "This section gives platform specifics: LinkedIn wants the point in the first two lines, Instagram leads visually, X rewards brevity and timeliness.",
+    "say": "Each platform rewards something different."
+  },
+  "s2": {
+    "on": "These steps apply them per platform, cover routine CMS edits, and give the universal rule: test in draft or preview first.",
+    "say": "Preview before live."
+  },
+  "s3": {
+    "on": "This section details CMS and newsletter tasks and restates the rule: a typo in a draft is invisible; one sent to a list isn't.",
+    "say": "Test first, always."
   }
 },
 "10::The Content Calendar & Publishing Workflow": {
@@ -4009,6 +7278,18 @@ window.PRESENTER_NOTES = {
     "say": "Consistency beats perfect timing.",
     "wrap": "Batch the month and track every field, not just the date.",
     "scenario": "Plan next month for Elias's LinkedIn using the Batch Method: three pillars, 12 ideas, and what happens in each week."
+  },
+  "s1": {
+    "on": "This section says the publishing workflow is sequential: follow the steps in order.",
+    "say": "Four weeks, four steps."
+  },
+  "s2": {
+    "on": "These steps are the monthly cycle: Ideation (12–15 ideas), Creation in 1–2 focused days, Optimization of hooks and captions, and Scheduling.",
+    "say": "Ideate, create, optimize, schedule."
+  },
+  "s3": {
+    "on": "This section lists what a real calendar tracks (platform, pillar, asset, hook, keywords, CTA, status) and says consistency beats perfect timing.",
+    "say": "Consistency over timing."
   }
 },
 "10::Reading the Numbers — Engagement Rate": {
@@ -4022,6 +7303,23 @@ window.PRESENTER_NOTES = {
     "say": "Compare against the account's own average first.",
     "wrap": "Calculate the rate, compare it with the norm and look at what drove it.",
     "scenario": "Live: a post got 85 likes, 22 comments and 6 shares, and the account has 2,500 followers. What's the engagement rate, and is it good if the usual rate is 3%?"
+  },
+  "s1": {
+    "on": "This section gives the formula: (Likes + Comments + Shares) ÷ Followers × 100.",
+    "say": "One formula."
+  },
+  "s2": {
+    "on": "These steps calculate it: sum interactions, divide by followers, times 100, compare posts by rate, recalculate regularly, and check against the platform.",
+    "say": "Rates, not raw counts."
+  },
+  "s3": {
+    "on": "This section works an example: 145 interactions on 4,000 followers is 3.6%.",
+    "say": "3.6% in the example.",
+    "ask": "Is 3.6% good?"
+  },
+  "s4": {
+    "on": "This section interprets it: compare with the account's own average, value comments and shares, and remember a small engaged audience can beat a big passive one.",
+    "say": "Compare with your own average."
   }
 },
 "10::Engagement Rate Benchmarks & Interpretation": {
@@ -4037,6 +7335,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Judge performance by rate and by reach and engagement together, and revisit the benchmarks as platforms change.",
     "scenario": "Post A reached 12,000 people with a 0.8% engagement rate. Post B reached 900 people with 6.5%. What does each tell you, and what would you change?"
+  },
+  "s1": {
+    "on": "This section says a smaller account with a higher rate can be the stronger performer.",
+    "say": "Rate beats raw counts."
+  },
+  "s2": {
+    "on": "These steps interpret it: compare rates, benchmark LinkedIn at 2–5% (above 7% is viral), read reach and engagement together, value small loyal audiences, and revisit benchmarks.",
+    "say": "High reach, low engagement: fix the hook."
   }
 },
 "10::Audience Psychology & Pain Points": {
@@ -4050,6 +7356,19 @@ window.PRESENTER_NOTES = {
     "say": "Raw proof beats polished ads.",
     "wrap": "Answer real pain points, show the real process and use triggers ethically.",
     "scenario": "Potential clients of Thorne & Partners worry about surprise legal bills. Draft one post that answers that financial pain point with transparency, not reassurance."
+  },
+  "s1": {
+    "on": "This section names four pain points (financial, convenience, emotional, trust) and a response for each.",
+    "say": "Four pain points."
+  },
+  "s2": {
+    "on": "These steps respond: transparency for financial, curation for convenience, sustainable progress for emotional, the real process for trust, and triggers used ethically.",
+    "say": "Show the real process."
+  },
+  "s3": {
+    "on": "This section describes Digital Overload Fatigue and lists ethical triggers: Bandwagon, Reciprocity and Cognitive Dissonance.",
+    "say": "Raw proof over polish.",
+    "ask": "Which pain point fits your firm's audience?"
   }
 },
 "10::SEO, GEO & Funneling for Executives": {
@@ -4063,6 +7382,22 @@ window.PRESENTER_NOTES = {
     "say": "Google the executive in Incognito every month.",
     "wrap": "Optimize for search and AI, match content to funnel stage and audit monthly.",
     "scenario": "Search Elias's name in Incognito mode together. What comes up first, what's outdated, and which funnel stage is weakest?"
+  },
+  "s1": {
+    "on": "This section defines SEO (found on Google), GEO (recommended by AI tools), Funneling (awareness to action) and a Monthly Scorecard.",
+    "say": "Found, recommended, converted."
+  },
+  "s2": {
+    "on": "These steps apply each: natural keywords and backlinks, AI-citable content, stage-matched content, scorecard tracking, and a monthly incognito search.",
+    "say": "Google yourself monthly."
+  },
+  "s3": {
+    "on": "This section explains the 'Google Yourself' audit and updating metadata when old pages outrank the current site.",
+    "say": "Outdated pages need to be outranked."
+  },
+  "s4": {
+    "on": "This section lays out the funnel: top for awareness, middle for consideration, bottom for decision, each linking to the next.",
+    "say": "Each stage leads to the next."
   }
 },
 "10::GEO Tactics & Consistency": {
@@ -4076,6 +7411,23 @@ window.PRESENTER_NOTES = {
     "say": "What the AI gets wrong is your update list.",
     "wrap": "Structure the content, answer questions directly and keep the bios identical.",
     "scenario": "Ask an AI assistant \"Who is Elias Thorne and what is he known for?\" What would you do with each thing it gets wrong or leaves out?"
+  },
+  "s1": {
+    "on": "This section introduces GEO tactics, covered in the steps that follow.",
+    "say": "Here's how."
+  },
+  "s2": {
+    "on": "These steps apply them: schema markup, FAQ-style direct answers, word-for-word consistent bios, drift audits, and ongoing maintenance.",
+    "say": "Same bio wording everywhere."
+  },
+  "s3": {
+    "on": "This section restates the tactics and says inconsistency hurts the AI 'trust score'.",
+    "say": "Consistency builds trust."
+  },
+  "s4": {
+    "on": "This section defines GEO, says AI favors clear authoritative content, and suggests asking an AI who the executive is each month.",
+    "say": "Whatever the AI gets wrong is your update list.",
+    "ask": "What do you think an AI would say about your executive?"
   }
 },
 "10::Copywriting vs. Blog Writing": {
@@ -4089,6 +7441,18 @@ window.PRESENTER_NOTES = {
     "say": "Add something the top five results don't have.",
     "wrap": "Pick the format for the goal, and bring first-hand evidence.",
     "scenario": "Two volunteers write the same announcement, the firm's new free contract-review consultation: one as copy, one as a blog intro. Read both aloud back to back."
+  },
+  "s1": {
+    "on": "This section contrasts copywriting (short, AIDA, strong CTAs, built to convert) with blog writing (long, structured, E-E-A-T evidence, built to educate and rank).",
+    "say": "The sell vs. the tell."
+  },
+  "s2": {
+    "on": "These steps write each: AIDA for the conversion goal, action CTAs, a hook and direct intro with H2/H3s, first-hand evidence, and the right format for the goal.",
+    "say": "Not 'click here'."
+  },
+  "s3": {
+    "on": "This section calls copy the closer and blogs the friendly guide, and warns against rehashing the top search results.",
+    "say": "Add something AI can't summarize away."
   }
 },
 "10::Basic Campaign Math": {
@@ -4102,6 +7466,19 @@ window.PRESENTER_NOTES = {
     "say": "Lead count alone can hide a losing campaign.",
     "wrap": "Calculate CPL and ROI, compare with goals and track over time.",
     "scenario": "Live: a $1,200 LinkedIn campaign produced 40 leads, 3 became clients and each client is worth $900. What are the CPL and ROI, and was it a success?"
+  },
+  "s1": {
+    "on": "This section gives two formulas: Cost per Lead = Spend ÷ Leads, and ROI = (Revenue − Spend) ÷ Spend × 100.",
+    "say": "CPL and ROI."
+  },
+  "s2": {
+    "on": "These steps calculate: CPL, ROI, both checked together, compared to goals, and tracked across campaigns.",
+    "say": "Lead count alone can mislead."
+  },
+  "s3": {
+    "on": "This section works an example ($500 spend, 50 leads, $20 product: $10 CPL, $1,000 revenue, 100% ROI) and says to know both numbers before calling success.",
+    "say": "Know both numbers.",
+    "ask": "What's the ROI if revenue were $400?"
   }
 },
 "10::Crisis Response on Social Media": {
@@ -4115,6 +7492,18 @@ window.PRESENTER_NOTES = {
     "say": "Deleting a legitimate complaint usually makes it worse.",
     "wrap": "Assess, acknowledge calmly, take it private, escalate and document.",
     "scenario": "A former client posts a detailed public complaint that's gaining traction; some of it is accurate, some exaggerated. What do you do in the next 30 minutes, before anyone senior weighs in?"
+  },
+  "s1": {
+    "on": "This section says pile-ons move in hours, deleting or ignoring is usually wrong, and not every comment needs a reply.",
+    "say": "Hours, not days."
+  },
+  "s2": {
+    "on": "These steps respond: assess legitimacy first, acknowledge publicly and move details private, and bring in the decision-maker for anything serious.",
+    "say": "Brief public reply, details in private."
+  },
+  "s3": {
+    "on": "This section warns against emotional replies and deleting legitimate criticism, and asks you to document the response.",
+    "say": "Don't delete; it looks worse."
   }
 },
 "10::Endorsement & Disclosure Rules": {
@@ -4128,6 +7517,18 @@ window.PRESENTER_NOTES = {
     "say": "In-kind still counts. When in doubt, disclose.",
     "wrap": "Confirm the rules first, keep records and check disclosure is visible.",
     "scenario": "A former client with a large following offers to post about the firm in exchange for a discount on future services. What do you need to confirm before this goes any further?"
+  },
+  "s1": {
+    "on": "This section says third-party promotion can trigger disclosure rules like the FTC's, the principle is transparency about relationships, and counsel confirms specifics.",
+    "say": "Disclose the relationship."
+  },
+  "s2": {
+    "on": "These steps comply: confirm disclosure language and placement, keep relationship records, and check partner posts for visible disclosure.",
+    "say": "In the post itself."
+  },
+  "s3": {
+    "on": "This section warns that unpaid reciprocal deals may still need disclosure, says to check before drafting, and when unsure, disclose.",
+    "say": "When unsure, disclose."
   }
 },
 "10::Video Content Basics for Executive Presence": {
@@ -4141,6 +7542,18 @@ window.PRESENTER_NOTES = {
     "say": "Watch the whole thing before it goes out.",
     "wrap": "Plan the point, check the frame, caption and watch it through.",
     "scenario": "Elias records a 90-second video answering a common client question, but a notification showing a client's name flashes on his monitor in the background. What's your process before it's published?"
+  },
+  "s1": {
+    "on": "This section says video carries presence that text can't, and clarity and genuine tone matter more than polish.",
+    "say": "Clear beats polished."
+  },
+  "s2": {
+    "on": "These steps prepare: one clear point, background and audio checks, and 60–90 seconds for social.",
+    "say": "One takeaway per video."
+  },
+  "s3": {
+    "on": "This section warns against uncaptioned video and publishing without a full watch-through, and asks for a consistent setup.",
+    "say": "Captions, always."
   }
 },
 "10::Social Listening & Monitoring": {
@@ -4154,6 +7567,18 @@ window.PRESENTER_NOTES = {
     "say": "A pattern across mentions matters more than any single one.",
     "wrap": "Listen beyond your own account, log themes and flag trends early.",
     "scenario": "Your weekly listening check finds several posts referencing the same complaint about the firm's billing that nobody has reported directly. What's your next step?"
+  },
+  "s1": {
+    "on": "This section defines social listening as tracking what's said everywhere, not just replies, so you catch things early.",
+    "say": "Beyond your own notifications."
+  },
+  "s2": {
+    "on": "These steps run it: set alerts across relevant platforms, separate routine mentions from ones needing action, and log recurring themes.",
+    "say": "Patterns tell you more than single mentions."
+  },
+  "s3": {
+    "on": "This section warns against checking only your own account or setting it up once, and says to flag concerning trends early.",
+    "say": "Flag trends early."
   }
 },
 "10::Accessibility in Digital Content": {
@@ -4167,6 +7592,18 @@ window.PRESENTER_NOTES = {
     "say": "An auto-caption that misquotes the executive is a real problem.",
     "wrap": "Real alt text, reviewed captions, good contrast and a standard review step.",
     "scenario": "You're finalizing a LinkedIn post with a bar chart showing the firm's pro bono hours by year, and it has no alt text. Write the description live so it's actually useful."
+  },
+  "s1": {
+    "on": "This section says alt text, captions and contrast decide whether part of the audience can engage at all, and building them in early is cheap.",
+    "say": "Accessibility from the start."
+  },
+  "s2": {
+    "on": "These steps apply it: descriptive alt text, reviewed captions, and a contrast check.",
+    "say": "Describe what's actually there."
+  },
+  "s3": {
+    "on": "This section warns against generic alt text and unreviewed auto-captions, and says accessibility belongs in the approval process.",
+    "say": "Part of approval."
   }
 },
 "10::Personal vs. Firm Brand Account Separation": {
@@ -4180,6 +7617,18 @@ window.PRESENTER_NOTES = {
     "say": "Ambiguity always surfaces at the worst moment.",
     "wrap": "Put ownership in writing, match access to it and document it centrally.",
     "scenario": "An executive with a large personal following is leaving the firm, and their account has been used for both personal thought leadership and firm announcements. What questions should have been settled long before now?"
+  },
+  "s1": {
+    "on": "This section says personal and firm brands are distinct, and account ownership matters in practice if someone leaves.",
+    "say": "Who owns the login?"
+  },
+  "s2": {
+    "on": "These steps separate them: written ownership, access matching ownership, and distinct voice guidelines for each.",
+    "say": "Put ownership in writing."
+  },
+  "s3": {
+    "on": "This section warns against ambiguous ownership and mixing firm content into personal accounts, and asks to document credentials in firm systems.",
+    "say": "Decide before a departure forces it."
   }
 },
 "10::Legal Advertising & UPL Rules": {
@@ -4193,6 +7642,18 @@ window.PRESENTER_NOTES = {
     "say": "Case results and testimonials have their own rules.",
     "wrap": "Keep it educational, follow the advertising rules and escalate the ambiguous.",
     "scenario": "A draft post shares an impressive case outcome and says \"we can get you the same result.\" What's the concern with that phrasing, and how would you revise it?"
+  },
+  "s1": {
+    "on": "This section says a law firm's online presence is regulated attorney advertising, and UPL applies online: specific advice to a specific situation crosses the line.",
+    "say": "Regulated, not ordinary marketing."
+  },
+  "s2": {
+    "on": "These steps comply: check general vs. specific content, know jurisdiction rules and disclaimers, and escalate anything ambiguous.",
+    "say": "Specific advice needs attorney review."
+  },
+  "s3": {
+    "on": "This section warns against treating firm social media as ordinary marketing, and says testimonials and case results need special care.",
+    "say": "Case results need extra care."
   }
 },
 "10::Final Timed Evaluation & Capstone Checklist": {
@@ -4206,6 +7667,19 @@ window.PRESENTER_NOTES = {
     "say": "Leave with a practice plan, not just a certificate.",
     "wrap": "Use the data, name the gaps and commit to a specific plan.",
     "scenario": "Looking back across all 10 days: which single day or Practice Lab tool would you most want to revisit before calling yourself ready, and what specifically will you do to close that gap?"
+  },
+  "s1": {
+    "on": "This section closes the 10-day program and says the capstone checks real readiness, like the Day 5 review, now for the whole program.",
+    "say": "Readiness, not attendance."
+  },
+  "s2": {
+    "on": "These steps finish: review all 10 days of data, name shaky areas honestly, and take the timed evaluation with composure.",
+    "say": "Be honest about the gaps.",
+    "ask": "What will you keep practicing after today?"
+  },
+  "s3": {
+    "on": "This section warns against treating the capstone as a formality, and says the best close is a specific plan for continued practice.",
+    "say": "Leave with a practice plan."
   }
 }
 };
