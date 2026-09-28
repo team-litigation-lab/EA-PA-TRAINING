@@ -16,6 +16,7 @@
     10. SOP: Program flow page + a timed run of show for every day.
     11. Trainee feedback: open any page in a new tab (right-click, Ctrl/⌘-click,
         middle-click), "Lessons in a new tab" on every lab, Gmail inbox labels stay on screen.
+    12. Batch Folders: an Archive shelf, restore, search, and records downloads for later use.
    ============================================================ */
 window.EAPA_UPDATE_PACK = "z";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
@@ -2276,6 +2277,180 @@ window.toolHead = function(t){
   const btn = `<button class="btn btn-sm lab-hbtn" onclick="openRouteInNewTab('#/day/${d}')" title="Keep this activity open and review the Day ${d} lessons side by side">📑 Lessons in a new tab</button>`;
   return html.replace(/(<div class="lab-hero-actions">)/, "$1" + btn);
 };
+
+/* ---------- 12. Batch Folders: Archive shelf + re-access records (2026-09-28) ----------
+   Archiving a batch moves its folder to the 📦 Archive shelf instead of leaving an empty
+   "0 trainees" folder. Every record is kept: open an archived folder to see its registry,
+   rankings, feedback and activity as they were, download the records (CSV for a sheet,
+   JSON for a full backup), or restore the batch. A search box finds a batch or a trainee
+   in active and archived batches alike. */
+(function(){ const s = document.createElement("style"); s.id = "eapa-update-12"; s.textContent = `
+.bf-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 16px;}
+.bf-search{flex:1 1 260px;max-width:420px;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;}
+.bf-search input{border:none;outline:none;font:inherit;font-size:13.5px;width:100%;background:transparent;color:var(--ink);}
+.bf-count{font-size:12.5px;color:var(--ink-soft);}
+.batch-folder{position:relative;}
+.batch-folder .bf-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.batch-folder .bf-actions button{font:inherit;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:#F6F7FB;color:var(--navy);cursor:pointer;}
+.batch-folder .bf-actions button:hover{border-color:var(--orange,#DB8437);}
+.batch-folder .bf-actions .bf-arch{color:#8A5A1E;}
+.batch-folder .bf-hit{font-size:11.5px;color:#0b57d0;font-weight:600;}
+.bf-shelf{margin-top:30px;padding:18px;border-radius:16px;background:#EEF0F6;border:1px dashed #C9CEDD;}
+.bf-shelf h2{margin:0 0 4px;font-size:16px;color:var(--navy);}
+.bf-shelf > p{margin:0 0 14px;font-size:12.5px;color:var(--ink-soft);}
+.batch-folder.is-archived{background:#FAFAFC;}
+.batch-folder.is-archived .bf-icon{filter:grayscale(1);opacity:.75;}
+.batch-folder.is-archived .bf-name::after{content:"Archived";margin-left:8px;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5B6178;background:#E4E6EE;padding:2px 7px;border-radius:999px;vertical-align:middle;}
+.bf-archived-banner{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#EEF0F6;border:1px solid #C9CEDD;border-radius:12px;padding:12px 16px;margin:10px 0 4px;font-size:13px;color:var(--ink);}
+.bf-archived-banner b{color:var(--navy);}
+.bf-archived-banner .grow{flex:1 1 260px;}
+`; document.head.appendChild(s); })();
+
+function bfAll(k){ return (state.adminData||[]).filter(r=>batchKey(r)===k); }
+function bfIsArchived(k){ const all = bfAll(k); return all.length>0 && all.every(r=>r.archived); }
+function bfArchivedAt(k){ return bfAll(k).map(r=>r.archivedAt).filter(Boolean).sort().pop() || null; }
+// An archived batch shows all of its records; an active one hides archived trainees unless asked.
+function batchMembers(k){ const all = bfAll(k), arch = all.length>0 && all.every(r=>r.archived); return all.filter(r=>arch || state.batchShowArchived || !r.archived); }
+function bfKeys(){
+  return Array.from(new Set((state.adminData||[]).map(batchKey))).sort((a,b)=> a===NO_BATCH ? 1 : b===NO_BATCH ? -1 : a.localeCompare(b, undefined, {numeric:true}));
+}
+function bfMatches(k){
+  const q = String(state.bfSearch||"").trim().toLowerCase(); if(!q) return {ok:true, names:[]};
+  const names = bfAll(k).map(r=>cleanName(r.name)||"").filter(n=>n.toLowerCase().includes(q));
+  return {ok: folderLabel(k).toLowerCase().includes(q) || names.length>0, names};
+}
+function bfCard(k){
+  const all = bfAll(k), arch = bfIsArchived(k), m = bfMatches(k);
+  const shown = arch ? all : all.filter(r=>!r.archived);
+  const done = shown.length ? Math.round(shown.reduce((a,r)=>a+adminDayStats(r).done,0)/shown.length/DAYS.length*100) : 0;
+  const fb = batchFeedback(k).length, fbTxt = state.tfbAdmin && !state.tfbAdmin.loading ? `${fb} feedback` : "feedback…";
+  const extraArch = !arch && all.length>shown.length ? ` · ${all.length-shown.length} archived` : "";
+  const at = arch ? bfArchivedAt(k) : null;
+  const kq = esc(k).replace(/'/g, "&#39;");
+  return `<div class="batch-folder ${arch?"is-archived":""}" role="button" tabindex="0" onclick="openBatchFolder('${kq}','registry')" onkeydown="if(event.key==='Enter'){openBatchFolder('${kq}','registry')}">
+    <span class="bf-icon">${arch?"🗄":"📁"}</span>
+    <span class="bf-name">${esc(folderLabel(k))}</span>
+    <span class="bf-meta">${shown.length} trainee${shown.length===1?"":"s"}${extraArch}</span>
+    <span class="bf-meta">${done}% avg completion · ${fbTxt}</span>
+    ${arch ? `<span class="bf-meta">${at ? "Archived " + esc(fmtDate(at)) : "Archived"}</span>` : ""}
+    ${m.names.length ? `<span class="bf-hit">Found: ${m.names.slice(0,3).map(esc).join(", ")}${m.names.length>3?` +${m.names.length-3}`:""}</span>` : ""}
+    <div class="bf-actions">
+      ${arch
+        ? `<button type="button" onclick="event.stopPropagation();openBatchFolder('${kq}','registry')">📂 Open records</button><button type="button" onclick="event.stopPropagation();confirmUnarchiveBatch('${kq}')">↩ Restore</button>`
+        : (k!==NO_BATCH ? `<button type="button" class="bf-arch" onclick="event.stopPropagation();confirmArchiveBatch('${kq}')">📦 Archive</button>` : "")}
+      <button type="button" onclick="event.stopPropagation();bfExportCsv('${kq}')" title="Download this batch's records as a spreadsheet (CSV)">⬇ Records</button>
+    </div>
+  </div>`;
+}
+function bfGridHtml(){
+  const keys = bfKeys(), shown = keys.filter(k=>bfMatches(k).ok);
+  const active = shown.filter(k=>!bfIsArchived(k)), archived = shown.filter(k=>bfIsArchived(k));
+  const allArch = keys.filter(k=>bfIsArchived(k)).length;
+  const q = String(state.bfSearch||"").trim();
+  const open = q || state.bfShelfOpen;
+  return `
+    ${active.length ? `<div class="batch-folder-grid">${active.map(bfCard).join("")}</div>`
+      : `<div class="empty-note">${q ? `No active batch matches “${esc(q)}”.` : "No active batches. Archived batches are on the shelf below."}</div>`}
+    <div class="bf-shelf">
+      <h2>📦 Archive <span class="bf-count">(${allArch} batch${allArch===1?"":"es"})</span></h2>
+      <p>Archived batches keep every record: registry, rankings, feedback and activity. Open one to look back, download its records, or restore it.</p>
+      ${!allArch ? `<div class="empty-note" style="margin:0;">Nothing archived yet. Use 📦 Archive on a batch when its training is finished.</div>`
+        : archived.length ? (open || archived.length<=8
+            ? `<div class="batch-folder-grid">${archived.map(bfCard).join("")}</div>`
+            : `<button class="btn btn-ghost btn-sm" onclick="state.bfShelfOpen=true;bfRedraw()">Show ${archived.length} archived batches</button>`)
+        : `<div class="empty-note" style="margin:0;">No archived batch matches “${esc(q)}”.</div>`}
+    </div>`;
+}
+function bfRedraw(){ const g = document.getElementById("bfGrid"); if(g) g.innerHTML = bfGridHtml(); else render(); }
+function bfSearch(v){ state.bfSearch = v; bfRedraw(); }
+
+function renderAdminBatchFolders(){
+  if(state.adminLoading || !state.adminData){
+    return `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
+  }
+  if(!state.tfbAdmin) setTimeout(()=>loadTraineeFeedbackAdmin(), 0);
+  const keys = bfKeys();
+  if(state.batchFolder && !keys.includes(state.batchFolder)) state.batchFolder = null;
+  if(state.batchFolder) return renderBatchFolder(state.batchFolder);
+  const head = `
+    <p class="eyebrow">Admin Dashboard</p>
+    <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Batch Folders</h1>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:72ch;margin:0 0 18px;">Each batch has its own folder: the trainees registered in it, their rankings, the feedback they sent and their latest activity — kept apart from every other batch. Archive a batch when it finishes; its records stay available on the Archive shelf.</p>`;
+  if(!keys.length) return head + `<div class="empty-note">No trainees yet — a folder appears for each batch as trainees register.</div>`;
+  const nArch = keys.filter(k=>bfIsArchived(k)).length;
+  return head + `
+    <div class="bf-toolbar">
+      <label class="bf-search"><span>🔍</span><input type="search" placeholder="Find a batch or trainee (active and archived)" value="${esc(state.bfSearch||"")}" oninput="bfSearch(this.value)"></label>
+      <span class="bf-count">${keys.length-nArch} active · ${nArch} archived</span>
+      <button class="btn btn-ghost btn-sm" onclick="refreshAdminData();loadTraineeFeedbackAdmin()">🔄 Refresh</button>
+    </div>
+    <div id="bfGrid">${bfGridHtml()}</div>`;
+}
+
+const __bfRenderFolder12 = window.renderBatchFolder;
+window.renderBatchFolder = function(k){
+  let html = __bfRenderFolder12(k);
+  const kq = esc(k).replace(/'/g, "&#39;");
+  const dl = `<button class="btn btn-ghost btn-sm" onclick="bfExportCsv('${kq}')" title="Spreadsheet of every trainee's progress and scores">⬇ Records (CSV)</button>
+        <button class="btn btn-ghost btn-sm" onclick="bfExportJson('${kq}')" title="Complete backup of this batch's records and feedback">⬇ Full backup (JSON)</button>`;
+  html = html.replace(/(<button class="btn btn-ghost btn-sm" onclick="refreshAdminData\(\);loadTraineeFeedbackAdmin\(\)">)/, dl + "\n        $1");
+  if(bfIsArchived(k)){
+    const at = bfArchivedAt(k), n = bfAll(k).length;
+    const banner = `<div class="bf-archived-banner"><span style="font-size:22px;">🗄</span>
+      <div class="grow"><b>Archived batch</b>${at ? ` · archived ${esc(fmtDate(at))}` : ""}. All ${n} trainee record${n===1?"":"s"} are kept below: registry, rankings, feedback and activity, as they were.</div>
+      <button class="btn btn-primary btn-sm" onclick="confirmUnarchiveBatch('${kq}')">↩ Restore batch</button></div>`;
+    html = html.replace(/(<div class="bf-tabs">)/, banner + "\n    $1")
+               .replace(/<label style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:var\(--ink-soft\);cursor:pointer;"><input type="checkbox"[^>]*> Include archived<\/label>/, "");
+  }
+  return html;
+};
+
+// Archive / restore: same as before, plus the archive date, and the folder moves to (or off) the shelf.
+window.confirmArchiveBatch = async function(batch){
+  const members = (state.adminData||[]).filter(r=>batchKey(r)===batch && !r.archived);
+  if(!members.length){ toast("Nothing to archive in this batch."); return; }
+  if(!confirm(`Archive batch "${batchLabel(batch)}" (${members.length} trainee${members.length===1?"":"s"})?\n\nThe folder moves to the 📦 Archive shelf and the trainees leave Rankings and Trainee Audit. Nothing is deleted: open the archived folder any time to see or download the records, or restore the batch.`)) return;
+  const at = new Date().toISOString();
+  for(const rec of members){ rec.archived = true; rec.archivedAt = at; await sharedSet("trainee:"+rec.id, rec); }
+  toast(`Batch "${batchLabel(batch)}" archived — find it on the 📦 Archive shelf.`);
+  if(state.batchFolder===batch) state.batchFolder = null;
+  await loadAdminLedger();
+};
+window.confirmUnarchiveBatch = async function(batch){
+  const members = (state.adminData||[]).filter(r=>batchKey(r)===batch && r.archived);
+  if(!members.length){ toast("Nothing to restore in this batch."); return; }
+  if(!confirm(`Restore batch "${batchLabel(batch)}" (${members.length} trainee${members.length===1?"":"s"})? They'll show up again in Batch Folders, Rankings and Trainee Audit.`)) return;
+  for(const rec of members){ rec.archived = false; delete rec.archivedAt; await sharedSet("trainee:"+rec.id, rec); }
+  toast(`Batch "${batchLabel(batch)}" restored (${members.length} trainee${members.length===1?"":"s"}).`);
+  await loadAdminLedger();
+};
+
+// Records downloads, for keeping or re-using a batch's results later.
+function bfFileName(k, ext){ return `LSH_EAPA_${(k===NO_BATCH?"No_batch":"Batch_"+k).replace(/[^A-Za-z0-9_-]+/g,"_")}_records_${new Date().toISOString().slice(0,10)}.${ext}`; }
+function bfExportCsv(k){
+  const recs = bfAll(k).slice().sort((a,b)=>(cleanName(a.name)||"").localeCompare(cleanName(b.name)||""));
+  if(!recs.length){ toast("No records in this batch."); return; }
+  const q = (v)=>`"${String(v??"").replace(/"/g,'""')}"`;
+  const head = ["Name","First name","Last name","Batch","Status","Approved","Registered","Last active","Archived on",
+    "Days completed","Knowledge Check avg %", ...DAYS.map(d=>`Day ${d.id} KC %`), "Practice Lab runs","Practice Lab avg %","Submissions","Feedback sent"];
+  const fbBy = {}; batchFeedback(k).forEach(x=>{ const n = (cleanName(x.name)||"").toLowerCase(); fbBy[n] = (fbBy[n]||0)+1; });
+  const d8 = (v)=> v ? String(v).slice(0,10) : "";
+  const rows = recs.map(r=>{ const ds = adminDayStats(r), ps = adminPracticeStats(r), dp = r.dayProgress||{};
+    return [cleanName(r.name)||"", r.firstName||"", r.lastName||"", batchLabel(k), r.archived?"Archived":"Active", r.approved===true?"Yes":r.approved===false?"No":"",
+      d8(r.registeredAt), d8(r.lastActive), d8(r.archivedAt), `${ds.done}/${ds.total}`, ds.avg,
+      ...DAYS.map(d=>{ const p = dp[d.id]; return p && typeof p.score==="number" ? p.score : ""; }),
+      ps.runs, ps.avg, (r.submissions||[]).length, fbBy[(cleanName(r.name)||"").toLowerCase()]||0].map(q).join(","); });
+  saveBlob(new Blob(["﻿" + [head.map(q).join(","), ...rows].join("\n")], {type:"text/csv;charset=utf-8"}), bfFileName(k, "csv"));
+  toast(`Downloaded ${recs.length} record${recs.length===1?"":"s"} for ${folderLabel(k)}.`);
+}
+function bfExportJson(k){
+  const recs = bfAll(k); if(!recs.length){ toast("No records in this batch."); return; }
+  const data = {exportedAt:new Date().toISOString(), program:"LSH EA/PA Upskill Program", batch:batchLabel(k), archived:bfIsArchived(k), archivedAt:bfArchivedAt(k),
+    trainees:recs, feedback:batchFeedback(k)};
+  saveBlob(new Blob([JSON.stringify(data, null, 2)], {type:"application/json"}), bfFileName(k, "json"));
+  toast(`Full backup of ${folderLabel(k)} downloaded.`);
+}
+Object.assign(window, {bfSearch, bfRedraw, bfExportCsv, bfExportJson});
 
 /* if the portal already drew itself before this file loaded, redraw with the updates */
 if(document.querySelector(".topbar")) render();
