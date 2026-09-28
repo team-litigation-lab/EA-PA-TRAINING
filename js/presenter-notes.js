@@ -816,5 +816,545 @@ window.PRESENTER_NOTES = {
     "wrap": "Verify every figure, flag tough questions early, and respect disclosure limits.",
     "scenario": "While preparing an investor briefing, you notice one figure you were given doesn't match the firm's own recent report. What do you do before the materials go out?"
   }
+},
+"3::Prioritization Frameworks": {
+  "p1": {
+    "on": "This slide introduces four prioritization frameworks, with a diagram. The Eisenhower Matrix is for an overwhelming list, Pomodoro (25 minutes on, 5 off) for focus, Time Blocking for protecting deep work, and the 80/20 Rule for finding the 20% of work that drives 80% of results. The last step says to start with the one that fixes your biggest gap.",
+    "say": "Four frameworks, one at a time. Pick the one that fixes your biggest gap first.",
+    "ask": "Who already uses one of these, even without knowing its name?"
+  },
+  "p2": {
+    "on": "This slide explains when to choose each framework. Eisenhower is for deciding what not to do, Pomodoro is for when priorities are clear but focus is the problem, and Time Blocking protects the few tasks that matter most this week. The callout says executives spend 30–40% of their time in email, and good triage can reclaim 10+ hours a week.",
+    "say": "Match the framework to the problem: too much, can't focus, or no protected time.",
+    "wrap": "Choose one framework, build the habit, then layer in the next.",
+    "scenario": "Monday morning: Elias has 14 open items, including a brief due Wednesday, three client callbacks, an expense report and a conference RSVP. Sort them in the Eisenhower Matrix out loud. What gets delegated or dropped?"
+  }
+},
+"3::Time Tracking Done Right": {
+  "p1": {
+    "on": "This slide lists the common time-tracking mistakes: logging at week's end, vague descriptions, underbilling small tasks and forgetting communications. The steps with the diagram say to log as you work, write specific entries, log small tasks, include calls and emails, and build a Weekly Time Summary.",
+    "say": "Log it when you do it. Memory at the end of the week is where billing goes wrong.",
+    "ask": "Which of these mistakes do you think costs the most money over a year?"
+  },
+  "p2": {
+    "on": "This slide teaches how to write a useful time entry: verb + object + purpose, for example \"Drafted deposition notice for Harlow matter; circulated to counsel for review.\" It also says to record in the firm's increments (often 0.1 hour), round honestly, and tag the client or matter as you log.",
+    "say": "Verb, object, purpose, and tag the matter while you log it.",
+    "wrap": "Real-time, specific, matter-tagged entries protect the firm's billing.",
+    "scenario": "Your entry for yesterday reads \"Emails — 1.0.\" Rewrite it as three proper entries using verb + object + purpose, tagged to the right matters."
+  }
+},
+"3::Time Management": {
+  "p1": {
+    "on": "This slide lays out time management as four steps in order: Decide what deserves protected time this week, Block it on the calendar before the day fills, Protect it like any other commitment, and Review weekly whether it held.",
+    "say": "Decide, Block, Protect, Review, in that order.",
+    "ask": "Which step do you usually skip?"
+  },
+  "p2": {
+    "on": "This slide separates time management from calendar management. Time management decides what deserves time; calendar management makes sure the calendar reflects and protects that decision. It's the bridge to the Calendar Management topic and to the tool later today.",
+    "say": "Time management decides. Calendar management protects the decision.",
+    "wrap": "Priorities only count once they're blocked and defended on the calendar.",
+    "scenario": "Elias says his top priority this week is the Harlow summary judgment brief, but his calendar shows no time for it. Walk through Decide, Block, Protect, Review for his week."
+  }
+},
+"3::When Time Management Fails Despite a Clean Calendar": {
+  "p1": {
+    "on": "This slide explains that a calendar with no conflicts can still fail if it's packed with reactive meetings and has no protected space for important work. The steps with the diagram: check for reactive-meeting saturation, confirm protected space exists, apply the same check to travel weeks, and diagnose a failed week as a decision problem or a protection problem.",
+    "say": "No conflicts isn't the same as a well-managed week.",
+    "ask": "Think of a week where the calendar looked fine but the real priorities didn't get done. What broke?"
+  },
+  "p2": {
+    "on": "This slide connects this to travel: a trip only works if the calendar before, during and after it was managed with the same discipline. It ends with the discussion prompt about a week that looked fine on paper and asks whether the decision or the protection broke.",
+    "say": "Travel weeks need the same protection before, during and after.",
+    "wrap": "Diagnose failed weeks as decision or protection, and review weekly, not only when something breaks.",
+    "scenario": "Share a real week where your calendar looked fine on paper but the actual priorities still didn't get done. Was it the decision or the protection that broke?"
+  }
+},
+"3::Calendar Management That Holds": {
+  "p1": {
+    "on": "This slide covers a calendar that holds up over time, with a diagram. Use one synced calendar as the single source of truth, build buffers between commitments, automate routine scheduling with Calendly or Doodle, centralize scheduling in the CRM if the firm uses one, protect deep-work blocks, and review weekly for drift.",
+    "say": "One calendar, buffers built in, and a weekly check for drift.",
+    "ask": "Does anyone here keep a second, unofficial calendar?",
+    "wrap": "A second unofficial calendar is where conflicts breed. Centralize, buffer and review weekly.",
+    "scenario": "Live exercise: on the sample calendar on screen, find every conflict and every missing buffer, then say what you'd change first."
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "A second unofficial calendar is where conflicts breed. Centralize, buffer and review weekly.",
+    "scenario": "Live exercise: on the sample calendar on screen, find every conflict and every missing buffer, then say what you'd change first."
+  }
+},
+"3::Calendar Conflict & Prioritization Discipline": {
+  "p1": {
+    "on": "This slide sets the conflict rules, with a diagram. Tell the executive about every conflict immediately and never rebook or decline without checking first. Rank commitments by strategic importance, not booking order. Present the trade-off with a recommendation, document the resolution, and confirm it with both parties.",
+    "say": "Flag it immediately, rank by importance, recommend, then confirm with both sides.",
+    "ask": "Why not just decline the less important meeting yourself?",
+    "wrap": "A board update outranks a routine check-in, whichever was booked first.",
+    "scenario": "Elias is double-booked Thursday at 2 p.m.: a standing check-in with an associate, booked three weeks ago, and a call with a new client's general counsel, requested this morning. What does \"strategic importance\" mean here, and what do you tell Elias?"
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "A board update outranks a routine check-in, whichever was booked first.",
+    "scenario": "Elias is double-booked Thursday at 2 p.m.: a standing check-in with an associate, booked three weeks ago, and a call with a new client's general counsel, requested this morning. What does \"strategic importance\" mean here, and what do you tell Elias?"
+  }
+},
+"3::Energy Management vs. Time Management": {
+  "p1": {
+    "on": "This slide contrasts two questions: time management asks \"when should this happen?\" and energy management asks \"can I do this well right now?\" The steps with the diagram: identify the daily energy pattern, protect the sharp-focus window, check high-stakes items against low-energy windows, and flag the risk if one must land there.",
+    "say": "A free slot isn't neutral if it falls in someone's worst hour.",
+    "ask": "What's your own sharpest hour of the day?",
+    "wrap": "Put the hardest work in the sharpest window, and flag it when you can't.",
+    "scenario": "Opposing counsel proposes 4 p.m. Friday for a settlement negotiation, and you know Elias fades late in the day after a full week. What do you say to Elias, and what do you propose instead?"
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Put the hardest work in the sharpest window, and flag it when you can't.",
+    "scenario": "Opposing counsel proposes 4 p.m. Friday for a settlement negotiation, and you know Elias fades late in the day after a full week. What do you say to Elias, and what do you propose instead?"
+  }
+},
+"3::Handling Interruptions Without Losing the Day": {
+  "p1": {
+    "on": "This slide gives four steps for interruptions: Triage in Seconds (truly urgent, or does it just feel that way?), Capture, Don't Solve (write it down where you'll see it), Return Deliberately (finish the thought you were on), and Batch the Non-Urgent (handle captured items in one block later).",
+    "say": "Triage, capture, return, batch.",
+    "ask": "How long does it take you to get back to full focus after an interruption?"
+  },
+  "p2": {
+    "on": "This slide explains the hidden cost: a two-minute interruption can cost fifteen minutes of real focus. It also says not every interruption is urgent; it just feels urgent because it's happening now. Telling the difference in the first few seconds is the skill.",
+    "say": "Two minutes of interruption, fifteen minutes to recover.",
+    "wrap": "Decide in seconds whether it's urgent, and capture everything else for later.",
+    "scenario": "You're halfway through proofing a filing due at 5 p.m. when a colleague stops by about next month's office lunch. Walk through the four steps out loud."
+  }
+},
+"3::The Two-Minute Rule": {
+  "p1": {
+    "on": "This slide states the Two-Minute Rule: if a task genuinely takes less than two minutes, do it now, because tracking it costs more than finishing it. The steps with the diagram: estimate honestly, do it immediately if it qualifies, stop and schedule it if it starts to expand, apply the rule consistently, and check your list for items that should already be done.",
+    "say": "Under two minutes, do it now. Over two, schedule it.",
+    "ask": "How many two-minute tasks are sitting in your inbox right now?"
+  },
+  "p2": {
+    "on": "This slide says the rule only works if it's applied honestly: a task that keeps growing once you start should be stopped and scheduled. It also explains the payoff, which is stopping small tasks from quietly piling into an overwhelming backlog.",
+    "say": "Be honest about the two minutes, or the rule backfires.",
+    "wrap": "Finish true two-minute tasks immediately and stop small items from piling up.",
+    "scenario": "Five items land in ten minutes: confirm a lunch reservation, reply \"received\" to a court notice, reformat a 20-page exhibit list, forward an invoice to billing, and update a contact's phone number. Which pass the Two-Minute Rule?"
+  }
+},
+"3::Weekly Planning Rituals": {
+  "p1": {
+    "on": "This slide describes a short, fixed weekly planning session, with a diagram: look at the week ahead, decide deliberately what to do with last week's unfinished items, block time now for anything needing multi-day lead time, and defend the session like any other meeting.",
+    "say": "A fixed weekly block catches what daily planning misses.",
+    "ask": "Who has a standing weekly planning block, and who plans each morning?"
+  },
+  "p2": {
+    "on": "This slide separates weekly from daily planning: weekly planning catches items that don't fit in one day, like a deadline three days out that needs prep today. It also warns that a planning session bumped every week isn't really happening.",
+    "say": "If the planning block keeps getting bumped, you don't have one.",
+    "wrap": "Protect the weekly session, look ahead, and block lead time early.",
+    "scenario": "It's Friday afternoon. Elias has a mediation next Thursday that needs a binder, two witness calls and a travel booking. Plan backwards: what goes on the calendar today, and for which days?"
+  }
+},
+"3::Saying No Without Damaging Relationships": {
+  "p1": {
+    "on": "This slide covers declining well, with a diagram: respond promptly, give the specific reason, offer a real alternative such as a new timeline, person or partial version, never say yes and then quietly fail to deliver, and say plainly when you're at capacity.",
+    "say": "A fast, specific no with an alternative protects the relationship.",
+    "ask": "When did a no actually strengthen a working relationship for you?"
+  },
+  "p2": {
+    "on": "This slide explains that saying yes to everything only moves the disappointment to later. A good no names the constraint, such as \"I can't take this on before Thursday given X,\" so it reads as a real answer rather than a brush-off.",
+    "say": "Yes to everything just delays the letdown.",
+    "wrap": "Decline fast, give the real reason, and offer an alternative.",
+    "scenario": "A partner asks for 30 minutes with Elias tomorrow, but his day is fully committed to trial prep. Say the no out loud, with the reason and an alternative."
+  }
+},
+"3::Batch Processing Similar Tasks": {
+  "p1": {
+    "on": "This slide explains batching, with a diagram: grouping similar tasks, such as calls, email replies or data entry, into one block to cut the mental cost of switching. The steps: find your recurring categories, group them, deliberately delay non-urgent items so they can be batched, break the batch for anything urgent, and review your categories over time.",
+    "say": "Same kind of work, same block of time.",
+    "ask": "What do you currently handle one at a time that could be batched?"
+  },
+  "p2": {
+    "on": "This slide says batching is a deliberate choice to delay some tasks slightly, which is different from working in arrival order. The trade-off: it only suits tasks without a hard individual deadline, and anything truly urgent still breaks the batch.",
+    "say": "Batch what can wait. Break the batch for what can't.",
+    "wrap": "Batch recurring, non-urgent work into set blocks.",
+    "scenario": "Across one day you get six expense approvals, four scheduling requests and three short client replies, spread out over the day. Design the batching blocks, and name the one item that would make you break a batch."
+  }
+},
+"3::The Cost of Context-Switching": {
+  "p1": {
+    "on": "This slide covers context-switching: jumping between unrelated kinds of work carries a refocusing cost, even when you chose to switch. The steps: notice voluntary switches, use batching and focus blocks, avoid multitasking on different cognitive tasks, close out one task before starting the next, and occasionally count your switches for a day.",
+    "say": "Every switch costs re-entry time, even the ones you choose.",
+    "ask": "How many times have you switched tasks in the last hour?"
+  },
+  "p2": {
+    "on": "This slide makes three points: every switch between unrelated tasks has a real cost, this is the strongest practical argument for batching and focus blocks, and multitasking on different cognitive tasks is almost always slower than doing them one after another.",
+    "say": "Multitasking feels fast and is almost always slower.",
+    "wrap": "Reduce switches with batching, focus blocks and a clean close before each new task.",
+    "scenario": "In one hour you touch a legal filing question, a personal travel request for Elias, a board deck edit and two Slack pings. How would you restructure that hour to cut the switching?"
+  }
+},
+"3::Recurring Meeting Hygiene": {
+  "p1": {
+    "on": "This slide explains that standing meetings pile up and rarely get removed. Audit every recurring meeting quarterly: does it still need to exist, at this frequency, with these people? The steps with the diagram: check each has a one-sentence purpose, flag meetings that have outlived theirs, propose a specific change, and check later that it stuck.",
+    "say": "If nobody can say what the meeting is for, it's a candidate to cut.",
+    "ask": "Which recurring meeting do you suspect nobody would miss?"
+  },
+  "p2": {
+    "on": "This slide calls a recurring meeting with no agenda one of the most common calendar failures. It also notes that as the EA, you often notice this decay first, because you see the whole calendar pattern.",
+    "say": "You see the full pattern, so you're the one who can flag it.",
+    "wrap": "Audit quarterly and propose a specific change: cancel, shorten or trim attendees.",
+    "scenario": "Elias has a weekly 60-minute \"matter sync\" with eight attendees and no agenda. Half the attendees join camera-off. What do you propose, and how do you phrase it to him?"
+  }
+},
+"3::Buffer Time Between Meetings": {
+  "p1": {
+    "on": "This slide explains that back-to-back meetings mean every meeting starts late or ends abruptly, so a 5–10 minute buffer is necessary time, not waste. The steps with the diagram: make buffers the default, use them to debrief and prep, check the client's debrief-buffer standing rule, flag days too full for buffers, and review weekly for buffer erosion.",
+    "say": "Five to ten minutes between meetings is part of the job, not dead space.",
+    "ask": "Where do buffers disappear first on a busy calendar?"
+  },
+  "p2": {
+    "on": "This slide says buffers make room for debrief and prep, so the executive doesn't walk into the next conversation still thinking about the last one. It ties this to this client's mandatory debrief-buffer standing rule: ignoring it is a rule violation, not just an inconvenience.",
+    "say": "For this client, the debrief buffer is a standing rule.",
+    "wrap": "Default to buffers, flag when a day can't fit them, and check weekly for erosion.",
+    "scenario": "On screen: Elias's Tuesday has six back-to-back meetings from 9 to 3. Where do you insert buffers first, and what do you move to make room?"
+  }
+},
+"3::Time Zone Management for Distributed Teams": {
+  "p1": {
+    "on": "This slide covers cross-time-zone scheduling, with a diagram: check the local time for every participant, name the reference time zone in the invite itself, double-check recurring meetings around daylight saving changes, choose a time that's fair to the most disadvantaged participant, and correct mix-ups immediately with everyone affected.",
+    "say": "Check everyone's local time, and name the time zone in the invite.",
+    "ask": "Who has a daylight saving scheduling disaster story?",
+    "wrap": "Name the reference time zone, watch daylight saving shifts, and schedule fairly.",
+    "scenario": "Elias needs a call with co-counsel in London and a client in Manila this week. Find a time that's reasonable for all three, and write the invite line that names the reference time zone."
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Name the reference time zone, watch daylight saving shifts, and schedule fairly.",
+    "scenario": "Elias needs a call with co-counsel in London and a client in Manila this week. Find a time that's reasonable for all three, and write the invite line that names the reference time zone."
+  }
+},
+"3::Calendar Blocking for Deep Work": {
+  "p1": {
+    "on": "This slide says a calendar that only tracks meetings is missing half the picture. The steps with the diagram: block real time for focused work, mark it so nobody can book over it, reserve it for the highest-priority work, treat a double-booking of it as a real conflict, and review whether the blocks are actually used.",
+    "say": "A deep-work block anyone can book over isn't a block.",
+    "ask": "Has one of your focus blocks ever been silently double-booked?"
+  },
+  "p2": {
+    "on": "This slide warns that a visible but unprotected block isn't a real block; it has to work as a genuine commitment. It also says the block is only worth protecting if it's reserved for the highest-priority work.",
+    "say": "Protect it, and put the most important work in it.",
+    "wrap": "Deep-work blocks are commitments. Enforce them, and review whether they're used.",
+    "scenario": "Elias's Wednesday 9–11 deep-work block for brief writing gets a meeting request from a senior partner. How do you handle it using the conflict discipline from earlier today?"
+  }
+},
+"3::Handling Last-Minute Calendar Changes": {
+  "p1": {
+    "on": "This slide explains that a late cancellation or sudden request can cascade through the whole day. The steps with the diagram: check what the change displaces before confirming, assess how far it cascades, tell everyone affected immediately, reconfirm the rest of the day, and log the cause if it keeps happening.",
+    "say": "Check the ripple before you confirm the change.",
+    "ask": "What's the first thing you'd check when a meeting suddenly moves?",
+    "wrap": "Check what's displaced, tell everyone affected, and reconfirm the rest of the day.",
+    "scenario": "Roleplay: a client meeting scheduled 90 minutes from now just got moved to right now. Walk through what needs to happen in the next five minutes."
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Check what's displaced, tell everyone affected, and reconfirm the rest of the day.",
+    "scenario": "Roleplay: a client meeting scheduled 90 minutes from now just got moved to right now. Walk through what needs to happen in the next five minutes."
+  }
+},
+"3::Multi-Calendar Coordination": {
+  "p1": {
+    "on": "This slide covers executives who run several calendars (professional, personal, board), where the real risk is a conflict you can't see because it's on the other calendar. The steps with the diagram: identify every calendar, check new commitments against all of them, build a master view, keep business and personal separate but coordinated, and flag cross-calendar conflicts immediately.",
+    "say": "Check every calendar before you confirm, not just the one in front of you.",
+    "ask": "Have you ever double-booked because you only checked one calendar?"
+  },
+  "p2": {
+    "on": "This slide says a single master view, even if it's you checking each calendar by hand, is what prevents hidden conflicts. It links back to Boundaries & Authorization on Day 1: business and personal stay separate, but not uncoordinated.",
+    "say": "Separate systems still need one person coordinating them.",
+    "wrap": "Build a master view and resolve cross-calendar conflicts the same way as any other.",
+    "scenario": "A client asks for dinner with Elias next Thursday. His work calendar is clear, but his personal calendar has his daughter's recital that evening. What do you do, and what do you tell the client?"
+  }
+},
+"3::Visa & Documentation Requirements": {
+  "p1": {
+    "on": "This slide says visa and documentation rules differ by destination and change, so verify current rules for each trip. The steps with the diagram: check passport validity against the destination's rule (often six months beyond travel dates), allow weeks for visa processing, confirm supporting documents early, and keep a record for the next trip.",
+    "say": "Verify current requirements for this destination. Don't rely on the last trip.",
+    "ask": "Anyone have a trip nearly derailed by a passport or visa issue?"
+  },
+  "p2": {
+    "on": "This slide calls passport validity a common, avoidable failure point, because many countries require six months beyond the travel dates. It adds that real lead time for visa processing, weeks not days, is what keeps paperwork from putting the trip at risk.",
+    "say": "Six months of validity, and weeks of lead time.",
+    "wrap": "Check validity and visa rules first, and start the paperwork early.",
+    "scenario": "Elias is flying to Singapore for a deposition in five weeks. His passport expires in four months. What do you check, what do you do today, and what do you tell him?"
+  }
+},
+"3::International Travel Considerations": {
+  "p1": {
+    "on": "This slide lists what international trips add, with a diagram: health and safety requirements (vaccinations, advisories, emergency numbers), currency and payment logistics, local business and cultural norms, and a fresh check of government travel advisories close to departure. The last step says international trips need more planning depth than domestic ones.",
+    "say": "An international trip is not a domestic trip with a longer flight.",
+    "ask": "If you've coordinated international travel, what surprised you the first time?"
+  },
+  "p2": {
+    "on": "This slide warns that international travel has far more variables, so planning it like a routine trip is a common mistake. It also makes checking current government advisories for the destination a required diligence step, because advisories change.",
+    "say": "Check the advisory again close to departure. It can change after you book.",
+    "wrap": "Plan international trips deeper: health, money, norms and current advisories.",
+    "scenario": "Elias is going to a client meeting in Mexico City next month. List what you'd check beyond flights and the hotel, and when you'd check the travel advisory."
+  }
+},
+"3::Expense Tracking While Traveling": {
+  "p1": {
+    "on": "This slide covers travel expenses, with a diagram: capture every receipt immediately (a photo or a folder), categorize each by client, matter or cost center as it happens, use the Day 7 SOA reconciliation discipline, check at the end of each travel day for anything missed, and submit within a set window after return.",
+    "say": "Capture the receipt the moment you get it, and tag the matter while you still remember.",
+    "ask": "Who has lost a travel receipt before?",
+    "wrap": "Travel expenses use the same reconciliation skill, under messier conditions. Capture and categorize in real time.",
+    "scenario": "Elias returns from a three-day deposition trip with a pocket full of receipts, some for the Harlow matter and some personal. What should have happened each day of the trip, and what do you do now?"
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Travel expenses use the same reconciliation skill, under messier conditions. Capture and categorize in real time.",
+    "scenario": "Elias returns from a three-day deposition trip with a pocket full of receipts, some for the Harlow matter and some personal. What should have happened each day of the trip, and what do you do now?"
+  }
+},
+"3::Travel Risk Contingency Planning": {
+  "p1": {
+    "on": "This slide says a real travel plan covers what happens when something goes wrong, with a diagram: identify realistic disruptions for this itinerary, find the backup for each in advance (next flight, alternate route, local contact), keep the contingencies with the itinerary, and act on the backup immediately when disruption hits, the same principle as Day 5's backup vendors.",
+    "say": "The backup exists before the trip, not during the scramble.",
+    "ask": "Tell us about a disruption that went smoothly because a backup already existed.",
+    "wrap": "Identify disruptions and backups before departure, document them with the itinerary, and act on them fast.",
+    "scenario": "Elias flies Chicago to Denver with a connection to Boise for a 10 a.m. hearing. Name the two most likely disruptions and the pre-arranged backup for each."
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Identify disruptions and backups before departure, document them with the itinerary, and act on them fast.",
+    "scenario": "Elias flies Chicago to Denver with a connection to Boise for a 10 a.m. hearing. Name the two most likely disruptions and the pre-arranged backup for each."
+  }
+},
+"3::Loyalty Programs & Travel Preferences": {
+  "p1": {
+    "on": "This slide says applying loyalty program numbers (airline, hotel) is real, recurring value, not a courtesy. The steps with the diagram: track every membership in the preferences tracker, apply the numbers to every booking automatically, cross-check against the Client Profile's seat, routing and hotel preferences, build it into a checklist, and re-verify details occasionally.",
+    "say": "Loyalty numbers go on every booking, every time.",
+    "ask": "Which travel preference is easiest to forget under time pressure?"
+  },
+  "p2": {
+    "on": "This slide links loyalty numbers to the Client Profile's seat, routing and hotel preferences, which should be applied together. It calls a missed loyalty number a small, completely avoidable error that a good travel process never produces.",
+    "say": "It's a small miss, but it's completely avoidable.",
+    "wrap": "Put loyalty numbers and preferences on the travel checklist so they never depend on memory.",
+    "scenario": "You book a last-minute flight for Elias from your phone. What three things from his Client Profile do you check before you hit confirm?"
+  }
+},
+"3::Managing Multi-City, Multi-Leg Itineraries": {
+  "p1": {
+    "on": "This slide covers trips with several connected legs, where one delay can cascade through every connection, with a diagram: map all the legs together, find the tightest connection and add buffer there, check ground transport and hotel check-in against actual arrival times, consolidate everything into a one-page summary, and re-review timing before departure.",
+    "say": "Find the tightest connection. That's where the trip breaks.",
+    "ask": "Looking at a three-leg itinerary, where would you look first?",
+    "wrap": "Map every leg together, buffer the tightest connection, and hand the traveler one page.",
+    "scenario": "Elias's itinerary: New York to Atlanta (50-minute connection) to Dallas for a two-day trial prep, then Dallas to Phoenix for a mediation. Find the tightest point and say what you'd change."
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Map every leg together, buffer the tightest connection, and hand the traveler one page.",
+    "scenario": "Elias's itinerary: New York to Atlanta (50-minute connection) to Dallas for a two-day trial prep, then Dallas to Phoenix for a mediation. Find the tightest point and say what you'd change."
+  }
+},
+"3::Ground Transportation Coordination": {
+  "p1": {
+    "on": "This slide calls ground transportation the most under-planned part of a trip. The steps with the diagram: plan it with the same care as flights and hotels, confirm a specific pickup time, location and contact, check Client Profile needs such as car seats or accessibility, arrange a backup for high-stakes trips, and reconfirm close to the travel date.",
+    "say": "\"We'll figure out a car\" is how trips go wrong on arrival.",
+    "ask": "Have you ever landed with the flight and hotel confirmed but no ride sorted?"
+  },
+  "p2": {
+    "on": "This slide says a specific pickup time, location and contact is what prevents arrival confusion. It links to the car-seat and family needs in the Client Profile: ground transport has to fit who is actually travelling.",
+    "say": "Plan the ride around who's in the car.",
+    "wrap": "Confirm specifics, account for the Client Profile, and reconfirm before travel.",
+    "scenario": "Elias and his two young children land in Orlando at 9:40 p.m. Write the ground transport confirmation you'd send him, with every detail it needs."
+  }
+},
+"3::Building a Real Travel Checklist": {
+  "p1": {
+    "on": "This slide says a checklist that lives only in memory isn't a real checklist, with a diagram: write it once and reuse it, give documentation (passport, visa) its own section, include destination-specific health and safety prep, add a loyalty-numbers step and a contingency contact, and treat it like the Day 5 Home Binder, a durable reference refined after every trip.",
+    "say": "Write it once, reuse it every trip, and improve it each time.",
+    "ask": "Who has a written travel checklist today?",
+    "wrap": "A written, reusable checklist stops the same detail from being missed trip after trip.",
+    "scenario": "As a group, build the first version of a travel checklist for Elias's international trips: five sections, two or three items each."
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "A written, reusable checklist stops the same detail from being missed trip after trip.",
+    "scenario": "As a group, build the first version of a travel checklist for Elias's international trips: five sections, two or three items each."
+  }
+},
+"3::Post-Trip Debrief & Follow-Up": {
+  "p1": {
+    "on": "This slide says a trip isn't finished when the traveler gets home, with a diagram: reconcile expenses promptly, send thank-you and follow-up messages while they're timely, note what worked and what didn't, feed that note into the preferences and checklist, and treat it like the Day 6 seasonal playbook at the scale of one trip.",
+    "say": "A two-line note after each trip makes the next one better.",
+    "ask": "Does anyone do a post-trip debrief, even informally?",
+    "wrap": "Close the trip: reconcile, follow up, write what went wrong, and update the checklist.",
+    "scenario": "Elias's hotel in Denver had no quiet workspace, and his return connection was too tight. Write the debrief note, and say where each lesson gets recorded."
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Close the trip: reconcile, follow up, write what went wrong, and update the checklist.",
+    "scenario": "Elias's hotel in Denver had no quiet workspace, and his return connection was too tight. Write the debrief note, and say where each lesson gets recorded."
+  }
+},
+"3::The Weekly Time Audit": {
+  "p1": {
+    "on": "This slide says most people's sense of where their time goes is wrong. The steps with the diagram: track actual activity for one representative week, compare it with what you thought your priorities were, treat it as a periodic check rather than a permanent habit, use accurate time-tracking data as the input, and act on what it shows.",
+    "say": "The gap between where you think your time goes and where it actually goes is the finding.",
+    "ask": "Guess what percentage of your week goes to your top priority."
+  },
+  "p2": {
+    "on": "This slide says the audit isn't tracking forever; it's a periodic check for drift, like a budget review. It connects to Time Tracking Done Right: the audit turns raw data into improvement.",
+    "say": "An audit that doesn't change next week's plan hasn't done its job.",
+    "wrap": "Audit a representative week occasionally, compare it with your priorities, and adjust.",
+    "scenario": "Your audit shows 40% of your week went to rescheduling meetings and only 10% to Elias's top-priority matter. What two changes do you make next week?"
+  }
+},
+"3::Setting Realistic Deadlines": {
+  "p1": {
+    "on": "This slide says a deadline set without accounting for the work is a guess. The steps with the diagram: estimate the actual work, check with whoever will do it before committing, build in buffer for real uncertainty, state the deadline with an owner as in Day 1's ACT Email framework, and flag risk early.",
+    "say": "Ask the person doing the work before you commit to the date.",
+    "ask": "When did an optimistic deadline cost you something?"
+  },
+  "p2": {
+    "on": "This slide says buffer for real uncertainty (not blind padding) is what makes a deadline dependable. As the EA, you often set deadlines for work you aren't doing, so checking with the person who is keeps them honest.",
+    "say": "Buffer for real risk, and never promise on someone else's behalf without asking.",
+    "wrap": "Real estimate, real owner, honest buffer, early warning.",
+    "scenario": "A client asks when they'll get the draft engagement agreement. The associate drafting it is in trial until Wednesday. What do you do before answering, and what do you tell the client?"
+  }
+},
+"3::Court Docketing Workflows": {
+  "p1": {
+    "on": "This slide calls docketing calendar management with legal consequences, where a missed deadline can be malpractice exposure, so redundancy is deliberate. The steps with the diagram: log each deadline from the primary source document the moment it's known, set several reminder checkpoints (2 weeks, 3 days, day-of), and cross-check the docket against the case file.",
+    "say": "No single missed reminder should ever cause a missed filing.",
+    "ask": "Where do docketed dates come from in your process today?"
+  },
+  "p2": {
+    "on": "This slide lists three watch-outs: never docket from a summary or a colleague's mention, never assume a deadline is fine because it's usually handled, since rules vary by jurisdiction and matter, and treat every entry with the care the stakes demand.",
+    "say": "Docket from the court order itself, never from a secondhand date.",
+    "wrap": "Primary source, multiple reminders, regular cross-checks.",
+    "scenario": "You're docketing a response deadline from a court order, and the date looks unusually short compared with similar matters. What do you do before entering it?"
+  }
+},
+"3::Statute-of-Limitations Rules": {
+  "p1": {
+    "on": "This slide explains that a statute of limitations is the outer deadline for filing a claim; miss it and the claim can be barred regardless of merit. Rules vary by claim type and jurisdiction. The steps with the diagram: calculate and log it at intake from the actual triggering event and rule, give it extra lead time, and escalate ambiguity to the attorney.",
+    "say": "Miss the SOL and the claim can be gone, no matter how strong it is.",
+    "ask": "Why can't you copy the SOL from a similar past matter?"
+  },
+  "p2": {
+    "on": "This slide lists three watch-outs: don't assume a new matter's SOL matches a similar past one, this is the one deadline where \"probably right\" is never good enough, and an SOL date must never live in one place or one person's memory.",
+    "say": "Verify against the actual rule, every time.",
+    "wrap": "Calculate at intake, verify the rule, add redundancy, and escalate when unsure.",
+    "scenario": "A new matter comes in and the parties are in different states, so you're not sure which state's statute of limitations applies. What do you do before calculating a deadline?"
+  }
+},
+"3::Deposition Scheduling": {
+  "p1": {
+    "on": "This slide explains that depositions coordinate many more parties than a normal meeting: attorneys on each side, the witness, a court reporter and sometimes an interpreter. It links to multi-calendar coordination. The steps with the diagram: confirm every party before locking the date, book the reporter and interpreter early, and send formal notices and track confirmations.",
+    "say": "Silence isn't agreement. Track every confirmation.",
+    "ask": "Which resource is hardest to book for a deposition?"
+  },
+  "p2": {
+    "on": "This slide warns against locking a date around the attorney alone and then finding the witness or opposing counsel can't make it. Depositions are expensive to reschedule in time, cost and sometimes strategy, so the upfront coordination is worth it.",
+    "say": "Coordinate everyone up front, because rescheduling costs more.",
+    "wrap": "Confirm every party, book scarce resources early, and document confirmations.",
+    "scenario": "You've confirmed a deposition date with the attorney and the witness, but opposing counsel hasn't replied after several days. Do you send the formal notice or wait? What do you actually do?"
+  }
+},
+"3::Executive Travel Logistics — Domestic & International Itineraries": {
+  "p1": {
+    "on": "This slide says domestic and international travel share one discipline, but international adds visas, time zones and customs. A complete itinerary covers every leg and the gaps between them. The steps with the diagram: plan backward from what the executive needs on arrival, confirm visas early, and buffer connections, especially international-to-domestic.",
+    "say": "Build the trip backward from what has to happen on arrival.",
+    "ask": "Why do international-to-domestic connections need more buffer?"
+  },
+  "p2": {
+    "on": "This slide warns against treating an international itinerary as a domestic one with a longer flight. It also says to put every leg's confirmation numbers and details in one consolidated document.",
+    "say": "One consolidated itinerary, not a pile of confirmation emails.",
+    "wrap": "Plan backward, check documents early, buffer connections and consolidate.",
+    "scenario": "You're booking Elias a tight connection from an international arrival to a domestic flight. What do you want confirmed about that connection before you book it as is?"
+  }
+},
+"3::War Room Trial Support": {
+  "p1": {
+    "on": "This slide explains that trial compresses the attorney's schedule and support needs into one of the highest-stakes windows you'll work, and war room support means being truly on call. The steps with the diagram: confirm support needs in advance, keep every trial document, contact and logistics detail instantly retrievable, and set a trial-specific communication protocol.",
+    "say": "Trial tempo is different, so agree on the rules before day one.",
+    "ask": "What would you want confirmed before a trial starts?"
+  },
+  "p2": {
+    "on": "This slide warns against treating trial support like a busier normal week, because tempo, stakes and responsiveness are categorically different. It notes that calendar and travel skills compound here.",
+    "say": "It's not a busier week. It's a different mode.",
+    "wrap": "Confirm needs, organize for instant retrieval, and agree the protocol before trial.",
+    "scenario": "Trial starts in three days and you haven't confirmed Elias's support expectations for that window. What do you nail down, and how do you raise it now on a short timeline?"
+  }
+},
+"3::Emergency Flight Contingencies": {
+  "p1": {
+    "on": "This slide says a flight disruption on a high-stakes trip threatens the reason for the trip, and the best response is prepared in advance. The steps with the diagram: identify the hard deadline the travel has to meet before booking, know the backups (later flight, other airport, ground transport for the last leg), and send the executive one clear message with the plan.",
+    "say": "Know the hard deadline and the backup before the plane leaves.",
+    "ask": "What's the one message the executive should get when a flight is cancelled?"
+  },
+  "p2": {
+    "on": "This slide warns against thinking about contingencies only after a disruption; for high-stakes travel the plan exists before departure. It adds that the executive should never learn about a flight problem from an app before hearing from you with a plan.",
+    "say": "Reach them with a plan before the airline app does.",
+    "wrap": "Prepare backups in advance, act fast, and communicate once, clearly.",
+    "scenario": "Elias's flight to a trial appearance is cancelled, and the next available flight lands after the hearing starts. What do you do, and in what order?"
+  }
+},
+"3::Recognizing Stress & Burnout in High-Pressure Roles": {
+  "p1": {
+    "on": "This slide separates stress (a normal response that can sharpen focus) from burnout, which the WHO describes as an occupational phenomenon. It names EA/PA stressors and early signs: irritability, dreading the inbox, sleep changes, more small mistakes and withdrawal. The steps with the diagram: a weekly self-check, name the specific stressor, track patterns for two weeks, and seek support if signs persist.",
+    "say": "Early signs are easier to fix. Name the specific stressor.",
+    "ask": "Which early warning sign would you notice first in yourself?"
+  },
+  "p2": {
+    "on": "This slide warns against treating exhaustion as proof of dedication, because overload causes errors, and errors in legal support are costly. It also says to raise workload concerns before a crisis and to check on colleagues privately and kindly.",
+    "say": "Exhaustion isn't dedication. It's a risk to the work.",
+    "wrap": "Check in weekly, name the stressor, and raise concerns early.",
+    "scenario": "You've double-booked Elias twice this week, you're snapping at vendors, and you check email at 11 p.m. every night \"just in case.\" What's happening, and what are your first three steps?"
+  }
+},
+"3::Stress Management Techniques That Work at a Desk": {
+  "p1": {
+    "on": "This slide focuses on two-minute tools: controlled breathing with a longer exhale, a short walk, and resetting your task list, plus the point that structure lowers stress. The steps with the diagram: three to five slow breaths before a tense call, a brain dump when overwhelmed, micro-breaks every 60–90 minutes, and an end-of-day shutdown ritual.",
+    "say": "Two-minute tools you can use between tasks.",
+    "ask": "Let's do one 60-second breathing reset together now."
+  },
+  "p2": {
+    "on": "This slide warns against relying only on caffeine and willpower. It says to protect sleep as a work skill and keep a short personal \"calm kit\" list so you don't have to think of it in the moment.",
+    "say": "Caffeine masks fatigue. It doesn't reduce the load.",
+    "wrap": "Breathe, brain-dump, take micro-breaks and shut down properly.",
+    "scenario": "Elias calls in a hurry: a court date moved, three meetings must shift and a family event overlaps. What do you do in the first five minutes to stay clear-headed before touching the calendar?"
+  }
+},
+"3::Setting Boundaries & Managing Executive Pressure": {
+  "p1": {
+    "on": "This slide defines boundaries as agreements about availability, response times and scope. Unclear expectations cause most stress, and executive pressure often reflects the executive's own stress. The steps with the diagram: agree availability rules in writing, ask \"Which of these should move?\" when requests collide, and use a calm script: acknowledge, state facts, offer options.",
+    "say": "Acknowledge, state the facts, offer options.",
+    "ask": "What counts as a true after-hours emergency in your role?"
+  },
+  "p2": {
+    "on": "This slide warns that answering every late-night message instantly trains the expectation that you're always available. It says a boundary must never become an excuse to miss a real legal deadline, so build the emergency path into the agreement, and revisit it when roles or workload change.",
+    "say": "Build the emergency path into the agreement.",
+    "wrap": "Agree the rules in writing, use the calm script, and revisit as things change.",
+    "scenario": "Elias texts at 10:40 p.m. asking you to \"quickly\" rebook tomorrow's 8 a.m. client meeting. Your after-hours rule covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?"
+  }
+},
+"3::Recovery, Workload Conversations & Support Resources": {
+  "p1": {
+    "on": "This slide says recovery is part of performance, workload problems are business problems to raise early with data, and support exists, such as confidential Employee Assistance Programs. The steps with the diagram: prepare a workload conversation with tasks, hours, what's slipping and options, plan time off with a coverage handover, and know where support is before you need it.",
+    "say": "Raise workload early with data and options. It's professional, not a complaint.",
+    "ask": "Do you know where your employer's support information lives?"
+  },
+  "p2": {
+    "on": "This slide warns against waiting until exhaustion to raise workload, because then it feels like a crisis. It also says you can ask for workload changes without disclosing health details, and to cover for colleagues properly so the whole team can recover.",
+    "say": "You don't have to share a diagnosis to ask for a workload change.",
+    "wrap": "Raise it early, plan real time off, and know your support resources.",
+    "scenario": "You've worked 55-hour weeks for two months and your error rate is rising. Draft the first two sentences of a workload conversation with Elias, and list the options you'd bring."
+  }
 }
 };
