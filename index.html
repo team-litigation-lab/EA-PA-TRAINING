@@ -14855,7 +14855,7 @@ function startLiveUpdates(){
 }
 
 /* ============================================================
-   AUTO-UPDATE — checks every 2 minutes (and when the tab comes back
+   AUTO-UPDATE — checks every 45 seconds (and when the tab comes back
    into view) whether a newer build has been deployed. If so, it saves
    everything and reloads by itself at a safe moment — never mid-call,
    mid-quiz, while typing or with a pop-up open. Until then a banner
@@ -14874,10 +14874,14 @@ async function checkForUpdate(){
     tryAutoUpdate();
   }catch(e){ /* offline — try again later */ }
 }
+// Last keystroke anywhere on the page: a Practice Lab box that has been idle for 20s counts as
+// safe to reload, because lab drafts are saved first and restored after the reload.
+let lastKeyAt = 0;
+document.addEventListener("keydown", ()=>{ lastKeyAt = Date.now(); }, true);
 function updateIsSafe(){
   if(typeof VoiceCall!=="undefined" && VoiceCall.active) return false;
   if(state.view==="day" && state.dayViewMode==="knowledgeCheck" && !state.quizSubmitted && Object.keys(state.quizAnswers||{}).length) return false;
-  if(isTyping()) return false;
+  if(isTyping() && !(state.view==="tool" && Date.now()-lastKeyAt > 20000)) return false;
   if(document.querySelector(".overlay")) return false;
   if(state.loginBusy || state.studioBusy) return false;
   if(document.querySelector('[data-busy="1"]')) return false;
@@ -14915,7 +14919,7 @@ setInterval(()=>{ if(state.isAdmin && document.visibilityState==="visible" && !i
 setTimeout(()=>{ if(state.isAdmin) autoPublishBlueprint(); }, 15000);
 function startUpdateChecks(){
   if(updateTimer) return;
-  updateTimer = setInterval(()=>{ if(updatePendingBuild) tryAutoUpdate(); else checkForUpdate(); }, 120000);
+  updateTimer = setInterval(()=>{ if(updatePendingBuild) tryAutoUpdate(); else checkForUpdate(); }, 45000);
   setInterval(()=>{ if(updatePendingBuild) tryAutoUpdate(); }, 15000);
   document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible"){ if(updatePendingBuild) tryAutoUpdate(); else checkForUpdate(); } });
   setTimeout(checkForUpdate, 20000);
@@ -24249,7 +24253,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.28-g";
+var APP_BUILD = "2026.09.28-h";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
