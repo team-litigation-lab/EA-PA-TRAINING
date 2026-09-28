@@ -4904,6 +4904,23 @@ window.PRESENTER_NOTES = {
     "say": "A transposed number here causes problems further down the chain.",
     "wrap": "Check the figures, track the task and flag what looks wrong.",
     "scenario": "A vendor invoice for $1,850 arrives, but the approved purchase order says $1,580. What do you do before it goes anywhere near payment?"
+  },
+  "s1": {
+    "on": "This section says financial tasks (invoices, expenses, reimbursements) make the EA/PA a real link in the firm's financial accuracy.",
+    "say": "You're a link in the chain."
+  },
+  "s2": {
+    "on": "These steps practice it: treat each task as real, double-check figures, track tasks like other recurring work, flag anything odd, and know what depends on you.",
+    "say": "Double-check before passing it on."
+  },
+  "s3": {
+    "on": "This section's reminder: this is a real link in the chain, not filing that happens to touch numbers.",
+    "say": "Not just filing."
+  },
+  "s4": {
+    "on": "This section lists the three areas: accounts payable, accounts receivable, and expenses and reimbursements.",
+    "say": "Payable, receivable, reimbursements.",
+    "ask": "Which of the three will you handle most?"
   }
 },
 "7::SOA Reconciliation": {
@@ -4917,6 +4934,23 @@ window.PRESENTER_NOTES = {
     "say": "Start from the difference and find what explains it.",
     "wrap": "Work the formula in order, tie out exactly and document the result.",
     "scenario": "On the board: opening $3,200, invoices $4,800, payments $6,000, and a $150 late fee added. What's the closing balance? The client says they owe $1,850. Where do you look first?"
+  },
+  "s1": {
+    "on": "This section gives the formula: Opening + Invoices − Payments ± Adjustments = Closing Balance.",
+    "say": "One formula, every time."
+  },
+  "s2": {
+    "on": "These steps work it: apply the formula in order, compare bank statements with revenue records first, work back from the mismatch, tie out exactly, and document adjustments.",
+    "say": "Don't round away a variance."
+  },
+  "s3": {
+    "on": "This section restates the formula and the shortcut: compare bank statements against revenue records before rebuilding reports.",
+    "say": "Start at the mismatch."
+  },
+  "s4": {
+    "on": "This section works an example: $4,000 + $6,500 − $5,000 − $250 credit = $5,250, and the $250 gap is the unrecorded credit note.",
+    "say": "Find the difference first.",
+    "ask": "Where would you look if the client shows $5,000?"
   }
 },
 "7::Reconciliation Discrepancy Detection": {
@@ -4930,6 +4964,18 @@ window.PRESENTER_NOTES = {
     "say": "A payment on the wrong client can become a legal dispute.",
     "wrap": "Compare line by line, check where credits landed and explain every variance.",
     "scenario": "Your reconciliation is $340 short. Walk through the checklist in order and name the three most likely causes."
+  },
+  "s1": {
+    "on": "This section lists techniques: ledger against bank statement, correctly applied credits, and reversed entries.",
+    "say": "Three places to look."
+  },
+  "s2": {
+    "on": "These steps detect it: line-by-line comparison, credits checked against the right party, reversed entries found, the full checklist, and duplicate-payment checks.",
+    "say": "Line by line, not just totals."
+  },
+  "s3": {
+    "on": "This section gives the checklist (invoices listed, payments recorded, no unmatched balances, variances explained) and a real case where a misapplied payment led to a legal dispute.",
+    "say": "A wrong-client credit became a lawsuit."
   }
 },
 "7::Credit Cards & Card Applications": {
@@ -4943,6 +4989,18 @@ window.PRESENTER_NOTES = {
     "say": "Precision on applications: exactly what they ask for.",
     "wrap": "Calendar the due dates, review before paying and keep receipts organized all year.",
     "scenario": "Reviewing Elias's card statement, you spot a $129 charge from an unfamiliar merchant and a hotel charged twice for the same night. What do you do before paying the bill?"
+  },
+  "s1": {
+    "on": "This section covers three areas: card payments on a real calendar, precise card applications, and year-round tax records.",
+    "say": "Payments, applications, tax records."
+  },
+  "s2": {
+    "on": "These steps are the discipline: due dates on the calendar, statement review before paying, exactly the documents requested, records organized as they happen, and the 90-day receipt test.",
+    "say": "Could you pull 90 days of receipts right now?"
+  },
+  "s3": {
+    "on": "This section says card payments follow the same recurring discipline, and applications need precision, not 'close enough'.",
+    "say": "Close enough causes delays."
   }
 },
 "7::Tax Season Support & Working with Accountants": {
@@ -4958,6 +5016,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Organize continuously so every accountant request is a retrieval, not a reconstruction.",
     "scenario": "The accountant emails asking for all charitable donation receipts and every home-office expense from last year, by Friday. If you've kept records continuously, what does that take? If you haven't, what does it take?"
+  },
+  "s1": {
+    "on": "This section says tax support is a year-round task: organize continuously so the accountant's request is a retrieval, not a reconstruction.",
+    "say": "Retrieve, don't reconstruct."
+  },
+  "s2": {
+    "on": "These steps do it: file records as they arrive, answer requests quickly, be the reliable point of contact, link it to reconciliation, and build a weekly habit.",
+    "say": "A small weekly habit beats a yearly scramble.",
+    "ask": "What would your weekly filing pass include?"
   }
 },
 "7::What an SOP Actually Needs": {
@@ -4971,6 +5038,22 @@ window.PRESENTER_NOTES = {
     "say": "Could a temp follow it on day one?",
     "wrap": "Five elements, numbered steps and controls that prove it was done.",
     "scenario": "Draft the five elements, one line each, for an SOP on processing a client's expense reimbursement."
+  },
+  "s1": {
+    "on": "This section says the SOP elements are sequential: follow them in order.",
+    "say": "Five elements, in order."
+  },
+  "s2": {
+    "on": "These steps are the elements: Purpose, Scope, Procedure, Controls and Escalation.",
+    "say": "Purpose, Scope, Procedure, Controls, Escalation."
+  },
+  "s3": {
+    "on": "This section restates the five and warns that without SOPs execution is inconsistent, which audits catch.",
+    "say": "Audits catch inconsistency."
+  },
+  "s4": {
+    "on": "This section explains each element and gives the test: could a temp follow it on day one?",
+    "say": "Could a temp follow it?"
   }
 },
 "7::The Financial Calendar": {
@@ -4984,6 +5067,22 @@ window.PRESENTER_NOTES = {
     "say": "Confirm the exact dates with the accountant every year.",
     "wrap": "One calendar, early reminders and a weekly review.",
     "scenario": "Build the next 90 days of the firm's financial calendar: which monthly, quarterly and annual items land in that window, and when does each reminder fire?"
+  },
+  "s1": {
+    "on": "This section's rule: track billing cycles, tax deadlines and monthly closes continuously.",
+    "say": "One continuous calendar."
+  },
+  "s2": {
+    "on": "These steps run it: one calendar, reminders 7–10 days ahead, weekly review, extra buffer for the category that slips, and a check for changed requirements.",
+    "say": "Seven to ten days' warning."
+  },
+  "s3": {
+    "on": "This section's key habit: automated reminders 7–10 days before each deadline.",
+    "say": "Lead time to fix issues."
+  },
+  "s4": {
+    "on": "This section lists the rhythm: monthly invoicing, close and reconciliations; quarterly estimated taxes and payroll filings; annual 1099/W-2s, year-end close and renewals.",
+    "say": "Confirm exact dates with the accountant."
   }
 },
 "7::Billing & Invoicing": {
@@ -4997,6 +5096,22 @@ window.PRESENTER_NOTES = {
     "say": "The discount gets its own line, so the client can see it.",
     "wrap": "Check the terms, check the math and send promptly.",
     "scenario": "Live: 12.5 hours at $350 an hour, $240 in filing fees and a 10% courtesy discount on fees only. Call out each step. What's the total, and what else must the invoice say?"
+  },
+  "s1": {
+    "on": "This section gives the formula: (Rate × Hours) + Expenses, then apply any discount.",
+    "say": "Rate times hours, plus expenses, minus discount."
+  },
+  "s2": {
+    "on": "These steps finalize it: calculate in order, include amount, due date and terms, check rate and hours against the engagement, recheck the math, and send promptly.",
+    "say": "An unsent invoice doesn't help cash flow."
+  },
+  "s3": {
+    "on": "This section restates the formula and the three must-haves: amount due, due date and payment terms.",
+    "say": "Three must-haves."
+  },
+  "s4": {
+    "on": "This section lays out the invoice: header with firm, client, matter and invoice details, itemized body with a separate discount line, and footer with total, due date and terms.",
+    "say": "Header, body, footer."
   }
 },
 "7::QuickBooks How-Tos — Step by Step": {
@@ -5010,6 +5125,23 @@ window.PRESENTER_NOTES = {
     "say": "You don't need the whole platform, just these workflows.",
     "wrap": "Learn the four click-paths, and reconcile to exactly $0.00.",
     "scenario": "Screen-share if you have access: create one invoice and reconcile one account live, then have a volunteer repeat the invoice click-path from memory."
+  },
+  "s1": {
+    "on": "This section says the QuickBooks workflows are sequential: follow the steps as written.",
+    "say": "Four workflows."
+  },
+  "s2": {
+    "on": "These steps are the workflows: create an invoice, record an expense with its receipt, reconcile to $0.00, and run AR Aging, checking the 61–90 and 90+ columns first.",
+    "say": "Reconcile to exactly zero.",
+    "ask": "Which AR Aging columns need calls first?"
+  },
+  "s3": {
+    "on": "This section says these four tasks cover most of what an EA does in QuickBooks.",
+    "say": "Know these four cold."
+  },
+  "s4": {
+    "on": "This section adds three quick paths: create an invoice, receive a payment against its open invoice, and enter bills and reconcile monthly.",
+    "say": "Menu names vary by version."
   }
 },
 "7::QuickBooks Common Mistakes & Tips": {
@@ -5023,6 +5155,18 @@ window.PRESENTER_NOTES = {
     "say": "Never force a reconciliation by adjusting an unrelated entry.",
     "wrap": "Categorize carefully, reconcile to $0.00 and check invoices against the contract.",
     "scenario": "Your reconciliation shows a $62.50 difference. A colleague suggests adjusting the office supplies line to make it balance. What do you say, and what do you look for instead?"
+  },
+  "s1": {
+    "on": "This section names the most common mistake: miscategorizing an expense, like a client-reimbursable cost filed as office expense.",
+    "say": "Ask before you categorize."
+  },
+  "s2": {
+    "on": "These steps avoid mistakes: confirm categories, find the missing or duplicate transaction when it isn't $0.00, check invoices against the engagement letter, remember QuickBooks Online saves automatically, and review for patterns.",
+    "say": "Never force the numbers."
+  },
+  "s3": {
+    "on": "This section explains the $0.00 rule, checking against the engagement letter, and that QuickBooks Online needs an edit or journal entry, not an undo.",
+    "say": "No Ctrl+Z in QuickBooks Online."
   }
 },
 "7::Contract-Aware Billing": {
@@ -5036,6 +5180,22 @@ window.PRESENTER_NOTES = {
     "say": "Corporate clients often require specific billing codes.",
     "wrap": "Read the contract first, track caps continuously and apply terms consistently.",
     "scenario": "The Harlow matter has a 40-hour cap with notice required at 80%. Time entries show 34.5 hours logged. What do you do today, and who do you tell?"
+  },
+  "s1": {
+    "on": "This section's rule: know payment terms, late fees and hour caps before billing starts.",
+    "say": "Know the terms first."
+  },
+  "s2": {
+    "on": "These steps bill to the contract: confirm terms up front, track hours against caps, flag an approaching cap early, apply terms consistently, and clarify ambiguity first.",
+    "say": "Flag the cap before you hit it."
+  },
+  "s3": {
+    "on": "This section's key point: flag an approaching hour cap proactively.",
+    "say": "No surprises over the cap."
+  },
+  "s4": {
+    "on": "This section lists what to know: billing arrangement, caps and required notice, and payment, late-fee and format terms.",
+    "say": "The arrangement changes the invoice."
   }
 },
 "7::Financial KPIs for EAs/PAs": {
@@ -5049,6 +5209,18 @@ window.PRESENTER_NOTES = {
     "say": "The 25% alert buys runway.",
     "wrap": "Track against targets, review on a cadence and fix the process when a KPI slips.",
     "scenario": "A client's $10,000 retainer is at $2,300 and they have a hearing next week. What does the KPI say you should have done already, and what do you do now?"
+  },
+  "s1": {
+    "on": "This section's first KPI: invoice turnaround of 24–72 hours from service to invoice sent.",
+    "say": "Invoice within 72 hours."
+  },
+  "s2": {
+    "on": "These steps track them: turnaround against target, 98–100% reconciliation accuracy, a 25% retainer alert, fixed-cadence review, and process fixes when a KPI keeps missing.",
+    "say": "Fix the process, not the effort."
+  },
+  "s3": {
+    "on": "This section gives the other targets: 98–100% reconciliation accuracy and an alert when a retainer drops below 25%.",
+    "say": "Set the retainer alert early."
   }
 },
 "7::Bookkeeping Basics & Compliance": {
@@ -5062,6 +5234,22 @@ window.PRESENTER_NOTES = {
     "say": "Know whether your firm is cash or accrual.",
     "wrap": "Classify, keep the audit trail, separate duties and reconcile.",
     "scenario": "You're asked to both enter and approve a $2,400 vendor payment because the usual approver is out. What do you do, and what do you suggest for next time?"
+  },
+  "s1": {
+    "on": "This section's rule: classify every transaction as income, expense or receivable.",
+    "say": "Classify every transaction."
+  },
+  "s2": {
+    "on": "These steps keep books clean: classify when recording, keep an audit trail, segregate duties, reconcile regularly, and flag compliance gaps.",
+    "say": "Never approve your own transactions."
+  },
+  "s3": {
+    "on": "This section's warning: keep audit trails and segregate duties.",
+    "say": "Separation keeps it honest."
+  },
+  "s4": {
+    "on": "This section explains double-entry, cash vs. accrual, and the chart of accounts.",
+    "say": "Know whether your firm is cash or accrual."
   }
 },
 "7::Quarterly Tax Schedules": {
@@ -5075,6 +5263,18 @@ window.PRESENTER_NOTES = {
     "say": "Ask the accountant early, not the week of.",
     "wrap": "Calendar all four, confirm early and keep the confirmations.",
     "scenario": "It's ten days before a quarterly estimated tax deadline, and you haven't heard from the accountant about the amount. What do you do?"
+  },
+  "s1": {
+    "on": "This section says quarterly estimated taxes have fixed dates with penalty exposure, and uses the same redundant reminders as court deadlines.",
+    "say": "Four separate deadlines."
+  },
+  "s2": {
+    "on": "These steps manage them: log all four at the start of the year with reminders, confirm readiness with the accountant early, and keep payment confirmations.",
+    "say": "Confirm with the accountant ahead of time."
+  },
+  "s3": {
+    "on": "This section warns against treating them as one annual concern, and asks to coordinate with the accountant early.",
+    "say": "Four deadlines, four preparations."
   }
 },
 "7::W-9/1099 Audits & Filing Deadlines": {
@@ -5088,6 +5288,18 @@ window.PRESENTER_NOTES = {
     "say": "W-9s hold sensitive tax data. Store them securely.",
     "wrap": "Collect up front, audit periodically and give the deadline lead time.",
     "scenario": "Preparing for the 1099 deadline, you find one vendor paid above the threshold never submitted a W-9. What do you do now, with the deadline approaching?"
+  },
+  "s1": {
+    "on": "This section says 1099 filings depend on accurate W-9s collected ahead of time, and a W-9 audit is a preventive check.",
+    "say": "W-9s first, 1099s later."
+  },
+  "s2": {
+    "on": "These steps run it: collect a W-9 before the first payment, audit vendors against the W-9 file, and track the 1099 deadline with lead time.",
+    "say": "No W-9, no payment."
+  },
+  "s3": {
+    "on": "This section warns against checking only near the deadline, and asks to secure W-9s as confidential.",
+    "say": "They hold sensitive tax data."
   }
 },
 "7::Real-Time Time Tracking for Billable Work": {
@@ -5101,6 +5313,18 @@ window.PRESENTER_NOTES = {
     "say": "Accurate time is the input to accurate billing.",
     "wrap": "Log in real time, with detail, and reconcile before invoicing.",
     "scenario": "It's the end of a busy day and you haven't logged time for several tasks. How do you reconstruct it as accurately as possible, and what do you change tomorrow?"
+  },
+  "s1": {
+    "on": "This section says billable time must be logged as it happens because it becomes a client invoice, which raises the accuracy bar.",
+    "say": "It becomes the invoice."
+  },
+  "s2": {
+    "on": "These steps practice it: log as you go, add enough detail for the invoice line, and reconcile against the billing calendar.",
+    "say": "Enough detail to support the line item."
+  },
+  "s3": {
+    "on": "This section warns that reconstructed entries are less accurate, and ties this to contract-aware billing.",
+    "say": "Accurate time makes accurate billing."
   }
 },
 "7::Client Trust Accounts (IOLTA) — Core Rules & Commingling Risk": {
@@ -5114,6 +5338,19 @@ window.PRESENTER_NOTES = {
     "say": "The friction on trust transactions is intentional.",
     "wrap": "Separate accounts, documented triggers and a ledger per client.",
     "scenario": "The trust account balance for one specific client is $200 lower than the ledger says it should be. What's your first move, and who needs to know before you do anything else?"
+  },
+  "s1": {
+    "on": "This section explains IOLTA: client funds that aren't the firm's; commingling is a serious ethics violation; money leaves only when earned or disbursed.",
+    "say": "Client money is never firm money."
+  },
+  "s2": {
+    "on": "These steps protect it: separate accounts, withdrawals only on a documented trigger, and a running ledger per client.",
+    "say": "Every withdrawal needs a documented trigger."
+  },
+  "s3": {
+    "on": "This section warns that a trust balance must never go negative for any client, even briefly, and says the extra friction is intentional.",
+    "say": "Slow and deliberate on purpose.",
+    "ask": "Why can't you borrow from trust for a day?"
   }
 },
 "7::Trust Account Reconciliation Discipline": {
@@ -5127,6 +5364,18 @@ window.PRESENTER_NOTES = {
     "say": "A one-dollar difference gets escalated too.",
     "wrap": "Three-way reconcile on schedule, check every sub-ledger and escalate any difference.",
     "scenario": "This month the bank balance and trust ledger match, but one client's sub-ledger doesn't match what was deposited for them. Walk through how you'd trace it."
+  },
+  "s1": {
+    "on": "This section defines the three-way match (bank statement, trust ledger, client sub-ledgers), at least monthly, with every discrepancy resolved.",
+    "say": "Three numbers must match."
+  },
+  "s2": {
+    "on": "These steps run it: reconcile on schedule, cross-check the ledger against the sub-ledger sum, and document every reconciliation.",
+    "say": "Document even clean ones."
+  },
+  "s3": {
+    "on": "This section warns that a balanced total can hide one client's shortfall, and says every discrepancy is escalated regardless of size.",
+    "say": "One dollar gets the same urgency."
   }
 },
 "7::Expense Report Auditing & Approval Workflows": {
@@ -5140,6 +5389,18 @@ window.PRESENTER_NOTES = {
     "say": "Split transactions are how thresholds get dodged.",
     "wrap": "Check every line, hold what's unsupported and route through the right approver.",
     "scenario": "An expense report shows a receipt for exactly $499, one dollar under the $500 threshold that needs extra approval. What do you do with that observation?"
+  },
+  "s1": {
+    "on": "This section says audits confirm expenses are legitimate, documented and categorized, a missing receipt is a real issue, and workflows separate submitter from approver.",
+    "say": "No receipt, no confirmation."
+  },
+  "s2": {
+    "on": "These steps audit: match each line to its receipt, hold anything unsupported, and route through the proper approver.",
+    "say": "Hold it until it's clear."
+  },
+  "s3": {
+    "on": "This section warns against bulk approvals and watches for split transactions used to dodge thresholds.",
+    "say": "Watch for splits."
   }
 },
 "7::Vendor Payment Terms & Cash Flow Timing": {
@@ -5153,6 +5414,18 @@ window.PRESENTER_NOTES = {
     "say": "Early or late should always be a decision, never a default.",
     "wrap": "Know the terms, time payments to them and flag exceptions.",
     "scenario": "A Net 30 vendor invoice arrives, and the person who handles payments always pays within 48 hours \"to be safe.\" Is that the right call here, and what would you say?"
+  },
+  "s1": {
+    "on": "This section says payment terms affect cash flow: early payment ties up cash unless there's a discount, and late payment carries fees and damage.",
+    "say": "Pay on terms."
+  },
+  "s2": {
+    "on": "These steps manage it: confirm each vendor's terms, pay on time, and track due dates against expected inflows.",
+    "say": "Match payments to cash flow."
+  },
+  "s3": {
+    "on": "This section warns against paying everything on receipt, and asks to flag off-terms payments as deliberate decisions.",
+    "say": "Early or late is a decision."
   }
 },
 "7::Financial Record Retention Requirements": {
@@ -5166,6 +5439,18 @@ window.PRESENTER_NOTES = {
     "say": "When in doubt, keep it.",
     "wrap": "Know the periods, store records searchably and label retention dates.",
     "scenario": "During a records cleanup you find trust account records from several years ago. Before deleting anything to save space, what do you need to confirm first?"
+  },
+  "s1": {
+    "on": "This section says retention periods vary by type and jurisdiction (trust records often longer), retention includes retrievability, and early destruction causes problems.",
+    "say": "Keep it, and be able to find it."
+  },
+  "s2": {
+    "on": "These steps manage it: know each category's period, use durable searchable storage, and build retention dates into filing.",
+    "say": "Label the retention date when filing."
+  },
+  "s3": {
+    "on": "This section warns that digital isn't automatically retained, and says: when in doubt, keep it.",
+    "say": "Over-retaining is cheaper."
   }
 },
 "7::Handling a Billing Dispute": {
@@ -5179,6 +5464,19 @@ window.PRESENTER_NOTES = {
     "say": "If it's our error, fix it plainly and quickly.",
     "wrap": "Acknowledge fast, show the backup and correct real errors.",
     "scenario": "A client emails disputing a charge, saying it doesn't match what they remember agreeing to. What's your first move before responding?"
+  },
+  "s1": {
+    "on": "This section frames a dispute as a request for information, resolved by documentation, and says handling affects the relationship beyond the dollars.",
+    "say": "Information, not accusation."
+  },
+  "s2": {
+    "on": "These steps resolve it: pull the documentation, acknowledge promptly, and present the resolution with the detail.",
+    "say": "Show what the charge was based on.",
+    "ask": "How would you reply to a client questioning a charge?"
+  },
+  "s3": {
+    "on": "This section warns against defensiveness before checking, and says to correct real errors plainly.",
+    "say": "The relationship beats the invoice."
   }
 },
 "7::Payroll Basics for EA/PA Support Roles": {
@@ -5192,6 +5490,18 @@ window.PRESENTER_NOTES = {
     "say": "Your late timesheet can become someone's missed paycheck.",
     "wrap": "Hit the cutoffs, protect the data and calendar the deadlines.",
     "scenario": "A new hire's onboarding paperwork is incomplete two days before the payroll cutoff for the next pay run. What do you do so they aren't accidentally missed?"
+  },
+  "s1": {
+    "on": "This section says EAs touch payroll's edges, payroll deadlines don't move, and payroll data is highly sensitive.",
+    "say": "The edges matter."
+  },
+  "s2": {
+    "on": "These steps support it: accurate timesheets before cutoff, confidential handling of paperwork, and payroll deadlines on the compliance calendar.",
+    "say": "Before the cutoff."
+  },
+  "s3": {
+    "on": "This section warns that a late timesheet still delays payroll, and never to share compensation details beyond need.",
+    "say": "Need-to-know only."
   }
 },
 "7::Fraud Red Flags in Financial Documents": {
@@ -5205,6 +5515,19 @@ window.PRESENTER_NOTES = {
     "say": "A false alarm is cheap. A missed fraud isn't.",
     "wrap": "Track anomalies, verify out of band and escalate early.",
     "scenario": "A long-standing vendor emails asking to update their bank details for future payments. What's your verification process, and why doesn't their known email address settle it?"
+  },
+  "s1": {
+    "on": "This section says fraud usually looks like small plausible inconsistencies, patterns matter more than one flag, and the EA is often first to see them.",
+    "say": "You see the detail first."
+  },
+  "s2": {
+    "on": "These steps catch it: watch for unfamiliar vendors, clean round numbers, duplicate invoice numbers and changed bank details; verify changes through a separate channel; and escalate.",
+    "say": "Verify payment changes through another channel.",
+    "ask": "What would you do with a vendor's new bank details?"
+  },
+  "s3": {
+    "on": "This section warns against explaining away single anomalies, and says a false alarm costs far less than a missed one.",
+    "say": "Raise it anyway."
   }
 },
 "8::Credential Management": {
