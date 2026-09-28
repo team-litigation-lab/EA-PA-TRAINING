@@ -14316,6 +14316,7 @@ function render(){
   else if(state.view==="admin") body=renderAdmin();
   else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
   else if(state.view==="tasks") body=renderTasksPage();
+  else if(state.view==="activities") body = typeof renderActivitiesPage==="function" ? renderActivitiesPage() : "";
   else if(state.view==="orientation") body = state.isAdmin ? renderOrientation() : renderDashboard();
   const presenterView = false;   // the presenter now lives inside the lesson stage
   app.innerHTML = renderTopbar() + `<main class="${state.view==="dashboard"?"main-dash":""}${presenterView?" has-presenter":""}"><div id="navBackSlot"></div>${body}</main>` + (presenterView ? `<img class="slide-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "")
@@ -14335,7 +14336,7 @@ function renderFooter(){
      ("lab-drafts") and restored when the tool is reopened.
    Both are part of the cloud progress record.
    ============================================================ */
-const RESUMABLE_VIEWS = ["day","tool","practice","dashboard","clientprofile","notes","handouts","openroleplay","crisisroleplay"];
+const RESUMABLE_VIEWS = ["day","tool","practice","activities","dashboard","clientprofile","notes","handouts","openroleplay","crisisroleplay"];
 function bookmarkView(){
   if(!state.traineeId || state.isAdmin || state.resumePending) return;
   if(state.view!=="day" && state.view!=="tool") return; // bookmark real work, not menus
@@ -14354,7 +14355,7 @@ function bookmarkView(){
    Tabs stay in sync: when one tab saves, the others pick the change up (the
    browser's "storage" event), so an older tab never overwrites newer progress.
    ============================================================ */
-const ROUTE_VIEWS = ["dashboard","practice","notes","clientprofile","handouts","tasks","crisisroleplay","orientation","facilitatorguide"];
+const ROUTE_VIEWS = ["dashboard","practice","activities","notes","clientprofile","handouts","tasks","crisisroleplay","orientation","facilitatorguide"];
 const routeViews = ()=>ROUTE_VIEWS.concat(window.EXTRA_ROUTE_VIEWS||[]);   // a course build can add its own pages
 function routeHash(){
   if(state.view==="day" && state.dayId) return "#/day/"+state.dayId;
@@ -14396,7 +14397,7 @@ function syncRouteHash(){
 function routeDepth(){ const st = history.state; return (st && typeof st.lshDepth==="number") ? st.lshDepth : 0; }
 function routeTrail(){ try{ const t = JSON.parse(sessionStorage.getItem("lsh_route_trail")||"[]"); return Array.isArray(t) ? t : []; }catch(e){ return []; } }
 function routeTrailSet(depth, h){ const t = routeTrail().slice(0, depth); t[depth] = h; try{ sessionStorage.setItem("lsh_route_trail", JSON.stringify(t.slice(-60))); }catch(e){} }
-const ROUTE_LABELS = {dashboard:"Dashboard", practice:"Practice Lab", notes:"My Notes", clientprofile:"Client Profile", handouts:"Handouts",
+const ROUTE_LABELS = {dashboard:"Dashboard", practice:"Practice Lab", activities:"Activities", notes:"My Notes", clientprofile:"Client Profile", handouts:"Handouts",
   tasks:"Tasks", crisisroleplay:"Live Roleplay", orientation:"Orientation", facilitatorguide:"Facilitator Guide"};
 function routeLabel(h){
   const m = String(h||"").match(/^#\/([a-z]+)(?:\/([^/?#]+))?/i);
@@ -20337,7 +20338,11 @@ function renderAdmin(){
       <button class="admin-tab-btn ${tab==='cues'?'active':''}" onclick="setAdminTab('cues')">Trainer Cues</button>
       <button class="admin-tab-btn ${tab==='studio'?'active':''}" onclick="setAdminTab('studio')">Content Studio</button>
       <button class="admin-tab-btn ${tab==='tfeedback'?'active':''}" onclick="setAdminTab('tfeedback')">Trainee Feedback</button>
+      <button class="admin-tab-btn ${tab==='activities'?'active':''}" onclick="setAdminTab('activities')">📋 Activities</button>
+      <button class="admin-tab-btn ${tab==='fbstyle'?'active':''}" onclick="setAdminTab('fbstyle')">🗣 Feedback Style</button>
     </div>`;
+  if(tab==="activities") return tabBar + (typeof renderAdminActivities==="function" ? renderAdminActivities() : "");
+  if(tab==="fbstyle") return tabBar + (typeof renderAdminFeedbackStyle==="function" ? renderAdminFeedbackStyle() : "");
   if(tab==="sop") return tabBar + renderAdminSOP();
   if(tab==="cues") return tabBar + renderAdminTrainerCues();
   if(tab==="studio") return tabBar + renderAdminStudio();
@@ -24531,7 +24536,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.28-n";
+var APP_BUILD = "2026.09.28-o";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -24576,5 +24581,6 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 </script>
 <script src="/js/presenter-notes.js?v=1"></script>
 <script src="/js/eapa-updates.js?v=zf"></script>
+<script src="/js/daily-activities.js?v=1"></script>
 </body>
 </html>
