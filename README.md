@@ -2,6 +2,16 @@
 
 The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with progress kept in the `LSH_KV` KV namespace.
 
+## Medsum & Demand Training
+
+`js/medsum-demand.js` adds a specialty module (top-bar tab **⚕ Medsum**, page `#/medsum`, units at `#/medsum/1`–`4`). It is separate from the 10-day roadmap, so it doesn't change day progress or certificate eligibility.
+
+- **Units:** Medical Chronology & Medical Summary, Bills Itemization, Demand Overview, and Demand Packet & Responses.
+- **Each unit:** lessons, then a hands-on practice on a fictional case, then a 6-question unit check (pass at 70%).
+- **Canva decks:** each unit links its training deck, and the module landing page links all of them.
+- **Progress:** stored in the personal key `medsum-progress`, which is saved with the trainee's cloud record and cleared on logout.
+- **Trainer view:** admins see every trainee's results on the landing page (**Load trainee results**).
+
 ## Checks (GitHub Actions)
 
 `.github/workflows/checks.yml` runs on every pull request and every push to `main`. A red **Checks** status means something is broken, and the log says what:
