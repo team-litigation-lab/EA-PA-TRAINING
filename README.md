@@ -2,6 +2,8 @@
 
 The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with progress kept in the `LSH_KV` KV namespace.
 
+`pd-training/` is a separate course, the 5-day **Property Damage Claims Training**. It is its own Worker built on the same engine, and `.assetsignore` keeps it out of this site. See [pd-training/README.md](pd-training/README.md); its checks run in `.github/workflows/pd-training.yml`.
+
 ## Checks (GitHub Actions)
 
 `.github/workflows/checks.yml` runs on every pull request and every push to `main`. A red **Checks** status means something is broken, and the log says what:
