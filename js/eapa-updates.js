@@ -14,6 +14,8 @@
      8. Day 3 "Proactive EA Tasks" is now a written, graded exercise.
      9. Practice Lab pages in the platform page style (hero, activity headings, cards, buttons).
     10. SOP: Program flow page + a timed run of show for every day.
+    11. Trainee feedback: open any page in a new tab (right-click, Ctrl/⌘-click,
+        middle-click), "Lessons in a new tab" on every lab, Gmail inbox labels stay on screen.
    ============================================================ */
 window.EAPA_UPDATE_PACK = "z";
 (function(){ const s = document.createElement("style"); s.id = "eapa-update-p"; s.textContent = `
@@ -2180,6 +2182,100 @@ function sopProgramFlow(){
       <table class="log-table sopx-table sopf-map"><thead><tr><th>Day</th><th>Title</th><th>Topics</th><th>Practice Lab</th><th></th></tr></thead><tbody>${days}</tbody></table></section>`;
 }
 window.setSopStart = setSopStart;
+
+/* ---------- 11. Trainee feedback (2026-09-28) ----------
+   a) Open any page in a new tab. Menu items, day cards and activity cards are buttons,
+      so the browser offers no "Open link in new tab". Right-click on anything that opens
+      a portal page shows that option; Ctrl/⌘-click and middle-click open it directly.
+   b) Every Practice Lab activity has "Lessons in a new tab", to review the day's lesson
+      while answering (Client Dossier, activities, Knowledge Checks).
+   c) Gmail inbox (Day 2 lab): a fixed-height window like real Gmail. The label list stays
+      on screen and only the email list scrolls, so every email can be dragged onto a label. */
+(function(){ const s = document.createElement("style"); s.id = "eapa-update-11"; s.textContent = `
+.nt-menu{position:fixed;z-index:9999;background:#fff;border:1px solid #dadce0;border-radius:10px;box-shadow:0 10px 30px -8px rgba(31,36,64,.35);padding:6px;min-width:200px;font-size:13.5px;}
+.nt-menu button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;background:none;border:none;border-radius:7px;padding:8px 10px;color:#1F2440;cursor:pointer;}
+.nt-menu button:hover{background:#F2F4FA;}
+.gm.gm-dragging .gm-folder, .gm.gm-dragging .gm-compose{display:none;}
+.gm.gm-dragging .gm-lblhead::after{content:"Drop on a label";font-size:11px;font-weight:600;color:#0b57d0;margin-left:8px;}
+.gm.gm-dragging .gm-lbl{outline:1px dashed #a8c7fa;outline-offset:-3px;}
+.nt-menu small{display:block;color:#6B7089;font-size:11.5px;padding:4px 10px 2px;}
+@media(min-width:861px){
+  .gm-body{height:clamp(420px, calc(100vh - 250px), 760px);min-height:0;grid-template-rows:minmax(0,1fr);}
+  .gm-nav{overflow-y:auto;min-height:0;}
+  .gm-main{min-height:0;overflow:hidden;}
+  .gm-list, .gm-read{min-height:0;overflow-y:auto;}
+}
+`; document.head.appendChild(s); })();
+
+// The portal page a click would open ("#/day/3", "#/tool/dossier1", "#/notes" …), or "".
+function ntRouteOf(el){
+  const node = el && el.closest && el.closest("[onclick]"); if(!node) return "";
+  const js = node.getAttribute("onclick") || "";
+  let m = js.match(/\bgoto\(\s*['"]([a-z]+)['"]\s*(?:,\s*['"]?([^'")\s]+)['"]?\s*)?\)/i), h = "";
+  if(m) h = "#/" + m[1] + (m[2] ? "/" + encodeURIComponent(m[2]) : "");
+  else if((m = js.match(/\b(?:returnToLessonCard|goToNextDay)\(\s*(\d+)\s*\)/))) h = "#/day/" + m[1];
+  else if((m = js.match(/\bopenRouteInNewTab\(/))) return "";
+  if(!h) return "";
+  const r = h.match(/^#\/([a-z]+)(?:\/(.+))?$/i), view = r[1], id = r[2] ? decodeURIComponent(r[2]) : null;
+  if(view==="day") return DAYS.some(d=>String(d.id)===String(id)) ? h : "";
+  if(view==="tool") return PRACTICE_TOOLS.some(t=>t.id===id) ? h : "";
+  return (typeof routeViews==="function" && routeViews().includes(view)) ? h : "";
+}
+function ntSignedIn(){ return !!(state.traineeId || state.isAdmin) && !["login","pendingApproval","registrationDenied"].includes(state.view); }
+function ntClose(){ const m = document.getElementById("ntMenu"); if(m) m.remove(); }
+document.addEventListener("click", (e)=>{
+  if(!(e.ctrlKey || e.metaKey || e.shiftKey) || !ntSignedIn()) return;
+  const h = ntRouteOf(e.target); if(!h) return;
+  e.preventDefault(); e.stopImmediatePropagation(); openRouteInNewTab(h);
+}, true);
+document.addEventListener("mousedown", (e)=>{ if(e.button===1 && ntSignedIn() && ntRouteOf(e.target)) e.preventDefault(); }, true); // no autoscroll
+document.addEventListener("auxclick", (e)=>{
+  if(e.button!==1 || !ntSignedIn()) return;
+  const h = ntRouteOf(e.target); if(!h) return;
+  e.preventDefault(); openRouteInNewTab(h);
+}, true);
+document.addEventListener("contextmenu", (e)=>{
+  ntClose();
+  if(!ntSignedIn() || e.target.closest("input, textarea, [contenteditable]")) return;
+  const node = e.target.closest("[onclick]"), h = ntRouteOf(e.target); if(!h) return;
+  e.preventDefault();
+  const label = (typeof routeLabel==="function" && routeLabel(h)) || "this page";
+  const m = document.createElement("div"); m.className = "nt-menu"; m.id = "ntMenu";
+  m.innerHTML = `<small>${esc(label)}</small>
+    <button type="button" data-nt="tab">⧉ Open in new tab</button>
+    <button type="button" data-nt="here">↪ Open here</button>`;
+  document.body.appendChild(m);
+  const w = m.offsetWidth, hgt = m.offsetHeight;
+  m.style.left = Math.min(e.clientX, innerWidth - w - 8) + "px"; m.style.top = Math.min(e.clientY, innerHeight - hgt - 8) + "px";
+  m.addEventListener("click", (ev)=>{ const b = ev.target.closest("[data-nt]"); if(!b) return; ntClose();
+    if(b.dataset.nt==="tab") openRouteInNewTab(h); else if(node) node.click(); });
+}, true);
+document.addEventListener("mousedown", (e)=>{ if(!e.target.closest("#ntMenu")) ntClose(); });
+document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") ntClose(); });
+window.addEventListener("scroll", ntClose, true);
+window.addEventListener("blur", ntClose);
+
+// c) While an email is being dragged, the folders (not drop targets) step aside so every
+//    label is on screen, even on a short laptop screen.
+const __gmDragStart11 = gmDragStart, __gmDragEnd11 = gmDragEnd;
+window.gmDragStart = function(){
+  __gmDragStart11.apply(this, arguments);
+  setTimeout(()=>{ const sh = document.getElementById("gmShell"); if(!sh || !gmDragStart.ids) return; sh.classList.add("gm-dragging"); const nav = sh.querySelector(".gm-nav"); if(nav) nav.scrollTop = 0; }, 0);
+};
+window.gmDragEnd = function(){
+  __gmDragEnd11.apply(this, arguments);
+  const sh = document.getElementById("gmShell"); if(sh) sh.classList.remove("gm-dragging");
+};
+
+// b) "Lessons in a new tab" on every Practice Lab activity
+const __eapaToolHead11 = window.toolHead;
+window.toolHead = function(t){
+  const html = __eapaToolHead11.apply(this, arguments);
+  const d = t.relates ? parseInt(String(t.relates).replace(/[^0-9]/g,""), 10) : null;
+  if(!d) return html;
+  const btn = `<button class="btn btn-sm lab-hbtn" onclick="openRouteInNewTab('#/day/${d}')" title="Keep this activity open and review the Day ${d} lessons side by side">📑 Lessons in a new tab</button>`;
+  return html.replace(/(<div class="lab-hero-actions">)/, "$1" + btn);
+};
 
 /* if the portal already drew itself before this file loaded, redraw with the updates */
 if(document.querySelector(".topbar")) render();
