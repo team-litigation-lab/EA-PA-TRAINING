@@ -14469,7 +14469,7 @@ function resumeLabel(){
 function resumeWhereLeftOff(saved){
   const lv = saved || state.lastView; state.resumePending = false; if(!lv) return;
   if(lv.view==="day" && lv.dayId){ goto("day", lv.dayId); return; }
-  if(lv.view==="tool" && lv.toolId){ state.pendingWizardIndex = lv.wizardIndex||0; goto("tool", lv.toolId); return; }
+  if(lv.view==="tool" && lv.toolId){ state.pendingWizardIndex = lv.wizardIndex||0; state.pendingWizardScrollTop = true; goto("tool", lv.toolId); return; }
   goto(lv.view);
 }
 window.resumeWhereLeftOff = resumeWhereLeftOff;
@@ -14551,7 +14551,10 @@ function afterRender(){
   if(state.traineeId && !state.isAdmin && (!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000)){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>{ loadMyFeedback(); loadMyFocus(); }, 0); }
   if(state.view==="tool"){
     initTool(state.toolId);
-    if(state.pendingWizardIndex){ const wi = state.pendingWizardIndex; state.pendingWizardIndex = 0; setTimeout(()=>{ try{ wizardGoTo(wi); }catch(e){} }, 60); }
+    // A re-render (auto-update, trainer reset, sync) rebuilds the lab at step 1 — put the trainee back on their step.
+    const lw = state.labWizard && state.labWizard.toolId===state.toolId ? state.labWizard.idx : 0;
+    const wi = state.pendingWizardIndex || lw; state.pendingWizardIndex = 0;
+    if(wi){ setTimeout(()=>{ try{ wizardGoTo(wi, !state.pendingWizardScrollTop); }catch(e){} state.pendingWizardScrollTop = false; }, 60); }
     setTimeout(()=>restoreLabFields(), 80);
   }
   if(state.view==="admin" && state.isAdmin && !state.adminData && !state.adminLoading) loadAdminLedger();
@@ -14958,7 +14961,7 @@ async function applyUpdate(){
   try{
     if(state.view==="tool" && typeof saveLabNow==="function" && state.labDrafts){ await storeSet("lab-drafts", state.labDrafts); }
     if(state.traineeId && !state.isAdmin) await cloudSaveNow();
-    sessionStorage.setItem("lsh_resume_after_update", JSON.stringify({view:state.view, dayId:state.dayId, lessonSlide:state.lessonSlide, toolId:state.toolId, adminTab:state.adminTab, cuesDay:state.cuesDay, sopDay:state.sopDay, studioDay:state.studioDay, orientIdx:state.orientIdx, scroll:window.scrollY}));
+    sessionStorage.setItem("lsh_resume_after_update", JSON.stringify({view:state.view, dayId:state.dayId, lessonSlide:state.lessonSlide, toolId:state.toolId, wizardIndex:(state.view==="tool" && toolState && toolState.wizardIndex) || 0, adminTab:state.adminTab, cuesDay:state.cuesDay, sopDay:state.sopDay, studioDay:state.studioDay, orientIdx:state.orientIdx, scroll:window.scrollY}));
   }catch(e){}
   location.reload();
 }
@@ -14977,7 +14980,7 @@ function restoreAfterUpdate(){
   if(!st || !st.view || st.view==="login") return false;
   ["adminTab","cuesDay","sopDay","studioDay","orientIdx"].forEach(k=>{ if(st[k]!=null) state[k] = st[k]; });
   if(st.view==="day" && st.dayId){ goto("day", st.dayId); if(typeof st.lessonSlide==="number"){ state.lessonSlide = Math.min(st.lessonSlide, Math.max(state.maxSlideReached||0, st.lessonSlide)); render(); } }
-  else if(st.view==="tool" && st.toolId) goto("tool", st.toolId);
+  else if(st.view==="tool" && st.toolId){ state.labWizard = {toolId:st.toolId, idx:st.wizardIndex||0}; goto("tool", st.toolId); }
   else goto(st.view);
   setTimeout(()=>{ window.scrollTo(0, st.scroll||0); toast("✨ Updated to the latest version."); }, 300);
   return true;
@@ -16665,10 +16668,11 @@ function renderToolWizard(dayId, parts){
     <div class="wizard-nav">${wizardNavHtml(idx)}</div>
   `;
 }
-function wizardGoTo(i){
+function wizardGoTo(i, keepScroll){
   const labels = toolState.wizardLabels || [];
   if(i<0 || i>=labels.length) return;
   toolState.wizardIndex = i;
+  state.labWizard = {toolId:state.toolId, idx:i};   // survives a re-render of the same lab
   setTimeout(bookmarkView, 0);
   document.querySelectorAll(".wizard-screen").forEach(el=>{
     el.style.display = (parseInt(el.dataset.wizardIdx,10)===i) ? "block" : "none";
@@ -16682,7 +16686,7 @@ function wizardGoTo(i){
   if(labelEl) labelEl.textContent = `Part ${i+1} of ${labels.length} — ${labels[i]}`;
   const navWrap = document.querySelector(".wizard-nav");
   if(navWrap) navWrap.innerHTML = wizardNavHtml(i);
-  window.scrollTo({top:0, behavior:"smooth"});
+  if(!keepScroll) window.scrollTo({top:0, behavior:"smooth"});
 }
 window.wizardGoTo = wizardGoTo;
 /* Bottom navigation for every lab: Back · Next: <next activity> · and on the last activity, Return to Progress */
@@ -23636,7 +23640,7 @@ function initForceMultiplier2(body){
     <div class="card" style="padding:14px 16px;">
       ${FM2_CHECKLIST.map((c,i)=>`
         <label style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer;">
-          <input type="checkbox" onchange="toolState.fm2.checklistSelected[${i}]=this.checked" style="margin-top:3px;">
+          <input type="checkbox" id="fm2Chk${i}" onchange="toolState.fm2.checklistSelected[${i}]=this.checked" style="margin-top:3px;">
           <span style="font-size:13px;color:#37394A;">${esc(c.text)}</span>
         </label>`).join("")}
     </div>
