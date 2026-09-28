@@ -11993,7 +11993,7 @@ async function callAITextOnce(prompt, maxTokens, timeoutMs, feature){
   try{
     const response = await fetch("/api/claude", {
       method:"POST", headers:authHeaders(),
-      // feature ("chat" | "grading" | "trainer") picks that feature's own Gemini key on the Worker, if one is set
+      // feature picks the Gemini key on the Worker: chat → GEMINI_API_KEY, grading → GEMINI_API_KEY1, trainer → GEMINI_API_KEY2
       body: JSON.stringify({ model:"gemini", feature: feature||"", max_tokens:maxTokens||600, messages:[{role:"user", content:prompt}] }),
       signal: controller.signal
     });

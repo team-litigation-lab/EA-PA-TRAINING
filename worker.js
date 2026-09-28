@@ -3,9 +3,9 @@
  *
  * Secrets (set once with `wrangler secret put <NAME>`):
  *   GEMINI_API_KEY     — the reviewer behind every AI feature (Google Gemini). Required.
- *   GEMINI_API_KEY_CHAT, GEMINI_API_KEY_GRADING, GEMINI_API_KEY_TRAINER
- *                      — optional: a separate key per feature, so one busy feature doesn't slow
- *                        the others (see AI_FEATURE_KEYS). Each falls back to GEMINI_API_KEY.
+ *   GEMINI_API_KEY1    — optional: grading and AI feedback on trainees' work (see AI_FEATURE_KEYS)
+ *   GEMINI_API_KEY2    — optional: trainer tools (feedback drafts, auto-review, Studio)
+ *                        Live chat stays on GEMINI_API_KEY; a missing key falls back to it.
  *   GEMINI_MODEL       — optional, default "gemini-3.8-flash" (falls back to gemini-3.5-flash-lite)
  *   ADMIN_PASSPHRASE   — trainer/admin sign-in. Setting this switches the portal
  *                        into SECURE MODE: every storage and AI request must carry
@@ -117,9 +117,9 @@ async function traineeWrite(env, tok, key, value) {
 // Each AI feature can use its own Gemini key. Free-tier limits are per Google Cloud
 // project, so the keys only share the load if they come from different projects.
 const AI_FEATURE_KEYS = {
-  chat: "GEMINI_API_KEY_CHAT",        // live roleplays, simulated calls and chats, inbox and task simulations
-  grading: "GEMINI_API_KEY_GRADING",  // rubric evaluations and AI feedback on trainees' work
-  trainer: "GEMINI_API_KEY_TRAINER"   // trainer tools: day feedback drafts, auto-review, Studio drafting
+  chat: "GEMINI_API_KEY",      // live roleplays, simulated calls and chats, inbox and task simulations
+  grading: "GEMINI_API_KEY1",  // rubric evaluations and AI feedback on trainees' work
+  trainer: "GEMINI_API_KEY2"   // trainer tools: day feedback drafts, auto-review, Studio drafting
 };
 const geminiKey = (env, feature) => (AI_FEATURE_KEYS[feature] && env[AI_FEATURE_KEYS[feature]]) || env.GEMINI_API_KEY;
 const featureFromBody = (raw) => { try { return String(JSON.parse(raw).feature || ""); } catch (e) { return ""; } };
@@ -192,7 +192,7 @@ export default {
         const page = await env.ASSETS.fetch(new Request(new URL("/", request.url)));
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
-        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${env.GEMINI_API_KEY ? "Google Gemini (" + (env.GEMINI_MODEL || "gemini-3.8-flash") + ")" : "none — add GEMINI_API_KEY"}\nAI keys by feature: ${Object.entries(AI_FEATURE_KEYS).map(([f, name]) => `${f} ${env[name] ? "own key" : env.GEMINI_API_KEY ? "shared GEMINI_API_KEY" : "none"}`).join(", ")}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${env.GEMINI_API_KEY ? "Google Gemini (" + (env.GEMINI_MODEL || "gemini-3.8-flash") + ")" : "none — add GEMINI_API_KEY"}\nAI keys by feature: ${Object.entries(AI_FEATURE_KEYS).map(([f, name]) => `${f} ${env[name] ? name : env.GEMINI_API_KEY ? "GEMINI_API_KEY (fallback)" : "none"}`).join(", ")}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
