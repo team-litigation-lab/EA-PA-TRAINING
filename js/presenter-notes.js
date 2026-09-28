@@ -7009,6 +7009,19 @@ window.PRESENTER_NOTES = {
     "say": "Measure each with its own metric, or good work looks like failure.",
     "wrap": "Name the task type, then use the right metric.",
     "scenario": "Elias asks you to \"handle his LinkedIn\" and also \"get more consultation leads from it this quarter.\" Split it: which parts are management, which are marketing, and how do you measure each?"
+  },
+  "s1": {
+    "on": "This section's table compares Management (consistency, engagement, ongoing presence) with Marketing (growth, leads, campaigns that start and end), each with its own content and metrics.",
+    "say": "Keeping the lights on vs. driving results."
+  },
+  "s2": {
+    "on": "These steps apply it: name the type first, prioritize consistency for Management, target the goal for Marketing, match the metric, and split tasks that span both.",
+    "say": "Wrong metric makes good work look bad.",
+    "ask": "Is replying to DMs management or marketing?"
+  },
+  "s3": {
+    "on": "This section's analogy: Management is the restaurant dining room, Marketing is the highway billboard. EAs usually own Management; PAs and marketers lean into Marketing.",
+    "say": "Dining room vs. billboard."
   }
 },
 "10::EA vs. PA Roles in Social Media": {
@@ -7022,6 +7035,18 @@ window.PRESENTER_NOTES = {
     "say": "Gatekeeper and moderator versus ghostwriter and promoter.",
     "wrap": "Divide the work clearly so strategy and creation don't collide.",
     "scenario": "In one morning: a journalist DMs Elias, a client comments on his post, event photos need editing, and his bio still lists an old title. Who handles each, the EA or the PA?"
+  },
+  "s1": {
+    "on": "This section contrasts the roles: the EA handles brand and strategy (calendar, DM filtering, tone review, first line on PR); the PA handles creation and execution (content, editing, bios, personal replies).",
+    "say": "Strategy vs. creation."
+  },
+  "s2": {
+    "on": "These steps split the work: the EA plans the calendar, filters DMs and reviews tone; the PA creates content and maintains platforms.",
+    "say": "Review tone before it posts."
+  },
+  "s3": {
+    "on": "This section sums it up: the EA is Gatekeeper & Moderator, the PA is Ghostwriter & Promoter, each with a crisis role.",
+    "say": "Gatekeeper and ghostwriter."
   }
 },
 "10::The Executive Personal Brand Style Guide": {
@@ -7035,6 +7060,23 @@ window.PRESENTER_NOTES = {
     "say": "An unwritten sense of the brand doesn't survive a second contributor.",
     "wrap": "Write down the goal, voice, Never list, engagement rules and visuals.",
     "scenario": "Draft the first version of Elias's Never List live: three banned topics, two banned buzzwords and one formatting rule."
+  },
+  "s1": {
+    "on": "This section lays out five parts: North Star, Voice & Tone, the 'Never' List, Engagement Protocol and Visual Standard.",
+    "say": "Five parts of the guide."
+  },
+  "s2": {
+    "on": "These steps build it: define the goal and three topics, write voice rules, list banned items, set the engagement rules, and fix the 70/30 visual mix.",
+    "say": "Written down, not left to instinct.",
+    "ask": "What would go on your executive's 'Never' list?"
+  },
+  "s3": {
+    "on": "This section's warning: a style guide only works if it's written where every contributor can see it.",
+    "say": "An unwritten sense doesn't transfer."
+  },
+  "s4": {
+    "on": "This section summarizes the guide: North Star and audience, voice and pillars with the Never list, and visual rules with an approval workflow.",
+    "say": "Include the approval workflow."
   }
 },
 "10::Content Pillars & Finding the Brand Voice": {
@@ -7048,6 +7090,18 @@ window.PRESENTER_NOTES = {
     "say": "Voice drift causes brand whiplash and unfollows.",
     "wrap": "Set the boundaries, place the spectrums and check every post against them.",
     "scenario": "Run \"This, Not That\" on the board for Elias: four pairs, then place him on each of the four spectrums."
+  },
+  "s1": {
+    "on": "This section gives four voice spectrums: funny vs. serious, formal vs. casual, detached vs. enthusiastic, irreverent vs. respectful.",
+    "say": "Place the voice on four spectrums."
+  },
+  "s2": {
+    "on": "These steps apply them: 'This, Not That' checks, a deliberate position on each spectrum, checking drafts against it, finding where it drifts, and remembering the cost of drift.",
+    "say": "Diagnose which spectrum is drifting."
+  },
+  "s3": {
+    "on": "This section defines 'This, Not That' (confident not sarcastic, witty not arrogant, accessible not simple, bold not aggressive) and warns about brand whiplash.",
+    "say": "Inconsistency causes unfollows."
   }
 },
 "10::Defining and Maintaining Brand Voice, Tone & Messaging": {
@@ -7061,6 +7115,23 @@ window.PRESENTER_NOTES = {
     "say": "Voice stays constant. Tone flexes. Messaging repeats.",
     "wrap": "Write direct and specific, cut hedging and audit quarterly.",
     "scenario": "Rewrite this line in Elias's voice live: \"We believe our innovative, client-first approach may potentially deliver amazing results for businesses navigating complex disputes.\""
+  },
+  "s1": {
+    "on": "This section contrasts Elias's real voice (direct, credible, unhurried) with a generic wrong one (hedging, buzzwords, trend-chasing).",
+    "say": "Direct, credible, unhurried."
+  },
+  "s2": {
+    "on": "These steps keep it: lead with the answer, back claims with specifics, skip trends, rewrite hedges, and compare drafts to a real example.",
+    "say": "Cut 'we believe'.",
+    "ask": "How would you rewrite 'We believe this may help'?"
+  },
+  "s3": {
+    "on": "This section says defining a voice is easy; keeping it across months and contributors is the discipline.",
+    "say": "Maintenance is the work."
+  },
+  "s4": {
+    "on": "This section separates voice (constant), tone (flexes with context) and messaging (recurring core ideas), with a quarterly audit.",
+    "say": "Voice stays; tone flexes."
   }
 },
 "10::Making a Voice Guide Actually Stick": {
@@ -7074,6 +7145,18 @@ window.PRESENTER_NOTES = {
     "say": "The guide is only as good as the review behind it.",
     "wrap": "Concrete examples, a named reviewer and a guide that evolves.",
     "scenario": "A new marketing contractor's first three LinkedIn drafts for Elias are full of exclamation points and \"game-changing.\" What's your review process, and what do you add to the guide?"
+  },
+  "s1": {
+    "on": "This section says a guide needs concrete 'this, not that' sentences, not just adjectives.",
+    "say": "Show it in a sentence."
+  },
+  "s2": {
+    "on": "These steps make it stick: real examples, a messaging layer, a named reviewer, close checks on new contributors, and updating the guide.",
+    "say": "Name the reviewer."
+  },
+  "s3": {
+    "on": "This section defines messaging as the consistent claims and framing, and says the review step is what keeps the guide alive.",
+    "say": "Without review it fades in a month."
   }
 },
 "10::Visual Brand Assets — Sample Color Palette": {
@@ -7087,6 +7170,22 @@ window.PRESENTER_NOTES = {
     "say": "60% neutral, 30% primary, 10% accent.",
     "wrap": "Keep the palette to four roles and record the exact codes.",
     "scenario": "Pull up the firm's recent social graphics. Do they follow one dominant, one accent, one text, one background? Where has a fifth color crept in?"
+  },
+  "s1": {
+    "on": "This section shows a four-color palette: Deep Navy (primary), Warm Gold (accent), Charcoal (text) and Warm Ivory (background).",
+    "say": "Four colors, four roles."
+  },
+  "s2": {
+    "on": "These steps use it: four roles only, the accent sparingly, consistent use everywhere, a neutral background, and checking other brands against this structure.",
+    "say": "No fifth color."
+  },
+  "s3": {
+    "on": "This section says visual identity is a small, deliberate set of colors, fonts and imagery rules, not just a logo.",
+    "say": "Recognizable without the name."
+  },
+  "s4": {
+    "on": "This section gives the 60-30-10 rule, asks for exact HEX and CMYK codes, and a contrast check, especially on mobile.",
+    "say": "60-30-10."
   }
 },
 "10::Brand Consistency: Palette, Typography & Imagery": {
@@ -7100,6 +7199,18 @@ window.PRESENTER_NOTES = {
     "say": "Consistency comes from rules decided in advance.",
     "wrap": "Limit colors and fonts, set imagery rules and check for drift.",
     "scenario": "Three recent posts for the firm used three different fonts and a stock photo of a gavel. Write the three rules you'd add to stop it happening again."
+  },
+  "s1": {
+    "on": "This section repeats the four-role palette pattern and says restraint keeps a brand deliberate.",
+    "say": "Restraint looks deliberate."
+  },
+  "s2": {
+    "on": "These steps keep it consistent: the four-color discipline, one heading and one body font, imagery rules up front, periodic drift reviews, and learning from others' mistakes.",
+    "say": "Two fonts, everywhere."
+  },
+  "s3": {
+    "on": "This section says mixed fonts make a brand look unmanaged, and imagery rules matter as much as color.",
+    "say": "Decide what's off-limits."
   }
 },
 "10::Platform Proficiencies — Tool-Specific Best Practices": {
@@ -7113,6 +7224,22 @@ window.PRESENTER_NOTES = {
     "say": "The newsletter is the only channel the executive fully owns.",
     "wrap": "Adapt to each platform and learn each tool's publishing flow.",
     "scenario": "Elias wrote a 600-word article on a new employment law. How do you adapt it for LinkedIn, Instagram and the newsletter?"
+  },
+  "s1": {
+    "on": "This section covers three tool types: social platforms with their own formats, CMS platforms, and newsletter platforms.",
+    "say": "Social, CMS, newsletter."
+  },
+  "s2": {
+    "on": "These steps build proficiency: adapt per platform, learn the CMS, learn newsletter basics, treat each as different, and walk through new tools first.",
+    "say": "Never copy-paste across platforms."
+  },
+  "s3": {
+    "on": "This section says 'good at social media' is really literacy across several different tools.",
+    "say": "Several skills, not one."
+  },
+  "s4": {
+    "on": "This section profiles each channel: LinkedIn for thought leadership, Instagram for visual stories, X/Threads and newsletters for timely commentary and owned relationships.",
+    "say": "The newsletter is the channel you own."
   }
 },
 "10::Platform Details & the One Rule That Applies to All Three": {
@@ -7126,6 +7253,18 @@ window.PRESENTER_NOTES = {
     "say": "A typo in a draft is invisible. One sent to a list isn't.",
     "wrap": "Respect each platform's format, and always preview before going live.",
     "scenario": "You need to fix a typo on the firm's live homepage and send the monthly newsletter to the Clients segment. Walk through the draft-first steps for each."
+  },
+  "s1": {
+    "on": "This section gives platform specifics: LinkedIn wants the point in the first two lines, Instagram leads visually, X rewards brevity and timeliness.",
+    "say": "Each platform rewards something different."
+  },
+  "s2": {
+    "on": "These steps apply them per platform, cover routine CMS edits, and give the universal rule: test in draft or preview first.",
+    "say": "Preview before live."
+  },
+  "s3": {
+    "on": "This section details CMS and newsletter tasks and restates the rule: a typo in a draft is invisible; one sent to a list isn't.",
+    "say": "Test first, always."
   }
 },
 "10::The Content Calendar & Publishing Workflow": {
@@ -7139,6 +7278,18 @@ window.PRESENTER_NOTES = {
     "say": "Consistency beats perfect timing.",
     "wrap": "Batch the month and track every field, not just the date.",
     "scenario": "Plan next month for Elias's LinkedIn using the Batch Method: three pillars, 12 ideas, and what happens in each week."
+  },
+  "s1": {
+    "on": "This section says the publishing workflow is sequential: follow the steps in order.",
+    "say": "Four weeks, four steps."
+  },
+  "s2": {
+    "on": "These steps are the monthly cycle: Ideation (12–15 ideas), Creation in 1–2 focused days, Optimization of hooks and captions, and Scheduling.",
+    "say": "Ideate, create, optimize, schedule."
+  },
+  "s3": {
+    "on": "This section lists what a real calendar tracks (platform, pillar, asset, hook, keywords, CTA, status) and says consistency beats perfect timing.",
+    "say": "Consistency over timing."
   }
 },
 "10::Reading the Numbers — Engagement Rate": {
@@ -7152,6 +7303,23 @@ window.PRESENTER_NOTES = {
     "say": "Compare against the account's own average first.",
     "wrap": "Calculate the rate, compare it with the norm and look at what drove it.",
     "scenario": "Live: a post got 85 likes, 22 comments and 6 shares, and the account has 2,500 followers. What's the engagement rate, and is it good if the usual rate is 3%?"
+  },
+  "s1": {
+    "on": "This section gives the formula: (Likes + Comments + Shares) ÷ Followers × 100.",
+    "say": "One formula."
+  },
+  "s2": {
+    "on": "These steps calculate it: sum interactions, divide by followers, times 100, compare posts by rate, recalculate regularly, and check against the platform.",
+    "say": "Rates, not raw counts."
+  },
+  "s3": {
+    "on": "This section works an example: 145 interactions on 4,000 followers is 3.6%.",
+    "say": "3.6% in the example.",
+    "ask": "Is 3.6% good?"
+  },
+  "s4": {
+    "on": "This section interprets it: compare with the account's own average, value comments and shares, and remember a small engaged audience can beat a big passive one.",
+    "say": "Compare with your own average."
   }
 },
 "10::Engagement Rate Benchmarks & Interpretation": {
@@ -7167,6 +7335,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Judge performance by rate and by reach and engagement together, and revisit the benchmarks as platforms change.",
     "scenario": "Post A reached 12,000 people with a 0.8% engagement rate. Post B reached 900 people with 6.5%. What does each tell you, and what would you change?"
+  },
+  "s1": {
+    "on": "This section says a smaller account with a higher rate can be the stronger performer.",
+    "say": "Rate beats raw counts."
+  },
+  "s2": {
+    "on": "These steps interpret it: compare rates, benchmark LinkedIn at 2–5% (above 7% is viral), read reach and engagement together, value small loyal audiences, and revisit benchmarks.",
+    "say": "High reach, low engagement: fix the hook."
   }
 },
 "10::Audience Psychology & Pain Points": {
@@ -7180,6 +7356,19 @@ window.PRESENTER_NOTES = {
     "say": "Raw proof beats polished ads.",
     "wrap": "Answer real pain points, show the real process and use triggers ethically.",
     "scenario": "Potential clients of Thorne & Partners worry about surprise legal bills. Draft one post that answers that financial pain point with transparency, not reassurance."
+  },
+  "s1": {
+    "on": "This section names four pain points (financial, convenience, emotional, trust) and a response for each.",
+    "say": "Four pain points."
+  },
+  "s2": {
+    "on": "These steps respond: transparency for financial, curation for convenience, sustainable progress for emotional, the real process for trust, and triggers used ethically.",
+    "say": "Show the real process."
+  },
+  "s3": {
+    "on": "This section describes Digital Overload Fatigue and lists ethical triggers: Bandwagon, Reciprocity and Cognitive Dissonance.",
+    "say": "Raw proof over polish.",
+    "ask": "Which pain point fits your firm's audience?"
   }
 },
 "10::SEO, GEO & Funneling for Executives": {
@@ -7193,6 +7382,22 @@ window.PRESENTER_NOTES = {
     "say": "Google the executive in Incognito every month.",
     "wrap": "Optimize for search and AI, match content to funnel stage and audit monthly.",
     "scenario": "Search Elias's name in Incognito mode together. What comes up first, what's outdated, and which funnel stage is weakest?"
+  },
+  "s1": {
+    "on": "This section defines SEO (found on Google), GEO (recommended by AI tools), Funneling (awareness to action) and a Monthly Scorecard.",
+    "say": "Found, recommended, converted."
+  },
+  "s2": {
+    "on": "These steps apply each: natural keywords and backlinks, AI-citable content, stage-matched content, scorecard tracking, and a monthly incognito search.",
+    "say": "Google yourself monthly."
+  },
+  "s3": {
+    "on": "This section explains the 'Google Yourself' audit and updating metadata when old pages outrank the current site.",
+    "say": "Outdated pages need to be outranked."
+  },
+  "s4": {
+    "on": "This section lays out the funnel: top for awareness, middle for consideration, bottom for decision, each linking to the next.",
+    "say": "Each stage leads to the next."
   }
 },
 "10::GEO Tactics & Consistency": {
@@ -7206,6 +7411,23 @@ window.PRESENTER_NOTES = {
     "say": "What the AI gets wrong is your update list.",
     "wrap": "Structure the content, answer questions directly and keep the bios identical.",
     "scenario": "Ask an AI assistant \"Who is Elias Thorne and what is he known for?\" What would you do with each thing it gets wrong or leaves out?"
+  },
+  "s1": {
+    "on": "This section introduces GEO tactics, covered in the steps that follow.",
+    "say": "Here's how."
+  },
+  "s2": {
+    "on": "These steps apply them: schema markup, FAQ-style direct answers, word-for-word consistent bios, drift audits, and ongoing maintenance.",
+    "say": "Same bio wording everywhere."
+  },
+  "s3": {
+    "on": "This section restates the tactics and says inconsistency hurts the AI 'trust score'.",
+    "say": "Consistency builds trust."
+  },
+  "s4": {
+    "on": "This section defines GEO, says AI favors clear authoritative content, and suggests asking an AI who the executive is each month.",
+    "say": "Whatever the AI gets wrong is your update list.",
+    "ask": "What do you think an AI would say about your executive?"
   }
 },
 "10::Copywriting vs. Blog Writing": {
@@ -7219,6 +7441,18 @@ window.PRESENTER_NOTES = {
     "say": "Add something the top five results don't have.",
     "wrap": "Pick the format for the goal, and bring first-hand evidence.",
     "scenario": "Two volunteers write the same announcement, the firm's new free contract-review consultation: one as copy, one as a blog intro. Read both aloud back to back."
+  },
+  "s1": {
+    "on": "This section contrasts copywriting (short, AIDA, strong CTAs, built to convert) with blog writing (long, structured, E-E-A-T evidence, built to educate and rank).",
+    "say": "The sell vs. the tell."
+  },
+  "s2": {
+    "on": "These steps write each: AIDA for the conversion goal, action CTAs, a hook and direct intro with H2/H3s, first-hand evidence, and the right format for the goal.",
+    "say": "Not 'click here'."
+  },
+  "s3": {
+    "on": "This section calls copy the closer and blogs the friendly guide, and warns against rehashing the top search results.",
+    "say": "Add something AI can't summarize away."
   }
 },
 "10::Basic Campaign Math": {
@@ -7232,6 +7466,19 @@ window.PRESENTER_NOTES = {
     "say": "Lead count alone can hide a losing campaign.",
     "wrap": "Calculate CPL and ROI, compare with goals and track over time.",
     "scenario": "Live: a $1,200 LinkedIn campaign produced 40 leads, 3 became clients and each client is worth $900. What are the CPL and ROI, and was it a success?"
+  },
+  "s1": {
+    "on": "This section gives two formulas: Cost per Lead = Spend ÷ Leads, and ROI = (Revenue − Spend) ÷ Spend × 100.",
+    "say": "CPL and ROI."
+  },
+  "s2": {
+    "on": "These steps calculate: CPL, ROI, both checked together, compared to goals, and tracked across campaigns.",
+    "say": "Lead count alone can mislead."
+  },
+  "s3": {
+    "on": "This section works an example ($500 spend, 50 leads, $20 product: $10 CPL, $1,000 revenue, 100% ROI) and says to know both numbers before calling success.",
+    "say": "Know both numbers.",
+    "ask": "What's the ROI if revenue were $400?"
   }
 },
 "10::Crisis Response on Social Media": {
@@ -7245,6 +7492,18 @@ window.PRESENTER_NOTES = {
     "say": "Deleting a legitimate complaint usually makes it worse.",
     "wrap": "Assess, acknowledge calmly, take it private, escalate and document.",
     "scenario": "A former client posts a detailed public complaint that's gaining traction; some of it is accurate, some exaggerated. What do you do in the next 30 minutes, before anyone senior weighs in?"
+  },
+  "s1": {
+    "on": "This section says pile-ons move in hours, deleting or ignoring is usually wrong, and not every comment needs a reply.",
+    "say": "Hours, not days."
+  },
+  "s2": {
+    "on": "These steps respond: assess legitimacy first, acknowledge publicly and move details private, and bring in the decision-maker for anything serious.",
+    "say": "Brief public reply, details in private."
+  },
+  "s3": {
+    "on": "This section warns against emotional replies and deleting legitimate criticism, and asks you to document the response.",
+    "say": "Don't delete; it looks worse."
   }
 },
 "10::Endorsement & Disclosure Rules": {
@@ -7258,6 +7517,18 @@ window.PRESENTER_NOTES = {
     "say": "In-kind still counts. When in doubt, disclose.",
     "wrap": "Confirm the rules first, keep records and check disclosure is visible.",
     "scenario": "A former client with a large following offers to post about the firm in exchange for a discount on future services. What do you need to confirm before this goes any further?"
+  },
+  "s1": {
+    "on": "This section says third-party promotion can trigger disclosure rules like the FTC's, the principle is transparency about relationships, and counsel confirms specifics.",
+    "say": "Disclose the relationship."
+  },
+  "s2": {
+    "on": "These steps comply: confirm disclosure language and placement, keep relationship records, and check partner posts for visible disclosure.",
+    "say": "In the post itself."
+  },
+  "s3": {
+    "on": "This section warns that unpaid reciprocal deals may still need disclosure, says to check before drafting, and when unsure, disclose.",
+    "say": "When unsure, disclose."
   }
 },
 "10::Video Content Basics for Executive Presence": {
@@ -7271,6 +7542,18 @@ window.PRESENTER_NOTES = {
     "say": "Watch the whole thing before it goes out.",
     "wrap": "Plan the point, check the frame, caption and watch it through.",
     "scenario": "Elias records a 90-second video answering a common client question, but a notification showing a client's name flashes on his monitor in the background. What's your process before it's published?"
+  },
+  "s1": {
+    "on": "This section says video carries presence that text can't, and clarity and genuine tone matter more than polish.",
+    "say": "Clear beats polished."
+  },
+  "s2": {
+    "on": "These steps prepare: one clear point, background and audio checks, and 60–90 seconds for social.",
+    "say": "One takeaway per video."
+  },
+  "s3": {
+    "on": "This section warns against uncaptioned video and publishing without a full watch-through, and asks for a consistent setup.",
+    "say": "Captions, always."
   }
 },
 "10::Social Listening & Monitoring": {
@@ -7284,6 +7567,18 @@ window.PRESENTER_NOTES = {
     "say": "A pattern across mentions matters more than any single one.",
     "wrap": "Listen beyond your own account, log themes and flag trends early.",
     "scenario": "Your weekly listening check finds several posts referencing the same complaint about the firm's billing that nobody has reported directly. What's your next step?"
+  },
+  "s1": {
+    "on": "This section defines social listening as tracking what's said everywhere, not just replies, so you catch things early.",
+    "say": "Beyond your own notifications."
+  },
+  "s2": {
+    "on": "These steps run it: set alerts across relevant platforms, separate routine mentions from ones needing action, and log recurring themes.",
+    "say": "Patterns tell you more than single mentions."
+  },
+  "s3": {
+    "on": "This section warns against checking only your own account or setting it up once, and says to flag concerning trends early.",
+    "say": "Flag trends early."
   }
 },
 "10::Accessibility in Digital Content": {
@@ -7297,6 +7592,18 @@ window.PRESENTER_NOTES = {
     "say": "An auto-caption that misquotes the executive is a real problem.",
     "wrap": "Real alt text, reviewed captions, good contrast and a standard review step.",
     "scenario": "You're finalizing a LinkedIn post with a bar chart showing the firm's pro bono hours by year, and it has no alt text. Write the description live so it's actually useful."
+  },
+  "s1": {
+    "on": "This section says alt text, captions and contrast decide whether part of the audience can engage at all, and building them in early is cheap.",
+    "say": "Accessibility from the start."
+  },
+  "s2": {
+    "on": "These steps apply it: descriptive alt text, reviewed captions, and a contrast check.",
+    "say": "Describe what's actually there."
+  },
+  "s3": {
+    "on": "This section warns against generic alt text and unreviewed auto-captions, and says accessibility belongs in the approval process.",
+    "say": "Part of approval."
   }
 },
 "10::Personal vs. Firm Brand Account Separation": {
@@ -7310,6 +7617,18 @@ window.PRESENTER_NOTES = {
     "say": "Ambiguity always surfaces at the worst moment.",
     "wrap": "Put ownership in writing, match access to it and document it centrally.",
     "scenario": "An executive with a large personal following is leaving the firm, and their account has been used for both personal thought leadership and firm announcements. What questions should have been settled long before now?"
+  },
+  "s1": {
+    "on": "This section says personal and firm brands are distinct, and account ownership matters in practice if someone leaves.",
+    "say": "Who owns the login?"
+  },
+  "s2": {
+    "on": "These steps separate them: written ownership, access matching ownership, and distinct voice guidelines for each.",
+    "say": "Put ownership in writing."
+  },
+  "s3": {
+    "on": "This section warns against ambiguous ownership and mixing firm content into personal accounts, and asks to document credentials in firm systems.",
+    "say": "Decide before a departure forces it."
   }
 },
 "10::Legal Advertising & UPL Rules": {
@@ -7323,6 +7642,18 @@ window.PRESENTER_NOTES = {
     "say": "Case results and testimonials have their own rules.",
     "wrap": "Keep it educational, follow the advertising rules and escalate the ambiguous.",
     "scenario": "A draft post shares an impressive case outcome and says \"we can get you the same result.\" What's the concern with that phrasing, and how would you revise it?"
+  },
+  "s1": {
+    "on": "This section says a law firm's online presence is regulated attorney advertising, and UPL applies online: specific advice to a specific situation crosses the line.",
+    "say": "Regulated, not ordinary marketing."
+  },
+  "s2": {
+    "on": "These steps comply: check general vs. specific content, know jurisdiction rules and disclaimers, and escalate anything ambiguous.",
+    "say": "Specific advice needs attorney review."
+  },
+  "s3": {
+    "on": "This section warns against treating firm social media as ordinary marketing, and says testimonials and case results need special care.",
+    "say": "Case results need extra care."
   }
 },
 "10::Final Timed Evaluation & Capstone Checklist": {
@@ -7336,6 +7667,19 @@ window.PRESENTER_NOTES = {
     "say": "Leave with a practice plan, not just a certificate.",
     "wrap": "Use the data, name the gaps and commit to a specific plan.",
     "scenario": "Looking back across all 10 days: which single day or Practice Lab tool would you most want to revisit before calling yourself ready, and what specifically will you do to close that gap?"
+  },
+  "s1": {
+    "on": "This section closes the 10-day program and says the capstone checks real readiness, like the Day 5 review, now for the whole program.",
+    "say": "Readiness, not attendance."
+  },
+  "s2": {
+    "on": "These steps finish: review all 10 days of data, name shaky areas honestly, and take the timed evaluation with composure.",
+    "say": "Be honest about the gaps.",
+    "ask": "What will you keep practicing after today?"
+  },
+  "s3": {
+    "on": "This section warns against treating the capstone as a formality, and says the best close is a specific plan for continued practice.",
+    "say": "Leave with a practice plan."
   }
 }
 };
