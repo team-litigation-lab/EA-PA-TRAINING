@@ -21042,7 +21042,7 @@ CLIENT CONTEXT:
 ${CLIENT_DOSSIER_MD}
 Write a short (2-4 sentence), realistic incoming request or situation — the kind that would actually land on an EA/PA's desk — that specifically requires applying one or more of today's topics correctly. Return ONLY the task text itself, nothing else — no preamble, no explanation, no quotation marks around it.`;
   try{
-    const task = await callAIText(prompt, 400, 150000, "chat");
+    const task = await callAIText(prompt, 400, 150000, "trainer");
     const mins = parseInt((document.getElementById("surpriseTaskDuration")||{}).value, 10) || 30;
     const now = Date.now();
     const prev = await sharedGet("surprise-task-day"+dayId).catch(()=>null);
@@ -24059,7 +24059,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.28-b";
+var APP_BUILD = "2026.09.28-c";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -24103,6 +24103,6 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 <script src="/js/presenter-notes.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=zb"></script>
+<script src="/js/eapa-updates.js?v=zc"></script>
 </body>
 </html>
