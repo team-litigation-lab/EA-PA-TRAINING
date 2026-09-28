@@ -12575,7 +12575,7 @@ function renderTopbar(){
   const fake = (el)=>({preventDefault(){}, stopPropagation(){}, dataTransfer:dt, target:el, currentTarget:el, clientX:0, clientY:0});
   const clear = ()=>{ if(sel) sel.classList.remove("tap-selected"); sel=null; document.body.classList.remove("tap-moving"); };
   document.addEventListener("click", (e)=>{
-    const drag = e.target.closest('[draggable="true"]');
+    const drag = e.target.closest('[draggable="true"]:not([data-notap])');
     const zone = e.target.closest("[ondrop]");
     if(sel && zone && drag!==sel){
       e.preventDefault(); e.stopPropagation();
@@ -24443,6 +24443,6 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 <script src="/js/presenter-notes.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=ze"></script>
+<script src="/js/eapa-updates.js?v=zf"></script>
 </body>
 </html>
