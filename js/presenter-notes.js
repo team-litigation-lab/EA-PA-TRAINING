@@ -1674,6 +1674,23 @@ window.PRESENTER_NOTES = {
     "say": "Match the framework to the problem: too much, can't focus, or no protected time.",
     "wrap": "Choose one framework, build the habit, then layer in the next.",
     "scenario": "Monday morning: Elias has 14 open items, including a brief due Wednesday, three client callbacks, an expense report and a conference RSVP. Sort them in the Eisenhower Matrix out loud. What gets delegated or dropped?"
+  },
+  "s1": {
+    "on": "This section lays out four frameworks: the Eisenhower Matrix (urgency vs. importance), Pomodoro (25 on, 5 off), Time Blocking (deep work separate from email) and the 80/20 Rule.",
+    "say": "Four tools, each for a different problem."
+  },
+  "s2": {
+    "on": "These steps say when to reach for each: Eisenhower when the list is overwhelming, Pomodoro once priorities are clear, Time Blocking to protect the top work, 80/20 to step back. Start with one, not all four.",
+    "say": "Pick the one framework that fixes your biggest gap right now.",
+    "ask": "Which of the four would help you most this week?"
+  },
+  "s3": {
+    "on": "This section gives the stakes: executives spend 30–40% of their time in email, and good triage can reclaim 10+ hours a week.",
+    "say": "Ten hours a week is worth protecting."
+  },
+  "s4": {
+    "on": "This section matches each framework to its best use: Eisenhower to decide what not to do, Pomodoro when focus is the problem, Time Blocking to lock in this week's few key tasks.",
+    "say": "Match the tool to the problem."
   }
 },
 "3::Time Tracking Done Right": {
@@ -1687,6 +1704,23 @@ window.PRESENTER_NOTES = {
     "say": "Verb, object, purpose, and tag the matter while you log it.",
     "wrap": "Real-time, specific, matter-tagged entries protect the firm's billing.",
     "scenario": "Your entry for yesterday reads \"Emails — 1.0.\" Rewrite it as three proper entries using verb + object + purpose, tagged to the right matters."
+  },
+  "s1": {
+    "on": "This section names the common mistakes: logging at week's end, vague descriptions, underbilling small tasks and forgetting communications.",
+    "say": "Four mistakes, all avoidable."
+  },
+  "s2": {
+    "on": "These steps fix each one: log as you work, write specific descriptions, log the small tasks, include calls and emails, and build a weekly summary.",
+    "say": "Log it now, log it specifically, log it all.",
+    "ask": "When do you usually log your time?"
+  },
+  "s3": {
+    "on": "This section asks for a Weekly Time Summary even for non-billable work, because it shows where time actually goes.",
+    "say": "The summary shows the truth."
+  },
+  "s4": {
+    "on": "This section gives the entry formula (verb + object + purpose), honest rounding in the firm's increments, and tagging the client/matter as you log.",
+    "say": "Verb, object, purpose, matter, every entry."
   }
 },
 "3::Time Management": {
@@ -1700,6 +1734,19 @@ window.PRESENTER_NOTES = {
     "say": "Time management decides. Calendar management protects the decision.",
     "wrap": "Priorities only count once they're blocked and defended on the calendar.",
     "scenario": "Elias says his top priority this week is the Harlow summary judgment brief, but his calendar shows no time for it. Walk through Decide, Block, Protect, Review for his week."
+  },
+  "s1": {
+    "on": "This section says time management is sequential: follow the steps in order, not as a menu.",
+    "say": "Order matters here."
+  },
+  "s2": {
+    "on": "These steps are the sequence: Decide what deserves protected time, Block it before the day fills, Protect it like any commitment, and Review weekly whether it held.",
+    "say": "Decide, Block, Protect, Review.",
+    "ask": "Which step breaks down most often for you?"
+  },
+  "s3": {
+    "on": "This section separates the two skills: time management decides what deserves time; calendar management makes the calendar reflect and protect that decision.",
+    "say": "Deciding and protecting are different jobs."
   }
 },
 "3::When Time Management Fails Despite a Clean Calendar": {
@@ -1713,6 +1760,19 @@ window.PRESENTER_NOTES = {
     "say": "Travel weeks need the same protection before, during and after.",
     "wrap": "Diagnose failed weeks as decision or protection, and review weekly, not only when something breaks.",
     "scenario": "Share a real week where your calendar looked fine on paper but the actual priorities still didn't get done. Was it the decision or the protection that broke?"
+  },
+  "s1": {
+    "on": "This section warns that a conflict-free calendar can still fail if it's packed with reactive meetings and has no protected space for priority work.",
+    "say": "No conflicts doesn't mean no problems."
+  },
+  "s2": {
+    "on": "These steps are the check: look for reactive-meeting saturation, confirm protected space exists, apply the same check to travel weeks, diagnose whether the decision or the protection failed, and review weekly.",
+    "say": "Was it the decision or the protection?"
+  },
+  "s3": {
+    "on": "This section ties it to travel (a trip only works if the calendar around it is managed too) and poses the discussion prompt.",
+    "say": "Think of a week that looked fine on paper but still failed.",
+    "ask": "What broke, the decision or the protection?"
   }
 },
 "3::Calendar Management That Holds": {
@@ -1728,6 +1788,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "A second unofficial calendar is where conflicts breed. Centralize, buffer and review weekly.",
     "scenario": "Live exercise: on the sample calendar on screen, find every conflict and every missing buffer, then say what you'd change first."
+  },
+  "s1": {
+    "on": "This section's core rule is one synced calendar; a second unofficial one is where conflicts breed.",
+    "say": "One calendar, one source of truth."
+  },
+  "s2": {
+    "on": "These steps make it hold: one system, explicit buffers, scheduling tools like Calendly, CRM scheduling in one place, protected deep-work blocks, and a weekly drift check.",
+    "say": "Clean on Monday can be messy by Friday; check it.",
+    "ask": "How many calendars does your executive really use?"
   }
 },
 "3::Calendar Conflict & Prioritization Discipline": {
@@ -1743,6 +1812,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "A board update outranks a routine check-in, whichever was booked first.",
     "scenario": "Elias is double-booked Thursday at 2 p.m.: a standing check-in with an associate, booked three weeks ago, and a call with a new client's general counsel, requested this morning. What does \"strategic importance\" mean here, and what do you tell Elias?"
+  },
+  "s1": {
+    "on": "This section's rule: tell the executive about every conflict immediately, and never rebook or decline for them without asking, since they may know something you don't.",
+    "say": "Inform first, never decide alone."
+  },
+  "s2": {
+    "on": "These steps are the discipline: flag right away, weigh by strategic importance not booking order, present the trade-off with a recommendation, document the resolution and confirm with both parties.",
+    "say": "Bring the trade-off and your recommendation.",
+    "ask": "What would you recommend if a board update clashed with a routine check-in?"
   }
 },
 "3::Energy Management vs. Time Management": {
@@ -1758,6 +1836,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Put the hardest work in the sharpest window, and flag it when you can't.",
     "scenario": "Opposing counsel proposes 4 p.m. Friday for a settlement negotiation, and you know Elias fades late in the day after a full week. What do you say to Elias, and what do you propose instead?"
+  },
+  "s1": {
+    "on": "This section contrasts the two questions: time management asks when; energy management asks whether you can do it well right now.",
+    "say": "Most people only plan around the first question."
+  },
+  "s2": {
+    "on": "These steps apply it: find the energy pattern, protect the sharp-focus window, check high-stakes items against low-energy windows, flag the risk when you can't avoid one, and revisit as rhythms shift.",
+    "say": "An open slot isn't a neutral slot.",
+    "ask": "When is your sharpest hour of the day?"
   }
 },
 "3::Handling Interruptions Without Losing the Day": {
@@ -1771,6 +1858,19 @@ window.PRESENTER_NOTES = {
     "say": "Two minutes of interruption, fifteen minutes to recover.",
     "wrap": "Decide in seconds whether it's urgent, and capture everything else for later.",
     "scenario": "You're halfway through proofing a filing due at 5 p.m. when a colleague stops by about next month's office lunch. Walk through the four steps out loud."
+  },
+  "s1": {
+    "on": "This section says handling interruptions is sequential: follow the steps in order.",
+    "say": "Four steps, in order."
+  },
+  "s2": {
+    "on": "These steps are the sequence: Triage in seconds, Capture don't solve, Return deliberately, and Batch the non-urgent.",
+    "say": "Triage, capture, return, batch.",
+    "ask": "What interrupts you most often?"
+  },
+  "s3": {
+    "on": "This section gives the hidden cost (a two-minute interruption can cost fifteen minutes of focus) and the real skill: telling urgent from merely present in the first few seconds.",
+    "say": "Present isn't the same as urgent."
   }
 },
 "3::The Two-Minute Rule": {
@@ -1784,6 +1884,19 @@ window.PRESENTER_NOTES = {
     "say": "Be honest about the two minutes, or the rule backfires.",
     "wrap": "Finish true two-minute tasks immediately and stop small items from piling up.",
     "scenario": "Five items land in ten minutes: confirm a lunch reservation, reply \"received\" to a court notice, reformat a 20-page exhibit list, forward an invoice to billing, and update a contact's phone number. Which pass the Two-Minute Rule?"
+  },
+  "s1": {
+    "on": "This section states the rule: if it truly takes under two minutes, do it now; tracking it costs more than finishing it.",
+    "say": "Under two minutes, just do it."
+  },
+  "s2": {
+    "on": "These steps apply it honestly: estimate truthfully, do qualifying tasks at once, stop and schedule tasks that expand, apply it consistently, and check your list for items that should have been done.",
+    "say": "Honest estimates only.",
+    "ask": "What's on your list right now that takes under two minutes?"
+  },
+  "s3": {
+    "on": "This section warns that a 'two-minute' task that keeps growing needs scheduling, and explains the payoff: no silent backlog of small tasks.",
+    "say": "Small tasks pile up quietly."
   }
 },
 "3::Weekly Planning Rituals": {
@@ -1797,6 +1910,19 @@ window.PRESENTER_NOTES = {
     "say": "If the planning block keeps getting bumped, you don't have one.",
     "wrap": "Protect the weekly session, look ahead, and block lead time early.",
     "scenario": "It's Friday afternoon. Elias has a mediation next Thursday that needs a binder, two witness calls and a travel booking. Plan backwards: what goes on the calendar today, and for which days?"
+  },
+  "s1": {
+    "on": "This section says a short, consistent weekly session (what's coming, what didn't get done, what must happen) prevents the Monday scramble.",
+    "say": "One session a week saves the Monday panic."
+  },
+  "s2": {
+    "on": "These steps set it up: a fixed recurring time, a look at the whole week ahead, a deliberate keep-or-drop on last week's leftovers, blocking prep for multi-day lead times, and defending the block.",
+    "say": "Decide what rolls forward; don't let it roll by itself.",
+    "ask": "When would your weekly planning slot be?"
+  },
+  "s3": {
+    "on": "This section warns that weekly planning catches what daily planning misses, and that a session bumped every week isn't a ritual.",
+    "say": "Protect it, or it stops existing."
   }
 },
 "3::Saying No Without Damaging Relationships": {
@@ -1810,6 +1936,19 @@ window.PRESENTER_NOTES = {
     "say": "Yes to everything just delays the letdown.",
     "wrap": "Decline fast, give the real reason, and offer an alternative.",
     "scenario": "A partner asks for 30 minutes with Elias tomorrow, but his day is fully committed to trial prep. Say the no out loud, with the reason and an alternative."
+  },
+  "s1": {
+    "on": "This section compares what damages a relationship (a flat no, silence, agreeing then not delivering) with what protects it (a clear no with the reason and an alternative, a prompt reply, honesty up front).",
+    "say": "How you say no matters more than the no."
+  },
+  "s2": {
+    "on": "These steps are the method: reply promptly, give the specific reason, offer an alternative, never agree and quietly fail, and say plainly when you're at capacity.",
+    "say": "A fast, honest no beats a slow yes that slips.",
+    "ask": "How would you decline a request due Thursday you can't take on?"
+  },
+  "s3": {
+    "on": "This section warns that saying yes to everything only moves the disappointment later, and shows that a specific no reads as a real answer.",
+    "say": "Specific, not vague."
   }
 },
 "3::Batch Processing Similar Tasks": {
@@ -1823,6 +1962,19 @@ window.PRESENTER_NOTES = {
     "say": "Batch what can wait. Break the batch for what can't.",
     "wrap": "Batch recurring, non-urgent work into set blocks.",
     "scenario": "Across one day you get six expense approvals, four scheduling requests and three short client replies, spread out over the day. Design the batching blocks, and name the one item that would make you break a batch."
+  },
+  "s1": {
+    "on": "This section defines batching: grouping similar tasks (all calls, all replies) to cut the cost of switching.",
+    "say": "Same kind of work, same block."
+  },
+  "s2": {
+    "on": "These steps set it up: find recurring categories, group them into blocks, delay non-urgent items slightly to batch them, break the batch for true urgency, and review the categories.",
+    "say": "Urgent items still break the batch.",
+    "ask": "Which tasks could you batch tomorrow?"
+  },
+  "s3": {
+    "on": "This section says batching is a deliberate choice, not arrival order, and is for tasks without a hard individual deadline.",
+    "say": "It's a choice, with a trade-off."
   }
 },
 "3::The Cost of Context-Switching": {
@@ -1836,6 +1988,19 @@ window.PRESENTER_NOTES = {
     "say": "Multitasking feels fast and is almost always slower.",
     "wrap": "Reduce switches with batching, focus blocks and a clean close before each new task.",
     "scenario": "In one hour you touch a legal filing question, a personal travel request for Elias, a board deck edit and two Slack pings. How would you restructure that hour to cut the switching?"
+  },
+  "s1": {
+    "on": "This section's number: about 23 minutes on average to return to full focus after a significant interruption.",
+    "say": "Twenty-three minutes each time."
+  },
+  "s2": {
+    "on": "These steps reduce the cost: notice voluntary switching, use batching and focus blocks, resist multitasking, close out a task before starting the next, and count your switches for a day.",
+    "say": "Close one thing before opening the next.",
+    "ask": "How many times do you think you switch in a day?"
+  },
+  "s3": {
+    "on": "This section warns that voluntary switching costs the same as interruptions, makes the case for batching, and says multitasking is almost always slower in total.",
+    "say": "It feels productive; it isn't."
   }
 },
 "3::Recurring Meeting Hygiene": {
@@ -1849,6 +2014,19 @@ window.PRESENTER_NOTES = {
     "say": "You see the full pattern, so you're the one who can flag it.",
     "wrap": "Audit quarterly and propose a specific change: cancel, shorten or trim attendees.",
     "scenario": "Elias has a weekly 60-minute \"matter sync\" with eight attendees and no agenda. Half the attendees join camera-off. What do you propose, and how do you phrase it to him?"
+  },
+  "s1": {
+    "on": "This section says standing meetings pile up and rarely get removed; a quarterly audit catches the ones that have outlived their purpose.",
+    "say": "Audit every recurring meeting quarterly."
+  },
+  "s2": {
+    "on": "These steps are the audit: ask if it's still needed at this frequency with these people, check for an agenda, flag outdated ones, propose a specific change, and confirm the change stuck.",
+    "say": "Propose a fix, don't just point.",
+    "ask": "Which recurring meeting would you question first?"
+  },
+  "s3": {
+    "on": "This section warns that a meeting with no agenda is a common failure, and notes the EA sees the full calendar pattern first.",
+    "say": "If nobody can say what it's for, skip or reformat it."
   }
 },
 "3::Buffer Time Between Meetings": {
@@ -1862,6 +2040,18 @@ window.PRESENTER_NOTES = {
     "say": "For this client, the debrief buffer is a standing rule.",
     "wrap": "Default to buffers, flag when a day can't fit them, and check weekly for erosion.",
     "scenario": "On screen: Elias's Tuesday has six back-to-back meetings from 9 to 3. Where do you insert buffers first, and what do you move to make room?"
+  },
+  "s1": {
+    "on": "This section says zero buffer means every meeting starts late or ends abruptly; 5–10 minutes is what makes the calendar hold.",
+    "say": "Buffers aren't wasted time."
+  },
+  "s2": {
+    "on": "These steps make buffers standard: 5–10 minutes by default, used for debrief and prep, checked against the client's debrief-buffer rule, flagged when the day is too full, and reviewed weekly.",
+    "say": "Flag it when there's no room for buffers."
+  },
+  "s3": {
+    "on": "This section warns that buffers give room to debrief and prep, and that ignoring this client's debrief-buffer rule violates a documented preference.",
+    "say": "Here it's a stated rule, not a nice-to-have."
   }
 },
 "3::Time Zone Management for Distributed Teams": {
@@ -1877,6 +2067,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Name the reference time zone, watch daylight saving shifts, and schedule fairly.",
     "scenario": "Elias needs a call with co-counsel in London and a client in Manila this week. Find a time that's reasonable for all three, and write the invite line that names the reference time zone."
+  },
+  "s1": {
+    "on": "This section's rule: a convenient time in one zone can be unreasonable in another, so confirm local time for every participant.",
+    "say": "Check everyone's clock, not just yours."
+  },
+  "s2": {
+    "on": "These steps are the checks: every participant's local time, the reference zone named in the invite, recurring meetings across daylight saving changes, fairness to the most disadvantaged zone, and a quick confirmed fix when mistakes happen.",
+    "say": "Name the time zone in the invite.",
+    "ask": "Have you been caught by a daylight saving change?"
   }
 },
 "3::Calendar Blocking for Deep Work": {
@@ -1890,6 +2089,18 @@ window.PRESENTER_NOTES = {
     "say": "Protect it, and put the most important work in it.",
     "wrap": "Deep-work blocks are commitments. Enforce them, and review whether they're used.",
     "scenario": "Elias's Wednesday 9–11 deep-work block for brief writing gets a meeting request from a senior partner. How do you handle it using the conflict discipline from earlier today?"
+  },
+  "s1": {
+    "on": "This section says a calendar that tracks only meetings misses half the picture; blocking focus time protects it from other people's requests.",
+    "say": "Block the work, not just the meetings."
+  },
+  "s2": {
+    "on": "These steps make the block real: put it on the calendar, make it unbookable, reserve it for top priorities, treat a double-booking as a real conflict, and review blocks that keep getting skipped.",
+    "say": "A block anyone can book over isn't a block."
+  },
+  "s3": {
+    "on": "This section warns that a visible-but-unprotected block is only a suggestion, and says the block is only worth defending if it holds the highest-priority work.",
+    "say": "Protect the right thing."
   }
 },
 "3::Handling Last-Minute Calendar Changes": {
@@ -1905,6 +2116,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Check what's displaced, tell everyone affected, and reconfirm the rest of the day.",
     "scenario": "Roleplay: a client meeting scheduled 90 minutes from now just got moved to right now. Walk through what needs to happen in the next five minutes."
+  },
+  "s1": {
+    "on": "This section says a late change can cascade through the whole day if the ripple effects aren't checked right away.",
+    "say": "One change can move the whole day."
+  },
+  "s2": {
+    "on": "These steps handle it: check what it displaces before confirming, see how far it cascades, tell everyone affected, reconfirm the rest of the day, and log recurring causes.",
+    "say": "Check the ripple before you confirm.",
+    "ask": "What's the last change that knocked over your day?"
   }
 },
 "3::Multi-Calendar Coordination": {
@@ -1918,6 +2138,19 @@ window.PRESENTER_NOTES = {
     "say": "Separate systems still need one person coordinating them.",
     "wrap": "Build a master view and resolve cross-calendar conflicts the same way as any other.",
     "scenario": "A client asks for dinner with Elias next Thursday. His work calendar is clear, but his personal calendar has his daughter's recital that evening. What do you do, and what do you tell the client?"
+  },
+  "s1": {
+    "on": "This section says many executives run several calendars (professional, personal, board), and the real risk is a conflict you only see across all of them.",
+    "say": "The conflict hides between calendars."
+  },
+  "s2": {
+    "on": "These steps are the coordination: find every calendar, check new commitments against all, build a master view, keep business and personal separate but coordinated, and flag cross-calendar conflicts at once.",
+    "say": "Check all of them before you confirm.",
+    "ask": "How many calendars does your executive have?"
+  },
+  "s3": {
+    "on": "This section says a master view, even a manual cross-check, prevents double-bookings, and ties back to Day 1's Boundaries & Authorization: separate doesn't mean uncoordinated.",
+    "say": "Someone has to check both. That's you."
   }
 },
 "3::Visa & Documentation Requirements": {
@@ -1931,6 +2164,18 @@ window.PRESENTER_NOTES = {
     "say": "Six months of validity, and weeks of lead time.",
     "wrap": "Check validity and visa rules first, and start the paperwork early.",
     "scenario": "Elias is flying to Singapore for a deposition in five weeks. His passport expires in four months. What do you check, what do you do today, and what do you tell him?"
+  },
+  "s1": {
+    "on": "This section's rule: requirements differ by destination and change, so verify current rules for this trip, not the last similar one.",
+    "say": "Verify for this trip, every time."
+  },
+  "s2": {
+    "on": "These steps are the checks: current requirements, passport validity against the destination's rule, lead time for visas, supporting documents early, and a record for next time.",
+    "say": "Start visas early; they can take weeks."
+  },
+  "s3": {
+    "on": "This section warns about the six-month passport validity rule and says real lead time for visas keeps paperwork from sinking a trip.",
+    "say": "Unexpired isn't always valid enough."
   }
 },
 "3::International Travel Considerations": {
@@ -1944,6 +2189,19 @@ window.PRESENTER_NOTES = {
     "say": "Check the advisory again close to departure. It can change after you book.",
     "wrap": "Plan international trips deeper: health, money, norms and current advisories.",
     "scenario": "Elias is going to a client meeting in Mexico City next month. List what you'd check beyond flights and the hotel, and when you'd check the travel advisory."
+  },
+  "s1": {
+    "on": "This section lists three areas: health and safety, currency and payment, and cultural and business norms.",
+    "say": "Health, money, norms."
+  },
+  "s2": {
+    "on": "These steps work through them: vaccinations and advisories, currency logistics, local etiquette and dress, a fresh advisory check near the travel date, and deeper planning than a domestic trip.",
+    "say": "Re-check advisories close to departure.",
+    "ask": "What would you check first for a trip abroad?"
+  },
+  "s3": {
+    "on": "This section warns against treating international trips like domestic ones and calls the advisory check real diligence, not an extra.",
+    "say": "More variables, more planning."
   }
 },
 "3::Expense Tracking While Traveling": {
@@ -1959,6 +2217,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Travel expenses use the same reconciliation skill, under messier conditions. Capture and categorize in real time.",
     "scenario": "Elias returns from a three-day deposition trip with a pocket full of receipts, some for the Harlow matter and some personal. What should have happened each day of the trip, and what do you do now?"
+  },
+  "s1": {
+    "on": "This section says receipts get lost easily on the road; capture them immediately rather than reconstructing the trip later.",
+    "say": "Capture it the moment you get it."
+  },
+  "s2": {
+    "on": "These steps are the routine: capture every receipt, categorize as you go, apply the Day 7 SOA reconciliation discipline, do a nightly check, and submit within a set window after return.",
+    "say": "A few minutes each night saves hours later."
   }
 },
 "3::Travel Risk Contingency Planning": {
@@ -1974,6 +2240,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Identify disruptions and backups before departure, document them with the itinerary, and act on them fast.",
     "scenario": "Elias flies Chicago to Denver with a connection to Boise for a 10 a.m. hearing. Name the two most likely disruptions and the pre-arranged backup for each."
+  },
+  "s1": {
+    "on": "This section says a real travel plan covers what happens when things go wrong, not just the ideal itinerary.",
+    "say": "Plan for the bad day too."
+  },
+  "s2": {
+    "on": "These steps build it: name the likely disruptions, find backups in advance, document them with the itinerary, execute the backup at once, and apply the Day 5 backup-vendor principle.",
+    "say": "The backup exists before it's needed.",
+    "ask": "What's your backup if the first leg is cancelled?"
   }
 },
 "3::Loyalty Programs & Travel Preferences": {
@@ -1987,6 +2262,18 @@ window.PRESENTER_NOTES = {
     "say": "It's a small miss, but it's completely avoidable.",
     "wrap": "Put loyalty numbers and preferences on the travel checklist so they never depend on memory.",
     "scenario": "You book a last-minute flight for Elias from your phone. What three things from his Client Profile do you check before you hit confirm?"
+  },
+  "s1": {
+    "on": "This section says applying loyalty memberships every time adds up to real value in upgrades, priority service and status.",
+    "say": "Small step, compounding value."
+  },
+  "s2": {
+    "on": "These steps make it automatic: track every membership, apply numbers on every booking, check them alongside Client Profile preferences, put it on a checklist, and re-verify details now and then.",
+    "say": "Loyalty numbers are a standard booking step."
+  },
+  "s3": {
+    "on": "This section says loyalty numbers go on alongside seat, routing and hotel preferences every time, and that a missed number is a completely avoidable error.",
+    "say": "A good process never misses one."
   }
 },
 "3::Managing Multi-City, Multi-Leg Itineraries": {
@@ -2002,6 +2289,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Map every leg together, buffer the tightest connection, and hand the traveler one page.",
     "scenario": "Elias's itinerary: New York to Atlanta (50-minute connection) to Dallas for a two-day trial prep, then Dallas to Phoenix for a mediation. Find the tightest point and say what you'd change."
+  },
+  "s1": {
+    "on": "This section says multi-leg trips have more failure points; a delay on leg one can cascade, so the plan needs buffer.",
+    "say": "More legs, more ways to fail."
+  },
+  "s2": {
+    "on": "These steps manage it: map all legs together, add buffer at the tightest connection, align ground transport and check-ins with real arrivals, consolidate to one page, and re-check before departure.",
+    "say": "Find the tightest connection and pad it."
   }
 },
 "3::Ground Transportation Coordination": {
@@ -2015,6 +2310,19 @@ window.PRESENTER_NOTES = {
     "say": "Plan the ride around who's in the car.",
     "wrap": "Confirm specifics, account for the Client Profile, and reconfirm before travel.",
     "scenario": "Elias and his two young children land in Orlando at 9:40 p.m. Write the ground transport confirmation you'd send him, with every detail it needs."
+  },
+  "s1": {
+    "on": "This section calls ground transport the most under-planned part of a trip, the 'we'll figure out a car' problem.",
+    "say": "Don't leave the car to chance."
+  },
+  "s2": {
+    "on": "These steps fix it: plan it like flights and hotels, confirm a specific pickup time, place and contact, check family needs like car seats, add a backup for high-stakes trips, and reconfirm near departure.",
+    "say": "Specific time, place, contact.",
+    "ask": "What details would you confirm for a car service?"
+  },
+  "s3": {
+    "on": "This section says a specific pickup detail prevents the gap that ruins a trip, and that planning must fit who's actually traveling.",
+    "say": "Plan for everyone in the car."
   }
 },
 "3::Building a Real Travel Checklist": {
@@ -2030,6 +2338,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "A written, reusable checklist stops the same detail from being missed trip after trip.",
     "scenario": "As a group, build the first version of a travel checklist for Elias's international trips: five sections, two or three items each."
+  },
+  "s1": {
+    "on": "This section says a checklist in memory isn't a checklist; write it once and reuse it every trip.",
+    "say": "Write it down once."
+  },
+  "s2": {
+    "on": "These steps build it: a reusable written form, a documentation section, destination health and safety prep, loyalty and contingency confirmation steps, and refining it like the Day 5 Home Binder.",
+    "say": "Build it once, refine it every trip.",
+    "ask": "What would be on your first checklist?"
   }
 },
 "3::Post-Trip Debrief & Follow-Up": {
@@ -2045,6 +2362,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Close the trip: reconcile, follow up, write what went wrong, and update the checklist.",
     "scenario": "Elias's hotel in Denver had no quiet workspace, and his return connection was too tight. Write the debrief note, and say where each lesson gets recorded."
+  },
+  "s1": {
+    "on": "This section says a trip isn't done at home; expenses, thank-yous and lessons learned are the often-skipped final steps.",
+    "say": "The trip ends after the follow-up."
+  },
+  "s2": {
+    "on": "These steps close it out: reconcile expenses, send follow-ups while timely, note what worked and what didn't, feed it into preferences or the checklist, and treat it like the Day 6 seasonal playbook.",
+    "say": "Every trip should improve the next one."
   }
 },
 "3::The Weekly Time Audit": {
@@ -2058,6 +2383,19 @@ window.PRESENTER_NOTES = {
     "say": "An audit that doesn't change next week's plan hasn't done its job.",
     "wrap": "Audit a representative week occasionally, compare it with your priorities, and adjust.",
     "scenario": "Your audit shows 40% of your week went to rescheduling meetings and only 10% to Elias's top-priority matter. What two changes do you make next week?"
+  },
+  "s1": {
+    "on": "This section says most people's sense of where their time goes is wrong; tracking one real week reveals surprises.",
+    "say": "Intuition is usually off."
+  },
+  "s2": {
+    "on": "These steps run the audit: track a representative week, compare against your stated priorities, treat it as a periodic check, use accurate tracking data, and act on what you find.",
+    "say": "The gap between belief and data is the finding.",
+    "ask": "Where do you think most of your time goes?"
+  },
+  "s3": {
+    "on": "This section says the goal is a periodic check, like a budget review, and that it turns tracked data into real improvement.",
+    "say": "Audit to catch drift, then act."
   }
 },
 "3::Setting Realistic Deadlines": {
@@ -2071,6 +2409,19 @@ window.PRESENTER_NOTES = {
     "say": "Buffer for real risk, and never promise on someone else's behalf without asking.",
     "wrap": "Real estimate, real owner, honest buffer, early warning.",
     "scenario": "A client asks when they'll get the draft engagement agreement. The associate drafting it is in trial until Wednesday. What do you do before answering, and what do you tell the client?"
+  },
+  "s1": {
+    "on": "This section says a deadline that ignores the real work is a guess that creates false confidence.",
+    "say": "A guess isn't a deadline."
+  },
+  "s2": {
+    "on": "These steps set honest deadlines: account for the work, check with whoever does it, build buffer for real uncertainty, name an owner (as in Day 1's ACT Email), and flag risk early.",
+    "say": "Owner attached, risk flagged early.",
+    "ask": "Who do you check with before committing a date?"
+  },
+  "s3": {
+    "on": "This section says honest buffer makes a deadline plannable, and that EAs often set dates for work they don't do, so they must check first.",
+    "say": "Ask the person doing the work."
   }
 },
 "3::Court Docketing Workflows": {
@@ -2084,6 +2435,18 @@ window.PRESENTER_NOTES = {
     "say": "Docket from the court order itself, never from a secondhand date.",
     "wrap": "Primary source, multiple reminders, regular cross-checks.",
     "scenario": "You're docketing a response deadline from a court order, and the date looks unusually short compared with similar matters. What do you do before entering it?"
+  },
+  "s1": {
+    "on": "This section says docketing is calendar management with legal consequences; a missed deadline can mean malpractice or a lost right, so redundancy is built in.",
+    "say": "No single missed reminder should cause a missed filing."
+  },
+  "s2": {
+    "on": "These steps are the workflow: log every deadline from the primary source the moment it's known, set multiple reminders, and cross-check against the case file to close satisfied deadlines.",
+    "say": "Primary source, multiple reminders, cross-checked."
+  },
+  "s3": {
+    "on": "This section warns against docketing from secondhand dates or assuming a deadline is 'probably fine', and calls docketing one of the highest-stakes duties in the role.",
+    "say": "Secondhand dates cause errors."
   }
 },
 "3::Statute-of-Limitations Rules": {
@@ -2097,6 +2460,18 @@ window.PRESENTER_NOTES = {
     "say": "Verify against the actual rule, every time.",
     "wrap": "Calculate at intake, verify the rule, add redundancy, and escalate when unsure.",
     "scenario": "A new matter comes in and the parties are in different states, so you're not sure which state's statute of limitations applies. What do you do before calculating a deadline?"
+  },
+  "s1": {
+    "on": "This section explains the SOL: the outer deadline to file a claim, which varies by claim type and jurisdiction, and which bars the claim entirely if missed.",
+    "say": "Miss it and the claim is gone."
+  },
+  "s2": {
+    "on": "These steps protect it: calculate and log the SOL at intake from the actual trigger date and rule, flag it with extra lead time, and escalate to the attorney when the rule is unclear.",
+    "say": "Unclear rule? That's the attorney's call."
+  },
+  "s3": {
+    "on": "This section warns against copying a past matter's SOL, says 'probably right' isn't good enough, and requires the SOL to live in a redundant system.",
+    "say": "Verify against the rule, every time."
   }
 },
 "3::Deposition Scheduling": {
@@ -2110,6 +2485,19 @@ window.PRESENTER_NOTES = {
     "say": "Coordinate everyone up front, because rescheduling costs more.",
     "wrap": "Confirm every party, book scarce resources early, and document confirmations.",
     "scenario": "You've confirmed a deposition date with the attorney and the witness, but opposing counsel hasn't replied after several days. Do you send the formal notice or wait? What do you actually do?"
+  },
+  "s1": {
+    "on": "This section says depositions coordinate many parties (attorneys on all sides, the witness, the court reporter, an interpreter), building on multi-calendar coordination.",
+    "say": "Many parties, one date."
+  },
+  "s2": {
+    "on": "These steps are the process: confirm every party before locking the date, book the reporter and interpreter early, and send notices promptly and track confirmations.",
+    "say": "Silence isn't agreement; track confirmations.",
+    "ask": "Who's the hardest party to schedule?"
+  },
+  "s3": {
+    "on": "This section warns against booking around the attorney alone and says rescheduling is costly in time, money and sometimes strategy.",
+    "say": "Coordinate up front."
   }
 },
 "3::Executive Travel Logistics — Domestic & International Itineraries": {
@@ -2123,6 +2511,18 @@ window.PRESENTER_NOTES = {
     "say": "One consolidated itinerary, not a pile of confirmation emails.",
     "wrap": "Plan backward, check documents early, buffer connections and consolidate.",
     "scenario": "You're booking Elias a tight connection from an international arrival to a domestic flight. What do you want confirmed about that connection before you book it as is?"
+  },
+  "s1": {
+    "on": "This section says domestic and international travel share the same discipline, but international adds visas, customs, time zones and jurisdictions, and a complete itinerary covers the gaps between legs.",
+    "say": "The gaps are where trips fail."
+  },
+  "s2": {
+    "on": "These steps build it: plan backward from the destination, confirm visas early, and add buffer between legs, especially international-to-domestic connections.",
+    "say": "Work backward from arrival."
+  },
+  "s3": {
+    "on": "This section warns against treating international as domestic with a longer flight, and asks for one consolidated itinerary with every confirmation.",
+    "say": "One document, every leg."
   }
 },
 "3::War Room Trial Support": {
@@ -2136,6 +2536,19 @@ window.PRESENTER_NOTES = {
     "say": "It's not a busier week. It's a different mode.",
     "wrap": "Confirm needs, organize for instant retrieval, and agree the protocol before trial.",
     "scenario": "Trial starts in three days and you haven't confirmed Elias's support expectations for that window. What do you nail down, and how do you raise it now on a short timeline?"
+  },
+  "s1": {
+    "on": "This section says trial compresses the attorney's schedule; war-room support means being truly on call during trial hours.",
+    "say": "Trial is a different operating mode."
+  },
+  "s2": {
+    "on": "These steps prepare: confirm support needs in advance, keep every document, contact and logistic instantly retrievable, and set a trial-specific communication protocol.",
+    "say": "Nothing should need searching for during trial.",
+    "ask": "What would you prepare before day one of trial?"
+  },
+  "s3": {
+    "on": "This section warns that trial support isn't just a busier normal day, and notes it combines calendar, travel and document skills.",
+    "say": "Categorically different, prepare accordingly."
   }
 },
 "3::Emergency Flight Contingencies": {
@@ -2149,6 +2562,18 @@ window.PRESENTER_NOTES = {
     "say": "Reach them with a plan before the airline app does.",
     "wrap": "Prepare backups in advance, act fast, and communicate once, clearly.",
     "scenario": "Elias's flight to a trial appearance is cancelled, and the next available flight lands after the hearing starts. What do you do, and in what order?"
+  },
+  "s1": {
+    "on": "This section says a flight disruption on a high-stakes trip threatens what the trip is for, so the plan is prepared in advance.",
+    "say": "Prepared, not improvised."
+  },
+  "s2": {
+    "on": "These steps are the plan: identify the hard deadline first, know backups ahead of time, and send the executive one clear message with the plan when disruption hits.",
+    "say": "One clear message with the plan."
+  },
+  "s3": {
+    "on": "This section warns against waiting until disruption hits, and says the executive should never hear about a flight problem from an app before hearing from you.",
+    "say": "No surprises."
   }
 },
 "3::Recognizing Stress & Burnout in High-Pressure Roles": {
@@ -2162,6 +2587,19 @@ window.PRESENTER_NOTES = {
     "say": "Exhaustion isn't dedication. It's a risk to the work.",
     "wrap": "Check in weekly, name the stressor, and raise concerns early.",
     "scenario": "You've double-booked Elias twice this week, you're snapping at vendors, and you check email at 11 p.m. every night \"just in case.\" What's happening, and what are your first three steps?"
+  },
+  "s1": {
+    "on": "This section distinguishes stress (normal, sometimes useful) from burnout (chronic, with exhaustion, detachment and lower effectiveness), names EA/PA stressors and lists early signs.",
+    "say": "Early signs are easier to fix."
+  },
+  "s2": {
+    "on": "These steps are self-checks: a weekly two-minute check-in, naming the specific stressor, tracking patterns for two weeks, and raising it with your manager or an EAP if it persists.",
+    "say": "Name it specifically, then track it.",
+    "ask": "What's one stressor you could name today?"
+  },
+  "s3": {
+    "on": "This section warns against treating exhaustion as dedication and waiting for a crisis, and asks you to check on colleagues privately and kindly.",
+    "say": "Raise it early."
   }
 },
 "3::Stress Management Techniques That Work at a Desk": {
@@ -2175,6 +2613,19 @@ window.PRESENTER_NOTES = {
     "say": "Caffeine masks fatigue. It doesn't reduce the load.",
     "wrap": "Breathe, brain-dump, take micro-breaks and shut down properly.",
     "scenario": "Elias calls in a hurry: a court date moved, three meetings must shift and a family event overlaps. What do you do in the first five minutes to stay clear-headed before touching the calendar?"
+  },
+  "s1": {
+    "on": "This section says the best tools take two minutes between tasks: controlled breathing, a short walk, a task-list reset, plus structure that cuts decision load.",
+    "say": "Two-minute tools."
+  },
+  "s2": {
+    "on": "These steps are the techniques: slow breaths before tense calls, a brain dump when overwhelmed, micro-breaks every 60–90 minutes, and a shutdown ritual at day's end.",
+    "say": "Pick the single next action.",
+    "ask": "Which one will you try today?"
+  },
+  "s3": {
+    "on": "This section warns that caffeine and willpower only mask fatigue, calls sleep a work skill, and suggests a personal 'calm kit' list.",
+    "say": "Know your calm kit before you need it."
   }
 },
 "3::Setting Boundaries & Managing Executive Pressure": {
@@ -2188,6 +2639,19 @@ window.PRESENTER_NOTES = {
     "say": "Build the emergency path into the agreement.",
     "wrap": "Agree the rules in writing, use the calm script, and revisit as things change.",
     "scenario": "Elias texts at 10:40 p.m. asking you to \"quickly\" rebook tomorrow's 8 a.m. client meeting. Your after-hours rule covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?"
+  },
+  "s1": {
+    "on": "This section defines boundaries as agreements on availability, response times and scope, says undefined 'urgent' drives stress, and advises calm facts over matching the executive's urgency.",
+    "say": "Define urgent, together."
+  },
+  "s2": {
+    "on": "These steps set boundaries: agree availability in writing, ask 'which of these should move?' when priorities collide, and use the acknowledge–facts–options script.",
+    "say": "Acknowledge, state facts, offer options.",
+    "ask": "How would you use that script with an urgent late request?"
+  },
+  "s3": {
+    "on": "This section warns that instant late-night replies set the expectation, that boundaries never excuse missing a legal deadline, and that agreements need revisiting.",
+    "say": "Build the emergency path into the agreement."
   }
 },
 "3::Recovery, Workload Conversations & Support Resources": {
@@ -2201,6 +2665,18 @@ window.PRESENTER_NOTES = {
     "say": "You don't have to share a diagnosis to ask for a workload change.",
     "wrap": "Raise it early, plan real time off, and know your support resources.",
     "scenario": "You've worked 55-hour weeks for two months and your error rate is rising. Draft the first two sentences of a workload conversation with Elias, and list the options you'd bring."
+  },
+  "s1": {
+    "on": "This section says recovery is part of performance, workload issues are business issues to raise with data, and support exists (EAPs, healthcare providers, the 988 Lifeline in the US).",
+    "say": "Raising workload is professional, not a complaint."
+  },
+  "s2": {
+    "on": "These steps prepare: a workload conversation with tasks, hours and options, real time off with a coverage handover, and knowing where support is in advance.",
+    "say": "Bring data and options."
+  },
+  "s3": {
+    "on": "This section warns against waiting until exhausted, says health details can stay private, and asks the team to cover each other properly.",
+    "say": "A plan, not a crisis."
   }
 },
 "4::Data Entry That Holds Up": {
