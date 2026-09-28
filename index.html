@@ -14283,7 +14283,14 @@ function routeHash(){
   if(routeViews().includes(state.view)) return "#/"+state.view;
   return "";
 }
+// The address this tab opened with (a duplicated tab, or ⧉ "open in new tab"). Nothing may
+// overwrite it until start-up has opened that page (state.routeReady).
+const BOOT_ROUTE_HASH = String(location.hash||"");
+function restoreBootRouteHash(){
+  if(BOOT_ROUTE_HASH.indexOf("#/")===0 && location.hash!==BOOT_ROUTE_HASH){ try{ history.replaceState(history.state, "", location.pathname + location.search + BOOT_ROUTE_HASH); }catch(e){} }
+}
 function syncRouteHash(){
+  if(!state.routeReady) return;
   const h = routeHash();
   if(!h){
     // A page without its own address: drop the old one so a duplicated tab doesn't open the wrong page.
@@ -14871,6 +14878,7 @@ window.applyUpdate = applyUpdate;
   if(state.traineeId && await cloudRestore(state.traineeId)) await loadAll();
   loadPublishedContent().then(()=>{ if(["day","dashboard","admin"].includes(state.view)) render(); });
   if(sessionStorage.getItem("lsh_resume_after_update") && (state.isAdmin || state.traineeId)) setTimeout(()=>restoreAfterUpdate(), 400);
+  if(state.isAdmin){ restoreBootRouteHash(); if(parseRouteHash()){ state.resumePending = true; setTimeout(()=>{ state.resumePending = false; openRouteFromHash(); state.routeReady = true; syncRouteHash(); }, 0); } }
   if(!state.traineeName){
     state.view = "login";
   }else if(state.traineeId){
@@ -14878,8 +14886,9 @@ window.applyUpdate = applyUpdate;
     if(status==="approved"){
       // Returning trainee: reopen the page they were on (refresh / closed tab).
       // A page address in the URL (a duplicated tab, or ⧉ "open in new tab") wins over the bookmark.
-      if(parseRouteHash()){ state.resumePending = true; setTimeout(()=>{ state.resumePending = false; if(!openRouteFromHash()) resumeWhereLeftOff(state.lastView); }, 0); }
-      else if(state.lastView && RESUMABLE_VIEWS.includes(state.lastView.view) && state.lastView.view!=="clientprofile"){ const lv = state.lastView; state.resumePending = true; setTimeout(()=>resumeWhereLeftOff(lv), 0); }
+      restoreBootRouteHash();
+      if(parseRouteHash()){ state.resumePending = true; setTimeout(()=>{ state.resumePending = false; if(!openRouteFromHash()) resumeWhereLeftOff(state.lastView); state.routeReady = true; syncRouteHash(); }, 0); }
+      else if(state.lastView && RESUMABLE_VIEWS.includes(state.lastView.view) && state.lastView.view!=="clientprofile"){ const lv = state.lastView; state.resumePending = true; setTimeout(()=>{ resumeWhereLeftOff(lv); state.routeReady = true; syncRouteHash(); }, 0); }
       try{
         const rec = await sharedGet("trainee:"+state.traineeId);
         if(rec) state.assignedRoleplay = rec.assignedRoleplay || null;
@@ -14891,6 +14900,7 @@ window.applyUpdate = applyUpdate;
       state.view = "pendingApproval";
     }
   }
+  if(!state.resumePending) state.routeReady = true;
   render();
 })();
 
@@ -21235,7 +21245,9 @@ function presenterNote(d, l, part){
   // A topic added later in the Content Studio has no written note yet: use the lesson's own lines.
   const sc = buildDiscussionScript(d, l, d.lessons.indexOf(l)), unq = t=>String(t||"").replace(/^"|"$/g,"");
   const scen = (l.fourPart && l.fourPart.discussionCase) || "";
-  if(part===1 || l.singleSlide) return {say: unq(sc.open), ask: unq(sc.ask), wrap: l.singleSlide ? unq(sc.wrap) : "", scenario: l.singleSlide ? scen : ""};
+  // (A course built on this engine keeps its own trainer cue, e.g. the CM deck's speaker notes.)
+  const cue = l.trainerCue || "";
+  if(part===1 || l.singleSlide) return {cue, say: unq(sc.open), ask: unq(sc.ask), wrap: l.singleSlide ? unq(sc.wrap) : "", scenario: l.singleSlide ? scen : ""};
   return {say: sc.correct || "", wrap: unq(sc.wrap), scenario: scen};
 }
 function renderPresenterNote(d, l, part){
@@ -21243,6 +21255,7 @@ function renderPresenterNote(d, l, part){
   const row = (k, v)=> v ? `<div class="script-row"><b>${k}</b><p>${esc(v)}</p></div>` : "";
   return `<div class="pn">
     ${n.on ? `<div class="pn-on"><b>On this slide</b><p>${esc(n.on)}</p></div>` : ""}
+    ${n.cue ? `<div class="pn-on"><b>Trainer note</b><p>${esc(n.cue)}</p></div>` : ""}
     <div class="script-block"><div class="script-head"><span>🎙 Script</span></div>${row("Say", n.say)}${row("Ask", n.ask)}${row("Wrap", n.wrap)}</div>
     ${n.scenario ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}
   </div>`;
