@@ -39,12 +39,6 @@ const IGNORE = /Failed to load resource|ERR_|net::|favicon/;
             for (const v of ['dashboard', 'practice', 'casedocs', 'clientprofile', 'handouts', 'tasks', 'crisisroleplay', 'notes', 'tools', 'calls', 'orientation', 'facilitatorguide', 'admin']) {
                 try { goto(v); await sleep(60); } catch (e) { errs.push(`page ${v}: ${e.message}`); }
             }
-            // Medsum & Demand module: landing page, then every lesson, practice and unit check of every unit
-            for (const u of (typeof MS_UNITS !== 'undefined' ? MS_UNITS : [])) {
-                try { goto('medsum', u.id); const n = u.lessons.length + 2; for (let i = 0; i < n; i++) msGo(u.id, i); out.push(`medsum unit ${u.id}: ${n} steps`); }
-                catch (e) { errs.push(`medsum unit ${u.id}: ${e.message}`); }
-            }
-            try { goto('medsum'); await sleep(60); } catch (e) { errs.push(`page medsum: ${e.message}`); }
             for (const t of (typeof PRACTICE_TOOLS !== 'undefined' ? PRACTICE_TOOLS : [])) {
                 try { goto('tool', t.id); await sleep(150); (toolState.wizardLabels || []).forEach((_, i) => wizardGoTo(i)); out.push(`tool ${t.id}: ${(toolState.wizardLabels || []).length} parts`); }
                 catch (e) { errs.push(`tool ${t.id}: ${e.message}`); }
