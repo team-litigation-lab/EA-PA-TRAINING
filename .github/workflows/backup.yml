@@ -1,0 +1,41 @@
+# Nightly backup of all trainee progress (both courses' KV data, the CMS and Training Portal
+# databases) to Google Drive, plus a 14-day copy as a GitHub Actions artifact.
+# Setup: README → Nightly backup. Until CLOUDFLARE_API_TOKEN is set, the run just prints a notice.
+name: Nightly backup
+
+on:
+  schedule:
+    - cron: "17 7 * * *"     # 07:17 UTC ≈ 3 AM US Eastern
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    name: Back up progress
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Export and upload
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GDRIVE_FOLDER_ID: ${{ vars.GDRIVE_FOLDER_ID || secrets.GDRIVE_FOLDER_ID }}
+        run: node .github/scripts/backup.mjs
+      - name: Keep a copy on GitHub (14 days)
+        if: always() && hashFiles('backups/*.tar.gz') != ''
+        uses: actions/upload-artifact@v6
+        with:
+          name: lsh-backup
+          path: backups/*.tar.gz
+          retention-days: 14
