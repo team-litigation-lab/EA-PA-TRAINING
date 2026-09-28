@@ -1417,9 +1417,9 @@ rect.svg-callout-badge{animation:none;}
 /* Inbox Zero — Eisenhower Matrix */
 .iz-pool{border:1px solid var(--line);border-radius:12px;padding:12px;min-height:80px;background:#fff;margin-bottom:14px;display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto;}
 .iz-board{display:grid;grid-template-columns:minmax(240px,1fr) 2fr;gap:14px;align-items:start;}
-.iz-board .iz-pool{margin-bottom:0;max-height:calc(100vh - 160px);position:sticky;top:84px;}
+.iz-board .iz-pool{margin-bottom:0;max-height:calc(100vh - 170px);position:sticky;top:84px;}
 .iz-board .iz-quad-grid{position:sticky;top:84px;}
-.iz-board .iz-quad > div{max-height:calc(50vh - 120px);min-height:40px;overflow-y:auto;}
+.iz-board .iz-quad > div{max-height:calc((100vh - 300px) / 2);min-height:40px;overflow-y:auto;}
 .iz-move{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;} .iz-mv{font:inherit;font-size:11px;font-weight:700;border:1px solid var(--line);background:#F6F7FB;color:var(--navy);border-radius:6px;padding:2px 7px;cursor:pointer;} .iz-mv:hover{border-color:var(--orange);} .iz-mv.on{background:var(--navy);color:#fff;border-color:var(--navy);}
 @media(max-width:900px){.iz-board{grid-template-columns:1fr;} .iz-board .iz-pool{position:static;max-height:320px;} .iz-board .iz-quad-grid{position:static;} .iz-board .iz-quad > div{max-height:none;}}
 .iz-quad-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -14379,15 +14379,23 @@ function bookmarkView(){
    browser's "storage" event), so an older tab never overwrites newer progress.
    ============================================================ */
 const ROUTE_VIEWS = ["dashboard","practice","notes","clientprofile","handouts","tasks","crisisroleplay","orientation","facilitatorguide"];
+const routeViews = ()=>ROUTE_VIEWS.concat(window.EXTRA_ROUTE_VIEWS||[]);   // a course build can add its own pages
 function routeHash(){
   if(state.view==="day" && state.dayId) return "#/day/"+state.dayId;
   if(state.view==="tool" && state.toolId) return "#/tool/"+encodeURIComponent(state.toolId);
-  if(ROUTE_VIEWS.includes(state.view)) return "#/"+state.view;
+  if(routeViews().includes(state.view)) return "#/"+state.view;
   return "";
 }
 function syncRouteHash(){
   const h = routeHash();
-  if(!h || location.hash===h) return;
+  if(!h){
+    // A page without its own address: drop the old one so a duplicated tab doesn't open the wrong page.
+    if(String(location.hash).indexOf("#/")===0 && !state.resumePending && (state.traineeId || state.isAdmin) && !["login","pendingApproval","registrationDenied"].includes(state.view)){
+      try{ history.replaceState(history.state, "", location.pathname + location.search); }catch(e){}
+    }
+    return;
+  }
+  if(location.hash===h) return;
   try{ history.replaceState(history.state, "", location.pathname + location.search + h); }catch(e){}
 }
 function parseRouteHash(){
@@ -14396,7 +14404,7 @@ function parseRouteHash(){
   const view = m[1], id = m[2] ? decodeURIComponent(m[2]) : null;
   if(view==="day"){ const n = parseInt(id,10); return DAYS.some(d=>d.id===n) ? {view, id:n} : null; }
   if(view==="tool") return PRACTICE_TOOLS.some(t=>t.id===id) ? {view, id} : null;
-  return ROUTE_VIEWS.includes(view) ? {view, id:null} : null;
+  return routeViews().includes(view) ? {view, id:null} : null;
 }
 function openRouteFromHash(){
   const r = parseRouteHash();
