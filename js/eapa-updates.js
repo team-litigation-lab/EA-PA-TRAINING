@@ -677,10 +677,8 @@ function presenterCues(d, slide){
   const out = [];
   if(slide.type==="topic"){
     const l = d.lessons[slide.lessonIndex];
-    out.push(`<h3>${esc(l.h)} <small style="font-size:12px;color:var(--ink-soft);">Part ${slide.part} of 2</small></h3>`);
-    if(l.trainerCue) out.push(`<div class="tc-tag">🧑‍🏫 Trainer Cue</div><p>${esc(l.trainerCue)}</p>`);
-    const disc = trainerDiscussionHtml(l); if(disc) out.push(`<b class="cue-sub">Applied Discussion Case</b>${disc}`);
-    out.push(renderDiscussionScript(d, l, slide.lessonIndex));
+    out.push(`<h3>${esc(l.h)}${l.singleSlide ? "" : ` <small style="font-size:12px;color:var(--ink-soft);">Part ${slide.part} of 2</small>`}</h3>`);
+    out.push(renderPresenterNote(d, l, slide.part));   // hardcoded notes: js/presenter-notes.js
   }else if(slide.type==="quickCheck"){
     out.push(`<h3>Quick Check</h3><p>Let the room answer first — then reveal and use the rationale.</p>`);
     (d.quickChecks||[]).filter(c=>c.afterIndex===slide.lessonIndex).forEach(c=>{
@@ -707,7 +705,6 @@ function presenterNextText(d){
 function renderPresenterConsole(d){
   const slides = buildDaySlides(d);
   const idx = Math.min(state.lessonSlide||0, slides.length-1); state.lessonSlide = idx;
-  if(state.pvScriptsFor !== d.id){ state.pvScriptsFor = d.id; setTimeout(()=>loadSavedScripts(d.id).then(()=>presenterRefresh()), 0); }
   return `
     <div class="pv">
       <div class="pv-head">
