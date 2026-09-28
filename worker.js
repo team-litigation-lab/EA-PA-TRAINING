@@ -151,8 +151,9 @@ async function callGemini(env, rawBody) {
   const payload = {
     contents,
     // extra headroom: newer Gemini models may spend part of the budget "thinking" before answering
-    generationConfig: { maxOutputTokens: Math.min(Math.max((Number(req.max_tokens) || 1024) * 2, 2048), 16384), temperature: 0.7 }
+    generationConfig: { maxOutputTokens: Math.min(Math.max((Number(req.max_tokens) || 1024) * 2, 2048), 16384), temperature: typeof req.temperature === "number" ? Math.min(Math.max(req.temperature, 0), 1.5) : 0.7 }
   };
+  if (req.json) payload.generationConfig.responseMimeType = "application/json";
   if (req.system) payload.systemInstruction = { parts: [{ text: toText(req.system) }] };
   // Google limits the 2.5 models to accounts that already used them; new projects use 3.8 Flash / 3.5 Flash-Lite.
   // Free tier: each model has its own quota. Flash-Lite allows about 500 requests a day and 15 a
@@ -279,6 +280,16 @@ export default {
 
       /* ---------- AI proxy (signed-in users only, so strangers can't spend your credits) ---------- */
       // (the path keeps its old name so pages already open in browsers keep working)
+      if (path === "/api/ai-relay") {
+        // The LSH Training Portal's simulators (Call Simulator, Calendaring, Email Replies) run on
+        // Cloudflare Pages, next to the trainee — and Gemini refuses some regions ("User location is
+        // not supported", e.g. Hong Kong). The Portal sends those AI calls here instead, so they run
+        // from this Worker's US placement with its key pool. Only with the shared AI_RELAY_SECRET.
+        const given = request.headers.get("X-Relay-Key") || "";
+        if (!env.AI_RELAY_SECRET || !safeEqual(given, env.AI_RELAY_SECRET)) return json({ error: "Not allowed" }, 403);
+        if (!hasGemini(env)) return json({ error: "No AI key is configured on this Worker." }, 500);
+        return await callGemini(env, await request.text());
+      }
       if (path === "/api/claude" || path === "/api/ai") {
         const body = await request.text();
         if (!hasGemini(env)) return json({ error: "No AI key is configured on this Worker. Add GEMINI_API_KEY as a Secret in Cloudflare." }, 500);
