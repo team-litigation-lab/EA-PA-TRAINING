@@ -3244,5 +3244,280 @@ window.PRESENTER_NOTES = {
     "wrap": "Know the spokesperson, use the holding statement and escalate in parallel.",
     "scenario": "A journalist calls you directly, bypassing the firm's usual channels, asking for comment on a sensitive matter. What do you say, and who do you contact the moment you hang up?"
   }
+},
+"9::Running an Event End-to-End": {
+  "p1": {
+    "on": "This slide says to track registration by name so gaps surface right away, not at the event. The steps: track each registrant's status from the moment registration opens, build the engagement-tracking plan (who attends what, what materials they need) beforehand, follow up on incomplete registrations early, reconcile registrations against actual attendance, and feed problems into next time.",
+    "say": "Track by name, not just headcount.",
+    "ask": "What went wrong the first time you managed registrations for anything?"
+  },
+  "p2": {
+    "on": "This slide gives the event timeline. At 8–12 weeks: goals, budget, date, venue and invitation list. At 4–6 weeks: invitations, speakers, catering and AV. At 1 week: numbers, run-of-show, badges and materials. On the day: arrive early, tech check, track check-ins. After: thank-yous within 48 hours, feedback, budget reconciliation and lessons logged.",
+    "say": "Thank-you notes go out within 48 hours.",
+    "wrap": "Plan on the timeline, track by name and log the lessons.",
+    "scenario": "Thorne & Partners is hosting a client appreciation evening for 60 guests in 10 weeks. What's done by week 8, week 4 and the day before?"
+  }
+},
+"9::Four SOPs That Keep Professional Development on Track": {
+  "p1": {
+    "on": "This slide gives four SOPs, with a diagram. Event Registration: verify the provider, confirm budget and approval, and record the confirmation. Attendance Tracking: monitor live, export reports and save certificates in an audit-ready folder. Team Upskilling: assess needs quarterly, vet vendors and track completion and ROI. Reputation & Recognition: track awards and speaking, keep bios current, and escalate negative publicity.",
+    "say": "Four SOPs, each preventing a specific, predictable failure.",
+    "ask": "Which one would you be most tempted to skip?"
+  },
+  "p2": {
+    "on": "This slide says each SOP prevents a specific failure: missing a legitimate event, losing a certificate needed for an audit, or spending on training that doesn't work. It summarizes the four at a glance, including measuring whether training actually changed performance.",
+    "say": "Reputation & Recognition feels least urgent, so it's the one that gets skipped.",
+    "wrap": "Run all four, especially the one that feels least urgent.",
+    "scenario": "Elias wants to attend a $1,200 legal-tech summit from a provider you've never heard of. Walk through the Event Registration SOP before you book."
+  }
+},
+"9::CLE / Compliance Tracking": {
+  "p1": {
+    "on": "This slide says to log completed hours, pending hours and the deadline for each person. The steps: track per person, not as a total, flag anyone approaching a deadline with real time left, verify hours count toward the requirement (category and jurisdiction), set long lead times because deadlines rarely extend, and reconcile the tracker against certificates on file.",
+    "say": "Per person, with real lead time, because these deadlines don't extend.",
+    "ask": "Why is a single total hours number dangerous?"
+  },
+  "p2": {
+    "on": "This slide explains CLE basics: each state bar sets total hours per reporting period (often 1–3 years) plus required categories such as ethics. Hours usually come from accredited providers and must be reported by a deadline, and some states allow carry-over. Keep every certificate as proof for an audit, and confirm each attorney's state rules.",
+    "say": "The certificate is the proof. Keep every one.",
+    "wrap": "Track per person, verify categories and keep the certificates.",
+    "scenario": "Elias has 18 of 25 required hours, needs 2 more ethics hours, and his reporting deadline is in 7 weeks. What do you flag today, and what do you check about the hours he has?"
+  }
+},
+"9::Protecting the Brand Online": {
+  "p1": {
+    "on": "This slide says to respond to negative reviews professionally and factually and never escalate publicly. The steps: monitor mentions and reviews proactively, respond calmly regardless of the tone of the original, apply the \"need to know\" principle to anything sensitive, draft a considered response rather than reacting, and escalate anything beyond a routine review, such as a legal threat or coordinated attack.",
+    "say": "Never escalate publicly.",
+    "ask": "How would your response differ written cold versus with time to think?"
+  },
+  "p2": {
+    "on": "This slide says a well-handled negative review can do more for the brand than ten positive ones. It describes the \"need to know\" principle, called The Vault in training: information moves from Executive Secret to Organizational Liability the moment it's shared too widely.",
+    "say": "A well-handled bad review beats ten good ones.",
+    "wrap": "Monitor, respond calmly and factually, and escalate what's beyond routine.",
+    "scenario": "A former client posts a one-star review: \"Thorne & Partners never returned my calls and overcharged me.\" Draft the public reply live, then say what you'd check before posting it."
+  }
+},
+"9::Awards, Recognition & Charitable Coordination": {
+  "p1": {
+    "on": "This slide says award applications need the same discipline as any application: exact eligibility, exact materials and a real deadline, with a diagram. The steps: keep a yearly awards tracker (name, deadline, eligibility, materials, status), confirm criteria early, track charitable commitments through to fulfilment, keep documentation of contributions for tax and reporting, and treat both as proactive reputation-building.",
+    "say": "Strong nominations get missed because nobody tracked the deadline.",
+    "ask": "Has your organization ever missed an award deadline?",
+    "wrap": "Track awards and charitable commitments like any deadline, and keep the documentation.",
+    "scenario": "Elias pledged $5,000 to a legal aid gala and was nominated for a regional bar award due in three weeks. What goes in the tracker for each, and what documentation do you keep?"
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Track awards and charitable commitments like any deadline, and keep the documentation.",
+    "scenario": "Elias pledged $5,000 to a legal aid gala and was nominated for a regional bar award due in three weeks. What goes in the tracker for each, and what documentation do you keep?"
+  }
+},
+"9::Membership Renewals": {
+  "p1": {
+    "on": "This slide says a renewal tracker (name, expiration, status, follow-up owner) catches lapses before they happen. The steps: track every membership, set reminders well before expiration, automate reminders once volume grows, confirm terms haven't changed before renewing, and review for memberships no longer used.",
+    "say": "Remind well before expiry, and automate once there are many.",
+    "ask": "Has a membership ever lapsed on you without warning?"
+  },
+  "p2": {
+    "on": "This slide lists what to track per membership: organization, member, level, renewal date, annual cost, approver, auto-renew status and the payment method on file (expired cards are a common silent cause of lapses). A yearly value check stops paying for associations nobody attends.",
+    "say": "Expired cards are why memberships lapse silently.",
+    "wrap": "Track, remind early, check the payment method and review the value.",
+    "scenario": "Elias's state bar membership, two practice-section memberships and a country club all renew within the next 60 days, and one card on file expires this month. Build the tracker rows and say what you'd do first."
+  }
+},
+"9::Planning Professional Development": {
+  "p1": {
+    "on": "This slide says to offer virtual and in-person options to fit different schedules. The steps: define an effectiveness metric for each session beforehand (not just attendance), gather feedback immediately, track completion and outcomes over time to see patterns, and adjust the next session based on what you learned.",
+    "say": "Attendance doesn't prove it worked.",
+    "ask": "How would you measure whether this training session worked?"
+  },
+  "p2": {
+    "on": "This slide gives four levels of effectiveness: Reaction (did people find it useful?), Learning (can they demonstrate the skill?), Behavior (are they using it weeks later?) and Results (did performance improve?). Even a simple before-and-after check on one skill tells you more than attendance.",
+    "say": "One before-and-after check beats any attendance number.",
+    "wrap": "Define the metric first, collect feedback fast and adjust.",
+    "scenario": "The firm runs a lunch-and-learn on the new document management system. Define one measure at each of the four levels."
+  }
+},
+"9::High-Stakes Travel Disruption Management": {
+  "p1": {
+    "on": "This slide calls travel disruption a triage skill: the stakes are what the executive misses, and preparation from calmer days pays off. The steps: identify the single most time-critical commitment, check rebooking in the airline app while calling, evaluate alternatives in order (another airport, another airline, ground transport), send one clear message with the plan, and update every downstream party.",
+    "say": "Find the fixed point first, then work backward.",
+    "ask": "Why check the app while you're on hold?"
+  },
+  "p2": {
+    "on": "This slide warns that the executive should never discover a disruption from an app notification first, and a stressed executive needs the resolved plan, not live narration. It warns against fixing the flight but breaking the car pickup or hotel check-in, and says to keep a standing note of hard constraints (no red-eyes, aisle seats, dietary needs).",
+    "say": "Give them the plan, not the play-by-play.",
+    "wrap": "Triage the fixed point, work options in parallel, send one message and fix the ripples.",
+    "scenario": "Elias's connecting flight to a closing-day meeting is cancelled with no same-day rebooking, and the meeting can't move. Option one: a red-eye on another airline that lands two hours before. Option two: a private car for the last leg that costs much more but lets him sleep. How do you decide, and how do you present it?"
+  }
+},
+"9::Board Meeting Preparation & Minute Drafting": {
+  "p1": {
+    "on": "This slide says board prep makes decisions efficient once the board is in the room, and minutes are a legal and governance record, not a transcript. The steps: confirm the agenda early and circulate materials with lead time, build the packet the same way every time, capture attendance, motions, seconders and vote outcomes, draft minutes promptly in neutral language, and circulate drafts for correction.",
+    "say": "Minutes record what was decided, not who argued what.",
+    "ask": "What four things must you capture for every motion?"
+  },
+  "p2": {
+    "on": "This slide warns against narrative minutes that record opinions and disagreement, which create legal exposure, and against vague language. \"The board discussed the budget\" isn't a minute; \"Motion to approve the FY26 budget as presented, seconded, passed 5–0\" is. Sensitive discussions may be noted without specifics, after checking with counsel, and a late packet can undermine a decision's legitimacy.",
+    "say": "Vague motion language isn't a record.",
+    "wrap": "Prepare early, capture the motions exactly and keep the minutes neutral.",
+    "scenario": "A motion is raised, debated with real disagreement, amended once and passed 4–1. You're taking minutes live. What must you capture exactly, and what do you deliberately leave out?"
+  }
+},
+"9::Federal/State/Financial Infrastructure": {
+  "p1": {
+    "on": "This slide says a new entity needs financial and regulatory infrastructure at three levels: federal (IRS), state (tax and labor agencies) and financial (banking), kept separate from personal finances from day one. The steps: get the EIN right after formation, register with state tax agencies, open a dedicated business bank account, set up bookkeeping before the first transaction, and register for payroll withholding before the first paycheck.",
+    "say": "Business money never runs through a personal account.",
+    "ask": "Is state tax registration automatic when you form an entity?"
+  },
+  "p2": {
+    "on": "This slide warns that commingling personal and business funds, even briefly, is one of the most common ways founders undermine their liability protection, and state tax registration is never automatic. It says to keep every registration confirmation in the permanent file and register separately in each state with a real presence.",
+    "say": "Commingling, even once, weakens the liability shield.",
+    "wrap": "EIN, state registration, a separate bank account and books before day one.",
+    "scenario": "Elias's new consulting LLC has its EIN and a bank account opening this week. He paid the filing attorney's invoice on his personal card \"to get it done faster\" and plans to reimburse himself. What's the risk, and how do you help him before it becomes a habit?"
+  }
+},
+"9::Video Conferencing: Platform Admin (Zoom/Teams/Meet)": {
+  "p1": {
+    "on": "This slide says platform admin means owning settings, scheduling and account configuration, not just attending. Zoom, Teams and Meet differ, and most problems are prevented by setup. The steps: set core settings before scheduling (waiting room, screen share, recording, notifications), use a platform-specific pre-meeting checklist, know how to manage participants live, and review account-level defaults periodically.",
+    "say": "Set it up right beforehand, and most problems never happen.",
+    "ask": "What settings would you check before a confidential call?"
+  },
+  "p2": {
+    "on": "This slide warns that defaults don't suit every meeting, since a confidential internal call and a public webinar need different security. It says to test unfamiliar formats (webinars, breakout rooms) before going live, give a backup person access to the platform, and document platform quirks.",
+    "say": "A sensitive call and a public webinar need different settings.",
+    "wrap": "Configure per meeting type, test new formats and have a backup admin.",
+    "scenario": "Elias's confidential strategy call with senior partners went out on a general meeting link with no waiting room or registration. What do you change before the call, and how do you raise it since the invite is already out?"
+  }
+},
+"9::Live Event Moderation": {
+  "p1": {
+    "on": "This slide says live moderation is the real-time management of a virtual event, keeping it smooth for audience and presenter, following Reminder → Login Confirmed → Attendance Verified → Monitor → Document → Follow-Up. The steps: confirm login, audio and video beforehand, monitor actively, track participation for CLE-eligible sessions, and complete the post-event sequence including certificates and credit hours.",
+    "say": "Monitor actively. Don't wait for something to break.",
+    "ask": "What would you watch for during a live webinar?"
+  },
+  "p2": {
+    "on": "This slide warns against passive moderation. It says to keep a visible checklist, document technical issues as they happen, and give speaking engagements extra oversight: an accurate introduction, loaded materials and confirmed recording.",
+    "say": "A visible checklist beats memory during a live event.",
+    "wrap": "Check beforehand, monitor actively, document and follow up.",
+    "scenario": "Ten minutes into a webinar where Elias is the featured speaker, his audio starts cutting out and the audience is commenting in the chat. What do you do, in what order, without disrupting him more than necessary?"
+  }
+},
+"9::Executive Meeting Etiquette": {
+  "p1": {
+    "on": "This slide says executive-level video etiquette has a higher standard, and the EA/PA's conduct reflects on the executive. The point is removing friction, not formality. The steps: send a pre-call note (agenda, duration, participants and roles, format), join early to check the technology, keep your own presence professional and unobtrusive, and handle mechanics quietly so the executive can focus.",
+    "say": "Join early. Problems get found before the executive arrives.",
+    "ask": "What small lapse on a call reflects badly on the executive?"
+  },
+  "p2": {
+    "on": "This slide warns that small lapses (background noise, a late join, an unprepared executive) add up. It says to send reminders 24–48 hours ahead with prep materials, confirm participants and roles in advance, and never let a technical or scheduling issue become the executive's problem to solve live.",
+    "say": "The executive should never have to troubleshoot live.",
+    "wrap": "Prepare them, join early, stay unobtrusive and handle the mechanics.",
+    "scenario": "Thirty seconds before Elias's call with a prospective client, you notice the invite was for the wrong time zone and the client may have been waiting for an hour. What do you do right now?"
+  }
+},
+"9::Video Conferencing: Technical Troubleshooting": {
+  "p1": {
+    "on": "This slide says most video problems fall into a few categories (login, audio and video, screen share), and the goal live is rapid triage, then documentation. The steps: for login, verify the link, check the browser and contact support; for audio and video, check device selection, app permissions and connection; keep a backup channel ready; and document every issue.",
+    "say": "Get the call working first. Diagnose afterward.",
+    "ask": "What's your backup if the platform fails completely?"
+  },
+  "p2": {
+    "on": "This slide warns against trying every fix at once instead of working likely causes in order. It says to keep the provider's support contact handy, test unfamiliar setups in advance, and give participants a calm explanation during delays rather than silence.",
+    "say": "Systematic beats random, even under pressure.",
+    "wrap": "Triage in order, have a backup channel and document every issue.",
+    "scenario": "Fifteen minutes before a critical client call, you find the meeting platform is down for planned maintenance you didn't know about. What's your triage sequence in the next five minutes?"
+  }
+},
+"9::Shareholder & Investor Meeting (AGM) Logistics": {
+  "p1": {
+    "on": "This slide says an AGM has formal requirements beyond a board meeting: notice periods, quorum and voting procedures, building on board meeting preparation. The steps: confirm the required notice period for the meeting type and jurisdiction well in advance, track RSVPs against quorum, and prepare the structured packet scaled to the larger audience.",
+    "say": "No quorum, no valid business.",
+    "ask": "Why track RSVPs against quorum specifically?"
+  },
+  "p2": {
+    "on": "This slide warns against treating an AGM as a bigger board meeting without checking the legal notice and quorum rules. It says to confirm voting and proxy procedures well in advance and never improvise them with shareholders in the room.",
+    "say": "Proxy and voting procedures are never improvised.",
+    "wrap": "Confirm notice, track quorum and settle voting procedures early.",
+    "scenario": "You realize the AGM notice went out later than the jurisdiction's minimum notice period. What do you want confirmed before the meeting goes ahead as scheduled?"
+  }
+},
+"9::Ethics & Gift Compliance": {
+  "p1": {
+    "on": "This slide says gifts and hospitality involving clients, vendors or officials can create real ethics exposure, and the rules are often stricter than intuition suggests. The steps: know the firm's gift and hospitality policy, log gifts given or received above any threshold, and take extra care with government officials and regulated parties.",
+    "say": "Know the policy, and log anything above the threshold.",
+    "ask": "Why is a gift to a government official different?"
+  },
+  "p2": {
+    "on": "This slide warns against assuming a gift is fine because it's modest or \"everyone does this.\" When unsure, ask before accepting or sending, because an unnecessary question costs nothing compared with a compliance problem.",
+    "say": "\"Everyone does this\" isn't a policy.",
+    "wrap": "Check the policy, log the gift and ask when unsure.",
+    "scenario": "A vendor sends an expensive bottle of whisky and a $300 restaurant voucher to the office for the holidays. What do you do with it, and what do you check first?"
+  }
+},
+"9::Speaker & Panelist Logistics for Conferences": {
+  "p1": {
+    "on": "This slide says that when the executive speaks, the EA's job covers travel, materials, tech and content prep, on the organizer's deadlines. The steps: keep one checklist per engagement (bio and headshot, slide deadline, AV needs, travel) with internal deadlines, confirm the format (keynote, panel, fireside chat) early, and send the executive one consolidated briefing.",
+    "say": "One checklist per engagement, with deadlines ahead of the organizer's.",
+    "ask": "How does prep differ for a keynote versus a panel?"
+  },
+  "p2": {
+    "on": "This slide warns against treating a speaking engagement as just another calendar item. It says to confirm AV requirements with the venue directly, not only the organizer, and to send slides 24–48 hours before the organizer's deadline.",
+    "say": "Confirm AV with the venue, not just the organizer.",
+    "wrap": "Checklist, confirmed format, early deliverables and one briefing.",
+    "scenario": "Elias is a panelist in three weeks, and the organizer wants his bio, headshot and pre-submitted questions by Friday. What's your process so it doesn't become a fire drill?"
+  }
+},
+"9::Sponsorship & Vendor Contract Basics for Events": {
+  "p1": {
+    "on": "This slide says sponsorships and event vendor agreements are real contracts, and the EA/PA is often first to notice an unfulfilled deliverable. The steps: confirm every deliverable owed (logo placement, attendee list, speaking slot) before the event, keep the signed agreement on hand during it, and track cost against value delivered for ROI.",
+    "say": "Keep the signed agreement with you at the event.",
+    "ask": "Which sponsorship deliverables would you check before the doors open?"
+  },
+  "p2": {
+    "on": "This slide warns against assuming a promised deliverable happened: check the signage and confirm the attendee list arrived. It says never to auto-renew a sponsorship without assessing value, and to flag gaps to the organizer in writing, promptly.",
+    "say": "A written flag on the day beats a complaint afterward.",
+    "wrap": "Verify deliverables, keep the contract handy and flag gaps in writing.",
+    "scenario": "At a sponsored event, the firm's logo is missing from the printed program even though the agreement guarantees it. What do you do in the moment, and what do you follow up on afterward?"
+  }
+},
+"9::Post-Event Follow-Up & ROI Tracking": {
+  "p1": {
+    "on": "This slide says an event's real value comes afterward, because without structured follow-up, new connections decay like any other contact. The steps: build the follow-up list during the event with notes on who was met and what was discussed, follow up within 48–72 hours, and log attendance and outcomes in the main relationship tracker.",
+    "say": "Follow up within 72 hours, while they still remember you.",
+    "ask": "What note would you want next to each contact?"
+  },
+  "p2": {
+    "on": "This slide warns that a stack of business cards with no notes is nearly useless a week later, and that generic follow-up (\"great meeting you\") doesn't work. It says to track a simple ROI measure per event: leads, relationships deepened, deals influenced.",
+    "say": "Reference the actual conversation, not just the event.",
+    "wrap": "Take notes live, follow up fast and track the ROI.",
+    "scenario": "Elias returns from a three-day conference with 40 new contacts and no notes on any of them. How do you turn that stack into useful follow-up instead of one generic email to everyone?"
+  }
+},
+"9::Professional Liability & Insurance Awareness": {
+  "p1": {
+    "on": "This slide says an EA/PA needn't be an insurance expert but should know professional liability (malpractice) coverage exists, and that spotting a possible claim early gives the firm more options. The steps: know where policy documents and renewal dates are filed, flag client language suggesting a complaint or damages to the right person, and keep policy dates on the compliance calendar.",
+    "say": "Spot it early and route it. Never assess it yourself.",
+    "ask": "What client language would make you escalate?"
+  },
+  "p2": {
+    "on": "This slide warns against treating every complaint as routine, because the EA/PA is often first to see language that should be escalated. Never assess coverage or liability yourself; that goes to the attorney. Handle this correspondence with privileged-level discretion.",
+    "say": "Coverage questions go to the attorney, always.",
+    "wrap": "Know where the policy lives, flag early and keep it confidential.",
+    "scenario": "A client's email says, \"We're considering our options given how this was handled.\" What's your read, and what do you do with the email beyond replying normally?"
+  }
+},
+"9::Building an Executive's Media & Speaking Kit": {
+  "p1": {
+    "on": "This slide says a ready-to-send media kit (bio, headshot, talking points, past coverage) turns a press or speaking request into a same-day response, but only if it's current. The steps: keep a standing folder with short and long bios, a recent headshot and a one-page background, log past coverage and engagements, and refresh the kit quarterly.",
+    "say": "A current kit turns a scramble into a same-day reply.",
+    "ask": "When was Elias's bio last updated?"
+  },
+  "p2": {
+    "on": "This slide warns against updating the bio only when asked, because by then it's stale. It says to keep headshots in print and web resolutions, and always review the kit before sending, since an old title or a finished project listed as ongoing undermines credibility.",
+    "say": "Review before you send, every time.",
+    "wrap": "Keep it current, keep formats ready and refresh quarterly.",
+    "scenario": "A journalist needs Elias's bio and headshot in two hours for a feature. The bio on file is over a year old and names a role he no longer holds. What do you do, given the deadline?"
+  }
 }
 };
