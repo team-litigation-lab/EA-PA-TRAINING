@@ -5541,6 +5541,23 @@ window.PRESENTER_NOTES = {
     "say": "Access that outlives the job is a common security gap.",
     "wrap": "Grant the least role, turn on MFA and review access regularly.",
     "scenario": "A new paralegal needs to update the shared matter calendar and read the client folder. Which role do they get in each system, and what would make you revisit it later?"
+  },
+  "s1": {
+    "on": "This section defines three roles: Admin (full control and user management), Editor (content only) and Viewer (read-only).",
+    "say": "Admin, Editor, Viewer."
+  },
+  "s2": {
+    "on": "These steps assign them: the minimum role for the job, MFA everywhere, periodic reviews, narrow by default, and a record of who has what and why.",
+    "say": "Start narrow; expand only on real need."
+  },
+  "s3": {
+    "on": "This section's rule: every user gets MFA and the minimum role.",
+    "say": "MFA plus minimum role."
+  },
+  "s4": {
+    "on": "This section says to keep Admin to very few people, explains Editor and Viewer, and warns that access outliving the job is a top security gap.",
+    "say": "Review access when someone leaves.",
+    "ask": "Who in your office really needs admin?"
   }
 },
 "8::Least-Privilege Access": {
@@ -5554,6 +5571,18 @@ window.PRESENTER_NOTES = {
     "say": "Fix the role, not the person.",
     "wrap": "Grant what the role needs, review it and remove it when the need ends.",
     "scenario": "A contractor who finished a document-review project two months ago still has access to the firm's case management system. What do you do, and how do you prevent it next time?"
+  },
+  "s1": {
+    "on": "This section's warning: over-permissioning is how well-meaning people break systems by accident.",
+    "say": "No bad intent needed."
+  },
+  "s2": {
+    "on": "These steps apply it: grant what the role needs, flag excess access, fix the role rather than blame, review elevated access, and remove temporary access.",
+    "say": "Fix the role, not the person."
+  },
+  "s3": {
+    "on": "This section tells the story of a junior staffer with unneeded admin access who changed settings; the fix was correcting the role and checking others.",
+    "say": "Check who else is over-permissioned."
   }
 },
 "8::Responding to a Suspicious Data Request": {
@@ -5567,6 +5596,23 @@ window.PRESENTER_NOTES = {
     "say": "Call the number you already have, not the one in the message.",
     "wrap": "Verify through a known channel, escalate and close the gap.",
     "scenario": "Roleplay: someone calls saying they're from the firm's IT provider and need the client list exported \"before the migration tonight.\" Verify or comply? Play it out."
+  },
+  "s1": {
+    "on": "This section says the response is sequential: follow the steps in order.",
+    "say": "Three steps, in order."
+  },
+  "s2": {
+    "on": "These steps are the response: Verify the sender, Escalate through the right channel, and Close the gap that let it through.",
+    "say": "Verify, escalate, close the gap."
+  },
+  "s3": {
+    "on": "This section restates each step as a standalone rule.",
+    "say": "Verify before anything else."
+  },
+  "s4": {
+    "on": "This section lists red flags: urgency and secrecy, mismatched details like an off domain, and unusual asks like passwords or gift cards. Verify through a number you already have.",
+    "say": "Call the number you already have.",
+    "ask": "What's the first red flag you'd notice?"
   }
 },
 "8::Containing a Confidentiality Leak": {
@@ -5580,6 +5626,22 @@ window.PRESENTER_NOTES = {
     "say": "Whether to notify clients or regulators is the attorney's call, not yours.",
     "wrap": "Contain first, capture facts and notify the right roles.",
     "scenario": "You realize you emailed a settlement draft for the Harlow matter to the wrong \"Mark,\" who works at another firm. Walk through the first hour."
+  },
+  "s1": {
+    "on": "This section says leak response is sequential: follow the steps in order.",
+    "say": "In order."
+  },
+  "s2": {
+    "on": "These steps are the response: Contain the spread, Notify the right roles, and Prevent a repeat with policy.",
+    "say": "Contain, notify, prevent."
+  },
+  "s3": {
+    "on": "This section restates the three steps: contain first, notify roles not just names, and add a policy.",
+    "say": "Contain before anything else."
+  },
+  "s4": {
+    "on": "This section details it: recall messages and revoke links, capture the facts, and notify attorney, IT and compliance, who decide any legal notification.",
+    "say": "Notification duties are their call."
   }
 },
 "8::Fixing a Broken Workflow": {
@@ -5593,6 +5655,23 @@ window.PRESENTER_NOTES = {
     "say": "If people keep asking \"where is this?\", the workflow is broken.",
     "wrap": "Consolidate, name the manual steps, test and revisit.",
     "scenario": "Client document requests at the firm arrive by email, get logged in a spreadsheet and are tracked in someone's notes. Redesign it: what's the one system, and which steps stay manual?"
+  },
+  "s1": {
+    "on": "This section's point: disconnected tools (email, spreadsheet, notes) cause duplicate work even for careful people.",
+    "say": "Scattered tools create duplicates."
+  },
+  "s2": {
+    "on": "These steps fix it: find a split workflow, consolidate into one system, name the manual steps, test on a real task, and revisit later.",
+    "say": "One place for the real status."
+  },
+  "s3": {
+    "on": "This section's rule: consolidate into one tracked system and name what stays manual.",
+    "say": "Manual steps by choice, not accident."
+  },
+  "s4": {
+    "on": "This section lists warning signs: repeated 'where is this?', re-typed information, and hand-offs where nobody owns the gap.",
+    "say": "Who owns the step in between?",
+    "ask": "Which of these signs have you seen?"
   }
 },
 "8::The Golden Rules of Admin Data Security": {
@@ -5606,6 +5685,19 @@ window.PRESENTER_NOTES = {
     "say": "Same judgment as keeping a case detail out of casual conversation.",
     "wrap": "Settings off, sensitive data out, placeholders in.",
     "scenario": "Sanitize this together: a termination email naming the employee, their salary, their medical leave and the client they worked on. What do you redact or replace before asking an AI tool to improve the wording?"
+  },
+  "s1": {
+    "on": "This section's first rule: turn off training and data-improvement settings before real work goes into an AI tool.",
+    "say": "Settings off first."
+  },
+  "s2": {
+    "on": "These steps are the rules: settings off, no financial, health, SSN or password data, placeholders for names, AI treated as a third party, and unsure means unsafe.",
+    "say": "An AI tool is a third party."
+  },
+  "s3": {
+    "on": "This section restates the no-go data list and placeholders, then asks you to walk through anonymizing a termination email; Elias's firm's confidentiality still applies.",
+    "say": "Swap names for placeholders.",
+    "ask": "What would you swap out of a termination email?"
   }
 },
 "8::Multi-Factor Authentication Basics": {
@@ -5619,6 +5711,18 @@ window.PRESENTER_NOTES = {
     "say": "Old accounts are the usual gap.",
     "wrap": "MFA everywhere sensitive, email first, authenticator over SMS.",
     "scenario": "List the accounts you use for Elias's work: email, calendar, case management, bank portal and travel. Which would you check for MFA first, and why?"
+  },
+  "s1": {
+    "on": "This section says a password alone is a single point of failure; MFA means a stolen password isn't enough.",
+    "say": "Something you know plus something you have."
+  },
+  "s2": {
+    "on": "These steps apply it: MFA on anything sensitive, email first, older accounts checked, authenticator apps over SMS, and a self-audit.",
+    "say": "Email first; it resets everything else."
+  },
+  "s3": {
+    "on": "This section says MFA belongs on everything sensitive, and the common failure is old accounts never updated.",
+    "say": "Old accounts are the gap."
   }
 },
 "8::Password Manager Best Practices": {
@@ -5634,6 +5738,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Unique passwords, a guarded master password and sharing only through the manager.",
     "scenario": "A colleague asks you to email them the login for the firm's travel booking account. What do you do instead, and what do you check about how that login is stored?"
+  },
+  "s1": {
+    "on": "This section says reused passwords turn one breach into many; a password manager makes unique passwords practical.",
+    "say": "One breach shouldn't be everywhere."
+  },
+  "s2": {
+    "on": "These steps use it: unique passwords, a strong master password, sharing through the manager, moving stored passwords in, and changing any compromised one immediately.",
+    "say": "Never send a password in chat.",
+    "ask": "Where are passwords stored in plain text today?"
   }
 },
 "8::Offboarding Access Removal Checklist": {
@@ -5647,6 +5760,18 @@ window.PRESENTER_NOTES = {
     "say": "\"Probably fine for now\" is how stale access happens.",
     "wrap": "Written checklist, full pass, same-day revocation.",
     "scenario": "The firm's receptionist leaves on Friday. Build the offboarding checklist with the room: every system, shared login and physical access item."
+  },
+  "s1": {
+    "on": "This section says every system a departing person used must be revoked, not just email.",
+    "say": "Every system, not just email."
+  },
+  "s2": {
+    "on": "These steps offboard: a written checklist, used every time, revoking on the departure date, rotating shared credentials, and adding new systems.",
+    "say": "Revoke on the day."
+  },
+  "s3": {
+    "on": "This section says a checklist catches the small systems people forget, and 'fine to leave for now' is exactly the stale access least privilege prevents.",
+    "say": "No 'probably fine for now'."
   }
 },
 "8::Shared Account Risks": {
@@ -5660,6 +5785,18 @@ window.PRESENTER_NOTES = {
     "say": "Convenience today, confusion when something goes wrong.",
     "wrap": "Replace shared logins where you can, and log usage where you can't.",
     "scenario": "Three assistants share one login to the firm's courier account, and a $900 rush delivery nobody remembers ordering appears. What can you find out, and what do you change?"
+  },
+  "s1": {
+    "on": "This section says shared logins hide who did what, which matters the moment something goes wrong.",
+    "say": "Shared means no accountability."
+  },
+  "s2": {
+    "on": "These steps manage it: prefer individual accounts, log shared use, rotate on departures, look for replacements, and treat shared accounts as a risk.",
+    "say": "Individual accounts where possible."
+  },
+  "s3": {
+    "on": "This section notes shared accounts complicate offboarding, and says individual scoped accounts are almost always safer.",
+    "say": "Safer than convenient."
   }
 },
 "8::Physical Security Basics": {
@@ -5673,6 +5810,18 @@ window.PRESENTER_NOTES = {
     "say": "Least privilege applies to rooms too.",
     "wrap": "Lock it, limit access and report losses right away.",
     "scenario": "You realize your office badge wasn't in your bag this morning, and you last had it at a coffee shop. It's probably just misplaced. What do you do, and when?"
+  },
+  "s1": {
+    "on": "This section says digital discipline means little if a laptop or cabinet is left unlocked; physical access is still access.",
+    "say": "Physical access is access."
+  },
+  "s2": {
+    "on": "These steps secure the space: lock devices when stepping away, lock cabinets, report lost badges at once, limit visitor areas, and check your desk.",
+    "say": "Lock it, even for a minute."
+  },
+  "s3": {
+    "on": "This section treats badges like passwords and applies least privilege to visitor movement.",
+    "say": "A lost badge is a lost password."
   }
 },
 "8::Device Security Fundamentals": {
@@ -5686,6 +5835,18 @@ window.PRESENTER_NOTES = {
     "say": "Your phone with work email is a work device.",
     "wrap": "Short lock timeouts, encryption, updates and remote wipe.",
     "scenario": "Elias leaves his phone, which has his work email, in a taxi. What do you check and do in the next 30 minutes?"
+  },
+  "s1": {
+    "on": "This section says an unlocked device is an open door; short timeouts and a manual lock should be reflexes.",
+    "say": "Lock as a reflex."
+  },
+  "s2": {
+    "on": "These steps secure devices: short timeouts plus manual lock, full-disk encryption, work rules on personal devices, prompt updates, and remote wipe.",
+    "say": "Encrypt and enable remote wipe."
+  },
+  "s3": {
+    "on": "This section explains that encryption turns a lost laptop into a hardware loss, and personal devices carry the same obligations.",
+    "say": "Your phone counts too."
   }
 },
 "8::Classifying Information by Sensitivity Level": {
@@ -5699,6 +5860,19 @@ window.PRESENTER_NOTES = {
     "say": "Classify first, then handle accordingly.",
     "wrap": "Classify before sharing, and default up when unsure.",
     "scenario": "Classify these live: the firm's office address, Elias's travel itinerary, a draft motion in the Harlow matter, the holiday party date, and a client's settlement amount."
+  },
+  "s1": {
+    "on": "This section defines three levels: Public, Internal, and Confidential/Privileged.",
+    "say": "Three levels."
+  },
+  "s2": {
+    "on": "These steps apply them: classify before sharing, confirm public items are meant for release, keep Internal inside, treat Confidential with legal stakes in mind, and default higher when unsure.",
+    "say": "Unsure? Treat it as more sensitive.",
+    "ask": "Where would a court date on the calendar fall?"
+  },
+  "s3": {
+    "on": "This section says not everything needs maximum protection, but the safe default is more sensitive.",
+    "say": "Match protection to sensitivity."
   }
 },
 "8::Secure File Sharing Methods": {
@@ -5714,6 +5888,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Share through controlled links, set expiry, send passwords separately and revoke when done.",
     "scenario": "Elias asks you to send a client's financial disclosures to their accountant. Walk through exactly how you'd share it: method, permissions, expiry, and how the password gets there."
+  },
+  "s1": {
+    "on": "This section says email attachments are among the least secure ways to share; access-controlled links are better.",
+    "say": "Links over attachments."
+  },
+  "s2": {
+    "on": "These steps share securely: access-controlled links, expirations and permissions, passwords sent through a separate channel, revoking when done, and least privilege for recipients.",
+    "say": "Never send the password with the file."
   }
 },
 "8::Email Encryption Basics": {
@@ -5727,6 +5909,18 @@ window.PRESENTER_NOTES = {
     "say": "Encryption doesn't fix sending it to the wrong person.",
     "wrap": "Encrypt privileged content, and never let it replace judgment.",
     "scenario": "Which of these would you encrypt: a lunch confirmation, a privileged strategy memo to the client, a client's medical records for a personal-injury claim, and a routine scheduling email to opposing counsel?"
+  },
+  "s1": {
+    "on": "This section says standard email isn't secure; encrypted email adds real protection for sensitive content.",
+    "say": "Encrypt the sensitive ones."
+  },
+  "s2": {
+    "on": "These steps use it: decide if content is sensitive, encrypt privileged content, find your organization's option, keep judging what to send, and encrypt when unsure.",
+    "say": "Many firms have it and don't use it."
+  },
+  "s3": {
+    "on": "This section says knowing when to encrypt is a skill, and encryption is one layer, not a replacement for judgment.",
+    "say": "A layer, not a substitute."
   }
 },
 "8::Metadata Risks in Shared Documents": {
@@ -5742,6 +5936,15 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Clean every external document, especially for opposing counsel, and check that it worked.",
     "scenario": "You're about to send a proposed settlement agreement to opposing counsel. It has an internal comment: \"Client will go to $250K if pushed.\" Walk through the steps before it goes out."
+  },
+  "s1": {
+    "on": "This section warns that metadata (tracked changes, comments, authors, past edits) can leak what nobody meant to share.",
+    "say": "What you can't see can leak."
+  },
+  "s2": {
+    "on": "These steps clean it: check for metadata, remove it explicitly, take extra care with opposing counsel, make a clean export standard, and verify before sending.",
+    "say": "Looks clean isn't clean.",
+    "ask": "Have you ever received a document with comments left in?"
   }
 },
 "8::Clean Desk Policy": {
@@ -5755,6 +5958,18 @@ window.PRESENTER_NOTES = {
     "say": "The printer tray is the most forgotten risk.",
     "wrap": "Clear it, lock it and check at the end of every day.",
     "scenario": "You work from home two days a week, and your family walks past your desk. What does a clean desk policy look like there?"
+  },
+  "s1": {
+    "on": "This section says sensitive papers on a desk, in a printer tray or on an unlocked screen are a physical data leak.",
+    "say": "A physical leak."
+  },
+  "s2": {
+    "on": "These steps practice it: put documents away, check the printer, lock the screen, apply it at home, and do an end-of-day check.",
+    "say": "Check the printer tray."
+  },
+  "s3": {
+    "on": "This section flags printers as a forgotten risk and calls a clean desk the daily habit behind physical security.",
+    "say": "Policy becomes habit."
   }
 },
 "8::Secure Disposal of Sensitive Documents": {
@@ -5770,6 +5985,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Shred paper, securely delete digital files, and make it a habit, drafts included.",
     "scenario": "You printed three drafts of a client's estate plan while revising it. Where does each draft go when you're done, and what about the digital drafts on your desktop?"
+  },
+  "s1": {
+    "on": "This section says paper in the trash is still readable; shredding destroys the information.",
+    "say": "Shred it, don't bin it."
+  },
+  "s2": {
+    "on": "These steps dispose securely: shred paper, securely delete files, make disposal routine, keep a shredder handy, and include drafts.",
+    "say": "Drafts count too."
   }
 },
 "8::The First 10 Minutes of a Security Incident": {
@@ -5783,6 +6006,19 @@ window.PRESENTER_NOTES = {
     "say": "Notify early, even with an incomplete picture.",
     "wrap": "Contain first, notify fast and document as you go.",
     "scenario": "Roleplay, cold: you notice the firm's shared client folder has been publicly accessible by link for an unknown amount of time. What do you do in the first 10 minutes?"
+  },
+  "s1": {
+    "on": "This section says incident response is sequential: follow the steps in order.",
+    "say": "Four steps."
+  },
+  "s2": {
+    "on": "These steps are the first ten minutes: Contain, Assess what was exposed, Notify right away, and Document in real time.",
+    "say": "Contain, assess, notify, document."
+  },
+  "s3": {
+    "on": "This section says early notification with incomplete facts beats a late complete report, and extends the leak-containment principle.",
+    "say": "Tell early, even if incomplete.",
+    "ask": "Who would you notify first?"
   }
 },
 "8::Who to Notify and When": {
@@ -5798,6 +6034,14 @@ window.PRESENTER_NOTES = {
     "say": "",
     "wrap": "Know the contacts in advance, escalate when unsure and notify promptly.",
     "scenario": "Match each incident to who gets notified first: a laptop stolen from a car, an email with a client's SSN sent to the wrong person, a phishing email nobody clicked, and ransomware on the office file server."
+  },
+  "s1": {
+    "on": "This section says different incidents trigger different people, timelines and sometimes legal duties.",
+    "say": "Different incidents, different contacts."
+  },
+  "s2": {
+    "on": "These steps prepare: know the contact per incident type in advance, treat breaches as possibly carrying legal duties, escalate when unsure, confirm contacts ahead, and notify promptly.",
+    "say": "Know the contacts before you need them."
   }
 },
 "8::Documenting an Incident as It Unfolds": {
@@ -5811,6 +6055,18 @@ window.PRESENTER_NOTES = {
     "say": "A rough note now beats a polished one later.",
     "wrap": "Log facts in real time, including who was told and when, and keep the record.",
     "scenario": "Using the misdirected-email scenario from earlier, write the first five timestamped lines of the incident log."
+  },
+  "s1": {
+    "on": "This section says a real-time record beats a reconstruction days later.",
+    "say": "Write it as it happens."
+  },
+  "s2": {
+    "on": "These steps document: note what happened and when in real time, simple timestamps, who was notified, facts not blame, and preserve the record.",
+    "say": "Rough and real-time beats polished and late."
+  },
+  "s3": {
+    "on": "This section says the record isn't about blame; it supports review and compliance, and simple timestamps are enough.",
+    "say": "Timestamps and facts."
   }
 },
 "8::Post-Incident Review": {
@@ -5824,6 +6080,18 @@ window.PRESENTER_NOTES = {
     "say": "Blame teaches people to hide the next one.",
     "wrap": "Review the process, use the log and make one real change.",
     "scenario": "Run a five-minute review of the misdirected settlement email: what happened, what worked, what gap allowed it, and the one change you'd make."
+  },
+  "s1": {
+    "on": "This section says a real review after resolution stops the failure from repeating.",
+    "say": "Review, then change something."
+  },
+  "s2": {
+    "on": "These steps run it: cover what happened, worked and should change; focus on process; use the real-time notes; name one concrete change; and capture the lesson.",
+    "say": "One concrete change."
+  },
+  "s3": {
+    "on": "This section says blame-focused reviews discourage early reporting, and ties the habit to the Day 6 playbook.",
+    "say": "Process, not people."
   }
 },
 "8::Social Engineering Red Flags": {
@@ -5837,6 +6105,19 @@ window.PRESENTER_NOTES = {
     "say": "The strongest system fails if someone hands over the keys.",
     "wrap": "Verify authority independently, question the unusual and report attempts.",
     "scenario": "A caller says they're Elias's new banker and need you to confirm his date of birth and the last four digits of his SSN to \"finish setting up his account today.\" What are the red flags, and what do you say?"
+  },
+  "s1": {
+    "on": "This section names three red flags: urgency pressure, authority impersonation and unusual requests.",
+    "say": "Urgency, authority, unusual."
+  },
+  "s2": {
+    "on": "These steps respond: treat urgency as a flag, verify authority through a known channel, question out-of-pattern requests, verify independently, and report attempts.",
+    "say": "Report it even if you didn't fall for it.",
+    "ask": "How would you handle an 'urgent' call from 'IT'?"
+  },
+  "s3": {
+    "on": "This section says social engineering targets people, not systems, and independent verification is the defense.",
+    "say": "Verify through a separate channel."
   }
 },
 "8::Phishing Recognition Beyond Email": {
@@ -5850,6 +6131,18 @@ window.PRESENTER_NOTES = {
     "say": "Attackers switch channels to get around email filters.",
     "wrap": "Question every channel and verify through one you already trust.",
     "scenario": "You get a calendar invite titled \"Urgent: Review Updated Retainer Terms\" with a document link, from an address one letter off from a client's domain. What do you do?"
+  },
+  "s1": {
+    "on": "This section says phishing now comes by text, phone and calendar invite too.",
+    "say": "Every channel."
+  },
+  "s2": {
+    "on": "These steps apply the same skepticism: look for the usual tells, verify through a known channel, be more suspicious of unusual channels, and report.",
+    "say": "A channel switch is a warning sign."
+  },
+  "s3": {
+    "on": "This section restates the common tells and the safe default of verifying through a known number.",
+    "say": "Generic greeting, odd sender, unexpected link."
   }
 },
 "8::Recognizing Insider Threat Warning Signs": {
@@ -5863,6 +6156,18 @@ window.PRESENTER_NOTES = {
     "say": "Flag it to the right person. Don't confront or ignore it.",
     "wrap": "Observe role-fit, assume good intent and route it properly.",
     "scenario": "You notice a billing clerk has been downloading entire client case files, which their role doesn't need. What do you do, and what do you avoid doing?"
+  },
+  "s1": {
+    "on": "This section says some risk is internal: access that doesn't fit a role deserves attention without assuming malice.",
+    "say": "Notice without accusing."
+  },
+  "s2": {
+    "on": "These steps respond: note role mismatches, use the least-privilege lens, recognize most cases are shortcuts, flag to the right person, and focus on behavior.",
+    "say": "Flag it; don't confront."
+  },
+  "s3": {
+    "on": "This section says most insider incidents are well-meaning shortcuts, and this is least privilege, not suspicion.",
+    "say": "Role-fit, not suspicion."
   }
 },
 "8::Crisis Communication Principles": {
@@ -5876,6 +6181,18 @@ window.PRESENTER_NOTES = {
     "say": "Factual and incomplete beats confident and wrong.",
     "wrap": "Calm, confirmed, frequent, with a time for the next update.",
     "scenario": "The firm's email is down firm-wide on a filing day, and IT doesn't know why yet. Write the first update to the attorneys using ACT."
+  },
+  "s1": {
+    "on": "This section says crisis communication should be calm, factual and frequent; silence and vague reassurance increase anxiety.",
+    "say": "Calm, factual, frequent."
+  },
+  "s2": {
+    "on": "These steps communicate: a regular cadence, confirmed facts labeled, ACT (Acknowledge, Clarify, Timeline), no vague reassurance, and confirmed delivery.",
+    "say": "Acknowledge, Clarify, Timeline."
+  },
+  "s3": {
+    "on": "This section warns that labeled confirmed facts stop speculation, and ties back to Day 1's ACT framework.",
+    "say": "Label what's confirmed."
   }
 },
 "8::Maintaining Calm Under Pressure": {
@@ -5889,6 +6206,19 @@ window.PRESENTER_NOTES = {
     "say": "Calm is a skill, not a personality trait.",
     "wrap": "Pause, stay deliberate and practice before you need it.",
     "scenario": "Elias bursts in: the judge moved the hearing to this afternoon and the exhibit binders aren't printed. Show the room your first 30 seconds: what you say and what you do."
+  },
+  "s1": {
+    "on": "This section says your visible calm is often the only calm in the room, and it's contagious; so is panic.",
+    "say": "Calm spreads."
+  },
+  "s2": {
+    "on": "These steps build calm: pause before responding, stay deliberate, don't mistake calm for passive, practice a technique ahead, and debrief yourself.",
+    "say": "Pause a few seconds first.",
+    "ask": "What's your go-to technique under pressure?"
+  },
+  "s3": {
+    "on": "This section says calm is a practiced skill, not passivity, and the pause is a technique that works.",
+    "say": "A skill you can practice."
   }
 },
 "8::Chain of Command During a Crisis": {
@@ -5902,6 +6232,18 @@ window.PRESENTER_NOTES = {
     "say": "The routine hierarchy is the crisis hierarchy.",
     "wrap": "Use the known chain, with backups identified in advance.",
     "scenario": "A client's funds wire is flagged as possibly fraudulent at 4:45 p.m. Elias is on a flight and the managing partner isn't answering. Who's next in the chain, and what do you do?"
+  },
+  "s1": {
+    "on": "This section says a crisis is the wrong time to learn who decides what; know the chain in advance.",
+    "say": "Know it before you need it."
+  },
+  "s2": {
+    "on": "These steps prepare: know the chain, use the Day 1 Command Hierarchy, name backup contacts, escalate through the chain, and keep backups current.",
+    "say": "Don't skip steps under pressure."
+  },
+  "s3": {
+    "on": "This section ties this to Day 1's hierarchy and says a known backup path prevents a gap in authority.",
+    "say": "Have the backup path ready."
   }
 },
 "8::Business Continuity Basics": {
@@ -5915,6 +6257,18 @@ window.PRESENTER_NOTES = {
     "say": "A simple list covers most of the value.",
     "wrap": "List dependencies, name backups and fix single points of failure.",
     "scenario": "The firm's case management system goes down for a full day during trial week. What does the continuity plan need to say, and what should already be printed or backed up?"
+  },
+  "s1": {
+    "on": "This section frames continuity as a question: if a key system, person or resource disappeared tomorrow, what's the plan?",
+    "say": "What if it's gone tomorrow?"
+  },
+  "s2": {
+    "on": "These steps plan: identify critical dependencies, list contacts and backups, plan before you need it, find single points of failure, and revisit periodically.",
+    "say": "Find your single points of failure."
+  },
+  "s3": {
+    "on": "This section says a basic list covers most of the value, and ties this to Day 5 backup vendors and the Home Binder.",
+    "say": "Simple is enough."
   }
 },
 "8::Attorney-Client Privilege: What EAs Need to Know": {
@@ -5928,6 +6282,19 @@ window.PRESENTER_NOTES = {
     "say": "An accidental disclosure can't be undone.",
     "wrap": "Treat it as privileged, check every recipient and ask when unsure.",
     "scenario": "Elias asks you to forward his advice email to the client, and the client asks you to cc their business partner, who isn't a party to the matter. What do you do?"
+  },
+  "s1": {
+    "on": "This section defines privilege (confidential lawyer–client communications for legal advice) and warns it can be lost through carelessness.",
+    "say": "Strict, and easy to lose."
+  },
+  "s2": {
+    "on": "These steps protect it: treat such communications as privileged, check recipients, avoid being overheard, accept that you're inside the relationship, and ask when unsure.",
+    "say": "Check the recipient list."
+  },
+  "s3": {
+    "on": "This section warns that disclosure to the wrong person can waive privilege, the obligation extends to the EA, and says to ask the attorney when in doubt.",
+    "say": "A disclosure can't be undone.",
+    "ask": "Who shouldn't be on a privileged email?"
   }
 },
 "8::HIPAA in a Legal Context": {
@@ -5941,6 +6308,18 @@ window.PRESENTER_NOTES = {
     "say": "The firm doesn't need to be in healthcare for HIPAA to matter.",
     "wrap": "Recognize it, restrict it and ask when unsure.",
     "scenario": "A personal-injury client emails you their full hospital records and asks you to forward them to their chiropractor and their employer. What do you do?"
+  },
+  "s1": {
+    "on": "This section says HIPAA protects identifiable health information and applies whenever a matter touches medical records.",
+    "say": "Medical records mean HIPAA."
+  },
+  "s2": {
+    "on": "These steps apply it: spot medical content, apply it outside health practices too, share only on need, default to the highest tier, and ask the attorney.",
+    "say": "Highest sensitivity by default."
+  },
+  "s3": {
+    "on": "This section says HIPAA can apply without being a healthcare provider, handling matters as much as theory, and it links to classification.",
+    "say": "Discretion in practice."
   }
 },
 "8::GDPR & Data Privacy Regulations": {
@@ -5954,6 +6333,18 @@ window.PRESENTER_NOTES = {
     "say": "Recognize the trigger. The attorney handles the specifics.",
     "wrap": "Check at intake, respect data rights and flag early.",
     "scenario": "A new client is a German company with employees in Berlin and Chicago, and the matter involves employee records from both offices. What do you flag to Elias at intake?"
+  },
+  "s1": {
+    "on": "This section explains GDPR governs EU individuals' personal data and can apply to firms outside the EU.",
+    "say": "It follows the data, not the office."
+  },
+  "s2": {
+    "on": "These steps apply it: recognize reach, account for data rights, check at intake for non-US data, remember state laws like the CCPA, and flag early.",
+    "say": "Check at intake."
+  },
+  "s3": {
+    "on": "This section covers rights to know and delete, US state laws like the CCPA, and the takeaway: recognize and flag, don't memorize.",
+    "say": "Recognize and flag."
   }
 },
 "8::Other Relevant Compliance Frameworks": {
@@ -5967,6 +6358,18 @@ window.PRESENTER_NOTES = {
     "say": "Pattern recognition is the skill. Asking is always right.",
     "wrap": "Recognize sensitive categories, handle them carefully and ask about specifics.",
     "scenario": "A new matter involves a public company's internal financial controls and a student's school records. Which frameworks might apply, and what do you ask Elias?"
+  },
+  "s1": {
+    "on": "This section lists three groups: financial and corporate (SOX), sector privacy (GLBA, FERPA), and state bar ethics rules.",
+    "say": "SOX, GLBA, FERPA, bar rules."
+  },
+  "s2": {
+    "on": "These steps apply the pattern: recognize high-risk categories, handle them carefully by default, ask about unfamiliar areas, know the main frameworks, and remember bar rules apply regardless.",
+    "say": "Pattern recognition over memorization."
+  },
+  "s3": {
+    "on": "This section says no training covers every framework; the skill is spotting high-risk categories, and asking the attorney is always right.",
+    "say": "Ask; it's never wrong."
   }
 },
 "8::Work-Product Confidentiality": {
@@ -5980,6 +6383,18 @@ window.PRESENTER_NOTES = {
     "say": "Not a client communication doesn't mean shareable.",
     "wrap": "Handle it like privileged material, label it and keep it within the team.",
     "scenario": "A colleague on an unrelated matter asks to see a strategy memo from a case you support, saying it would help with a similar issue. What do you do?"
+  },
+  "s1": {
+    "on": "This section explains work product (strategy memos, drafts, internal analysis) is protected separately from privilege and can be waived by careless handling.",
+    "say": "Separate protection, same care."
+  },
+  "s2": {
+    "on": "These steps protect it: handle it like privileged material, keep it internal unless cleared, and label it in the DMS.",
+    "say": "Default: it stays internal."
+  },
+  "s3": {
+    "on": "This section warns that 'not a client communication' doesn't mean shareable, and says when in doubt treat it as protected.",
+    "say": "When in doubt, protected."
   }
 },
 "8::Investor Disclosure Confidentiality": {
@@ -5993,6 +6408,18 @@ window.PRESENTER_NOTES = {
     "say": "Interest isn't entitlement.",
     "wrap": "Confirm clearance, restrict access and escalate new requests.",
     "scenario": "An investor emails asking for details about an ongoing matter that hasn't been publicly disclosed. What do you do before responding?"
+  },
+  "s1": {
+    "on": "This section says investor information has its own boundaries (some shareable with investors only, some not at all) and ties to classification.",
+    "say": "Investors don't get everything."
+  },
+  "s2": {
+    "on": "These steps manage it: confirm what's cleared, keep materials access-controlled, and escalate requests beyond what's prepared.",
+    "say": "Escalate anything not cleared."
+  },
+  "s3": {
+    "on": "This section warns against assuming investors are entitled to everything, and links this to investor briefing prep.",
+    "say": "Confirm the boundaries first."
   }
 },
 "8::Crisis PR & Media Containment": {
@@ -6006,6 +6433,19 @@ window.PRESENTER_NOTES = {
     "say": "\"No comment, here's who to contact\" is the right fast answer.",
     "wrap": "Know the spokesperson, use the holding statement and escalate in parallel.",
     "scenario": "A journalist calls you directly, bypassing the firm's usual channels, asking for comment on a sensitive matter. What do you say, and who do you contact the moment you hang up?"
+  },
+  "s1": {
+    "on": "This section says media crises move in minutes, building on reputational risk and crisis communication.",
+    "say": "Minutes, not hours."
+  },
+  "s2": {
+    "on": "These steps contain it: confirm who's authorized to speak, give a prepared holding statement, and escalate in parallel.",
+    "say": "Holding line, then escalate in parallel.",
+    "ask": "What would your holding statement say?"
+  },
+  "s3": {
+    "on": "This section warns against handling media outside the authorization chain, and says a fast 'no comment, here's who to contact' protects everyone.",
+    "say": "Good intentions don't prevent damage."
   }
 },
 "9::Running an Event End-to-End": {
