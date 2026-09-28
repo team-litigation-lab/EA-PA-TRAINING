@@ -2140,5 +2140,317 @@ window.PRESENTER_NOTES = {
     "wrap": "Be specific, use the data and leave with a concrete focus.",
     "scenario": "Look honestly at Days 1 through 5. Which day or Practice Lab tool would you most want to revisit before moving on, and what exactly still feels unclear?"
   }
+},
+"6::Choosing a Business Structure": {
+  "p1": {
+    "on": "This slide says entity type (sole proprietorship, partnership, LLC or corporation) changes liability, taxation and compliance obligations. The steps: gather the goals first (liability, tax, growth), confirm every state the business will operate in, compare the trade-offs against those goals, factor in expansion plans, and document the reasoning behind the choice.",
+    "say": "Goals, states and expansion plans come before any recommendation.",
+    "ask": "Has anyone here formed a business entity? What surprised you?"
+  },
+  "p2": {
+    "on": "This slide compares the common structures. A sole proprietorship is simplest, but the owner is personally liable. An LLC separates personal and business liability with flexible tax treatment. A corporation (C or S) has formal governance (board, bylaws, minutes) and a share structure, often chosen when outside investment is planned.",
+    "say": "The attorney and accountant decide; you gather what they need to decide.",
+    "wrap": "Gather goals, states and plans, compare the trade-offs and document the reasoning.",
+    "scenario": "Elias wants to set up a separate entity for his speaking and consulting work, which may expand to two other states next year. What do you gather before the attorney and accountant recommend a structure?"
+  }
+},
+"6::Staying in Good Standing": {
+  "p1": {
+    "on": "This slide says regulatory compliance is ongoing filings and renewals, never a one-time step. The steps: track every deadline on a recurring calendar, set reminders well ahead, notify the owner immediately and start corrective action the same day if something lapses, confirm requirements haven't changed, and keep a current standing record for every entity.",
+    "say": "Good standing is continuous, never finished.",
+    "ask": "Why is last year's renewal process a risky assumption?"
+  },
+  "p2": {
+    "on": "This slide lists what good standing requires: annual or biennial reports filed on time with current officers and address, franchise taxes paid, a registered agent in every state, and licenses renewed before expiry. Losing good standing can block contracts, bank actions and even the right to sue in that state.",
+    "say": "Lose good standing and you can lose the right to sue in that state.",
+    "wrap": "Calendar every filing, remind early and act the same day on any lapse.",
+    "scenario": "You discover the firm's city business license expired 10 days ago. Who do you tell, what do you do today, and what do you change so it can't happen again?"
+  }
+},
+"6::Leading a Project Under Pressure": {
+  "p1": {
+    "on": "This slide says to find the root cause of a delay before reassigning tasks, because public blame fixes nothing. The steps: give stakeholders structured, scheduled updates; apply Strategic Alignment (turn the executive's vision into next steps); use Influence Without Authority with vendors and teams you don't supervise; and provide Decision Support with summaries, risks and a recommendation.",
+    "say": "Look for what's broken, not who's at fault.",
+    "ask": "When a deadline slips, what's your first instinct?"
+  },
+  "p2": {
+    "on": "This slide expands on the leadership competencies: scheduled updates instead of silence, Strategic Alignment, Influence Without Authority, and Decision Support. Assistants don't make every decision, but they shape how decisions get made.",
+    "say": "You shape the decision even when you don't make it.",
+    "wrap": "Root cause first, scheduled updates, and options with a recommendation.",
+    "scenario": "Roleplay: the client's document production just slipped two days, and three stakeholders are emailing for status. What do you look for first, and what goes in your update?"
+  }
+},
+"6::Seasonal Project Coordination": {
+  "p1": {
+    "on": "This slide gives four steps for recurring crunch periods: Recognize the Pattern (year-end close, trial season, compliance renewals, conference season), Build the Playbook Once (checklist, timeline and owner for each task), Start Before It's Urgent (earlier than last time, based on what the last cycle revealed), and Debrief and Update the Playbook.",
+    "say": "Build the playbook once, then start earlier every cycle.",
+    "ask": "What predictable crunch time do you rebuild from memory every year?"
+  },
+  "p2": {
+    "on": "This slide separates seasonal coordination from general project management: a one-off project has an end and gets closed out, while a seasonal responsibility comes back on a predictable calendar and should get faster each cycle.",
+    "say": "A seasonal task should get easier every year.",
+    "wrap": "Recognize, document, start early and update after every cycle.",
+    "scenario": "Year-end billing close at Thorne & Partners ran late last December because partner approvals came in slowly. Build the first draft of the playbook: what starts when, and who owns it?"
+  }
+},
+"6::Frameworks Worth Knowing": {
+  "p1": {
+    "on": "This slide introduces three frameworks, with a diagram. Lean eliminates waste and keeps what adds value. Six Sigma reduces recurring errors through measurement and root-cause analysis. PMI/PMBOK gives a standard structure for large projects. The steps say to match the framework to what's broken, and that this is name recognition, not certification.",
+    "say": "Waste, defects or structure: match the framework to the problem.",
+    "ask": "Which of your problems is waste, and which is errors?"
+  },
+  "p2": {
+    "on": "This slide gives each framework in one line: Lean removes waste; Six Sigma reduces errors with DMAIC (Define, Measure, Analyze, Improve, Control); PMI/PMBOK plans scope, schedule, budget and risk; Agile delivers in short cycles and adjusts. You don't need certification, just recognition.",
+    "say": "Recognize what each solves. No belt required.",
+    "wrap": "Know which framework fits which problem.",
+    "scenario": "Quick sort: a filing process with four redundant approval steps, invoices with recurring number errors, and a six-month office move. Which framework fits each?"
+  }
+},
+"6::Lean Six Sigma in Practice — A Real Methodology, Not Just a Buzzword": {
+  "p1": {
+    "on": "This slide walks through DMAIC. Define the problem in one sentence (\"Invoices go out 4–6 days late every month\"). Measure with real numbers. Analyze for the root cause: a missing approval, a bottleneck, a broken handoff. Improve by changing the process. Control by building a checklist, reminder or tracker so the fix sticks.",
+    "say": "Define, Measure, Analyze, Improve, Control.",
+    "ask": "Who has a recurring annoyance we can run through DMAIC right now?"
+  },
+  "p2": {
+    "on": "This slide explains that Lean and Six Sigma are two disciplines combined in practice: Lean removes waste and keeps what adds value, and Six Sigma reduces errors and variation with data.",
+    "say": "Lean removes waste. Six Sigma removes errors.",
+    "wrap": "Use DMAIC to fix a broken process, and don't skip Control.",
+    "scenario": "Live, 30 seconds: someone name a recurring problem from your work. As a group, call out what Define, Measure, Analyze, Improve and Control would look like for it."
+  }
+},
+"6::DMAIC — Three Worked EA Examples": {
+  "p1": {
+    "on": "This slide gives worked examples. Waiting waste: a contract stuck on one partner's signature is fixed with a backup-approver rule, not louder reminders. Motion waste: a document you need four folders to find is fixed with one standard filing location. The steps also run a mini DMAIC on a frustration, isolate the problem field on an intake form, and make the fix the new standard.",
+    "say": "Fix the process, not the reminder.",
+    "ask": "What's a Waiting problem in your own work?"
+  },
+  "p2": {
+    "on": "This slide shows two more examples. Expense reports approved too slowly: define it, measure turnaround for two weeks, find the bottleneck, fix it and control. Incomplete intake forms: define \"30% of forms missing required fields,\" measure which fields, analyze why, improve the form and control with a check.",
+    "say": "Find the one field or step that actually causes it.",
+    "wrap": "Measure first, find the real cause, then make the fix the standard.",
+    "scenario": "Walk the intake-form example step by step with the room, then apply DMAIC to one process from your own work."
+  }
+},
+"6::Lean's 8 Wastes & Kaizen": {
+  "p1": {
+    "on": "This slide lists Lean's 8 Wastes, remembered as DOWNTIME: Defects, Overproduction, Waiting, Non-utilized talent, Transportation, Inventory, Motion and Extra processing. The steps: learn to spot waste instinctively, watch especially for Waiting and Extra Processing, practice Kaizen by fixing small frictions daily, and don't skip the Control step.",
+    "say": "Spot the waste, fix it small and make it stick.",
+    "ask": "Which of the 8 wastes do you see most at work?"
+  },
+  "p2": {
+    "on": "This slide says most office waste is Waiting (approvals stuck in an inbox) and Extra Processing (re-entering the same data in three systems). Kaizen means continuous small improvement, not one big overhaul, and you don't need a Six Sigma belt to use any of it.",
+    "say": "Waiting and Extra Processing are almost always the answer.",
+    "wrap": "Fix small frictions daily and build in Control.",
+    "scenario": "You enter every new client's details into the CRM, the billing system and a spreadsheet. Which waste is this, and what's the smallest Kaizen fix you could make this week?"
+  }
+},
+"6::Operational Optimization": {
+  "p1": {
+    "on": "This slide gives the order: automate repetitive tasks, clarify ownership, then standardize. The steps: find a fully manual recurring task, automate it before documenting it, assign an owner, standardize last so the improvement lasts, and track a small handful of KPIs on a fixed review cadence.",
+    "say": "Automate, assign an owner, then standardize, in that order.",
+    "ask": "What's one task you still do fully by hand?"
+  },
+  "p2": {
+    "on": "This slide explains how to choose KPIs: pick outcome-based measures (calendar accuracy, email response time, on-time filings, invoice turnaround), limit it to four or five, give each a target and an owner, and review on a fixed cadence, acting on trends rather than single bad days.",
+    "say": "A KPI without an owner is just a number.",
+    "wrap": "Automate first, own it, standardize it and measure a few things that matter.",
+    "scenario": "Every Monday you manually compile a matter status report from five spreadsheets. Apply automate, own, standardize, and name the one KPI you'd track for it."
+  }
+},
+"6::The KPI Dashboard Template": {
+  "p1": {
+    "on": "This slide says a real dashboard tracks a few numbers across four areas: Executive Productivity, Client Service, Operational Efficiency and Legal Compliance. The steps: set a specific target for each (for example, Calendar Accuracy ≥ 98%), review on a fixed cadence, treat SOPs as having a full lifecycle, and feed missed KPIs back into SOP review.",
+    "say": "A few KPIs, each with a specific target.",
+    "ask": "Which metric do you think is hardest to hit consistently?"
+  },
+  "p2": {
+    "on": "This slide shows the SOP lifecycle (Creation → Review & Update → Approval & Implementation → Monitoring & Audit → back to Creation) and example KPIs: calendar accuracy ≥ 98% and a briefing by 8 a.m.; client replies within 4 business hours with zero missed follow-ups; invoices within 3 days of month-end and SOPs reviewed every 6 months.",
+    "say": "A KPI that keeps missing means the SOP needs updating.",
+    "wrap": "Specific targets, a fixed review and a loop back into the SOPs.",
+    "scenario": "Your dashboard shows client response time averaging 7 hours against a 4-hour target for three months. What does that tell you, and which SOP do you review first?"
+  }
+},
+"6::SOP Architecture & Trigger Mapping": {
+  "p1": {
+    "on": "This slide says an SOP standardizes a task, reduces errors and speeds execution. Every SOP shares one structure: Title & SOP ID, Purpose, Scope, Definitions, Procedure and so on. Trigger mapping names exactly what event should prompt someone to use it. The steps: state why the SOP is needed, define the scope, write numbered steps not prose, and assign a trigger event.",
+    "say": "An SOP without a trigger won't get used.",
+    "ask": "What event should make someone reach for an SOP?"
+  },
+  "p2": {
+    "on": "This slide warns against SOPs with no clear trigger. It says every SOP needs an owner, a real ID and version number from the start (for example, SOP-CA-001), and should be short enough to follow live: a checklist beats an exhaustive document.",
+    "say": "Owner, ID, version, trigger.",
+    "wrap": "Numbered steps, a clear trigger and an owner who keeps it current.",
+    "scenario": "You're writing an SOP for last-minute court filing deadlines. What's the trigger event, and what must the first three steps cover to be useful in the moment?"
+  }
+},
+"6::Hybrid Screen-Recording Workflow (Loom + Text)": {
+  "p1": {
+    "on": "This slide explains that some processes are easier to show than describe, so a short screen recording (for example with Loom) paired with a written summary gets the best of both. The steps: record a focused capture under 5 minutes with narration, write the numbered text summary right after, store both in the same SOP entry, and keep one recording per process.",
+    "say": "The video shows it. The text makes it searchable.",
+    "ask": "Which of your processes would be easier to show than write?"
+  },
+  "p2": {
+    "on": "This slide warns that a recording without the text summary isn't a complete SOP. It says to update both when the software changes, keep recordings accessible without special logins, and use the hybrid format only for visual, navigation-heavy processes.",
+    "say": "An outdated recording is worse than none.",
+    "wrap": "Short recording, written steps, stored together and kept current.",
+    "scenario": "You need to document a multi-screen expense report process with non-obvious approval routing in the accounting platform. Hybrid, or text alone? What tips the decision?"
+  }
+},
+"6::Maintenance, Auditing & Version Control": {
+  "p1": {
+    "on": "This slide says an SOP is never finished: it has a lifecycle, version control shows which version you're on and what changed, and audits confirm it's actually followed. The steps: schedule a quarterly or biannual review, keep a Revision History Log (date, author, change), update off-cycle when a law changes or an error surfaces, and measure adherence with KPIs.",
+    "say": "Every change gets a version number and a log entry.",
+    "ask": "How would you know if someone was using an outdated SOP?"
+  },
+  "p2": {
+    "on": "This slide warns against changing an SOP's content without incrementing the version. It says to keep SOPs in one central repository, close the loop on every audit finding by updating the SOP, and give each SOP a specific owner.",
+    "say": "An audit finding that never reaches the SOP will happen again.",
+    "wrap": "Review on schedule, version every change, audit adherence and assign an owner.",
+    "scenario": "An audit finds three team members following three slightly different versions of the same filing SOP, without knowing it. What does that reveal, and what do you change?"
+  }
+},
+"6::Entity Formation Step-by-Step": {
+  "p1": {
+    "on": "This slide says forming an entity is a sequence: choose the structure, reserve the name, file formation documents, get an EIN, and complete the governance document. The date on paper and the date it's operational often differ, and a missed early step blocks later ones. The steps: check name availability, file the articles and confirm approval, apply for the EIN, and complete the Operating Agreement or Bylaws.",
+    "say": "It's a sequence, and a skipped step blocks the next one.",
+    "ask": "Why can't you open a bank account the day the state approves the filing?"
+  },
+  "p2": {
+    "on": "This slide warns against treating the state filing as the finish line and skipping the EIN or governance document. It says to keep every formation document in one folder from day one and to set up the registered agent correctly at formation.",
+    "say": "Approval from the state isn't the finish line.",
+    "wrap": "Follow the sequence, keep every document together and set the agent up at formation.",
+    "scenario": "Elias's new consulting entity was approved by the state yesterday, and he wants a business bank account \"as soon as possible.\" The EIN hasn't been applied for yet. What do you tell him about the sequence and a realistic timeline?"
+  }
+},
+"6::Multi-State Registration & Foreign Qualification": {
+  "p1": {
+    "on": "This slide explains that an entity is only authorized to do business in its formation state; elsewhere it needs foreign qualification. \"Doing business\" is a legal threshold: an employee, a lease or a registered presence can trigger it. Without qualification, the entity risks being unable to enforce contracts there. The steps: identify every state, file a Certificate of Authority with a Good Standing certificate, appoint a registered agent in each, and track each state's filings.",
+    "say": "One employee in a new state can trigger foreign qualification.",
+    "ask": "What counts as \"doing business\" in a state?"
+  },
+  "p2": {
+    "on": "This slide warns that assuming a home-state filing covers every state is one of the most common compliance gaps. It says to keep one tracker listing every qualified state, its registered agent and its renewal deadlines.",
+    "say": "The home-state filing doesn't cover everywhere.",
+    "wrap": "Identify every state, qualify in each and track them in one place.",
+    "scenario": "The firm just hired a remote employee in a state where it has never operated. What needs to happen from a compliance standpoint before the start date, and who do you loop in?"
+  }
+},
+"6::Annual Report & Franchise Tax Deadlines Across Jurisdictions": {
+  "p1": {
+    "on": "This slide says each state sets its own annual report and franchise tax deadline, missing one can cause Loss of Good Standing, and a grace period in one state doesn't mean all have one. The steps: build a master compliance calendar by state with deadline and filing method, set reminders well ahead, and confirm the filing was accepted, not just submitted.",
+    "say": "Submitted isn't the same as accepted.",
+    "ask": "Why treat every state's deadline as hard?"
+  },
+  "p2": {
+    "on": "This slide warns against relying on memory or one person's calendar for multi-state deadlines; that's what a shared, owned tracker is for. If a deadline is missed, act immediately: most states have reinstatement, but the entity is exposed until then.",
+    "say": "A missed deadline gets fixed today, not next week.",
+    "wrap": "One master calendar, early reminders and confirmed acceptance.",
+    "scenario": "Auditing the compliance calendar, you find Delaware's annual report was filed on time, but Texas's franchise report deadline passed three weeks ago with no record of filing. What's your first move?"
+  }
+},
+"6::Business Licensing & Permits": {
+  "p1": {
+    "on": "This slide says forming an entity and licensing it are separate systems, and licensing stacks across federal, state, county and city levels. Operating unlicensed risks fines, closure and sometimes invalid contracts. The steps: identify every license the industry and location require, track each renewal cycle separately, and keep individual professional licenses current independently.",
+    "say": "Being formed doesn't mean being licensed.",
+    "ask": "How many levels of licensing could apply to one office?"
+  },
+  "p2": {
+    "on": "This slide warns that most licenses need periodic renewal, and some need continuing education or reporting. It says to keep copies of every license and permit in the same central compliance folder as the formation documents.",
+    "say": "Licenses renew. Track each one on its own cycle.",
+    "wrap": "Map every license, track every renewal and keep copies centrally.",
+    "scenario": "The firm is opening a satellite office in a new city. What licensing and permit questions need answering before it can open, and who do you ask?"
+  }
+},
+"6::Operating Agreements & Corporate Bylaws Basics": {
+  "p1": {
+    "on": "This slide explains that the Operating Agreement (LLC) or Bylaws (corporation) is the entity's internal rulebook for decisions, ownership changes and disputes. Without it, the state's generic rules apply, and it's the first document requested in disputes, lending or due diligence. The steps: confirm it covers ownership, voting, major decisions and owner exits, have it signed by all owners, and store it securely.",
+    "say": "No agreement means the state's default rules apply.",
+    "ask": "What's the first document a lender would ask for?"
+  },
+  "p2": {
+    "on": "This slide warns against generic templates that don't match the actual ownership, which creates ambiguity exactly when it matters. It says any ownership or governance change must formally update the document, not live in an email.",
+    "say": "A side email isn't an amendment.",
+    "wrap": "Make it specific, get it signed and keep it current.",
+    "scenario": "A lender asks for the entity's Operating Agreement, and the version on file is three years old and doesn't reflect a partner who left last year. What's the risk, and what do you do before sending anything?"
+  }
+},
+"6::Registered Agent Responsibilities & Service of Process": {
+  "p1": {
+    "on": "This slide explains that the registered agent receives legal notices and service of process for the entity. If service is missed because the agent's details are outdated, the entity can still be found in default. Every state needs its own agent. The steps: confirm the address is current and monitored, route any notice immediately, and update the designation with the state promptly.",
+    "say": "\"We never got it\" is not a defense.",
+    "ask": "Who monitors the registered agent's inbox at your firm?"
+  },
+  "p2": {
+    "on": "This slide warns against using an agent service without knowing who monitors it internally, since a notice can sit unread. It says to keep registered agent details in the compliance tracker, because a lapsed agent can itself cost good standing.",
+    "say": "Know who reads the notices, not just who receives them.",
+    "wrap": "Keep the agent current, monitored and tracked, and route notices immediately.",
+    "scenario": "The registered agent service forwards what looks like a newly served lawsuit. What do you do in the next 30 minutes, and who needs to know immediately?"
+  }
+},
+"6::Corporate Recordkeeping & Minute Books": {
+  "p1": {
+    "on": "This slide explains that the minute book is the entity's official history (formation documents, ownership records, minutes and resolutions) and one of the first things due diligence requests. Corporations have stricter requirements than LLCs, but both benefit. The steps: document every major action with a resolution or minutes, keep it current in real time, and store it securely.",
+    "say": "Document major decisions when they happen, not when someone asks.",
+    "ask": "What counts as a major corporate action?"
+  },
+  "p2": {
+    "on": "This slide warns against skipping minute books for small or closely held entities, because due diligence and lenders ask regardless of size. When in doubt, document it: an unnecessary record costs far less than a missing one.",
+    "say": "When in doubt, write it down.",
+    "wrap": "Record every major action, keep it current and store it safely.",
+    "scenario": "A potential investor's due diligence checklist asks for two years of board minutes, and the firm has never documented its meetings. How big is the problem, and how do you start closing the gap?"
+  }
+},
+"6::Project Scope Creep & Change Management": {
+  "p1": {
+    "on": "This slide explains that scope creep usually arrives one small addition at a time, each has a real cost, and a documented scope makes the trade-off visible so it's a deliberate decision. The steps: document the original scope clearly, name each new request as a scope change and state the trade-off before agreeing, and log every approved change with what and why.",
+    "say": "Name it as a scope change and state the trade-off.",
+    "ask": "Why is each small addition dangerous if each seems reasonable?"
+  },
+  "p2": {
+    "on": "This slide warns against quietly absorbing small additions to avoid an awkward conversation, which is how projects end up late with no single moment to blame. It says the conversation doesn't need to be adversarial: \"here's what this addition means for the timeline\" is enough.",
+    "say": "Quietly absorbing changes is how projects go late.",
+    "wrap": "Document the scope, surface every trade-off and log every change.",
+    "scenario": "A stakeholder asks for \"just one more small addition\" to a project already three small additions deep. What do you say, given each addition really did seem reasonable on its own?"
+  }
+},
+"6::Stakeholder Communication During Project Delays": {
+  "p1": {
+    "on": "This slide says a delay communicated early is manageable, while a delay the stakeholder discovers first becomes a trust problem. People handle bad news better than being the last to know. The steps: flag a delay as soon as it's likely, lead with the bottom line (what's delayed and by how much), and always pair it with a next step or revised timeline.",
+    "say": "Bad news early beats bad news discovered.",
+    "ask": "Why flag a delay before you're certain?"
+  },
+  "p2": {
+    "on": "This slide warns against waiting until the deadline has passed, which turns a delay into a credibility issue. During an extended delay, keep a consistent cadence of updates rather than going quiet.",
+    "say": "Silence between updates reads as bad news.",
+    "wrap": "Flag early, lead with the bottom line and always bring a plan.",
+    "scenario": "This morning you learned the project will miss its deadline by two weeks. The stakeholder has a standing call in one hour. What do you do between now and that call?"
+  }
+},
+"6::Root Cause Analysis Basics": {
+  "p1": {
+    "on": "This slide explains that root cause analysis asks \"why did this actually happen\" instead of stopping at the first explanation. The 5 Whys technique keeps asking until the answer is a fixable cause, and fixing a symptom brings the problem back. The steps: state the problem precisely, keep asking why, and confirm the root cause would have prevented the problem.",
+    "say": "Keep asking why until the answer is something you can fix.",
+    "ask": "Why isn't \"someone forgot\" a root cause?"
+  },
+  "p2": {
+    "on": "This slide warns against stopping at \"human error,\" which is almost always a symptom of a missing process, unclear ownership or poor training. It says to do the analysis in the incident review, while details are fresh.",
+    "say": "\"Human error\" is where the analysis starts, not where it ends.",
+    "wrap": "State it precisely, ask why repeatedly and test the root cause.",
+    "scenario": "A filing deadline was missed last week, and the first explanation is \"the person responsible forgot.\" Use the 5 Whys out loud to get to something fixable."
+  }
+},
+"6::Change Management for New SOPs": {
+  "p1": {
+    "on": "This slide says an SOP nobody adopts is the same as no SOP. People resist change most when they don't understand why or weren't involved, and a rollout needs its own plan. The steps: explain the why, introduce significant changes with a walkthrough or training moment, and check afterward that the SOP is actually followed.",
+    "say": "Writing the SOP is only half the work.",
+    "ask": "Why do people resist a new process?"
+  },
+  "p2": {
+    "on": "This slide warns against updating a widely used SOP by just editing the shared document, since most people won't notice. It says to involve the people who'll use the SOP in shaping it, because adoption is easier when it doesn't feel imposed.",
+    "say": "An edit nobody sees isn't a rollout.",
+    "wrap": "Explain why, introduce it properly, involve the users and check adoption.",
+    "scenario": "You've finalized a revised filing SOP that fixes a real recurring error, but the team has done it the old way for two years. What's your rollout plan beyond sharing the document?"
+  }
 }
 };
