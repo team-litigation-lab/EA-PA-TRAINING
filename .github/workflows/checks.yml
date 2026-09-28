@@ -29,7 +29,7 @@ jobs:
       - name: JavaScript syntax, local files, JSON
         run: node .github/scripts/check-site.mjs
       - name: Build the Worker without deploying (wrangler dry run)
-        run: npx --yes wrangler@3 deploy --dry-run --outdir "$RUNNER_TEMP/dist"
+        run: npx --yes wrangler@4 deploy --dry-run --outdir "$RUNNER_TEMP/dist"
 
   smoke:
     name: Smoke test in a browser
