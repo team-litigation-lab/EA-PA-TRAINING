@@ -22103,6 +22103,115 @@ function presenterNote(d, l, part){
   if(part===1 || l.singleSlide) return {cue, say: unq(sc.open), ask: unq(sc.ask), wrap: l.singleSlide ? unq(sc.wrap) : "", scenario: l.singleSlide ? scen : ""};
   return {say: sc.correct || "", wrap: unq(sc.wrap), scenario: scen};
 }
+/* ---------- Full spoken script for a slide ----------
+   Built from exactly what is on the slide (the same data the slide renders), so it always matches
+   what the room sees — including topics added later in the Content Studio. Part 1 covers ① Core
+   Principles and ② Step-by-Step; Part 2 covers ③ Best Practices & Pitfalls and ④ Go Deeper.
+   A hand-written "steps" script in presenter-notes.js (Day 3) replaces the generated ② section. */
+const SCRIPT_ORDINALS = ["First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eighth","Ninth","Tenth"];
+function scriptSentence(t){
+  let x = String(t||"").replace(/\s+/g," ").trim();
+  if(!x) return "";
+  if(!/[.!?:"”')]$/.test(x)) x += ".";
+  return x;
+}
+function scriptSoften(t){
+  // "First, the calendar…" reads better than "First, The calendar…" for ordinary opening words.
+  const x = scriptSentence(t);
+  return /^(A|An|The|This|That|These|Those|Every|Each|Your|You|It|Its|If|When|Most|Many|Some|Good|Always|Never|Once|Before|After|Treat|Use|Keep|Build|Set|Make|Don't|Do|Know|Ask|Check|Write|Log|Map|Track|Confirm|Identify|Review|Protect|Name|Plan)\b/.test(x)
+    ? x.charAt(0).toLowerCase() + x.slice(1) : x;
+}
+function scriptList(items, intro){
+  const xs = (items||[]).map(scriptSentence).filter(Boolean);
+  if(!xs.length) return "";
+  if(xs.length===1) return (intro ? intro+" " : "") + xs[0];
+  return (intro ? intro+"\n" : "") + xs.map((x,i)=>{
+    const lead = i===xs.length-1 && xs.length>2 ? "And finally" : (SCRIPT_ORDINALS[i]||"Next");
+    const soft = scriptSoften(x);
+    // A point that opens with a name or a label ("Five categories: …") keeps its capital: "Second point: Five categories…"
+    return soft !== x ? `${lead}, ${soft}` : `${lead === "And finally" ? "And finally" : lead + " point"}: ${x}`;
+  }).join("\n");
+}
+function scriptLabelled(items, pick){
+  return (items||[]).map(pick).filter(Boolean).map(scriptSentence).join("\n");
+}
+function slideScriptSections(d, l, part){
+  const out = {};
+  const notes = (window.PRESENTER_NOTES || {})[`${d.id}::${l.h}`] || {};
+  const fp = l.fourPart || null;
+  const topic = `"${l.h}"`;
+  if(part !== 2){
+    // ① Core Principles
+    let core = "";
+    if(fp && fp.corePrinciples && fp.corePrinciples.length){
+      core = scriptList(fp.corePrinciples, `Let's start with the core principles behind ${topic}.`);
+    }else if(l.layout==="QUADRANT" && l.quadrants){
+      core = `This slide breaks ${topic} into ${l.quadrants.length} areas. Let's walk through each one.\n` + scriptLabelled(l.quadrants, q=>q.label ? `${q.label}: ${q.desc||""}` : q.desc);
+    }else if(l.layout==="COMPARE" && l.compareLeft && l.compareRight){
+      core = `This slide puts two approaches side by side.\n` +
+        `On the left, ${l.compareLeft.label}:\n${(l.compareLeft.items||[]).map(scriptSentence).join("\n")}\n` +
+        `On the right, ${l.compareRight.label}:\n${(l.compareRight.items||[]).map(scriptSentence).join("\n")}\n` +
+        `Notice the difference between the two columns: that contrast is the point of this topic.`;
+    }else if(l.layout==="THREEBOX" && l.boxes){
+      core = `There are ${l.boxes.length} pieces to ${topic}. Let's take them one at a time.\n` + scriptLabelled(l.boxes, x=>x.label ? `${x.label}: ${x.desc||""}` : x.desc);
+    }else if(l.layout==="STAT"){
+      core = `Take a look at the number on this slide: ${l.statNumber}${l.statLabel ? ` ${l.statLabel}` : ""}. Keep that figure in mind as we go through ${topic}.`;
+    }else if(l.layout==="ICONLIST" && l.icons){
+      core = `This slide lays out ${l.icons.length} parts of ${topic}.\n` + scriptLabelled(l.icons, x=>x.label ? `${x.label}: ${x.desc||""}` : x.desc);
+    }else if(l.layout==="PALETTE" && l.palette){
+      core = `Here is the palette, color by color.\n` + scriptLabelled(l.palette, c=>`${c.name}${c.hex ? ` (${c.hex})` : ""}: ${c.use||""}`);
+    }else if(l.layout==="TABLE" && l.tableHeaders && l.tableRows){
+      const h = l.tableHeaders;
+      core = `This table compares ${h.slice(1).join(" and ")}, row by row.\n` + l.tableRows.map(r=>scriptSentence(`${r[0]}: ${h.slice(1).map((hh,k)=>`${hh}, ${r[k+1]}`).join("; ")}`)).join("\n");
+    }else if(l.layout==="PROCESS"){
+      core = `${topic} is a sequential skill. The core principle is to follow the steps in order, not to treat them as optional or interchangeable.`;
+    }else if((l.b||[]).length){
+      core = `Here's the core idea behind ${topic}. ${scriptSentence(l.b[0])}`;
+    }
+    if(core) out[1] = core;
+    // ② Step-by-Step How-To Framework
+    let steps = "";
+    if(notes.steps) steps = notes.steps;
+    else{
+      const list = (fp && fp.howTo && fp.howTo.length) ? fp.howTo
+        : (l.layout==="PROCESS" && l.processSteps) ? l.processSteps.map(x=>x.label ? `${x.label}: ${x.desc||""}` : x.desc)
+        : (l.howTo || []);
+      if(list.length) steps = `Continuing on, here is our step-by-step how-to framework for putting ${topic} into practice:\n` + list.map((x,i)=>`${i+1}. ${scriptSentence(x)}`).join("\n");
+    }
+    if(steps) out[2] = steps;
+  }
+  if(part === 2 || l.singleSlide){
+    if(l.singleSlide && part !== 2){ /* single-slide topics show only ① and ② */ }
+    else{
+      // ③ Best Practices & Pitfalls
+      const bp = (fp && fp.bestPractices) ? fp.bestPractices : ((!l.layout && (l.b||[]).length > 1) ? l.b.slice(1) : (l.b||[]));
+      const lines = [];
+      const plain = bp.map(x=>String(x||"").trim()).filter(t=>t && !/^(pitfall|discussion prompt):/i.test(t));
+      const LEAD = ["To begin with,","Next,","Also,","On top of that,","Another key point:","Keep in mind,","Beyond that,"];
+      let n = 0;
+      bp.forEach(x=>{
+        const t = String(x||"").trim(); if(!t) return;
+        if(/^pitfall:/i.test(t)) lines.push(`Here's a pitfall to watch out for: ${scriptSentence(t.replace(/^pitfall:\s*/i,""))}`);
+        else if(/^discussion prompt:/i.test(t)) lines.push(`Let's discuss this as a group: ${scriptSentence(t.replace(/^discussion prompt:\s*/i,""))}`);
+        else{ const lead = plain.length>1 && n===plain.length-1 ? "And finally," : LEAD[Math.min(n, LEAD.length-1)]; n++;
+          const soft = scriptSoften(t);
+          // Points that open with a label or a name are read as they are, without a connector in front.
+          lines.push(plain.length===1 || (soft===scriptSentence(t) && !/:$/.test(lead)) ? scriptSentence(t) : `${lead} ${/:$/.test(lead) ? scriptSentence(t) : soft}`); }
+      });
+      if(l.callout && l.callout.text) lines.push(`Notice the ${l.callout.label ? `"${l.callout.label}"` : "highlighted"} box on this slide: ${scriptSentence(l.callout.text)}`);
+      if(lines.length) out[3] = `Now let's move on to the practices that make ${topic} work, and the pitfalls to avoid.\n` + lines.join("\n");
+      // ④ Go Deeper
+      const extra = typeof LESSON_EXTRA_LEARNING!=="undefined" && LESSON_EXTRA_LEARNING[d.id+"::"+l.h];
+      if(extra && extra.p && extra.p.length) out[4] = `To go deeper, let's look at ${extra.t}.\n` + extra.p.map((x,i)=>`${i===0 ? "" : (i===extra.p.length-1 ? "Finally, " : "Also, ")}${i===0 ? scriptSentence(x) : scriptSoften(x)}`).join("\n");
+    }
+  }
+  return out;
+}
+function slideScriptText(d, l, part, secs){
+  const all = slideScriptSections(d, l, part);
+  const keys = Object.keys(all).map(Number).filter(k=>!secs || secs.includes(k)).sort();
+  return keys.map(k=>all[k]).join("\n\n");
+}
 // Section scripts: PRESENTER_NOTES["day::title"].s1 … s4 = {on, say, ask} for ① Core Principles,
 // ② Step-by-Step, ③ Best Practices & Pitfalls, ④ Go Deeper. When the slide is split over pages,
 // the presenter sees only the sections on the current page; Wrap and Scenario come with the last one.
@@ -22111,21 +22220,25 @@ function renderPresenterNote(d, l, part, secs, allSecs){
   const n = presenterNote(d, l, part);
   const row = (k, v)=> v ? `<div class="script-row"><b>${k}</b><p>${esc(v)}</p></div>` : "";
   const all = (window.PRESENTER_NOTES || {})[`${d.id}::${l.h}`] || {};
-  const split = secs && secs.length && allSecs && secs.length < allSecs.length;
-  if(split && secs.every(s=>all["s"+s])){
-    const last = secs.includes(Math.max(...allSecs));
-    return `<div class="pn">
-      ${secs.map(s=>{ const x = all["s"+s]; if(!x) return ""; return `
-        <div class="pn-on"><b>On this page · ${esc(PN_SECTION_NAMES[s]||"")}</b><p>${esc(x.on||"")}</p></div>
-        <div class="script-block"><div class="script-head"><span>🎙 Script</span></div>${row("Say", s===2 && all.steps ? all.steps : x.say)}${row("Ask", x.ask)}</div>`; }).join("")}
-      ${last ? `${n.wrap ? `<div class="script-block"><div class="script-head"><span>🎙 Close</span></div>${row("Wrap", n.wrap)}</div>` : ""}${n.scenario ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}` : ""}
-    </div>`;
-  }
+  const split = !!(secs && secs.length && allSecs && secs.length < allSecs.length);
+  const full = slideScriptSections(d, l, part);
+  const shown = Object.keys(full).map(Number).filter(k=>!split || secs.includes(k)).sort();
+  const first = !split || shown[0] === Math.min(...Object.keys(full).map(Number));
+  const last = !split || secs.includes(Math.max(...allSecs));
+  const toNext = part===1 && !l.singleSlide && last ? "That's the foundation for this topic. On the next slide, we'll look at the best practices and the pitfalls to avoid." : "";
+  const onText = split ? shown.map(k=>all["s"+k] && all["s"+k].on).filter(Boolean).join(" ") : n.on;
+  const ask = split ? shown.map(k=>all["s"+k] && all["s"+k].ask).filter(Boolean)[0] : n.ask;
   return `<div class="pn">
-    ${n.on ? `<div class="pn-on"><b>On this slide</b><p>${esc(n.on)}</p></div>` : ""}
-    ${n.cue ? `<div class="pn-on"><b>Trainer note</b><p>${esc(n.cue)}</p></div>` : ""}
-    <div class="script-block"><div class="script-head"><span>🎙 Script</span></div>${row("Say", n.say)}${row("Ask", n.ask)}${(part===1 || l.singleSlide) ? row("Step-by-step", all.steps) : ""}${row("Wrap", n.wrap)}</div>
-    ${n.scenario ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}
+    ${onText ? `<div class="pn-on"><b>${split ? "On this page" : "On this slide"}</b><p>${esc(onText)}</p></div>` : ""}
+    ${n.cue && !split ? `<div class="pn-on"><b>Trainer note</b><p>${esc(n.cue)}</p></div>` : ""}
+    <div class="script-block"><div class="script-head"><span>🎙 Script — read aloud</span></div>
+      ${first ? row("Open", n.say) : ""}
+      ${shown.map(k=>row(PN_SECTION_NAMES[k] || "Script", full[k])).join("")}
+      ${row("Ask the room", ask)}
+      ${last ? row("Transition", toNext) : ""}
+      ${last ? row("Wrap", n.wrap) : ""}
+    </div>
+    ${last && n.scenario ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}
   </div>`;
 }
 function buildDayScriptLines(d){
@@ -22138,9 +22251,9 @@ function buildDayScriptLines(d){
       if(parts.length > 1) lines.push(`PART ${p}`);
       if(n.on) lines.push(`ON THIS SLIDE: ${n.on}`);
       if(n.say) lines.push(`SAY: ${n.say}`);
+      const full = slideScriptSections(d, l, p);
+      Object.keys(full).map(Number).sort().forEach(k=>{ lines.push(`SCRIPT · ${(PN_SECTION_NAMES[k]||"").toUpperCase()}:`); full[k].split("\n").forEach(x=>lines.push(x)); });
       if(n.ask) lines.push(`ASK: ${n.ask}`);
-      const stepsScript = p===1 && ((window.PRESENTER_NOTES || {})[`${d.id}::${l.h}`] || {}).steps;
-      if(stepsScript){ lines.push("STEP-BY-STEP:"); stepsScript.split("\n").forEach(x=>lines.push(x)); }
       if(n.wrap) lines.push(`WRAP: ${n.wrap}`);
       if(n.scenario) lines.push(`SCENARIO: ${n.scenario}`);
     });
