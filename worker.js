@@ -65,7 +65,7 @@ function candidateIds(name, batch) {
 /* ---------- what a trainee may touch ---------- */
 const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
-const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemptsResetAt", "certTrainer", "aiReview", "flaggedInvalidInput", "assignedRoleplay", "registeredAt"];
+const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemptsResetAt", "certTrainer", "aiReview", "flaggedInvalidInput", "assignedRoleplay", "registeredAt", "unlockedDays", "unlockedDaysAt"];
 
 function canRead(tok, key) {
   if (tok.role === "a") return true;
