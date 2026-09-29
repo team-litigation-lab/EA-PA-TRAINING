@@ -922,6 +922,7 @@ const EO_TOPIC_TITLE = "Email Outreach End-to-End: Research, Write, Follow Up";
   const d = DAYS.find(x=>x.id===4); if(!d || d.lessons.some(l=>l.h===EO_TOPIC_TITLE)) return;
   d.lessons.push({
     h: EO_TOPIC_TITLE,
+    section: "Email Outreach & Marketing",
     trainerCue: "Before the Practice Lab, read one weak and one strong outreach email aloud and have the room vote on which they'd actually open on their phone — then ask what exactly made the difference.",
     fourPart: {
       corePrinciples: [
