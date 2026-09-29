@@ -17,7 +17,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The attorney and accountant make the call; your job is to hand them everything they need to make it well.",
-   "talk": "Go Deeper compares the common structures in plain terms.",
+   "talk": "Here's the plain-English version of the main options. A sole proprietorship is the simplest to start, but the owner is personally responsible for every debt and every claim. An LLC keeps the owner's personal assets separate from the business and is flexible on tax, which is why so many small firms choose it. A corporation is more formal, with a board, bylaws and shares, and it's often the choice when outside investors are coming in.",
    "walk": [
     "First, sole proprietorship: easiest to start, but the owner is personally on the hook for every debt and claim.",
     "Next, LLC: keeps personal and business liability apart, with flexible tax treatment. A common choice for small firms.",
@@ -40,7 +40,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "State approval isn't the finish line.",
-   "talk": "Three habits on this slide save a lot of trouble later.",
+   "talk": "The state approving the company feels like the finish line, but it isn't. Without a tax ID and the internal rules, the company can't really operate; the bank won't even open an account. So we keep going past the filing, keep every formation document in one folder from day one, because banks and lenders ask for them again and again, and set up the registered agent properly so filings aren't rejected.",
    "walk": [
     "First, don't stop at the state filing. Without the tax ID and internal rules, the company isn't really ready.",
     "Next, keep every formation document in one folder from day one. Banks and lenders ask for them again and again.",
@@ -62,7 +62,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A side email isn't an amendment.",
-   "talk": "Two traps on this slide.",
+   "talk": "Two traps catch people here. The first is using a generic template that doesn't match who actually owns what; it causes confusion exactly when it matters, like during a dispute or a sale. The second is changing things informally. If a partner leaves or decision-making changes, the document itself has to be formally updated. An email agreeing to it isn't enough.",
    "walk": [
     "First, a generic template that doesn't match the real ownership creates confusion exactly when it matters most.",
     "Finally, any change to ownership or decision-making needs a formal update to the document itself."
@@ -84,7 +84,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The home-state filing doesn't cover the rest of the country.",
-   "talk": "This is one of the most common gaps found in compliance audits.",
+   "talk": "Registering a company in its home state only covers that state. Once the firm hires someone or does regular business somewhere else, it may need to register there too. This is one of the gaps that compliance audits find most often. The fix is simple: one tracker listing every state, its registered agent and its deadlines, so nothing depends on someone remembering.",
    "walk": [
     "First, don't assume one filing covers everywhere.",
     "Finally, keep one tracker with every state, its registered agent and its deadlines."
@@ -107,7 +107,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Losing good standing can cost the company the right to sue in that state.",
-   "talk": "Go Deeper explains what good standing actually requires.",
+   "talk": "'Good standing' just means the state considers the company up to date. Keeping it takes a few regular chores. Annual reports filed on time, with the current officers and addresses. State taxes and fees paid. A registered agent in every state where the company is registered. And business licences renewed before they run out. Miss one, and the company can lose rights it didn't know it was relying on.",
    "walk": [
     "First, annual reports filed on time, with current officers and addresses.",
     "Next, state taxes and fees paid, and a registered agent in every state.",
@@ -129,7 +129,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "If a deadline was missed, fix it today, not next week.",
-   "talk": "Two points on this slide.",
+   "talk": "When a company is registered in several states, each one has its own deadlines, and they don't line up. Keeping them in one person's head or personal calendar is a recipe for missing one. They belong in a shared tracker with a named owner. And if one is missed, we act the same day, because the company is exposed for as long as it's out of good standing.",
    "walk": [
     "First, don't rely on one person's memory or calendar for many states' deadlines. Use a shared tracker with an owner.",
     "Finally, if a deadline is missed, act immediately. The company is exposed the whole time it's out of good standing."
@@ -150,7 +150,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Licenses renew, so track every one on its own cycle.",
-   "talk": "Two habits on this slide.",
+   "talk": "People tend to think of a business licence as a one-off. Many aren't. They need renewing, some need continuing education and some need regular reports. So we track each licence on its own renewal cycle, and keep a copy of every one in the central compliance folder, so we can prove it's current whenever someone asks.",
    "walk": [
     "First, don't assume a license lasts forever. Many need renewal, continuing education or reports.",
     "Finally, keep copies of every license in the central compliance folder."
@@ -171,7 +171,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "It's not enough to know who receives the notices; you need to know who reads them.",
-   "talk": "Two points on this slide.",
+   "talk": "A registered agent is the official address where legal papers, like a new lawsuit, get delivered. Many firms pay a service to do this. But the service only forwards the papers. If nobody inside the firm is checking and acting on what arrives, a lawsuit can sit unread while the deadline to respond ticks away. And the agent's details belong in the same tracker as the annual deadlines, because a lapsed agent can cost good standing too.",
    "walk": [
     "First, a registered agent service is useless if nobody internally checks what it forwards.",
     "Finally, keep agent details in the same tracker as the annual deadlines. A lapsed agent can cost good standing too."
@@ -192,7 +192,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "When in doubt, write it down.",
-   "talk": "Two points on this slide.",
+   "talk": "A minute book is the company's official record of its important decisions and meetings. Small companies often skip it, thinking it's only for big corporations. But lenders, investors and buyers ask for it regardless of size. And the rule of thumb is simple: an unnecessary record costs almost nothing, while a missing one can hold up a loan or a sale.",
    "walk": [
     "First, small companies need minute books too. Lenders and buyers ask regardless of size.",
     "Finally, an unnecessary record costs almost nothing; a missing one can cost a lot."
@@ -215,7 +215,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "You may not make every decision, but you shape it.",
-   "talk": "This slide names the leadership skills behind the work.",
+   "talk": "Leading a project doesn't require being anyone's boss. It means keeping everyone informed on a schedule, because silence makes people nervous. It means turning the executive's big picture into practical steps. It means getting vendors and colleagues we don't manage to deliver anyway. And it means bringing the executive a summary, the risks and the options, so he's never deciding from a blank page.",
    "walk": [
     "First, scheduled updates beat silence.",
     "Next, strategic alignment means turning vision into steps, and influence without authority means leading vendors and teams you don't supervise.",
@@ -259,7 +259,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Quietly absorbing little extras is exactly how projects end up late with nobody sure why.",
-   "talk": "Two points on this slide.",
+   "talk": "Scope creep rarely arrives as one big request. It's a series of small, reasonable extras, and if we quietly absorb each one, the project ends up late and nobody's quite sure why. The fix isn't a fight. It's one calm sentence each time: 'Happy to add that. Here's what it does to the timeline.' Then the stakeholder decides with the full picture.",
    "walk": [
     "First, don't avoid the awkward conversation by just taking it on.",
     "Finally, it doesn't have to be a fight. 'Here's what this does to the timeline' is enough."
@@ -280,7 +280,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Silence between updates sounds like more bad news.",
-   "talk": "Two habits on this slide.",
+   "talk": "When a project is slipping, the worst thing we can do is stay quiet until the deadline passes. People fill silence with the worst possible story. So we raise it as soon as we know, and during a long delay we keep a steady rhythm of updates, even when the update is 'no change', so nobody has to chase us.",
    "walk": [
     "First, don't wait until the deadline has passed to say something.",
     "Finally, during a long delay, keep a steady rhythm of updates."
@@ -291,7 +291,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "6::Frameworks Worth Knowing": {
   "p1": {
    "why": "You don't need a certificate; you just need to know which tool fixes which problem.",
-   "talk": "The slide names three well-known frameworks. Lean is about cutting waste and keeping only what adds value. Six Sigma is about reducing errors through measurement. And the project management standard gives big projects a proper structure.",
+   "talk": "There are three well-known approaches worth recognising. Lean is about cutting waste and keeping only the steps that add value. Six Sigma is about reducing mistakes by measuring what's going wrong. And the standard project management approach gives big projects a clear structure from start to finish. We don't need to be experts in any of them; we just need to know which one fits which problem.",
    "walk": [
     "First, if a process has too many pointless steps, think Lean.",
     "Next, if it keeps producing errors, think Six Sigma.",
@@ -303,7 +303,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Waste, errors or structure: match the framework to the problem.",
-   "talk": "Go Deeper sums up four frameworks in a line each.",
+   "talk": "In a sentence each: Lean removes waste, like unnecessary steps, waiting around and redoing work. Six Sigma uses data to cut errors, working through five stages: define, measure, analyse, improve and control. Project management gives large projects structure. And Agile delivers in short cycles, checking and adjusting as it goes, instead of planning everything up front.",
    "walk": [
     "First, Lean removes waste: extra steps, waiting and rework.",
     "Next, Six Sigma reduces errors using data, through Define, Measure, Analyze, Improve and Control.",
@@ -350,7 +350,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Measure first, find the real cause, then make the fix the new normal.",
-   "talk": "This slide gives three worked examples.",
+   "talk": "Let's see those five stages in real assistant work. An NDA saved in four different folders is a searching problem, fixed by agreeing one place to file it. Expense approvals that drag on get measured for two weeks, which reveals the step where they stall, and an automatic reminder fixes it. And intake forms that come back incomplete a third of the time usually have one confusing question; reword that one field and make the new form the standard.",
    "walk": [
     "First, searching waste: an NDA spread across four folders is fixed by one agreed filing place.",
     "Next, expense approvals: track turnaround for two weeks, find the step where they stall, add an automatic reminder and review monthly.",
@@ -374,7 +374,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "In most offices, the biggest wastes are waiting and doing the same work twice.",
-   "talk": "Three points on this slide.",
+   "talk": "In an office, waste mostly looks like two things: waiting, for approvals, replies or information, and doing the same work more than once, like typing a client's details into three systems. Kaizen is the Japanese idea of small, continuous improvements, which is much closer to how assistants really get better than any big project. We don't need a certificate; we need a repeatable way to fix things and the habit of making the fixes stick.",
    "walk": [
     "First, most admin waste is waiting and extra processing.",
     "Next, Kaizen means small, continuous improvements, closer to how EAs really improve their work than any big project.",
@@ -396,7 +396,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "'Human error' is where the analysis starts, not where it ends.",
-   "talk": "Two points on this slide.",
+   "talk": "When something goes wrong, 'human error' is the easy answer, and it's almost never the whole answer. If a person forgot, why was it possible to forget? Usually something was missing: a checklist, a clear owner or some training. That's the part we can fix. And we do this while the details are fresh, not weeks later when nobody remembers what happened.",
    "walk": [
     "First, human error usually points to something missing: a process, clear ownership or training.",
     "Finally, do the analysis while the details are fresh, not weeks later."
@@ -419,7 +419,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A measurement with no owner is just a number on a page.",
-   "talk": "Go Deeper explains how to choose measures that matter.",
+   "talk": "Measuring things only helps if we measure the right things. Good measures are tied to results, like calendar accuracy, how quickly we respond, filings made on time and how fast invoices go out. We keep it to four or five, each with a target and a named owner. And we act on trends, not on one bad day, because a single off day doesn't mean the process is broken.",
    "walk": [
     "First, pick measures tied to results, like calendar accuracy, response time, on-time filings and invoice turnaround.",
     "Next, keep it to four or five, each with a target and an owner.",
@@ -431,7 +431,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "6::The KPI Dashboard Template": {
   "p1": {
    "why": "A good dashboard tracks a handful of numbers, each with a clear target.",
-   "talk": "The slide suggests four areas: executive productivity, client service, operations and legal compliance. The magic isn't in the dashboard; it's in reviewing it and acting on what it shows.",
+   "talk": "A dashboard doesn't need many numbers, just the right ones, across four areas: how productive the executive is, how well clients are served, how smoothly operations run and whether legal compliance is on track. Each number has a clear target. But the real value isn't the dashboard itself. It's looking at it regularly and doing something about what it shows.",
    "walk": [
     "First, track a few real measures across the four areas, not a long list nobody reads.",
     "Next, give each one a specific target, like calendar accuracy of at least 98 percent.",
@@ -443,7 +443,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A number that keeps missing its target usually means the procedure needs fixing, not the people.",
-   "talk": "Go Deeper gives example targets for each area, and the slide shows the full life cycle of a procedure.",
+   "talk": "What do good targets look like? For the executive's productivity, a calendar that's at least 98 percent accurate and a briefing ready by 8 every morning. For clients, replies within four business hours and no missed follow-ups. For operations, invoices out within three days of month-end, and procedures reviewed at least every six months. When a number keeps missing, that's usually a sign to fix the procedure, not blame the people.",
    "walk": [
     "First, executive productivity: calendar accuracy of at least 98 percent, and a briefing by 8 AM daily.",
     "Next, client service: replies within four business hours and no missed follow-ups.",
@@ -466,7 +466,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Every procedure needs an owner, an ID, a version number and a trigger.",
-   "talk": "Four points on this slide.",
+   "talk": "A standard operating procedure, or SOP, is a written set of steps for a recurring task. Four things make one actually get used. A clear trigger, the moment that tells someone 'use this now'. An owner who keeps it up to date. An ID and version number, so everyone knows they're using the latest one. And being short enough to follow in the moment. A checklist beats a manual nobody opens.",
    "walk": [
     "First, without a clear trigger, the procedure won't be used consistently.",
     "Next, without an owner, updates slip and it goes stale.",
@@ -490,7 +490,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An outdated recording is worse than no recording, because it teaches the wrong thing.",
-   "talk": "Four points on this slide.",
+   "talk": "Screen recordings are brilliant for complicated, multi-screen tasks, but they have weak spots. A video on its own isn't enough; people need the written steps to skim and search. When the software changes, both the video and the text need updating, or the recording starts teaching the wrong thing. They should open easily without special logins. And for simple procedures, plain text is usually clearer.",
    "walk": [
     "First, a video without the written summary isn't a complete procedure.",
     "Next, when the software changes, update both.",
@@ -514,7 +514,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An audit finding that never makes it back into the procedure will happen again.",
-   "talk": "Four points on this slide.",
+   "talk": "Procedures go stale quietly. If someone changes the content without changing the version number, old copies survive and people follow different versions without knowing it. So we keep every procedure in one central place, give each one an owner, and when an audit finds a gap, we actually go back and update the procedure. Otherwise the same mistake happens again.",
    "walk": [
     "First, changing the content without changing the version number is how old copies survive.",
     "Next, keep all procedures in one central place.",
@@ -537,7 +537,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Quietly editing the shared document isn't a rollout.",
-   "talk": "Two points on this slide.",
+   "talk": "Quietly updating a shared document isn't a rollout. Most people won't notice the change until they've already done it the old way. So we tell people what changed and why, and ideally involve the people who'll use it before it's final, so the new procedure feels like theirs rather than something imposed on them.",
    "walk": [
     "First, most people won't notice a silent edit until they've already done it the old way.",
     "Finally, involve the people who'll use it, so it doesn't feel imposed."

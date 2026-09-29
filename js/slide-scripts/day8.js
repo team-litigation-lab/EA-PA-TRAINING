@@ -17,7 +17,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Access that outlives the job is one of the most common security gaps.",
-   "talk": "Go Deeper spells out the three roles and when to review them.",
+   "talk": "Most systems give people one of three levels. Admin means full control, including who else gets in, so very few people should have it. Editor means they can create and change things but not change permissions. Viewer means they can look but not touch. The important habit is reviewing those levels whenever someone changes jobs or leaves, because access that outlives the job is one of the most common gaps there is.",
    "walk": [
     "First, admin means full control, and should be limited to very few people.",
     "Next, editor can create and edit but not change permissions, and viewer can look but not change.",
@@ -41,7 +41,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "When too much access causes a problem, fix the role, not the person.",
-   "talk": "The slide gives a real example: a junior staff member was given admin access by mistake and changed settings they never should have been able to touch. The fix was correcting the role and checking who else had too much.",
+   "talk": "Here's a real example of why this matters. A junior staff member was given admin access by mistake, and ended up changing settings they should never have been able to touch. The instinct is to blame them. But they only did what the system let them do. The real fix is correcting their role, and then checking who else has more access than they need.",
    "walk": [
     "First, don't blame the person who had the access.",
     "Finally, correct the role, and review everyone else's access too."
@@ -64,7 +64,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The usual gap isn't missing technology; it's an old account nobody updated.",
-   "talk": "Two points on this slide.",
+   "talk": "Multi-factor authentication means a second check, like a code on your phone, on top of a password. Every sensitive account needs it, not just the obviously risky ones, because a hacked email account can be used to reset the passwords on everything else. And the usual gap isn't missing technology; it's the old account set up before the rule existed that nobody went back to fix.",
    "walk": [
     "First, protect every sensitive account, not just the obviously risky ones, because email alone can unlock the rest.",
     "Finally, go looking for accounts that were created before the rule existed."
@@ -101,7 +101,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Shared logins are convenient today and confusing when something goes wrong.",
-   "talk": "Two points on this slide.",
+   "talk": "Shared logins feel convenient, until something goes wrong. Then nobody can tell who did what. And when one person leaves, the only way to lock them out is to change the password for everyone. Individual accounts are a little less convenient day to day, but they're almost always the safer choice.",
    "walk": [
     "First, removing one person from a shared account means changing the password for everyone.",
     "Finally, individual accounts are almost always safer, even if they're less convenient."
@@ -124,7 +124,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "'Probably fine to leave it for now' is exactly how old access lingers.",
-   "talk": "Two points on this slide.",
+   "talk": "When someone leaves, it's easy to remember the big systems, like email, and miss a small one, like the courier account or a shared folder. A written checklist stops that. And 'it's probably fine to leave it for now' is exactly how old access lingers for months. Removing it on the day they leave is least privilege in action.",
    "walk": [
     "First, a written checklist stops you remembering the big systems and missing a small one.",
     "Finally, leftover access after someone leaves is exactly what least privilege is meant to prevent."
@@ -135,7 +135,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::The Golden Rules of Admin Data Security": {
   "p1": {
    "why": "An AI tool is a third party, so treat it like a stranger when it comes to private information.",
-   "talk": "The core rule on this slide is to switch off the setting that lets the AI company use your inputs for training, before any real work goes in. The firm's confidentiality applies to AI tools just as it applies to a chat in the hallway.",
+   "talk": "The first rule is a setting. Many AI tools can use what we type to train future versions, so before any real work goes in, we switch that off. After that, it's the same judgment we'd use about discussing a case in a lift. The firm's duty of confidentiality applies to AI tools exactly as it applies to a conversation in the hallway.",
    "walk": [
     "First, before real work, turn off any training or data-improvement setting.",
     "Next, never put in financial data, health information, social security numbers or passwords.",
@@ -147,7 +147,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Placeholders in, real identifiers out.",
-   "talk": "This slide sums up the rules, and reminds you that Elias's firm runs on strict confidentiality.",
+   "talk": "In short: no financial details, health information, ID numbers or passwords ever go into an AI tool. Real names become placeholders, like 'Company X' or 'the employee', before anything is pasted. For a firm like Elias's, which runs on strict confidentiality, that swap takes a minute and removes almost all of the risk.",
    "walk": [
     "First, no financial data, health information, ID numbers or passwords.",
     "Next, replace names with placeholders before sending anything.",
@@ -159,7 +159,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::Classifying Information by Sensitivity Level": {
   "p1": {
    "why": "Not everything needs the same protection, and when you're unsure, treat it as more sensitive, not less.",
-   "talk": "The slide gives three levels. Public: fine to share, like a press release. Internal: not secret, but not for outsiders, like internal memos. Confidential or privileged: real legal and reputational damage if it leaks, like case details, client messages and finances.",
+   "talk": "Think of information in three levels. Public: fine for anyone to see, like a press release. Internal: not secret, but not meant for outsiders, like staff memos. And confidential or privileged: things that would cause real legal or reputational harm if they leaked, like case details, client messages and finances. Knowing the level tells us how carefully to handle it.",
    "walk": [
     "First, before sharing anything, decide which level it is.",
     "Next, treat public information as shareable, once you've confirmed it's really meant for outsiders.",
@@ -171,7 +171,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Treat everything as top secret and you'll wear yourself out; treat everything casually and leaks happen.",
-   "talk": "Classifying is what lets you put your care where it matters.",
+   "talk": "If we treat everything as top secret, we wear ourselves out and slow everyone down. If we treat everything casually, leaks happen. Sorting information into levels is what lets us put our care where it counts. And when we're not sure which level something belongs in, we choose the higher one until we can confirm.",
    "walk": [
     "First, different information needs different levels of protection.",
     "Finally, when unsure, choose the more sensitive level until you can confirm."
@@ -245,7 +245,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Encryption is the difference between losing a laptop and losing the firm's data.",
-   "talk": "Two points on this slide.",
+   "talk": "Encryption scrambles everything on a device so nobody can read it without the password. With it, a laptop left in a taxi is just lost hardware. Without it, it could be a data breach. And a personal phone with work email on it carries the same responsibilities as a work laptop. It needs a lock, encryption and a way to wipe it remotely.",
    "walk": [
     "First, with encryption, a lost device is a hardware loss, not necessarily a breach.",
     "Finally, your phone with work email carries the same obligations as a work laptop."
@@ -268,7 +268,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A lost badge is as serious as a leaked password.",
-   "talk": "Two points on this slide.",
+   "talk": "We tend to take passwords seriously and badges casually, but a lost badge can let someone walk straight into the office. So we report it immediately, not 'once I've looked a bit more'. And the same idea as system access applies to rooms: people only go where they need to, and visitors don't wander around on their own.",
    "walk": [
     "First, report a lost badge or key immediately, not 'eventually'.",
     "Finally, least privilege applies to rooms too. Visitors shouldn't wander freely."
@@ -291,7 +291,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The printer tray is the most forgotten security risk in any office.",
-   "talk": "Two points on this slide.",
+   "talk": "The printer tray is one of the most forgotten risks in any office. Anything sitting there is available to whoever walks past next. A clean desk policy is the daily habit that closes those small gaps: papers put away, printouts collected straight away and screens locked whenever we step away.",
    "walk": [
     "First, a printout left in the tray is available to anyone walking by.",
     "Finally, a clean desk is the daily habit that makes physical security real."
@@ -328,7 +328,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "If people keep asking 'where is this?', the workflow is broken.",
-   "talk": "Go Deeper gives three warning signs.",
+   "talk": "There are three tell-tale signs a workflow is broken. People keep asking where something is, because no single place shows it. The same information gets typed into email, a spreadsheet and a calendar. And tasks stall between people, because nobody owns the step in the middle. Spot any of those, and it's time to redesign.",
    "walk": [
     "First, status questions: people ask where something is because no single place shows it.",
     "Next, duplicate effort: the same information typed into email, a spreadsheet and a calendar.",
@@ -340,7 +340,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::Social Engineering Red Flags": {
   "p1": {
    "why": "Scammers target people, not systems, and urgency is their favorite tool.",
-   "talk": "Social engineering means tricking someone into handing over access or information. The slide shows three red flags. Urgency pressure: 'I need this now, no time to check.' Authority impersonation: someone pretending to be an executive, IT or a vendor. And unusual requests: something slightly outside the normal pattern.",
+   "talk": "Social engineering means tricking a person, rather than a computer, into handing over access or information. It usually shows up with three signs. Pressure: 'I need this right now, there's no time to check.' Borrowed authority: someone claiming to be the boss, IT or a trusted vendor. And requests that are just slightly out of the ordinary, like a new way to pay.",
    "walk": [
     "First, treat sudden urgency as a warning sign, not a reason to skip checks.",
     "Next, verify anyone claiming authority through a separate channel you already trust.",
@@ -352,7 +352,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The best security system in the world fails if someone simply hands over the keys.",
-   "talk": "That's why this is about people, and why the independent-check habit matters so much.",
+   "talk": "The best security system in the world fails if someone simply hands over the keys. That's why these scams target people, using trust and pressure instead of technology. And it's why one habit protects us so well: before acting on anything that feels off, we check it through a channel we already know, like calling a number we already have.",
    "walk": [
     "First, social engineering works on trust and pressure, not technology.",
     "Finally, verify through a channel you already know before acting on anything that feels off."
@@ -375,7 +375,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "When in doubt, verify through a channel you already trust.",
-   "talk": "Two points on this slide.",
+   "talk": "Phishing isn't only email any more. It arrives by text, calendar invite, phone call and chat message. But the warning signs are the same everywhere: a generic greeting, a sender that's almost right, a link we weren't expecting and a sense of urgency. And the fix is the same too: we call a number we already have, never the one in the suspicious message.",
    "walk": [
     "First, the classic signs, like generic greetings and odd senders, still apply in every channel.",
     "Finally, call a number you already have, never one supplied in the suspicious message."
@@ -398,7 +398,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Report it to the right person; don't confront it and don't ignore it.",
-   "talk": "Two points on this slide.",
+   "talk": "An insider threat doesn't always mean someone is up to no good. Often it's a well-meaning colleague taking a shortcut around security, like downloading whole folders to work from home. Either way, the risk is real. This isn't about distrusting our colleagues; it's about noticing when access is used beyond what a role needs, and telling the right person rather than confronting it ourselves.",
    "walk": [
     "First, well-meaning shortcuts around security are still real risks.",
     "Finally, this isn't about distrusting colleagues. It's least privilege applied to how access is used."
@@ -409,7 +409,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::Responding to a Suspicious Data Request": {
   "p1": {
    "why": "When a request for data feels off, verify first, always.",
-   "talk": "This is a three-step sequence, and the first step comes before anything else.",
+   "talk": "When a request for information feels even slightly off, we follow three steps, and the order is important. First, we verify who it's really from, before doing anything else. Then we escalate it through the proper internal channel. And finally, we close the gap, fixing whatever allowed that request to reach us in the first place.",
    "walk": [
     "First, verify: confirm who the sender really is before doing anything.",
     "Next, escalate: send it through the right internal channel.",
@@ -419,7 +419,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Call the number you already have, not the one in the message.",
-   "talk": "Go Deeper lists the warning signs in a data request.",
+   "talk": "Suspicious requests tend to share a few features. Urgency and secrecy: 'send this in ten minutes and don't tell anyone.' Details that are nearly right: the correct name, but an email address that's one letter off, or a new phone number. And unusual asks: passwords, client lists, changes to bank details or gift cards. Any one of those is a reason to stop and verify.",
    "walk": [
     "First, urgency and secrecy: 'Send this in ten minutes and don't tell anyone.'",
     "Next, mismatched details: the right name but a slightly wrong email address, or a new phone number.",
@@ -431,7 +431,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::The First 10 Minutes of a Security Incident": {
   "p1": {
    "why": "In a security incident, stop the damage first, then work out what happened.",
-   "talk": "This is a four-step sequence for the first ten minutes, and the order matters.",
+   "talk": "When something goes wrong with security, the natural instinct is to investigate first. But the order matters. We contain it, stopping further damage. We assess what was exposed and to whom. We tell the people who need to know, straight away. And we write down what happened as it unfolds. Each step makes the next one easier.",
    "walk": [
     "First, contain: stop further exposure by disconnecting, revoking access or pausing whatever is leaking.",
     "Next, assess: work out as precisely as you can what was exposed and to whom.",
@@ -442,7 +442,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Telling people early with half the facts beats telling them late with all of them.",
-   "talk": "It's natural to want the full story before speaking up. But in an incident, that delay is expensive.",
+   "talk": "It's natural to want the full story before speaking up, so we don't look foolish if it turns out to be nothing. But in a security incident, every minute of delay can let the damage spread. An early 'I think something's wrong, here's what I know so far' is far more useful than a complete report an hour later.",
    "walk": [
     "First, early notification, even with incomplete information, is almost always better.",
     "Finally, it's the same containment-first idea from the confidentiality leak lesson, applied to any incident."
@@ -453,7 +453,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::Containing a Confidentiality Leak": {
   "p1": {
    "why": "When confidential information leaks, stopping the spread comes before everything else.",
-   "talk": "Three steps, in order.",
+   "talk": "When confidential information goes somewhere it shouldn't, the first job is stopping it from spreading any further. Only then do we tell the right people, meaning the roles that need to know, not whoever happens to be nearby. And once it's contained, we put something in place so the same leak can't happen again.",
    "walk": [
     "First, contain: stop it spreading immediately.",
     "Next, notify: tell the right roles, not just whoever's nearby.",
@@ -463,7 +463,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Whether clients or regulators need to be told is the attorney's decision, not yours.",
-   "talk": "Go Deeper gives a first-hour checklist.",
+   "talk": "The first hour follows a simple checklist. Stop the spread: recall or delete messages where we can, switch off shared links and lock the affected files. Capture the facts: what was exposed, to whom, when and how. And tell the supervising attorney, IT and compliance promptly. Whether clients or regulators need to be told is the attorney's decision, not ours.",
    "walk": [
     "First, stop the spread: recall or delete messages where possible, switch off shared links and lock down affected files.",
     "Next, capture the facts: what was exposed, to whom, when and how.",
@@ -501,7 +501,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A rough note written now beats a polished one written later.",
-   "talk": "Two points on this slide.",
+   "talk": "The incident record isn't about blame; it's about getting the facts right while they're still fresh. That's why simple, time-stamped lines written in the moment, like '2:14, realised email went to wrong recipient', are worth far more than a neat summary written days later when memories have blurred.",
    "walk": [
     "First, the record isn't about blame. It's about getting the facts right.",
     "Finally, simple time-stamped lines are worth more than a neat summary after the details have faded."
@@ -524,7 +524,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Blame teaches people to hide the next problem.",
-   "talk": "If people get blamed, they stop reporting early. And early reporting is what keeps incidents small.",
+   "talk": "After an incident, the question isn't who to blame; it's what to change. If people get blamed, they stop reporting problems early. And early reporting is exactly what keeps incidents small. So the review looks at what happened, what made it possible and what we'll do differently.",
    "walk": [
     "First, focus on the process, not the individual.",
     "Finally, treat it as the same continuous-improvement habit you use for seasonal work."
@@ -547,7 +547,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An honest, incomplete update lands better than a confident one that turns out to be wrong.",
-   "talk": "Two points on this slide.",
+   "talk": "In a crisis, people want updates, and it's tempting to sound more certain than we are. Don't. An honest update that says 'here's what we know, here's what we don't yet' lands far better than a confident one that turns out to be wrong. Labelling what's confirmed stops rumours spreading as fact. And the ACT structure, acknowledge, clarify, timeline, works just as well in a crisis.",
    "walk": [
     "First, labeling what's confirmed stops rumors being repeated as facts.",
     "Finally, ACT works in a crisis too."
@@ -570,7 +570,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A few seconds of pause is the simplest calming technique there is.",
-   "talk": "Two points on this slide.",
+   "talk": "Staying calm doesn't mean not caring. It means still thinking clearly while everyone around us is reacting. The simplest technique of all is a few seconds' pause before responding. That pause is what stops us acting on our first panicked instinct, and it usually shows us the obvious next step.",
    "walk": [
     "First, calm means thinking clearly while everyone else reacts.",
     "Finally, pausing before you respond stops you acting on the first panicked instinct."
@@ -581,7 +581,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::Chain of Command During a Crisis": {
   "p1": {
    "why": "A crisis is the worst time to work out who's allowed to decide what.",
-   "talk": "Knowing the chain of command in advance, and the backup for each person, is what prevents freezing when speed matters.",
+   "talk": "When something goes wrong fast, the worst moment to work out who's in charge is right then. Knowing the chain of command in advance, and who steps in if each person can't be reached, is what stops people freezing when speed matters most.",
    "walk": [
     "First, know who decides what before a crisis.",
     "Next, use the same hierarchy from Day 1, rather than improvising.",
@@ -593,7 +593,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The everyday chain of command is also the crisis chain of command.",
-   "talk": "Two points on this slide.",
+   "talk": "The good news is we don't need a special crisis structure. The chain of command we use every day is the same one we use in a crisis. What matters is knowing the backup for each person, so that if the executive is on a flight and the next person isn't answering, we already know who's next.",
    "walk": [
     "First, rely on the structure you already use, rather than making one up under pressure.",
     "Finally, a known backup path prevents a dangerous gap when someone's unreachable."
@@ -616,7 +616,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A simple list covers most of the value of a continuity plan.",
-   "talk": "Two points on this slide.",
+   "talk": "A continuity plan answers one question: how do we keep working if a key system or person suddenly isn't available? It doesn't need to be elaborate. A simple list of critical systems, who to call and what to have printed or backed up covers most of the value. It's the same idea as having a backup vendor, applied to the whole firm.",
    "walk": [
     "First, it doesn't need to be elaborate to be useful.",
     "Finally, it's the same plan-before-you-need-it idea, applied to the whole organization."
@@ -637,7 +637,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "'No comment; here's who to contact' is the right fast answer.",
-   "talk": "Two points on this slide.",
+   "talk": "When the media gets involved, trying to help by answering questions ourselves, even with the best intentions, can do real damage. What protects everyone is a fast, correct holding line: 'I'm not able to comment, but here's who you should contact.' Then we alert the right people straight away.",
    "walk": [
     "First, trying to handle the media yourself, even with good intentions, can do real damage.",
     "Finally, a fast, correct holding line protects everyone better than a fast attempt to help."
@@ -660,7 +660,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An accidental disclosure can't be taken back.",
-   "talk": "Three points on this slide.",
+   "talk": "Attorney-client privilege protects private conversations between a lawyer and their client. But it can be lost, often by accident, by copying in someone who isn't part of the matter, or talking about it where others can hear. As the person managing the attorney's communications, we sit inside that privileged circle, so we protect it. And because an accidental disclosure can't be undone, when in doubt, we ask first.",
    "walk": [
     "First, privilege can be waived by including the wrong person or talking where others can hear.",
     "Next, managing a lawyer's communications puts you inside the privileged relationship.",
@@ -682,7 +682,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Just because something isn't a client message doesn't mean it's safe to share.",
-   "talk": "Two points on this slide.",
+   "talk": "Work product is the material lawyers create while preparing a case, like strategy memos, notes and research. It has its own protection, separate from client messages, and careless sharing can weaken it. So even when a colleague has a perfectly good reason for asking, we treat those documents as protected until the attorney says otherwise.",
    "walk": [
     "First, work product has its own protection that careless handling can waive.",
     "Finally, when unsure, treat it as protected."
@@ -693,7 +693,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::Investor Disclosure Confidentiality": {
   "p1": {
    "why": "Before anything goes to an investor, confirm it's been cleared to share.",
-   "talk": "Investors can be told some things but not others, and some information needs authorization first. Investor material often sits in the most restricted category of all.",
+   "talk": "Investors can be told some things but not others, and some information needs approval before it's shared at all. Investor material also tends to live in the most restricted folders the firm has. So preparing an investor briefing and protecting confidentiality are really two parts of the same job.",
    "walk": [
     "First, confirm what's been cleared before including it in anything investor-facing.",
     "Next, keep investor materials in access-controlled storage.",
@@ -703,7 +703,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An investor's interest doesn't mean they're entitled to the information.",
-   "talk": "Two points on this slide.",
+   "talk": "An investor being interested in something doesn't mean they're entitled to it. There are rules about what can be disclosed and when, and sharing the wrong thing early can cause real legal problems. So when an investor asks for details, we check what's been approved for sharing before we reply.",
    "walk": [
     "First, don't assume investors can have anything that seems relevant.",
     "Finally, confidentiality and briefing preparation are two sides of the same job."
@@ -726,7 +726,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A firm doesn't need to be in healthcare for health privacy law to matter.",
-   "talk": "Three points on this slide.",
+   "talk": "HIPAA is the US law protecting health information. A law firm doesn't have to be in healthcare for it to matter: the moment a client's medical records are in a file, it can come into play. So medical information is handled discreetly, seen only by those who need it, never left visible, and always treated at the highest sensitivity level.",
    "walk": [
     "First, any medical information in a file can bring HIPAA into play.",
     "Next, handle it discreetly: only the people who need it, never left visible.",
@@ -750,7 +750,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Your job is to spot when privacy law might apply; the attorney handles the details.",
-   "talk": "Three points on this slide.",
+   "talk": "GDPR is Europe's data privacy law, and it gives people real rights over their personal information. The catch is that 'we're not in Europe' doesn't mean it doesn't apply; if a client or their staff are there, it might. We're not expected to know all the details. Our job is to spot the trigger, like a European client or employee records, and flag it to the attorney early.",
    "walk": [
     "First, people's data rights affect how long records are kept and how they're organized.",
     "Next, 'we're not in the EU' doesn't mean privacy law doesn't apply.",
@@ -762,7 +762,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::Other Relevant Compliance Frameworks": {
   "p1": {
    "why": "Some kinds of information always deserve extra care, even before you know exactly which law applies.",
-   "talk": "The slide mentions a few frameworks: rules for public-company finances, privacy rules for financial and education records, and each state's professional conduct rules for lawyers. You don't need to memorize them. What you need is the instinct that health, financial, children's and foreign data are special.",
+   "talk": "There are other rules too: for public companies' finances, for financial privacy, for student records, and each state's professional rules for lawyers. We don't need to memorise them. What we need is an instinct: health, financial, children's and foreign data are special, and deserve extra care before we even know exactly which law applies.",
    "walk": [
     "First, learn the pattern rather than every law.",
     "Next, handle those sensitive categories with extra care by default.",
@@ -774,7 +774,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Pattern recognition is the skill, and asking is always the right move.",
-   "talk": "No single training can cover every regulation, and that isn't the goal.",
+   "talk": "No training could cover every regulation, and that isn't the goal. Legal work touches a huge range of rules depending on the client. The skill is spotting the sensitive categories, handling them carefully and asking the attorney whenever something feels unfamiliar. An unnecessary question costs nothing; a missed requirement can cost a lot.",
    "walk": [
     "First, legal work touches a wide range of rules, depending on the client.",
     "Next, spot the sensitive categories and handle them carefully.",

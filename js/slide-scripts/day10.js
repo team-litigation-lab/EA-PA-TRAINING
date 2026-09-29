@@ -5,7 +5,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Social Media Management vs. Marketing": {
   "p1": {
    "why": "Managing social media keeps an account alive; marketing brings new people in, and each needs its own measure of success.",
-   "talk": "The table on the slide compares them. Management is about consistency, engagement and keeping followers: daily updates, quick replies and an up-to-date profile. Marketing is about growth and results: campaigns, ads, clicks and sign-ups. Management runs all the time; marketing has a start and an end.",
+   "talk": "People use these two words as if they mean the same thing, but they don't. Managing an account is about showing up consistently: regular posts, quick replies and a profile that's up to date. It never really stops. Marketing is about growth: a campaign with a goal, like clicks or sign-ups, a start date and an end date. Mixing them up leads to judging good work by the wrong numbers.",
    "walk": [
     "First, before taking on any social media task, decide whether it's management or marketing.",
     "Next, for management, focus on steady presence, quick replies and a current profile.",
@@ -17,7 +17,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Management is the restaurant's dining room; marketing is the billboard on the highway.",
-   "talk": "One keeps the guests you have happy. The other brings new people through the door. And the work usually splits by role.",
+   "talk": "Think of a restaurant. Managing the account is looking after the regulars, so they keep coming back. Marketing is the promotion that brings new people through the door. You need both, but they're different jobs with different measures of success, and they often end up split between different people.",
    "walk": [
     "First, management keeps things running and people happy; marketing attracts new ones.",
     "Finally, EAs usually own management: scheduling, filtering messages and consistency. Marketing specialists lean into growth and campaigns."
@@ -28,7 +28,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::EA vs. PA Roles in Social Media": {
   "p1": {
    "why": "On social media, the EA protects the brand and the PA produces the content.",
-   "talk": "The slide splits the work. The EA handles strategy: the content calendar for professional platforms, filtering messages for important contacts, checking every post matches the executive's public image and being first to spot a PR problem. The PA handles creation: taking behind-the-scenes photos and video, editing them and keeping profiles and links up to date.",
+   "talk": "On social media, the two roles naturally divide. The EA side is strategy and protection: planning what goes out on professional platforms, filtering messages for the ones that matter, checking every post fits the executive's public image and spotting a PR problem early. The PA side is creation: capturing real moments on photo and video, editing them and keeping profiles and links current.",
    "walk": [
     "First, as the EA, run the content calendar and time posts well.",
     "Next, as the EA, filter messages and comments for real opportunities or urgent issues.",
@@ -40,7 +40,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The EA is the gatekeeper and moderator; the PA is the ghostwriter and promoter.",
-   "talk": "Each role also has its own job in a crisis.",
+   "talk": "Put simply, the EA is the gatekeeper and moderator, and the PA is the ghostwriter and promoter. And each has a job when things go wrong. The EA's is spotting negative attention early and escalating it. The PA's is sharing genuine good news that shows the other side of the story.",
    "walk": [
     "First, the EA's crisis job is spotting negative publicity early.",
     "Finally, the PA's crisis job is sharing good news that shows the other side of the story."
@@ -61,7 +61,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Unclear ownership always comes to light at the worst possible moment.",
-   "talk": "Three points on this slide.",
+   "talk": "When an executive posts about work on a personal account, the question 'who owns this?' tends to stay unanswered, until they leave the firm and everyone suddenly cares. So we settle ownership up front, apply the same review to confidential firm content wherever it's posted, and keep logins and ownership records in the firm's systems, not in someone's personal notes.",
    "walk": [
     "First, don't wait for a departure to settle ownership.",
     "Next, confidential firm content needs the same review, even on a personal account.",
@@ -73,7 +73,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::The Executive Personal Brand Style Guide": {
   "p1": {
    "why": "An executive's online voice has to be written down, or every new writer will guess it differently.",
-   "talk": "A style guide covers five things, shown on the slide. The north star: the main goal and the three topics they're the expert on. Voice and tone: first person or third, emojis or not. The 'never' list: banned topics and words. How to engage: who gets a reply and how to handle trolls. And the visual standard: mostly natural photos, some polished ones.",
+   "talk": "A style guide writes down five things. The north star: the main goal, and the three subjects the executive is the expert on. The voice: first person or third, emojis or not. The 'never' list: topics and words that are off limits. How to engage: who gets a reply, and what to do about trolls. And the look: mostly natural photos, with a few polished ones.",
    "walk": [
     "First, define the north star: the main goal and three expert topics.",
     "Next, write down the voice and tone rules.",
@@ -85,7 +85,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An unwritten feel for the brand doesn't survive the second person who writes for it.",
-   "talk": "Go Deeper sums up what goes in the guide.",
+   "talk": "Without a written guide, the brand lives in one person's head, and it doesn't survive the second person who writes for it. A good guide captures the goal and the audience, the voice and tone, three to five topic areas, the 'never' list, the visual rules and, crucially, who approves posts before they go live.",
    "walk": [
     "First, the goal and the audience.",
     "Next, voice and tone, three to five topic areas and the 'never' list.",
@@ -97,7 +97,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Content Pillars & Finding the Brand Voice": {
   "p1": {
    "why": "A brand's voice sits at a chosen point on four scales, and it should stay there, whoever is writing.",
-   "talk": "The four scales are on the slide: funny or serious, formal or casual, calm or enthusiastic, and rebellious or respectful. If the voice slides around depending on who wrote the post, the audience notices.",
+   "talk": "A useful way to pin down a voice is to place it on four scales: funny or serious, formal or casual, calm or enthusiastic, and rebellious or respectful. Once we've chosen a point on each, that's where the voice stays, whoever is writing. If it drifts depending on who drafted the post, the audience notices, even if they can't say why.",
    "walk": [
     "First, apply 'this, not that' boundaries: confident, not sarcastic; witty, not arrogant; accessible, not simplistic; bold, not aggressive.",
     "Next, deliberately place the voice on each of the four scales.",
@@ -109,7 +109,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A consistent voice tells people there's a real person behind the account.",
-   "talk": "When the voice keeps changing, people get what's called brand whiplash, and they leave.",
+   "talk": "When the voice keeps changing, followers get what marketers call brand whiplash: it stops feeling like a real person, and they drift away. Simple 'this, not that' pairs help writers stay on track, like confident, not sarcastic, or bold, not aggressive. Consistency is what makes an account feel human and trustworthy.",
    "walk": [
     "First, the 'this, not that' pairs give writers clear boundaries.",
     "Finally, consistency is what makes the account feel human and trustworthy."
@@ -120,7 +120,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Defining and Maintaining Brand Voice, Tone & Messaging": {
   "p1": {
    "why": "Elias's voice is direct, specific and unhurried, and anything that hedges or chases trends isn't him.",
-   "talk": "The slide compares his real voice with a generic wrong one. His leads with the answer, backs claims with specifics and doesn't chase every trend. The wrong one hedges with 'we believe', leans on buzzwords and jumps on every trending format.",
+   "talk": "Let's compare Elias's real voice with a generic one. His gets straight to the point, backs up claims with specifics and doesn't jump on every trend. The generic version hedges with 'we believe', leans on buzzwords like 'innovative' and chases whatever format is trending this week. Reading the two side by side makes it obvious which one sounds like someone worth listening to.",
    "walk": [
     "First, lead with the actual point, not a warm-up.",
     "Next, back every claim with a specific detail, not an adjective like 'amazing'.",
@@ -132,7 +132,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Defining a voice takes one workshop; keeping it for months is the real work.",
-   "talk": "Go Deeper separates three ideas that often get mixed up.",
+   "talk": "Three ideas often get mixed up here. Voice is the personality that never changes: for Elias, direct, credible and unhurried. Tone shifts with the moment: celebratory for a win, measured for industry news and gentle for hard subjects. And messaging is the handful of core ideas he wants to be known for. Once a quarter, we check a sample of posts against all three.",
    "walk": [
     "First, voice is the constant personality: direct, credible and unhurried.",
     "Next, tone changes with the moment: celebratory for a win, measured for industry news, gentle for hard topics.",
@@ -156,7 +156,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The guide is only as good as the review behind it.",
-   "talk": "Two points on this slide.",
+   "talk": "Writing the guide is the easy part. Keeping it alive is the work. Key descriptions, like how we describe the firm, stay word-for-word the same from post to post. And every draft goes through a review against the guide. Without that review step, the guide quietly gets ignored within a few weeks.",
    "walk": [
     "First, messaging rules keep key descriptions identical from post to post.",
     "Finally, without a review step, the guide quietly gets ignored."
@@ -167,7 +167,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Visual Brand Assets — Sample Color Palette": {
   "p1": {
    "why": "A strong brand uses a small set of colors, each with one job.",
-   "talk": "The sample palette on the slide has four: deep navy as the main color for authority, warm gold as a sparing accent for calls to action, charcoal for body text and warm ivory as a calm background.",
+   "talk": "A strong palette usually has just four colours, each with one job. A main colour that carries the brand, like a deep navy for authority. An accent, like a warm gold, used sparingly to draw the eye to a button or a highlight. A text colour, like charcoal. And a calm background, like warm ivory, that never competes with the rest.",
    "walk": [
     "First, limit it to one main color, one accent, one text color and one background.",
     "Next, use the accent sparingly, only for highlights and calls to action.",
@@ -179,7 +179,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A brand isn't just a logo; it's a small, deliberate set of colors, fonts and image rules.",
-   "talk": "Go Deeper explains how to use a palette well.",
+   "talk": "A handy rule of thumb is sixty, thirty, ten: about sixty percent background, thirty percent main colour and ten percent accent. We write down the exact colour codes, so every designer and tool gets precisely the same shade. And we check that text stands out clearly from its background, especially on a phone screen.",
    "walk": [
     "First, roughly 60 percent neutral background, 30 percent main color and 10 percent accent.",
     "Next, record the exact color codes, so every designer and tool gets the same shade.",
@@ -203,7 +203,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Consistency comes from rules decided in advance, not from each person's taste.",
-   "talk": "Two points on this slide.",
+   "talk": "Consistency doesn't come from good taste; it comes from rules decided in advance. One font for headings and one for body text, everywhere. And a short list of images we don't use, like the tired stock photo of a gavel, so everyone chooses pictures against the same standard instead of their own preference.",
    "walk": [
     "First, one heading font and one body font, everywhere.",
     "Finally, decide which images are off-limits up front, so everyone chooses against the same standard."
@@ -214,7 +214,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Platform Proficiencies — Tool-Specific Best Practices": {
   "p1": {
    "why": "Being 'good at social media' is really several different skills, one for each platform.",
-   "talk": "The slide groups them. Social platforms, where each has its own format, so the same text shouldn't be pasted everywhere. Website builders, like WordPress or Squarespace, where you need to update a page without breaking it. And newsletter tools, like Mailchimp, where you need to segment lists and read the results.",
+   "talk": "Being 'good at social media' is really several separate skills. Each social platform has its own format, so pasting the same text everywhere rarely works. Website tools, like WordPress or Squarespace, need enough confidence to update a page without breaking it. And newsletter tools, like Mailchimp, need us to split lists sensibly and read the results.",
    "walk": [
     "First, adapt content to each social platform instead of copying and pasting.",
     "Next, learn the firm's website tool well enough to make simple updates safely.",
@@ -226,7 +226,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The newsletter is the only channel the executive fully owns.",
-   "talk": "Go Deeper gives a snapshot of the main platforms.",
+   "talk": "Each platform suits a different kind of content. LinkedIn is for professional insight, and text posts and articles do well there. Instagram is visual, so behind-the-scenes moments and events with strong images work best. X and Threads suit quick, timely comment. And the newsletter is special: it's the one channel the executive fully owns, with no algorithm deciding who sees it.",
    "walk": [
     "First, LinkedIn: professional insight and thought leadership, with text posts and articles doing well.",
     "Next, Instagram: visual storytelling, like behind-the-scenes and events, with strong images and short captions.",
@@ -250,7 +250,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A typo in a draft costs nothing; the same typo sent to a mailing list is public.",
-   "talk": "Three points on this slide.",
+   "talk": "On a website, the useful skill is making routine updates ourselves, without waiting for a developer. On a newsletter tool, it's splitting the list sensibly, timing the send and reading the report afterwards. And one rule covers every platform: always work in draft or preview first. A typo in a draft costs nothing; the same typo sent to a mailing list is public.",
    "walk": [
     "First, on websites, the key skill is making routine updates without needing a developer.",
     "Next, on newsletters, it's segmenting lists, timing sends and reading the report.",
@@ -262,7 +262,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::The Content Calendar & Publishing Workflow": {
   "p1": {
    "why": "Plan a month of content in four weekly batches, and it stops being a daily scramble.",
-   "talk": "This is a four-step monthly rhythm, one step per week.",
+   "talk": "Posting every day on the fly is exhausting, and it shows. A calmer way is to plan a month at a time, with each week given one job. Week one is for ideas, week two for creating, week three for polishing and week four for scheduling. By the time the month starts, everything is ready to go.",
    "walk": [
     "First, week one, ideas: brainstorm 12 to 15 ideas from the content pillars.",
     "Next, week two, creation: film and design everything in one or two focused days.",
@@ -273,7 +273,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Showing up consistently matters more than posting at the perfect minute.",
-   "talk": "A professional calendar tracks more than a date and a caption.",
+   "talk": "A professional content calendar tracks more than a date and a caption. It records the platform, which content pillar the post belongs to, the type of post, its opening hook, keywords, the call to action and where it's up to. And the aim is steady consistency; platforms reward regular activity far more than posting at the perfect minute.",
    "walk": [
     "First, track the platform, pillar, type, opening hook, keywords, call to action and status.",
     "Finally, aim for consistency. Platforms care more about regular activity than exact timing."
@@ -294,7 +294,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Watch the whole video before it goes out, every time.",
-   "talk": "Three points on this slide.",
+   "talk": "Three habits make a big difference with video. Captions every time, because lots of people watch with the sound off, and it's basic accessibility. Watching the whole thing through before it goes out, because skimming misses the notification or document visible in the background. And a consistent setup, so his videos feel recognisably his.",
    "walk": [
     "First, always add captions. Many people watch with the sound off, and it's an accessibility basic.",
     "Next, watch it through fully. Skimming misses the stray comment or detail in the background.",
@@ -316,7 +316,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An automatic caption that misquotes the executive is a real problem.",
-   "talk": "Three points on this slide.",
+   "talk": "Accessibility means everyone can use our content, including people using screen readers or watching without sound. Alt text is the written description of an image, and 'image' isn't a description. Automatic captions save time, but they need checking, because a caption that misquotes the executive is a real problem. The simplest fix is to make accessibility a standard step in approving any content.",
    "walk": [
     "First, 'image' is not alt text.",
     "Next, always review automatic captions.",
@@ -328,7 +328,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Audience Psychology & Pain Points": {
   "p1": {
    "why": "Good content names a real worry your audience has and answers it honestly.",
-   "talk": "The slide lists four kinds of pain point. Financial: hidden fees, answered with transparency. Convenience: too much information, answered by being the curator who answers one question fast. Emotional: burnout, answered with sustainable progress instead of hustle. And trust: fear of fakery, answered by showing the real process.",
+   "talk": "Good content starts with a real worry. For money worries, like hidden fees, the answer is transparency. For information overload, it's being the one who answers a single question quickly. For burnout, it's talking about sustainable progress, not hustle. And for trust worries, it's showing the real process behind the scenes, rather than something staged.",
    "walk": [
     "First, for money worries, be openly transparent.",
     "Next, for information overload, answer one specific question quickly.",
@@ -340,7 +340,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "People are tired of polished ads, and they trust real proof.",
-   "talk": "This slide explains today's audience mood and three persuasion ideas to use carefully.",
+   "talk": "Today's audiences are tired of polished advertising and much more likely to trust real evidence. There are a few persuasion ideas worth knowing, like showing that others have already chosen us, giving something useful first, or pointing out a contradiction the reader recognises. They work, but only when they add real value. Used as tricks, they backfire.",
    "walk": [
     "First, audiences have digital overload fatigue and want authentic evidence.",
     "Finally, the bandwagon effect, reciprocity and pointing out a contradiction can all work, as long as they add real value."
@@ -351,7 +351,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::SEO, GEO & Funneling for Executives": {
   "p1": {
    "why": "You want the executive to be found on Google, recommended by AI tools and to move people from awareness to action.",
-   "talk": "The slide shows four ideas. SEO: showing up in search. GEO: being recommended when someone asks an AI tool a relevant question. Funneling: awareness at the top, interest in the middle and action at the bottom. And a monthly scorecard to see whether it's working.",
+   "talk": "There are three ways people find an executive online. Search engines, where SEO helps them show up. AI tools, where GEO helps them get recommended when someone asks a relevant question. And the funnel, which takes someone from first hearing about them, to being interested, to actually getting in touch. A simple monthly scorecard shows whether it's all working.",
    "walk": [
     "First, for search, use the natural phrases the audience actually types, and earn links from podcasts and guest articles.",
     "Next, for AI tools, structure content so they can quote it.",
@@ -363,7 +363,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Search the executive's name in a private browser every month, and fix what's out of date.",
-   "talk": "Go Deeper shows how the funnel works in practice.",
+   "talk": "Let's see the funnel in practice. At the top, we reach people who've never heard of the executive, through posts, podcasts and press. In the middle, we show depth, with articles, webinars and newsletters. At the bottom, we make it easy to act, with case studies, testimonials and a clear way to get in touch. And once a month, we search his name privately to see what a stranger would see.",
    "walk": [
     "First, the top reaches people who don't know the executive yet: posts, podcasts and press.",
     "Next, the middle shows depth: articles, webinars and newsletters.",
@@ -387,7 +387,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Whatever the AI tool gets wrong about the executive becomes your to-do list.",
-   "talk": "Go Deeper explains GEO in plain terms and gives a simple monthly test.",
+   "talk": "GEO simply means making it easy for AI assistants to find, trust and quote accurate information about the executive. They favour clear, factual content that says the same thing in every place it appears. So each month, we ask an AI tool who the executive is. Anything it gets wrong or leaves out becomes our to-do list.",
    "walk": [
     "First, GEO means being easy for AI assistants to find, trust and quote.",
     "Next, they prefer clear, factual content from consistent sources.",
@@ -399,7 +399,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Copywriting vs. Blog Writing": {
   "p1": {
    "why": "Copywriting closes the sale; blog writing educates and builds trust.",
-   "talk": "The slide compares them. Copy is short and built to convert, using attention, interest, desire and action, with strong calls to action. A blog is longer, built to teach and rank in search, with a hook headline, a direct answer up front, easy-to-scan sections and real first-hand evidence.",
+   "talk": "They're two different jobs. Copywriting is short and built to get someone to act, following a simple path: grab attention, spark interest, build desire, then ask for action. Blog writing is longer and built to teach and to be found in search: a hook in the headline, a direct answer early on, sections that are easy to skim and real first-hand examples.",
    "walk": [
     "First, for copy, know the exact action you want, and structure it around attention, interest, desire and action.",
     "Next, write calls to action with strong verbs and real urgency, not 'click here'.",
@@ -411,7 +411,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A blog that repeats what the top search results already say adds nothing.",
-   "talk": "Two points on this slide.",
+   "talk": "Think of copy as the closer and the blog as the friendly guide. And a blog only earns its place if it adds something new. If it just repeats what the top search results already say, nobody needs it. So we add something only we can offer: a real example, a fresh angle or our own numbers.",
    "walk": [
     "First, copy is the closer; the blog is the friendly guide.",
     "Finally, add something the top five results don't have: a real example, a fresh angle or your own data."
@@ -422,7 +422,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Reading the Numbers — Engagement Rate": {
   "p1": {
    "why": "Engagement rate tells you how much people actually cared, not just how many saw it.",
-   "talk": "The formula is on the slide: add likes, comments and shares, divide by followers and multiply by 100. That turns raw numbers into a rate you can compare fairly between posts of different sizes.",
+   "talk": "Likes on their own can be misleading, because a big account will always get more than a small one. Engagement rate fixes that. We add up the likes, comments and shares, divide by the number of followers and multiply by a hundred. Now we can compare a post on a small account fairly with one on a big account, or this month's post with last month's.",
    "walk": [
     "First, add up the likes, comments and shares.",
     "Next, divide by the number of followers and multiply by 100.",
@@ -434,7 +434,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Compare a post with the account's own average before calling it good or bad.",
-   "talk": "The worked example: 120 likes, 15 comments and 10 shares, divided by 4,000 followers, gives 3.6 percent. Go Deeper explains how to read that.",
+   "talk": "Let's try it: 120 likes, 15 comments and 10 shares on an account with 4,000 followers works out at 3.6 percent. Is that good? It depends on the account's usual rate. It's strong if they normally get 2 percent, and weak if they normally get 6. Comments and shares also say more than likes, and a small, engaged audience often beats a large, passive one.",
    "walk": [
     "First, 3.6 percent is strong if the usual rate is 2 percent, and weak if it's 6.",
     "Next, comments and shares show deeper interest than likes.",
@@ -460,7 +460,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Basic Campaign Math": {
   "p1": {
    "why": "Before calling a campaign a success, work out what each lead cost and what it earned back.",
-   "talk": "Two formulas on the slide. Cost per lead: spend divided by leads. Return on investment: revenue minus spend, divided by spend, times 100. A big pile of leads can hide a campaign that lost money.",
+   "talk": "Two simple sums tell us whether a campaign worked. Cost per lead is what we spent divided by how many leads we got. Return on investment is the money it brought in, minus what we spent, divided by what we spent, times a hundred. Why both? Because a huge number of leads can hide a campaign that actually lost money.",
    "walk": [
     "First, work out cost per lead: total spend divided by the number of leads.",
     "Next, work out return on investment: revenue minus spend, divided by spend, times 100.",
@@ -472,7 +472,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Lead count on its own can make a losing campaign look impressive.",
-   "talk": "The worked example: $500 spent, 50 leads and a $20 product. That's $10 per lead, $1,000 in revenue and a 100 percent return.",
+   "talk": "Let's walk through an example. We spend 500 dollars and get 50 leads, so each lead cost 10 dollars. If those leads bring in 1,000 dollars of sales, we made back our 500 plus another 500, which is a 100 percent return. Seeing both numbers together is what tells us whether to run the campaign again.",
    "walk": [
     "First, always know both numbers.",
     "Finally, judge success by return, not by volume."
@@ -493,7 +493,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A pattern across several mentions tells you more than any single one.",
-   "talk": "Three points on this slide.",
+   "talk": "Social listening means paying attention to what people say about the firm anywhere, not just in our own notifications. One complaint is a comment; the same complaint from several people is a pattern, and patterns tell us far more. So we review our monitoring setup regularly, and flag a worrying trend early, long before it turns into a crisis.",
    "walk": [
     "First, don't only watch your own account's notifications.",
     "Next, review your listening setup regularly.",
@@ -515,7 +515,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Deleting a genuine complaint usually makes things worse.",
-   "talk": "Three points on this slide.",
+   "talk": "When criticism goes public, the instinct is to reply fast or make it disappear. Both usually backfire. A hasty, emotional reply is much harder to take back than a slower, considered one. Deleting a genuine complaint tends to make people angrier and draws more attention. So we pause, involve the right people, respond carefully and document what happens as it unfolds.",
    "walk": [
     "First, a hasty emotional reply is much harder to take back than a slower, considered one.",
     "Next, don't delete legitimate criticism just because it's unflattering.",
@@ -537,7 +537,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A deal without cash still counts, so when in doubt, disclose.",
-   "talk": "Three points on this slide.",
+   "talk": "When someone promotes the firm and gets something in return, that relationship usually has to be disclosed, and 'something' doesn't have to be money. A discount or free service counts too. We check disclosure before content is approved, not after it's posted. And when in doubt, we disclose, because over-disclosing costs almost nothing while failing to disclose can cost a lot.",
    "walk": [
     "First, no money changing hands doesn't mean no disclosure.",
     "Next, check disclosure before content is approved, not afterwards.",
@@ -559,7 +559,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Case results and client testimonials have their own strict rules.",
-   "talk": "Two points on this slide.",
+   "talk": "Law firms can't market themselves the way other businesses do. There are strict professional rules about advertising, and they're especially tight around case results, testimonials and client stories. A line like 'we can get you the same result' can break those rules, because no lawyer can promise an outcome. So legal content gets extra care before it goes out.",
    "walk": [
     "First, don't treat the firm's social media like any other business's.",
     "Finally, take particular care with testimonials, results and client stories."
@@ -580,7 +580,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A finished program isn't a finished skill set, so leave with a plan, not just a certificate.",
-   "talk": "Two points on this slide.",
+   "talk": "Finishing the program isn't the same as finishing learning. This is the last chance, inside the program, to close a gap you already know about. And the strongest way to end isn't just collecting the certificate; it's leaving with a specific plan for what you'll keep practising once you're in the role.",
    "walk": [
     "First, this is your last chance in the program to close a known gap.",
     "Finally, the strongest ending is a specific plan for what you'll keep practicing."

@@ -17,7 +17,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A shared calendar, a budget and a directory: that's the household's operating system.",
-   "talk": "Go Deeper names the three tools that make it work. Get these right, and the house almost runs itself.",
+   "talk": "Three tools make a busy household run smoothly. One master calendar that everyone who needs it can see: the family, the staff, school events and maintenance visits. A household budget, split into categories and checked every month, the way a business watches a department's costs. And a directory of every vendor and staff member, with their contracts, rates, emergency numbers and a backup for each important service.",
    "walk": [
     "First, one master calendar for family, staff, school events and maintenance, shared with the right people.",
     "Next, a household budget split into categories and checked monthly, like any business cost center.",
@@ -29,7 +29,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "5::Recurring Household Admin: Utilities, Purchasing & Subscriptions": {
   "p1": {
    "why": "If you don't decide before a subscription renews, auto-renew decides for you.",
-   "talk": "The slide covers three kinds of recurring admin. Utilities, like power and water, which can never lapse. Purchasing, for both work and home, which is easy to duplicate or forget. And subscriptions, which most people sign up for and then never think about again.",
+   "talk": "Recurring admin comes in three flavours. Utilities, like power and water, which can never be allowed to lapse. Purchasing, for work and for home, where it's easy to buy something twice or forget it altogether. And subscriptions, which most people sign up for once and then never think about again, until the charge shows up on the statement.",
    "walk": [
     "First, put every utility payment on a calendar with its real due date.",
     "Next, keep a simple record of what's been bought and when, so nothing gets bought twice or forgotten.",
@@ -87,7 +87,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Know your spending limit for repairs before the call, not in the middle of it.",
-   "talk": "This slide covers how to prioritize and protect the household when things break.",
+   "talk": "When something breaks, the first job is judging how urgent it really is; a dripping tap and a smell of gas are worlds apart. We agree ahead of time how much we can approve without checking in, so we're not stuck mid-crisis. We keep photos and notes of bigger repairs for warranties and insurance. And we keep the maintenance calendar alive, because one nobody looks at gives a false sense of safety.",
    "walk": [
     "First, not every repair is equally urgent. A dripping tap and a gas smell are worlds apart.",
     "Next, agree in advance the amount you can approve without checking in.",
@@ -112,7 +112,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Keep a note of what was given last year, so you never repeat a gift.",
-   "talk": "Things get dropped not from carelessness but because memory doesn't scale. Go Deeper lists the typical lifestyle tasks you'll track.",
+   "talk": "Things get dropped in personal support not because anyone is careless, but because memory doesn't scale. So we track three kinds of things. Gifts and occasions, with dates, budgets and what was given last year. Errands and appointments, fitted around the work calendar. And events, like reservations, tickets and family celebrations, each one confirmed in writing.",
    "walk": [
     "First, gifts and occasions: birthdays, anniversaries and holiday gifts, with dates, budgets and last year's gift.",
     "Next, errands and appointments, fitted around the work calendar.",
@@ -124,7 +124,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "5::Creating a Home Binder for a Busy Executive": {
   "p1": {
    "why": "The home binder exists for one moment: when someone else needs critical information and you're not there to tell them.",
-   "talk": "Picture the alarm going off while the nanny is home with the children, and you're unreachable. What does she need? The slide shows the four sections: running the house, family and medical, financial and legal pointers, and emergency contacts.",
+   "talk": "Picture the alarm going off while the nanny is home with the children, and you're unreachable. What does she need? A good binder has four parts. How the house runs, with codes, manuals and utility accounts. Family and medical details, like doctors and allergies. Pointers to financial and legal documents. And emergency contacts, organised so anyone can find the right person in seconds.",
    "walk": [
     "First, build the household section: staff contacts, vendors, manuals, alarm and Wi-Fi codes and utility accounts.",
     "Next, add family and medical: doctors, allergies, medications and school details.",
@@ -172,7 +172,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Remove a departed employee's access on the day they leave.",
-   "talk": "Four warnings on this slide, all about making sure the right people can get in, and only them.",
+   "talk": "With a digital binder, the biggest risks are about access. If we choose a tool nobody else in the house can use, it's useless the moment we're away. If only one person has the login, that's a single point of failure. And when staff leave, their access has to go the same day. The simple test: ask someone unfamiliar to find something specific, and watch what happens.",
    "walk": [
     "First, don't pick a tool nobody else knows how to use.",
     "Next, never rely on one person's login as the only way in.",
@@ -196,7 +196,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Anyone who works inside the home gets references, insurance and licensing checked first.",
-   "talk": "Go Deeper walks through the full cycle.",
+   "talk": "Choosing a vendor is a cycle, not a single decision. We start by defining what's needed and what the budget is, then get at least three quotes for anything significant. Before hiring, we check references, insurance and licences, especially for anyone who'll be working inside the home. Then we put the scope, price, schedule and cancellation terms in writing, and review the vendor at least once a year.",
    "walk": [
     "First, define the need and budget, then get at least three quotes for anything significant.",
     "Next, check references, insurance and licenses before hiring.",
@@ -220,7 +220,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Signing is the start of the relationship, not the end.",
-   "talk": "This slide ties vendor management to the recurring admin we covered earlier: contract dates and performance are facts to track, not memories.",
+   "talk": "It's the same thinking as the rest of the household admin. Contract dates, renewal dates and how well a vendor is performing are facts to track, not things to remember. If they sit in the same tracker as the utilities and subscriptions, a slipping service or an unwanted renewal gets spotted in time.",
    "walk": [
     "First, keep watching performance, renewals and backups.",
     "Finally, put contract and renewal dates in the same tracker as other household admin."
@@ -242,7 +242,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "'This price is only good today' is a sales tactic, not a real deadline.",
-   "talk": "Four points on this slide, including one people often forget: how you negotiate matters for relationships you'll keep.",
+   "talk": "A few habits make negotiation go better. Price matters, but so do the cancellation and dispute terms, and people often forget those until they need them. 'This price is only good today' is almost always a sales tactic. We keep a short note of what we agreed and why. And we remember that we'll keep working with many of these vendors, so a deal that sours the relationship isn't really a win.",
    "walk": [
     "First, don't negotiate only on price and ignore cancellation and dispute terms.",
     "Next, don't let a vendor rush you with pressure they created.",
@@ -267,7 +267,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Try out your backup vendor before an emergency depends on them.",
-   "talk": "Go Deeper explains how to build a backup bench.",
+   "talk": "The time to find a backup vendor is before we need one. For every critical service, like cleaning, security, childcare and repairs, we keep one checked alternative. Now and then we give that backup a small job, so we know they're actually reliable. And we write down every failure, because a vendor that lets us down twice should be replaced, not tolerated.",
    "walk": [
     "First, keep one checked backup for every critical service, like cleaning, security, childcare and repairs.",
     "Next, give the backup a small job now and then, so you know they're reliable.",
@@ -289,7 +289,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A promise to sign an NDA later isn't an NDA.",
-   "talk": "Two warnings on this slide.",
+   "talk": "NDAs aren't a box we tick once and forget. People change, projects change and agreements expire, so we keep them current. And one rule has no exceptions: access comes after the NDA is signed, never before. 'We'll send the paperwork next week' isn't protection.",
    "walk": [
     "First, don't treat NDAs as a one-time box to tick.",
     "Finally, never give access based on a promise that the paperwork will follow."
@@ -300,7 +300,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "5::The PA Risk Management Framework": {
   "p1": {
    "why": "Most real incidents touch several kinds of risk at once, so look at all of them.",
-   "talk": "The slide shows four categories. Financial risk: missed premiums, lapsed insurance and fraud. Legal risk: injury claims, contracts and staff liability. Operational risk: missed deadlines, travel problems and vendor failures. And reputational risk: social media, public disputes and data leaks.",
+   "talk": "Risk in a household falls into four groups. Money risk, like a missed insurance premium or fraud. Legal risk, like someone getting hurt on the property or a staff dispute. Everyday operational risk, like a missed deadline or a vendor who doesn't show up. And reputation risk, like a family matter ending up on social media. The trick is that real incidents rarely stay in just one group.",
    "walk": [
     "First, for financial risk, keep an eye on renewals and confirm payments went through.",
     "Next, for legal risk, notice injury, contract or staff issues as they come up.",
@@ -312,7 +312,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A burglary isn't one kind of risk; it's physical, financial and privacy risk all at once.",
-   "talk": "Go Deeper adds a fifth category, physical safety, and shows how to map a real event.",
+   "talk": "Let's add a fifth group: physical safety, meaning home security, travel and emergencies. Now think about a burglary. It's a safety issue, obviously. But it's also a money issue, with insurance claims, and a privacy issue if documents were taken. When something happens, we run it past every group, not just the obvious one, so nothing gets missed.",
    "walk": [
     "First, financial and legal risks: fraud, unpaid bills, injuries at the home and disputes.",
     "Next, operational and reputational risks: disruptions, privacy leaks and social media.",
@@ -324,7 +324,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "5::The Four Core Risk Strategies": {
   "p1": {
    "why": "There are only four ways to handle a risk: avoid it, reduce it, insure it or accept it.",
-   "talk": "The trick is matching the right approach to the risk in front of you. The slide starts with avoidance: simply not doing the risky thing.",
+   "talk": "Every risk can be handled in one of four ways. We can avoid it altogether by not doing the risky thing. We can reduce it, with alarms, training or safer habits. We can transfer it, usually by insuring it. Or we can accept it on purpose, when protecting against it would cost more than the risk itself. The skill is choosing the right one for each risk.",
    "walk": [
     "First, avoid: if a risk can reasonably be skipped, skip it.",
     "Next, reduce: if you can't avoid it, lower it, with alarms or safer driving.",
@@ -336,7 +336,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Most real situations use more than one strategy at once.",
-   "talk": "Go Deeper shows how to choose: think about how likely it is and how bad it would be.",
+   "talk": "How do we choose? We think about two things: how likely it is, and how bad it would be. If it would be really bad, we insure it or avoid it. If it's small and cheap, we accept it. If it happens often but it's manageable, we reduce it. And most real situations mix them. With a car, we insure it, add a tracker and accept the deductible.",
    "walk": [
     "First, avoidance fits when the benefit doesn't justify any risk, like skipping a destination with a travel warning.",
     "Next, match by likelihood and impact: big impact, transfer or avoid; small and cheap, retain; frequent but manageable, reduce.",
@@ -360,7 +360,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Every 'yes' on the twice-yearly check is a potential gap in cover.",
-   "talk": "This slide repeats the check so it sticks: more wealth, new property, more international travel or new staff all mean the cover may need to change.",
+   "talk": "Twice a year, we run a quick check. Has the family's wealth grown? Have they bought property? Are they travelling abroad more? Have they hired new staff? Each yes could mean a gap in their insurance. We keep the insurance tracker secure and complete, and we tell the broker about every change, rather than hoping the policy still fits.",
    "walk": [
     "First, review twice a year.",
     "Next, keep the tracker secure and complete.",
@@ -383,7 +383,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Report a near-miss early; it's far easier to contain than a real breach found late.",
-   "talk": "Four points on this slide, and the first is the most important: most security failures are human mistakes, not technical ones.",
+   "talk": "Here's the surprising part: most security failures aren't clever hacking. They're people making ordinary mistakes. So we don't assume IT has it covered. We never keep account numbers or passwords in an unprotected document just because it's handy. We report even small slips straight away, because a near-miss is far easier to contain than a breach found weeks later. And we regularly ask who still needs access.",
    "walk": [
     "First, don't assume 'IT handles that.'",
     "Next, never keep account numbers or passwords in an unprotected document just to have them handy.",
@@ -407,7 +407,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The best way to test a continuity plan is to have someone else follow it.",
-   "talk": "Four points on this slide about keeping the plan real.",
+   "talk": "It can feel safe to be the only person who knows how everything works. It isn't. It's a risk for the executive and for us. A continuity plan means writing down how the key things get done, then testing it by having someone else try a routine task with it. And we keep it current, because an out-of-date plan gives false comfort.",
    "walk": [
     "First, making yourself indispensable feels safe, but it's a risk for everyone.",
     "Next, test your documents by having someone try a routine task with them.",
@@ -431,7 +431,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "In a reputational situation, getting it right matters more than getting it fast.",
-   "talk": "A quick wrong response usually does more harm than a short, deliberate pause.",
+   "talk": "When reputation is on the line, speed feels important, but a quick wrong response usually does more damage than a short, careful pause. We also assume nothing private stays private; a message can always be forwarded. We know which topics are sensitive for this particular executive. And we don't handle these calls alone. When in doubt, we escalate.",
    "walk": [
     "First, don't rush a public response.",
     "Next, never assume a private message will stay private.",
@@ -455,7 +455,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Know the limits of your role, and bring in security experts when the risk is real.",
-   "talk": "The planning should match the risk, but every trip needs at least the basics.",
+   "talk": "Safety planning isn't paranoia. Even an ordinary trip needs the basics: real emergency numbers, the nearest hospital and a plan for staying in touch. The level of planning should match the risk, and when the risk is real, we bring in professional security instead of improvising. We also agree in advance what happens if someone misses a check-in.",
    "walk": [
     "First, don't dismiss safety planning as paranoia, even for an ordinary trip.",
     "Next, never guess at emergency numbers or hospitals, especially abroad.",
@@ -479,7 +479,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Urgency plus an unusual channel is the classic pattern behind financial fraud.",
-   "talk": "Four habits that protect everyone.",
+   "talk": "Fraudsters rely on two things: urgency and an unusual channel. 'Wire this today, and keep it quiet', sent by text or from a slightly different email address. So the rule is that urgency never lets us skip a check. If a money request doesn't fit the usual pattern, we confirm it another way, like a phone call to a known number, even if that slows things down. And we keep approval records tidy, so any audit is simple.",
    "walk": [
     "First, don't skip checks because something seems urgent. Urgency is the fraudster's favorite tool.",
     "Next, never act on a money request that came through an unusual route, like a text or a slightly-off email address.",
@@ -502,7 +502,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A family's private finances deserve the same care as the firm's.",
-   "talk": "Being trusted with someone's personal money is a big responsibility.",
+   "talk": "Being trusted with someone's personal money is a big responsibility. It's tempting to treat household spending as less serious than the firm's, but to the family it's every bit as important. So we review it with the same care, and we keep their private financial records as securely as any confidential client file.",
    "walk": [
     "First, don't treat personal expenses as lower stakes than business ones.",
     "Finally, keep private financial records as securely as any confidential file."
@@ -513,7 +513,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "5::Travel Risk Management": {
   "p1": {
    "why": "Travel safety has three phases, before, during and after, and each has its own job.",
-   "talk": "This is a sequence, and it covers the whole trip from planning to paperwork.",
+   "talk": "Think of any trip in three stages. Before it, we confirm travel insurance and medical cover abroad, and for high-profile trips we register with the embassy. During it, the traveller has an emergency contact sheet, copies of key documents and safe Wi-Fi habits. And after it, we reconcile expenses and file any claims while the details are still fresh.",
    "walk": [
     "First, before: confirm travel insurance and international medical cover, and register with the embassy for high-profile trips.",
     "Next, during: keep an emergency contact sheet, copies of documents and safe Wi-Fi habits.",
@@ -523,7 +523,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Keep a printed copy of the emergency sheet, in case the phone dies.",
-   "talk": "Go Deeper shows how to build the emergency contact sheet.",
+   "talk": "The emergency contact sheet is the one document we hope nobody needs. It holds the local emergency numbers, the nearest embassy, the hotel and the insurer's 24-hour line, plus copies of the passport and visa pages, medical notes and a contact back home. We share it with the traveller and one person at home. And there's a printed copy, because phones die at the worst moments.",
    "walk": [
     "First, include local emergency numbers, the nearest embassy, the hotel and the insurer's 24-hour line.",
     "Next, add copies of passport and visa pages, medical notes and a contact at home.",
@@ -560,7 +560,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Decide in advance how long a silence has to be before you act.",
-   "talk": "Four points on this slide.",
+   "talk": "An international trip isn't a domestic trip plus a passport. For higher-risk places, we bring in a security team or specialist. We keep scans of every important document somewhere we can reach online, separate from the originals. And we agree beforehand how long a silence has to be before someone acts, so nobody's left wondering whether to worry.",
    "walk": [
     "First, international prep isn't the domestic checklist plus a passport.",
     "Next, for high-risk places, involve a security team or specialist.",
@@ -583,7 +583,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Raise it now, while there's still time to fix it.",
-   "talk": "The second half of the program is where gaps can still be closed.",
+   "talk": "This is the halfway point, and that makes it valuable. Anything that still feels shaky can be fixed in the second half, but only if we talk about it now. So this isn't a formality to get through. If something specific is hard, the most useful thing you can do is say so plainly.",
    "walk": [
     "First, don't treat this as a formality.",
     "Finally, if something specific is hard, say so directly."

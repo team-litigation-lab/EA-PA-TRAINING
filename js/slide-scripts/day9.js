@@ -17,7 +17,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Thank-you notes go out within 48 hours of the event.",
-   "talk": "Go Deeper lays out the timeline for an event.",
+   "talk": "An event works best when it's planned backwards from the date. Two to three months out, we settle the goals, budget, date, venue and guest list. A month or so out, invitations, speakers, catering and audio-visual. The week before, final numbers, the running order, badges and materials. On the day, we arrive early and test everything. And afterwards, thank-you notes go out within two days, while people still remember the evening.",
    "walk": [
     "First, eight to twelve weeks out: goals, budget, date, venue and guest list. Four to six weeks out: invitations, speakers, catering and audio-visual.",
     "Next, one week out: final numbers, the running order, name badges and materials. On the day: arrive early, test the technology and track check-ins.",
@@ -39,7 +39,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Aim to deliver everything a day or two before the organizer's deadline.",
-   "talk": "Three points on this slide.",
+   "talk": "A speaking slot is much more than a calendar entry; the preparation decides how it goes. Organisers will want a bio, a headshot, slides and technical details, usually by a deadline. We confirm the technical setup with the venue itself, not just the organiser, and we aim to deliver everything a day or two early, so a late change never becomes a crisis.",
    "walk": [
     "First, a speaking slot isn't just another calendar entry. The preparation decides how it goes.",
     "Next, confirm technical needs with the venue itself, not only the organizer.",
@@ -61,7 +61,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A written complaint on the day carries far more weight than a verbal one afterwards.",
-   "talk": "Three points on this slide.",
+   "talk": "When the firm sponsors an event, the agreement promises certain things, like the logo in the programme or a mention from the stage. We don't assume those promises were kept; we go and check. If something's missing, we raise it in writing on the day, because that carries far more weight than a comment afterwards. And we never renew a sponsorship automatically without asking whether it was worth it.",
    "walk": [
     "First, don't assume a promise was kept. Go and look.",
     "Next, never renew a sponsorship automatically without checking whether it was worth it.",
@@ -84,7 +84,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "During a live event, a visible checklist beats memory every time.",
-   "talk": "Four points on this slide.",
+   "talk": "Running a live event well is mostly about watching. If we're actively monitoring the sound, the chat and the timing, we catch most problems before the audience notices. We keep a checklist in front of us instead of relying on memory, and we note even small technical glitches as they happen. For speaking events, we double-check the introduction, the slides, the recording and the audience numbers.",
    "walk": [
     "First, don't just react. Active monitoring catches most problems before the audience notices.",
     "Next, keep a checklist in front of you.",
@@ -107,7 +107,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Mention the actual conversation, not just 'great meeting you at the conference.'",
-   "talk": "Three points on this slide.",
+   "talk": "The real value of an event shows up afterwards. A business card with no notes is almost useless a week later, so we capture a line about each conversation while it's fresh. Follow-ups mention what was actually discussed, not 'great to meet you at the conference'. And we track a simple measure for each event, like leads or relationships strengthened, so the firm knows which events are worth repeating.",
    "walk": [
     "First, a business card with no notes is almost useless a week later.",
     "Next, track a simple measure of value for each event, like leads or relationships strengthened.",
@@ -131,7 +131,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A stressed executive needs the finished plan, not a running commentary.",
-   "talk": "Four points on this slide.",
+   "talk": "When travel falls apart, a stressed executive doesn't want a running commentary; he wants the finished plan. So we make sure he hears it from us before an airline app tells him, we sort it out quietly and then present the solution. And fixing the flight isn't the end. The car, the hotel and the meeting that depended on the old time all need checking, and the fix mustn't break his standing preferences, like no red-eyes.",
    "walk": [
     "First, never let him find out from an app before he hears from you.",
     "Next, don't narrate every step of your search.",
@@ -156,7 +156,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "'The board discussed the budget' isn't a minute; 'Motion to approve the budget, seconded, passed five to nothing' is.",
-   "talk": "Four points on this slide.",
+   "talk": "Board minutes are a legal record, not a story of the conversation. Writing down who said what, or how heated a debate got, can create legal risk. What gets recorded precisely is the decision: the motion, who seconded it and how the vote went. For sensitive topics, we check with the executive or counsel about what should be formally recorded. And papers sent to the board too late can even undermine a decision's legitimacy.",
    "walk": [
     "First, never write minutes as a story of the discussion. Recording opinions creates legal risk.",
     "Next, record motions precisely.",
@@ -179,7 +179,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Voting and proxy procedures are settled in advance, never improvised on the day.",
-   "talk": "Two points on this slide.",
+   "talk": "An annual general meeting, or AGM, isn't just a bigger board meeting. It comes with formal rules: how much notice shareholders must get, how many must be present for decisions to count, and how voting and proxy votes work. None of that can be improvised on the day, so we confirm it all well in advance.",
    "walk": [
     "First, an AGM isn't just a bigger board meeting. Its notice and quorum rules are formal requirements.",
     "Finally, confirm how voting and proxies work well ahead of time."
@@ -201,7 +201,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The executive should never have to solve a technical or scheduling problem live.",
-   "talk": "Four points on this slide.",
+   "talk": "Good meeting etiquette doesn't happen by accident; it's prepared. A reminder goes out a day or two before, with any materials attached. We confirm in advance who's attending and what their roles are. And the whole point of that preparation is simple: the executive should never have to become the troubleshooter for a scheduling or technical problem in front of a client.",
    "walk": [
     "First, don't assume etiquette takes care of itself.",
     "Next, send a reminder 24 to 48 hours ahead, with any materials.",
@@ -225,7 +225,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A confidential call and a public webinar need very different settings.",
-   "talk": "Four points on this slide.",
+   "talk": "Different calls need different settings. A confidential strategy call needs a waiting room and restricted access; a public webinar needs registration and a moderator. So we don't just use the same defaults for everything. We test unfamiliar features, like breakout rooms, before we need them live, make sure someone else can also run the meeting, and write down the platform's quirks for whoever comes next.",
    "walk": [
     "First, don't use the same defaults for everything.",
     "Next, test any new format, like breakout rooms, before you need it live.",
@@ -249,7 +249,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Working through likely causes in order is faster than trying everything at once.",
-   "talk": "Four points on this slide.",
+   "talk": "When the technology fails, the instinct is to try everything at once. That's slower. Working through the likely causes in order, sound, then connection, then the device, fixes it faster. We keep the platform's support contact handy before we need it, test unfamiliar setups in advance, and while we're fixing things, a calm 'we're sorting out an audio issue, one moment' keeps it professional.",
    "walk": [
     "First, don't try every fix at once.",
     "Next, keep the platform's support contact handy before you need it.",
@@ -262,7 +262,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "9::Four SOPs That Keep Professional Development on Track": {
   "p1": {
    "why": "Four simple procedures keep professional development organized, and each one prevents a specific failure.",
-   "talk": "The slide shows the four. Event registration: check the provider, get approval and keep the receipt. Attendance tracking: record attendance and save certificates somewhere an auditor can find them. Team upskilling: assess needs each quarter and measure results. And reputation and recognition: track awards and speaking opportunities, keep bios current and escalate bad publicity.",
+   "talk": "Four simple procedures keep professional development on track. Event registration: check the provider is legitimate, get approval and keep the receipt. Attendance: record it and save certificates where an auditor could find them. Team training: assess what people need each quarter and check whether it helped. And reputation: keep bios current, spot awards and speaking opportunities, and escalate bad publicity quickly.",
    "walk": [
     "First, for registrations, check the provider is legitimate and approved before booking.",
     "Next, for attendance, save certificates in one audit-ready folder.",
@@ -274,7 +274,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The procedure that feels least urgent is the one that gets skipped, and it still matters.",
-   "talk": "Go Deeper sums up each procedure. Each exists to stop a predictable failure: a missed event, a lost certificate, wasted training money or a missed chance at recognition.",
+   "talk": "Each of the four exists to stop a predictable failure: a missed event, a lost certificate, training money spent on something that didn't help, or a missed chance for recognition. The trap is that the one that feels least urgent is the one that gets skipped, and months later that's the one that bites.",
    "walk": [
     "First, event registration: check, approve, register and calendar it.",
     "Next, attendance: record it, export reports and store certificates.",
@@ -298,7 +298,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The certificate is the proof, so keep every one.",
-   "talk": "Go Deeper explains how the requirements usually work.",
+   "talk": "CLE stands for continuing legal education: the hours of training attorneys must complete to keep their licence. Each state sets its own total and its own required categories, like ethics. The hours usually have to come from approved providers, and some states let extra hours carry over. Our job is to track the hours, keep every certificate as proof and confirm the current rules for each attorney's state.",
    "walk": [
     "First, each state sets its own total hours and required categories, like ethics.",
     "Next, hours usually need to come from approved providers, and some states allow extra hours to carry over.",
@@ -310,7 +310,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "9::Planning Professional Development": {
   "p1": {
    "why": "A full room doesn't prove the training worked.",
-   "talk": "Good development sessions fit people's schedules, with online and in-person options, and they're measured by what people can do afterwards, not by how many turned up.",
+   "talk": "Good training fits into people's real schedules, with online and in-person options. And it's judged by what people can actually do afterwards, not by how many people showed up. Attendance tells us the room was full; it doesn't tell us anyone learned anything.",
    "walk": [
     "First, offer online and in-person options where you can.",
     "Next, decide before the session how you'll judge whether it worked.",
@@ -322,7 +322,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "One simple before-and-after check tells you more than any attendance number.",
-   "talk": "Go Deeper describes four levels of measuring training.",
+   "talk": "There's a simple way to think about whether training worked, in four levels. Did people find it useful? Can they show the new skill? Are they actually using it at work a few weeks later? And did performance improve? Most training only ever measures the first. Even a quick before-and-after check on the second tells us far more.",
    "walk": [
     "First, reaction: did people find it useful? Then learning: can they show the new skill?",
     "Next, behavior: are they using it at work weeks later?",
@@ -334,7 +334,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "9::Membership Renewals": {
   "p1": {
    "why": "A simple renewal tracker catches lapsed memberships before they happen.",
-   "talk": "Professional memberships, clubs and associations all renew at different times. Relying on renewal notices, or memory, is how one quietly lapses.",
+   "talk": "Professional memberships, clubs and associations all renew at different times of year. Relying on the renewal notice, or on memory, is exactly how one quietly lapses, usually the one that mattered.",
    "walk": [
     "First, build a tracker with the name, expiry date, status and who follows up.",
     "Next, set reminders well before each expiry.",
@@ -346,7 +346,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Expired cards are the most common reason memberships lapse without anyone noticing.",
-   "talk": "Go Deeper lists what to track for each membership.",
+   "talk": "For each membership, we track the basics: what it is, who the member is, the renewal date, the cost and who approves it. We also note whether it renews automatically and which card it's on, because expired cards are the most common reason memberships lapse without anyone noticing. And once a year, we ask whether each one is still worth paying for.",
    "walk": [
     "First, the organization, member, level, renewal date, cost and who approves it.",
     "Next, whether it auto-renews and which card is on file.",
@@ -358,7 +358,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "9::Ethics & Gift Compliance": {
   "p1": {
    "why": "Gift rules are stricter than most people's instincts, so check the policy before accepting or giving anything.",
-   "talk": "Gifts and hospitality with clients, vendors or officials can create real ethics problems. Something that feels like ordinary courtesy can still cross a line, especially with government officials.",
+   "talk": "Gifts and hospitality with clients, vendors or officials can create real ethics problems. Something that feels like ordinary courtesy can still break a rule, or look like an attempt to influence someone.",
    "walk": [
     "First, know the firm's gift policy before accepting or offering anything beyond small courtesies.",
     "Next, log any gift above the policy limit, even if it seems fine.",
@@ -368,7 +368,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "'Everyone does this' is not a gift policy.",
-   "talk": "Two points on this slide.",
+   "talk": "The two phrases that get people into trouble are 'it's only small' and 'everyone does it'. Neither is a gift policy. Many firms and many clients have strict limits, especially around officials. So when a gift arrives or we're planning to send one, and we're not sure, we ask first. A quick question costs far less than a violation.",
    "walk": [
     "First, modest or common doesn't mean allowed.",
     "Finally, when unsure, ask first. It costs far less than a violation."
@@ -389,7 +389,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Never try to judge coverage or liability yourself; that always goes to the attorney.",
-   "talk": "Three points on this slide.",
+   "talk": "Assistants are often the first to see an email that hints at a complaint or a claim, something like 'we're considering our options'. That's not routine, and it needs to reach the attorney quickly. But deciding whether the firm is covered, or whether it's liable, is never our call. And these messages stay as confidential as any privileged matter.",
    "walk": [
     "First, you're often the first to see concerning language, so don't treat it as routine.",
     "Next, coverage questions are outside your role.",
@@ -413,7 +413,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Mixing personal and business money, even once, weakens the owner's legal protection.",
-   "talk": "Four points on this slide.",
+   "talk": "Setting up a business properly means keeping its money completely separate from the owner's personal money, from the very first transaction. Mixing them, even once for convenience, can weaken the legal protection that the business structure is supposed to give. State tax registration is also a separate step that doesn't happen automatically, and each state where the business genuinely operates may need its own.",
    "walk": [
     "First, keep the separation absolute from the first transaction.",
     "Next, state tax registration is a separate step, never automatic.",
@@ -438,7 +438,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A well-handled bad review can do more for the firm than ten good ones.",
-   "talk": "This slide also describes the idea of 'The Vault': sensitive information is on a need-to-know basis, because it becomes a liability the moment it's mishandled.",
+   "talk": "Protecting a brand online has two sides. One is outward: watching what's being said and responding well, because a calm, professional reply to a bad review can impress readers more than ten good reviews. The other is inward, what we might call 'the vault': sensitive information is shared only with people who need it, because the moment it's mishandled, it becomes a liability.",
    "walk": [
     "First, monitor proactively and respond well.",
     "Finally, protect sensitive information strictly: need to know, and a cone of silence."
@@ -473,7 +473,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Always glance over the kit before you send it.",
-   "talk": "Three points on this slide.",
+   "talk": "A media kit, meaning the bio, headshots and talking points, goes stale quietly. If we only update it when someone asks, it's usually been out of date for months, and there's never time to fix it under a deadline. So we keep headshots in sizes for print and online, refresh the bio whenever something changes, and glance over the whole kit before it goes anywhere.",
    "walk": [
     "First, updating only when asked means it's usually been stale for months.",
     "Next, keep headshots in several sizes, for print and online.",
