@@ -236,7 +236,7 @@ export default {
         const page = await env.ASSETS.fetch(new Request(new URL("/", request.url)));
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
-        const deployment = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || (page.headers.get("ETag") || "").replace(/[^A-Za-z0-9]/g, "") || "unknown";
+        const deployment = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || "unknown";
         return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
