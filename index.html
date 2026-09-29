@@ -15366,7 +15366,10 @@ function renderDaySlideshow(d){
       <img class="stage-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">
     </div>
     <div class="slide-nav">
-      <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
+      <span style="display:flex;gap:8px;align-items:center;">
+        <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
+        ${state.isAdmin && idx>0 ? `<button class="btn btn-ghost btn-sm" onclick="goToSlide(0)" title="Admin: go back to the first slide of Day ${d.id}">⏮ Slide 1</button>` : ""}
+      </span>
       <span class="slide-counter">Step ${idx+1} of ${total}</span>
       ${isLast
         ? `<button class="btn btn-primary" onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
@@ -24657,7 +24660,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 <script src="/js/presenter-notes.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=zi"></script>
+<script src="/js/eapa-updates.js?v=zj"></script>
 <script src="/js/portal-link.js?v=1"></script>
 </body>
 </html>
