@@ -2244,7 +2244,8 @@ em.warn{font-style:normal;color:var(--danger);}
 .di-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;}
 .di-box{background:#fff;border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:12px;padding:14px 16px;}
 .di-box:nth-child(2){border-top-color:var(--navy);}
-.di-box b{display:block;color:var(--navy);margin-bottom:6px;} .di-box li{font-size:14px;line-height:1.5;margin-bottom:4px;} .di-topics .more{list-style:none;color:var(--ink-soft);font-style:italic;}
+.di-box b{display:block;color:var(--navy);margin-bottom:6px;}
+.topics-modal-sec{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--orange-deep);margin:12px 0 2px;} .di-box li{font-size:14px;line-height:1.5;margin-bottom:4px;} .di-topics .more{list-style:none;color:var(--ink-soft);font-style:italic;}
 .di-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:6px 0 12px;}
 .di-strip > div{background:#F3F5FB;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:2px;} .di-strip span{font-size:22px;} .di-strip b{color:var(--navy);font-size:14px;} .di-strip em{font-style:normal;font-size:12.5px;color:var(--ink-soft);}
 .di-warm{background:#FFF8EF;border:1px solid #F0D2AE;border-radius:12px;padding:12px 16px;} .di-warm > span{font-size:12.5px;color:var(--ink-soft);}
@@ -4443,6 +4444,7 @@ const DAY3 = {
   "lessons": [
     {
       "h": "Prioritization Frameworks",
+      "section": "Time Management & Productivity",
       "svgDiagram": "<svg viewBox=\"0 0 560 380\" xmlns=\"http://www.w3.org/2000/svg\"><style>.axl{font:700 12px 'IBM Plex Mono',monospace;fill:#5B6178;letter-spacing:.04em;}.ql{font:700 15px Arial,sans-serif;fill:#fff;}.qs{font:400 11.5px Arial,sans-serif;fill:rgba(255,255,255,.85);}</style><rect x=\"70\" y=\"20\" width=\"460\" height=\"300\" rx=\"10\" fill=\"none\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><line x1=\"300\" y1=\"20\" x2=\"300\" y2=\"320\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><line x1=\"70\" y1=\"170\" x2=\"530\" y2=\"170\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><rect x=\"72\" y=\"22\" width=\"226\" height=\"146\" rx=\"6\" fill=\"#B54A3F\"/><rect x=\"302\" y=\"22\" width=\"226\" height=\"146\" rx=\"6\" fill=\"#262B45\"/><rect x=\"72\" y=\"172\" width=\"226\" height=\"146\" rx=\"6\" fill=\"#DB8437\"/><rect x=\"302\" y=\"172\" width=\"226\" height=\"146\" rx=\"6\" fill=\"#5B6178\"/><text x=\"185\" y=\"70\" text-anchor=\"middle\" class=\"ql\">DO NOW</text><text x=\"185\" y=\"90\" text-anchor=\"middle\" class=\"qs\">Urgent + Important</text><circle cx=\"185\" cy=\"122\" r=\"10\" fill=\"#fff\" class=\"svg-pulse-dot\"/><circle cx=\"185\" cy=\"122\" r=\"4\" fill=\"#B54A3F\"/><text x=\"415\" y=\"70\" text-anchor=\"middle\" class=\"ql\">SCHEDULE</text><text x=\"415\" y=\"90\" text-anchor=\"middle\" class=\"qs\">Not Urgent + Important</text><text x=\"185\" y=\"222\" text-anchor=\"middle\" class=\"ql\">DELEGATE</text><text x=\"185\" y=\"242\" text-anchor=\"middle\" class=\"qs\">Urgent + Not Important</text><text x=\"415\" y=\"222\" text-anchor=\"middle\" class=\"ql\">DROP</text><text x=\"415\" y=\"242\" text-anchor=\"middle\" class=\"qs\">Not Urgent + Not Important</text><text x=\"300\" y=\"345\" text-anchor=\"middle\" class=\"axl\">URGENT &#8592;&#8594; NOT URGENT</text><text x=\"30\" y=\"175\" text-anchor=\"middle\" class=\"axl\" transform=\"rotate(-90 30 175)\">IMPORTANT &#8592;&#8594; NOT</text><g transform=\"translate(326,118)\"><rect width=\"178\" height=\"24\" rx=\"12\" fill=\"#B5651F\" stroke=\"#F0C08A\" stroke-width=\"2\" class=\"svg-callout-badge\"/><text x=\"89\" y=\"16\" text-anchor=\"middle\" style=\"font:800 9.5px Arial,sans-serif;fill:#fff;letter-spacing:.03em;\">&#127919; EXECUTIVE RULE</text></g></svg>",
       "b": [
         "Effective triage can reclaim 10+ hours a week."
@@ -4481,22 +4483,8 @@ const DAY3 = {
       "trainerCue": "Don't lecture through all four frameworks back to back — pause after each one and ask who already uses it, even without knowing its name."
     },
     {
-      "h": "Time Tracking Done Right",
-      "b": [
-        "Common mistakes: logging time at week's end, vague descriptions, underbilling small tasks, forgetting communications.",
-        "Build a Weekly Time Summary even for non-billable work — it reveals where time actually goes."
-      ],
-      "howTo": [
-        "Log time as you work, not at the end of the week — reconstructing a week from memory is where the most common tracking mistakes creep in.",
-        "Write specific descriptions for each entry, not vague ones — a description has to be useful to someone reviewing it later, not just a placeholder to fill the field.",
-        "Don't skip logging small tasks because they feel too minor to bother with — these are the ones that add up to real underbilling or lost visibility over a year.",
-        "Include communications (calls, emails handled on someone's behalf) in your tracking, not just document work — these are real time and often the most commonly forgotten category.",
-        "Build a Weekly Time Summary even for non-billable work — it's what actually reveals where your time goes, not just what you assume it goes to."
-      ],
-      "trainerCue": "Ask the room to guess which time-tracking mistake costs the most money over a year — most guess wrong (it's usually the small underbilled tasks, not the big missed ones)."
-    },
-    {
       "h": "Time Management",
+      "section": "Time Management & Productivity",
       "layout": "PROCESS",
       "processSteps": [
         {"label":"Decide", "desc":"Before touching the calendar, decide what actually deserves protected time this week — this is a prioritization call, not a scheduling one"},
@@ -4511,6 +4499,7 @@ const DAY3 = {
     },
     {
       "h": "When Time Management Fails Despite a Clean Calendar",
+      "section": "Time Management & Productivity",
       "b": [
         "A calendar that's technically conflict-free can still fail at time management — if it's packed with reactive meetings and has no protected space for the work that actually matters most.",
         "This connects directly to travel planning too: a trip only works if the calendar around it — before, during, and after — was managed with the same discipline as the itinerary itself.",
@@ -4526,43 +4515,8 @@ const DAY3 = {
       "trainerCue": "Actually run the discussion prompt — a specific memory of a technically-fine-but-actually-failed week is what makes 'protection, not just decision' land as a real distinction rather than a wordplay."
     },
     {
-      "h": "Calendar Management That Holds",
-      "singleSlide": true,
-      "b": [
-        "Centralize on one synced calendar system — a second unofficial calendar is where conflicts breed.",
-        "Build in explicit buffers, automate scheduling with Calendly/Doodle, review weekly.",
-        "Centralize your calendar using CRM software (Salesforce, HubSpot, Zoho) so scheduling data lives in one system, not scattered across tools.",
-        "Executive Energy Management matters as much as time management — protect blocks for deep work, not just avoid double-booking."
-      ],
-      "howTo": [
-        "Centralize on one synced calendar system as the single source of truth — a second, unofficial calendar is exactly where conflicts breed unnoticed.",
-        "Build in explicit buffers between commitments rather than scheduling back-to-back by default, and use tools like Calendly or Doodle to automate routine scheduling without manual back-and-forth.",
-        "If the organization uses CRM software (Salesforce, HubSpot, Zoho), centralize scheduling data there too, so it isn't scattered across disconnected tools.",
-        "Protect blocks for deep, focused work with the same seriousness as meetings — executive energy management matters as much as raw time management.",
-        "Review the calendar weekly for drift — a system that was clean on Monday can quietly accumulate conflicts by Friday if it isn't checked."
-      ],
-      "trainerCue": "This is a good moment for a live 'find the conflict' exercise on a real or sample calendar screen-shared to the room."
-    },
-    {
-      "h": "Calendar Conflict & Prioritization Discipline",
-      "singleSlide": true,
-      "svgDiagram": "<svg viewBox=\"0 0 620 200\" xmlns=\"http://www.w3.org/2000/svg\"><style>.dt{font:800 12px Arial,sans-serif;fill:#fff;}.ds{font:400 9.5px Arial,sans-serif;fill:rgba(255,255,255,.88);}.dk{font:700 11px Arial,sans-serif;fill:#262B45;}.dm{font:400 9.5px Arial,sans-serif;fill:#5B6178;}.dn{font:800 12px 'IBM Plex Mono',monospace;fill:#fff;}.dh{font:800 10px Arial,sans-serif;fill:#B5651F;letter-spacing:.06em;}</style><line x1=\"70\" y1=\"95\" x2=\"550\" y2=\"95\" stroke=\"#DCE0EA\" stroke-width=\"3\"/><path d=\"M70 95 L550 95\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" opacity=\".8\"/><g transform=\"translate(70.0,95)\"><circle r=\"17\" fill=\"#B54A3F\" class=\"svg-pulse-dot\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">1</text><text x=\"0\" y=\"-42\" text-anchor=\"middle\" class=\"dk\">Conflict Spotted</text><text x=\"0\" y=\"-30\" text-anchor=\"middle\" class=\"dm\">Never decide alone</text></g><g transform=\"translate(190.0,95)\"><circle r=\"17\" fill=\"#262B45\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">2</text><text x=\"0\" y=\"38\" text-anchor=\"middle\" class=\"dk\">Inform Executive</text><text x=\"0\" y=\"50\" text-anchor=\"middle\" class=\"dm\">Immediately</text></g><g transform=\"translate(310.0,95)\"><circle r=\"17\" fill=\"#262B45\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">3</text><text x=\"0\" y=\"-42\" text-anchor=\"middle\" class=\"dk\">Evaluate Importance</text><text x=\"0\" y=\"-30\" text-anchor=\"middle\" class=\"dm\">Not booking order</text></g><g transform=\"translate(430.0,95)\"><circle r=\"17\" fill=\"#262B45\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">4</text><text x=\"0\" y=\"38\" text-anchor=\"middle\" class=\"dk\">Present Trade-off</text><text x=\"0\" y=\"50\" text-anchor=\"middle\" class=\"dm\">+ your recommendation</text></g><g transform=\"translate(550.0,95)\"><circle r=\"17\" fill=\"#3F7D58\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">5</text><text x=\"0\" y=\"-42\" text-anchor=\"middle\" class=\"dk\">Document It</text><text x=\"0\" y=\"-30\" text-anchor=\"middle\" class=\"dm\">So it isn't re-litigated</text></g></svg>",
-      "b": [
-        "Inform the executive of every schedule conflict immediately — never rebook or decline something on their behalf without consulting first, since they may have context about a meeting's real importance that isn't visible on the calendar itself.",
-        "Prioritize meetings by strategic importance, not by which came first — a board update outranks a routine check-in even if the check-in was scheduled weeks earlier.",
-        "When two commitments genuinely conflict, present the executive with the actual trade-off and a recommendation, rather than either silently picking one or dumping the decision back on them with no framing."
-      ],
-      "howTo": [
-        "The moment you spot a schedule conflict, inform the executive immediately — never rebook or decline on their behalf without checking first, since they may have context you don't.",
-        "Evaluate each conflicting commitment by strategic importance, not by which was scheduled first — a board update outranks a routine check-in regardless of booking order.",
-        "When a genuine conflict exists, present the actual trade-off with a clear recommendation attached — don't silently pick one side or just hand the decision back with no framing.",
-        "Document the resolution once it's made, so there's a clear record of why one commitment was prioritized over the other.",
-        "Confirm the outcome with both affected parties promptly — a resolved conflict that isn't communicated clearly just creates a second, quieter conflict."
-      ],
-      "trainerCue": "Give the room a real double-booking scenario and ask them to identify what 'strategic importance' actually means in that specific case — the abstract rule is easy to agree with, applying it to a real conflict is the actual skill."
-    },
-    {
       "h": "Energy Management vs. Time Management",
+      "section": "Time Management & Productivity",
       "singleSlide": true,
       "b": [
         "Time management asks 'when should this happen'; energy management asks 'am I actually capable of doing this well right now' — both matter, and most people only plan around the first one.",
@@ -4580,6 +4534,7 @@ const DAY3 = {
     },
     {
       "h": "Handling Interruptions Without Losing the Day",
+      "section": "Time Management & Productivity",
       "layout": "PROCESS",
       "processSteps": [
         {"label":"Triage in Seconds", "desc":"Is this genuinely urgent, or does it just feel urgent because it's happening right now?"},
@@ -4595,6 +4550,7 @@ const DAY3 = {
     },
     {
       "h": "The Two-Minute Rule",
+      "section": "Time Management & Productivity",
       "b": [
         "If a task will genuinely take less than two minutes, do it immediately instead of adding it to a list — the overhead of tracking it exceeds the cost of just finishing it.",
         "This only works as a discipline if it's applied honestly — a task that 'should' take two minutes but keeps expanding once you start is a sign to stop and actually schedule it properly instead.",
@@ -4610,7 +4566,45 @@ const DAY3 = {
       "trainerCue": "Ask the room to estimate how many two-minute tasks are currently sitting unaddressed in their own inbox or task list right now — the number is usually higher than expected."
     },
     {
+      "h": "Batch Processing Similar Tasks",
+      "section": "Time Management & Productivity",
+      "b": [
+        "Grouping similar tasks together (all calls in one block, all email replies in another) reduces the mental cost of switching between completely different types of work.",
+        "This is different from just doing tasks in the order they arrive — batching is a deliberate choice to delay some tasks slightly so they can be done together more efficiently.",
+        "The trade-off is real: batching works best for tasks without a hard individual deadline. A genuinely urgent item still needs to break the batch."
+      ],
+      "howTo": [
+        "Identify categories of similar, recurring tasks in your own workload — calls, email replies, data entry — that are currently handled one at a time as they arrive.",
+        "Group same-category tasks into a dedicated block rather than switching between different types of work throughout the day.",
+        "Deliberately delay non-urgent items slightly so they can be batched together, rather than defaulting to first-in-first-out processing.",
+        "Break the batch immediately for anything genuinely urgent — batching only applies to tasks without a hard individual deadline.",
+        "Review your batching categories periodically — as your workload shifts, which tasks are worth batching can change too."
+      ],
+      "trainerCue": "Ask the room to name one category of their own recurring work that's currently handled one-at-a-time as it arrives, but could realistically be batched."
+    },
+    {
+      "h": "The Cost of Context-Switching",
+      "section": "Time Management & Productivity",
+      "layout": "STAT",
+      "statNumber": "23 minutes",
+      "statLabel": "average time to return to full focus after a significant interruption",
+      "b": [
+        "Every switch between unrelated tasks — not just interruptions, but voluntarily jumping between different types of work — carries a real cost in the time it takes to rebuild full concentration.",
+        "This is the strongest practical argument for batching and protected focus blocks: it's not about discipline for its own sake, it's about not paying the same mental re-entry cost dozens of times a day.",
+        "Multitasking on genuinely different cognitive tasks (not just background tasks like listening to music) is almost always slower in total than doing them one at a time, even though it feels more productive in the moment."
+      ],
+      "howTo": [
+        "Notice when you're voluntarily jumping between unrelated types of work, not just reacting to interruptions — both carry the same real refocusing cost.",
+        "Use batching and protected focus blocks deliberately to reduce how often you pay the re-entry cost across a day.",
+        "Resist multitasking on genuinely different cognitive tasks — it feels productive in the moment but is almost always slower in total than sequential focus.",
+        "When you must switch tasks, allow a brief moment to consciously close out the previous task before starting the next, rather than abruptly jumping.",
+        "Track your own switching frequency for a day occasionally — most people significantly underestimate how often they do it until they actually count."
+      ],
+      "trainerCue": "Ask the room to count how many times they've switched between unrelated tasks in just the last hour — the number is usually far higher than they'd guess before counting."
+    },
+    {
       "h": "Weekly Planning Rituals",
+      "section": "Time Management & Productivity",
       "b": [
         "A short, consistent weekly planning session — reviewing what's coming, what didn't get done last week, and what actually needs to happen this week — prevents the Monday-morning scramble of reconstructing priorities from scratch.",
         "This is different from daily planning: weekly planning catches the things that don't fit neatly into a single day, like a deadline that's three days out but needs prep starting today.",
@@ -4627,6 +4621,7 @@ const DAY3 = {
     },
     {
       "h": "Saying No Without Damaging Relationships",
+      "section": "Time Management & Productivity",
       "layout": "COMPARE",
       "compareLeft": {
         "label": "Damages the Relationship",
@@ -4658,58 +4653,113 @@ const DAY3 = {
       "trainerCue": "Ask for a real example of a 'no' that actually strengthened a working relationship because it was handled well — most people have one if they think about it."
     },
     {
-      "h": "Batch Processing Similar Tasks",
+      "h": "Setting Realistic Deadlines",
+      "section": "Time Management & Productivity",
       "b": [
-        "Grouping similar tasks together (all calls in one block, all email replies in another) reduces the mental cost of switching between completely different types of work.",
-        "This is different from just doing tasks in the order they arrive — batching is a deliberate choice to delay some tasks slightly so they can be done together more efficiently.",
-        "The trade-off is real: batching works best for tasks without a hard individual deadline. A genuinely urgent item still needs to break the batch."
+        "A deadline that's set without genuinely accounting for the work involved isn't a real deadline — it's a guess that creates false confidence until it's suddenly missed.",
+        "Building in real buffer for the unexpected (not padding every estimate blindly, but accounting for genuine uncertainty) is what makes a deadline something people can actually plan around.",
+        "As an EA, you're often the one setting deadlines for tasks you're not personally doing — checking in with whoever's doing the actual work before committing to a date is what keeps the deadline honest."
       ],
       "howTo": [
-        "Identify categories of similar, recurring tasks in your own workload — calls, email replies, data entry — that are currently handled one at a time as they arrive.",
-        "Group same-category tasks into a dedicated block rather than switching between different types of work throughout the day.",
-        "Deliberately delay non-urgent items slightly so they can be batched together, rather than defaulting to first-in-first-out processing.",
-        "Break the batch immediately for anything genuinely urgent — batching only applies to tasks without a hard individual deadline.",
-        "Review your batching categories periodically — as your workload shifts, which tasks are worth batching can change too."
+        "Before setting a deadline, genuinely account for the actual work involved — a deadline set without this is a guess, not a real commitment.",
+        "Check in with whoever will actually be doing the work before committing to a date on their behalf — this keeps the deadline honest rather than optimistic.",
+        "Build in real buffer for genuine uncertainty, without padding every estimate blindly regardless of actual risk.",
+        "State the deadline clearly with an owner attached, the same discipline covered in the ACT Email framework from Day 1 — a deadline with no clear owner is the most common reason it slips.",
+        "If a deadline later looks at risk, flag that early rather than waiting until it's already missed — an early flag gives real options that a last-minute one doesn't."
       ],
-      "trainerCue": "Ask the room to name one category of their own recurring work that's currently handled one-at-a-time as it arrives, but could realistically be batched."
+      "trainerCue": "Ask for a real example of a deadline that was set too optimistically and what that actually cost once it slipped — this is a nearly universal experience worth naming directly."
     },
     {
-      "h": "The Cost of Context-Switching",
-      "layout": "STAT",
-      "statNumber": "23 minutes",
-      "statLabel": "average time to return to full focus after a significant interruption",
+      "h": "Time Tracking Done Right",
+      "section": "Time Management & Productivity",
       "b": [
-        "Every switch between unrelated tasks — not just interruptions, but voluntarily jumping between different types of work — carries a real cost in the time it takes to rebuild full concentration.",
-        "This is the strongest practical argument for batching and protected focus blocks: it's not about discipline for its own sake, it's about not paying the same mental re-entry cost dozens of times a day.",
-        "Multitasking on genuinely different cognitive tasks (not just background tasks like listening to music) is almost always slower in total than doing them one at a time, even though it feels more productive in the moment."
+        "Common mistakes: logging time at week's end, vague descriptions, underbilling small tasks, forgetting communications.",
+        "Build a Weekly Time Summary even for non-billable work — it reveals where time actually goes."
       ],
       "howTo": [
-        "Notice when you're voluntarily jumping between unrelated types of work, not just reacting to interruptions — both carry the same real refocusing cost.",
-        "Use batching and protected focus blocks deliberately to reduce how often you pay the re-entry cost across a day.",
-        "Resist multitasking on genuinely different cognitive tasks — it feels productive in the moment but is almost always slower in total than sequential focus.",
-        "When you must switch tasks, allow a brief moment to consciously close out the previous task before starting the next, rather than abruptly jumping.",
-        "Track your own switching frequency for a day occasionally — most people significantly underestimate how often they do it until they actually count."
+        "Log time as you work, not at the end of the week — reconstructing a week from memory is where the most common tracking mistakes creep in.",
+        "Write specific descriptions for each entry, not vague ones — a description has to be useful to someone reviewing it later, not just a placeholder to fill the field.",
+        "Don't skip logging small tasks because they feel too minor to bother with — these are the ones that add up to real underbilling or lost visibility over a year.",
+        "Include communications (calls, emails handled on someone's behalf) in your tracking, not just document work — these are real time and often the most commonly forgotten category.",
+        "Build a Weekly Time Summary even for non-billable work — it's what actually reveals where your time goes, not just what you assume it goes to."
       ],
-      "trainerCue": "Ask the room to count how many times they've switched between unrelated tasks in just the last hour — the number is usually far higher than they'd guess before counting."
+      "trainerCue": "Ask the room to guess which time-tracking mistake costs the most money over a year — most guess wrong (it's usually the small underbilled tasks, not the big missed ones)."
     },
     {
-      "h": "Recurring Meeting Hygiene",
+      "h": "The Weekly Time Audit",
+      "section": "Time Management & Productivity",
       "b": [
-        "Standing meetings accumulate over time and rarely get removed even after their original purpose is gone — a quarterly audit of every recurring meeting (does this still need to exist, at this frequency, with these attendees) catches the ones that have quietly outlived their usefulness.",
-        "A recurring meeting with no agenda is one of the most common calendar failures — if nobody can say in one sentence what this week's meeting is actually for, that's a sign to skip it or reformat it.",
-        "As an EA, you're often positioned to notice this decay before anyone else does, simply because you see the full calendar pattern that any single attendee doesn't."
+        "Most people's sense of where their time actually goes is inaccurate — a real time audit (tracking actual activity for even one representative week) usually reveals surprises that pure intuition misses.",
+        "The goal isn't to track time forever — it's a periodic check-in to catch drift, the same way a budget review catches spending patterns that crept in unnoticed.",
+        "This connects directly to the Time Tracking Done Right topic earlier in this day — a periodic audit is what turns raw tracked data into an actual improvement, rather than just a log nobody reviews."
       ],
       "howTo": [
-        "Audit every recurring meeting on a regular cadence (quarterly is reasonable) — ask whether it still needs to exist, at this frequency, with these attendees.",
-        "Check whether each recurring meeting has a clear agenda — if nobody can state its purpose in one sentence, that's a sign to skip it or reformat it.",
-        "Flag meetings that have quietly outlived their original purpose, even if no one else has raised it — as the EA, you often see the full calendar pattern others don't.",
-        "Propose a specific change (cancel, shorten, reduce attendees) rather than just noting the meeting looks unnecessary — a vague flag rarely leads to action.",
-        "Revisit any meeting you've changed after a reasonable interval to confirm the change actually stuck and didn't quietly revert."
+        "Track your actual activity for one representative week — not your assumed pattern, since intuition about where time goes is usually inaccurate.",
+        "Compare the tracked data against what you believed your priorities were that week — the gap between the two is the actual finding.",
+        "Treat this as a periodic check-in, not a permanent tracking habit — the goal is catching drift occasionally, the same way a budget review catches unnoticed spending patterns.",
+        "Use the Time Tracking Done Right discipline from earlier in this day as the input — a periodic audit only works if the underlying data was actually captured accurately.",
+        "Act on what the audit reveals — an audit that's reviewed but doesn't change anything about the following week's planning isn't actually serving its purpose."
       ],
-      "trainerCue": "Ask the room to name one recurring meeting in their own life that they suspect could be cancelled or shortened but nobody has actually questioned it yet."
+      "trainerCue": "Ask the room to guess, before checking, what percentage of their week goes to their top priority — then compare that guess to what a real audit would likely show. The gap is usually the whole lesson."
+    },
+    {
+      "h": "Calendar Management That Holds",
+      "section": "Calendar Management",
+      "singleSlide": true,
+      "b": [
+        "Centralize on one synced calendar system — a second unofficial calendar is where conflicts breed.",
+        "Build in explicit buffers, automate scheduling with Calendly/Doodle, review weekly.",
+        "Centralize your calendar using CRM software (Salesforce, HubSpot, Zoho) so scheduling data lives in one system, not scattered across tools.",
+        "Executive Energy Management matters as much as time management — protect blocks for deep work, not just avoid double-booking."
+      ],
+      "howTo": [
+        "Centralize on one synced calendar system as the single source of truth — a second, unofficial calendar is exactly where conflicts breed unnoticed.",
+        "Build in explicit buffers between commitments rather than scheduling back-to-back by default, and use tools like Calendly or Doodle to automate routine scheduling without manual back-and-forth.",
+        "If the organization uses CRM software (Salesforce, HubSpot, Zoho), centralize scheduling data there too, so it isn't scattered across disconnected tools.",
+        "Protect blocks for deep, focused work with the same seriousness as meetings — executive energy management matters as much as raw time management.",
+        "Review the calendar weekly for drift — a system that was clean on Monday can quietly accumulate conflicts by Friday if it isn't checked."
+      ],
+      "trainerCue": "This is a good moment for a live 'find the conflict' exercise on a real or sample calendar screen-shared to the room."
+    },
+    {
+      "h": "Calendar Conflict & Prioritization Discipline",
+      "section": "Calendar Management",
+      "singleSlide": true,
+      "svgDiagram": "<svg viewBox=\"0 0 620 200\" xmlns=\"http://www.w3.org/2000/svg\"><style>.dt{font:800 12px Arial,sans-serif;fill:#fff;}.ds{font:400 9.5px Arial,sans-serif;fill:rgba(255,255,255,.88);}.dk{font:700 11px Arial,sans-serif;fill:#262B45;}.dm{font:400 9.5px Arial,sans-serif;fill:#5B6178;}.dn{font:800 12px 'IBM Plex Mono',monospace;fill:#fff;}.dh{font:800 10px Arial,sans-serif;fill:#B5651F;letter-spacing:.06em;}</style><line x1=\"70\" y1=\"95\" x2=\"550\" y2=\"95\" stroke=\"#DCE0EA\" stroke-width=\"3\"/><path d=\"M70 95 L550 95\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" opacity=\".8\"/><g transform=\"translate(70.0,95)\"><circle r=\"17\" fill=\"#B54A3F\" class=\"svg-pulse-dot\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">1</text><text x=\"0\" y=\"-42\" text-anchor=\"middle\" class=\"dk\">Conflict Spotted</text><text x=\"0\" y=\"-30\" text-anchor=\"middle\" class=\"dm\">Never decide alone</text></g><g transform=\"translate(190.0,95)\"><circle r=\"17\" fill=\"#262B45\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">2</text><text x=\"0\" y=\"38\" text-anchor=\"middle\" class=\"dk\">Inform Executive</text><text x=\"0\" y=\"50\" text-anchor=\"middle\" class=\"dm\">Immediately</text></g><g transform=\"translate(310.0,95)\"><circle r=\"17\" fill=\"#262B45\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">3</text><text x=\"0\" y=\"-42\" text-anchor=\"middle\" class=\"dk\">Evaluate Importance</text><text x=\"0\" y=\"-30\" text-anchor=\"middle\" class=\"dm\">Not booking order</text></g><g transform=\"translate(430.0,95)\"><circle r=\"17\" fill=\"#262B45\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">4</text><text x=\"0\" y=\"38\" text-anchor=\"middle\" class=\"dk\">Present Trade-off</text><text x=\"0\" y=\"50\" text-anchor=\"middle\" class=\"dm\">+ your recommendation</text></g><g transform=\"translate(550.0,95)\"><circle r=\"17\" fill=\"#3F7D58\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" class=\"dn\">5</text><text x=\"0\" y=\"-42\" text-anchor=\"middle\" class=\"dk\">Document It</text><text x=\"0\" y=\"-30\" text-anchor=\"middle\" class=\"dm\">So it isn't re-litigated</text></g></svg>",
+      "b": [
+        "Inform the executive of every schedule conflict immediately — never rebook or decline something on their behalf without consulting first, since they may have context about a meeting's real importance that isn't visible on the calendar itself.",
+        "Prioritize meetings by strategic importance, not by which came first — a board update outranks a routine check-in even if the check-in was scheduled weeks earlier.",
+        "When two commitments genuinely conflict, present the executive with the actual trade-off and a recommendation, rather than either silently picking one or dumping the decision back on them with no framing."
+      ],
+      "howTo": [
+        "The moment you spot a schedule conflict, inform the executive immediately — never rebook or decline on their behalf without checking first, since they may have context you don't.",
+        "Evaluate each conflicting commitment by strategic importance, not by which was scheduled first — a board update outranks a routine check-in regardless of booking order.",
+        "When a genuine conflict exists, present the actual trade-off with a clear recommendation attached — don't silently pick one side or just hand the decision back with no framing.",
+        "Document the resolution once it's made, so there's a clear record of why one commitment was prioritized over the other.",
+        "Confirm the outcome with both affected parties promptly — a resolved conflict that isn't communicated clearly just creates a second, quieter conflict."
+      ],
+      "trainerCue": "Give the room a real double-booking scenario and ask them to identify what 'strategic importance' actually means in that specific case — the abstract rule is easy to agree with, applying it to a real conflict is the actual skill."
+    },
+    {
+      "h": "Calendar Blocking for Deep Work",
+      "section": "Calendar Management",
+      "b": [
+        "A calendar that only tracks meetings is missing half the picture — blocking real time for focused, uninterrupted work is what actually protects it from being silently filled by other people's requests.",
+        "A deep-work block that's visible but not actually protected (anyone can still book over it) isn't a real block — it needs to function as a genuine commitment, not a suggestion.",
+        "This is where calendar discipline and prioritization intersect directly: the block is only worth protecting if it's actually reserved for the highest-priority work, not just whatever's easiest to schedule around."
+      ],
+      "howTo": [
+        "Block real, uninterrupted time for focused work on the calendar itself — a calendar that only tracks meetings is missing half the picture.",
+        "Mark deep-work blocks in a way that actually prevents booking over them, not just a visible-but-unprotected label anyone can override.",
+        "Reserve these blocks specifically for the highest-priority work, not whatever's easiest to schedule around — the block is only worth protecting if it's protecting the right thing.",
+        "If a deep-work block does get double-booked, treat that as a real conflict requiring the same resolution discipline as any other calendar conflict.",
+        "Review deep-work block usage periodically — a block that's consistently skipped or overridden needs either better enforcement or honest reconsideration of whether it's actually feasible."
+      ],
+      "trainerCue": "Ask who has ever had a protected deep-work block get silently double-booked — and what that taught them about actually enforcing the block."
     },
     {
       "h": "Buffer Time Between Meetings",
+      "section": "Calendar Management",
       "b": [
         "Back-to-back meetings with zero buffer guarantee that every meeting either starts late or ends abruptly — a 5-10 minute buffer between meetings isn't wasted time, it's what makes the rest of the calendar actually hold.",
         "Buffers also give room for the debrief and prep that real meetings require — walking into the next conversation still thinking about the last one is a common, avoidable failure.",
@@ -4725,7 +4775,25 @@ const DAY3 = {
       "trainerCue": "Pull up a real (or realistic) back-to-back calendar day and ask the room where they'd insert buffers first, and what they'd have to move to make room."
     },
     {
+      "h": "Recurring Meeting Hygiene",
+      "section": "Calendar Management",
+      "b": [
+        "Standing meetings accumulate over time and rarely get removed even after their original purpose is gone — a quarterly audit of every recurring meeting (does this still need to exist, at this frequency, with these attendees) catches the ones that have quietly outlived their usefulness.",
+        "A recurring meeting with no agenda is one of the most common calendar failures — if nobody can say in one sentence what this week's meeting is actually for, that's a sign to skip it or reformat it.",
+        "As an EA, you're often positioned to notice this decay before anyone else does, simply because you see the full calendar pattern that any single attendee doesn't."
+      ],
+      "howTo": [
+        "Audit every recurring meeting on a regular cadence (quarterly is reasonable) — ask whether it still needs to exist, at this frequency, with these attendees.",
+        "Check whether each recurring meeting has a clear agenda — if nobody can state its purpose in one sentence, that's a sign to skip it or reformat it.",
+        "Flag meetings that have quietly outlived their original purpose, even if no one else has raised it — as the EA, you often see the full calendar pattern others don't.",
+        "Propose a specific change (cancel, shorten, reduce attendees) rather than just noting the meeting looks unnecessary — a vague flag rarely leads to action.",
+        "Revisit any meeting you've changed after a reasonable interval to confirm the change actually stuck and didn't quietly revert."
+      ],
+      "trainerCue": "Ask the room to name one recurring meeting in their own life that they suspect could be cancelled or shortened but nobody has actually questioned it yet."
+    },
+    {
       "h": "Time Zone Management for Distributed Teams",
+      "section": "Calendar Management",
       "singleSlide": true,
       "b": [
         "A meeting time that's convenient in one time zone can be genuinely unreasonable in another — always confirm the actual local time for every participant, not just your own.",
@@ -4742,23 +4810,8 @@ const DAY3 = {
       "trainerCue": "Ask the room to name a real scheduling mix-up caused by a time zone or daylight saving error — this is one of the most universally relatable calendar failures."
     },
     {
-      "h": "Calendar Blocking for Deep Work",
-      "b": [
-        "A calendar that only tracks meetings is missing half the picture — blocking real time for focused, uninterrupted work is what actually protects it from being silently filled by other people's requests.",
-        "A deep-work block that's visible but not actually protected (anyone can still book over it) isn't a real block — it needs to function as a genuine commitment, not a suggestion.",
-        "This is where calendar discipline and prioritization intersect directly: the block is only worth protecting if it's actually reserved for the highest-priority work, not just whatever's easiest to schedule around."
-      ],
-      "howTo": [
-        "Block real, uninterrupted time for focused work on the calendar itself — a calendar that only tracks meetings is missing half the picture.",
-        "Mark deep-work blocks in a way that actually prevents booking over them, not just a visible-but-unprotected label anyone can override.",
-        "Reserve these blocks specifically for the highest-priority work, not whatever's easiest to schedule around — the block is only worth protecting if it's protecting the right thing.",
-        "If a deep-work block does get double-booked, treat that as a real conflict requiring the same resolution discipline as any other calendar conflict.",
-        "Review deep-work block usage periodically — a block that's consistently skipped or overridden needs either better enforcement or honest reconsideration of whether it's actually feasible."
-      ],
-      "trainerCue": "Ask who has ever had a protected deep-work block get silently double-booked — and what that taught them about actually enforcing the block."
-    },
-    {
       "h": "Handling Last-Minute Calendar Changes",
+      "section": "Calendar Management",
       "singleSlide": true,
       "b": [
         "A late cancellation or a sudden new request doesn't just affect the one meeting — it can cascade through the rest of the day if the ripple effects aren't checked immediately.",
@@ -4776,6 +4829,7 @@ const DAY3 = {
     },
     {
       "h": "Multi-Calendar Coordination",
+      "section": "Calendar Management",
       "b": [
         "Many executives run more than one calendar in practice — professional, personal, board commitments — and the real risk is a conflict that's invisible because it only shows up when you look across all of them at once.",
         "A single master view (even if it's just you checking multiple calendars manually before confirming anything) is what actually prevents this — trusting just the primary calendar is how double-bookings slip through.",
@@ -4791,193 +4845,8 @@ const DAY3 = {
       "trainerCue": "Ask the room whether they've ever double-booked something because they were only checking one calendar when a second one also mattered — this is a very common real failure."
     },
     {
-      "h": "Visa & Documentation Requirements",
-      "b": [
-        "Different destinations have genuinely different visa and documentation requirements, and these can change — always verify current requirements for the specific trip, not what was true on a previous trip to a similar destination.",
-        "Passport validity requirements are a common, avoidable failure point: many countries require six months of remaining validity beyond the travel dates, not just that the passport hasn't technically expired.",
-        "Building in real lead time for visa processing (which can take weeks, not days, for some destinations) is what prevents a trip from being jeopardized by paperwork discovered too late."
-      ],
-      "howTo": [
-        "Verify current visa and documentation requirements for the specific destination and trip, not what was true on a previous trip to a similar country.",
-        "Check passport validity specifically against the destination's actual rule — many countries require six months of remaining validity beyond the travel dates, not just an unexpired passport.",
-        "Build in real lead time for visa processing, which can take weeks for some destinations — start this well before the trip, not once other planning is already underway.",
-        "Confirm any required supporting documents (business invitation letters, health declarations) early enough to resolve issues before departure.",
-        "Keep a record of what documentation was required and confirmed for each trip, so the next similar trip starts from accurate information, not assumption."
-      ],
-      "trainerCue": "Ask if anyone has a real story of a trip nearly derailed by a passport or visa issue discovered too close to departure — this tends to be memorable and widely relatable."
-    },
-    {
-      "h": "International Travel Considerations",
-      "layout": "THREEBOX",
-      "boxes": [
-        {"label":"Health & Safety", "desc":"Required or recommended vaccinations, travel advisories, and local emergency contact numbers for the destination"},
-        {"label":"Currency & Payment", "desc":"Whether cards are widely accepted, whether local currency is needed, and realistic exchange logistics"},
-        {"label":"Cultural & Business Norms", "desc":"Meeting etiquette, dress expectations, and communication norms that differ from the home market"}
-      ],
-      "b": [
-        "International travel carries a wider set of real variables than domestic travel, and treating it with the same planning depth as a routine trip is a common, avoidable mistake.",
-        "Checking current government travel advisories for the specific destination before finalizing a trip is a real diligence step, not an optional extra — advisories can change close to a travel date."
-      ],
-      "howTo": [
-        "Check health and safety requirements for the destination — required or recommended vaccinations, current travel advisories, and local emergency contact numbers.",
-        "Confirm currency and payment logistics ahead of time — whether cards are widely accepted, whether local currency is needed, and realistic exchange options.",
-        "Research cultural and business norms specific to the destination — meeting etiquette, dress expectations, and communication norms that differ from the home market.",
-        "Check current government travel advisories close to the actual travel date, not just when the trip was first planned — advisories can change.",
-        "Treat international trips with meaningfully more planning depth than domestic ones — the same light-touch approach that works for a routine domestic trip is a real risk here."
-      ],
-      "trainerCue": "If anyone in the room has done real international travel coordination, ask them to name the one thing that surprised them most the first time — the real answer usually isn't obvious in advance."
-    },
-    {
-      "h": "Expense Tracking While Traveling",
-      "singleSlide": true,
-      "b": [
-        "Receipts get lost in real time far more easily while traveling than in a normal office routine — capturing them immediately (a photo, a folder, anything) beats trying to reconstruct a trip's expenses afterward from memory.",
-        "Categorizing expenses as they happen (which client, which matter, which cost center) is much faster than doing it all at once after return, when the context has already faded.",
-        "This connects directly to the SOA reconciliation and expense-entry discipline from Day 7 — travel expense tracking is the same skill, applied under less controlled conditions."
-      ],
-      "howTo": [
-        "Capture every receipt immediately when it's received — a photo, a dedicated folder, anything — rather than planning to collect them all at the end of the trip.",
-        "Categorize each expense as it happens (which client, which matter, which cost center) while the context is still fresh, not in a batch afterward.",
-        "Apply the same reconciliation discipline used for regular expense tracking (per the Day 7 SOA process) — travel expenses are the same skill under less controlled conditions.",
-        "Set aside a few minutes at the end of each travel day specifically to confirm nothing from that day was missed, rather than waiting until return.",
-        "Submit and reconcile travel expenses within a defined window after return — don't let them accumulate indefinitely once the trip is over."
-      ],
-      "trainerCue": "Ask the room how they currently handle receipts while traveling — most will admit to at least once losing or forgetting one, which is exactly the failure this discipline prevents."
-    },
-    {
-      "h": "Travel Risk Contingency Planning",
-      "singleSlide": true,
-      "b": [
-        "A real travel plan accounts for what happens when something goes wrong — a cancelled flight, a missed connection, a sudden weather event — not just the ideal-case itinerary.",
-        "Knowing the backup options in advance (the next viable flight, an alternate routing, a local contact at the destination) turns a disruption into a quick pivot instead of a crisis handled from scratch under pressure.",
-        "This is the same principle as backup-vendor identification from Day 5 — a real contingency plan exists before it's needed, not improvised in the moment."
-      ],
-      "howTo": [
-        "Before finalizing any trip, identify the realistic disruption scenarios for that specific itinerary — a cancelled flight, a missed connection, severe weather at a key leg.",
-        "Identify the actual backup options in advance for each scenario — the next viable flight, an alternate routing, a local contact at the destination.",
-        "Document these contingencies alongside the itinerary itself, not as a separate afterthought that's hard to find under pressure.",
-        "When a disruption actually happens, execute the pre-identified backup immediately rather than starting to research options from scratch.",
-        "Apply the same principle used for backup-vendor identification (per Day 5) — a real contingency plan exists before it's needed, not improvised in the moment."
-      ],
-      "trainerCue": "Ask for a real story of a travel disruption that was handled well because a backup plan already existed — versus one that turned into a scramble because it didn't."
-    },
-    {
-      "h": "Loyalty Programs & Travel Preferences",
-      "b": [
-        "Tracking an executive's loyalty program memberships (airline, hotel) and always applying them isn't a minor courtesy — it's real, recurring value in upgrades, priority service, and status that compounds over many trips.",
-        "This connects directly to the stated seat, routing, and hotel preferences from the Client Profile — loyalty program numbers should be applied consistently alongside those preferences every single time, not just when remembered.",
-        "A missed loyalty number on a booking is a small, completely avoidable error that a well-run travel process should never actually produce."
-      ],
-      "howTo": [
-        "Track every loyalty program membership the executive holds (airline, hotel) in the same tracker or dossier used for other standing preferences.",
-        "Apply the relevant loyalty numbers to every booking automatically, as a standard step in the booking process, not something remembered only when convenient.",
-        "Cross-check loyalty application against the stated seat, routing, and hotel preferences from the Client Profile — apply both together every time.",
-        "Build this check into a travel checklist rather than relying on memory under time pressure, especially for last-minute bookings.",
-        "Periodically confirm loyalty program details are still current — status levels and program details can change and should be re-verified occasionally."
-      ],
-      "trainerCue": "Ask the room to name a travel preference (loyalty program or otherwise) that's easy to forget under time pressure — the honest answer usually reveals a real gap worth building a checklist around."
-    },
-    {
-      "h": "Managing Multi-City, Multi-Leg Itineraries",
-      "singleSlide": true,
-      "b": [
-        "A trip with several connected legs has more failure points than a simple round-trip — a delay on the first leg can cascade through every subsequent connection, and the plan needs enough real buffer to absorb that.",
-        "Confirming that ground transportation and hotel check-in times actually align with arrival times at each leg (not just that flights are booked) is what prevents a technically-correct itinerary from falling apart in practice.",
-        "A single-page summary of the entire itinerary — not scattered confirmation emails — is what actually makes a complex, multi-leg trip manageable in the moment."
-      ],
-      "howTo": [
-        "Map every leg of a multi-city trip together, not one leg at a time — a delay on the first leg can cascade through every subsequent connection.",
-        "Identify the tightest connection in the itinerary specifically, and build extra buffer there, since that's the point most likely to actually cause a problem.",
-        "Confirm ground transportation and hotel check-in times genuinely align with each leg's actual arrival time, not just that flights are technically booked.",
-        "Consolidate the entire itinerary into a single-page summary, rather than leaving it as scattered confirmation emails the traveler has to piece together mid-trip.",
-        "Review the full itinerary once more shortly before departure, checking specifically for any leg whose timing has shifted since it was first booked."
-      ],
-      "trainerCue": "Walk through a real or realistic 3-leg itinerary live and ask the room to spot where the tightest connection is — that's the point most likely to actually cause a problem."
-    },
-    {
-      "h": "Ground Transportation Coordination",
-      "b": [
-        "Ground transportation is the most commonly under-planned part of a trip — flights and hotels get real attention, while 'we'll figure out a car' is treated as an afterthought that then becomes a real problem on arrival.",
-        "Confirming a car service or rental with a specific pickup time, location, and contact detail — not a vague 'sometime after landing' — is what prevents the exact kind of gap that ruins an otherwise well-planned trip.",
-        "This connects directly to the car-seat and family-specific requirements noted in the Client Profile — ground transportation planning has to account for who's actually traveling, not just the executive alone."
-      ],
-      "howTo": [
-        "Treat ground transportation with the same planning attention as flights and hotels — don't leave it as a \"we'll figure it out\" afterthought.",
-        "Confirm a specific pickup time, location, and contact detail for any car service or rental — not a vague \"sometime after landing.\"",
-        "Check ground transport requirements against the Client Profile's family-specific needs (car seats, accessibility) when applicable, not just the executive traveling alone.",
-        "Build in a backup ground transport option for high-stakes trips, the same way you would for flights.",
-        "Confirm the booking again shortly before the actual travel date — a ground transport reservation made weeks out is worth double-checking closer to departure."
-      ],
-      "trainerCue": "Ask the room whether they've ever landed somewhere with flights and hotel confirmed but ground transportation genuinely uncertain — this is a very common, very avoidable gap."
-    },
-    {
-      "h": "Building a Real Travel Checklist",
-      "singleSlide": true,
-      "b": [
-        "A travel checklist that exists only in memory isn't a real checklist — writing it down once and reusing it for every trip is what actually prevents the same detail from being forgotten differently each time.",
-        "A good checklist covers documentation, health/safety prep, packing considerations specific to the destination, loyalty numbers, and a contingency contact — not just 'book the flight and hotel.'",
-        "This connects directly to the Home Binder discipline from Day 5 — a travel checklist is the same kind of durable, written reference, just scoped to trip preparation specifically."
-      ],
-      "howTo": [
-        "Write the checklist down once, in a reusable form, rather than reconstructing it from memory for every trip.",
-        "Cover documentation requirements (passport, visa) as a distinct section, separate from booking logistics.",
-        "Include health and safety prep specific to the destination, not just a generic packing list.",
-        "Add a loyalty-numbers-applied confirmation step and a contingency contact for the trip, so neither gets missed under time pressure.",
-        "Treat this checklist as a durable, written reference the same way the Home Binder (per Day 5) works — build it once, reuse and refine it every trip after."
-      ],
-      "trainerCue": "Ask who currently has an actual written travel checklist versus who rebuilds it from memory every time — building one live as a group is a strong close to this topic."
-    },
-    {
-      "h": "Post-Trip Debrief & Follow-Up",
-      "singleSlide": true,
-      "b": [
-        "A trip isn't complete when the traveler gets home — expense reconciliation, thank-you follow-ups, and capturing what went wrong (so it doesn't repeat) are real, often-skipped final steps.",
-        "A quick post-trip note on what worked and what didn't (a hotel that fell short, a connection that was too tight) is what makes the next trip's planning genuinely better instead of repeating the same mistakes.",
-        "This is the same continuous-improvement discipline as the seasonal-coordination playbook from Day 6 — a trip debrief is a small-scale version of the same habit."
-      ],
-      "howTo": [
-        "Reconcile travel expenses promptly after return, rather than letting receipts and costs accumulate unaddressed.",
-        "Send any thank-you or follow-up communications the trip generated while it's still timely, not weeks later.",
-        "Write a brief note on what worked and what didn't (a hotel that fell short, a connection that was too tight) while the details are still fresh.",
-        "Feed that note back into the standing travel preferences or checklist, so the next trip's planning is genuinely improved, not a repeat of the same issue.",
-        "Treat this as the same continuous-improvement habit as the seasonal-coordination playbook (per Day 6), just applied at the scale of a single trip."
-      ],
-      "trainerCue": "Ask the room whether they currently do any kind of post-trip debrief, even informally — most don't, which is exactly the gap this topic is meant to close."
-    },
-    {
-      "h": "The Weekly Time Audit",
-      "b": [
-        "Most people's sense of where their time actually goes is inaccurate — a real time audit (tracking actual activity for even one representative week) usually reveals surprises that pure intuition misses.",
-        "The goal isn't to track time forever — it's a periodic check-in to catch drift, the same way a budget review catches spending patterns that crept in unnoticed.",
-        "This connects directly to the Time Tracking Done Right topic earlier in this day — a periodic audit is what turns raw tracked data into an actual improvement, rather than just a log nobody reviews."
-      ],
-      "howTo": [
-        "Track your actual activity for one representative week — not your assumed pattern, since intuition about where time goes is usually inaccurate.",
-        "Compare the tracked data against what you believed your priorities were that week — the gap between the two is the actual finding.",
-        "Treat this as a periodic check-in, not a permanent tracking habit — the goal is catching drift occasionally, the same way a budget review catches unnoticed spending patterns.",
-        "Use the Time Tracking Done Right discipline from earlier in this day as the input — a periodic audit only works if the underlying data was actually captured accurately.",
-        "Act on what the audit reveals — an audit that's reviewed but doesn't change anything about the following week's planning isn't actually serving its purpose."
-      ],
-      "trainerCue": "Ask the room to guess, before checking, what percentage of their week goes to their top priority — then compare that guess to what a real audit would likely show. The gap is usually the whole lesson."
-    },
-    {
-      "h": "Setting Realistic Deadlines",
-      "b": [
-        "A deadline that's set without genuinely accounting for the work involved isn't a real deadline — it's a guess that creates false confidence until it's suddenly missed.",
-        "Building in real buffer for the unexpected (not padding every estimate blindly, but accounting for genuine uncertainty) is what makes a deadline something people can actually plan around.",
-        "As an EA, you're often the one setting deadlines for tasks you're not personally doing — checking in with whoever's doing the actual work before committing to a date is what keeps the deadline honest."
-      ],
-      "howTo": [
-        "Before setting a deadline, genuinely account for the actual work involved — a deadline set without this is a guess, not a real commitment.",
-        "Check in with whoever will actually be doing the work before committing to a date on their behalf — this keeps the deadline honest rather than optimistic.",
-        "Build in real buffer for genuine uncertainty, without padding every estimate blindly regardless of actual risk.",
-        "State the deadline clearly with an owner attached, the same discipline covered in the ACT Email framework from Day 1 — a deadline with no clear owner is the most common reason it slips.",
-        "If a deadline later looks at risk, flag that early rather than waiting until it's already missed — an early flag gives real options that a last-minute one doesn't."
-      ],
-      "trainerCue": "Ask for a real example of a deadline that was set too optimistically and what that actually cost once it slipped — this is a nearly universal experience worth naming directly."
-    },
-    {
       "h": "Court Docketing Workflows",
+      "section": "Legal Calendaring",
       "fourPart": {
         "corePrinciples": [
           "Court docketing is calendar management with legal consequences attached — a missed docketed deadline isn't just an inconvenience, it can be a malpractice exposure or a lost right for the client.",
@@ -4998,6 +4867,7 @@ const DAY3 = {
     },
     {
       "h": "Statute-of-Limitations Rules",
+      "section": "Legal Calendaring",
       "fourPart": {
         "corePrinciples": [
           "A statute of limitations sets the outer deadline by which a legal claim must be filed — miss it, and the claim can be barred entirely, regardless of its merits. This makes SOL tracking one of the least forgiving deadlines in legal support work.",
@@ -5018,6 +4888,7 @@ const DAY3 = {
     },
     {
       "h": "Deposition Scheduling",
+      "section": "Legal Calendaring",
       "fourPart": {
         "corePrinciples": [
           "Deposition scheduling involves coordinating far more parties than an ordinary meeting — attorneys from multiple sides, the witness, a court reporter, sometimes an interpreter — each with their own constraints.",
@@ -5036,26 +4907,8 @@ const DAY3 = {
       }
     },
     {
-      "h": "Executive Travel Logistics — Domestic & International Itineraries",
-      "fourPart": {
-        "corePrinciples": [
-          "Domestic and international executive travel share the same planning discipline covered elsewhere in this day, but international travel adds real complexity — visas, customs, time zones, and jurisdictional differences that domestic travel simply doesn't have.",
-          "A complete itinerary is more than flights and hotels — it accounts for every leg of the journey, including the gaps between them, since that's where most real travel failures actually happen."
-        ],
-        "howTo": [
-          "Build the itinerary from the destination backward — confirm what the executive needs to be ready for on arrival, then work back through ground transport, hotel, and flights to make sure each leg actually supports the next.",
-          "For international travel specifically, confirm visa and documentation requirements well ahead of departure — this connects directly to the visa and documentation content covered earlier in this day.",
-          "Build real buffer time between connecting legs, especially international-to-domestic connections, which often require re-clearing security or customs."
-        ],
-        "bestPractices": [
-          "Pitfall: treating an international itinerary like a domestic one with a longer flight. The documentation, time zone, and connection-buffer considerations are genuinely different categories of risk.",
-          "Confirm every leg's confirmation numbers and details are in one consolidated itinerary document, not scattered across separate booking confirmations the executive has to piece together mid-trip."
-        ],
-        "discussionCase": "You're booking a trip with a tight connection between an international arrival and a domestic connecting flight. What would you actually want confirmed about that connection before booking it as-is?"
-      }
-    },
-    {
       "h": "War Room Trial Support",
+      "section": "Legal Calendaring",
       "fourPart": {
         "corePrinciples": [
           "Trial periods compress an attorney's schedule and support needs dramatically — this is one of the highest-intensity, highest-stakes windows an EA or Legal EA will support, and it demands a different operating mode than routine work.",
@@ -5074,7 +4927,137 @@ const DAY3 = {
       }
     },
     {
+      "h": "Executive Travel Logistics — Domestic & International Itineraries",
+      "section": "Travel Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Domestic and international executive travel share the same planning discipline covered elsewhere in this day, but international travel adds real complexity — visas, customs, time zones, and jurisdictional differences that domestic travel simply doesn't have.",
+          "A complete itinerary is more than flights and hotels — it accounts for every leg of the journey, including the gaps between them, since that's where most real travel failures actually happen."
+        ],
+        "howTo": [
+          "Build the itinerary from the destination backward — confirm what the executive needs to be ready for on arrival, then work back through ground transport, hotel, and flights to make sure each leg actually supports the next.",
+          "For international travel specifically, confirm visa and documentation requirements well ahead of departure — this connects directly to the visa and documentation content covered earlier in this day.",
+          "Build real buffer time between connecting legs, especially international-to-domestic connections, which often require re-clearing security or customs."
+        ],
+        "bestPractices": [
+          "Pitfall: treating an international itinerary like a domestic one with a longer flight. The documentation, time zone, and connection-buffer considerations are genuinely different categories of risk.",
+          "Confirm every leg's confirmation numbers and details are in one consolidated itinerary document, not scattered across separate booking confirmations the executive has to piece together mid-trip."
+        ],
+        "discussionCase": "You're booking a trip with a tight connection between an international arrival and a domestic connecting flight. What would you actually want confirmed about that connection before booking it as-is?"
+      }
+    },
+    {
+      "h": "Visa & Documentation Requirements",
+      "section": "Travel Management",
+      "b": [
+        "Different destinations have genuinely different visa and documentation requirements, and these can change — always verify current requirements for the specific trip, not what was true on a previous trip to a similar destination.",
+        "Passport validity requirements are a common, avoidable failure point: many countries require six months of remaining validity beyond the travel dates, not just that the passport hasn't technically expired.",
+        "Building in real lead time for visa processing (which can take weeks, not days, for some destinations) is what prevents a trip from being jeopardized by paperwork discovered too late."
+      ],
+      "howTo": [
+        "Verify current visa and documentation requirements for the specific destination and trip, not what was true on a previous trip to a similar country.",
+        "Check passport validity specifically against the destination's actual rule — many countries require six months of remaining validity beyond the travel dates, not just an unexpired passport.",
+        "Build in real lead time for visa processing, which can take weeks for some destinations — start this well before the trip, not once other planning is already underway.",
+        "Confirm any required supporting documents (business invitation letters, health declarations) early enough to resolve issues before departure.",
+        "Keep a record of what documentation was required and confirmed for each trip, so the next similar trip starts from accurate information, not assumption."
+      ],
+      "trainerCue": "Ask if anyone has a real story of a trip nearly derailed by a passport or visa issue discovered too close to departure — this tends to be memorable and widely relatable."
+    },
+    {
+      "h": "International Travel Considerations",
+      "section": "Travel Management",
+      "layout": "THREEBOX",
+      "boxes": [
+        {"label":"Health & Safety", "desc":"Required or recommended vaccinations, travel advisories, and local emergency contact numbers for the destination"},
+        {"label":"Currency & Payment", "desc":"Whether cards are widely accepted, whether local currency is needed, and realistic exchange logistics"},
+        {"label":"Cultural & Business Norms", "desc":"Meeting etiquette, dress expectations, and communication norms that differ from the home market"}
+      ],
+      "b": [
+        "International travel carries a wider set of real variables than domestic travel, and treating it with the same planning depth as a routine trip is a common, avoidable mistake.",
+        "Checking current government travel advisories for the specific destination before finalizing a trip is a real diligence step, not an optional extra — advisories can change close to a travel date."
+      ],
+      "howTo": [
+        "Check health and safety requirements for the destination — required or recommended vaccinations, current travel advisories, and local emergency contact numbers.",
+        "Confirm currency and payment logistics ahead of time — whether cards are widely accepted, whether local currency is needed, and realistic exchange options.",
+        "Research cultural and business norms specific to the destination — meeting etiquette, dress expectations, and communication norms that differ from the home market.",
+        "Check current government travel advisories close to the actual travel date, not just when the trip was first planned — advisories can change.",
+        "Treat international trips with meaningfully more planning depth than domestic ones — the same light-touch approach that works for a routine domestic trip is a real risk here."
+      ],
+      "trainerCue": "If anyone in the room has done real international travel coordination, ask them to name the one thing that surprised them most the first time — the real answer usually isn't obvious in advance."
+    },
+    {
+      "h": "Managing Multi-City, Multi-Leg Itineraries",
+      "section": "Travel Management",
+      "singleSlide": true,
+      "b": [
+        "A trip with several connected legs has more failure points than a simple round-trip — a delay on the first leg can cascade through every subsequent connection, and the plan needs enough real buffer to absorb that.",
+        "Confirming that ground transportation and hotel check-in times actually align with arrival times at each leg (not just that flights are booked) is what prevents a technically-correct itinerary from falling apart in practice.",
+        "A single-page summary of the entire itinerary — not scattered confirmation emails — is what actually makes a complex, multi-leg trip manageable in the moment."
+      ],
+      "howTo": [
+        "Map every leg of a multi-city trip together, not one leg at a time — a delay on the first leg can cascade through every subsequent connection.",
+        "Identify the tightest connection in the itinerary specifically, and build extra buffer there, since that's the point most likely to actually cause a problem.",
+        "Confirm ground transportation and hotel check-in times genuinely align with each leg's actual arrival time, not just that flights are technically booked.",
+        "Consolidate the entire itinerary into a single-page summary, rather than leaving it as scattered confirmation emails the traveler has to piece together mid-trip.",
+        "Review the full itinerary once more shortly before departure, checking specifically for any leg whose timing has shifted since it was first booked."
+      ],
+      "trainerCue": "Walk through a real or realistic 3-leg itinerary live and ask the room to spot where the tightest connection is — that's the point most likely to actually cause a problem."
+    },
+    {
+      "h": "Ground Transportation Coordination",
+      "section": "Travel Management",
+      "b": [
+        "Ground transportation is the most commonly under-planned part of a trip — flights and hotels get real attention, while 'we'll figure out a car' is treated as an afterthought that then becomes a real problem on arrival.",
+        "Confirming a car service or rental with a specific pickup time, location, and contact detail — not a vague 'sometime after landing' — is what prevents the exact kind of gap that ruins an otherwise well-planned trip.",
+        "This connects directly to the car-seat and family-specific requirements noted in the Client Profile — ground transportation planning has to account for who's actually traveling, not just the executive alone."
+      ],
+      "howTo": [
+        "Treat ground transportation with the same planning attention as flights and hotels — don't leave it as a \"we'll figure it out\" afterthought.",
+        "Confirm a specific pickup time, location, and contact detail for any car service or rental — not a vague \"sometime after landing.\"",
+        "Check ground transport requirements against the Client Profile's family-specific needs (car seats, accessibility) when applicable, not just the executive traveling alone.",
+        "Build in a backup ground transport option for high-stakes trips, the same way you would for flights.",
+        "Confirm the booking again shortly before the actual travel date — a ground transport reservation made weeks out is worth double-checking closer to departure."
+      ],
+      "trainerCue": "Ask the room whether they've ever landed somewhere with flights and hotel confirmed but ground transportation genuinely uncertain — this is a very common, very avoidable gap."
+    },
+    {
+      "h": "Loyalty Programs & Travel Preferences",
+      "section": "Travel Management",
+      "b": [
+        "Tracking an executive's loyalty program memberships (airline, hotel) and always applying them isn't a minor courtesy — it's real, recurring value in upgrades, priority service, and status that compounds over many trips.",
+        "This connects directly to the stated seat, routing, and hotel preferences from the Client Profile — loyalty program numbers should be applied consistently alongside those preferences every single time, not just when remembered.",
+        "A missed loyalty number on a booking is a small, completely avoidable error that a well-run travel process should never actually produce."
+      ],
+      "howTo": [
+        "Track every loyalty program membership the executive holds (airline, hotel) in the same tracker or dossier used for other standing preferences.",
+        "Apply the relevant loyalty numbers to every booking automatically, as a standard step in the booking process, not something remembered only when convenient.",
+        "Cross-check loyalty application against the stated seat, routing, and hotel preferences from the Client Profile — apply both together every time.",
+        "Build this check into a travel checklist rather than relying on memory under time pressure, especially for last-minute bookings.",
+        "Periodically confirm loyalty program details are still current — status levels and program details can change and should be re-verified occasionally."
+      ],
+      "trainerCue": "Ask the room to name a travel preference (loyalty program or otherwise) that's easy to forget under time pressure — the honest answer usually reveals a real gap worth building a checklist around."
+    },
+    {
+      "h": "Travel Risk Contingency Planning",
+      "section": "Travel Management",
+      "singleSlide": true,
+      "b": [
+        "A real travel plan accounts for what happens when something goes wrong — a cancelled flight, a missed connection, a sudden weather event — not just the ideal-case itinerary.",
+        "Knowing the backup options in advance (the next viable flight, an alternate routing, a local contact at the destination) turns a disruption into a quick pivot instead of a crisis handled from scratch under pressure.",
+        "This is the same principle as backup-vendor identification from Day 5 — a real contingency plan exists before it's needed, not improvised in the moment."
+      ],
+      "howTo": [
+        "Before finalizing any trip, identify the realistic disruption scenarios for that specific itinerary — a cancelled flight, a missed connection, severe weather at a key leg.",
+        "Identify the actual backup options in advance for each scenario — the next viable flight, an alternate routing, a local contact at the destination.",
+        "Document these contingencies alongside the itinerary itself, not as a separate afterthought that's hard to find under pressure.",
+        "When a disruption actually happens, execute the pre-identified backup immediately rather than starting to research options from scratch.",
+        "Apply the same principle used for backup-vendor identification (per Day 5) — a real contingency plan exists before it's needed, not improvised in the moment."
+      ],
+      "trainerCue": "Ask for a real story of a travel disruption that was handled well because a backup plan already existed — versus one that turned into a scramble because it didn't."
+    },
+    {
       "h": "Emergency Flight Contingencies",
+      "section": "Travel Management",
       "fourPart": {
         "corePrinciples": [
           "A flight disruption during a high-stakes trip (a trial, a closing, a critical meeting) isn't just an inconvenience — it's a real risk to whatever that trip exists to support, which is why this deserves its own contingency planning, not just reactive troubleshooting.",
@@ -5092,10 +5075,64 @@ const DAY3 = {
         "discussionCase": "An executive's flight to a trial appearance gets cancelled with the next available flight landing after the hearing's scheduled start. What would you actually do, in what order, to solve this?"
       }
     },
-    {"h": "Recognizing Stress & Burnout in High-Pressure Roles", "fourPart": {"corePrinciples": ["Stress is the body's normal response to pressure; short bursts can sharpen focus. Burnout is different — the World Health Organization describes it as an occupational phenomenon from chronic, unmanaged workplace stress, marked by exhaustion, cynicism or detachment, and reduced effectiveness.", "EA/PA roles carry specific stressors: constant interruptions, being 'always on' for an executive, carrying other people's deadlines, and handling confidential or emotionally heavy matters.", "Early signs are easier to fix than late ones: irritability, dreading the inbox, sleep changes, more small mistakes, and withdrawing from colleagues."], "howTo": ["Do a weekly two-minute check-in with yourself: energy (1–10), sleep, error rate, and whether anything is consistently dreaded.", "Name the specific stressor rather than 'work is stressful' — e.g., after-hours texts, unclear priorities, or back-to-back travel changes. Specific problems have specific fixes.", "Track patterns for two weeks (a line in your notes each day) before deciding what to change; patterns show what's chronic versus a one-off bad day.", "If signs persist for weeks or affect sleep, health, or relationships, talk to your manager and consider professional support such as an Employee Assistance Program (EAP) or a healthcare provider."], "bestPractices": ["Pitfall: treating exhaustion as proof of dedication — sustained overload leads to errors, and in legal support errors can be costly.", "Don't wait for a crisis to raise workload concerns; small adjustments are easier to agree early.", "Watch for signs in colleagues too, and respond with a private, kind check-in rather than advice in front of others."], "discussionCase": "You notice you've double-booked Elias twice this week, you're snapping at vendors, and you check email at 11 PM every night 'just in case.' What's happening, and what are your first three steps?"}, "trainerCue": "Normalize the topic first — share (or invite) a real example of a high-pressure week — then ask the room which early warning sign they'd notice first in themselves."},
-    {"h": "Stress Management Techniques That Work at a Desk", "fourPart": {"corePrinciples": ["Effective stress tools are the ones you can use in two minutes between tasks — breathing, a short walk, a reset of your task list — not only long weekend routines.", "Controlled breathing (for example, a slow exhale longer than the inhale) can calm the body's stress response quickly, which is why it's used before high-stakes calls.", "Structure reduces stress: a clear plan for the day, batching similar tasks, and protected focus time cut the mental load of constantly re-deciding what to do next."], "howTo": ["Before a tense call or meeting: three to five slow breaths (inhale about 4 counts, exhale about 6), feet on the floor, shoulders down.", "When overwhelmed: 'brain dump' every open item onto paper, then pick the single next action — clarity on one step lowers the sense of chaos.", "Build micro-breaks into the day: stand, stretch, or walk for 3–5 minutes every 60–90 minutes, and step away from the screen for lunch when possible.", "End the day with a shutdown ritual: review tomorrow's calendar, write the top three priorities, and close the inbox — this helps separate work from rest."], "bestPractices": ["Pitfall: relying only on caffeine and willpower — they mask fatigue without reducing the load.", "Protect sleep as a work skill; tired assistants make more scheduling and detail errors.", "Keep a short 'calm kit' list of what works for you personally, so you don't have to think of it in the moment."], "discussionCase": "Elias has just called in a hurry: a court date moved, three meetings must shift, and a family event overlaps. Walk through the first five minutes — what do you do to stay clear-headed before touching the calendar?"}, "trainerCue": "Lead the room through one 60-second breathing reset together, then ask how they could fit it into a real workday."},
-    {"h": "Setting Boundaries & Managing Executive Pressure", "fourPart": {"corePrinciples": ["Boundaries are agreements about availability, response times, and scope — they protect the quality of your work, not just your time.", "Unclear expectations create most of the stress: if 'urgent' isn't defined, everything feels urgent. Agreeing definitions with the executive reduces constant alert.", "Pressure from an executive is often about their own stress; responding calmly with facts and options de-escalates better than matching their urgency."], "howTo": ["Agree availability rules in writing: working hours, what counts as a true after-hours emergency, and the channel for it (e.g., a phone call, not email).", "When a new request collides with existing priorities, ask 'Which of these should move?' instead of silently absorbing both.", "Use a calm script under pressure: acknowledge ('I understand this is urgent'), state facts ('The filing is due at 3'), offer options ('I can move the vendor call or ask Maria to cover it')."], "bestPractices": ["Pitfall: answering every late-night message instantly — it trains the expectation that you're always available.", "Never let a boundary become an excuse to miss a genuine legal deadline; build the emergency path into the agreement instead.", "Revisit the agreement when roles change, workload rises, or new family responsibilities appear on either side."], "discussionCase": "Elias texts at 10:40 PM asking you to 'quickly' rebook tomorrow's 8 AM client meeting. Your agreed after-hours rule covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?"}, "trainerCue": "Have pairs role-play the 'which of these should move?' conversation — one plays a pressured executive, one plays the EA — then swap."},
-    {"h": "Recovery, Workload Conversations & Support Resources", "fourPart": {"corePrinciples": ["Recovery is part of performance: regular breaks, real time off, and sleep restore the focus that detail-heavy legal work depends on.", "Workload problems are business problems — raising them early with data (hours, volume, error risks) is professional, not a complaint.", "Support exists: many employers offer confidential Employee Assistance Programs (EAPs), and healthcare providers can help when stress affects health. In the US, the 988 Suicide & Crisis Lifeline is available for anyone in crisis."], "howTo": ["Prepare a workload conversation: list recurring tasks, hours spent, what's slipping, and two or three concrete options (delegate, pause, add support, change deadlines).", "Plan real time off with a coverage handover — delegate access, an out-of-office message, and a one-page status note — so you can actually disconnect.", "Know where support is before you need it: your employer's EAP details, your manager or HR contact, and your own trusted people."], "bestPractices": ["Pitfall: waiting until you're exhausted to raise workload — by then the conversation feels like a crisis instead of a plan.", "Keep personal health details private unless you choose to share them; you can ask for workload changes without disclosing a diagnosis.", "Support colleagues by covering for them properly during time off, so the whole team can recover."], "discussionCase": "You've been working 55-hour weeks for two months and your error rate is rising. Draft the opening two sentences of a workload conversation with Elias, and list the options you'd bring."}, "trainerCue": "Share where your organization's EAP or support information lives, then have the room draft the first two sentences of a workload conversation."}
+    {
+      "h": "Expense Tracking While Traveling",
+      "section": "Travel Management",
+      "singleSlide": true,
+      "b": [
+        "Receipts get lost in real time far more easily while traveling than in a normal office routine — capturing them immediately (a photo, a folder, anything) beats trying to reconstruct a trip's expenses afterward from memory.",
+        "Categorizing expenses as they happen (which client, which matter, which cost center) is much faster than doing it all at once after return, when the context has already faded.",
+        "This connects directly to the SOA reconciliation and expense-entry discipline from Day 7 — travel expense tracking is the same skill, applied under less controlled conditions."
+      ],
+      "howTo": [
+        "Capture every receipt immediately when it's received — a photo, a dedicated folder, anything — rather than planning to collect them all at the end of the trip.",
+        "Categorize each expense as it happens (which client, which matter, which cost center) while the context is still fresh, not in a batch afterward.",
+        "Apply the same reconciliation discipline used for regular expense tracking (per the Day 7 SOA process) — travel expenses are the same skill under less controlled conditions.",
+        "Set aside a few minutes at the end of each travel day specifically to confirm nothing from that day was missed, rather than waiting until return.",
+        "Submit and reconcile travel expenses within a defined window after return — don't let them accumulate indefinitely once the trip is over."
+      ],
+      "trainerCue": "Ask the room how they currently handle receipts while traveling — most will admit to at least once losing or forgetting one, which is exactly the failure this discipline prevents."
+    },
+    {
+      "h": "Building a Real Travel Checklist",
+      "section": "Travel Management",
+      "singleSlide": true,
+      "b": [
+        "A travel checklist that exists only in memory isn't a real checklist — writing it down once and reusing it for every trip is what actually prevents the same detail from being forgotten differently each time.",
+        "A good checklist covers documentation, health/safety prep, packing considerations specific to the destination, loyalty numbers, and a contingency contact — not just 'book the flight and hotel.'",
+        "This connects directly to the Home Binder discipline from Day 5 — a travel checklist is the same kind of durable, written reference, just scoped to trip preparation specifically."
+      ],
+      "howTo": [
+        "Write the checklist down once, in a reusable form, rather than reconstructing it from memory for every trip.",
+        "Cover documentation requirements (passport, visa) as a distinct section, separate from booking logistics.",
+        "Include health and safety prep specific to the destination, not just a generic packing list.",
+        "Add a loyalty-numbers-applied confirmation step and a contingency contact for the trip, so neither gets missed under time pressure.",
+        "Treat this checklist as a durable, written reference the same way the Home Binder (per Day 5) works — build it once, reuse and refine it every trip after."
+      ],
+      "trainerCue": "Ask who currently has an actual written travel checklist versus who rebuilds it from memory every time — building one live as a group is a strong close to this topic."
+    },
+    {
+      "h": "Post-Trip Debrief & Follow-Up",
+      "section": "Travel Management",
+      "singleSlide": true,
+      "b": [
+        "A trip isn't complete when the traveler gets home — expense reconciliation, thank-you follow-ups, and capturing what went wrong (so it doesn't repeat) are real, often-skipped final steps.",
+        "A quick post-trip note on what worked and what didn't (a hotel that fell short, a connection that was too tight) is what makes the next trip's planning genuinely better instead of repeating the same mistakes.",
+        "This is the same continuous-improvement discipline as the seasonal-coordination playbook from Day 6 — a trip debrief is a small-scale version of the same habit."
+      ],
+      "howTo": [
+        "Reconcile travel expenses promptly after return, rather than letting receipts and costs accumulate unaddressed.",
+        "Send any thank-you or follow-up communications the trip generated while it's still timely, not weeks later.",
+        "Write a brief note on what worked and what didn't (a hotel that fell short, a connection that was too tight) while the details are still fresh.",
+        "Feed that note back into the standing travel preferences or checklist, so the next trip's planning is genuinely improved, not a repeat of the same issue.",
+        "Treat this as the same continuous-improvement habit as the seasonal-coordination playbook (per Day 6), just applied at the scale of a single trip."
+      ],
+      "trainerCue": "Ask the room whether they currently do any kind of post-trip debrief, even informally — most don't, which is exactly the gap this topic is meant to close."
+    },
+    {"h": "Recognizing Stress & Burnout in High-Pressure Roles", "section": "Stress & Wellbeing", "fourPart": {"corePrinciples": ["Stress is the body's normal response to pressure; short bursts can sharpen focus. Burnout is different — the World Health Organization describes it as an occupational phenomenon from chronic, unmanaged workplace stress, marked by exhaustion, cynicism or detachment, and reduced effectiveness.", "EA/PA roles carry specific stressors: constant interruptions, being 'always on' for an executive, carrying other people's deadlines, and handling confidential or emotionally heavy matters.", "Early signs are easier to fix than late ones: irritability, dreading the inbox, sleep changes, more small mistakes, and withdrawing from colleagues."], "howTo": ["Do a weekly two-minute check-in with yourself: energy (1–10), sleep, error rate, and whether anything is consistently dreaded.", "Name the specific stressor rather than 'work is stressful' — e.g., after-hours texts, unclear priorities, or back-to-back travel changes. Specific problems have specific fixes.", "Track patterns for two weeks (a line in your notes each day) before deciding what to change; patterns show what's chronic versus a one-off bad day.", "If signs persist for weeks or affect sleep, health, or relationships, talk to your manager and consider professional support such as an Employee Assistance Program (EAP) or a healthcare provider."], "bestPractices": ["Pitfall: treating exhaustion as proof of dedication — sustained overload leads to errors, and in legal support errors can be costly.", "Don't wait for a crisis to raise workload concerns; small adjustments are easier to agree early.", "Watch for signs in colleagues too, and respond with a private, kind check-in rather than advice in front of others."], "discussionCase": "You notice you've double-booked Elias twice this week, you're snapping at vendors, and you check email at 11 PM every night 'just in case.' What's happening, and what are your first three steps?"}, "trainerCue": "Normalize the topic first — share (or invite) a real example of a high-pressure week — then ask the room which early warning sign they'd notice first in themselves."},
+    {"h": "Stress Management Techniques That Work at a Desk", "section": "Stress & Wellbeing", "fourPart": {"corePrinciples": ["Effective stress tools are the ones you can use in two minutes between tasks — breathing, a short walk, a reset of your task list — not only long weekend routines.", "Controlled breathing (for example, a slow exhale longer than the inhale) can calm the body's stress response quickly, which is why it's used before high-stakes calls.", "Structure reduces stress: a clear plan for the day, batching similar tasks, and protected focus time cut the mental load of constantly re-deciding what to do next."], "howTo": ["Before a tense call or meeting: three to five slow breaths (inhale about 4 counts, exhale about 6), feet on the floor, shoulders down.", "When overwhelmed: 'brain dump' every open item onto paper, then pick the single next action — clarity on one step lowers the sense of chaos.", "Build micro-breaks into the day: stand, stretch, or walk for 3–5 minutes every 60–90 minutes, and step away from the screen for lunch when possible.", "End the day with a shutdown ritual: review tomorrow's calendar, write the top three priorities, and close the inbox — this helps separate work from rest."], "bestPractices": ["Pitfall: relying only on caffeine and willpower — they mask fatigue without reducing the load.", "Protect sleep as a work skill; tired assistants make more scheduling and detail errors.", "Keep a short 'calm kit' list of what works for you personally, so you don't have to think of it in the moment."], "discussionCase": "Elias has just called in a hurry: a court date moved, three meetings must shift, and a family event overlaps. Walk through the first five minutes — what do you do to stay clear-headed before touching the calendar?"}, "trainerCue": "Lead the room through one 60-second breathing reset together, then ask how they could fit it into a real workday."},
+    {"h": "Setting Boundaries & Managing Executive Pressure", "section": "Stress & Wellbeing", "fourPart": {"corePrinciples": ["Boundaries are agreements about availability, response times, and scope — they protect the quality of your work, not just your time.", "Unclear expectations create most of the stress: if 'urgent' isn't defined, everything feels urgent. Agreeing definitions with the executive reduces constant alert.", "Pressure from an executive is often about their own stress; responding calmly with facts and options de-escalates better than matching their urgency."], "howTo": ["Agree availability rules in writing: working hours, what counts as a true after-hours emergency, and the channel for it (e.g., a phone call, not email).", "When a new request collides with existing priorities, ask 'Which of these should move?' instead of silently absorbing both.", "Use a calm script under pressure: acknowledge ('I understand this is urgent'), state facts ('The filing is due at 3'), offer options ('I can move the vendor call or ask Maria to cover it')."], "bestPractices": ["Pitfall: answering every late-night message instantly — it trains the expectation that you're always available.", "Never let a boundary become an excuse to miss a genuine legal deadline; build the emergency path into the agreement instead.", "Revisit the agreement when roles change, workload rises, or new family responsibilities appear on either side."], "discussionCase": "Elias texts at 10:40 PM asking you to 'quickly' rebook tomorrow's 8 AM client meeting. Your agreed after-hours rule covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?"}, "trainerCue": "Have pairs role-play the 'which of these should move?' conversation — one plays a pressured executive, one plays the EA — then swap."},
+    {"h": "Recovery, Workload Conversations & Support Resources", "section": "Stress & Wellbeing", "fourPart": {"corePrinciples": ["Recovery is part of performance: regular breaks, real time off, and sleep restore the focus that detail-heavy legal work depends on.", "Workload problems are business problems — raising them early with data (hours, volume, error risks) is professional, not a complaint.", "Support exists: many employers offer confidential Employee Assistance Programs (EAPs), and healthcare providers can help when stress affects health. In the US, the 988 Suicide & Crisis Lifeline is available for anyone in crisis."], "howTo": ["Prepare a workload conversation: list recurring tasks, hours spent, what's slipping, and two or three concrete options (delegate, pause, add support, change deadlines).", "Plan real time off with a coverage handover — delegate access, an out-of-office message, and a one-page status note — so you can actually disconnect.", "Know where support is before you need it: your employer's EAP details, your manager or HR contact, and your own trusted people."], "bestPractices": ["Pitfall: waiting until you're exhausted to raise workload — by then the conversation feels like a crisis instead of a plan.", "Keep personal health details private unless you choose to share them; you can ask for workload changes without disclosing a diagnosis.", "Support colleagues by covering for them properly during time off, so the whole team can recover."], "discussionCase": "You've been working 55-hour weeks for two months and your error rate is rising. Draft the opening two sentences of a workload conversation with Elias, and list the options you'd bring."}, "trainerCue": "Share where your organization's EAP or support information lives, then have the room draft the first two sentences of a workload conversation."}
   ],
   "quickChecks": [
     {
@@ -5339,6 +5376,8 @@ const DAY3 = {
   "discussionQuestion": "Share a time you had to say 'not now' to someone without damaging the relationship. What made it land well — or not?"
 };
 
+/* Day 3 topics before they were grouped into sections (used once to move a trainee's saved place). */
+const DAY3_OLD_ORDER = ["Prioritization Frameworks", "Time Tracking Done Right", "Time Management", "When Time Management Fails Despite a Clean Calendar", "Calendar Management That Holds", "Calendar Conflict & Prioritization Discipline", "Energy Management vs. Time Management", "Handling Interruptions Without Losing the Day", "The Two-Minute Rule", "Weekly Planning Rituals", "Saying No Without Damaging Relationships", "Batch Processing Similar Tasks", "The Cost of Context-Switching", "Recurring Meeting Hygiene", "Buffer Time Between Meetings", "Time Zone Management for Distributed Teams", "Calendar Blocking for Deep Work", "Handling Last-Minute Calendar Changes", "Multi-Calendar Coordination", "Visa & Documentation Requirements", "International Travel Considerations", "Expense Tracking While Traveling", "Travel Risk Contingency Planning", "Loyalty Programs & Travel Preferences", "Managing Multi-City, Multi-Leg Itineraries", "Ground Transportation Coordination", "Building a Real Travel Checklist", "Post-Trip Debrief & Follow-Up", "The Weekly Time Audit", "Setting Realistic Deadlines", "Court Docketing Workflows", "Statute-of-Limitations Rules", "Deposition Scheduling", "Executive Travel Logistics — Domestic & International Itineraries", "War Room Trial Support", "Emergency Flight Contingencies", "Recognizing Stress & Burnout in High-Pressure Roles", "Stress Management Techniques That Work at a Desk", "Setting Boundaries & Managing Executive Pressure", "Recovery, Workload Conversations & Support Resources"];
 const DAY4 = {
   "id": 4,
   "title": "Data & Outreach",
@@ -11633,7 +11672,7 @@ const mem = {}; // in-memory fallback if window.storage is unavailable
 const PERSONAL_KEYS = ["day-progress","practice-progress","lab-attempts-global","lab-attempts-by-day","admin-unlocked-days","notes","completed-lab-actions",
   "day10-window","submissions","roleplayHistory","slide-progress","last-slide","attn-detail-findings",
   "calendar-custom","calendar-edits","call-log","inbox-filing","inbox-interactions","inbox-labels","trainee-batch",
-  "quick-check-answers","last-view","lab-drafts","work-log","cert-name","reg-name","intro-seen","task-log","task-day-since"];
+  "quick-check-answers","day-order-migrated","last-view","lab-drafts","work-log","cert-name","reg-name","intro-seen","task-log","task-day-since"];
 const PERSONAL_KEY_SET = new Set(PERSONAL_KEYS);
 let cloudSaveTimer = null;
 function scheduleCloudSave(){
@@ -12031,6 +12070,9 @@ async function loadAll(){
   state.lastSlide = (ls && typeof ls==="object") ? ls : {};
   const qa = await storeGet("quick-check-answers");
   state.qcAnswers = (qa && typeof qa==="object") ? qa : {};
+  const dom = await storeGet("day-order-migrated");
+  state.dayOrderMigrated = (dom && typeof dom==="object") ? dom : {};
+  await migrateDay3Order();
   const lv = await storeGet("last-view");
   state.lastView = (lv && typeof lv==="object") ? lv : null;
   const tl = await storeGet("task-log"); state.taskLog = Array.isArray(tl) ? tl : [];
@@ -14108,9 +14150,9 @@ function showDayTopics(dayId){
         <div class="mh-title">${icon} ${esc(d.title)}</div>
         <button type="button" class="topics-close" aria-label="Close" onclick="this.closest('.overlay').remove()">✕</button>
       </div>
-      <ol class="topics-modal-list">
+      ${lessonSections(d) ? lessonSections(d).map(g=>`<div class="topics-modal-sec">${esc(g.section)}</div><ol class="topics-modal-list" start="${g.items[0].i+1}">${g.items.map(x=>`<li>${esc(x.l.h)}</li>`).join("")}</ol>`).join("") : `<ol class="topics-modal-list">
         ${d.lessons.map(l=>`<li>${esc(l.h)}</li>`).join("")}
-      </ol>
+      </ol>`}
       <div class="topics-modal-foot">
         <button type="button" class="btn btn-ghost btn-sm" onclick="this.closest('.overlay').remove()">Close</button>
         ${status!=='locked' ? `<button type="button" class="btn btn-navy btn-sm" onclick="this.closest('.overlay').remove(); goto('day',${d.id})">${status==='done'?'Review Day':'Start Day'} ${d.id}</button>` : `<span class="topics-locked-note">${esc(dayLockReason(d.id))}</span>`}
@@ -14133,6 +14175,36 @@ function scrollToModule(id){
 window.scrollToModule = scrollToModule;
 /* Where a trainee should land when they come back to a day: the slide they
    were last on, falling back to the furthest slide they've reached. */
+/* Topics grouped by their "section" (Day 3 so far): [{section, items:[{l, i}]}], or null when the day has none. */
+function lessonSections(d){
+  if(!d || !d.lessons.some(l=>l.section)) return null;
+  const groups = [];
+  d.lessons.forEach((l,i)=>{ const sec = l.section || "More topics"; const g = groups[groups.length-1];
+    if(g && g.section===sec) g.items.push({l,i}); else groups.push({section:sec, items:[{l,i}]}); });
+  return groups;
+}
+/* Day 3's topics were regrouped into sections. A trainee's saved "resume here" slide was an index into
+   the old order, so move it once to the same topic in the new order. */
+async function migrateDay3Order(){
+  if(typeof DAY3_OLD_ORDER==="undefined" || (state.dayOrderMigrated||{})[3]) return;
+  const d = DAYS.find(x=>x.id===3);
+  const last = state.lastSlide && state.lastSlide[3];
+  if(d && typeof last==="number" && last > 0){
+    const byTitle = Object.fromEntries(d.lessons.map(l=>[l.h,l]));
+    const oldLessons = DAY3_OLD_ORDER.map(h=>byTitle[h]).filter(Boolean).concat(d.lessons.filter(l=>!DAY3_OLD_ORDER.includes(l.h)));
+    const oldD = Object.assign({}, d, {lessons: oldLessons});
+    const key = (dd, x)=> x ? `${x.type}|${x.lessonIndex!=null && dd.lessons[x.lessonIndex] ? dd.lessons[x.lessonIndex].h : ""}|${x.part||""}` : "";
+    const want = key(oldD, buildDaySlides(oldD)[last]);
+    const idx = buildDaySlides(d).findIndex(x=>key(d, x)===want);
+    if(idx >= 0){
+      state.lastSlide[3] = idx; await storeSet("last-slide", state.lastSlide);
+      state.slideProgress = state.slideProgress || {};
+      if((state.slideProgress[3]||0) < idx){ state.slideProgress[3] = idx; await storeSet("slide-progress", state.slideProgress); }
+    }
+  }
+  state.dayOrderMigrated = Object.assign({}, state.dayOrderMigrated, {3:true});
+  await storeSet("day-order-migrated", state.dayOrderMigrated);
+}
 function resumeSlideFor(dayId){
   const d = DAYS.find(x=>x.id===dayId); if(!d) return 0;
   const total = buildDaySlides(d).length;
@@ -14813,7 +14885,7 @@ async function logout(){
   await storeSet("notes", []);
   await resetTraineeSessionData();
   for(const k of ["work-log","quick-check-answers","lab-drafts","last-view","slide-progress","last-slide","attn-detail-findings","calendar-custom","calendar-edits","call-log","inbox-filing","inbox-interactions","inbox-labels"]) await storeSet(k, null);
-  state.slideProgress = {}; state.lastSlide = {}; state.lastCloudSave = null;
+  state.slideProgress = {}; state.lastSlide = {}; state.lastCloudSave = null; state.dayOrderMigrated = {};
   try{ localStorage.removeItem("lsh_progress-saved-at"); }catch(e){}
   state.view = "login";
   render();
@@ -15335,7 +15407,7 @@ function renderDayIntro(d){
         ${d.theme ? `<p class="di-theme">${esc(d.theme)}</p>` : ""}
         <div class="di-grid">
           <div class="di-box"><b>🎯 By the end of today you'll be able to</b><ul>${(outcomes.length?outcomes:[d.objective||""]).map(o=>`<li>${esc(asSentence(o).replace(/\.$/,""))}</li>`).join("")}</ul></div>
-          <div class="di-box"><b>🗺 What today covers</b><ul class="di-topics">${d.lessons.slice(0,8).map(l=>`<li>${esc(l.h)}</li>`).join("")}${n>8?`<li class="more">…and ${n-8} more topics</li>`:""}</ul></div>
+          <div class="di-box"><b>🗺 What today covers</b><ul class="di-topics">${lessonSections(d) ? lessonSections(d).map(g=>`<li><b style="display:inline;margin:0;">${esc(g.section)}</b> · ${g.items.length} topic${g.items.length===1?"":"s"}</li>`).join("") : `${d.lessons.slice(0,8).map(l=>`<li>${esc(l.h)}</li>`).join("")}${n>8?`<li class="more">…and ${n-8} more topics</li>`:""}`}</ul></div>
         </div>
         <div class="di-strip">
           <div><span>📚</span><b>${n} topics</b><em>${slides} slides</em></div>
@@ -15742,7 +15814,7 @@ function renderLessonCard(l,i,d,unused,part){
   const density = textLen < 280 ? "density-xs" : (textLen < 650 ? "density-s" : "density-m");
 
   return `
-    <div class="topic-separator">DAY ${d.id} &middot; TOPIC ${i+1} OF ${d.lessons.length}${l.singleSlide ? "" : ` &middot; PART ${p} OF 2`}</div>
+    <div class="topic-separator">DAY ${d.id}${l.section ? ` &middot; ${esc(l.section).toUpperCase()}` : ""} &middot; TOPIC ${i+1} OF ${d.lessons.length}${l.singleSlide ? "" : ` &middot; PART ${p} OF 2`}</div>
     <div class="card lesson-card ${expSec ? "density-m" : density}" data-part="${p}">
       <h4><span class="lnum">0${i+1}</span>${esc(l.h)}</h4>
       ${expSec ? renderExpansionPanel(expSec) : ""}
