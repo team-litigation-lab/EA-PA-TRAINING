@@ -13,3 +13,6 @@ id = "b121aa911590471bbad351d03274d7f4"
 [[r2_buckets]]
 binding = "DOCUMENTS"
 bucket_name = "lshtraining"
+
+[version_metadata]
+binding = "CF_VERSION_METADATA"
