@@ -22284,13 +22284,13 @@ function scriptWalk(items){
 function slideScript(d, l, part){
   const key = (part===2 && !l.singleSlide) ? "p2" : "p1";
   const hand = ((window.SLIDE_SCRIPTS || {})[`${d.id}::${l.h}`] || {})[key];
-  if(hand) return {why: hand.why||"", talk: hand.talk||"", walk: hand.walk||[], ask: hand.ask||"", hand: true};
+  if(hand) return {why: hand.why||"", talk: hand.talk||"", walk: hand.walk||[], ask: hand.ask||"", scenario: hand.scenario||"", hand: true};
   const n = presenterNote(d, l, part), secs = slideScriptSections(d, l, part);
   let walk = [];
   if(secs[2]) walk = scriptWalk(secs[2].split("\n").slice(1));
   const talk = [secs[1], secs[3], secs[4]].filter(Boolean).join("\n\n");
   const ask = key==="p1" ? (n.ask || (l.singleSlide ? n.wrap : "")) : (n.wrap || n.ask || "");
-  return {why: n.say || "", talk, walk, ask, hand: false};
+  return {why: n.say || "", talk, walk, ask, scenario: (key==="p2" || l.singleSlide) ? (n.scenario || "") : "", hand: false};
 }
 function slideScriptText(d, l, part){
   const s = slideScript(d, l, part);
@@ -22313,7 +22313,7 @@ function slideScriptForPage(s, l, part, pg){
   let walk = [];
   let from = 0;
   if(pos >= 0){ from = Math.round(n*pos/wp.length); const to = Math.round(n*(pos+1)/wp.length); walk = s.walk.slice(from, to); }
-  return {why: k===0 ? s.why : "", talk: k===0 ? s.talk : "", walk, ask: k===P-1 ? s.ask : "",
+  return {why: k===0 ? s.why : "", talk: k===0 ? s.talk : "", walk, ask: k===P-1 ? s.ask : "", scenario: k===P-1 ? s.scenario : "",
     more: k < P-1, cont: from > 0, hand: s.hand, page: k, pages: P};
 }
 /* The script reads like speaker notes: one flowing paragraph the trainer can say out loud (the
@@ -22335,7 +22335,7 @@ function renderPresenterNote(d, l, part, secs, allSecs, pg){
       ${s.more ? `<p class="script-next">Continues on the next page →</p>` : ""}
     </div>
     ${n.cue && s.page ? "" : (n.cue ? `<div class="pn-on pn-cue"><b>Trainer note — not read aloud</b><p>${esc(n.cue)}</p></div>` : "")}
-    ${lastSlide && !s.more && n.scenario && !s.hand ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}
+    ${s.scenario ? `<div class="pn-scen"><b>🎬 Scenario — work through it with the room</b><p>${esc(s.scenario)}</p></div>` : ""}
   </div>`;
 }
 function buildDayScriptLines(d){
@@ -22349,7 +22349,7 @@ function buildDayScriptLines(d){
       const paras = scriptProse(s);
       if(paras[0]) lines.push(paras[0]);
       if(paras[1]) lines.push(`ASK: ${paras[1]}`);
-      if((l.singleSlide || p===2) && n.scenario && !s.hand) lines.push(`SCENARIO: ${n.scenario}`);
+      if(s.scenario) lines.push(`SCENARIO: ${s.scenario}`);
     });
     lines.push("---");
   });
@@ -25250,11 +25250,11 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 <script src="/js/presenter-notes.js?v=2"></script>
-<script src="/js/slide-scripts/day1.js?v=2"></script>
-<script src="/js/slide-scripts/day2.js?v=3"></script>
-<script src="/js/slide-scripts/day3.js?v=4"></script>
-<script src="/js/slide-scripts/day4.js?v=3"></script>
-<script src="/js/slide-scripts/day5.js?v=3"></script>
+<script src="/js/slide-scripts/day1.js?v=3"></script>
+<script src="/js/slide-scripts/day2.js?v=4"></script>
+<script src="/js/slide-scripts/day3.js?v=5"></script>
+<script src="/js/slide-scripts/day4.js?v=4"></script>
+<script src="/js/slide-scripts/day5.js?v=4"></script>
 <script src="/js/slide-scripts/day6.js?v=3"></script>
 <script src="/js/slide-scripts/day7.js?v=3"></script>
 <script src="/js/slide-scripts/day8.js?v=3"></script>
