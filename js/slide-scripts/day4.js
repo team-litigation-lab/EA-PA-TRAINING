@@ -16,7 +16,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Never hand over raw data and expect someone else to clean up after you.",
-   "talk": "Go Deeper explains the reasoning behind the order. Each step protects the next one.",
+   "talk": "Why that order? Because each step protects the next one. If we check the data before removing duplicates, we check the same person twice. If we search before we've made the formatting consistent, a search for 'California' quietly misses everyone typed in as 'CA'. And checking against the original source, not our memory, is what catches the typo we'd otherwise swear was right.",
    "walk": [
     "First, duplicates come out first, because each one can trigger a double email or a double invoice.",
     "Next, formatting comes before checking, because a search for 'California' quietly misses everyone entered as 'CA'.",
@@ -38,7 +38,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The routine is built around the executive's day, not yours.",
-   "talk": "Go Deeper gives three tips for making the routine stick, and they all come back to one idea: the routine exists to serve the person you support.",
+   "talk": "A routine only works if it's built around the person we support, not around our own preferences. If Elias starts at seven, a briefing that's ready at nine is useless. So we protect the morning check the way we'd protect a meeting, keep a single running list of what carries over from the evening, and time everything to his day, not ours.",
    "walk": [
     "First, protect the morning scan like a meeting. If it slips, the executive starts the day reacting.",
     "Next, keep one running list of what carries over from evening to morning, so nothing depends on memory overnight.",
@@ -62,7 +62,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A good briefing has three parts: what needs you, what's handled and what's coming.",
-   "talk": "Go Deeper gives you the layout. It works because Elias can stop reading after the first section and still know everything he must do today.",
+   "talk": "The briefing is laid out so Elias can stop reading at any point and still have what he needs. The top part is the things only he can do today, each with a deadline. Below that, one line each on what we're already handling, so he doesn't open those threads. And at the bottom, a heads-up on what's coming later in the week that could turn urgent.",
    "walk": [
     "First, 'Needs you today': decisions, signatures and calls only he can handle, each with a deadline.",
     "Next, 'Handled or in progress': one line each, so he knows it's covered without reading the thread.",
@@ -74,7 +74,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "4::The Priority Matrix": {
   "p1": {
    "why": "Deciding how urgent something is comes first, because that decides how fast you respond.",
-   "talk": "The slide splits incoming items into two tiers. Tier 1 is anything that can't wait: legal deadlines, big clients, the press, money approvals and crises. Those go to the executive immediately. Tier 2 is important but not an interruption: new business, partnerships, board matters and vendor deals. Those get a drafted response within a few hours.",
+   "talk": "Everything that arrives falls into one of two top groups. The first is anything that simply can't wait: legal deadlines, major clients, the press, money approvals and genuine crises. Those go to the executive right away. The second is important, but not worth interrupting him for: new business, partnerships, board matters and vendor deals. For those, we have a drafted response ready within a few hours.",
    "walk": [
     "First, when something arrives, decide its tier before you do anything else.",
     "Next, for Tier 1, tell the executive straight away, no exceptions.",
@@ -86,7 +86,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An ordinary email can become urgent the moment the facts change.",
-   "talk": "Go Deeper adds the tiers below. Most email is actually routine, and handling it in batches frees you for what matters.",
+   "talk": "Most of what lands in an inbox is actually routine, and that's good news. Routine things can be handled together, once a day, instead of breaking our focus every ten minutes. Some things just need filing or passing to the team that owns them. But the tiers aren't fixed. An ordinary vendor email becomes top priority the moment it mentions a missed payment.",
    "walk": [
     "First, Tier 3 is routine: newsletters, internal updates and non-urgent scheduling. Handle these together once a day.",
     "Next, Tier 4 is file or pass on: promotions, automatic notices and things another team owns.",
@@ -161,7 +161,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "4::Research as a Core EA Skill": {
   "p1": {
    "why": "Research is the quiet habit underneath almost everything an EA does.",
-   "talk": "It shows up in three everyday ways on this slide. Checking a vendor or new contact is real before the executive spends time or money on them. Preparing a short brief on who'll be in a meeting. And checking a claim before you pass it on as fact, because if it's wrong, it's your credibility on the line.",
+   "talk": "It shows up in three everyday ways. Checking that a new vendor or contact is genuine before the executive spends time or money on them. Putting together a short note on who'll be in a meeting and what they care about. And checking a claim before we pass it on as fact, because if it turns out to be wrong, it's our credibility on the line, not the source's.",
    "walk": [
     "First, before committing time or money to someone new, check that they're genuine, from more than their own description.",
     "Next, before a meeting, prepare a short note on who's in the room and what's at stake.",
@@ -208,7 +208,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "4::Creating and Maintaining a Comprehensive Contact List": {
   "p1": {
    "why": "A great contact list lets anyone covering for you find the right person, with the right background, in seconds.",
-   "talk": "A contact list is more than a phone book. The slide shows three things that make it useful: capturing more than a name and number, organizing it into clear groups, and updating it the moment anything changes.",
+   "talk": "A contact list is much more than a phone book. A good one tells us how someone knows the executive, how they like to be reached and who their assistant is. It's organised into clear groups, so we can find the right person fast. And it's updated the moment anything changes, because a list that's a few months out of date is how calls go to the wrong number.",
    "walk": [
     "First, record more than the basics: how they know the executive, how they like to be contacted, their assistant's name and any standing notes.",
     "Next, put every contact in a group on purpose: business, personal, vendor, medical or legal.",
@@ -220,7 +220,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Flag the sensitive ones, like an opposing party nobody should contact directly.",
-   "talk": "Go Deeper lists the fields worth capturing. The most important ones are often the notes that stop someone making a mistake.",
+   "talk": "Beyond the obvious name, number and email, the most useful parts of an entry are often the notes. How is this person connected to Elias? When did we last speak? Is there anything sensitive, like an opposing party nobody should contact directly? Add a 'last checked' date and a quick clean-up every quarter, and the list stays something people can trust.",
    "walk": [
     "First, the core: name, title, organization, best phone and email, preferred channel and time zone.",
     "Next, the context: how they're connected to the executive, when you last spoke and any sensitivities.",
@@ -244,7 +244,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Three scattered lists aren't one list; they're three incomplete ones.",
-   "talk": "This slide repeats the two habits that keep a list trustworthy, and asks you to think about a real time it went wrong.",
+   "talk": "The two habits that keep a list trustworthy are simple. Keep it in one place, whether that's a CRM, a shared contacts system or at least one synced address book, because three lists are really three incomplete ones. And give it a small, regular check, because contact lists don't fail all at once. They slowly go out of date until one day the number we need is wrong.",
    "walk": [
     "First, keep everything in one system: a CRM, a shared contacts platform or at least one synced address book.",
     "Finally, a small, regular check stops the slow decay that makes a list unreliable."
@@ -267,7 +267,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The out-of-date copy is always the one that gets used in a crisis.",
-   "talk": "This slide gives a real example: two assistants, two versions of a key contact, and a time-sensitive call going to a dead number exactly when speed mattered.",
+   "talk": "Here's how it goes wrong in real life. Two assistants each keep their own copy of a key contact. One gets updated, the other doesn't. Then there's an urgent, time-sensitive call, and it goes to a dead number, at exactly the moment speed mattered most. One master list, used by everyone, for calls and for scheduling, is what prevents it.",
    "walk": [
     "First, apply the master-list habit to scheduling as well as calls.",
     "Finally, remember the real cost of two copies: the wrong number, at the worst moment."
@@ -289,7 +289,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A follow-up you promised and then forgot costs more trust than never offering it.",
-   "talk": "Three warnings on this slide, all about keeping the relationship warm instead of letting it go cold.",
+   "talk": "Relationships rarely end with an argument. They usually fade because nobody followed up. A client who hears nothing for three months starts to feel forgotten, and a competitor who calls at the right time looks attentive. So we make sure the CRM is actually used, check in at sensible moments and turn every follow-up we promise into a task with a date.",
    "walk": [
     "First, don't let the CRM become a place where information goes to die.",
     "Next, one well-timed check-in is far cheaper than winning back a client who drifted away.",
@@ -311,7 +311,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Deals move forward on facts, not on hope.",
-   "talk": "Three habits keep a CRM honest.",
+   "talk": "A CRM is only as good as the habits around it. If two records exist for the same person, their history gets split in half. If deals move forward because someone feels hopeful, the forecast becomes fiction. So we search before creating a contact, move a deal only when something real has happened, and once a month we tidy up the deals that have gone quiet.",
    "walk": [
     "First, always search before you create a new contact, so one person's history doesn't get split across two records.",
     "Next, only move a deal to the next stage when something has actually happened.",
@@ -356,7 +356,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A no is information, not a judgment about you.",
-   "talk": "This slide covers where to put your effort, how to handle rejection and why curiosity has to be real.",
+   "talk": "Three ideas make this sustainable. Not every lead deserves the same effort, so part of the skill is choosing where to spend it. Rejection is part of the job, and one person's no shouldn't sour our tone with the next person. And curiosity has to be genuine; people can tell when interest is fake, even in an email. Those same ideas help inside the firm too, whenever we need someone's buy-in.",
    "walk": [
     "First, not every lead deserves the same effort. Knowing where to invest is part of the skill.",
     "Next, never let one no change your tone for the next person.",
@@ -381,7 +381,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The aim of a first call isn't the sale; it's the second conversation.",
-   "talk": "That takes the pressure off. You're not closing anything, just earning another chat.",
+   "talk": "That takes a lot of the pressure off. We're not trying to close anything on a first call; we're just earning the right to a second conversation. So we open with something useful to them rather than a pitch, and we aim for a follow-up, not a signature. And the call lists themselves deserve the same care as any other sensitive information.",
    "walk": [
     "First, open with value, not a pitch.",
     "Next, aim for the next conversation, not the close.",
@@ -404,7 +404,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Record where every lead came from, so the firm learns which channels actually work.",
-   "talk": "Go Deeper lists the common sources for a law firm, grouped into three kinds.",
+   "talk": "For a law firm, new clients tend to come from three places. Referrals from past clients, other attorneys, accountants and financial advisers; these are usually the best. Public sources, like bar directories, court filings and business registries. And people who come to us, through the website, webinars, articles or talks. Knowing where each lead came from tells the firm where to spend its effort.",
    "walk": [
     "First, referral sources: past clients, other attorneys, accountants and financial advisers. Usually the best leads.",
     "Next, public sources: bar directories, court filings, business registries and industry lists.",
@@ -427,7 +427,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Fifty well-checked leads beat 500 guesses.",
-   "talk": "Four points on this slide, all about quality over quantity.",
+   "talk": "When there's pressure to hit a number, it's tempting to grab as many names as possible. But an email to someone with an out-of-date job title loses us credibility in the first line. So we use professional information that's legitimately available, refresh our lists regularly, because six months is plenty of time for people to move, and we choose accuracy over volume.",
    "walk": [
     "First, outdated details, like an old job title, damage your credibility in the first line.",
     "Next, use only professional information that's legitimately available.",
@@ -452,7 +452,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A lead nobody wrote down doesn't exist.",
-   "talk": "This slide is about putting effort where it counts, and never losing a good lead.",
+   "talk": "Two things matter here. The first is spending our effort where it counts: qualifying early means we don't spend hours on people who were never going to become clients. The second is never losing a good lead. Finding people and keeping track of them go hand in hand, and the follow-through matters as much as the first hello.",
    "walk": [
     "First, qualifying early stops you spending hours on people who were never going to become clients.",
     "Next, lead generation and the contact list work together: one finds people, the other keeps them.",
@@ -475,7 +475,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A fast yes isn't the same as a good fit.",
-   "talk": "Four points on this slide to keep meetings useful and prevent no-shows.",
+   "talk": "A quick yes can feel like a win, but a meeting with the wrong person wastes everyone's time. So we don't book just because someone replied warmly. We match how thoroughly we qualify to how big the opportunity is, we never promise more than the meeting will cover, and we send a reminder close to the date, because no-shows are the most avoidable failure of all.",
    "walk": [
     "First, don't book a meeting just because someone replied positively.",
     "Next, match the framework to the stakes. Don't use the heavy one for a quick call.",
@@ -499,7 +499,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A script is a starting point, not a performance.",
-   "talk": "Once a real conversation starts, the skill changes from talking to listening.",
+   "talk": "Once a real conversation starts, the skill changes from talking to listening. If the person takes the call somewhere unexpected, we follow them rather than dragging them back to the script. If they object, we offer to follow up instead of arguing. And we write up each call straight away, while the details are still fresh.",
    "walk": [
     "First, don't recite a script word for word when the conversation goes somewhere else.",
     "Next, listen more than you talk.",
@@ -522,7 +522,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Correct the facts if you need to, but never argue with someone's right to their concern.",
-   "talk": "Sometimes an objection is simply true, and the right move is to accept it gracefully.",
+   "talk": "Not every objection is something to overcome. Sometimes the person is simply right: they don't need us, or now isn't the time. Accepting that gracefully keeps the door open for later. We might correct a fact if they've misunderstood something, but we never argue with their right to be concerned. And we note their exact words, because they tell us how to improve our message.",
    "walk": [
     "First, not every objection needs to be overcome. Some are accurate.",
     "Next, never argue with a stated concern.",
@@ -544,7 +544,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Committed and best case are two different numbers, so report both.",
-   "talk": "Three habits make a pipeline report trustworthy.",
+   "talk": "A pipeline report is only useful if people can trust it. That means weighting each deal by how likely it really is, rather than adding everything up as if it'll all close. It means saying so when one big deal makes up most of the number. And it means reporting the same way on the same day each week, so a change in the trend actually means something.",
    "walk": [
     "First, weight each deal by its probability instead of adding everything up.",
     "Next, if one big deal dominates, say how risky it is.",
@@ -567,7 +567,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Never send a bulk email from the attorney's own mailbox.",
-   "talk": "Three practical rules on this slide.",
+   "talk": "A few practical rules keep the firm out of trouble. People we met at an event didn't sign up for a newsletter, so we ask before adding them. Bulk emails never go from an attorney's own mailbox, because it damages that mailbox's reputation and starts to look like spam. And when someone replies to a marketing email, a real person answers them.",
    "walk": [
     "First, don't add event contacts or business cards to the newsletter without telling them what they'll receive.",
     "Next, bulk mail from a personal mailbox damages its reputation and looks like spam.",
@@ -589,7 +589,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Asking a quick question costs far less than a violation.",
-   "talk": "Three warnings on this slide.",
+   "talk": "Where a list came from matters. A bought or scraped list isn't automatically safe to email, and there are real rules about it. When someone opts out or asks not to be called, we honour that fully and quickly, not in the narrowest possible way. And when we're unsure, we check before sending. A two-minute question costs far less than a violation.",
    "walk": [
     "First, a bought or scraped list isn't automatically safe to email. Where it came from matters.",
     "Next, treat opt-out and do-not-call requests fully and promptly, never narrowly.",
@@ -612,7 +612,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An unsubscribe always wins.",
-   "talk": "Three rules on this slide protect the firm's reputation.",
+   "talk": "A few rules protect the firm's reputation. We never buy or scrape email lists. Once someone unsubscribes, they stay off, even if their name turns up again on a new list. And opposing parties, or anyone flagged in a conflict check, never go on a marketing list at all. One wrong email to the other side of a case can cause real trouble.",
    "walk": [
     "First, never buy or scrape an email list.",
     "Next, never re-add someone who unsubscribed, even if they appear on a new list.",
@@ -635,7 +635,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Never promise a legal outcome in outreach.",
-   "talk": "Three things to avoid on this slide.",
+   "talk": "The emails that fail usually fail in one of three ways. They open with long paragraphs about the firm's history, when the reader only cares about their own problem. They use spammy tricks, like capital letters, exclamation marks or a fake 'Re:' in the subject line. Or they hint at a guaranteed result, which in legal work can break advertising rules.",
    "walk": [
     "First, long paragraphs about the firm's history. The reader cares about their problem.",
     "Next, spammy habits: capitals, exclamation marks, 'guaranteed', fake 'Re:' subject lines and image-only emails.",
@@ -657,7 +657,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Make it easy to say no, or you'll get a complaint instead of a reply.",
-   "talk": "Three habits make a sequence feel personal rather than automated.",
+   "talk": "A sequence should feel like a person following up, not a machine. So every email in it says something different; we never send the same message twice. We track which step gets replies, so we learn which email is really working. And we always make it easy to say no thanks, because someone who can't opt out easily will complain instead.",
    "walk": [
     "First, never send the same message twice.",
     "Next, track replies at each step, so you know which email is actually working.",
@@ -680,7 +680,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Keep marketing on its own domain, so a bad campaign can't hurt client email.",
-   "talk": "Three practical protections on this slide.",
+   "talk": "A few protections keep the firm's email reaching people's inboxes. We never send a big campaign to an old list that hasn't been cleaned; lots of bounces can get the account suspended. We don't use a no-reply address, because replies are a good sign and some people genuinely need to reach us. And bulk marketing lives on its own domain, so a bad campaign can't drag down everyday client email.",
    "walk": [
     "First, don't send a big campaign to an old, uncleaned list. High bounces can get the account suspended.",
     "Next, don't use a no-reply address. Replies are a good sign, and some people will need to reach you.",
@@ -703,7 +703,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Replies and consultations matter more than opens.",
-   "talk": "Three cautions on this slide.",
+   "talk": "Numbers can mislead us if we're not careful. Three extra opens out of forty is just noise, not a winner. An email that gets fewer opens but books two consultations did more real work than one that got lots of opens and no replies. And rather than redesigning everything after one weak send, we test one small change at a time.",
    "walk": [
     "First, don't declare a winner from tiny numbers. Three extra opens out of 40 is noise.",
     "Next, don't judge a newsletter by opens alone. One that books two consultations did the real work.",
@@ -726,7 +726,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Never mention a client or a case without written consent.",
-   "talk": "Three habits keep a newsletter useful and safe.",
+   "talk": "A good newsletter gives readers something useful, not just news about the firm. And in legal work there's one firm line: no client, case or result is mentioned without written consent and attorney approval. We also keep a copy of every issue exactly as it was sent, with the date it was approved, in case anyone asks later.",
    "walk": [
     "First, lead with information readers can use, not just news about the firm.",
     "Next, no client, case or result without documented consent and attorney approval.",
@@ -738,7 +738,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "4::Email Marketing Tools & Approval Workflow": {
   "p1": {
    "why": "A written approval process is what stops one quick send from reaching thousands of people with a mistake.",
-   "talk": "The slide names the common tools: Mailchimp or Constant Contact for newsletters, HubSpot or a CRM for combined tracking, and Outlook or Gmail templates for one-to-one outreach. But the tool matters less than the process: who drafts, who reviews, who checks compliance and who presses send.",
+   "talk": "There are plenty of tools: Mailchimp or Constant Contact for newsletters, HubSpot or a CRM when we want everything tracked together, and simple Outlook or Gmail templates for one-to-one emails. But the tool matters much less than the process around it. Who writes it, who reviews it, who checks it's compliant and who actually presses send? That's what needs to be written down.",
    "walk": [
     "First, set up an approved template with the firm's branding, address, unsubscribe link and any disclaimer.",
     "Next, follow the same flow every time: you draft, the attorney reviews, you check compliance, then schedule and report.",
@@ -749,7 +749,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "There's no such thing as a harmless quick send that skips review.",
-   "talk": "Three protections on this slide.",
+   "talk": "The danger with email marketing is how fast a mistake travels. One wrong list or a missing disclaimer can reach thousands of people in a second, and there's no calling it back. That's why only a few people are allowed to press send, the same way we'd limit access to any other firm system, and why every link gets tested before anything is scheduled.",
    "walk": [
     "First, one wrong group or missing disclaimer can reach thousands instantly.",
     "Next, limit who can press send, the same way you limit access to other firm systems.",
@@ -774,7 +774,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "The polite close-out email is often the one that gets the most replies.",
-   "talk": "This slide covers what makes outreach feel human, and the mistakes that burn bridges. Go Deeper lays out the three-touch plan.",
+   "talk": "What makes outreach feel human is simple: it's about them, not us, and every follow-up brings something new. What burns bridges is just as simple: the same template with the name swapped, guilt-trip follow-ups, and anything that sounds like a promised result or legal advice. The plan is three touches, a first email, a new angle a few days later and a gracious close-out, and then we stop.",
    "walk": [
     "First, write about their priorities. 'You' should appear more than 'we'.",
     "Next, every follow-up adds something new, never just 'bumping this up'.",

@@ -17,7 +17,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A transposed number at your step becomes someone else's problem further down the line.",
-   "talk": "Go Deeper shows the three places assistants usually touch the money.",
+   "talk": "Assistants usually touch the firm's money in three places. Paying bills: collecting invoices, matching them against what was approved and sending them for payment. Getting paid: preparing client invoices, keeping track of what's still owed and sending polite reminders. And expenses: gathering receipts, coding each one to the right matter and flagging anything outside the rules. We're rarely the last step, which is exactly why a small slip at our step travels so far.",
    "walk": [
     "First, paying bills: collecting invoices, matching them to approvals and sending them for payment.",
     "Next, getting paid: preparing client invoices, tracking what's outstanding and sending polite reminders.",
@@ -41,7 +41,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A simple test for any procedure: could a temp follow it on their first day?",
-   "talk": "Without written procedures, people do things differently, and that inconsistency is exactly what audits find. Go Deeper explains each part.",
+   "talk": "A procedure needs a few parts to be genuinely useful. Its purpose and scope: why it exists, who and what it covers, and just as importantly, what it doesn't. The steps themselves, numbered, so anyone can follow them, plus the checks that prove it was done properly. And escalation: who to contact when something goes wrong, and by when. Without that, each person does it their own way, and that's exactly what audits find.",
    "walk": [
     "First, purpose and scope: why it exists, and who and what it covers, including what it doesn't.",
     "Next, procedure and controls: numbered steps anyone can follow, plus checks and records that prove it was done properly.",
@@ -65,7 +65,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A reminder a week or more ahead gives you time to fix a problem, not just notice it.",
-   "talk": "Go Deeper lists typical recurring deadlines. The exact dates should always be confirmed with the firm's accountant each year.",
+   "talk": "Money deadlines come round on three rhythms. Every month, there's client invoicing, the month-end close and reconciling the bank and trust accounts. Every quarter, there are estimated tax payments and payroll filings. And every year, there are the tax forms for staff and contractors at the end of January, the year-end close and licence renewals. The exact dates change, so we confirm them with the firm's accountant each year.",
    "walk": [
     "First, monthly: client invoicing, month-end close and bank and trust reconciliations.",
     "Next, quarterly: estimated tax payments and quarterly payroll filings.",
@@ -77,7 +77,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "7::Financial KPIs for EAs/PAs": {
   "p1": {
    "why": "Three numbers tell you whether the financial side is healthy: how fast invoices go out, how accurate reconciliations are and how much retainer is left.",
-   "talk": "The first one is on this slide: invoice turnaround. The target is 24 to 72 hours from finishing the work to sending the invoice. Slow invoicing is money the firm has earned but isn't collecting.",
+   "talk": "The first of those three numbers is how quickly invoices go out. The target is one to three days from finishing the work to sending the bill. That might not sound urgent, but every day an invoice sits unsent is money the firm has already earned and isn't collecting. Slow invoicing also means slower payment, and clients question old charges more than fresh ones.",
    "walk": [
     "First, track how long invoices take to go out, against the 24 to 72 hour target.",
     "Next, track reconciliation accuracy, aiming for 98 to 100 percent.",
@@ -89,7 +89,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "An alert at 25 percent gives you time to act before a client's account runs dry.",
-   "talk": "This slide covers the other two targets.",
+   "talk": "The other two numbers work the same way. Reconciliations, where we check the firm's records against the bank, should be 98 to 100 percent accurate. And for clients who pay money upfront, called a retainer, we set an alert when it drops to a quarter of the original amount. Why a quarter and not zero? Because that gives us time to ask for more before the account runs dry in the middle of a case.",
    "walk": [
     "First, reconciliation accuracy of 98 to 100 percent.",
     "Finally, the retainer alert at 25 percent, which buys you runway."
@@ -112,7 +112,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Know whether your firm records money when it moves, or when it's earned.",
-   "talk": "Go Deeper explains three basic bookkeeping ideas in plain terms.",
+   "talk": "Three bookkeeping ideas are worth knowing. Double-entry means every transaction touches at least two accounts, which is what makes mistakes show up. Cash versus accrual is about timing: cash records money when it actually moves, accrual records it when it's earned or owed. And the chart of accounts is simply the list of categories every transaction gets filed under. Coding things consistently is what makes the reports trustworthy.",
    "walk": [
     "First, double-entry: every transaction touches at least two accounts, which is what makes errors show up.",
     "Next, cash versus accrual: cash records money when it moves; accrual records it when it's earned or owed.",
@@ -136,7 +136,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "When the numbers don't match, start with the difference and find what explains it.",
-   "talk": "Go Deeper walks through an example.",
+   "talk": "Let's walk through an example. A client starts the month owing 4,000. We add new invoices of 6,500, take off payments of 5,000 and a 250 credit, which leaves 5,250. But the client's records say 5,000. So we look for 250, and it turns out they never recorded the credit. Once we've found it, we write the reconciliation up, so next month starts from a number both sides agree on.",
    "walk": [
     "First, opening $4,000, plus invoices $6,500, minus payments $5,000, minus a $250 credit note, gives $5,250.",
     "Next, if the client's records say $5,000, look for the $250. Here, they never recorded the credit note.",
@@ -148,7 +148,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "7::Reconciliation Discrepancy Detection": {
   "p1": {
    "why": "When a reconciliation doesn't balance, compare line by line, not just the totals.",
-   "talk": "Totals can hide problems. Two mistakes can cancel each other out, or a payment can land on the wrong client and still leave the overall total looking fine. So the slide gives you techniques for finding the real cause.",
+   "talk": "Matching totals can hide real problems. Two mistakes can cancel each other out, or a payment can land on the wrong client's account and still leave the overall total looking perfect. So when something doesn't balance, or even when it does, we check line by line: every payment against the right client, every reversal and anything that looks like a duplicate.",
    "walk": [
     "First, compare the ledger with the bank statement one line at a time.",
     "Next, check that credits went to the right client or account.",
@@ -160,7 +160,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A payment put on the wrong client's account once ended up as a real legal dispute.",
-   "talk": "That's why this matters. The checklist is simple, and it catches most problems.",
+   "talk": "This isn't just tidiness. A payment put on the wrong client's account once turned into a genuine legal dispute. The checklist that prevents it is short: every invoice listed, every payment recorded, nothing left unmatched and every difference explained. And to stop the same bill being paid twice, we combine system checks, a human check and approval limits.",
    "walk": [
     "First, every invoice is listed, every payment is recorded, nothing is left unmatched and every difference has an explanation.",
     "Finally, to prevent duplicate payments, use system checks, manual checks and approval limits."
@@ -181,7 +181,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Trust transactions are meant to feel slower and more careful; that friction is on purpose.",
-   "talk": "Two points on this slide.",
+   "talk": "Trust money belongs to the client, not the firm, and the rules around it are strict. A client's trust balance must never go below zero, not even for a moment, and not even if it's fixed the same day. That's why handling trust money should feel slower and more careful than paying an ordinary bill. That friction is deliberate; it's what protects the client and the firm's licence.",
    "walk": [
     "First, a client's trust balance must never go negative, not even for a moment, not even if it's fixed the same day.",
     "Finally, any trust transaction should feel more deliberate than a normal payment."
@@ -202,7 +202,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Even a one-dollar difference in a trust account gets escalated.",
-   "talk": "Two points on this slide.",
+   "talk": "Here's the catch with trust accounts: the overall account can balance perfectly while one individual client's money is short, because another client's money is covering the gap. So we check every client's balance, not just the total. And any difference, even a single dollar, gets escalated straight away. With trust money, there's no such thing as too small to mention.",
    "walk": [
     "First, the overall account can balance while one client's money is short, so check every client, not just the total.",
     "Finally, any difference, whatever its size, is escalated immediately."
@@ -225,7 +225,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Show the discount as its own line, so the client can see it.",
-   "talk": "Go Deeper breaks a clean invoice into three parts.",
+   "talk": "A clean invoice has three parts. At the top: the firm's details, the client, the matter number, the invoice number and the date. In the middle: each piece of work with its date, description, hours and rate, plus any expenses, and any discount shown on its own line so the client can see it. At the bottom: the total, when it's due, the payment terms, how to pay and any late-fee terms.",
    "walk": [
     "First, the header: firm details, client, matter number, invoice number and date.",
     "Next, the body: each entry with date, description, hours and rate, plus expenses, with any discount on its own line.",
@@ -249,7 +249,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Corporate clients often require specific billing codes, and invoices without them get rejected.",
-   "talk": "Go Deeper lists what to check in the contract before billing.",
+   "talk": "Before we bill, we check what the client's engagement agreement says. How are they billed: by the hour, a flat fee, a share of the result or from a retainer? Is there a cap or budget, and how much notice do we owe before going over it? And what are the payment terms and any required format? Big corporate clients often insist on specific billing codes and will simply reject an invoice without them.",
    "walk": [
     "First, the billing arrangement: hourly, flat fee, contingency or retainer.",
     "Next, caps and budgets, and the notice needed before going over.",
@@ -271,7 +271,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Accurate billing is impossible without accurate time.",
-   "talk": "Two points on this slide.",
+   "talk": "Time we log from memory at the end of the day is noticeably less accurate than time logged as we go, and that inaccuracy costs someone: either the firm undercharges, or the client gets billed for time that's hard to justify. Good time records are also what make careful, contract-aware billing possible in the first place.",
    "walk": [
     "First, time logged from memory is measurably less accurate, and that costs the firm or the client.",
     "Finally, good time tracking is what makes contract-aware billing possible."
@@ -292,7 +292,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "If it turns out to be our mistake, fix it plainly and quickly.",
-   "talk": "Two points on this slide.",
+   "talk": "When a client questions a bill, the instinct is to defend it. But getting defensive before we've checked the records can turn a simple misunderstanding into a real argument. So we check first. If it was our mistake, we fix it plainly and quickly. And we remember what's actually at stake: the relationship is worth far more than any single invoice.",
    "walk": [
     "First, getting defensive before checking the records can turn a misunderstanding into a real problem.",
     "Finally, protecting the relationship matters more than protecting the original invoice."
@@ -314,7 +314,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "You don't need the whole platform, just these four workflows done well.",
-   "talk": "Go Deeper gives the everyday click-paths, including receiving a payment and entering a bill. Menu names can differ slightly between versions.",
+   "talk": "Nobody needs to master all of QuickBooks. Most assistants use four workflows, and doing those well covers almost everything. Creating and sending an invoice with the right terms and due date. Receiving a payment and applying it to the correct open invoice. Entering vendor bills. And reconciling each month against the bank statement. The menu names shift a little between versions, but the steps stay the same.",
    "walk": [
     "First, create and send an invoice, with terms and a due date.",
     "Next, receive a payment and apply it to the right open invoice.",
@@ -338,7 +338,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Never force a reconciliation to balance by adjusting a line that has nothing to do with the difference.",
-   "talk": "Three points on this slide.",
+   "talk": "A reconciliation is only finished when the difference is exactly zero, and when it isn't, the cause is almost always a missing or duplicated transaction. The temptation is to tweak some unrelated line so it balances. Don't. That hides the real problem and creates a new one. We also check invoices against the contract before sending, and remember that in the online version, fixing a mistake means editing the entry or making a correcting journal entry.",
    "walk": [
     "First, a reconciliation is only done at exactly zero, and the fix is almost always a missing or duplicate transaction.",
     "Next, check invoices against the contract before sending.",
@@ -350,7 +350,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "7::Credit Cards & Card Applications": {
   "p1": {
    "why": "Review a credit card statement before you pay it, not after.",
-   "talk": "The slide covers three related jobs. Card payments, which need a real due-date calendar, because missed payments cost money and credit. Card applications, where you gather exactly what's asked for and follow the process precisely. And tax-season support, which is really about keeping receipts organized all year.",
+   "talk": "There are three related jobs here. Paying the cards, which needs a proper due-date calendar, because missed payments cost money and damage credit. Applying for cards, where we gather exactly what's asked for and follow the issuer's process precisely. And tax season, which is really about keeping receipts organised all year long, not hunting for them in April.",
    "walk": [
     "First, put card due dates on a real calendar.",
     "Next, check the statement for anything that shouldn't be there before paying.",
@@ -362,7 +362,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "With financial applications, 'close enough' paperwork causes real delays.",
-   "talk": "Two points on this slide.",
+   "talk": "Card payments follow the same habit as every other recurring payment: they're on the calendar, and we review the statement before we pay it, not after. That's when we catch the unfamiliar charge or the hotel that billed twice. And with applications, 'close enough' paperwork causes real delays, so we send exactly what's requested, in exactly the form they asked for.",
    "walk": [
     "First, card payments follow the same discipline as any recurring payment: a calendar and a review before paying.",
     "Finally, applications need precision: exactly what's requested, in exactly the way the issuer asks."
@@ -383,7 +383,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Splitting one purchase into several smaller ones is a classic way to dodge approval limits.",
-   "talk": "Two points on this slide.",
+   "talk": "Approving expense reports in bulk without reading the lines defeats the whole point of approving them. One pattern worth knowing: a purchase split into several smaller ones, or a receipt for just under the approval limit, can be a way of dodging extra approval. It isn't always, but it's always worth a second look.",
    "walk": [
     "First, approving reports in bulk without reading the lines defeats the purpose.",
     "Finally, watch for split transactions designed to stay under a threshold."
@@ -404,7 +404,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Paying early or late should always be a decision, never a habit.",
-   "talk": "Two points on this slide.",
+   "talk": "Paying every bill the moment it arrives feels responsible, but if the terms give us thirty days, paying on day two can squeeze the firm's cash for no reason. The opposite is true too: paying late can cost fees and goodwill. The point is that paying early or late should always be a choice someone makes on purpose, so we flag anything outside the normal terms.",
    "walk": [
     "First, paying everything the moment it arrives can squeeze cash flow for no reason.",
     "Finally, flag any payment outside its normal terms, so someone decides it on purpose."
@@ -425,7 +425,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Your late timesheet can turn into someone's missed paycheck.",
-   "talk": "Two points on this slide.",
+   "talk": "Payroll might be someone else's system, but our part in it matters. A late timesheet or incomplete onboarding paperwork can turn into a colleague's missed paycheck. And pay details are some of the most sensitive information in any firm, so we never share them beyond the people who need them for the task.",
    "walk": [
     "First, don't treat payroll tasks as low priority just because it's someone else's system.",
     "Finally, never share pay or compensation details beyond the people who need them for the task."
@@ -460,7 +460,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Ask the accountant early, not the week the payment is due.",
-   "talk": "Two points on this slide.",
+   "talk": "Quarterly estimated taxes aren't one yearly job; they're four separate deadlines, each with real penalties if they're missed. The key is starting early. If we wait until the week the payment is due to ask the accountant how much to pay, a simple question turns into a last-minute scramble.",
    "walk": [
     "First, treat these as four separate deadlines, not one yearly job.",
     "Finally, coordinate early, so a question about the amount doesn't become a last-minute scramble."
@@ -481,7 +481,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "These forms hold sensitive tax information, so store them securely.",
-   "talk": "Two points on this slide.",
+   "talk": "At the end of the year, the firm has to report what it paid certain vendors, and for that it needs their tax form, the W-9. The mistake is waiting until the deadline to discover one is missing. We collect them when the vendor is first set up. And because those forms hold sensitive tax information, we store them as securely as any other confidential document.",
    "walk": [
     "First, don't wait until the deadline to look for missing forms.",
     "Finally, protect W-9s like any other confidential document."
@@ -502,7 +502,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "If you're not sure whether a record can be destroyed, keep it.",
-   "talk": "Two points on this slide.",
+   "talk": "Moving everything online doesn't take care of record-keeping by itself. Digital files still get lost, overwritten or deleted. There are rules about how long financial records must be kept, and they vary. So when we're unsure whether something can be destroyed, we keep it. Keeping a file too long costs almost nothing; destroying one we later need can cost a great deal.",
    "walk": [
     "First, digital storage doesn't manage retention by itself. Files still get lost or deleted.",
     "Finally, keeping something too long costs little; destroying something you later need can cost a lot."
@@ -523,7 +523,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A false alarm is cheap; a missed fraud isn't.",
-   "talk": "Two points on this slide.",
+   "talk": "Fraud rarely looks like one big red flag. It usually shows up as a few small odd details, and if each person explains away their own odd detail privately, nobody sees the pattern. So we write anomalies down and raise them. And if one concern turns out to be nothing, we don't let that stop us raising the next. A false alarm is cheap; a missed fraud isn't.",
    "walk": [
     "First, don't explain away each odd detail privately. Patterns only appear when anomalies get recorded.",
     "Finally, never let one false alarm stop you raising the next concern."

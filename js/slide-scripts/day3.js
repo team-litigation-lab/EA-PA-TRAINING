@@ -5,7 +5,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::Prioritization Frameworks": {
   "p1": {
    "why": "When everything feels important, you need a way to decide what actually gets your time, and these four tools give you that.",
-   "talk": "Think of these as four different lenses. Some days the problem is that there's too much on the list. Some days you know exactly what matters, but you can't concentrate. And some days the important work never happens because meetings eat it. Each tool on this slide fixes one of those problems. The four-box grid is the one you'll use most: it splits work into do now, schedule, hand off and let go.",
+   "talk": "Think of these as four different lenses. Some days the problem is that there's too much on the list. Some days you know exactly what matters, but you can't concentrate. And some days the important work never happens because meetings eat it. Each of these tools fixes one of those problems. The four-box grid is the one you'll use most: it splits work into do now, schedule, hand off and let go.",
    "walk": [
     "First, when the list is so long you don't know where to start, sort it into those four boxes. You'll find a lot of it doesn't need you at all.",
     "Next, once you know what matters, use short bursts of focus: about 25 minutes on one thing, then a short break. It's easier to start when you know the end is close.",
@@ -51,7 +51,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::When Time Management Fails Despite a Clean Calendar": {
   "p1": {
    "why": "No conflicts doesn't mean no problems.",
-   "talk": "A calendar can look perfect, with nothing overlapping, and still be a bad week. Picture a day that's back-to-back reactive meetings from nine to five. Technically clean. But when does the real work happen? This slide is about looking past the absence of conflicts to ask whether the week is actually set up to succeed.",
+   "talk": "A calendar can look perfect, with nothing overlapping, and still be a bad week. Picture a day that's back-to-back reactive meetings from nine to five. Technically clean. But when does the real work happen? So the question isn't just 'are there any clashes?' It's 'is this week actually set up for the things that matter to get done?'",
    "walk": [
     "First, check for meeting overload, not just clashes. Ten small meetings can crowd out the one thing that matters.",
     "Next, confirm that protected space actually exists for this week's most important work.",
@@ -88,7 +88,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::Handling Interruptions Without Losing the Day": {
   "p1": {
    "why": "One small interruption can eat your whole afternoon if you let it.",
-   "talk": "The trick is to deal with it in seconds, not minutes. This slide gives you four moves that keep an interruption small.",
+   "talk": "Picture yourself halfway through a tricky email when someone leans over your desk with 'quick question'. The question itself takes two minutes. The damage is the twenty minutes it takes to find your place again. So the skill isn't avoiding interruptions; in this job, that's impossible. It's handling them in seconds, so they stay small, and getting straight back to what you were doing.",
    "walk": [
     "First, decide in a few seconds whether it's truly urgent, or just feels urgent because someone is standing in front of you.",
     "Next, if it can wait, write it down somewhere you'll actually see later. Don't try to remember it and don't start solving it.",
@@ -156,7 +156,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::The Cost of Context-Switching": {
   "p1": {
    "why": "It takes most people over twenty minutes to get fully back into deep work after a real interruption.",
-   "talk": "That's the number on this slide, and it applies to switches we choose too. Jumping from a filing to an email to a travel booking feels productive, but each jump costs time you never see.",
+   "talk": "And here's the part people miss: it isn't only other people's interruptions. The switches we choose cost us too. Jumping from a filing to an email to a travel booking feels productive, because we're busy all the time. But every jump means warming our brain up again from cold, and those minutes quietly add up across the day.",
    "walk": [
     "First, notice when you're the one doing the jumping, not just when others interrupt you.",
     "Next, use batching and focus blocks so you pay that warm-up cost fewer times a day.",
@@ -168,7 +168,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Multitasking feels fast and almost always turns out slower.",
-   "talk": "This slide pulls it together. Every switch has a price, the best way to pay it less is batching and focus time, and doing several different things at once rarely beats doing them one after another.",
+   "talk": "Let's pull it together. Every time we change tasks, we pay a small price to get our focus back. We can't avoid paying it altogether, but we can pay it less often by grouping similar work and protecting blocks of focus time. And the idea of doing two different things at once? It feels efficient, but almost every time, doing them one after the other is quicker.",
    "walk": [
     "First, every switch, chosen or not, costs time to rebuild your focus.",
     "Next, that's the real reason batching and focus blocks exist: fewer switches, less wasted time.",
@@ -261,7 +261,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A good time entry says what you did, to what, and why, and it's tagged to the right matter.",
-   "talk": "Go Deeper gives you a simple recipe. It's the difference between an entry that says 'admin' and one a client would happily pay for.",
+   "talk": "Think about the client who opens the bill. 'Admin, one hour' makes them wonder what they paid for. 'Drafted the deposition notice for the Harlow matter and sent it to counsel for review' tells them exactly. A good entry has three parts, what we did, to what and why, and it's filed under the right client and matter the same day, while we still remember.",
    "walk": [
     "First, use action, object and purpose: 'Drafted the deposition notice for the Harlow matter and sent it to counsel for review.'",
     "Next, use your firm's time units, often six minutes, and round honestly.",
@@ -324,7 +324,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::Calendar Blocking for Deep Work": {
   "p1": {
    "why": "A focus block anyone can book over is just a suggestion.",
-   "talk": "If a calendar only shows meetings, then all the thinking work, the drafting and the reviewing, has nowhere to live, so it gets squeezed into evenings. The ladder on the slide shows the difference between a block that's only a label and one that's truly protected.",
+   "talk": "If a calendar only shows meetings, then all the thinking work, the drafting and the reviewing, has nowhere to live, so it gets squeezed into evenings. And there's a big difference between writing 'focus time' in a slot and actually protecting it. A label anyone can book over is just a suggestion. A real block is one that can't be taken without a conversation first.",
    "walk": [
     "First, put real, uninterrupted time on the calendar for focused work.",
     "Next, set it up so it actually can't be booked over.",
@@ -359,7 +359,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "For Elias, the debrief buffer isn't a nice extra; it's one of his standing rules.",
-   "talk": "So a calendar without it isn't just tight; it breaks something he's specifically asked for.",
+   "talk": "For most executives, gaps between meetings are good practice. For Elias, one of them is a written rule: fifteen minutes to debrief after key sessions. That means a calendar without it isn't just a bit tight; it breaks something he has specifically asked for. And breaking a written rule costs more trust than any single scheduling slip.",
    "walk": [
     "First, gaps give room for the thinking and prep real meetings need.",
     "Finally, ignoring the debrief buffer means ignoring a documented preference."
@@ -476,7 +476,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "This is one deadline where 'probably right' is never good enough.",
-   "talk": "Every assumption here is a risk, so the habits are simple and strict.",
+   "talk": "A statute of limitations is the legal deadline for bringing a claim. Miss it, and the client may lose their case for good, no matter how strong it was. That's why there's no room for guesswork here. Every matter gets checked against the actual rule, never against what the last similar case looked like, and the date gets saved in the same backed-up system as the court deadlines.",
    "walk": [
     "First, don't assume a new matter works like an old one.",
     "Next, check it against the actual rule, every single time.",
@@ -563,7 +563,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Six months left on the passport and weeks of lead time: those two catch most people out.",
-   "talk": "This slide zooms in on the two most common problems, and both are completely avoidable if you check early.",
+   "talk": "Two things trip people up more than anything else. The first is the passport: many countries won't let you in unless it has at least six months left on it, so 'not expired' isn't good enough. The second is time: some visas take weeks to come through, not days. Both are completely avoidable if we check early, as soon as the trip is on the calendar.",
    "walk": [
     "First, 'not expired' isn't the same as 'valid enough to travel'.",
     "Finally, some visas need weeks, not days."
@@ -574,7 +574,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::International Travel Considerations": {
   "p1": {
    "why": "Going abroad means planning for health, money and local customs, not just flights and hotels.",
-   "talk": "The slide groups the extras into three areas. Health and safety: vaccinations, safety advisories and emergency numbers. Money: will his card work, does he need cash? And business customs: how meetings run and what people expect.",
+   "talk": "When the trip crosses a border, a few extra things come into play, and they fall into three areas. Health and safety: vaccinations, safety advisories and local emergency numbers. Money: will his card work there, and does he need cash? And business customs: how meetings run, how people greet each other and what they expect. None of it is hard, but all of it needs doing before he leaves.",
    "walk": [
     "First, check health and safety for the destination.",
     "Next, sort out how he'll pay for things before he goes.",
@@ -657,7 +657,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::Travel Risk Contingency Planning": {
   "p1": {
    "why": "The backup plan should exist before the trip, not be invented in the middle of a crisis.",
-   "talk": "When a flight is cancelled, the worst place to be is starting your research from scratch while the executive waits. The slide compares that scramble with a plan where the likely problems and their backups were written down before anyone left.",
+   "talk": "When a flight is cancelled, the worst place to be is starting your research from scratch while the executive waits at the gate. Compare that with the assistant who, before the trip, wrote down the two or three things most likely to go wrong and found a backup for each. When it happens, they're already making the call while everyone else is still searching.",
    "walk": [
     "First, before you finalize the trip, list the realistic things that could go wrong.",
     "Next, for each one, find the backup in advance: the next flight, another route, a local contact.",
@@ -734,7 +734,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::Recognizing Stress & Burnout in High-Pressure Roles": {
   "p1": {
    "why": "Burnout is much easier to fix when you catch it early.",
-   "talk": "A bit of pressure can actually help you focus. Burnout is different: it's what happens when stress keeps going for weeks with no relief, until you feel exhausted, detached and less effective. This job has its own pressures, like always being on call and carrying other people's deadlines. The slide shows how it builds, from healthy pressure to strain to chronic stress to burnout.",
+   "talk": "A bit of pressure can actually help you focus. Burnout is different: it's what happens when stress keeps going for weeks with no relief, until you feel exhausted, detached and less effective. This job has its own pressures, like always being on call and carrying other people's deadlines. It builds in stages, from healthy pressure, to strain, to chronic stress and finally to burnout, and the earlier stages are where it's easiest to turn around.",
    "walk": [
     "First, once a week, take two minutes to check in with yourself: energy, sleep, mistakes, and anything you keep dreading.",
     "Next, name the exact thing causing the stress, like late-night texts or unclear priorities. A specific problem has a specific fix.",
@@ -768,7 +768,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "Coffee hides tiredness; it doesn't take any of the load off.",
-   "talk": "This slide is about the habits that keep those tools working over the long run.",
+   "talk": "The desk tools help in the moment. What keeps them working over months is the boring stuff around them. A lot of us run on coffee and willpower, and that works, until it doesn't. Coffee hides tiredness; it doesn't fix it. Sleep matters in this job more than people admit, because a tired assistant makes more scheduling and detail mistakes. And it helps to know, in advance, what actually calms you down.",
    "walk": [
     "First, don't lean only on caffeine and willpower. They mask the problem.",
     "Next, treat sleep as part of the job. Tired people make more scheduling and detail mistakes.",
@@ -790,7 +790,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A boundary should never become the reason a real legal deadline is missed, so build the emergency route into it.",
-   "talk": "Good boundaries protect you and still leave a clear path for genuine emergencies.",
+   "talk": "Boundaries aren't walls. A good one protects your evenings and still leaves a clear route for real emergencies, like a court deadline or a family crisis. What wears boundaries down is answering every late message instantly, because it teaches people you're always available. So we agree what counts as an emergency, stick to it, and revisit the agreement when things change.",
    "walk": [
     "First, avoid answering every late-night message instantly. It teaches people you're always available.",
     "Next, agree what the emergency route is, so true emergencies still get through.",
