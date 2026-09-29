@@ -22251,25 +22251,48 @@ function slideScriptText(d, l, part){
   const s = slideScript(d, l, part);
   return [s.why, s.talk, s.walk.join("\n"), s.ask].filter(Boolean).join("\n\n");
 }
-function renderPresenterNote(d, l, part, secs, allSecs){
+/* When a long slide is split over pages, each page gets its own part of the slide's script:
+   page 1 opens with the why and the explanation, the pages that show the steps (slide 1) or the
+   practices (slide 2) share the walk-through in order, and the last page ends with the question. */
+function slideScriptForPage(s, l, part, pg){
+  const P = pg && pg.pages > 1 && Array.isArray(pg.secsByPage) && pg.secsByPage.length===pg.pages ? pg.pages : 1;
+  if(P===1) return Object.assign({}, s, {more: false, cont: false});
+  const k = Math.max(0, Math.min(pg.page||0, P-1));
+  const walkSecs = (part===2 && !l.singleSlide) ? [3,4] : [2];
+  // a page with no numbered section on it (e.g. only a diagram) carries on from the page before
+  let prev = [];
+  const byPage = pg.secsByPage.map(ss=>{ const x = (ss && ss.length) ? ss : prev; prev = x; return x; });
+  let wp = byPage.map((ss,i)=>ss.some(x=>walkSecs.includes(x)) ? i : -1).filter(i=>i>=0);
+  if(!wp.length) wp = [P-1];
+  const n = s.walk.length, pos = wp.indexOf(k);
+  let walk = [];
+  let from = 0;
+  if(pos >= 0){ from = Math.round(n*pos/wp.length); const to = Math.round(n*(pos+1)/wp.length); walk = s.walk.slice(from, to); }
+  return {why: k===0 ? s.why : "", talk: k===0 ? s.talk : "", walk, ask: k===P-1 ? s.ask : "",
+    more: k < P-1, cont: from > 0, hand: s.hand, page: k, pages: P};
+}
+function renderPresenterNote(d, l, part, secs, allSecs, pg){
   const n = presenterNote(d, l, part);
   const row = (k, v)=> v ? `<div class="script-row"><b>${k}</b><p>${esc(v)}</p></div>` : "";
   const all = (window.PRESENTER_NOTES || {})[`${d.id}::${l.h}`] || {};
   const split = !!(secs && secs.length && allSecs && secs.length < allSecs.length);
   const onText = split ? secs.map(k=>all["s"+k] && all["s"+k].on).filter(Boolean).join(" ") || n.on : n.on;
-  const s = slideScript(d, l, part);
+  const s = slideScriptForPage(slideScript(d, l, part), l, part, pg);
   const lastSlide = l.singleSlide || part===2;
-  const where = l.singleSlide ? "" : ` · slide ${part===2 ? 2 : 1} of 2`;
+  const where = (l.singleSlide ? "" : ` · slide ${part===2 ? 2 : 1} of 2`) + (s.pages > 1 ? ` · page ${s.page+1} of ${s.pages}` : "");
+  const empty = !s.why && !s.talk && !s.walk.length && !s.ask;
   return `<div class="pn">
     ${onText ? `<div class="pn-on"><b>${split ? "On this page" : "On this slide"}</b><p>${esc(onText)}</p></div>` : ""}
     ${n.cue && !split ? `<div class="pn-on"><b>Trainer note</b><p>${esc(n.cue)}</p></div>` : ""}
     <div class="script-block"><div class="script-head"><span>🎙 Script — read aloud${where}</span></div>
       ${row("① The why", s.why)}
       ${row("② Talk it through", s.talk)}
-      ${row("③ Walk through it", s.walk.join("\n"))}
+      ${row(s.cont ? "③ Walk through it (continued)" : "③ Walk through it", s.walk.join("\n"))}
       ${row(lastSlide ? "④ Your turn" : "④ Ask the room", s.ask)}
+      ${empty ? row("This page", "Give the room a moment to read this page, then ask which point here matters most in their own work.") : ""}
+      ${s.more ? `<div class="script-row"><b>Next page</b><p>The script continues on the next page →</p></div>` : ""}
     </div>
-    ${lastSlide && n.scenario && !s.hand ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}
+    ${lastSlide && !s.more && n.scenario && !s.hand ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}
   </div>`;
 }
 function buildDayScriptLines(d){
@@ -25139,7 +25162,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.29-d";
+var APP_BUILD = "2026.09.29-e";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -25193,7 +25216,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/slide-scripts/day8.js?v=1"></script>
 <script src="/js/slide-scripts/day9.js?v=1"></script>
 <script src="/js/slide-scripts/day10.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=zl"></script>
+<script src="/js/eapa-updates.js?v=zm"></script>
 <script src="/js/portal-link.js?v=1"></script>
 </body>
 </html>
