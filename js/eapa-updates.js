@@ -170,12 +170,7 @@ body.audience-mode > *:not(#audienceRoot):not(.aud-hint){display:none !important
 `; document.head.appendChild(s); })();
 
 /* ---------- 1. standard-size slides ---------- */
-function goToSlide(i){
-  const maxReached = state.maxSlideReached||0;
-  if(i > maxReached){
-    toast("Complete the current topic before jumping ahead.");
-    return;
-  }
+function goToSlide(i){   // any slide can be opened — nothing is locked
   state.slideDir = i>(state.lessonSlide||0) ? "next" : "prev";
   state.lessonSlide = i; state.slidePage = 0;
   refreshLessonSlide();

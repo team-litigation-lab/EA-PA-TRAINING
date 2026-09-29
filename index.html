@@ -12460,7 +12460,11 @@ function dayLabDone(dayId){
   const pp = state.practiceProgress || {};
   return tools.every(t=>pp[t.id] && (pp[t.id].runs||0) >= 1);
 }
-function dayUnlocked(id){
+/* Every day, lesson and Practice Lab is open to every trainee — there are no locks.
+   dayReached() keeps the old "where the trainee has got to" rule, only to highlight
+   the trainee's current day on the dashboard. */
+function dayUnlocked(id){ return true; }
+function dayReached(id){
   if(id <= 1) return true;
   if(state.isAdmin) return true;   // locks are for trainees only
   if((state.adminUnlockedDays||[]).includes(id)) return true;   // opened by a trainer (e.g. the trainee was absent)
@@ -12468,7 +12472,7 @@ function dayUnlocked(id){
   const own = state.progress[id];
   if(own && (own.done || typeof own.score==="number")) return true;
   if(state.slideProgress && state.slideProgress[id] > 0) return true;
-  return dayUnlocked(id-1) && dayLabDone(id-1);
+  return dayReached(id-1) && dayLabDone(id-1);
 }
 function dayLockReason(id){
   const t = PRACTICE_TOOLS.find(x=>(String(x.relates||"").match(/\d+/g)||[]).map(Number).includes(id-1));
@@ -12559,7 +12563,7 @@ function orientSlides(){
    {k:"Dashboard", h:"Your dashboard at a glance", body:`
      <div class="or-bp">
        <div class="or-bp-main">
-         <div class="or-box or-hero"><span class="or-num">1</span><b>Progress track</b><em>Days 1–10 · ✓ = passed · 🔒 = not open yet</em></div>
+         <div class="or-box or-hero"><span class="or-num">1</span><b>Progress track</b><em>Days 1–10 · ✓ = passed · every day is open</em></div>
          <div class="or-box or-cards"><span class="or-num">2</span><b>Day cards</b><em>Start / Review a day · 💬 trainer feedback appears here</em></div>
          <div class="or-box"><span class="or-num">3</span><b>Resume &amp; certificate</b><em>Jump back to where you left off · download your certificate when earned</em></div>
          <div class="or-box"><span class="or-num">4</span><b>Competency profile</b><em>Eight skills that grow as your work is graded</em></div>
@@ -12767,8 +12771,8 @@ function renderFacilitatorGuide(){
     <div class="card fg-card">
       <h3>Progression Rules Trainees Follow</h3>
       <ul>
-        <li><b>Next day unlocks</b> when the previous day's <b>Practice Lab</b> has been submitted and graded — any score counts.</li>
-        <li><b>Practice Lab attempts:</b> the first submission of each exercise is free; repeats use one of <b>3 program-wide attempts</b>. Reset them per trainee in Trainee Audit (↺ Reset Attempts).</li>
+        <li><b>Every day is open.</b> Trainees can open any day, any slide and any Practice Lab at any time — nothing is locked.</li>
+        <li><b>Practice Lab attempts:</b> the first submission of each exercise is free; repeats use one of <b>3 attempts per day</b>. Reset them per trainee in Trainee Audit (↺ Reset Attempts).</li>
         <li><b>Feedback style:</b> grades below 85% are framed as <b>"Not yet"</b> or <b>"Not this way"</b> with concrete next steps — never a flat "no".</li>
         <li><b>Progress is saved to the server</b> (not just the browser): trainees can log in on any device and pick up on the exact slide or tool they left.</li>
       </ul>
@@ -14535,9 +14539,9 @@ function reviewMyScore(dayId){
 window.reviewMyScore = reviewMyScore;
 const DAY_ICONS = {1:"🗂",2:"📅",3:"💬",4:"📨",5:"🛡",6:"📊",7:"Σ",8:"☎",9:"📋",10:"📱"};
 function nextDayId(){
-  // The trainee's current day = the furthest day they've unlocked.
+  // The trainee's current day = the furthest day they've reached.
   let cur = 1;
-  for(const d of DAYS){ if(dayUnlocked(d.id)) cur = d.id; }
+  for(const d of DAYS){ if(dayReached(d.id)) cur = d.id; }
   return cur;
 }
 function avgScore(){
@@ -15733,8 +15737,7 @@ function renderDaySlideshow(d){
   const inner = `
     <div class="slide-dots">
       ${slides.map((_,i)=>{
-        const locked = i > (state.maxSlideReached||0);
-        return `<span class="slide-dot ${i===idx?'active':i<idx?'visited':''} ${locked?'locked':''}" onclick="goToSlide(${i})" title="${locked?'Complete the current topic first':'Step '+(i+1)}"></span>`;
+        return `<span class="slide-dot ${i===idx?'active':i<idx?'visited':''}" onclick="goToSlide(${i})" title="Step ${i+1}"></span>`;
       }).join("")}
     </div>
     <div class="stage-body">
@@ -15799,11 +15802,6 @@ document.addEventListener("keydown", (e)=>{
   else if(e.key==="ArrowLeft" || e.key==="PageUp"){ e.preventDefault(); prevSlide(); }
 });
 function goToSlide(i){
-  const maxReached = state.maxSlideReached||0;
-  if(i > maxReached){
-    toast("Complete the current topic before jumping ahead.");
-    return;
-  }
   state.slideDir = i>(state.lessonSlide||0) ? "next" : "prev";
   state.lessonSlide = i;
   refreshLessonSlide();
@@ -16471,11 +16469,8 @@ function retakeQuiz(dayId){
 }
 window.retakeQuiz = retakeQuiz;
 
-/* The full answer key (correct option + rationale) is shown only once the trainee
-   has passed this day's Knowledge Check. Before that, the review shows which
-   questions they got right or wrong, but not the right answers. Otherwise a failed
-   attempt would give away the key for the retake. */
-function quizKeyUnlocked(d){ return !!(state.lastPassed || (state.progress[d.id]||{}).done || state.isAdmin); }
+/* The full answer key (correct option + rationale) shows after every attempt. */
+function quizKeyUnlocked(d){ return true; }   // no locks: the answer key shows after every attempt
 window.quizKeyUnlocked = quizKeyUnlocked;
 function renderAnswerFeedback(d){
   const el = document.getElementById("answerFeedback");
@@ -16525,7 +16520,7 @@ function renderPracticeHub(){
   return `
     <p class="eyebrow">Practice Lab</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 10px;">Let's Practice the Principles</h1>
-    <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 26px;">Hands-on tools for the skills that show up every day on the job. Each day's Practice Lab opens when you reach that day${state.isAdmin ? " — as an admin you can open all of them" : ""}.</p>
+    <p style="color:var(--ink-soft);font-size:14.5px;max-width:70ch;margin:0 0 26px;">Hands-on tools for the skills that show up every day on the job. Every day's Practice Lab is open — start any of them at any time.</p>
     <div class="card" style="padding:14px 18px;margin-bottom:22px;background:#F8F9FC;border-left:4px solid var(--navy);">
       <b style="font-size:12px;color:var(--navy);text-transform:uppercase;letter-spacing:.03em;">A note before you begin</b>
       <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;font-style:italic;">Utilization of AI in the legal industry depends entirely on the firm's or attorney's specific preferences — it is never a universal default. Different roles in this industry require human intervention regardless of how capable a tool is. Because this work touches attorney-client privilege, AI must be used with the utmost discretion, and only with actual approval.</p>
@@ -21244,6 +21239,7 @@ function renderAdminRow(rec, day, practice){
    whether or not the earlier Practice Labs are done; "Remove manual unlocks" returns the
    trainee to the normal rule (days they've already started stay open). */
 function renderUnlockDaysControl(rec){
+  return "";   // every day is open to everyone now, so there is nothing to unlock
   const cur = (Array.isArray(rec.unlockedDays) ? rec.unlockedDays : []).map(Number);
   const top = cur.length ? Math.max(...cur) : 0;
   return `<select class="btn btn-sm btn-ghost" style="padding:4px 8px;" title="Open days for a trainee who missed a session" onchange="adminUnlockDays('${rec.id}', this.value); this.selectedIndex=0;">
@@ -25109,7 +25105,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.29-b";
+var APP_BUILD = "2026.09.29-c";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -25153,7 +25149,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 <script src="/js/presenter-notes.js?v=2"></script>
-<script src="/js/eapa-updates.js?v=zk"></script>
+<script src="/js/eapa-updates.js?v=zl"></script>
 <script src="/js/portal-link.js?v=1"></script>
 </body>
 </html>
