@@ -22209,32 +22209,67 @@ function slideScriptText(d, l, part, secs){
   return keys.map(k=>all[k]).join("\n\n");
 }
 // Section scripts: PRESENTER_NOTES["day::title"].s1 … s4 = {on, say, ask} for ① Core Principles,
-// ② Step-by-Step, ③ Best Practices & Pitfalls, ④ Go Deeper. When the slide is split over pages,
-// the presenter sees only the sections on the current page; Wrap and Scenario come with the last one.
+// ② Step-by-Step, ③ Best Practices & Pitfalls, ④ Go Deeper (used for the "On this page" summary when
+// a slide is split over pages).
 const PN_SECTION_NAMES = {1:"Core Principles", 2:"Step-by-Step Framework", 3:"Best Practices & Pitfalls", 4:"Go Deeper"};
+/* ---------- The spoken script for one slide ----------
+   Every slide's script follows the same four beats:
+     ① The why      — the punchline: why this slide matters, in one quick sentence
+     ② Talk it through — what's on the slide, in plain spoken words (not the bullets read out)
+     ③ Walk through it — the steps or points in order: first, next, then, finally
+     ④ Ask the room / Your turn — an action or a question, so it ends as a conversation
+   Hand-written scripts live in js/slide-scripts/dayN.js (window.SLIDE_SCRIPTS["day::title"].p1 / .p2).
+   A topic without one (e.g. added later in the Content Studio) gets the same four beats built from
+   what is on the slide. */
+function scriptInline(t){
+  // A point read mid-sentence: "Perform the check" → "perform the check"; a label or a name keeps its capitals.
+  const x = scriptSentence(t), w = x.split(/\s+/);
+  const head = x.split(/\s[—–-]\s|:/)[0].split(/\s+/).filter(v=>!/^(of|the|and|a|an|to|for|in|on|with|or|vs\.?|&)$/i.test(v) && !/^[A-Z0-9/&().-]{2,}$/.test(v));
+  const label = head.length >= 2 && head.every(v=>/^[A-Z“"(]/.test(v));
+  if(label || /^[A-Z][A-Z0-9]|^[A-Z][a-z]+[A-Z]/.test(w[0]) || /^(I|Elias|Thorne|Meridian|Harrington|Clio|Outlook|Slack|Zoom|Teams|Google|Microsoft|QuickBooks|LinkedIn|Claude|ChatGPT|Gemini|Loom|Asana|Trello)\b/.test(w[0])) return x;
+  return x.charAt(0).toLowerCase() + x.slice(1);
+}
+function scriptWalk(items){
+  const xs = (items||[]).map(x=>String(x||"").replace(/^\s*\d+[.)]\s*/,"").trim()).filter(Boolean);
+  return xs.map((x,i)=>{
+    const lead = xs.length===1 ? "" : i===0 ? "First, " : i===xs.length-1 ? "Finally, " : (i===1 ? "Next, " : (i%2 ? "After that, " : "Then, "));
+    return lead ? lead + scriptInline(x) : scriptSentence(x);
+  });
+}
+function slideScript(d, l, part){
+  const key = (part===2 && !l.singleSlide) ? "p2" : "p1";
+  const hand = ((window.SLIDE_SCRIPTS || {})[`${d.id}::${l.h}`] || {})[key];
+  if(hand) return {why: hand.why||"", talk: hand.talk||"", walk: hand.walk||[], ask: hand.ask||"", hand: true};
+  const n = presenterNote(d, l, part), secs = slideScriptSections(d, l, part);
+  let walk = [];
+  if(secs[2]) walk = scriptWalk(secs[2].split("\n").slice(1));
+  const talk = [secs[1], secs[3], secs[4]].filter(Boolean).join("\n\n");
+  const ask = key==="p1" ? (n.ask || (l.singleSlide ? n.wrap : "")) : (n.wrap || n.ask || "");
+  return {why: n.say || "", talk, walk, ask, hand: false};
+}
+function slideScriptText(d, l, part){
+  const s = slideScript(d, l, part);
+  return [s.why, s.talk, s.walk.join("\n"), s.ask].filter(Boolean).join("\n\n");
+}
 function renderPresenterNote(d, l, part, secs, allSecs){
   const n = presenterNote(d, l, part);
   const row = (k, v)=> v ? `<div class="script-row"><b>${k}</b><p>${esc(v)}</p></div>` : "";
   const all = (window.PRESENTER_NOTES || {})[`${d.id}::${l.h}`] || {};
   const split = !!(secs && secs.length && allSecs && secs.length < allSecs.length);
-  const full = slideScriptSections(d, l, part);
-  const shown = Object.keys(full).map(Number).filter(k=>!split || secs.includes(k)).sort();
-  const first = !split || shown[0] === Math.min(...Object.keys(full).map(Number));
-  const last = !split || secs.includes(Math.max(...allSecs));
-  const toNext = part===1 && !l.singleSlide && last ? "That's the foundation for this topic. On the next slide, we'll look at the best practices and the pitfalls to avoid." : "";
-  const onText = split ? shown.map(k=>all["s"+k] && all["s"+k].on).filter(Boolean).join(" ") : n.on;
-  const ask = split ? shown.map(k=>all["s"+k] && all["s"+k].ask).filter(Boolean)[0] : n.ask;
+  const onText = split ? secs.map(k=>all["s"+k] && all["s"+k].on).filter(Boolean).join(" ") || n.on : n.on;
+  const s = slideScript(d, l, part);
+  const lastSlide = l.singleSlide || part===2;
+  const where = l.singleSlide ? "" : ` · slide ${part===2 ? 2 : 1} of 2`;
   return `<div class="pn">
     ${onText ? `<div class="pn-on"><b>${split ? "On this page" : "On this slide"}</b><p>${esc(onText)}</p></div>` : ""}
     ${n.cue && !split ? `<div class="pn-on"><b>Trainer note</b><p>${esc(n.cue)}</p></div>` : ""}
-    <div class="script-block"><div class="script-head"><span>🎙 Script — read aloud</span></div>
-      ${first ? row("Open", n.say) : ""}
-      ${shown.map(k=>row(PN_SECTION_NAMES[k] || "Script", full[k])).join("")}
-      ${row("Ask the room", ask)}
-      ${last ? row("Transition", toNext) : ""}
-      ${last ? row("Wrap", n.wrap) : ""}
+    <div class="script-block"><div class="script-head"><span>🎙 Script — read aloud${where}</span></div>
+      ${row("① The why", s.why)}
+      ${row("② Talk it through", s.talk)}
+      ${row("③ Walk through it", s.walk.join("\n"))}
+      ${row(lastSlide ? "④ Your turn" : "④ Ask the room", s.ask)}
     </div>
-    ${last && n.scenario ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}
+    ${lastSlide && n.scenario && !s.hand ? `<div class="pn-scen"><b>🎬 Scenario</b><p>${esc(n.scenario)}</p></div>` : ""}
   </div>`;
 }
 function buildDayScriptLines(d){
@@ -22243,15 +22278,14 @@ function buildDayScriptLines(d){
     const parts = l.singleSlide ? [1] : [1,2];
     lines.push(`## ${String(i+1).padStart(2,"0")}. ${l.h}  ·  ${slideLabel(d, i)}`);
     parts.forEach(p=>{
-      const n = presenterNote(d, l, p);
-      if(parts.length > 1) lines.push(`PART ${p}`);
+      const n = presenterNote(d, l, p), s = slideScript(d, l, p);
+      if(parts.length > 1) lines.push(`SLIDE ${p} OF 2`);
       if(n.on) lines.push(`ON THIS SLIDE: ${n.on}`);
-      if(n.say) lines.push(`SAY: ${n.say}`);
-      const full = slideScriptSections(d, l, p);
-      Object.keys(full).map(Number).sort().forEach(k=>{ lines.push(`SCRIPT · ${(PN_SECTION_NAMES[k]||"").toUpperCase()}:`); full[k].split("\n").forEach(x=>lines.push(x)); });
-      if(n.ask) lines.push(`ASK: ${n.ask}`);
-      if(n.wrap) lines.push(`WRAP: ${n.wrap}`);
-      if(n.scenario) lines.push(`SCENARIO: ${n.scenario}`);
+      if(s.why) lines.push(`THE WHY: ${s.why}`);
+      if(s.talk){ lines.push("TALK IT THROUGH:"); s.talk.split("\n").filter(Boolean).forEach(x=>lines.push(x)); }
+      if(s.walk.length){ lines.push("WALK THROUGH IT:"); s.walk.forEach(x=>lines.push(x)); }
+      if(s.ask) lines.push(`${(l.singleSlide || p===2) ? "YOUR TURN" : "ASK THE ROOM"}: ${s.ask}`);
+      if((l.singleSlide || p===2) && n.scenario && !s.hand) lines.push(`SCENARIO: ${n.scenario}`);
     });
     lines.push("---");
   });
@@ -25105,7 +25139,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.29-c";
+var APP_BUILD = "2026.09.29-d";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -25149,6 +25183,16 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 <script src="/js/presenter-notes.js?v=2"></script>
+<script src="/js/slide-scripts/day1.js?v=1"></script>
+<script src="/js/slide-scripts/day2.js?v=1"></script>
+<script src="/js/slide-scripts/day3.js?v=1"></script>
+<script src="/js/slide-scripts/day4.js?v=1"></script>
+<script src="/js/slide-scripts/day5.js?v=1"></script>
+<script src="/js/slide-scripts/day6.js?v=1"></script>
+<script src="/js/slide-scripts/day7.js?v=1"></script>
+<script src="/js/slide-scripts/day8.js?v=1"></script>
+<script src="/js/slide-scripts/day9.js?v=1"></script>
+<script src="/js/slide-scripts/day10.js?v=1"></script>
 <script src="/js/eapa-updates.js?v=zl"></script>
 <script src="/js/portal-link.js?v=1"></script>
 </body>
