@@ -170,12 +170,7 @@ body.audience-mode > *:not(#audienceRoot):not(.aud-hint){display:none !important
 `; document.head.appendChild(s); })();
 
 /* ---------- 1. standard-size slides ---------- */
-function goToSlide(i){
-  const maxReached = state.maxSlideReached||0;
-  if(i > maxReached){
-    toast("Complete the current topic before jumping ahead.");
-    return;
-  }
+function goToSlide(i){   // any slide can be opened — nothing is locked
   state.slideDir = i>(state.lessonSlide||0) ? "next" : "prev";
   state.lessonSlide = i; state.slidePage = 0;
   refreshLessonSlide();
@@ -700,7 +695,8 @@ function presenterCues(d, slide){
     const l = d.lessons[slide.lessonIndex];
     out.push(`<h3>${esc(l.h)}${l.singleSlide ? "" : ` <small style="font-size:12px;color:var(--ink-soft);">Part ${slide.part} of 2</small>`}</h3>`);
     const pageInfo = state.presentSecsFor === (state.lessonSlide||0);
-    out.push(renderPresenterNote(d, l, slide.part, pageInfo ? state.presentSecs : null, pageInfo ? state.presentAllSecs : null));   // hardcoded notes: js/presenter-notes.js
+    out.push(renderPresenterNote(d, l, slide.part, pageInfo ? state.presentSecs : null, pageInfo ? state.presentAllSecs : null,
+      pageInfo ? {page: state.presentPage||0, pages: state.presentPages||1, secsByPage: state.presentSecsByPage} : null));   // scripts: js/slide-scripts/dayN.js
   }else if(slide.type==="quickCheck"){
     out.push(`<h3>Quick Check</h3><p>Let the room answer first — then reveal and use the rationale.</p>`);
     (d.quickChecks||[]).filter(c=>c.afterIndex===slide.lessonIndex).forEach(c=>{
@@ -758,7 +754,7 @@ function presenterRefresh(){
   const c = document.getElementById("pvCount"); if(c) c.textContent = presenterCountText(d);
   const n = document.getElementById("pvNext"); if(n) n.innerHTML = presenterNextText(d);
   const j = document.getElementById("pvJump"); if(j) j.value = String(idx);
-  const cueKey = idx + "|" + (state.presentSecsFor===idx ? (state.presentSecs||[]).join(",") : "");
+  const cueKey = idx + "|" + (state.presentSecsFor===idx ? (state.presentSecs||[]).join(",") + "|" + (state.presentPage||0) + "/" + (state.presentPages||1) : "");
   const cu = document.getElementById("pvCues"); if(cu && cu.dataset.slide !== cueKey){ cu.dataset.slide = cueKey; cu.innerHTML = presenterCues(d, slides[idx]); cu.parentElement.scrollTop = 0; }
 }
 function presenterFitMirror(){
@@ -801,7 +797,7 @@ if(pvChannel() && !PV_IS_AUDIENCE){
     if(m.type==="key") presenterStep(m.dir);
     if(m.type==="rendered" && m.dayId===state.dayId && m.slide===(state.lessonSlide||0)){
       state.presentSecs = m.secs || null; state.presentAllSecs = m.allSecs || null; state.presentSecsFor = m.slide;
-      state.presentPage = m.page; state.presentPages = m.pages;
+      state.presentPage = m.page; state.presentPages = m.pages; state.presentSecsByPage = m.secsByPage || null;
       if(!PV.size || PV.size.w!==m.w || PV.size.h!==m.h){ PV.size = {w:m.w, h:m.h}; presenterFitMirror(); }
       presenterRefresh();
     }
@@ -847,7 +843,9 @@ if(PV_IS_AUDIENCE){
     const secNum = (s)=>+((s.querySelector(".fp-num")||{}).textContent||0);
     const allSecs = [...root.querySelectorAll(".fp-section")].map(secNum).filter(Boolean);
     const secs = [...root.querySelectorAll(".fp-section")].filter(s=>!s.closest(".pg-hide")).map(secNum).filter(Boolean);
-    if(isMain) pvChannel().postMessage({type:"rendered", dayId:d.id, slide:m.slide, page:state.slidePage||0, pages:state.slidePages||1, w:root.clientWidth, h:root.clientHeight, secs, allSecs});
+    // the sections on every page, so each page of a long slide gets its own part of the script
+    const secsByPage = __slidePg ? __slidePg.pages.map(([a,b])=>[...new Set(__slidePg.units.slice(a,b+1).map(u=>{ const s = u.closest(".fp-section"); return s ? secNum(s) : 0; }).filter(Boolean))]) : [allSecs];
+    if(isMain) pvChannel().postMessage({type:"rendered", dayId:d.id, slide:m.slide, page:state.slidePage||0, pages:state.slidePages||1, w:root.clientWidth, h:root.clientHeight, secs, allSecs, secsByPage});
   };
   if(pvChannel()){
     PV.ch.addEventListener("message", (e)=>{
