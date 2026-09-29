@@ -1,6 +1,6 @@
 /* Day 9 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "9::Running an Event End-to-End": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, compare the registration list with who actually came.",
     "Finally, write down what went wrong, so the next event is better."
    ],
-   "ask": "What went wrong the first time you managed registrations for anything?"
+   "ask": "What went wrong the first time you managed registrations for anything?",
+   "scenario": "The firm's client breakfast has 45 'yes' replies, but when you check names, three key Meridian contacts haven't answered at all. It's two weeks out. What do you do now, and who do you tell?"
   },
   "p2": {
    "why": "Thank-you notes go out within 48 hours of the event.",
@@ -23,7 +24,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, one week out: final numbers, the running order, name badges and materials. On the day: arrive early, test the technology and track check-ins.",
     "Finally, afterwards: thank-you notes within two days, feedback, the budget reconciled and lessons logged."
    ],
-   "ask": "Thorne & Partners is hosting a client appreciation evening for 60 guests in ten weeks. What's done by week eight, by week four and by the day before?"
+   "ask": "Thorne & Partners is hosting a client appreciation evening for 60 guests in ten weeks. What's done by week eight, by week four and by the day before?",
+   "scenario": "The client evening went well, but three days later, no thank-you notes have gone out and the caterer's final bill is sitting unchecked. What do you do today, and what goes in the notes for next year?"
   }
  },
  "9::Speaker & Panelist Logistics for Conferences": {
@@ -35,7 +37,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, confirm the format early: keynote, panel or fireside chat. Each needs different preparation.",
     "Finally, before the event, send the executive one briefing: the time, the format, who else is speaking and what's expected."
    ],
-   "ask": "How would you prepare differently for a keynote than for a panel?"
+   "ask": "How would you prepare differently for a keynote than for a panel?",
+   "scenario": "Elias is giving a 30-minute keynote at a bar association conference. The organizer has sent six emails with different deadlines. What goes on your one checklist, and what's the briefing you send him?"
   },
   "p2": {
    "why": "Aim to deliver everything a day or two before the organizer's deadline.",
@@ -45,7 +48,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, confirm technical needs with the venue itself, not only the organizer.",
     "Finally, send the slides 24 to 48 hours before the stated deadline."
    ],
-   "ask": "Elias is on a panel in three weeks, and the organizer wants his bio, headshot and suggested questions by Friday. How do you stop it becoming a last-minute scramble?"
+   "ask": "Elias is on a panel in three weeks, and the organizer wants his bio, headshot and suggested questions by Friday. How do you stop it becoming a last-minute scramble?",
+   "scenario": "Elias's slides are due to the organizer Friday. On Thursday, he's still changing them. You also learn the venue projector only takes one type of cable. What do you send, and to whom, before Friday?"
   }
  },
  "9::Sponsorship & Vendor Contract Basics for Events": {
@@ -57,7 +61,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep the signed agreement with you during the event, in case there's a dispute.",
     "Finally, track what the sponsorship cost against the value it delivered."
    ],
-   "ask": "Which sponsorship promises would you check before the doors open?"
+   "ask": "Which sponsorship promises would you check before the doors open?",
+   "scenario": "The firm is sponsoring a charity gala: logo on the banner, a table for ten and a mention in the opening speech. What do you check on the night, and when?"
   },
   "p2": {
    "why": "A written complaint on the day carries far more weight than a verbal one afterwards.",
@@ -67,7 +72,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, never renew a sponsorship automatically without checking whether it was worth it.",
     "Finally, if something's missing, raise it in writing, promptly."
    ],
-   "ask": "At a sponsored event, the firm's logo is missing from the printed program, even though the agreement guarantees it. What do you do in the moment, and what do you follow up on afterwards?"
+   "ask": "At a sponsored event, the firm's logo is missing from the printed program, even though the agreement guarantees it. What do you do in the moment, and what do you follow up on afterwards?",
+   "scenario": "The gala is over, and the opening speech never mentioned the firm. The organizer is asking about next year's sponsorship. What do you send them, and what do you tell Elias?"
   }
  },
  "9::Live Event Moderation": {
@@ -80,7 +86,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, for sessions that count toward professional credits, track attendance and times carefully.",
     "Finally, afterwards, confirm certificates and records, and document the session."
    ],
-   "ask": "What would you watch for during a live webinar?"
+   "ask": "What would you watch for during a live webinar?",
+   "scenario": "Elias is hosting a one-hour webinar that gives attendees ethics credit. You're the moderator. What do you check 15 minutes before, during and right after?"
   },
   "p2": {
    "why": "During a live event, a visible checklist beats memory every time.",
@@ -91,7 +98,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, note technical problems as they happen, even small ones.",
     "Finally, speaking events need extra checks: an accurate introduction, slides loaded, the recording and the audience size."
    ],
-   "ask": "Ten minutes into a webinar where Elias is the featured speaker, his audio starts cutting out and the audience is commenting in the chat. What do you do, and in what order, without disrupting him more than necessary?"
+   "ask": "Ten minutes into a webinar where Elias is the featured speaker, his audio starts cutting out and the audience is commenting in the chat. What do you do, and in what order, without disrupting him more than necessary?",
+   "scenario": "Halfway through the webinar, 30 attendees drop off and chat fills with 'no sound.' Elias keeps talking, not aware. What do you do in the next 60 seconds?"
   }
  },
  "9::Post-Event Follow-Up & ROI Tracking": {
@@ -103,7 +111,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, follow up within 48 to 72 hours.",
     "Finally, record who attended and what came of it in your normal relationship tracking system."
    ],
-   "ask": "What note would you want next to each new contact?"
+   "ask": "What note would you want next to each new contact?",
+   "scenario": "At a conference dinner, Elias meets a general counsel who mentions they're unhappy with their current firm. What do you note that evening, and what happens in the next three days?"
   },
   "p2": {
    "why": "Mention the actual conversation, not just 'great meeting you at the conference.'",
@@ -113,7 +122,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, track a simple measure of value for each event, like leads or relationships strengthened.",
     "Finally, keep follow-ups personal and specific."
    ],
-   "ask": "Elias comes back from a three-day conference with 40 new contacts and no notes on any of them. How do you turn that pile into real follow-up, instead of one generic email to everyone?"
+   "ask": "Elias comes back from a three-day conference with 40 new contacts and no notes on any of them. How do you turn that pile into real follow-up, instead of one generic email to everyone?",
+   "scenario": "The firm spent $12,000 on three conferences this year. Elias asks, 'Were any of them worth it?' What would you need to have tracked to answer him?"
   }
  },
  "9::High-Stakes Travel Disruption Management": {
@@ -127,7 +137,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, send Elias one clear message: what happened, what you're doing and anything he needs to decide.",
     "Finally, once it's fixed, update everyone downstream: drivers, hotels and the meeting host."
    ],
-   "ask": "Why check the app while you're waiting on hold?"
+   "ask": "Why check the app while you're waiting on hold?",
+   "scenario": "Elias's 7 a.m. flight to a Chicago deposition is canceled at 10 p.m. the night before. The deposition starts at 1 p.m. What's the fixed point, and what options do you check, in which order?"
   },
   "p2": {
    "why": "A stressed executive needs the finished plan, not a running commentary.",
@@ -138,7 +149,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, fixing the flight isn't the end. Check the car and hotel that depended on the old time.",
     "Finally, keep his hard preferences in mind, like no red-eyes, so the fix doesn't break them."
    ],
-   "ask": "Elias's connection to a closing-day meeting is cancelled, with no same-day rebooking, and the meeting can't move. Option one: a red-eye on another airline, landing two hours before. Option two: a private car for the last leg, costing much more but letting him sleep. How do you decide, and how do you present it?"
+   "ask": "Elias's connection to a closing-day meeting is cancelled, with no same-day rebooking, and the meeting can't move. Option one: a red-eye on another airline, landing two hours before. Option two: a private car for the last leg, costing much more but letting him sleep. How do you decide, and how do you present it?",
+   "scenario": "You've rebooked Elias on a later flight, but it lands after his hotel's check-in desk closes and his car is still booked for the old time. What's your single message to him, and what else do you fix?"
   }
  },
  "9::Board Meeting Preparation & Minute Drafting": {
@@ -152,7 +164,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, write the minutes promptly, in neutral, factual language.",
     "Finally, send the draft round for corrections before it's finalized."
    ],
-   "ask": "What four things must you capture for every motion?"
+   "ask": "What four things must you capture for every motion?",
+   "scenario": "The board of one of Elias's companies meets in two weeks. The chair wants to add a late item about a lawsuit. What do you confirm, and by when do the papers go out?"
   },
   "p2": {
    "why": "'The board discussed the budget' isn't a minute; 'Motion to approve the budget, seconded, passed five to nothing' is.",
@@ -163,7 +176,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, for sensitive topics, check with the executive or counsel what should be formally recorded.",
     "Finally, papers that arrive too late can undermine the legitimacy of a decision."
    ],
-   "ask": "A motion is raised, debated with real disagreement, amended once and passed four to one. You're taking minutes live. What must you capture exactly, and what do you deliberately leave out?"
+   "ask": "A motion is raised, debated with real disagreement, amended once and passed four to one. You're taking minutes live. What must you capture exactly, and what do you deliberately leave out?",
+   "scenario": "Your draft minutes say, 'Director Harlow strongly objected to the budget and was overruled after a heated debate.' How would you rewrite it, and why does it matter?"
   }
  },
  "9::Shareholder & Investor Meeting (AGM) Logistics": {
@@ -175,7 +189,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, track RSVPs against the quorum requirement.",
     "Finally, prepare the pack with the same care as a board meeting, plus any proxy and voting materials."
    ],
-   "ask": "Why track RSVPs against the quorum specifically?"
+   "ask": "Why track RSVPs against the quorum specifically?",
+   "scenario": "Thirty shareholders must attend, in person or by proxy, for the AGM to decide anything. A week out, 22 have confirmed. What do you do now?"
   },
   "p2": {
    "why": "Voting and proxy procedures are settled in advance, never improvised on the day.",
@@ -184,7 +199,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, an AGM isn't just a bigger board meeting. Its notice and quorum rules are formal requirements.",
     "Finally, confirm how voting and proxies work well ahead of time."
    ],
-   "ask": "You realize the AGM notice went out later than the required minimum notice period. What do you want confirmed before the meeting goes ahead?"
+   "ask": "You realize the AGM notice went out later than the required minimum notice period. What do you want confirmed before the meeting goes ahead?",
+   "scenario": "On the morning of the AGM, a shareholder turns up with a handwritten proxy for someone else. The procedure doesn't say whether that's accepted. Who decides, and what should have been settled earlier?"
   }
  },
  "9::Executive Meeting Etiquette": {
@@ -197,7 +213,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep your own presence professional and low-key when you're supporting.",
     "Finally, handle the mechanics quietly, like muting noise, sharing documents and watching the chat."
    ],
-   "ask": "What small slip on a call reflects badly on the executive?"
+   "ask": "What small slip on a call reflects badly on the executive?",
+   "scenario": "Elias has a first video call with a potential new client's general counsel tomorrow. What goes in your one-paragraph briefing note, and what do you check five minutes before?"
   },
   "p2": {
    "why": "The executive should never have to solve a technical or scheduling problem live.",
@@ -208,7 +225,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, confirm who's attending and their roles in advance.",
     "Finally, the whole point of preparation is that the executive never becomes the troubleshooter."
    ],
-   "ask": "Thirty seconds before Elias's call with a prospective client, you notice the invite used the wrong time zone and the client may have been waiting for an hour. What do you do right now?"
+   "ask": "Thirty seconds before Elias's call with a prospective client, you notice the invite used the wrong time zone and the client may have been waiting for an hour. What do you do right now?",
+   "scenario": "During a client call, the other side can't see Elias's shared document, and he starts fumbling with settings. You're on the call. What do you do, and what do you say, if anything?"
   }
  },
  "9::Video Conferencing: Platform Admin (Zoom/Teams/Meet)": {
@@ -221,7 +239,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, know how to manage people live: mute, remove, promote to co-host and switch screens.",
     "Finally, review the account's default settings regularly."
    ],
-   "ask": "What settings would you check before a confidential call?"
+   "ask": "What settings would you check before a confidential call?",
+   "scenario": "You're setting up a confidential settlement meeting with four parties, two of whom shouldn't meet the other two until a certain point. Which settings and features do you use?"
   },
   "p2": {
    "why": "A confidential call and a public webinar need very different settings.",
@@ -232,7 +251,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, make sure someone else can also start and manage meetings.",
     "Finally, write down the platform's quirks for the next person."
    ],
-   "ask": "Elias's confidential strategy call with senior partners went out on a general meeting link with no waiting room or registration. What do you change before the call, and how do you raise it, since the invite's already out?"
+   "ask": "Elias's confidential strategy call with senior partners went out on a general meeting link with no waiting room or registration. What do you change before the call, and how do you raise it, since the invite's already out?",
+   "scenario": "A client webinar for 200 people is set up like an internal meeting, and anyone can unmute and share their screen. Someone shares something inappropriate. What should the settings have been?"
   }
  },
  "9::Video Conferencing: Technical Troubleshooting": {
@@ -245,7 +265,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, before any important call, have a backup ready, like a phone number.",
     "Finally, record every problem, the fix and how long it took."
    ],
-   "ask": "What's your backup if the platform fails completely?"
+   "ask": "What's your backup if the platform fails completely?",
+   "scenario": "Two minutes into a board call, one director's audio echoes badly, and another can't join at all. Which problem do you handle first, and what's your fallback?"
   },
   "p2": {
    "why": "Working through likely causes in order is faster than trying everything at once.",
@@ -256,7 +277,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, test unfamiliar setups in advance.",
     "Finally, a calm 'we're fixing an audio issue, one moment' keeps things professional."
    ],
-   "ask": "Fifteen minutes before a critical client call, you discover the platform is down for maintenance you didn't know about. What's your plan for the next five minutes?"
+   "ask": "Fifteen minutes before a critical client call, you discover the platform is down for maintenance you didn't know about. What's your plan for the next five minutes?",
+   "scenario": "A client can hear everyone, but no one can hear the client. They're getting frustrated. Walk through the checks in order, and what you say while you're fixing it."
   }
  },
  "9::Four SOPs That Keep Professional Development on Track": {
@@ -270,7 +292,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, for reputation, watch for opportunities and escalate negative publicity immediately.",
     "Finally, don't skip the one that feels least urgent."
    ],
-   "ask": "Which of the four would you be most tempted to skip?"
+   "ask": "Which of the four would you be most tempted to skip?",
+   "scenario": "Last year, three associates took courses that turned out not to count for their required credits. Which of the four procedures would have caught it, and at what step?"
   },
   "p2": {
    "why": "The procedure that feels least urgent is the one that gets skipped, and it still matters.",
@@ -280,7 +303,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, attendance: record it, export reports and store certificates.",
     "Finally, upskilling: assess needs, choose providers carefully and measure the change."
    ],
-   "ask": "Elias wants to attend a $1,200 legal-tech summit run by a provider you've never heard of. Walk through the registration procedure before you book."
+   "ask": "Elias wants to attend a $1,200 legal-tech summit run by a provider you've never heard of. Walk through the registration procedure before you book.",
+   "scenario": "A negative article about the firm appears in a legal trade blog. Nobody noticed for a week. Which procedure should have caught it, and what would it have told you to do?"
   }
  },
  "9::CLE / Compliance Tracking": {
@@ -294,7 +318,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, give reminders plenty of lead time.",
     "Finally, check the tracker against the certificates on file."
    ],
-   "ask": "Why is a single total of hours for the firm dangerous?"
+   "ask": "Why is a single total of hours for the firm dangerous?",
+   "scenario": "The firm's continuing-education tracker is a list of courses, not people. A partner discovers he's short on hours with a month to go. What should the tracker have looked like?"
   },
   "p2": {
    "why": "The certificate is the proof, so keep every one.",
@@ -304,7 +329,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, hours usually need to come from approved providers, and some states allow extra hours to carry over.",
     "Finally, keep a certificate for every course, and confirm the current rules for each attorney's state."
    ],
-   "ask": "Elias has 18 of his 25 hours, still needs 2 ethics hours, and his deadline is in seven weeks. What do you flag today, and what do you check about the hours he already has?"
+   "ask": "Elias has 18 of his 25 hours, still needs 2 ethics hours, and his deadline is in seven weeks. What do you flag today, and what do you check about the hours he already has?",
+   "scenario": "Elias finishes a course but loses the certificate. The state bar audits him the following year. What do you do now, and what's the habit that prevents it?"
   }
  },
  "9::Planning Professional Development": {
@@ -318,7 +344,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, track results over time, so you can see which formats work.",
     "Finally, use what you learn to improve the next session."
    ],
-   "ask": "How would you measure whether a training session actually worked?"
+   "ask": "How would you measure whether a training session actually worked?",
+   "scenario": "The firm spends money on a time-management workshop that everyone enjoyed. Three months later, late time entries haven't changed. What should have been measured, and when?"
   },
   "p2": {
    "why": "One simple before-and-after check tells you more than any attendance number.",
@@ -328,7 +355,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, behavior: are they using it at work weeks later?",
     "Finally, results: did performance actually improve?"
    ],
-   "ask": "The firm runs a lunch-and-learn on the new document system. Define one measure at each of the four levels."
+   "ask": "The firm runs a lunch-and-learn on the new document system. Define one measure at each of the four levels.",
+   "scenario": "Elias wants to know whether the new billing training worked. You have attendance numbers and a feedback survey. What's missing, and what can you still measure?"
   }
  },
  "9::Membership Renewals": {
@@ -342,7 +370,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, check the terms and price haven't changed before renewing.",
     "Finally, review the list now and then for memberships nobody uses."
    ],
-   "ask": "Has a membership ever lapsed on you without warning?"
+   "ask": "Has a membership ever lapsed on you without warning?",
+   "scenario": "Elias's membership in a professional association lapsed six months ago, and nobody noticed until he tried to register for their conference at the member rate. What does your tracker need?"
   },
   "p2": {
    "why": "Expired cards are the most common reason memberships lapse without anyone noticing.",
@@ -352,7 +381,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, whether it auto-renews and which card is on file.",
     "Finally, whether it's still worth it. A yearly review stops you paying for things nobody uses."
    ],
-   "ask": "Elias's state bar membership, two practice-section memberships and a country club all renew within 60 days, and one card on file expires this month. Build the tracker rows, and tell us what you'd do first."
+   "ask": "Elias's state bar membership, two practice-section memberships and a country club all renew within 60 days, and one card on file expires this month. Build the tracker rows, and tell us what you'd do first.",
+   "scenario": "The firm pays for five online subscriptions and three memberships on a card that expired last month. Two have already lapsed. What do you check first, and what goes into the tracker?"
   }
  },
  "9::Ethics & Gift Compliance": {
@@ -364,7 +394,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, log any gift above the policy limit, even if it seems fine.",
     "Finally, take extra care with government officials and regulated parties."
    ],
-   "ask": "Why do you think a gift to a government official is treated differently?"
+   "ask": "Why do you think a gift to a government official is treated differently?",
+   "scenario": "Elias wants to send a $250 gift basket to a judge who just retired from the court where the firm has cases pending. What do you check before ordering anything?"
   },
   "p2": {
    "why": "'Everyone does this' is not a gift policy.",
@@ -373,7 +404,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, modest or common doesn't mean allowed.",
     "Finally, when unsure, ask first. It costs far less than a violation."
    ],
-   "ask": "A vendor sends an expensive bottle of whisky and a $300 restaurant voucher to the office for the holidays. What do you do with them, and what do you check first?"
+   "ask": "A vendor sends an expensive bottle of whisky and a $300 restaurant voucher to the office for the holidays. What do you do with them, and what do you check first?",
+   "scenario": "A court-reporting firm offers you two concert tickets 'as thanks for all the business.' You'd love to go. What do you do?"
   }
  },
  "9::Professional Liability & Insurance Awareness": {
@@ -385,7 +417,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, if a client's language suggests serious unhappiness, like mentions of complaints or damages, flag it immediately.",
     "Finally, keep renewal and review dates on the compliance calendar."
    ],
-   "ask": "What kind of client language would make you escalate?"
+   "ask": "What kind of client language would make you escalate?",
+   "scenario": "A client's email to Elias says, 'We relied on your advice and we've now lost the contract. We need to talk about this.' Elias is away. What do you do with it?"
   },
   "p2": {
    "why": "Never try to judge coverage or liability yourself; that always goes to the attorney.",
@@ -395,7 +428,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, coverage questions are outside your role.",
     "Finally, keep these messages as confidential as any privileged matter."
    ],
-   "ask": "A client's email says, 'We're considering our options given how this was handled.' What's your read, and what do you do beyond replying normally?"
+   "ask": "A client's email says, 'We're considering our options given how this was handled.' What's your read, and what do you do beyond replying normally?",
+   "scenario": "The firm's malpractice insurer sends a renewal questionnaire asking whether any client has threatened a claim this year. You remember the email from last month. What do you do?"
   }
  },
  "9::Federal/State/Financial Infrastructure": {
@@ -409,7 +443,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, set up simple bookkeeping before the first transaction.",
     "Finally, if there'll be employees, register for payroll taxes before the first paycheck."
    ],
-   "ask": "Is state tax registration automatic when a company is formed?"
+   "ask": "Is state tax registration automatic when a company is formed?",
+   "scenario": "Elias's new consulting company was formed last week, and he wants to invoice a client tomorrow. Which registrations and accounts need to be in place first, and in what order?"
   },
   "p2": {
    "why": "Mixing personal and business money, even once, weakens the owner's legal protection.",
@@ -420,7 +455,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep copies of every registration in the permanent file.",
     "Finally, each state where the business really operates may need its own registration."
    ],
-   "ask": "Elias's new consulting company has its tax ID and a bank account opening this week. He paid the attorney's invoice on his personal card 'to get it done faster' and plans to pay himself back. What's the risk, and how do you help him before it becomes a habit?"
+   "ask": "Elias's new consulting company has its tax ID and a bank account opening this week. He paid the attorney's invoice on his personal card 'to get it done faster' and plans to pay himself back. What's the risk, and how do you help him before it becomes a habit?",
+   "scenario": "Elias paid the new company's first vendor invoice from his personal account 'just this once' because the business bank account wasn't open yet. What's the risk, and how do you fix the record?"
   }
  },
  "9::Protecting the Brand Online": {
@@ -434,7 +470,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, draft a considered reply rather than reacting in the moment.",
     "Finally, escalate anything beyond a routine review, like legal threats or coordinated attacks."
    ],
-   "ask": "How would your reply differ if you wrote it angry versus after a pause?"
+   "ask": "How would your reply differ if you wrote it angry versus after a pause?",
+   "scenario": "An anonymous online review says a Thorne & Partners attorney was 'rude and useless' and names a real case. How do you respond, and what do you leave out?"
   },
   "p2": {
    "why": "A well-handled bad review can do more for the firm than ten good ones.",
@@ -443,7 +480,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, monitor proactively and respond well.",
     "Finally, protect sensitive information strictly: need to know, and a cone of silence."
    ],
-   "ask": "A former client posts a one-star review: 'Thorne & Partners never returned my calls and overcharged me.' Let's draft the public reply together, then decide what you'd check before posting it."
+   "ask": "A former client posts a one-star review: 'Thorne & Partners never returned my calls and overcharged me.' Let's draft the public reply together, then decide what you'd check before posting it.",
+   "scenario": "A former employee posts on social media criticizing the firm's billing practices. Several people are sharing it. Who do you escalate to, and what don't you do?"
   }
  },
  "9::Awards, Recognition & Charitable Coordination": {
@@ -457,7 +495,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, keep records of donations, because they often matter for tax purposes.",
     "Finally, treat awards and charity as proactive reputation-building."
    ],
-   "ask": "Elias pledged $5,000 to a legal aid gala and was nominated for a regional bar award due in three weeks. What goes in the tracker for each, and what documents do you keep?"
+   "ask": "Elias pledged $5,000 to a legal aid gala and was nominated for a regional bar award due in three weeks. What goes in the tracker for each, and what documents do you keep?",
+   "scenario": "A local business award would suit the firm well. The nomination deadline was yesterday, and the only record of it was an email Elias forwarded three months ago. What do you set up so it isn't missed next year?"
   }
  },
  "9::Building an Executive's Media & Speaking Kit": {
@@ -469,7 +508,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep a running list of past media and speaking engagements.",
     "Finally, review and refresh the kit every quarter."
    ],
-   "ask": "When was Elias's bio last updated?"
+   "ask": "When was Elias's bio last updated?",
+   "scenario": "A conference organizer needs Elias's bio in 150 words and a headshot within the hour. Where do you find them, and what do you check before you send?"
   },
   "p2": {
    "why": "Always glance over the kit before you send it.",
@@ -479,7 +519,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep headshots in several sizes, for print and online.",
     "Finally, check for outdated details, like an old title, before anything goes out."
    ],
-   "ask": "A journalist needs Elias's bio and headshot in two hours. The bio on file is over a year old and lists a role he no longer holds. What do you do, given the deadline?"
+   "ask": "A journalist needs Elias's bio and headshot in two hours. The bio on file is over a year old and lists a role he no longer holds. What do you do, given the deadline?",
+   "scenario": "You send Elias's media kit to a journalist, and the headshot is five years old and the bio lists his former firm. What goes wrong for Elias, and what do you set up to catch this in future?"
   }
  }
 });

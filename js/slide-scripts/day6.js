@@ -1,6 +1,6 @@
 /* Day 6 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "6::Choosing a Business Structure": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, think about the next two years. A structure that fits today might not fit after expansion.",
     "Finally, write down why the choice was made, not just what was chosen."
    ],
-   "ask": "Has anyone here set up a business entity? What surprised you?"
+   "ask": "Has anyone here set up a business entity? What surprised you?",
+   "scenario": "Elias's brother-in-law is starting a small landscaping business with one partner and asks Elias for 'the simplest setup.' Elias asks you to gather what the attorney will need to recommend a structure. What do you find out first?"
   },
   "p2": {
    "why": "The attorney and accountant make the call; your job is to hand them everything they need to make it well.",
@@ -23,7 +24,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, LLC: keeps personal and business liability apart, with flexible tax treatment. A common choice for small firms.",
     "Finally, corporation: formal, with a board, bylaws and shares. Often chosen when outside investment is coming."
    ],
-   "ask": "Elias wants a separate entity for his speaking and consulting work, which may expand to two more states next year. What do you gather before the attorney and accountant recommend a structure?"
+   "ask": "Elias wants a separate entity for his speaking and consulting work, which may expand to two more states next year. What do you gather before the attorney and accountant recommend a structure?",
+   "scenario": "A client set up as a sole proprietor three years ago and is now being sued over a contract. His house and savings are exposed. What would an LLC have changed, and what information would the attorney want from you now?"
   }
  },
  "6::Entity Formation Step-by-Step": {
@@ -36,7 +38,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, apply for the federal tax ID, the EIN. The bank needs it before opening an account.",
     "Finally, complete the internal rulebook, the operating agreement or bylaws, even though the state never sees it."
    ],
-   "ask": "Why can't you open a business bank account the day the state approves the filing?"
+   "ask": "Why can't you open a business bank account the day the state approves the filing?",
+   "scenario": "Elias approves forming 'Thorne Advisory LLC.' Before anything is filed, you search the state database and find 'Thorn Advisory Group LLC' already registered. What do you do, and what's the next step after the name is settled?"
   },
   "p2": {
    "why": "State approval isn't the finish line.",
@@ -46,7 +49,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep every formation document in one folder from day one. Banks and lenders ask for them again and again.",
     "Finally, set up the registered agent properly at the start. Without one, filings can be rejected."
    ],
-   "ask": "Elias's new consulting company was approved by the state yesterday, and he wants a bank account 'as soon as possible.' The tax ID hasn't been applied for yet. What do you tell him about the order of steps and a realistic timeline?"
+   "ask": "Elias's new consulting company was approved by the state yesterday, and he wants a bank account 'as soon as possible.' The tax ID hasn't been applied for yet. What do you tell him about the order of steps and a realistic timeline?",
+   "scenario": "The state approved the new company two weeks ago. The bank says it can't open an account, the operating agreement is still a draft and nobody knows who the registered agent is. Put the missing steps in order."
   }
  },
  "6::Operating Agreements & Corporate Bylaws Basics": {
@@ -58,7 +62,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, get it properly signed by every owner, not just drafted.",
     "Finally, keep the signed original safe, with the other formation records."
    ],
-   "ask": "What's the first document a lender would ask to see?"
+   "ask": "What's the first document a lender would ask to see?",
+   "scenario": "Two partners formed an LLC with a generic online template. Now one wants to sell her share, and the agreement says nothing about how. What should the operating agreement have covered, and what do you prepare for the attorney?"
   },
   "p2": {
    "why": "A side email isn't an amendment.",
@@ -67,7 +72,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a generic template that doesn't match the real ownership creates confusion exactly when it matters most.",
     "Finally, any change to ownership or decision-making needs a formal update to the document itself."
    ],
-   "ask": "A lender asks for the operating agreement, and the one on file is three years old and doesn't reflect a partner who left last year. What's the risk, and what do you do before sending anything?"
+   "ask": "A lender asks for the operating agreement, and the one on file is three years old and doesn't reflect a partner who left last year. What's the risk, and what do you do before sending anything?",
+   "scenario": "A partner emails the other owners: 'I'm stepping back to 20 percent, OK?' Everyone replies 'OK.' The operating agreement still says 50/50. Is the change done? What has to happen?"
   }
  },
  "6::Multi-State Registration & Foreign Qualification": {
@@ -80,7 +86,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, appoint a registered agent in every one of those states.",
     "Finally, track each state's own annual reports and fees from then on."
    ],
-   "ask": "What do you think counts as 'doing business' in a state?"
+   "ask": "What do you think counts as 'doing business' in a state?",
+   "scenario": "The firm is renting a small office in Georgia for one attorney and has two remote staff in Arizona. It's registered only in Texas. What do you list for the attorney, and what filings might be needed?"
   },
   "p2": {
    "why": "The home-state filing doesn't cover the rest of the country.",
@@ -89,7 +96,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't assume one filing covers everywhere.",
     "Finally, keep one tracker with every state, its registered agent and its deadlines."
    ],
-   "ask": "The firm just hired a remote employee in a state where it has never operated. What needs to happen before their start date, and who do you involve?"
+   "ask": "The firm just hired a remote employee in a state where it has never operated. What needs to happen before their start date, and who do you involve?",
+   "scenario": "The firm registered in three new states last year, but nobody is tracking their annual reports. One is due next month. What do you set up today?"
   }
  },
  "6::Staying in Good Standing": {
@@ -103,7 +111,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, check whether the requirements have changed since last time.",
     "Finally, keep a simple status record for each company, so a lapse gets caught in routine review."
    ],
-   "ask": "Why is it risky to assume last year's renewal process still applies?"
+   "ask": "Why is it risky to assume last year's renewal process still applies?",
+   "scenario": "You're asked to confirm that all of Elias's three companies are in good standing before a bank loan. How do you check, and what would you do if one isn't?"
   },
   "p2": {
    "why": "Losing good standing can cost the company the right to sue in that state.",
@@ -113,7 +122,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, state taxes and fees paid, and a registered agent in every state.",
     "Finally, business licenses and permits renewed before they expire."
    ],
-   "ask": "You discover the firm's city business license expired ten days ago. Who do you tell, what do you do today, and what do you change so it can't happen again?"
+   "ask": "You discover the firm's city business license expired ten days ago. Who do you tell, what do you do today, and what do you change so it can't happen again?",
+   "scenario": "One of Elias's companies lost good standing in Nevada eight months ago because an annual report wasn't filed. Now it wants to sue a supplier there. What's the problem, and what's the fix?"
   }
  },
  "6::Annual Report & Franchise Tax Deadlines Across Jurisdictions": {
@@ -125,7 +135,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, set reminders well ahead, not on the day itself.",
     "Finally, check the filing was accepted, not just sent."
    ],
-   "ask": "Why should you treat every state's deadline as firm?"
+   "ask": "Why should you treat every state's deadline as firm?",
+   "scenario": "The firm has companies in Delaware, Texas and California, each with different annual report dates and fees. Build the tracker: what columns, what reminders and how do you confirm each filing was accepted?"
   },
   "p2": {
    "why": "If a deadline was missed, fix it today, not next week.",
@@ -134,7 +145,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't rely on one person's memory or calendar for many states' deadlines. Use a shared tracker with an owner.",
     "Finally, if a deadline is missed, act immediately. The company is exposed the whole time it's out of good standing."
    ],
-   "ask": "Checking the compliance calendar, you find Delaware's annual report was filed on time, but Texas's deadline passed three weeks ago with no record of filing. What's your first move?"
+   "ask": "Checking the compliance calendar, you find Delaware's annual report was filed on time, but Texas's deadline passed three weeks ago with no record of filing. What's your first move?",
+   "scenario": "You submitted the California annual report online on the due date and assumed it went through. Two months later, the state says it was rejected for a missing signature. What should you have done, and what now?"
   }
  },
  "6::Business Licensing & Permits": {
@@ -146,7 +158,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, track each license's renewal on its own schedule.",
     "Finally, make sure personal professional licenses, like a lawyer's bar license, stay current separately."
    ],
-   "ask": "How many levels of licensing do you think could apply to one office?"
+   "ask": "How many levels of licensing do you think could apply to one office?",
+   "scenario": "Elias is opening a small satellite office in a different city. List the levels of licensing you'd check, from state to city to professional, and where you'd find each one."
   },
   "p2": {
    "why": "Licenses renew, so track every one on its own cycle.",
@@ -155,7 +168,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't assume a license lasts forever. Many need renewal, continuing education or reports.",
     "Finally, keep copies of every license in the central compliance folder."
    ],
-   "ask": "The firm is opening a satellite office in a new city. What licensing and permit questions need answering before it opens, and who do you ask?"
+   "ask": "The firm is opening a satellite office in a new city. What licensing and permit questions need answering before it opens, and who do you ask?",
+   "scenario": "A partner's state bar license is up for renewal, and he's short on continuing-education hours. It's two weeks to the deadline. Whose job is it to track this, and what do you do?"
   }
  },
  "6::Registered Agent Responsibilities & Service of Process": {
@@ -167,7 +181,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, when legal papers arrive, send them to the right person immediately. They usually come with a deadline.",
     "Finally, update the state promptly whenever the agent changes."
    ],
-   "ask": "Who watches the registered agent's inbox at your firm?"
+   "ask": "Who watches the registered agent's inbox at your firm?",
+   "scenario": "The firm's registered agent is still listed as a former partner who moved away last year. What's the risk, and what needs updating, and where?"
   },
   "p2": {
    "why": "It's not enough to know who receives the notices; you need to know who reads them.",
@@ -176,7 +191,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a registered agent service is useless if nobody internally checks what it forwards.",
     "Finally, keep agent details in the same tracker as the annual deadlines. A lapsed agent can cost good standing too."
    ],
-   "ask": "The registered agent service forwards what looks like a newly served lawsuit. What do you do in the next 30 minutes, and who needs to know straight away?"
+   "ask": "The registered agent service forwards what looks like a newly served lawsuit. What do you do in the next 30 minutes, and who needs to know straight away?",
+   "scenario": "The registered agent service emails a scanned lawsuit on a Friday at 5 p.m. The attorney who handles it is on holiday until Wednesday. What do you do before you leave the office?"
   }
  },
  "6::Corporate Recordkeeping & Minute Books": {
@@ -188,7 +204,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep the book up to date as things happen, not rebuilt later.",
     "Finally, store it as carefully as the formation documents."
    ],
-   "ask": "What would you count as a major company decision?"
+   "ask": "What would you count as a major company decision?",
+   "scenario": "At today's owners' meeting, Elias's company approved a new bank line of credit and admitted a new partner. What do you record, and where does it go?"
   },
   "p2": {
    "why": "When in doubt, write it down.",
@@ -197,7 +214,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, small companies need minute books too. Lenders and buyers ask regardless of size.",
     "Finally, an unnecessary record costs almost nothing; a missing one can cost a lot."
    ],
-   "ask": "An investor's checklist asks for two years of board minutes, and the firm has never documented its meetings. How big is the problem, and how do you start fixing it?"
+   "ask": "An investor's checklist asks for two years of board minutes, and the firm has never documented its meetings. How big is the problem, and how do you start fixing it?",
+   "scenario": "A buyer interested in one of Elias's companies asks for five years of minutes. You find notes for only two meetings. What do you tell Elias, and how do you start putting it right?"
   }
  },
  "6::Leading a Project Under Pressure": {
@@ -211,7 +229,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, lead people you don't manage through clear asks and reliable follow-through.",
     "Finally, support decisions with short summaries, risks and options with a recommendation."
    ],
-   "ask": "When a deadline slips, what's your first instinct?"
+   "ask": "When a deadline slips, what's your first instinct?",
+   "scenario": "You're coordinating the move of client files to a new document system. It's a week behind because two paralegals haven't finished tagging files. What do you look into first, and what's your update to Elias?"
   },
   "p2": {
    "why": "You may not make every decision, but you shape it.",
@@ -221,7 +240,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, strategic alignment means turning vision into steps, and influence without authority means leading vendors and teams you don't supervise.",
     "Finally, decision support means summaries, risks and options, so the executive isn't starting from a blank page."
    ],
-   "ask": "Let's roleplay it: the client's document production just slipped two days, and three stakeholders are emailing for an update. What do you look for first, and what goes in your update?"
+   "ask": "Let's roleplay it: the client's document production just slipped two days, and three stakeholders are emailing for an update. What do you look for first, and what goes in your update?",
+   "scenario": "Three stakeholders are asking different questions about the delayed file migration: a partner, the IT vendor and Elias. Write one short update that answers all three."
   }
  },
  "6::Seasonal Project Coordination": {
@@ -234,7 +254,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, start before it's urgent. The most common mistake is starting at the same moment every year, even after it ran late last time.",
     "Finally, after each cycle, note what went wrong and update the playbook."
    ],
-   "ask": "What predictable crunch do you rebuild from memory every year?"
+   "ask": "What predictable crunch do you rebuild from memory every year?",
+   "scenario": "Every December, the firm's holiday cards to 400 clients go out late because the address list is checked at the last minute. Draft three items for next year's playbook, and when each should start."
   },
   "p2": {
    "why": "A job that comes back every year should get easier every year.",
@@ -243,7 +264,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, one-off projects close; seasonal ones return.",
     "Finally, recurring work deserves a reusable system, not a new plan."
    ],
-   "ask": "Year-end billing at Thorne & Partners ran late last December because partner approvals were slow. Let's draft the playbook: what starts when, and who owns each part?"
+   "ask": "Year-end billing at Thorne & Partners ran late last December because partner approvals were slow. Let's draft the playbook: what starts when, and who owns each part?",
+   "scenario": "Year-end billing ran late again this year. You have notes on what went wrong. What do you do with them now, so next December is easier?"
   }
  },
  "6::Project Scope Creep & Change Management": {
@@ -255,7 +277,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, when a new request comes in, call it a scope change and say what it costs in time, budget or people.",
     "Finally, log every approved change with what was added and why."
    ],
-   "ask": "Why is each small addition dangerous, if each one seems reasonable?"
+   "ask": "Why is each small addition dangerous, if each one seems reasonable?",
+   "scenario": "You're organizing a client seminar for 30 people. Over two weeks, you've been asked to add a dinner, a second speaker, printed booklets and live streaming. The date and budget haven't changed. What do you say now?"
   },
   "p2": {
    "why": "Quietly absorbing little extras is exactly how projects end up late with nobody sure why.",
@@ -264,7 +287,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't avoid the awkward conversation by just taking it on.",
     "Finally, it doesn't have to be a fight. 'Here's what this does to the timeline' is enough."
    ],
-   "ask": "A stakeholder asks for 'just one more small addition' to a project that's already had three. What do you say, when each one really did seem reasonable?"
+   "ask": "A stakeholder asks for 'just one more small addition' to a project that's already had three. What do you say, when each one really did seem reasonable?",
+   "scenario": "A partner asks you to 'just add' a small survey to the seminar invite. It's the fifth small addition this month. How do you say yes while making the cost visible?"
   }
  },
  "6::Stakeholder Communication During Project Delays": {
@@ -276,7 +300,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, lead with the bottom line: what's late and by how much. Then explain why.",
     "Finally, always include a new timeline or next step."
    ],
-   "ask": "Why should you flag a delay before you're certain?"
+   "ask": "Why should you flag a delay before you're certain?",
+   "scenario": "You think the office move might slip by a week, but you won't be sure until the contractor confirms on Friday. Do you tell Elias now or on Friday? Draft the message."
   },
   "p2": {
    "why": "Silence between updates sounds like more bad news.",
@@ -285,7 +310,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't wait until the deadline has passed to say something.",
     "Finally, during a long delay, keep a steady rhythm of updates."
    ],
-   "ask": "This morning you learned the project will miss its deadline by two weeks, and the stakeholder has a standing call in an hour. What do you do between now and that call?"
+   "ask": "This morning you learned the project will miss its deadline by two weeks, and the stakeholder has a standing call in an hour. What do you do between now and that call?",
+   "scenario": "A client-facing project is running three weeks late. The last update to the client was a month ago. Write the update you send today, bottom line first."
   }
  },
  "6::Frameworks Worth Knowing": {
@@ -299,7 +325,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, match the framework to what's actually broken, rather than using all three.",
     "Finally, treat this as recognizing the tools, not becoming an expert in them."
    ],
-   "ask": "Which of your problems is about waste, and which is about errors?"
+   "ask": "Which of your problems is about waste, and which is about errors?",
+   "scenario": "Three problems at the firm: new-client paperwork goes through five approvals, invoices keep having wrong hourly rates, and next year's office move needs planning. Which framework fits each one?"
   },
   "p2": {
    "why": "Waste, errors or structure: match the framework to the problem.",
@@ -309,7 +336,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, Six Sigma reduces errors using data, through Define, Measure, Analyze, Improve and Control.",
     "Finally, project management structures large projects, and Agile delivers in short cycles and adjusts as it goes."
    ],
-   "ask": "Quick sort: a filing process with four unnecessary approval steps, invoices with repeated number errors, and a six-month office move. Which framework fits each?"
+   "ask": "Quick sort: a filing process with four unnecessary approval steps, invoices with repeated number errors, and a six-month office move. Which framework fits each?",
+   "scenario": "A partner wants 'an Agile approach' for the office move, with plans made in two-week cycles. Is that the right fit? What would you suggest instead, and why?"
   }
  },
  "6::Lean Six Sigma in Practice — A Real Methodology, Not Just a Buzzword": {
@@ -323,7 +351,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, improve: change the actual process, by removing a step or automating a check.",
     "Finally, control: build something, like a checklist or reminder, so the fix doesn't fade."
    ],
-   "ask": "Who has a recurring annoyance we could run through these five steps right now?"
+   "ask": "Who has a recurring annoyance we could run through these five steps right now?",
+   "scenario": "Expense reports take an average of 18 days to be reimbursed, and staff complain. Walk through the five steps: what would you define, measure, analyze, improve and control?"
   },
   "p2": {
    "why": "Lean cuts what doesn't matter; Six Sigma fixes what's actually broken.",
@@ -332,7 +361,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, Lean is about waste and value.",
     "Finally, Six Sigma is about errors and measurement, and together they cover both."
    ],
-   "ask": "Thirty seconds: someone name a recurring problem from your work, and as a group we'll call out what each of the five steps would look like."
+   "ask": "Thirty seconds: someone name a recurring problem from your work, and as a group we'll call out what each of the five steps would look like.",
+   "scenario": "A new client-intake form has 40 fields, half of them never used, and the intake team keeps making data-entry errors. Which part is a Lean problem, and which is a Six Sigma problem?"
   }
  },
  "6::DMAIC — Three Worked EA Examples": {
@@ -346,7 +376,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, for a form that keeps coming back incomplete, find the one confusing field instead of rewriting everything.",
     "Finally, once the fix works, make it the new standard, so nobody slips back."
    ],
-   "ask": "What's a waiting problem in your own work?"
+   "ask": "What's a waiting problem in your own work?",
+   "scenario": "Meeting room bookings keep clashing because people book in two different systems. Run a mini DMAIC: what's the one-sentence problem, what would you measure for two weeks, and what's a likely fix?"
   },
   "p2": {
    "why": "Measure first, find the real cause, then make the fix the new normal.",
@@ -356,7 +387,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, expense approvals: track turnaround for two weeks, find the step where they stall, add an automatic reminder and review monthly.",
     "Finally, intake forms: 30 percent come back incomplete, one field is confusing, so reword just that field and make the new form standard."
    ],
-   "ask": "Let's walk the intake-form example step by step, then apply the same steps to a process from your own work."
+   "ask": "Let's walk the intake-form example step by step, then apply the same steps to a process from your own work.",
+   "scenario": "You fixed the confusing field on the intake form, and errors dropped from 30 percent to 5 percent. Three months later, someone brings back the old form. What control step would have prevented that?"
   }
  },
  "6::Lean's 8 Wastes & Kaizen": {
@@ -370,7 +402,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, don't skip the control step, or the old problem creeps back.",
     "Finally, treat this as a way of thinking, not a qualification."
    ],
-   "ask": "Which of the eight wastes do you see most at work?"
+   "ask": "Which of the eight wastes do you see most at work?",
+   "scenario": "Watch a colleague handle one new client matter: printing the intake form, scanning it back in, emailing it to two people and waiting two days for a signature. Which wastes can you spot?"
   },
   "p2": {
    "why": "In most offices, the biggest wastes are waiting and doing the same work twice.",
@@ -380,7 +413,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, Kaizen means small, continuous improvements, closer to how EAs really improve their work than any big project.",
     "Finally, you don't need a Six Sigma belt. You need a repeatable way to fix things, and the discipline to make fixes stick."
    ],
-   "ask": "You type every new client's details into the CRM, the billing system and a spreadsheet. Which waste is that, and what's the smallest fix you could make this week?"
+   "ask": "You type every new client's details into the CRM, the billing system and a spreadsheet. Which waste is that, and what's the smallest fix you could make this week?",
+   "scenario": "Every week, you retype the same meeting details into Elias's calendar, the room booking system and a confirmation email. What's the smallest Kaizen fix you could make this week?"
   }
  },
  "6::Root Cause Analysis Basics": {
@@ -392,7 +426,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, ask why, then ask why again about that answer, and keep going.",
     "Finally, check: if we'd fixed this cause earlier, would the problem have been prevented? If not, keep digging."
    ],
-   "ask": "Why isn't 'someone forgot' a root cause?"
+   "ask": "Why isn't 'someone forgot' a root cause?",
+   "scenario": "A client received another client's invoice by email. The first explanation is 'wrong email address picked.' Ask 'why' five times. Where do you end up?"
   },
   "p2": {
    "why": "'Human error' is where the analysis starts, not where it ends.",
@@ -401,7 +436,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, human error usually points to something missing: a process, clear ownership or training.",
     "Finally, do the analysis while the details are fresh, not weeks later."
    ],
-   "ask": "A filing deadline was missed last week, and the first explanation is 'the person responsible forgot.' Let's use the five whys out loud to get to something we can fix."
+   "ask": "A filing deadline was missed last week, and the first explanation is 'the person responsible forgot.' Let's use the five whys out loud to get to something we can fix.",
+   "scenario": "A court filing was late, and the team concludes 'human error, the assistant forgot.' As the person reviewing it, what questions would you ask to find the real cause?"
   }
  },
  "6::Operational Optimization": {
@@ -415,7 +451,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, write it up as the standard, once the automation and owner are settled.",
     "Finally, track just a few real measures on a regular schedule."
    ],
-   "ask": "What's one task you still do completely by hand?"
+   "ask": "What's one task you still do completely by hand?",
+   "scenario": "Every Friday, you spend two hours compiling a status report from four spreadsheets. Walk through automate, own and standardize for this task."
   },
   "p2": {
    "why": "A measurement with no owner is just a number on a page.",
@@ -425,7 +462,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep it to four or five, each with a target and an owner.",
     "Finally, review them regularly and act on trends, not single bad days."
    ],
-   "ask": "Every Monday you build a matter status report by hand from five spreadsheets. Apply automate, own and standardize, and name the one measure you'd track."
+   "ask": "Every Monday you build a matter status report by hand from five spreadsheets. Apply automate, own and standardize, and name the one measure you'd track.",
+   "scenario": "Elias wants to know whether the office is running well. Pick four measures you'd track, with a target and an owner for each."
   }
  },
  "6::The KPI Dashboard Template": {
@@ -439,7 +477,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, treat procedures as living documents that get reviewed and updated.",
     "Finally, when a measure keeps missing its target, update the procedure behind it."
    ],
-   "ask": "Which measure do you think is hardest to hit consistently?"
+   "ask": "Which measure do you think is hardest to hit consistently?",
+   "scenario": "Build a first version of Elias's office dashboard: one measure each for executive productivity, client service, operations and compliance, with a target for each."
   },
   "p2": {
    "why": "A number that keeps missing its target usually means the procedure needs fixing, not the people.",
@@ -449,7 +488,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, client service: replies within four business hours and no missed follow-ups.",
     "Finally, operations: invoices out within three days of month-end, and procedures reviewed at least every six months."
    ],
-   "ask": "Your dashboard shows client response time averaging seven hours against a four-hour target, for three months running. What does that tell you, and which procedure do you review first?"
+   "ask": "Your dashboard shows client response time averaging seven hours against a four-hour target, for three months running. What does that tell you, and which procedure do you review first?",
+   "scenario": "The dashboard shows invoices going out eight days after month-end, against a three-day target, for four months running. Before blaming anyone, what do you look at?"
   }
  },
  "6::SOP Architecture & Trigger Mapping": {
@@ -462,7 +502,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, write the steps as a numbered list, a flowchart or a checklist, never as a paragraph.",
     "Finally, name the trigger event, like 'whenever a new filing deadline arrives.'"
    ],
-   "ask": "What event should make someone reach for a procedure?"
+   "ask": "What event should make someone reach for a procedure?",
+   "scenario": "The firm needs a procedure for handling a new client's first payment into the trust account. Define the trigger, the scope and the first three steps."
   },
   "p2": {
    "why": "Every procedure needs an owner, an ID, a version number and a trigger.",
@@ -473,7 +514,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, give it an ID and version number from the start.",
     "Finally, keep it short enough to follow in the moment. A checklist beats a manual nobody opens."
    ],
-   "ask": "You're writing a procedure for last-minute court filing deadlines. What's the trigger, and what must the first three steps cover to be useful in the moment?"
+   "ask": "You're writing a procedure for last-minute court filing deadlines. What's the trigger, and what must the first three steps cover to be useful in the moment?",
+   "scenario": "An existing procedure for courier deliveries has no owner, no version number and no trigger. It was last updated two years ago. What do you add, and who do you ask?"
   }
  },
  "6::Hybrid Screen-Recording Workflow (Loom + Text)": {
@@ -486,7 +528,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, store both together, with the video link at the top and the steps below.",
     "Finally, keep each recording to one process, not several."
    ],
-   "ask": "Which of your processes would be easier to show than to write down?"
+   "ask": "Which of your processes would be easier to show than to write down?",
+   "scenario": "You need to teach a temp how to submit an expense report in the firm's finance system, which has six screens. Plan the recording and the written steps that go with it."
   },
   "p2": {
    "why": "An outdated recording is worse than no recording, because it teaches the wrong thing.",
@@ -497,7 +540,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, make recordings easy to open, without special logins.",
     "Finally, use this format only where it helps. Simple procedures are clearer as text."
    ],
-   "ask": "You need to document a multi-screen expense process with confusing approval routing. Video plus text, or text alone? What decides it?"
+   "ask": "You need to document a multi-screen expense process with confusing approval routing. Video plus text, or text alone? What decides it?",
+   "scenario": "The firm updated its billing software last month. A temp followed an old screen recording and submitted invoices the wrong way. What should have happened when the software changed?"
   }
  },
  "6::Maintenance, Auditing & Version Control": {
@@ -510,7 +554,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, update it outside the schedule when something triggers it: a new law, a better method, an error, new software or confused staff.",
     "Finally, measure whether it's followed, with real numbers like error rates."
    ],
-   "ask": "How would you know if someone was working from an out-of-date procedure?"
+   "ask": "How would you know if someone was working from an out-of-date procedure?",
+   "scenario": "You're reviewing the firm's procedures for the quarter. One references a courier company the firm stopped using, and another is missing a step added after an incident. What do you update, and how do you log it?"
   },
   "p2": {
    "why": "An audit finding that never makes it back into the procedure will happen again.",
@@ -521,7 +566,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, after an audit finds a gap, actually update the procedure.",
     "Finally, give each procedure an owner."
    ],
-   "ask": "An audit finds three people following three slightly different versions of the same filing procedure without realizing it. What does that tell you, and what do you change?"
+   "ask": "An audit finds three people following three slightly different versions of the same filing procedure without realizing it. What does that tell you, and what do you change?",
+   "scenario": "Two assistants are following two different versions of the new-client procedure, both labelled 'v1.' How did that happen, and how do you fix it?"
   }
  },
  "6::Change Management for New SOPs": {
@@ -533,7 +579,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, introduce it properly, with a walkthrough or a short training moment.",
     "Finally, check afterwards that it's actually being followed."
    ],
-   "ask": "Why do you think people resist a new process?"
+   "ask": "Why do you think people resist a new process?",
+   "scenario": "You've written a new procedure for logging calls from clients. The team has used sticky notes for years. Plan the rollout: what do you explain, how do you show it and how do you check it's working?"
   },
   "p2": {
    "why": "Quietly editing the shared document isn't a rollout.",
@@ -542,7 +589,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, most people won't notice a silent edit until they've already done it the old way.",
     "Finally, involve the people who'll use it, so it doesn't feel imposed."
    ],
-   "ask": "You've finished a revised filing procedure that fixes a real, recurring error, but the team has done it the old way for two years. What's your rollout plan beyond sharing the document?"
+   "ask": "You've finished a revised filing procedure that fixes a real, recurring error, but the team has done it the old way for two years. What's your rollout plan beyond sharing the document?",
+   "scenario": "You updated the shared travel-booking procedure on Monday without telling anyone. On Wednesday, three bookings were done the old way. What would you do differently?"
   }
  }
 });
