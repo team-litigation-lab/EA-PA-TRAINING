@@ -4,813 +4,812 @@
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "2::Bulletproof Basics": {
   "p1": {
-   "why": "Three basics decide whether an executive trusts you, and the skill isn't knowing them; it's doing them on a chaotic Tuesday.",
-   "talk": "The slide shows the three. Inbox Zero and triage: every email sorted on first read, with drafts in the executive's own voice so they only hit Send. Travel logistics: not just a flight, but the what-if plan, so the 4 PM is already on hold if the 2 PM is cancelled. And the meeting lifecycle: you move from taking minutes to driving outcomes.",
+   "why": "Three everyday basics decide whether an executive trusts us: the inbox, the travel backup plan and the full life of a meeting.",
+   "talk": "None of this is glamorous, and that's the point. An executive judges us on whether the ordinary things always go right. The inbox gets sorted on the first read, so nothing sits waiting. Travel comes with a plan B already in place, so a cancelled flight is an inconvenience, not a crisis. And meetings don't end when everyone leaves the room; we set them up beforehand and chase the follow-ups afterwards.",
    "walk": [
-    "First, sort every email on first read into Action, Information or Delegation. Nothing sits unsorted.",
-    "Next, draft replies in the executive's voice, so all they do is send.",
-    "Then, for travel, book the main option and build the what-if plan next to it.",
-    "After that, for meetings, set the agenda before the meeting, not after.",
-    "Finally, track every deliverable until it's actually done, not just written down."
+    "First, as each email arrives, we decide straight away whether it needs action, is just for information, or should go to someone else.",
+    "Next, where it makes sense, we draft the reply in the executive's own voice, so all he has to do is press send.",
+    "Then, when we book travel, we line up the backup too. If the 2 p.m. flight is cancelled, the 4 p.m. is already on hold.",
+    "After that, we set the meeting agenda before the meeting, which is how we go from taking notes to shaping the result.",
+    "Finally, after the meeting, we follow every action item through until it's actually done, not just written down."
    ],
-   "ask": "Which of these three do you already do well, and which one is still more of an intention?"
+   "ask": "Of these three, which do you already do well, and which is still more of an intention?"
   },
   "p2": {
-   "why": "Consistency under pressure is what makes the basics bulletproof.",
-   "talk": "These basics sound simple. What builds trust is doing them the same way on a chaotic Tuesday as on a quiet Friday. Anyone can do Inbox Zero on a slow day.",
+   "why": "Doing the basics on a calm Friday is easy. Doing them the same way on a chaotic Tuesday is what earns trust.",
+   "talk": "Anyone can keep a tidy inbox when the day is quiet. The difference shows when three things go wrong at once and we still sort every email, still line up the backup flight and still send the meeting follow-ups. That kind of consistency is what makes an executive stop double-checking our work. And the fix for a weak area is almost never a good intention. It's a small, specific habit we actually do every day.",
    "walk": [
-    "First, remember that trust comes from consistency, not from the occasional heroic day.",
-    "Finally, be honest about which basic is your weakest, and turn it into a habit, not a good intention."
+    "First, the aim is consistency under pressure, not perfection on quiet days.",
+    "Finally, we improve by picking one real habit, not a resolution."
    ],
    "ask": "Pick the basic you're weakest on today. What's one real habit, not an intention, that would fix it this week?"
   }
  },
  "2::The Three C's of Managing Up": {
   "p1": {
-   "why": "Every update you send gets tested on three things: is it clear, is it consistent, and can Elias rely on it?",
-   "talk": "Those are the Three C's. Clarity means no vague messages: say what's happening and what you need. Consistency means the same standard procedure every time, so outcomes are predictable. Credibility means your recommendations are accurate and reliable, every time, no exceptions.",
+   "why": "Every update we send gets judged on three things: is it clear, is it consistent, and can he rely on it?",
+   "talk": "Managing up sounds like a fancy phrase, but it mostly comes down to how we communicate with the person we support. Clarity means he never has to guess what we're telling him or what we need. Consistency means we do things the same way every time, so he knows what to expect. And credibility means that when we say something, it's true. That one matters most.",
    "walk": [
-    "First, check the update for clarity: does it say exactly what's happening and what you need?",
-    "Next, apply consistency: use your usual procedure, even when the day is busier than normal.",
-    "Then, when the C's pull against each other, protect credibility. A fast, unclear answer is worse than a slightly slower, reliable one.",
-    "After that, if clarity slips under pressure, slow down and restate the core ask before you send.",
-    "Finally, review your recent messages against all three now and then. This habit decays quietly."
+    "First, before sending an update, we check it's clear: does it say exactly what's happening and what we need?",
+    "Next, we check it's consistent: are we using our usual approach, not something improvised because today's busy?",
+    "Then, if speed and reliability pull against each other, reliability wins. A quick answer that's wrong is worse than a slightly slower one that's right.",
+    "After that, when we're under pressure and clarity starts slipping, we slow down and restate the main point before we hit send.",
+    "Finally, every so often we reread our own recent messages, because these habits fade quietly when we're busy."
    ],
-   "ask": "Which of the three C's collapses first when you're overwhelmed?"
+   "ask": "When you're overwhelmed, which of the three slips first for you?"
   },
   "p2": {
-   "why": "One wrong \"it's done\" costs more trust than ten honest \"confirming by noon\".",
-   "talk": "The slide restates the three C's, and Go Deeper shows what each one looks like in a real update.",
+   "why": "One wrong 'it's done' costs more trust than ten honest 'confirming by noon's.",
+   "talk": "Here's what the three C's sound like in real life. Clarity is opening with the status and the ask: 'The filing is ready; I need your signature by 3.' Consistency is sending the daily brief in the same format every day, so he always knows where to look. And credibility is admitting when we're not sure: 'I believe it's done, and I'll confirm by noon.' That honesty is what makes him believe us when we say something is finished.",
    "walk": [
-    "First, clarity in practice: open with the status and the ask. \"The filing is ready; I need your signature by 3 PM.\" Context goes below.",
-    "Next, consistency in practice: use the same format for recurring updates, so the executive knows exactly where to look.",
-    "Finally, credibility in practice: if you're not sure, say so and give a time you'll confirm by."
+    "First, clarity means the status and the ask come first, with the background after.",
+    "Next, consistency means regular updates always look the same.",
+    "Finally, credibility means saying 'I'll confirm by' when we're not certain."
    ],
-   "ask": "Elias asks, \"Is the Meridian binder at the courthouse?\" You think the courier picked it up, but you haven't confirmed. Write the reply that protects your credibility."
+   "ask": "Try this one: Elias asks, 'Is the Meridian binder at the courthouse?' You think the courier picked it up, but you haven't confirmed. What's the reply that protects your credibility?"
   }
  },
  "2::Credibility Is Earned, Not Claimed": {
   "p1": {
-   "why": "You can't claim credibility; Elias gives it to you, one reliable week at a time.",
-   "talk": "The slide shows four things credibility is built from. Operational reliability: accuracy, follow-through, on-time work, no drama. The No-Surprises Rule: the executive is never blindsided by something you knew. Judgment under pressure: small decisions that quietly carry financial, legal or reputational weight. And discretion, especially around investors, legal matters, family and deals.",
+   "why": "We can't announce that we're credible. The executive gives us credibility, one reliable week at a time.",
+   "talk": "Credibility comes from a few things done over and over. We're accurate, we follow through and we're on time. We never let the boss be surprised by something we already knew. We treat small decisions carefully, because some of them quietly carry money, legal or reputation risk. And we're discreet, especially around investors, legal matters, family life and deals.",
    "walk": [
-    "First, build reliability: accurate, followed through and on time, every time.",
-    "Next, apply the No-Surprises Rule. If you knew about it, the executive hears about it, even if it seemed minor.",
-    "Then, treat every small decision as if it might matter, because the weight isn't always obvious at the time.",
-    "After that, make discretion your default in the categories where a slip is hardest to undo.",
-    "Finally, know that damaged credibility isn't fixed by one good week."
+    "First, we build it through reliability: accurate, finished and on time, every time.",
+    "Next, we live by the no-surprises rule. If we know about something, he knows about it too, even if it seems minor.",
+    "Then, we treat small decisions as if they might matter, because we can't always tell which ones will.",
+    "After that, discretion is our default, especially around investors, legal matters, family and deals.",
+    "Finally, if we ever damage that trust, we rebuild it steadily over time. One good week doesn't undo a bad one."
    ],
-   "ask": "What does the No-Surprises Rule mean in practice, in your own words?"
+   "ask": "In practice, what does the no-surprises rule actually look like on a normal day?"
   },
   "p2": {
-   "why": "Lost credibility comes back slowly, in proportion to how much was lost.",
-   "talk": "This slide covers what credibility is really for and the warning that comes with it.",
+   "why": "Lost credibility comes back slowly, roughly in proportion to how much was lost.",
+   "talk": "Credibility is what lets us speak up to the executive with confidence. It comes only from doing the work well and showing good judgment, never from telling people how good we are. It also works a bit like a bank balance. Small mistakes take a small withdrawal; a big one can empty the account, and then it takes months of steady deposits to build it back.",
    "walk": [
-    "First, credibility is the currency that lets you manage up with confidence, and you earn it through execution and judgment, never self-promotion.",
-    "Next, once it's damaged, it takes a sustained track record to rebuild, roughly matching the damage.",
-    "Finally, small, undramatic decisions often carry the most weight."
+    "First, credibility is earned through consistent work, never self-promotion.",
+    "Next, rebuilding it takes a track record, not an apology.",
+    "Finally, the small, quiet decisions are often the ones that carry the most weight."
    ],
-   "ask": "Think of a real moment, from any job, when a small decision turned out to carry financial, legal or reputational risk. What told you it mattered, and what would you do differently now?"
+   "ask": "Think of a real moment, from any job and kept anonymous, when a small decision turned out to carry real risk. What told you it mattered?"
   }
  },
  "2::Reframing Reactive Language": {
   "p1": {
-   "why": "\"I couldn't reach them\" is a problem; \"I couldn't reach them, so I'm trying their office line at 2\" is a plan.",
-   "talk": "The core principle is to turn reactive language into forward-looking language. The diagram shows it: reactive language reports a problem. Forward-looking language says what you're doing next.",
+   "why": "'I couldn't reach them' is a problem. 'I couldn't reach them, so I'm calling their office line at 2' is a plan.",
+   "talk": "The words we choose tell the executive whether we're handing him a problem or handling it. Reactive language reports what went wrong and stops there, and it quietly asks him to rescue us. Forward-looking language says the same fact and then says what we're doing about it. It's a small shift in wording, but it changes how he sees us.",
    "walk": [
-    "First, find the reactive phrase in your draft, the one that reports a problem with no next move.",
-    "Next, rewrite it to lead with what you're doing next.",
-    "Then, check it against the three C's: is it still clear and in your usual structure?",
-    "After that, read it back and ask: does this sound like a status report, or a request to be rescued?",
-    "Finally, practice on a real message from this week, not a made-up one."
+    "First, we spot the reactive phrase in our draft, the one that reports a problem and stops.",
+    "Next, we rewrite it to lead with what happens next, not just what didn't work.",
+    "Then, we check it still passes the three C's: clear, consistent and reliable.",
+    "After that, we reread it and ask: does this sound like a status report, or a plea for help?",
+    "Finally, we practise on real messages from this week, because that's how the habit sticks."
    ],
    "ask": "What's one reactive phrase you catch yourself using?"
   },
   "p2": {
    "why": "Swap the report for an action, the blame for a plan, and the open question for a recommendation.",
-   "talk": "Go Deeper gives you a reframing toolkit with three swaps you can use today.",
+   "talk": "Here are three quick swaps to keep in your pocket. Instead of 'I couldn't reach the client', say 'The client hasn't replied; I've emailed and I'll call again at 2.' Instead of 'The vendor messed up the order', say 'The order arrived incomplete; a replacement is confirmed for Thursday.' And instead of 'What should I do about the conflict?', say 'Two options: move the call or send someone else. I recommend moving it.'",
    "walk": [
-    "First, swap reports for actions: \"The client hasn't responded; I've emailed and will call again at 2 PM.\"",
-    "Next, swap blame for plans: \"The order arrived incomplete; the replacement is confirmed for Thursday.\"",
-    "Finally, swap open questions for decisions: \"Two options: move the call or send a delegate. I recommend moving the call.\""
+    "First, we turn reports into actions.",
+    "Next, we turn blame into a plan.",
+    "Finally, we turn open questions into choices with a recommendation."
    ],
-   "ask": "Let's try it live. Two or three of you, take the opening line of a real message you sent this week and rewrite it forward-looking, out loud."
+   "ask": "Let's go around the room. Two or three people: take the opening line of a real message you sent this week and rewrite it, live, so it looks forward."
   }
  },
  "2::Language Signals Level": {
   "p1": {
-   "why": "Same fact, different level, and the difference is structure plus a recommendation.",
-   "talk": "The words you use show which identity you're working from. A helper reports facts and waits. A force multiplier reports the same facts already framed with a recommendation or a next step.",
+   "why": "Two assistants can pass on the same fact and sound like they work at completely different levels.",
+   "talk": "The words we use show whether we're a helper or what we'll call a force multiplier, someone who makes the executive more effective. A helper passes on the fact and waits. A force multiplier passes on the same fact, already organised, with a suggested next step. For example, a helper says, 'They want to meet.' A force multiplier says, 'They've asked to meet. We can decline, send someone else or meet with conditions. I'd suggest sending someone.'",
    "walk": [
-    "First, the helper says, \"They want to meet.\" The force multiplier says, \"They're requesting a meeting. We can decline, delegate or meet with conditions. I recommend delegating.\"",
-    "Next, the helper asks, \"Should I respond?\" The force multiplier says, \"I've drafted a response that holds our position without conceding liability. Please review.\"",
-    "Finally, practice converting your own messages. The shift is almost always adding structure and a recommendation, not adding length."
+    "First, compare 'They want to meet' with a message that lays out the options and recommends one.",
+    "Next, compare 'Should I respond?' with 'I've drafted a reply that holds our position without admitting anything. Could you take a look?'",
+    "Finally, we practise turning our own recent messages from the first style into the second. It's usually about adding structure and a suggestion, not more words."
    ],
-   "ask": "Which helper phrase do you catch yourself using most?"
+   "ask": "Which helper phrase do you catch yourself using most often?"
   },
   "p2": {
-   "why": "The phrasing has to follow real judgment, not replace it.",
-   "talk": "This slide is the honest warning that comes with the language shift.",
+   "why": "The confident phrasing only works if the thinking behind it is real.",
+   "talk": "It would be easy to take away the wrong lesson here and just start sounding more confident. That backfires. If we recommend something without having actually looked into it, we'll be caught out, and that damages trust more than a plain question would have. The words are a sign of the work we've done. So we do the thinking first, and the better language follows naturally.",
    "walk": [
-    "First, this isn't about sounding impressive. It's about doing more of the thinking before the message goes out.",
-    "Finally, the pitfall: copying the confident language without doing the analysis underneath it."
+    "First, this isn't about sounding impressive. It's about doing more of the thinking before we send.",
+    "Finally, the trap is copying the confident style without the real analysis behind it."
    ],
-   "ask": "Take this message: \"Opposing counsel emailed about the deposition.\" Rewrite it the force-multiplier way. What did you have to find out first?"
+   "ask": "Take this message: 'Opposing counsel emailed about the deposition.' Rewrite it the force-multiplier way. What did you need to find out first?"
   }
  },
  "2::Communication Mastery": {
   "p1": {
-   "why": "A message is mastered when it lands right the first time, with no follow-up needed to explain it.",
-   "talk": "The slide shows four principles. Clarity over cleverness: the point goes in the first sentence. Match the medium: a quick confirmation is a text; a sensitive decision deserves a call. Active listening: repeat back what you heard before you act. And read the room: tone flexes with the executive's mood, but the facts don't.",
+   "why": "A message is only done well if it lands right the first time, without a follow-up to explain what we meant.",
+   "talk": "There are four habits behind that. Say the point in the first sentence instead of making people dig for it. Pick the right channel: a quick confirmation can be a text, but a sensitive decision deserves a call. Repeat back what we heard before acting on it, because most misunderstandings start with an assumption. And read the mood before we deliver news. The facts stay the same, but the tone can adjust.",
    "walk": [
-    "First, before sending, check that the point is in the first sentence.",
-    "Next, pick the right channel for the message.",
-    "Then, repeat instructions back in your own words before you act on them.",
-    "After that, adjust your tone to the room without changing the facts.",
-    "Finally, when a message misfires, work out which one failed: clarity, channel or tone."
+    "First, before sending, we check the main point is in the first sentence.",
+    "Next, we choose the channel to match the message, a text for quick things and a conversation for sensitive ones.",
+    "Then, we repeat back what we were told before acting on it.",
+    "After that, we read the room and adjust our tone, without changing the facts.",
+    "Finally, when a message gets misread, we work out why: was it unclear, the wrong channel or the wrong tone?"
    ],
-   "ask": "When did one of your messages get misread, and what went wrong?"
+   "ask": "When has a message of yours been misread? What went wrong?"
   },
   "p2": {
-   "why": "Vague, or in the wrong channel: that's where most breakdowns start.",
-   "talk": "This slide is about what mastery really means and where it usually breaks.",
+   "why": "Most breakdowns start one of two ways: the message was too vague, or it went through the wrong channel.",
+   "talk": "Being good at communication isn't about sounding polished. It's about the message working the first time. When things go wrong between an assistant and an executive, it's usually because the message didn't give enough to act on, or because something urgent or sensitive went by email when it needed a phone call. Naming which one it was tells us exactly what to fix next time.",
    "walk": [
-    "First, mastery isn't sounding polished; it's the message landing correctly the first time.",
-    "Next, most breakdowns come from one of two things: the message was too vague to act on, or it went through the wrong channel for how urgent or sensitive it was.",
-    "Finally, when something is misread, name the failure: clarity, channel or tone."
+    "First, the goal is for the message to land correctly the first time.",
+    "Next, the usual culprits are vague wording or the wrong channel for the urgency.",
+    "Finally, when something misfires, we name whether it was clarity, channel or tone."
    ],
-   "ask": "You texted Elias, \"call moved, all good,\" about a client meeting, and he showed up at the original time. Was that a clarity, channel or tone problem, and what should the message have said?"
+   "ask": "You texted Elias 'call moved, all good' about a client meeting, and he turned up at the original time. Was that a clarity, channel or tone problem, and what should the message have said?"
   }
  },
  "2::Executive Presence": {
   "p1": {
-   "why": "Presence is built in routine moments, long before a crisis tests it.",
-   "talk": "Three qualities are on this slide. Composed under pressure: your calm is often the only calm in the room, and panic spreads just as fast. Decisive in ambiguity: make the reasonable call and own it instead of freezing. Credible in small moments: a clear email and a clean handoff build presence every day.",
+   "why": "Presence is built in ordinary moments, long before a crisis tests it.",
+   "talk": "When something goes badly wrong, people look around the room to see how worried they should be. If we're calm, that spreads, and so does panic. Presence also means making a sensible decision when nobody has told us exactly what to do, rather than freezing and waiting to be rescued. And it's built through small things, like a clear email or a smooth handover, so that when a real crisis comes, people already trust us.",
    "walk": [
-    "First, stay composed on purpose. Your calm, or your panic, is contagious.",
-    "Next, when nobody tells you what to do, make the reasonable call and own it.",
-    "Then, build credibility in the small, routine moments.",
-    "After that, deliver bad news calmly, specifically and accurately, without minimizing it or sounding anxious.",
-    "Finally, remember the payoff: people stop feeling the need to double-check you."
+    "First, we stay calm on purpose, knowing that our mood spreads to everyone else.",
+    "Next, when no one has told us what to do, we make a reasonable decision and take ownership of it.",
+    "Then, we earn trust in small daily moments, like clear emails and tidy handovers.",
+    "After that, when we give bad news, we're calm, specific and accurate, without playing it down or sounding anxious.",
+    "Finally, we remember why it matters: an assistant with presence is someone nobody feels they need to double-check."
    ],
-   "ask": "Who have you worked with who stayed calm when everything went wrong? What did they actually do?"
+   "ask": "Think of someone who stayed calm when everything went wrong. What did they actually do?"
   },
   "p2": {
    "why": "Calm, specific and accurate: that's what presence sounds like.",
-   "talk": "This slide sharpens what presence is and what destroys it.",
+   "talk": "Presence isn't about acting like the executive or trying to seem important. It's about people trusting our judgment, whether that's in a meeting, on a call or in the corridor. The quickest way to lose it is visible panic, or not knowing basic facts about our own work. The quickest way to build it is staying clear and precise when things are tense.",
    "walk": [
-    "First, presence isn't imitating the executive; it's being someone whose judgment people trust.",
-    "Next, the fastest way to lose it is visible panic or uncertainty about basic facts. The fastest way to build it is calm, specific, accurate communication under pressure.",
-    "Finally, it ties straight back to managing up: an EA with presence makes the executive's life easier."
+    "First, presence means others trust our judgment, not that we copy the boss.",
+    "Next, panic and fuzzy facts lose it fastest; calm, precise communication builds it.",
+    "Finally, it makes the executive's life easier, because nobody needs to check up on us."
    ],
-   "ask": "In pairs, 30 seconds each: tell Elias the court reporter for tomorrow's 9 AM deposition just cancelled. Deliver it calmly, with the facts and your next step."
+   "ask": "Pair up, thirty seconds each. You have to tell Elias the court reporter for tomorrow's 9 a.m. deposition just cancelled. Say it calmly, with the facts and your next step."
   }
  },
  "2::Managing Constant Executive Exposure": {
   "p1": {
-   "why": "Your job includes scanning routine-looking things for risk.",
-   "talk": "Senior executives live with constant exposure: legal risk, compliance risk, public perception, stakeholder scrutiny and brand vulnerability, all at once. So the assistant's job isn't only support; it's catching what could become a problem before it does.",
+   "why": "Part of our job is spotting risk hiding inside things that look routine.",
+   "talk": "A senior executive is exposed all the time: to legal risk, rules and regulations, public opinion, investors and the firm's reputation, all at once. Most of that risk doesn't arrive labelled 'dangerous'. It turns up as an ordinary email, a friendly invitation or a contract someone wants signed today. We're often the first person to see it, which makes us the first line of defence.",
    "walk": [
-    "First, flag red-flag emails before they're sent, not after.",
-    "Next, screen invitations for reputational fit before they're accepted.",
-    "Then, make sure contracts go through proper review, not signed off a summary.",
-    "After that, watch compliance calendars actively, not only when reminded.",
-    "Finally, handle sensitive communications with discretion by default."
+    "First, we flag risky emails before they're sent, not after.",
+    "Next, we check invitations for anything that could look bad before they're accepted.",
+    "Then, we make sure contracts get properly reviewed, never signed on the strength of a quick summary.",
+    "After that, we keep an eye on compliance deadlines ourselves, rather than waiting for a reminder.",
+    "Finally, we handle sensitive messages with discretion by default."
    ],
-   "ask": "Which of these five do you actually watch for today?"
+   "ask": "Of those five, which do you actually watch for today, and which would you have missed?"
   },
   "p2": {
-   "why": "Exposure management starts with whoever sees the request first, and that's often you.",
-   "talk": "This slide is about a change of mindset, from finishing tasks to scanning them.",
+   "why": "Managing risk starts with whoever sees the request first, and that's often us.",
+   "talk": "This is a different way of working from simply ticking off tasks. We're reading everything with half an eye on what could go wrong. The trap is thinking that's the lawyers' job, or compliance's job. By the time it reaches them, it might be too late. If something makes us pause, we flag it.",
    "walk": [
-    "First, this is different from task completion. It means looking for risk in things that look routine.",
-    "Finally, the pitfall: assuming exposure is legal's or compliance's job. It starts with the first person who sees it."
+    "First, we scan routine-looking work for risk, not just finish it.",
+    "Finally, we treat risk as everyone's job, starting with us."
    ],
-   "ask": "Elias is invited to speak on a panel sponsored by a company that's the opposing party in one of the firm's active cases. It arrives as a routine invitation. What do you do?"
+   "ask": "Here's one: Elias is invited to speak on a panel sponsored by a company that's on the other side of one of the firm's active cases. It arrives as a routine invite. What do you do?"
   }
  },
  "2::Stakeholder & Board Update Communications": {
   "p1": {
-   "why": "A board update isn't a status email with a formal tone; it carries governance weight.",
-   "talk": "Board updates are their own genre. They're read by people with formal authority, often reviewed later, and held to a higher standard of precision. You still use Situation, Impact, Recommendation, but boards need more context up front and less informality.",
+   "why": "A board update isn't just a formal status email. It's read by people with real authority, and it has to hold up later.",
+   "talk": "Board members oversee the organisation. They may read our update weeks later, or look back at it if something goes wrong. So it needs more precision and a bit more context than an internal note. We still use the same structure we'd use anywhere: what's happening, what it means and what we recommend. We just give the reader enough background to understand it cold.",
    "walk": [
-    "First, confirm the audience and the distribution list. Outside directors read differently from an internal team.",
-    "Next, lead with the governance bottom line: a decision needed, a risk, or a milestone.",
-    "Finally, run it through the same review discipline as any high-stakes external document."
+    "First, before drafting, we confirm exactly who'll receive it, because outside directors need something different from the internal team.",
+    "Next, we lead with what matters for oversight, whether that's a decision needed, a risk or a milestone, and add only the context they need to act or ask a good question.",
+    "Finally, it gets a second pair of eyes before it goes out, however routine it seems."
    ],
-   "ask": "How would a board update differ from your weekly status email?"
+   "ask": "How would a board update differ from the weekly status email you're used to?"
   },
   "p2": {
-   "why": "Casual imprecision in a board update is a different order of risk than in a Slack message.",
-   "talk": "This slide covers the pitfall and one step people forget.",
+   "why": "Board communication carries real weight. Casual wording that's fine in a chat message can be a genuine risk here.",
+   "talk": "The most common mistake is writing a board update like a normal email, just in a more formal tone. But what the board reads can carry governance and sometimes legal consequences. We also check how confidential it is before we write it, because some board material can't even be shared with other people inside the firm.",
    "walk": [
-    "First, the pitfall: treating a board update like an internal status email with a more formal tone.",
-    "Finally, confirm the confidentiality classification before drafting. Some board content is restricted even from other internal teams."
+    "First, we treat a board update as its own kind of document, not a dressed-up status email.",
+    "Finally, we confirm how confidential it is before drafting."
    ],
-   "ask": "You're drafting a board update on a project that's six weeks behind. What do you include so the board gets an accurate picture, without downplaying the delay or causing unnecessary alarm?"
+   "ask": "You're asked to draft a board update on a project that's six weeks behind. What do you include so the board gets an honest picture without either downplaying it or causing panic?"
   }
  },
  "2::Investor Briefing Preparation": {
   "p1": {
-   "why": "Never let an unconfirmed number reach an investor.",
-   "talk": "Investors judge two things: what you report, and, quietly, the competence of whoever prepared it. This is where decision compression and cognitive relief matter most. The executive walking into that meeting needs the material distilled, not raw.",
+   "why": "Investors judge both what's in the briefing and how well it was prepared.",
+   "talk": "When an executive walks into an investor meeting, every number will be tested, and so will the competence of whoever prepared the materials. Our job is to make sure he walks in with the material condensed and checked, not a pile of raw documents. This is where taking weight off the executive matters most.",
    "walk": [
-    "First, confirm exactly what the briefing needs to cover and in what format. Investor materials often follow a set template.",
-    "Next, pull every figure from verified, primary sources only.",
-    "Finally, give the executive a short pre-brief that flags anything likely to draw a tough question."
+    "First, we confirm exactly what the briefing should cover and in what format, because investors often expect a set template.",
+    "Next, we gather every figure from verified, original sources, so no unconfirmed number slips through.",
+    "Finally, we give the executive a short heads-up on anything likely to draw a tough question, so he isn't caught off guard."
    ],
-   "ask": "What question would an investor most likely push on in your firm's last update?"
+   "ask": "Thinking of your own firm's last update, what question would an investor most likely push on?"
   },
   "p2": {
-   "why": "Verified figures only, and ask before sharing anything you're unsure about.",
-   "talk": "Two pitfalls on this slide, and both are expensive.",
+   "why": "Never let an unconfirmed number reach an investor.",
+   "talk": "Numbers put in front of investors get checked, and being wrong costs real credibility. The shortcut to avoid is pulling figures from memory or an old draft. There's also a legal side: there are often rules about what can be told to investors. If we're not sure whether something can be shared, we ask before we send.",
    "walk": [
-    "First, building investor materials from memory or a rough draft instead of current, verified figures.",
-    "Finally, forgetting disclosure rules. Investor communications often carry obligations internal updates don't. When in doubt, escalate."
+    "First, we only use verified, current figures, never memory or a rough draft.",
+    "Finally, when disclosure is in doubt, we escalate rather than guess."
    ],
-   "ask": "While preparing an investor briefing, you notice one figure doesn't match the firm's own recent report. What do you do before the materials go out?"
+   "ask": "While preparing an investor briefing, you notice one figure you were given doesn't match the firm's own recent report. What do you do before the materials go out?"
   }
  },
  "2::From Helper to Force Multiplier": {
   "p1": {
-   "why": "A helper does what they're told; a force multiplier already has the next answer ready.",
-   "talk": "A force multiplier expands the executive's impact by anticipating needs, not just finishing assigned tasks. The diagram shows the growth: from \"I did what I was told\" to \"I already have an answer ready\".",
+   "why": "A helper does what they're told. A force multiplier already has the next answer ready.",
+   "talk": "Here's a simple picture. The executive asks us to book a room. The helper books the room. The force multiplier books the room, sends the invites, prints the agenda and checks whether the client needs parking. That's not overstepping. It's thinking one step ahead about what he's going to need next and having it ready before he asks.",
    "walk": [
-    "First, before a routine task, ask what the executive will need next, and prepare it alongside.",
-    "Next, shift your default from \"I did what I was told\" to \"I already have an answer ready\".",
-    "Then, build it as a habit through consistent three C's work. It accumulates; it's not a switch.",
-    "After that, watch for a request repeating a second or third time. That's the signal to anticipate it.",
-    "Finally, check your recent work: are you still just completing tasks, or showing up with the next step handled?"
+    "First, before a routine task, we ask what the executive will probably need next, and prepare that too.",
+    "Next, we shift from 'I did what I was told' to 'I already have the answer.'",
+    "Then, we build it through steady, reliable work, because it grows over time rather than switching on overnight.",
+    "After that, we watch for requests that repeat. By the second or third time, we should be anticipating them.",
+    "Finally, we check our own work now and then: are we still just finishing tasks, or arriving with the next step done?"
    ],
-   "ask": "Before I give you the definition, what's a force multiplier, in your own words?"
+   "ask": "Before I give you a definition, what do you think a force multiplier is, in your own words?"
   },
   "p2": {
-   "why": "Nobody becomes a force multiplier overnight; it builds from reliable execution.",
-   "talk": "This slide repeats the shift and why it compounds.",
+   "why": "Nobody becomes a force multiplier overnight. It builds up from reliable work.",
+   "talk": "Think of it like compound interest. Each time we deliver clearly, consistently and reliably, the executive trusts us with a bit more. And each time he trusts us with more, we get more chances to anticipate what's next. After a few months, that adds up to a completely different working relationship.",
    "walk": [
-    "First, the shift: from \"I did what I was told\" to \"I already have an answer ready\".",
-    "Next, it's a compounding result of consistent execution, not a switch.",
-    "Finally, you should be able to explain the difference in one sentence, in your own words."
+    "First, the shift is from doing what we're told to having an answer ready.",
+    "Next, it grows from the three C's, used consistently.",
+    "Finally, putting it in your own words is the best test of whether you've understood it."
    ],
-   "ask": "Elias asks you to book a conference room for Thursday's Meridian strategy meeting. What does the helper do, and what does the force multiplier have ready as well?"
+   "ask": "Elias asks you to book a conference room for Thursday's Meridian strategy meeting. What would the helper do, and what would the force multiplier have ready too?"
   }
  },
  "2::The Helper Identity vs. the Force Multiplier Identity": {
   "p1": {
-   "why": "This is a shift in identity, not in title: from support role to strategic operator.",
-   "talk": "The helper seeks approval, avoids owning decisions, waits for instruction, fears overstepping, and measures success by how responsive they are. The force multiplier owns outcomes, frames decisions, anticipates consequences, understands how executives think, and measures success by the leverage they create.",
+   "why": "The biggest change in this role happens in how we see ourselves, not in our job title.",
+   "talk": "Someone in the helper mindset looks for approval, avoids owning decisions, waits for instructions, worries about overstepping and measures success by how fast they reply. Someone in the force multiplier mindset owns the outcome, sets up the decision, thinks about consequences, understands how the executive thinks and measures success by how much more he gets done. Same person, same job; a very different way of showing up.",
    "walk": [
-    "First, notice which identity drives your default. With an unclear request, do you ask \"what should I do?\" or propose an approach?",
-    "Finally, practice framing, not just reporting: attach a recommendation to the facts, even a tentative one."
+    "First, we notice our default when a request is unclear. Do we ask 'What should I do?', or do we suggest an approach and ask for a quick OK?",
+    "Finally, we practise attaching a suggestion to every fact we pass on, even a tentative one."
    ],
-   "ask": "Faced with an ambiguous request, do you usually ask what to do, or propose an approach?"
+   "ask": "When a request is unclear, do you usually ask what to do, or suggest an approach?"
   },
   "p2": {
-   "why": "A helper makes life easier; a force multiplier makes performance stronger.",
-   "talk": "Those sound similar, but they're different bars. And this slide is honest about how long the change takes.",
+   "why": "A helper makes life easier. A force multiplier makes performance stronger.",
+   "talk": "Those sound alike, but they're very different bars. Making life easier means fewer errands for the executive. Making performance stronger means he decides faster and gets better results because we're there. And this isn't something you absorb by hearing it once. It's built request by request, each time choosing to suggest rather than just report.",
    "walk": [
-    "First, it takes real practice. Proposing instead of reporting is built request by request.",
-    "Finally, remember the two bars: easier life versus stronger performance."
+    "First, this takes deliberate practice, one request at a time.",
+    "Finally, the aim is stronger performance, not just a lighter load."
    ],
-   "ask": "Which identity describes how you work right now, and which helper habit will you start replacing this week?"
+   "ask": "Which mindset describes you right now, and which one helper habit will you start replacing this week?"
   }
  },
  "2::Why the Force Multiplier Evolution Is Non-Negotiable": {
   "p1": {
-   "why": "In today's executive world, a pure helper becomes a bottleneck, not through any failing, just through the limits of the role.",
-   "talk": "The environment is high-speed, high-visibility, legally exposed, reputation-sensitive and revenue-driven, all at once. A force multiplier becomes real infrastructure: the executive's decision speed depends on them.",
+   "why": "In today's executive world, an assistant who only helps becomes a bottleneck. It isn't a personal failing; the job has simply outgrown it.",
+   "talk": "Executives today work fast, in public, with legal exposure and money on the line, all at once. If every decision has to wait for them to give us step-by-step instructions, we slow everything down. A force multiplier becomes part of the machinery. The speed at which the executive can decide starts to depend on us.",
    "walk": [
-    "First, recognize the signs of helper mode: waiting for instructions on things you've handled before, needing approval inside your proven judgment, and judging yourself by responsiveness instead of outcomes.",
-    "Finally, shift on purpose: next time a familiar request comes in, handle it with a recommendation attached."
+    "First, we look for signs we're still in helper mode: waiting for instructions on things we've done before, asking permission for decisions we've already shown we can make, or judging ourselves only by how fast we reply.",
+    "Finally, we change it on purpose. The next time a familiar request comes in, we handle it with a recommendation attached."
    ],
-   "ask": "Which sign of helper mode do you recognize in yourself?"
+   "ask": "Which of those helper-mode signs do you recognise in yourself?"
   },
   "p2": {
-   "why": "Being reachable at midnight isn't the same as multiplying anyone's output.",
-   "talk": "This slide heads off two misunderstandings.",
+   "why": "Being reachable at midnight isn't the same as making someone more effective.",
+   "talk": "Let's be careful about two misunderstandings. First, this isn't about overstepping. It's about closing the gap between doing exactly what was asked and making the result better than the literal instruction. Second, being available around the clock isn't the goal. In fact, an assistant who's always on can end up too tired to think ahead, which is the very thing that makes us valuable.",
    "walk": [
-    "First, this isn't overstepping. It's closing the gap between \"I did what was asked\" and \"I made the outcome better\".",
-    "Finally, the pitfall: mistaking constant availability for value. The two can even work against each other."
+    "First, the aim is a better outcome than the literal request, not overstepping.",
+    "Finally, constant availability isn't the same as value, and sometimes it works against it."
    ],
-   "ask": "Elias asks you to book a conference room for a client meeting. You book it. What would the force-multiplier version of that task have looked like?"
+   "ask": "Elias asks you to book a conference room for a client meeting, and you book it. What would the force multiplier version of that same task have looked like?"
   }
  },
  "2::Force Multiplier in the Wild": {
   "p1": {
-   "why": "Here's the force multiplier on a real day: prioritize, coordinate, then close the loop.",
-   "talk": "This is a sequence, and the order matters. The three boxes on the slide are the whole method.",
+   "why": "Here's what being a force multiplier looks like on a real, messy day: sort, coordinate, then close the loop.",
+   "talk": "Picture the day before a big pitch. The client suddenly adds requests that involve three different departments. A helper forwards the emails and hopes. A force multiplier works through it in three steps, always in the same order. First, figure out what's urgent and what depends on what. Then get everyone working from the same place. And finally, make sure every piece actually lands with the client.",
    "walk": [
-    "First, prioritize: work out which requests are most time-sensitive, flag dependencies and summarize the options.",
-    "Next, coordinate: use shared boards and documents with automated reminders across departments.",
-    "Finally, close the loop: assign owners, pull it into one report and confirm delivery to the client."
+    "First, we prioritise: we work out which requests are most time-sensitive, spot what's waiting on something else and summarise the options.",
+    "Next, we coordinate: we put everyone on a shared board or document, with automatic reminders, so nobody's working from an old email.",
+    "Finally, we close the loop: every task gets an owner, it all comes together in one report, and we confirm the client received it."
    ],
-   "ask": "Which of the three steps is easiest to skip when you're rushed?"
+   "ask": "When you're rushed, which of those three steps is easiest to skip?"
   },
   "p2": {
    "why": "The loop isn't closed until every owner has confirmed.",
-   "talk": "The slide gives a worked scenario: a client adds last-minute requests touching three departments the day before a pitch.",
+   "talk": "Let's make it harder. Suppose two of those three departments are in different time zones, and one of them isn't replying. That's where the coordinate step earns its keep. Shared boards and automatic reminders work while we sleep, and a clear owner for each piece means we know exactly who to chase. The job's only done when the client has everything, not when we've sent the last email.",
    "walk": [
-    "First, prioritize: assess urgency and flag what depends on what.",
-    "Next, coordinate: shared boards with automated reminders.",
-    "Finally, close the loop: owners assigned, work consolidated and delivery confirmed."
+    "First, the scenario: last-minute requests across three departments, the day before a pitch.",
+    "Next, the order: prioritise, coordinate, close the loop.",
+    "Finally, the hard part: coordinating across time zones when someone's gone quiet."
    ],
-   "ask": "Two of the three departments are in different time zones, and one isn't responding. You have 90 seconds: how do you run the coordinate step?"
+   "ask": "You've got ninety seconds. Draft how you'd run the coordinate step when two teams are in other time zones and one isn't responding. Then we'll compare notes."
   }
  },
  "2::What Force Multiplier Autonomy Is — and Isn't": {
   "p1": {
-   "why": "Autonomy is earned and defined, never assumed.",
-   "talk": "The slide draws the line. Autonomy is not overstepping, playing executive, replacing leadership or acting without alignment. It is structured empowerment, pre-approved autonomy, smart anticipation and strategic execution. It takes maturity, discretion and calibrated confidence, not just confidence.",
+   "why": "Autonomy is earned and agreed in advance. It's never simply assumed.",
+   "talk": "It's worth being clear about what this isn't. Being a force multiplier doesn't mean overstepping, acting like the boss, replacing the executive's leadership or going off on our own. What it does mean is freedom that's been agreed in advance, thinking ahead intelligently and carrying things out well. It takes maturity and discretion, and confidence that knows its limits.",
    "walk": [
-    "First, before acting on your own on something new, confirm it's inside pre-approved boundaries.",
-    "Finally, if you're in doubt about whether it's yours, treat that doubt as the answer: check first."
+    "First, before we act on our own on something new, we confirm it's inside the limits we've actually been given.",
+    "Finally, if we're unsure whether something is ours to decide, that doubt is a signal. Check first."
    ],
-   "ask": "What's something you've been explicitly pre-approved to handle alone?"
+   "ask": "What's something you've been explicitly cleared to handle on your own?"
   },
   "p2": {
-   "why": "Decisive inside the line, careful at the edge.",
-   "talk": "This slide covers the misuse of the idea and what calibrated confidence means.",
+   "why": "Be decisive inside the line, and careful right at the edge.",
+   "talk": "Here's the trap to watch for. It's tempting to justify a decision afterwards with 'I was just being proactive.' But if it was outside our authority, being proactive doesn't make it okay. Real confidence means making calls quickly and firmly when they're clearly ours, and slowing down to check when we're close to the edge.",
    "walk": [
-    "First, the pitfall: using \"I was being a force multiplier\" to justify a decision outside your scope.",
-    "Finally, calibrated confidence: decisive within your real boundaries, cautious right at their edge."
+    "First, 'I was being a force multiplier' never excuses going outside our scope.",
+    "Finally, good confidence is decisive within the limits and cautious at their edge."
    ],
-   "ask": "A client asks you to push a filing-deadline reminder back a week because \"Elias said it's fine\". You weren't told that. Is acting on it empowerment or overstepping, and what do you do?"
+   "ask": "A client asks you to push a filing deadline reminder back a week because 'Elias said it's fine.' Nobody told you that. Is acting on it empowerment or overstepping, and what do you do?"
   }
  },
  "2::Measuring the Force Multiplier Transformation": {
   "p1": {
-   "why": "\"Reduced response time from two days to four hours\" lands very differently from \"I'm doing well\".",
-   "talk": "This transformation can be measured. A force multiplier cuts executive inbox volume, increases strategic time, reduces last-minute crises, reduces compliance misses, speeds up turnaround and makes stakeholder communication clearer. Naming the metrics turns \"I'm doing a good job\" into proof.",
+   "why": "'I cut response time from two days to four hours' lands very differently from 'I'm doing well.'",
+   "talk": "The good news is that this kind of impact can be measured. When we're working well, the executive's inbox gets smaller, he spends more time on important work, there are fewer last-minute crises and fewer compliance slips, replies go out faster, and messages to other people are clearer. Being able to put a number on even one of those turns a feeling into evidence.",
    "walk": [
-    "First, pick one or two metrics you can realistically track, like inbox volume or response time, and start noting them.",
-    "Finally, when you talk about your value, use the numbers."
+    "First, we pick one or two measures that fit our role, like inbox volume or reply time, and start noting them, even informally.",
+    "Finally, when we talk about our performance, we point to real changes: 'reply time went from this to that.'"
    ],
-   "ask": "Which of these could you actually measure in your role?"
+   "ask": "Which of those could you realistically measure in your role?"
   },
   "p2": {
    "why": "If nobody measures it, nobody sees it.",
-   "talk": "This slide covers two ways people get measurement wrong.",
+   "talk": "A lot of good assistant work is invisible. When we prevent a crisis, nothing happens, and nobody notices. So we can't assume our value is obvious; often someone has to point it out, and that someone is usually us. We don't need to track all six measures, though. We pick the ones that genuinely reflect what we're responsible for.",
    "walk": [
-    "First, the pitfall: assuming your value is obvious. It usually isn't visible unless someone names it.",
-    "Finally, don't force all six metrics. Pick the ones that match your real responsibilities."
+    "First, don't assume the value speaks for itself.",
+    "Finally, choose measures that match your real job, not all six."
    ],
-   "ask": "Which metric would be easiest for you to start tracking this week, and what would a month of it probably show?"
+   "ask": "Which one would be easiest to start tracking this week, and what do you think a month of tracking would show?"
   }
  },
  "2::Strategic Time Engineering": {
   "p1": {
-   "why": "If you can't name what a block of time protects, it isn't protected; it's just unscheduled.",
-   "talk": "This isn't managing a calendar; it's engineering one. Time is capital, and you're the portfolio manager deciding where it goes. The diagram shows the five places it's allocated: revenue, strategic growth, compliance and legal deadlines, reputation-sensitive events, and personal commitments that matter.",
+   "why": "We don't just manage the executive's calendar. We design it, the way an investor decides where money goes.",
+   "talk": "Think of his time as money in a portfolio, with us as the portfolio manager. Some of it should go to work that brings in revenue, some to long-term growth, some to legal and compliance deadlines, some to events where his reputation is on the line, and some to personal commitments that genuinely matter. If we can't say which of those a block of time serves, it isn't protected. It's just empty space waiting to be filled.",
    "walk": [
-    "First, before defending a block, be able to say which of the five categories it serves.",
-    "Finally, treat allocation as an ongoing decision, and revisit whether it still matches what matters."
+    "First, before we defend a block of time, we name what it's for. If we can't, it isn't really protected.",
+    "Finally, we treat the calendar as an ongoing decision, and regularly check it still matches what matters."
    ],
-   "ask": "Which of the five categories gets squeezed first in a busy week?"
+   "ask": "On a busy week, which of those five areas gets squeezed first?"
   },
   "p2": {
-   "why": "Capital gets invested on purpose, not spent as requests arrive.",
-   "talk": "This slide is about when you protect time.",
+   "why": "Investments are made on purpose, not spent as requests come in.",
+   "talk": "The mistake most people make is defending time only after it's been disrupted. By then, the week's already gone. Designing the calendar means deciding up front where the hours should go, then protecting that plan. Thinking of time as capital helps, because nobody sensible spends their savings on whatever asks first.",
    "walk": [
-    "First, the pitfall: protecting time only after something gets disrupted.",
-    "Finally, the reframe: treat time as capital you invest deliberately."
+    "First, the trap is protecting time only after something goes wrong.",
+    "Finally, the mindset is to invest time deliberately, not spend it as requests arrive."
    ],
-   "ask": "Look at a typical week on Elias's calendar. Which category gets the least protection, and why might that be?"
+   "ask": "Look at a typical week on Elias's calendar. Which of the five areas gets the least protection, and why might that be?"
   }
  },
  "2::Time Management Requires Energy Management": {
   "p1": {
-   "why": "A free slot on the calendar isn't the same as available energy.",
-   "talk": "An exhausted executive makes expensive mistakes. Managing time isn't enough if their energy drains faster than the calendar shows. Energy management means preventing meeting overload, building recovery buffers, protecting deep-work time, filtering low-value requests, and spotting what's quietly draining them.",
+   "why": "A free slot on the calendar isn't the same as having the energy to use it.",
+   "talk": "An exhausted executive makes expensive mistakes. The calendar might show an open hour at 6 p.m., but after a full day of mediation, he has nothing left for a demanding call. So as well as managing time, we manage energy. We avoid stacking draining meetings, build in recovery breaks, protect time for focused work, filter out low-value requests and notice which people or commitments quietly wear him down.",
    "walk": [
-    "First, look beyond whether a slot is free. Back-to-back intense meetings compound fatigue even with no conflicts.",
-    "Next, build recovery buffers after the truly demanding events.",
-    "Finally, notice patterns, like which meetings leave the executive depleted, and raise them instead of silently absorbing them."
+    "First, we look beyond whether a slot is technically free, and ask whether back-to-back intense meetings are wearing him out.",
+    "Next, we build recovery breaks after the genuinely demanding events on purpose, not just as gaps between meetings.",
+    "Finally, we notice patterns, like a recurring meeting that always leaves him drained, and we raise it instead of silently putting up with it."
    ],
    "ask": "What does a draining week look like for an executive you've supported?"
   },
   "p2": {
-   "why": "Hybrid roles lose their natural boundaries, so you have to build them.",
-   "talk": "This slide flags the riskiest setup and the most common mistake.",
+   "why": "When one person does both business and personal work, the natural breaks disappear, so we have to create them.",
+   "talk": "Roles that mix business and personal support are the riskiest for energy. At an office, the commute home is a natural break. But when we're also handling his family and his evenings, work can bleed into everything. And the most common mistake of all is seeing an empty slot and assuming he's available, without asking whether he'll have anything left to give.",
    "walk": [
-    "First, hybrid roles, business and personal combined, are the most dangerous for energy, because the boundaries that create recovery time blur.",
-    "Finally, the pitfall: treating an open slot as automatically available without asking whether there's energy left for it."
+    "First, mixed business-and-personal roles need extra care, because the usual boundaries blur.",
+    "Finally, an open slot isn't automatically available. Ask whether he'll have the energy."
    ],
-   "ask": "Elias has a full-day mediation on Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 PM. Where do you put a recovery buffer, and how do you defend it if they push back?"
+   "ask": "Elias has a full-day mediation on Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you put a recovery break, and how do you explain it if they push back?"
   }
  },
  "2::Reducing Cognitive Load for Executives": {
   "p1": {
-   "why": "Never bring a question without options, and never bring options without a recommendation.",
-   "talk": "Executives suffer from decision fatigue. Every open-ended question you send up draws on a limited reserve. The diagram shows it: unfiltered, the reserve is gone by noon; filtered, it's saved for the decisions that matter. A force multiplier does the thinking before it reaches the executive.",
+   "why": "Every open-ended question we send an executive uses up some of his limited decision-making energy.",
+   "talk": "Decision fatigue is real. Each 'What would you like to do?' costs him a little, and by midday there's nothing left for the decisions that really matter. Our job is to do the thinking first: lay out the options, point out the trade-offs, check the risks and think about what could go wrong next. Then he only has to choose. A good line sounds like: 'There are three options; B fits best with this quarter's goals.'",
    "walk": [
-    "First, don't ask \"what do you want to do?\" Say, \"Here are three options. Based on current priorities, Option B fits best.\"",
-    "Finally, before bringing any decision, ask what you'd recommend if you had to decide, and bring that with the options."
+    "First, instead of asking what he wants to do, we give the options and point to the one that fits best.",
+    "Finally, before bringing him any decision, we ask ourselves what we'd recommend if it were our call, and we bring that too."
    ],
-   "ask": "Think of a question you asked your manager this week. What would you have recommended?"
+   "ask": "If you had to make that decision yourself, what would you recommend?"
   },
   "p2": {
-   "why": "A list with no recommendation still leaves all the thinking to them.",
-   "talk": "This slide clears up one worry and names one pitfall.",
+   "why": "A list of options with no recommendation still leaves all the thinking to him.",
+   "talk": "Some assistants worry that recommending something is overstepping. It isn't. He can always choose differently; we've just saved him the legwork. The real mistake is the opposite: a neat, neutral list of choices with no point of view. That looks helpful, but he still has to do all the thinking himself.",
    "walk": [
-    "First, recommending isn't overstepping. The executive can still choose differently.",
-    "Finally, the pitfall: options with no point of view. That leaves the whole load on the executive."
+    "First, giving a recommendation supports his leadership. It doesn't take away his authority.",
+    "Finally, options without a view don't reduce the load."
    ],
-   "ask": "You were about to ask Elias, \"What do you want to do about the Thursday conflict?\" Reframe it live, with three options and your recommendation."
+   "ask": "You were about to ask Elias, 'What do you want to do about the Thursday conflict?' Let's reframe that live, with three options and a recommendation."
   }
  },
  "2::\"If It Happens Twice, It Deserves a System\"": {
   "p1": {
-   "why": "Second time, not the tenth: that's when you build the system.",
-   "talk": "Systems create scale, and scale creates leverage. Helpers finish tasks one at a time; force multipliers design systems so a task stops needing to be solved fresh. The trigger is simple: the second time you do something.",
+   "why": "The second time you do something by hand is the signal to build a system for it, not the fifth or the tenth.",
+   "talk": "Helpers solve the same problem over and over. Force multipliers solve it once, then build something so it never needs solving from scratch again. That's how we scale. And a system doesn't have to be fancy: a checklist, a template or a simple tracker counts. Good candidates are the things that come round every week or month, like the weekly report, travel booking, contract approvals, setting up a new vendor or investor updates.",
    "walk": [
-    "First, when a task repeats, pause before doing it by hand again, and ask what a light system would look like: a checklist, a template or a tracker.",
-    "Finally, the usual candidates are weekly reports, travel booking, contract approvals, vendor onboarding and investor updates, and each system has the same shape: SOP steps, automation, approval checkpoints and escalation triggers."
+    "First, when we notice a task repeating, we pause before doing it by hand again and ask what a simple system would look like.",
+    "Finally, for each repeat task, the system has the same parts: the steps, what could be automated, where approval is needed and when to escalate."
    ],
    "ask": "What have you done twice this month by hand?"
   },
   "p2": {
    "why": "A checklist you actually use is a real system.",
-   "talk": "Two points on this slide: timing and simplicity.",
+   "talk": "The usual mistake is waiting until a task is truly painful before building a system. By then, doing it by hand has already cost hours we'll never get back. And we don't need anything sophisticated. A simple checklist, used every time, beats a clever tool nobody opens.",
    "walk": [
-    "First, the pitfall: waiting until a task is painful before you systemize it. By then it's already cost you.",
-    "Finally, a system doesn't need to be sophisticated. A simple, consistently used checklist counts."
+    "First, the trap is waiting until it hurts before systemising.",
+    "Finally, simple and consistently used beats sophisticated and ignored."
    ],
-   "ask": "Name one task you've done more than twice this month with no system. What would version one look like, built in 15 minutes?"
+   "ask": "Name one task you've done more than twice this month without a system. What would the first version look like if you built it in fifteen minutes?"
   }
  },
  "2::Operational Excellence & Institutional Accountability": {
   "p1": {
-   "why": "Without governance, a high-trust role quietly becomes a high-risk one.",
-   "talk": "The same access and autonomy that make you valuable can create real exposure if they aren't paired with accountability. A force multiplier knows the scope line between business and personal, the spending limits, data separation, escalation rules and approval chains, and works inside them on purpose.",
+   "why": "Without clear rules, a high-trust role quietly becomes a high-risk one.",
+   "talk": "The same access and freedom that make us valuable could cause real damage if nobody's keeping track. So a good assistant knows the rules they work within: what's business and what's personal, how much they can spend, how data is kept separate, when to escalate and who needs to approve what. And they stay inside those rules on purpose, not by luck.",
    "walk": [
-    "First, know your scope boundaries explicitly: what's business, what's personal and where the grey areas are.",
-    "Finally, keep your spending limits and escalation rules written down where you can check them fast."
+    "First, we know our limits clearly, not just by instinct: what's business, what's personal, and where the grey areas are.",
+    "Finally, we keep our spending limits and escalation rules written down somewhere we can check quickly."
    ],
    "ask": "Could you write down your spending limit and escalation rules right now?"
   },
   "p2": {
-   "why": "Clear boundaries protect you when a decision gets questioned later.",
-   "talk": "This slide explains why trust and boundaries aren't in conflict.",
+   "why": "Clear boundaries protect us when a decision gets questioned later.",
+   "talk": "Here's a common misunderstanding: 'He trusts me, so I can decide anything.' Trust and boundaries aren't opposites. The boundaries are what make the trust last. And they protect us as much as him. If a decision is ever challenged, clear written rules show we acted properly.",
    "walk": [
-    "First, the pitfall: treating high trust as unlimited discretion. Boundaries are what make the trust sustainable.",
-    "Finally, accountability protects you as much as the executive. With clear lines, there's no ambiguity later."
+    "First, high trust doesn't mean unlimited freedom.",
+    "Finally, clear rules protect the assistant as well as the executive."
    ],
-   "ask": "Where is your scope genuinely fuzzy, a task or decision where you're not sure whether to decide or escalate? Name it, and say what you'd need clarified."
+   "ask": "Where is your own boundary genuinely fuzzy, a kind of decision where you're not sure whether to decide or escalate? What would you need clarified?"
   }
  },
  "2::Email Is a Control System, Not Cleanup": {
   "p1": {
-   "why": "Before you act on any email for Elias, know your access level, because acting above it is a boundary problem, not helpfulness.",
-   "talk": "The slide shows three access levels. Full Access: read, respond, archive and send on the executive's behalf. Draft and Review: you draft and flag, and the executive approves before sending. Triage Only: you sort, prioritize and escalate, and the executive responds.",
+   "why": "Before we act on any email for the executive, we need to know exactly what we're allowed to do.",
+   "talk": "There are three levels of access. With full access, we can read, reply, file and send in his name. With draft and review, we prepare replies, but he approves them before they go. With triage only, we sort and flag, and he replies himself. Using a higher level than we've been given isn't being helpful. It's crossing a line.",
    "walk": [
-    "First, confirm which level you actually have. Don't assume from a previous job.",
-    "Next, with Full Access, act inside the rules already agreed.",
-    "Then, with Draft and Review, prepare the reply and wait for approval, even if you're sure it's right.",
-    "After that, with Triage Only, sort and escalate, and resist drafting what nobody asked for.",
-    "Finally, if the level is unclear, ask."
+    "First, before acting on our own, we confirm our level, and we don't assume it's the same as our last job.",
+    "Next, with full access, we handle things in his name, within the rules already agreed.",
+    "Then, with draft and review, we prepare and flag, and wait for his OK, even if we're sure it's right.",
+    "After that, with triage only, we sort and escalate, and resist drafting replies he didn't ask for.",
+    "Finally, if our level isn't clear, we ask rather than guess."
    ],
    "ask": "Which access level do you work under now, if any?"
   },
   "p2": {
-   "why": "Full Access is earned, and only after the rules are written down.",
-   "talk": "Go Deeper spells out when each level is used.",
+   "why": "Full access is earned, and only after the rules are written down.",
+   "talk": "Let's put the three levels in context. Full access is the highest trust, and it only makes sense once the rules for it are written down. Draft and review is common in the first few months, and for legal matters. And a read-and-flag level, where we monitor and surface what matters without replying, is useful for sensitive inboxes or while we're still learning who's who.",
    "walk": [
-    "First, Full Access is the highest trust level, used only once the rules are written down.",
-    "Next, Draft and Review is common in the first months and for legal matters.",
-    "Finally, Read and Flag suits sensitive inboxes, or a new assistant who's still learning the relationships."
+    "First, full access comes after written rules, never before.",
+    "Next, draft and review is the normal starting point, and standard for legal work.",
+    "Finally, read-and-flag suits sensitive inboxes and new relationships."
    ],
-   "ask": "You're on Draft and Review. A client emails at 6 PM asking to confirm tomorrow's 9 AM meeting, and Elias is on a flight. What can you do, and what has to wait for him?"
+   "ask": "You're on draft and review. A client emails at 6 p.m. asking to confirm tomorrow's 9 a.m. meeting, and Elias is on a flight. What can you do now, and what has to wait for him?"
   }
  },
  "2::What High-Performing Inbox Triage Looks Like": {
   "p1": {
-   "why": "High-performing EAs handle 80 to 90 percent of operational email without escalating it.",
-   "talk": "That's the number on the slide. Getting there takes knowing where you're starting from and closing the gap one category at a time.",
+   "why": "Top assistants handle eighty to ninety percent of routine emails themselves, without sending them up the line.",
+   "talk": "That number can sound scary, but think about what's in a typical inbox: confirmations, scheduling, simple questions, updates. Most of it doesn't need the executive's personal attention. The first step is honest: find out how much we handle ourselves today. Then we close the gap one kind of email at a time, while protecting the two things that must never go wrong.",
    "walk": [
-    "First, measure what share of operational email you handle yourself today.",
-    "Next, find the routine categories you're still escalating when you don't need to.",
-    "Then, build the judgment to handle them, and check your calls against what the executive would have wanted.",
-    "After that, guard the two failure modes: never miss a critical deadline, and never risk confidentiality.",
-    "Finally, keep the inbox at or near zero every day as proof the system works."
+    "First, we measure how much we handle ourselves right now, because we can't improve what we haven't measured.",
+    "Next, we spot the routine kinds of email we're still escalating out of habit. Those are the quickest wins.",
+    "Then, we build the judgment to handle them, checking our calls against what he'd actually have wanted.",
+    "After that, as we handle more, we guard the two big risks: never miss a critical deadline, and never breach confidentiality.",
+    "Finally, we keep the inbox at or near zero every day, as visible proof the system's working."
    ],
-   "ask": "Does 80 to 90 percent sound realistic where you work? What's actually stopping you?"
+   "ask": "Does eighty to ninety percent sound realistic where you work? What's actually stopping you?"
   },
   "p2": {
-   "why": "Speed never gets traded for a deadline or for confidentiality.",
-   "talk": "The slide gives the target and the two lines you can't cross.",
+   "why": "Speed is never worth a missed deadline or a confidentiality slip.",
+   "talk": "The target is clear: most routine email handled independently, and the inbox close to empty each day. But two mistakes can wipe out months of trust in a moment. Missing a critical deadline and breaching confidentiality. So as we get faster, those two stay non-negotiable.",
    "walk": [
-    "First, the target: 80 to 90 percent handled independently, inbox near zero daily.",
-    "Finally, no missed critical deadlines and no confidentiality breaches. Either one erases months of trust."
+    "First, the benchmark: eighty to ninety percent handled on our own, inbox near zero.",
+    "Finally, the two failures we never trade for speed: missed deadlines and confidentiality breaches."
    ],
-   "ask": "Look at the last 20 emails you escalated. Which routine categories could you have handled, and what would you need in writing first?"
+   "ask": "Look at the last twenty emails you escalated. Which kinds could you have handled yourself, and what would you need in writing first?"
   }
  },
  "2::Authority & Boundary Management — EA vs. Legal EA": {
   "p1": {
-   "why": "Boundaries are what stop a high-trust role from quietly becoming a high-risk one.",
-   "talk": "Every assistant needs a practiced sense of what they can decide alone. For a Legal EA, there's more: conflict checks, trust accounting and client file access sit on top of the usual business boundaries.",
+   "why": "Knowing what we can decide alone, and what needs approval, is what keeps a trusted role from becoming a risky one.",
+   "talk": "Every assistant has decisions that are theirs and decisions that aren't. For a legal EA, there are extra layers on top of normal business rules: checking for conflicts of interest before a new case opens, handling client money under strict rules, and controlling who sees client files. Mistakes there can have legal consequences for the firm.",
    "walk": [
-    "First, as an EA: decline unauthorized expense approvals, get written confirmation for budget exceptions, write up verbal approvals afterwards, send vendor pressure to procurement, and keep personal and corporate expenses separate.",
-    "Finally, as a Legal EA: decline unauthorized file requests, require a conflict check before any new matter opens, escalate anything over financial limits, document settlement disbursements and follow trust accounting procedures without exception."
+    "First, as a general EA, we politely refuse expense approvals we're not authorised for, get written confirmation for budget exceptions, write up verbal approvals afterwards, send pushy vendors back to the normal process and keep personal and company expenses strictly apart.",
+    "Finally, as a legal EA, we refuse unauthorised requests for client files, insist on a conflict check before any new matter opens, escalate anything over our financial limit, document settlement payments and follow client money rules without exception."
    ],
    "ask": "What's one decision in your role you're sure is yours, and one you'd always escalate?"
   },
   "p2": {
-   "why": "If it carries money or legal weight, a verbal yes gets written down.",
-   "talk": "This slide covers three habits that keep the line firm.",
+   "why": "If it involves money or legal weight, a spoken yes gets written down.",
+   "talk": "A quick 'go ahead' in the corridor is fine for small things. For anything with real financial or legal weight, we confirm it in writing afterwards, so there's a record. Vendors who push us to skip the process will do it again and again, so we redirect them every single time. And for legal EAs, a skipped conflict check isn't a small slip; it can create a problem for the firm that can't be fixed after the fact.",
    "walk": [
-    "First, the pitfall: treating a verbal \"go ahead\" as enough for anything financial or legal.",
-    "Next, vendor pressure to skip the process is a pattern. Redirect to procurement every time.",
-    "Finally, for Legal EAs, a skipped conflict check can create a problem that can't be fixed afterwards."
+    "First, we put verbal approvals in writing when money or legal risk is involved.",
+    "Next, we send vendor pressure back to procurement every time, not just when it's convenient.",
+    "Finally, in legal work, we never skip a conflict check."
    ],
-   "ask": "A vendor insists an invoice be approved today to avoid a late fee, and the approver can't be reached. What do you do, and how does it change if it's a client trust disbursement?"
+   "ask": "A vendor insists an invoice be approved today to avoid a late fee, and the person who normally approves it can't be reached. What do you do, and how does that change if you're a legal EA handling a client trust payment?"
   }
  },
  "2::Proactive Risk Mitigation & Strategic Support — EA vs. Legal EA": {
   "p1": {
-   "why": "The best assistants prevent the crisis instead of just handling it well.",
-   "talk": "Proactive risk work catches a problem before it becomes one. Strategic support is the highest-value work you do: synthesis, analysis and recommendations. Both look different for a general EA and a Legal EA.",
+   "why": "The best assistants stop problems before they happen, and bring insight, not just information.",
+   "talk": "There are two kinds of high-value work here. One is catching problems early: spotting the risk before it turns into a crisis. The other is strategic support: pulling information together, making sense of it and recommending what to do. Both look a little different for a general EA and a legal EA, but the idea is the same.",
    "walk": [
-    "First, EA risk work: check guest lists for reputational risk, catch contract renewals before the deadline, catch typos in press releases, and brief before high-stakes meetings.",
-    "Next, Legal EA risk work: track compliance filings, confirm signing formalities, escalate discovery deadlines, check retention policy before an audit, and catch unsigned engagement letters.",
-    "Then, EA strategic support: an executive dashboard, a 30-day action summary after a board meeting, workflow improvements and stakeholder mapping.",
-    "Finally, Legal EA strategic support: litigation exposure summaries, case chronologies that show evidence gaps, compliance checklists, due diligence trackers and templates that reduce drafting errors."
+    "First, a general EA catches risks like a problem name on a guest list, a contract about to renew, a typo in a press release, a missing briefing before a big meeting or back-to-back critical meetings.",
+    "Next, a legal EA tracks compliance filing dates, checks signing rules on estate documents, watches discovery deadlines, makes sure documents are kept properly before an audit and catches unsigned engagement letters before work starts.",
+    "Then, for strategic support, a general EA builds a dashboard of key numbers, writes a 30-day action summary after a board meeting, tracks follow-ups, suggests better ways of working and maps who has influence before a negotiation.",
+    "Finally, a legal EA prepares summaries of legal exposure for the attorney, organises case timelines to show gaps in evidence, drafts compliance checklists, tracks due diligence and builds templates that cut drafting errors."
    ],
-   "ask": "What's one thing you caught early that would have been a crisis if you hadn't?"
+   "ask": "What's one thing you caught early that would have become a crisis if you hadn't?"
   },
   "p2": {
-   "why": "A crisis that never happened doesn't announce itself, which is exactly why this work gets underinvested.",
-   "talk": "Two cautions on this slide.",
+   "why": "A dashboard that points to what matters is strategy. One that just lists numbers is admin.",
+   "talk": "Prevention has an odd problem: when it works, nothing happens, so nobody notices. That's exactly why it's easy to under-invest in it. And strategic support means making sense of information, not just collecting it. A page of raw figures still leaves the executive to find the story. A dashboard that says 'look at these two things' has done the thinking for him.",
    "walk": [
-    "First, proactive work is invisible when it's done well, so it's easy to do too little of it.",
-    "Finally, strategic support means synthesis. A dashboard that lists numbers is admin; one that shows what needs attention is strategy."
+    "First, prevention is invisible when it works, which is why it gets neglected.",
+    "Finally, real strategic support highlights what needs attention instead of just showing data."
    ],
-   "ask": "Look at your own workload. Which tasks are proactive and which are purely reactive? If the proactive list is short, what would you change?"
+   "ask": "Look at your own workload. Which regular tasks prevent problems, and which just react to them? If the first list is short, what would you change?"
   }
  },
  "2::The Legal VA's Force Multiplier Evolution": {
   "p1": {
-   "why": "It's the same shift as before, applied to deadlines, liability and confidentiality.",
-   "talk": "The slide compares the traditional Legal VA, who waits for instructions, completes tasks, manages the inbox and calendar and formats documents, with the Legal force multiplier, who filters complexity, anticipates legal risk, protects the attorney's time, structures operations and speeds up decisions.",
+   "why": "The move from helper to force multiplier matters even more in legal work, because deadlines, liability and confidentiality raise the stakes.",
+   "talk": "A traditional legal virtual assistant waits for instructions, finishes assigned tasks, looks after the inbox and calendar and formats documents. A legal force multiplier does more. They cut through the complexity, spot legal risk before it bites, protect the attorney's time, bring order to how things run and help decisions happen faster. It's the same change we talked about earlier, applied to legal work.",
    "walk": [
-    "First, notice where your legal-support work sits: closer to formatting and completing, or closer to filtering and anticipating.",
-    "Finally, pick one recurring legal task and move it toward the force-multiplier pattern this week."
+    "First, we notice where our own legal-support work sits today: closer to formatting and finishing tasks, or closer to filtering and anticipating risk.",
+    "Finally, we pick one regular legal task and deliberately move it toward the force-multiplier way this week."
    ],
-   "ask": "Where does your current legal-support work sit on that spectrum?"
+   "ask": "Where does your current legal-support work sit between those two?"
   },
   "p2": {
-   "why": "In legal work, staying in the traditional pattern costs more.",
-   "talk": "This slide explains why the stakes are higher here.",
+   "why": "In legal work, staying in helper mode costs more.",
+   "talk": "In most offices, a slow assistant is just inefficient. In a law firm, a missed deadline or a risk nobody flagged can create real liability for the firm and harm a client. That's why this shift matters so much here. It builds straight on the force multiplier idea from earlier today; it's the same move, applied to legal responsibilities.",
    "walk": [
-    "First, a missed deadline or an unflagged risk carries real liability, not just inefficiency.",
-    "Finally, it's the same force-multiplier concept from earlier today, applied to legal responsibilities."
+    "First, the stakes are higher in legal work: missed deadlines and unflagged risks carry liability.",
+    "Finally, this is the same shift from earlier today, applied to legal work."
    ],
-   "ask": "Of the four legal force-multiplier behaviors, which is furthest from how you work now, and what's making the gap hard to close?"
+   "ask": "Of the four legal force-multiplier habits, filtering complexity, anticipating legal risk, protecting attorney time and structuring operations, which is furthest from how you work now, and what makes the gap hard to close?"
   }
  },
  "2::Cognitive Relief for Attorneys": {
   "p1": {
-   "why": "Do the sorting before you hand anything over.",
-   "talk": "Attorneys carry case strategy, client emotions, revenue pressure, compliance risk and court deadlines all at once. Cognitive relief means removing mental clutter: summarizing long threads, preparing case briefs, spotting issues, organizing facts into chronologies and pointing out exactly which decisions need their judgment.",
+   "why": "An attorney's head is already full. Our job is to take clutter away, not add to it.",
+   "talk": "At any moment, an attorney is juggling case strategy, an emotional client, pressure to bring in money, compliance risk and court deadlines. When we hand them forty-two unread emails, we've just added to the pile. When we say 'three need your legal decision, two are billing approvals, and one is opposing counsel asking for more time', we've taken a weight off. Same inbox, very different experience.",
    "walk": [
-    "First, don't say \"You have 42 unread emails.\" Say, \"Three need your legal decision, two are billing approvals, and one is opposing counsel asking for an extension.\"",
-    "Finally, practice that triage-and-summarize pattern on every inbox review before you pass anything along."
+    "First, instead of reporting the volume, we report what matters: which emails need their judgment, and what the rest are.",
+    "Finally, we practise that sort-and-summarise habit on our own inbox review before we pass anything on."
    ],
-   "ask": "How would you sum up your own inbox right now in one sentence?"
+   "ask": "How would you sum up your own inbox right now, in one sentence?"
   },
   "p2": {
-   "why": "Forwarding isn't relief; synthesis is.",
-   "talk": "One pitfall and one payoff on this slide.",
+   "why": "Forwarding isn't relief. Making sense of it is.",
+   "talk": "The trap is thinking we've helped because we passed everything along. 'Here are your 42 emails' simply moves the load from our desk to theirs. Real relief means we've already done the sorting. And it builds on itself: the more consistently we summarise well, the more the attorney trusts our summary and stops checking the raw inbox.",
    "walk": [
-    "First, the pitfall: forwarding volume instead of synthesis. That just moves the same load.",
-    "Finally, the payoff: the more consistently you triage, the more the attorney trusts your summaries without re-checking."
+    "First, we send summaries, not piles of email.",
+    "Finally, consistent, accurate summaries earn the trust that saves the attorney time."
    ],
-   "ask": "Elias comes back from a two-day trial with 58 unread emails. Draft the three-line summary you'd give him before he opens his inbox."
+   "ask": "Elias is back from a two-day trial with 58 unread emails. What's the three-line summary you give him before he opens his inbox?"
   }
  },
  "2::Strategic Filtration for Legal Work": {
   "p1": {
-   "why": "Everything that reaches the attorney should have earned their attention.",
-   "talk": "There are four kinds of urgency: administrative, legal, revenue and reputational. Filtration means separating noise from real legal significance.",
+   "why": "Anything that reaches the attorney should have earned their attention.",
+   "talk": "Not all urgent things are the same kind of urgent. Something can be urgent for admin reasons, for legal reasons, for money reasons or for reputation reasons. Our job is to tell the difference, so the attorney only sees what truly needs them. Some things always jump the queue. A risk of missing the legal deadline to file a claim, called the statute of limitations, never waits.",
    "walk": [
-    "First, flag statute of limitations risk immediately. It never waits.",
-    "Next, deprioritize truly non-urgent items, like an internal newsletter draft, even if they arrive marked urgent.",
-    "Then, escalate media questions tied to active litigation right away. That's reputational and legal at once.",
-    "Finally, decide which client requests need an attorney and which can be handled with a template."
+    "First, we flag any statute of limitations risk immediately, every time.",
+    "Next, we let genuinely non-urgent things wait, like an internal newsletter draft, even if someone marked it urgent.",
+    "Then, we escalate press enquiries about active cases straight away, because they're a legal risk and a reputation risk at once.",
+    "Finally, we sort client requests into those that need the attorney's review and those we can answer with a standard reply."
    ],
-   "ask": "Which kind of urgency is hardest for you to recognize?"
+   "ask": "Which kind of urgency do you find hardest to recognise?"
   },
   "p2": {
-   "why": "The sender's label isn't the real urgency.",
-   "talk": "This slide covers the classic trap and how the skill grows.",
+   "why": "The sender's 'URGENT' label isn't the real urgency.",
+   "talk": "People mark things urgent because it's urgent to them. That doesn't make it urgent for the attorney. Sometimes the really urgent item is the quiet, polite email that mentions a deadline in passing. This is a judgment skill, and it gets faster with practice. Every time we sort one correctly, the next one gets easier.",
    "walk": [
-    "First, the pitfall: treating everything marked \"urgent\" as equally urgent.",
-    "Finally, this is pattern recognition. Every situation you triage correctly makes the next one faster."
+    "First, we judge the urgency ourselves, not from the subject line.",
+    "Finally, pattern recognition builds with practice, so every correct call makes the next one quicker."
    ],
-   "ask": "A client email marked URGENT asks a routine procedural question, while a quiet email from opposing counsel mentions a deadline in passing. Which is really more urgent, and how do you know?"
+   "ask": "A client email marked URGENT asks a routine procedural question, while a quiet, polite email from opposing counsel mentions a deadline in passing. Which is really more urgent, and how do you know?"
   }
  },
  "2::Operational Architecture for Legal Work": {
   "p1": {
-   "why": "Build the system once instead of solving the same problem every time.",
-   "talk": "The helper says, \"Tell me what to do next.\" The force multiplier says, \"Here's a workflow so this never becomes urgent again.\" In legal work, good systems also prevent malpractice risk.",
+   "why": "A helper asks what to do next. A force multiplier builds a system so the same crisis never happens again.",
+   "talk": "In a law firm, systems do more than save time. They prevent malpractice. When deadlines live in someone's memory, or new cases get opened differently each time, something eventually slips through. A good system catches what a rushed, one-off response would miss.",
    "walk": [
-    "First, create a litigation deadline dashboard instead of tracking deadlines from memory.",
-    "Next, write an intake-to-engagement SOP, so onboarding a new matter doesn't depend on one person's memory.",
-    "Finally, build a trust accounting reconciliation checklist, firm-wide naming conventions and a discovery response tracker."
+    "First, we build a dashboard for litigation deadlines, instead of relying on memory or scattered notes.",
+    "Next, we write down a standard process for taking on a new client, so it doesn't depend on one person remembering the steps.",
+    "Finally, we add a checklist for reconciling client trust money, consistent file names across the firm and a tracker for discovery responses."
    ],
-   "ask": "Which of these systems does your workplace already have?"
+   "ask": "Which of these five systems does your workplace already have?"
   },
   "p2": {
-   "why": "A well-built spreadsheet is legitimate architecture.",
-   "talk": "This slide covers the trap and a common misconception.",
+   "why": "A well-designed spreadsheet is a real system.",
+   "talk": "The costly habit is solving the same kind of problem from scratch every time it comes up. It feels productive, but it's wasted effort. And we don't need the IT department or a big project to fix it. A well-built spreadsheet or shared checklist, used consistently, is a proper piece of infrastructure.",
    "walk": [
-    "First, the pitfall: rebuilding the same ad hoc fix every time instead of investing once.",
-    "Finally, these systems don't need IT. A good spreadsheet or shared checklist counts."
+    "First, the trap is rebuilding the same fix over and over.",
+    "Finally, simple tools like spreadsheets and checklists count as real systems."
    ],
-   "ask": "Which of these systems is most obviously missing where you work, and what real problem has that gap already caused?"
+   "ask": "Which of the five is most obviously missing where you work, and what real problem has that gap already caused?"
   }
  },
  "2::Decision Compression": {
   "p1": {
-   "why": "Attorneys are paid for judgment, so your job is to shorten their path to it.",
-   "talk": "Decision compression means preparing decisions in the most digestible form. The diagram shows raw material, emails, documents and history, going in, and a decision-ready summary coming out: options, a recommendation and the specific call only the attorney can make.",
+   "why": "Attorneys are paid for their judgment, so our job is to get them to the decision as quickly as possible.",
+   "talk": "Think about the difference between two emails. One says, 'Here's the 60-page contract.' The other says, 'Three clauses differ from our standard: indemnification is wider, payment terms are down to ten days and the arbitration venue has moved to Texas. Please review sections 4, 7 and 11.' The second one lets the attorney spend their time on the decision, not on hunting for it. We call that decision compression.",
    "walk": [
-    "First, instead of sending a 60-page contract with no guidance, say: \"Three clauses deviate from our template: indemnification is wider, payment terms are down to 10 days and arbitration has moved to Texas. Please review sections 4, 7 and 11.\"",
-    "Finally, before sending any long document, work out the three things the reviewer most needs to know, and lead with them."
+    "First, instead of sending a long document with no guidance, we point out what changed and where to look.",
+    "Finally, before sending anything long for review, we ask ourselves the three most important things the reviewer needs to know, and we lead with those."
    ],
-   "ask": "What were the three things a reviewer needed to know about the last document you forwarded?"
+   "ask": "Think of the last document you forwarded. What were the three things the reviewer really needed to know?"
   },
   "p2": {
-   "why": "Forwarding isn't compression; highlighting is.",
-   "talk": "This slide names the pitfall and connects it to BLUF.",
+   "why": "Forwarding isn't compression. Highlighting is.",
+   "talk": "It's easy to believe that sending the full document is enough. But the attorney then has to do all the reading we could have done first. This is really the same bottom-line-first idea from earlier, applied to document review. The most important changes come first, and the full document is there as backup.",
    "walk": [
-    "First, the pitfall: assuming forwarding the full document is enough support.",
-    "Finally, decision compression is BLUF applied to document review."
+    "First, forwarding a document alone isn't support; pointing out what matters is.",
+    "Finally, this is BLUF applied to document review."
    ],
-   "ask": "Opposing counsel sends back a redlined 40-page settlement agreement. Write the three-line note you'd send Elias with it."
+   "ask": "Opposing counsel sends back a 40-page settlement agreement full of tracked changes. Write the three-line note you'd send Elias with it."
   }
  },
  "2::Risk Buffering for Legal Work": {
   "p1": {
-   "why": "No engagement letter, no billable work, even for a trusted returning client.",
-   "talk": "Risk buffering is credibility capital. Protecting the attorney from preventable exposure is one of the most trusted things a Legal VA does: tracking compliance deadlines across jurisdictions, confirming signing formalities, keeping privilege boundaries, requiring engagement letters, documenting approvals in writing and watching trust account procedures.",
+   "why": "Protecting the attorney from avoidable mistakes is one of the most trusted things we do.",
+   "talk": "Every time we catch a risk before it hurts the firm, we build up credibility. The habits are simple. We track compliance deadlines in every jurisdiction, check documents are signed and witnessed properly, protect privileged information, make sure an engagement letter is signed before work starts, write down approvals and keep an eye on trust account procedures.",
    "walk": [
-    "First, check execution formalities, signatures, notarization and witnesses, as a standard step.",
-    "Finally, require an engagement letter before any billable work, with no exceptions."
+    "First, we check signatures, notarisation and witnesses as a standard step, not an afterthought.",
+    "Finally, no engagement letter means no billable work, even for a trusted client who's been with us for years."
    ],
    "ask": "Which of these six do you already do without being reminded?"
   },
   "p2": {
-   "why": "These habits are cheap to do every time and expensive to skip once.",
-   "talk": "This slide explains why buffering is core, not extra.",
+   "why": "Cheap to do every time, expensive to skip even once.",
+   "talk": "It's tempting to see these checks as extra diligence we do when there's time. They're not extra. They're the core of the job, because they protect the attorney and the firm from the mistakes that cost the most and are the hardest to undo. Each one takes a minute; skipping one can take months to fix.",
    "walk": [
-    "First, the pitfall: treating risk buffering as optional diligence. It protects against the costliest, hardest-to-reverse mistakes.",
-    "Finally, every one of these habits is cheap when done consistently."
+    "First, risk buffering is core work, not optional extra.",
+    "Finally, each habit is quick to do and very costly to skip."
    ],
-   "ask": "Which of the six habits would be easiest to let slip under time pressure, and what would make it harder to skip?"
+   "ask": "Of the six habits, which would be easiest to let slip under time pressure, and what would make it harder to skip?"
   }
  },
  "2::Before You Begin: AI Use in the Legal Industry": {
   "p1": {
-   "why": "Before we talk about what AI can do, here's the standard every AI technique has to meet.",
-   "talk": "This isn't a rule you memorize once. It's the frame around every AI topic in this program. AI can genuinely help, but only inside these limits.",
+   "why": "Before we talk about what AI can do, let's agree the standard it always has to meet.",
+   "talk": "Everything we'll cover about AI today sits inside three rules. First, the firm's and the attorney's preferences come first; some are happy with AI, some aren't, and some only allow it for certain tasks. Second, anything involving legal judgment stays with a human. And third, confidentiality. Pasting privileged client information into the wrong tool isn't a small slip; it can be a real legal problem.",
    "walk": [
-    "First, confirm the firm's or attorney's preference for this specific matter. Don't assume from another attorney.",
-    "Next, if the task touches legal judgment, strategy or client representation, AI can support the draft, but the call stays with the attorney.",
-    "Then, check for privileged content before you paste anything anywhere.",
-    "After that, when you're unsure, ask first. Don't ask forgiveness later.",
-    "Finally, treat this standard as the filter for every AI technique that follows."
+    "First, before using AI on any task, we check what this firm and this attorney allow on this matter.",
+    "Next, we ask whether the task involves legal judgment, case strategy or representing the client. If it does, AI can help draft, but the attorney makes the call.",
+    "Then, before pasting anything, we check whether it's privileged.",
+    "After that, if we're not sure it's appropriate, we ask first, rather than asking forgiveness later.",
+    "Finally, we treat these rules as a filter every AI technique must pass, not a disclaimer we read once."
    ],
-   "ask": "Does your firm, or one you know, have an explicit AI policy? Do you know what it says?"
+   "ask": "Does your firm, or one you know, have a written AI policy? Do you know what it says?"
   },
   "p2": {
    "why": "Privileged information pasted into the wrong tool is a real legal problem, not a technicality.",
-   "talk": "The slide spells out the three lines that never move.",
+   "talk": "Let's look at each rule a bit more closely. Preferences differ, even between attorneys in the same firm, so we never assume. Some tasks must always have a human decision, no matter how good the AI's answer looks. And confidentiality is the highest-stakes rule of all, because client privilege is a legal protection. If in doubt, we don't paste; we ask.",
    "walk": [
-    "First, firm and attorney preference comes first. Some are comfortable with AI drafting, some aren't, some allow only narrow uses.",
-    "Next, human judgment isn't optional. Legal judgment, strategy and client-facing work stay with the attorney.",
-    "Finally, confidentiality is the highest-stakes line. Get approval before using AI on anything privileged, and when in doubt, don't paste it."
+    "First, we know the actual preference for this attorney and this matter.",
+    "Next, legal judgment, strategy and client representation stay with the attorney.",
+    "Finally, nothing privileged goes into an AI tool without approval."
    ],
-   "ask": "Elias asks you to run the Meridian deposition transcript through AI and pull out the contradictions. Before you do anything, what do you check, and what do you say to him?"
+   "ask": "Elias asks you to 'run the Meridian deposition transcript through AI and pull out the contradictions.' Before you do anything, what do you need to check, and what do you say to him?"
   }
  },
  "2::The Digital Edge": {
   "p1": {
-   "why": "Three digital skills together take recurring manual work off your plate.",
-   "talk": "The slide shows the three. AI proficiency: using AI end to end on real work, like a full first draft or turning a 50-page report into a five-bullet briefing. Automation: workflows, like a task created automatically when a client emails. And data visualization: clear charts of performance or budgets.",
+   "why": "Three digital skills together take repetitive work off our plate: using AI properly, simple automation and clear charts.",
+   "talk": "Using AI properly means using it for real work from start to finish, like drafting a full first version or turning a 50-page report into a five-point morning brief, not just playing with clever prompts. Automation means setting up little rules so things happen by themselves, like a task appearing automatically when a certain client emails. And a basic chart in Excel or Tableau can show a budget far more clearly than a table of numbers.",
    "walk": [
-    "First, build AI proficiency by using it end to end on real work, not just trying clever prompts.",
-    "Next, find one recurring task to automate, even with a simple email rule.",
-    "Then, learn a data visualization tool well enough to show numbers clearly.",
-    "After that, combine the three rather than mastering one in isolation.",
-    "Finally, check your task list every month for the next automation."
+    "First, we build AI skill by using it on real work from start to finish.",
+    "Next, we pick one repeating task and automate it, even with just an email rule.",
+    "Then, we learn a basic charting tool, so numbers can be seen, not just reported.",
+    "After that, we use the three together to remove repetitive work, rather than mastering just one.",
+    "Finally, once a month, we look at our task list for the next thing to automate."
    ],
-   "ask": "Who's already using an automation tool like Zapier, even informally?"
+   "ask": "Is anyone already using an automation tool like Zapier, even informally?"
   },
   "p2": {
-   "why": "If you fight the same fire every week, automate it.",
-   "talk": "This slide is about what separates reactive assistants from strategic ones.",
+   "why": "If you're fighting the same fire every week, automate it away.",
+   "talk": "That's the real difference between a reactive assistant and a strategic one. The reactive one handles the same problem every Monday. The strategic one noticed the pattern and built something so it handles itself. It doesn't need to be clever. An email rule or a template can free up an hour a week.",
    "walk": [
-    "First, digital tools separate the assistant who fights the same fire weekly from the one who's automated it away.",
-    "Finally, name one recurring task a simple automation could take off your hands this month."
+    "First, digital skills are what separate reactive assistants from strategic ones.",
+    "Finally, small automations, like email rules and templates, count."
    ],
-   "ask": "Name one recurring task on your plate that a simple automation could handle this week, and walk us through how you'd set it up."
+   "ask": "Name one repeating task on your plate that a simple rule or template could take off your hands this week. How would you set it up?"
   }
  },
  "2::What Is a Large Language Model?": {
   "p1": {
-   "why": "An AI tool predicts the next likely word; it doesn't look anything up, so its confidence tells you nothing about accuracy.",
-   "talk": "Large language models are prediction engines, not databases. They generate text from patterns, not from retrieved facts.",
+   "why": "An AI chatbot predicts the next likely word. It doesn't look anything up, so sounding confident tells us nothing about whether it's right.",
+   "talk": "That's the most important thing to understand about tools like ChatGPT, Claude or Gemini. They learned patterns from huge amounts of text, and they produce the words most likely to come next. That's why they write so fluently. It's also why they sometimes invent a fact, a date or a legal case, and state it with exactly the same confidence as something true.",
    "walk": [
-    "First, before trusting any output, remember it's a prediction, not a verified fact.",
-    "Next, treat fluent, confident text as no guarantee. It invents things with the same confidence.",
-    "Then, verify every specific fact, date or figure, especially anything going to a client, court or executive.",
-    "After that, notice how hallucinations appear: usually filling a gap, not as an obvious error.",
-    "Finally, make \"how would I verify this?\" a reflex on every output you use."
+    "First, before trusting any AI output, we remind ourselves it's predicting words, not retrieving facts.",
+    "Next, we don't take a fluent, confident tone as a sign that it's accurate.",
+    "Then, we check every specific fact, date or figure ourselves, especially anything going to a client, a court or the executive.",
+    "After that, we notice where made-up answers tend to appear: usually where the tool doesn't really know, filling the gap smoothly instead of admitting it.",
+    "Finally, we make 'how would I check this?' an automatic question for every output we plan to use."
    ],
    "ask": "Has an AI tool ever told you something confidently that turned out to be wrong?"
   },
   "p2": {
-   "why": "The feature that makes it useful is the same one that makes it invent things.",
-   "talk": "The slide makes the trade-off plain: it can write original, useful text, or confidently invent something plausible.",
+   "why": "The very thing that makes it useful is the same thing that makes it invent things.",
+   "talk": "Because it generates text instead of copying it, it can write something original and genuinely helpful. But with that same ability, it can produce something that sounds perfectly reasonable and simply isn't true. So we use it to draft, and never to verify.",
    "walk": [
-    "First, it produces original text, which is why it's useful.",
-    "Finally, it can also produce plausible fiction, which is why you verify."
+    "First, the same ability produces useful drafts and confident inventions.",
+    "Finally, we use AI to draft, and check every fact ourselves."
    ],
    "ask": "An AI summary of a contract says the notice period is 30 days. How do you verify that before it goes into Elias's briefing?"
   }
  },
  "2::Core AI Terms an EA/PA Needs": {
   "p1": {
-   "why": "Four terms explain almost every AI mistake you'll run into.",
-   "talk": "The slide defines them. A prompt is your instruction and context. A hallucination is the AI stating something false with full confidence. The context window is its working memory. Paste too much and it loses precision toward the end. And tokens are roughly three-quarters of a word, the unit it counts toward that limit.",
+   "why": "A few AI terms come up all the time, and knowing what they mean helps us avoid the most common mistakes.",
+   "talk": "A prompt is our instruction, and a better prompt gets a better answer. A hallucination is when the tool states something false with complete confidence. The context window is its working memory; paste in too much and it gets fuzzy towards the end. And tokens are the chunks of text it counts, roughly three-quarters of a word each, which is why long documents can hit a limit.",
    "walk": [
-    "First, remember what the tool is: a prediction engine, not a fact database.",
-    "Next, keep what you paste within a sensible length for the context window.",
-    "Then, allow for token limits with long documents, whatever the account tier.",
-    "After that, verify every output.",
-    "Finally, when these terms show up in a tool's settings, connect them back to this practical picture."
+    "First, before relying on AI, we remember what it is: a tool that predicts words, not a database of facts.",
+    "Next, we keep what we paste to a sensible length, so it doesn't lose precision towards the end.",
+    "Then, we remember token limits are real on longer documents, even on premium accounts.",
+    "After that, we treat every output as something to check, not something to trust.",
+    "Finally, when these words turn up in a tool's settings, we connect them back to what they mean in practice."
    ],
-   "ask": "Without looking back, can someone explain \"context window\" in one sentence?"
+   "ask": "Without looking back, can someone explain 'context window' in one sentence?"
   },
   "p2": {
-   "why": "What you paste may be stored, depending on the account, so never paste privileged client information.",
-   "talk": "Go Deeper puts five terms in plain English.",
+   "why": "What we paste in may be stored, depending on the account, so privileged information never goes into an unapproved tool.",
+   "talk": "Here's the plain-English version. The prompt is what we ask. The context window is how much it can consider at once, and tokens are how it measures that. A hallucination is a confident mistake, like a court case that doesn't exist, so names, figures, dates and citations always get checked against the source. And depending on the account, what we paste might be kept, which is why confidential client material stays out.",
    "walk": [
-    "First, prompt, context window and token: the instruction, how much text it can consider at once, and the unit it counts.",
-    "Next, hallucination: confident output that's simply wrong, like a fake case citation. Verify names, figures, dates and citations.",
-    "Finally, training data versus your data: what you paste may be stored, so privileged information never goes into unapproved tools."
+    "First, prompt, context window and token describe how much we can ask and how much it can take in.",
+    "Next, hallucinations mean every name, figure, date and citation gets checked.",
+    "Finally, privileged client information never goes into an unapproved tool."
    ],
-   "ask": "You paste a 40-page contract and ask about section 12, and the answer mixes in details from section 3. Using today's terms, what probably happened, and what do you do next?"
+   "ask": "You paste a 40-page contract and ask for a summary of section 12, and the answer mixes in details from section 3. Using today's terms, what probably happened, and what do you do next?"
   }
  },
  "2::Your AI Toolkit — Three Modes, Different Jobs": {
   "p1": {
-   "why": "Pick the mode for the job: Generative creates, Extraction pulls out facts unchanged, and Logic routes and automates.",
-   "talk": "The slide shows the three modes. Generative creates new content: drafting a polite decline or summarizing a messy thread. Extraction pulls specific data without changing it: action items or exact dates. Logic and routing connect triggers to actions: auto-filing attachments or VIP email alerts.",
+   "why": "AI can do three quite different jobs, and choosing the right one for the task avoids the costliest mistakes.",
+   "talk": "The first job is creating new text, like drafting a polite decline, a bio or a summary of a messy thread. The second is pulling out exact information without changing it, like every date or action item in a long email chain. And the third is connecting a trigger to an action, like filing attachments automatically or alerting us when a VIP emails.",
    "walk": [
-    "First, before opening a tool, decide which mode the task needs.",
-    "Next, use Generative for new content.",
-    "Then, use Extraction when you need facts pulled out unchanged, because Generative can quietly alter details.",
-    "After that, use Logic and routing for trigger-and-action jobs.",
-    "Finally, when you're unsure and exact facts matter, default to Extraction."
+    "First, before opening a tool, we decide which of the three jobs this task needs.",
+    "Next, for creating new content, we use the generative mode.",
+    "Then, for pulling out exact facts, we use extraction, because a generative tool might subtly change a detail.",
+    "After that, for connecting a trigger to an action, we use a routing or automation tool, not a chatbot.",
+    "Finally, if we're unsure, we choose extraction for anything involving exact facts or figures, because a changed detail is the costlier mistake."
    ],
-   "ask": "Take one task from your week. Which mode did it actually call for?"
+   "ask": "Take one task from your week. Which of the three modes did it really need?"
   },
   "p2": {
-   "why": "When exact facts matter, use Extraction, not Generative.",
-   "talk": "This slide names the most common mistake.",
+   "why": "When exact facts matter, pull them out. Don't let the tool rewrite them.",
+   "talk": "The most common mistake is asking a chatbot to 'summarise' when what we really need is the exact dates or figures. A summary can smooth over or change a detail without us noticing. Extraction keeps the facts as they are. Naming the mode before opening the tool is a small habit that prevents big errors.",
    "walk": [
-    "First, the mistake: using Generative mode when you need Extraction.",
-    "Finally, think about a task from this week: would you have picked the right mode before this lesson?"
+    "First, the classic slip is using the creative mode when the task needed extraction.",
+    "Finally, we name the mode before we start."
    ],
-   "ask": "Three tasks: pull every deadline out of a 20-email thread, draft a thank-you note to a client, and send an alert whenever opposing counsel emails. Which mode is each one?"
+   "ask": "Three tasks: pull every deadline out of a 20-email thread, draft a thank-you note to a client, and get an alert whenever opposing counsel emails. Which mode fits each?"
   }
  },
  "2::Claude, ChatGPT, and Gemini — Practical Differences": {
   "p1": {
-   "why": "Pick the tool by the job; the risks don't change with the logo.",
-   "talk": "The same core risks apply to all three: hallucination, context limits and training on inputs. The diagram shows where each one shines: Claude with long pastes and controllable tone, ChatGPT with the broadest ecosystem and fast iteration, and Gemini living inside Gmail, Docs and Calendar, acting on live data.",
+   "why": "The three big AI tools have different strengths, but the risks are the same whichever one we pick.",
+   "talk": "All three can invent facts, all three have memory limits, and all three may learn from what we paste, depending on the account. Beyond that, they suit different jobs. Claude tends to handle long documents well and lets us control the tone. ChatGPT has the widest range of add-ons and is quick for trying drafts. Gemini lives inside Gmail, Docs and Calendar, so it can work with live information, which also means our security habits matter even more.",
    "walk": [
-    "First, remember that the same risks apply whichever you pick.",
-    "Next, for long pastes and controlled tone, lean toward Claude.",
-    "Then, for the broadest ecosystem and fast drafting, ChatGPT is often practical.",
-    "After that, for live data inside Gmail, Docs or Calendar, use Gemini, with stricter security habits.",
-    "Finally, when automating in Google Workspace, start simple with filters and auto-declines before scripts or Zapier."
+    "First, whichever tool we use, we apply the same checks for invented facts, length limits and what we paste.",
+    "Next, for long documents where tone matters, Claude is often the better fit.",
+    "Then, for quick drafting and trying different versions, ChatGPT is often the practical choice.",
+    "After that, for anything that works on live email, documents or calendars, Gemini fits, with stricter security habits.",
+    "Finally, when automating inside Google, we start with simple things like Gmail filters before reaching for anything advanced."
    ],
    "ask": "Which of these tools have you used, and for what kind of task?"
   },
   "p2": {
-   "why": "Start with the simplest automation that works; a Gmail filter beats a clever script nobody maintains.",
-   "talk": "This slide goes deeper on Google Workspace, where most EAs actually work.",
+   "why": "Start with the simplest automation that works. A Gmail filter beats a clever script nobody looks after.",
+   "talk": "Most assistants spend their day inside Google Workspace or something like it: email, calendar, drive, documents and spreadsheets, all sharing the same information. That's exactly why Gemini can act on live data in a way a standalone chatbot can't. Automation there ranges from simple, like filters and automatic declines for calendar clashes, to advanced, like custom scripts or a Zapier rule that turns a client email into a task the moment it arrives.",
    "walk": [
-    "First, Gemini's live-data access means security habits matter more, not less.",
-    "Next, Workspace is where the data lives: Gmail, Calendar, Drive, Docs and Sheets, all connected.",
-    "Then, automation ranges from simple filters and calendar auto-declines to Apps Script or Zapier.",
-    "Finally, a practical example: a Zap that turns every email in a labeled Gmail folder into a task the moment it lands."
+    "First, each tool has its sweet spot: long documents, fast drafts or live Workspace data.",
+    "Next, live data access means more care with security, not less.",
+    "Finally, automations run from simple filters to advanced scripts, and we start simple."
    ],
-   "ask": "Elias wants a 70-page settlement agreement summarized, three scheduling replies drafted, and every \"New Client\" email turned into a task automatically. Which tool do you use for each, and what do you check first?"
+   "ask": "Elias asks you to summarise a 70-page settlement, draft three quick replies to scheduling emails and set up something so every email labelled 'New Client' becomes a task. Which tool for each, and what do you check first?"
   }
  }
 });
