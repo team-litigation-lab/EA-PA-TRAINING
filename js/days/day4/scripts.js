@@ -27,6 +27,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "You sent a contact list to the marketing team without cleaning it. The next week, two clients got the newsletter three times and complained. What should the handover have looked like?"
   }
  },
+ "4::Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables": {
+  "p1": {
+   "why": "A few spreadsheet skills can turn an afternoon of copying and counting into five minutes.",
+   "talk": "Contact lists, deadlines, expenses, RSVPs: most of our trackers are spreadsheets. A good one has one header row, one row per record and one column per piece of information, with no merged cells and no blank rows in the middle. Then five tools do most of the work: sort, filter, remove duplicates, lookups and pivot tables, plus two small formulas, COUNTIF and SUMIF, for 'how many' and 'how much'.",
+   "walk": [
+    "First, freeze the header row and turn the data into a table, so sorting and filtering include every column.",
+    "Next, use drop-down lists for columns like Status, so everyone types the same thing.",
+    "Then use a lookup, like XLOOKUP, to pull information across from another sheet.",
+    "After that, build a pivot table for summaries, like totals by matter and month.",
+    "Finally, before sharing, check totals against the source and remove duplicates."
+   ],
+   "ask": "Which of these tools have you used before, and which one makes you nervous?",
+   "scenario": "You have a list of 120 event attendees with emails only, and the firm's contact list has emails and companies. Elias wants attendees grouped by company by noon. How do you do it without copying anything by hand?"
+  },
+  "p2": {
+   "why": "Spreadsheet disasters are usually one careless click, not a hard formula.",
+   "talk": "Keep the raw data on one tab and summaries on another, so a summary never overwrites the data. Enter dates as real dates so they sort correctly. Two traps: sorting one column on its own, which scrambles the rows so names no longer match their numbers, and typing totals by hand, which don't update when the data changes.",
+   "walk": [
+    "First, raw data on one tab, summaries on another.",
+    "Next, real dates, not text.",
+    "Then, sort the whole table, never one column.",
+    "Finally, use formulas for totals."
+   ],
+   "ask": "Has a sorting mistake ever caught you out? How did you notice?",
+   "scenario": "Elias wants to know, by tomorrow, how much each matter spent on travel last quarter. You have 400 expense rows with dates, matters, categories and amounts. Which tools do you use, and in what order?"
+  }
+ },
  "4::The Daily Routine": {
   "p1": {
    "why": "A simple routine at the start, middle and end of the day means nothing important slips through the cracks.",

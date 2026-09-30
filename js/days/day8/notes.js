@@ -64,121 +64,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Check who else is over-permissioned."
   }
 },
-"8::Responding to a Suspicious Data Request": {
-  "p1": {
-    "on": "This slide gives three steps for a suspicious data request: Verify (confirm the sender's identity before anything else), Escalate (route it internally through the correct channel) and Close the Gap (fix whatever let the request reach you).",
-    "say": "Verify first. Always.",
-    "ask": "What's your instinct when a request looks urgent: verify or comply?"
-  },
-  "p2": {
-    "on": "This slide lists red flags: urgency and secrecy (\"send this in 10 minutes and don't tell anyone\"), mismatched details (a correct display name with an off email domain, or a new phone number), and unusual asks (passwords, client lists, wire changes, gift cards). Verify through a channel you already know, such as the number on file, never one in the message.",
-    "say": "Call the number you already have, not the one in the message.",
-    "wrap": "Verify through a known channel, escalate and close the gap.",
-    "scenario": "Roleplay: someone calls saying they're from the firm's IT provider and need the client list exported \"before the migration tonight.\" Verify or comply? Play it out."
-  },
-  "s1": {
-    "on": "This section says the response is sequential: follow the steps in order.",
-    "say": "Three steps, in order."
-  },
-  "s2": {
-    "on": "These steps are the response: Verify the sender, Escalate through the right channel, and Close the gap that let it through.",
-    "say": "Verify, escalate, close the gap."
-  },
-  "s3": {
-    "on": "This section restates each step as a standalone rule.",
-    "say": "Verify before anything else."
-  },
-  "s4": {
-    "on": "This section lists red flags: urgency and secrecy, mismatched details like an off domain, and unusual asks like passwords or gift cards. Verify through a number you already have.",
-    "say": "Call the number you already have.",
-    "ask": "What's the first red flag you'd notice?"
-  }
-},
-"8::Containing a Confidentiality Leak": {
-  "p1": {
-    "on": "This slide gives three steps for a leak: Contain (stop the spread immediately, before anything else), Notify (alert the right roles, not just the right names) and Prevent (put a policy in place so the same leak can't repeat).",
-    "say": "Contain, notify, prevent, in that order.",
-    "ask": "What's the very first thing you'd do in the first 60 seconds?"
-  },
-  "p2": {
-    "on": "This slide gives the first-hour checklist: stop the spread (recall or delete messages, revoke shared links, change file access), capture the facts (what, to whom, when, how) before they're forgotten, and notify the supervising attorney, IT and compliance promptly. Any legal duty to notify clients or regulators is their call.",
-    "say": "Whether to notify clients or regulators is the attorney's call, not yours.",
-    "wrap": "Contain first, capture facts and notify the right roles.",
-    "scenario": "You realize you emailed a settlement draft for the Harlow matter to the wrong \"Mark,\" who works at another firm. Walk through the first hour."
-  },
-  "s1": {
-    "on": "This section says leak response is sequential: follow the steps in order.",
-    "say": "In order."
-  },
-  "s2": {
-    "on": "These steps are the response: Contain the spread, Notify the right roles, and Prevent a repeat with policy.",
-    "say": "Contain, notify, prevent."
-  },
-  "s3": {
-    "on": "This section restates the three steps: contain first, notify roles not just names, and add a policy.",
-    "say": "Contain before anything else."
-  },
-  "s4": {
-    "on": "This section details it: recall messages and revoke links, capture the facts, and notify attorney, IT and compliance, who decide any legal notification.",
-    "say": "Notification duties are their call."
-  }
-},
-"8::Fixing a Broken Workflow": {
-  "p1": {
-    "on": "This slide says disconnected tools (email plus a spreadsheet plus notes) reliably cause duplicate work, even for careful people. The steps: find a workflow split across tools, consolidate it into one tracked system, name which steps stay manual, test it on a real task, and revisit it later to confirm it stopped the duplicate work.",
-    "say": "One tracked system, with the manual steps named.",
-    "ask": "What workflow of yours is held together by email, a spreadsheet and memory?"
-  },
-  "p2": {
-    "on": "This slide lists the signs a workflow is broken: people keep asking \"where is this?\", the same information is typed into email, a spreadsheet and a calendar, and tasks stall at handoffs because nobody owns the step in between.",
-    "say": "If people keep asking \"where is this?\", the workflow is broken.",
-    "wrap": "Consolidate, name the manual steps, test and revisit.",
-    "scenario": "Client document requests at the firm arrive by email, get logged in a spreadsheet and are tracked in someone's notes. Redesign it: what's the one system, and which steps stay manual?"
-  },
-  "s1": {
-    "on": "This section's point: disconnected tools (email, spreadsheet, notes) cause duplicate work even for careful people.",
-    "say": "Scattered tools create duplicates."
-  },
-  "s2": {
-    "on": "These steps fix it: find a split workflow, consolidate into one system, name the manual steps, test on a real task, and revisit later.",
-    "say": "One place for the real status."
-  },
-  "s3": {
-    "on": "This section's rule: consolidate into one tracked system and name what stays manual.",
-    "say": "Manual steps by choice, not accident."
-  },
-  "s4": {
-    "on": "This section lists warning signs: repeated 'where is this?', re-typed information, and hand-offs where nobody owns the gap.",
-    "say": "Who owns the step in between?",
-    "ask": "Which of these signs have you seen?"
-  }
-},
-"8::The Golden Rules of Admin Data Security": {
-  "p1": {
-    "on": "This slide gives the rules for AI tools: turn off training and data-improvement settings before any real work, never input financial data, health information, SSNs or passwords, swap real names for placeholders like \"[Company X],\" treat the AI tool as a third party, and treat anything you're unsure about as unsafe.",
-    "say": "An AI tool is a third party. Placeholders, never real identifiers.",
-    "ask": "Which setting do you switch off before using an AI tool for work?"
-  },
-  "p2": {
-    "on": "This slide repeats the warning on financial data, health information, SSNs and passwords, and the placeholder rule. The callout: Elias's firm runs on strict confidentiality, and the judgment that keeps a case detail out of casual conversation applies to AI tools too. It ends with a prompt on anonymizing a termination email.",
-    "say": "Same judgment as keeping a case detail out of casual conversation.",
-    "wrap": "Settings off, sensitive data out, placeholders in.",
-    "scenario": "Sanitize this together: a termination email naming the employee, their salary, their medical leave and the client they worked on. What do you redact or replace before asking an AI tool to improve the wording?"
-  },
-  "s1": {
-    "on": "This section's first rule: turn off training and data-improvement settings before real work goes into an AI tool.",
-    "say": "Settings off first."
-  },
-  "s2": {
-    "on": "These steps are the rules: settings off, no financial, health, SSN or password data, placeholders for names, AI treated as a third party, and unsure means unsafe.",
-    "say": "An AI tool is a third party."
-  },
-  "s3": {
-    "on": "This section restates the no-go data list and placeholders, then asks you to walk through anonymizing a termination email; Elias's firm's confidentiality still applies.",
-    "say": "Swap names for placeholders.",
-    "ask": "What would you swap out of a termination email?"
-  }
-},
 "8::Multi-Factor Authentication Basics": {
   "p1": {
     "on": "This slide says a password alone is a single point of failure, and MFA adds something you have, such as a code on your phone. The steps: enable MFA on every account that handles anything sensitive, prioritize email (it can reset other passwords), check older accounts set up before MFA was required, prefer an authenticator app or hardware key to SMS, and audit your own accounts.",
@@ -228,31 +113,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "Where are passwords stored in plain text today?"
   }
 },
-"8::Offboarding Access Removal Checklist": {
-  "p1": {
-    "on": "This slide says that when someone leaves, whether employee, contractor or vendor, every system they could access must be revoked, not just the obvious ones. The steps: keep a written checklist of every system, account and shared credential, work through all of it for every departure, revoke on the actual departure date, change shared credentials, and add new systems as they're adopted.",
-    "say": "Every system, on the day they leave.",
-    "ask": "Could you list every system a departing team member would need removed from?"
-  },
-  "p2": {
-    "on": "This slide warns that a written checklist prevents the common failure of remembering the main systems and missing the rest. Access that's \"probably fine to leave for now\" is exactly the stale permission least-privilege exists to prevent.",
-    "say": "\"Probably fine for now\" is how stale access happens.",
-    "wrap": "Written checklist, full pass, same-day revocation.",
-    "scenario": "The firm's receptionist leaves on Friday. Build the offboarding checklist with the room: every system, shared login and physical access item."
-  },
-  "s1": {
-    "on": "This section says every system a departing person used must be revoked, not just email.",
-    "say": "Every system, not just email."
-  },
-  "s2": {
-    "on": "These steps offboard: a written checklist, used every time, revoking on the departure date, rotating shared credentials, and adding new systems.",
-    "say": "Revoke on the day."
-  },
-  "s3": {
-    "on": "This section says a checklist catches the small systems people forget, and 'fine to leave for now' is exactly the stale access least privilege prevents.",
-    "say": "No 'probably fine for now'."
-  }
-},
 "8::Shared Account Risks": {
   "p1": {
     "on": "This slide says a shared login means nobody can tell who took an action, which becomes a real problem when something goes wrong. The steps: prefer individual accounts with scoped permissions, log who used a shared account for what if one must exist, change the credential when someone leaves, look for ways to replace it, and manage it as a known risk.",
@@ -278,54 +138,55 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Safer than convenient."
   }
 },
-"8::Physical Security Basics": {
+"8::Offboarding Access Removal Checklist": {
   "p1": {
-    "on": "This slide says digital security means little if a laptop is left unlocked in public or a sensitive filing cabinet is left open overnight. The steps: lock your workstation whenever you step away, lock sensitive cabinets when unattended, report a lost badge or key immediately, limit visitors and vendors to a defined area, and check your own workspace for visible sensitive items.",
-    "say": "A lost badge is as serious as a leaked password.",
-    "ask": "Is anything sensitive visible on your desk right now?"
+    "on": "This slide says that when someone leaves, whether employee, contractor or vendor, every system they could access must be revoked, not just the obvious ones. The steps: keep a written checklist of every system, account and shared credential, work through all of it for every departure, revoke on the actual departure date, change shared credentials, and add new systems as they're adopted.",
+    "say": "Every system, on the day they leave.",
+    "ask": "Could you list every system a departing team member would need removed from?"
   },
   "p2": {
-    "on": "This slide says a badge, key or access card deserves the same seriousness as a password and should be reported immediately if lost. It says visitors and vendors should have a limited area they can go unescorted, the least-privilege principle applied physically.",
-    "say": "Least privilege applies to rooms too.",
-    "wrap": "Lock it, limit access and report losses right away.",
-    "scenario": "You realize your office badge wasn't in your bag this morning, and you last had it at a coffee shop. It's probably just misplaced. What do you do, and when?"
+    "on": "This slide warns that a written checklist prevents the common failure of remembering the main systems and missing the rest. Access that's \"probably fine to leave for now\" is exactly the stale permission least-privilege exists to prevent.",
+    "say": "\"Probably fine for now\" is how stale access happens.",
+    "wrap": "Written checklist, full pass, same-day revocation.",
+    "scenario": "The firm's receptionist leaves on Friday. Build the offboarding checklist with the room: every system, shared login and physical access item."
   },
   "s1": {
-    "on": "This section says digital discipline means little if a laptop or cabinet is left unlocked; physical access is still access.",
-    "say": "Physical access is access."
+    "on": "This section says every system a departing person used must be revoked, not just email.",
+    "say": "Every system, not just email."
   },
   "s2": {
-    "on": "These steps secure the space: lock devices when stepping away, lock cabinets, report lost badges at once, limit visitor areas, and check your desk.",
-    "say": "Lock it, even for a minute."
+    "on": "These steps offboard: a written checklist, used every time, revoking on the departure date, rotating shared credentials, and adding new systems.",
+    "say": "Revoke on the day."
   },
   "s3": {
-    "on": "This section treats badges like passwords and applies least privilege to visitor movement.",
-    "say": "A lost badge is a lost password."
+    "on": "This section says a checklist catches the small systems people forget, and 'fine to leave for now' is exactly the stale access least privilege prevents.",
+    "say": "No 'probably fine for now'."
   }
 },
-"8::Device Security Fundamentals": {
+"8::The Golden Rules of Admin Data Security": {
   "p1": {
-    "on": "This slide says a device left unlocked, even briefly, is an open door. The steps: set a short screen-lock timeout and lock manually before stepping away, confirm full-disk encryption on devices with sensitive information, apply the same rules to personal devices used for work, install security updates promptly, and set up remote wipe where available.",
-    "say": "Encryption turns a lost laptop into a hardware loss, not a data breach.",
-    "ask": "Would your devices survive being lost today?"
+    "on": "This slide gives the rules for AI tools: turn off training and data-improvement settings before any real work, never input financial data, health information, SSNs or passwords, swap real names for placeholders like \"[Company X],\" treat the AI tool as a third party, and treat anything you're unsure about as unsafe.",
+    "say": "An AI tool is a third party. Placeholders, never real identifiers.",
+    "ask": "Which setting do you switch off before using an AI tool for work?"
   },
   "p2": {
-    "on": "This slide explains that full-disk encryption means a lost or stolen device is a hardware loss, not necessarily a data breach, a distinction that matters enormously. Personal devices used for work carry the same confidentiality obligations as work-issued ones.",
-    "say": "Your phone with work email is a work device.",
-    "wrap": "Short lock timeouts, encryption, updates and remote wipe.",
-    "scenario": "Elias leaves his phone, which has his work email, in a taxi. What do you check and do in the next 30 minutes?"
+    "on": "This slide repeats the warning on financial data, health information, SSNs and passwords, and the placeholder rule. The callout: Elias's firm runs on strict confidentiality, and the judgment that keeps a case detail out of casual conversation applies to AI tools too. It ends with a prompt on anonymizing a termination email.",
+    "say": "Same judgment as keeping a case detail out of casual conversation.",
+    "wrap": "Settings off, sensitive data out, placeholders in.",
+    "scenario": "Sanitize this together: a termination email naming the employee, their salary, their medical leave and the client they worked on. What do you redact or replace before asking an AI tool to improve the wording?"
   },
   "s1": {
-    "on": "This section says an unlocked device is an open door; short timeouts and a manual lock should be reflexes.",
-    "say": "Lock as a reflex."
+    "on": "This section's first rule: turn off training and data-improvement settings before real work goes into an AI tool.",
+    "say": "Settings off first."
   },
   "s2": {
-    "on": "These steps secure devices: short timeouts plus manual lock, full-disk encryption, work rules on personal devices, prompt updates, and remote wipe.",
-    "say": "Encrypt and enable remote wipe."
+    "on": "These steps are the rules: settings off, no financial, health, SSN or password data, placeholders for names, AI treated as a third party, and unsure means unsafe.",
+    "say": "An AI tool is a third party."
   },
   "s3": {
-    "on": "This section explains that encryption turns a lost laptop into a hardware loss, and personal devices carry the same obligations.",
-    "say": "Your phone counts too."
+    "on": "This section restates the no-go data list and placeholders, then asks you to walk through anonymizing a termination email; Elias's firm's confidentiality still applies.",
+    "say": "Swap names for placeholders.",
+    "ask": "What would you swap out of a termination email?"
   }
 },
 "8::Classifying Information by Sensitivity Level": {
@@ -426,6 +287,82 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "Have you ever received a document with comments left in?"
   }
 },
+"8::Redaction Done Right": {
+  "p1": {
+    "on": "This slide says redaction must permanently remove text; black boxes and highlighting only cover it. It gives the federal court rule for personal identifiers (last four digits of SSN and account numbers, birth year only, minors' initials) and says the attorney decides other redactions. The steps: work on a copy, mark and apply with a real tool, remove hidden information, test by searching and copying, save as a new file and have the attorney check.",
+    "say": "If you can still copy it, it wasn't redacted.",
+    "ask": "Have you ever seen a 'redacted' document where the text could still be read?"
+  },
+  "p2": {
+    "on": "This slide covers redacting consistently everywhere a detail appears, hidden OCR text in scans, and two pitfalls: black highlighter then save as PDF, and sending the original along with the redacted copy.",
+    "say": "Test every redaction before it leaves the office.",
+    "wrap": "Real tool, apply, sanitize, test, then attorney review.",
+    "scenario": "You need to file a client's bank statement as an exhibit. It shows the full account number, the client's date of birth and their child's full name. What do you redact, how do you do it and how do you prove it worked?"
+  },
+  "s1": {
+    "on": "This section defines redaction, explains why black boxes fail and gives the federal court rule for personal identifiers.",
+    "say": "Covering isn't removing."
+  },
+  "s2": {
+    "on": "These steps: work on a copy, mark and apply, remove hidden information, test by search and copy, save as a new file and get attorney review.",
+    "say": "Marking and applying are two separate steps.",
+    "ask": "How would you test that a redaction worked?"
+  },
+  "s3": {
+    "on": "This section covers consistency, OCR text in scans, and the two pitfalls.",
+    "say": "Never send the original with the redacted copy."
+  }
+},
+"8::Device Security Fundamentals": {
+  "p1": {
+    "on": "This slide says a device left unlocked, even briefly, is an open door. The steps: set a short screen-lock timeout and lock manually before stepping away, confirm full-disk encryption on devices with sensitive information, apply the same rules to personal devices used for work, install security updates promptly, and set up remote wipe where available.",
+    "say": "Encryption turns a lost laptop into a hardware loss, not a data breach.",
+    "ask": "Would your devices survive being lost today?"
+  },
+  "p2": {
+    "on": "This slide explains that full-disk encryption means a lost or stolen device is a hardware loss, not necessarily a data breach, a distinction that matters enormously. Personal devices used for work carry the same confidentiality obligations as work-issued ones.",
+    "say": "Your phone with work email is a work device.",
+    "wrap": "Short lock timeouts, encryption, updates and remote wipe.",
+    "scenario": "Elias leaves his phone, which has his work email, in a taxi. What do you check and do in the next 30 minutes?"
+  },
+  "s1": {
+    "on": "This section says an unlocked device is an open door; short timeouts and a manual lock should be reflexes.",
+    "say": "Lock as a reflex."
+  },
+  "s2": {
+    "on": "These steps secure devices: short timeouts plus manual lock, full-disk encryption, work rules on personal devices, prompt updates, and remote wipe.",
+    "say": "Encrypt and enable remote wipe."
+  },
+  "s3": {
+    "on": "This section explains that encryption turns a lost laptop into a hardware loss, and personal devices carry the same obligations.",
+    "say": "Your phone counts too."
+  }
+},
+"8::Physical Security Basics": {
+  "p1": {
+    "on": "This slide says digital security means little if a laptop is left unlocked in public or a sensitive filing cabinet is left open overnight. The steps: lock your workstation whenever you step away, lock sensitive cabinets when unattended, report a lost badge or key immediately, limit visitors and vendors to a defined area, and check your own workspace for visible sensitive items.",
+    "say": "A lost badge is as serious as a leaked password.",
+    "ask": "Is anything sensitive visible on your desk right now?"
+  },
+  "p2": {
+    "on": "This slide says a badge, key or access card deserves the same seriousness as a password and should be reported immediately if lost. It says visitors and vendors should have a limited area they can go unescorted, the least-privilege principle applied physically.",
+    "say": "Least privilege applies to rooms too.",
+    "wrap": "Lock it, limit access and report losses right away.",
+    "scenario": "You realize your office badge wasn't in your bag this morning, and you last had it at a coffee shop. It's probably just misplaced. What do you do, and when?"
+  },
+  "s1": {
+    "on": "This section says digital discipline means little if a laptop or cabinet is left unlocked; physical access is still access.",
+    "say": "Physical access is access."
+  },
+  "s2": {
+    "on": "These steps secure the space: lock devices when stepping away, lock cabinets, report lost badges at once, limit visitor areas, and check your desk.",
+    "say": "Lock it, even for a minute."
+  },
+  "s3": {
+    "on": "This section treats badges like passwords and applies least privilege to visitor movement.",
+    "say": "A lost badge is a lost password."
+  }
+},
 "8::Clean Desk Policy": {
   "p1": {
     "on": "This slide says sensitive documents left on a desk, in a printer tray or on an unlocked screen are a physical data leak. The steps: put sensitive documents away when not in use, check the printer tray, lock your screen when you step away, apply the same rules to a home workspace, and do a quick end-of-day check.",
@@ -474,103 +411,60 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Drafts count too."
   }
 },
-"8::The First 10 Minutes of a Security Incident": {
+"8::Litigation Holds: When Nothing Can Be Deleted": {
   "p1": {
-    "on": "This slide gives four steps for the first 10 minutes: Contain (stop further exposure by disconnecting, revoking access or pausing whatever is leaking), Assess (what was exposed, to whom), Notify (alert whoever needs to know immediately, without waiting for the full picture) and Document (write down what happened and when, in real time).",
-    "say": "Contain, assess, notify, document.",
-    "ask": "Would you investigate fully first, or escalate right away?"
+    "on": "This slide says the duty to preserve starts when a lawsuit is reasonably expected, a hold overrides normal retention and clean-up, covers every format, and that losing held information is spoliation, with court sanctions. The steps: send the notice and track confirmations, have IT pause auto-deletion, stop shredding and label files, keep a log, and hold until the attorney releases it in writing.",
+    "say": "When a hold is on, nothing covered gets deleted, by anyone.",
+    "ask": "Why do you think the duty starts before the lawsuit is actually filed?"
   },
   "p2": {
-    "on": "This slide says the instinct to fully understand before saying anything is costly; early notification with incomplete information is better. It extends the containment-first principle from the Confidentiality Leak topic into a general first response.",
-    "say": "Notify early, even with an incomplete picture.",
-    "wrap": "Contain first, notify fast and document as you go.",
-    "scenario": "Roleplay, cold: you notice the firm's shared client folder has been publicly accessible by link for an unknown amount of time. What do you do in the first 10 minutes?"
+    "on": "This slide covers scheduled reminders, preserving departing staff's mailboxes and devices, and two pitfalls: tidying up old emails during a case and forgetting texts and chat apps.",
+    "say": "Offboarding can't wipe what a hold covers.",
+    "wrap": "Notify, pause deletion, log it and wait for written release.",
+    "scenario": "Harlow Industries receives a letter threatening a lawsuit. The same week, the office manager starts the annual shred of old files, and a departing employee's laptop is due to be wiped on Friday. What do you do, and who do you tell?"
   },
   "s1": {
-    "on": "This section says incident response is sequential: follow the steps in order.",
-    "say": "Four steps."
+    "on": "This section explains when the duty to preserve begins, what a hold covers and what spoliation means.",
+    "say": "The duty starts when a case is reasonably expected."
   },
   "s2": {
-    "on": "These steps are the first ten minutes: Contain, Assess what was exposed, Notify right away, and Document in real time.",
-    "say": "Contain, assess, notify, document."
+    "on": "These steps: send the notice and track confirmations, pause auto-deletion, stop shredding and label files, keep a log, hold until written release.",
+    "say": "Get IT to pause automatic deletion.",
+    "ask": "Which systems in your office delete things automatically?"
   },
   "s3": {
-    "on": "This section says early notification with incomplete facts beats a late complete report, and extends the leak-containment principle.",
-    "say": "Tell early, even if incomplete.",
-    "ask": "Who would you notify first?"
+    "on": "This section covers reminders, departing staff and the two pitfalls.",
+    "say": "Texts and chat count too."
   }
 },
-"8::Who to Notify and When": {
+"8::Fixing a Broken Workflow": {
   "p1": {
-    "on": "This slide says different incidents have different notification requirements: a confidentiality slip and a genuine data breach may trigger different people and timelines, with a diagram. The steps: know in advance which incident goes to IT, a specific partner or outside counsel, treat a genuine breach as carrying legal obligations, escalate when unsure, confirm contacts before you need them, and notify promptly.",
-    "say": "Know who you'd call before you need to call them.",
-    "ask": "Do you know exactly who you'd contact first for a security concern at your organization?",
-    "wrap": "Know the contacts in advance, escalate when unsure and notify promptly.",
-    "scenario": "Match each incident to who gets notified first: a laptop stolen from a car, an email with a client's SSN sent to the wrong person, a phishing email nobody clicked, and ransomware on the office file server."
+    "on": "This slide says disconnected tools (email plus a spreadsheet plus notes) reliably cause duplicate work, even for careful people. The steps: find a workflow split across tools, consolidate it into one tracked system, name which steps stay manual, test it on a real task, and revisit it later to confirm it stopped the duplicate work.",
+    "say": "One tracked system, with the manual steps named.",
+    "ask": "What workflow of yours is held together by email, a spreadsheet and memory?"
   },
   "p2": {
-    "on": "",
-    "say": "",
-    "wrap": "Know the contacts in advance, escalate when unsure and notify promptly.",
-    "scenario": "Match each incident to who gets notified first: a laptop stolen from a car, an email with a client's SSN sent to the wrong person, a phishing email nobody clicked, and ransomware on the office file server."
+    "on": "This slide lists the signs a workflow is broken: people keep asking \"where is this?\", the same information is typed into email, a spreadsheet and a calendar, and tasks stall at handoffs because nobody owns the step in between.",
+    "say": "If people keep asking \"where is this?\", the workflow is broken.",
+    "wrap": "Consolidate, name the manual steps, test and revisit.",
+    "scenario": "Client document requests at the firm arrive by email, get logged in a spreadsheet and are tracked in someone's notes. Redesign it: what's the one system, and which steps stay manual?"
   },
   "s1": {
-    "on": "This section says different incidents trigger different people, timelines and sometimes legal duties.",
-    "say": "Different incidents, different contacts."
+    "on": "This section's point: disconnected tools (email, spreadsheet, notes) cause duplicate work even for careful people.",
+    "say": "Scattered tools create duplicates."
   },
   "s2": {
-    "on": "These steps prepare: know the contact per incident type in advance, treat breaches as possibly carrying legal duties, escalate when unsure, confirm contacts ahead, and notify promptly.",
-    "say": "Know the contacts before you need them."
-  }
-},
-"8::Documenting an Incident as It Unfolds": {
-  "p1": {
-    "on": "This slide says a contemporaneous record (what happened, when, who was notified, what was done) is far more accurate and useful than one reconstructed later. The steps: write it down in real time, use short timestamped factual notes, record who was notified and when, keep it factual rather than about blame, and preserve it for the review and any legal or compliance needs.",
-    "say": "Timestamps and facts, written as it happens.",
-    "ask": "Could you rebuild a timeline of a stressful day last week from memory?"
-  },
-  "p2": {
-    "on": "This slide says the documentation isn't about blame; it supports an accurate post-incident review and any legal or compliance requirements. Even rough real-time notes are more valuable than a polished summary written after details fade.",
-    "say": "A rough note now beats a polished one later.",
-    "wrap": "Log facts in real time, including who was told and when, and keep the record.",
-    "scenario": "Using the misdirected-email scenario from earlier, write the first five timestamped lines of the incident log."
-  },
-  "s1": {
-    "on": "This section says a real-time record beats a reconstruction days later.",
-    "say": "Write it as it happens."
-  },
-  "s2": {
-    "on": "These steps document: note what happened and when in real time, simple timestamps, who was notified, facts not blame, and preserve the record.",
-    "say": "Rough and real-time beats polished and late."
+    "on": "These steps fix it: find a split workflow, consolidate into one system, name the manual steps, test on a real task, and revisit later.",
+    "say": "One place for the real status."
   },
   "s3": {
-    "on": "This section says the record isn't about blame; it supports review and compliance, and simple timestamps are enough.",
-    "say": "Timestamps and facts."
-  }
-},
-"8::Post-Incident Review": {
-  "p1": {
-    "on": "This slide says a real review after an incident (what happened, what worked, what should change) prevents the same failure repeating. The steps: run the review instead of quietly closing the incident, focus on the process and the gap rather than the person, use the real-time documentation, identify one concrete change, and record the lesson like the Day 6 seasonal playbook.",
-    "say": "Every review ends with one concrete change.",
-    "ask": "Does your organization actually do post-incident reviews?"
+    "on": "This section's rule: consolidate into one tracked system and name what stays manual.",
+    "say": "Manual steps by choice, not accident."
   },
-  "p2": {
-    "on": "This slide says a good review focuses on the process gap, not blame, because blame-focused reviews make people hide the next incident. It connects to the Day 6 playbook discipline: the same continuous-improvement habit applied to incidents.",
-    "say": "Blame teaches people to hide the next one.",
-    "wrap": "Review the process, use the log and make one real change.",
-    "scenario": "Run a five-minute review of the misdirected settlement email: what happened, what worked, what gap allowed it, and the one change you'd make."
-  },
-  "s1": {
-    "on": "This section says a real review after resolution stops the failure from repeating.",
-    "say": "Review, then change something."
-  },
-  "s2": {
-    "on": "These steps run it: cover what happened, worked and should change; focus on process; use the real-time notes; name one concrete change; and capture the lesson.",
-    "say": "One concrete change."
-  },
-  "s3": {
-    "on": "This section says blame-focused reviews discourage early reporting, and ties the habit to the Day 6 playbook.",
-    "say": "Process, not people."
+  "s4": {
+    "on": "This section lists warning signs: repeated 'where is this?', re-typed information, and hand-offs where nobody owns the gap.",
+    "say": "Who owns the step in between?",
+    "ask": "Which of these signs have you seen?"
   }
 },
 "8::Social Engineering Red Flags": {
@@ -647,6 +541,164 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section says most insider incidents are well-meaning shortcuts, and this is least privilege, not suspicion.",
     "say": "Role-fit, not suspicion."
+  }
+},
+"8::Responding to a Suspicious Data Request": {
+  "p1": {
+    "on": "This slide gives three steps for a suspicious data request: Verify (confirm the sender's identity before anything else), Escalate (route it internally through the correct channel) and Close the Gap (fix whatever let the request reach you).",
+    "say": "Verify first. Always.",
+    "ask": "What's your instinct when a request looks urgent: verify or comply?"
+  },
+  "p2": {
+    "on": "This slide lists red flags: urgency and secrecy (\"send this in 10 minutes and don't tell anyone\"), mismatched details (a correct display name with an off email domain, or a new phone number), and unusual asks (passwords, client lists, wire changes, gift cards). Verify through a channel you already know, such as the number on file, never one in the message.",
+    "say": "Call the number you already have, not the one in the message.",
+    "wrap": "Verify through a known channel, escalate and close the gap.",
+    "scenario": "Roleplay: someone calls saying they're from the firm's IT provider and need the client list exported \"before the migration tonight.\" Verify or comply? Play it out."
+  },
+  "s1": {
+    "on": "This section says the response is sequential: follow the steps in order.",
+    "say": "Three steps, in order."
+  },
+  "s2": {
+    "on": "These steps are the response: Verify the sender, Escalate through the right channel, and Close the gap that let it through.",
+    "say": "Verify, escalate, close the gap."
+  },
+  "s3": {
+    "on": "This section restates each step as a standalone rule.",
+    "say": "Verify before anything else."
+  },
+  "s4": {
+    "on": "This section lists red flags: urgency and secrecy, mismatched details like an off domain, and unusual asks like passwords or gift cards. Verify through a number you already have.",
+    "say": "Call the number you already have.",
+    "ask": "What's the first red flag you'd notice?"
+  }
+},
+"8::The First 10 Minutes of a Security Incident": {
+  "p1": {
+    "on": "This slide gives four steps for the first 10 minutes: Contain (stop further exposure by disconnecting, revoking access or pausing whatever is leaking), Assess (what was exposed, to whom), Notify (alert whoever needs to know immediately, without waiting for the full picture) and Document (write down what happened and when, in real time).",
+    "say": "Contain, assess, notify, document.",
+    "ask": "Would you investigate fully first, or escalate right away?"
+  },
+  "p2": {
+    "on": "This slide says the instinct to fully understand before saying anything is costly; early notification with incomplete information is better. It extends the containment-first principle from the Confidentiality Leak topic into a general first response.",
+    "say": "Notify early, even with an incomplete picture.",
+    "wrap": "Contain first, notify fast and document as you go.",
+    "scenario": "Roleplay, cold: you notice the firm's shared client folder has been publicly accessible by link for an unknown amount of time. What do you do in the first 10 minutes?"
+  },
+  "s1": {
+    "on": "This section says incident response is sequential: follow the steps in order.",
+    "say": "Four steps."
+  },
+  "s2": {
+    "on": "These steps are the first ten minutes: Contain, Assess what was exposed, Notify right away, and Document in real time.",
+    "say": "Contain, assess, notify, document."
+  },
+  "s3": {
+    "on": "This section says early notification with incomplete facts beats a late complete report, and extends the leak-containment principle.",
+    "say": "Tell early, even if incomplete.",
+    "ask": "Who would you notify first?"
+  }
+},
+"8::Containing a Confidentiality Leak": {
+  "p1": {
+    "on": "This slide gives three steps for a leak: Contain (stop the spread immediately, before anything else), Notify (alert the right roles, not just the right names) and Prevent (put a policy in place so the same leak can't repeat).",
+    "say": "Contain, notify, prevent, in that order.",
+    "ask": "What's the very first thing you'd do in the first 60 seconds?"
+  },
+  "p2": {
+    "on": "This slide gives the first-hour checklist: stop the spread (recall or delete messages, revoke shared links, change file access), capture the facts (what, to whom, when, how) before they're forgotten, and notify the supervising attorney, IT and compliance promptly. Any legal duty to notify clients or regulators is their call.",
+    "say": "Whether to notify clients or regulators is the attorney's call, not yours.",
+    "wrap": "Contain first, capture facts and notify the right roles.",
+    "scenario": "You realize you emailed a settlement draft for the Harlow matter to the wrong \"Mark,\" who works at another firm. Walk through the first hour."
+  },
+  "s1": {
+    "on": "This section says leak response is sequential: follow the steps in order.",
+    "say": "In order."
+  },
+  "s2": {
+    "on": "These steps are the response: Contain the spread, Notify the right roles, and Prevent a repeat with policy.",
+    "say": "Contain, notify, prevent."
+  },
+  "s3": {
+    "on": "This section restates the three steps: contain first, notify roles not just names, and add a policy.",
+    "say": "Contain before anything else."
+  },
+  "s4": {
+    "on": "This section details it: recall messages and revoke links, capture the facts, and notify attorney, IT and compliance, who decide any legal notification.",
+    "say": "Notification duties are their call."
+  }
+},
+"8::Who to Notify and When": {
+  "p1": {
+    "on": "This slide says different incidents have different notification requirements: a confidentiality slip and a genuine data breach may trigger different people and timelines, with a diagram. The steps: know in advance which incident goes to IT, a specific partner or outside counsel, treat a genuine breach as carrying legal obligations, escalate when unsure, confirm contacts before you need them, and notify promptly.",
+    "say": "Know who you'd call before you need to call them.",
+    "ask": "Do you know exactly who you'd contact first for a security concern at your organization?",
+    "wrap": "Know the contacts in advance, escalate when unsure and notify promptly.",
+    "scenario": "Match each incident to who gets notified first: a laptop stolen from a car, an email with a client's SSN sent to the wrong person, a phishing email nobody clicked, and ransomware on the office file server."
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Know the contacts in advance, escalate when unsure and notify promptly.",
+    "scenario": "Match each incident to who gets notified first: a laptop stolen from a car, an email with a client's SSN sent to the wrong person, a phishing email nobody clicked, and ransomware on the office file server."
+  },
+  "s1": {
+    "on": "This section says different incidents trigger different people, timelines and sometimes legal duties.",
+    "say": "Different incidents, different contacts."
+  },
+  "s2": {
+    "on": "These steps prepare: know the contact per incident type in advance, treat breaches as possibly carrying legal duties, escalate when unsure, confirm contacts ahead, and notify promptly.",
+    "say": "Know the contacts before you need them."
+  }
+},
+"8::Documenting an Incident as It Unfolds": {
+  "p1": {
+    "on": "This slide says a contemporaneous record (what happened, when, who was notified, what was done) is far more accurate and useful than one reconstructed later. The steps: write it down in real time, use short timestamped factual notes, record who was notified and when, keep it factual rather than about blame, and preserve it for the review and any legal or compliance needs.",
+    "say": "Timestamps and facts, written as it happens.",
+    "ask": "Could you rebuild a timeline of a stressful day last week from memory?"
+  },
+  "p2": {
+    "on": "This slide says the documentation isn't about blame; it supports an accurate post-incident review and any legal or compliance requirements. Even rough real-time notes are more valuable than a polished summary written after details fade.",
+    "say": "A rough note now beats a polished one later.",
+    "wrap": "Log facts in real time, including who was told and when, and keep the record.",
+    "scenario": "Using the misdirected-email scenario from earlier, write the first five timestamped lines of the incident log."
+  },
+  "s1": {
+    "on": "This section says a real-time record beats a reconstruction days later.",
+    "say": "Write it as it happens."
+  },
+  "s2": {
+    "on": "These steps document: note what happened and when in real time, simple timestamps, who was notified, facts not blame, and preserve the record.",
+    "say": "Rough and real-time beats polished and late."
+  },
+  "s3": {
+    "on": "This section says the record isn't about blame; it supports review and compliance, and simple timestamps are enough.",
+    "say": "Timestamps and facts."
+  }
+},
+"8::Post-Incident Review": {
+  "p1": {
+    "on": "This slide says a real review after an incident (what happened, what worked, what should change) prevents the same failure repeating. The steps: run the review instead of quietly closing the incident, focus on the process and the gap rather than the person, use the real-time documentation, identify one concrete change, and record the lesson like the Day 6 seasonal playbook.",
+    "say": "Every review ends with one concrete change.",
+    "ask": "Does your organization actually do post-incident reviews?"
+  },
+  "p2": {
+    "on": "This slide says a good review focuses on the process gap, not blame, because blame-focused reviews make people hide the next incident. It connects to the Day 6 playbook discipline: the same continuous-improvement habit applied to incidents.",
+    "say": "Blame teaches people to hide the next one.",
+    "wrap": "Review the process, use the log and make one real change.",
+    "scenario": "Run a five-minute review of the misdirected settlement email: what happened, what worked, what gap allowed it, and the one change you'd make."
+  },
+  "s1": {
+    "on": "This section says a real review after resolution stops the failure from repeating.",
+    "say": "Review, then change something."
+  },
+  "s2": {
+    "on": "These steps run it: cover what happened, worked and should change; focus on process; use the real-time notes; name one concrete change; and capture the lesson.",
+    "say": "One concrete change."
+  },
+  "s3": {
+    "on": "This section says blame-focused reviews discourage early reporting, and ties the habit to the Day 6 playbook.",
+    "say": "Process, not people."
   }
 },
 "8::Crisis Communication Principles": {
@@ -750,6 +802,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Simple is enough."
   }
 },
+"8::Crisis PR & Media Containment": {
+  "p1": {
+    "on": "This slide says a media crisis moves faster than most, with minutes to shape the first response, building on reputational risk and crisis communication. The steps: confirm who is authorized to speak (already established, not decided under pressure), give unauthorized people a safe, consistent holding statement, and escalate to communications, legal and the executive in parallel.",
+    "say": "Escalate in parallel. Media won't wait for a sequential chain.",
+    "ask": "If you're not the spokesperson, what do you say?"
+  },
+  "p2": {
+    "on": "This slide warns against personally managing media attention outside the authorization chain, even with good intentions. A fast, correct \"no comment, here's who to contact\" protects everyone better than a fast, unauthorized attempt to help.",
+    "say": "\"No comment, here's who to contact\" is the right fast answer.",
+    "wrap": "Know the spokesperson, use the holding statement and escalate in parallel.",
+    "scenario": "A journalist calls you directly, bypassing the firm's usual channels, asking for comment on a sensitive matter. What do you say, and who do you contact the moment you hang up?"
+  },
+  "s1": {
+    "on": "This section says media crises move in minutes, building on reputational risk and crisis communication.",
+    "say": "Minutes, not hours."
+  },
+  "s2": {
+    "on": "These steps contain it: confirm who's authorized to speak, give a prepared holding statement, and escalate in parallel.",
+    "say": "Holding line, then escalate in parallel.",
+    "ask": "What would your holding statement say?"
+  },
+  "s3": {
+    "on": "This section warns against handling media outside the authorization chain, and says a fast 'no comment, here's who to contact' protects everyone.",
+    "say": "Good intentions don't prevent damage."
+  }
+},
 "8::Attorney-Client Privilege: What EAs Need to Know": {
   "p1": {
     "on": "This slide explains that attorney-client privilege protects confidential communications between lawyer and client for seeking or giving legal advice. The steps: treat such communications as privileged by default, check recipients before sending because the wrong person can waive privilege, don't discuss cases where you can be overheard, recognize you sit inside the privileged relationship, and ask the attorney when unsure.",
@@ -774,6 +852,56 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "on": "This section warns that disclosure to the wrong person can waive privilege, the obligation extends to the EA, and says to ask the attorney when in doubt.",
     "say": "A disclosure can't be undone.",
     "ask": "Who shouldn't be on a privileged email?"
+  }
+},
+"8::Work-Product Confidentiality": {
+  "p1": {
+    "on": "This slide explains that attorney work product (strategy memos, draft arguments, internal case analysis) has its own protection separate from privilege, and it can be lost through careless handling even when no client communication is involved. The steps: handle work product with the same care as privileged material, never share it outside the matter team without confirmation, and label and store it clearly.",
+    "say": "Work product has its own protection, and it can be lost through carelessness.",
+    "ask": "What counts as work product in a case file?"
+  },
+  "p2": {
+    "on": "This slide warns against assuming something is safe to share because it isn't a client communication. When unsure whether a document is protected work product, treat it as protected: the cost of caution is small.",
+    "say": "Not a client communication doesn't mean shareable.",
+    "wrap": "Handle it like privileged material, label it and keep it within the team.",
+    "scenario": "A colleague on an unrelated matter asks to see a strategy memo from a case you support, saying it would help with a similar issue. What do you do?"
+  },
+  "s1": {
+    "on": "This section explains work product (strategy memos, drafts, internal analysis) is protected separately from privilege and can be waived by careless handling.",
+    "say": "Separate protection, same care."
+  },
+  "s2": {
+    "on": "These steps protect it: handle it like privileged material, keep it internal unless cleared, and label it in the DMS.",
+    "say": "Default: it stays internal."
+  },
+  "s3": {
+    "on": "This section warns that 'not a client communication' doesn't mean shareable, and says when in doubt treat it as protected.",
+    "say": "When in doubt, protected."
+  }
+},
+"8::Investor Disclosure Confidentiality": {
+  "p1": {
+    "on": "This slide says information shared with investors often carries its own confidentiality obligations: some is appropriate for investors but not for general internal or public audiences. The steps: confirm what's cleared for investor disclosure before including it, keep investor materials in access-controlled storage, and escalate requests beyond prepared materials rather than answering directly.",
+    "say": "Confirm it's cleared before it goes to an investor.",
+    "ask": "Who decides what an investor can be told?"
+  },
+  "p2": {
+    "on": "This slide warns against treating investors as entitled to any information that seems relevant without confirming disclosure boundaries. It connects to investor briefing preparation: confidentiality and disclosure prep work together.",
+    "say": "Interest isn't entitlement.",
+    "wrap": "Confirm clearance, restrict access and escalate new requests.",
+    "scenario": "An investor emails asking for details about an ongoing matter that hasn't been publicly disclosed. What do you do before responding?"
+  },
+  "s1": {
+    "on": "This section says investor information has its own boundaries (some shareable with investors only, some not at all) and ties to classification.",
+    "say": "Investors don't get everything."
+  },
+  "s2": {
+    "on": "These steps manage it: confirm what's cleared, keep materials access-controlled, and escalate requests beyond what's prepared.",
+    "say": "Escalate anything not cleared."
+  },
+  "s3": {
+    "on": "This section warns against assuming investors are entitled to everything, and links this to investor briefing prep.",
+    "say": "Confirm the boundaries first."
   }
 },
 "8::HIPAA in a Legal Context": {
@@ -849,82 +977,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section says no training covers every framework; the skill is spotting high-risk categories, and asking the attorney is always right.",
     "say": "Ask; it's never wrong."
-  }
-},
-"8::Work-Product Confidentiality": {
-  "p1": {
-    "on": "This slide explains that attorney work product (strategy memos, draft arguments, internal case analysis) has its own protection separate from privilege, and it can be lost through careless handling even when no client communication is involved. The steps: handle work product with the same care as privileged material, never share it outside the matter team without confirmation, and label and store it clearly.",
-    "say": "Work product has its own protection, and it can be lost through carelessness.",
-    "ask": "What counts as work product in a case file?"
-  },
-  "p2": {
-    "on": "This slide warns against assuming something is safe to share because it isn't a client communication. When unsure whether a document is protected work product, treat it as protected: the cost of caution is small.",
-    "say": "Not a client communication doesn't mean shareable.",
-    "wrap": "Handle it like privileged material, label it and keep it within the team.",
-    "scenario": "A colleague on an unrelated matter asks to see a strategy memo from a case you support, saying it would help with a similar issue. What do you do?"
-  },
-  "s1": {
-    "on": "This section explains work product (strategy memos, drafts, internal analysis) is protected separately from privilege and can be waived by careless handling.",
-    "say": "Separate protection, same care."
-  },
-  "s2": {
-    "on": "These steps protect it: handle it like privileged material, keep it internal unless cleared, and label it in the DMS.",
-    "say": "Default: it stays internal."
-  },
-  "s3": {
-    "on": "This section warns that 'not a client communication' doesn't mean shareable, and says when in doubt treat it as protected.",
-    "say": "When in doubt, protected."
-  }
-},
-"8::Investor Disclosure Confidentiality": {
-  "p1": {
-    "on": "This slide says information shared with investors often carries its own confidentiality obligations: some is appropriate for investors but not for general internal or public audiences. The steps: confirm what's cleared for investor disclosure before including it, keep investor materials in access-controlled storage, and escalate requests beyond prepared materials rather than answering directly.",
-    "say": "Confirm it's cleared before it goes to an investor.",
-    "ask": "Who decides what an investor can be told?"
-  },
-  "p2": {
-    "on": "This slide warns against treating investors as entitled to any information that seems relevant without confirming disclosure boundaries. It connects to investor briefing preparation: confidentiality and disclosure prep work together.",
-    "say": "Interest isn't entitlement.",
-    "wrap": "Confirm clearance, restrict access and escalate new requests.",
-    "scenario": "An investor emails asking for details about an ongoing matter that hasn't been publicly disclosed. What do you do before responding?"
-  },
-  "s1": {
-    "on": "This section says investor information has its own boundaries (some shareable with investors only, some not at all) and ties to classification.",
-    "say": "Investors don't get everything."
-  },
-  "s2": {
-    "on": "These steps manage it: confirm what's cleared, keep materials access-controlled, and escalate requests beyond what's prepared.",
-    "say": "Escalate anything not cleared."
-  },
-  "s3": {
-    "on": "This section warns against assuming investors are entitled to everything, and links this to investor briefing prep.",
-    "say": "Confirm the boundaries first."
-  }
-},
-"8::Crisis PR & Media Containment": {
-  "p1": {
-    "on": "This slide says a media crisis moves faster than most, with minutes to shape the first response, building on reputational risk and crisis communication. The steps: confirm who is authorized to speak (already established, not decided under pressure), give unauthorized people a safe, consistent holding statement, and escalate to communications, legal and the executive in parallel.",
-    "say": "Escalate in parallel. Media won't wait for a sequential chain.",
-    "ask": "If you're not the spokesperson, what do you say?"
-  },
-  "p2": {
-    "on": "This slide warns against personally managing media attention outside the authorization chain, even with good intentions. A fast, correct \"no comment, here's who to contact\" protects everyone better than a fast, unauthorized attempt to help.",
-    "say": "\"No comment, here's who to contact\" is the right fast answer.",
-    "wrap": "Know the spokesperson, use the holding statement and escalate in parallel.",
-    "scenario": "A journalist calls you directly, bypassing the firm's usual channels, asking for comment on a sensitive matter. What do you say, and who do you contact the moment you hang up?"
-  },
-  "s1": {
-    "on": "This section says media crises move in minutes, building on reputational risk and crisis communication.",
-    "say": "Minutes, not hours."
-  },
-  "s2": {
-    "on": "These steps contain it: confirm who's authorized to speak, give a prepared holding statement, and escalate in parallel.",
-    "say": "Holding line, then escalate in parallel.",
-    "ask": "What would your holding statement say?"
-  },
-  "s3": {
-    "on": "This section warns against handling media outside the authorization chain, and says a fast 'no comment, here's who to contact' protects everyone.",
-    "say": "Good intentions don't prevent damage."
   }
 }
 });

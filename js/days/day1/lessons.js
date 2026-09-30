@@ -14,8 +14,8 @@
 const DAY1 = {
   "id": 1,
   "title": "Foundations of the Legal Executive Assistant Role",
-  "theme": "Legal EA Task Overview · Communication & Gatekeeping · Confidentiality & NDAs · Command Hierarchy & Liaison",
-  "objective": "Get a clear picture of what a Legal Executive Assistant actually does day to day, build the communication habits the role runs on, and know when to escalate rather than act alone.",
+  "theme": "Legal EA Task Overview · Legal Basics · Communication & Gatekeeping · Confidentiality & NDAs · Command Hierarchy & Liaison",
+  "objective": "Get a clear picture of what a Legal Executive Assistant actually does day to day, learn the legal basics every assistant needs, build the communication habits the role runs on, and know when to escalate rather than act alone.",
   "taskOverview": [
     {
       "label": "Calendar & Scheduling",
@@ -192,6 +192,113 @@ const DAY1 = {
       "trainerCue": "Ask for a show of hands: who has worked in a job with NO formal tech stack at all? Discuss how that changes what 'typical work environment' means in practice."
     },
     {
+      "h": "Who's Who in a Law Firm",
+      "section": "Legal Basics",
+      "fourPart": {
+        "corePrinciples": [
+          "A law firm runs on a clear ladder. Partners own the firm and the client relationships. Associates are lawyers who do much of the day-to-day legal work. Of counsel are experienced lawyers with a looser, often part-time tie to the firm.",
+          "Paralegals do substantive legal work under a lawyer's supervision, like drafting documents, organizing discovery and preparing exhibits. Legal assistants and EAs keep the lawyers' time, communication and logistics running.",
+          "Outside the firm you'll deal with clients, opposing counsel (the lawyers on the other side), court clerks, judges' chambers, court reporters, process servers and expert witnesses. Each gets a different tone and different limits."
+        ],
+        "howTo": [
+          "In your first week, get the firm's org chart: the partners, which associates and paralegals work on which matters, and who runs billing, IT and the office.",
+          "For each of Elias's matters, write down the team: responsible partner, associate, paralegal and the client contact. Keep it in the matter notes or the client tracker.",
+          "Learn the outside names too: opposing counsel, the court and judge, and the court reporter and expert firms you book.",
+          "Before you pass on a request, ask who owns that decision. Legal judgment goes to a lawyer, logistics usually stay with you and billing questions go to billing.",
+          "Address people correctly: a judge is 'Judge [Name]' in writing and 'Your Honor' in court. Keep contact with opposing counsel polite, in writing and copied to your attorney."
+        ],
+        "bestPractices": [
+          "Treat court clerks and judges' staff with real courtesy. They manage the calendar and can make a filing day easy or hard.",
+          "Never contact the other side's client directly. A represented party is reached only through their lawyer, and only when your attorney says so.",
+          "Pitfall: assuming the most senior person on an email decides everything. A partner may set strategy while an associate owns the filing deadline.",
+          "Pitfall: treating paralegals as people to hand errands to. They're specialists, and you'll work side by side on every matter."
+        ],
+        "discussionCase": "A voicemail says, 'This is Mark from Harlow's side, about the deposition.' Before you call back, what do you need to know about who Mark is, and who at the firm should handle it?"
+      },
+      "trainerCue": "Draw the firm's ladder on the board with the room, then add the outside people around it. Ask who each person would call first when a filing deadline changes."
+    },
+    {
+      "h": "The Life of a Legal Matter",
+      "section": "Legal Basics",
+      "fourPart": {
+        "corePrinciples": [
+          "Every piece of work at a law firm is a 'matter', and most follow the same life cycle. Knowing the stage tells you what's coming next and what can go wrong.",
+          "A lawsuit usually runs: intake and conflict check → engagement letter and retainer → investigation → pleadings (the complaint and the answer) → discovery (exchanging documents and taking depositions) → motions → settlement or trial → judgment and any appeal → closing the file.",
+          "Transactional work, like a contract or a company sale, runs: intake → engagement → drafting and negotiation → signing (the 'closing') → post-closing tasks.",
+          "Each stage has its own deadlines, documents and people, so the assistant's job changes as the matter moves."
+        ],
+        "howTo": [
+          "When a matter opens, note its type (litigation or transactional) and its current stage in the tracker.",
+          "At intake, collect the names of every party and the key dates, so the conflict check and the deadline calendar can start right away.",
+          "In pleadings and discovery, calendar every response deadline the moment it's triggered, and keep a clean index of what's been served and received.",
+          "Before a trial, hearing or closing, build the checklist early: documents, exhibits, signatures, rooms, travel and people.",
+          "At closing, make sure the final bill goes out, any money left in trust is returned, a closing letter is sent and the file is archived under the retention rules."
+        ],
+        "bestPractices": [
+          "Update the matter's stage in the tracker whenever it changes, so anyone covering for you knows where things stand.",
+          "Most cases settle before trial, but prepare as if every one will go to trial. Deadlines don't pause for settlement talks unless the court says so.",
+          "Pitfall: treating 'closed' as 'done'. Unreturned trust money and unarchived files are real problems months later.",
+          "Pitfall: using the words loosely. 'Filed', 'served' and 'sent' mean different things, and a lawyer will hear the difference."
+        ],
+        "discussionCase": "Harlow Industries has just been sued. Walk the matter through each stage: what's the first thing you do, what do you calendar next and what does closing the file involve?"
+      },
+      "trainerCue": "Put the stages on sticky notes and have the room order them, then place three real tasks (booking a court reporter, sending an engagement letter, returning trust money) on the right stage."
+    },
+    {
+      "h": "Legal Terms You'll Hear Every Day",
+      "section": "Legal Basics",
+      "fourPart": {
+        "corePrinciples": [
+          "You don't need a law degree, but you do need the vocabulary. Misunderstanding one word can send the wrong document to the wrong place.",
+          "The parties: the plaintiff (or petitioner) brings the case; the defendant (or respondent) answers it. A person with no lawyer is 'pro se'.",
+          "The documents: a complaint starts a lawsuit, an answer responds to it, a motion asks the court to do something, and a brief argues why. An affidavit is a sworn written statement signed before a notary; a declaration is similar but signed under penalty of perjury without a notary.",
+          "The process: discovery is the exchange of information; interrogatories are written questions; a deposition is sworn testimony taken outside court; a subpoena orders someone to appear or hand over documents; a stipulation is an agreement between the parties."
+        ],
+        "howTo": [
+          "Keep a one-page glossary of the 30 terms you hear most, in your own words, and add to it every week.",
+          "When a lawyer uses a term you don't know, write it down and look it up afterwards, or ask at a good moment. Guessing is the risky option.",
+          "Use each document's exact name when you file, save or email it: 'Defendant's Motion to Compel', not 'the motion thing'.",
+          "Learn the matter-level words too: a matter number identifies each case in the firm's systems, and a retainer is money paid up front and held in trust.",
+          "Notice which side the firm is on. For Harlow the firm might be the defendant; for Meridian the plaintiff. It changes how documents are named and numbered."
+        ],
+        "bestPractices": [
+          "Match the lawyer's precision. 'Deposition' and 'hearing' aren't interchangeable, and neither are 'subpoena' and 'summons'.",
+          "Explain terms to clients only as your attorney has explained them. Defining a word is fine; saying what it means for their case is legal advice.",
+          "Pitfall: nodding along. A misunderstood instruction costs far more than a quick question.",
+          "Pitfall: using Latin or jargon with clients to sound expert. Plain language is more professional, not less."
+        ],
+        "discussionCase": "Elias leaves a voice note: 'Opposing counsel served interrogatories and noticed Harlow's CFO for deposition; calendar the responses and get a court reporter.' Translate it into a task list in plain English."
+      },
+      "trainerCue": "Run a fast quiz: read ten terms aloud and have the room shout plaintiff-side or process or document. Then have pairs define 'deposition' and 'subpoena' in one plain sentence each."
+    },
+    {
+      "h": "Client Intake & Conflict Checks",
+      "section": "Legal Basics",
+      "fourPart": {
+        "corePrinciples": [
+          "Before a firm takes a new matter, it must check that representing this client won't conflict with a current or former client. This is an ethics rule, not a formality.",
+          "A conflict check searches the firm's records for everyone involved: the client, the other side, related companies, key individuals and opposing counsel.",
+          "Until the check clears and an engagement letter is signed, the person is a prospective client. Take only the information needed for the check, and don't give legal advice.",
+          "Intake is also where deadlines are first spotted. A statute-of-limitations date mentioned in passing on the first call can be the most important fact in the file."
+        ],
+        "howTo": [
+          "Use the firm's intake form on every new inquiry: names of all parties and related businesses, opposing counsel, a short description, how they found the firm and any dates they mention.",
+          "Run the conflict search on every name, including former names, parent companies and subsidiaries, in the firm's conflict database.",
+          "Send any 'hit' (a match) to the responsible attorney without deciding for yourself whether it's a real conflict.",
+          "Flag any deadline mentioned at intake to the attorney the same day, even before the matter is accepted.",
+          "Once cleared, prepare the engagement letter for the attorney, open the matter number and set up the file only after the letter is signed."
+        ],
+        "bestPractices": [
+          "Run the check before a long intake call, where you can. The less confidential detail the firm hears before clearing conflicts, the better.",
+          "Record the check itself: what was searched, when, the result and who cleared it.",
+          "Pitfall: searching only the client's name. The conflict usually hides in the other party or a related company.",
+          "Pitfall: telling a caller 'we can definitely help' before the check clears. Only the attorney accepts a matter."
+        ],
+        "discussionCase": "A caller wants the firm to sue 'Northgate Logistics' over a warehouse contract and mentions the contract ended 'almost six years ago.' What do you search, what do you flag and what do you not say?"
+      },
+      "trainerCue": "Give pairs a mock inquiry with four names in it (client, opponent, parent company, opposing counsel) and ask them to list every search they'd run before anyone at the firm hears more."
+    },
+    {
       "h": "Basic Communication Principles for Legal EAs",
       "section": "Communication & Gatekeeping",
       "b": [
@@ -272,6 +379,32 @@ const DAY1 = {
         "Whichever script you use, get a small agreement first if you can (confirming the ask, confirming a time) — consistency and commitment make the redirect land more smoothly than a flat statement."
       ],
       "trainerCue": "Have three volunteers each deliver one of the three scripts (Deferring, Re-routing, Drastic Contrast) to the same scenario — the tonal differences are the whole lesson."
+    },
+    {
+      "h": "Phone & Voicemail Etiquette",
+      "section": "Communication & Gatekeeping",
+      "fourPart": {
+        "corePrinciples": [
+          "The phone is often a client's first contact with the firm. How you answer it shapes their impression of the whole practice.",
+          "A good message is complete: who called, from where, their number, which matter, what they need, how urgent it is and the best time to reach them.",
+          "Confidentiality applies on the phone too. Don't confirm that someone is a client, or discuss any matter, until you know who you're talking to and that they're entitled to know."
+        ],
+        "howTo": [
+          "Answer with the firm's name and your own: 'Thorne and Partners, this is Dana speaking.'",
+          "Take the full message and read the number back. Ask 'Which matter is this about?' and 'Is there a deadline we should know about?'",
+          "Transfer warmly: tell the attorney who's calling and why before you connect them, so nobody has to repeat themselves.",
+          "When you leave a voicemail, say your name and number slowly at the start and again at the end, keep the reason short, and leave out confidential details.",
+          "Log every call that matters in the call log or the matter notes, and return calls within one business day, even if only to say when a full answer is coming."
+        ],
+        "bestPractices": [
+          "Smile when you answer. It genuinely changes how your voice sounds.",
+          "Keep your own voicemail greeting current, especially when you're out: say when you're back and who to call in the meantime.",
+          "Pitfall: 'Yes, Mr. Harlow is a client here' to an unknown caller. Confirming a client relationship can itself breach confidentiality.",
+          "Pitfall: a message that says only 'John called.' If the attorney can't act on it, it isn't a message."
+        ],
+        "discussionCase": "A caller says, 'I'm a reporter. Is Harlow Industries one of your clients? I just need a yes or no.' What exactly do you say, and what do you do after the call?"
+      },
+      "trainerCue": "Pair trainees for 60-second calls: one plays a rushed client with a deadline, the other takes the message. Swap, then compare messages for the seven parts."
     },
     {
       "h": "Executive Presence in Action",
@@ -371,6 +504,32 @@ const DAY1 = {
         "When genuinely unsure whether something is authorized, run it through the simple check: does this comply with policy, law, and trust? If the answer is no or uncertain, escalate rather than proceed."
       ],
       "trainerCue": "Cold-call someone: 'You just approved a $600 vendor invoice under a $500 limit by accident. What do you do in the next 10 minutes?' Use their answer to check if escalation instinct is there."
+    },
+    {
+      "h": "What an Assistant Can and Can't Do (Unauthorized Practice of Law)",
+      "section": "Confidentiality & Boundaries",
+      "fourPart": {
+        "corePrinciples": [
+          "Only a licensed lawyer can give legal advice, set legal fees, accept a case, sign court papers or represent someone in court. Doing any of these without a license is the unauthorized practice of law (UPL), and it's illegal in every US state.",
+          "Lawyers are responsible for supervising the non-lawyers who work for them, so a well-meant slip by an assistant becomes the firm's problem.",
+          "The line is interpretation. Giving facts, scheduling and relaying the attorney's words are fine; telling someone what the law means for their situation, or what they should do, is advice."
+        ],
+        "howTo": [
+          "Things you can do: schedule, gather information and documents, share public procedural facts (a court's address or hours), and pass on the attorney's advice word for word.",
+          "Things you can't do: tell a client whether they have a case, what a document means for them, which option to choose or what a settlement is worth.",
+          "When asked for advice, use a bridge line: 'That's a great question for Elias. I'll make sure he gets it today.'",
+          "When passing on the attorney's advice, quote it exactly or send it in writing from them. Don't paraphrase it into your own words.",
+          "If you're not sure whether something crosses the line, treat it as advice and route it to the attorney."
+        ],
+        "bestPractices": [
+          "Be warm when you redirect. Clients often ask the assistant because they feel embarrassed asking the lawyer.",
+          "Write down the question as the client asked it, so the attorney answers what was actually asked.",
+          "Pitfall: 'In my experience, cases like yours usually settle.' Experience-based reassurance is still advice.",
+          "Pitfall: filling in a legal form's answers for a client. Collect the information; the attorney decides what goes in."
+        ],
+        "discussionCase": "A client calls: 'The other side offered $40,000. Elias is in trial all week. Just between us, should I take it?' Write exactly what you say."
+      },
+      "trainerCue": "Read out eight things an assistant might say to a client. The room holds up a green card (fine) or a red card (advice). Discuss the two that split the room."
     },
     {
       "h": "NDAs & Non-Disclosure Discipline",
@@ -704,7 +863,7 @@ const DAY1 = {
       "r": "Reading the audience means the same event gets a different register for the client than for the court or the attorney."
     },
     {
-      "afterIndex": 5,
+      "afterIndex": 9,
       "q": "In the 'Persistent Caller' scenario, the EA's scripted response focuses on:",
       "opts": [
         "Immediately connecting the call",
@@ -991,6 +1150,72 @@ const DAY1 = {
       ],
       "a": 3,
       "r": "A strong reply untangles multiple asks rather than collapsing them into one vague response."
+    },
+    {
+      "q": "Opposing counsel phones you and asks you to pass a settlement offer straight to your client's CEO. What do you do?",
+      "opts": [
+        "Take down the details and give them to your attorney, who decides how to respond",
+        "Email the offer straight to the client's CEO so no time is lost, copying your attorney",
+        "Tell opposing counsel the offer seems low and ask them to improve it first",
+        "Ask opposing counsel to send the offer to the CEO directly instead of through you"
+      ],
+      "a": 0,
+      "r": "Offers and anything touching the matter go through your attorney. Passing it on yourself, commenting on it, or inviting direct contact with the client all step outside an assistant's role."
+    },
+    {
+      "q": "A lawsuit settles and Elias says the matter can be closed. Which task is part of closing the file?",
+      "opts": [
+        "Deleting the matter's emails and drafts right away, since the dispute has now ended",
+        "Returning any unused money held in trust for the client and sending a closing letter",
+        "Keeping the matter open indefinitely in case the client ever needs the firm again",
+        "Moving the file straight to the shredding bin once the final invoice is paid"
+      ],
+      "a": 1,
+      "r": "Closing means the final bill, returning any trust balance, a closing letter and archiving under the retention rules. Files aren't deleted or shredded on the spot, and a matter isn't left open forever."
+    },
+    {
+      "q": "A lawyer asks you to prepare a subpoena. What is a subpoena?",
+      "opts": [
+        "A written summary of the case that each side files with the court before trial begins",
+        "A sworn statement signed in front of a notary that is attached to a motion as evidence",
+        "An order requiring a person to appear to testify or to produce documents or records",
+        "An agreement between both parties to extend a deadline, signed by their lawyers"
+      ],
+      "a": 2,
+      "r": "A subpoena orders someone to appear or produce documents. A pre-trial summary is a brief or statement, a sworn notarized statement is an affidavit, and an agreement between the parties is a stipulation."
+    },
+    {
+      "q": "Your conflict search on a new inquiry finds that the opposing party's parent company was a firm client two years ago. What do you do?",
+      "opts": [
+        "Decide it's too old to matter and open the new matter so the work can start today",
+        "Tell the caller the firm can't help and suggest another firm they could contact instead",
+        "Keep quiet about the match, since former clients don't count once their matter is closed",
+        "Send the match to the responsible attorney to decide, without telling the caller anything yet"
+      ],
+      "a": 3,
+      "r": "A match goes to the attorney, who decides whether it's a real conflict. The assistant doesn't clear it, turn the caller away or ignore it; former clients can still create conflicts."
+    },
+    {
+      "q": "An unknown caller asks, 'Can you confirm Harlow Industries is a client of your firm?' What's the best response?",
+      "opts": [
+        "'Yes, they are, but I can't share any other details about their matters.'",
+        "'I'm not able to confirm who our clients are, but I'm happy to take a message.'",
+        "'Let me check the client list and call you straight back with an answer.'",
+        "'You'd need to ask Harlow Industries directly, since they're the client, not us.'"
+      ],
+      "a": 1,
+      "r": "Confirming a client relationship can itself breach confidentiality. The safe answer neither confirms nor denies, and offers to take a message. The last option hints that they are a client."
+    },
+    {
+      "q": "Which of these can a legal assistant do without crossing into the unauthorized practice of law?",
+      "opts": [
+        "Tell a client which of two settlement options is better for their situation",
+        "Estimate for a caller how much their injury claim is probably worth in court",
+        "Give a client the court's address, filing hours and the date of their hearing",
+        "Reassure a client that cases like theirs usually win, based on past matters"
+      ],
+      "a": 2,
+      "r": "Public procedural facts like addresses, hours and scheduled dates are fine to share. Choosing between options, valuing a claim and predicting outcomes are all legal advice."
     }
   ],
   "discussionQuestion": "Think of a moment (in this role or another) where you had to decide whether something was an EA-style problem or a PA-style problem. What tipped you off, and would you decide the same way again?"

@@ -68,6 +68,36 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "What's a signal that a text message is actually EA work?"
   }
 },
+"1::EA vs. PA Decision Principles": {
+  "p1": {
+    "on": "This slide gives the EA decision principles: put business-critical matters first, filter requests before escalating, and know when to negotiate or delegate. The five steps cover picking the right track, applying EA or PA principles, escalating when neither clearly fits, and reviewing your own past decisions.",
+    "say": "EA and PA principles lead to different calls on the same kind of request. Decide which track you're on first.",
+    "ask": "Which set of principles feels more natural to you, and what does that say about your instincts?"
+  },
+  "p2": {
+    "on": "This slide gives the PA decision principles: honor personal preferences first, offer alternatives rather than outright denials, and keep personal matters private. The Go Deeper box sets out three EA principles side by side: business-critical first, filter before escalating, and document the decision.",
+    "say": "When a decision doesn't clearly fit either set of principles, escalate instead of guessing.",
+    "wrap": "Pick the track, apply its principles, and write down what you decided and why.",
+    "scenario": "Elias asks you to move a client call so he can attend his daughter's recital, but the client is in a tough negotiation. Which principles apply, and what do you actually do?"
+  },
+  "s1": {
+    "on": "This section lists the EA decision principles: business-critical matters first, filter before escalating, and know when to negotiate or delegate.",
+    "say": "EA principles start with what's business-critical."
+  },
+  "s2": {
+    "on": "These steps apply the principles: pick the track first, apply the EA or PA principles, escalate anything that fits neither, and review past decisions for habits.",
+    "say": "Pick the track before you make the call.",
+    "ask": "Which set of principles feels more natural to you?"
+  },
+  "s3": {
+    "on": "This section lists the PA decision principles: honor personal preferences, offer alternatives rather than outright denials, and keep personal matters private.",
+    "say": "PA principles start with the person's preferences."
+  },
+  "s4": {
+    "on": "This section goes deeper on the EA principles: business-critical first even over the executive's own convenience, arrive with options and a recommendation rather than a raw forward, and document every decision in one line.",
+    "say": "Bring a narrowed decision, not a forward."
+  }
+},
 "1::Typical Work Environment": {
   "p1": {
     "on": "This slide lists the common settings an assistant works in: corporate offices, law and professional-services firms, remote or hybrid teams, startups and private households. The five steps cover identifying the setting, confirming its tools, and calibrating how you handle vendors, conflicts and scope creep in that setting.",
@@ -93,6 +123,110 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "on": "This section lists the standard tech stack (Outlook or Google Workspace, Slack, Teams, Zoom, Clio, iManage, Asana), the standing expectations (presence, anticipation, judgment, irregular hours) and side-by-side EA and PA responses to vendor issues, conflicts and scope creep.",
     "say": "Same problem, two responses: the EA escalates professionally, the PA resolves directly.",
     "ask": "Who has worked somewhere with no formal tech stack at all?"
+  }
+},
+"1::Who's Who in a Law Firm": {
+  "p1": {
+    "on": "This slide maps the people: partners, associates, of counsel, paralegals and assistants inside the firm, and clients, opposing counsel, clerks, chambers, court reporters and experts outside it. The steps: get the org chart, list each matter's team, learn the outside names, route by who owns the decision, and address people correctly.",
+    "say": "Know who owns each decision before you pass anything on.",
+    "ask": "Who would you call first if a filing deadline suddenly moved?"
+  },
+  "p2": {
+    "on": "This slide covers courtesy to clerks and chambers, never contacting a represented party directly, and two pitfalls: assuming the most senior person decides everything, and treating paralegals as errand-runners.",
+    "say": "Clerks and paralegals can make or break your day. Treat them that way.",
+    "wrap": "Map the people first, and every request has somewhere to go.",
+    "scenario": "A voicemail says, 'This is Mark from Harlow's side, about the deposition.' Before you call back, what do you need to know about who Mark is, and who at the firm should handle it?"
+  },
+  "s1": {
+    "on": "This section explains the firm's ladder (partners, associates, of counsel, paralegals, assistants) and the outside people you'll deal with.",
+    "say": "Every role has a different job and different limits."
+  },
+  "s2": {
+    "on": "These steps: get the org chart, list each matter's team, learn the outside names, route by decision owner, address judges and opposing counsel correctly.",
+    "say": "Write down each matter's team.",
+    "ask": "Who owns the filing deadline on a matter?"
+  },
+  "s3": {
+    "on": "This section stresses courtesy to clerks, no direct contact with a represented party, and the two pitfalls.",
+    "say": "Never contact the other side's client."
+  }
+},
+"1::The Life of a Legal Matter": {
+  "p1": {
+    "on": "This slide shows a matter's life cycle: intake and conflict check, engagement and retainer, investigation, pleadings, discovery, motions, settlement or trial, judgment and appeal, and closing. It contrasts transactional work: intake, engagement, drafting and negotiation, closing, post-closing. The steps tie the assistant's tasks to each stage.",
+    "say": "Know the stage, and you know what's coming next.",
+    "ask": "Which stage do you think generates the most deadlines?"
+  },
+  "p2": {
+    "on": "This slide covers keeping the stage current in the tracker, preparing as if every case goes to trial, and two pitfalls: treating 'closed' as done, and using filed, served and sent loosely.",
+    "say": "Closing the file is its own checklist.",
+    "wrap": "Track the stage, and your tasks follow from it.",
+    "scenario": "Harlow Industries has just been sued. Walk the matter through each stage: what's the first thing you do, what do you calendar next and what does closing the file involve?"
+  },
+  "s1": {
+    "on": "This section defines a matter and lists the litigation and transactional life cycles.",
+    "say": "Most matters follow the same path."
+  },
+  "s2": {
+    "on": "These steps: note the type and stage, collect parties and dates at intake, calendar deadlines as they're triggered, build pre-trial checklists early, and close properly.",
+    "say": "Calendar every deadline the moment it's triggered.",
+    "ask": "What has to happen before a file can be archived?"
+  },
+  "s3": {
+    "on": "This section says to keep the stage current, prepare for trial even when settlement is likely, and avoid the two pitfalls.",
+    "say": "Filed, served and sent are three different things."
+  }
+},
+"1::Legal Terms You'll Hear Every Day": {
+  "p1": {
+    "on": "This slide gives the core vocabulary: plaintiff and defendant, pro se; complaint, answer, motion, brief, affidavit, declaration; discovery, interrogatories, deposition, subpoena, stipulation. The steps: keep a glossary, look up unfamiliar terms, use exact document names, learn matter number and retainer, and notice which side the firm is on.",
+    "say": "Precise words keep documents going to the right place.",
+    "ask": "Which legal term have you heard and never been quite sure about?"
+  },
+  "p2": {
+    "on": "This slide covers matching the lawyer's precision, explaining terms to clients only as the attorney has, and two pitfalls: nodding along without understanding, and using jargon with clients.",
+    "say": "Defining a word is fine. Saying what it means for their case is legal advice.",
+    "wrap": "Keep a glossary, use exact names and ask when you're unsure.",
+    "scenario": "Elias leaves a voice note: 'Opposing counsel served interrogatories and noticed Harlow's CFO for deposition; calendar the responses and get a court reporter.' Translate it into a task list in plain English."
+  },
+  "s1": {
+    "on": "This section says vocabulary matters and defines the parties, the documents and the process terms.",
+    "say": "You need the vocabulary, not the law degree."
+  },
+  "s2": {
+    "on": "These steps: keep a glossary, look terms up, use exact document names, learn matter number and retainer, and note which side the firm is on.",
+    "say": "Use each document's exact name.",
+    "ask": "What's the difference between an affidavit and a declaration?"
+  },
+  "s3": {
+    "on": "This section says to match the lawyer's precision, not to interpret terms for clients, and warns against nodding along and using jargon.",
+    "say": "Ask rather than guess."
+  }
+},
+"1::Client Intake & Conflict Checks": {
+  "p1": {
+    "on": "This slide explains that a conflict check is an ethics requirement, it searches everyone involved, a prospective client gets no legal advice, and intake is where deadlines first appear. The steps: use the intake form, search every name, send hits to the attorney, flag deadlines the same day, and prepare the engagement letter once cleared.",
+    "say": "Search every name, not just the client's.",
+    "ask": "Why might the conflict hide in the other party's name rather than the client's?"
+  },
+  "p2": {
+    "on": "This slide covers running the check early, recording it, and two pitfalls: searching only the client's name, and promising help before the check clears.",
+    "say": "Only the attorney accepts a matter.",
+    "wrap": "Check every name, record the result and flag every date.",
+    "scenario": "A caller wants the firm to sue 'Northgate Logistics' over a warehouse contract and mentions the contract ended 'almost six years ago.' What do you search, what do you flag and what do you not say?"
+  },
+  "s1": {
+    "on": "This section explains conflict checks, prospective clients and why intake is where deadlines are first spotted.",
+    "say": "A conflict check is an ethics rule."
+  },
+  "s2": {
+    "on": "These steps: use the intake form, search every name including related companies, send hits to the attorney, flag deadlines, and open the matter only after the engagement letter is signed.",
+    "say": "Send every hit to the attorney.",
+    "ask": "What names would you search for a new corporate client?"
+  },
+  "s3": {
+    "on": "This section says to run the check early and record it, and warns against searching one name or promising help too soon.",
+    "say": "Record what you searched and when."
   }
 },
 "1::Basic Communication Principles for Legal EAs": {
@@ -204,31 +338,30 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Re-routing keeps you accountable. Drastic Contrast stays honest."
   }
 },
-"1::Virtual Meetings & Transcription Accuracy": {
+"1::Phone & Voicemail Etiquette": {
   "p1": {
-    "on": "This slide starts with the rule to test recording software before the meeting, not during it. The five steps cover assigning a human note-taker as backup, capturing only decisions and action items, cleaning any AI transcript before it goes anywhere, and sending the executive a short briefing memo.",
-    "say": "The meeting record can't depend on technology alone. Test it before, back it up with a person, and clean it after.",
-    "ask": "Has a meeting ever ended with nobody agreeing on what was actually decided?"
+    "on": "This slide says the phone shapes a client's first impression, a complete message has seven parts (who, from where, number, matter, need, urgency, best time), and confidentiality applies on calls. The steps: answer with the firm and your name, take and read back the message, transfer warmly, leave clear voicemails without confidential details, log and return calls within a business day.",
+    "say": "If the attorney can't act on it, it isn't a message.",
+    "ask": "What's the most useless phone message you've ever received?"
   },
   "p2": {
-    "on": "This slide contrasts Informal Notes (internal only) with Formal Minutes (the distributed record), and describes the Executive Briefing Memo that replaces a full transcript. The pitfalls to stress are distributing a raw AI transcript and capturing side conversations or off-the-record remarks.",
-    "say": "Never send a raw transcript. Your job is to review it and turn it into the right document.",
-    "wrap": "Decisions and action items, reviewed and cleaned, in a short memo: that's the meeting record.",
-    "scenario": "Elias's partners' meeting ran long, the AI transcript is 40 pages, and two people remember the key decision differently. What do you send, to whom, and how do you settle what was decided?"
+    "on": "This slide covers tone, keeping your voicemail greeting current, and two pitfalls: confirming a client relationship to an unknown caller, and incomplete messages.",
+    "say": "Never confirm who the firm's clients are to an unknown caller.",
+    "wrap": "Answer well, take all seven parts and protect confidentiality.",
+    "scenario": "A caller says, 'I'm a reporter. Is Harlow Industries one of your clients? I just need a yes or no.' What exactly do you say, and what do you do after the call?"
   },
   "s1": {
-    "on": "This section's principle: test the recording software before the meeting, not during it.",
-    "say": "Test the tech before anyone joins."
+    "on": "This section explains the phone's role in first impressions, the seven parts of a message and confidentiality on calls.",
+    "say": "A complete message has seven parts."
   },
   "s2": {
-    "on": "These steps run a meeting: test recording first, assign a human note-taker as backup, capture decisions and action items only, clean any AI transcript before sharing, and send the executive a short briefing memo.",
-    "say": "Decisions and actions go in the record. Side conversations don't.",
-    "ask": "Who's your backup if the transcript fails?"
+    "on": "These steps: answer properly, take and read back the full message, transfer warmly, leave clear voicemails, and log and return calls.",
+    "say": "Read the number back every time.",
+    "ask": "What do you leave out of a voicemail?"
   },
   "s3": {
-    "on": "This section covers documentation: Informal Notes versus Formal Minutes, fixing unclear minutes by revising the template, never distributing a raw AI transcript, and the \"Executive Brief\" memo format.",
-    "say": "Never send an AI transcript you haven't cleaned.",
-    "ask": "Has a meeting ever ended with nobody agreeing what was decided?"
+    "on": "This section covers tone, your voicemail greeting and the two pitfalls.",
+    "say": "Don't confirm clients to strangers."
   }
 },
 "1::Executive Presence in Action": {
@@ -254,34 +387,31 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "Which of the two replies would you find harder to deliver?"
   }
 },
-"1::EA vs. PA Decision Principles": {
+"1::Virtual Meetings & Transcription Accuracy": {
   "p1": {
-    "on": "This slide gives the EA decision principles: put business-critical matters first, filter requests before escalating, and know when to negotiate or delegate. The five steps cover picking the right track, applying EA or PA principles, escalating when neither clearly fits, and reviewing your own past decisions.",
-    "say": "EA and PA principles lead to different calls on the same kind of request. Decide which track you're on first.",
-    "ask": "Which set of principles feels more natural to you, and what does that say about your instincts?"
+    "on": "This slide starts with the rule to test recording software before the meeting, not during it. The five steps cover assigning a human note-taker as backup, capturing only decisions and action items, cleaning any AI transcript before it goes anywhere, and sending the executive a short briefing memo.",
+    "say": "The meeting record can't depend on technology alone. Test it before, back it up with a person, and clean it after.",
+    "ask": "Has a meeting ever ended with nobody agreeing on what was actually decided?"
   },
   "p2": {
-    "on": "This slide gives the PA decision principles: honor personal preferences first, offer alternatives rather than outright denials, and keep personal matters private. The Go Deeper box sets out three EA principles side by side: business-critical first, filter before escalating, and document the decision.",
-    "say": "When a decision doesn't clearly fit either set of principles, escalate instead of guessing.",
-    "wrap": "Pick the track, apply its principles, and write down what you decided and why.",
-    "scenario": "Elias asks you to move a client call so he can attend his daughter's recital, but the client is in a tough negotiation. Which principles apply, and what do you actually do?"
+    "on": "This slide contrasts Informal Notes (internal only) with Formal Minutes (the distributed record), and describes the Executive Briefing Memo that replaces a full transcript. The pitfalls to stress are distributing a raw AI transcript and capturing side conversations or off-the-record remarks.",
+    "say": "Never send a raw transcript. Your job is to review it and turn it into the right document.",
+    "wrap": "Decisions and action items, reviewed and cleaned, in a short memo: that's the meeting record.",
+    "scenario": "Elias's partners' meeting ran long, the AI transcript is 40 pages, and two people remember the key decision differently. What do you send, to whom, and how do you settle what was decided?"
   },
   "s1": {
-    "on": "This section lists the EA decision principles: business-critical matters first, filter before escalating, and know when to negotiate or delegate.",
-    "say": "EA principles start with what's business-critical."
+    "on": "This section's principle: test the recording software before the meeting, not during it.",
+    "say": "Test the tech before anyone joins."
   },
   "s2": {
-    "on": "These steps apply the principles: pick the track first, apply the EA or PA principles, escalate anything that fits neither, and review past decisions for habits.",
-    "say": "Pick the track before you make the call.",
-    "ask": "Which set of principles feels more natural to you?"
+    "on": "These steps run a meeting: test recording first, assign a human note-taker as backup, capture decisions and action items only, clean any AI transcript before sharing, and send the executive a short briefing memo.",
+    "say": "Decisions and actions go in the record. Side conversations don't.",
+    "ask": "Who's your backup if the transcript fails?"
   },
   "s3": {
-    "on": "This section lists the PA decision principles: honor personal preferences, offer alternatives rather than outright denials, and keep personal matters private.",
-    "say": "PA principles start with the person's preferences."
-  },
-  "s4": {
-    "on": "This section goes deeper on the EA principles: business-critical first even over the executive's own convenience, arrive with options and a recommendation rather than a raw forward, and document every decision in one line.",
-    "say": "Bring a narrowed decision, not a forward."
+    "on": "This section covers documentation: Informal Notes versus Formal Minutes, fixing unclear minutes by revising the template, never distributing a raw AI transcript, and the \"Executive Brief\" memo format.",
+    "say": "Never send an AI transcript you haven't cleaned.",
+    "ask": "Has a meeting ever ended with nobody agreeing what was decided?"
   }
 },
 "1::Professional Standards & Confidentiality": {
@@ -334,6 +464,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section gives concrete examples: an EA approves invoices under $500 and escalates above, a PA books travel within budget, both pause on contracts or account access that need approval, and the policy-law-trust checklist.",
     "say": "Policy, law and trust — if any answer is no, escalate."
+  }
+},
+"1::What an Assistant Can and Can't Do (Unauthorized Practice of Law)": {
+  "p1": {
+    "on": "This slide says only a licensed lawyer can advise, set fees, accept cases, sign court papers or appear in court; lawyers must supervise non-lawyers; and the line is interpretation. The steps list what an assistant can and can't do, the bridge line, passing on advice word for word, and treating any doubt as advice.",
+    "say": "Facts and scheduling are yours. Interpretation is the attorney's.",
+    "ask": "Where do you think the line is hardest to see?"
+  },
+  "p2": {
+    "on": "This slide covers redirecting warmly, recording the client's exact question, and two pitfalls: experience-based reassurance and filling in a legal form's answers for a client.",
+    "say": "Reassurance based on your experience is still advice.",
+    "wrap": "Relay, schedule and gather. Route every 'what should I do?' to the attorney.",
+    "scenario": "A client calls: 'The other side offered $40,000. Elias is in trial all week. Just between us, should I take it?' Write exactly what you say."
+  },
+  "s1": {
+    "on": "This section defines UPL, the lawyer's duty to supervise, and interpretation as the line.",
+    "say": "Only a lawyer can give legal advice."
+  },
+  "s2": {
+    "on": "These steps list what you can and can't do, give a bridge line, and say to relay advice word for word and treat doubt as advice.",
+    "say": "Quote the attorney exactly.",
+    "ask": "Is telling a client a court's filing hours legal advice?"
+  },
+  "s3": {
+    "on": "This section covers warm redirection, recording the exact question, and the two pitfalls.",
+    "say": "Collect information; the attorney decides."
   }
 },
 "1::NDAs & Non-Disclosure Discipline": {
@@ -580,6 +736,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "A \"last reviewed\" date tells everyone how far to trust it."
   }
 },
+"1::Why One Client, All Ten Days": {
+  "p1": {
+    "on": "This slide explains why every exercise uses Elias Thorne: in a real role your value compounds, and what you learn on Day 1 shapes every later day. The five steps cover treating Day 1 facts as material that will be tested again, recalling rather than re-reading, flagging contradictions, and knowing his rules from memory by the end.",
+    "say": "Everything you learned about Elias today comes back on every day that follows.",
+    "ask": "What's one thing about Elias you're worried you'll forget by Day 5?"
+  },
+  "p2": {
+    "on": "This slide covers two practices: treat an inconsistency across days as a bug to flag, not permission to reinvent the client, and remember that the same instructions, family and quirks carried across ten days are what make this a tenure simulation rather than a set of separate exercises.",
+    "say": "If something contradicts the dossier, flag it. Don't reinvent Elias.",
+    "wrap": "One client, ten days: what you learn compounds.",
+    "scenario": "Write down the room's answers to \"What's one thing about Elias you're worried you'll forget by Day 5?\" and revisit the list on Day 5."
+  },
+  "s1": {
+    "on": "This section explains why every exercise uses Elias Thorne: in a real role your knowledge compounds, and Day 1's rules shape everything that follows.",
+    "say": "Your knowledge of Elias compounds every day."
+  },
+  "s2": {
+    "on": "These steps use the continuity: treat Day 1 facts as things you'll be tested on, recall them rather than re-read, flag contradictions to the trainer, and aim to describe Elias from memory by Day 10.",
+    "say": "Recall it rather than re-reading it. That's the practice.",
+    "ask": "What's one thing about Elias you're worried you'll forget by Day 5?"
+  },
+  "s3": {
+    "on": "This section says to treat inconsistencies as bugs to flag, and that carrying one client through all ten days is what makes this a tenure simulation rather than a set of lessons.",
+    "say": "Flag inconsistencies. Don't reinvent the client."
+  }
+},
 "1::The ACT Email Framework": {
   "p1": {
     "on": "This slide introduces the ACT email, which turns a fast, tangled request into a clear reply. The steps cover Acknowledge (restate the request in your own words), Clarify (ask only what you can't infer, after checking the dossier) and Timeline (what happens, by when and who owns it), all written BLUF-style and sent promptly, with a diagram.",
@@ -656,32 +838,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section gives examples: \"DECISION by 3 PM: expert retainer $6,200\" beats \"Following up\"; status updates lead with the state; and in an ACT reply, the Acknowledge line is written BLUF-style.",
     "say": "Lead with the state: on track or at risk."
-  }
-},
-"1::Why One Client, All Ten Days": {
-  "p1": {
-    "on": "This slide explains why every exercise uses Elias Thorne: in a real role your value compounds, and what you learn on Day 1 shapes every later day. The five steps cover treating Day 1 facts as material that will be tested again, recalling rather than re-reading, flagging contradictions, and knowing his rules from memory by the end.",
-    "say": "Everything you learned about Elias today comes back on every day that follows.",
-    "ask": "What's one thing about Elias you're worried you'll forget by Day 5?"
-  },
-  "p2": {
-    "on": "This slide covers two practices: treat an inconsistency across days as a bug to flag, not permission to reinvent the client, and remember that the same instructions, family and quirks carried across ten days are what make this a tenure simulation rather than a set of separate exercises.",
-    "say": "If something contradicts the dossier, flag it. Don't reinvent Elias.",
-    "wrap": "One client, ten days: what you learn compounds.",
-    "scenario": "Write down the room's answers to \"What's one thing about Elias you're worried you'll forget by Day 5?\" and revisit the list on Day 5."
-  },
-  "s1": {
-    "on": "This section explains why every exercise uses Elias Thorne: in a real role your knowledge compounds, and Day 1's rules shape everything that follows.",
-    "say": "Your knowledge of Elias compounds every day."
-  },
-  "s2": {
-    "on": "These steps use the continuity: treat Day 1 facts as things you'll be tested on, recall them rather than re-read, flag contradictions to the trainer, and aim to describe Elias from memory by Day 10.",
-    "say": "Recall it rather than re-reading it. That's the practice.",
-    "ask": "What's one thing about Elias you're worried you'll forget by Day 5?"
-  },
-  "s3": {
-    "on": "This section says to treat inconsistencies as bugs to flag, and that carrying one client through all ten days is what makes this a tenure simulation rather than a set of lessons.",
-    "say": "Flag inconsistencies. Don't reinvent the client."
   }
 }
 });

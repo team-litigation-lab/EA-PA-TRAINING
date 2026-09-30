@@ -107,6 +107,114 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "A catering vendor sends the wrong order to a client lunch at the office, and the same vendor is booked for the Thornes' dinner party on Saturday. How does your EA side handle the lunch, and how does your PA side handle Saturday?"
   }
  },
+ "1::Who's Who in a Law Firm": {
+  "p1": {
+   "why": "Before you can route a single request well, you need to know who's who, inside the firm and outside it.",
+   "talk": "A law firm has a clear ladder. Partners own the firm and the client relationships. Associates are lawyers doing a lot of the day-to-day legal work. Of counsel are experienced lawyers with a looser tie to the firm. Paralegals do real legal work under a lawyer's supervision, and we, the assistants, keep everyone's time, communication and logistics running. Then there's the outside world: clients, opposing counsel, court clerks, judges' chambers, court reporters and experts.",
+   "walk": [
+    "First, in week one, we get the org chart and learn who works on what.",
+    "Next, for each of Elias's matters, we write down the team: partner, associate, paralegal and client contact.",
+    "Then we learn the outside names: opposing counsel, the judge and the vendors we book.",
+    "After that, before passing anything on, we ask who owns that decision. Legal judgment goes to a lawyer.",
+    "Finally, we address people properly: 'Judge Rivera' in writing, 'Your Honor' in court, and opposing counsel politely, in writing, with our attorney copied."
+   ],
+   "ask": "If a filing deadline suddenly moved, who would you call first on a matter you support?",
+   "scenario": "Your first morning, three emails arrive: one from a partner asking for 'the Meridian file,' one from a paralegal asking you to book a court reporter, and one from a court clerk about a hearing time. Who's who, and which one do you handle first?"
+  },
+  "p2": {
+   "why": "The people who look least senior often have the most control over your day.",
+   "talk": "Court clerks and judges' staff run the calendar, so courtesy there pays off every single week. There's also one hard rule: we never contact the other side's client directly. If someone has a lawyer, everything goes through that lawyer, and only when our attorney says so. And watch two traps: thinking the most senior person decides everything, and treating paralegals as errand-runners. They're specialists, and we'll work side by side.",
+   "walk": [
+    "First, treat clerks and chambers with real courtesy.",
+    "Next, never contact a represented party directly.",
+    "Then, don't assume the most senior person owns every decision.",
+    "Finally, treat paralegals as colleagues, not helpers."
+   ],
+   "ask": "Have you ever been helped out of a jam by someone 'junior'? What did they control?",
+   "scenario": "A voicemail says, 'This is Mark from Harlow's side, about the deposition.' Before you call back, what do you need to know about who Mark is, and who at the firm should handle it?"
+  }
+ },
+ "1::The Life of a Legal Matter": {
+  "p1": {
+   "why": "If you know which stage a matter is in, you can see the next deadline coming before anyone asks.",
+   "talk": "Everything a law firm works on is called a matter, and most matters follow the same life. A lawsuit starts with intake and a conflict check, then an engagement letter and a retainer. Then comes investigation, then pleadings, which are the complaint and the answer. Then discovery, where both sides exchange documents and take depositions. Then motions, then settlement or trial, then judgment and maybe an appeal, and finally closing the file. Deals, like a contract or a company sale, run a shorter path: intake, engagement, drafting and negotiating, signing, then the follow-up.",
+   "walk": [
+    "First, when a matter opens, we note whether it's litigation or a deal, and which stage it's in.",
+    "Next, at intake, we collect every party's name and every key date.",
+    "Then, during pleadings and discovery, we calendar each deadline the moment it's triggered.",
+    "After that, before any hearing, trial or signing, we build the checklist early.",
+    "Finally, at closing: the final bill, any trust money returned, a closing letter and the file archived."
+   ],
+   "ask": "Which stage do you think creates the most deadlines for an assistant?",
+   "scenario": "Elias says a new matter for Meridian is 'in discovery.' A new colleague asks you what that means and what she should expect to handle this month. What do you tell her?"
+  },
+  "p2": {
+   "why": "The mistakes in a matter's life happen at the edges: the words we use and the very end.",
+   "talk": "Keep the stage current in the tracker, so anyone covering for you knows where things stand. Most cases settle, but we prepare as if every one is going to trial, because deadlines keep running during settlement talks unless the court pauses them. Two traps: thinking 'closed' means finished, when unreturned trust money and loose files cause trouble months later; and using the words loosely. Filed means the court has it. Served means the other side has formally received it. Sent just means it left us.",
+   "walk": [
+    "First, update the stage whenever it changes.",
+    "Next, prepare for trial even when settlement looks likely.",
+    "Then, treat closing as its own checklist.",
+    "Finally, use filed, served and sent precisely."
+   ],
+   "ask": "Why might a lawyer be alarmed if you said a document was 'filed' when it was only 'sent'?",
+   "scenario": "Harlow Industries has just been sued. Walk the matter through each stage: what's the first thing you do, what do you calendar next and what does closing the file involve?"
+  }
+ },
+ "1::Legal Terms You'll Hear Every Day": {
+  "p1": {
+   "why": "One misunderstood word can send the wrong document to the wrong place, so the vocabulary is part of the job.",
+   "talk": "Let's build the basic vocabulary. The plaintiff brings the case and the defendant answers it; someone without a lawyer is 'pro se'. A complaint starts a lawsuit, an answer responds, a motion asks the court to do something, and a brief argues why. An affidavit is a sworn statement signed in front of a notary, and a declaration is similar but signed under penalty of perjury, without a notary. Discovery is the exchange of information: interrogatories are written questions, a deposition is sworn testimony outside court, and a subpoena orders someone to show up or hand over documents. A stipulation is simply something both sides agree on.",
+   "walk": [
+    "First, we keep a one-page glossary in our own words and add to it every week.",
+    "Next, when we hear a term we don't know, we write it down and look it up, or ask at a good moment.",
+    "Then we use each document's exact name when we save, file or send it.",
+    "After that, we learn the firm's own words, like matter number and retainer.",
+    "Finally, we notice which side the firm is on in each matter."
+   ],
+   "ask": "Which legal term have you heard and never been quite sure about?",
+   "scenario": "A paralegal asks you to 'pull the answer and the first set of interrogatories for Harlow.' You find three files named 'response,' 'questions' and 'final.' What should the files have been called, and how do you find the right ones?"
+  },
+  "p2": {
+   "why": "Knowing the words gives you confidence, but it doesn't give you permission to interpret them for clients.",
+   "talk": "We match the lawyer's precision: a deposition isn't a hearing, and a subpoena isn't a summons. With clients, we can define a word the way the attorney explained it, but the moment we say what it means for their case, that's legal advice, and it's not ours to give. Two traps: nodding along when we didn't understand, and using jargon with clients to sound expert. Plain language is more professional, not less.",
+   "walk": [
+    "First, match the lawyer's exact words.",
+    "Next, define terms for clients only as the attorney has explained them.",
+    "Then, ask instead of nodding along.",
+    "Finally, keep it plain with clients."
+   ],
+   "ask": "A client asks, 'What does it mean that we've been subpoenaed?' What can you say, and what do you hand to the attorney?",
+   "scenario": "Elias leaves a voice note: 'Opposing counsel served interrogatories and noticed Harlow's CFO for deposition; calendar the responses and get a court reporter.' Translate it into a task list in plain English."
+  }
+ },
+ "1::Client Intake & Conflict Checks": {
+  "p1": {
+   "why": "Taking on the wrong client can force a firm off a case, so the first job with any new inquiry is the conflict check.",
+   "talk": "Before the firm agrees to represent anyone, it has to make sure that doing so won't clash with a current or former client. That's an ethics rule. The check searches everyone involved: the client, the other side, related companies, key people and even opposing counsel. Until it clears and an engagement letter is signed, the caller is a prospective client, so we take only what we need and we don't give advice. And intake is where deadlines first surface, so a date mentioned in passing matters.",
+   "walk": [
+    "First, we use the intake form every time: all parties, related businesses, opposing counsel, a short description and any dates.",
+    "Next, we search every name, including former names and parent companies.",
+    "Then any match goes to the attorney. We don't decide whether it's a real conflict.",
+    "After that, any deadline mentioned goes to the attorney the same day.",
+    "Finally, once cleared, we prepare the engagement letter and open the matter only after it's signed."
+   ],
+   "ask": "Why do you think the conflict often hides in the other party's name rather than the client's?",
+   "scenario": "A friendly caller wants Elias to represent her small bakery in a lease dispute. She's chatty and starts describing everything in detail before you've run any checks. How do you steer the call, and what do you collect?"
+  },
+  "p2": {
+   "why": "The check protects the firm only if it's thorough and written down.",
+   "talk": "Where we can, we run the check before a long call, so the firm hears as little confidential detail as possible before clearing conflicts. We record what we searched, when, the result and who cleared it. The two traps: searching only the client's name, when the conflict is usually in the other party or a related company; and saying 'we can definitely help' before the check clears. Only the attorney accepts a matter.",
+   "walk": [
+    "First, run the check early.",
+    "Next, record the search and the result.",
+    "Then, search every related name, not just the client.",
+    "Finally, never promise representation. That's the attorney's call."
+   ],
+   "ask": "What would you say to a caller who asks, 'So will you take my case?'",
+   "scenario": "A caller wants the firm to sue 'Northgate Logistics' over a warehouse contract and mentions the contract ended 'almost six years ago.' What do you search, what do you flag and what do you not say?"
+  }
+ },
  "1::Basic Communication Principles for Legal EAs": {
   "p1": {
    "why": "In legal work, a message that can be read two ways is a risk, not just a style problem.",
@@ -212,6 +320,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "You re-routed a client's billing question to the finance team a week ago. Today the client emails Elias directly, annoyed that nobody replied. What went wrong with your redirect, and what do you do now?"
   }
  },
+ "1::Phone & Voicemail Etiquette": {
+  "p1": {
+   "why": "For a lot of clients, your voice on the phone is their first impression of the whole firm.",
+   "talk": "Answering the phone well is a real skill. We answer with the firm's name and our own. A good message has everything the attorney needs to act without calling us back: who called, from where, their number, which matter, what they need, how urgent it is and when to reach them. And confidentiality applies on the phone too. We don't confirm that someone is a client until we know who we're talking to.",
+   "walk": [
+    "First, answer with the firm's name and your name.",
+    "Next, take the full message and read the number back, and ask which matter and whether there's a deadline.",
+    "Then transfer warmly: tell the attorney who it is and why before connecting.",
+    "After that, when you leave a voicemail, say your number slowly at the start and the end, keep it short and leave out anything confidential.",
+    "Finally, log important calls and return them within one business day."
+   ],
+   "ask": "What's the most useless phone message you've ever been handed?",
+   "scenario": "Elias is in a meeting. A client calls, upset, saying he got a letter from the court and 'needs to talk to Elias right now.' Take the message: what do you ask, and what do you tell Elias?"
+  },
+  "p2": {
+   "why": "Small phone habits either protect the firm or quietly leak information.",
+   "talk": "Tone matters, and it's worth smiling when you answer because people can hear it. Keep your voicemail greeting current, especially when you're away, with who to call instead. And two traps: telling an unknown caller that someone is a client, which can itself be a breach, and taking a message like 'John called,' which nobody can act on.",
+   "walk": [
+    "First, mind your tone.",
+    "Next, keep your greeting current.",
+    "Then, never confirm a client relationship to an unknown caller.",
+    "Finally, make every message complete."
+   ],
+   "ask": "How would you politely decline to confirm whether someone is a client?",
+   "scenario": "A caller says, 'I'm a reporter. Is Harlow Industries one of your clients? I just need a yes or no.' What exactly do you say, and what do you do after the call?"
+  }
+ },
  "1::Executive Presence in Action": {
   "p1": {
    "why": "Whether you're speaking as an EA or a PA, the instinct underneath is the same: protect first, sort it out second.",
@@ -305,6 +440,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    ],
    "ask": "Here's a real-life slip: you just approved a 600-dollar invoice by mistake, and your limit is 500. What do you do in the next ten minutes?",
    "scenario": "Sarah Thorne asks you to book a family flight upgrade that goes $300 over the travel budget Elias set. She says, 'He won't mind.' What do you do, and how do you say it to her?"
+  }
+ },
+ "1::What an Assistant Can and Can't Do (Unauthorized Practice of Law)": {
+  "p1": {
+   "why": "Clients will ask you for legal advice, kindly and often, and saying yes even once can put the firm at risk.",
+   "talk": "Only a licensed lawyer can give legal advice, set fees, take on a case, sign court papers or appear in court. Doing those without a license is called the unauthorized practice of law, and it's illegal. The lawyer is responsible for supervising us, so our slip becomes the firm's problem. The line is interpretation. Facts, scheduling and passing on the attorney's own words are fine. Telling someone what the law means for them, or what they should do, is advice.",
+   "walk": [
+    "First, what we can do: schedule, gather documents, share public facts like a court's hours, and relay the attorney's advice word for word.",
+    "Next, what we can't do: say whether someone has a case, what a document means for them or which option to choose.",
+    "Then, when asked, we use a bridge line: 'That's a great question for Elias. I'll make sure he gets it today.'",
+    "After that, we quote the attorney exactly, or have them put it in writing.",
+    "Finally, when in doubt, we treat it as advice and route it."
+   ],
+   "ask": "Where do you think the line is hardest to see in day-to-day calls?",
+   "scenario": "A client emails a photo of a letter from the other side and asks, 'Is this bad? Do I need to do anything?' Elias won't see email for three hours. What do you reply now?"
+  },
+  "p2": {
+   "why": "Most UPL slips come from kindness, not arrogance, so the habits matter.",
+   "talk": "Clients often ask us because they feel awkward asking the lawyer, so we redirect warmly and never make them feel silly. We write their question down exactly as asked, so the attorney answers the real question. Two traps: 'In my experience, cases like yours usually settle,' which is still advice, even said kindly; and filling in the answers on a legal form for a client. We collect the information. The attorney decides what goes in.",
+   "walk": [
+    "First, redirect warmly.",
+    "Next, write down the exact question.",
+    "Then, no reassurance based on your own experience.",
+    "Finally, collect information for forms; don't decide the answers."
+   ],
+   "ask": "What's a warm way to say 'I can't answer that' without sounding like a brush-off?",
+   "scenario": "A client calls: 'The other side offered $40,000. Elias is in trial all week. Just between us, should I take it?' Write exactly what you say."
   }
  },
  "1::NDAs & Non-Disclosure Discipline": {

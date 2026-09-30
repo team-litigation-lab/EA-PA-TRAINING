@@ -255,6 +255,32 @@ const DAY8 = {
       "trainerCue": "If possible, show a real example of hidden track-changes or comments in a document that looks clean on the surface — seeing it live is far more convincing than describing it."
     },
     {
+      "h": "Redaction Done Right",
+      "section": "Data & Device Security",
+      "fourPart": {
+        "corePrinciples": [
+          "Redaction permanently removes information from a document before it's shared or filed. If the hidden text can still be copied, searched or uncovered, it wasn't redacted.",
+          "Drawing a black box or highlighting text in black only covers it. The words are still underneath, and anyone can copy them out. Real redaction uses a tool that deletes the underlying text, such as Adobe Acrobat's Redact feature.",
+          "Court rules require some personal details to be redacted from filings. In federal court, that means showing only the last four digits of Social Security and financial account numbers, only the year of a birth date, and only a minor's initials. The attorney decides what else is redacted, for example privileged content."
+        ],
+        "howTo": [
+          "Work on a copy. Keep the original, unredacted version safely stored and clearly named.",
+          "Mark each redaction with the proper tool, then apply it. In Acrobat, applying the redactions is a separate step from marking them.",
+          "Remove hidden information too: metadata, comments, hidden layers and earlier versions (in Acrobat, 'Sanitize Document' or 'Remove Hidden Information').",
+          "Test the result: search for a redacted word, and try copying the blacked-out area into a blank document. Nothing should come through.",
+          "Save as a new file named to show it's redacted (for example _REDACTED) and have the attorney check it before it's filed or sent."
+        ],
+        "bestPractices": [
+          "Redact consistently. The same detail must be removed everywhere it appears, including headers, footers, attachments and file names.",
+          "Scanned documents can contain hidden OCR text behind the image. Redaction must remove that too.",
+          "Pitfall: black highlighter in Word, then 'Save as PDF'. The text survives and can be copied.",
+          "Pitfall: redacting the document but sending it with the original in the same email, or sharing a link to the folder with both."
+        ],
+        "discussionCase": "You need to file a client's bank statement as an exhibit. It shows the full account number, the client's date of birth and their child's full name. What do you redact, how do you do it and how do you prove it worked?"
+      },
+      "trainerCue": "Share a PDF where a 'redacted' line was only covered with a black box. Have someone copy the black area into a blank document and watch the text appear. It makes the point better than any slide."
+    },
+    {
       "h": "Device Security Fundamentals",
       "section": "Data & Device Security",
       "b": [
@@ -322,6 +348,32 @@ const DAY8 = {
         "Apply the same disposal discipline to anything printed as a draft or working copy, not just final sensitive documents."
       ],
       "trainerCue": "Ask whether the room's own workspace has an actual shredder or secure disposal bin readily accessible — if it's inconvenient, it won't get used consistently."
+    },
+    {
+      "h": "Litigation Holds: When Nothing Can Be Deleted",
+      "section": "Data & Device Security",
+      "fourPart": {
+        "corePrinciples": [
+          "Once a lawsuit is reasonably expected, not just filed, the people involved must preserve every relevant document and record. A litigation hold (or legal hold) is the written instruction to do that.",
+          "A hold overrides normal clean-up and retention schedules. Emails, texts, chat messages, drafts, calendars, voicemails and paper files all count.",
+          "Destroying or losing held information, even by accident or through an automatic delete setting, is called spoliation. Courts can fine the party, tell the jury to assume the lost evidence was harmful, or worse."
+        ],
+        "howTo": [
+          "When the attorney issues a hold notice, send it to everyone named, and track who has confirmed in writing that they received it and understand it.",
+          "Ask IT to pause automatic deletion for the people and systems covered: email clean-up rules, chat retention settings and device wipes.",
+          "Stop routine shredding and archive clean-ups for anything the hold covers, and label the covered files and boxes.",
+          "Keep a log: the date the hold started, who received it, what was preserved and any reminders sent.",
+          "Keep the hold in place until the attorney releases it in writing, then send the release notice and restore normal retention."
+        ],
+        "bestPractices": [
+          "Send reminders on a schedule (for example every quarter), especially for long cases and new staff.",
+          "Include people who are leaving the firm. Their mailbox and devices must be preserved, not wiped as part of offboarding.",
+          "Pitfall: 'tidying up' old emails during a case. Deleting anything covered by a hold can harm the case even when it seems unimportant.",
+          "Pitfall: remembering email but forgetting text messages and chat apps."
+        ],
+        "discussionCase": "Harlow Industries receives a letter threatening a lawsuit. The same week, the office manager starts the annual shred of old files, and a departing employee's laptop is due to be wiped on Friday. What do you do, and who do you tell?"
+      },
+      "trainerCue": "Contrast this topic with the one before it on purpose: ask the room when secure disposal is the right move and when it becomes a serious problem. The answer is 'when a hold is in place'."
     },
     {
       "h": "Fixing a Broken Workflow",
@@ -763,7 +815,7 @@ const DAY8 = {
       "r": "Viewer gives visibility without the ability to alter anything — least privilege for a status-check need."
     },
     {
-      "afterIndex": 21,
+      "afterIndex": 23,
       "q": "Confidential documents were sent to the wrong recipient. What comes first?",
       "opts": [
         "Blaming whoever sent it",
@@ -995,6 +1047,28 @@ const DAY8 = {
       ],
       "a": 1,
       "r": "Crisis management is specifically about structured response after something breaks, complementing (not replacing) prevention."
+    },
+    {
+      "q": "You've covered an account number with a black rectangle in a PDF. How do you know it's truly redacted?",
+      "opts": [
+        "It looks completely black on screen and when it's printed out",
+        "You saved the file again as a PDF after drawing the rectangle",
+        "Copying the black area or searching for the number finds nothing",
+        "The file size became slightly smaller after the rectangle was added"
+      ],
+      "a": 2,
+      "r": "Only a test proves the text is gone: searching for it and copying the area should find nothing. How it looks, re-saving and file size prove nothing, because the text can still sit under a drawn shape."
+    },
+    {
+      "q": "A litigation hold is in place for a client matter. An employee on that matter is leaving the firm next week. What should happen to their laptop and mailbox?",
+      "opts": [
+        "Wipe them on the last day as usual, since the files are on the server anyway",
+        "Preserve them as the hold requires until the attorney releases the hold in writing",
+        "Let the employee delete personal files first, then wipe the rest the next week",
+        "Forward their emails to a manager, then delete the mailbox to free up space"
+      ],
+      "a": 1,
+      "r": "A hold overrides normal offboarding. The laptop and mailbox are preserved until the attorney releases the hold; wiping, selective deleting or forwarding and deleting can all destroy held information."
     }
   ],
   "discussionQuestion": "Have you ever seen — or been part of — a situation where someone had more system access than their role actually required? What was the fix?"

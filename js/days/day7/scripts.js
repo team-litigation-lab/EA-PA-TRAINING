@@ -131,6 +131,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "A client pays a $6,000 invoice in March for work done in December. Under cash accounting, when is that income? Under accrual? Which one does Thorne & Partners use, and how would you find out?"
   }
  },
+ "7::Reading Basic Financial Statements": {
+  "p1": {
+   "why": "You don't need to be an accountant, but you do need to read the three reports that tell a business's money story.",
+   "talk": "There are three reports. The profit and loss, or P&L, shows income minus expenses over a period, like a month. The balance sheet shows what the business owns and owes on one date, and it always balances: assets equal liabilities plus equity. The cash flow statement shows the cash that actually came in and went out. A firm can be profitable and still short of cash if clients pay slowly. And client money in trust is never the firm's income.",
+   "walk": [
+    "First, we compare each month's P&L with last month and the same month last year.",
+    "Next, we check receivables, what clients owe, and how old it is.",
+    "Then we watch recurring expenses for anything new or higher.",
+    "After that, we take questions to the accountant with the exact line and amount.",
+    "Finally, we keep the monthly reports together, named the same way."
+   ],
+   "ask": "Why might a profitable firm still struggle to make payroll?",
+   "scenario": "Reviewing the monthly P&L, you notice 'Software subscriptions' jumped from $600 to $1,900. What do you check first, and how do you phrase your question to the bookkeeper?"
+  },
+  "p2": {
+   "why": "Our job is spotting what looks wrong, not preparing the numbers.",
+   "talk": "The accountant prepares the statements. We read them, notice what's unusual and ask good questions, and we look at trends over months rather than one number on its own. Two traps: counting work that's unbilled or unpaid as if it were cash, and treating the trust account as money the firm can spend. It belongs to the clients.",
+   "walk": [
+    "First, read, don't prepare.",
+    "Next, look at trends.",
+    "Then, it isn't money until it arrives.",
+    "Finally, trust money is never the firm's."
+   ],
+   "ask": "Which of the three reports would you pull to answer 'can we afford this next month?'",
+   "scenario": "The P&L shows the firm made a healthy profit last quarter, but Elias says there isn't enough cash for next month's payroll. How can both be true, and which report would you pull to show him?"
+  }
+ },
  "7::SOA Reconciliation": {
   "p1": {
    "why": "Reconciling an account comes down to one formula: opening balance, plus invoices, minus payments, plus or minus adjustments, equals closing balance.",

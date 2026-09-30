@@ -47,6 +47,32 @@ const DAY4 = {
       "trainerCue": "Live-demo the four-step data cleaning order on a genuinely messy sample spreadsheet — trainees remember doing it far better than hearing it described."
     },
     {
+      "h": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
+      "section": "Daily Operations & Priorities",
+      "fourPart": {
+        "corePrinciples": [
+          "Most trackers an assistant builds, like contact lists, deadlines, expenses and event RSVPs, are spreadsheets. A few core skills turn hours of manual work into minutes.",
+          "A well-built sheet has one header row, one row per record and one column per piece of information, with no merged cells or blank rows inside the data.",
+          "Five tools cover most needs: sort, filter, remove duplicates, lookups (XLOOKUP or VLOOKUP) and pivot tables. Two small formulas, COUNTIF and SUMIF, answer most 'how many' and 'how much' questions."
+        ],
+        "howTo": [
+          "Freeze the header row and turn the data into a table (Ctrl+T in Excel), so sorting and filtering always include every column.",
+          "Use data validation (drop-down lists) for columns like Status or Matter, so everyone types the same values.",
+          "Use a lookup to pull information from another sheet, for example =XLOOKUP(A2, Contacts[Email], Contacts[Company]) to fill in each attendee's company.",
+          "Build a pivot table to summarize: for example, total expenses by matter and month, or RSVPs by status.",
+          "Before sharing, check the totals against the source, remove duplicates and hide or protect formula columns."
+        ],
+        "bestPractices": [
+          "Keep raw data on one tab and summaries on another, so a summary never overwrites the data.",
+          "Write dates as real dates, not text, so they sort and filter correctly.",
+          "Pitfall: sorting one column on its own. The rows get scrambled and names no longer match their phone numbers. Always sort the whole table.",
+          "Pitfall: typing totals by hand. A typed number doesn't update when the data changes; a formula does."
+        ],
+        "discussionCase": "Elias wants to know, by tomorrow, how much each matter spent on travel last quarter. You have 400 expense rows with dates, matters, categories and amounts. Which tools do you use, and in what order?"
+      },
+      "trainerCue": "If trainees have laptops, share a 50-row sample sheet and give them five minutes to build a pivot table of totals by category. Celebrate the first one done, then troubleshoot together."
+    },
+    {
       "h": "The Daily Routine",
       "section": "Daily Operations & Priorities",
       "b": [
@@ -822,7 +848,7 @@ const DAY4 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 3,
+      "afterIndex": 4,
       "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
       "opts": [
         "Something to batch with the newsletter",
@@ -834,7 +860,7 @@ const DAY4 = {
       "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
     },
     {
-      "afterIndex": 2,
+      "afterIndex": 3,
       "q": "What best distinguishes high-performing email management from average?",
       "opts": [
         "Forwarding every email so nothing is missed",
@@ -846,7 +872,7 @@ const DAY4 = {
       "r": "It's about independent, reliable handling of the bulk of email — not speed or forwarding volume."
     },
     {
-      "afterIndex": 33,
+      "afterIndex": 34,
       "q": "Your first outreach email got no reply after four days. What's the strongest follow-up?",
       "opts": [
         "\"Just bumping this to the top of your inbox.\"",
@@ -1144,6 +1170,17 @@ const DAY4 = {
       ],
       "a": 1,
       "r": "Client names and outcomes need client consent and attorney review — and may also trigger attorney advertising rules."
+    },
+    {
+      "q": "You need total expenses by matter and by month from 400 rows of expense data. What's the most reliable tool?",
+      "opts": [
+        "Sort by matter, then add up each group with a calculator",
+        "A pivot table built from the full expense table",
+        "A new column where each matter's total is typed in",
+        "Filtering one matter at a time and copying the totals"
+      ],
+      "a": 1,
+      "r": "A pivot table summarizes the whole table in one step and updates when the data changes. Manual adding, typed totals and copying filtered results are slow and easy to get wrong."
     }
   ],
   "discussionQuestion": "Where does your current inbox or calendar workflow break down first under pressure? What's one change that would fix it?"

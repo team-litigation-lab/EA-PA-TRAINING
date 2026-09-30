@@ -502,6 +502,60 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "An associate emails you: 'The judge gave us until the 15th for the reply, please calendar it.' The order itself isn't attached. What do you do before you enter the date?"
   }
  },
+ "3::Counting Legal Deadlines: Calendar Days vs. Court Days": {
+  "p1": {
+   "why": "A court deadline missed by one day can cost a client their case, so the counting itself is a skill.",
+   "talk": "In federal court, when a rule says a number of days, you count every calendar day, weekends and holidays included. You don't count the day of the event that starts the clock, you do count the last day, and if the last day falls on a weekend or holiday, it moves to the next business day. Many state courts count 'court days' instead, which skip weekends and court holidays. And how a paper was served can add time; in federal court, service by mail adds three days.",
+   "walk": [
+    "First, we find the trigger, the event that starts the clock, and note where it came from.",
+    "Next, we find the rule that sets the period, and whether it's calendar days or court days, including local rules.",
+    "Then we count from the day after the trigger and check where the last day lands.",
+    "After that, we enter it in the docketing calendar with the rule cited and reminders at 14, 7 and 2 days.",
+    "Finally, a second person confirms every calculated court deadline."
+   ],
+   "ask": "Why do you think the trigger day itself isn't counted as day one?",
+   "scenario": "Opposing counsel emails you a discovery request on Tuesday. A paralegal says 'we've got 30 days.' Before you put anything in the calendar, what do you need to find out?"
+  },
+  "p2": {
+   "why": "Deadline errors almost always come from assumptions, not arithmetic.",
+   "talk": "Docketing software is a great tool, but it only works with the right trigger date and the right court selected, so we check its answer by hand. Keep a holiday list for each court, because they don't always match federal holidays. The two traps: counting the trigger day as day one, and assuming every court counts the same way. The same '10 days' can land on different dates in two courts.",
+   "walk": [
+    "First, use the software, then check it by hand.",
+    "Next, keep each court's holiday list.",
+    "Then, never count the trigger day.",
+    "Finally, check each court's own rules."
+   ],
+   "ask": "What would you do if the software's date and your hand count don't match?",
+   "scenario": "A motion is served electronically on Friday, October 2, in federal court, and the response is due in 14 days. When is it due? What changes if the court counts court days instead, and who confirms the date?"
+  }
+ },
+ "3::E-Filing & Service Basics": {
+  "p1": {
+   "why": "A brief that's written perfectly but filed wrong is, as far as the court's concerned, not filed.",
+   "talk": "Two words to keep apart: filing and service. Filing gives the document to the court. Service delivers it to the other side. Most courts now use electronic filing. Federal courts use a system called CM/ECF, and PACER to look up records, and state courts have their own systems. Each has rules on format, size and fees. The court's confirmation is our proof of filing. Many courts serve registered lawyers automatically, but anyone not registered, like someone without a lawyer, has to be served another way.",
+   "walk": [
+    "First, before filing day, we check the rules: PDF format, page limits, file size, exhibit labels, fees and the cut-off time.",
+    "Next, we prepare exactly what the attorney approved, redact what the rules require and get final sign-off.",
+    "Then we file early, because systems slow down and rejections take time to fix.",
+    "After that, we save the filed copy and the confirmation together and send the confirmation to the attorney.",
+    "Finally, we serve anyone outside the system and calendar the new deadlines the filing creates."
+   ],
+   "ask": "What would you want to check before you click Submit?",
+   "scenario": "Elias asks you to file a motion today. The court's rules say exhibits must be separate PDFs, each labeled, and text-searchable. You have one big scanned PDF. What do you do, and how early do you start?"
+  },
+  "p2": {
+   "why": "Most filing disasters are timing and access problems, not legal ones.",
+   "talk": "The attorney's e-filing login is their signature, so we keep it secure and file only on their instruction. After filing, we check the court's docket to make sure it appears correctly. And two traps: filing at 11:50 at night on the last day, when a rejection leaves no time, and assuming e-filing served everyone, when a party without a lawyer usually needs another method.",
+   "walk": [
+    "First, protect the login.",
+    "Next, check the docket after filing.",
+    "Then, never leave filing to the last minute.",
+    "Finally, confirm everyone has been served."
+   ],
+   "ask": "What's a sensible internal cut-off time for filing on a deadline day?",
+   "scenario": "It's 4 pm on the deadline day. The court's e-filing system rejects Elias's brief because an exhibit is over the file-size limit. What do you do, in order, and who do you tell?"
+  }
+ },
  "3::Statute-of-Limitations Rules": {
   "p1": {
    "why": "Miss the filing deadline for a claim, and the claim can be gone for good, however strong it was.",
@@ -547,6 +601,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    ],
    "ask": "You've confirmed a date with the attorney and the witness, but opposing counsel hasn't answered for days. Do you send the notice or wait? What do you actually do?",
    "scenario": "A deposition had to be moved twice because the witness's availability was never confirmed in writing. The client is paying for two cancelled court reporters. What would you do differently from the start?"
+  }
+ },
+ "3::Exhibits, Binders & Bates Numbering": {
+  "p1": {
+   "why": "In a hearing, everyone has to be looking at exactly the same page at the same moment, and that's what exhibits and Bates numbers are for.",
+   "talk": "An exhibit is any document or object used as evidence, like an email, a contract or a photo, and each gets a label, like Exhibit 12 or Exhibit C. Bates numbering stamps a unique number on every page produced in discovery, with a prefix like THORNE000001, so any page can be found and there's a record of exactly what was handed over. Binders put the exhibits in order with a tabbed index, usually in several sets: the judge's, the witness's, opposing counsel's and ours.",
+   "walk": [
+    "First, we follow the court's and judge's rules for labels.",
+    "Next, we keep a master exhibit list: number, description, date, Bates range and status.",
+    "Then we apply Bates numbers with software, never by hand, and never renumber a set that's been produced.",
+    "After that, we build every binder from the master list, with an index and one tab per exhibit.",
+    "Finally, we check every set page by page and keep a digital copy of each."
+   ],
+   "ask": "Why do you think a court wants a unique number on every single page?",
+   "scenario": "Opposing counsel's letter refers to 'the email on page THORNE004512.' Elias asks you to pull it before a call in ten minutes. How do you find it quickly?"
+  },
+  "p2": {
+   "why": "Binder mistakes are always discovered at the worst possible moment: in front of the judge.",
+   "talk": "Start early and plan the tabs before the list is final, because late exhibits always arrive. In emails, use the exact label and Bates range. Two traps: a missing page in the judge's binder, so we check every set, not just ours; and re-stamping Bates numbers on a corrected set, when we should produce a new range instead so the record stays clean.",
+   "walk": [
+    "First, start binders early.",
+    "Next, refer to documents by exact label and Bates range.",
+    "Then, check every set, especially the judge's.",
+    "Finally, never renumber a produced set."
+   ],
+   "ask": "What's your quickest way to check a 200-page binder against its index?",
+   "scenario": "Two days before a hearing, Elias adds three exhibits between Exhibits 7 and 8. Four binder sets are already printed. How do you handle the numbering and the binders, and what do you tell opposing counsel?"
   }
  },
  "3::War Room Trial Support": {

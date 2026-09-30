@@ -249,6 +249,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "You send opposing counsel a 'final' settlement letter. Their reply quotes a tracked-changes comment from Elias saying 'we could go to $400k if pushed.' What went wrong, and what's the fix for next time?"
   }
  },
+ "8::Redaction Done Right": {
+  "p1": {
+   "why": "A badly redacted document can leak exactly what it was meant to hide, in public, in a court filing.",
+   "talk": "Redaction means permanently removing information before a document is shared or filed. A black box drawn on top, or black highlighting, only covers the words. They're still underneath, and anyone can copy them out. Real redaction uses a tool that deletes the text, like the Redact feature in Adobe Acrobat. Some redactions are required: in federal court filings, you show only the last four digits of Social Security and account numbers, only the year of a birth date, and only a child's initials. The attorney decides what else comes out.",
+   "walk": [
+    "First, we work on a copy and keep the original safely stored.",
+    "Next, we mark each redaction with the proper tool, then apply it. That's a separate step.",
+    "Then we remove hidden information: metadata, comments and old versions.",
+    "After that, we test: search for a redacted word and try copying the black area. Nothing should come through.",
+    "Finally, we save it as a new file marked REDACTED and have the attorney check it."
+   ],
+   "ask": "Have you ever seen a 'redacted' document where the text could still be read?",
+   "scenario": "A paralegal hands you a PDF and says, 'I've already blacked out the account numbers with the drawing tool. Just file it.' What do you do before filing?"
+  },
+  "p2": {
+   "why": "Redaction failures are rarely about the main text. They're about the places nobody thought to check.",
+   "talk": "We redact consistently, which means the same detail everywhere it appears, including headers, footers, attachments and file names. Scanned documents often have hidden text behind the image, and that has to go too. Two traps: black highlighter in Word and then 'Save as PDF', where the text survives, and sending the redacted copy in the same email as the original, or sharing a folder that holds both.",
+   "walk": [
+    "First, remove the detail everywhere it appears.",
+    "Next, remember the hidden text in scans.",
+    "Then, never trust highlighter as redaction.",
+    "Finally, keep the original out of anything you send."
+   ],
+   "ask": "Where else in a document might a name or number hide besides the main text?",
+   "scenario": "You need to file a client's bank statement as an exhibit. It shows the full account number, the client's date of birth and their child's full name. What do you redact, how do you do it and how do you prove it worked?"
+  }
+ },
  "8::Device Security Fundamentals": {
   "p1": {
    "why": "An unlocked device, even for a minute, is an open door.",
@@ -337,6 +364,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    ],
    "ask": "You printed three drafts of a client's estate plan while revising it. Where does each one go when you're done, and what about the drafts on your computer?",
    "scenario": "The office puts all paper, including draft contracts, in a blue recycling bin collected by an outside company every week. Is that disposal? What would you propose?"
+  }
+ },
+ "8::Litigation Holds: When Nothing Can Be Deleted": {
+  "p1": {
+   "why": "There are times when deleting a single email, even by accident, can seriously damage a client's case.",
+   "talk": "When a lawsuit is reasonably expected, not only once it's filed, everyone involved has to keep every relevant record. The written instruction to do that is a litigation hold, or legal hold. It overrides the normal clean-up rules, and it covers everything: emails, texts, chats, drafts, calendars, voicemails and paper. Losing held information, even through an automatic delete setting, is called spoliation, and courts can punish it with fines or by telling the jury to assume the lost evidence was bad for that side.",
+   "walk": [
+    "First, when the attorney issues a hold notice, we send it to everyone named and track their written confirmations.",
+    "Next, we ask IT to pause automatic deletion for the people and systems covered.",
+    "Then we stop routine shredding for anything covered, and label those files.",
+    "After that, we keep a log: start date, recipients, what's preserved and reminders.",
+    "Finally, the hold stays until the attorney releases it in writing."
+   ],
+   "ask": "Why do you think the duty starts before a lawsuit is actually filed?",
+   "scenario": "Elias tells you a client has just received a demand letter and a hold notice is going out today to six of the client's staff. What's your checklist for the next 48 hours?"
+  },
+  "p2": {
+   "why": "Holds usually fail through everyday routines that nobody thought to stop.",
+   "talk": "Long cases need reminders, every quarter or so, especially for new staff. People leaving are the classic gap: their mailbox and laptop have to be preserved, not wiped as part of offboarding. Two traps: 'tidying up' old emails in the middle of a case, and remembering email but forgetting texts and chat apps.",
+   "walk": [
+    "First, send reminders on a schedule.",
+    "Next, preserve departing staff's accounts and devices.",
+    "Then, no tidying up during a case.",
+    "Finally, include texts and chats."
+   ],
+   "ask": "What routine in your office could quietly break a hold?",
+   "scenario": "Harlow Industries receives a letter threatening a lawsuit. The same week, the office manager starts the annual shred of old files, and a departing employee's laptop is due to be wiped on Friday. What do you do, and who do you tell?"
   }
  },
  "8::Fixing a Broken Workflow": {

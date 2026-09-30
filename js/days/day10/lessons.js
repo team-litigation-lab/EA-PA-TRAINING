@@ -642,6 +642,32 @@ const DAY10 = {
       }
     },
     {
+      "h": "Copyright, Image Rights & Permissions",
+      "section": "Risk & Compliance",
+      "fourPart": {
+        "corePrinciples": [
+          "Almost every image, video clip, song and article online is protected by copyright. Being able to download or screenshot it doesn't mean the firm can post it.",
+          "Use content the firm owns, content with a license that covers the use (for example paid stock photos) or content you have written permission to use. 'Found it on Google' is none of these.",
+          "Photos of people need their consent to be used in promotion, and photos involving clients need written permission. For a law firm, even showing that someone is a client can breach confidentiality."
+        ],
+        "howTo": [
+          "Source images from the firm's own library, a licensed stock service or the firm's photographer, and check the license terms (commercial use, credit required, any restrictions).",
+          "Keep a simple record for each asset: where it came from, the license or permission, the date and any credit line required.",
+          "Get signed photo releases from staff and event guests who appear in marketing, and written client consent before any client appears or is named.",
+          "For music on videos, use the platform's licensed library or royalty-free tracks licensed for business use.",
+          "To share someone else's post, use the platform's share feature, or ask permission and credit them. Don't download and re-upload it."
+        ],
+        "bestPractices": [
+          "When unsure, create your own image or choose a licensed one. It's quicker than dealing with a takedown or a claim.",
+          "Other companies' logos and trademarks shouldn't appear in a way that suggests they endorse the firm.",
+          "Pitfall: 'We credited the photographer, so it's fine.' Credit isn't permission.",
+          "Pitfall: posting a photo from a client event without checking whether any client in it agreed to appear."
+        ],
+        "discussionCase": "A partner wants to post a great photo from last night's charity dinner. It shows Elias with two clients and a local news anchor, and it was taken by a guest who emailed it over. What do you need before it goes up?"
+      },
+      "trainerCue": "Show three images: a stock photo with a license, a screenshot from a news site and a staff photo from a firm event. Ask the room which can be posted today, and what each of the others would need."
+    },
+    {
       "h": "Endorsement & Disclosure Rules",
       "section": "Risk & Compliance",
       "fourPart": {
@@ -950,6 +976,17 @@ const DAY10 = {
       ],
       "a": 3,
       "r": "Consistency of core identity with platform-appropriate tone adjustments is the practical balance — not rigid uniformity or total inconsistency."
+    },
+    {
+      "q": "A photographer's image from a news website would be perfect for the firm's post. You plan to credit them in the caption. Is that enough?",
+      "opts": [
+        "Yes, crediting the photographer by name is all that copyright law requires",
+        "Yes, as long as the post doesn't earn the firm any money directly",
+        "No, but it's fine if the image is resized or cropped so it looks different",
+        "No, the firm needs a license or written permission to use the image"
+      ],
+      "a": 3,
+      "r": "Credit isn't permission. The firm needs a license or written permission. Being non-commercial or edited doesn't make an unlicensed use safe."
     }
   ],
   "discussionQuestion": "Pick a recent announcement from your organization. How would you rewrite it differently for Instagram versus LinkedIn?"

@@ -273,6 +273,32 @@ const DAY5 = {
       }
     },
     {
+      "h": "Reading a Contract: The Clauses to Recognize",
+      "section": "Vendors & Procurement",
+      "fourPart": {
+        "corePrinciples": [
+          "You'll handle contracts constantly: vendor agreements, leases, event venues, software subscriptions. You don't decide what the terms should be, but you need to recognize the clauses and pull out the dates and duties.",
+          "Most contracts have the same building blocks: the parties, the scope (what's being provided), payment terms, the term and renewal, termination, confidentiality, indemnification, limitation of liability, insurance, governing law and signatures.",
+          "The clauses that cause the most everyday trouble are the ones with dates: automatic renewals, notice periods and payment deadlines."
+        ],
+        "howTo": [
+          "Read the first page for the parties and the date, then find the term clause: when it starts, when it ends and whether it renews automatically.",
+          "Find every date and notice period, like 'either party may cancel with 60 days' written notice', and put each in the calendar with a reminder before the notice deadline.",
+          "Note the payment terms (amount, schedule, late fees) and the scope, so invoices can be checked against them.",
+          "Make a one-page summary for the file: parties, term, renewal, notice periods, payment, key duties and where notices must be sent.",
+          "Send the contract to the attorney for review before signing, and flag anything unusual: unlimited liability, a one-sided indemnity or a far-away governing law."
+        ],
+        "bestPractices": [
+          "Check who has authority to sign. The signer must be an officer or someone the company has authorized.",
+          "Keep the fully signed copy, with all attachments and schedules, in one place.",
+          "Pitfall: missing an auto-renewal notice window. The firm ends up locked into another year it didn't want.",
+          "Pitfall: summarizing a clause in your own words as if it were legal advice. Your summary is a guide to the document, not an interpretation."
+        ],
+        "discussionCase": "A three-year catering contract for the firm's events says it 'renews automatically for successive one-year terms unless either party gives 90 days' written notice.' It started March 1, 2024. When is the last day to give notice, and what goes in the calendar?"
+      },
+      "trainerCue": "Hand out a two-page sample vendor agreement. Give pairs five minutes to find the term, renewal, notice period, payment terms and governing law, then compare."
+    },
+    {
       "h": "When a Vendor Falls Through",
       "section": "Vendors & Procurement",
       "b": [
@@ -641,7 +667,7 @@ const DAY5 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 14,
+      "afterIndex": 15,
       "q": "A family purchases homeowners insurance to cover potential losses from fire or theft. Which risk strategy is this?",
       "opts": [
         "Transfer",
@@ -653,7 +679,7 @@ const DAY5 = {
       "r": "Buying insurance shifts the financial risk onto the insurer — that's Transfer."
     },
     {
-      "afterIndex": 15,
+      "afterIndex": 16,
       "q": "During the semi-annual risk review, which of these is a genuine trigger to revisit coverage?",
       "opts": [
         "A vendor changed their logo",
@@ -896,6 +922,17 @@ const DAY5 = {
       ],
       "a": 2,
       "r": "Traveling with children introduces safety and logistics considerations that a purely adult-focused itinerary would miss."
+    },
+    {
+      "q": "A vendor contract renews automatically unless either party gives 60 days' written notice. What's the assistant's key task?",
+      "opts": [
+        "Decide whether the firm should renew and send the notice if the price has gone up",
+        "Wait until the renewal date and then ask the vendor whether cancelling is still possible",
+        "Calendar the notice deadline with an early reminder and flag it to the decision-maker",
+        "Rewrite the renewal clause so the contract ends on its own instead of renewing"
+      ],
+      "a": 2,
+      "r": "The assistant tracks the notice window and makes sure the decision-maker sees it in time. Deciding to renew and changing clauses are for the executive and attorney; waiting until the renewal date is too late."
     }
   ],
   "discussionQuestion": "Of the four risk categories (Financial, Legal, Operational, Reputational), which one do you think gets the least attention in most households or offices — and why?"

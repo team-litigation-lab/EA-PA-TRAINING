@@ -551,6 +551,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "You're handling far more email on your own now, and it's going well. Then you notice an email with a filing deadline buried in a thread you archived as routine. What changes in your triage from now on?"
   }
  },
+ "2::File Naming, Folders & Version Control": {
+  "p1": {
+   "why": "In a law firm, the wrong version of a document can get signed, filed or sent to the other side, and file names are the first line of defense.",
+   "talk": "A good file name tells you what the file is without opening it: the date, the matter, what kind of document it is and which version. And every document should live in one place, the firm's document system, not in copies scattered through email and desktops. That's what we mean by one source of truth.",
+   "walk": [
+    "First, one pattern for everything: year, month, day, then matter, document type and version, like 2026-10-02_Harlow_EngagementLetter_v03.",
+    "Next, we never call a file 'final'. Drafts get version numbers, and the signed or filed copy is marked EXECUTED or AS-FILED.",
+    "Then we save it in the matter's folder in the document system.",
+    "After that, we share a link to that copy instead of attaching it, so everyone edits the same file.",
+    "Finally, when edits come back, we save a new version and keep the old ones for comparison."
+   ],
+   "ask": "What's the worst file name you've come across at work?",
+   "scenario": "A paralegal emails you a draft contract named 'Contract.docx' for your formatting pass, and Elias emails a different 'Contract.docx' with his edits. What do you name each one, and where do they go?"
+  },
+  "p2": {
+   "why": "Version mistakes are rarely dramatic. They're small habits that go wrong on the one day it matters.",
+   "talk": "Signed and filed copies should be read-only, stored where nobody can overwrite them. Clear your desktop and downloads into the right matter folders every week. And two traps: names like 'Final_FINAL_v2_use this one', which means the system has already failed, and editing a copy you opened from an email attachment, so your changes end up somewhere nobody else can see.",
+   "walk": [
+    "First, lock executed and filed copies.",
+    "Next, clear your desktop weekly.",
+    "Then, no 'final' in names.",
+    "Finally, edit the document-system copy, not an attachment."
+   ],
+   "ask": "How would you find out which of two 'final' files is the one that was actually signed?",
+   "scenario": "Elias asks you to send opposing counsel 'the final settlement agreement.' You find four files: 'Settlement final.docx', 'Settlement final (2).docx', 'Settlement_v5_EB edits.docx' and 'Settlement agreement FINAL clean.pdf'. What do you do before sending anything?"
+  }
+ },
  "2::Authority & Boundary Management — EA vs. Legal EA": {
   "p1": {
    "why": "Knowing what we can decide alone, and what needs approval, is what keeps a trusted role from becoming a risky one.",

@@ -153,6 +153,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "You've rebooked Elias on a later flight, but it lands after his hotel's check-in desk closes and his car is still booked for the old time. What's your single message to him, and what else do you fix?"
   }
  },
+ "9::Everyday Meeting Notes & Action Items": {
+  "p1": {
+   "why": "A meeting is only as useful as what people do afterwards, and your notes decide that.",
+   "talk": "Good meeting notes capture three things: what was decided, what needs doing, and what's still open. They're not a transcript. Every action needs an owner and a due date, because without both it usually doesn't happen. And notes from meetings about legal matters may be privileged or confidential, so we label them and share them carefully.",
+   "walk": [
+    "First, before the meeting, we confirm the agenda and set up a template: attendees, decisions, actions and open questions.",
+    "Next, we write decisions as clear statements.",
+    "Then we write each action as a verb, an owner and a date.",
+    "After that, we send the notes within 24 hours, with actions at the top.",
+    "Finally, we add the actions to our tracker and check them before the next meeting."
+   ],
+   "ask": "What makes meeting notes useless to someone who wasn't there?",
+   "scenario": "You're taking notes in a partners' meeting when the conversation jumps between three topics and nobody states a decision. What do you say in the room, and what do your notes look like?"
+  },
+  "p2": {
+   "why": "Notes fail in the same two ways every time: no decision and no owner.",
+   "talk": "If a decision sounds unclear, we ask in the room: 'So we're agreed on this?' It's much harder to fix a week later. When the attorney says a meeting is privileged, we label the notes clearly and send them only to the right people. And two traps: notes that record who said what but not what was decided, and 'someone will look into it', which means no one will.",
+   "walk": [
+    "First, confirm unclear decisions in the room.",
+    "Next, label and limit privileged notes.",
+    "Then, record decisions, not just discussion.",
+    "Finally, give every action a named owner."
+   ],
+   "ask": "How would you politely ask a senior partner to confirm a decision in the room?",
+   "scenario": "After a 45-minute Harlow strategy call, your notes say: 'Discussed deposition. Expert maybe. Budget concerns. Elias to think about it.' Rewrite them so someone who missed the call knows exactly what happens next."
+  }
+ },
  "9::Board Meeting Preparation & Minute Drafting": {
   "p1": {
    "why": "Board minutes record what was decided and by whom, not who argued what.",

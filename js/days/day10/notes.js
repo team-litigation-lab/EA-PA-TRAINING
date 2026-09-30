@@ -60,6 +60,31 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Gatekeeper and ghostwriter."
   }
 },
+"10::Personal vs. Firm Brand Account Separation": {
+  "p1": {
+    "on": "This slide says the executive's personal brand and the firm's brand are related but distinct, and who controls the login to a \"personal\" account has real consequences. The steps: agree in writing which accounts are personal and which are firm-owned, manage credentials to match that ownership, and apply distinct voice guidelines to each.",
+    "say": "Settle who owns each account before anyone leaves.",
+    "ask": "Who controls the login to Elias's LinkedIn?"
+  },
+  "p2": {
+    "on": "This slide warns against leaving ownership ambiguous until a departure or dispute forces the question, and against putting firm-confidential content on a personal account without firm review. It says to record credentials and ownership in the firm's standard systems.",
+    "say": "Ambiguity always surfaces at the worst moment.",
+    "wrap": "Put ownership in writing, match access to it and document it centrally.",
+    "scenario": "An executive with a large personal following is leaving the firm, and their account has been used for both personal thought leadership and firm announcements. What questions should have been settled long before now?"
+  },
+  "s1": {
+    "on": "This section says personal and firm brands are distinct, and account ownership matters in practice if someone leaves.",
+    "say": "Who owns the login?"
+  },
+  "s2": {
+    "on": "These steps separate them: written ownership, access matching ownership, and distinct voice guidelines for each.",
+    "say": "Put ownership in writing."
+  },
+  "s3": {
+    "on": "This section warns against ambiguous ownership and mixing firm content into personal accounts, and asks to document credentials in firm systems.",
+    "say": "Decide before a departure forces it."
+  }
+},
 "10::The Executive Personal Brand Style Guide": {
   "p1": {
     "on": "This slide lists the style guide's five parts, with a diagram. North Star: the primary goal and the three expert topics. Voice & Tone: point of view, emoji and punctuation rules. The Never List: banned topics, buzzwords and formats (such as no more than 5 hashtags). Engagement Protocol: who gets a reply, trolls and approvals. Visual Standard: about 70% candid, 30% polished.",
@@ -303,57 +328,54 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Consistency over timing."
   }
 },
-"10::Reading the Numbers — Engagement Rate": {
+"10::Video Content Basics for Executive Presence": {
   "p1": {
-    "on": "This slide teaches the engagement rate: add likes, comments and shares, divide by follower count, then multiply by 100. The steps: use the rate to compare posts of different reach, recalculate weekly or monthly, and cross-check against the platform's own reported figures.",
-    "say": "(Likes + comments + shares) ÷ followers × 100.",
-    "ask": "Why compare rates instead of raw likes?"
+    "on": "This slide says video carries more of an executive's presence than text, and short-form video needs clarity and a genuine tone more than production value. The steps: confirm the one point the video makes before recording, check the background and audio (the same background audit from the security topic), and keep social videos to 60–90 seconds.",
+    "say": "One clear point, a clean background, under 90 seconds.",
+    "ask": "What would you check in the background before recording?"
   },
   "p2": {
-    "on": "This slide works an example: 120 likes + 15 comments + 10 shares = 145, ÷ 4,000 followers × 100 = 3.6%. Compare it with the account's own average, since 3.6% is strong if the usual rate is 2% and weak if it's 6%. Comments and shares signal deeper interest than likes.",
-    "say": "Compare against the account's own average first.",
-    "wrap": "Calculate the rate, compare it with the norm and look at what drove it.",
-    "scenario": "Live: a post got 85 likes, 22 comments and 6 shares, and the account has 2,500 followers. What's the engagement rate, and is it good if the usual rate is 3%?"
+    "on": "This slide warns against publishing without captions, since many viewers watch muted and captions are an accessibility basic, and against publishing without a full watch-through. It says to keep lighting and background consistent across videos.",
+    "say": "Watch the whole thing before it goes out.",
+    "wrap": "Plan the point, check the frame, caption and watch it through.",
+    "scenario": "Elias records a 90-second video answering a common client question, but a notification showing a client's name flashes on his monitor in the background. What's your process before it's published?"
   },
   "s1": {
-    "on": "This section gives the formula: (Likes + Comments + Shares) ÷ Followers × 100.",
-    "say": "One formula."
+    "on": "This section says video carries presence that text can't, and clarity and genuine tone matter more than polish.",
+    "say": "Clear beats polished."
   },
   "s2": {
-    "on": "These steps calculate it: sum interactions, divide by followers, times 100, compare posts by rate, recalculate regularly, and check against the platform.",
-    "say": "Rates, not raw counts."
+    "on": "These steps prepare: one clear point, background and audio checks, and 60–90 seconds for social.",
+    "say": "One takeaway per video."
   },
   "s3": {
-    "on": "This section works an example: 145 interactions on 4,000 followers is 3.6%.",
-    "say": "3.6% in the example.",
-    "ask": "Is 3.6% good?"
-  },
-  "s4": {
-    "on": "This section interprets it: compare with the account's own average, value comments and shares, and remember a small engaged audience can beat a big passive one.",
-    "say": "Compare with your own average."
+    "on": "This section warns against uncaptioned video and publishing without a full watch-through, and asks for a consistent setup.",
+    "say": "Captions, always."
   }
 },
-"10::Engagement Rate Benchmarks & Interpretation": {
+"10::Accessibility in Digital Content": {
   "p1": {
-    "on": "This slide says a smaller account with a higher rate can be the stronger performer, with a diagram. On LinkedIn, 2–5% organic engagement is healthy and above 7% means the post is going viral in its niche. Read reach and engagement together: high reach with low engagement means the hook or audience is off, and low reach with high engagement means a small, loyal following the algorithm tends to push further.",
-    "say": "Rate beats raw counts, and reach and engagement are read together.",
-    "ask": "Where do you think the firm's LinkedIn posts land on this scale?",
-    "wrap": "Judge performance by rate and by reach and engagement together, and revisit the benchmarks as platforms change.",
-    "scenario": "Post A reached 12,000 people with a 0.8% engagement rate. Post B reached 900 people with 6.5%. What does each tell you, and what would you change?"
+    "on": "This slide says accessible content (alt text, captions, readable contrast) decides whether a meaningful share of the audience can use it at all, and building it in costs little compared with retrofitting. The steps: write descriptive alt text for every image, add reviewed captions to every video rather than relying on auto-captions, and check color contrast on graphics.",
+    "say": "Build it in from the start. Retrofitting costs far more.",
+    "ask": "What makes alt text useful rather than a formality?"
   },
   "p2": {
-    "on": "",
-    "say": "",
-    "wrap": "Judge performance by rate and by reach and engagement together, and revisit the benchmarks as platforms change.",
-    "scenario": "Post A reached 12,000 people with a 0.8% engagement rate. Post B reached 900 people with 6.5%. What does each tell you, and what would you change?"
+    "on": "This slide warns that generic alt text like \"image\" defeats the purpose, and inaccurate auto-captions can misquote someone. It says to make accessibility review a standard step in the content approval process.",
+    "say": "An auto-caption that misquotes the executive is a real problem.",
+    "wrap": "Real alt text, reviewed captions, good contrast and a standard review step.",
+    "scenario": "You're finalizing a LinkedIn post with a bar chart showing the firm's pro bono hours by year, and it has no alt text. Write the description live so it's actually useful."
   },
   "s1": {
-    "on": "This section says a smaller account with a higher rate can be the stronger performer.",
-    "say": "Rate beats raw counts."
+    "on": "This section says alt text, captions and contrast decide whether part of the audience can engage at all, and building them in early is cheap.",
+    "say": "Accessibility from the start."
   },
   "s2": {
-    "on": "These steps interpret it: compare rates, benchmark LinkedIn at 2–5% (above 7% is viral), read reach and engagement together, value small loyal audiences, and revisit benchmarks.",
-    "say": "High reach, low engagement: fix the hook."
+    "on": "These steps apply it: descriptive alt text, reviewed captions, and a contrast check.",
+    "say": "Describe what's actually there."
+  },
+  "s3": {
+    "on": "This section warns against generic alt text and unreviewed auto-captions, and says accessibility belongs in the approval process.",
+    "say": "Part of approval."
   }
 },
 "10::Audience Psychology & Pain Points": {
@@ -466,6 +488,59 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Add something AI can't summarize away."
   }
 },
+"10::Reading the Numbers — Engagement Rate": {
+  "p1": {
+    "on": "This slide teaches the engagement rate: add likes, comments and shares, divide by follower count, then multiply by 100. The steps: use the rate to compare posts of different reach, recalculate weekly or monthly, and cross-check against the platform's own reported figures.",
+    "say": "(Likes + comments + shares) ÷ followers × 100.",
+    "ask": "Why compare rates instead of raw likes?"
+  },
+  "p2": {
+    "on": "This slide works an example: 120 likes + 15 comments + 10 shares = 145, ÷ 4,000 followers × 100 = 3.6%. Compare it with the account's own average, since 3.6% is strong if the usual rate is 2% and weak if it's 6%. Comments and shares signal deeper interest than likes.",
+    "say": "Compare against the account's own average first.",
+    "wrap": "Calculate the rate, compare it with the norm and look at what drove it.",
+    "scenario": "Live: a post got 85 likes, 22 comments and 6 shares, and the account has 2,500 followers. What's the engagement rate, and is it good if the usual rate is 3%?"
+  },
+  "s1": {
+    "on": "This section gives the formula: (Likes + Comments + Shares) ÷ Followers × 100.",
+    "say": "One formula."
+  },
+  "s2": {
+    "on": "These steps calculate it: sum interactions, divide by followers, times 100, compare posts by rate, recalculate regularly, and check against the platform.",
+    "say": "Rates, not raw counts."
+  },
+  "s3": {
+    "on": "This section works an example: 145 interactions on 4,000 followers is 3.6%.",
+    "say": "3.6% in the example.",
+    "ask": "Is 3.6% good?"
+  },
+  "s4": {
+    "on": "This section interprets it: compare with the account's own average, value comments and shares, and remember a small engaged audience can beat a big passive one.",
+    "say": "Compare with your own average."
+  }
+},
+"10::Engagement Rate Benchmarks & Interpretation": {
+  "p1": {
+    "on": "This slide says a smaller account with a higher rate can be the stronger performer, with a diagram. On LinkedIn, 2–5% organic engagement is healthy and above 7% means the post is going viral in its niche. Read reach and engagement together: high reach with low engagement means the hook or audience is off, and low reach with high engagement means a small, loyal following the algorithm tends to push further.",
+    "say": "Rate beats raw counts, and reach and engagement are read together.",
+    "ask": "Where do you think the firm's LinkedIn posts land on this scale?",
+    "wrap": "Judge performance by rate and by reach and engagement together, and revisit the benchmarks as platforms change.",
+    "scenario": "Post A reached 12,000 people with a 0.8% engagement rate. Post B reached 900 people with 6.5%. What does each tell you, and what would you change?"
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Judge performance by rate and by reach and engagement together, and revisit the benchmarks as platforms change.",
+    "scenario": "Post A reached 12,000 people with a 0.8% engagement rate. Post B reached 900 people with 6.5%. What does each tell you, and what would you change?"
+  },
+  "s1": {
+    "on": "This section says a smaller account with a higher rate can be the stronger performer.",
+    "say": "Rate beats raw counts."
+  },
+  "s2": {
+    "on": "These steps interpret it: compare rates, benchmark LinkedIn at 2–5% (above 7% is viral), read reach and engagement together, value small loyal audiences, and revisit benchmarks.",
+    "say": "High reach, low engagement: fix the hook."
+  }
+},
 "10::Basic Campaign Math": {
   "p1": {
     "on": "This slide teaches two numbers: Cost per Lead is total spend ÷ leads, and ROI is (revenue − spend) ÷ spend × 100. The steps: check both before calling a campaign a success, compare them against the campaign's goals, and track them across campaigns over time.",
@@ -490,81 +565,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "on": "This section works an example ($500 spend, 50 leads, $20 product: $10 CPL, $1,000 revenue, 100% ROI) and says to know both numbers before calling success.",
     "say": "Know both numbers.",
     "ask": "What's the ROI if revenue were $400?"
-  }
-},
-"10::Crisis Response on Social Media": {
-  "p1": {
-    "on": "This slide says a negative pile-on moves in hours, deleting or ignoring feedback is usually wrong, and not every negative comment needs a response. The steps: assess whether it's a legitimate complaint, a misunderstanding or bad faith, reply publicly with a brief, calm acknowledgment and move details to a private channel, and involve the executive for anything beyond routine.",
-    "say": "Acknowledge publicly, resolve privately.",
-    "ask": "How do you tell a real complaint from bait?"
-  },
-  "p2": {
-    "on": "This slide warns against defensive or emotional replies, which are hard to walk back, and against deleting a legitimate negative comment, which usually escalates things. It says to document the situation and response as it unfolds.",
-    "say": "Deleting a legitimate complaint usually makes it worse.",
-    "wrap": "Assess, acknowledge calmly, take it private, escalate and document.",
-    "scenario": "A former client posts a detailed public complaint that's gaining traction; some of it is accurate, some exaggerated. What do you do in the next 30 minutes, before anyone senior weighs in?"
-  },
-  "s1": {
-    "on": "This section says pile-ons move in hours, deleting or ignoring is usually wrong, and not every comment needs a reply.",
-    "say": "Hours, not days."
-  },
-  "s2": {
-    "on": "These steps respond: assess legitimacy first, acknowledge publicly and move details private, and bring in the decision-maker for anything serious.",
-    "say": "Brief public reply, details in private."
-  },
-  "s3": {
-    "on": "This section warns against emotional replies and deleting legitimate criticism, and asks you to document the response.",
-    "say": "Don't delete; it looks worse."
-  }
-},
-"10::Endorsement & Disclosure Rules": {
-  "p1": {
-    "on": "This slide says that when a third party (an influencer, partner or employee) promotes the firm, disclosure rules like the FTC's endorsement guidelines can apply. The principle: the audience should be able to tell when a post exists because of a relationship or payment. Confirm current rules with firm policy or counsel. The steps: confirm disclosure language before any arrangement, keep records, and check partner content for visible disclosure.",
-    "say": "The audience should be able to tell there's a relationship.",
-    "ask": "Does a discount count as compensation?"
-  },
-  "p2": {
-    "on": "This slide warns that a mention without direct payment can still need disclosure, because reciprocal or in-kind relationships count. Never approve promotional content without checking disclosure first, and when unsure, treat it as requiring disclosure.",
-    "say": "In-kind still counts. When in doubt, disclose.",
-    "wrap": "Confirm the rules first, keep records and check disclosure is visible.",
-    "scenario": "A former client with a large following offers to post about the firm in exchange for a discount on future services. What do you need to confirm before this goes any further?"
-  },
-  "s1": {
-    "on": "This section says third-party promotion can trigger disclosure rules like the FTC's, the principle is transparency about relationships, and counsel confirms specifics.",
-    "say": "Disclose the relationship."
-  },
-  "s2": {
-    "on": "These steps comply: confirm disclosure language and placement, keep relationship records, and check partner posts for visible disclosure.",
-    "say": "In the post itself."
-  },
-  "s3": {
-    "on": "This section warns that unpaid reciprocal deals may still need disclosure, says to check before drafting, and when unsure, disclose.",
-    "say": "When unsure, disclose."
-  }
-},
-"10::Video Content Basics for Executive Presence": {
-  "p1": {
-    "on": "This slide says video carries more of an executive's presence than text, and short-form video needs clarity and a genuine tone more than production value. The steps: confirm the one point the video makes before recording, check the background and audio (the same background audit from the security topic), and keep social videos to 60–90 seconds.",
-    "say": "One clear point, a clean background, under 90 seconds.",
-    "ask": "What would you check in the background before recording?"
-  },
-  "p2": {
-    "on": "This slide warns against publishing without captions, since many viewers watch muted and captions are an accessibility basic, and against publishing without a full watch-through. It says to keep lighting and background consistent across videos.",
-    "say": "Watch the whole thing before it goes out.",
-    "wrap": "Plan the point, check the frame, caption and watch it through.",
-    "scenario": "Elias records a 90-second video answering a common client question, but a notification showing a client's name flashes on his monitor in the background. What's your process before it's published?"
-  },
-  "s1": {
-    "on": "This section says video carries presence that text can't, and clarity and genuine tone matter more than polish.",
-    "say": "Clear beats polished."
-  },
-  "s2": {
-    "on": "These steps prepare: one clear point, background and audio checks, and 60–90 seconds for social.",
-    "say": "One takeaway per video."
-  },
-  "s3": {
-    "on": "This section warns against uncaptioned video and publishing without a full watch-through, and asks for a consistent setup.",
-    "say": "Captions, always."
   }
 },
 "10::Social Listening & Monitoring": {
@@ -592,54 +592,80 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Flag trends early."
   }
 },
-"10::Accessibility in Digital Content": {
+"10::Crisis Response on Social Media": {
   "p1": {
-    "on": "This slide says accessible content (alt text, captions, readable contrast) decides whether a meaningful share of the audience can use it at all, and building it in costs little compared with retrofitting. The steps: write descriptive alt text for every image, add reviewed captions to every video rather than relying on auto-captions, and check color contrast on graphics.",
-    "say": "Build it in from the start. Retrofitting costs far more.",
-    "ask": "What makes alt text useful rather than a formality?"
+    "on": "This slide says a negative pile-on moves in hours, deleting or ignoring feedback is usually wrong, and not every negative comment needs a response. The steps: assess whether it's a legitimate complaint, a misunderstanding or bad faith, reply publicly with a brief, calm acknowledgment and move details to a private channel, and involve the executive for anything beyond routine.",
+    "say": "Acknowledge publicly, resolve privately.",
+    "ask": "How do you tell a real complaint from bait?"
   },
   "p2": {
-    "on": "This slide warns that generic alt text like \"image\" defeats the purpose, and inaccurate auto-captions can misquote someone. It says to make accessibility review a standard step in the content approval process.",
-    "say": "An auto-caption that misquotes the executive is a real problem.",
-    "wrap": "Real alt text, reviewed captions, good contrast and a standard review step.",
-    "scenario": "You're finalizing a LinkedIn post with a bar chart showing the firm's pro bono hours by year, and it has no alt text. Write the description live so it's actually useful."
+    "on": "This slide warns against defensive or emotional replies, which are hard to walk back, and against deleting a legitimate negative comment, which usually escalates things. It says to document the situation and response as it unfolds.",
+    "say": "Deleting a legitimate complaint usually makes it worse.",
+    "wrap": "Assess, acknowledge calmly, take it private, escalate and document.",
+    "scenario": "A former client posts a detailed public complaint that's gaining traction; some of it is accurate, some exaggerated. What do you do in the next 30 minutes, before anyone senior weighs in?"
   },
   "s1": {
-    "on": "This section says alt text, captions and contrast decide whether part of the audience can engage at all, and building them in early is cheap.",
-    "say": "Accessibility from the start."
+    "on": "This section says pile-ons move in hours, deleting or ignoring is usually wrong, and not every comment needs a reply.",
+    "say": "Hours, not days."
   },
   "s2": {
-    "on": "These steps apply it: descriptive alt text, reviewed captions, and a contrast check.",
-    "say": "Describe what's actually there."
+    "on": "These steps respond: assess legitimacy first, acknowledge publicly and move details private, and bring in the decision-maker for anything serious.",
+    "say": "Brief public reply, details in private."
   },
   "s3": {
-    "on": "This section warns against generic alt text and unreviewed auto-captions, and says accessibility belongs in the approval process.",
-    "say": "Part of approval."
+    "on": "This section warns against emotional replies and deleting legitimate criticism, and asks you to document the response.",
+    "say": "Don't delete; it looks worse."
   }
 },
-"10::Personal vs. Firm Brand Account Separation": {
+"10::Copyright, Image Rights & Permissions": {
   "p1": {
-    "on": "This slide says the executive's personal brand and the firm's brand are related but distinct, and who controls the login to a \"personal\" account has real consequences. The steps: agree in writing which accounts are personal and which are firm-owned, manage credentials to match that ownership, and apply distinct voice guidelines to each.",
-    "say": "Settle who owns each account before anyone leaves.",
-    "ask": "Who controls the login to Elias's LinkedIn?"
+    "on": "This slide says nearly all online content is copyrighted, the firm can use only owned, licensed or permitted content, and people and especially clients need consent. The steps: source from owned or licensed libraries and check the terms, keep an asset record, get photo releases and client consent, use licensed music, and share others' posts properly.",
+    "say": "Being able to download it doesn't mean you can post it.",
+    "ask": "Where do most of the firm's social images come from today?"
   },
   "p2": {
-    "on": "This slide warns against leaving ownership ambiguous until a departure or dispute forces the question, and against putting firm-confidential content on a personal account without firm review. It says to record credentials and ownership in the firm's standard systems.",
-    "say": "Ambiguity always surfaces at the worst moment.",
-    "wrap": "Put ownership in writing, match access to it and document it centrally.",
-    "scenario": "An executive with a large personal following is leaving the firm, and their account has been used for both personal thought leadership and firm announcements. What questions should have been settled long before now?"
+    "on": "This slide covers choosing licensed or original images when unsure, not implying endorsement with others' logos, and two pitfalls: treating credit as permission and posting event photos with clients without consent.",
+    "say": "Credit isn't permission.",
+    "wrap": "Owned, licensed or permitted, with a record, and client consent in writing.",
+    "scenario": "A partner wants to post a great photo from last night's charity dinner. It shows Elias with two clients and a local news anchor, and it was taken by a guest who emailed it over. What do you need before it goes up?"
   },
   "s1": {
-    "on": "This section says personal and firm brands are distinct, and account ownership matters in practice if someone leaves.",
-    "say": "Who owns the login?"
+    "on": "This section explains copyright online, the three safe sources, and consent for people and clients.",
+    "say": "Owned, licensed or permitted."
   },
   "s2": {
-    "on": "These steps separate them: written ownership, access matching ownership, and distinct voice guidelines for each.",
-    "say": "Put ownership in writing."
+    "on": "These steps: licensed sources and terms, an asset record, photo releases and client consent, licensed music, proper sharing.",
+    "say": "Keep a record for every image.",
+    "ask": "What goes in an asset record?"
   },
   "s3": {
-    "on": "This section warns against ambiguous ownership and mixing firm content into personal accounts, and asks to document credentials in firm systems.",
-    "say": "Decide before a departure forces it."
+    "on": "This section covers choosing safe images, trademarks, and the two pitfalls.",
+    "say": "Clients need written consent to appear."
+  }
+},
+"10::Endorsement & Disclosure Rules": {
+  "p1": {
+    "on": "This slide says that when a third party (an influencer, partner or employee) promotes the firm, disclosure rules like the FTC's endorsement guidelines can apply. The principle: the audience should be able to tell when a post exists because of a relationship or payment. Confirm current rules with firm policy or counsel. The steps: confirm disclosure language before any arrangement, keep records, and check partner content for visible disclosure.",
+    "say": "The audience should be able to tell there's a relationship.",
+    "ask": "Does a discount count as compensation?"
+  },
+  "p2": {
+    "on": "This slide warns that a mention without direct payment can still need disclosure, because reciprocal or in-kind relationships count. Never approve promotional content without checking disclosure first, and when unsure, treat it as requiring disclosure.",
+    "say": "In-kind still counts. When in doubt, disclose.",
+    "wrap": "Confirm the rules first, keep records and check disclosure is visible.",
+    "scenario": "A former client with a large following offers to post about the firm in exchange for a discount on future services. What do you need to confirm before this goes any further?"
+  },
+  "s1": {
+    "on": "This section says third-party promotion can trigger disclosure rules like the FTC's, the principle is transparency about relationships, and counsel confirms specifics.",
+    "say": "Disclose the relationship."
+  },
+  "s2": {
+    "on": "These steps comply: confirm disclosure language and placement, keep relationship records, and check partner posts for visible disclosure.",
+    "say": "In the post itself."
+  },
+  "s3": {
+    "on": "This section warns that unpaid reciprocal deals may still need disclosure, says to check before drafting, and when unsure, disclose.",
+    "say": "When unsure, disclose."
   }
 },
 "10::Legal Advertising & UPL Rules": {

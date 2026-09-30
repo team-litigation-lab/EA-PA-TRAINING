@@ -195,6 +195,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "The registered agent service emails a scanned lawsuit on a Friday at 5 p.m. The attorney who handles it is on holiday until Wednesday. What do you do before you leave the office?"
   }
  },
+ "6::Signatures, Notarization & Document Execution": {
+  "p1": {
+   "why": "A contract with the wrong signer or a missing notary stamp can be worth nothing, however good the terms are.",
+   "talk": "'Executing' a document just means signing it so it takes effect. Electronic signatures, like DocuSign, are valid for most business documents, but some documents have special rules, so the attorney tells us which method to use. A notary checks the signer's identity and that they're signing willingly. The signer appears in person, or by video where the state allows it, with photo ID. And a company signs through a person with authority, which is why a signature block reads 'Thorne Advisory LLC, By: Elias Thorne, Managing Member'.",
+   "walk": [
+    "First, before any signing, we confirm with the attorney who signs, in what role, by which method, and whether a notary or witnesses are needed.",
+    "Next, we prepare the execution version: correct names and titles, date lines and a tab at every place to sign or initial.",
+    "Then, for a notary, we book it and remind the signer to bring photo ID and not to sign early.",
+    "After that, we check every page: signatures, initials, dates, stamps and attachments.",
+    "Finally, we save the executed copy as read-only, send it to every party and calendar what it requires."
+   ],
+   "ask": "Can you think of a document that would be useless if it were signed by the wrong person?",
+   "scenario": "A lease for the firm's new satellite office arrives by DocuSign addressed to the office manager, but the firm's rules say only Elias can sign leases. What do you do before anyone clicks Sign?"
+  },
+  "p2": {
+   "why": "Execution goes wrong in the details, and those details are ours to catch.",
+   "talk": "With e-signatures, we set the signing order and check the completion certificate, which records who signed and when. When parties sign separate copies, called counterparts, we combine them into one complete set. Two traps: someone signing on another person's behalf without written authority, which can make the document invalid, and pre-signing before the notary arrives, when the notary has to watch the signature happen.",
+   "walk": [
+    "First, set the order and keep the completion certificate.",
+    "Next, combine counterparts into one set.",
+    "Then, no signing for someone else without written authority.",
+    "Finally, nothing is signed before the notary is there."
+   ],
+   "ask": "What's in an e-signature completion certificate, and why keep it?",
+   "scenario": "Elias must sign a real estate document that needs notarization, and he's traveling for three days. The deadline is Friday. What are your options, and what do you confirm with the attorney first?"
+  }
+ },
  "6::Corporate Recordkeeping & Minute Books": {
   "p1": {
    "why": "Write down big company decisions when they happen, not when someone asks for proof.",

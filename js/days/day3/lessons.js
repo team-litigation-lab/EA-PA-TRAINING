@@ -465,6 +465,60 @@ const DAY3 = {
       }
     },
     {
+      "h": "Counting Legal Deadlines: Calendar Days vs. Court Days",
+      "section": "Legal Calendaring",
+      "fourPart": {
+        "corePrinciples": [
+          "A missed court deadline can lose a client's case, so how a deadline is counted matters as much as the date itself.",
+          "In US federal court, periods stated in days count every calendar day, including weekends and holidays. You leave out the day of the event that starts the clock, count the last day, and if the last day is a weekend or legal holiday, the deadline moves to the next business day.",
+          "Many state courts and some rules count 'court days' or 'business days' instead, which skip weekends and court holidays. The rule for each court is in its rules of procedure and local rules.",
+          "The method of service can add time. For example, in federal court, three days are added when a paper is served by mail."
+        ],
+        "howTo": [
+          "Find the trigger: the event that starts the clock (for example, the date a complaint was served) and write it down with its source.",
+          "Find the rule that sets the period and which kind of days it uses, and check the court's local rules and the judge's standing orders.",
+          "Count forward from the day after the trigger, then check whether the last day lands on a weekend or court holiday.",
+          "Enter the deadline in the docketing calendar with the rule cited, plus reminders well ahead (for example 14, 7 and 2 days before).",
+          "Have a second person, usually the attorney or docketing clerk, confirm every calculated court deadline."
+        ],
+        "bestPractices": [
+          "Use the firm's docketing software to calculate deadlines, then double-check the result by hand. Software is only as good as the trigger date entered.",
+          "Keep a list of court holidays for each court you work with. They're not always the same as federal holidays.",
+          "Pitfall: counting the trigger day itself as day one. That makes every deadline a day early, or worse, a day late when you correct in the wrong direction.",
+          "Pitfall: assuming every court counts the same way. The same '10 days' can land on different dates in two courts."
+        ],
+        "discussionCase": "A motion is served electronically on Friday, October 2, in federal court, and the response is due in 14 days. When is it due? What changes if the court counts court days instead, and who confirms the date?"
+      },
+      "trainerCue": "Hand out a blank October calendar and have everyone count the same 14-day deadline, first calendar days, then court days. Compare answers, then show why the second check exists."
+    },
+    {
+      "h": "E-Filing & Service Basics",
+      "section": "Legal Calendaring",
+      "fourPart": {
+        "corePrinciples": [
+          "Filing gives a document to the court. Service delivers it to the other parties. They're separate steps, and each has its own rules and proof.",
+          "Most courts now require electronic filing: federal courts use CM/ECF (with PACER for viewing records), and state courts use their own e-filing systems. Each has format rules, file-size limits and fees.",
+          "The court's confirmation, such as the Notice of Electronic Filing in federal court, is the proof that a document was filed. Keep it with the filed copy.",
+          "Many courts serve registered lawyers automatically through e-filing. Anyone not registered, including a party without a lawyer, must be served another way, and a certificate of service records how."
+        ],
+        "howTo": [
+          "Before filing day, check the court's rules: PDF format (usually text-searchable), page limits, file size, exhibit labels, fees and the filing cut-off time.",
+          "Prepare the documents as the attorney approved them, redact personal identifiers the rules require, and get the attorney's final sign-off.",
+          "File well before the deadline. Electronic systems slow down on busy days, and a rejected filing needs time to fix.",
+          "Save the filed copy and the court's confirmation in the matter folder, named as filed, and forward the confirmation to the attorney.",
+          "Check who must be served outside the e-filing system, serve them as the rules require, and calendar every new deadline the filing triggers."
+        ],
+        "bestPractices": [
+          "Keep the attorney's e-filing login secure. Filing under their account is filing with their signature, so do it only on their instruction.",
+          "Check the court's docket after filing to confirm the document appears correctly.",
+          "Pitfall: filing at 11:50 pm on the last day. If the system rejects the file, there's no time left.",
+          "Pitfall: assuming e-filing served everyone. A party without a lawyer usually needs service another way."
+        ],
+        "discussionCase": "It's 4 pm on the deadline day. The court's e-filing system rejects Elias's brief because an exhibit is over the file-size limit. What do you do, in order, and who do you tell?"
+      },
+      "trainerCue": "If you can, show the public PACER or a state e-filing screen and walk through where the confirmation appears. Then ask the room what they'd check before clicking Submit."
+    },
+    {
       "h": "Statute-of-Limitations Rules",
       "section": "Legal Calendaring",
       "fourPart": {
@@ -504,6 +558,32 @@ const DAY3 = {
         ],
         "discussionCase": "You've confirmed a deposition date with the attorney and the witness, but opposing counsel hasn't responded to the proposed date after several days. Do you proceed with formal notice, or wait longer for confirmation? What would you actually do?"
       }
+    },
+    {
+      "h": "Exhibits, Binders & Bates Numbering",
+      "section": "Legal Calendaring",
+      "fourPart": {
+        "corePrinciples": [
+          "An exhibit is a document or object presented as evidence, such as an email, a contract or a photo. Every exhibit has a label (for example Exhibit 12, or Exhibit C) so everyone refers to the same thing.",
+          "Bates numbering stamps a unique, sequential number on every page of documents produced in discovery, with a prefix (for example THORNE000001). It makes any page findable and proves exactly what was produced.",
+          "Binders put the exhibits in order for a hearing, deposition or trial, with a tabbed index. There are usually several sets: for the judge, the witness, opposing counsel and your own team."
+        ],
+        "howTo": [
+          "Follow the court's and judge's rules for exhibit labels. Some courts use numbers for one side and letters for the other.",
+          "Keep a master exhibit list: exhibit number, description, date, Bates range, and whether it's been shown to the other side or admitted.",
+          "Apply Bates numbers with the firm's PDF or review software, never by hand, and never renumber a set that's already been produced.",
+          "Build binders from the master list: an index at the front, one tab per exhibit, and the same order in every set.",
+          "Check each set page by page against the index before it leaves the office, and keep a clean digital copy of every set."
+        ],
+        "bestPractices": [
+          "Start binders early. Late additions are normal, so leave room by planning the tabs before the exhibit list is final.",
+          "Use the exact label and Bates range when you refer to a document in emails, so there's never any doubt.",
+          "Pitfall: a missing page in the judge's binder. Always check every set, not just your own.",
+          "Pitfall: re-stamping Bates numbers on a corrected set. Produce a new range instead, so the record stays clear."
+        ],
+        "discussionCase": "Two days before a hearing, Elias adds three exhibits between Exhibits 7 and 8. Four binder sets are already printed. How do you handle the numbering and the binders, and what do you tell opposing counsel?"
+      },
+      "trainerCue": "Bring a real binder with tabs, or show a PDF bundle. Ask the room to find Exhibit 5, page 3, by Bates number, then by tab, and time both."
     },
     {
       "h": "War Room Trial Support",
@@ -1099,6 +1179,39 @@ const DAY3 = {
       ],
       "a": 0,
       "r": "Facts and options turn a complaint into a business decision; health details stay private unless you choose to share."
+    },
+    {
+      "q": "In federal court, a 14-day deadline is triggered on a Friday and the 14th day falls on a Sunday. When is the response due?",
+      "opts": [
+        "The Friday before, so the filing isn't left until the weekend",
+        "On the Sunday itself, because every calendar day is counted",
+        "The Monday after, unless that Monday is a legal holiday",
+        "Fourteen court days later, skipping every weekend in the period"
+      ],
+      "a": 2,
+      "r": "Federal rules count calendar days, but when the last day is a weekend or legal holiday the deadline moves to the next day that isn't. Court days apply only where a rule says so."
+    },
+    {
+      "q": "What is the difference between filing a document and serving it?",
+      "opts": [
+        "Filing gives it to the court; serving delivers it formally to the other parties in the case",
+        "Filing is done on paper at the courthouse; serving is the electronic version of the same step",
+        "Filing is only for motions and briefs; serving applies to letters between the two sides' lawyers",
+        "They mean the same thing, and courts use the two words interchangeably in their rules"
+      ],
+      "a": 0,
+      "r": "Filing and service are separate steps with separate proof: the court's filing confirmation and a certificate of service. Either can be electronic or on paper depending on the court's rules."
+    },
+    {
+      "q": "What is the main purpose of Bates numbering?",
+      "opts": [
+        "To show the court which documents the judge should read first at the hearing",
+        "To give every produced page a unique number so it can be found and tracked",
+        "To mark which pages of a document are privileged and must be kept private",
+        "To count the total pages filed so the court can calculate the filing fee"
+      ],
+      "a": 1,
+      "r": "Bates numbers identify each produced page uniquely and prove what was produced. They don't rank importance, mark privilege or set fees."
     }
   ],
   "discussionQuestion": "Share a time you had to say 'not now' to someone without damaging the relationship. What made it land well — or not?"

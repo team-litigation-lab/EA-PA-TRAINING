@@ -39,6 +39,81 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "Why might a small firm default to an LLC?"
   }
 },
+"6::Entity Formation Step-by-Step": {
+  "p1": {
+    "on": "This slide says forming an entity is a sequence: choose the structure, reserve the name, file formation documents, get an EIN, and complete the governance document. The date on paper and the date it's operational often differ, and a missed early step blocks later ones. The steps: check name availability, file the articles and confirm approval, apply for the EIN, and complete the Operating Agreement or Bylaws.",
+    "say": "It's a sequence, and a skipped step blocks the next one.",
+    "ask": "Why can't you open a bank account the day the state approves the filing?"
+  },
+  "p2": {
+    "on": "This slide warns against treating the state filing as the finish line and skipping the EIN or governance document. It says to keep every formation document in one folder from day one and to set up the registered agent correctly at formation.",
+    "say": "Approval from the state isn't the finish line.",
+    "wrap": "Follow the sequence, keep every document together and set the agent up at formation.",
+    "scenario": "Elias's new consulting entity was approved by the state yesterday, and he wants a business bank account \"as soon as possible.\" The EIN hasn't been applied for yet. What do you tell him about the sequence and a realistic timeline?"
+  },
+  "s1": {
+    "on": "This section says formation is a sequence (structure, name, state filing, EIN, governance documents), paper and operational dates can differ, and early gaps block later steps.",
+    "say": "It's a sequence, not one filing."
+  },
+  "s2": {
+    "on": "These steps form it: check name availability, file and confirm approval, get the EIN, and execute the Operating Agreement or Bylaws.",
+    "say": "Filing isn't approval; confirm it."
+  },
+  "s3": {
+    "on": "This section warns against stopping at the state filing, and asks for one formation folder and a valid registered agent from the start.",
+    "say": "Keep every document in one folder."
+  }
+},
+"6::Operating Agreements & Corporate Bylaws Basics": {
+  "p1": {
+    "on": "This slide explains that the Operating Agreement (LLC) or Bylaws (corporation) is the entity's internal rulebook for decisions, ownership changes and disputes. Without it, the state's generic rules apply, and it's the first document requested in disputes, lending or due diligence. The steps: confirm it covers ownership, voting, major decisions and owner exits, have it signed by all owners, and store it securely.",
+    "say": "No agreement means the state's default rules apply.",
+    "ask": "What's the first document a lender would ask for?"
+  },
+  "p2": {
+    "on": "This slide warns against generic templates that don't match the actual ownership, which creates ambiguity exactly when it matters. It says any ownership or governance change must formally update the document, not live in an email.",
+    "say": "A side email isn't an amendment.",
+    "wrap": "Make it specific, get it signed and keep it current.",
+    "scenario": "A lender asks for the entity's Operating Agreement, and the version on file is three years old and doesn't reflect a partner who left last year. What's the risk, and what do you do before sending anything?"
+  },
+  "s1": {
+    "on": "This section explains the entity's internal rulebook: without it, generic state rules apply, and it's the first document requested in disputes and due diligence.",
+    "say": "The internal rulebook."
+  },
+  "s2": {
+    "on": "These steps check it: ownership, voting, major decisions and exits covered, executed by all owners, and stored securely.",
+    "say": "Drafted isn't signed."
+  },
+  "s3": {
+    "on": "This section warns against unadapted templates, and says amendments must update the document formally.",
+    "say": "No side-email amendments."
+  }
+},
+"6::Multi-State Registration & Foreign Qualification": {
+  "p1": {
+    "on": "This slide explains that an entity is only authorized to do business in its formation state; elsewhere it needs foreign qualification. \"Doing business\" is a legal threshold: an employee, a lease or a registered presence can trigger it. Without qualification, the entity risks being unable to enforce contracts there. The steps: identify every state, file a Certificate of Authority with a Good Standing certificate, appoint a registered agent in each, and track each state's filings.",
+    "say": "One employee in a new state can trigger foreign qualification.",
+    "ask": "What counts as \"doing business\" in a state?"
+  },
+  "p2": {
+    "on": "This slide warns that assuming a home-state filing covers every state is one of the most common compliance gaps. It says to keep one tracker listing every qualified state, its registered agent and its renewal deadlines.",
+    "say": "The home-state filing doesn't cover everywhere.",
+    "wrap": "Identify every state, qualify in each and track them in one place.",
+    "scenario": "The firm just hired a remote employee in a state where it has never operated. What needs to happen from a compliance standpoint before the start date, and who do you loop in?"
+  },
+  "s1": {
+    "on": "This section explains that an entity is only authorized in its home state; elsewhere it needs foreign qualification, triggered by 'doing business' such as hiring or leasing.",
+    "say": "Home state only, until you qualify."
+  },
+  "s2": {
+    "on": "These steps qualify it: identify every triggering state, file a Certificate of Authority with good standing, appoint agents per state, and track each state's obligations.",
+    "say": "Each state has its own agent and deadlines."
+  },
+  "s3": {
+    "on": "This section warns that a home-state filing doesn't cover everywhere, and asks for one tracker of states, agents and deadlines.",
+    "say": "One tracker for every state."
+  }
+},
 "6::Staying in Good Standing": {
   "p1": {
     "on": "This slide says regulatory compliance is ongoing filings and renewals, never a one-time step. The steps: track every deadline on a recurring calendar, set reminders well ahead, notify the owner immediately and start corrective action the same day if something lapses, confirm requirements haven't changed, and keep a current standing record for every entity.",
@@ -66,6 +141,132 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s4": {
     "on": "This section lists what good standing needs: annual reports, franchise taxes, a registered agent in each state, and renewed licenses. Losing it can block contracts and lawsuits.",
     "say": "Losing standing can block the right to sue."
+  }
+},
+"6::Annual Report & Franchise Tax Deadlines Across Jurisdictions": {
+  "p1": {
+    "on": "This slide says each state sets its own annual report and franchise tax deadline, missing one can cause Loss of Good Standing, and a grace period in one state doesn't mean all have one. The steps: build a master compliance calendar by state with deadline and filing method, set reminders well ahead, and confirm the filing was accepted, not just submitted.",
+    "say": "Submitted isn't the same as accepted.",
+    "ask": "Why treat every state's deadline as hard?"
+  },
+  "p2": {
+    "on": "This slide warns against relying on memory or one person's calendar for multi-state deadlines; that's what a shared, owned tracker is for. If a deadline is missed, act immediately: most states have reinstatement, but the entity is exposed until then.",
+    "say": "A missed deadline gets fixed today, not next week.",
+    "wrap": "One master calendar, early reminders and confirmed acceptance.",
+    "scenario": "Auditing the compliance calendar, you find Delaware's annual report was filed on time, but Texas's franchise report deadline passed three weeks ago with no record of filing. What's your first move?"
+  },
+  "s1": {
+    "on": "This section says each state sets its own deadlines, a miss can cost good standing, and grace periods aren't universal.",
+    "say": "No single due date."
+  },
+  "s2": {
+    "on": "These steps manage them: a master compliance calendar, reminders well ahead, and confirming acceptance, not just submission.",
+    "say": "Submitted isn't accepted."
+  },
+  "s3": {
+    "on": "This section warns against relying on memory and says to fix a missed deadline immediately through reinstatement.",
+    "say": "Exposed until reinstated."
+  }
+},
+"6::Business Licensing & Permits": {
+  "p1": {
+    "on": "This slide says forming an entity and licensing it are separate systems, and licensing stacks across federal, state, county and city levels. Operating unlicensed risks fines, closure and sometimes invalid contracts. The steps: identify every license the industry and location require, track each renewal cycle separately, and keep individual professional licenses current independently.",
+    "say": "Being formed doesn't mean being licensed.",
+    "ask": "How many levels of licensing could apply to one office?"
+  },
+  "p2": {
+    "on": "This slide warns that most licenses need periodic renewal, and some need continuing education or reporting. It says to keep copies of every license and permit in the same central compliance folder as the formation documents.",
+    "say": "Licenses renew. Track each one on its own cycle.",
+    "wrap": "Map every license, track every renewal and keep copies centrally.",
+    "scenario": "The firm is opening a satellite office in a new city. What licensing and permit questions need answering before it can open, and who do you ask?"
+  },
+  "s1": {
+    "on": "This section says formation and licensing are separate systems, requirements stack at every level of government, and operating unlicensed has serious consequences.",
+    "say": "Formed isn't licensed."
+  },
+  "s2": {
+    "on": "These steps track them: identify every license needed, track each renewal cycle, and keep individual professional licenses current.",
+    "say": "Each license has its own cycle."
+  },
+  "s3": {
+    "on": "This section warns that licenses need renewal and sometimes continuing education, and asks for copies in the central compliance folder.",
+    "say": "Licenses expire."
+  }
+},
+"6::Registered Agent Responsibilities & Service of Process": {
+  "p1": {
+    "on": "This slide explains that the registered agent receives legal notices and service of process for the entity. If service is missed because the agent's details are outdated, the entity can still be found in default. Every state needs its own agent. The steps: confirm the address is current and monitored, route any notice immediately, and update the designation with the state promptly.",
+    "say": "\"We never got it\" is not a defense.",
+    "ask": "Who monitors the registered agent's inbox at your firm?"
+  },
+  "p2": {
+    "on": "This slide warns against using an agent service without knowing who monitors it internally, since a notice can sit unread. It says to keep registered agent details in the compliance tracker, because a lapsed agent can itself cost good standing.",
+    "say": "Know who reads the notices, not just who receives them.",
+    "wrap": "Keep the agent current, monitored and tracked, and route notices immediately.",
+    "scenario": "The registered agent service forwards what looks like a newly served lawsuit. What do you do in the next 30 minutes, and who needs to know immediately?"
+  },
+  "s1": {
+    "on": "This section defines the registered agent as the official recipient of legal notices; outdated info can still lead to default, and each state needs one.",
+    "say": "'We never got it' isn't a defense."
+  },
+  "s2": {
+    "on": "These steps manage it: a current, monitored address, immediate routing of notices, and prompt updates to the state.",
+    "say": "Route notices the same day."
+  },
+  "s3": {
+    "on": "This section warns about unmonitored agent inboxes, and asks to track agent info with annual report deadlines.",
+    "say": "Someone must actually watch the inbox."
+  }
+},
+"6::Signatures, Notarization & Document Execution": {
+  "p1": {
+    "on": "This slide defines execution, says e-signatures are valid for most business documents but some have special rules, explains what a notary does and remote online notarization, and shows how a company signs through an authorized person. The steps: confirm the method with the attorney, prepare the execution version, arrange the notary and ID, check every page after signing, and save and distribute the executed copy.",
+    "say": "Confirm who signs and how before anyone picks up a pen.",
+    "ask": "What would make a signed document useless?"
+  },
+  "p2": {
+    "on": "This slide covers e-signature order and completion certificates, combining counterparts, and two pitfalls: signing for someone without written authority and pre-signing before the notary.",
+    "say": "The notary has to see the signature happen.",
+    "wrap": "Right signer, right method, every page checked, executed copy saved.",
+    "scenario": "Elias must sign a real estate document that needs notarization, and he's traveling for three days. The deadline is Friday. What are your options, and what do you confirm with the attorney first?"
+  },
+  "s1": {
+    "on": "This section explains execution, e-signatures, notarization and company signature blocks.",
+    "say": "A company signs through an authorized person."
+  },
+  "s2": {
+    "on": "These steps: confirm method with the attorney, prepare signature blocks and tabs, arrange the notary and ID, check every page, save and distribute.",
+    "say": "Tab every place to sign or initial.",
+    "ask": "What does the signer need to bring to a notary?"
+  },
+  "s3": {
+    "on": "This section covers e-signature order, counterparts, and the two pitfalls.",
+    "say": "No signing for someone else without written authority."
+  }
+},
+"6::Corporate Recordkeeping & Minute Books": {
+  "p1": {
+    "on": "This slide explains that the minute book is the entity's official history (formation documents, ownership records, minutes and resolutions) and one of the first things due diligence requests. Corporations have stricter requirements than LLCs, but both benefit. The steps: document every major action with a resolution or minutes, keep it current in real time, and store it securely.",
+    "say": "Document major decisions when they happen, not when someone asks.",
+    "ask": "What counts as a major corporate action?"
+  },
+  "p2": {
+    "on": "This slide warns against skipping minute books for small or closely held entities, because due diligence and lenders ask regardless of size. When in doubt, document it: an unnecessary record costs far less than a missing one.",
+    "say": "When in doubt, write it down.",
+    "wrap": "Record every major action, keep it current and store it safely.",
+    "scenario": "A potential investor's due diligence checklist asks for two years of board minutes, and the firm has never documented its meetings. How big is the problem, and how do you start closing the gap?"
+  },
+  "s1": {
+    "on": "This section defines the minute book as the official record, notes corporations have stricter requirements, and warns that gaps can undermine authorization.",
+    "say": "The entity's official history."
+  },
+  "s2": {
+    "on": "These steps maintain it: resolutions or minutes for major actions, updates in real time, and secure central storage.",
+    "say": "Document it as it happens."
+  },
+  "s3": {
+    "on": "This section warns that small entities still need one for due diligence, and says: when in doubt, document it.",
+    "say": "When in doubt, document."
   }
 },
 "6::Leading a Project Under Pressure": {
@@ -118,6 +319,57 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section separates seasonal work from one-off projects: it recurs and needs a system, not a fresh plan each time.",
     "say": "A system, not a fresh plan."
+  }
+},
+"6::Project Scope Creep & Change Management": {
+  "p1": {
+    "on": "This slide explains that scope creep usually arrives one small addition at a time, each has a real cost, and a documented scope makes the trade-off visible so it's a deliberate decision. The steps: document the original scope clearly, name each new request as a scope change and state the trade-off before agreeing, and log every approved change with what and why.",
+    "say": "Name it as a scope change and state the trade-off.",
+    "ask": "Why is each small addition dangerous if each seems reasonable?"
+  },
+  "p2": {
+    "on": "This slide warns against quietly absorbing small additions to avoid an awkward conversation, which is how projects end up late with no single moment to blame. It says the conversation doesn't need to be adversarial: \"here's what this addition means for the timeline\" is enough.",
+    "say": "Quietly absorbing changes is how projects go late.",
+    "wrap": "Document the scope, surface every trade-off and log every change.",
+    "scenario": "A stakeholder asks for \"just one more small addition\" to a project already three small additions deep. What do you say, given each addition really did seem reasonable on its own?"
+  },
+  "s1": {
+    "on": "This section defines scope creep as small additions piling up, each with a real cost; documented scope makes the trade-off visible.",
+    "say": "Small additions add up."
+  },
+  "s2": {
+    "on": "These steps manage it: document the original scope, name new requests as scope changes with their trade-off, and log every approved change.",
+    "say": "Name it as a scope change.",
+    "ask": "How would you raise a small extra request mid-project?"
+  },
+  "s3": {
+    "on": "This section warns against quietly absorbing additions, and says the conversation needn't be adversarial.",
+    "say": "Here's what it means for the timeline."
+  }
+},
+"6::Stakeholder Communication During Project Delays": {
+  "p1": {
+    "on": "This slide says a delay communicated early is manageable, while a delay the stakeholder discovers first becomes a trust problem. People handle bad news better than being the last to know. The steps: flag a delay as soon as it's likely, lead with the bottom line (what's delayed and by how much), and always pair it with a next step or revised timeline.",
+    "say": "Bad news early beats bad news discovered.",
+    "ask": "Why flag a delay before you're certain?"
+  },
+  "p2": {
+    "on": "This slide warns against waiting until the deadline has passed, which turns a delay into a credibility issue. During an extended delay, keep a consistent cadence of updates rather than going quiet.",
+    "say": "Silence between updates reads as bad news.",
+    "wrap": "Flag early, lead with the bottom line and always bring a plan.",
+    "scenario": "This morning you learned the project will miss its deadline by two weeks. The stakeholder has a standing call in one hour. What do you do between now and that call?"
+  },
+  "s1": {
+    "on": "This section says early communication keeps a delay manageable, being last to know hurts trust, and the goal is an accurate picture and a plan.",
+    "say": "Early and honest."
+  },
+  "s2": {
+    "on": "These steps communicate it: flag when likely, lead with the bottom line, and always include a next step or new timeline.",
+    "say": "Bottom line first, plan attached."
+  },
+  "s3": {
+    "on": "This section warns against waiting past the deadline, and asks for a steady update cadence during long delays.",
+    "say": "Don't go quiet."
   }
 },
 "6::Frameworks Worth Knowing": {
@@ -225,6 +477,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "on": "This section names the common office wastes, explains Kaizen as small continuous fixes, and says the Control step is the one people skip.",
     "say": "Small fixes, every day.",
     "ask": "Where do you re-enter the same data twice?"
+  }
+},
+"6::Root Cause Analysis Basics": {
+  "p1": {
+    "on": "This slide explains that root cause analysis asks \"why did this actually happen\" instead of stopping at the first explanation. The 5 Whys technique keeps asking until the answer is a fixable cause, and fixing a symptom brings the problem back. The steps: state the problem precisely, keep asking why, and confirm the root cause would have prevented the problem.",
+    "say": "Keep asking why until the answer is something you can fix.",
+    "ask": "Why isn't \"someone forgot\" a root cause?"
+  },
+  "p2": {
+    "on": "This slide warns against stopping at \"human error,\" which is almost always a symptom of a missing process, unclear ownership or poor training. It says to do the analysis in the incident review, while details are fresh.",
+    "say": "\"Human error\" is where the analysis starts, not where it ends.",
+    "wrap": "State it precisely, ask why repeatedly and test the root cause.",
+    "scenario": "A filing deadline was missed last week, and the first explanation is \"the person responsible forgot.\" Use the 5 Whys out loud to get to something fixable."
+  },
+  "s1": {
+    "on": "This section explains root cause analysis and the 5 Whys, and warns that fixing symptoms brings the problem back.",
+    "say": "Ask why until it's a real cause."
+  },
+  "s2": {
+    "on": "These steps run it: state the problem precisely, keep asking why, and confirm the cause would have prevented the problem.",
+    "say": "Would fixing it have prevented this?",
+    "ask": "What's a problem you could run the 5 Whys on?"
+  },
+  "s3": {
+    "on": "This section warns that 'human error' is usually a symptom, and says to do the analysis while details are fresh.",
+    "say": "Human error is a symptom."
   }
 },
 "6::Operational Optimization": {
@@ -359,258 +637,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section warns against editing without bumping the version, asks for one central repository, closing the loop after audits, and a named owner.",
     "say": "Change the content, change the version."
-  }
-},
-"6::Entity Formation Step-by-Step": {
-  "p1": {
-    "on": "This slide says forming an entity is a sequence: choose the structure, reserve the name, file formation documents, get an EIN, and complete the governance document. The date on paper and the date it's operational often differ, and a missed early step blocks later ones. The steps: check name availability, file the articles and confirm approval, apply for the EIN, and complete the Operating Agreement or Bylaws.",
-    "say": "It's a sequence, and a skipped step blocks the next one.",
-    "ask": "Why can't you open a bank account the day the state approves the filing?"
-  },
-  "p2": {
-    "on": "This slide warns against treating the state filing as the finish line and skipping the EIN or governance document. It says to keep every formation document in one folder from day one and to set up the registered agent correctly at formation.",
-    "say": "Approval from the state isn't the finish line.",
-    "wrap": "Follow the sequence, keep every document together and set the agent up at formation.",
-    "scenario": "Elias's new consulting entity was approved by the state yesterday, and he wants a business bank account \"as soon as possible.\" The EIN hasn't been applied for yet. What do you tell him about the sequence and a realistic timeline?"
-  },
-  "s1": {
-    "on": "This section says formation is a sequence (structure, name, state filing, EIN, governance documents), paper and operational dates can differ, and early gaps block later steps.",
-    "say": "It's a sequence, not one filing."
-  },
-  "s2": {
-    "on": "These steps form it: check name availability, file and confirm approval, get the EIN, and execute the Operating Agreement or Bylaws.",
-    "say": "Filing isn't approval; confirm it."
-  },
-  "s3": {
-    "on": "This section warns against stopping at the state filing, and asks for one formation folder and a valid registered agent from the start.",
-    "say": "Keep every document in one folder."
-  }
-},
-"6::Multi-State Registration & Foreign Qualification": {
-  "p1": {
-    "on": "This slide explains that an entity is only authorized to do business in its formation state; elsewhere it needs foreign qualification. \"Doing business\" is a legal threshold: an employee, a lease or a registered presence can trigger it. Without qualification, the entity risks being unable to enforce contracts there. The steps: identify every state, file a Certificate of Authority with a Good Standing certificate, appoint a registered agent in each, and track each state's filings.",
-    "say": "One employee in a new state can trigger foreign qualification.",
-    "ask": "What counts as \"doing business\" in a state?"
-  },
-  "p2": {
-    "on": "This slide warns that assuming a home-state filing covers every state is one of the most common compliance gaps. It says to keep one tracker listing every qualified state, its registered agent and its renewal deadlines.",
-    "say": "The home-state filing doesn't cover everywhere.",
-    "wrap": "Identify every state, qualify in each and track them in one place.",
-    "scenario": "The firm just hired a remote employee in a state where it has never operated. What needs to happen from a compliance standpoint before the start date, and who do you loop in?"
-  },
-  "s1": {
-    "on": "This section explains that an entity is only authorized in its home state; elsewhere it needs foreign qualification, triggered by 'doing business' such as hiring or leasing.",
-    "say": "Home state only, until you qualify."
-  },
-  "s2": {
-    "on": "These steps qualify it: identify every triggering state, file a Certificate of Authority with good standing, appoint agents per state, and track each state's obligations.",
-    "say": "Each state has its own agent and deadlines."
-  },
-  "s3": {
-    "on": "This section warns that a home-state filing doesn't cover everywhere, and asks for one tracker of states, agents and deadlines.",
-    "say": "One tracker for every state."
-  }
-},
-"6::Annual Report & Franchise Tax Deadlines Across Jurisdictions": {
-  "p1": {
-    "on": "This slide says each state sets its own annual report and franchise tax deadline, missing one can cause Loss of Good Standing, and a grace period in one state doesn't mean all have one. The steps: build a master compliance calendar by state with deadline and filing method, set reminders well ahead, and confirm the filing was accepted, not just submitted.",
-    "say": "Submitted isn't the same as accepted.",
-    "ask": "Why treat every state's deadline as hard?"
-  },
-  "p2": {
-    "on": "This slide warns against relying on memory or one person's calendar for multi-state deadlines; that's what a shared, owned tracker is for. If a deadline is missed, act immediately: most states have reinstatement, but the entity is exposed until then.",
-    "say": "A missed deadline gets fixed today, not next week.",
-    "wrap": "One master calendar, early reminders and confirmed acceptance.",
-    "scenario": "Auditing the compliance calendar, you find Delaware's annual report was filed on time, but Texas's franchise report deadline passed three weeks ago with no record of filing. What's your first move?"
-  },
-  "s1": {
-    "on": "This section says each state sets its own deadlines, a miss can cost good standing, and grace periods aren't universal.",
-    "say": "No single due date."
-  },
-  "s2": {
-    "on": "These steps manage them: a master compliance calendar, reminders well ahead, and confirming acceptance, not just submission.",
-    "say": "Submitted isn't accepted."
-  },
-  "s3": {
-    "on": "This section warns against relying on memory and says to fix a missed deadline immediately through reinstatement.",
-    "say": "Exposed until reinstated."
-  }
-},
-"6::Business Licensing & Permits": {
-  "p1": {
-    "on": "This slide says forming an entity and licensing it are separate systems, and licensing stacks across federal, state, county and city levels. Operating unlicensed risks fines, closure and sometimes invalid contracts. The steps: identify every license the industry and location require, track each renewal cycle separately, and keep individual professional licenses current independently.",
-    "say": "Being formed doesn't mean being licensed.",
-    "ask": "How many levels of licensing could apply to one office?"
-  },
-  "p2": {
-    "on": "This slide warns that most licenses need periodic renewal, and some need continuing education or reporting. It says to keep copies of every license and permit in the same central compliance folder as the formation documents.",
-    "say": "Licenses renew. Track each one on its own cycle.",
-    "wrap": "Map every license, track every renewal and keep copies centrally.",
-    "scenario": "The firm is opening a satellite office in a new city. What licensing and permit questions need answering before it can open, and who do you ask?"
-  },
-  "s1": {
-    "on": "This section says formation and licensing are separate systems, requirements stack at every level of government, and operating unlicensed has serious consequences.",
-    "say": "Formed isn't licensed."
-  },
-  "s2": {
-    "on": "These steps track them: identify every license needed, track each renewal cycle, and keep individual professional licenses current.",
-    "say": "Each license has its own cycle."
-  },
-  "s3": {
-    "on": "This section warns that licenses need renewal and sometimes continuing education, and asks for copies in the central compliance folder.",
-    "say": "Licenses expire."
-  }
-},
-"6::Operating Agreements & Corporate Bylaws Basics": {
-  "p1": {
-    "on": "This slide explains that the Operating Agreement (LLC) or Bylaws (corporation) is the entity's internal rulebook for decisions, ownership changes and disputes. Without it, the state's generic rules apply, and it's the first document requested in disputes, lending or due diligence. The steps: confirm it covers ownership, voting, major decisions and owner exits, have it signed by all owners, and store it securely.",
-    "say": "No agreement means the state's default rules apply.",
-    "ask": "What's the first document a lender would ask for?"
-  },
-  "p2": {
-    "on": "This slide warns against generic templates that don't match the actual ownership, which creates ambiguity exactly when it matters. It says any ownership or governance change must formally update the document, not live in an email.",
-    "say": "A side email isn't an amendment.",
-    "wrap": "Make it specific, get it signed and keep it current.",
-    "scenario": "A lender asks for the entity's Operating Agreement, and the version on file is three years old and doesn't reflect a partner who left last year. What's the risk, and what do you do before sending anything?"
-  },
-  "s1": {
-    "on": "This section explains the entity's internal rulebook: without it, generic state rules apply, and it's the first document requested in disputes and due diligence.",
-    "say": "The internal rulebook."
-  },
-  "s2": {
-    "on": "These steps check it: ownership, voting, major decisions and exits covered, executed by all owners, and stored securely.",
-    "say": "Drafted isn't signed."
-  },
-  "s3": {
-    "on": "This section warns against unadapted templates, and says amendments must update the document formally.",
-    "say": "No side-email amendments."
-  }
-},
-"6::Registered Agent Responsibilities & Service of Process": {
-  "p1": {
-    "on": "This slide explains that the registered agent receives legal notices and service of process for the entity. If service is missed because the agent's details are outdated, the entity can still be found in default. Every state needs its own agent. The steps: confirm the address is current and monitored, route any notice immediately, and update the designation with the state promptly.",
-    "say": "\"We never got it\" is not a defense.",
-    "ask": "Who monitors the registered agent's inbox at your firm?"
-  },
-  "p2": {
-    "on": "This slide warns against using an agent service without knowing who monitors it internally, since a notice can sit unread. It says to keep registered agent details in the compliance tracker, because a lapsed agent can itself cost good standing.",
-    "say": "Know who reads the notices, not just who receives them.",
-    "wrap": "Keep the agent current, monitored and tracked, and route notices immediately.",
-    "scenario": "The registered agent service forwards what looks like a newly served lawsuit. What do you do in the next 30 minutes, and who needs to know immediately?"
-  },
-  "s1": {
-    "on": "This section defines the registered agent as the official recipient of legal notices; outdated info can still lead to default, and each state needs one.",
-    "say": "'We never got it' isn't a defense."
-  },
-  "s2": {
-    "on": "These steps manage it: a current, monitored address, immediate routing of notices, and prompt updates to the state.",
-    "say": "Route notices the same day."
-  },
-  "s3": {
-    "on": "This section warns about unmonitored agent inboxes, and asks to track agent info with annual report deadlines.",
-    "say": "Someone must actually watch the inbox."
-  }
-},
-"6::Corporate Recordkeeping & Minute Books": {
-  "p1": {
-    "on": "This slide explains that the minute book is the entity's official history (formation documents, ownership records, minutes and resolutions) and one of the first things due diligence requests. Corporations have stricter requirements than LLCs, but both benefit. The steps: document every major action with a resolution or minutes, keep it current in real time, and store it securely.",
-    "say": "Document major decisions when they happen, not when someone asks.",
-    "ask": "What counts as a major corporate action?"
-  },
-  "p2": {
-    "on": "This slide warns against skipping minute books for small or closely held entities, because due diligence and lenders ask regardless of size. When in doubt, document it: an unnecessary record costs far less than a missing one.",
-    "say": "When in doubt, write it down.",
-    "wrap": "Record every major action, keep it current and store it safely.",
-    "scenario": "A potential investor's due diligence checklist asks for two years of board minutes, and the firm has never documented its meetings. How big is the problem, and how do you start closing the gap?"
-  },
-  "s1": {
-    "on": "This section defines the minute book as the official record, notes corporations have stricter requirements, and warns that gaps can undermine authorization.",
-    "say": "The entity's official history."
-  },
-  "s2": {
-    "on": "These steps maintain it: resolutions or minutes for major actions, updates in real time, and secure central storage.",
-    "say": "Document it as it happens."
-  },
-  "s3": {
-    "on": "This section warns that small entities still need one for due diligence, and says: when in doubt, document it.",
-    "say": "When in doubt, document."
-  }
-},
-"6::Project Scope Creep & Change Management": {
-  "p1": {
-    "on": "This slide explains that scope creep usually arrives one small addition at a time, each has a real cost, and a documented scope makes the trade-off visible so it's a deliberate decision. The steps: document the original scope clearly, name each new request as a scope change and state the trade-off before agreeing, and log every approved change with what and why.",
-    "say": "Name it as a scope change and state the trade-off.",
-    "ask": "Why is each small addition dangerous if each seems reasonable?"
-  },
-  "p2": {
-    "on": "This slide warns against quietly absorbing small additions to avoid an awkward conversation, which is how projects end up late with no single moment to blame. It says the conversation doesn't need to be adversarial: \"here's what this addition means for the timeline\" is enough.",
-    "say": "Quietly absorbing changes is how projects go late.",
-    "wrap": "Document the scope, surface every trade-off and log every change.",
-    "scenario": "A stakeholder asks for \"just one more small addition\" to a project already three small additions deep. What do you say, given each addition really did seem reasonable on its own?"
-  },
-  "s1": {
-    "on": "This section defines scope creep as small additions piling up, each with a real cost; documented scope makes the trade-off visible.",
-    "say": "Small additions add up."
-  },
-  "s2": {
-    "on": "These steps manage it: document the original scope, name new requests as scope changes with their trade-off, and log every approved change.",
-    "say": "Name it as a scope change.",
-    "ask": "How would you raise a small extra request mid-project?"
-  },
-  "s3": {
-    "on": "This section warns against quietly absorbing additions, and says the conversation needn't be adversarial.",
-    "say": "Here's what it means for the timeline."
-  }
-},
-"6::Stakeholder Communication During Project Delays": {
-  "p1": {
-    "on": "This slide says a delay communicated early is manageable, while a delay the stakeholder discovers first becomes a trust problem. People handle bad news better than being the last to know. The steps: flag a delay as soon as it's likely, lead with the bottom line (what's delayed and by how much), and always pair it with a next step or revised timeline.",
-    "say": "Bad news early beats bad news discovered.",
-    "ask": "Why flag a delay before you're certain?"
-  },
-  "p2": {
-    "on": "This slide warns against waiting until the deadline has passed, which turns a delay into a credibility issue. During an extended delay, keep a consistent cadence of updates rather than going quiet.",
-    "say": "Silence between updates reads as bad news.",
-    "wrap": "Flag early, lead with the bottom line and always bring a plan.",
-    "scenario": "This morning you learned the project will miss its deadline by two weeks. The stakeholder has a standing call in one hour. What do you do between now and that call?"
-  },
-  "s1": {
-    "on": "This section says early communication keeps a delay manageable, being last to know hurts trust, and the goal is an accurate picture and a plan.",
-    "say": "Early and honest."
-  },
-  "s2": {
-    "on": "These steps communicate it: flag when likely, lead with the bottom line, and always include a next step or new timeline.",
-    "say": "Bottom line first, plan attached."
-  },
-  "s3": {
-    "on": "This section warns against waiting past the deadline, and asks for a steady update cadence during long delays.",
-    "say": "Don't go quiet."
-  }
-},
-"6::Root Cause Analysis Basics": {
-  "p1": {
-    "on": "This slide explains that root cause analysis asks \"why did this actually happen\" instead of stopping at the first explanation. The 5 Whys technique keeps asking until the answer is a fixable cause, and fixing a symptom brings the problem back. The steps: state the problem precisely, keep asking why, and confirm the root cause would have prevented the problem.",
-    "say": "Keep asking why until the answer is something you can fix.",
-    "ask": "Why isn't \"someone forgot\" a root cause?"
-  },
-  "p2": {
-    "on": "This slide warns against stopping at \"human error,\" which is almost always a symptom of a missing process, unclear ownership or poor training. It says to do the analysis in the incident review, while details are fresh.",
-    "say": "\"Human error\" is where the analysis starts, not where it ends.",
-    "wrap": "State it precisely, ask why repeatedly and test the root cause.",
-    "scenario": "A filing deadline was missed last week, and the first explanation is \"the person responsible forgot.\" Use the 5 Whys out loud to get to something fixable."
-  },
-  "s1": {
-    "on": "This section explains root cause analysis and the 5 Whys, and warns that fixing symptoms brings the problem back.",
-    "say": "Ask why until it's a real cause."
-  },
-  "s2": {
-    "on": "These steps run it: state the problem precisely, keep asking why, and confirm the cause would have prevented the problem.",
-    "say": "Would fixing it have prevented this?",
-    "ask": "What's a problem you could run the 5 Whys on?"
-  },
-  "s3": {
-    "on": "This section warns that 'human error' is usually a symptom, and says to do the analysis while details are fresh.",
-    "say": "Human error is a symptom."
   }
 },
 "6::Change Management for New SOPs": {

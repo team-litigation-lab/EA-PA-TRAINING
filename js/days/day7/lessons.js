@@ -120,6 +120,33 @@ const DAY7 = {
       "trainerCue": "Close with a direct question: 'Have you ever seen someone approve their own transaction?' Most won't answer directly, and that's fine — the discomfort is the point."
     },
     {
+      "h": "Reading Basic Financial Statements",
+      "section": "Finance Foundations",
+      "fourPart": {
+        "corePrinciples": [
+          "Three reports tell the financial story of any business. The profit and loss statement (P&L, or income statement) shows income minus expenses over a period. The balance sheet shows what the business owns and owes on one date. The cash flow statement shows the cash that actually came in and went out.",
+          "The balance sheet always balances: assets = liabilities + equity. Assets include cash and accounts receivable (money clients owe); liabilities include bills and loans the business owes.",
+          "A firm can be profitable and still short of cash, for example when clients are slow to pay. That's why the P&L and cash flow can tell different stories.",
+          "Client money held in trust is never the firm's income. It belongs to the clients until it's earned and properly transferred."
+        ],
+        "howTo": [
+          "When you pull a monthly P&L, compare it with the same month last year and the month before, and note any line that moved sharply.",
+          "Check accounts receivable: how much clients owe and how old it is. Anything over 60 or 90 days goes on the follow-up list.",
+          "Watch recurring expenses on the P&L, like subscriptions and rent, for anything new or unexpectedly higher.",
+          "Bring questions to the accountant or bookkeeper with the specific line and amount: 'Office supplies rose from $400 to $2,100 in August.'",
+          "Keep the monthly reports in one folder with the same naming pattern, so trends are easy to see."
+        ],
+        "bestPractices": [
+          "Learn to read, not to prepare. The accountant prepares the statements; you spot what looks unusual and ask.",
+          "Look at trends over several months, not one number on its own.",
+          "Pitfall: counting unbilled or unpaid work as cash. It isn't money until it arrives.",
+          "Pitfall: treating a trust account balance as money the firm can spend."
+        ],
+        "discussionCase": "The P&L shows the firm made a healthy profit last quarter, but Elias says there isn't enough cash for next month's payroll. How can both be true, and which report would you pull to show him?"
+      },
+      "trainerCue": "Show a one-page sample P&L and balance sheet. Ask the room to find three things: net income, accounts receivable and the biggest expense. Then ask which report answers 'can we pay payroll?'"
+    },
+    {
       "h": "SOA Reconciliation",
       "section": "Reconciliation & Trust Accounts",
       "b": [
@@ -769,6 +796,17 @@ const DAY7 = {
       ],
       "a": 1,
       "r": "Contract-aware features reduce risk but still require human verification — they're an aid, not a replacement for review."
+    },
+    {
+      "q": "Which report shows what a business owns and owes on a single date?",
+      "opts": [
+        "The balance sheet",
+        "The profit and loss statement",
+        "The cash flow statement",
+        "The accounts receivable aging report"
+      ],
+      "a": 0,
+      "r": "The balance sheet is a snapshot on one date: assets = liabilities + equity. The P&L and cash flow statement cover a period, and an aging report lists only what clients owe."
     }
   ],
   "discussionQuestion": "What's one financial process in your own work that runs on memory or habit rather than a documented SOP? What would happen if the person who normally does it were out sick for two weeks?"

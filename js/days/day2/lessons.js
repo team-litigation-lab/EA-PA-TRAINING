@@ -565,6 +565,32 @@ const DAY2 = {
       "trainerCue": "Push back gently if anyone says '80–90% independently' sounds unrealistic for their context — ask what's actually stopping them from getting there, and treat it as a real discussion, not a rebuttal."
     },
     {
+      "h": "File Naming, Folders & Version Control",
+      "section": "Time, Energy & Systems",
+      "fourPart": {
+        "corePrinciples": [
+          "In a law firm, the wrong version of a document can end up signed, filed or sent to the other side. Naming and version control are how you prevent that.",
+          "A good file name tells you what the file is without opening it: date, matter, document type, and version or status.",
+          "There should be one source of truth for every document, usually the firm's document management system (DMS), such as iManage or NetDocuments, not copies scattered across email and desktops."
+        ],
+        "howTo": [
+          "Use one naming pattern for everything: YYYY-MM-DD_Matter_DocumentType_v01 (for example 2026-10-02_Harlow_EngagementLetter_v03). Year-first dates sort in order.",
+          "Never call a file 'final'. Use version numbers for drafts, and mark the signed or filed copy clearly: _EXECUTED or _AS-FILED.",
+          "Save in the matter's folder in the DMS, following the firm's folder structure (for example Correspondence, Pleadings, Discovery, Billing).",
+          "Share links to the DMS copy instead of attaching files, so everyone edits the same version. Use check-out or 'locked for editing' when the system offers it.",
+          "When a draft comes back with edits, save it as the next version and keep the earlier ones. A lawyer may need to compare them (a 'redline')."
+        ],
+        "bestPractices": [
+          "Keep executed and filed copies read-only, and store them where nobody can overwrite them.",
+          "Clear your desktop and downloads folder weekly into the right matter folders.",
+          "Pitfall: 'Final_FINAL_v2_use this one.docx'. If a name needs explaining, the system has failed.",
+          "Pitfall: editing a copy saved from an email attachment. Your changes end up in a version nobody else can see."
+        ],
+        "discussionCase": "Elias asks you to send opposing counsel 'the final settlement agreement.' You find four files: 'Settlement final.docx', 'Settlement final (2).docx', 'Settlement_v5_EB edits.docx' and 'Settlement agreement FINAL clean.pdf'. What do you do before sending anything?"
+      },
+      "trainerCue": "Show a real (anonymized) messy downloads folder and have the room rename five files using the pattern. Time it: it takes seconds once the rule is set."
+    },
+    {
       "h": "Authority & Boundary Management — EA vs. Legal EA",
       "section": "The Legal EA Force Multiplier",
       "fourPart": {
@@ -891,7 +917,7 @@ const DAY2 = {
       "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
     },
     {
-      "afterIndex": 33,
+      "afterIndex": 34,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -901,7 +927,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 34,
+      "afterIndex": 35,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Context window strain — it lost precision across a long document",
@@ -1128,6 +1154,17 @@ const DAY2 = {
       ],
       "a": 1,
       "r": "The Digital Edge is about deliberate, literate use of digital tools — not blind adoption or total avoidance."
+    },
+    {
+      "q": "Which file name best follows good naming and version control for a draft engagement letter?",
+      "opts": [
+        "Engagement letter FINAL use this one.docx",
+        "Harlow engagement - latest edits from Elias.docx",
+        "Oct 2 Harlow letter (2) clean copy.docx",
+        "2026-10-02_Harlow_EngagementLetter_v03.docx"
+      ],
+      "a": 3,
+      "r": "A year-first date, the matter, the document type and a version number identify the file and sort correctly. 'Final', 'latest' and '(2)' don't say which version it is."
     }
   ],
   "discussionQuestion": "Pick one recurring task on your own plate. What would it look like to handle it the way a 'Force Multiplier' would, instead of the way a task-executor would?"

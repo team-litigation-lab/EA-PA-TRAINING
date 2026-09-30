@@ -146,6 +146,32 @@ const DAY9 = {
       }
     },
     {
+      "h": "Everyday Meeting Notes & Action Items",
+      "section": "Meetings & Video Conferencing",
+      "fourPart": {
+        "corePrinciples": [
+          "Good meeting notes capture three things: decisions, action items and open questions. They're not a transcript.",
+          "Every action item needs an owner and a due date. Without both, it usually doesn't happen.",
+          "Notes from meetings about legal matters may be privileged or confidential. Label them and share them only with the people who should have them."
+        ],
+        "howTo": [
+          "Before the meeting, send or confirm the agenda and set up a notes template: date, attendees, decisions, action items (owner, due date) and open questions.",
+          "During the meeting, write decisions as clear statements: 'Decided: the firm will switch court reporting vendors from November 1.'",
+          "Capture each action as a verb, an owner and a date: 'Book the Chicago deposition room: Dana, by Oct 9.'",
+          "Send the notes within 24 hours, with action items at the top, to attendees and anyone who needs to act.",
+          "Add the action items to your tracker and check them before the next meeting, so it can start with a quick status round."
+        ],
+        "bestPractices": [
+          "If a decision is unclear, ask in the room: 'So we're agreed on X?' It's much harder to fix afterwards.",
+          "Mark privileged notes clearly (for example 'Privileged & Confidential — Attorney-Client Communication') when the attorney says to, and limit who receives them.",
+          "Pitfall: notes that record who said what but not what was decided.",
+          "Pitfall: 'Someone will look into it.' An action with no owner belongs to no one."
+        ],
+        "discussionCase": "After a 45-minute Harlow strategy call, your notes say: 'Discussed deposition. Expert maybe. Budget concerns. Elias to think about it.' Rewrite them so someone who missed the call knows exactly what happens next."
+      },
+      "trainerCue": "Play a two-minute recorded meeting clip, or act one out with a volunteer, and have everyone write the action items. Compare: did everyone catch the same owners and dates?"
+    },
+    {
       "h": "Board Meeting Preparation & Minute Drafting",
       "section": "Meetings & Video Conferencing",
       "fourPart": {
@@ -470,7 +496,7 @@ const DAY9 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 11,
+      "afterIndex": 12,
       "q": "Which SOP covers saving certificates in an audit-ready folder?",
       "opts": [
         "Team Upskilling SOP",
@@ -482,7 +508,7 @@ const DAY9 = {
       "r": "Attendance Tracking is where completion evidence — certificates, webinar reports — gets filed for audits."
     },
     {
-      "afterIndex": 18,
+      "afterIndex": 19,
       "q": "A client posts an inaccurate negative review. Best response?",
       "opts": [
         "Argue publicly to prove the client wrong",
@@ -725,6 +751,17 @@ const DAY9 = {
       ],
       "a": 3,
       "r": "Even a smooth event can reveal small process improvements — the debrief's value isn't limited to fixing visible failures."
+    },
+    {
+      "q": "Which line is a well-written action item from a meeting?",
+      "opts": [
+        "Book the Chicago deposition room: Dana, by October 9",
+        "Deposition logistics were discussed at some length",
+        "Someone should look into booking a room soon",
+        "Elias raised concerns about the deposition venue"
+      ],
+      "a": 0,
+      "r": "A useful action item has a verb, a named owner and a due date. The others record discussion or leave the owner and timing unclear."
     }
   ],
   "discussionQuestion": "How would you handle a negative public review or comment about your organization? Draft a one-sentence opening line for your response and share why you chose that tone."

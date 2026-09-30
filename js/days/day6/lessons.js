@@ -179,6 +179,33 @@ const DAY6 = {
       }
     },
     {
+      "h": "Signatures, Notarization & Document Execution",
+      "section": "Compliance & Good Standing",
+      "fourPart": {
+        "corePrinciples": [
+          "'Executing' a document means signing it so it takes legal effect. Getting it wrong, with a missing signature, the wrong signer or a missing notary, can make a document useless.",
+          "Electronic signatures (for example DocuSign) are valid for most business documents under US law. Some documents, like certain wills, real estate or court filings, have special rules, so the attorney confirms which method each document needs.",
+          "A notary confirms the identity of the person signing and that they signed willingly. The signer must appear in person, or by video where the state allows remote online notarization, and bring valid photo ID.",
+          "A company signs through a person with authority, shown in the signature block: 'Thorne Advisory LLC, By: Elias Thorne, Managing Member'."
+        ],
+        "howTo": [
+          "Before a signing, confirm with the attorney: who signs, in what capacity, e-signature or wet ink, and whether a notary or witnesses are needed.",
+          "Prepare the execution version: correct names and titles in every signature block, the date lines, and flags or tabs at every place to sign or initial.",
+          "For notarization, book the notary, tell the signer to bring valid photo ID, and make sure they don't sign before the notary is present.",
+          "After signing, check every page: all signatures, initials, dates and notary stamps, and that all attachments are included.",
+          "Save the fully executed copy as read-only, send copies to every party and calendar any obligations or dates the document creates."
+        ],
+        "bestPractices": [
+          "For e-signatures, set the signing order and check the completion certificate, which records who signed and when.",
+          "Signing 'in counterparts' (each party signs a separate copy) is common. Make sure the counterparts are combined into one complete set.",
+          "Pitfall: letting someone sign on another person's behalf without written authority. That can make the document invalid.",
+          "Pitfall: pre-signing a document before the notary arrives. The notary has to see the signature happen."
+        ],
+        "discussionCase": "Elias must sign a real estate document that needs notarization, and he's traveling for three days. The deadline is Friday. What are your options, and what do you confirm with the attorney first?"
+      },
+      "trainerCue": "Show a signature page with three mistakes in it (wrong title, missing date, a missing initial on a page) and have the room find them."
+    },
+    {
       "h": "Corporate Recordkeeping & Minute Books",
       "section": "Compliance & Good Standing",
       "fourPart": {
@@ -581,7 +608,7 @@ const DAY6 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 9,
+      "afterIndex": 10,
       "q": "A project is behind schedule due to missed deadlines from several team members. Best first response?",
       "opts": [
         "Take over the late tasks yourself so the schedule recovers",
@@ -593,7 +620,7 @@ const DAY6 = {
       "r": "You can't fix a delay effectively until you know why it happened."
     },
     {
-      "afterIndex": 19,
+      "afterIndex": 20,
       "q": "On the KPI dashboard, which category does 'Filing Deadline Adherence (100%)' belong to?",
       "opts": [
         "Legal Compliance",
@@ -836,6 +863,17 @@ const DAY6 = {
       ],
       "a": 2,
       "r": "Confidently presenting a wrong number is worse for trust than being transparent about needing to verify it first."
+    },
+    {
+      "q": "Elias signs a document before the notary arrives, planning to have it notarized later. What's the problem?",
+      "opts": [
+        "There's no problem, as long as the notary stamps it within the same day",
+        "Only the notary's own signature matters, so his early signature can simply stay",
+        "The document just needs a second witness signature to make up for it",
+        "The notary must see him sign, so it needs to be signed again in the notary's presence"
+      ],
+      "a": 3,
+      "r": "A notary confirms identity and witnesses the signing itself. A signature made beforehand can't be notarized as it stands; he signs again in front of the notary. A witness doesn't replace the notary."
     }
   ],
   "discussionQuestion": "Describe a project that fell behind schedule. Looking back, was the real root cause ever actually addressed, or just the symptom?"

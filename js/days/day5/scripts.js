@@ -273,6 +273,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "A pool vendor says, 'This discount is only valid if you sign today.' You haven't read the cancellation terms. What do you do?"
   }
  },
+ "5::Reading a Contract: The Clauses to Recognize": {
+  "p1": {
+   "why": "You'll handle contracts every week, and the costly mistakes hide in a few clauses with dates in them.",
+   "talk": "We don't decide what a contract should say. That's the attorney's job. But we do need to recognize the parts and pull out the dates and duties. Most contracts have the same building blocks: who the parties are, what's being provided, payment, how long it lasts and whether it renews, how it can be ended, confidentiality, who covers whose losses (that's indemnification), limits on liability, insurance, which state's law applies, and the signatures.",
+   "walk": [
+    "First, we read the first page for the parties and date, then find the term: start, end and automatic renewal.",
+    "Next, we find every notice period and put a reminder in the calendar before each one.",
+    "Then we note payment terms and scope, so invoices can be checked.",
+    "After that, we write a one-page summary for the file.",
+    "Finally, the contract goes to the attorney before signing, with anything unusual flagged."
+   ],
+   "ask": "Which clause do you think causes the most trouble in everyday office life?",
+   "scenario": "A new software vendor sends a contract and asks for it signed today to 'lock in the price.' It's 14 pages. What do you pull out first, and what do you tell Elias?"
+  },
+  "p2": {
+   "why": "Contracts rarely go wrong in the big clauses. They go wrong in a missed date or a wrong signature.",
+   "talk": "Check that the person signing actually has authority, usually an officer or someone the company has authorized. Keep the fully signed copy with every attachment in one place. And two traps: missing the auto-renewal notice window, which locks the firm into another year, and writing your summary as if it's legal advice. Our summary is a guide to where things are, not what they mean.",
+   "walk": [
+    "First, check signing authority.",
+    "Next, keep the complete signed copy together.",
+    "Then, never miss a renewal notice window.",
+    "Finally, keep your summary factual."
+   ],
+   "ask": "Where would you look to find out who can sign for a company?",
+   "scenario": "A three-year catering contract for the firm's events says it 'renews automatically for successive one-year terms unless either party gives 90 days' written notice.' It started March 1, 2024. When is the last day to give notice, and what goes in the calendar?"
+  }
+ },
  "5::When a Vendor Falls Through": {
   "p1": {
    "why": "When a vendor lets you down, tell the family immediately, with alternatives in the same message.",
