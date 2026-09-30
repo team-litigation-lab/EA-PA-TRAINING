@@ -2,32 +2,6 @@
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
    why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
- "2::Credibility Is Earned, Not Claimed": {
-  "p1": {
-   "why": "We can't announce that we're credible. The executive gives us credibility, one reliable week at a time.",
-   "talk": "Credibility comes from a few things done over and over. We're accurate, we follow through and we're on time. We never let the boss be surprised by something we already knew. We treat small decisions carefully, because some of them quietly carry money, legal or reputation risk. And we're discreet, especially around investors, legal matters, family life and deals.",
-   "walk": [
-    "First, we build it through reliability: accurate, finished and on time, every time.",
-    "Next, we live by the no-surprises rule. If we know about something, he knows about it too, even if it seems minor.",
-    "Then, we treat small decisions as if they might matter, because we can't always tell which ones will.",
-    "After that, discretion is our default, especially around investors, legal matters, family and deals.",
-    "Finally, if we ever damage that trust, we rebuild it steadily over time. One good week doesn't undo a bad one."
-   ],
-   "ask": "In practice, what does the no-surprises rule actually look like on a normal day?",
-   "scenario": "On Friday you noticed that a client's retainer check bounced, but you meant to mention it Monday. Over the weekend, the client emails Elias directly about 'the check problem.' What rule did you break, and how do you handle Monday morning?"
-  },
-  "p2": {
-   "why": "Lost credibility comes back slowly, roughly in proportion to how much was lost.",
-   "talk": "Credibility is what lets us speak up to the executive with confidence. It comes only from doing the work well and showing good judgment, never from telling people how good we are. It also works a bit like a bank balance. Small mistakes take a small withdrawal; a big one can empty the account, and then it takes months of steady deposits to build it back.",
-   "walk": [
-    "First, credibility is earned through consistent work, never self-promotion.",
-    "Next, rebuilding it takes a track record, not an apology.",
-    "Finally, the small, quiet decisions are often the ones that carry the most weight."
-   ],
-   "ask": "Think of a real moment, from any job and kept anonymous, when a small decision turned out to carry real risk. What told you it mattered?",
-   "scenario": "Last month you sent a partner the wrong version of a contract, and now Elias double-checks everything you send. What does rebuilding his trust look like over the next few weeks, specifically?"
-  }
- },
  "2::Reframing Reactive Language": {
   "p1": {
    "why": "'I couldn't reach them' is a problem. 'I couldn't reach them, so I'm calling their office line at 2' is a plan.",

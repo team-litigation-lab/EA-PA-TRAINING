@@ -18,42 +18,6 @@ const DAY2 = {
   "objective": "Put Day 1's Three C's into practice to manage up effectively, shift from task-completer to force multiplier, and run the executive's inbox as a control system.",
   "lessons": [
     {
-      "h": "Credibility Is Earned, Not Claimed",
-      "section": "Managing Up Foundations",
-      "layout": "QUADRANT",
-      "quadrants": [
-        {
-          "label": "Operational Reliability",
-          "desc": "Accuracy, follow-through, on-time execution, anticipating next steps, zero-drama problem solving"
-        },
-        {
-          "label": "The No-Surprises Rule",
-          "desc": "An executive should never be blindsided by something their assistant already knew about"
-        },
-        {
-          "label": "Judgment Under Pressure",
-          "desc": "Micro-decisions that quietly affect financial exposure, legal risk, and reputation"
-        },
-        {
-          "label": "Discretion & Confidentiality Discipline",
-          "desc": "Especially critical in investor relations, legal matters, family logistics, and M&A activity"
-        }
-      ],
-      "b": [
-        "Credibility is the currency that lets an assistant manage up with real confidence — earned exclusively through consistent execution and mature judgment, never through self-promotion.",
-        "Credibility, once damaged, isn't restored by a single good week — it requires a sustained track record roughly proportional to how badly it was damaged.",
-        "Discussion prompt: describe a real moment (any job) where a small, undramatic decision you made turned out to carry real financial, legal, or reputational weight. What told you it mattered before it became obvious?"
-      ],
-      "howTo": [
-        "Build credibility through operational reliability first — accuracy, follow-through, and on-time execution, consistently, not just when it's convenient.",
-        "Apply the No-Surprises Rule as a standing discipline: never let the executive be blindsided by something you already knew about, even if it seemed minor at the time.",
-        "Treat every micro-decision as if it might carry real weight — financial exposure, legal risk, or reputational consequence isn't always obvious in the moment it's made.",
-        "Practice discretion as a default, especially around investor relations, legal matters, family logistics, or M&A activity — these are the categories where a slip is hardest to undo.",
-        "If credibility is ever damaged, don't expect a single good week to restore it — rebuild it through a sustained track record proportional to what was lost."
-      ],
-      "trainerCue": "This is a heavier topic — don't rush it. Ask for a real (anonymized) example of a moment someone's judgment call touched financial, legal, or reputational risk without them realizing it at the time."
-    },
-    {
       "h": "Reframing Reactive Language",
       "section": "Managing Up Foundations",
       "svgDiagram": "<svg viewBox=\"0 0 560 160\" xmlns=\"http://www.w3.org/2000/svg\"><style>.rl{font:700 11px Arial,sans-serif;fill:#fff;}.rt{font:400 10.5px Arial,sans-serif;fill:rgba(255,255,255,.9);font-style:italic;}</style><g transform=\"translate(20,20)\"><rect width=\"230\" height=\"110\" rx=\"10\" fill=\"#B54A3F\"/><text x=\"115\" y=\"28\" text-anchor=\"middle\" class=\"rl\">REACTIVE</text><text x=\"115\" y=\"60\" text-anchor=\"middle\" class=\"rt\">\"I couldn't reach</text><text x=\"115\" y=\"76\" text-anchor=\"middle\" class=\"rt\">them.\"</text><text x=\"115\" y=\"98\" text-anchor=\"middle\" style=\"font:400 9px Arial,sans-serif;fill:rgba(255,255,255,.7);\">reports a problem</text></g><path d=\"M258 75 L308 75\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" marker-end=\"url(#ahrl)\"/><g transform=\"translate(310,20)\"><rect width=\"230\" height=\"110\" rx=\"10\" fill=\"#3F7D58\"/><text x=\"115\" y=\"28\" text-anchor=\"middle\" class=\"rl\">FORWARD-LOOKING</text><text x=\"115\" y=\"56\" text-anchor=\"middle\" class=\"rt\">\"...so I'm trying their</text><text x=\"115\" y=\"72\" text-anchor=\"middle\" class=\"rt\">office line, will follow</text><text x=\"115\" y=\"88\" text-anchor=\"middle\" class=\"rt\">up by 3 PM.\"</text><circle cx=\"115\" cy=\"100\" r=\"5\" fill=\"#fff\" class=\"svg-pulse-dot\"/></g><defs><marker id=\"ahrl\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#DB8437\"/></marker></defs></svg>",
@@ -931,19 +895,7 @@ const DAY2 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 0,
-      "q": "The 'No-Surprises Rule' means:",
-      "opts": [
-        "Surprises are fine as long as they're positive",
-        "Only bad news needs to be flagged early",
-        "An executive should never be blindsided by something their assistant already knew",
-        "Executives enjoy occasional surprises"
-      ],
-      "a": 2,
-      "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
-    },
-    {
-      "afterIndex": 30,
+      "afterIndex": 29,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -953,7 +905,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 31,
+      "afterIndex": 30,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Context window strain — it lost precision across a long document",
@@ -965,7 +917,7 @@ const DAY2 = {
       "r": "When a document is long, precision degrades across it — paste just the relevant section when precision matters."
     },
     {
-      "afterIndex": 38,
+      "afterIndex": 37,
       "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
       "opts": [
         "Something to batch with the newsletter",
@@ -977,7 +929,7 @@ const DAY2 = {
       "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
     },
     {
-      "afterIndex": 37,
+      "afterIndex": 36,
       "q": "What best distinguishes high-performing email management from average?",
       "opts": [
         "Forwarding every email so nothing is missed",
@@ -1083,17 +1035,6 @@ const DAY2 = {
       ],
       "a": 3,
       "r": "A force multiplier increases the executive's output and effectiveness, not just their own task count."
-    },
-    {
-      "q": "Why is credibility described as 'earned, not claimed'?",
-      "opts": [
-        "Credibility comes mainly from seniority, so it grows with each promotion and title change",
-        "Only executives can grant credibility explicitly",
-        "One strong result under pressure earns it permanently, as long as it's noticed by the executive",
-        "Credibility is built through a track record of reliable judgment over time, not by asserting it"
-      ],
-      "a": 3,
-      "r": "Trust accumulates from consistent, reliable follow-through — it can't be claimed into existence."
     },
     {
       "q": "What is a large language model (LLM), in the simplest accurate terms?",
