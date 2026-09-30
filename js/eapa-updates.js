@@ -99,7 +99,7 @@ window.EAPA_UPDATE_PACK = "z";
   .dash-main .module-card.mc-clean .module-icon{font-size:30px;line-height:1;margin:0;}
   .dash-main .module-card.mc-clean .module-start-btn{margin:0 14px 8px;width:calc(100% - 28px);padding:10px;font-size:15px;}
   .dash-main .module-card.mc-clean .module-finish-btn{margin:0 14px 8px;width:calc(100% - 28px);padding:6px;font-size:12.5px;}
-  .dash-main .module-card.mc-clean > :last-child{margin-bottom:12px;}
+  .dash-main .module-card.mc-clean > :last-child{margin-bottom:10px;}
   body:has(main.main-dash) .footer-note{padding:6px 24px 8px;}
 }
 /* the middle of a day card shows as much as fits: icon and theme, then the icon alone (smaller), then nothing */
