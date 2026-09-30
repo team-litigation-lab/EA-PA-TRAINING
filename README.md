@@ -16,7 +16,7 @@ Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three fi
 
 To change a day, edit only that day's folder, so one day's edit can't break another day. After an edit, raise that file's `?v=` number in `index.html` so browsers fetch the new copy.
 
-**Sections.** Each topic's `section` groups it with the topics around it (e.g. Day 2's *Email Management*, Day 4's *Email Outreach & Marketing*). Every section opens with one divider slide showing its name and topics; the topic slides themselves only show *Day · Topic · Part*.
+**Sections.** Each topic's `section` groups it with the topics around it (e.g. Day 2's *Email Management*, Day 4's *Email Outreach & Marketing*). Every topic opens with a divider slide (its section, *Topic N of M* and its title); the topic slides themselves show only *Day · Topic · Part*.
 
 A few rules keep saved progress safe:
 - **Titles are keys.** Topic titles must stay unique within a day, because notes, scripts and saved progress are matched by title.
