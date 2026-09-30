@@ -2062,14 +2062,44 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
   .dash-top .step-dash{width:4px;margin:0 1px;}
   .dash-top .step-timeline{flex-wrap:nowrap;}
 }
+/* Compact dashboard banner, so Days 1–5 fit on one screen under it (laptops and up; phones keep the layout above). */
+@media(min-width:761px){
+  main.main-dash{padding-top:12px;}
+  .dash-top{padding:12px 22px 8px !important;margin-bottom:12px !important;border-radius:16px;}
+  .dash-hero{grid-template-columns:52px minmax(0,1fr) !important;gap:16px !important;margin-bottom:6px !important;}
+  .dash-hero-ribbon svg{max-width:52px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.3));}
+  .dash-top .eyebrow{font-size:10px !important;padding:2px 9px !important;margin:0 0 4px !important;letter-spacing:.14em;}
+  .dash-hero h1{font-size:clamp(18px, 1.5vw, 24px) !important;line-height:1.2 !important;margin:0 0 3px !important;}
+  .dash-hero p{font-size:12.5px !important;line-height:1.4 !important;max-width:none;}
+  .dash-top .step-timeline{padding:7px 0 1px !important;}
+  .dash-top .step-circle{width:28px;height:28px;font-size:12.5px;border-width:2px;}
+  .dash-top .step-dash{width:22px;margin:0 3px;}
+  /* Days 1–5 in one row, compact cards */
+  .dash-layout{gap:14px;}
+  .dash-main .module-grid{grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:12px;}
+  .dash-main .module-head{min-height:0;padding:7px 8px 8px;}
+  .dash-main .mh-day{font-size:9.5px;margin-bottom:1px;}
+  .dash-main .mh-title{font-size:11.5px;line-height:1.2;}
+  .dash-main .module-body{padding:8px 12px 4px;}
+  .dash-main .module-icon{font-size:18px;margin:0 0 6px;}
+  .dash-main .module-topic-list li{font-size:12px;line-height:1.35;margin-bottom:3px;}
+  .dash-main .module-topic-list li::before{top:5px;}
+  .dash-main .module-more{font-size:11.5px;margin:2px 0 0;padding:2px 0;}
+  .dash-main .module-start-btn{margin:0 12px 8px;width:calc(100% - 24px);padding:7px;}
+  .dash-main .module-finish-btn,.dash-main .module-review-row{margin:0 12px 10px;}
+  .dash-main .module-finish-btn{width:calc(100% - 24px);padding:4px;font-size:11px;}
+}
+@media(min-width:761px) and (max-width:1100px){
+  .dash-main .module-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr)) !important;}
+}
 
 .live-note{font-size:12.5px;color:var(--success);font-weight:700;margin:0 0 10px;}
 .live-note::first-letter{animation:ringPulse 1.6s ease-in-out infinite;}
 
-/* hero: headline and tagline each on one line (auto-sized to fit) on laptops/desktops */
+/* hero: headline and tagline each on one line (auto-sized to fit, compact) on laptops/desktops */
 @media(min-width:1200px){
-  .dash-hero h1{white-space:nowrap;font-size:34px !important;}
-  .dash-hero p{white-space:nowrap;max-width:none !important;font-size:15px !important;}
+  .dash-hero h1{white-space:nowrap;font-size:24px !important;}
+  .dash-hero p{white-space:nowrap;max-width:none !important;font-size:13px !important;}
   .dash-hero > *{min-width:0;}
   .dash-hero h1, .dash-hero p:not(.eyebrow){max-width:100% !important;overflow:hidden;}
 }
@@ -5530,7 +5560,7 @@ function moduleCard(d){
   const unlocked = dayUnlocked(d.id);
   const status = prog&&prog.done ? "done" : (unlocked?"open":"locked");
   const icon = DAY_ICONS[d.id] || "📘";
-  const TOPIC_PREVIEW = 7;
+  const TOPIC_PREVIEW = 5;
   const shown = d.lessons.slice(0, TOPIC_PREVIEW);
   const more = d.lessons.length - shown.length;
   return `
@@ -6106,8 +6136,8 @@ function fitHeroText(){
     while(el.scrollWidth > el.clientWidth + 1 && size > min){ size -= 0.5; el.style.setProperty("font-size", size+"px", "important"); }
     if(el.scrollWidth > el.clientWidth + 1){ el.style.setProperty("font-size", max+"px", "important"); el.style.whiteSpace = "normal"; }  // can't fit one line legibly → wrap at full size
   };
-  fit(document.querySelector(".dash-hero h1"), 34, 16);
-  fit(document.querySelector(".dash-hero p:not(.eyebrow)"), 15, 12.5);
+  fit(document.querySelector(".dash-hero h1"), 24, 16);
+  fit(document.querySelector(".dash-hero p:not(.eyebrow)"), 13, 11);
 }
 window.addEventListener("resize", ()=>{ clearTimeout(window.__heroFitT); window.__heroFitT = setTimeout(fitHeroText, 120); });
 if(document.fonts && document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", ()=>fitHeroText());
@@ -16614,7 +16644,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.30-w";
+var APP_BUILD = "2026.09.30-x";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
