@@ -14,8 +14,8 @@
 const DAY7 = {
   "id": 7,
   "title": "Financial Operations Support",
-  "theme": "Finance Foundations · Reconciliation & Invoice Management · Billable Hours & QuickBooks · Credit Cards · Tax & Records",
-  "objective": "Support financial operations accurately: reconcile accounts and invoices, track billable and non-billable time, work confidently in QuickBooks, manage the firm's cards, and stay audit-ready.",
+  "theme": "Finance Foundations · Reconciliation & Trust Accounts · Invoice Management · Time Tracking & QuickBooks · Credit Cards · Tax & Records",
+  "objective": "Support financial operations accurately: reconcile accounts, manage invoices from pre-bill to payment, track billable and non-billable time, work confidently in QuickBooks, manage the firm's cards, and stay audit-ready.",
   "lessons": [
     {
       "h": "The EA/PA's Role in Finance",
@@ -166,32 +166,6 @@ const DAY7 = {
       "trainerCue": "Work the SOA formula with real (or realistic) numbers on the board as a group before trainees try the reconciliation exercise solo."
     },
     {
-      "h": "Invoice & Payment Reconciliation",
-      "section": "Reconciliation & Trust Accounts",
-      "fourPart": {
-        "corePrinciples": [
-          "Every payment that arrives must be matched to the invoice or invoices it pays. Until it is, the firm's records show the wrong amount owed, and clients get chased for bills they've already paid.",
-          "Payments rarely arrive neatly: one payment can cover several invoices, a client can pay part of an invoice, or a bank fee can make the amount slightly short.",
-          "At month-end, the total of all open invoices (accounts receivable) should equal the receivables balance in the books. If it doesn't, something was applied wrongly."
-        ],
-        "howTo": [
-          "Record each payment the day it arrives: date, amount, method, payer and any reference (check number, wire note, remittance advice).",
-          "Match it to the invoice numbers it pays. If there's no remittance advice, match by exact amount first, then ask the client which invoices it covers.",
-          "For a part payment, apply it to the invoice and leave the balance open. For an overpayment, record it as a credit and ask the attorney whether to refund it or hold it for the next invoice.",
-          "If a wire or card payment arrives short because of fees, record the fee separately so the invoice shows as fully paid, if the firm's policy is to absorb it.",
-          "At month-end, run the open invoices (A/R aging) report and check that its total matches the receivables balance on the balance sheet. Investigate any difference before sending statements."
-        ],
-        "bestPractices": [
-          "Keep 'unapplied' payments at zero. An unapplied payment means a client has paid and the books don't know what for.",
-          "A payment into the trust account is never applied to a fee invoice directly. Moving it from trust to pay a bill needs the attorney's approval and a separate transfer.",
-          "Pitfall: applying a payment to the oldest invoice by habit when the client paid a specific one. That can make a disputed invoice look paid.",
-          "Pitfall: deleting and re-entering a payment to 'fix' it. Correct it in place, so the audit trail stays intact."
-        ],
-        "discussionCase": "Harlow Industries sends one wire of $7,425 with the note 'May invoices.' There are three open May invoices: $2,500, $3,000 and $2,000. What happened to the missing $75, how do you apply the wire, and what do you ask Harlow?"
-      },
-      "trainerCue": "Put three invoices and one lump payment on the board and have the room apply it. Then add a $25 wire fee and ask what changes."
-    },
-    {
       "h": "Reconciliation Discrepancy Detection",
       "section": "Reconciliation & Trust Accounts",
       "b": [
@@ -252,7 +226,7 @@ const DAY7 = {
     },
     {
       "h": "Billing & Invoicing",
-      "section": "Billing & Invoicing",
+      "section": "Invoice Management",
       "b": [
         "Invoice = (Rate × Hours) + Expenses, minus any discount.",
         "Every invoice needs a clear amount due, due date, and payment terms."
@@ -270,8 +244,50 @@ const DAY7 = {
       "trainerCue": "Live-calculate one invoice from the formula with the room shouting out each step — it's a small thing but makes the math feel concrete rather than abstract."
     },
     {
+      "h": "Contract-Aware Billing",
+      "section": "Invoice Management",
+      "b": [
+        "Know payment terms, late fees, and hour caps before billing begins.",
+        "Flag an approaching hour cap proactively — going over without warning creates real risk."
+      ],
+      "howTo": [
+        "Confirm payment terms, late fees, and any hour caps before billing begins on a matter, not partway through.",
+        "Track actual hours against any contractual cap continuously, not just when generating the final invoice.",
+        "Flag an approaching hour cap proactively, well before it's reached — going over without warning creates real risk and an awkward conversation.",
+        "Apply late fees or payment terms consistently as written in the contract, rather than making exceptions on a case-by-case basis without authorization.",
+        "When a contract's terms are genuinely ambiguous, confirm the correct interpretation before billing rather than guessing and hoping it's right."
+      ],
+      "trainerCue": "Ask: 'What would you do if you were 80% toward an hour cap on a contract and didn't know it?' Get a few answers before revealing the correct proactive-flag approach."
+    },
+    {
+      "h": "Pre-Bill Review: Checking an Invoice Before It Goes Out",
+      "section": "Invoice Management",
+      "fourPart": {
+        "corePrinciples": [
+          "A pre-bill is the draft invoice the attorney reviews before it's sent. It's the last chance to catch mistakes, and a mistake a client finds costs far more trust than one you catch.",
+          "Most invoice errors are the same few: the wrong rate, time on the wrong matter, vague or block-billed entries, missing or duplicated costs, and terms that don't match the engagement letter.",
+          "The assistant prepares and checks the pre-bill; the attorney decides what's charged, written down or written off."
+        ],
+        "howTo": [
+          "Run the pre-bill for each matter at the same point every month, as soon as time for the period is entered.",
+          "Check the header: client, billing contact, matter name and number, invoice date, billing period and any purchase order or reference number the client requires.",
+          "Check every time entry: right matter, right person, right rate, a clear description and no block billing. Flag entries that break the client's billing guidelines.",
+          "Check costs: every billable cost has a receipt, nothing is billed twice, and any markup is allowed by the engagement letter.",
+          "Check the totals and terms: the math, discounts, the retainer or trust balance to be applied, the due date and payment instructions. Then send the pre-bill to the attorney with your flags listed at the top."
+        ],
+        "bestPractices": [
+          "Put your flags in a short list, not in the margins: 'Entry 6/12: 2.5 hrs block-billed; entry 6/18: rate shows $350, engagement letter says $325.'",
+          "Keep a pre-bill checklist per client, including their billing guidelines, so the same checks happen every month.",
+          "Pitfall: sending the invoice straight from the system without the attorney's sign-off.",
+          "Pitfall: changing an entry's time or description yourself. Flag it, and let the attorney or the timekeeper change it."
+        ],
+        "discussionCase": "The Harlow pre-bill shows 42 hours in June. One entry is billed at last year's rate, two paralegal entries say only 'file review,' and a $620 court reporter cost appears twice. What goes in your note to Elias, and in what order?"
+      },
+      "trainerCue": "Hand out a one-page mock pre-bill with five planted errors and give the room five minutes to find them. Compare lists, then show the checklist that would have caught all five."
+    },
+    {
       "h": "Invoice Management: Tracking, Follow-Up & Collections",
-      "section": "Billing & Invoicing",
+      "section": "Invoice Management",
       "fourPart": {
         "corePrinciples": [
           "An invoice isn't finished when it's sent. It's finished when it's paid, and managing that gap is one of the most valuable things an assistant does for a firm's cash flow.",
@@ -296,24 +312,107 @@ const DAY7 = {
       "trainerCue": "Show a sample aging report and ask the room to write the 7-day-overdue reminder in three sentences. Read two aloud and compare the tone."
     },
     {
-      "h": "Contract-Aware Billing",
-      "section": "Billing & Invoicing",
-      "b": [
-        "Know payment terms, late fees, and hour caps before billing begins.",
-        "Flag an approaching hour cap proactively — going over without warning creates real risk."
-      ],
-      "howTo": [
-        "Confirm payment terms, late fees, and any hour caps before billing begins on a matter, not partway through.",
-        "Track actual hours against any contractual cap continuously, not just when generating the final invoice.",
-        "Flag an approaching hour cap proactively, well before it's reached — going over without warning creates real risk and an awkward conversation.",
-        "Apply late fees or payment terms consistently as written in the contract, rather than making exceptions on a case-by-case basis without authorization.",
-        "When a contract's terms are genuinely ambiguous, confirm the correct interpretation before billing rather than guessing and hoping it's right."
-      ],
-      "trainerCue": "Ask: 'What would you do if you were 80% toward an hour cap on a contract and didn't know it?' Get a few answers before revealing the correct proactive-flag approach."
+      "h": "E-Billing Portals, LEDES & Client Billing Guidelines",
+      "section": "Invoice Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Many corporate clients and insurers don't accept emailed invoices. They require invoices to be uploaded to an e-billing portal, often in a standard electronic format called LEDES.",
+          "E-billing invoices usually need task and activity codes (UTBMS codes) on every entry, and the portal checks each invoice against the client's billing guidelines automatically.",
+          "An invoice the portal rejects, or cuts line by line, isn't paid until it's fixed, so knowing each client's rules is part of getting the firm paid."
+        ],
+        "howTo": [
+          "For each client that uses e-billing, record the portal name, the login owner, the required format and codes, the submission deadline and the billing contact.",
+          "Keep a copy of each client's billing guidelines with the matter, and note the rules that most often cause cuts: rate limits, banned tasks, staffing limits and expense rules.",
+          "Make sure time entries carry the right task and activity codes before the pre-bill, so the LEDES file can be generated cleanly.",
+          "Upload the invoice, then check the portal for its status: submitted, accepted, rejected or adjusted.",
+          "When lines are cut or the invoice is rejected, read the reason, bring it to the attorney, and resubmit or appeal within the portal's deadline."
+        ],
+        "bestPractices": [
+          "Submit on time. Many guidelines refuse invoices submitted more than a set number of days after the billing period.",
+          "Track portal adjustments in a small log, so the firm can see which rules cost the most and fix the habit behind them.",
+          "Pitfall: emailing a PDF invoice to a client who requires e-billing. It usually isn't treated as received.",
+          "Pitfall: one person holding the only portal login. If they're out, invoices stop."
+        ],
+        "discussionCase": "Harlow's insurer rejects the firm's May invoice in its e-billing portal: 'Task code missing on 7 entries; 2 entries exceed the approved rate.' The resubmission window closes in 10 days. What do you do, and what do you need from Elias?"
+      },
+      "trainerCue": "Show a real (anonymized) portal rejection or a sample LEDES line, and ask the room which part of the time entry the rejection points to."
+    },
+    {
+      "h": "Retainer Invoices & Applying Trust Funds",
+      "section": "Invoice Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Many clients pay a retainer up front. It's deposited in the client trust account and stays the client's money until the firm has earned it and billed for it.",
+          "Paying an invoice from a retainer means moving money from the trust account to the firm's operating account. That transfer needs the attorney's approval, a matching invoice and a record on the client's trust ledger.",
+          "An 'evergreen' retainer must be topped back up to an agreed level. Watching the balance and requesting the top-up on time keeps work from stopping."
+        ],
+        "howTo": [
+          "When a retainer arrives, confirm it went into the trust account (not operating), record it on the client's trust ledger and send a receipt if the firm does.",
+          "When the invoice is ready, show the retainer on it: the invoice total, the amount applied from the retainer and the retainer balance left.",
+          "Get the attorney's written approval before any transfer from trust to operating, and follow the firm's process and any notice the client must receive first.",
+          "Make the transfer for exactly the approved amount, record it on the ledger with the invoice number, and file the approval.",
+          "When the balance drops below the agreed level (for example 25 percent), send the top-up request the attorney has approved, with the current balance and the amount needed."
+        ],
+        "bestPractices": [
+          "Never apply trust money to anything but an earned, billed fee or an approved client cost for that same client.",
+          "Return any unused retainer promptly at the end of the matter, as the attorney directs.",
+          "Pitfall: moving money from trust 'to cover' an invoice before it's approved, or to cover a different client's bill.",
+          "Pitfall: invoices that don't show the retainer applied, so the client thinks they owe the full amount again."
+        ],
+        "discussionCase": "Meridian paid a $15,000 evergreen retainer that must stay at $10,000 or more. The June invoice is $6,800 and the balance is $11,200. What does the invoice show, what transfer happens, what's the new balance, and what goes to the client?"
+      },
+      "trainerCue": "Work the Meridian example on the board: invoice total, amount applied, new balance, and whether a top-up request is triggered. Then ask who has to approve each step."
+    },
+    {
+      "h": "Invoice & Payment Reconciliation",
+      "section": "Invoice Management",
+      "fourPart": {
+        "corePrinciples": [
+          "Every payment that arrives must be matched to the invoice or invoices it pays. Until it is, the firm's records show the wrong amount owed, and clients get chased for bills they've already paid.",
+          "Payments rarely arrive neatly: one payment can cover several invoices, a client can pay part of an invoice, or a bank fee can make the amount slightly short.",
+          "At month-end, the total of all open invoices (accounts receivable) should equal the receivables balance in the books. If it doesn't, something was applied wrongly."
+        ],
+        "howTo": [
+          "Record each payment the day it arrives: date, amount, method, payer and any reference (check number, wire note, remittance advice).",
+          "Match it to the invoice numbers it pays. If there's no remittance advice, match by exact amount first, then ask the client which invoices it covers.",
+          "For a part payment, apply it to the invoice and leave the balance open. For an overpayment, record it as a credit and ask the attorney whether to refund it or hold it for the next invoice.",
+          "If a wire or card payment arrives short because of fees, record the fee separately so the invoice shows as fully paid, if the firm's policy is to absorb it.",
+          "At month-end, run the open invoices (A/R aging) report and check that its total matches the receivables balance on the balance sheet. Investigate any difference before sending statements."
+        ],
+        "bestPractices": [
+          "Keep 'unapplied' payments at zero. An unapplied payment means a client has paid and the books don't know what for.",
+          "A payment into the trust account is never applied to a fee invoice directly. Moving it from trust to pay a bill needs the attorney's approval and a separate transfer.",
+          "Pitfall: applying a payment to the oldest invoice by habit when the client paid a specific one. That can make a disputed invoice look paid.",
+          "Pitfall: deleting and re-entering a payment to 'fix' it. Correct it in place, so the audit trail stays intact."
+        ],
+        "discussionCase": "Harlow Industries sends one wire of $7,425 with the note 'May invoices.' There are three open May invoices: $2,500, $3,000 and $2,000. What happened to the missing $75, how do you apply the wire, and what do you ask Harlow?"
+      },
+      "trainerCue": "Put three invoices and one lump payment on the board and have the room apply it. Then add a $25 wire fee and ask what changes."
+    },
+    {
+      "h": "Handling a Billing Dispute",
+      "section": "Invoice Management",
+      "fourPart": {
+        "corePrinciples": [
+          "A billing dispute is a request for information and resolution, not an accusation to get defensive about — most disputes come from a genuine misunderstanding, not bad faith.",
+          "The invoice's own backup documentation (time entries, receipts, the engagement terms) is what actually resolves a dispute — an opinion about what's fair, without documentation, doesn't settle anything.",
+          "How a billing dispute is handled affects the client relationship well beyond the dollar amount in question."
+        ],
+        "howTo": [
+          "Pull the actual supporting documentation for the disputed charge before responding — the underlying time entries, receipts, or engagement terms, not a summary from memory.",
+          "Acknowledge the dispute promptly, even before it's fully resolved — silence reads as dismissiveness regardless of intent.",
+          "Present the resolution with the supporting detail included, so the client can see exactly what the charge was based on, not just be told the answer."
+        ],
+        "bestPractices": [
+          "Pitfall: responding defensively before actually pulling the documentation — this can turn a legitimate misunderstanding into a genuine relationship problem.",
+          "If the dispute reveals a real billing error, correct it plainly and promptly — protecting the relationship matters more than protecting the original invoice."
+        ],
+        "discussionCase": "A client emails disputing a charge on their latest invoice, saying it doesn't match what they remember agreeing to. What's your actual first move before responding to them?"
+      }
     },
     {
       "h": "Real-Time Time Tracking for Billable Work",
-      "section": "Billing & Invoicing",
+      "section": "Time Tracking & QuickBooks",
       "fourPart": {
         "corePrinciples": [
           "Real-time time tracking means logging billable work as it happens, not reconstructing it later from memory — the gap between when work happens and when it's logged is exactly where billing accuracy breaks down.",
@@ -333,7 +432,7 @@ const DAY7 = {
     },
     {
       "h": "Billable vs. Non-Billable Hours",
-      "section": "Billing & Invoicing",
+      "section": "Time Tracking & QuickBooks",
       "fourPart": {
         "corePrinciples": [
           "Billable time is work the client can be charged for under the engagement letter, like drafting, research, calls and court time on their matter. Non-billable time is everything else: internal admin, training, business development, and work the firm has agreed not to charge.",
@@ -358,29 +457,8 @@ const DAY7 = {
       "trainerCue": "Read out eight tasks (drafting a motion, booking a courier, a partner training session, a client call, copying exhibits, a pitch meeting, legal research, updating the calendar) and have the room sort them into billable and non-billable."
     },
     {
-      "h": "Handling a Billing Dispute",
-      "section": "Billing & Invoicing",
-      "fourPart": {
-        "corePrinciples": [
-          "A billing dispute is a request for information and resolution, not an accusation to get defensive about — most disputes come from a genuine misunderstanding, not bad faith.",
-          "The invoice's own backup documentation (time entries, receipts, the engagement terms) is what actually resolves a dispute — an opinion about what's fair, without documentation, doesn't settle anything.",
-          "How a billing dispute is handled affects the client relationship well beyond the dollar amount in question."
-        ],
-        "howTo": [
-          "Pull the actual supporting documentation for the disputed charge before responding — the underlying time entries, receipts, or engagement terms, not a summary from memory.",
-          "Acknowledge the dispute promptly, even before it's fully resolved — silence reads as dismissiveness regardless of intent.",
-          "Present the resolution with the supporting detail included, so the client can see exactly what the charge was based on, not just be told the answer."
-        ],
-        "bestPractices": [
-          "Pitfall: responding defensively before actually pulling the documentation — this can turn a legitimate misunderstanding into a genuine relationship problem.",
-          "If the dispute reveals a real billing error, correct it plainly and promptly — protecting the relationship matters more than protecting the original invoice."
-        ],
-        "discussionCase": "A client emails disputing a charge on their latest invoice, saying it doesn't match what they remember agreeing to. What's your actual first move before responding to them?"
-      }
-    },
-    {
       "h": "QuickBooks How-Tos — Step by Step",
-      "section": "Billing & Invoicing",
+      "section": "Time Tracking & QuickBooks",
       "layout": "PROCESS",
       "b": [
         "These four tasks cover the majority of what an EA actually touches in QuickBooks day to day — you don't need to know the whole platform, just these workflows cold."
@@ -407,7 +485,7 @@ const DAY7 = {
     },
     {
       "h": "QuickBooks: Billable Time, Expenses & Invoicing",
-      "section": "Billing & Invoicing",
+      "section": "Time Tracking & QuickBooks",
       "fourPart": {
         "corePrinciples": [
           "QuickBooks can carry time and costs straight onto an invoice, so nothing billable is forgotten. That only works if each entry is marked billable and linked to the right customer when it's recorded.",
@@ -433,7 +511,7 @@ const DAY7 = {
     },
     {
       "h": "QuickBooks Common Mistakes & Tips",
-      "section": "Billing & Invoicing",
+      "section": "Time Tracking & QuickBooks",
       "b": [
         "The single most common new-user mistake is miscategorizing an expense (e.g. filing a client-reimbursable cost as a general office expense) — this quietly breaks both the client's invoice accuracy and the firm's own books. When in doubt, ask before categorizing, don't guess.",
         "Reconciliation only 'finishes' when the difference shows exactly $0.00. If it doesn't, the fix is almost always a missing transaction or a duplicate — not forcing the numbers to match by adjusting an unrelated entry.",
@@ -451,7 +529,7 @@ const DAY7 = {
     },
     {
       "h": "QuickBooks: Bank Feeds, Rules & Month-End Close",
-      "section": "Billing & Invoicing",
+      "section": "Time Tracking & QuickBooks",
       "fourPart": {
         "corePrinciples": [
           "Bank feeds bring transactions from the firm's bank and card accounts into QuickBooks automatically. They still need a person to review each one and decide where it belongs.",
@@ -1066,6 +1144,39 @@ const DAY7 = {
       ],
       "a": 2,
       "r": "Client-related costs are coded to the matter and marked billable so they're recovered on the invoice. Plain 'Travel' loses the cost, and it's neither personal nor something to leave unrecorded."
+    },
+    {
+      "q": "During a pre-bill review you find a time entry billed at last year's rate. What should you do?",
+      "opts": [
+        "Change the rate yourself, since the engagement letter clearly states the new one",
+        "Send the invoice as is, because the client agreed to the old rate before",
+        "Delete the entry so the client isn't charged the wrong amount at all",
+        "Flag it to the attorney with the entry date, the rate shown and the correct rate"
+      ],
+      "a": 3,
+      "r": "The assistant flags errors with specifics and the attorney (or timekeeper) corrects them. Editing, deleting or ignoring the entry all skip that decision."
+    },
+    {
+      "q": "A corporate client requires invoices through its e-billing portal. What happens if you email the invoice as a PDF instead?",
+      "opts": [
+        "It's accepted, since the invoice amount and details are identical",
+        "It usually isn't treated as received, so payment is delayed",
+        "The portal converts the emailed PDF into LEDES automatically",
+        "The client pays it and simply notes the format for next time"
+      ],
+      "a": 1,
+      "r": "E-billing clients generally only process invoices submitted through their portal in the required format, so an emailed PDF typically isn't treated as received."
+    },
+    {
+      "q": "A client's invoice will be paid from their retainer in the trust account. What must happen before money moves to the operating account?",
+      "opts": [
+        "Nothing extra, since the retainer was paid for exactly this purpose",
+        "The client must pay the invoice by card, then get a refund from trust",
+        "The bookkeeper can move it once the month-end close is finished",
+        "Attorney approval, matched to the invoice and recorded on the ledger"
+      ],
+      "a": 3,
+      "r": "Moving trust money needs the attorney's approval, an invoice for earned fees and a ledger record. A retainer doesn't authorize automatic transfers, and timing alone isn't approval."
     }
   ],
   "discussionQuestion": "What's one financial process in your own work that runs on memory or habit rather than a documented SOP? What would happen if the person who normally does it were out sick for two weeks?"
