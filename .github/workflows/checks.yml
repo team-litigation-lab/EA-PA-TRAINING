@@ -34,7 +34,7 @@ jobs:
   smoke:
     name: Smoke test in a browser
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -51,3 +51,11 @@ jobs:
           node .github/scripts/server.mjs 8787 > "$RUNNER_TEMP/server.log" 2>&1 &
           sleep 2
           node .github/scripts/smoke.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
+      - name: Presenter view (the slides window shared in Meet never flickers)
+        env:
+          NODE_PATH: ${{ runner.temp }}/pw/node_modules
+        run: node .github/scripts/presenter.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
+      - name: Every slide fits on one screen (laptop and large screen, every page of every day)
+        env:
+          NODE_PATH: ${{ runner.temp }}/pw/node_modules
+        run: node .github/scripts/fit.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }

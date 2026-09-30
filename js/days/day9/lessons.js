@@ -14,7 +14,7 @@
 const DAY9 = {
   "id": 9,
   "title": "Events, Compliance Tracking & Reputation",
-  "theme": "Event & CLE Compliance SOPs · Brand Stewardship & Awards/Charitable Coordination · Membership Management",
+  "theme": "Event Management, Invites & Intake Forms · CLE for Firm Events · Meetings · Compliance Tracking · Brand Stewardship",
   "objective": "Run events and compliance tracking with nothing falling through the cracks, and protect the organization's reputation online.",
   "lessons": [
     {
@@ -32,6 +32,110 @@ const DAY9 = {
         "Feed anything that went wrong back into the process for next time, rather than treating each event as a fresh start with no institutional memory."
       ],
       "trainerCue": "Ask who has ever managed event registrations for anything — even a small personal event — and have them share what went wrong the first time they tried it."
+    },
+    {
+      "h": "Event Management Tips: Checklists, Run Sheets & the Day-Of Kit",
+      "section": "Events & Travel Logistics",
+      "fourPart": {
+        "corePrinciples": [
+          "Good events run on three documents: a master checklist (everything to do, with owners and dates), a run sheet (the day minute by minute) and a contact sheet (every vendor and helper, with phone numbers).",
+          "Most event problems are predictable: a late vendor, a missing badge, a projector that won't connect, a guest with a dietary need nobody recorded. Planning for them is the job.",
+          "On the day, the assistant is the calm center: they know where everything is, who to call and what happens next."
+        ],
+        "howTo": [
+          "Build the master checklist from a template, working backwards from the date, with an owner and a due date for every line.",
+          "Write the run sheet: arrival and set-up times, each segment with its start time, who leads it, what it needs (microphone, slides, water) and what happens next.",
+          "Confirm every vendor 48 hours before: arrival time, what they're bringing, the on-site contact and the payment arrangements.",
+          "Pack a day-of kit: printed run sheets and contact sheets, spare name badges and pens, chargers and adapters, tape and scissors, a first-aid kit, and the slides on a USB drive.",
+          "Walk the venue before guests arrive: registration table, signage, seating, sound and screens. Then run a 10-minute debrief within a week and update the template."
+        ],
+        "bestPractices": [
+          "Give every helper one clear role (registration, greeting, tech, speaker care) and a copy of the run sheet.",
+          "Build 10 to 15 minutes of slack into the run sheet. Events almost always run late.",
+          "Pitfall: the only copy of the plan living in one person's head or inbox.",
+          "Pitfall: skipping the debrief. The same problem comes back next year."
+        ],
+        "discussionCase": "The firm's client breakfast starts at 8:00. At 7:20 the caterer hasn't arrived, the projector won't connect to Elias's laptop, and two guests have arrived early. Using your run sheet and contact sheet, what do you do in the next 10 minutes?"
+      },
+      "trainerCue": "Give the room a blank run sheet for a 90-minute seminar and ask pairs to fill in the first 30 minutes, including set-up. Compare how much set-up time each pair allowed."
+    },
+    {
+      "h": "Sending Invites: Calendar Invites & Event Invitations",
+      "section": "Events & Travel Logistics",
+      "fourPart": {
+        "corePrinciples": [
+          "A calendar invite is a small document: if the title, time, place or link is wrong, people miss the meeting. An event invitation is the guest's first impression of the event.",
+          "A good calendar invite answers five questions at a glance: what it is, when (with the time zone), where or how to join, who's needed and what to prepare.",
+          "Event invitations follow a rhythm: a save-the-date, the invitation with an RSVP date, reminders, and final details the day before."
+        ],
+        "howTo": [
+          "Check everyone's availability first (with the scheduling assistant or by asking), then send one invite, not a chain of emails.",
+          "Write a clear title ('Harlow — settlement strategy call (Elias, R. Chen)'), set the right time zone, and put the video link, dial-in and location in the invite.",
+          "Add a short agenda and attach or link what people should read, and mark who is required and who is optional.",
+          "For events, send the save-the-date six to eight weeks ahead and the invitation three to four weeks ahead, with an RSVP date and a registration link. Remind at one week and one day.",
+          "When something changes, update the existing invite so everyone gets the change, and cancel through the calendar, not by email, so the time is freed for everyone."
+        ],
+        "bestPractices": [
+          "For large external events, hide the guest list or use a registration link, so guests don't see each other's details or reply-all.",
+          "When you send invites on Elias's behalf, check with him who should be invited, and send from his calendar with delegate access.",
+          "Pitfall: a new invite for every change. Old invites stay in people's calendars and cause no-shows.",
+          "Pitfall: forgetting time zones on cross-country or international meetings."
+        ],
+        "discussionCase": "Elias wants a 45-minute call next week with a client in London, a partner in New York and an expert in Denver. Write the invite: title, time (showing each zone), joining details, agenda and attendees. What do you check before sending?"
+      },
+      "trainerCue": "Show two real-looking calendar invites, one vague ('Call') and one complete, and ask the room to list everything the vague one is missing."
+    },
+    {
+      "h": "Sending Intake Forms: Event Registration & New-Client Questionnaires",
+      "section": "Events & Travel Logistics",
+      "fourPart": {
+        "corePrinciples": [
+          "An intake form collects what you need before something happens: an attendee's details before an event, or a new client's information before their first meeting.",
+          "A good form asks only for what's needed, in plain language, and makes the required fields clear. Every extra question lowers the number of people who finish it.",
+          "Forms often collect personal or confidential information, so they must be sent and stored securely. Client intake information may also feed the conflict check."
+        ],
+        "howTo": [
+          "Use the firm's approved form tool (for example Microsoft Forms, Google Forms or the firm's intake software), never a personal account, and get the attorney's approval for client intake questions.",
+          "For event registration, ask for name, organization, email, dietary and accessibility needs, session choices and, for CLE events, bar number and state.",
+          "For new clients, ask for contact details, every party involved (for the conflict check), key dates and a short description, and ask for documents through the firm's secure upload, not email.",
+          "Send the form with a short note: why you're asking, the deadline and who to contact with questions. Test the link first.",
+          "Track who has completed it, send one polite reminder before the deadline, and move the answers into the right system: the event list, the CRM or the matter file."
+        ],
+        "bestPractices": [
+          "Pre-fill what you already know, and keep the form short enough to finish on a phone.",
+          "Tell people how their information will be used, for example that dietary details go only to the caterer.",
+          "Pitfall: asking a new client for sensitive details or documents by plain email.",
+          "Pitfall: collecting answers and never moving them anywhere. A form nobody reads is worse than no form."
+        ],
+        "discussionCase": "Elias is meeting a potential new client, a small construction company, on Monday. He wants their details and the names of everyone involved in their dispute beforehand. Draft the six questions on your intake form, and the note you send with it."
+      },
+      "trainerCue": "Show a bloated 25-question registration form and ask the room to cut it to the eight questions that actually matter for a two-hour CLE seminar."
+    },
+    {
+      "h": "CLE Management for Firm-Hosted Events",
+      "section": "Events & Travel Logistics",
+      "fourPart": {
+        "corePrinciples": [
+          "When the firm hosts a seminar or webinar that offers Continuing Legal Education (CLE) credit, the firm acts as the course provider, with duties to the state bars that approve the credit.",
+          "Each state sets its own rules: whether the course must be approved in advance, how many minutes count as one credit hour, which categories (such as ethics) apply, and what records the provider must keep.",
+          "The attendees' credit depends on the paperwork: an approved course, accurate attendance records and a correct certificate."
+        ],
+        "howTo": [
+          "Months ahead, confirm which states attendees are licensed in, and check each state bar's rules and deadlines for applying for course approval.",
+          "Prepare the application: a timed agenda, speaker bios, course materials and the credit hours and categories requested. Submit it before the deadline.",
+          "Track attendance properly: sign-in and sign-out sheets for in-person events, and for webinars, the platform's attendance report plus any verification codes the state requires.",
+          "Issue certificates after the event with the attendee's name, course title, date, provider, approved hours and category, and any approval or course number.",
+          "Report attendance to the state bars that require it, and keep the approval, agenda, materials and attendance records for as long as each state requires."
+        ],
+        "bestPractices": [
+          "Collect bar numbers and states at registration, not after the event.",
+          "Keep a CLE file for every event with everything in it, because a state bar can audit a provider years later.",
+          "Pitfall: promising credit before the course is approved. Say 'credit has been applied for' until it is.",
+          "Pitfall: certificates that show hours a webinar attendee didn't actually attend."
+        ],
+        "discussionCase": "The firm is hosting a two-hour webinar, 'Employment Law Update,' in six weeks, with one hour of ethics. Attendees are licensed in New York, New Jersey and California. What do you do this week, what do you collect at registration, and what happens after the webinar?"
+      },
+      "trainerCue": "Ask the room what a certificate of attendance must show. Then show a sample with two errors (a missing course number and the wrong category) and see who spots them."
     },
     {
       "h": "Speaker & Panelist Logistics for Conferences",
@@ -496,7 +600,7 @@ const DAY9 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 12,
+      "afterIndex": 16,
       "q": "Which SOP covers saving certificates in an audit-ready folder?",
       "opts": [
         "Team Upskilling SOP",
@@ -508,7 +612,7 @@ const DAY9 = {
       "r": "Attendance Tracking is where completion evidence — certificates, webinar reports — gets filed for audits."
     },
     {
-      "afterIndex": 19,
+      "afterIndex": 23,
       "q": "A client posts an inaccurate negative review. Best response?",
       "opts": [
         "Argue publicly to prove the client wrong",
@@ -762,6 +866,50 @@ const DAY9 = {
       ],
       "a": 0,
       "r": "A useful action item has a verb, a named owner and a due date. The others record discussion or leave the owner and timing unclear."
+    },
+    {
+      "q": "What is a run sheet for an event?",
+      "opts": [
+        "A list of every guest who has confirmed they're attending the event",
+        "A timed plan of the day: who leads each part and what it needs",
+        "The final invoice from the venue listing every cost for the event",
+        "A feedback form handed to guests as they leave the event"
+      ],
+      "a": 1,
+      "r": "A run sheet is the timed plan for the day. Guest lists, invoices and feedback forms are separate event documents."
+    },
+    {
+      "q": "A meeting moves from Tuesday to Thursday. What's the best way to tell the attendees?",
+      "opts": [
+        "Send a brand-new invite for Thursday and let the old one stay as a reminder",
+        "Email everyone with the new day and ask them to fix their own calendars",
+        "Update the existing calendar invite so the change reaches everyone's calendar",
+        "Cancel the meeting now and send the new invite on Thursday morning"
+      ],
+      "a": 2,
+      "r": "Updating the existing invite moves it in everyone's calendar at once. New invites and emails leave the old time in calendars, which causes no-shows."
+    },
+    {
+      "q": "A potential new client needs to send the firm copies of their contract and bank records before a first meeting. What's the right way to collect them?",
+      "opts": [
+        "Ask them to email the documents to you as attachments",
+        "Through the firm's secure upload link or approved intake tool",
+        "Ask them to post the documents on a shared public drive link",
+        "Collect them in person at the meeting instead of in advance"
+      ],
+      "a": 1,
+      "r": "Sensitive documents belong in the firm's secure, approved channel. Plain email and public links aren't secure, and waiting for the meeting wastes the preparation time."
+    },
+    {
+      "q": "The firm is hosting a seminar and has applied for CLE approval, but approval hasn't come through yet. What should the invitation say?",
+      "opts": [
+        "'Two hours of CLE credit, including one hour of ethics.'",
+        "Nothing about CLE until the event is over and approved",
+        "'CLE credit has been applied for' until approval is confirmed",
+        "'CLE credit guaranteed in all states' to encourage sign-ups"
+      ],
+      "a": 2,
+      "r": "Until a state approves the course, the accurate wording is that credit has been applied for. Promising credit is misleading, and staying silent loses attendees who need CLE."
     }
   ],
   "discussionQuestion": "How would you handle a negative public review or comment about your organization? Draft a one-sentence opening line for your response and share why you chose that tone."

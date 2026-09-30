@@ -14,8 +14,8 @@
 const DAY1 = {
   "id": 1,
   "title": "Foundations of the Legal Executive Assistant Role",
-  "theme": "Legal EA Task Overview · Legal Basics · Communication & Gatekeeping · Confidentiality & NDAs · Command Hierarchy & Liaison",
-  "objective": "Get a clear picture of what a Legal Executive Assistant actually does day to day, learn the legal basics every assistant needs, build the communication habits the role runs on, and know when to escalate rather than act alone.",
+  "theme": "Legal EA Task Overview · Legal Basics · Communication & Gatekeeping · Confidentiality & NDAs · Command Hierarchy & Liaison · Managing Up Basics",
+  "objective": "Get a clear picture of what a Legal Executive Assistant actually does day to day, learn the legal basics every assistant needs, build the communication habits the role runs on, know when to escalate rather than act alone, and manage up with the Three C's.",
   "taskOverview": [
     {
       "label": "Calendar & Scheduling",
@@ -649,6 +649,105 @@ const DAY1 = {
       "trainerCue": "Ask the room to name the difference between a liaison who's 'thorough' and one who's actually just slow — the line between the two is worth discussing directly."
     },
     {
+      "h": "Bulletproof Basics",
+      "section": "Managing Up Basics",
+      "layout": "THREEBOX",
+      "boxes": [
+        {
+          "label": "Inbox Zero & Triaging",
+          "desc": "Categorize every email as Action, Information, or Delegation on first read — and draft in the executive's own voice so they only have to hit Send."
+        },
+        {
+          "label": "Complex Travel Logistics",
+          "desc": "Not just booking a flight — it's the 'What If' plan. If the 2:00 PM flight is canceled, you already have the 4:00 PM on hold."
+        },
+        {
+          "label": "Meeting Lifecycle",
+          "desc": "Moving from 'taking minutes' to 'driving outcomes' — setting the agenda before, tracking deliverables after."
+        }
+      ],
+      "b": [
+        "These basics sound simple, but consistency under pressure — doing them the same way on a chaotic Tuesday as on a quiet Friday — is what actually builds trust over time.",
+        "Discussion prompt: pick one of these three basics you're weakest on today. What's the actual habit, not the intention, that would fix it this week?"
+      ],
+      "howTo": [
+        "For inbox triage, sort every email on first read into Action, Information, or Delegation — don't leave anything unsorted to revisit later.",
+        "Draft responses in the executive's own voice where appropriate, so the only remaining step for them is hitting send, not rewriting your draft.",
+        "For travel, don't just book the primary option — build the \"What If\" plan alongside it, so a backup is already on hold before anything goes wrong.",
+        "For meetings, set the agenda before the meeting happens, not after — this is what shifts you from taking minutes to actually driving outcomes.",
+        "After the meeting, track deliverables to completion — the meeting lifecycle isn't finished until the follow-through is confirmed, not just documented."
+      ],
+      "trainerCue": "Ask which of the three basics (Inbox Zero, Travel What-If, Meeting Lifecycle) the room already does well versus which is aspirational — this sets the tone that this day builds skills, not just tests them."
+    },
+    {
+      "h": "The Three C's of Managing Up",
+      "section": "Managing Up Basics",
+      "b": [
+        "Clarity — say exactly what's happening and what you need.",
+        "Consistency — same standard procedures every time.",
+        "Credibility — recommendations have to be reliable, no exceptions."
+      ],
+      "layout": "THREEBOX",
+      "boxes": [
+        {
+          "label": "Clarity",
+          "desc": "No vague messages — say exactly what's happening and exactly what you need from them"
+        },
+        {
+          "label": "Consistency",
+          "desc": "Use the same standard procedures every time, so outcomes become predictable"
+        },
+        {
+          "label": "Credibility",
+          "desc": "Recommendations have to be accurate and reliable, every single time, with no exceptions"
+        }
+      ],
+      "howTo": [
+        "Before sending any update, check it for Clarity first — does it say exactly what's happening and exactly what you need, with nothing left for the reader to infer?",
+        "Apply Consistency next — use the same standard procedure you'd use any other time, not an improvised approach because today is busier or calmer than usual.",
+        "Protect Credibility above the other two when they conflict — a fast, unclear answer is worse than a slightly slower, reliable one.",
+        "If you notice Clarity slipping under pressure (the most common failure point), slow down and restate the core ask before sending, rather than letting a vague message go out.",
+        "Review your own recent messages periodically against all three — this is a habit that decays quietly under workload unless it's actively checked."
+      ],
+      "trainerCue": "Have someone read the Three C's out loud in order, then immediately ask: 'Which one collapses first when you're overwhelmed?' Almost everyone says Clarity — use that as the hook for why it's listed first."
+    },
+    {
+      "h": "Credibility Is Earned, Not Claimed",
+      "section": "Managing Up Basics",
+      "layout": "QUADRANT",
+      "quadrants": [
+        {
+          "label": "Operational Reliability",
+          "desc": "Accuracy, follow-through, on-time execution, anticipating next steps, zero-drama problem solving"
+        },
+        {
+          "label": "The No-Surprises Rule",
+          "desc": "An executive should never be blindsided by something their assistant already knew about"
+        },
+        {
+          "label": "Judgment Under Pressure",
+          "desc": "Micro-decisions that quietly affect financial exposure, legal risk, and reputation"
+        },
+        {
+          "label": "Discretion & Confidentiality Discipline",
+          "desc": "Especially critical in investor relations, legal matters, family logistics, and M&A activity"
+        }
+      ],
+      "b": [
+        "Credibility is the currency that lets an assistant manage up with real confidence — earned exclusively through consistent execution and mature judgment, never through self-promotion.",
+        "Credibility, once damaged, isn't restored by a single good week — it requires a sustained track record roughly proportional to how badly it was damaged.",
+        "Discussion prompt: describe a real moment (any job) where a small, undramatic decision you made turned out to carry real financial, legal, or reputational weight. What told you it mattered before it became obvious?"
+      ],
+      "howTo": [
+        "Build credibility through operational reliability first — accuracy, follow-through, and on-time execution, consistently, not just when it's convenient.",
+        "Apply the No-Surprises Rule as a standing discipline: never let the executive be blindsided by something you already knew about, even if it seemed minor at the time.",
+        "Treat every micro-decision as if it might carry real weight — financial exposure, legal risk, or reputational consequence isn't always obvious in the moment it's made.",
+        "Practice discretion as a default, especially around investor relations, legal matters, family logistics, or M&A activity — these are the categories where a slip is hardest to undo.",
+        "If credibility is ever damaged, don't expect a single good week to restore it — rebuild it through a sustained track record proportional to what was lost."
+      ],
+      "trainerCue": "This is a heavier topic — don't rush it. Ask for a real (anonymized) example of a moment someone's judgment call touched financial, legal, or reputational risk without them realizing it at the time."
+    },
+    {
       "h": "Client Profiling",
       "section": "Client Profiling & the Dossier",
       "b": [
@@ -873,6 +972,18 @@ const DAY1 = {
       ],
       "a": 2,
       "r": "It filters the request into a reviewable, prioritized channel rather than granting or flatly denying access."
+    },
+    {
+      "afterIndex": 25,
+      "q": "The 'No-Surprises Rule' means:",
+      "opts": [
+        "Surprises are fine as long as they're positive",
+        "Only bad news needs to be flagged early",
+        "An executive should never be blindsided by something their assistant already knew",
+        "Executives enjoy occasional surprises"
+      ],
+      "a": 2,
+      "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
     }
   ],
   "quiz": [
@@ -1216,6 +1327,50 @@ const DAY1 = {
       ],
       "a": 2,
       "r": "Public procedural facts like addresses, hours and scheduled dates are fine to share. Choosing between options, valuing a claim and predicting outcomes are all legal advice."
+    },
+    {
+      "q": "The 'Three C's' of Managing Up are:",
+      "opts": [
+        "Collaboration, Curiosity, Confidence",
+        "Control, Coordination, Confidence",
+        "Communication, Creativity, Coordination",
+        "Clarity, Consistency, Credibility"
+      ],
+      "a": 3,
+      "r": "Clarity, Consistency, and Credibility are the framework taught for managing up effectively."
+    },
+    {
+      "q": "What are the 'Three C's of Managing Up' generally centered on?",
+      "opts": [
+        "Calendar, Contacts and Confidentiality: the three systems an assistant owns",
+        "Communication, Consistency, and Credibility with the executive",
+        "Complaining, Correcting, Confronting",
+        "Coordination, Courtesy and Compliance in every message to the executive"
+      ],
+      "a": 1,
+      "r": "Managing up effectively rests on clear communication, consistent follow-through, and earned credibility."
+    },
+    {
+      "q": "The 'What If' approach to travel logistics means:",
+      "opts": [
+        "Having a backup option already secured before it's needed",
+        "Asking the executive what they'd like to do if something goes wrong on the trip",
+        "Booking the cheapest fare, so there's budget left over to rebook if needed",
+        "Avoiding travel bookings until the last minute"
+      ],
+      "a": 0,
+      "r": "E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."
+    },
+    {
+      "q": "Why is credibility described as 'earned, not claimed'?",
+      "opts": [
+        "Credibility comes mainly from seniority, so it grows with each promotion and title change",
+        "Only executives can grant credibility explicitly",
+        "One strong result under pressure earns it permanently, as long as it's noticed by the executive",
+        "Credibility is built through a track record of reliable judgment over time, not by asserting it"
+      ],
+      "a": 3,
+      "r": "Trust accumulates from consistent, reliable follow-through — it can't be claimed into existence."
     }
   ],
   "discussionQuestion": "Think of a moment (in this role or another) where you had to decide whether something was an EA-style problem or a PA-style problem. What tipped you off, and would you decide the same way again?"
@@ -1268,6 +1423,14 @@ const DAY1_EXTRA_LEARNING = {
       "Assign an update trigger to each tracker: after every trip (Travel), after any feedback on an email (Inbox), after each recurring meeting changes (Meeting Rhythms).",
       "Add a 'last reviewed' date at the top of each tracker and review monthly — the date itself tells a colleague how far to trust the contents.",
       "Grow deliberately: add a new tracker (gift preferences, vendor contacts, key dates) only when a real need repeats, not in anticipation."
+    ]
+  },
+  "1::The Three C's of Managing Up": {
+    "t": "The Three C's in a Real Update",
+    "p": [
+      "Clarity in practice: open with the status and the ask — 'The filing is ready; I need your signature by 3 PM' — then add context below.",
+      "Consistency in practice: use the same format for recurring updates (daily brief, weekly summary) so the executive knows exactly where to look.",
+      "Credibility in practice: if you're unsure, say so and give a time you'll confirm by. One wrong 'it's done' costs more trust than ten honest 'confirming by noon'."
     ]
   }
 };

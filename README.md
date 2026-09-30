@@ -16,10 +16,28 @@ Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three fi
 
 To change a day, edit only that day's folder, so one day's edit can't break another day. After an edit, raise that file's `?v=` number in `index.html` so browsers fetch the new copy.
 
+**Sections.** Each topic's `section` groups it with the topics around it (e.g. Day 2's *Email Management*, Day 4's *Email Outreach & Marketing*). Every topic opens with a divider slide (its section, *Topic N of M* and its title); the topic slides themselves show only *Day · Topic · Part*.
+
+**Blocks.** A topic with a `block` title opens a new part of the day with its own divider slide (*Day N · Part X of Y*, the block's title and its topics, or its sections when it has several). Day 4 uses two: *Time Management & Productivity* (moved from Day 3) and *Data & Outreach*. To add one, set `"block": "<title>"` on the part's first topic.
+
 A few rules keep saved progress safe:
 - **Titles are keys.** Topic titles must stay unique within a day, because notes, scripts and saved progress are matched by title.
 - **Adding or reordering topics.** A trainee's saved place and Quick Check answers are keyed by topic position. So when topics are added or reordered, also add the day's previous title order to the next entry in `DAY_LAYOUTS` in `index.html`. That moves each trainee's saved place to the same topic.
+- **New Quick Check on an existing topic.** Give it `"addedIn": "<id of the newest DAY_LAYOUTS entry>"`, so older saved layouts are rebuilt without it.
+- **Moving a topic to another day.** Move its entry in `lessons.js` (with its Quick Check, Knowledge Check questions and extra-learning box) and its `notes.js` / `scripts.js` entries, renaming their `"<day>::<title>"` keys, then add a `DAY_LAYOUTS` entry as above for both days. Saved places and Quick Check answers follow the topic to its new day by title.
 - **Missing files.** If a day's `lessons.js` doesn't load, the rest of the portal still starts and a banner asks the trainee to refresh.
+
+## 🕘 Attendance
+
+Trainers take each day's attendance in **Admin → 🕘 Attendance** (`js/attendance.js`). Trainees don't see it. It's the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them. The LSH Training Portal's admin **🕘 Attendance** page shows and edits the same records, for every program.
+
+- **By batch:** one section per batch (newest first), listing its approved, active trainees, with a count of each status.
+- **The day:** today's date in Eastern time (EST, or EDT in summer). ◀ ▶ step through the training days, and the date picker opens any day. The batch's **Day N** counts its days already logged; the trainer can change it.
+- **Each trainee's row:** Name; **Training** (the lesson, "Day N: title": for the batch it starts as the day most of the batch is on, from their progress, and it can be changed for the batch or one trainee); **Time In / Time Out** in Eastern time (typed, or ⏱ Now; **Time In fills in on its own** the first time a trainee opens the course each day, marked "auto" until a trainer sets one, and saved when a trainer tags that trainee; trainers always tag the status); **Status**, tagged from the attendance sheet's dropdown in its colors (Present, Late, Late with Notif, Early Out - POC Approved, Undertime - POC Approved, Undertime - No Approval, NCNS, Sick Leave, RL, EOP, Absent with Notif; **✓ Mark the rest Present** tags everyone not yet tagged); and Notes.
+- **Saving:** each change saves as you go. A save re-reads the day and writes only the rows changed on that screen, so two trainers can take one batch's attendance at the same time.
+- **📊 Summary** (per batch): each trainee's count of every status over the batch's logged days, with the last 10 days as colored squares. **⬇ CSV** downloads a day (every batch) or a batch's history.
+- **Google Sheet:** the LSH Training Portal keeps the attendance Google Sheet's **Platform Attendance** tab in step, both ways: everything here (automatic Time Ins included) goes to the sheet every 15 minutes, and edits made in the sheet to Training, Time In, Time Out, Status or Notes come back here straight away. See the Training Portal's README.
+- **Storage:** `attendance:<batch key>:<YYYY-MM-DD>` (`_none` for no batch) = `{batch, date, day, training, rows:{<trainee id>:{name, training, timeIn, timeOut, status, note, at, by}}}`, with no key prefix. The Worker's `/api/checkin` records the automatic Time In: `checkin:<YYYY-MM-DD>:<trainee id>` = `{timeIn, at, name, batch, training}` is the automatic Time In (each trainee's own key, so a room signing in at once never overwrites one another; its KV metadata carries the same for the portal; kept 40 days). Only admins can read or write these records.
 
 ## Checks (GitHub Actions)
 
@@ -31,6 +49,12 @@ A few rules keep saved progress safe:
   - JSON must be valid;
   - the Worker must build (`wrangler deploy --dry-run`; nothing is deployed).
 - **Smoke test in a browser:** serves the site through `worker.js` with an in-memory KV store (`.github/scripts/server.mjs`), signs in as a trainee, and renders every lesson slide, knowledge check, page and practice tool at desktop and phone width. It fails on any page error or a page that scrolls sideways (`.github/scripts/smoke.cjs`).
+- **Presenter view** (`.github/scripts/presenter.cjs`): opens Presenter view as a trainer and watches the slides window you share in Google Meet, which must never flicker.
+  - Next draws the slide once, cutting straight in with no slide-in or fade.
+  - The console re-drawing (its live copy reconnecting) doesn't draw the slides window again.
+  - A long slide's next and previous pages change in place.
+  - A resize lays the slide out again, still without animation.
+  - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
 
 To run the same checks locally:
 
@@ -38,6 +62,7 @@ To run the same checks locally:
 node .github/scripts/check-site.mjs
 node .github/scripts/server.mjs 8787 &      # then, with Playwright installed:
 node .github/scripts/smoke.cjs http://localhost:8787/
+node .github/scripts/presenter.cjs http://localhost:8787/
 ```
 
 `.assetsignore` keeps `worker.js`, the Wrangler config, `.github` and Markdown files from being published with the site.

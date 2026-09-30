@@ -622,6 +622,88 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "What's the difference between a thorough liaison and a slow one?"
   }
 },
+"1::Bulletproof Basics": {
+  "p1": {
+    "on": "This slide covers three basics done the same way every time: Inbox Zero (sort every email into Action, Information or Delegation and draft in the executive's voice), the Travel What-If plan (a backup on hold before anything goes wrong), and the Meeting Lifecycle (agenda before, deliverables tracked to completion after), with a diagram.",
+    "say": "Three basics: Inbox Zero, the Travel What-If, and the Meeting Lifecycle. The skill isn't knowing them; it's doing them on a chaotic Tuesday.",
+    "ask": "Which of the three do you already do well, and which is still more of an intention?"
+  },
+  "p2": {
+    "on": "This slide makes the point that the basics sound simple, but doing them consistently under pressure is what builds trust. It closes with a discussion prompt: pick the basic you're weakest on and name the habit that would fix it this week.",
+    "say": "Consistency under pressure is what makes the basics bulletproof.",
+    "wrap": "Pick your weakest basic and name one real habit, not an intention, to fix it this week.",
+    "scenario": "Pick the one basic you're weakest on today — Inbox Zero, the Travel What-If or the Meeting Lifecycle. What's the actual habit, not the intention, that would fix it this week?"
+  },
+  "s1": {
+    "on": "This section names the three basics: Inbox Zero (sort every email as Action, Information or Delegation and draft in the executive's voice), the travel \"What If\" plan, and the meeting lifecycle from agenda to deliverables.",
+    "say": "Three basics: inbox, travel backup, meeting follow-through."
+  },
+  "s2": {
+    "on": "These steps put each basic into practice: sort every email on first read, draft replies ready to send, keep a backup flight on hold, set the agenda before the meeting, and track deliverables to completion.",
+    "say": "The meeting isn't done until the follow-through is confirmed.",
+    "ask": "Which basic are you weakest on today?"
+  },
+  "s3": {
+    "on": "This section says consistency under pressure builds trust, and asks for the actual habit, not the intention, that would fix your weakest basic this week.",
+    "say": "A habit, not an intention."
+  }
+},
+"1::The Three C's of Managing Up": {
+  "p1": {
+    "on": "This slide introduces the Three C's of managing up: Clarity, Consistency and Credibility. The steps cover checking every update for clarity first, using the same standard procedure every time, protecting credibility when the three conflict, and slowing down to restate the ask when clarity slips under pressure, with a diagram.",
+    "say": "Every update you send is tested on three things: is it clear, is it consistent, and can Elias rely on it?",
+    "ask": "Which of the three C's collapses first when you're overwhelmed?"
+  },
+  "p2": {
+    "on": "This slide defines each C in one line: say exactly what's happening and what you need, use the same procedures every time, and keep recommendations reliable. The Go Deeper box shows each C in a real update: status and ask first, the same format for recurring updates, and an honest \"confirming by noon\" over a wrong \"it's done\".",
+    "say": "One wrong \"it's done\" costs more trust than ten honest \"confirming by noon\".",
+    "wrap": "Clear, consistent and credible: check every update against all three before it goes out.",
+    "scenario": "Elias asks, \"Is the Meridian binder at the courthouse?\" You think the courier picked it up but haven't confirmed. Write the reply that protects your credibility."
+  },
+  "s1": {
+    "on": "This section defines the Three C's: Clarity (say exactly what's happening and what you need), Consistency (the same procedure every time) and Credibility (reliable recommendations, no exceptions).",
+    "say": "Clarity, Consistency, Credibility."
+  },
+  "s2": {
+    "on": "These steps apply them: check clarity first, use your standard procedure, protect credibility when the C's conflict, restate the ask when clarity slips under pressure, and review your recent messages.",
+    "say": "When they conflict, credibility wins.",
+    "ask": "Which C slips first when you're busy?"
+  },
+  "s3": {
+    "on": "This section restates the three as rules: say exactly what you need, use the same procedure every time, and keep recommendations reliable.",
+    "say": "Three rules, every message."
+  },
+  "s4": {
+    "on": "This section shows each C in practice: open with the status and the ask, use the same format for recurring updates, and say \"confirming by noon\" when unsure — one wrong \"it's done\" costs more than ten honest ones.",
+    "say": "An honest \"confirming by noon\" beats a wrong \"it's done.\""
+  }
+},
+"1::Credibility Is Earned, Not Claimed": {
+  "p1": {
+    "on": "This slide explains that credibility comes from operational reliability: accuracy, follow-through and on-time execution. The steps cover the No-Surprises Rule, treating every micro-decision as if it might carry weight, defaulting to discretion on investor, legal, family and M&A matters, and rebuilding damaged credibility over a sustained track record, with a diagram.",
+    "say": "You can't claim credibility. Elias gives it to you, one reliable week at a time.",
+    "ask": "What does the No-Surprises Rule mean in practice?"
+  },
+  "p2": {
+    "on": "This slide explains that credibility is the currency that lets an assistant manage up with confidence, earned only through consistent execution and judgment. The pitfall to stress: once damaged, it isn't restored by one good week but by a track record proportional to the damage.",
+    "say": "Lost credibility comes back slowly, in proportion to how much was lost.",
+    "wrap": "No surprises, discretion by default, and every small decision handled as if it matters.",
+    "scenario": "Describe a real moment, from any job and anonymised, when a small, undramatic decision turned out to carry financial, legal or reputational risk. What would you do differently now?"
+  },
+  "s1": {
+    "on": "This section lists four sources of credibility: operational reliability, the No-Surprises Rule, judgment under pressure, and discretion in investor, legal, family and M&A matters.",
+    "say": "The executive should never be blindsided by something you knew."
+  },
+  "s2": {
+    "on": "These steps build credibility: reliability first, the No-Surprises Rule as a habit, treating every micro-decision as if it matters, discretion by default, and rebuilding slowly after damage.",
+    "say": "Treat small decisions as if they might matter. Some do."
+  },
+  "s3": {
+    "on": "This section says credibility comes only from consistent execution, never self-promotion, and damaged credibility takes a track record proportional to the damage to restore.",
+    "say": "One good week doesn't fix a lost week of trust.",
+    "ask": "When did a small decision of yours turn out to carry real weight?"
+  }
+},
 "1::Client Profiling": {
   "p1": {
     "on": "This slide defines a client profile as the reference you build once so you never ask the same question twice. The five steps work through its categories in order: role and organization, communication style, meeting and scheduling rules, travel preferences, and quirks written in plain, non-judgmental language.",

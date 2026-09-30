@@ -9,88 +9,6 @@
    the Step-by-Step section is on screen, and the Speaker Notes PDF includes it.
    Nothing here is generated at run time. */
 window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
-"2::Bulletproof Basics": {
-  "p1": {
-    "on": "This slide covers three basics done the same way every time: Inbox Zero (sort every email into Action, Information or Delegation and draft in the executive's voice), the Travel What-If plan (a backup on hold before anything goes wrong), and the Meeting Lifecycle (agenda before, deliverables tracked to completion after), with a diagram.",
-    "say": "Three basics: Inbox Zero, the Travel What-If, and the Meeting Lifecycle. The skill isn't knowing them; it's doing them on a chaotic Tuesday.",
-    "ask": "Which of the three do you already do well, and which is still more of an intention?"
-  },
-  "p2": {
-    "on": "This slide makes the point that the basics sound simple, but doing them consistently under pressure is what builds trust. It closes with a discussion prompt: pick the basic you're weakest on and name the habit that would fix it this week.",
-    "say": "Consistency under pressure is what makes the basics bulletproof.",
-    "wrap": "Pick your weakest basic and name one real habit, not an intention, to fix it this week.",
-    "scenario": "Pick the one basic you're weakest on today — Inbox Zero, the Travel What-If or the Meeting Lifecycle. What's the actual habit, not the intention, that would fix it this week?"
-  },
-  "s1": {
-    "on": "This section names the three basics: Inbox Zero (sort every email as Action, Information or Delegation and draft in the executive's voice), the travel \"What If\" plan, and the meeting lifecycle from agenda to deliverables.",
-    "say": "Three basics: inbox, travel backup, meeting follow-through."
-  },
-  "s2": {
-    "on": "These steps put each basic into practice: sort every email on first read, draft replies ready to send, keep a backup flight on hold, set the agenda before the meeting, and track deliverables to completion.",
-    "say": "The meeting isn't done until the follow-through is confirmed.",
-    "ask": "Which basic are you weakest on today?"
-  },
-  "s3": {
-    "on": "This section says consistency under pressure builds trust, and asks for the actual habit, not the intention, that would fix your weakest basic this week.",
-    "say": "A habit, not an intention."
-  }
-},
-"2::The Three C's of Managing Up": {
-  "p1": {
-    "on": "This slide introduces the Three C's of managing up: Clarity, Consistency and Credibility. The steps cover checking every update for clarity first, using the same standard procedure every time, protecting credibility when the three conflict, and slowing down to restate the ask when clarity slips under pressure, with a diagram.",
-    "say": "Every update you send is tested on three things: is it clear, is it consistent, and can Elias rely on it?",
-    "ask": "Which of the three C's collapses first when you're overwhelmed?"
-  },
-  "p2": {
-    "on": "This slide defines each C in one line: say exactly what's happening and what you need, use the same procedures every time, and keep recommendations reliable. The Go Deeper box shows each C in a real update: status and ask first, the same format for recurring updates, and an honest \"confirming by noon\" over a wrong \"it's done\".",
-    "say": "One wrong \"it's done\" costs more trust than ten honest \"confirming by noon\".",
-    "wrap": "Clear, consistent and credible: check every update against all three before it goes out.",
-    "scenario": "Elias asks, \"Is the Meridian binder at the courthouse?\" You think the courier picked it up but haven't confirmed. Write the reply that protects your credibility."
-  },
-  "s1": {
-    "on": "This section defines the Three C's: Clarity (say exactly what's happening and what you need), Consistency (the same procedure every time) and Credibility (reliable recommendations, no exceptions).",
-    "say": "Clarity, Consistency, Credibility."
-  },
-  "s2": {
-    "on": "These steps apply them: check clarity first, use your standard procedure, protect credibility when the C's conflict, restate the ask when clarity slips under pressure, and review your recent messages.",
-    "say": "When they conflict, credibility wins.",
-    "ask": "Which C slips first when you're busy?"
-  },
-  "s3": {
-    "on": "This section restates the three as rules: say exactly what you need, use the same procedure every time, and keep recommendations reliable.",
-    "say": "Three rules, every message."
-  },
-  "s4": {
-    "on": "This section shows each C in practice: open with the status and the ask, use the same format for recurring updates, and say \"confirming by noon\" when unsure — one wrong \"it's done\" costs more than ten honest ones.",
-    "say": "An honest \"confirming by noon\" beats a wrong \"it's done.\""
-  }
-},
-"2::Credibility Is Earned, Not Claimed": {
-  "p1": {
-    "on": "This slide explains that credibility comes from operational reliability: accuracy, follow-through and on-time execution. The steps cover the No-Surprises Rule, treating every micro-decision as if it might carry weight, defaulting to discretion on investor, legal, family and M&A matters, and rebuilding damaged credibility over a sustained track record, with a diagram.",
-    "say": "You can't claim credibility. Elias gives it to you, one reliable week at a time.",
-    "ask": "What does the No-Surprises Rule mean in practice?"
-  },
-  "p2": {
-    "on": "This slide explains that credibility is the currency that lets an assistant manage up with confidence, earned only through consistent execution and judgment. The pitfall to stress: once damaged, it isn't restored by one good week but by a track record proportional to the damage.",
-    "say": "Lost credibility comes back slowly, in proportion to how much was lost.",
-    "wrap": "No surprises, discretion by default, and every small decision handled as if it matters.",
-    "scenario": "Describe a real moment, from any job and anonymised, when a small, undramatic decision turned out to carry financial, legal or reputational risk. What would you do differently now?"
-  },
-  "s1": {
-    "on": "This section lists four sources of credibility: operational reliability, the No-Surprises Rule, judgment under pressure, and discretion in investor, legal, family and M&A matters.",
-    "say": "The executive should never be blindsided by something you knew."
-  },
-  "s2": {
-    "on": "These steps build credibility: reliability first, the No-Surprises Rule as a habit, treating every micro-decision as if it matters, discretion by default, and rebuilding slowly after damage.",
-    "say": "Treat small decisions as if they might matter. Some do."
-  },
-  "s3": {
-    "on": "This section says credibility comes only from consistent execution, never self-promotion, and damaged credibility takes a track record proportional to the damage to restore.",
-    "say": "One good week doesn't fix a lost week of trust.",
-    "ask": "When did a small decision of yours turn out to carry real weight?"
-  }
-},
 "2::Reframing Reactive Language": {
   "p1": {
     "on": "This slide teaches reframing reactive language into forward-looking language. The five steps cover spotting a phrase that only reports a problem, rewriting it to lead with the next action, checking it against the Three C's, reading it back to be sure it's a status report and not a plea for rescue, and practising on a real message.",
@@ -563,64 +481,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Boundaries protect you, too."
   }
 },
-"2::Email Is a Control System, Not Cleanup": {
-  "p1": {
-    "on": "This slide explains that email access comes in levels, and you act within yours. The five steps cover confirming your level first, then what Full Access (read, respond and send), Draft & Review (prepare and wait for approval) and Triage Only (sort, prioritize and escalate) each allow, and clarifying when it's ambiguous, with a diagram.",
-    "say": "Before you act on any email for Elias, know your access level. Acting above it is a boundary problem, not helpfulness.",
-    "ask": "Which access level do you work under in your current role, if any?"
-  },
-  "p2": {
-    "on": "This slide's one rule is to know your access level before acting independently. The Go Deeper box describes the three levels: Full Access (the highest trust, only after the rules are written down), Draft & Review (common early on and for legal matters) and Read & Flag (for sensitive inboxes or a new assistant).",
-    "say": "Full Access is earned after the rules are written down.",
-    "wrap": "Know your level, stay inside it, and ask when it isn't clear.",
-    "scenario": "You're on Draft & Review. A client emails at 6 PM asking to confirm tomorrow's 9 AM meeting, and Elias is on a flight. What can you do, and what must wait for him?"
-  },
-  "s1": {
-    "on": "This section shows the three access levels: Full Access (read, respond, archive and send), Draft & Review (the executive approves first) and Triage Only (sort and escalate, the executive replies).",
-    "say": "Know which of the three you have."
-  },
-  "s2": {
-    "on": "These steps act within your level: confirm it first, stay inside Full Access boundaries, wait for approval under Draft & Review, don't draft under Triage Only, and clarify when unclear.",
-    "say": "Operating above your access is a boundary problem, not a shortcut.",
-    "ask": "Which level would you expect in your first month?"
-  },
-  "s3": {
-    "on": "This section's rule: know your access level before acting independently.",
-    "say": "Level first, action second."
-  },
-  "s4": {
-    "on": "This section explains when each level is used: Full Access only after rules are written, Draft & Review early on and for legal matters, and Read & Flag for sensitive inboxes or new relationships.",
-    "say": "Full Access comes after the rules are written down."
-  }
-},
-"2::What High-Performing Inbox Triage Looks Like": {
-  "p1": {
-    "on": "This slide sets the benchmark for triage: handle 80–90% of operational emails independently. The five steps cover tracking what share you handle today, finding the routine categories you still escalate, building judgment to handle them, guarding against missed deadlines and confidentiality breaches, and keeping the inbox near zero daily.",
-    "say": "High-performing EAs handle 80 to 90% of operational email without escalating. First, measure where you are.",
-    "ask": "Does 80–90% independently sound realistic in your context? What's actually stopping you?",
-    "wrap": "Measure, close the gap one routine category at a time, and never trade a deadline or confidentiality for speed.",
-    "scenario": "Look at the last 20 emails you escalated. Which routine categories could you have handled yourself, and what would you need in writing before you did?"
-  },
-  "p2": {
-    "on": "",
-    "say": "",
-    "wrap": "Measure, close the gap one routine category at a time, and never trade a deadline or confidentiality for speed.",
-    "scenario": "Look at the last 20 emails you escalated. Which routine categories could you have handled yourself, and what would you need in writing before you did?"
-  },
-  "s1": {
-    "on": "This section gives the benchmark: 80–90% of operational emails handled independently.",
-    "say": "The target is 80 to 90 percent handled without escalation."
-  },
-  "s2": {
-    "on": "These steps close the gap: know your baseline, find the routine categories you escalate unnecessarily, build judgment on them, guard the two failure modes, and keep the inbox near zero.",
-    "say": "Start by measuring your baseline.",
-    "ask": "What do you escalate that you could handle?"
-  },
-  "s3": {
-    "on": "This section repeats the target, inbox near zero daily, and names the two failures that erase months of trust: a missed critical deadline and a confidentiality breach.",
-    "say": "Two mistakes undo months of trust: a missed deadline or a leak."
-  }
-},
 "2::File Naming, Folders & Version Control": {
   "p1": {
     "on": "This slide says the wrong version can get signed or filed, a good name identifies the file without opening it, and the DMS is the one source of truth. The steps: one naming pattern with year-first dates, no 'final', executed and as-filed labels, save in the matter folder, share links, and save each round of edits as a new version.",
@@ -1014,6 +874,154 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section compares the three, explains why Gemini's live-data access raises the security bar, and covers Workspace automation from Gmail filters to Apps Script and a Zap that turns labeled mail into a task.",
     "say": "Start with the simplest automation that works."
+  }
+},
+"2::Email Is a Control System, Not Cleanup": {
+  "p1": {
+    "on": "This slide explains that email access comes in levels, and you act within yours. The five steps cover confirming your level first, then what Full Access (read, respond and send), Draft & Review (prepare and wait for approval) and Triage Only (sort, prioritize and escalate) each allow, and clarifying when it's ambiguous, with a diagram.",
+    "say": "Before you act on any email for Elias, know your access level. Acting above it is a boundary problem, not helpfulness.",
+    "ask": "Which access level do you work under in your current role, if any?"
+  },
+  "p2": {
+    "on": "This slide's one rule is to know your access level before acting independently. The Go Deeper box describes the three levels: Full Access (the highest trust, only after the rules are written down), Draft & Review (common early on and for legal matters) and Read & Flag (for sensitive inboxes or a new assistant).",
+    "say": "Full Access is earned after the rules are written down.",
+    "wrap": "Know your level, stay inside it, and ask when it isn't clear.",
+    "scenario": "You're on Draft & Review. A client emails at 6 PM asking to confirm tomorrow's 9 AM meeting, and Elias is on a flight. What can you do, and what must wait for him?"
+  },
+  "s1": {
+    "on": "This section shows the three access levels: Full Access (read, respond, archive and send), Draft & Review (the executive approves first) and Triage Only (sort and escalate, the executive replies).",
+    "say": "Know which of the three you have."
+  },
+  "s2": {
+    "on": "These steps act within your level: confirm it first, stay inside Full Access boundaries, wait for approval under Draft & Review, don't draft under Triage Only, and clarify when unclear.",
+    "say": "Operating above your access is a boundary problem, not a shortcut.",
+    "ask": "Which level would you expect in your first month?"
+  },
+  "s3": {
+    "on": "This section's rule: know your access level before acting independently.",
+    "say": "Level first, action second."
+  },
+  "s4": {
+    "on": "This section explains when each level is used: Full Access only after rules are written, Draft & Review early on and for legal matters, and Read & Flag for sensitive inboxes or new relationships.",
+    "say": "Full Access comes after the rules are written down."
+  }
+},
+"2::What High-Performing Inbox Triage Looks Like": {
+  "p1": {
+    "on": "This slide sets the benchmark for triage: handle 80–90% of operational emails independently. The five steps cover tracking what share you handle today, finding the routine categories you still escalate, building judgment to handle them, guarding against missed deadlines and confidentiality breaches, and keeping the inbox near zero daily.",
+    "say": "High-performing EAs handle 80 to 90% of operational email without escalating. First, measure where you are.",
+    "ask": "Does 80–90% independently sound realistic in your context? What's actually stopping you?",
+    "wrap": "Measure, close the gap one routine category at a time, and never trade a deadline or confidentiality for speed.",
+    "scenario": "Look at the last 20 emails you escalated. Which routine categories could you have handled yourself, and what would you need in writing before you did?"
+  },
+  "p2": {
+    "on": "",
+    "say": "",
+    "wrap": "Measure, close the gap one routine category at a time, and never trade a deadline or confidentiality for speed.",
+    "scenario": "Look at the last 20 emails you escalated. Which routine categories could you have handled yourself, and what would you need in writing before you did?"
+  },
+  "s1": {
+    "on": "This section gives the benchmark: 80–90% of operational emails handled independently.",
+    "say": "The target is 80 to 90 percent handled without escalation."
+  },
+  "s2": {
+    "on": "These steps close the gap: know your baseline, find the routine categories you escalate unnecessarily, build judgment on them, guard the two failure modes, and keep the inbox near zero.",
+    "say": "Start by measuring your baseline.",
+    "ask": "What do you escalate that you could handle?"
+  },
+  "s3": {
+    "on": "This section repeats the target, inbox near zero daily, and names the two failures that erase months of trust: a missed critical deadline and a confidentiality breach.",
+    "say": "Two mistakes undo months of trust: a missed deadline or a leak."
+  }
+},
+"2::The Daily Routine": {
+  "p1": {
+    "on": "This slide shows the three-phase daily routine. The Morning Scan (15–30 min) flags Tier 1 issues, clears spam and prepares a briefing summary. The Midday Review drafts responses, follows up on pending threads and confirms meetings. The End-of-Day Review confirms nothing urgent is left and preps tomorrow's summary.",
+    "say": "Scan, review, close out, every day.",
+    "ask": "What does your own morning look like against this?"
+  },
+  "p2": {
+    "on": "This slide explains how to make the routine stick: protect the Morning Scan on the calendar like a meeting, keep one carry-over list between the End-of-Day Review and the next morning, and fit the routine to the executive's rhythm. If they start at 7, the briefing is ready by 6:45.",
+    "say": "The routine serves the executive's day, not yours.",
+    "wrap": "Protect the morning scan, carry over in writing, and time it to the executive.",
+    "scenario": "Elias starts at 7 a.m. and is in court by 9 three days a week. Build your daily routine around his schedule: when does each phase happen, and what's ready when?"
+  },
+  "s1": {
+    "on": "This section says the daily routine is sequential: the steps go in order.",
+    "say": "Same order, every day."
+  },
+  "s2": {
+    "on": "These steps are the routine: a Morning Scan (15–30 min) to flag Tier 1 and prepare the briefing, a Midday Review to draft and confirm, and an End-of-Day Review to clear urgent items and prep tomorrow.",
+    "say": "Morning scan, midday review, end-of-day review."
+  },
+  "s3": {
+    "on": "This section restates each checkpoint and what it produces.",
+    "say": "Each checkpoint has an output."
+  },
+  "s4": {
+    "on": "This section says to protect the Morning Scan like a meeting, keep a carry-over list overnight, and fit the executive's rhythm: a 7 AM start means the briefing is ready by 6:45.",
+    "say": "The routine serves their day, not yours.",
+    "ask": "When does your executive's day start?"
+  }
+},
+"2::The Morning Briefing, In Practice": {
+  "p1": {
+    "on": "This slide shows how to write the morning briefing: scan the full inbox but never forward it raw, condense each item to one line with its status, order the lines by urgency with Tier 1 first, keep it to a handful of lines, and send it at the same time every morning.",
+    "say": "The briefing replaces the inbox. If it's as long as the inbox, it's failed.",
+    "ask": "What makes a briefing line useful rather than a copied excerpt?"
+  },
+  "p2": {
+    "on": "This slide gives the one-page layout: \"Needs you today\" (decisions, signatures and calls only the executive can do, each with a deadline), \"Handled / in progress\" (one line per item) and \"Heads-up\" (what could become urgent later in the week). The example briefing shows two client escalations with drafts ready, a vendor contract expiring Friday and a media request due tomorrow.",
+    "say": "Needs you, handled, heads-up.",
+    "wrap": "A short, ordered briefing beats forwarding dozens of raw emails.",
+    "scenario": "Compare the five-line briefing on screen with the 30-email raw inbox it came from. Then write tomorrow's version for Elias's inbox with the three sections."
+  },
+  "s1": {
+    "on": "This section introduces the briefing itself, covered in the steps that follow.",
+    "say": "Here's how to build it."
+  },
+  "s2": {
+    "on": "These steps build it: scan the whole inbox but never forward it raw, one line per item with its status, ordered by urgency, kept to a handful of lines, and sent at the same time every morning.",
+    "say": "One line per item, most urgent first."
+  },
+  "s3": {
+    "on": "This section's rule: a short briefing beats forwarding dozens of raw emails.",
+    "say": "Short wins."
+  },
+  "s4": {
+    "on": "This section gives the layout: 'Needs you today' at the top with deadlines, 'Handled / in progress' in the middle, 'Heads-up' at the bottom.",
+    "say": "Needs you, handled, heads-up.",
+    "ask": "What would be at the top of tomorrow's briefing?"
+  }
+},
+"2::The Priority Matrix": {
+  "p1": {
+    "on": "This slide sets up the tiers, with a diagram. Tier 1 (legal deadlines, high-value clients, media, financial approvals, crisis comms) means notify the executive immediately. Tier 2 (revenue opportunities, partnerships, board comms, vendor negotiations) means draft a response within 2–4 hours. If an item doesn't fit either, treat it as Tier 1 until confirmed.",
+    "say": "The tier decides the whole response timeline. When unsure, treat it as Tier 1.",
+    "ask": "Why is over-escalating cheaper than under-escalating?"
+  },
+  "p2": {
+    "on": "This slide adds the lower tiers. Tier 3 (newsletters, internal FYIs, non-urgent scheduling) gets batched into one daily block. Tier 4 (promotional mail, automated notices, other teams' requests) is filed or forwarded without the executive. Re-tier when facts change: a vendor email becomes Tier 1 the moment it mentions a missed payment.",
+    "say": "A routine email becomes Tier 1 the moment the facts change.",
+    "wrap": "Tier every item first, then respond on that tier's timeline.",
+    "scenario": "Speed round: I'll read five emails and you call the tier. A court clerk notice, a partnership inquiry, the bar association newsletter, a reporter asking for comment, and a vendor saying an invoice is 60 days overdue."
+  },
+  "s1": {
+    "on": "This section defines two tiers: Tier 1 (legal deadlines, high-value clients, media, financial approvals, crisis comms) means notify the executive immediately; Tier 2 (revenue, partnerships, board, vendor negotiations) means draft within 2–4 hours.",
+    "say": "Tier 1 interrupts; Tier 2 doesn't."
+  },
+  "s2": {
+    "on": "These steps apply it: classify first, escalate Tier 1 at once, draft Tier 2 within 2–4 hours, treat unclear items as Tier 1, and review your calls later.",
+    "say": "When in doubt, treat it as Tier 1.",
+    "ask": "Where would a media inquiry go?"
+  },
+  "s3": {
+    "on": "This section restates the two tiers as the ones to act on.",
+    "say": "Know them by heart."
+  },
+  "s4": {
+    "on": "This section adds Tier 3 (routine, batched daily) and Tier 4 (archive or delegate), and says to re-tier when facts change, like a vendor email that mentions a missed payment.",
+    "say": "Tiers change when the facts do."
   }
 }
 });

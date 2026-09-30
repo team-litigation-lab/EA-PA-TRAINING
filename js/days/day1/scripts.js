@@ -576,6 +576,83 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "A partner sends Elias a long, polite email asking him to co-author a conference paper. Elias's reply to you is: 'Not this year. Too much on.' Write the message you'd send back to the partner, accurate but professional."
   }
  },
+ "1::Bulletproof Basics": {
+  "p1": {
+   "why": "Three everyday basics decide whether an executive trusts us: the inbox, the travel backup plan and the full life of a meeting.",
+   "talk": "None of this is glamorous, and that's the point. An executive judges us on whether the ordinary things always go right. The inbox gets sorted on the first read, so nothing sits waiting. Travel comes with a plan B already in place, so a cancelled flight is an inconvenience, not a crisis. And meetings don't end when everyone leaves the room; we set them up beforehand and chase the follow-ups afterwards.",
+   "walk": [
+    "First, as each email arrives, we decide straight away whether it needs action, is just for information, or should go to someone else.",
+    "Next, where it makes sense, we draft the reply in the executive's own voice, so all he has to do is press send.",
+    "Then, when we book travel, we line up the backup too. If the 2 p.m. flight is cancelled, the 4 p.m. is already on hold.",
+    "After that, we set the meeting agenda before the meeting, which is how we go from taking notes to shaping the result.",
+    "Finally, after the meeting, we follow every action item through until it's actually done, not just written down."
+   ],
+   "ask": "Of these three, which do you already do well, and which is still more of an intention?",
+   "scenario": "Elias flies to D.C. at 2 p.m. for a 9 a.m. hearing tomorrow, and the airline just posted a two-hour delay warning. His inbox has 40 unread emails, and there's a 4 p.m. client call nobody has set an agenda for. Which basic do you deal with first, and what do you do on each one before 11 a.m.?"
+  },
+  "p2": {
+   "why": "Doing the basics on a calm Friday is easy. Doing them the same way on a chaotic Tuesday is what earns trust.",
+   "talk": "Anyone can keep a tidy inbox when the day is quiet. The difference shows when three things go wrong at once and we still sort every email, still line up the backup flight and still send the meeting follow-ups. That kind of consistency is what makes an executive stop double-checking our work. And the fix for a weak area is almost never a good intention. It's a small, specific habit we actually do every day.",
+   "walk": [
+    "First, the aim is consistency under pressure, not perfection on quiet days.",
+    "Finally, we improve by picking one real habit, not a resolution."
+   ],
+   "ask": "Pick the basic you're weakest on today. What's one real habit, not an intention, that would fix it this week?",
+   "scenario": "It's a chaotic Tuesday: two court changes, a sick colleague and a vendor mix-up. By 6 p.m. you realise you skipped the meeting follow-ups from this morning's partners' meeting. What habit would have stopped that from slipping, and what do you do right now?"
+  }
+ },
+ "1::The Three C's of Managing Up": {
+  "p1": {
+   "why": "Every update we send gets judged on three things: is it clear, is it consistent, and can he rely on it?",
+   "talk": "Managing up sounds like a fancy phrase, but it mostly comes down to how we communicate with the person we support. Clarity means he never has to guess what we're telling him or what we need. Consistency means we do things the same way every time, so he knows what to expect. And credibility means that when we say something, it's true. That one matters most.",
+   "walk": [
+    "First, before sending an update, we check it's clear: does it say exactly what's happening and what we need?",
+    "Next, we check it's consistent: are we using our usual approach, not something improvised because today's busy?",
+    "Then, if speed and reliability pull against each other, reliability wins. A quick answer that's wrong is worse than a slightly slower one that's right.",
+    "After that, when we're under pressure and clarity starts slipping, we slow down and restate the main point before we hit send.",
+    "Finally, every so often we reread our own recent messages, because these habits fade quietly when we're busy."
+   ],
+   "ask": "When you're overwhelmed, which of the three slips first for you?",
+   "scenario": "At 7 p.m. you send Elias: 'Meridian stuff mostly sorted, a couple of things pending, will explain tomorrow.' He replies, 'What's pending and do I need to do anything?' Rewrite the original message so it passes clarity, consistency and credibility."
+  },
+  "p2": {
+   "why": "One wrong 'it's done' costs more trust than ten honest 'confirming by noon's.",
+   "talk": "Here's what the three C's sound like in real life. Clarity is opening with the status and the ask: 'The filing is ready; I need your signature by 3.' Consistency is sending the daily brief in the same format every day, so he always knows where to look. And credibility is admitting when we're not sure: 'I believe it's done, and I'll confirm by noon.' That honesty is what makes him believe us when we say something is finished.",
+   "walk": [
+    "First, clarity means the status and the ask come first, with the background after.",
+    "Next, consistency means regular updates always look the same.",
+    "Finally, credibility means saying 'I'll confirm by' when we're not certain."
+   ],
+   "ask": "Try this one: Elias asks, 'Is the Meridian binder at the courthouse?' You think the courier picked it up, but you haven't confirmed. What's the reply that protects your credibility?",
+   "scenario": "Elias asks at 8 a.m. whether the signed Harlow engagement letter came back. You think the client said they'd send it last night, but it isn't in the inbox yet. Write the reply that protects your credibility."
+  }
+ },
+ "1::Credibility Is Earned, Not Claimed": {
+  "p1": {
+   "why": "We can't announce that we're credible. The executive gives us credibility, one reliable week at a time.",
+   "talk": "Credibility comes from a few things done over and over. We're accurate, we follow through and we're on time. We never let the boss be surprised by something we already knew. We treat small decisions carefully, because some of them quietly carry money, legal or reputation risk. And we're discreet, especially around investors, legal matters, family life and deals.",
+   "walk": [
+    "First, we build it through reliability: accurate, finished and on time, every time.",
+    "Next, we live by the no-surprises rule. If we know about something, he knows about it too, even if it seems minor.",
+    "Then, we treat small decisions as if they might matter, because we can't always tell which ones will.",
+    "After that, discretion is our default, especially around investors, legal matters, family and deals.",
+    "Finally, if we ever damage that trust, we rebuild it steadily over time. One good week doesn't undo a bad one."
+   ],
+   "ask": "In practice, what does the no-surprises rule actually look like on a normal day?",
+   "scenario": "On Friday you noticed that a client's retainer check bounced, but you meant to mention it Monday. Over the weekend, the client emails Elias directly about 'the check problem.' What rule did you break, and how do you handle Monday morning?"
+  },
+  "p2": {
+   "why": "Lost credibility comes back slowly, roughly in proportion to how much was lost.",
+   "talk": "Credibility is what lets us speak up to the executive with confidence. It comes only from doing the work well and showing good judgment, never from telling people how good we are. It also works a bit like a bank balance. Small mistakes take a small withdrawal; a big one can empty the account, and then it takes months of steady deposits to build it back.",
+   "walk": [
+    "First, credibility is earned through consistent work, never self-promotion.",
+    "Next, rebuilding it takes a track record, not an apology.",
+    "Finally, the small, quiet decisions are often the ones that carry the most weight."
+   ],
+   "ask": "Think of a real moment, from any job and kept anonymous, when a small decision turned out to carry real risk. What told you it mattered?",
+   "scenario": "Last month you sent a partner the wrong version of a contract, and now Elias double-checks everything you send. What does rebuilding his trust look like over the next few weeks, specifically?"
+  }
+ },
  "1::Client Profiling": {
   "p1": {
    "why": "A client profile is something we build once, so we never have to ask the same question twice.",

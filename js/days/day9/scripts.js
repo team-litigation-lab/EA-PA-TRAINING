@@ -28,6 +28,114 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "The client evening went well, but three days later, no thank-you notes have gone out and the caterer's final bill is sitting unchecked. What do you do today, and what goes in the notes for next year?"
   }
  },
+ "9::Event Management Tips: Checklists, Run Sheets & the Day-Of Kit": {
+  "p1": {
+   "why": "Events look effortless when three simple documents are doing the work behind the scenes.",
+   "talk": "Every well-run event has three documents: a master checklist with an owner and date for every task, a run sheet that lays out the day minute by minute, and a contact sheet with every vendor and helper's phone number. Most event problems are predictable, like a late caterer, a missing badge or a projector that won't connect. On the day, we're the calm center: we know where everything is and who to call.",
+   "walk": [
+    "First, we build the checklist from a template, working back from the date.",
+    "Next, we write the run sheet: times, who leads each part, what it needs and what's next.",
+    "Then we confirm every vendor 48 hours before.",
+    "After that, we pack a day-of kit: printed sheets, spare badges, chargers, tape, first aid and the slides on a USB.",
+    "Finally, we walk the venue before guests arrive, and debrief within a week."
+   ],
+   "ask": "What's the most common thing you've seen go wrong at an event?",
+   "scenario": "Elias is hosting a 40-person client seminar in three weeks, and the only plan so far is a hotel booking. What are the first five lines of your master checklist, and who owns each?"
+  },
+  "p2": {
+   "why": "Event habits decide whether the next event is easier or just as stressful.",
+   "talk": "Give every helper one clear role, like registration, greeting, tech or looking after the speaker, and a copy of the run sheet. Build 10 to 15 minutes of slack into the schedule, because events almost always run late. Two traps: the only copy of the plan living in one person's head, and skipping the debrief, so the same problem comes back next year.",
+   "walk": [
+    "First, one role per helper.",
+    "Next, build in slack.",
+    "Then, share the plan, don't hold it.",
+    "Finally, always debrief."
+   ],
+   "ask": "Where would you build slack into a 90-minute seminar?",
+   "scenario": "The firm's client breakfast starts at 8:00. At 7:20 the caterer hasn't arrived, the projector won't connect to Elias's laptop, and two guests have arrived early. Using your run sheet and contact sheet, what do you do in the next 10 minutes?"
+  }
+ },
+ "9::Sending Invites: Calendar Invites & Event Invitations": {
+  "p1": {
+   "why": "A single wrong detail in an invite can make a whole meeting fail, and an event invitation is the guest's first impression.",
+   "talk": "A calendar invite is a small document. A good one answers five questions at a glance: what it is, when it is with the time zone, where or how to join, who's needed and what to prepare. Event invitations follow a rhythm: a save-the-date, then the invitation with an RSVP date, reminders, and final details the day before.",
+   "walk": [
+    "First, we check availability, then send one invite, not a chain of emails.",
+    "Next, a clear title, the right time zone, and the link, dial-in and location in the invite.",
+    "Then a short agenda, anything to read, and who's required or optional.",
+    "After that, for events: save-the-date six to eight weeks out, invitation three to four weeks out, reminders at a week and a day.",
+    "Finally, we update the existing invite when things change, and cancel through the calendar."
+   ],
+   "ask": "What's the most useless meeting invite you've ever received?",
+   "scenario": "Elias asks you to 'set up a call with Harlow's team.' You don't know who from Harlow, how long, or whether it's video or phone. What do you ask before you send anything?"
+  },
+  "p2": {
+   "why": "Most invite problems come from shortcuts: new invites, missing time zones and open guest lists.",
+   "talk": "For big external events, hide the guest list or use a registration link, so guests don't see each other's details or hit reply-all. When sending on Elias's behalf, confirm the guest list with him and send from his calendar with delegate access. Two traps: sending a new invite for every change, so old ones sit in calendars and people show up at the wrong time, and forgetting time zones for cross-country or international calls.",
+   "walk": [
+    "First, protect guest lists for big events.",
+    "Next, confirm the list and send from his calendar.",
+    "Then, update, don't resend.",
+    "Finally, always check time zones."
+   ],
+   "ask": "How would you show the time for a call with London, New York and Denver so nobody gets it wrong?",
+   "scenario": "Elias wants a 45-minute call next week with a client in London, a partner in New York and an expert in Denver. Write the invite: title, time (showing each zone), joining details, agenda and attendees. What do you check before sending?"
+  }
+ },
+ "9::Sending Intake Forms: Event Registration & New-Client Questionnaires": {
+  "p1": {
+   "why": "A good intake form means the event or the first meeting starts with everything you need, instead of a scramble.",
+   "talk": "An intake form collects what we need before something happens: an attendee's details before an event, or a new client's information before their first meeting. A good one asks only what's needed, in plain words, with the required fields clear, because every extra question means fewer people finish it. And forms often collect personal or confidential information, so they're sent and stored securely. For new clients, the answers may also feed the conflict check.",
+   "walk": [
+    "First, we use the firm's approved form tool, and the attorney approves client intake questions.",
+    "Next, for events: name, organization, email, dietary and accessibility needs, sessions, and bar number and state for CLE.",
+    "Then, for new clients: contact details, everyone involved for the conflict check, key dates and a short description, with documents through secure upload.",
+    "After that, we send it with a short note: why, the deadline and who to ask. We test the link first.",
+    "Finally, we track completions, send one reminder and move the answers into the right system."
+   ],
+   "ask": "What's the longest form you've ever abandoned halfway through?",
+   "scenario": "The firm's CLE seminar has 60 registrations, but the form didn't ask for bar numbers, and certificates need them. The seminar is next week. What do you do now, and what do you change in the form template?"
+  },
+  "p2": {
+   "why": "Forms go wrong in two places: how sensitive information travels, and what happens to the answers.",
+   "talk": "Pre-fill what we already know and keep the form short enough to finish on a phone. Tell people how their information will be used, like 'dietary details go only to the caterer.' Two traps: asking a new client for sensitive details or documents by plain email, and collecting answers that never go anywhere. A form nobody reads is worse than no form at all.",
+   "walk": [
+    "First, pre-fill and keep it short.",
+    "Next, say how the information will be used.",
+    "Then, sensitive details only through secure channels.",
+    "Finally, move every answer where it's needed."
+   ],
+   "ask": "Where should the answers from an event registration form end up?",
+   "scenario": "Elias is meeting a potential new client, a small construction company, on Monday. He wants their details and the names of everyone involved in their dispute beforehand. Draft the six questions on your intake form, and the note you send with it."
+  }
+ },
+ "9::CLE Management for Firm-Hosted Events": {
+  "p1": {
+   "why": "When the firm hosts a CLE event, attendees are counting on us for credit they need to keep their licenses.",
+   "talk": "If the firm hosts a seminar or webinar that offers CLE credit, the firm is the course provider, and it has duties to the state bars that approve the credit. Every state has its own rules: whether the course needs approval in advance, how many minutes make an hour of credit, which categories like ethics apply, and what records we keep. The attendees' credit depends on our paperwork.",
+   "walk": [
+    "First, months ahead, we find out which states attendees are licensed in and check each state's rules and deadlines.",
+    "Next, we prepare the application: a timed agenda, speaker bios, materials and the hours and categories requested.",
+    "Then we track attendance properly: sign-in and sign-out sheets, or the webinar's attendance report and any required codes.",
+    "After that, we issue certificates with the name, course, date, provider, hours, category and any approval number.",
+    "Finally, we report to the states that require it and keep the file as long as each state says."
+   ],
+   "ask": "Why might a state bar care how long someone actually stayed on a webinar?",
+   "scenario": "Two days before a firm seminar, Elias asks, 'We're offering CLE credit, right?' Nobody applied for approval. What do you tell him, what can still be done, and what do you tell registrants?"
+  },
+  "p2": {
+   "why": "CLE problems show up months or years later, in an audit or a missing credit, so the habits have to be right from the start.",
+   "talk": "Collect bar numbers and states at registration, not after the event. Keep a CLE file for every event, with the approval, agenda, materials and attendance, because a state bar can audit a provider years later. Two traps: promising credit before the course is approved, when we should say 'credit has been applied for,' and certificates showing hours a webinar attendee didn't actually attend.",
+   "walk": [
+    "First, bar numbers at registration.",
+    "Next, a complete CLE file for every event.",
+    "Then, no promises before approval.",
+    "Finally, certificates match real attendance."
+   ],
+   "ask": "What would you put in an event's CLE file?",
+   "scenario": "The firm is hosting a two-hour webinar, 'Employment Law Update,' in six weeks, with one hour of ethics. Attendees are licensed in New York, New Jersey and California. What do you do this week, what do you collect at registration, and what happens after the webinar?"
+  }
+ },
  "9::Speaker & Panelist Logistics for Conferences": {
   "p1": {
    "why": "When the executive is speaking at an event, the calendar entry is the smallest part of your job.",

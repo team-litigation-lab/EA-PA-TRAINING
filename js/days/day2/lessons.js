@@ -14,108 +14,9 @@
 const DAY2 = {
   "id": 2,
   "title": "Managing Up & How to Leverage AI with Precision",
-  "theme": "Managing Up & The Three C's · AI Proficiency & the Digital Edge · Email as a Control System",
-  "objective": "Apply the Three C's framework to manage up effectively, and shift from task-completer to force multiplier.",
+  "theme": "Managing Up · AI Proficiency & the Digital Edge · Email Management",
+  "objective": "Put Day 1's Three C's into practice to manage up effectively, shift from task-completer to force multiplier, and run the executive's inbox as a control system.",
   "lessons": [
-    {
-      "h": "Bulletproof Basics",
-      "section": "Managing Up Foundations",
-      "layout": "THREEBOX",
-      "boxes": [
-        {
-          "label": "Inbox Zero & Triaging",
-          "desc": "Categorize every email as Action, Information, or Delegation on first read — and draft in the executive's own voice so they only have to hit Send."
-        },
-        {
-          "label": "Complex Travel Logistics",
-          "desc": "Not just booking a flight — it's the 'What If' plan. If the 2:00 PM flight is canceled, you already have the 4:00 PM on hold."
-        },
-        {
-          "label": "Meeting Lifecycle",
-          "desc": "Moving from 'taking minutes' to 'driving outcomes' — setting the agenda before, tracking deliverables after."
-        }
-      ],
-      "b": [
-        "These basics sound simple, but consistency under pressure — doing them the same way on a chaotic Tuesday as on a quiet Friday — is what actually builds trust over time.",
-        "Discussion prompt: pick one of these three basics you're weakest on today. What's the actual habit, not the intention, that would fix it this week?"
-      ],
-      "howTo": [
-        "For inbox triage, sort every email on first read into Action, Information, or Delegation — don't leave anything unsorted to revisit later.",
-        "Draft responses in the executive's own voice where appropriate, so the only remaining step for them is hitting send, not rewriting your draft.",
-        "For travel, don't just book the primary option — build the \"What If\" plan alongside it, so a backup is already on hold before anything goes wrong.",
-        "For meetings, set the agenda before the meeting happens, not after — this is what shifts you from taking minutes to actually driving outcomes.",
-        "After the meeting, track deliverables to completion — the meeting lifecycle isn't finished until the follow-through is confirmed, not just documented."
-      ],
-      "trainerCue": "Ask which of the three basics (Inbox Zero, Travel What-If, Meeting Lifecycle) the room already does well versus which is aspirational — this sets the tone that this day builds skills, not just tests them."
-    },
-    {
-      "h": "The Three C's of Managing Up",
-      "section": "Managing Up Foundations",
-      "b": [
-        "Clarity — say exactly what's happening and what you need.",
-        "Consistency — same standard procedures every time.",
-        "Credibility — recommendations have to be reliable, no exceptions."
-      ],
-      "layout": "THREEBOX",
-      "boxes": [
-        {
-          "label": "Clarity",
-          "desc": "No vague messages — say exactly what's happening and exactly what you need from them"
-        },
-        {
-          "label": "Consistency",
-          "desc": "Use the same standard procedures every time, so outcomes become predictable"
-        },
-        {
-          "label": "Credibility",
-          "desc": "Recommendations have to be accurate and reliable, every single time, with no exceptions"
-        }
-      ],
-      "howTo": [
-        "Before sending any update, check it for Clarity first — does it say exactly what's happening and exactly what you need, with nothing left for the reader to infer?",
-        "Apply Consistency next — use the same standard procedure you'd use any other time, not an improvised approach because today is busier or calmer than usual.",
-        "Protect Credibility above the other two when they conflict — a fast, unclear answer is worse than a slightly slower, reliable one.",
-        "If you notice Clarity slipping under pressure (the most common failure point), slow down and restate the core ask before sending, rather than letting a vague message go out.",
-        "Review your own recent messages periodically against all three — this is a habit that decays quietly under workload unless it's actively checked."
-      ],
-      "trainerCue": "Have someone read the Three C's out loud in order, then immediately ask: 'Which one collapses first when you're overwhelmed?' Almost everyone says Clarity — use that as the hook for why it's listed first."
-    },
-    {
-      "h": "Credibility Is Earned, Not Claimed",
-      "section": "Managing Up Foundations",
-      "layout": "QUADRANT",
-      "quadrants": [
-        {
-          "label": "Operational Reliability",
-          "desc": "Accuracy, follow-through, on-time execution, anticipating next steps, zero-drama problem solving"
-        },
-        {
-          "label": "The No-Surprises Rule",
-          "desc": "An executive should never be blindsided by something their assistant already knew about"
-        },
-        {
-          "label": "Judgment Under Pressure",
-          "desc": "Micro-decisions that quietly affect financial exposure, legal risk, and reputation"
-        },
-        {
-          "label": "Discretion & Confidentiality Discipline",
-          "desc": "Especially critical in investor relations, legal matters, family logistics, and M&A activity"
-        }
-      ],
-      "b": [
-        "Credibility is the currency that lets an assistant manage up with real confidence — earned exclusively through consistent execution and mature judgment, never through self-promotion.",
-        "Credibility, once damaged, isn't restored by a single good week — it requires a sustained track record roughly proportional to how badly it was damaged.",
-        "Discussion prompt: describe a real moment (any job) where a small, undramatic decision you made turned out to carry real financial, legal, or reputational weight. What told you it mattered before it became obvious?"
-      ],
-      "howTo": [
-        "Build credibility through operational reliability first — accuracy, follow-through, and on-time execution, consistently, not just when it's convenient.",
-        "Apply the No-Surprises Rule as a standing discipline: never let the executive be blindsided by something you already knew about, even if it seemed minor at the time.",
-        "Treat every micro-decision as if it might carry real weight — financial exposure, legal risk, or reputational consequence isn't always obvious in the moment it's made.",
-        "Practice discretion as a default, especially around investor relations, legal matters, family logistics, or M&A activity — these are the categories where a slip is hardest to undo.",
-        "If credibility is ever damaged, don't expect a single good week to restore it — rebuild it through a sustained track record proportional to what was lost."
-      ],
-      "trainerCue": "This is a heavier topic — don't rush it. Ask for a real (anonymized) example of a moment someone's judgment call touched financial, legal, or reputational risk without them realizing it at the time."
-    },
     {
       "h": "Reframing Reactive Language",
       "section": "Managing Up Foundations",
@@ -511,60 +412,6 @@ const DAY2 = {
       }
     },
     {
-      "h": "Email Is a Control System, Not Cleanup",
-      "section": "Time, Energy & Systems",
-      "b": [
-        "Know your access level before acting independently."
-      ],
-      "layout": "THREEBOX",
-      "boxes": [
-        {
-          "label": "Full Access",
-          "desc": "Read, respond, archive, and send on the executive's behalf"
-        },
-        {
-          "label": "Draft & Review",
-          "desc": "Draft responses and flag priorities — the executive approves before sending"
-        },
-        {
-          "label": "Triage Only",
-          "desc": "Sort, prioritize, and escalate — the executive responds themselves"
-        }
-      ],
-      "howTo": [
-        "Before acting on any email independently, confirm which access level you actually have — Full Access, Draft & Review, or Triage Only — don't assume based on how the previous role or executive operated.",
-        "Under Full Access, read, respond, archive, and send on the executive's behalf, staying inside the boundaries already established for that access.",
-        "Under Draft & Review, prepare the response and flag its priority, then wait for the executive's approval before it goes out — don't send preemptively even if you're confident it's right.",
-        "Under Triage Only, sort, prioritize, and escalate, but leave the actual response to the executive — resist the urge to draft something they didn't ask for.",
-        "If your access level is ever ambiguous, clarify it directly rather than guessing — operating above your actual authorization is a boundary problem, not a helpful shortcut."
-      ],
-      "trainerCue": "Ask each trainee to say out loud which access model (Full Access / Draft & Review / Triage Only) they currently operate under in their own role, if applicable — it surfaces real ambiguity worth discussing."
-    },
-    {
-      "h": "What High-Performing Inbox Triage Looks Like",
-      "section": "Time, Energy & Systems",
-      "b": [
-        "Target: 80–90% of operational emails handled independently, inbox near zero daily.",
-        "No missed critical deadlines, no confidentiality breaches — the two failure modes that erase months of trust."
-      ],
-      "callout": {
-        "type": "stat",
-        "label": "Benchmark",
-        "text": "High-performing EAs handle 80–90% of operational emails independently — without escalating routine items that don't need executive time."
-      },
-      "layout": "STAT",
-      "statNumber": "80–90%",
-      "statLabel": "of operational emails handled independently",
-      "howTo": [
-        "Track what share of your operational emails you're currently handling independently versus escalating — you can't close the gap to 80-90% without first knowing your actual baseline.",
-        "Identify the routine categories you're still escalating unnecessarily — these are usually the fastest wins toward the benchmark.",
-        "Build the judgment to handle those categories independently, checking your calls periodically against what the executive would have actually wanted.",
-        "Guard the two failure modes explicitly as you increase independent handling: never miss a critical deadline, and never risk a confidentiality breach — both erase months of trust instantly.",
-        "Keep the inbox at or near zero daily as the visible proof this system is actually working, not just a target you're working toward."
-      ],
-      "trainerCue": "Push back gently if anyone says '80–90% independently' sounds unrealistic for their context — ask what's actually stopping them from getting there, and treat it as a real discussion, not a rebuttal."
-    },
-    {
       "h": "File Naming, Folders & Version Control",
       "section": "Time, Energy & Systems",
       "fourPart": {
@@ -901,23 +748,154 @@ const DAY2 = {
         "When automating inside Google Workspace, start simple (Gmail filters, Calendar auto-declines) before reaching for advanced tools like Apps Script or a Zapier integration — match the automation's complexity to the actual size of the problem."
       ],
       "trainerCue": "This is your natural spot for a live platform comparison if your organization has access to more than one tool — showing a real side-by-side beats describing it."
+    },
+    {
+      "h": "Email Is a Control System, Not Cleanup",
+      "section": "Email Management",
+      "b": [
+        "Know your access level before acting independently."
+      ],
+      "layout": "THREEBOX",
+      "boxes": [
+        {
+          "label": "Full Access",
+          "desc": "Read, respond, archive, and send on the executive's behalf"
+        },
+        {
+          "label": "Draft & Review",
+          "desc": "Draft responses and flag priorities — the executive approves before sending"
+        },
+        {
+          "label": "Triage Only",
+          "desc": "Sort, prioritize, and escalate — the executive responds themselves"
+        }
+      ],
+      "howTo": [
+        "Before acting on any email independently, confirm which access level you actually have — Full Access, Draft & Review, or Triage Only — don't assume based on how the previous role or executive operated.",
+        "Under Full Access, read, respond, archive, and send on the executive's behalf, staying inside the boundaries already established for that access.",
+        "Under Draft & Review, prepare the response and flag its priority, then wait for the executive's approval before it goes out — don't send preemptively even if you're confident it's right.",
+        "Under Triage Only, sort, prioritize, and escalate, but leave the actual response to the executive — resist the urge to draft something they didn't ask for.",
+        "If your access level is ever ambiguous, clarify it directly rather than guessing — operating above your actual authorization is a boundary problem, not a helpful shortcut."
+      ],
+      "trainerCue": "Ask each trainee to say out loud which access model (Full Access / Draft & Review / Triage Only) they currently operate under in their own role, if applicable — it surfaces real ambiguity worth discussing."
+    },
+    {
+      "h": "What High-Performing Inbox Triage Looks Like",
+      "section": "Email Management",
+      "b": [
+        "Target: 80–90% of operational emails handled independently, inbox near zero daily.",
+        "No missed critical deadlines, no confidentiality breaches — the two failure modes that erase months of trust."
+      ],
+      "callout": {
+        "type": "stat",
+        "label": "Benchmark",
+        "text": "High-performing EAs handle 80–90% of operational emails independently — without escalating routine items that don't need executive time."
+      },
+      "layout": "STAT",
+      "statNumber": "80–90%",
+      "statLabel": "of operational emails handled independently",
+      "howTo": [
+        "Track what share of your operational emails you're currently handling independently versus escalating — you can't close the gap to 80-90% without first knowing your actual baseline.",
+        "Identify the routine categories you're still escalating unnecessarily — these are usually the fastest wins toward the benchmark.",
+        "Build the judgment to handle those categories independently, checking your calls periodically against what the executive would have actually wanted.",
+        "Guard the two failure modes explicitly as you increase independent handling: never miss a critical deadline, and never risk a confidentiality breach — both erase months of trust instantly.",
+        "Keep the inbox at or near zero daily as the visible proof this system is actually working, not just a target you're working toward."
+      ],
+      "trainerCue": "Push back gently if anyone says '80–90% independently' sounds unrealistic for their context — ask what's actually stopping them from getting there, and treat it as a real discussion, not a rebuttal."
+    },
+    {
+      "h": "The Daily Routine",
+      "section": "Email Management",
+      "b": [
+        "Morning Scan (15–30 min) — flag Tier 1, prepare a briefing summary.",
+        "Midday Review — draft responses, confirm meetings.",
+        "End-of-Day Review — confirm nothing urgent is left, prep tomorrow."
+      ],
+      "layout": "PROCESS",
+      "processSteps": [
+        {
+          "label": "Morning Scan (15–30 min)",
+          "desc": "Flag Tier 1 issues, clear spam, prepare a briefing summary"
+        },
+        {
+          "label": "Midday Review",
+          "desc": "Draft responses, follow up on pending threads, confirm meetings"
+        },
+        {
+          "label": "End-of-Day Review",
+          "desc": "Confirm nothing urgent is left, prep tomorrow's summary"
+        }
+      ],
+      "trainerCue": "Walk your own actual morning routine (or a composite one) against the three-phase Daily Routine live — real specificity beats the abstract structure."
+    },
+    {
+      "h": "The Morning Briefing, In Practice",
+      "section": "Email Management",
+      "b": [
+        "A short briefing beats forwarding dozens of raw emails."
+      ],
+      "example": {
+        "label": "Executive briefing, real format",
+        "lines": [
+          "2 client escalation issues — responses drafted",
+          "Vendor contract awaiting approval (expires Friday)",
+          "Media request from Business Today — deadline tomorrow",
+          "3 meeting confirmations secured",
+          "Finance flagged payment discrepancy ($8,450)"
+        ]
+      },
+      "howTo": [
+        "Scan the full inbox first, but never forward it raw — the briefing exists specifically to replace that.",
+        "Condense each item into one clear line stating what it is and its actual status, not a copy-pasted email excerpt.",
+        "Order the lines by urgency, leading with anything Tier 1 or time-sensitive (an expiring approval, a next-day deadline).",
+        "Keep the whole briefing to a handful of lines — if it's approaching the length of the original inbox, it has stopped doing its job.",
+        "Send it at a consistent time each morning, so it becomes a reliable, expected part of the executive's routine rather than an occasional summary."
+      ],
+      "trainerCue": "Compare this five-line briefing against what a raw, unfiltered inbox forward would have looked like for the same morning — the contrast is the whole point of this topic."
+    },
+    {
+      "h": "The Priority Matrix",
+      "section": "Email Management",
+      "b": [
+        "Tier 1 (Immediate) — legal deadlines, high-value clients, media, financial approvals, crisis comms.",
+        "Tier 2 (Strategic) — revenue opportunities, partnerships, board comms, vendor negotiation."
+      ],
+      "layout": "COMPARE",
+      "compareLeft": {
+        "label": "Tier 1 — Immediate Escalation",
+        "items": [
+          "Legal deadlines",
+          "High-value clients",
+          "Media inquiries",
+          "Financial approvals",
+          "Crisis communications",
+          "Notify the executive immediately, no exceptions"
+        ]
+      },
+      "compareRight": {
+        "label": "Tier 2 — Strategic",
+        "items": [
+          "Revenue opportunities",
+          "Partnerships",
+          "Board communications",
+          "Vendor negotiations",
+          "Draft a response within 2–4 hours",
+          "Still important, but not an interrupt"
+        ]
+      },
+      "howTo": [
+        "When a new item lands, classify it into Tier 1 or Tier 2 before anything else — the tier determines your entire response timeline.",
+        "For Tier 1 (legal deadlines, high-value clients, media, financial approvals, crisis comms), notify the executive immediately with no exceptions.",
+        "For Tier 2 (revenue opportunities, partnerships, board comms, vendor negotiations), draft a response within 2-4 hours — important, but not an interrupt.",
+        "If an item genuinely doesn't fit cleanly into either tier, default to treating it as Tier 1 until you can confirm otherwise — the cost of over-escalating is lower than under-escalating.",
+        "Review your own tiering decisions periodically against how they actually played out — this sharpens judgment on the genuinely ambiguous cases over time."
+      ],
+      "trainerCue": "This is a good comprehension check: read out five sample emails and have the room shout 'Tier 1' or 'Tier 2' as fast as they can — speed reveals who's actually internalized the distinction."
     }
   ],
   "quickChecks": [
     {
-      "afterIndex": 2,
-      "q": "The 'No-Surprises Rule' means:",
-      "opts": [
-        "Surprises are fine as long as they're positive",
-        "Only bad news needs to be flagged early",
-        "An executive should never be blindsided by something their assistant already knew",
-        "Executives enjoy occasional surprises"
-      ],
-      "a": 2,
-      "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
-    },
-    {
-      "afterIndex": 34,
+      "afterIndex": 29,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -927,7 +905,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 35,
+      "afterIndex": 30,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Context window strain — it lost precision across a long document",
@@ -937,20 +915,33 @@ const DAY2 = {
       ],
       "a": 0,
       "r": "When a document is long, precision degrades across it — paste just the relevant section when precision matters."
+    },
+    {
+      "afterIndex": 37,
+      "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
+      "opts": [
+        "Something to batch with the newsletter",
+        "Not worth flagging",
+        "Tier 1 — notify the executive immediately",
+        "Tier 2 — draft a response in 2–4 hours"
+      ],
+      "a": 2,
+      "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
+    },
+    {
+      "afterIndex": 36,
+      "q": "What best distinguishes high-performing email management from average?",
+      "opts": [
+        "Forwarding every email so nothing is missed",
+        "Deleting anything that looks unimportant",
+        "Replying to everything within 5 minutes",
+        "Handling 80–90% of operational emails independently with zero missed deadlines"
+      ],
+      "a": 3,
+      "r": "It's about independent, reliable handling of the bulk of email — not speed or forwarding volume."
     }
   ],
   "quiz": [
-    {
-      "q": "The 'Three C's' of Managing Up are:",
-      "opts": [
-        "Collaboration, Curiosity, Confidence",
-        "Control, Coordination, Confidence",
-        "Communication, Creativity, Coordination",
-        "Clarity, Consistency, Credibility"
-      ],
-      "a": 3,
-      "r": "Clarity, Consistency, and Credibility are the framework taught for managing up effectively."
-    },
     {
       "q": "A 'Force Multiplier' EA/PA primarily...",
       "opts": [
@@ -972,17 +963,6 @@ const DAY2 = {
       ],
       "a": 1,
       "r": "Automation that removes recurring manual work is the clearest example of the Digital Edge."
-    },
-    {
-      "q": "The 'What If' approach to travel logistics means:",
-      "opts": [
-        "Having a backup option already secured before it's needed",
-        "Asking the executive what they'd like to do if something goes wrong on the trip",
-        "Booking the cheapest fare, so there's budget left over to rebook if needed",
-        "Avoiding travel bookings until the last minute"
-      ],
-      "a": 0,
-      "r": "E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."
     },
     {
       "q": "Three urgent requests collide and a VIP client also needs an immediate call. Best first move?",
@@ -1055,28 +1035,6 @@ const DAY2 = {
       ],
       "a": 3,
       "r": "A force multiplier increases the executive's output and effectiveness, not just their own task count."
-    },
-    {
-      "q": "What are the 'Three C's of Managing Up' generally centered on?",
-      "opts": [
-        "Calendar, Contacts and Confidentiality: the three systems an assistant owns",
-        "Communication, Consistency, and Credibility with the executive",
-        "Complaining, Correcting, Confronting",
-        "Coordination, Courtesy and Compliance in every message to the executive"
-      ],
-      "a": 1,
-      "r": "Managing up effectively rests on clear communication, consistent follow-through, and earned credibility."
-    },
-    {
-      "q": "Why is credibility described as 'earned, not claimed'?",
-      "opts": [
-        "Credibility comes mainly from seniority, so it grows with each promotion and title change",
-        "Only executives can grant credibility explicitly",
-        "One strong result under pressure earns it permanently, as long as it's noticed by the executive",
-        "Credibility is built through a track record of reliable judgment over time, not by asserting it"
-      ],
-      "a": 3,
-      "r": "Trust accumulates from consistent, reliable follow-through — it can't be claimed into existence."
     },
     {
       "q": "What is a large language model (LLM), in the simplest accurate terms?",
@@ -1165,20 +1123,144 @@ const DAY2 = {
       ],
       "a": 3,
       "r": "A year-first date, the matter, the document type and a version number identify the file and sort correctly. 'Final', 'latest' and '(2)' don't say which version it is."
+    },
+    {
+      "q": "A Tier 1 email arrives (media inquiry with a deadline tomorrow). What's the required action?",
+      "opts": [
+        "Draft a response within 2–4 hours",
+        "Notify the executive immediately",
+        "Batch it with other emails for the end-of-day review",
+        "Delete it as low priority"
+      ],
+      "a": 1,
+      "r": "Tier 1 items — legal, high-value client, media, financial approval, crisis — require immediate notification."
+    },
+    {
+      "q": "The purpose of a morning email briefing is to...",
+      "opts": [
+        "Show the executive how many emails were handled overnight",
+        "Replace dozens of forwarded emails with a short, prioritized summary",
+        "Forward every overnight email in full, so the executive doesn't miss any detail",
+        "Let the executive skip their inbox entirely until the afternoon"
+      ],
+      "a": 1,
+      "r": "A tight briefing positions the assistant as strategic, not just a message-forwarder."
+    },
+    {
+      "q": "Why is email described as 'a control system, not cleanup'?",
+      "opts": [
+        "Because the goal is to delete as many messages as possible so the executive only ever sees a clean inbox",
+        "Because control means only the assistant can send from the executive's account, so every message is checked first",
+        "Because a weekly clean-up session is the best way to control volume, as long as it's never skipped",
+        "Email needs an ongoing structure that prevents backlog, rather than being tackled only in periodic clean-up sessions"
+      ],
+      "a": 3,
+      "r": "Treating email as a control system means preventing backlog through structure, not repeatedly fighting a growing pile."
+    },
+    {
+      "q": "What does a priority matrix for email typically weigh against each other?",
+      "opts": [
+        "How recently it arrived against how many people are copied",
+        "The sender's seniority against the length of the message",
+        "Urgency and importance together, not either one alone",
+        "The time of day it was received"
+      ],
+      "a": 2,
+      "r": "A priority matrix (like urgent/important) prevents mistaking loud-but-unimportant messages for genuinely critical ones."
+    },
+    {
+      "q": "Why are calendar and email described as 'one system' rather than two separate tools?",
+      "opts": [
+        "Email commitments (meeting requests, deadlines) directly create calendar obligations, so managing them separately creates gaps",
+        "Because the executive prefers to check both in the same app at the same time of day",
+        "Because most firms use one product, like Outlook, for both, so they're technically the same tool",
+        "Because meeting invitations arrive by email, so the inbox automatically becomes the calendar for anyone who reads it"
+      ],
+      "a": 0,
+      "r": "An email agreeing to a meeting is really a calendar commitment — managing them apart risks losing track of what was actually agreed."
+    },
+    {
+      "q": "What is a core element of a strong daily inbox-management routine?",
+      "opts": [
+        "Deleting anything that looks unimportant, so only real work stays in the inbox",
+        "A consistent process for triage, response, and filing at regular intervals throughout the day",
+        "Replying to every email the moment it arrives, so nothing ever waits",
+        "Keeping every email until the end of the month, then filing them all at once"
+      ],
+      "a": 1,
+      "r": "Consistency and structure — not reactive constant-checking or infrequent batching — define a high-performing routine."
+    },
+    {
+      "q": "What does 'high-performing inbox triage' primarily require an EA to correctly judge?",
+      "opts": [
+        "How many times a sender has followed up, since repeated messages show real urgency",
+        "How long each email will take to answer, so the quick ones are cleared first",
+        "Which emails are from the most senior people, since their messages always come first",
+        "Genuine urgency and importance, separated from how loudly or frequently something is repeated"
+      ],
+      "a": 3,
+      "r": "Skilled triage distinguishes real priority from noise, regardless of tone or repetition."
+    },
+    {
+      "q": "What is a reasonable approach when an inbox has a genuine backlog after being offline?",
+      "opts": [
+        "Reply in the exact order messages arrived, oldest first, so nobody is kept waiting longest",
+        "Wait for the sender to follow up before responding",
+        "Archive everything older than a day and reply only to people who write again",
+        "Triage first for urgency/importance, then work through it systematically rather than chronologically"
+      ],
+      "a": 3,
+      "r": "Chronological order ignores actual priority — triage first, then execute, is the resilient approach."
+    },
+    {
+      "q": "What's the risk of treating every incoming email as equally urgent?",
+      "opts": [
+        "Very little: treating everything as urgent is the safest approach, since nothing is ever left waiting",
+        "It mainly affects the assistant's own stress levels, not the quality of the work or the outcomes",
+        "Genuine emergencies get diluted among routine messages, and the EA burns out trying to react to everything",
+        "Senders start marking every email as high priority, so the flag stops meaning anything"
+      ],
+      "a": 2,
+      "r": "Without differentiation, true urgency loses its signal value, and reactive handling becomes unsustainable."
+    },
+    {
+      "q": "What's a practical downside of replying to emails purely in the order they arrive?",
+      "opts": [
+        "A less important early email can delay a response to something urgent that arrived later",
+        "Senders who wrote first may feel ignored if they're answered after people who wrote later",
+        "It breaks most email etiquette standards, which expect the newest messages to be answered first",
+        "It takes longer, because emails on the same topic aren't grouped together"
+      ],
+      "a": 0,
+      "r": "Order of arrival has no necessary relationship to actual urgency — that mismatch is the core risk."
+    },
+    {
+      "q": "What does 'calendar and email as one system' imply about how an EA should file confirmed meeting requests?",
+      "opts": [
+        "The calendar should be updated in one batch at the end of each week, once all changes are final",
+        "Only in-person meetings need to be added to the calendar",
+        "Once a meeting is agreed via email, it should be reflected on the calendar promptly to avoid a mismatch",
+        "The email thread is the record, so the calendar only needs updating if the time changes"
+      ],
+      "a": 2,
+      "r": "Treating them as separate systems is exactly what creates the gap between what was agreed and what's actually scheduled."
+    },
+    {
+      "q": "What's the main reason to review and adjust a daily inbox routine periodically, rather than setting it once?",
+      "opts": [
+        "Email volume and priorities shift over time, so a routine that worked last quarter may no longer fit",
+        "A routine only works if it stays exactly the same, so reviewing it mainly confirms nothing has drifted",
+        "Email software updates every few months, and each update changes where the filing folders and rules live",
+        "It's mainly a compliance requirement: auditors expect to see that routines are reviewed each quarter"
+      ],
+      "a": 0,
+      "r": "A routine that isn't periodically reassessed can quietly become mismatched to current volume and priorities."
     }
   ],
   "discussionQuestion": "Pick one recurring task on your own plate. What would it look like to handle it the way a 'Force Multiplier' would, instead of the way a task-executor would?"
 };
 
 const DAY2_EXTRA_LEARNING = {
-  "2::The Three C's of Managing Up": {
-    "t": "The Three C's in a Real Update",
-    "p": [
-      "Clarity in practice: open with the status and the ask — 'The filing is ready; I need your signature by 3 PM' — then add context below.",
-      "Consistency in practice: use the same format for recurring updates (daily brief, weekly summary) so the executive knows exactly where to look.",
-      "Credibility in practice: if you're unsure, say so and give a time you'll confirm by. One wrong 'it's done' costs more trust than ten honest 'confirming by noon'."
-    ]
-  },
   "2::Reframing Reactive Language": {
     "t": "A Reframing Toolkit",
     "p": [
@@ -1193,6 +1275,30 @@ const DAY2_EXTRA_LEARNING = {
       "Full Access: read, reply, archive, and send on the executive's behalf within agreed rules — the highest trust level, used only after rules are written down.",
       "Draft & Review: you prepare replies and flag priority; nothing leaves until the executive approves. Common in the first months and for legal matters.",
       "Read & Flag: you monitor and surface what matters but don't reply. Useful for sensitive inboxes or when a new assistant is still learning the relationships."
+    ]
+  },
+  "2::The Daily Routine": {
+    "t": "Making the Routine Stick",
+    "p": [
+      "Protect the Morning Scan on the calendar like a meeting; if it slips, the executive starts the day reacting instead of informed.",
+      "Keep one running 'carry-over' list between the End-of-Day Review and the next Morning Scan so nothing depends on memory overnight.",
+      "Adjust to the executive's rhythm: if they start at 7 AM, your briefing must be ready by 6:45 — the routine serves their day, not yours."
+    ]
+  },
+  "2::The Morning Briefing, In Practice": {
+    "t": "Anatomy of a One-Page Briefing",
+    "p": [
+      "Top: 'Needs you today' — decisions, signatures, and calls only the executive can handle, each with a deadline.",
+      "Middle: 'Handled / in progress' — one line per item so they know it's covered without reading the thread.",
+      "Bottom: 'Heads-up' — upcoming deadlines, travel, and anything that could become urgent later in the week."
+    ]
+  },
+  "2::The Priority Matrix": {
+    "t": "Tier 3 and Below: What Can Wait",
+    "p": [
+      "Tier 3 (Routine): newsletters, internal FYIs, non-urgent scheduling — batch these into one daily block instead of handling them as they arrive.",
+      "Tier 4 (Archive/Delegate): promotional mail, automated notifications, requests another team owns — file or forward without executive involvement.",
+      "Re-tier when facts change: a routine vendor email becomes Tier 1 the moment it mentions a missed payment or a contract deadline."
     ]
   },
   "2::Core AI Terms an EA/PA Needs": {
