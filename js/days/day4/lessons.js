@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 4 — Data & Outreach
+   DAY 4 — Time Management, Data & Outreach
    Everything a trainee reads on this day:
    - DAY4: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,10 +13,295 @@
    ============================================================ */
 const DAY4 = {
   "id": 4,
-  "title": "Data & Outreach",
-  "theme": "Administrative Data & Research · Cold Calling & Lead Generation · Contact List Management · Email Outreach",
-  "objective": "Clean data before it becomes a report, prioritize and run a workday that actually holds, and open cold outreach by phone and email the right way.",
+  "title": "Time Management, Data & Outreach",
+  "theme": "Time Management & Productivity · Administrative Data & Research · Cold Calling & Lead Generation · Contact List Management · Email Outreach",
+  "objective": "Prioritize and protect your time, clean data before it becomes a report, run a workday that actually holds, and open cold outreach by phone and email the right way.",
   "lessons": [
+    {
+      "h": "Prioritization Frameworks",
+      "section": "Time Management & Productivity",
+      "svgDiagram": "<svg viewBox=\"0 0 560 380\" xmlns=\"http://www.w3.org/2000/svg\"><style>.axl{font:700 12px 'IBM Plex Mono',monospace;fill:#5B6178;letter-spacing:.04em;}.ql{font:700 15px Arial,sans-serif;fill:#fff;}.qs{font:400 11.5px Arial,sans-serif;fill:rgba(255,255,255,.85);}</style><rect x=\"70\" y=\"20\" width=\"460\" height=\"300\" rx=\"10\" fill=\"none\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><line x1=\"300\" y1=\"20\" x2=\"300\" y2=\"320\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><line x1=\"70\" y1=\"170\" x2=\"530\" y2=\"170\" stroke=\"#DCE0EA\" stroke-width=\"2\"/><rect x=\"72\" y=\"22\" width=\"226\" height=\"146\" rx=\"6\" fill=\"#B54A3F\"/><rect x=\"302\" y=\"22\" width=\"226\" height=\"146\" rx=\"6\" fill=\"#262B45\"/><rect x=\"72\" y=\"172\" width=\"226\" height=\"146\" rx=\"6\" fill=\"#DB8437\"/><rect x=\"302\" y=\"172\" width=\"226\" height=\"146\" rx=\"6\" fill=\"#5B6178\"/><text x=\"185\" y=\"70\" text-anchor=\"middle\" class=\"ql\">DO NOW</text><text x=\"185\" y=\"90\" text-anchor=\"middle\" class=\"qs\">Urgent + Important</text><circle cx=\"185\" cy=\"122\" r=\"10\" fill=\"#fff\" class=\"svg-pulse-dot\"/><circle cx=\"185\" cy=\"122\" r=\"4\" fill=\"#B54A3F\"/><text x=\"415\" y=\"70\" text-anchor=\"middle\" class=\"ql\">SCHEDULE</text><text x=\"415\" y=\"90\" text-anchor=\"middle\" class=\"qs\">Not Urgent + Important</text><text x=\"185\" y=\"222\" text-anchor=\"middle\" class=\"ql\">DELEGATE</text><text x=\"185\" y=\"242\" text-anchor=\"middle\" class=\"qs\">Urgent + Not Important</text><text x=\"415\" y=\"222\" text-anchor=\"middle\" class=\"ql\">DROP</text><text x=\"415\" y=\"242\" text-anchor=\"middle\" class=\"qs\">Not Urgent + Not Important</text><text x=\"300\" y=\"345\" text-anchor=\"middle\" class=\"axl\">URGENT &#8592;&#8594; NOT URGENT</text><text x=\"30\" y=\"175\" text-anchor=\"middle\" class=\"axl\" transform=\"rotate(-90 30 175)\">IMPORTANT &#8592;&#8594; NOT</text><g transform=\"translate(326,118)\"><rect width=\"178\" height=\"24\" rx=\"12\" fill=\"#B5651F\" stroke=\"#F0C08A\" stroke-width=\"2\" class=\"svg-callout-badge\"/><text x=\"89\" y=\"16\" text-anchor=\"middle\" style=\"font:800 9.5px Arial,sans-serif;fill:#fff;letter-spacing:.03em;\">&#127919; EXECUTIVE RULE</text></g></svg>",
+      "b": [
+        "Effective triage can reclaim 10+ hours a week."
+      ],
+      "callout": {
+        "type": "stat",
+        "label": "Why this matters",
+        "text": "Executives spend 30–40% of their time in email. Effective filtering and triage can reclaim 10+ hours a week."
+      },
+      "layout": "QUADRANT",
+      "quadrants": [
+        {
+          "label": "Eisenhower Matrix",
+          "desc": "Sort by urgency and importance so effort goes to what truly matters"
+        },
+        {
+          "label": "Pomodoro Technique",
+          "desc": "25 minutes of focused work, 5-minute break, longer break every 4 cycles"
+        },
+        {
+          "label": "Time Blocking",
+          "desc": "Dedicated blocks for deep work vs. email to reduce distraction and multitasking"
+        },
+        {
+          "label": "80/20 Rule (Pareto)",
+          "desc": "Identify the 20% of activities producing 80% of the results"
+        }
+      ],
+      "howTo": [
+        "When your task list is genuinely overwhelming, start with the Eisenhower Matrix — sort by urgency and importance first, so effort goes to what actually matters, not just what feels loudest.",
+        "For focused execution once priorities are sorted, apply the Pomodoro Technique — 25 minutes of focused work, a 5-minute break, a longer break every 4 cycles.",
+        "Protect the highest-priority work with Time Blocking — a dedicated block for deep work versus email, so the two don't compete moment to moment.",
+        "Periodically step back and apply the 80/20 Rule — identify which 20% of your activities are actually producing 80% of the results, and weight your time accordingly.",
+        "Don't try to run all four simultaneously from day one — pick the one framework that addresses your current biggest gap, build the habit, then layer in the next."
+      ],
+      "trainerCue": "Don't lecture through all four frameworks back to back — pause after each one and ask who already uses it, even without knowing its name.",
+      "block": "Time Management & Productivity"
+    },
+    {
+      "h": "Time Management",
+      "section": "Time Management & Productivity",
+      "layout": "PROCESS",
+      "processSteps": [
+        {
+          "label": "Decide",
+          "desc": "Before touching the calendar, decide what actually deserves protected time this week — this is a prioritization call, not a scheduling one"
+        },
+        {
+          "label": "Block",
+          "desc": "Turn that decision into an actual calendar block, before the day fills up with other people's requests"
+        },
+        {
+          "label": "Protect",
+          "desc": "Defend the block the way you'd defend any other commitment — a calendar entry with no protection behind it isn't really management"
+        },
+        {
+          "label": "Review",
+          "desc": "Check weekly whether protected time actually held, or whether it kept losing to whatever felt urgent in the moment"
+        }
+      ],
+      "b": [
+        "Time management and calendar management aren't the same skill, even though they're inseparable in practice: time management is deciding what deserves time; calendar management is making sure the calendar actually reflects and protects that decision."
+      ],
+      "trainerCue": "Link this back to Day 3's Calendar Management: deciding priorities is only half the job, and protecting them on the calendar is the other half. Ask the room to name one priority from this week and where it's protected on the calendar."
+    },
+    {
+      "h": "When Time Management Fails Despite a Clean Calendar",
+      "section": "Time Management & Productivity",
+      "b": [
+        "A calendar that's technically conflict-free can still fail at time management — if it's packed with reactive meetings and has no protected space for the work that actually matters most.",
+        "This connects directly to travel planning too: a trip only works if the calendar around it — before, during, and after — was managed with the same discipline as the itinerary itself.",
+        "Discussion prompt: think of a week where your calendar looked fine on paper but the actual priorities still didn't get done — what broke, the decision or the protection of it?"
+      ],
+      "howTo": [
+        "Check your calendar for reactive-meeting saturation, not just conflicts — a technically conflict-free calendar can still be packed with low-value reactive meetings that crowd out real priority work.",
+        "Confirm protected space actually exists for the work that matters most this week, not just that no two events overlap.",
+        "Apply this same check to travel weeks specifically — a trip only works if the calendar before, during, and after it was managed with the same discipline as the itinerary itself.",
+        "When a week goes wrong despite a clean-looking calendar, diagnose whether the failure was in the decision (wrong priorities set) or the protection (right priorities set but not defended) — the fix differs for each.",
+        "Review this pattern weekly, not just when something visibly breaks — a clean calendar with no protected priority time will quietly fail the same way every week until it's checked."
+      ],
+      "trainerCue": "Actually run the discussion prompt — a specific memory of a technically-fine-but-actually-failed week is what makes 'protection, not just decision' land as a real distinction rather than a wordplay."
+    },
+    {
+      "h": "Energy Management vs. Time Management",
+      "section": "Time Management & Productivity",
+      "singleSlide": true,
+      "b": [
+        "Time management asks 'when should this happen'; energy management asks 'am I actually capable of doing this well right now' — both matter, and most people only plan around the first one.",
+        "Most people have a predictable energy pattern across the day — a window of sharp focus, a mid-afternoon dip, a second wind. Protecting the sharp-focus window for the work that actually needs it is a real scheduling decision, not a luxury.",
+        "As an EA, this applies to your executive's calendar too: a high-stakes negotiation scheduled during their known low-energy window is a real risk you can flag, not just a time slot that happened to be open."
+      ],
+      "howTo": [
+        "Identify your own (or your executive's) predictable energy pattern across the day — a sharp-focus window, a mid-afternoon dip, a possible second wind.",
+        "Protect the sharp-focus window specifically for the work that actually needs it — treat this as a real scheduling decision, not a luxury to sacrifice when the calendar gets full.",
+        "When scheduling for someone else, check a high-stakes item (a negotiation, a critical decision) against their known low-energy windows before confirming the time.",
+        "If a high-stakes item must land during a known low-energy window, flag that explicitly as a real risk rather than treating the slot as neutral just because it was open.",
+        "Revisit this pattern periodically — energy rhythms can shift with role changes, travel, or life circumstances, so don't treat it as fixed forever."
+      ],
+      "trainerCue": "Ask the room to name their own natural high-energy window — most people already know it intuitively but have never actually protected it on a calendar."
+    },
+    {
+      "h": "Handling Interruptions Without Losing the Day",
+      "section": "Time Management & Productivity",
+      "layout": "PROCESS",
+      "processSteps": [
+        {
+          "label": "Triage in Seconds",
+          "desc": "Is this genuinely urgent, or does it just feel urgent because it's happening right now?"
+        },
+        {
+          "label": "Capture, Don't Solve",
+          "desc": "If it's not truly urgent, write it down where you'll actually see it later — don't trust memory"
+        },
+        {
+          "label": "Return Deliberately",
+          "desc": "Finish the thought you were on before the interruption, don't just abandon it"
+        },
+        {
+          "label": "Batch the Non-Urgent",
+          "desc": "Handle captured items in one block later, rather than one at a time as they arrive"
+        }
+      ],
+      "b": [
+        "Every interruption has a hidden cost beyond its own length — the time it takes to mentally return to what you were doing before it. A two-minute interruption can cost fifteen minutes of real focus.",
+        "Not every interruption is actually urgent — it just arrives with urgency because it's happening in the present moment. Learning to tell the difference in the first few seconds is the actual skill."
+      ],
+      "trainerCue": "Ask the room how long it actually takes them to get back to full focus after a genuine interruption — most underestimate it badly until they think about it directly."
+    },
+    {
+      "h": "The Two-Minute Rule",
+      "section": "Time Management & Productivity",
+      "b": [
+        "If a task will genuinely take less than two minutes, do it immediately instead of adding it to a list — the overhead of tracking it exceeds the cost of just finishing it.",
+        "This only works as a discipline if it's applied honestly — a task that 'should' take two minutes but keeps expanding once you start is a sign to stop and actually schedule it properly instead.",
+        "The rule prevents small tasks from silently accumulating into a backlog that feels overwhelming even though no single item was ever hard."
+      ],
+      "howTo": [
+        "When a task lands, honestly estimate whether it will genuinely take less than two minutes — not whether you hope it will.",
+        "If it genuinely qualifies, do it immediately instead of adding it to a list — the overhead of tracking it exceeds the cost of just finishing it.",
+        "If it starts expanding once you begin (it \"should\" take two minutes but clearly won't), stop and schedule it properly instead of forcing it through under the two-minute label.",
+        "Apply this rule consistently across a work session, not just occasionally — its value comes from preventing small tasks from silently accumulating into an overwhelming backlog.",
+        "Periodically check your own task list for items that have been sitting there despite genuinely qualifying for the two-minute rule — that's a sign the discipline has lapsed."
+      ],
+      "trainerCue": "Ask the room to estimate how many two-minute tasks are currently sitting unaddressed in their own inbox or task list right now — the number is usually higher than expected."
+    },
+    {
+      "h": "Batch Processing Similar Tasks",
+      "section": "Time Management & Productivity",
+      "b": [
+        "Grouping similar tasks together (all calls in one block, all email replies in another) reduces the mental cost of switching between completely different types of work.",
+        "This is different from just doing tasks in the order they arrive — batching is a deliberate choice to delay some tasks slightly so they can be done together more efficiently.",
+        "The trade-off is real: batching works best for tasks without a hard individual deadline. A genuinely urgent item still needs to break the batch."
+      ],
+      "howTo": [
+        "Identify categories of similar, recurring tasks in your own workload — calls, email replies, data entry — that are currently handled one at a time as they arrive.",
+        "Group same-category tasks into a dedicated block rather than switching between different types of work throughout the day.",
+        "Deliberately delay non-urgent items slightly so they can be batched together, rather than defaulting to first-in-first-out processing.",
+        "Break the batch immediately for anything genuinely urgent — batching only applies to tasks without a hard individual deadline.",
+        "Review your batching categories periodically — as your workload shifts, which tasks are worth batching can change too."
+      ],
+      "trainerCue": "Ask the room to name one category of their own recurring work that's currently handled one-at-a-time as it arrives, but could realistically be batched."
+    },
+    {
+      "h": "The Cost of Context-Switching",
+      "section": "Time Management & Productivity",
+      "layout": "STAT",
+      "statNumber": "23 minutes",
+      "statLabel": "average time to return to full focus after a significant interruption",
+      "b": [
+        "Every switch between unrelated tasks — not just interruptions, but voluntarily jumping between different types of work — carries a real cost in the time it takes to rebuild full concentration.",
+        "This is the strongest practical argument for batching and protected focus blocks: it's not about discipline for its own sake, it's about not paying the same mental re-entry cost dozens of times a day.",
+        "Multitasking on genuinely different cognitive tasks (not just background tasks like listening to music) is almost always slower in total than doing them one at a time, even though it feels more productive in the moment."
+      ],
+      "howTo": [
+        "Notice when you're voluntarily jumping between unrelated types of work, not just reacting to interruptions — both carry the same real refocusing cost.",
+        "Use batching and protected focus blocks deliberately to reduce how often you pay the re-entry cost across a day.",
+        "Resist multitasking on genuinely different cognitive tasks — it feels productive in the moment but is almost always slower in total than sequential focus.",
+        "When you must switch tasks, allow a brief moment to consciously close out the previous task before starting the next, rather than abruptly jumping.",
+        "Track your own switching frequency for a day occasionally — most people significantly underestimate how often they do it until they actually count."
+      ],
+      "trainerCue": "Ask the room to count how many times they've switched between unrelated tasks in just the last hour — the number is usually far higher than they'd guess before counting."
+    },
+    {
+      "h": "Weekly Planning Rituals",
+      "section": "Time Management & Productivity",
+      "b": [
+        "A short, consistent weekly planning session — reviewing what's coming, what didn't get done last week, and what actually needs to happen this week — prevents the Monday-morning scramble of reconstructing priorities from scratch.",
+        "This is different from daily planning: weekly planning catches the things that don't fit neatly into a single day, like a deadline that's three days out but needs prep starting today.",
+        "The ritual only works if it's protected on the calendar itself — a planning session that gets bumped for 'something more urgent' every week isn't actually a ritual."
+      ],
+      "howTo": [
+        "Set a fixed, recurring time each week for planning — the ritual only works if it's protected on the calendar the same way any other real commitment is.",
+        "During the session, review what's coming in the week ahead, not just today — this is what catches items that need prep starting several days before they're due.",
+        "Review what didn't get done the previous week and decide deliberately whether it still matters or should be dropped, rather than letting it silently roll forward.",
+        "Identify anything that needs multi-day lead time (a deadline three days out that needs prep starting today) and block time for it now, not the day it becomes urgent.",
+        "Defend this block the way you would any other meeting — a planning session that gets bumped for \"something more urgent\" every week has stopped functioning as a real ritual."
+      ],
+      "trainerCue": "Ask who currently has an actual standing weekly planning block versus who plans reactively each morning — this usually splits the room roughly in half."
+    },
+    {
+      "h": "Saying No Without Damaging Relationships",
+      "section": "Time Management & Productivity",
+      "layout": "COMPARE",
+      "compareLeft": {
+        "label": "Damages the Relationship",
+        "items": [
+          "A flat 'no' with no explanation",
+          "Silence — never responding at all",
+          "Agreeing, then quietly not delivering"
+        ]
+      },
+      "compareRight": {
+        "label": "Protects the Relationship",
+        "items": [
+          "A clear no, with the real reason and a genuine alternative",
+          "A prompt response, even if the answer is no",
+          "Honesty up front about what you can't take on"
+        ]
+      },
+      "b": [
+        "Saying yes to everything isn't actually generous — it just moves the disappointment to later, when something inevitably slips because there was never enough real capacity for it.",
+        "A well-delivered no is specific about the constraint ('I can't take this on before Thursday given X') rather than vague, which makes it feel like a real answer instead of a dismissal."
+      ],
+      "howTo": [
+        "When you need to decline a request, respond promptly rather than going silent — a fast no protects the relationship far better than delayed silence.",
+        "State the real reason for the no specifically (\"I can't take this on before Thursday given X\") rather than a vague, unexplained decline.",
+        "Offer a genuine alternative alongside the no where possible — a different timeline, a different person, a partial version of the ask.",
+        "Never agree just to avoid the discomfort of saying no, and then quietly fail to deliver — this damages trust more than an honest no ever would.",
+        "If you're genuinely at capacity, say so plainly up front rather than accepting more and letting something inevitably slip later."
+      ],
+      "trainerCue": "Ask for a real example of a 'no' that actually strengthened a working relationship because it was handled well — most people have one if they think about it."
+    },
+    {
+      "h": "Setting Realistic Deadlines",
+      "section": "Time Management & Productivity",
+      "b": [
+        "A deadline that's set without genuinely accounting for the work involved isn't a real deadline — it's a guess that creates false confidence until it's suddenly missed.",
+        "Building in real buffer for the unexpected (not padding every estimate blindly, but accounting for genuine uncertainty) is what makes a deadline something people can actually plan around.",
+        "As an EA, you're often the one setting deadlines for tasks you're not personally doing — checking in with whoever's doing the actual work before committing to a date is what keeps the deadline honest."
+      ],
+      "howTo": [
+        "Before setting a deadline, genuinely account for the actual work involved — a deadline set without this is a guess, not a real commitment.",
+        "Check in with whoever will actually be doing the work before committing to a date on their behalf — this keeps the deadline honest rather than optimistic.",
+        "Build in real buffer for genuine uncertainty, without padding every estimate blindly regardless of actual risk.",
+        "State the deadline clearly with an owner attached, the same discipline covered in the ACT Email framework from Day 1 — a deadline with no clear owner is the most common reason it slips.",
+        "If a deadline later looks at risk, flag that early rather than waiting until it's already missed — an early flag gives real options that a last-minute one doesn't."
+      ],
+      "trainerCue": "Ask for a real example of a deadline that was set too optimistically and what that actually cost once it slipped — this is a nearly universal experience worth naming directly."
+    },
+    {
+      "h": "Time Tracking Done Right",
+      "section": "Time Management & Productivity",
+      "b": [
+        "Common mistakes: logging time at week's end, vague descriptions, underbilling small tasks, forgetting communications.",
+        "Build a Weekly Time Summary even for non-billable work — it reveals where time actually goes."
+      ],
+      "howTo": [
+        "Log time as you work, not at the end of the week — reconstructing a week from memory is where the most common tracking mistakes creep in.",
+        "Write specific descriptions for each entry, not vague ones — a description has to be useful to someone reviewing it later, not just a placeholder to fill the field.",
+        "Don't skip logging small tasks because they feel too minor to bother with — these are the ones that add up to real underbilling or lost visibility over a year.",
+        "Include communications (calls, emails handled on someone's behalf) in your tracking, not just document work — these are real time and often the most commonly forgotten category.",
+        "Build a Weekly Time Summary even for non-billable work — it's what actually reveals where your time goes, not just what you assume it goes to."
+      ],
+      "trainerCue": "Ask the room to guess which time-tracking mistake costs the most money over a year — most guess wrong (it's usually the small underbilled tasks, not the big missed ones)."
+    },
+    {
+      "h": "The Weekly Time Audit",
+      "section": "Time Management & Productivity",
+      "b": [
+        "Most people's sense of where their time actually goes is inaccurate — a real time audit (tracking actual activity for even one representative week) usually reveals surprises that pure intuition misses.",
+        "The goal isn't to track time forever — it's a periodic check-in to catch drift, the same way a budget review catches spending patterns that crept in unnoticed.",
+        "This connects directly to the Time Tracking Done Right topic earlier in this day — a periodic audit is what turns raw tracked data into an actual improvement, rather than just a log nobody reviews."
+      ],
+      "howTo": [
+        "Track your actual activity for one representative week — not your assumed pattern, since intuition about where time goes is usually inaccurate.",
+        "Compare the tracked data against what you believed your priorities were that week — the gap between the two is the actual finding.",
+        "Treat this as a periodic check-in, not a permanent tracking habit — the goal is catching drift occasionally, the same way a budget review catches unnoticed spending patterns.",
+        "Use the Time Tracking Done Right discipline from earlier in this day as the input — a periodic audit only works if the underlying data was actually captured accurately.",
+        "Act on what the audit reveals — an audit that's reviewed but doesn't change anything about the following week's planning isn't actually serving its purpose."
+      ],
+      "trainerCue": "Ask the room to guess, before checking, what percentage of their week goes to their top priority — then compare that guess to what a real audit would likely show. The gap is usually the whole lesson."
+    },
     {
       "h": "Data Entry That Holds Up",
       "section": "Daily Operations & Priorities",
@@ -44,7 +329,8 @@ const DAY4 = {
           "desc": "Order by relevant columns before it goes anywhere else"
         }
       ],
-      "trainerCue": "Live-demo the four-step data cleaning order on a genuinely messy sample spreadsheet — trainees remember doing it far better than hearing it described."
+      "trainerCue": "Live-demo the four-step data cleaning order on a genuinely messy sample spreadsheet — trainees remember doing it far better than hearing it described.",
+      "block": "Data & Outreach"
     },
     {
       "h": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
@@ -759,7 +1045,19 @@ const DAY4 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 31,
+      "afterIndex": 0,
+      "q": "Which prioritization technique focuses on the 20% of tasks that produce 80% of results?",
+      "opts": [
+        "The 80/20 Rule (Pareto Principle)",
+        "Time Blocking",
+        "The Eisenhower Matrix",
+        "The Pomodoro Technique"
+      ],
+      "a": 0,
+      "r": "Pareto's principle is about impact concentration — a small slice of effort driving most of the outcome."
+    },
+    {
+      "afterIndex": 44,
       "q": "Your first outreach email got no reply after four days. What's the strongest follow-up?",
       "opts": [
         "\"Just bumping this to the top of your inbox.\"",
@@ -936,6 +1234,39 @@ const DAY4 = {
       ],
       "a": 1,
       "r": "A pivot table summarizes the whole table in one step and updates when the data changes. Manual adding, typed totals and copying filtered results are slow and easy to get wrong."
+    },
+    {
+      "q": "What is the main risk of prioritizing tasks purely by order received rather than by a framework?",
+      "opts": [
+        "None really: first-come, first-served is the fairest method and keeps everyone equally happy",
+        "Urgent, high-impact items can get buried behind less important but earlier requests",
+        "The assistant ends up spending too long on each task because they're handled one at a time",
+        "Each task takes longer, because there's no time set aside for planning"
+      ],
+      "a": 1,
+      "r": "Without a prioritization framework, timing rather than actual importance ends up driving the day."
+    },
+    {
+      "q": "What does 'time tracking done right' primarily protect against?",
+      "opts": [
+        "Losing visibility into where time actually goes, which undermines both billing accuracy and workload planning",
+        "Being questioned by management about how long breaks are and when people start and finish work",
+        "Being paid incorrectly, since hourly pay depends on accurate timesheets each week",
+        "Clients disputing invoices because the time entries don't show which staff member did the work each day"
+      ],
+      "a": 0,
+      "r": "Accurate time tracking protects billing integrity and gives real data for workload and capacity decisions."
+    },
+    {
+      "q": "What should a prioritization framework account for that a simple to-do list usually misses?",
+      "opts": [
+        "Which tasks are easiest to complete first",
+        "The order tasks were added to the list",
+        "The relative urgency and importance of each item, not just its existence",
+        "How long each item will take, so the quickest tasks can be cleared first to shorten the list"
+      ],
+      "a": 2,
+      "r": "A flat list treats every item as equal; a framework forces an explicit judgment about urgency and importance."
     }
   ],
   "discussionQuestion": "Think of a cold email or call you actually answered. What made it worth answering, and what would you put in your own first outreach email because of it?"
@@ -973,6 +1304,22 @@ const DAY4_EXTRA_LEARNING = {
       "Touch 2 (day 3–4): a new angle — a relevant resource, a sharper question, or a different benefit. Same small ask.",
       "Touch 3 (day 8–10): a short, courteous close-out that makes it easy to say \"not now\" — it often gets the most replies.",
       "Then stop. Log the outcome and set a reminder only if they asked you to follow up later."
+    ]
+  },
+  "4::Prioritization Frameworks": {
+    "t": "Choosing the Right Framework",
+    "p": [
+      "Eisenhower Matrix — best when the list is overwhelming and you need to decide what not to do. Sort by urgent/important, then delegate or drop two of the four quadrants.",
+      "Pomodoro — best when the priorities are clear but focus is the problem: 25 minutes of single-task work, a 5-minute break, repeat.",
+      "Time Blocking — best for protecting the few tasks that matter most this week by giving them a fixed calendar slot before other requests fill the day."
+    ]
+  },
+  "4::Time Tracking Done Right": {
+    "t": "Writing a Useful Time Entry",
+    "p": [
+      "Formula: verb + object + purpose — 'Drafted deposition notice for Harlow matter; circulated to counsel for review' tells a reviewer exactly what was done and why.",
+      "Record in increments your firm uses (often 0.1 hour = 6 minutes) and round honestly — consistent small inaccuracies distort a whole month's billing.",
+      "Tag each entry with the client/matter as you log it; assigning time to matters days later is where the most write-offs and disputes begin."
     ]
   }
 };
