@@ -1192,14 +1192,82 @@ async function eoEvaluate(){
 }
 Object.assign(window, {eoChoose, eoReset, eoSend, eoDraft, eoFinish, eoEvaluate});
 
-/* Day 4 Practice Lab: add the simulator as Part 4 */
+/* Day 4 Practice Lab, Part A: Prioritize the Day (the Time Management & Productivity block).
+   Step 1 sorts eight real tasks with the day's tools (two-minute rule, time blocking, batching,
+   delegating, pushing back); step 2 is the written push-back on an unrealistic deadline, AI-graded. */
+const TM_ACTIONS = ["Do it now (under 2 minutes)","Block time for it today","Batch it with similar tasks","Delegate it","Push back and renegotiate the deadline"];
+const TM_TASKS = [
+  {t:"The court reporter emailed to confirm Thursday's deposition time. They just need a 'Confirmed' reply.", want:0, why:"a one-line reply: do it now"},
+  {t:"Draft the exhibit index for Friday's Harlow hearing. About 90 minutes of focused work; Elias needs it by Wednesday.", want:1, why:"important focused work with a deadline: protect a block of time for it"},
+  {t:"Eleven expense receipts from last week are waiting to be entered.", want:2, why:"many small, similar entries: do them together in one sitting"},
+  {t:"Order lunch for Wednesday's partner meeting. The office coordinator handles all catering orders.", want:3, why:"someone else owns catering: hand it over with the details"},
+  {t:"At 8:45 a partner asks for a summary of a 40-page contract 'by 10 today.' Your morning is already booked with Elias's exhibit index and a 10:30 filing.", want:4, why:"a new request that collides with existing priorities: offer a realistic time instead of silently failing"},
+  {t:"Six vendor calls to return, none urgent.", want:2, why:"similar low-urgency calls: batch them into one slot"},
+  {t:"Someone sent a new Zoom link for Elias's 2 PM call. The calendar invite needs updating.", want:0, why:"a two-minute fix that prevents a missed meeting: do it now"},
+  {t:"Prepare the quarterly CLE hours report for the managing partner, due Friday. About an hour.", want:1, why:"a known task with a deadline: put an hour on the calendar"}
+];
+function renderTimeMgmtSection(){
+  return `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Prioritize the Day</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">It's Monday, 8:30 AM. Here's what's on your list for Elias's office. For each task, choose how you'll handle it, using the tools from today's Time Management &amp; Productivity lessons.</p>
+    <div class="card" style="padding:14px 16px;overflow-x:auto;">
+      <table class="log-table">
+        <thead><tr><th>#</th><th>Task</th><th>How you'll handle it</th></tr></thead>
+        <tbody>${TM_TASKS.map((x,i)=>`
+          <tr><td>${i+1}</td><td style="font-size:12.8px;">${esc(x.t)}</td>
+          <td><select id="tmTask${i}" onchange="setTmTask(${i}, this.value)"><option value="">Choose&hellip;</option>${TM_ACTIONS.map(a=>`<option value="${a}">${a}</option>`).join("")}</select></td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkTmTasks()">Check My Plan</button>
+    <div id="tmTasksResult" style="margin-top:8px;font-size:13px;"></div>
+    <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:18px 0 5px;">Now write your reply to the partner in task 5: acknowledge the request, explain the conflict briefly and offer a realistic alternative.</label>
+    <textarea id="tmPushback" style="width:100%;min-height:120px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Hi …"></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkTmPushback(this)">Get Review</button>
+    <div id="tmPushbackResult" style="margin-top:10px;"></div>`;
+}
+function setTmTask(i,v){ toolState.tm = toolState.tm || {}; toolState.tm[i] = v; }
+async function checkTmTasks(){
+  const got = toolState.tm || {};
+  if(TM_TASKS.some((_,i)=>!got[i])){ toast(`Choose how you'll handle all ${TM_TASKS.length} tasks first.`); return; }
+  let correct = 0;
+  const rows = TM_TASKS.map((x,i)=>{ const ok = got[i]===TM_ACTIONS[x.want]; if(ok) correct++;
+    return `<li>${ok?"✅":"❌"} <b>Task ${i+1}:</b> ${esc(TM_ACTIONS[x.want])} (${esc(x.why)})</li>`; });
+  const score = Math.round(correct/TM_TASKS.length*100);
+  document.getElementById("tmTasksResult").innerHTML = `<b style="color:${score===100?'var(--success)':'var(--danger)'};">${correct}/${TM_TASKS.length} correct (${score}%)</b><ul style="margin:8px 0 0;padding-left:20px;">${rows.join("")}</ul>`;
+  await bumpPracticeProgress("coldcalling4", score);
+}
+async function checkTmPushback(btn){
+  const text = ((document.getElementById("tmPushback")||{}).value||"").trim();
+  if(text.length < 40){ toast("Write a fuller reply first."); return; }
+  if(!(await useLabAttempt(4, "tmPushback"))) return;
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  const el = document.getElementById("tmPushbackResult");
+  el.innerHTML = `<div class="ai-loading">Reviewing your reply…</div>`;
+  try{
+    const report = await runRubricEvaluation("Renegotiating an Unrealistic Deadline (reply to a partner)",
+      "At 8:45 AM a partner asks the assistant for a summary of a 40-page contract 'by 10 today.' The assistant's morning is already committed to Elias Thorne's exhibit index for Friday's hearing and a filing due at 10:30.",
+      text,
+      "Evaluate against the Day 4 time management lessons (Saying No Without Damaging Relationships; Setting Realistic Deadlines). A strong reply: acknowledges the request and its importance; states the conflict briefly and factually without oversharing confidential matter details; offers a specific realistic alternative (for example a time this afternoon, or the key sections by a set time) and asks which works; and, where two senior people's priorities truly collide, offers to check with Elias rather than silently choosing. It is short, polite and leads with the answer. Deduct for silently accepting a deadline that can't be met, a flat refusal with no alternative, blaming, or vague promises ('I'll try').");
+    toolState.tm = toolState.tm || {}; toolState.tm.pushbackReport = report;
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Reply</b>` + renderEvaluationReport(report, 4);
+    await bumpPracticeProgress("coldcalling4", report.totalScore);
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{ btn.disabled = false; btn.textContent = "Get Review"; }
+}
+Object.assign(window, {setTmTask, checkTmTasks, checkTmPushback});
+
+/* Day 4 Practice Lab: Prioritize the Day (Part A), then cold calling, lead generation, the intake call
+   and the Email Outreach Simulator */
 window.initColdCalling4 = function(body){
   toolState.calls = {};
   toolState.wizardIndex = 0;
   toolState.intakeCall = toolState.intakeCall || {step:"pick", personaId:null, chatHistory:[], startedAt:null};
-  const partA = renderColdCallingSection('A');
+  const partTM = renderTimeMgmtSection();
+  const partA = renderColdCallingSection('B').replace("margin:32px 0 10px;", "margin:0 0 10px;");
   const partB = `
-    <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">B. Lead Generation Practice</h3>
+    <h3 style="margin:0 0 10px;color:var(--navy);font-size:15px;">C. Lead Generation Practice</h3>
     <div class="card" style="padding:16px 18px;margin-bottom:12px;background:#F8F9FC;">
       <p style="font-size:13px;color:#37394A;margin:0;">${esc(LEAD_GEN_SCENARIO.text)}</p>
     </div>
@@ -1208,9 +1276,10 @@ window.initColdCalling4 = function(body){
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewLeadGenPlan()">Get Review</button>
     <div id="leadGenResult" style="margin-top:14px;"></div>
   `;
-  const partC = renderIntakeCallSection();
-  const partD = renderEmailOutreachSection();
+  const partC = renderIntakeCallSection().replace(">C. Live Intake Call Simulator<", ">D. Live Intake Call Simulator<");
+  const partD = renderEmailOutreachSection().replace(">D. Email Outreach Simulator<", ">E. Email Outreach Simulator<");
   body.innerHTML = renderToolWizard(4, [
+    {label:"Prioritize the Day", html:partTM},
     {label:"Cold-Calling Log", html:partA},
     {label:"Lead Generation Practice", html:partB},
     {label:"Live Intake Call Simulator", html:partC},
@@ -1222,7 +1291,7 @@ window.initColdCalling4 = function(body){
 };
 (function(){
   const t = PRACTICE_TOOLS.find(x=>x.id==="coldcalling4");
-  if(t){ t.title = "Cold-Calling, Lead Generation & Email Outreach"; t.desc = "Log a full round of cold-calling outreach, draft a real lead-generation plan, handle a live intake call, then run an email outreach sequence against a prospect who replies — or doesn't — the way a busy professional really would."; }
+  if(t){ t.title = "Prioritization, Cold-Calling & Email Outreach"; t.desc = "Sort a real Monday's tasks with the time-management tools and push back on an impossible deadline, then log a round of cold calls, draft a lead-generation plan, handle a live intake call and run an email outreach sequence against a prospect who replies — or doesn't."; }
 })();
 
 /* ---------- 7. Inbox Triage + Inbox Zero, one Gmail-style inbox (Day 2 lab) ----------
@@ -2020,7 +2089,7 @@ const SOP_LAB_ACTIVITIES = {
   dossier1:["Client Dossier","Preference Trackers","ACT Email","Gatekeeping Practice"],
   forcemultiplier2:["Anticipate the Real Need","Prompt Engineering","The Full Scenario","Inbox Triage"],
   calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel Management"],
-  coldcalling4:["Cold-Calling Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator"],
+  coldcalling4:["Prioritize the Day","Cold-Calling Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator"],
   insurance5:["Classify the Risk","Match the Strategy","Home Binder","Crisis Roleplay"],
   projectcompliance6:["Compliance Risk","Operational Warning Signs","Recovery Memo","Crisis Roleplay","Compliance Audit Simulation"],
   financial:["Trust Ledger Reconciliation","Invoice & Bill Audit","Invoice Follow-Up","Attention to Detail Test"],
