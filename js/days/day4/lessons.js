@@ -14,8 +14,8 @@
 const DAY4 = {
   "id": 4,
   "title": "Data & Outreach",
-  "theme": "Administrative Data & Research · Cold Calling & Lead Generation · Contact List Management",
-  "objective": "Clean data before it becomes a report, prioritize and run a workday that actually holds, and open cold outreach the right way.",
+  "theme": "Administrative Data & Research · Cold Calling & Lead Generation · Contact List Management · Email Outreach",
+  "objective": "Clean data before it becomes a report, prioritize and run a workday that actually holds, and open cold outreach by phone and email the right way.",
   "lessons": [
     {
       "h": "Data Entry That Holds Up",
@@ -73,95 +73,6 @@ const DAY4 = {
       "trainerCue": "If trainees have laptops, share a 50-row sample sheet and give them five minutes to build a pivot table of totals by category. Celebrate the first one done, then troubleshoot together."
     },
     {
-      "h": "The Daily Routine",
-      "section": "Daily Operations & Priorities",
-      "b": [
-        "Morning Scan (15–30 min) — flag Tier 1, prepare a briefing summary.",
-        "Midday Review — draft responses, confirm meetings.",
-        "End-of-Day Review — confirm nothing urgent is left, prep tomorrow."
-      ],
-      "layout": "PROCESS",
-      "processSteps": [
-        {
-          "label": "Morning Scan (15–30 min)",
-          "desc": "Flag Tier 1 issues, clear spam, prepare a briefing summary"
-        },
-        {
-          "label": "Midday Review",
-          "desc": "Draft responses, follow up on pending threads, confirm meetings"
-        },
-        {
-          "label": "End-of-Day Review",
-          "desc": "Confirm nothing urgent is left, prep tomorrow's summary"
-        }
-      ],
-      "trainerCue": "Walk your own actual morning routine (or a composite one) against the three-phase Daily Routine live — real specificity beats the abstract structure."
-    },
-    {
-      "h": "The Morning Briefing, In Practice",
-      "section": "Daily Operations & Priorities",
-      "b": [
-        "A short briefing beats forwarding dozens of raw emails."
-      ],
-      "example": {
-        "label": "Executive briefing, real format",
-        "lines": [
-          "2 client escalation issues — responses drafted",
-          "Vendor contract awaiting approval (expires Friday)",
-          "Media request from Business Today — deadline tomorrow",
-          "3 meeting confirmations secured",
-          "Finance flagged payment discrepancy ($8,450)"
-        ]
-      },
-      "howTo": [
-        "Scan the full inbox first, but never forward it raw — the briefing exists specifically to replace that.",
-        "Condense each item into one clear line stating what it is and its actual status, not a copy-pasted email excerpt.",
-        "Order the lines by urgency, leading with anything Tier 1 or time-sensitive (an expiring approval, a next-day deadline).",
-        "Keep the whole briefing to a handful of lines — if it's approaching the length of the original inbox, it has stopped doing its job.",
-        "Send it at a consistent time each morning, so it becomes a reliable, expected part of the executive's routine rather than an occasional summary."
-      ],
-      "trainerCue": "Compare this five-line briefing against what a raw, unfiltered inbox forward would have looked like for the same morning — the contrast is the whole point of this topic."
-    },
-    {
-      "h": "The Priority Matrix",
-      "section": "Daily Operations & Priorities",
-      "b": [
-        "Tier 1 (Immediate) — legal deadlines, high-value clients, media, financial approvals, crisis comms.",
-        "Tier 2 (Strategic) — revenue opportunities, partnerships, board comms, vendor negotiation."
-      ],
-      "layout": "COMPARE",
-      "compareLeft": {
-        "label": "Tier 1 — Immediate Escalation",
-        "items": [
-          "Legal deadlines",
-          "High-value clients",
-          "Media inquiries",
-          "Financial approvals",
-          "Crisis communications",
-          "Notify the executive immediately, no exceptions"
-        ]
-      },
-      "compareRight": {
-        "label": "Tier 2 — Strategic",
-        "items": [
-          "Revenue opportunities",
-          "Partnerships",
-          "Board communications",
-          "Vendor negotiations",
-          "Draft a response within 2–4 hours",
-          "Still important, but not an interrupt"
-        ]
-      },
-      "howTo": [
-        "When a new item lands, classify it into Tier 1 or Tier 2 before anything else — the tier determines your entire response timeline.",
-        "For Tier 1 (legal deadlines, high-value clients, media, financial approvals, crisis comms), notify the executive immediately with no exceptions.",
-        "For Tier 2 (revenue opportunities, partnerships, board comms, vendor negotiations), draft a response within 2-4 hours — important, but not an interrupt.",
-        "If an item genuinely doesn't fit cleanly into either tier, default to treating it as Tier 1 until you can confirm otherwise — the cost of over-escalating is lower than under-escalating.",
-        "Review your own tiering decisions periodically against how they actually played out — this sharpens judgment on the genuinely ambiguous cases over time."
-      ],
-      "trainerCue": "This is a good comprehension check: read out five sample emails and have the room shout 'Tier 1' or 'Tier 2' as fast as they can — speed reveals who's actually internalized the distinction."
-    },
-    {
       "h": "Dual-Role Context Switching",
       "section": "Daily Operations & Priorities",
       "fourPart": {
@@ -187,7 +98,7 @@ const DAY4 = {
       "fourPart": {
         "corePrinciples": [
           "A priority collision is when two genuinely important things need attention at the same time, and neither can simply be deferred — this is different from routine prioritization, where one task is clearly more urgent than another.",
-          "This builds directly on the Priority Matrix and prioritization frameworks covered earlier in this day — collision handling is what happens when the matrix itself doesn't cleanly resolve which comes first."
+          "This builds directly on the Priority Matrix (Day 2, Email Management) and the prioritization frameworks covered earlier in this program — collision handling is what happens when the matrix itself doesn't cleanly resolve which comes first."
         ],
         "howTo": [
           "When a genuine collision occurs, quickly assess the real cost of delay on each side — what specifically breaks if this one waits ten minutes, versus what breaks if the other one does.",
@@ -848,31 +759,7 @@ const DAY4 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 4,
-      "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
-      "opts": [
-        "Something to batch with the newsletter",
-        "Not worth flagging",
-        "Tier 1 — notify the executive immediately",
-        "Tier 2 — draft a response in 2–4 hours"
-      ],
-      "a": 2,
-      "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
-    },
-    {
-      "afterIndex": 3,
-      "q": "What best distinguishes high-performing email management from average?",
-      "opts": [
-        "Forwarding every email so nothing is missed",
-        "Deleting anything that looks unimportant",
-        "Replying to everything within 5 minutes",
-        "Handling 80–90% of operational emails independently with zero missed deadlines"
-      ],
-      "a": 3,
-      "r": "It's about independent, reliable handling of the bulk of email — not speed or forwarding volume."
-    },
-    {
-      "afterIndex": 34,
+      "afterIndex": 31,
       "q": "Your first outreach email got no reply after four days. What's the strongest follow-up?",
       "opts": [
         "\"Just bumping this to the top of your inbox.\"",
@@ -908,17 +795,6 @@ const DAY4 = {
       "r": "Stale entries are more common and more damaging than missing contacts outright — the list looks complete but quietly stops being trustworthy."
     },
     {
-      "q": "A Tier 1 email arrives (media inquiry with a deadline tomorrow). What's the required action?",
-      "opts": [
-        "Draft a response within 2–4 hours",
-        "Notify the executive immediately",
-        "Batch it with other emails for the end-of-day review",
-        "Delete it as low priority"
-      ],
-      "a": 1,
-      "r": "Tier 1 items — legal, high-value client, media, financial approval, crisis — require immediate notification."
-    },
-    {
       "q": "Best opening line for a cold call?",
       "opts": [
         "\"Hi, do you have 30 minutes right now? I'd like to take you through a presentation about what we do for clients.\"",
@@ -939,72 +815,6 @@ const DAY4 = {
       ],
       "a": 0,
       "r": "Verifying against source data before reporting is what prevents downstream errors."
-    },
-    {
-      "q": "The purpose of a morning email briefing is to...",
-      "opts": [
-        "Show the executive how many emails were handled overnight",
-        "Replace dozens of forwarded emails with a short, prioritized summary",
-        "Forward every overnight email in full, so the executive doesn't miss any detail",
-        "Let the executive skip their inbox entirely until the afternoon"
-      ],
-      "a": 1,
-      "r": "A tight briefing positions the assistant as strategic, not just a message-forwarder."
-    },
-    {
-      "q": "Why is email described as 'a control system, not cleanup'?",
-      "opts": [
-        "Because the goal is to delete as many messages as possible so the executive only ever sees a clean inbox",
-        "Because control means only the assistant can send from the executive's account, so every message is checked first",
-        "Because a weekly clean-up session is the best way to control volume, as long as it's never skipped",
-        "Email needs an ongoing structure that prevents backlog, rather than being tackled only in periodic clean-up sessions"
-      ],
-      "a": 3,
-      "r": "Treating email as a control system means preventing backlog through structure, not repeatedly fighting a growing pile."
-    },
-    {
-      "q": "What does a priority matrix for email typically weigh against each other?",
-      "opts": [
-        "How recently it arrived against how many people are copied",
-        "The sender's seniority against the length of the message",
-        "Urgency and importance together, not either one alone",
-        "The time of day it was received"
-      ],
-      "a": 2,
-      "r": "A priority matrix (like urgent/important) prevents mistaking loud-but-unimportant messages for genuinely critical ones."
-    },
-    {
-      "q": "Why are calendar and email described as 'one system' rather than two separate tools?",
-      "opts": [
-        "Email commitments (meeting requests, deadlines) directly create calendar obligations, so managing them separately creates gaps",
-        "Because the executive prefers to check both in the same app at the same time of day",
-        "Because most firms use one product, like Outlook, for both, so they're technically the same tool",
-        "Because meeting invitations arrive by email, so the inbox automatically becomes the calendar for anyone who reads it"
-      ],
-      "a": 0,
-      "r": "An email agreeing to a meeting is really a calendar commitment — managing them apart risks losing track of what was actually agreed."
-    },
-    {
-      "q": "What is a core element of a strong daily inbox-management routine?",
-      "opts": [
-        "Deleting anything that looks unimportant, so only real work stays in the inbox",
-        "A consistent process for triage, response, and filing at regular intervals throughout the day",
-        "Replying to every email the moment it arrives, so nothing ever waits",
-        "Keeping every email until the end of the month, then filing them all at once"
-      ],
-      "a": 1,
-      "r": "Consistency and structure — not reactive constant-checking or infrequent batching — define a high-performing routine."
-    },
-    {
-      "q": "What does 'high-performing inbox triage' primarily require an EA to correctly judge?",
-      "opts": [
-        "How many times a sender has followed up, since repeated messages show real urgency",
-        "How long each email will take to answer, so the quick ones are cleared first",
-        "Which emails are from the most senior people, since their messages always come first",
-        "Genuine urgency and importance, separated from how loudly or frequently something is repeated"
-      ],
-      "a": 3,
-      "r": "Skilled triage distinguishes real priority from noise, regardless of tone or repetition."
     },
     {
       "q": "In cold calling and appointment setting, what typically determines success more than anything else?",
@@ -1029,17 +839,6 @@ const DAY4 = {
       "r": "An error entered once doesn't stay contained — it resurfaces wherever that data gets reused."
     },
     {
-      "q": "What is a reasonable approach when an inbox has a genuine backlog after being offline?",
-      "opts": [
-        "Reply in the exact order messages arrived, oldest first, so nobody is kept waiting longest",
-        "Wait for the sender to follow up before responding",
-        "Archive everything older than a day and reply only to people who write again",
-        "Triage first for urgency/importance, then work through it systematically rather than chronologically"
-      ],
-      "a": 3,
-      "r": "Chronological order ignores actual priority — triage first, then execute, is the resilient approach."
-    },
-    {
       "q": "Why should lead-generation outreach be tracked systematically rather than from memory?",
       "opts": [
         "Because the firm needs a record of how many calls each person makes for their performance review",
@@ -1049,28 +848,6 @@ const DAY4 = {
       ],
       "a": 1,
       "r": "Structured tracking prevents dropped follow-ups and keeps outreach consistent across contacts and time."
-    },
-    {
-      "q": "What's the risk of treating every incoming email as equally urgent?",
-      "opts": [
-        "Very little: treating everything as urgent is the safest approach, since nothing is ever left waiting",
-        "It mainly affects the assistant's own stress levels, not the quality of the work or the outcomes",
-        "Genuine emergencies get diluted among routine messages, and the EA burns out trying to react to everything",
-        "Senders start marking every email as high priority, so the flag stops meaning anything"
-      ],
-      "a": 2,
-      "r": "Without differentiation, true urgency loses its signal value, and reactive handling becomes unsustainable."
-    },
-    {
-      "q": "What's a practical downside of replying to emails purely in the order they arrive?",
-      "opts": [
-        "A less important early email can delay a response to something urgent that arrived later",
-        "Senders who wrote first may feel ignored if they're answered after people who wrote later",
-        "It breaks most email etiquette standards, which expect the newest messages to be answered first",
-        "It takes longer, because emails on the same topic aren't grouped together"
-      ],
-      "a": 0,
-      "r": "Order of arrival has no necessary relationship to actual urgency — that mismatch is the core risk."
     },
     {
       "q": "Why should a lead-tracking system record the outcome of every outreach attempt, not just successful ones?",
@@ -1093,28 +870,6 @@ const DAY4 = {
       ],
       "a": 3,
       "r": "Respecting the other person's time with a clear, brief reason for calling builds more trust than diving straight into a pitch."
-    },
-    {
-      "q": "What does 'calendar and email as one system' imply about how an EA should file confirmed meeting requests?",
-      "opts": [
-        "The calendar should be updated in one batch at the end of each week, once all changes are final",
-        "Only in-person meetings need to be added to the calendar",
-        "Once a meeting is agreed via email, it should be reflected on the calendar promptly to avoid a mismatch",
-        "The email thread is the record, so the calendar only needs updating if the time changes"
-      ],
-      "a": 2,
-      "r": "Treating them as separate systems is exactly what creates the gap between what was agreed and what's actually scheduled."
-    },
-    {
-      "q": "What's the main reason to review and adjust a daily inbox routine periodically, rather than setting it once?",
-      "opts": [
-        "Email volume and priorities shift over time, so a routine that worked last quarter may no longer fit",
-        "A routine only works if it stays exactly the same, so reviewing it mainly confirms nothing has drifted",
-        "Email software updates every few months, and each update changes where the filing folders and rules live",
-        "It's mainly a compliance requirement: auditors expect to see that routines are reviewed each quarter"
-      ],
-      "a": 0,
-      "r": "A routine that isn't periodically reassessed can quietly become mismatched to current volume and priorities."
     },
     {
       "q": "Which of these is email MARKETING rather than cold outreach?",
@@ -1183,7 +938,7 @@ const DAY4 = {
       "r": "A pivot table summarizes the whole table in one step and updates when the data changes. Manual adding, typed totals and copying filtered results are slow and easy to get wrong."
     }
   ],
-  "discussionQuestion": "Where does your current inbox or calendar workflow break down first under pressure? What's one change that would fix it?"
+  "discussionQuestion": "Think of a cold email or call you actually answered. What made it worth answering, and what would you put in your own first outreach email because of it?"
 };
 
 const DAY4_EXTRA_LEARNING = {
@@ -1193,30 +948,6 @@ const DAY4_EXTRA_LEARNING = {
       "De-duplicate first: standardizing or sorting duplicates just produces neat duplicates, and each one can trigger a double email or double invoice.",
       "Standardize before filtering: 'St.' vs 'Street', 'CA' vs 'California' — filters silently miss records whose formatting differs.",
       "Validate against the source, not memory: check a sample of entries against the original document, especially numbers, dates, and names."
-    ]
-  },
-  "4::The Priority Matrix": {
-    "t": "Tier 3 and Below: What Can Wait",
-    "p": [
-      "Tier 3 (Routine): newsletters, internal FYIs, non-urgent scheduling — batch these into one daily block instead of handling them as they arrive.",
-      "Tier 4 (Archive/Delegate): promotional mail, automated notifications, requests another team owns — file or forward without executive involvement.",
-      "Re-tier when facts change: a routine vendor email becomes Tier 1 the moment it mentions a missed payment or a contract deadline."
-    ]
-  },
-  "4::The Daily Routine": {
-    "t": "Making the Routine Stick",
-    "p": [
-      "Protect the Morning Scan on the calendar like a meeting; if it slips, the executive starts the day reacting instead of informed.",
-      "Keep one running 'carry-over' list between the End-of-Day Review and the next Morning Scan so nothing depends on memory overnight.",
-      "Adjust to the executive's rhythm: if they start at 7 AM, your briefing must be ready by 6:45 — the routine serves their day, not yours."
-    ]
-  },
-  "4::The Morning Briefing, In Practice": {
-    "t": "Anatomy of a One-Page Briefing",
-    "p": [
-      "Top: 'Needs you today' — decisions, signatures, and calls only the executive can handle, each with a deadline.",
-      "Middle: 'Handled / in progress' — one line per item so they know it's covered without reading the thread.",
-      "Bottom: 'Heads-up' — upcoming deadlines, travel, and anything that could become urgent later in the week."
     ]
   },
   "4::How to Generate Leads for Business": {
