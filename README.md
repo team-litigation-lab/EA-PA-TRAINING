@@ -16,9 +16,12 @@ Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three fi
 
 To change a day, edit only that day's folder, so one day's edit can't break another day. After an edit, raise that file's `?v=` number in `index.html` so browsers fetch the new copy.
 
+**Sections.** Each topic's `section` groups it with the topics around it (e.g. Day 2's *Email Management*, Day 4's *Email Outreach & Marketing*). Every section opens with one divider slide showing its name and topics; the topic slides themselves only show *Day · Topic · Part*.
+
 A few rules keep saved progress safe:
 - **Titles are keys.** Topic titles must stay unique within a day, because notes, scripts and saved progress are matched by title.
 - **Adding or reordering topics.** A trainee's saved place and Quick Check answers are keyed by topic position. So when topics are added or reordered, also add the day's previous title order to the next entry in `DAY_LAYOUTS` in `index.html`. That moves each trainee's saved place to the same topic.
+- **Moving a topic to another day.** Move its entry in `lessons.js` (with its Quick Check, Knowledge Check questions and extra-learning box) and its `notes.js` / `scripts.js` entries, renaming their `"<day>::<title>"` keys, then add a `DAY_LAYOUTS` entry as above for both days. Saved places and Quick Check answers follow the topic to its new day by title.
 - **Missing files.** If a day's `lessons.js` doesn't load, the rest of the portal still starts and a banner asks the trainee to refresh.
 
 ## Checks (GitHub Actions)
