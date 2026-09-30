@@ -66,24 +66,25 @@ window.EAPA_UPDATE_PACK = "z";
    (the numbers, then the Feedback and Ranking cards, in one row on a laptop or desktop). */
 @media(min-width:761px){
   .dash-layout{grid-template-columns:minmax(0,1fr) !important;gap:12px;}
-  .dash-side{padding:10px 12px;}
-  .dash-side-inner{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) repeat(2,minmax(0,1.7fr));gap:10px;align-items:stretch;position:static;}
+  .dash-side{padding:6px 10px;}
+  .dash-side-inner{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) repeat(2,minmax(0,1.7fr));gap:8px;align-items:stretch;position:static;}
   .dash-side-inner > *{margin:0 !important;}
-  .dash-side-inner > .card.stat{grid-column:auto;padding:8px 12px;display:flex;flex-direction:column;justify-content:center;}
-  .dash-side .stat .num{font-size:18px;line-height:1.1;}
-  .dash-side .stat .lbl{font-size:9.5px;letter-spacing:.05em;line-height:1.3;margin-top:3px;}
-  .dash-side .stat .lbl span{font-size:9.5px;text-transform:none;letter-spacing:0;margin-top:2px !important;}
-  .dash-side .tfb-dash, .dash-side .rank-card, .dash-side .cert-dash, .dash-side .comp-card{padding:8px 12px;}
-  .dash-side .tfb-dash .sub, .dash-side .rank-card .sub, .dash-side .comp-card .sub, .dash-side .cert-dash .sub{font-size:10.5px;line-height:1.35;margin:3px 0 6px;}
-  .dash-side .tfb-dash .btn, .dash-side .cert-dash .btn{padding:4px 10px;font-size:11.5px;}
+  .dash-side-inner > .card.stat{grid-column:auto;padding:5px 10px;display:flex;flex-direction:column;justify-content:center;}
+  .dash-side .stat .num{font-size:15px;line-height:1.1;}
+  .dash-side .stat .lbl{font-size:8.5px;letter-spacing:.05em;line-height:1.25;margin-top:2px;}
+  .dash-side .stat .lbl span{font-size:8.5px;text-transform:none;letter-spacing:0;margin-top:2px !important;}
+  .dash-side .tfb-dash, .dash-side .rank-card, .dash-side .cert-dash, .dash-side .comp-card{padding:5px 10px;}
+  .dash-side .tfb-dash .sub, .dash-side .rank-card .sub, .dash-side .comp-card .sub, .dash-side .cert-dash .sub{font-size:10px;line-height:1.3;margin:2px 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .dash-side .tfb-dash .btn, .dash-side .cert-dash .btn{padding:2px 9px;font-size:10.5px;}
   .dash-side .rank-list{margin:3px 0 0;}
-  .dash-side .rank-list li{padding:2px 6px;font-size:11.5px;}
-  .dash-side .rank-card .num{font-size:15px;}
-  .dash-side .rank-card .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:3px 0 0;}
-  .dash-side .tfb-dash .sub{margin:2px 0 4px !important;}
-  .dash-side .tfb-dash-stars{margin-bottom:4px !important;}
-  .dash-side .tfb-dash-stars button{font-size:17px;}
-  .dash-main > .dash-side{margin-top:12px;}
+  .dash-side .rank-list li{padding:1px 6px;font-size:10.5px;}
+  .dash-side .rank-card .num{font-size:13px;}
+  .dash-side .rank-card .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0 0;}
+  .dash-side .tfb-dash .sub{margin:1px 0 3px !important;}
+  .dash-side .tfb-dash-stars{margin-bottom:2px !important;}
+  .dash-side .tfb-dash-stars button{font-size:14px;}
+  .dash-side .tfb-dash h4, .dash-side .rank-card h4, .dash-side .comp-card h4, .dash-side .cert-dash h4, .dash-side .card h3{font-size:9.5px;margin:0;}
+  .dash-main > .dash-side{margin-top:10px;}
 }
 /* The dashboard fills the screen: the two rows of day cards grow into the height that's left, so there's no
    empty space under the page (laptops and desktops). */
