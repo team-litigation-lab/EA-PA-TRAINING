@@ -1496,8 +1496,8 @@ main.main-dash{max-width:1600px;}
 .dash-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:stretch;}
 .dash-main{min-width:0;}
 .dash-main .module-grid{margin-bottom:0;}
-/* the progress stats run across the page in one navy band, above the Day cards */
-.dash-side{order:-1;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);border-radius:14px;padding:16px;box-shadow:var(--shadow);}
+/* the progress stats run across the page in one small navy band, under the Day cards */
+.dash-side{background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);border-radius:14px;padding:16px;box-shadow:var(--shadow);}
 .dash-side-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;align-items:stretch;}
 .dash-side-inner > .card{margin:0;}
 /* one row on a desktop: the four numbers, then the wider Feedback and Ranking cards */
@@ -1529,7 +1529,7 @@ main.main-dash{padding-top:18px;}
 @media(max-width:1500px){.dash-main .module-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}}
 @media(max-width:1000px){
   .dash-layout{grid-template-columns:1fr;}
-  .dash-side{order:-1;}
+  .dash-side{order:0;}
   .dash-side-inner{position:static;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
   .dash-logo{grid-column:1/-1;}
   .dash-hero{grid-template-columns:1fr;}
@@ -5249,6 +5249,15 @@ function renderDashboard(){
       <div class="module-grid">
         ${DAYS.map(d=>moduleCard(d)).join("")}
       </div>
+      <!-- progress stats: a small band right under the day cards -->
+      <aside class="dash-side"><div class="dash-side-inner">
+        <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
+        <div class="card stat"><div class="num">${ocs.score}%</div><div class="lbl">${ocs.tier ? `Best Competency — ${esc(displayTier(ocs.tier))}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${avgC}%</span></div></div>
+        <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
+        <div class="card stat"><div class="num">${done} / ${DAYS.length}</div><div class="lbl">Days completed</div></div>
+        ${renderFeedbackDashCard()}
+        ${renderRankingCard()}
+      </div></aside>
           <div class="hero-actions bottom-actions">${[
             resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : "",
             (()=>{ if(!state.traineeId) return ""; const c = certData();
@@ -5259,14 +5268,6 @@ function renderDashboard(){
           ${renderCompetencyStrip()}
     </div>
 
-    <aside class="dash-side"><div class="dash-side-inner">
-      <div class="card stat"><div class="num">${pct}%</div><div class="lbl">Program complete</div></div>
-      <div class="card stat"><div class="num">${ocs.score}%</div><div class="lbl">${ocs.tier ? `Best Competency — ${esc(displayTier(ocs.tier))}` : "Best Competency Score"}<span style="display:block;font-weight:400;margin-top:2px;">Avg across all attempts: ${avgC}%</span></div></div>
-      <div class="card stat"><div class="num">${avgScore()}%</div><div class="lbl">Average quiz score</div></div>
-      <div class="card stat"><div class="num">${done} / ${DAYS.length}</div><div class="lbl">Days completed</div></div>
-      ${renderFeedbackDashCard()}
-      ${renderRankingCard()}
-    </div></aside>
   </div>
   `;
 }
@@ -16652,7 +16653,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.30-z";
+var APP_BUILD = "2026.09.30-za";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -16715,7 +16716,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=2"></script>
 <script src="/js/days/day10/notes.js?v=1"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=toast1"></script>
+<script src="/js/eapa-updates.js?v=toast1s"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=1"></script>
 </body>
