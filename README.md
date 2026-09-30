@@ -4,6 +4,23 @@ The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `ind
 
 **🏠 Main Portal (admins):** while an admin is signed in, the top bar has **🏠 Main Portal** and the Admin screen has **← Back to Main Portal** (next to Log out). Both open the LSH Training Portal's Training Directory (`https://cm-training-activity.pages.dev/programs.html`), where admins open each program. Trainees and the 👁 Trainee view don't show them. It's `js/portal-link.js`, the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them.
 
+## Where each day's content lives
+
+Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three files:
+
+| File | What's in it |
+| --- | --- |
+| `lessons.js` | The topics (lessons), Quick Checks, Knowledge Check questions, discussion question and extra-learning boxes. |
+| `notes.js` | The trainer's speaker notes for Presenter view, Admin → Trainer Cues and the Speaker Notes PDF. |
+| `scripts.js` | The spoken script and scenario for every slide. |
+
+To change a day, edit only that day's folder, so one day's edit can't break another day. After an edit, raise that file's `?v=` number in `index.html` so browsers fetch the new copy.
+
+A few rules keep saved progress safe:
+- **Titles are keys.** Topic titles must stay unique within a day, because notes, scripts and saved progress are matched by title.
+- **Adding or reordering topics.** A trainee's saved place and Quick Check answers are keyed by topic position. So when topics are added or reordered, also add the day's previous title order to the next entry in `DAY_LAYOUTS` in `index.html`. That moves each trainee's saved place to the same topic.
+- **Missing files.** If a day's `lessons.js` doesn't load, the rest of the portal still starts and a banner asks the trainee to refresh.
+
 ## Checks (GitHub Actions)
 
 `.github/workflows/checks.yml` runs on every pull request and every push to `main`. A red **Checks** status means something is broken, and the log says what:

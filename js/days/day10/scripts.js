@@ -569,6 +569,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "Your colleague has already replied to a complaint with 'This is completely false and you know it.' It's getting shared. What happens next, and who do you bring in?"
   }
  },
+ "10::Copyright, Image Rights & Permissions": {
+  "p1": {
+   "why": "One borrowed photo can bring a legal claim, and for a law firm that's an especially bad look.",
+   "talk": "Almost everything online, images, videos, music and articles, is protected by copyright. Being able to download it doesn't mean the firm can post it. We use content the firm owns, content with a license that covers our use, like paid stock photos, or content we have written permission for. And people in photos need to agree to appear in promotion. For clients, we need written permission, because even showing that someone is a client can breach confidentiality.",
+   "walk": [
+    "First, we source images from the firm's library, licensed stock or our own photographer, and check the license terms.",
+    "Next, we keep a record for each image: source, license, date and any required credit.",
+    "Then we get signed photo releases from staff and guests, and written consent from any client.",
+    "After that, we use licensed music for videos.",
+    "Finally, we share others' posts with the platform's share button or with permission, never by re-uploading."
+   ],
+   "ask": "Where do most of the firm's social media images come from right now?",
+   "scenario": "The marketing intern found the perfect courthouse photo on a news website and wants to use it for a LinkedIn post about Elias's trial win. What do you suggest instead, and why?"
+  },
+  "p2": {
+   "why": "Most copyright problems start with a good intention and a shortcut.",
+   "talk": "When in doubt, make our own image or use a licensed one. It's quicker than dealing with a takedown notice. Other companies' logos shouldn't appear in a way that suggests they endorse the firm. Two traps: thinking that crediting the photographer makes it fine, when credit isn't permission, and posting an event photo without checking whether any client in it agreed to appear.",
+   "walk": [
+    "First, when unsure, use your own or licensed content.",
+    "Next, don't imply endorsement with other logos.",
+    "Then, credit isn't permission.",
+    "Finally, check every face in event photos."
+   ],
+   "ask": "What would you say to a partner who says, 'Everyone reposts photos, it's fine'?",
+   "scenario": "A partner wants to post a great photo from last night's charity dinner. It shows Elias with two clients and a local news anchor, and it was taken by a guest who emailed it over. What do you need before it goes up?"
+  }
+ },
  "10::Endorsement & Disclosure Rules": {
   "p1": {
    "why": "If someone promotes the firm because of a relationship or a perk, the audience has to be told.",
