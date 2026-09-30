@@ -2,57 +2,6 @@
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
    why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
- "2::Bulletproof Basics": {
-  "p1": {
-   "why": "Three everyday basics decide whether an executive trusts us: the inbox, the travel backup plan and the full life of a meeting.",
-   "talk": "None of this is glamorous, and that's the point. An executive judges us on whether the ordinary things always go right. The inbox gets sorted on the first read, so nothing sits waiting. Travel comes with a plan B already in place, so a cancelled flight is an inconvenience, not a crisis. And meetings don't end when everyone leaves the room; we set them up beforehand and chase the follow-ups afterwards.",
-   "walk": [
-    "First, as each email arrives, we decide straight away whether it needs action, is just for information, or should go to someone else.",
-    "Next, where it makes sense, we draft the reply in the executive's own voice, so all he has to do is press send.",
-    "Then, when we book travel, we line up the backup too. If the 2 p.m. flight is cancelled, the 4 p.m. is already on hold.",
-    "After that, we set the meeting agenda before the meeting, which is how we go from taking notes to shaping the result.",
-    "Finally, after the meeting, we follow every action item through until it's actually done, not just written down."
-   ],
-   "ask": "Of these three, which do you already do well, and which is still more of an intention?",
-   "scenario": "Elias flies to D.C. at 2 p.m. for a 9 a.m. hearing tomorrow, and the airline just posted a two-hour delay warning. His inbox has 40 unread emails, and there's a 4 p.m. client call nobody has set an agenda for. Which basic do you deal with first, and what do you do on each one before 11 a.m.?"
-  },
-  "p2": {
-   "why": "Doing the basics on a calm Friday is easy. Doing them the same way on a chaotic Tuesday is what earns trust.",
-   "talk": "Anyone can keep a tidy inbox when the day is quiet. The difference shows when three things go wrong at once and we still sort every email, still line up the backup flight and still send the meeting follow-ups. That kind of consistency is what makes an executive stop double-checking our work. And the fix for a weak area is almost never a good intention. It's a small, specific habit we actually do every day.",
-   "walk": [
-    "First, the aim is consistency under pressure, not perfection on quiet days.",
-    "Finally, we improve by picking one real habit, not a resolution."
-   ],
-   "ask": "Pick the basic you're weakest on today. What's one real habit, not an intention, that would fix it this week?",
-   "scenario": "It's a chaotic Tuesday: two court changes, a sick colleague and a vendor mix-up. By 6 p.m. you realise you skipped the meeting follow-ups from this morning's partners' meeting. What habit would have stopped that from slipping, and what do you do right now?"
-  }
- },
- "2::The Three C's of Managing Up": {
-  "p1": {
-   "why": "Every update we send gets judged on three things: is it clear, is it consistent, and can he rely on it?",
-   "talk": "Managing up sounds like a fancy phrase, but it mostly comes down to how we communicate with the person we support. Clarity means he never has to guess what we're telling him or what we need. Consistency means we do things the same way every time, so he knows what to expect. And credibility means that when we say something, it's true. That one matters most.",
-   "walk": [
-    "First, before sending an update, we check it's clear: does it say exactly what's happening and what we need?",
-    "Next, we check it's consistent: are we using our usual approach, not something improvised because today's busy?",
-    "Then, if speed and reliability pull against each other, reliability wins. A quick answer that's wrong is worse than a slightly slower one that's right.",
-    "After that, when we're under pressure and clarity starts slipping, we slow down and restate the main point before we hit send.",
-    "Finally, every so often we reread our own recent messages, because these habits fade quietly when we're busy."
-   ],
-   "ask": "When you're overwhelmed, which of the three slips first for you?",
-   "scenario": "At 7 p.m. you send Elias: 'Meridian stuff mostly sorted, a couple of things pending, will explain tomorrow.' He replies, 'What's pending and do I need to do anything?' Rewrite the original message so it passes clarity, consistency and credibility."
-  },
-  "p2": {
-   "why": "One wrong 'it's done' costs more trust than ten honest 'confirming by noon's.",
-   "talk": "Here's what the three C's sound like in real life. Clarity is opening with the status and the ask: 'The filing is ready; I need your signature by 3.' Consistency is sending the daily brief in the same format every day, so he always knows where to look. And credibility is admitting when we're not sure: 'I believe it's done, and I'll confirm by noon.' That honesty is what makes him believe us when we say something is finished.",
-   "walk": [
-    "First, clarity means the status and the ask come first, with the background after.",
-    "Next, consistency means regular updates always look the same.",
-    "Finally, credibility means saying 'I'll confirm by' when we're not certain."
-   ],
-   "ask": "Try this one: Elias asks, 'Is the Meridian binder at the courthouse?' You think the courier picked it up, but you haven't confirmed. What's the reply that protects your credibility?",
-   "scenario": "Elias asks at 8 a.m. whether the signed Harlow engagement letter came back. You think the client said they'd send it last night, but it isn't in the inbox yet. Write the reply that protects your credibility."
-  }
- },
  "2::Credibility Is Earned, Not Claimed": {
   "p1": {
    "why": "We can't announce that we're credible. The executive gives us credibility, one reliable week at a time.",
@@ -500,133 +449,6 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "Six months later, the firm's finance team questions a $3,000 personal expense you approved on Elias's behalf. What written records would protect you, and where should they be?"
   }
  },
- "2::Email Is a Control System, Not Cleanup": {
-  "p1": {
-   "why": "Before we act on any email for the executive, we need to know exactly what we're allowed to do.",
-   "talk": "There are three levels of access. With full access, we can read, reply, file and send in his name. With draft and review, we prepare replies, but he approves them before they go. With triage only, we sort and flag, and he replies himself. Using a higher level than we've been given isn't being helpful. It's crossing a line.",
-   "walk": [
-    "First, before acting on our own, we confirm our level, and we don't assume it's the same as our last job.",
-    "Next, with full access, we handle things in his name, within the rules already agreed.",
-    "Then, with draft and review, we prepare and flag, and wait for his OK, even if we're sure it's right.",
-    "After that, with triage only, we sort and escalate, and resist drafting replies he didn't ask for.",
-    "Finally, if our level isn't clear, we ask rather than guess."
-   ],
-   "ask": "Which access level do you work under now, if any?",
-   "scenario": "You're on draft and review for Elias's inbox. A client emails asking him to confirm a meeting time, and you're sure he's free. What can you do, and what must you wait for?"
-  },
-  "p2": {
-   "why": "Full access is earned, and only after the rules are written down.",
-   "talk": "Let's put the three levels in context. Full access is the highest trust, and it only makes sense once the rules for it are written down. Draft and review is common in the first few months, and for legal matters. And a read-and-flag level, where we monitor and surface what matters without replying, is useful for sensitive inboxes or while we're still learning who's who.",
-   "walk": [
-    "First, full access comes after written rules, never before.",
-    "Next, draft and review is the normal starting point, and standard for legal work.",
-    "Finally, read-and-flag suits sensitive inboxes and new relationships."
-   ],
-   "ask": "You're on draft and review. A client emails at 6 p.m. asking to confirm tomorrow's 9 a.m. meeting, and Elias is on a flight. What can you do now, and what has to wait for him?",
-   "scenario": "After three months on draft and review, Elias says, 'Just handle routine scheduling yourself from now on.' Before you start, what should you put in writing?"
-  }
- },
- "2::What High-Performing Inbox Triage Looks Like": {
-  "p1": {
-   "why": "Top assistants handle eighty to ninety percent of routine emails themselves, without sending them up the line.",
-   "talk": "That number can sound scary, but think about what's in a typical inbox: confirmations, scheduling, simple questions, updates. Most of it doesn't need the executive's personal attention. The first step is honest: find out how much we handle ourselves today. Then we close the gap one kind of email at a time, while protecting the two things that must never go wrong.",
-   "walk": [
-    "First, we measure how much we handle ourselves right now, because we can't improve what we haven't measured.",
-    "Next, we spot the routine kinds of email we're still escalating out of habit. Those are the quickest wins.",
-    "Then, we build the judgment to handle them, checking our calls against what he'd actually have wanted.",
-    "After that, as we handle more, we guard the two big risks: never miss a critical deadline, and never breach confidentiality.",
-    "Finally, we keep the inbox at or near zero every day, as visible proof the system's working."
-   ],
-   "ask": "Does eighty to ninety percent sound realistic where you work? What's actually stopping you?",
-   "scenario": "You look back at last week: you escalated 60 emails to Elias, including meeting confirmations, newsletter sign-ups and document receipts. Which of those could you handle yourself, and how would you check your calls?"
-  },
-  "p2": {
-   "why": "Speed is never worth a missed deadline or a confidentiality slip.",
-   "talk": "The target is clear: most routine email handled independently, and the inbox close to empty each day. But two mistakes can wipe out months of trust in a moment. Missing a critical deadline and breaching confidentiality. So as we get faster, those two stay non-negotiable.",
-   "walk": [
-    "First, the benchmark: eighty to ninety percent handled on our own, inbox near zero.",
-    "Finally, the two failures we never trade for speed: missed deadlines and confidentiality breaches."
-   ],
-   "ask": "Look at the last twenty emails you escalated. Which kinds could you have handled yourself, and what would you need in writing first?",
-   "scenario": "You're handling far more email on your own now, and it's going well. Then you notice an email with a filing deadline buried in a thread you archived as routine. What changes in your triage from now on?"
-  }
- },
- "2::The Daily Routine": {
-  "p1": {
-   "why": "A simple routine at the start, middle and end of the day means nothing important slips through the cracks.",
-   "talk": "Think of it as three check-ins with the inbox and calendar. Each one has a job, and together they mean the executive starts every day informed instead of surprised.",
-   "walk": [
-    "First, the morning scan: 15 to 30 minutes to spot anything urgent, clear the junk and prepare a short briefing.",
-    "Next, the midday review: draft replies, chase anything waiting and confirm the afternoon's meetings.",
-    "Finally, the end-of-day review: make sure nothing urgent is left hanging, and set up tomorrow."
-   ],
-   "ask": "How does your morning compare with this right now?",
-   "scenario": "Yesterday a court notice arrived at 4:55 p.m. and nobody saw it until 10 a.m. today. Design your start, middle and end-of-day checks so that can't happen again."
-  },
-  "p2": {
-   "why": "The routine is built around the executive's day, not yours.",
-   "talk": "A routine only works if it's built around the person we support, not around our own preferences. If Elias starts at seven, a briefing that's ready at nine is useless. So we protect the morning check the way we'd protect a meeting, keep a single running list of what carries over from the evening, and time everything to his day, not ours.",
-   "walk": [
-    "First, protect the morning scan like a meeting. If it slips, the executive starts the day reacting.",
-    "Next, keep one running list of what carries over from evening to morning, so nothing depends on memory overnight.",
-    "Finally, time it to them. If Elias starts at 7, your briefing is ready at 6:45."
-   ],
-   "ask": "Elias starts at 7 AM and is in court by 9 three days a week. Build your routine around him: when does each check-in happen, and what's ready when?",
-   "scenario": "Elias is in court by 9 a.m. three days a week and checks messages at 12:30 during the lunch break. When do your check-ins happen on those days, and what's ready for him at each one?"
-  }
- },
- "2::The Morning Briefing, In Practice": {
-  "p1": {
-   "why": "The morning briefing replaces the inbox; if it's as long as the inbox, it isn't working.",
-   "talk": "Picture Elias with his first coffee. He doesn't want to read 30 emails. He wants to know what needs him today, and he wants it in a minute. That's what the briefing is: the inbox, digested.",
-   "walk": [
-    "First, read the whole inbox yourself, but never just forward it.",
-    "Next, boil each item down to one line: what it is and where it stands.",
-    "Then, put the most urgent things first, like an approval that expires today.",
-    "After that, keep the whole thing short, just a handful of lines.",
-    "Finally, send it at the same time every morning, so he knows when to expect it."
-   ],
-   "ask": "What makes a briefing line useful, rather than just a copied bit of email?",
-   "scenario": "Overnight, 34 emails arrived: a client approval that expires at noon, two meeting requests, a partner's question, eight newsletters and the rest routine. Write the five lines of this morning's briefing."
-  },
-  "p2": {
-   "why": "A good briefing has three parts: what needs you, what's handled and what's coming.",
-   "talk": "The briefing is laid out so Elias can stop reading at any point and still have what he needs. The top part is the things only he can do today, each with a deadline. Below that, one line each on what we're already handling, so he doesn't open those threads. And at the bottom, a heads-up on what's coming later in the week that could turn urgent.",
-   "walk": [
-    "First, 'Needs you today': decisions, signatures and calls only he can handle, each with a deadline.",
-    "Next, 'Handled or in progress': one line each, so he knows it's covered without reading the thread.",
-    "Finally, 'Heads-up': things coming later in the week that might become urgent."
-   ],
-   "ask": "Compare the five-line briefing on screen with the 30 emails it came from. Now write tomorrow's version for Elias, using the three parts.",
-   "scenario": "Elias tells you he stopped reading your briefings because they're 'as long as my inbox.' Rewrite yesterday's briefing using the three parts: needs you, handled and heads-up."
-  }
- },
- "2::The Priority Matrix": {
-  "p1": {
-   "why": "Deciding how urgent something is comes first, because that decides how fast you respond.",
-   "talk": "Everything that arrives falls into one of two top groups. The first is anything that simply can't wait: legal deadlines, major clients, the press, money approvals and genuine crises. Those go to the executive right away. The second is important, but not worth interrupting him for: new business, partnerships, board matters and vendor deals. For those, we have a drafted response ready within a few hours.",
-   "walk": [
-    "First, when something arrives, decide its tier before you do anything else.",
-    "Next, for Tier 1, tell the executive straight away, no exceptions.",
-    "Then, for Tier 2, prepare a response within two to four hours.",
-    "After that, if you can't tell which tier it is, treat it as Tier 1 until you know. Over-escalating costs less than missing something.",
-    "Finally, look back at your calls now and then, and learn from the ones you got wrong."
-   ],
-   "ask": "Why is it cheaper to over-escalate than to under-escalate?",
-   "scenario": "An email arrives from a reporter asking for comment on a client's case by 4 p.m. today, while you're sorting routine scheduling requests. What tier is it, what do you do in the next five minutes, and what do you not do?"
-  },
-  "p2": {
-   "why": "An ordinary email can become urgent the moment the facts change.",
-   "talk": "Most of what lands in an inbox is actually routine, and that's good news. Routine things can be handled together, once a day, instead of breaking our focus every ten minutes. Some things just need filing or passing to the team that owns them. But the tiers aren't fixed. An ordinary vendor email becomes top priority the moment it mentions a missed payment.",
-   "walk": [
-    "First, Tier 3 is routine: newsletters, internal updates and non-urgent scheduling. Handle these together once a day.",
-    "Next, Tier 4 is file or pass on: promotions, automatic notices and things another team owns.",
-    "Finally, re-tier when things change. A routine vendor email becomes Tier 1 the moment it mentions a missed payment."
-   ],
-   "ask": "Speed round: I'll read five emails and you call the tier. A court clerk's notice. A partnership inquiry. The bar association newsletter. A reporter asking for comment. A vendor saying an invoice is 60 days overdue.",
-   "scenario": "A monthly email from the office cleaning company normally goes in Tier 3. This month it says they found an unlocked filing cabinet full of client files after hours. What tier is it now, and what do you do?"
-  }
- },
  "2::File Naming, Folders & Version Control": {
   "p1": {
    "why": "In a law firm, the wrong version of a document can get signed, filed or sent to the other side, and file names are the first line of defense.",
@@ -987,6 +809,133 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    ],
    "ask": "Elias asks you to summarise a 70-page settlement, draft three quick replies to scheduling emails and set up something so every email labelled 'New Client' becomes a task. Which tool for each, and what do you check first?",
    "scenario": "A colleague built a complex script that automatically files client emails into Drive folders. She's leaving, and nobody else understands it. What simpler automation could replace it, and why is simpler better here?"
+  }
+ },
+ "2::Email Is a Control System, Not Cleanup": {
+  "p1": {
+   "why": "Before we act on any email for the executive, we need to know exactly what we're allowed to do.",
+   "talk": "There are three levels of access. With full access, we can read, reply, file and send in his name. With draft and review, we prepare replies, but he approves them before they go. With triage only, we sort and flag, and he replies himself. Using a higher level than we've been given isn't being helpful. It's crossing a line.",
+   "walk": [
+    "First, before acting on our own, we confirm our level, and we don't assume it's the same as our last job.",
+    "Next, with full access, we handle things in his name, within the rules already agreed.",
+    "Then, with draft and review, we prepare and flag, and wait for his OK, even if we're sure it's right.",
+    "After that, with triage only, we sort and escalate, and resist drafting replies he didn't ask for.",
+    "Finally, if our level isn't clear, we ask rather than guess."
+   ],
+   "ask": "Which access level do you work under now, if any?",
+   "scenario": "You're on draft and review for Elias's inbox. A client emails asking him to confirm a meeting time, and you're sure he's free. What can you do, and what must you wait for?"
+  },
+  "p2": {
+   "why": "Full access is earned, and only after the rules are written down.",
+   "talk": "Let's put the three levels in context. Full access is the highest trust, and it only makes sense once the rules for it are written down. Draft and review is common in the first few months, and for legal matters. And a read-and-flag level, where we monitor and surface what matters without replying, is useful for sensitive inboxes or while we're still learning who's who.",
+   "walk": [
+    "First, full access comes after written rules, never before.",
+    "Next, draft and review is the normal starting point, and standard for legal work.",
+    "Finally, read-and-flag suits sensitive inboxes and new relationships."
+   ],
+   "ask": "You're on draft and review. A client emails at 6 p.m. asking to confirm tomorrow's 9 a.m. meeting, and Elias is on a flight. What can you do now, and what has to wait for him?",
+   "scenario": "After three months on draft and review, Elias says, 'Just handle routine scheduling yourself from now on.' Before you start, what should you put in writing?"
+  }
+ },
+ "2::What High-Performing Inbox Triage Looks Like": {
+  "p1": {
+   "why": "Top assistants handle eighty to ninety percent of routine emails themselves, without sending them up the line.",
+   "talk": "That number can sound scary, but think about what's in a typical inbox: confirmations, scheduling, simple questions, updates. Most of it doesn't need the executive's personal attention. The first step is honest: find out how much we handle ourselves today. Then we close the gap one kind of email at a time, while protecting the two things that must never go wrong.",
+   "walk": [
+    "First, we measure how much we handle ourselves right now, because we can't improve what we haven't measured.",
+    "Next, we spot the routine kinds of email we're still escalating out of habit. Those are the quickest wins.",
+    "Then, we build the judgment to handle them, checking our calls against what he'd actually have wanted.",
+    "After that, as we handle more, we guard the two big risks: never miss a critical deadline, and never breach confidentiality.",
+    "Finally, we keep the inbox at or near zero every day, as visible proof the system's working."
+   ],
+   "ask": "Does eighty to ninety percent sound realistic where you work? What's actually stopping you?",
+   "scenario": "You look back at last week: you escalated 60 emails to Elias, including meeting confirmations, newsletter sign-ups and document receipts. Which of those could you handle yourself, and how would you check your calls?"
+  },
+  "p2": {
+   "why": "Speed is never worth a missed deadline or a confidentiality slip.",
+   "talk": "The target is clear: most routine email handled independently, and the inbox close to empty each day. But two mistakes can wipe out months of trust in a moment. Missing a critical deadline and breaching confidentiality. So as we get faster, those two stay non-negotiable.",
+   "walk": [
+    "First, the benchmark: eighty to ninety percent handled on our own, inbox near zero.",
+    "Finally, the two failures we never trade for speed: missed deadlines and confidentiality breaches."
+   ],
+   "ask": "Look at the last twenty emails you escalated. Which kinds could you have handled yourself, and what would you need in writing first?",
+   "scenario": "You're handling far more email on your own now, and it's going well. Then you notice an email with a filing deadline buried in a thread you archived as routine. What changes in your triage from now on?"
+  }
+ },
+ "2::The Daily Routine": {
+  "p1": {
+   "why": "A simple routine at the start, middle and end of the day means nothing important slips through the cracks.",
+   "talk": "Think of it as three check-ins with the inbox and calendar. Each one has a job, and together they mean the executive starts every day informed instead of surprised.",
+   "walk": [
+    "First, the morning scan: 15 to 30 minutes to spot anything urgent, clear the junk and prepare a short briefing.",
+    "Next, the midday review: draft replies, chase anything waiting and confirm the afternoon's meetings.",
+    "Finally, the end-of-day review: make sure nothing urgent is left hanging, and set up tomorrow."
+   ],
+   "ask": "How does your morning compare with this right now?",
+   "scenario": "Yesterday a court notice arrived at 4:55 p.m. and nobody saw it until 10 a.m. today. Design your start, middle and end-of-day checks so that can't happen again."
+  },
+  "p2": {
+   "why": "The routine is built around the executive's day, not yours.",
+   "talk": "A routine only works if it's built around the person we support, not around our own preferences. If Elias starts at seven, a briefing that's ready at nine is useless. So we protect the morning check the way we'd protect a meeting, keep a single running list of what carries over from the evening, and time everything to his day, not ours.",
+   "walk": [
+    "First, protect the morning scan like a meeting. If it slips, the executive starts the day reacting.",
+    "Next, keep one running list of what carries over from evening to morning, so nothing depends on memory overnight.",
+    "Finally, time it to them. If Elias starts at 7, your briefing is ready at 6:45."
+   ],
+   "ask": "Elias starts at 7 AM and is in court by 9 three days a week. Build your routine around him: when does each check-in happen, and what's ready when?",
+   "scenario": "Elias is in court by 9 a.m. three days a week and checks messages at 12:30 during the lunch break. When do your check-ins happen on those days, and what's ready for him at each one?"
+  }
+ },
+ "2::The Morning Briefing, In Practice": {
+  "p1": {
+   "why": "The morning briefing replaces the inbox; if it's as long as the inbox, it isn't working.",
+   "talk": "Picture Elias with his first coffee. He doesn't want to read 30 emails. He wants to know what needs him today, and he wants it in a minute. That's what the briefing is: the inbox, digested.",
+   "walk": [
+    "First, read the whole inbox yourself, but never just forward it.",
+    "Next, boil each item down to one line: what it is and where it stands.",
+    "Then, put the most urgent things first, like an approval that expires today.",
+    "After that, keep the whole thing short, just a handful of lines.",
+    "Finally, send it at the same time every morning, so he knows when to expect it."
+   ],
+   "ask": "What makes a briefing line useful, rather than just a copied bit of email?",
+   "scenario": "Overnight, 34 emails arrived: a client approval that expires at noon, two meeting requests, a partner's question, eight newsletters and the rest routine. Write the five lines of this morning's briefing."
+  },
+  "p2": {
+   "why": "A good briefing has three parts: what needs you, what's handled and what's coming.",
+   "talk": "The briefing is laid out so Elias can stop reading at any point and still have what he needs. The top part is the things only he can do today, each with a deadline. Below that, one line each on what we're already handling, so he doesn't open those threads. And at the bottom, a heads-up on what's coming later in the week that could turn urgent.",
+   "walk": [
+    "First, 'Needs you today': decisions, signatures and calls only he can handle, each with a deadline.",
+    "Next, 'Handled or in progress': one line each, so he knows it's covered without reading the thread.",
+    "Finally, 'Heads-up': things coming later in the week that might become urgent."
+   ],
+   "ask": "Compare the five-line briefing on screen with the 30 emails it came from. Now write tomorrow's version for Elias, using the three parts.",
+   "scenario": "Elias tells you he stopped reading your briefings because they're 'as long as my inbox.' Rewrite yesterday's briefing using the three parts: needs you, handled and heads-up."
+  }
+ },
+ "2::The Priority Matrix": {
+  "p1": {
+   "why": "Deciding how urgent something is comes first, because that decides how fast you respond.",
+   "talk": "Everything that arrives falls into one of two top groups. The first is anything that simply can't wait: legal deadlines, major clients, the press, money approvals and genuine crises. Those go to the executive right away. The second is important, but not worth interrupting him for: new business, partnerships, board matters and vendor deals. For those, we have a drafted response ready within a few hours.",
+   "walk": [
+    "First, when something arrives, decide its tier before you do anything else.",
+    "Next, for Tier 1, tell the executive straight away, no exceptions.",
+    "Then, for Tier 2, prepare a response within two to four hours.",
+    "After that, if you can't tell which tier it is, treat it as Tier 1 until you know. Over-escalating costs less than missing something.",
+    "Finally, look back at your calls now and then, and learn from the ones you got wrong."
+   ],
+   "ask": "Why is it cheaper to over-escalate than to under-escalate?",
+   "scenario": "An email arrives from a reporter asking for comment on a client's case by 4 p.m. today, while you're sorting routine scheduling requests. What tier is it, what do you do in the next five minutes, and what do you not do?"
+  },
+  "p2": {
+   "why": "An ordinary email can become urgent the moment the facts change.",
+   "talk": "Most of what lands in an inbox is actually routine, and that's good news. Routine things can be handled together, once a day, instead of breaking our focus every ten minutes. Some things just need filing or passing to the team that owns them. But the tiers aren't fixed. An ordinary vendor email becomes top priority the moment it mentions a missed payment.",
+   "walk": [
+    "First, Tier 3 is routine: newsletters, internal updates and non-urgent scheduling. Handle these together once a day.",
+    "Next, Tier 4 is file or pass on: promotions, automatic notices and things another team owns.",
+    "Finally, re-tier when things change. A routine vendor email becomes Tier 1 the moment it mentions a missed payment."
+   ],
+   "ask": "Speed round: I'll read five emails and you call the tier. A court clerk's notice. A partnership inquiry. The bar association newsletter. A reporter asking for comment. A vendor saying an invoice is 60 days overdue.",
+   "scenario": "A monthly email from the office cleaning company normally goes in Tier 3. This month it says they found an unlocked filing cabinet full of client files after hours. What tier is it now, and what do you do?"
   }
  }
 });

@@ -184,6 +184,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "You find the $1,200 difference: a credit note the firm issued in June that Harlow never received. The numbers now agree. What do you send them, and what do you note so next month starts clean?"
   }
  },
+ "7::Invoice & Payment Reconciliation": {
+  "p1": {
+   "why": "If payments aren't matched to the right invoices, clients get chased for bills they've already paid, and that damages trust fast.",
+   "talk": "Every payment that comes in has to be connected to the invoice or invoices it's paying. Real payments are messy: one wire can cover three invoices, a client can pay half, or a bank fee can make it arrive a little short. And at the end of each month, the total of all open invoices should match the receivables number in the books. If it doesn't, something was applied to the wrong place.",
+   "walk": [
+    "First, we record each payment the day it arrives: date, amount, method, who paid and any reference.",
+    "Next, we match it to invoice numbers. With no note, we match by exact amount, then ask the client.",
+    "Then, part payments leave a balance open, and overpayments become a credit until the attorney decides.",
+    "After that, a short payment caused by bank fees gets the fee recorded separately, if that's firm policy.",
+    "Finally, at month-end, the open-invoices report has to match the receivables balance."
+   ],
+   "ask": "What would a client think if we chased them for an invoice they'd already paid?",
+   "scenario": "Meridian pays $4,000 by check with no note. They have two open invoices: $4,000 from March and $1,500 from April. Which do you apply it to, and what do you do to be sure?"
+  },
+  "p2": {
+   "why": "The small leftovers are where receivables quietly go wrong.",
+   "talk": "Keep unapplied payments at zero, because each one is a client who paid and the books don't know what for. Money that arrives in the trust account is never applied straight to a fee invoice; moving it needs the attorney's approval and its own transfer. Two traps: putting a payment against the oldest invoice out of habit when the client paid a specific one, which can make a disputed bill look paid, and deleting and re-entering a payment to fix it, which breaks the audit trail.",
+   "walk": [
+    "First, clear unapplied payments.",
+    "Next, keep trust money separate from fee payments.",
+    "Then, apply to the invoice the client actually paid.",
+    "Finally, correct payments in place."
+   ],
+   "ask": "Why might applying a payment to the oldest invoice cause a problem in a billing dispute?",
+   "scenario": "Harlow Industries sends one wire of $7,425 with the note 'May invoices.' There are three open May invoices: $2,500, $3,000 and $2,000. What happened to the missing $75, how do you apply the wire, and what do you ask Harlow?"
+  }
+ },
  "7::Reconciliation Discrepancy Detection": {
   "p1": {
    "why": "When a reconciliation doesn't balance, compare line by line, not just the totals.",
@@ -281,6 +308,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "A client complains that your invoice just says 'Legal services — $4,200' with no detail. Their accounts team won't pay it. What should the invoice have shown, section by section?"
   }
  },
+ "7::Invoice Management: Tracking, Follow-Up & Collections": {
+  "p1": {
+   "why": "A firm can do great work and still run short of cash if nobody follows invoices through to payment.",
+   "talk": "Sending an invoice is only the halfway point. It's finished when it's paid, and managing that gap is a big part of how we protect the firm's cash flow. We keep one invoice register with the number, client, matter, dates, amount, status and date paid. Our follow-up is polite, predictable and written down. Anything bigger than a reminder, like a payment plan, a late fee or collections, is the attorney's decision.",
+   "walk": [
+    "First, number invoices in one sequence and never reuse a number. A cancelled invoice is voided.",
+    "Next, send each invoice to the right billing contact in the format the client asks for.",
+    "Then, follow a set reminder schedule: before the due date, on it, then 7, 14 and 30 days overdue.",
+    "After that, review the aging report every week and send Elias anything over 60 days.",
+    "Finally, record payments the day they arrive, so nobody gets chased after paying."
+   ],
+   "ask": "In a client company, who do you think actually pays the invoices?",
+   "scenario": "A new client says they never received last month's invoice. Your register shows it was emailed to their general counsel. What do you check, who do you send it to now, and what do you update in the register?"
+  },
+  "p2": {
+   "why": "How you chase money affects whether the client stays.",
+   "talk": "Keep reminders factual and warm: the invoice number, amount, due date and how to pay. Often the client just needs it resent. If a client disputes an invoice, we pause reminders on it and pass the dispute to the attorney, because chasing a disputed bill makes it worse. Two traps: sending to the main contact instead of accounts payable, so it sits unread, and adding late fees or threatening collections without checking the engagement letter and getting the attorney's approval.",
+   "walk": [
+    "First, factual and warm reminders.",
+    "Next, pause reminders on disputed invoices.",
+    "Then, send to accounts payable, not just the main contact.",
+    "Finally, no late fees or collections talk without approval."
+   ],
+   "ask": "What's the difference in tone between a 7-day and a 30-day overdue reminder?",
+   "scenario": "The aging report shows Meridian owes $18,400: $6,000 is 45 days overdue and $12,400 is 95 days overdue. No one has followed up since the invoices went out. What do you send today, and what do you ask Elias?"
+  }
+ },
  "7::Contract-Aware Billing": {
   "p1": {
    "why": "Know the contract's limits before you start billing, and warn people before you hit them.",
@@ -328,6 +382,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    ],
    "ask": "It's the end of a busy day and you haven't logged time for several tasks. How do you rebuild it as accurately as possible, and what will you do differently tomorrow?",
    "scenario": "A client questions a 3.5-hour entry that says 'research.' The associate can't remember what the research was about. How would a better time entry have prevented this?"
+  }
+ },
+ "7::Billable vs. Non-Billable Hours": {
+  "p1": {
+   "why": "Getting billable and non-billable right is the difference between an invoice that gets paid and one the client cuts.",
+   "talk": "Billable time is work the client can be charged for under their engagement letter: drafting, research, calls and court time on their matter. Non-billable time is everything else, like internal admin, training, business development, or work the firm agreed not to charge. We record both, because non-billable time still shows where the hours go. Lawyers usually record time in tenths of an hour, six-minute blocks, and many corporate clients have written billing guidelines listing what they won't pay for.",
+   "walk": [
+    "First, every entry gets a date, matter, time in tenths, a clear description and billable or not.",
+    "Next, we check the engagement letter and the client's guidelines. Scheduling and copying are often non-billable.",
+    "Then we write one task per entry, not one long block.",
+    "After that, we prepare a pre-bill, a draft invoice, so the attorney can decide any write-downs or write-offs.",
+    "Finally, approved no-charge work can show on the invoice as 'no charge.'"
+   ],
+   "ask": "Which everyday tasks do you think clients most often refuse to pay for?",
+   "scenario": "You spent 40 minutes booking travel for Elias's deposition in the Meridian case. Is it billable? Where do you check, and how do you record it either way?"
+  },
+  "p2": {
+   "why": "The decisions about time belong to the attorney, but the problems usually start in the entries we help keep.",
+   "talk": "We never cut or add time on our own. We flag it, and the attorney decides. Keep non-billable categories consistent, like Admin, Training, Business Development and Pro Bono, so the reports make sense. Two traps: billing clerical work because it was for a client, which is the top reason corporate clients cut invoices, and not recording non-billable time at all, so nobody can see why a matter ran long.",
+   "walk": [
+    "First, flag; don't decide.",
+    "Next, use the same non-billable categories every time.",
+    "Then, keep clerical work off the bill unless the terms allow it.",
+    "Finally, record non-billable time too."
+   ],
+   "ask": "Why would a firm want to know how much non-billable time a matter took?",
+   "scenario": "An associate's entry reads: '3.5 — Harlow: call with client, research, drafted letter, scheduled meeting, copied exhibits.' Harlow's billing guidelines reject block billing and clerical time. How do you help fix the entry before the pre-bill goes to Elias?"
   }
  },
  "7::Handling a Billing Dispute": {
@@ -378,6 +459,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "Harlow pays $7,500, but they have two open invoices of $5,000 and $2,500. Their payment note just says 'as agreed.' How do you apply the payment, and what do you check first?"
   }
  },
+ "7::QuickBooks: Billable Time, Expenses & Invoicing": {
+  "p1": {
+   "why": "QuickBooks can make sure every billable hour and cost reaches the invoice, but only if it's recorded the right way.",
+   "talk": "In QuickBooks Online, each client is a customer, and each matter is usually a sub-customer or a project. When we record time or a cost and tick 'Billable' for that customer, it waits. Then, when we create the next invoice for them, QuickBooks shows everything billable that's waiting, and we choose what to add. So the invoice is only as good as the entries behind it.",
+   "walk": [
+    "First, we set up each client as a customer and each matter under it.",
+    "Next, we record time with the person, matter, service item and rate, hours, a description, and Billable ticked.",
+    "Then we record client costs, like filing fees, as billable expenses to the matter.",
+    "After that, we create the invoice and add the waiting time and costs, checking dates, descriptions and rates.",
+    "Finally, we run the unbilled time and expenses report to catch anything left behind."
+   ],
+   "ask": "What happens to a client cost that nobody marks as billable?",
+   "scenario": "Elias paid a $350 filing fee for Meridian on the firm card. The bookkeeper entered it as 'Court fees' but didn't choose a customer. What do you change so it reaches Meridian's invoice?"
+  },
+  "p2": {
+   "why": "Most QuickBooks billing errors are set-up mistakes that repeat every month until someone fixes them.",
+   "talk": "Set each person's rate once, on the service item or their profile, instead of typing it every time. Only the attorney's approved pre-bill becomes a sent invoice, so we draft first and send after approval. Two traps: a client cost without Billable ticked, which quietly becomes a firm expense, and time entered to the client instead of the matter, which puts it on the wrong invoice.",
+   "walk": [
+    "First, set rates once.",
+    "Next, draft, get approval, then send.",
+    "Then, tick Billable on every client cost.",
+    "Finally, always choose the matter, not just the client."
+   ],
+   "ask": "How would you find every billable cost that didn't make it onto an invoice last quarter?",
+   "scenario": "At month-end, the unbilled time report shows 6.2 hours for Harlow with no matter selected, and a $435 court reporter bill for Meridian that wasn't marked billable. What do you fix, and in what order, before invoices go out?"
+  }
+ },
  "7::QuickBooks Common Mistakes & Tips": {
   "p1": {
    "why": "The most common QuickBooks mistake is putting an expense in the wrong category, so when you're unsure, ask.",
@@ -404,6 +512,33 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "You finish the bank reconciliation, and it's off by exactly $450. You notice a $450 deposit entered twice. What does that tell you about where to look first next time something is off by a round amount?"
   }
  },
+ "7::QuickBooks: Bank Feeds, Rules & Month-End Close": {
+  "p1": {
+   "why": "Bank feeds save hours, but only if someone reviews them properly. Otherwise they fill the books with duplicates and guesses.",
+   "talk": "Bank feeds pull transactions from the firm's bank and card accounts into QuickBooks automatically. Each one still needs a decision. If it's already in the books, like a bill we've already paid, we match it. If it's new, we add it with a category and payee, and a customer if it's billable. Month-end close is the routine that makes the numbers reliable: everything reviewed, every account reconciled, then the month locked.",
+   "walk": [
+    "First, review the feed at least weekly. Match when QuickBooks finds the existing entry; add only when nothing matches.",
+    "Next, make rules for regular items like rent or subscriptions, and check what they did.",
+    "Then, exclude only true duplicates, with a note.",
+    "After that, at month-end: clear the feed, reconcile every account, clear uncategorized items and run the reports.",
+    "Finally, once the accountant confirms, set the closing date with a password."
+   ],
+   "ask": "What happens if you click Add on a payment that's already in the books?",
+   "scenario": "The feed shows a $89 charge from a software company you don't recognize, and QuickBooks suggests 'Software.' Do you accept it? What do you check first?"
+  },
+  "p2": {
+   "why": "A few recording habits decide whether the month-end numbers can be trusted.",
+   "talk": "Don't let things pile up in 'Uncategorized' or 'Ask my accountant'. Keep a list and clear it weekly. Moving money between the firm's own accounts, like paying the credit card from the operating account, is a transfer, not an expense. Two traps: adding a payment that was already recorded, which counts the expense twice, and categorizing trust money as income, when trust needs its own account and its own reconciliation.",
+   "walk": [
+    "First, clear uncategorized items weekly.",
+    "Next, record transfers as transfers.",
+    "Then, match before you add.",
+    "Finally, keep trust money out of income."
+   ],
+   "ask": "Why is paying the credit card bill not an expense?",
+   "scenario": "The feed shows a $1,200 payment to the firm's credit card company, and QuickBooks suggests categorizing it as 'Office expenses.' What is it really, how should it be recorded and what would go wrong if you accepted the suggestion?"
+  }
+ },
  "7::Credit Cards & Card Applications": {
   "p1": {
    "why": "Review a credit card statement before you pay it, not after.",
@@ -427,6 +562,60 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    ],
    "ask": "Reviewing Elias's card statement, you spot a $129 charge from an unfamiliar merchant and a hotel charged twice for the same night. What do you do before paying the bill?",
    "scenario": "The bank asks for 'the last two years of business tax returns and a current balance sheet' for a new firm card. A colleague wants to send the last three years 'to be safe' and a profit-and-loss statement too. What do you send, and why?"
+  }
+ },
+ "7::Credit Card Help: Disputes, Fraud & Lost Cards": {
+  "p1": {
+   "why": "When a card problem hits, the assistant is usually the first to know, and how fast you act decides how much it costs.",
+   "talk": "We often manage cards day to day, so we're first to see a wrong charge, a fraud alert or a lost card. A billing error, or a charge we don't recognize, can be disputed with the card issuer. For US credit cards, billing-error disputes should go in writing within 60 days of the statement that first showed the charge. A lost or stolen card, or suspected fraud, gets reported straight away. The issuer usually blocks it and sends a new card, so every automatic payment on it has to move.",
+   "walk": [
+    "First, with an unknown charge, we check receipts, the merchant's full name and whether someone else used the card.",
+    "Next, for a wrong charge, we go to the merchant first, then dispute with the issuer if it isn't fixed, with copies of receipts.",
+    "Then, for fraud or a lost card, we report it using the number on the card or the app, never a number from a message.",
+    "After that, when the new card arrives, we update every subscription and automatic payment.",
+    "Finally, we log it all and check the next statement for the credit."
+   ],
+   "ask": "How many automatic payments do you think sit on your executive's main card?",
+   "scenario": "Reviewing the firm card statement, you see a hotel charged $412 twice for one night, and a $29.99 charge from 'SQ *DIGITAL SVCS.' What do you do about each one?"
+  },
+  "p2": {
+   "why": "Card problems get expensive when nobody knows which card pays for what, or when a deadline slips.",
+   "talk": "Keep a card register: each card, who uses it, its limit, its billing date, the payments on it and who can authorize changes. Only the cardholder or an authorized person can dispute or cancel, and with Elias's personal card we act only with his permission. Two traps: disputing what's really a forgotten subscription renewal, so check your own records first, and missing the dispute window while waiting for the merchant. Put that deadline in the calendar the day you find the charge.",
+   "walk": [
+    "First, keep a card register.",
+    "Next, act only with authority.",
+    "Then, check your records before disputing.",
+    "Finally, calendar the dispute deadline."
+   ],
+   "ask": "What would you put in a card register?",
+   "scenario": "Elias texts from an airport: his firm card was declined and he's had a fraud alert. He needs to pay for a hotel tonight, and the same card pays for three software subscriptions. What do you do, in order?"
+  }
+ },
+ "7::Reconciling a Credit Card Statement": {
+  "p1": {
+   "why": "A card statement nobody reconciles hides lost client costs, personal charges and fraud.",
+   "talk": "Reconciling a card statement means proving every charge has a receipt, a business purpose and the right category, and that our records match the statement's balance. Many charges belong to a client matter, like deposition travel or a filing fee, and those have to be coded to the matter and marked billable so the firm gets the money back. Personal charges on a business card, even accidental ones, get flagged and repaid, never hidden in a business category.",
+   "walk": [
+    "First, we download the statement and gather that month's receipts.",
+    "Next, line by line, we match each charge to its receipt, confirm the purpose and assign the category and matter.",
+    "Then we chase any missing receipts that week, or use the firm's missing-receipt form.",
+    "After that, we flag duplicates, unknown charges and personal charges to the right person.",
+    "Finally, we reconcile the card in QuickBooks to the statement's ending balance and file everything together."
+   ],
+   "ask": "Which card charges do you think are most often billable to a client?",
+   "scenario": "A $1,180 airline charge on the card has a receipt showing two passengers: Elias and his wife. The trip was for a Meridian deposition. How do you code it, and what do you flag?"
+  },
+  "p2": {
+   "why": "Timing and filing habits decide whether a reconciliation takes an hour or a week.",
+   "talk": "Reconcile every month, as soon as the statement closes, while receipts and memories are fresh. File receipts so any one can be found by date and matter, because the accountant or an auditor may ask. Two traps: coding client travel to plain 'Travel' without the matter, so it's never billed back, and paying the card before reviewing the statement, which makes errors harder to dispute and usually means the review never happens.",
+   "walk": [
+    "First, reconcile monthly.",
+    "Next, file receipts by date and matter.",
+    "Then, always add the matter to client costs.",
+    "Finally, review before you pay."
+   ],
+   "ask": "Where are your receipts right now, and could you find last March's hotel receipt in two minutes?",
+   "scenario": "Elias's card statement has 34 charges. You have 29 receipts. Two charges are for the Chicago deposition, one looks personal (a $64 pharmacy charge), and two have no receipt at all. Walk through how you finish the reconciliation and who you contact."
   }
  },
  "7::Expense Report Auditing & Approval Workflows": {

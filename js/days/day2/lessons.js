@@ -14,72 +14,9 @@
 const DAY2 = {
   "id": 2,
   "title": "Managing Up & How to Leverage AI with Precision",
-  "theme": "Managing Up & The Three C's · AI Proficiency & the Digital Edge · Email Management",
-  "objective": "Apply the Three C's framework to manage up effectively, shift from task-completer to force multiplier, and run the executive's inbox as a control system.",
+  "theme": "Managing Up · AI Proficiency & the Digital Edge · Email Management",
+  "objective": "Put Day 1's Three C's into practice to manage up effectively, shift from task-completer to force multiplier, and run the executive's inbox as a control system.",
   "lessons": [
-    {
-      "h": "Bulletproof Basics",
-      "section": "Managing Up Foundations",
-      "layout": "THREEBOX",
-      "boxes": [
-        {
-          "label": "Inbox Zero & Triaging",
-          "desc": "Categorize every email as Action, Information, or Delegation on first read — and draft in the executive's own voice so they only have to hit Send."
-        },
-        {
-          "label": "Complex Travel Logistics",
-          "desc": "Not just booking a flight — it's the 'What If' plan. If the 2:00 PM flight is canceled, you already have the 4:00 PM on hold."
-        },
-        {
-          "label": "Meeting Lifecycle",
-          "desc": "Moving from 'taking minutes' to 'driving outcomes' — setting the agenda before, tracking deliverables after."
-        }
-      ],
-      "b": [
-        "These basics sound simple, but consistency under pressure — doing them the same way on a chaotic Tuesday as on a quiet Friday — is what actually builds trust over time.",
-        "Discussion prompt: pick one of these three basics you're weakest on today. What's the actual habit, not the intention, that would fix it this week?"
-      ],
-      "howTo": [
-        "For inbox triage, sort every email on first read into Action, Information, or Delegation — don't leave anything unsorted to revisit later.",
-        "Draft responses in the executive's own voice where appropriate, so the only remaining step for them is hitting send, not rewriting your draft.",
-        "For travel, don't just book the primary option — build the \"What If\" plan alongside it, so a backup is already on hold before anything goes wrong.",
-        "For meetings, set the agenda before the meeting happens, not after — this is what shifts you from taking minutes to actually driving outcomes.",
-        "After the meeting, track deliverables to completion — the meeting lifecycle isn't finished until the follow-through is confirmed, not just documented."
-      ],
-      "trainerCue": "Ask which of the three basics (Inbox Zero, Travel What-If, Meeting Lifecycle) the room already does well versus which is aspirational — this sets the tone that this day builds skills, not just tests them."
-    },
-    {
-      "h": "The Three C's of Managing Up",
-      "section": "Managing Up Foundations",
-      "b": [
-        "Clarity — say exactly what's happening and what you need.",
-        "Consistency — same standard procedures every time.",
-        "Credibility — recommendations have to be reliable, no exceptions."
-      ],
-      "layout": "THREEBOX",
-      "boxes": [
-        {
-          "label": "Clarity",
-          "desc": "No vague messages — say exactly what's happening and exactly what you need from them"
-        },
-        {
-          "label": "Consistency",
-          "desc": "Use the same standard procedures every time, so outcomes become predictable"
-        },
-        {
-          "label": "Credibility",
-          "desc": "Recommendations have to be accurate and reliable, every single time, with no exceptions"
-        }
-      ],
-      "howTo": [
-        "Before sending any update, check it for Clarity first — does it say exactly what's happening and exactly what you need, with nothing left for the reader to infer?",
-        "Apply Consistency next — use the same standard procedure you'd use any other time, not an improvised approach because today is busier or calmer than usual.",
-        "Protect Credibility above the other two when they conflict — a fast, unclear answer is worse than a slightly slower, reliable one.",
-        "If you notice Clarity slipping under pressure (the most common failure point), slow down and restate the core ask before sending, rather than letting a vague message go out.",
-        "Review your own recent messages periodically against all three — this is a habit that decays quietly under workload unless it's actively checked."
-      ],
-      "trainerCue": "Have someone read the Three C's out loud in order, then immediately ask: 'Which one collapses first when you're overwhelmed?' Almost everyone says Clarity — use that as the hook for why it's listed first."
-    },
     {
       "h": "Credibility Is Earned, Not Claimed",
       "section": "Managing Up Foundations",
@@ -994,7 +931,7 @@ const DAY2 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 2,
+      "afterIndex": 0,
       "q": "The 'No-Surprises Rule' means:",
       "opts": [
         "Surprises are fine as long as they're positive",
@@ -1006,7 +943,7 @@ const DAY2 = {
       "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
     },
     {
-      "afterIndex": 32,
+      "afterIndex": 30,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -1016,7 +953,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 33,
+      "afterIndex": 31,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Context window strain — it lost precision across a long document",
@@ -1028,7 +965,7 @@ const DAY2 = {
       "r": "When a document is long, precision degrades across it — paste just the relevant section when precision matters."
     },
     {
-      "afterIndex": 40,
+      "afterIndex": 38,
       "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
       "opts": [
         "Something to batch with the newsletter",
@@ -1040,7 +977,7 @@ const DAY2 = {
       "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
     },
     {
-      "afterIndex": 39,
+      "afterIndex": 37,
       "q": "What best distinguishes high-performing email management from average?",
       "opts": [
         "Forwarding every email so nothing is missed",
@@ -1053,17 +990,6 @@ const DAY2 = {
     }
   ],
   "quiz": [
-    {
-      "q": "The 'Three C's' of Managing Up are:",
-      "opts": [
-        "Collaboration, Curiosity, Confidence",
-        "Control, Coordination, Confidence",
-        "Communication, Creativity, Coordination",
-        "Clarity, Consistency, Credibility"
-      ],
-      "a": 3,
-      "r": "Clarity, Consistency, and Credibility are the framework taught for managing up effectively."
-    },
     {
       "q": "A 'Force Multiplier' EA/PA primarily...",
       "opts": [
@@ -1085,17 +1011,6 @@ const DAY2 = {
       ],
       "a": 1,
       "r": "Automation that removes recurring manual work is the clearest example of the Digital Edge."
-    },
-    {
-      "q": "The 'What If' approach to travel logistics means:",
-      "opts": [
-        "Having a backup option already secured before it's needed",
-        "Asking the executive what they'd like to do if something goes wrong on the trip",
-        "Booking the cheapest fare, so there's budget left over to rebook if needed",
-        "Avoiding travel bookings until the last minute"
-      ],
-      "a": 0,
-      "r": "E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."
     },
     {
       "q": "Three urgent requests collide and a VIP client also needs an immediate call. Best first move?",
@@ -1168,17 +1083,6 @@ const DAY2 = {
       ],
       "a": 3,
       "r": "A force multiplier increases the executive's output and effectiveness, not just their own task count."
-    },
-    {
-      "q": "What are the 'Three C's of Managing Up' generally centered on?",
-      "opts": [
-        "Calendar, Contacts and Confidentiality: the three systems an assistant owns",
-        "Communication, Consistency, and Credibility with the executive",
-        "Complaining, Correcting, Confronting",
-        "Coordination, Courtesy and Compliance in every message to the executive"
-      ],
-      "a": 1,
-      "r": "Managing up effectively rests on clear communication, consistent follow-through, and earned credibility."
     },
     {
       "q": "Why is credibility described as 'earned, not claimed'?",
@@ -1416,14 +1320,6 @@ const DAY2 = {
 };
 
 const DAY2_EXTRA_LEARNING = {
-  "2::The Three C's of Managing Up": {
-    "t": "The Three C's in a Real Update",
-    "p": [
-      "Clarity in practice: open with the status and the ask — 'The filing is ready; I need your signature by 3 PM' — then add context below.",
-      "Consistency in practice: use the same format for recurring updates (daily brief, weekly summary) so the executive knows exactly where to look.",
-      "Credibility in practice: if you're unsure, say so and give a time you'll confirm by. One wrong 'it's done' costs more trust than ten honest 'confirming by noon'."
-    ]
-  },
   "2::Reframing Reactive Language": {
     "t": "A Reframing Toolkit",
     "p": [

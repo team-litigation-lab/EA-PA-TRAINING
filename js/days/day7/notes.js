@@ -207,6 +207,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "Where would you look if the client shows $5,000?"
   }
 },
+"7::Invoice & Payment Reconciliation": {
+  "p1": {
+    "on": "This slide says every payment must be matched to the invoices it pays, that payments arrive messy (lump, partial, short by fees), and that open invoices must equal receivables at month-end. The steps: record each payment the day it arrives, match by invoice number or exact amount, handle part and over payments, record fees separately, and tie the A/R aging report to the balance sheet.",
+    "say": "Match every payment to the invoices it pays, the day it arrives.",
+    "ask": "What would a client think if you chased them for an invoice they'd already paid?"
+  },
+  "p2": {
+    "on": "This slide covers keeping unapplied payments at zero, never applying trust money to a fee invoice without approval, and two pitfalls: applying to the oldest invoice by habit and deleting and re-entering payments.",
+    "say": "An unapplied payment is a client's money the books don't understand.",
+    "wrap": "Record, match, handle the leftovers, then tie A/R to the books every month.",
+    "scenario": "Harlow Industries sends one wire of $7,425 with the note 'May invoices.' There are three open May invoices: $2,500, $3,000 and $2,000. What happened to the missing $75, how do you apply the wire, and what do you ask Harlow?"
+  },
+  "s1": {
+    "on": "This section explains matching payments to invoices, messy payments, and tying open invoices to receivables.",
+    "say": "Every payment belongs to an invoice."
+  },
+  "s2": {
+    "on": "These steps: record the payment, match it, handle part and over payments, record fees separately, tie A/R at month-end.",
+    "say": "Match by invoice number first, then exact amount.",
+    "ask": "What would you do with an overpayment?"
+  },
+  "s3": {
+    "on": "This section covers unapplied payments, trust money, and the two pitfalls.",
+    "say": "Fix a payment in place; don't delete it."
+  }
+},
 "7::Reconciliation Discrepancy Detection": {
   "p1": {
     "on": "This slide lists detection techniques: compare the ledger with the bank statement line by line, confirm credits went to the right client, look for reversed entries that hide errors, run the full checklist, and apply duplicate-payment checks (system detection, manual verification and approval thresholds).",
@@ -312,6 +338,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Header, body, footer."
   }
 },
+"7::Invoice Management: Tracking, Follow-Up & Collections": {
+  "p1": {
+    "on": "This slide says an invoice is finished when it's paid, describes the invoice register and its columns, and says follow-up should be polite and predictable, with anything beyond reminders left to the attorney. The steps: continuous numbering with voids not reuse, send in the client's required format, a set reminder schedule, a weekly aging review, and recording payments the day they arrive.",
+    "say": "An invoice is done when it's paid, not when it's sent.",
+    "ask": "Who in a client company actually pays the invoices?"
+  },
+  "p2": {
+    "on": "This slide covers warm, factual reminders, pausing reminders on disputed invoices, and two pitfalls: sending to the wrong contact and adding late fees or collections threats without approval.",
+    "say": "Chasing a disputed bill makes it worse. Route it to the attorney.",
+    "wrap": "One register, a steady reminder schedule and a weekly look at the aging report.",
+    "scenario": "The aging report shows Meridian owes $18,400: $6,000 is 45 days overdue and $12,400 is 95 days overdue. No one has followed up since the invoices went out. What do you send today, and what do you ask Elias?"
+  },
+  "s1": {
+    "on": "This section explains why invoice management matters, what goes in the register and where the attorney decides.",
+    "say": "Keep one invoice register."
+  },
+  "s2": {
+    "on": "These steps: continuous numbering, the client's format, a reminder schedule, a weekly aging review, recording payments promptly.",
+    "say": "Void, don't reuse, an invoice number.",
+    "ask": "What's on your reminder schedule?"
+  },
+  "s3": {
+    "on": "This section covers tone, disputes, and the two pitfalls.",
+    "say": "Late fees need the attorney's approval."
+  }
+},
 "7::Contract-Aware Billing": {
   "p1": {
     "on": "This slide says to know payment terms, late fees and hour caps before billing begins. The steps: confirm terms at the start of the matter, track hours against any cap continuously, flag an approaching cap well before it's reached, apply late fees and terms exactly as written, and confirm the interpretation of ambiguous terms before billing.",
@@ -364,6 +416,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section warns that reconstructed entries are less accurate, and ties this to contract-aware billing.",
     "say": "Accurate time makes accurate billing."
+  }
+},
+"7::Billable vs. Non-Billable Hours": {
+  "p1": {
+    "on": "This slide defines billable and non-billable time, says both are recorded, and explains tenth-of-an-hour increments and client billing guidelines. The steps: record every entry fully, check the engagement letter and guidelines, avoid block entries, prepare a pre-bill for the attorney's write-down decisions, and show approved no-charge work.",
+    "say": "Record all of it, and mark each entry billable or not.",
+    "ask": "Which everyday tasks do you think clients most often refuse to pay for?"
+  },
+  "p2": {
+    "on": "This slide says the attorney decides any cuts or additions, non-billable categories should be consistent, and warns against billing clerical work and not recording non-billable time.",
+    "say": "You flag; the attorney decides what's written off.",
+    "wrap": "Every hour recorded, clearly described, and billed only as the client's terms allow.",
+    "scenario": "An associate's entry reads: '3.5 — Harlow: call with client, research, drafted letter, scheduled meeting, copied exhibits.' Harlow's billing guidelines reject block billing and clerical time. How do you help fix the entry before the pre-bill goes to Elias?"
+  },
+  "s1": {
+    "on": "This section defines billable and non-billable time, explains why both are recorded, and covers tenths of an hour and billing guidelines.",
+    "say": "Clients have rules about what they'll pay for."
+  },
+  "s2": {
+    "on": "These steps: full entries, check guidelines, avoid block billing, prepare the pre-bill, show no-charge work.",
+    "say": "One task, one entry.",
+    "ask": "What's a pre-bill for?"
+  },
+  "s3": {
+    "on": "This section says the attorney decides write-offs, categories stay consistent, and warns about clerical billing and unrecorded time.",
+    "say": "Clerical work is usually non-billable."
   }
 },
 "7::Handling a Billing Dispute": {
@@ -422,6 +500,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Menu names vary by version."
   }
 },
+"7::QuickBooks: Billable Time, Expenses & Invoicing": {
+  "p1": {
+    "on": "This slide explains that QuickBooks carries billable time and costs onto invoices when entries are marked billable and linked to the right customer or matter, and that the invoice screen offers them. The steps: customers and sub-customers per matter, billable time entries with a service item and rate, billable expenses, creating the invoice from the billable panel, and checking the unbilled report.",
+    "say": "Mark it billable and pick the right matter when you record it, not later.",
+    "ask": "What happens to a client cost that isn't marked billable?"
+  },
+  "p2": {
+    "on": "This slide covers setting rates once, sending only approved pre-bills, and two pitfalls: costs not ticked billable and time entered to the client instead of the matter.",
+    "say": "The unbilled report is your safety net.",
+    "wrap": "Right matter, billable ticked, pulled onto the invoice, then check nothing's left behind.",
+    "scenario": "At month-end, the unbilled time report shows 6.2 hours for Harlow with no matter selected, and a $435 court reporter bill for Meridian that wasn't marked billable. What do you fix, and in what order, before invoices go out?"
+  },
+  "s1": {
+    "on": "This section explains how billable time and costs flow onto invoices and how customers and sub-customers work.",
+    "say": "Billable entries wait for the next invoice."
+  },
+  "s2": {
+    "on": "These steps: set up matters, record billable time and costs, build the invoice from the billable panel, check the unbilled report.",
+    "say": "Tick Billable and choose the matter.",
+    "ask": "Where do you record a court filing fee?"
+  },
+  "s3": {
+    "on": "This section covers rates, approvals and the two pitfalls.",
+    "say": "Draft first, send after approval."
+  }
+},
 "7::QuickBooks Common Mistakes & Tips": {
   "p1": {
     "on": "This slide says the most common new-user mistake is miscategorizing an expense, such as filing a client-reimbursable cost as general office expense. The steps: confirm the category and ask when unsure, look for a missing or duplicate transaction when reconciliation isn't $0.00, check invoices against the engagement letter, remember that QuickBooks Online saves automatically, and review entries for patterns.",
@@ -447,6 +551,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "No Ctrl+Z in QuickBooks Online."
   }
 },
+"7::QuickBooks: Bank Feeds, Rules & Month-End Close": {
+  "p1": {
+    "on": "This slide explains bank feeds, matching versus adding transactions, and month-end close. The steps: review the feed weekly and match before adding, create rules for regular transactions, exclude only true duplicates, run the month-end routine, and set a closing date once the accountant confirms.",
+    "say": "Match first; add only when nothing matches.",
+    "ask": "What would happen if you added a transaction that was already recorded?"
+  },
+  "p2": {
+    "on": "This slide covers clearing uncategorized transactions, recording transfers as transfers, and two pitfalls: adding an already-recorded payment and categorizing trust money as income.",
+    "say": "A card payment is a transfer, not an expense.",
+    "wrap": "Review weekly, reconcile monthly, then close the month.",
+    "scenario": "The feed shows a $1,200 payment to the firm's credit card company, and QuickBooks suggests categorizing it as 'Office expenses.' What is it really, how should it be recorded and what would go wrong if you accepted the suggestion?"
+  },
+  "s1": {
+    "on": "This section explains bank feeds, matching and adding, and why month-end close matters.",
+    "say": "Feeds still need a human to review them."
+  },
+  "s2": {
+    "on": "These steps: weekly feed review, rules, careful excludes, the month-end routine and the closing date.",
+    "say": "Set a closing date once the month is confirmed.",
+    "ask": "Which transactions would you make rules for?"
+  },
+  "s3": {
+    "on": "This section covers uncategorized items, transfers, and the two pitfalls.",
+    "say": "Trust money is never firm income."
+  }
+},
 "7::Credit Cards & Card Applications": {
   "p1": {
     "on": "This slide covers credit cards, with a diagram: put due dates on a real calendar, review the statement before paying it, gather exactly the documents a card application asks for and follow the issuer's process, and organize tax-relevant receipts throughout the year. The test: a request for the last 90 days of receipts should be a quick retrieval.",
@@ -470,6 +600,58 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section says card payments follow the same recurring discipline, and applications need precision, not 'close enough'.",
     "say": "Close enough causes delays."
+  }
+},
+"7::Credit Card Help: Disputes, Fraud & Lost Cards": {
+  "p1": {
+    "on": "This slide says assistants are often first to spot wrong charges, fraud or lost cards; explains disputing billing errors in writing within 60 days of the statement; and says lost or stolen cards and fraud are reported immediately, then automatic payments updated. The steps: check before disputing, go to the merchant first for wrong charges, report fraud through the number on the card or the app, update subscriptions on the new card, and log every case.",
+    "say": "Check first, report fast, and log it.",
+    "ask": "How many automatic payments do you think are on your executive's main card?"
+  },
+  "p2": {
+    "on": "This slide covers keeping a card register, acting only with authority, and two pitfalls: disputing a forgotten subscription and missing the dispute window.",
+    "say": "Put the dispute deadline on the calendar the day you find the charge.",
+    "wrap": "Know the card, check the charge, report fast and follow through to the credit.",
+    "scenario": "Elias texts from an airport: his firm card was declined and he's had a fraud alert. He needs to pay for a hotel tonight, and the same card pays for three software subscriptions. What do you do, in order?"
+  },
+  "s1": {
+    "on": "This section explains the assistant's role with cards, disputes and the 60-day window, and reporting lost cards and fraud.",
+    "say": "Speed matters with cards."
+  },
+  "s2": {
+    "on": "These steps: check unknown charges, merchant first then dispute, report fraud safely, update automatic payments, log each case.",
+    "say": "Use the number on the back of the card.",
+    "ask": "What do you log for a dispute?"
+  },
+  "s3": {
+    "on": "This section covers the card register, authority, and the two pitfalls.",
+    "say": "Only authorized people can dispute."
+  }
+},
+"7::Reconciling a Credit Card Statement": {
+  "p1": {
+    "on": "This slide defines card reconciliation (every charge has a receipt, purpose and category, and the records match the statement), says client costs must be coded to the matter and marked billable, and says personal charges are flagged and repaid. The steps: gather the statement and receipts, go line by line, chase missing receipts, flag problem charges, then reconcile in QuickBooks and file everything.",
+    "say": "Every charge: receipt, purpose, category and matter.",
+    "ask": "Which card charges are most often billable to a client?"
+  },
+  "p2": {
+    "on": "This slide covers reconciling monthly, filing receipts so they can be found, and two pitfalls: coding client travel without the matter and paying the card before reviewing it.",
+    "say": "Review before you pay.",
+    "wrap": "Line by line, chase the gaps, code to the matter, then reconcile and file.",
+    "scenario": "Elias's card statement has 34 charges. You have 29 receipts. Two charges are for the Chicago deposition, one looks personal (a $64 pharmacy charge), and two have no receipt at all. Walk through how you finish the reconciliation and who you contact."
+  },
+  "s1": {
+    "on": "This section defines card reconciliation, explains coding client costs to matters and how to handle personal charges.",
+    "say": "Client costs get coded to the matter."
+  },
+  "s2": {
+    "on": "These steps: gather statement and receipts, match line by line, chase missing receipts, flag problems, reconcile in QuickBooks and file.",
+    "say": "Chase missing receipts the same week.",
+    "ask": "What if a receipt can't be found?"
+  },
+  "s3": {
+    "on": "This section covers monthly timing, receipt filing, and the two pitfalls.",
+    "say": "Never pay before you've reviewed."
   }
 },
 "7::Expense Report Auditing & Approval Workflows": {
