@@ -39,6 +39,110 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "What's the first thing you'd lock in 12 weeks out?"
   }
 },
+"9::Event Management Tips: Checklists, Run Sheets & the Day-Of Kit": {
+  "p1": {
+    "on": "This slide says events run on three documents (the master checklist, the run sheet and the contact sheet), most problems are predictable, and the assistant is the calm center on the day. The steps: build the checklist backwards from the date, write a timed run sheet, confirm vendors 48 hours before, pack a day-of kit, walk the venue, and debrief within a week.",
+    "say": "Checklist, run sheet and contact sheet: those three run the day.",
+    "ask": "What's the most common thing you've seen go wrong at an event?"
+  },
+  "p2": {
+    "on": "This slide covers giving helpers one role each, building slack into the run sheet, and two pitfalls: the plan living in one person's head and skipping the debrief.",
+    "say": "Build in slack. Events run late.",
+    "wrap": "Three documents, confirmed vendors, a packed kit, and a debrief afterwards.",
+    "scenario": "The firm's client breakfast starts at 8:00. At 7:20 the caterer hasn't arrived, the projector won't connect to Elias's laptop, and two guests have arrived early. Using your run sheet and contact sheet, what do you do in the next 10 minutes?"
+  },
+  "s1": {
+    "on": "This section names the three event documents, the predictable problems and the assistant's role on the day.",
+    "say": "Plan for the predictable problems."
+  },
+  "s2": {
+    "on": "These steps: checklist, run sheet, vendor confirmations, the day-of kit, the venue walk and the debrief.",
+    "say": "Confirm every vendor 48 hours before.",
+    "ask": "What goes in your day-of kit?"
+  },
+  "s3": {
+    "on": "This section covers helper roles, slack time, and the two pitfalls.",
+    "say": "Always debrief."
+  }
+},
+"9::Sending Invites: Calendar Invites & Event Invitations": {
+  "p1": {
+    "on": "This slide says a calendar invite is a small document and an event invitation is a first impression; a good invite answers what, when (with time zone), where or how to join, who and what to prepare; and event invitations follow a rhythm of save-the-date, invitation, reminders and final details. The steps: check availability, write a clear title with time zone and joining details, add an agenda and required or optional attendees, time event invitations and reminders, and update or cancel through the calendar.",
+    "say": "What, when, where, who and what to prepare: all in the invite.",
+    "ask": "What's the most useless meeting invite you've received?"
+  },
+  "p2": {
+    "on": "This slide covers hiding guest lists for large events, checking the guest list when sending for Elias, and two pitfalls: a new invite for every change and forgotten time zones.",
+    "say": "Update the invite; don't send a new one.",
+    "wrap": "Check availability, send one complete invite, and keep it updated.",
+    "scenario": "Elias wants a 45-minute call next week with a client in London, a partner in New York and an expert in Denver. Write the invite: title, time (showing each zone), joining details, agenda and attendees. What do you check before sending?"
+  },
+  "s1": {
+    "on": "This section explains why invites matter, the five questions an invite answers and the event invitation rhythm.",
+    "say": "An invite is a small document."
+  },
+  "s2": {
+    "on": "These steps: check availability, a clear title and time zone, joining details, an agenda, event invitation timing, and updating or cancelling through the calendar.",
+    "say": "Save-the-date six to eight weeks out.",
+    "ask": "What goes in the invite title?"
+  },
+  "s3": {
+    "on": "This section covers guest-list privacy, sending on Elias's behalf, and the two pitfalls.",
+    "say": "Always check the time zone."
+  }
+},
+"9::Sending Intake Forms: Event Registration & New-Client Questionnaires": {
+  "p1": {
+    "on": "This slide explains what an intake form is for (event attendees or new clients), that good forms ask only what's needed, and that forms often hold confidential information and may feed the conflict check. The steps: use the firm's approved tool with attorney approval for client questions, the right questions for events and for new clients, a short cover note with a deadline, and tracking, a reminder and moving the answers into the right system.",
+    "say": "Ask only what you need, and collect it securely.",
+    "ask": "What's the longest form you've abandoned halfway through?"
+  },
+  "p2": {
+    "on": "This slide covers pre-filling and phone-friendly forms, telling people how their information will be used, and two pitfalls: asking for sensitive information by plain email and never moving the answers anywhere.",
+    "say": "A form nobody reads is worse than no form.",
+    "wrap": "Short, approved, secure, and the answers moved where they're needed.",
+    "scenario": "Elias is meeting a potential new client, a small construction company, on Monday. He wants their details and the names of everyone involved in their dispute beforehand. Draft the six questions on your intake form, and the note you send with it."
+  },
+  "s1": {
+    "on": "This section explains intake forms, keeping them short, and security and the conflict check.",
+    "say": "Every extra question costs completions."
+  },
+  "s2": {
+    "on": "These steps: the approved tool, event and client questions, the cover note, tracking and moving answers.",
+    "say": "Test the link before you send it.",
+    "ask": "What would you ask on a CLE event registration form?"
+  },
+  "s3": {
+    "on": "This section covers pre-filling, explaining how information is used, and the two pitfalls.",
+    "say": "Never collect sensitive documents by email."
+  }
+},
+"9::CLE Management for Firm-Hosted Events": {
+  "p1": {
+    "on": "This slide explains that a firm hosting a CLE event acts as the provider with duties to state bars, that each state sets its own rules (advance approval, minutes per credit, categories, records), and that credit depends on paperwork. The steps: check each state's rules and deadlines months ahead, prepare and submit the application, track attendance properly, issue accurate certificates, and report and keep records as required.",
+    "say": "The credit depends on the paperwork.",
+    "ask": "Why might a state bar care how long someone actually stayed on a webinar?"
+  },
+  "p2": {
+    "on": "This slide covers collecting bar numbers at registration, keeping a CLE file per event for audits, and two pitfalls: promising credit before approval and certificates showing hours not attended.",
+    "say": "Say 'credit has been applied for' until it's approved.",
+    "wrap": "Apply early, track attendance honestly, certify accurately and keep the file.",
+    "scenario": "The firm is hosting a two-hour webinar, 'Employment Law Update,' in six weeks, with one hour of ethics. Attendees are licensed in New York, New Jersey and California. What do you do this week, what do you collect at registration, and what happens after the webinar?"
+  },
+  "s1": {
+    "on": "This section explains the firm's role as a CLE provider, that state rules differ, and that credit depends on the paperwork.",
+    "say": "Each state sets its own CLE rules."
+  },
+  "s2": {
+    "on": "These steps: check states' rules, apply with agenda and materials, track attendance, issue certificates, report and keep records.",
+    "say": "Track attendance the way each state requires.",
+    "ask": "What goes on a certificate of attendance?"
+  },
+  "s3": {
+    "on": "This section covers bar numbers at registration, the CLE file, and the two pitfalls.",
+    "say": "Keep a CLE file for every event."
+  }
+},
 "9::Speaker & Panelist Logistics for Conferences": {
   "p1": {
     "on": "This slide says that when the executive speaks, the EA's job covers travel, materials, tech and content prep, on the organizer's deadlines. The steps: keep one checklist per engagement (bio and headshot, slide deadline, AV needs, travel) with internal deadlines, confirm the format (keynote, panel, fireside chat) early, and send the executive one consolidated briefing.",

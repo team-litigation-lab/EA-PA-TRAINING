@@ -207,32 +207,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "ask": "Where would you look if the client shows $5,000?"
   }
 },
-"7::Invoice & Payment Reconciliation": {
-  "p1": {
-    "on": "This slide says every payment must be matched to the invoices it pays, that payments arrive messy (lump, partial, short by fees), and that open invoices must equal receivables at month-end. The steps: record each payment the day it arrives, match by invoice number or exact amount, handle part and over payments, record fees separately, and tie the A/R aging report to the balance sheet.",
-    "say": "Match every payment to the invoices it pays, the day it arrives.",
-    "ask": "What would a client think if you chased them for an invoice they'd already paid?"
-  },
-  "p2": {
-    "on": "This slide covers keeping unapplied payments at zero, never applying trust money to a fee invoice without approval, and two pitfalls: applying to the oldest invoice by habit and deleting and re-entering payments.",
-    "say": "An unapplied payment is a client's money the books don't understand.",
-    "wrap": "Record, match, handle the leftovers, then tie A/R to the books every month.",
-    "scenario": "Harlow Industries sends one wire of $7,425 with the note 'May invoices.' There are three open May invoices: $2,500, $3,000 and $2,000. What happened to the missing $75, how do you apply the wire, and what do you ask Harlow?"
-  },
-  "s1": {
-    "on": "This section explains matching payments to invoices, messy payments, and tying open invoices to receivables.",
-    "say": "Every payment belongs to an invoice."
-  },
-  "s2": {
-    "on": "These steps: record the payment, match it, handle part and over payments, record fees separately, tie A/R at month-end.",
-    "say": "Match by invoice number first, then exact amount.",
-    "ask": "What would you do with an overpayment?"
-  },
-  "s3": {
-    "on": "This section covers unapplied payments, trust money, and the two pitfalls.",
-    "say": "Fix a payment in place; don't delete it."
-  }
-},
 "7::Reconciliation Discrepancy Detection": {
   "p1": {
     "on": "This slide lists detection techniques: compare the ledger with the bank statement line by line, confirm credits went to the right client, look for reversed entries that hide errors, run the full checklist, and apply duplicate-payment checks (system detection, manual verification and approval thresholds).",
@@ -338,32 +312,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Header, body, footer."
   }
 },
-"7::Invoice Management: Tracking, Follow-Up & Collections": {
-  "p1": {
-    "on": "This slide says an invoice is finished when it's paid, describes the invoice register and its columns, and says follow-up should be polite and predictable, with anything beyond reminders left to the attorney. The steps: continuous numbering with voids not reuse, send in the client's required format, a set reminder schedule, a weekly aging review, and recording payments the day they arrive.",
-    "say": "An invoice is done when it's paid, not when it's sent.",
-    "ask": "Who in a client company actually pays the invoices?"
-  },
-  "p2": {
-    "on": "This slide covers warm, factual reminders, pausing reminders on disputed invoices, and two pitfalls: sending to the wrong contact and adding late fees or collections threats without approval.",
-    "say": "Chasing a disputed bill makes it worse. Route it to the attorney.",
-    "wrap": "One register, a steady reminder schedule and a weekly look at the aging report.",
-    "scenario": "The aging report shows Meridian owes $18,400: $6,000 is 45 days overdue and $12,400 is 95 days overdue. No one has followed up since the invoices went out. What do you send today, and what do you ask Elias?"
-  },
-  "s1": {
-    "on": "This section explains why invoice management matters, what goes in the register and where the attorney decides.",
-    "say": "Keep one invoice register."
-  },
-  "s2": {
-    "on": "These steps: continuous numbering, the client's format, a reminder schedule, a weekly aging review, recording payments promptly.",
-    "say": "Void, don't reuse, an invoice number.",
-    "ask": "What's on your reminder schedule?"
-  },
-  "s3": {
-    "on": "This section covers tone, disputes, and the two pitfalls.",
-    "say": "Late fees need the attorney's approval."
-  }
-},
 "7::Contract-Aware Billing": {
   "p1": {
     "on": "This slide says to know payment terms, late fees and hour caps before billing begins. The steps: confirm terms at the start of the matter, track hours against any cap continuously, flag an approaching cap well before it's reached, apply late fees and terms exactly as written, and confirm the interpretation of ambiguous terms before billing.",
@@ -391,6 +339,162 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s4": {
     "on": "This section lists what to know: billing arrangement, caps and required notice, and payment, late-fee and format terms.",
     "say": "The arrangement changes the invoice."
+  }
+},
+"7::Pre-Bill Review: Checking an Invoice Before It Goes Out": {
+  "p1": {
+    "on": "This slide explains that the pre-bill is the attorney's draft review and the last chance to catch mistakes, lists the common invoice errors, and says the assistant checks while the attorney decides. The steps: run pre-bills at the same time each month, check the header, every time entry, every cost, then totals and terms, and send the attorney a flag list.",
+    "say": "Catch it on the pre-bill, before the client does.",
+    "ask": "Which invoice error do you think clients notice first?"
+  },
+  "p2": {
+    "on": "This slide covers writing flags as a short list, keeping a checklist per client, and two pitfalls: sending without sign-off and changing entries yourself.",
+    "say": "Flag it; don't fix it yourself.",
+    "wrap": "Header, entries, costs, totals and terms, then flags to the attorney.",
+    "scenario": "The Harlow pre-bill shows 42 hours in June. One entry is billed at last year's rate, two paralegal entries say only 'file review,' and a $620 court reporter cost appears twice. What goes in your note to Elias, and in what order?"
+  },
+  "s1": {
+    "on": "This section defines the pre-bill, lists common invoice errors and separates the assistant's and attorney's roles.",
+    "say": "The attorney decides what's charged."
+  },
+  "s2": {
+    "on": "These steps: run pre-bills monthly, check header, entries, costs, totals and terms, and send a flag list.",
+    "say": "Check every entry against the rate and the rules.",
+    "ask": "What belongs in the invoice header?"
+  },
+  "s3": {
+    "on": "This section covers the flag list, per-client checklists, and the two pitfalls.",
+    "say": "Never send without sign-off."
+  }
+},
+"7::Invoice Management: Tracking, Follow-Up & Collections": {
+  "p1": {
+    "on": "This slide says an invoice is finished when it's paid, describes the invoice register and its columns, and says follow-up should be polite and predictable, with anything beyond reminders left to the attorney. The steps: continuous numbering with voids not reuse, send in the client's required format, a set reminder schedule, a weekly aging review, and recording payments the day they arrive.",
+    "say": "An invoice is done when it's paid, not when it's sent.",
+    "ask": "Who in a client company actually pays the invoices?"
+  },
+  "p2": {
+    "on": "This slide covers warm, factual reminders, pausing reminders on disputed invoices, and two pitfalls: sending to the wrong contact and adding late fees or collections threats without approval.",
+    "say": "Chasing a disputed bill makes it worse. Route it to the attorney.",
+    "wrap": "One register, a steady reminder schedule and a weekly look at the aging report.",
+    "scenario": "The aging report shows Meridian owes $18,400: $6,000 is 45 days overdue and $12,400 is 95 days overdue. No one has followed up since the invoices went out. What do you send today, and what do you ask Elias?"
+  },
+  "s1": {
+    "on": "This section explains why invoice management matters, what goes in the register and where the attorney decides.",
+    "say": "Keep one invoice register."
+  },
+  "s2": {
+    "on": "These steps: continuous numbering, the client's format, a reminder schedule, a weekly aging review, recording payments promptly.",
+    "say": "Void, don't reuse, an invoice number.",
+    "ask": "What's on your reminder schedule?"
+  },
+  "s3": {
+    "on": "This section covers tone, disputes, and the two pitfalls.",
+    "say": "Late fees need the attorney's approval."
+  }
+},
+"7::E-Billing Portals, LEDES & Client Billing Guidelines": {
+  "p1": {
+    "on": "This slide explains that many corporate clients and insurers require invoices through e-billing portals, often in LEDES format with UTBMS task codes, that portals check invoices against billing guidelines automatically, and that rejected or cut invoices aren't paid until fixed. The steps: record each client's portal details, keep their guidelines, code entries before the pre-bill, check the invoice's status after upload, and bring cuts and rejections to the attorney before the deadline.",
+    "say": "If a client uses a portal, the invoice isn't sent until it's accepted there.",
+    "ask": "Which of the firm's clients do you think would use e-billing?"
+  },
+  "p2": {
+    "on": "This slide covers submitting on time, logging adjustments, and two pitfalls: emailing a PDF to an e-billing client and a single person holding the portal login.",
+    "say": "Log the cuts, and fix the habit behind them.",
+    "wrap": "Know each client's portal and rules, code the entries, and watch the status after upload.",
+    "scenario": "Harlow's insurer rejects the firm's May invoice in its e-billing portal: 'Task code missing on 7 entries; 2 entries exceed the approved rate.' The resubmission window closes in 10 days. What do you do, and what do you need from Elias?"
+  },
+  "s1": {
+    "on": "This section explains e-billing portals, LEDES and task codes, and why rejections delay payment.",
+    "say": "Portals check invoices against the client's rules."
+  },
+  "s2": {
+    "on": "These steps: record portal details, keep guidelines, code entries, check status, handle cuts before the deadline.",
+    "say": "Check the status after every upload.",
+    "ask": "What would you record for each e-billing client?"
+  },
+  "s3": {
+    "on": "This section covers submission deadlines, the adjustment log, and the two pitfalls.",
+    "say": "Never leave one person with the only login."
+  }
+},
+"7::Retainer Invoices & Applying Trust Funds": {
+  "p1": {
+    "on": "This slide explains that a retainer sits in the client trust account and stays the client's money until earned and billed, that paying an invoice from it is a trust-to-operating transfer needing approval, an invoice and a ledger entry, and what an evergreen retainer is. The steps: confirm the deposit went to trust, show the retainer on the invoice, get written approval, transfer exactly the approved amount and record it, and request a top-up when the balance drops below the agreed level.",
+    "say": "Retainer money is the client's until it's earned, billed and approved.",
+    "ask": "Why must a retainer land in the trust account and not the operating account?"
+  },
+  "p2": {
+    "on": "This slide says trust money only pays earned, billed fees or approved costs for the same client, unused retainers are returned promptly, and warns against transfers before approval or for another client, and invoices that don't show the retainer applied.",
+    "say": "Show the retainer on every invoice.",
+    "wrap": "Deposit to trust, invoice, approval, exact transfer, ledger entry, then top up or return.",
+    "scenario": "Meridian paid a $15,000 evergreen retainer that must stay at $10,000 or more. The June invoice is $6,800 and the balance is $11,200. What does the invoice show, what transfer happens, what's the new balance, and what goes to the client?"
+  },
+  "s1": {
+    "on": "This section explains retainers in trust, trust-to-operating transfers and evergreen retainers.",
+    "say": "A transfer from trust needs approval."
+  },
+  "s2": {
+    "on": "These steps: confirm the deposit, show the retainer on the invoice, get approval, make and record the transfer, request top-ups.",
+    "say": "Transfer exactly the approved amount.",
+    "ask": "What does the invoice show when a retainer is applied?"
+  },
+  "s3": {
+    "on": "This section covers what trust money may pay, returning unused funds, and the two pitfalls.",
+    "say": "Never use one client's trust money for another."
+  }
+},
+"7::Invoice & Payment Reconciliation": {
+  "p1": {
+    "on": "This slide says every payment must be matched to the invoices it pays, that payments arrive messy (lump, partial, short by fees), and that open invoices must equal receivables at month-end. The steps: record each payment the day it arrives, match by invoice number or exact amount, handle part and over payments, record fees separately, and tie the A/R aging report to the balance sheet.",
+    "say": "Match every payment to the invoices it pays, the day it arrives.",
+    "ask": "What would a client think if you chased them for an invoice they'd already paid?"
+  },
+  "p2": {
+    "on": "This slide covers keeping unapplied payments at zero, never applying trust money to a fee invoice without approval, and two pitfalls: applying to the oldest invoice by habit and deleting and re-entering payments.",
+    "say": "An unapplied payment is a client's money the books don't understand.",
+    "wrap": "Record, match, handle the leftovers, then tie A/R to the books every month.",
+    "scenario": "Harlow Industries sends one wire of $7,425 with the note 'May invoices.' There are three open May invoices: $2,500, $3,000 and $2,000. What happened to the missing $75, how do you apply the wire, and what do you ask Harlow?"
+  },
+  "s1": {
+    "on": "This section explains matching payments to invoices, messy payments, and tying open invoices to receivables.",
+    "say": "Every payment belongs to an invoice."
+  },
+  "s2": {
+    "on": "These steps: record the payment, match it, handle part and over payments, record fees separately, tie A/R at month-end.",
+    "say": "Match by invoice number first, then exact amount.",
+    "ask": "What would you do with an overpayment?"
+  },
+  "s3": {
+    "on": "This section covers unapplied payments, trust money, and the two pitfalls.",
+    "say": "Fix a payment in place; don't delete it."
+  }
+},
+"7::Handling a Billing Dispute": {
+  "p1": {
+    "on": "This slide says a billing dispute is a request for information, not an accusation; most come from misunderstandings. The backup documentation (time entries, receipts, engagement terms) is what resolves it, and how you handle it affects the relationship beyond the dollar amount. The steps: pull the documentation first, acknowledge promptly, and present the resolution with the supporting detail.",
+    "say": "Pull the documentation before you reply.",
+    "ask": "Why acknowledge before it's resolved?"
+  },
+  "p2": {
+    "on": "This slide warns against responding defensively before pulling the documentation, which can turn a misunderstanding into a relationship problem. If the dispute reveals a real error, correct it plainly and promptly, because the relationship matters more than the original invoice.",
+    "say": "If it's our error, fix it plainly and quickly.",
+    "wrap": "Acknowledge fast, show the backup and correct real errors.",
+    "scenario": "A client emails disputing a charge, saying it doesn't match what they remember agreeing to. What's your first move before responding?"
+  },
+  "s1": {
+    "on": "This section frames a dispute as a request for information, resolved by documentation, and says handling affects the relationship beyond the dollars.",
+    "say": "Information, not accusation."
+  },
+  "s2": {
+    "on": "These steps resolve it: pull the documentation, acknowledge promptly, and present the resolution with the detail.",
+    "say": "Show what the charge was based on.",
+    "ask": "How would you reply to a client questioning a charge?"
+  },
+  "s3": {
+    "on": "This section warns against defensiveness before checking, and says to correct real errors plainly.",
+    "say": "The relationship beats the invoice."
   }
 },
 "7::Real-Time Time Tracking for Billable Work": {
@@ -442,32 +546,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   "s3": {
     "on": "This section says the attorney decides write-offs, categories stay consistent, and warns about clerical billing and unrecorded time.",
     "say": "Clerical work is usually non-billable."
-  }
-},
-"7::Handling a Billing Dispute": {
-  "p1": {
-    "on": "This slide says a billing dispute is a request for information, not an accusation; most come from misunderstandings. The backup documentation (time entries, receipts, engagement terms) is what resolves it, and how you handle it affects the relationship beyond the dollar amount. The steps: pull the documentation first, acknowledge promptly, and present the resolution with the supporting detail.",
-    "say": "Pull the documentation before you reply.",
-    "ask": "Why acknowledge before it's resolved?"
-  },
-  "p2": {
-    "on": "This slide warns against responding defensively before pulling the documentation, which can turn a misunderstanding into a relationship problem. If the dispute reveals a real error, correct it plainly and promptly, because the relationship matters more than the original invoice.",
-    "say": "If it's our error, fix it plainly and quickly.",
-    "wrap": "Acknowledge fast, show the backup and correct real errors.",
-    "scenario": "A client emails disputing a charge, saying it doesn't match what they remember agreeing to. What's your first move before responding?"
-  },
-  "s1": {
-    "on": "This section frames a dispute as a request for information, resolved by documentation, and says handling affects the relationship beyond the dollars.",
-    "say": "Information, not accusation."
-  },
-  "s2": {
-    "on": "These steps resolve it: pull the documentation, acknowledge promptly, and present the resolution with the detail.",
-    "say": "Show what the charge was based on.",
-    "ask": "How would you reply to a client questioning a charge?"
-  },
-  "s3": {
-    "on": "This section warns against defensiveness before checking, and says to correct real errors plainly.",
-    "say": "The relationship beats the invoice."
   }
 },
 "7::QuickBooks How-Tos — Step by Step": {
