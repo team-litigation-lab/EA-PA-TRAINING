@@ -678,6 +678,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "An honest \"confirming by noon\" beats a wrong \"it's done.\""
   }
 },
+"1::Credibility Is Earned, Not Claimed": {
+  "p1": {
+    "on": "This slide explains that credibility comes from operational reliability: accuracy, follow-through and on-time execution. The steps cover the No-Surprises Rule, treating every micro-decision as if it might carry weight, defaulting to discretion on investor, legal, family and M&A matters, and rebuilding damaged credibility over a sustained track record, with a diagram.",
+    "say": "You can't claim credibility. Elias gives it to you, one reliable week at a time.",
+    "ask": "What does the No-Surprises Rule mean in practice?"
+  },
+  "p2": {
+    "on": "This slide explains that credibility is the currency that lets an assistant manage up with confidence, earned only through consistent execution and judgment. The pitfall to stress: once damaged, it isn't restored by one good week but by a track record proportional to the damage.",
+    "say": "Lost credibility comes back slowly, in proportion to how much was lost.",
+    "wrap": "No surprises, discretion by default, and every small decision handled as if it matters.",
+    "scenario": "Describe a real moment, from any job and anonymised, when a small, undramatic decision turned out to carry financial, legal or reputational risk. What would you do differently now?"
+  },
+  "s1": {
+    "on": "This section lists four sources of credibility: operational reliability, the No-Surprises Rule, judgment under pressure, and discretion in investor, legal, family and M&A matters.",
+    "say": "The executive should never be blindsided by something you knew."
+  },
+  "s2": {
+    "on": "These steps build credibility: reliability first, the No-Surprises Rule as a habit, treating every micro-decision as if it matters, discretion by default, and rebuilding slowly after damage.",
+    "say": "Treat small decisions as if they might matter. Some do."
+  },
+  "s3": {
+    "on": "This section says credibility comes only from consistent execution, never self-promotion, and damaged credibility takes a track record proportional to the damage to restore.",
+    "say": "One good week doesn't fix a lost week of trust.",
+    "ask": "When did a small decision of yours turn out to carry real weight?"
+  }
+},
 "1::Client Profiling": {
   "p1": {
     "on": "This slide defines a client profile as the reference you build once so you never ask the same question twice. The five steps work through its categories in order: role and organization, communication style, meeting and scheduling rules, travel preferences, and quirks written in plain, non-judgmental language.",

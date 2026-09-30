@@ -712,6 +712,42 @@ const DAY1 = {
       "trainerCue": "Have someone read the Three C's out loud in order, then immediately ask: 'Which one collapses first when you're overwhelmed?' Almost everyone says Clarity — use that as the hook for why it's listed first."
     },
     {
+      "h": "Credibility Is Earned, Not Claimed",
+      "section": "Managing Up Basics",
+      "layout": "QUADRANT",
+      "quadrants": [
+        {
+          "label": "Operational Reliability",
+          "desc": "Accuracy, follow-through, on-time execution, anticipating next steps, zero-drama problem solving"
+        },
+        {
+          "label": "The No-Surprises Rule",
+          "desc": "An executive should never be blindsided by something their assistant already knew about"
+        },
+        {
+          "label": "Judgment Under Pressure",
+          "desc": "Micro-decisions that quietly affect financial exposure, legal risk, and reputation"
+        },
+        {
+          "label": "Discretion & Confidentiality Discipline",
+          "desc": "Especially critical in investor relations, legal matters, family logistics, and M&A activity"
+        }
+      ],
+      "b": [
+        "Credibility is the currency that lets an assistant manage up with real confidence — earned exclusively through consistent execution and mature judgment, never through self-promotion.",
+        "Credibility, once damaged, isn't restored by a single good week — it requires a sustained track record roughly proportional to how badly it was damaged.",
+        "Discussion prompt: describe a real moment (any job) where a small, undramatic decision you made turned out to carry real financial, legal, or reputational weight. What told you it mattered before it became obvious?"
+      ],
+      "howTo": [
+        "Build credibility through operational reliability first — accuracy, follow-through, and on-time execution, consistently, not just when it's convenient.",
+        "Apply the No-Surprises Rule as a standing discipline: never let the executive be blindsided by something you already knew about, even if it seemed minor at the time.",
+        "Treat every micro-decision as if it might carry real weight — financial exposure, legal risk, or reputational consequence isn't always obvious in the moment it's made.",
+        "Practice discretion as a default, especially around investor relations, legal matters, family logistics, or M&A activity — these are the categories where a slip is hardest to undo.",
+        "If credibility is ever damaged, don't expect a single good week to restore it — rebuild it through a sustained track record proportional to what was lost."
+      ],
+      "trainerCue": "This is a heavier topic — don't rush it. Ask for a real (anonymized) example of a moment someone's judgment call touched financial, legal, or reputational risk without them realizing it at the time."
+    },
+    {
       "h": "Client Profiling",
       "section": "Client Profiling & the Dossier",
       "b": [
@@ -936,6 +972,18 @@ const DAY1 = {
       ],
       "a": 2,
       "r": "It filters the request into a reviewable, prioritized channel rather than granting or flatly denying access."
+    },
+    {
+      "afterIndex": 25,
+      "q": "The 'No-Surprises Rule' means:",
+      "opts": [
+        "Surprises are fine as long as they're positive",
+        "Only bad news needs to be flagged early",
+        "An executive should never be blindsided by something their assistant already knew",
+        "Executives enjoy occasional surprises"
+      ],
+      "a": 2,
+      "r": "Anything the assistant already knows that could affect the executive needs to reach them proactively — good or bad."
     }
   ],
   "quiz": [
@@ -1312,6 +1360,17 @@ const DAY1 = {
       ],
       "a": 0,
       "r": "E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."
+    },
+    {
+      "q": "Why is credibility described as 'earned, not claimed'?",
+      "opts": [
+        "Credibility comes mainly from seniority, so it grows with each promotion and title change",
+        "Only executives can grant credibility explicitly",
+        "One strong result under pressure earns it permanently, as long as it's noticed by the executive",
+        "Credibility is built through a track record of reliable judgment over time, not by asserting it"
+      ],
+      "a": 3,
+      "r": "Trust accumulates from consistent, reliable follow-through — it can't be claimed into existence."
     }
   ],
   "discussionQuestion": "Think of a moment (in this role or another) where you had to decide whether something was an EA-style problem or a PA-style problem. What tipped you off, and would you decide the same way again?"
