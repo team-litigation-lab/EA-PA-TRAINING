@@ -697,6 +697,9 @@ function presenterCues(d, slide){
     const pageInfo = state.presentSecsFor === (state.lessonSlide||0);
     out.push(renderPresenterNote(d, l, slide.part, pageInfo ? state.presentSecs : null, pageInfo ? state.presentAllSecs : null,
       pageInfo ? {page: state.presentPage||0, pages: state.presentPages||1, secsByPage: state.presentSecsByPage} : null));   // scripts: js/days/dayN/scripts.js
+  }else if(slide.type==="divider"){
+    const l = d.lessons[slide.lessonIndex];
+    out.push(`<h3>Topic ${slide.lessonIndex+1} of ${d.lessons.length}: ${esc(l.h)}</h3><p>${l.section ? `Section: ${esc(l.section)}. ` : ""}Name the topic, then move on to its first slide.</p>`);
   }else if(slide.type==="quickCheck"){
     out.push(`<h3>Quick Check</h3><p>Let the room answer first — then reveal and use the rationale.</p>`);
     (d.quickChecks||[]).filter(c=>c.afterIndex===slide.lessonIndex).forEach(c=>{
