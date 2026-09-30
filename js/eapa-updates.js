@@ -85,6 +85,28 @@ window.EAPA_UPDATE_PACK = "z";
   .dash-side .tfb-dash-stars button{font-size:17px;}
   .dash-main > .dash-side{margin-top:12px;}
 }
+/* The dashboard fills the screen: the two rows of day cards grow into the height that's left, so there's no
+   empty space under the page (laptops and desktops). */
+@media(min-width:1001px){
+  main.main-dash{display:flex;flex-direction:column;padding-bottom:14px !important;}
+  main.main-dash > .dash-layout{flex:1 1 auto;display:flex !important;flex-direction:column;}
+  main.main-dash .dash-main{flex:1 1 auto;display:flex;flex-direction:column;}
+  main.main-dash .module-grid{flex:1 1 0;grid-auto-rows:1fr;align-items:stretch;}
+  .dash-main .module-card.mc-clean .module-head{padding:10px 10px;min-height:58px;justify-content:center;}
+  .dash-main .module-card.mc-clean .mh-day{font-size:11px;}
+  .dash-main .module-card.mc-clean .mh-title{font-size:14px;line-height:1.25;}
+  .dash-main .module-card.mc-clean .module-body{flex:1 1 0;min-height:0;overflow:hidden;container-type:size;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:8px 16px 6px;}
+  .dash-main .module-card.mc-clean .module-icon{font-size:30px;line-height:1;margin:0;}
+  .dash-main .module-card.mc-clean .module-start-btn{margin:0 14px 8px;width:calc(100% - 28px);padding:10px;font-size:15px;}
+  .dash-main .module-card.mc-clean .module-finish-btn{margin:0 14px 8px;width:calc(100% - 28px);padding:6px;font-size:12.5px;}
+  .dash-main .module-card.mc-clean > :last-child{margin-bottom:12px;}
+  body:has(main.main-dash) .footer-note{padding:6px 24px 8px;}
+}
+/* the middle of a day card shows as much as fits: icon and theme, then the icon alone (smaller), then nothing */
+@container (max-height:96px){ .module-card.mc-clean .module-theme{display:none;} }
+@container (max-height:40px){ .module-card.mc-clean .module-icon{font-size:20px;} }
+@container (max-height:26px){ .module-card.mc-clean .module-icon{display:none;} }
+.module-theme{font-size:12.5px;color:var(--ink-soft);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 @media(min-width:761px) and (max-width:1100px){
   .dash-side-inner{grid-template-columns:repeat(4,minmax(0,1fr));}
   .dash-side-inner > .tfb-dash, .dash-side-inner > .rank-card, .dash-side-inner > .cert-dash, .dash-side-inner > .comp-card{grid-column:span 2;}
@@ -2625,7 +2647,9 @@ Object.assign(window, {bfSearch, bfRedraw, bfExportCsv, bfExportJson});
   moduleCard = function(d){
     const html = __card(d), t = document.createElement("template"); t.innerHTML = html.trim();
     const card = t.content.firstElementChild; if(!card) return html;
-    card.querySelectorAll(".module-icon, .module-topic-list, .module-more").forEach(n=>n.remove());
+    card.querySelectorAll(".module-topic-list, .module-more").forEach(n=>n.remove());
+    const body = card.querySelector(".module-body");   // the day's icon and what it covers fill the card
+    if(body && d.theme) body.insertAdjacentHTML("beforeend", `<div class="module-theme">${esc(d.theme)}</div>`);
     const n = (d.lessons||[]).length, start = card.querySelector(".module-start-btn");
     if(n && start) start.insertAdjacentHTML("afterend", `<button type="button" class="btn btn-ghost btn-sm module-finish-btn module-topics-btn" onclick="event.stopPropagation(); showDayTopics(${d.id})">☰ Topics <span>· ${n}</span></button>`);
     card.classList.add("mc-clean");
