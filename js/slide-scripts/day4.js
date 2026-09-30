@@ -1,6 +1,6 @@
 /* Day 4 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "4::Data Entry That Holds Up": {
   "p1": {
@@ -12,7 +12,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, check the entries against the original documents, especially numbers, dates and names.",
     "Finally, sort it in the order the next person will need it."
    ],
-   "ask": "Why do you think the order of those four steps matters?"
+   "ask": "Why do you think the order of those four steps matters?",
+   "scenario": "Finance asks you for Elias's client list to send year-end invoices. Your spreadsheet has 310 rows, including the same client three times under slightly different names and two different addresses for one company. What do you do before anything goes to finance, and in what order?"
   },
   "p2": {
    "why": "Never hand over raw data and expect someone else to clean up after you.",
@@ -22,7 +23,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, formatting comes before checking, because a search for 'California' quietly misses everyone entered as 'CA'.",
     "Finally, check against the source, not your memory. Pull a sample and compare it with the original."
    ],
-   "ask": "Here's a sample client list with 40 rows, some duplicates, 'CA' and 'California', and two phone formats. Let's clean it together in the four steps. What did each step catch?"
+   "ask": "Here's a sample client list with 40 rows, some duplicates, 'CA' and 'California', and two phone formats. Let's clean it together in the four steps. What did each step catch?",
+   "scenario": "You sent a contact list to the marketing team without cleaning it. The next week, two clients got the newsletter three times and complained. What should the handover have looked like?"
   }
  },
  "4::The Daily Routine": {
@@ -34,7 +36,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, the midday review: draft replies, chase anything waiting and confirm the afternoon's meetings.",
     "Finally, the end-of-day review: make sure nothing urgent is left hanging, and set up tomorrow."
    ],
-   "ask": "How does your morning compare with this right now?"
+   "ask": "How does your morning compare with this right now?",
+   "scenario": "Yesterday a court notice arrived at 4:55 p.m. and nobody saw it until 10 a.m. today. Design your start, middle and end-of-day checks so that can't happen again."
   },
   "p2": {
    "why": "The routine is built around the executive's day, not yours.",
@@ -44,7 +47,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep one running list of what carries over from evening to morning, so nothing depends on memory overnight.",
     "Finally, time it to them. If Elias starts at 7, your briefing is ready at 6:45."
    ],
-   "ask": "Elias starts at 7 AM and is in court by 9 three days a week. Build your routine around him: when does each check-in happen, and what's ready when?"
+   "ask": "Elias starts at 7 AM and is in court by 9 three days a week. Build your routine around him: when does each check-in happen, and what's ready when?",
+   "scenario": "Elias is in court by 9 a.m. three days a week and checks messages at 12:30 during the lunch break. When do your check-ins happen on those days, and what's ready for him at each one?"
   }
  },
  "4::The Morning Briefing, In Practice": {
@@ -58,7 +62,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, keep the whole thing short, just a handful of lines.",
     "Finally, send it at the same time every morning, so he knows when to expect it."
    ],
-   "ask": "What makes a briefing line useful, rather than just a copied bit of email?"
+   "ask": "What makes a briefing line useful, rather than just a copied bit of email?",
+   "scenario": "Overnight, 34 emails arrived: a client approval that expires at noon, two meeting requests, a partner's question, eight newsletters and the rest routine. Write the five lines of this morning's briefing."
   },
   "p2": {
    "why": "A good briefing has three parts: what needs you, what's handled and what's coming.",
@@ -68,7 +73,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, 'Handled or in progress': one line each, so he knows it's covered without reading the thread.",
     "Finally, 'Heads-up': things coming later in the week that might become urgent."
    ],
-   "ask": "Compare the five-line briefing on screen with the 30 emails it came from. Now write tomorrow's version for Elias, using the three parts."
+   "ask": "Compare the five-line briefing on screen with the 30 emails it came from. Now write tomorrow's version for Elias, using the three parts.",
+   "scenario": "Elias tells you he stopped reading your briefings because they're 'as long as my inbox.' Rewrite yesterday's briefing using the three parts: needs you, handled and heads-up."
   }
  },
  "4::The Priority Matrix": {
@@ -82,7 +88,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if you can't tell which tier it is, treat it as Tier 1 until you know. Over-escalating costs less than missing something.",
     "Finally, look back at your calls now and then, and learn from the ones you got wrong."
    ],
-   "ask": "Why is it cheaper to over-escalate than to under-escalate?"
+   "ask": "Why is it cheaper to over-escalate than to under-escalate?",
+   "scenario": "An email arrives from a reporter asking for comment on a client's case by 4 p.m. today, while you're sorting routine scheduling requests. What tier is it, what do you do in the next five minutes, and what do you not do?"
   },
   "p2": {
    "why": "An ordinary email can become urgent the moment the facts change.",
@@ -92,7 +99,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, Tier 4 is file or pass on: promotions, automatic notices and things another team owns.",
     "Finally, re-tier when things change. A routine vendor email becomes Tier 1 the moment it mentions a missed payment."
    ],
-   "ask": "Speed round: I'll read five emails and you call the tier. A court clerk's notice. A partnership inquiry. The bar association newsletter. A reporter asking for comment. A vendor saying an invoice is 60 days overdue."
+   "ask": "Speed round: I'll read five emails and you call the tier. A court clerk's notice. A partnership inquiry. The bar association newsletter. A reporter asking for comment. A vendor saying an invoice is 60 days overdue.",
+   "scenario": "A monthly email from the office cleaning company normally goes in Tier 3. This month it says they found an unlocked filing cabinet full of client files after hours. What tier is it now, and what do you do?"
   }
  },
  "4::Dual-Role Context Switching": {
@@ -104,7 +112,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, take a brief pause between the two. Finish one fully before you open the other.",
     "Finally, keep separate task lists for business and personal, even though you manage both."
    ],
-   "ask": "Have you ever sent a message in the wrong tone because you'd just switched tasks?"
+   "ask": "Have you ever sent a message in the wrong tone because you'd just switched tasks?",
+   "scenario": "In ten minutes you have to reply to opposing counsel about a deposition date, then to Sarah Thorne about her mother's birthday dinner. How do you make sure each reply has the right tone and nothing from one leaks into the other?"
   },
   "p2": {
    "why": "A small tone slip is usually the sign of a rushed switch.",
@@ -113,7 +122,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, watch out for business language leaking into personal messages, and the other way round.",
     "Finally, treat switching as a real skill you practice, not something that just happens."
    ],
-   "ask": "You're halfway through a formal client email when Elias's spouse texts about a family birthday dinner. How do you switch so that neither message ends up in the wrong tone?"
+   "ask": "You're halfway through a formal client email when Elias's spouse texts about a family birthday dinner. How do you switch so that neither message ends up in the wrong tone?",
+   "scenario": "You sent Sarah a text that began 'Per our discussion, please find below the options for Saturday.' She replied, 'Are you OK? You sound like a lawyer.' What slipped, and how do you avoid it?"
   }
  },
  "4::Priority Collision Handling": {
@@ -125,7 +135,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, where you can, do a little on both: a quick acknowledgment on one while you fully handle the other.",
     "Finally, if it's genuinely too close to call, ask. A 30-second check-in beats a wrong guess."
    ],
-   "ask": "Can you think of a time when simply working faster didn't solve a clash like this?"
+   "ask": "Can you think of a time when simply working faster didn't solve a clash like this?",
+   "scenario": "At 2 p.m., Elias asks you to get a client on the phone immediately, and at the same moment the court clerk calls saying a filing was rejected and must be resubmitted by 3 p.m. What breaks if each one waits ten minutes? Which do you do first?"
   },
   "p2": {
    "why": "Some collisions aren't speed problems; they're real trade-offs.",
@@ -134,7 +145,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't assume speed fixes everything. Sometimes you have to choose.",
     "Finally, note how you resolved it and why. That becomes your playbook for the next one."
    ],
-   "ask": "In the same minute, Elias asks you to get opposing counsel on the phone right now, and a major client emails that their wire transfer failed and the closing is at noon. What happens first, and why?"
+   "ask": "In the same minute, Elias asks you to get opposing counsel on the phone right now, and a major client emails that their wire transfer failed and the closing is at noon. What happens first, and why?",
+   "scenario": "Two partners both need Elias for an urgent call at 4 p.m. about different client emergencies. You can't split him in two. How do you lay out the trade-off, and who decides?"
   }
  },
  "4::Mid-Stage Task Injections": {
@@ -146,7 +158,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, before you switch, leave a marker: a note, a highlighted line or a saved draft.",
     "Finally, if the new task takes over completely, tell whoever is waiting on the first one."
    ],
-   "ask": "How do you keep your place when you're interrupted in the middle of something?"
+   "ask": "How do you keep your place when you're interrupted in the middle of something?",
+   "scenario": "You're halfway through building a 40-line travel itinerary when Elias asks you to find a contract from 2021 right now. What do you do in the 20 seconds before you switch?"
   },
   "p2": {
    "why": "Your memory is where the details get dropped.",
@@ -155,7 +168,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't rely on memory for tasks in progress.",
     "Finally, keep a running list of 'paused here' items. It's a small habit that prevents big mistakes."
    ],
-   "ask": "You're halfway through a detailed client reply when an urgent, unrelated request arrives. Walk us through what you do so neither task gets dropped."
+   "ask": "You're halfway through a detailed client reply when an urgent, unrelated request arrives. Walk us through what you do so neither task gets dropped.",
+   "scenario": "Last week, you were interrupted mid-way through updating a client's contact details and forgot to finish. The client's new number never made it into the system. What habit fixes this?"
   }
  },
  "4::Research as a Core EA Skill": {
@@ -169,7 +183,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, always start with the original source: the company's own site, the actual filing, the original email.",
     "Finally, if you can't confirm something in time, say clearly that it's unconfirmed."
    ],
-   "ask": "If you'd never heard of a vendor, what's the first thing you'd check?"
+   "ask": "If you'd never heard of a vendor, what's the first thing you'd check?",
+   "scenario": "Elias has a meeting tomorrow with a potential new client, the CEO of a logistics company. Put together a five-line briefing: what you'd look up, where, and what you'd include."
   },
   "p2": {
    "why": "Knowing who you're calling, what's true and who's legitimate is the job, not an extra.",
@@ -179,7 +194,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, know what's true before you forward it.",
     "Finally, know a vendor is real before you schedule them."
    ],
-   "ask": "You have 90 seconds: a vendor called 'Apex Legal Print Solutions' wants a $6,000 deposit for trial exhibits. Tell us out loud what you'd check first, and where."
+   "ask": "You have 90 seconds: a vendor called 'Apex Legal Print Solutions' wants a $6,000 deposit for trial exhibits. Tell us out loud what you'd check first, and where.",
+   "scenario": "A partner forwards a news article claiming a client's company is being investigated, and asks you to 'send it to Elias.' The article is from an unfamiliar website. What do you check before forwarding it?"
   }
  },
  "4::Research Method & the Real Failure Mode": {
@@ -193,7 +209,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, remember that what a company says about itself isn't proof.",
     "Finally, use the same habit before every call you make."
    ],
-   "ask": "When has a single source turned out to be wrong for you?"
+   "ask": "When has a single source turned out to be wrong for you?",
+   "scenario": "A new court-reporting company offers a 40 percent discount on depositions. Their website lists impressive clients. What do you check, and from which independent sources, before recommending them?"
   },
   "p2": {
    "why": "The usual mistake isn't laziness; it's trusting one source that hasn't been checked.",
@@ -202,7 +219,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a vendor's claims about themselves are marketing, not verification.",
     "Finally, this same discipline is what makes researching before a call work."
    ],
-   "ask": "A possible co-counsel's website says they've 'won over $50 million in verdicts,' and Elias wants to partner with them next week. How do you check that, and what do you tell him if you can't?"
+   "ask": "A possible co-counsel's website says they've 'won over $50 million in verdicts,' and Elias wants to partner with them next week. How do you check that, and what do you tell him if you can't?",
+   "scenario": "You booked a translator for a deposition based on their LinkedIn profile, which said 'certified legal interpreter.' On the day, it turns out their certification had lapsed. What should your process have included?"
   }
  },
  "4::Creating and Maintaining a Comprehensive Contact List": {
@@ -216,7 +234,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, build it so a stand-in could use it without asking you.",
     "Finally, treat it as part of how the office runs, not your private notebook."
    ],
-   "ask": "What does your contact list hold beyond a name and a number?"
+   "ask": "What does your contact list hold beyond a name and a number?",
+   "scenario": "Elias meets a new client's general counsel at a dinner and texts you: 'Add her, she prefers text, assistant is Mark.' Build the contact entry. What else would you want to know and record?"
   },
   "p2": {
    "why": "Flag the sensitive ones, like an opposing party nobody should contact directly.",
@@ -226,7 +245,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, the context: how they're connected to the executive, when you last spoke and any sensitivities.",
     "Finally, the upkeep: a 'last checked' date and a quick quarterly clean-up."
    ],
-   "ask": "Build Elias's contact entry for his estate-planning client's accountant. Which fields would you fill in, and what note would you add if that accountant is also a witness in another matter?"
+   "ask": "Build Elias's contact entry for his estate-planning client's accountant. Which fields would you fill in, and what note would you add if that accountant is also a witness in another matter?",
+   "scenario": "The opposing party in the Meridian matter is also a board member at a charity Elias supports. How do you record this in the contact list so nobody makes a mistake?"
   }
  },
  "4::Contact List Failure Modes & Upkeep": {
@@ -240,7 +260,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when you find a wrong entry, fix it right then. It takes seconds.",
     "Finally, if your contacts are scattered, bring them together deliberately."
    ],
-   "ask": "Where do your contacts live right now, and in how many places?"
+   "ask": "Where do your contacts live right now, and in how many places?",
+   "scenario": "During your quarterly check, you find 40 contacts nobody has touched in two years, 12 with bounced emails and 5 duplicates. What do you do with each group?"
   },
   "p2": {
    "why": "Three scattered lists aren't one list; they're three incomplete ones.",
@@ -249,7 +270,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, keep everything in one system: a CRM, a shared contacts platform or at least one synced address book.",
     "Finally, a small, regular check stops the slow decay that makes a list unreliable."
    ],
-   "ask": "Tell us about a time you couldn't reach the right person quickly because the contact details were wrong or scattered. What would have prevented it?"
+   "ask": "Tell us about a time you couldn't reach the right person quickly because the contact details were wrong or scattered. What would have prevented it?",
+   "scenario": "Elias's contacts live in his phone, your spreadsheet and the firm's CRM, and they don't match. A client's number was different in all three last week. What's your plan to fix this for good?"
   }
  },
  "4::Master Contact List Discipline": {
@@ -263,7 +285,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, update the master the moment you learn about a change.",
     "Finally, if you find a mismatch, fix the habit, not just that one entry."
    ],
-   "ask": "Does anyone on your team keep their own copy of key contacts?"
+   "ask": "Does anyone on your team keep their own copy of key contacts?",
+   "scenario": "You find that the paralegal keeps her own spreadsheet of key contacts 'because it's quicker.' Half the numbers are out of date. How do you raise it, and what do you put in place?"
   },
   "p2": {
    "why": "The out-of-date copy is always the one that gets used in a crisis.",
@@ -272,7 +295,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, apply the master-list habit to scheduling as well as calls.",
     "Finally, remember the real cost of two copies: the wrong number, at the worst moment."
    ],
-   "ask": "Opposing counsel's direct line changed last week. You updated your copy, but the paralegal's copy still has the old number, and she's setting up tomorrow's call with them. What went wrong, and what's the fix?"
+   "ask": "Opposing counsel's direct line changed last week. You updated your copy, but the paralegal's copy still has the old number, and she's setting up tomorrow's call with them. What went wrong, and what's the fix?",
+   "scenario": "A client's CFO left the company last month. You updated the master list, but a partner's assistant still emailed the old CFO about a confidential matter. What went wrong, and how do you stop it happening again?"
   }
  },
  "4::Client Relationship Management": {
@@ -285,7 +309,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, set specific reminders tied to promises, like 'check in after their trial ends,' not vague 'touch base' tasks.",
     "Finally, before any call or email, look at their history first, so you can mention something specific."
    ],
-   "ask": "What would you look at in the CRM before calling a client?"
+   "ask": "What would you look at in the CRM before calling a client?",
+   "scenario": "Before Elias calls a client he hasn't spoken to in four months, what would you look up in the CRM, and what three lines would you give him?"
   },
   "p2": {
    "why": "A follow-up you promised and then forgot costs more trust than never offering it.",
@@ -295,7 +320,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, one well-timed check-in is far cheaper than winning back a client who drifted away.",
     "Finally, log every promised follow-up as a task, so it can't slip."
    ],
-   "ask": "A client you signed three months ago never got a follow-up, and they've just emailed a question that hints they're looking at a competitor. Do you just answer the question, or use it to rebuild the relationship? What do you say?"
+   "ask": "A client you signed three months ago never got a follow-up, and they've just emailed a question that hints they're looking at a competitor. Do you just answer the question, or use it to rebuild the relationship? What do you say?",
+   "scenario": "After a big win, Elias promised a client he'd 'check in after the holidays.' It's now March. What do you do, and how would a CRM task have prevented this?"
   }
  },
  "4::CRM Software Fundamentals": {
@@ -307,7 +333,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, if you need to track something the standard fields don't cover, add a proper field instead of burying it in notes.",
     "Finally, use the CRM's own reminders instead of a separate to-do list."
    ],
-   "ask": "What happens when the real status of a deal only lives in someone's head?"
+   "ask": "What happens when the real status of a deal only lives in someone's head?",
+   "scenario": "Your firm is moving to a new CRM. Before anyone starts using it, what do you set up to match how the firm actually works: stages, fields and reminders?"
   },
   "p2": {
    "why": "Deals move forward on facts, not on hope.",
@@ -317,7 +344,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, only move a deal to the next stage when something has actually happened.",
     "Finally, once a month, close or revive deals that haven't moved in two months."
    ],
-   "ask": "You inherit a CRM with 40 open deals, most untouched for months, and Elias wants an accurate forecast by the end of the day. How do you get to a number you can stand behind?"
+   "ask": "You inherit a CRM with 40 open deals, most untouched for months, and Elias wants an accurate forecast by the end of the day. How do you get to a number you can stand behind?",
+   "scenario": "A colleague moved five deals to 'Negotiation' because the clients 'seemed interested' on calls. Elias's forecast now looks far too high. What rule would you suggest for moving a deal forward?"
   }
  },
  "4::Data Hygiene & Deduplication": {
@@ -329,7 +357,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, when you merge two records, keep the history from both.",
     "Finally, regularly remove or flag contacts whose emails bounce or who have unsubscribed."
    ],
-   "ask": "How would you search for a duplicate beyond an exact name match?"
+   "ask": "How would you search for a duplicate beyond an exact name match?",
+   "scenario": "You're about to add 'J. Martinez, Harlow Logistics' to the CRM. What do you search for first so you don't create a duplicate?"
   },
   "p2": {
    "why": "When you merge duplicates, merge forward and keep everything.",
@@ -339,7 +368,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, agree one way to enter names, phones and companies, because inconsistent formats hide duplicates.",
     "Finally, make clean-up a regular task, not a one-off."
    ],
-   "ask": "You find three records that look like the same person at the same company, each with different history. How do you confirm they're the same person before merging, and what if you're not sure?"
+   "ask": "You find three records that look like the same person at the same company, each with different history. How do you confirm they're the same person before merging, and what if you're not sure?",
+   "scenario": "You find two records for the same client: one has the last three emails, the other has the meeting notes from last year. How do you merge them without losing anything?"
   }
  },
  "4::Sales Mindset": {
@@ -352,7 +382,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep an honest record of what you send and what comes back, including the rejections.",
     "Finally, keep the result separate from your feelings, so a no doesn't wear you down."
    ],
-   "ask": "What problem does our outreach actually solve for the person receiving it?"
+   "ask": "What problem does our outreach actually solve for the person receiving it?",
+   "scenario": "Elias wants to reach small construction companies about employment-law support. Before writing anything, what problem do these companies actually have that the firm could help with? Write one sentence about it."
   },
   "p2": {
    "why": "A no is information, not a judgment about you.",
@@ -363,7 +394,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, real curiosity can't be faked, not even in writing.",
     "Finally, the same mindset helps inside the firm, when you need a colleague's buy-in or want to persuade Elias."
    ],
-   "ask": "You've sent 15 cold emails this week and had no replies. What would a good sales mindset tell you to do next, and what would the opposite look like?"
+   "ask": "You've sent 15 cold emails this week and had no replies. What would a good sales mindset tell you to do next, and what would the opposite look like?",
+   "scenario": "After 20 cold emails and no replies, a colleague's messages have become short and slightly bitter. What would you say to her, and what would you look at in her emails?"
   }
  },
  "4::Cold Calling, Appointment Setting & Lead Generation": {
@@ -377,7 +409,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, treat call lists with the same care as confidential email.",
     "Finally, record the outcome of every call straight away."
    ],
-   "ask": "What's a realistic goal for a first cold call?"
+   "ask": "What's a realistic goal for a first cold call?",
+   "scenario": "You're about to call the HR director of a regional hospital group that just announced 200 new hires. What's your opening line, and what's your goal for the call?"
   },
   "p2": {
    "why": "The aim of a first call isn't the sale; it's the second conversation.",
@@ -387,7 +420,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, aim for the next conversation, not the close.",
     "Finally, outbound call lists deserve the same discretion as any sensitive information."
    ],
-   "ask": "You're calling the office manager of a 12-doctor medical practice about Elias's employment-law work. You found out they just opened a second location. Deliver the first 20 seconds of the call."
+   "ask": "You're calling the office manager of a 12-doctor medical practice about Elias's employment-law work. You found out they just opened a second location. Deliver the first 20 seconds of the call.",
+   "scenario": "A colleague leaves a printed list of prospects, with phone numbers and notes about their legal problems, on the printer. Why does that matter, and what should happen to call lists?"
   }
  },
  "4::How to Generate Leads for Business": {
@@ -400,7 +434,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, make first contact: specific, researched and short.",
     "Finally, track it and follow up. A lead nobody logged is a lead that's lost."
    ],
-   "ask": "Where have your own best professional leads come from?"
+   "ask": "Where have your own best professional leads come from?",
+   "scenario": "Elias wants five new estate-planning clients this quarter. Walk through the four steps: where would you find leads, how would you qualify them, what's your first contact, and how do you track them?"
   },
   "p2": {
    "why": "Record where every lead came from, so the firm learns which channels actually work.",
@@ -410,7 +445,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, public sources: bar directories, court filings, business registries and industry lists.",
     "Finally, inbound sources: website inquiries, webinars, articles and talks."
    ],
-   "ask": "Name three referral sources Thorne & Partners should be tracking, and one small thing you could do this month to warm each one up."
+   "ask": "Name three referral sources Thorne & Partners should be tracking, and one small thing you could do this month to warm each one up.",
+   "scenario": "At the end of the quarter, the firm has 30 new clients but no idea where they came from. What should have been recorded, and how would that help next quarter?"
   }
  },
  "4::Lead Generation & Data Sourcing": {
@@ -423,7 +459,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, record each lead in a shared system with the key details captured right away.",
     "Finally, focus your research on leads that actually fit, rather than collecting everyone and sorting later."
    ],
-   "ask": "Which tool would you use to confirm someone's current job title?"
+   "ask": "Which tool would you use to confirm someone's current job title?",
+   "scenario": "You have a list of 50 CFOs from a two-year-old industry directory. Before any outreach goes out, how do you check the list, and which tools do you use?"
   },
   "p2": {
    "why": "Fifty well-checked leads beat 500 guesses.",
@@ -434,7 +471,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, refresh lists regularly. Six months is long enough for plenty to change.",
     "Finally, resist the pressure to chase volume over accuracy."
    ],
-   "ask": "You've been asked for 50 leads by the end of the day. How do you balance checking against the target, and where won't you cut corners even under time pressure?"
+   "ask": "You've been asked for 50 leads by the end of the day. How do you balance checking against the target, and where won't you cut corners even under time pressure?",
+   "scenario": "Your manager wants 200 leads by Friday. You can find 60 well-researched ones, or pad the list with names from an old conference list. What do you do, and how do you explain it?"
   }
  },
  "4::Lead Quality, Qualifying & Tracking": {
@@ -448,7 +486,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, follow through. The difference between good and bad lead generation is almost always the follow-up, not the first contact.",
     "Finally, feed every qualified lead into the contact list, so it doesn't disappear."
    ],
-   "ask": "How often do you actually ask happy clients for referrals?"
+   "ask": "How often do you actually ask happy clients for referrals?",
+   "scenario": "A client just told Elias how pleased she is with the firm's work. How would you turn that into a referral, and what would you log afterwards?"
   },
   "p2": {
    "why": "A lead nobody wrote down doesn't exist.",
@@ -458,7 +497,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, lead generation and the contact list work together: one finds people, the other keeps them.",
     "Finally, think about the follow-through, not just the first hello."
    ],
-   "ask": "Share one business that followed up on a lead really well, and one that let a promising contact go cold. What exactly was different?"
+   "ask": "Share one business that followed up on a lead really well, and one that let a promising contact go cold. What exactly was different?",
+   "scenario": "You spent two hours preparing a proposal for a prospect, then learned they have no budget until next year and aren't the decision-maker. What should you have checked first?"
   }
  },
  "4::Appointment Setting (BANT/MEDDPICC)": {
@@ -471,7 +511,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, only book people who are genuinely interested, and let them pick a time with a booking tool.",
     "Finally, confirm the agenda, length and attendees, and send a reminder a day or two before."
    ],
-   "ask": "When would you use the quick framework, and when the thorough one?"
+   "ask": "When would you use the quick framework, and when the thorough one?",
+   "scenario": "A small-business owner replies to outreach asking to 'chat sometime.' Run a quick BANT check. What would you ask before putting her on Elias's calendar?"
   },
   "p2": {
    "why": "A fast yes isn't the same as a good fit.",
@@ -482,7 +523,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, never overpromise what a meeting will cover just to get it booked.",
     "Finally, remind people close to the date, not only when you book. No-shows are the most avoidable failure."
    ],
-   "ask": "A prospect replies eagerly and wants a call right away, but you don't know if they have the budget or authority. Do you book it, check first or something in between? Tell us what you'd write back."
+   "ask": "A prospect replies eagerly and wants a call right away, but you don't know if they have the budget or authority. Do you book it, check first or something in between? Tell us what you'd write back.",
+   "scenario": "Three of Elias's last five sales meetings were no-shows. You booked them all with a single email and no reminder. What would you change?"
   }
  },
  "4::Cold Outbound Execution": {
@@ -495,7 +537,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, use your tools to track every attempt, so follow-up doesn't rely on memory.",
     "Finally, prepare for the conversation, not just the first line. Think about the likely objections."
    ],
-   "ask": "Why does 'fifteen minutes next Tuesday' work better than 'let's connect'?"
+   "ask": "Why does 'fifteen minutes next Tuesday' work better than 'let's connect'?",
+   "scenario": "Write the first two lines of a cold email to the COO of a company that just opened a second factory, asking for a 15-minute call about workplace compliance. Make it specific to them."
   },
   "p2": {
    "why": "A script is a starting point, not a performance.",
@@ -506,7 +549,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, handle objections gracefully. Offer to follow up rather than argue.",
     "Finally, log each attempt right away, while you still remember the details."
    ],
-   "ask": "On a cold call, the prospect says 'I'm not interested' right after your first sentence. Do you push on, ask a question or end politely? What would you want to know to decide?"
+   "ask": "On a cold call, the prospect says 'I'm not interested' right after your first sentence. Do you push on, ask a question or end politely? What would you want to know to decide?",
+   "scenario": "On a call, a prospect interrupts your script to ask about a specific problem with a contractor. Do you go back to the script or follow the conversation? What do you log afterwards?"
   }
  },
  "4::Handling Sales Objections Beyond the Script": {
@@ -518,7 +562,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, acknowledge the concern specifically before you address it, so they know you listened.",
     "Finally, if the issue is timing, agree a specific date to follow up."
    ],
-   "ask": "Which of those three do you think is behind most objections you've heard?"
+   "ask": "Which of those three do you think is behind most objections you've heard?",
+   "scenario": "A prospect says, 'This isn't a good time.' Ask one clarifying question to find out what's really behind it, then say how your next step changes depending on the answer."
   },
   "p2": {
    "why": "Correct the facts if you need to, but never argue with someone's right to their concern.",
@@ -528,7 +573,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, never argue with a stated concern.",
     "Finally, record the prospect's exact words in the CRM. They help improve future messages."
    ],
-   "ask": "A prospect says, 'We already have a vendor for this.' That could mean they're happy, locked into a contract or just ending the call politely. What's your next question, and how does the answer change your approach?"
+   "ask": "A prospect says, 'We already have a vendor for this.' That could mean they're happy, locked into a contract or just ending the call politely. What's your next question, and how does the answer change your approach?",
+   "scenario": "A prospect says, 'Your firm is too expensive for us.' It's true: the firm isn't a budget option. How do you respond honestly without arguing?"
   }
  },
  "4::Pipeline Reporting & Forecasting Basics": {
@@ -540,7 +586,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, report 'committed' and 'best case' separately, so nobody gets a nasty surprise.",
     "Finally, flag any deal that has sat in one stage far longer than normal."
    ],
-   "ask": "Why is the total value of all open deals a misleading number?"
+   "ask": "Why is the total value of all open deals a misleading number?",
+   "scenario": "The pipeline has $400,000 of deals: $50,000 signed, $150,000 in late-stage negotiation and $200,000 at first-meeting stage. Elias asks what to expect this quarter. What numbers do you report, and how?"
   },
   "p2": {
    "why": "Committed and best case are two different numbers, so report both.",
@@ -550,7 +597,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, if one big deal dominates, say how risky it is.",
     "Finally, report the same way, on the same day, every week, so trends mean something."
    ],
-   "ask": "Elias asks for a realistic revenue forecast for the quarter. Two early-stage deals make up 60 percent of the raw total. How do you present the number so it's useful, not misleading?"
+   "ask": "Elias asks for a realistic revenue forecast for the quarter. Two early-stage deals make up 60 percent of the raw total. How do you present the number so it's useful, not misleading?",
+   "scenario": "One $250,000 deal makes up most of the quarter's forecast, and the client hasn't replied in three weeks. How do you show that risk in your weekly report?"
   }
  },
  "4::Email Marketing vs. Cold Outreach": {
@@ -563,7 +611,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep the two lists separate, and note how each person joined.",
     "Finally, get the attorney to approve every template and script, because law firm emails can count as advertising."
    ],
-   "ask": "Is a follow-up after a webinar marketing or outreach?"
+   "ask": "Is a follow-up after a webinar marketing or outreach?",
+   "scenario": "Elias wants to email 60 people he met at a legal conference last week. Some gave cards, some signed up for updates. Which of them get the newsletter, which get a personal note, and why?"
   },
   "p2": {
    "why": "Never send a bulk email from the attorney's own mailbox.",
@@ -573,7 +622,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, bulk mail from a personal mailbox damages its reputation and looks like spam.",
     "Finally, when someone replies to a marketing email, answer them personally."
    ],
-   "ask": "Elias hands you 400 business cards from a conference and says, 'Send everyone our newsletter.' What do you do instead, and what do you say to him?"
+   "ask": "Elias hands you 400 business cards from a conference and says, 'Send everyone our newsletter.' What do you do instead, and what do you say to him?",
+   "scenario": "A partner sends the firm's newsletter to 900 contacts from his own Outlook. The next day, his normal client emails start bouncing. What went wrong, and how do you fix it going forward?"
   }
  },
  "4::Outreach Compliance Basics": {
@@ -585,7 +635,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, include a working unsubscribe or opt-out, and honor it immediately.",
     "Finally, keep a record of why each person on the list can be contacted."
    ],
-   "ask": "What's different about texting a prospect compared with emailing them?"
+   "ask": "What's different about texting a prospect compared with emailing them?",
+   "scenario": "A partner wants to text 200 prospects about a new service. Before anything is sent, what do you check about the rules and the list?"
   },
   "p2": {
    "why": "Asking a quick question costs far less than a violation.",
@@ -595,7 +646,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, treat opt-out and do-not-call requests fully and promptly, never narrowly.",
     "Finally, when in doubt, check before you send."
    ],
-   "ask": "A colleague hands you a conference contact list with no notes on how it was collected. What do you need to know before you're comfortable sending to it?"
+   "ask": "A colleague hands you a conference contact list with no notes on how it was collected. What do you need to know before you're comfortable sending to it?",
+   "scenario": "A prospect replied 'stop' to one email campaign. Two weeks later, they get a different campaign from the same firm. What went wrong, and what does a proper opt-out look like?"
   }
  },
  "4::Building & Segmenting an Email List": {
@@ -608,7 +660,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, start with three groups: clients, referral partners and prospects. Add practice-area groups as the list grows.",
     "Finally, clean the list every quarter: remove bounces, merge duplicates and suppress anyone who unsubscribed or never opens."
    ],
-   "ask": "Which three groups would you start with?"
+   "ask": "Which three groups would you start with?",
+   "scenario": "You're setting up the firm's first email list from scratch. Name the three starting groups, and the tags you'd record for each new contact."
   },
   "p2": {
    "why": "An unsubscribe always wins.",
@@ -618,7 +671,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, never re-add someone who unsubscribed, even if they appear on a new list.",
     "Finally, keep opposing parties and anyone flagged in conflict checks off every marketing list."
    ],
-   "ask": "A partner wants the next newsletter, about a new estate-planning service, sent 'to everyone': 1,800 contacts, including corporate clients and opposing counsel from past cases. How do you split it up, and who shouldn't get it at all?"
+   "ask": "A partner wants the next newsletter, about a new estate-planning service, sent 'to everyone': 1,800 contacts, including corporate clients and opposing counsel from past cases. How do you split it up, and who shouldn't get it at all?",
+   "scenario": "A newsletter about a new litigation service is ready to go to the full list. You notice the list includes the other side's attorneys from two active cases. What do you do?"
   }
  },
  "4::Writing Outreach Emails That Get Replies": {
@@ -631,7 +685,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, make one easy ask, like a 15-minute call next week.",
     "Finally, sign off with the attorney's details and an easy opt-out, and proofread names and links."
    ],
-   "ask": "What's wrong with opening an email with who the firm is?"
+   "ask": "What's wrong with opening an email with who the firm is?",
+   "scenario": "Rewrite this email in under 80 words: 'Dear Sir, Thorne & Partners was founded in 1998 and has 40 attorneys practising in many areas of law. We would welcome the opportunity to discuss our services with you at your convenience.' The recipient's company just announced a merger."
   },
   "p2": {
    "why": "Never promise a legal outcome in outreach.",
@@ -641,7 +696,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, spammy habits: capitals, exclamation marks, 'guaranteed', fake 'Re:' subject lines and image-only emails.",
     "Finally, any promise or hint of a guaranteed result. That can break advertising rules."
    ],
-   "ask": "Let's rewrite this opener live, for a founder whose startup just raised a funding round: 'Dear Sir or Madam, Thorne & Partners is a leading full-service law firm founded in 1998 with over 40 attorneys...'"
+   "ask": "Let's rewrite this opener live, for a founder whose startup just raised a funding round: 'Dear Sir or Madam, Thorne & Partners is a leading full-service law firm founded in 1998 with over 40 attorneys...'",
+   "scenario": "A draft email says, 'We've won every case like yours and can guarantee a great result!!!' List everything wrong with it, and rewrite the line."
   }
  },
  "4::Email Outreach Sequencing & Follow-Up Cadence": {
@@ -653,7 +709,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, change the angle each time: first the offer, then a relevant example, then a genuine, low-pressure question.",
     "Finally, end with a clear closing message, like 'I'll leave this here unless I hear from you.'"
    ],
-   "ask": "Why is 'just following up' such a weak message?"
+   "ask": "Why is 'just following up' such a weak message?",
+   "scenario": "Plan a three-email sequence for a prospect who runs a chain of dental practices. What's the new angle in each email, and how many days apart are they?"
   },
   "p2": {
    "why": "Make it easy to say no, or you'll get a complaint instead of a reply.",
@@ -663,7 +720,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, track replies at each step, so you know which email is actually working.",
     "Finally, always give an easy way to opt out."
    ],
-   "ask": "A prospect opened your first three emails but never replied, and one email is left in the sequence. What does the last one say, and what would make you extend the sequence instead?"
+   "ask": "A prospect opened your first three emails but never replied, and one email is left in the sequence. What does the last one say, and what would make you extend the sequence instead?",
+   "scenario": "A colleague's sequence sends the same email four times, two days apart. One prospect replied angrily. What would you change?"
   }
  },
  "4::Email Deliverability Basics": {
@@ -676,7 +734,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, check the report after each send: keep bounces low and spam complaints very low.",
     "Finally, when a new domain starts sending, build up volume gradually instead of emailing everyone on day one."
    ],
-   "ask": "Who at the firm would you ask about those technical records?"
+   "ask": "Who at the firm would you ask about those technical records?",
+   "scenario": "The firm is about to send its first newsletter to 2,000 contacts from a brand-new email platform. What do you check with IT and set up before the send?"
   },
   "p2": {
    "why": "Keep marketing on its own domain, so a bad campaign can't hurt client email.",
@@ -686,7 +745,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, don't use a no-reply address. Replies are a good sign, and some people will need to reach you.",
     "Finally, separate bulk marketing from everyday firm email."
    ],
-   "ask": "After the last newsletter, three clients say the firm's emails are landing in their spam. What do you check first, who do you involve, and what do you pause?"
+   "ask": "After the last newsletter, three clients say the firm's emails are landing in their spam. What do you check first, who do you involve, and what do you pause?",
+   "scenario": "After last month's newsletter, the bounce rate was 18 percent and several clients found firm emails in spam. What caused it, and what do you do before the next send?"
   }
  },
  "4::Email Metrics & A/B Testing": {
@@ -699,7 +759,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep a simple log of every campaign's results.",
     "Finally, review the trends monthly with the attorney, against the firm's own history."
    ],
-   "ask": "Why can't we trust open rates the way we used to?"
+   "ask": "Why can't we trust open rates the way we used to?",
+   "scenario": "Before the next newsletter, Elias asks, 'How will we know if it worked?' Define the goal and how you'd measure it, and describe one A/B test you'd run."
   },
   "p2": {
    "why": "Replies and consultations matter more than opens.",
@@ -709,7 +770,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, don't judge a newsletter by opens alone. One that books two consultations did the real work.",
     "Finally, test small and often instead of redesigning everything after one weak send."
    ],
-   "ask": "Subject line A got a 42 percent open rate and one reply. Subject line B got 31 percent and six replies. Which won, and what do you tell the attorney?"
+   "ask": "Subject line A got a 42 percent open rate and one reply. Subject line B got 31 percent and six replies. Which won, and what do you tell the attorney?",
+   "scenario": "Version A got 45 percent opens and no consultations. Version B got 28 percent opens and three consultation requests. A colleague says A won. What do you say?"
   }
  },
  "4::Law Firm Email Newsletters": {
@@ -722,7 +784,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, get the attorney to review and sign off every issue, including any disclaimer.",
     "Finally, send a test, check the links on phone and computer, then schedule it for a consistent day and time."
    ],
-   "ask": "What three sections would you put in the firm's newsletter?"
+   "ask": "What three sections would you put in the firm's newsletter?",
+   "scenario": "Elias wants a quarterly newsletter. Agree the plan: which sections, how often, who reviews it and when it goes out."
   },
   "p2": {
    "why": "Never mention a client or a case without written consent.",
@@ -732,7 +795,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, no client, case or result without documented consent and attorney approval.",
     "Finally, keep a copy of every issue as sent, with its approval date."
    ],
-   "ask": "Elias wants this month's newsletter to celebrate a big settlement, with the client's company in the headline. What do you need before it can go out, and what would you suggest if consent isn't available?"
+   "ask": "Elias wants this month's newsletter to celebrate a big settlement, with the client's company in the headline. What do you need before it can go out, and what would you suggest if consent isn't available?",
+   "scenario": "A draft newsletter includes a photo from a client event where a well-known client is clearly visible. No consent is on file. What do you do?"
   }
  },
  "4::Email Marketing Tools & Approval Workflow": {
@@ -745,7 +809,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, schedule sends for business hours in the recipient's time zone.",
     "Finally, save every version and approval, so any send can be checked later."
    ],
-   "ask": "In your workflow, who actually presses send?"
+   "ask": "In your workflow, who actually presses send?",
+   "scenario": "An associate drafts a seminar invitation and asks you to send it to the whole list today. Walk through the approval flow before it goes out. Who does what?"
   },
   "p2": {
    "why": "There's no such thing as a harmless quick send that skips review.",
@@ -755,7 +820,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, limit who can press send, the same way you limit access to other firm systems.",
     "Finally, test every link, including unsubscribe, before scheduling."
    ],
-   "ask": "Elias wants an event invitation sent tonight, and the associate who reviews it isn't available until tomorrow. What are your options, and what do you recommend?"
+   "ask": "Elias wants an event invitation sent tonight, and the associate who reviews it isn't available until tomorrow. What are your options, and what do you recommend?",
+   "scenario": "A staff member accidentally sent a draft newsletter, with typos and a placeholder saying 'INSERT CLIENT NAME,' to 1,500 contacts. What do you do in the first hour, and what control would have prevented it?"
   }
  },
  "4::Email Outreach End-to-End: Research, Write, Follow Up": {
@@ -770,7 +836,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, plan the follow-ups: a new angle around day three or four, and a polite close-out around day eight to ten.",
     "Finally, stop as soon as they reply or opt out, log the outcome and pass any interest to Elias in one line."
    ],
-   "ask": "What would count as a good trigger for reaching out to someone?"
+   "ask": "What would count as a good trigger for reaching out to someone?",
+   "scenario": "Elias wants to reach the general counsel of a hospital system that just announced a new wing. Research the trigger, and write a subject line and a 60-word email with one small ask."
   },
   "p2": {
    "why": "The polite close-out email is often the one that gets the most replies.",
@@ -782,7 +849,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, avoid the traps: the same template with only the name swapped, guilt-trip follow-ups, and anything that promises results or gives legal advice.",
     "Finally, the three touches: the trigger and a small ask, a new angle a few days later, and a short, gracious close-out. Then stop."
    ],
-   "ask": "Elias wants to reach the operations director of a construction company that just announced a two-state expansion, and your first email got no reply after four days. What does your follow-up say, what new angle does it use and when do you stop?"
+   "ask": "Elias wants to reach the operations director of a construction company that just announced a two-state expansion, and your first email got no reply after four days. What does your follow-up say, what new angle does it use and when do you stop?",
+   "scenario": "You've sent two emails to a prospect with no reply. Write the third, a short, gracious close-out, and say what you log after sending it."
   }
  }
 });

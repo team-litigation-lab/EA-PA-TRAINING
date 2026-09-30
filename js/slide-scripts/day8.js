@@ -1,6 +1,6 @@
 /* Day 8 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "8::Credential Management": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when giving new access, start narrow and widen it only if there's a real need.",
     "Finally, write down who has which role and why."
    ],
-   "ask": "What's your access level in the tools you use every day?"
+   "ask": "What's your access level in the tools you use every day?",
+   "scenario": "A new junior associate joins Monday. IT asks you which access to set up and says, 'Easiest is to copy Elias's permissions.' What do you say, and what do you ask for instead?"
   },
   "p2": {
    "why": "Access that outlives the job is one of the most common security gaps.",
@@ -23,7 +24,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, editor can create and edit but not change permissions, and viewer can look but not change.",
     "Finally, review access whenever someone changes roles or leaves."
    ],
-   "ask": "A new paralegal needs to update the shared matter calendar and read the client folder. What role do they get in each system, and what would make you revisit it later?"
+   "ask": "A new paralegal needs to update the shared matter calendar and read the client folder. What role do they get in each system, and what would make you revisit it later?",
+   "scenario": "A paralegal moved from the Meridian team to billing three months ago. She can still edit every Meridian folder and approve time entries. What do you flag, and to whom?"
   }
  },
  "8::Least-Privilege Access": {
@@ -37,7 +39,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, review who has high-level access regularly, because it quietly builds up.",
     "Finally, remove temporary access when the project ends."
    ],
-   "ask": "Who in your organization might have more access than their job needs?"
+   "ask": "Who in your organization might have more access than their job needs?",
+   "scenario": "Everyone in the office has admin rights on the shared drive 'because it's easier.' A trainee accidentally deletes the Harlow correspondence folder. Whose problem is this really, and what changes?"
   },
   "p2": {
    "why": "When too much access causes a problem, fix the role, not the person.",
@@ -46,7 +49,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't blame the person who had the access.",
     "Finally, correct the role, and review everyone else's access too."
    ],
-   "ask": "A contractor who finished a document review two months ago still has access to the firm's case management system. What do you do, and how do you prevent it next time?"
+   "ask": "A contractor who finished a document review two months ago still has access to the firm's case management system. What do you do, and how do you prevent it next time?",
+   "scenario": "An intern had editor access to the firm's billing system to help with filing. She accidentally changed two clients' hourly rates. Elias wants to know who to blame. How do you frame your answer?"
   }
  },
  "8::Multi-Factor Authentication Basics": {
@@ -60,7 +64,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, use an authenticator app or a security key rather than text-message codes where you can.",
     "Finally, check your own accounts rather than assuming they're covered."
    ],
-   "ask": "How many of your accounts have you actually checked for two-step login?"
+   "ask": "How many of your accounts have you actually checked for two-step login?",
+   "scenario": "Elias refuses two-step login on his email because 'it's annoying on the plane.' Two weeks later, a partner at another firm has his email hacked. How do you make the case to Elias, in two sentences?"
   },
   "p2": {
    "why": "The usual gap isn't missing technology; it's an old account nobody updated.",
@@ -69,7 +74,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, protect every sensitive account, not just the obviously risky ones, because email alone can unlock the rest.",
     "Finally, go looking for accounts that were created before the rule existed."
    ],
-   "ask": "List the accounts you use for Elias's work: email, calendar, case management, bank portal and travel. Which would you check first, and why?"
+   "ask": "List the accounts you use for Elias's work: email, calendar, case management, bank portal and travel. Which would you check first, and why?",
+   "scenario": "While checking accounts, you find the firm's old postage-meter login and a travel booking account from 2019, both without two-step login, both still active. What do you do with each?"
   }
  },
  "8::Password Manager Best Practices": {
@@ -83,7 +89,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, move any passwords sitting in documents or notes into the manager.",
     "Finally, change a password immediately if there's any sign the account has been compromised."
    ],
-   "ask": "Does anyone still have passwords in a document or on a sticky note? A colleague asks you to email them the login for the firm's travel account. What do you do instead?"
+   "ask": "Does anyone still have passwords in a document or on a sticky note? A colleague asks you to email them the login for the firm's travel account. What do you do instead?",
+   "scenario": "You find a spreadsheet called 'logins' on the shared drive with 40 passwords in plain text, including the bank portal. The office manager made it 'so nobody gets locked out.' What do you do, step by step?"
   }
  },
  "8::Shared Account Risks": {
@@ -97,7 +104,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, ask whether the shared account could be replaced with individual ones. It usually can.",
     "Finally, treat any shared account as a risk to manage, not a settled convenience."
    ],
-   "ask": "Does your organization still share a login for anything important?"
+   "ask": "Does your organization still share a login for anything important?",
+   "scenario": "Four people share one login to the court-filing portal. A filing goes in with the wrong exhibit, and nobody remembers submitting it. What would individual accounts have shown you?"
   },
   "p2": {
    "why": "Shared logins are convenient today and confusing when something goes wrong.",
@@ -106,7 +114,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, removing one person from a shared account means changing the password for everyone.",
     "Finally, individual accounts are almost always safer, even if they're less convenient."
    ],
-   "ask": "Three assistants share one login to the firm's courier account, and a $900 rush delivery nobody remembers ordering appears. What can you find out, and what do you change?"
+   "ask": "Three assistants share one login to the firm's courier account, and a $900 rush delivery nobody remembers ordering appears. What can you find out, and what do you change?",
+   "scenario": "The firm's social media account is shared by three staff. One of them leaves on bad terms today. What needs to happen before 5 p.m., and who needs the new password?"
   }
  },
  "8::Offboarding Access Removal Checklist": {
@@ -120,7 +129,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, change any shared passwords they knew.",
     "Finally, add each new system to the list as soon as the firm starts using it."
    ],
-   "ask": "Could you list every system a departing team member would need to be removed from?"
+   "ask": "Could you list every system a departing team member would need to be removed from?",
+   "scenario": "An associate leaves on Friday. IT turns off his email and laptop, but three weeks later he still logs into the document-review platform the firm pays for. Which list was missing, and whose job was it?"
   },
   "p2": {
    "why": "'Probably fine to leave it for now' is exactly how old access lingers.",
@@ -129,7 +139,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a written checklist stops you remembering the big systems and missing a small one.",
     "Finally, leftover access after someone leaves is exactly what least privilege is meant to prevent."
    ],
-   "ask": "The receptionist leaves on Friday. Let's build the offboarding checklist together: every system, shared login and physical access item."
+   "ask": "The receptionist leaves on Friday. Let's build the offboarding checklist together: every system, shared login and physical access item.",
+   "scenario": "A part-time bookkeeper finishes her contract at the end of the month. She has the bank portal, QuickBooks, the office alarm code and a key. Put these in order for her last day."
   }
  },
  "8::The Golden Rules of Admin Data Security": {
@@ -143,7 +154,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, use the same judgment you'd use about discussing a case in public.",
     "Finally, if you're not sure, treat it as unsafe and find another way."
    ],
-   "ask": "Which setting do you switch off before using an AI tool for work?"
+   "ask": "Which setting do you switch off before using an AI tool for work?",
+   "scenario": "A colleague pastes a client's full divorce settlement, names and account numbers included, into a free AI tool to 'make it read better.' What's the problem, and what should she have done?"
   },
   "p2": {
    "why": "Placeholders in, real identifiers out.",
@@ -153,7 +165,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, replace names with placeholders before sending anything.",
     "Finally, think through exactly what you'd swap out of a real email before pasting it."
    ],
-   "ask": "Let's clean this one up together: a termination email naming the employee, their salary, their medical leave and the client they worked for. What do you remove or replace before asking an AI tool to improve the wording?"
+   "ask": "Let's clean this one up together: a termination email naming the employee, their salary, their medical leave and the client they worked for. What do you remove or replace before asking an AI tool to improve the wording?",
+   "scenario": "You want an AI tool to help draft a polite payment reminder to a slow-paying client. Which details do you swap out for placeholders before you paste it in, and which can stay?"
   }
  },
  "8::Classifying Information by Sensitivity Level": {
@@ -167,7 +180,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, handle confidential and privileged information with real care every time.",
     "Finally, when unsure, go one level higher."
    ],
-   "ask": "Where would a client's meeting schedule fall?"
+   "ask": "Where would a client's meeting schedule fall?",
+   "scenario": "A new assistant asks whether she can post a photo of the office whiteboard on the firm's social media. The whiteboard shows next week's schedule with client names. How do you help her decide?"
   },
   "p2": {
    "why": "Treat everything as top secret and you'll wear yourself out; treat everything casually and leaks happen.",
@@ -176,7 +190,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, different information needs different levels of protection.",
     "Finally, when unsure, choose the more sensitive level until you can confirm."
    ],
-   "ask": "Classify these live: the firm's office address, Elias's travel itinerary, a draft motion in the Harlow matter, the holiday party date and a client's settlement amount."
+   "ask": "Classify these live: the firm's office address, Elias's travel itinerary, a draft motion in the Harlow matter, the holiday party date and a client's settlement amount.",
+   "scenario": "The firm has just labeled everything 'confidential,' including the lunch menu. People have started ignoring the label. What would a sensible set of levels look like?"
   }
  },
  "8::Secure File Sharing Methods": {
@@ -190,7 +205,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, switch off the link when it's no longer needed.",
     "Finally, only share with people who genuinely need the file."
    ],
-   "ask": "Elias asks you to send a client's financial disclosures to their accountant. Walk us through exactly how you'd share it: the method, the permissions, the expiry and how the password gets there."
+   "ask": "Elias asks you to send a client's financial disclosures to their accountant. Walk us through exactly how you'd share it: the method, the permissions, the expiry and how the password gets there.",
+   "scenario": "Opposing counsel needs 2 GB of Meridian exhibits by tomorrow, and a colleague suggests a free file-transfer site. What do you use instead, and what settings do you choose?"
   }
  },
  "8::Email Encryption Basics": {
@@ -204,7 +220,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, remember that encryption is an extra layer, not a replacement for judgment.",
     "Finally, when unsure, encrypt."
    ],
-   "ask": "Does your organization have an encrypted email option?"
+   "ask": "Does your organization have an encrypted email option?",
+   "scenario": "Elias asks you to email the client a privileged strategy memo, and the client uses a personal Gmail address. What do you check, and which options do you offer Elias?"
   },
   "p2": {
    "why": "Encryption won't save you if you send it to the wrong person.",
@@ -213,7 +230,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, match the protection to the content.",
     "Finally, encryption is one more layer on top of good judgment about what gets sent at all."
    ],
-   "ask": "Which of these would you encrypt: a lunch confirmation, a privileged strategy memo to the client, a client's medical records for an injury claim and a routine scheduling email to opposing counsel?"
+   "ask": "Which of these would you encrypt: a lunch confirmation, a privileged strategy memo to the client, a client's medical records for an injury claim and a routine scheduling email to opposing counsel?",
+   "scenario": "You sent an encrypted email with a client's medical records, but you typed the wrong client's address. Did encryption protect you? What do you do now?"
   }
  },
  "8::Metadata Risks in Shared Documents": {
@@ -227,7 +245,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, make 'save a clean version' a standard step before external sharing.",
     "Finally, check the clean version really is clean before you send it."
    ],
-   "ask": "You're about to send a proposed settlement to opposing counsel, and it contains an internal comment: 'Client will go to $250K if pushed.' Walk us through the steps before it goes out."
+   "ask": "You're about to send a proposed settlement to opposing counsel, and it contains an internal comment: 'Client will go to $250K if pushed.' Walk us through the steps before it goes out.",
+   "scenario": "You send opposing counsel a 'final' settlement letter. Their reply quotes a tracked-changes comment from Elias saying 'we could go to $400k if pushed.' What went wrong, and what's the fix for next time?"
   }
  },
  "8::Device Security Fundamentals": {
@@ -241,7 +260,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, install security updates promptly.",
     "Finally, set up remote wipe where you can."
    ],
-   "ask": "Would your devices be safe if you lost them today?"
+   "ask": "Would your devices be safe if you lost them today?",
+   "scenario": "Elias works on a laptop at an airport café and leaves it open while he orders coffee. It's not stolen, but you're traveling with him. What habits do you set up for both of you before the next trip?"
   },
   "p2": {
    "why": "Encryption is the difference between losing a laptop and losing the firm's data.",
@@ -250,7 +270,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, with encryption, a lost device is a hardware loss, not necessarily a breach.",
     "Finally, your phone with work email carries the same obligations as a work laptop."
    ],
-   "ask": "Elias leaves his phone, with his work email on it, in a taxi. What do you check and do in the next 30 minutes?"
+   "ask": "Elias leaves his phone, with his work email on it, in a taxi. What do you check and do in the next 30 minutes?",
+   "scenario": "A partner's personal tablet, with firm email on it, is stolen from his car. He doesn't know if it was encrypted. Who needs to know, and what actions happen in the first hour?"
   }
  },
  "8::Physical Security Basics": {
@@ -264,7 +285,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, keep visitors and vendors to a clear, limited area.",
     "Finally, check your own desk now and then for anything sensitive on show."
    ],
-   "ask": "Is anything sensitive visible on your desk right now?"
+   "ask": "Is anything sensitive visible on your desk right now?",
+   "scenario": "A courier wanders past reception and into the file room looking for 'whoever signs for boxes.' Nobody stopped him. What needs to change at the front desk?"
   },
   "p2": {
    "why": "A lost badge is as serious as a leaked password.",
@@ -273,7 +295,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, report a lost badge or key immediately, not 'eventually'.",
     "Finally, least privilege applies to rooms too. Visitors shouldn't wander freely."
    ],
-   "ask": "You realize your office badge wasn't in your bag this morning, and you last had it at a coffee shop. It's probably just misplaced. What do you do, and when?"
+   "ask": "You realize your office badge wasn't in your bag this morning, and you last had it at a coffee shop. It's probably just misplaced. What do you do, and when?",
+   "scenario": "A colleague says his key card went missing two days ago but he 'didn't want to cause a fuss.' What's the risk now, and what happens next?"
   }
  },
  "8::Clean Desk Policy": {
@@ -287,7 +310,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, apply the same habits at home if you work remotely.",
     "Finally, do a quick check of your desk at the end of each day."
    ],
-   "ask": "What would a clean-desk check find on your desk right now?"
+   "ask": "What would a clean-desk check find on your desk right now?",
+   "scenario": "At 7 p.m., the cleaning crew is in the office, and your desk still has a printed Harlow settlement offer on it. It's only one page. Is that a problem? What's the habit?"
   },
   "p2": {
    "why": "The printer tray is the most forgotten security risk in any office.",
@@ -296,7 +320,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a printout left in the tray is available to anyone walking by.",
     "Finally, a clean desk is the daily habit that makes physical security real."
    ],
-   "ask": "You work from home two days a week, and your family walks past your desk. What does a clean desk look like there?"
+   "ask": "You work from home two days a week, and your family walks past your desk. What does a clean desk look like there?",
+   "scenario": "You print a confidential memo on the shared printer, get pulled into a call and forget it. An hour later, it's gone. What do you do, and what could you change about how you print?"
   }
  },
  "8::Secure Disposal of Sensitive Documents": {
@@ -310,7 +335,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, make sure a shredder or secure bin is actually within reach.",
     "Finally, apply the same care to drafts and working copies."
    ],
-   "ask": "You printed three drafts of a client's estate plan while revising it. Where does each one go when you're done, and what about the drafts on your computer?"
+   "ask": "You printed three drafts of a client's estate plan while revising it. Where does each one go when you're done, and what about the drafts on your computer?",
+   "scenario": "The office puts all paper, including draft contracts, in a blue recycling bin collected by an outside company every week. Is that disposal? What would you propose?"
   }
  },
  "8::Fixing a Broken Workflow": {
@@ -324,7 +350,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, test the new version on a real task.",
     "Finally, check back later that it actually stopped the duplicate work."
    ],
-   "ask": "What workflow of yours is held together by email, a spreadsheet and memory?"
+   "ask": "What workflow of yours is held together by email, a spreadsheet and memory?",
+   "scenario": "New matters are logged in an intake email, a partner's spreadsheet and the billing system separately. Two clients were opened twice last month. Where would you start fixing it?"
   },
   "p2": {
    "why": "If people keep asking 'where is this?', the workflow is broken.",
@@ -334,7 +361,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, duplicate effort: the same information typed into email, a spreadsheet and a calendar.",
     "Finally, handoff gaps: tasks stall between people, and nobody owns the step in between."
    ],
-   "ask": "Client document requests arrive by email, get logged in a spreadsheet and are tracked in someone's notes. Redesign it: what's the one system, and which steps stay manual?"
+   "ask": "Client document requests arrive by email, get logged in a spreadsheet and are tracked in someone's notes. Redesign it: what's the one system, and which steps stay manual?",
+   "scenario": "You move the firm's conflict checks into one shared tracker. A month later, people are still emailing you to ask 'did the conflict check clear?' What's still broken, and how do you check?"
   }
  },
  "8::Social Engineering Red Flags": {
@@ -348,7 +376,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, use the same checking habit for any odd request.",
     "Finally, report attempts, even ones you didn't fall for."
    ],
-   "ask": "Have you ever caught an attempt like this in time? How?"
+   "ask": "Have you ever caught an attempt like this in time? How?",
+   "scenario": "A friendly caller says she's from the court clerk's office and needs Elias's mobile number and his schedule this week 'for a hearing change.' She knows the case name. What do you do?"
   },
   "p2": {
    "why": "The best security system in the world fails if someone simply hands over the keys.",
@@ -357,7 +386,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, social engineering works on trust and pressure, not technology.",
     "Finally, verify through a channel you already know before acting on anything that feels off."
    ],
-   "ask": "A caller says they're Elias's new banker and need you to confirm his date of birth and the last four digits of his social security number 'to finish setting up his account today.' What are the red flags, and what do you say?"
+   "ask": "A caller says they're Elias's new banker and need you to confirm his date of birth and the last four digits of his social security number 'to finish setting up his account today.' What are the red flags, and what do you say?",
+   "scenario": "Someone in a courier uniform arrives, says he's collecting 'the Harlow files for the other side,' and names Elias. Nothing is on the calendar. How do you handle it without being rude?"
   }
  },
  "8::Phishing Recognition Beyond Email": {
@@ -371,7 +401,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, treat an unexpected request through an unusual channel as more suspicious, not less.",
     "Finally, report it, so others are warned."
    ],
-   "ask": "Have you seen a phishing attempt by text or phone?"
+   "ask": "Have you seen a phishing attempt by text or phone?",
+   "scenario": "Elias gets a text: 'Your bank card is blocked. Click here to unlock.' He forwards it to you and asks if it's real. What do you check, and what do you tell him to do?"
   },
   "p2": {
    "why": "When in doubt, verify through a channel you already trust.",
@@ -380,7 +411,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the classic signs, like generic greetings and odd senders, still apply in every channel.",
     "Finally, call a number you already have, never one supplied in the suspicious message."
    ],
-   "ask": "You get a calendar invite titled 'Urgent: Review Updated Retainer Terms' with a document link, from an address one letter off a client's domain. What do you do?"
+   "ask": "You get a calendar invite titled 'Urgent: Review Updated Retainer Terms' with a document link, from an address one letter off a client's domain. What do you do?",
+   "scenario": "A voicemail says it's the firm's bank fraud department and asks you to call back on the number given to confirm a payment. What's the right callback number, and why?"
   }
  },
  "8::Recognizing Insider Threat Warning Signs": {
@@ -394,7 +426,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, report it to the right person, rather than confronting the colleague or ignoring it.",
     "Finally, keep the focus on behavior and role, not suspicion of individuals."
    ],
-   "ask": "Why do you think most insider incidents are shortcuts rather than sabotage?"
+   "ask": "Why do you think most insider incidents are shortcuts rather than sabotage?",
+   "scenario": "A receptionist has been printing large batches of client contact lists late in the evening. It might be for mail-outs. What do you notice about the role and the timing, and what do you do?"
   },
   "p2": {
    "why": "Report it to the right person; don't confront it and don't ignore it.",
@@ -403,7 +436,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, well-meaning shortcuts around security are still real risks.",
     "Finally, this isn't about distrusting colleagues. It's least privilege applied to how access is used."
    ],
-   "ask": "You notice a billing clerk has been downloading entire client case files, which their role doesn't need. What do you do, and what do you avoid doing?"
+   "ask": "You notice a billing clerk has been downloading entire client case files, which their role doesn't need. What do you do, and what do you avoid doing?",
+   "scenario": "A trusted long-time colleague emails client documents to his personal email 'so I can work over the weekend.' He's done it for years. Is this a problem? Who do you tell, and how?"
   }
  },
  "8::Responding to a Suspicious Data Request": {
@@ -415,7 +449,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, escalate: send it through the right internal channel.",
     "Finally, close the gap: fix whatever let the request reach you in the first place."
    ],
-   "ask": "When a request looks urgent, is your first instinct to verify or to comply?"
+   "ask": "When a request looks urgent, is your first instinct to verify or to comply?",
+   "scenario": "Opposing counsel's paralegal emails asking you for 'a copy of the full client file so we can reconcile our exhibits.' The email looks genuine. What's your first step, and who decides?"
   },
   "p2": {
    "why": "Call the number you already have, not the one in the message.",
@@ -425,7 +460,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, mismatched details: the right name but a slightly wrong email address, or a new phone number.",
     "Finally, unusual asks: passwords, client lists, changes to wire details or gift cards."
    ],
-   "ask": "Let's roleplay it: someone calls saying they're from the firm's IT provider and need the client list exported 'before the migration tonight.' Verify or comply? Let's play it out."
+   "ask": "Let's roleplay it: someone calls saying they're from the firm's IT provider and need the client list exported 'before the migration tonight.' Verify or comply? Let's play it out.",
+   "scenario": "An email from 'Elias' arrives from his personal-looking Gmail at 7 p.m.: 'Send me the full Meridian client list now. I'm at dinner, can't call.' What do you do?"
   }
  },
  "8::The First 10 Minutes of a Security Incident": {
@@ -438,7 +474,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, notify: tell whoever needs to know immediately. Don't wait for the full picture.",
     "Finally, document: write down what happened and when, as it happens."
    ],
-   "ask": "Would you investigate fully first, or raise the alarm right away?"
+   "ask": "Would you investigate fully first, or raise the alarm right away?",
+   "scenario": "You click a link in an email, and a login page opens; you type your password before realizing it's fake. It's 10 minutes before a meeting with Elias. What do you do in what order?"
   },
   "p2": {
    "why": "Telling people early with half the facts beats telling them late with all of them.",
@@ -447,7 +484,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, early notification, even with incomplete information, is almost always better.",
     "Finally, it's the same containment-first idea from the confidentiality leak lesson, applied to any incident."
    ],
-   "ask": "Let's roleplay it: you discover the firm's shared client folder has been open to anyone with the link for an unknown amount of time. What do you do in the first ten minutes?"
+   "ask": "Let's roleplay it: you discover the firm's shared client folder has been open to anyone with the link for an unknown amount of time. What do you do in the first ten minutes?",
+   "scenario": "IT tells you that someone logged into your email from another country last night. You don't know yet what was read. Who do you tell now, and what do you say about what you don't know?"
   }
  },
  "8::Containing a Confidentiality Leak": {
@@ -459,7 +497,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, notify: tell the right roles, not just whoever's nearby.",
     "Finally, prevent: put a rule in place so the same leak can't happen again."
    ],
-   "ask": "What's the very first thing you'd do in the first 60 seconds?"
+   "ask": "What's the very first thing you'd do in the first 60 seconds?",
+   "scenario": "A colleague accidentally shares a link to the entire Harlow folder in a public online forum. It's been up for 20 minutes. What's the very first action, and what's the second?"
   },
   "p2": {
    "why": "Whether clients or regulators need to be told is the attorney's decision, not yours.",
@@ -469,7 +508,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, capture the facts: what was exposed, to whom, when and how.",
     "Finally, notify the supervising attorney, IT and compliance promptly."
    ],
-   "ask": "You realize you emailed a settlement draft for the Harlow matter to the wrong 'Mark,' who works at another firm. Walk us through the first hour."
+   "ask": "You realize you emailed a settlement draft for the Harlow matter to the wrong 'Mark,' who works at another firm. Walk us through the first hour.",
+   "scenario": "You forwarded a client's financial statement to a vendor by mistake. The vendor replies saying they've deleted it. Is that the end of it? What happens next, and who decides?"
   }
  },
  "8::Who to Notify and When": {
@@ -483,7 +523,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, confirm your firm's actual contacts now, not during an incident.",
     "Finally, notify promptly, even without the full picture."
    ],
-   "ask": "Match each incident to who hears first: a laptop stolen from a car, an email with a client's social security number sent to the wrong person, a phishing email nobody clicked and ransomware on the office file server."
+   "ask": "Match each incident to who hears first: a laptop stolen from a car, an email with a client's social security number sent to the wrong person, a phishing email nobody clicked and ransomware on the office file server.",
+   "scenario": "Nobody at the firm can say who to call if the case management system is hacked on a Sunday. Draft the one-page contact list: which incidents go to whom, with backups."
   }
  },
  "8::Documenting an Incident as It Unfolds": {
@@ -497,7 +538,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, stick to facts, not blame.",
     "Finally, keep the record afterwards, for the review and any legal needs."
    ],
-   "ask": "Could you rebuild a timeline of a stressful day last week from memory?"
+   "ask": "Could you rebuild a timeline of a stressful day last week from memory?",
+   "scenario": "During a two-hour email outage on a filing day, you're answering calls, fixing problems and updating Elias. Afterward, nobody can agree on when the outage started. What should you have been doing, and how?"
   },
   "p2": {
    "why": "A rough note written now beats a polished one written later.",
@@ -506,7 +548,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the record isn't about blame. It's about getting the facts right.",
     "Finally, simple time-stamped lines are worth more than a neat summary after the details have faded."
    ],
-   "ask": "Using the misdirected email from earlier, write the first five time-stamped lines of the incident log."
+   "ask": "Using the misdirected email from earlier, write the first five time-stamped lines of the incident log.",
+   "scenario": "A week after a phishing incident, the insurer asks for a timeline. Your notes say 'Tuesday afternoon: IT called, reset passwords.' What's missing, and what would a useful note look like?"
   }
  },
  "8::Post-Incident Review": {
@@ -520,7 +563,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, agree one concrete change.",
     "Finally, record the lesson somewhere real, like Day 6's playbook habit."
    ],
-   "ask": "Does your organization actually review incidents afterwards?"
+   "ask": "Does your organization actually review incidents afterwards?",
+   "scenario": "A signed contract went to the wrong client last month. It was contained, and everyone moved on. Now it's happened again, with a different assistant. What didn't happen after the first time?"
   },
   "p2": {
    "why": "Blame teaches people to hide the next problem.",
@@ -529,7 +573,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, focus on the process, not the individual.",
     "Finally, treat it as the same continuous-improvement habit you use for seasonal work."
    ],
-   "ask": "Let's run a five-minute review of the misdirected settlement email: what happened, what worked, what gap allowed it and the one change you'd make."
+   "ask": "Let's run a five-minute review of the misdirected settlement email: what happened, what worked, what gap allowed it and the one change you'd make.",
+   "scenario": "At the review, a partner says, 'The fix is simple: fire whoever did it.' How do you move the conversation from the person to the process?"
   }
  },
  "8::Crisis Communication Principles": {
@@ -543,7 +588,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, don't fill the silence with confident guesses.",
     "Finally, make sure each update actually reaches everyone who needs it."
    ],
-   "ask": "When has poor communication made a crisis worse?"
+   "ask": "When has poor communication made a crisis worse?",
+   "scenario": "The office flooded overnight, and clients are arriving for meetings in an hour. You know the ground floor is closed but not for how long. Write the first message to staff and to today's clients."
   },
   "p2": {
    "why": "An honest, incomplete update lands better than a confident one that turns out to be wrong.",
@@ -552,7 +598,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, labeling what's confirmed stops rumors being repeated as facts.",
     "Finally, ACT works in a crisis too."
    ],
-   "ask": "The firm's email is down across the office on a filing day, and IT doesn't know why yet. Write the first update to the attorneys using ACT."
+   "ask": "The firm's email is down across the office on a filing day, and IT doesn't know why yet. Write the first update to the attorneys using ACT.",
+   "scenario": "In the flood update, a colleague wants to say 'we'll be back to normal tomorrow' to calm people down. Nobody knows that yet. What do you say instead?"
   }
  },
  "8::Maintaining Calm Under Pressure": {
@@ -566,7 +613,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, practice a technique, like a pause, a breath count or a mental checklist, before you need it.",
     "Finally, after a stressful moment, reflect on what helped."
    ],
-   "ask": "What actually helps you stay calm?"
+   "ask": "What actually helps you stay calm?",
+   "scenario": "The printer jams 20 minutes before Elias leaves for court, a client is on hold and a partner is shouting about a missing file. What do you do in the first 30 seconds?"
   },
   "p2": {
    "why": "A few seconds of pause is the simplest calming technique there is.",
@@ -575,7 +623,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, calm means thinking clearly while everyone else reacts.",
     "Finally, pausing before you respond stops you acting on the first panicked instinct."
    ],
-   "ask": "Elias bursts in: the judge moved the hearing to this afternoon, and the exhibit binders aren't printed. Show us your first 30 seconds: what you say and what you do."
+   "ask": "Elias bursts in: the judge moved the hearing to this afternoon, and the exhibit binders aren't printed. Show us your first 30 seconds: what you say and what you do.",
+   "scenario": "After a stressful morning where a filing almost missed its deadline, you notice you snapped at a colleague. What do you do that afternoon, and what would you do differently next time?"
   }
  },
  "8::Chain of Command During a Crisis": {
@@ -589,7 +638,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, escalate through the chain even under pressure. Don't skip steps.",
     "Finally, check your backup contacts now and then, because roles change."
    ],
-   "ask": "Who's your backup if your main escalation contact can't be reached?"
+   "ask": "Who's your backup if your main escalation contact can't be reached?",
+   "scenario": "A server outage hits during Elias's trial week. The IT vendor asks you whether they can shut down the whole system for two hours. Is that your decision? Who decides, and who's the backup?"
   },
   "p2": {
    "why": "The everyday chain of command is also the crisis chain of command.",
@@ -598,7 +648,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, rely on the structure you already use, rather than making one up under pressure.",
     "Finally, a known backup path prevents a dangerous gap when someone's unreachable."
    ],
-   "ask": "A client's wire transfer is flagged as possibly fraudulent at 4:45 PM. Elias is on a flight and the managing partner isn't answering. Who's next in the chain, and what do you do?"
+   "ask": "A client's wire transfer is flagged as possibly fraudulent at 4:45 PM. Elias is on a flight and the managing partner isn't answering. Who's next in the chain, and what do you do?",
+   "scenario": "The managing partner is in hospital, and her backup, the deputy, is on holiday. A client's large payment has to be approved today. What should the plan have said, and what do you do now?"
   }
  },
  "8::Business Continuity Basics": {
@@ -612,7 +663,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, find your own single points of failure.",
     "Finally, review the plan every so often, because the work changes."
    ],
-   "ask": "What's one single point of failure in your work right now?"
+   "ask": "What's one single point of failure in your work right now?",
+   "scenario": "The only person who knows how to run payroll is off sick for three weeks, with payroll due next Friday. What would a continuity list have said about this, and what do you do now?"
   },
   "p2": {
    "why": "A simple list covers most of the value of a continuity plan.",
@@ -621,7 +673,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, it doesn't need to be elaborate to be useful.",
     "Finally, it's the same plan-before-you-need-it idea, applied to the whole organization."
    ],
-   "ask": "The firm's case management system goes down for a whole day during trial week. What does the continuity plan need to say, and what should already be printed or backed up?"
+   "ask": "The firm's case management system goes down for a whole day during trial week. What does the continuity plan need to say, and what should already be printed or backed up?",
+   "scenario": "Elias asks you for 'a simple one-pager' on how the office keeps working if the building is closed for a week. What goes on it, in which order?"
   }
  },
  "8::Crisis PR & Media Containment": {
@@ -633,7 +686,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, if it isn't you, give a safe, consistent holding statement rather than no answer or an improvised one.",
     "Finally, alert communications, legal and the executive immediately, all at once."
    ],
-   "ask": "If you're not the spokesperson, what do you say?"
+   "ask": "If you're not the spokesperson, what do you say?",
+   "scenario": "A reporter walks into reception and asks the receptionist about a lawsuit against a well-known client. The receptionist looks at you. What do you both say, and who do you call?"
   },
   "p2": {
    "why": "'No comment; here's who to contact' is the right fast answer.",
@@ -642,7 +696,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, trying to handle the media yourself, even with good intentions, can do real damage.",
     "Finally, a fast, correct holding line protects everyone better than a fast attempt to help."
    ],
-   "ask": "A journalist calls you directly, bypassing the firm's usual channels, asking for comment on a sensitive matter. What do you say, and who do you contact the moment you hang up?"
+   "ask": "A journalist calls you directly, bypassing the firm's usual channels, asking for comment on a sensitive matter. What do you say, and who do you contact the moment you hang up?",
+   "scenario": "A colleague posts a comment on social media defending the firm after a news story. It's already had 200 shares. What do you do, and who needs to know?"
   }
  },
  "8::Attorney-Client Privilege: What EAs Need to Know": {
@@ -656,7 +711,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, remember that the confidentiality duty extends to you.",
     "Finally, if you're unsure, ask the attorney. A disclosure can't be undone."
    ],
-   "ask": "How could privilege be lost by accident?"
+   "ask": "How could privilege be lost by accident?",
+   "scenario": "In a crowded elevator, Elias starts telling you about his plans for the Meridian settlement. What do you do, and how do you raise it with him afterward?"
   },
   "p2": {
    "why": "An accidental disclosure can't be taken back.",
@@ -666,7 +722,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, managing a lawyer's communications puts you inside the privileged relationship.",
     "Finally, when in doubt, ask the attorney first."
    ],
-   "ask": "Elias asks you to forward his advice email to the client, and the client asks you to copy in their business partner, who isn't part of the matter. What do you do?"
+   "ask": "Elias asks you to forward his advice email to the client, and the client asks you to copy in their business partner, who isn't part of the matter. What do you do?",
+   "scenario": "A client wants Elias's advice email forwarded to her accountant 'because he needs to know.' Forwarding it might waive privilege. What do you do before sending anything?"
   }
  },
  "8::Work-Product Confidentiality": {
@@ -678,7 +735,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, never share them outside the matter team without clear permission.",
     "Finally, label and store them clearly as work product."
    ],
-   "ask": "What counts as work product in a case file?"
+   "ask": "What counts as work product in a case file?",
+   "scenario": "Elias leaves a draft case-strategy memo in the shared printer tray, labeled only 'notes.' Where should it be stored, and how should it be labeled?"
   },
   "p2": {
    "why": "Just because something isn't a client message doesn't mean it's safe to share.",
@@ -687,7 +745,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, work product has its own protection that careless handling can waive.",
     "Finally, when unsure, treat it as protected."
    ],
-   "ask": "A colleague on an unrelated matter asks to see a strategy memo from a case you support, saying it would help with a similar issue. What do you do?"
+   "ask": "A colleague on an unrelated matter asks to see a strategy memo from a case you support, saying it would help with a similar issue. What do you do?",
+   "scenario": "A friend at another firm asks you for 'a template' and suggests you send the Harlow strategy memo with the names removed. What do you say?"
   }
  },
  "8::Investor Disclosure Confidentiality": {
@@ -699,7 +758,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep investor materials in access-controlled storage.",
     "Finally, when an investor asks for something new, escalate rather than answering yourself."
    ],
-   "ask": "Who decides what an investor can be told?"
+   "ask": "Who decides what an investor can be told?",
+   "scenario": "You're preparing an investor update for one of Elias's companies. Elias's notes mention a pending lawsuit that hasn't been announced. What do you ask before it goes in the draft?"
   },
   "p2": {
    "why": "An investor's interest doesn't mean they're entitled to the information.",
@@ -708,7 +768,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't assume investors can have anything that seems relevant.",
     "Finally, confidentiality and briefing preparation are two sides of the same job."
    ],
-   "ask": "An investor emails asking for details about a matter that hasn't been publicly disclosed. What do you do before replying?"
+   "ask": "An investor emails asking for details about a matter that hasn't been publicly disclosed. What do you do before replying?",
+   "scenario": "An investor phones you directly after a board meeting and asks 'just between us' how the lawsuit is going. What do you say?"
   }
  },
  "8::HIPAA in a Legal Context": {
@@ -722,7 +783,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, treat health information as the highest sensitivity level.",
     "Finally, ask the attorney if you're unsure what extra handling is needed."
    ],
-   "ask": "Has anyone handled a case file with medical records in it?"
+   "ask": "Has anyone handled a case file with medical records in it?",
+   "scenario": "A client's medical records arrive by email for a contract dispute that has nothing to do with health. Do you handle them any differently? Where do they go, and who can see them?"
   },
   "p2": {
    "why": "A firm doesn't need to be in healthcare for health privacy law to matter.",
@@ -732,7 +794,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, handle it discreetly: only the people who need it, never left visible.",
     "Finally, it always goes in the top sensitivity level."
    ],
-   "ask": "A personal-injury client emails you their full hospital records and asks you to forward them to their chiropractor and their employer. What do you do?"
+   "ask": "A personal-injury client emails you their full hospital records and asks you to forward them to their chiropractor and their employer. What do you do?",
+   "scenario": "A colleague leaves a personal-injury client's hospital records open on her screen while a courier waits at her desk. What should happen, and what's the habit?"
   }
  },
  "8::GDPR & Data Privacy Regulations": {
@@ -746,7 +809,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, remember US state laws work in a similar spirit.",
     "Finally, flag possible privacy obligations to the attorney early."
    ],
-   "ask": "Does your firm handle data about anyone outside the US?"
+   "ask": "Does your firm handle data about anyone outside the US?",
+   "scenario": "A client asks the firm to delete all personal data it holds about her, and she lives in France. Who decides whether the firm must, and what do you gather for the attorney?"
   },
   "p2": {
    "why": "Your job is to spot when privacy law might apply; the attorney handles the details.",
@@ -756,7 +820,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, 'we're not in the EU' doesn't mean privacy law doesn't apply.",
     "Finally, recognize the trigger and flag it early."
    ],
-   "ask": "A new client is a German company with staff in Berlin and Chicago, and the matter involves employee records from both offices. What do you flag to Elias at intake?"
+   "ask": "A new client is a German company with staff in Berlin and Chicago, and the matter involves employee records from both offices. What do you flag to Elias at intake?",
+   "scenario": "At intake, a new client mentions its customer database includes people in Ireland and Spain. What do you flag for the attorney right away, and why at intake?"
   }
  },
  "8::Other Relevant Compliance Frameworks": {
@@ -770,7 +835,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, know the names that come up: public-company financial rules, financial privacy and education records.",
     "Finally, remember that lawyers' ethics rules on confidentiality always apply."
    ],
-   "ask": "Which regulations apply to your firm's practice areas?"
+   "ask": "Which regulations apply to your firm's practice areas?",
+   "scenario": "A new client is a small bank. You're asked to set up its matter folder like any other. What would you ask the attorney before you do?"
   },
   "p2": {
    "why": "Pattern recognition is the skill, and asking is always the right move.",
@@ -780,7 +846,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, spot the sensitive categories and handle them carefully.",
     "Finally, an unnecessary question costs nothing; a missed requirement can cost a lot."
    ],
-   "ask": "A new matter involves a public company's internal financial controls and a student's school records. Which frameworks might apply, and what do you ask Elias?"
+   "ask": "A new matter involves a public company's internal financial controls and a student's school records. Which frameworks might apply, and what do you ask Elias?",
+   "scenario": "A client matter involves credit card numbers from its online store. You don't know which rule applies. What do you do with the files in the meantime, and who do you ask?"
   }
  }
 });

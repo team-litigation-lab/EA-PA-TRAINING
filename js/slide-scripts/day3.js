@@ -1,6 +1,6 @@
 /* Day 3 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "3::Prioritization Frameworks": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, every so often, ask which small share of your work is producing most of the results, and give that part more of your time.",
     "Finally, don't try all four at once. Pick the one that fixes your biggest problem this week, get good at it, then add another."
    ],
-   "ask": "Who already uses one of these, maybe without knowing it had a name?"
+   "ask": "Who already uses one of these, maybe without knowing it had a name?",
+   "scenario": "Your own list this morning has 22 items, from 'renew Elias's parking permit' to 'prepare the Meridian hearing binder.' You keep jumping between them and finishing nothing. Which framework do you reach for first, and what does your list look like after ten minutes with it?"
   },
   "p2": {
    "why": "Executives lose a huge chunk of their week to email, and good sorting can give them back ten hours or more.",
@@ -23,7 +24,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, if you know what matters but keep getting distracted, use the short focus bursts.",
     "Finally, if the important work keeps getting pushed aside, protect it with a fixed calendar block before the week fills up."
    ],
-   "ask": "Monday morning, Elias has 14 open items: a brief due Wednesday, three client callbacks, an expense report and a conference RSVP among them. Let's sort them into the four boxes together. What can we hand off or drop?"
+   "ask": "Monday morning, Elias has 14 open items: a brief due Wednesday, three client callbacks, an expense report and a conference RSVP among them. Let's sort them into the four boxes together. What can we hand off or drop?",
+   "scenario": "Elias says he spends four hours a day in email and still misses important things. Using one of the four frameworks, describe how you'd restructure his inbox day so the important work gets done."
   }
  },
  "3::Time Management": {
@@ -36,7 +38,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, protect it. If someone asks for that time, treat it like any other meeting you've already committed to.",
     "Finally, review it. At the end of the week, look back: did the protected time actually happen, or did something 'urgent' take it every time?"
    ],
-   "ask": "Be honest: which of the four steps do you usually skip?"
+   "ask": "Be honest: which of the four steps do you usually skip?",
+   "scenario": "It's Friday. Next week Elias has a brief due Thursday, but his calendar is already filling with meetings. Walk through decide, block, protect and review for that brief."
   },
   "p2": {
    "why": "Deciding what matters and defending it on the calendar are two different skills, and you need both.",
@@ -45,7 +48,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, time management answers: what deserves time this week?",
     "Finally, calendar management makes sure the calendar actually shows that answer, and keeps it there."
    ],
-   "ask": "Elias says the Harlow summary judgment brief is his top priority this week, but there's no time for it anywhere on his calendar. Walk us through decide, block, protect and review for his week."
+   "ask": "Elias says the Harlow summary judgment brief is his top priority this week, but there's no time for it anywhere on his calendar. Walk us through decide, block, protect and review for his week.",
+   "scenario": "Elias says his priority this quarter is winning the Meridian arbitration. You look at his last four weeks and find only three hours spent on it. Is this a time management problem, a calendar management problem, or both? What do you change?"
   }
  },
  "3::When Time Management Fails Despite a Clean Calendar": {
@@ -59,7 +63,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when a week goes wrong, work out why. Did we choose the wrong priority, or choose the right one and fail to protect it? The fix is different for each.",
     "Finally, do this check every week, not only when something falls apart."
    ],
-   "ask": "Think of a week where the calendar looked fine but the important things still didn't get done. What broke?"
+   "ask": "Think of a week where the calendar looked fine but the important things still didn't get done. What broke?",
+   "scenario": "Elias's week has no clashes at all, yet on Friday he says he got nothing important done. You look: 23 meetings, each between 20 and 45 minutes, spread across every day. What went wrong, and what would you change next week?"
   },
   "p2": {
    "why": "A trip only goes well if the days around it were planned as carefully as the itinerary.",
@@ -68,7 +73,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, treat the calendar before, during and after travel with the same care as the trip itself.",
     "Finally, when a clean-looking week fails, ask the key question: was it the decision or the protection that broke?"
    ],
-   "ask": "Share a real week where your calendar looked fine on paper but the priorities still didn't happen. Was it the decision or the protection?"
+   "ask": "Share a real week where your calendar looked fine on paper but the priorities still didn't happen. Was it the decision or the protection?",
+   "scenario": "Elias is in London Tuesday to Thursday. On Monday, the day before he flies, he has seven meetings; on Friday, the day after he lands, he has six. What's wrong with this plan, and how would you fix the days either side of the trip?"
   }
  },
  "3::Energy Management vs. Time Management": {
@@ -82,7 +88,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if it has to go in a low time, say so. Flag it as a risk rather than pretending the slot is neutral.",
     "Finally, check the pattern again now and then. Travel, new roles and life changes shift it."
    ],
-   "ask": "Opposing counsel wants 4 PM Friday for a settlement negotiation, and you know Elias is running on empty by then after a full week. What do you tell him, and what do you propose instead?"
+   "ask": "Opposing counsel wants 4 PM Friday for a settlement negotiation, and you know Elias is running on empty by then after a full week. What do you tell him, and what do you propose instead?",
+   "scenario": "Elias is sharpest from 8 to 11 a.m. and fades after 3 p.m. This week you have to schedule a tough negotiation, a routine staff check-in, expense sign-offs and a strategy session. Where does each one go, and why?"
   }
  },
  "3::Handling Interruptions Without Losing the Day": {
@@ -95,7 +102,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, go back to exactly where you were and finish that thought before anything else.",
     "Finally, save up the things that can wait and handle them together later, in one go."
    ],
-   "ask": "When you get interrupted, how long does it take you to get back to full focus?"
+   "ask": "When you get interrupted, how long does it take you to get back to full focus?",
+   "scenario": "You're drafting a sensitive email to a client when three people stop by in 20 minutes: one asking where the stapler is, one with a vendor question and one saying the client on line 2 is angry. How do you handle each one in seconds?"
   },
   "p2": {
    "why": "A two-minute interruption can cost you fifteen minutes of real focus.",
@@ -104,7 +112,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember the cost: every interruption comes with a recovery time you don't see.",
     "Finally, practice telling real urgency from something that only feels urgent because it's happening right now."
    ],
-   "ask": "You're halfway through proofing a filing due at 5 PM, and a colleague stops by to chat about next month's office lunch. Walk us through the four moves out loud."
+   "ask": "You're halfway through proofing a filing due at 5 PM, and a colleague stops by to chat about next month's office lunch. Walk us through the four moves out loud.",
+   "scenario": "You're proofreading a court filing due at 4 p.m. At 3:15, a partner asks you to 'quickly' reformat a slide deck for tomorrow. What do you say, and what do you do with the request?"
   }
  },
  "3::The Two-Minute Rule": {
@@ -118,7 +127,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, keep applying the rule all day, not just when you remember.",
     "Finally, glance at your list for tiny tasks that have been sitting there for days. That's the sign the habit has slipped."
    ],
-   "ask": "How many two-minute tasks are sitting in your inbox right now?"
+   "ask": "How many two-minute tasks are sitting in your inbox right now?",
+   "scenario": "In your inbox: confirm a restaurant booking, forward a receipt to finance, reply 'noted' to a calendar update, and prepare a two-page summary for Elias. Which ones do you do right now, and which get a slot on your list?"
   },
   "p2": {
    "why": "The rule only works if you're honest about the two minutes.",
@@ -127,7 +137,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a task that 'should' take two minutes but keeps growing is telling you to stop and schedule it.",
     "Finally, the real reward is a list that never fills up with small stuff."
    ],
-   "ask": "Five things land in ten minutes: confirm a lunch booking, reply 'received' to a court notice, reformat a 20-page exhibit list, forward an invoice to billing and update a phone number. Which ones pass the two-minute rule?"
+   "ask": "Five things land in ten minutes: confirm a lunch booking, reply 'received' to a court notice, reformat a 20-page exhibit list, forward an invoice to billing and update a phone number. Which ones pass the two-minute rule?",
+   "scenario": "You started replying to 'a quick question' from a client about fees. Twenty minutes later you're still digging through invoices. What should you have done at the two-minute mark?"
   }
  },
  "3::Batch Processing Similar Tasks": {
@@ -141,7 +152,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if something truly urgent arrives, break the batch. Batching is a tool, not a rule.",
     "Finally, revisit your batches when your workload changes."
    ],
-   "ask": "What do you currently handle one at a time that could be batched?"
+   "ask": "What do you currently handle one at a time that could be batched?",
+   "scenario": "Your day has 12 calls to return, 9 expense approvals and 15 scheduling emails, all arriving at random times. Design your batches for the day. Which one would you break for, and why?"
   },
   "p2": {
    "why": "Batch what can wait; break the batch for what can't.",
@@ -150,7 +162,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember that batching is a deliberate choice to delay a little for efficiency.",
     "Finally, anything with its own urgent deadline jumps the queue."
    ],
-   "ask": "In one day you get six expense approvals, four scheduling requests and three short client replies, scattered from morning to evening. Design the batches, and tell us the one thing that would make you break one."
+   "ask": "In one day you get six expense approvals, four scheduling requests and three short client replies, scattered from morning to evening. Design the batches, and tell us the one thing that would make you break one.",
+   "scenario": "You batch your scheduling emails for 3 p.m. At 10 a.m. a message arrives: a client needs to move today's 1 p.m. meeting. Does it wait for the batch? What rule helps you decide?"
   }
  },
  "3::The Cost of Context-Switching": {
@@ -164,7 +177,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when you do switch, take a moment to close off the first task properly before starting the next.",
     "Finally, try counting your switches for one day. Almost everyone is surprised."
    ],
-   "ask": "How many times do you think you switched tasks in the last hour?"
+   "ask": "How many times do you think you switched tasks in the last hour?",
+   "scenario": "In one hour you checked email eight times, answered four chat pings, took two calls and tried to finish one travel booking, which still isn't done. What would you change about the next hour?"
   },
   "p2": {
    "why": "Multitasking feels fast and almost always turns out slower.",
@@ -174,7 +188,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, that's the real reason batching and focus blocks exist: fewer switches, less wasted time.",
     "Finally, one task at a time wins over juggling, even when juggling feels busier."
    ],
-   "ask": "In one hour you touch a legal filing question, a personal travel request for Elias, a board deck edit and two Slack pings. How would you rearrange that hour to cut the switching?"
+   "ask": "In one hour you touch a legal filing question, a personal travel request for Elias, a board deck edit and two Slack pings. How would you rearrange that hour to cut the switching?",
+   "scenario": "A colleague says she's great at multitasking: she drafts emails during video calls and books travel while on hold. Her work has had three errors this week. How would you talk her through what's happening?"
   }
  },
  "3::Weekly Planning Rituals": {
@@ -188,7 +203,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if something needs prep several days ahead, block that prep time now.",
     "Finally, defend the session. If it keeps getting bumped, it isn't a ritual anymore."
    ],
-   "ask": "Who here has a standing weekly planning block, and who plans each morning?"
+   "ask": "Who here has a standing weekly planning block, and who plans each morning?",
+   "scenario": "It's Friday at 3 p.m., your weekly planning slot. Looking ahead, you see: a hearing on Wednesday, a board pack due Thursday, Elias travelling Friday and a client dinner Tuesday. What do you block now for prep, and what do you carry over from this week?"
   },
   "p2": {
    "why": "If your planning session keeps getting bumped, you don't really have one.",
@@ -197,7 +213,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember what weekly planning is for: the things with a long lead time.",
     "Finally, protect it on the calendar, or it quietly disappears."
    ],
-   "ask": "It's Friday afternoon. Next Thursday Elias has a mediation that needs a binder, two witness calls and a travel booking. Plan backwards: what goes on the calendar today, and for which days?"
+   "ask": "It's Friday afternoon. Next Thursday Elias has a mediation that needs a binder, two witness calls and a travel booking. Plan backwards: what goes on the calendar today, and for which days?",
+   "scenario": "Your Friday planning block has been bumped four weeks in a row by 'urgent' requests. Monday mornings have become chaotic. What do you change so the ritual actually happens?"
   }
  },
  "3::Saying No Without Damaging Relationships": {
@@ -211,7 +228,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, never say yes just to escape the awkward moment and then fail to deliver.",
     "Finally, if you're genuinely full, say so up front."
    ],
-   "ask": "Has a no ever actually made a working relationship stronger for you?"
+   "ask": "Has a no ever actually made a working relationship stronger for you?",
+   "scenario": "A partner asks you to organize his team's holiday party on top of your work for Elias. You're at capacity through December. Say the no in two sentences, with a real reason and something you can offer."
   },
   "p2": {
    "why": "Saying yes to everything doesn't make you generous; it just moves the disappointment to later.",
@@ -220,7 +238,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember that yes-to-everything only delays the letdown.",
     "Finally, a good no names the real constraint, like 'I can't take this on before Thursday because of the Harlow filing.'"
    ],
-   "ask": "A partner wants 30 minutes with Elias tomorrow, but his whole day is trial prep. Say the no out loud, with the reason and an alternative."
+   "ask": "A partner wants 30 minutes with Elias tomorrow, but his whole day is trial prep. Say the no out loud, with the reason and an alternative.",
+   "scenario": "Last month you said yes to three extra projects to be helpful, then delivered all three late. The people who asked are now frustrated. What would a good no have sounded like at the start?"
   }
  },
  "3::Setting Realistic Deadlines": {
@@ -234,7 +253,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, say the date clearly with a name attached, just like the timeline in an ACT email.",
     "Finally, if it starts to slip, say so early, while there are still options."
    ],
-   "ask": "When has an optimistic deadline cost you something?"
+   "ask": "When has an optimistic deadline cost you something?",
+   "scenario": "A client asks when the firm can send the revised settlement draft. The associate says 'probably Thursday,' but she has a deposition Wednesday and the draft needs Elias's review. What date do you give the client, and how do you work it out?"
   },
   "p2": {
    "why": "Never promise a date for someone else without asking them first.",
@@ -243,7 +263,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, build in buffer for genuine risk, so people can actually plan around your date.",
     "Finally, check with the doer before you commit. It takes one message and saves a broken promise."
    ],
-   "ask": "A client asks when they'll get the draft engagement agreement, and the associate writing it is in trial until Wednesday. What do you do before answering, and what do you tell the client?"
+   "ask": "A client asks when they'll get the draft engagement agreement, and the associate writing it is in trial until Wednesday. What do you do before answering, and what do you tell the client?",
+   "scenario": "Elias promised a client a memo by Monday, without asking the associate, who's on leave until Tuesday. It's Friday. What do you do now, and what do you suggest for next time?"
   }
  },
  "3::Time Tracking Done Right": {
@@ -257,7 +278,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, include calls and emails. They're real work and the most forgotten.",
     "Finally, keep a weekly summary, even for work that isn't billed, so you can see where your time really goes."
    ],
-   "ask": "Which of those mistakes do you think costs a firm the most over a year?"
+   "ask": "Which of those mistakes do you think costs a firm the most over a year?",
+   "scenario": "It's Friday and you haven't logged any time since Monday. You remember roughly what you did, but not for which matters. How do you rebuild the week as honestly as possible, and what will you do differently next week?"
   },
   "p2": {
    "why": "A good time entry says what you did, to what, and why, and it's tagged to the right matter.",
@@ -267,7 +289,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, use your firm's time units, often six minutes, and round honestly.",
     "Finally, tag the client and matter right away. Sorting it out days later is where disputes begin."
    ],
-   "ask": "Your entry for yesterday says 'Emails, 1.0.' Rewrite it as three proper entries, each with an action, an object and a purpose, tagged to the right matters."
+   "ask": "Your entry for yesterday says 'Emails, 1.0.' Rewrite it as three proper entries, each with an action, an object and a purpose, tagged to the right matters.",
+   "scenario": "Rewrite these entries properly: 'Calls 0.5,' 'Admin 1.2,' 'Harlow stuff 0.8.' Use action, object and purpose, and tag each one to a matter."
   }
  },
  "3::The Weekly Time Audit": {
@@ -281,7 +304,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, make sure your time tracking is accurate, because the audit is only as good as the data.",
     "Finally, change something next week based on what you found."
    ],
-   "ask": "Take a guess: what percentage of your week goes to your top priority?"
+   "ask": "Take a guess: what percentage of your week goes to your top priority?",
+   "scenario": "You believe most of your week goes to supporting Elias's cases. After tracking one real week, you find 35 percent went to rescheduling and chasing people for replies. What do you do with that finding?"
   },
   "p2": {
    "why": "An audit only helps if it changes next week.",
@@ -290,7 +314,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, it's a periodic check to catch drift.",
     "Finally, it turns your time log into an actual improvement, instead of a record nobody reads."
    ],
-   "ask": "Your audit shows 40 percent of your week went to rescheduling meetings and only 10 percent to Elias's most important matter. What two things do you change next week?"
+   "ask": "Your audit shows 40 percent of your week went to rescheduling meetings and only 10 percent to Elias's most important matter. What two things do you change next week?",
+   "scenario": "Your audit shows you spend six hours a week re-sending the same meeting details to different people. Name one change you'd make next week, and how you'd check whether it worked."
   }
  },
  "3::Calendar Management That Holds": {
@@ -304,7 +329,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, treat deep-work time as seriously as a meeting.",
     "Finally, review the calendar once a week to catch the slow creep of conflicts."
    ],
-   "ask": "Is anyone here keeping a second, unofficial calendar? Let's look at the sample calendar together and find every conflict and missing buffer."
+   "ask": "Is anyone here keeping a second, unofficial calendar? Let's look at the sample calendar together and find every conflict and missing buffer.",
+   "scenario": "Elias has a firm calendar, a personal Google calendar, and a paper diary his old assistant used for 'private things.' A client meeting was booked on top of a doctor's appointment last week. What's your plan to make one calendar everyone trusts?"
   }
  },
  "3::Calendar Conflict & Prioritization Discipline": {
@@ -318,7 +344,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, write down what was decided, so nobody argues it again later.",
     "Finally, let both sides know the outcome quickly."
    ],
-   "ask": "Elias is double-booked Thursday at 2: a regular check-in with an associate, booked weeks ago, and a call with a new client's general counsel, requested this morning. What does 'how much it matters' mean here, and what do you say to him?"
+   "ask": "Elias is double-booked Thursday at 2: a regular check-in with an associate, booked weeks ago, and a call with a new client's general counsel, requested this morning. What does 'how much it matters' mean here, and what do you say to him?",
+   "scenario": "Thursday at 11 a.m.: a partner has booked Elias for a budget review, and a major client has just asked for a call at the same time. You could easily move the budget review yourself. What do you do instead, and what does your message to Elias say?"
   }
  },
  "3::Calendar Blocking for Deep Work": {
@@ -332,7 +359,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if it does get double-booked, treat that as a real conflict to sort out.",
     "Finally, check whether the blocks are being used. One that's always skipped needs fixing or rethinking."
    ],
-   "ask": "Has one of your focus blocks ever been quietly booked over?"
+   "ask": "Has one of your focus blocks ever been quietly booked over?",
+   "scenario": "You set a 'Focus' block on Elias's calendar for Wednesday morning, but it's shown as 'free,' so two people booked meetings into it. What do you change so the block actually holds?"
   },
   "p2": {
    "why": "A protected block is only worth defending if the right work is inside it.",
@@ -341,7 +369,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, make the block behave like a real commitment, not a polite request.",
     "Finally, fill it with the work that matters most this week."
    ],
-   "ask": "A senior partner asks for a meeting during Elias's Wednesday 9 to 11 brief-writing block. How do you handle it, using what we covered about conflicts?"
+   "ask": "A senior partner asks for a meeting during Elias's Wednesday 9 to 11 brief-writing block. How do you handle it, using what we covered about conflicts?",
+   "scenario": "Elias has a protected block every Tuesday afternoon, but he uses it for email. Meanwhile, the Meridian brief is always done late at night. How do you raise it, and what would you suggest?"
   }
  },
  "3::Buffer Time Between Meetings": {
@@ -355,7 +384,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if a day is too packed for gaps, say so instead of silently stacking meetings.",
     "Finally, check each week, because back-to-back booking sneaks back in."
    ],
-   "ask": "On a busy calendar, where do the gaps disappear first?"
+   "ask": "On a busy calendar, where do the gaps disappear first?",
+   "scenario": "Elias's Thursday runs 9 to 5 with no gaps: a court session, then two client meetings, then a partners' call. Where do you add buffers first, and what do you say to people whose meetings shift by 15 minutes?"
   },
   "p2": {
    "why": "For Elias, the debrief buffer isn't a nice extra; it's one of his standing rules.",
@@ -364,7 +394,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, gaps give room for the thinking and prep real meetings need.",
     "Finally, ignoring the debrief buffer means ignoring a documented preference."
    ],
-   "ask": "Elias's Tuesday has six meetings back-to-back from 9 to 3. Where do you put gaps first, and what would you move to make room?"
+   "ask": "Elias's Tuesday has six meetings back-to-back from 9 to 3. Where do you put gaps first, and what would you move to make room?",
+   "scenario": "A new partner books Elias for a call immediately after a court hearing, not knowing about the debrief rule. What do you say to the partner, and how do you stop it from happening again?"
   }
  },
  "3::Recurring Meeting Hygiene": {
@@ -378,7 +409,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, suggest something specific: cancel it, shorten it or invite fewer people.",
     "Finally, check back later that the change actually stuck."
    ],
-   "ask": "Which recurring meeting do you suspect nobody would miss?"
+   "ask": "Which recurring meeting do you suspect nobody would miss?",
+   "scenario": "Elias has a Monday 8 a.m. meeting that started two years ago for a case that has since settled. Five people still attend. How do you raise it, and what do you suggest?"
   },
   "p2": {
    "why": "You see the whole calendar, so you're often the first to notice a meeting that's gone stale.",
@@ -387,7 +419,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a recurring meeting with no agenda is one of the most common time-wasters there is.",
     "Finally, you can spot it early because you see every calendar, not just one."
    ],
-   "ask": "Elias has a weekly 60-minute 'matter sync' with eight people, no agenda and half of them with cameras off. What would you suggest, and how would you say it to him?"
+   "ask": "Elias has a weekly 60-minute 'matter sync' with eight people, no agenda and half of them with cameras off. What would you suggest, and how would you say it to him?",
+   "scenario": "You notice a weekly 'catch-up' where the same three updates could be sent by email. The organizer is a senior partner. How do you bring it up politely and usefully?"
   }
  },
  "3::Time Zone Management for Distributed Teams": {
@@ -401,7 +434,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, choose a time that's fair to the person worst off, not just convenient for most.",
     "Finally, if a mix-up happens, fix it right away and confirm with everyone."
    ],
-   "ask": "Elias needs a call with co-counsel in London and a client in Manila this week. Find a time that works for all three, and write the line in the invite that names the time zone."
+   "ask": "Elias needs a call with co-counsel in London and a client in Manila this week. Find a time that works for all three, and write the line in the invite that names the time zone.",
+   "scenario": "Elias needs a call with co-counsel in Singapore and a client in New York next Tuesday. Find a time that works reasonably for both. What do you write in the invite so nobody gets the time wrong?"
   }
  },
  "3::Handling Last-Minute Calendar Changes": {
@@ -415,7 +449,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, tell everyone involved clearly. Quietly editing the calendar isn't enough, because people plan around what they were told.",
     "Finally, recheck the rest of the day, and if the same person keeps causing last-minute changes, deal with that separately."
    ],
-   "ask": "Let's roleplay it: a client meeting planned for 90 minutes from now has just been moved to right now. What has to happen in the next five minutes?"
+   "ask": "Let's roleplay it: a client meeting planned for 90 minutes from now has just been moved to right now. What has to happen in the next five minutes?",
+   "scenario": "At 10:15, a client asks to move their 2 p.m. meeting to 11:30 today. That slot has Elias's debrief buffer and a call with a junior associate. Walk through what you check before you say yes, and who you tell."
   }
  },
  "3::Multi-Calendar Coordination": {
@@ -429,7 +464,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, keep work and personal calendars separate for privacy, while you still coordinate across both.",
     "Finally, if you find a clash across calendars, raise it like any other conflict."
    ],
-   "ask": "Have you ever double-booked someone because you only checked one calendar?"
+   "ask": "Have you ever double-booked someone because you only checked one calendar?",
+   "scenario": "Elias is on the board of a charity with its own calendar invites, has a personal calendar Sarah manages and a firm calendar you manage. A charity board meeting was accepted for the same evening as a firm dinner. How do you set things up so this doesn't happen again?"
   },
   "p2": {
    "why": "Keeping calendars separate doesn't mean nobody looks at both; that someone is you.",
@@ -438,7 +474,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a master view, even a manual one, is what stops double-bookings.",
     "Finally, separate doesn't mean uncoordinated."
    ],
-   "ask": "A client wants dinner with Elias next Thursday. His work calendar is free, but his personal calendar has his daughter's recital that night. What do you do, and what do you tell the client?"
+   "ask": "A client wants dinner with Elias next Thursday. His work calendar is free, but his personal calendar has his daughter's recital that night. What do you do, and what do you tell the client?",
+   "scenario": "A partner asks you to book Elias for Saturday morning. His firm calendar is empty, but you know from the family calendar that he has a school event. What do you do, without sharing private family details with the partner?"
   }
  },
  "3::Court Docketing Workflows": {
@@ -450,7 +487,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, set reminders at several points, for example two weeks out, three days out and on the day.",
     "Finally, regularly compare the docket with the case file, and close off deadlines that are done so the open ones stand out."
    ],
-   "ask": "In your process today, where do the docketed dates actually come from?"
+   "ask": "In your process today, where do the docketed dates actually come from?",
+   "scenario": "A court order arrives setting three deadlines: a response in 21 days, an expert disclosure in 45 days and a pretrial conference in 60 days. Walk through how you docket each one, and what reminders you set."
   },
   "p2": {
    "why": "Always take the date from the court's own document, never from someone's summary of it.",
@@ -460,7 +498,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, never assume a deadline works like the last one. Rules differ by court and case type.",
     "Finally, give every docket entry the care the stakes deserve."
    ],
-   "ask": "You're docketing a response deadline from a court order, and the date looks unusually short compared with similar cases. What do you do before you enter it?"
+   "ask": "You're docketing a response deadline from a court order, and the date looks unusually short compared with similar cases. What do you do before you enter it?",
+   "scenario": "An associate emails you: 'The judge gave us until the 15th for the reply, please calendar it.' The order itself isn't attached. What do you do before you enter the date?"
   }
  },
  "3::Statute-of-Limitations Rules": {
@@ -472,7 +511,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, give it extra warning time and extra reminders, more than a normal court date.",
     "Finally, if it's unclear which rule applies, ask the attorney. That's a legal judgment, not ours to make alone."
    ],
-   "ask": "Why is it dangerous to copy this deadline from a similar past case?"
+   "ask": "Why is it dangerous to copy this deadline from a similar past case?",
+   "scenario": "A new client's slip-and-fall happened 20 months ago. The intake form says 'two-year limit, plenty of time.' What do you do in the first hour after the matter comes in?"
   },
   "p2": {
    "why": "This is one deadline where 'probably right' is never good enough.",
@@ -482,7 +522,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, check it against the actual rule, every single time.",
     "Finally, never let the date live in only one place or one person's head. It belongs in the same backed-up system as court deadlines."
    ],
-   "ask": "A new matter involves people in two different states, so you're not sure whose rule applies. What do you do before calculating anything?"
+   "ask": "A new matter involves people in two different states, so you're not sure whose rule applies. What do you do before calculating anything?",
+   "scenario": "A colleague copied the limitation deadline from a similar case last year. The new case is in a different state and involves a government defendant. What's the risk, and who should confirm the real date?"
   }
  },
  "3::Deposition Scheduling": {
@@ -494,7 +535,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, book the court reporter and any interpreter the moment the date is set. They're usually the hardest to get.",
     "Finally, send the formal notice promptly and keep track of who has actually confirmed."
    ],
-   "ask": "Which part of a deposition do you think is hardest to book?"
+   "ask": "Which part of a deposition do you think is hardest to book?",
+   "scenario": "You're setting a deposition for next month. The witness, Elias and the court reporter have confirmed, and opposing counsel said 'probably fine' on the phone. The interpreter hasn't been booked. What's still open before you send the notice?"
   },
   "p2": {
    "why": "A little extra coordination up front costs far less than rescheduling a deposition.",
@@ -503,7 +545,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't lock a date around one person's calendar.",
     "Finally, remember that rescheduling costs time, money and sometimes strategy."
    ],
-   "ask": "You've confirmed a date with the attorney and the witness, but opposing counsel hasn't answered for days. Do you send the notice or wait? What do you actually do?"
+   "ask": "You've confirmed a date with the attorney and the witness, but opposing counsel hasn't answered for days. Do you send the notice or wait? What do you actually do?",
+   "scenario": "A deposition had to be moved twice because the witness's availability was never confirmed in writing. The client is paying for two cancelled court reporters. What would you do differently from the start?"
   }
  },
  "3::War Room Trial Support": {
@@ -515,7 +558,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, organize every document, contact and practical detail, like the courthouse address and parking, so you can find it instantly.",
     "Finally, agree how you'll communicate during trial: which channel, and how fast you'll respond."
    ],
-   "ask": "What would you want settled before a trial begins?"
+   "ask": "What would you want settled before a trial begins?",
+   "scenario": "Elias has a week-long trial starting Monday. List what you'd want agreed with him before Friday: documents, logistics, communication. What's the one thing most likely to be forgotten?"
   },
   "p2": {
    "why": "Treating trial like a slightly busier week is the mistake to avoid.",
@@ -524,7 +568,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, prepare for a different pace, not just more work.",
     "Finally, expect travel and tricky scheduling on top of the document work."
    ],
-   "ask": "Trial starts in three days and you haven't agreed with Elias how you'll support him. What do you nail down, and how do you bring it up on such short notice?"
+   "ask": "Trial starts in three days and you haven't agreed with Elias how you'll support him. What do you nail down, and how do you bring it up on such short notice?",
+   "scenario": "On day two of a trial, Elias texts at 7 a.m. asking for an exhibit that isn't in the trial binder. What should have been done before trial, and what do you do now?"
   }
  },
  "3::Executive Travel Logistics — Domestic & International Itineraries": {
@@ -536,7 +581,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, for international trips, check the visa and document rules well ahead of time.",
     "Finally, leave real room between connecting flights, especially when he lands internationally and has to clear customs again."
    ],
-   "ask": "Why do you think international-to-domestic connections need extra time?"
+   "ask": "Why do you think international-to-domestic connections need extra time?",
+   "scenario": "Elias must be at a 9 a.m. arbitration in London on Tuesday, rested and prepared. Plan the trip backward from that meeting: when he lands, when he flies and what happens in between."
   },
   "p2": {
    "why": "Give the traveler one tidy itinerary, not a pile of confirmation emails.",
@@ -545,7 +591,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't plan an international trip as if it were domestic.",
     "Finally, gather every booking reference and detail into one itinerary."
    ],
-   "ask": "You're about to book Elias a tight connection from an international flight to a domestic one. What do you want to confirm about it before you book?"
+   "ask": "You're about to book Elias a tight connection from an international flight to a domestic one. What do you want to confirm about it before you book?",
+   "scenario": "Elias's inbox has seven separate confirmation emails for one trip: two flights, a hotel, two car transfers, a restaurant and a train. He asks, 'What time is my car tomorrow?' What should you have sent him instead?"
   }
  },
  "3::Visa & Documentation Requirements": {
@@ -559,7 +606,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, sort supporting papers like invitation letters early enough to fix problems.",
     "Finally, write down what was needed, so the next trip starts with facts."
    ],
-   "ask": "Has anyone had a trip nearly ruined by a passport or visa problem?"
+   "ask": "Has anyone had a trip nearly ruined by a passport or visa problem?",
+   "scenario": "Elias is invited to speak at a conference in Brazil in six weeks. You haven't arranged travel there before. What do you check today, and where do you look?"
   },
   "p2": {
    "why": "Six months left on the passport and weeks of lead time: those two catch most people out.",
@@ -568,7 +616,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, 'not expired' isn't the same as 'valid enough to travel'.",
     "Finally, some visas need weeks, not days."
    ],
-   "ask": "Elias flies to Singapore for a deposition in five weeks, and his passport expires in four months. What do you check, what do you do today and what do you tell him?"
+   "ask": "Elias flies to Singapore for a deposition in five weeks, and his passport expires in four months. What do you check, what do you do today and what do you tell him?",
+   "scenario": "Elias's passport expires in five months, and he's travelling to a country that requires six months' validity in three weeks. What are your options, and what do you do first?"
   }
  },
  "3::International Travel Considerations": {
@@ -582,7 +631,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, look at the government travel advisory again close to departure.",
     "Finally, give international trips more planning time than domestic ones."
    ],
-   "ask": "If you've arranged international travel before, what surprised you the first time?"
+   "ask": "If you've arranged international travel before, what surprised you the first time?",
+   "scenario": "Elias is going to Singapore for a week. Beyond flights and hotel, list three things you'd check about health, money and business customs."
   },
   "p2": {
    "why": "Check the travel advisory again just before departure, because it can change after you book.",
@@ -591,7 +641,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the more variables a trip has, the more planning it needs.",
     "Finally, a last-minute look at the advisory is real diligence, not an extra."
    ],
-   "ask": "Elias has a client meeting in Mexico City next month. What would you check beyond the flights and the hotel, and when would you check the advisory?"
+   "ask": "Elias has a client meeting in Mexico City next month. What would you check beyond the flights and the hotel, and when would you check the advisory?",
+   "scenario": "You booked Elias's trip to a city three weeks ago. Two days before he leaves, the government issues an advisory about protests near his hotel. What do you do?"
   }
  },
  "3::Managing Multi-City, Multi-Leg Itineraries": {
@@ -605,7 +656,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, put the whole trip on one page.",
     "Finally, check it all again just before departure, in case any times have shifted."
    ],
-   "ask": "Elias's trip: New York to Atlanta with a 50-minute connection, on to Dallas for two days of trial prep, then Dallas to Phoenix for a mediation. Where's the weak point, and what would you change?"
+   "ask": "Elias's trip: New York to Atlanta with a 50-minute connection, on to Dallas for two days of trial prep, then Dallas to Phoenix for a mediation. Where's the weak point, and what would you change?",
+   "scenario": "Elias's trip: New York to Chicago for a morning meeting, Chicago to Denver the same afternoon, then Denver to Los Angeles the next day. The Chicago–Denver flight leaves 90 minutes after his meeting ends. Where is the weak point, and how do you protect it?"
   }
  },
  "3::Ground Transportation Coordination": {
@@ -619,7 +671,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, for important trips, have a backup ride ready.",
     "Finally, reconfirm the booking a day or so before travel."
    ],
-   "ask": "Has anyone landed with the flight and hotel sorted but no ride?"
+   "ask": "Has anyone landed with the flight and hotel sorted but no ride?",
+   "scenario": "Elias lands in Boston at 11:45 p.m. after a delayed flight. The car company closes its phone line at 11 p.m. and the driver's number isn't on the confirmation. What should have been arranged, and what do you do right now?"
   },
   "p2": {
    "why": "Plan the ride around who's actually in the car.",
@@ -628,7 +681,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, specific details close the gap that ruins arrivals.",
     "Finally, the Client Profile tells you who's traveling and what they need."
    ],
-   "ask": "Elias and his two young children land in Orlando at 9:40 PM. Write the ride confirmation you'd send him, with every detail it needs."
+   "ask": "Elias and his two young children land in Orlando at 9:40 PM. Write the ride confirmation you'd send him, with every detail it needs.",
+   "scenario": "Sarah Thorne, the two children and their nanny are flying to Florida. Write the details you'd confirm with the car service before the trip."
   }
  },
  "3::Loyalty Programs & Travel Preferences": {
@@ -642,7 +696,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, put it on a checklist, so you don't rely on memory when you're rushing.",
     "Finally, check the details now and then, because status levels change."
    ],
-   "ask": "Which travel preference do you think is easiest to forget when you're in a hurry?"
+   "ask": "Which travel preference do you think is easiest to forget when you're in a hurry?",
+   "scenario": "You book Elias's flight in a rush and forget his frequent-flyer number. He's upgraded on every other flight but not this one, and asks why. What habit fixes this for good?"
   },
   "p2": {
    "why": "A missed loyalty number is a small mistake, and a completely avoidable one.",
@@ -651,7 +706,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, apply loyalty numbers and preferences together, every time.",
     "Finally, a good travel process simply never produces this mistake."
    ],
-   "ask": "You're booking a last-minute flight for Elias from your phone. What three things from his profile do you check before you press confirm?"
+   "ask": "You're booking a last-minute flight for Elias from your phone. What three things from his profile do you check before you press confirm?",
+   "scenario": "A substitute assistant books Elias a middle seat with a connecting flight, not knowing his preferences. What in your process would have prevented this, even with someone new doing the booking?"
   }
  },
  "3::Travel Risk Contingency Planning": {
@@ -665,7 +721,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if something happens, use the backup straight away.",
     "Finally, it's the same idea as having a backup vendor: it's ready before you need it."
    ],
-   "ask": "Elias flies Chicago to Denver, then on to Boise for a 10 AM hearing. What are the two most likely problems, and what's the backup for each?"
+   "ask": "Elias flies Chicago to Denver, then on to Boise for a 10 AM hearing. What are the two most likely problems, and what's the backup for each?",
+   "scenario": "Elias flies to Seattle for a Monday 9 a.m. hearing, landing Sunday at 6 p.m. List the two most likely problems, and the backup you'd have ready for each before he leaves."
   }
  },
  "3::Emergency Flight Contingencies": {
@@ -677,7 +734,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, know the backups ahead of time: a later flight, a different airport or a car for the last stretch.",
     "Finally, when something goes wrong, send the executive one clear message with the problem and your plan, not a stream of updates."
    ],
-   "ask": "What's the one message Elias should get when his flight is cancelled?"
+   "ask": "What's the one message Elias should get when his flight is cancelled?",
+   "scenario": "Elias's 6 a.m. flight to a 1 p.m. deposition in Atlanta is cancelled at 4:30 a.m. You have two backups ready. Write the one message you send him."
   },
   "p2": {
    "why": "Reach Elias with a plan before the airline app reaches him with the problem.",
@@ -686,7 +744,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't wait for a disruption to start thinking about backups.",
     "Finally, be the first to tell him, with the solution already in hand."
    ],
-   "ask": "Elias's flight to a court appearance is cancelled, and the next flight lands after the hearing starts. What do you do, and in what order?"
+   "ask": "Elias's flight to a court appearance is cancelled, and the next flight lands after the hearing starts. What do you do, and in what order?",
+   "scenario": "A storm grounds flights out of Chicago. Elias is stuck overnight, and his 9 a.m. client meeting in New York is at risk. What options do you prepare, and what do you tell the client, and when?"
   }
  },
  "3::Expense Tracking While Traveling": {
@@ -700,7 +759,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, spend two minutes each evening checking nothing from the day is missing.",
     "Finally, submit everything within a set time after getting back."
    ],
-   "ask": "Elias gets back from a three-day trip with a pocket full of receipts, some for the Harlow matter and some personal. What should have happened each day, and what do you do now?"
+   "ask": "Elias gets back from a three-day trip with a pocket full of receipts, some for the Harlow matter and some personal. What should have happened each day, and what do you do now?",
+   "scenario": "Elias returns from a four-day trip with a crumpled pile of receipts: two client dinners, three taxis, a hotel, a personal gift and a coffee with no note. How do you sort them, and what do you do differently on the next trip?"
   }
  },
  "3::Building a Real Travel Checklist": {
@@ -714,7 +774,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, include a check that loyalty numbers were added, and a contact for emergencies.",
     "Finally, keep it somewhere you'll find it, and improve it after each trip."
    ],
-   "ask": "Let's build version one together: five sections for Elias's international trips, with two or three items in each."
+   "ask": "Let's build version one together: five sections for Elias's international trips, with two or three items in each.",
+   "scenario": "Elias's last trip had three small misses: no power adapter, a missing loyalty number and no emergency contact for the hotel. Turn those into checklist items, and say which section each belongs in."
   }
  },
  "3::Post-Trip Debrief & Follow-Up": {
@@ -728,7 +789,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, feed that note into the travel preferences or checklist.",
     "Finally, think of it as the same improvement habit you'll use for bigger projects on Day 6."
    ],
-   "ask": "Elias's Denver hotel had no quiet place to work, and his return connection was too tight. Write the debrief note, and say where each lesson gets recorded."
+   "ask": "Elias's Denver hotel had no quiet place to work, and his return connection was too tight. Write the debrief note, and say where each lesson gets recorded.",
+   "scenario": "Elias is back from Singapore. The hotel was great, the airport car was 40 minutes late, and he met two potential clients who need follow-up notes. What goes in your debrief, and what gets updated in his preferences?"
   }
  },
  "3::Recognizing Stress & Burnout in High-Pressure Roles": {
@@ -741,7 +803,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, watch the pattern for a couple of weeks before deciding what to change.",
     "Finally, if it lasts for weeks or affects your sleep, health or relationships, talk to your manager and consider support, like an employee assistance program or your doctor."
    ],
-   "ask": "Which early warning sign would you notice first in yourself?"
+   "ask": "Which early warning sign would you notice first in yourself?",
+   "scenario": "For three weeks, a colleague has been missing small details, skipping lunch and answering emails at midnight. She says she's 'fine, just busy.' What signs do you notice, and what's a kind way to check in?"
   },
   "p2": {
    "why": "Being exhausted doesn't prove you're dedicated; it puts the work at risk.",
@@ -751,7 +814,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, raise workload concerns early, while small changes can still fix it.",
     "Finally, if a colleague seems to be struggling, check in quietly and kindly, one to one."
    ],
-   "ask": "You've double-booked Elias twice this week, you're snapping at vendors and you check email at 11 every night 'just in case'. What's going on, and what are your first three steps?"
+   "ask": "You've double-booked Elias twice this week, you're snapping at vendors and you check email at 11 every night 'just in case'. What's going on, and what are your first three steps?",
+   "scenario": "You're proud of being the one who never switches off. But you've made two scheduling errors this week and you're dreading Monday. What's the first thing you'd do about it?"
   }
  },
  "3::Stress Management Techniques That Work at a Desk": {
@@ -764,7 +828,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, build small breaks into the day: stand up, stretch or walk for a few minutes every hour or so. Your focus comes back sharper.",
     "Finally, end the day on purpose: look at tomorrow, write down your top three and close the inbox. That's how you actually switch off."
    ],
-   "ask": "Let's try one together right now: one minute, four counts in, six counts out."
+   "ask": "Let's try one together right now: one minute, four counts in, six counts out.",
+   "scenario": "In 30 minutes, you have to call a vendor who has let the firm down badly, and you're already tense. Which desk technique do you use in the next two minutes, and how?"
   },
   "p2": {
    "why": "Coffee hides tiredness; it doesn't take any of the load off.",
@@ -774,7 +839,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, treat sleep as part of the job. Tired people make more scheduling and detail mistakes.",
     "Finally, keep a short personal list of what calms you down, so you don't have to think of it in the moment."
    ],
-   "ask": "Elias calls in a rush: a court date moved, three meetings have to shift and a family event now overlaps. What do you do in the first five minutes to keep a clear head before you touch the calendar?"
+   "ask": "Elias calls in a rush: a court date moved, three meetings have to shift and a family event now overlaps. What do you do in the first five minutes to keep a clear head before you touch the calendar?",
+   "scenario": "You've had four late nights this week and you're running on coffee. Tomorrow is a big trial day for Elias. What do you do tonight to be at your best tomorrow?"
   }
  },
  "3::Setting Boundaries & Managing Executive Pressure": {
@@ -786,7 +852,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, when a new request crashes into existing work, ask, 'Which of these should move?' instead of silently taking on both.",
     "Finally, under pressure, use a simple pattern: 'I understand this is urgent. The filing is due at three. I can move the vendor call, or ask Maria to cover it.'"
    ],
-   "ask": "What would count as a real after-hours emergency in your role?"
+   "ask": "What would count as a real after-hours emergency in your role?",
+   "scenario": "Elias bursts in: 'I need the Meridian binder rebuilt, my flight changed, and I need a dinner booked for eight tonight.' You're already mid-way through urgent filing prep. Respond using the pattern: acknowledge, lay out the conflict and ask which comes first."
   },
   "p2": {
    "why": "A boundary should never become the reason a real legal deadline is missed, so build the emergency route into it.",
@@ -796,7 +863,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, agree what the emergency route is, so true emergencies still get through.",
     "Finally, revisit the agreement when workloads, roles or family situations change."
    ],
-   "ask": "Elias texts at 10:40 PM asking you to quickly rebook his 8 AM client meeting. Your agreement covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?"
+   "ask": "Elias texts at 10:40 PM asking you to quickly rebook his 8 AM client meeting. Your agreement covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?",
+   "scenario": "Your agreement with Elias says after-hours contact is for court deadlines and family emergencies. At 9:30 p.m. he texts: 'Can you check if the partner lunch is still on Friday?' What do you do tonight, and how do you raise it tomorrow?"
   }
  },
  "3::Recovery, Workload Conversations & Support Resources": {
@@ -808,7 +876,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, when you take time off, hand over properly: access for your cover, an out-of-office message and a one-page status note, so you can actually switch off.",
     "Finally, find out where support is before you need it: your employer's program, your manager or HR, and the people you trust."
    ],
-   "ask": "Do you know where your employer's support information is?"
+   "ask": "Do you know where your employer's support information is?",
+   "scenario": "You're going on a week's vacation. Plan the handover: what access does your cover need, what goes in the out-of-office, and what must never wait for you to get back?"
   },
   "p2": {
    "why": "You can ask for a lighter workload without sharing anything personal.",
@@ -818,7 +887,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep personal health details private unless you choose to share them.",
     "Finally, cover properly for colleagues when they're away, so everyone gets to recover."
    ],
-   "ask": "You've worked 55-hour weeks for two months and you're starting to make mistakes. Draft the first two sentences of the conversation with Elias, and list the options you'd bring."
+   "ask": "You've worked 55-hour weeks for two months and you're starting to make mistakes. Draft the first two sentences of the conversation with Elias, and list the options you'd bring.",
+   "scenario": "For two months you've been working 55-hour weeks. You want to raise it with Elias without sharing personal health details. What facts and options do you bring?"
   }
  }
 });

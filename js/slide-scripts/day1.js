@@ -1,6 +1,6 @@
 /* Day 1 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "1::EA vs. PA: Two Mindsets": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Once we've picked, we commit to it. Business work gets a careful, by-the-book response; personal work gets a warm, flexible one.",
     "And finally, if we got it wrong, we say so, fix it and remember the example, because that's how this instinct gets sharper."
    ],
-   "ask": "Think about your own experience. Have you ever answered something in the wrong mode? What happened?"
+   "ask": "Think about your own experience. Have you ever answered something in the wrong mode? What happened?",
+   "scenario": "Monday, 8:10 a.m. Two requests arrive at once: Elias asks you to 'sort out the Singapore hotel,' and his wife Sarah asks you to 'sort out the Singapore hotel for the family.' It's the same trip, but one stay is for an arbitration and one is a family holiday afterwards. Which mindset does each request need, and how does that change what you book and who you check with?"
   },
   "p2": {
    "why": "Neither role outranks the other. The real mistake is blending them.",
@@ -24,7 +25,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, the trap for new assistants is treating them as one pile of tasks. That's the most common early mistake.",
     "Finally, when you're unsure, come back to the same question: am I protecting the business or the person?"
    ],
-   "ask": "Let's try it. Name three things in Elias's world that look like personal errands but are really business work once you think about his reputation or his legal exposure."
+   "ask": "Let's try it. Name three things in Elias's world that look like personal errands but are really business work once you think about his reputation or his legal exposure.",
+   "scenario": "A new assistant keeps one to-do list for Elias: 'Board deck edits, dry cleaning, Meridian call notes, flowers for Sarah, expense report.' By Wednesday the dry cleaning is done and the board deck isn't. What went wrong, and how would you sort that list?"
   }
  },
  "1::EA vs. PA: Side-by-Side Work Context": {
@@ -38,7 +40,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we stay inside our own role. As an EA we filter and prioritize on the executive's behalf; as a PA we handle day-to-day things directly.",
     "And finally, when the two overlap, like a personal matter that carries real business risk, we say so out loud instead of slipping into whichever mode feels comfortable."
    ],
-   "ask": "Which is harder to spot from the outside: how formal to be, or who actually gets to make the decision?"
+   "ask": "Which is harder to spot from the outside: how formal to be, or who actually gets to make the decision?",
+   "scenario": "Elias's daughter emails you from her personal account asking you to add her school play to 'Dad's calendar.' The only calendar you manage is his firm calendar, which three partners can see. Which setting are you in, and how do you handle it without exposing family details at work?"
   },
   "p2": {
    "why": "Most of the time, how a request reaches you already tells you which role you're in.",
@@ -48,7 +51,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, look at the audience. If anyone outside the family will see it, we treat it formally and keep it confidential.",
     "Finally, in small firms one person often does both jobs. If that's you, keep two separate task lists and two tones, so a family detail never ends up in a client email."
    ],
-   "ask": "Here's one to solve together: Elias texts late at night, 'Book the usual table for Friday, and send the Meridian team the updated timeline.' Which half is which, and how do you handle each?"
+   "ask": "Here's one to solve together: Elias texts late at night, 'Book the usual table for Friday, and send the Meridian team the updated timeline.' Which half is which, and how do you handle each?",
+   "scenario": "A request arrives through the firm's case system, tagged with a matter number: 'Please book dinner for the Meridian team Thursday.' It looks like a personal errand. What do the channel and the audience tell you about how to treat it?"
   }
  },
  "1::EA vs. PA Decision Principles": {
@@ -62,7 +66,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if a decision doesn't fit either set of rules, we escalate. That's not the moment to trust our gut.",
     "Finally, every so often we look back at our own calls. It's the quickest way to notice we've slipped into one habit for everything."
    ],
-   "ask": "Be honest: which set of rules comes more naturally to you? What does that tell you about where you'll need to be careful?"
+   "ask": "Be honest: which set of rules comes more naturally to you? What does that tell you about where you'll need to be careful?",
+   "scenario": "Elias asks you to cancel his 3 p.m. call with the Meridian general counsel so he can leave early for a family event. The call was set to finalize a settlement term. Which track are you on, what principles apply, and what do you bring back to him before cancelling anything?"
   },
   "p2": {
    "why": "On the personal side, our default is yes, just maybe a different yes.",
@@ -72,7 +77,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we do the thinking before we escalate, so the executive only has to choose.",
     "Finally, we leave a one-line note of the decision and the reason behind it."
    ],
-   "ask": "Try this one: Elias wants to move a client call to attend his daughter's recital, but that client is mid-negotiation. Which rules apply, and what do you actually do?"
+   "ask": "Try this one: Elias wants to move a client call to attend his daughter's recital, but that client is mid-negotiation. Which rules apply, and what do you actually do?",
+   "scenario": "Sarah Thorne asks you to book a restaurant that's fully booked for her anniversary. As a PA, what do you offer instead of a flat no, and what do you write down afterwards?"
   }
  },
  "1::Typical Work Environment": {
@@ -86,7 +92,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we treat clashing meetings the same way. An EA moves things by business priority; a PA checks what the person would prefer.",
     "Finally, we watch for requests that quietly grow beyond our job. An EA points out when something crosses a contract line; a PA asks permission before going further."
    ],
-   "ask": "Has anyone worked somewhere with barely any systems at all? How did that change what your days looked like?"
+   "ask": "Has anyone worked somewhere with barely any systems at all? How did that change what your days looked like?",
+   "scenario": "You start a new placement on Monday. The job description says 'Outlook and Clio,' but on day one you find the team uses Google Workspace, and nobody can tell you where matter files live. What do you do in your first two days to learn how this place really works?"
   },
   "p2": {
    "why": "Same problem, two different responses, and part of the skill is knowing which one is yours to give.",
@@ -96,7 +103,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, when two meetings clash, the EA side weighs business priority; the PA side asks what the person wants.",
     "Finally, when a request starts to grow, the EA side points to the contract limit; the PA side asks for approval first."
    ],
-   "ask": "Here's a tricky one: a vendor misses a delivery that affects a client meeting and a family dinner on the same evening. How does your EA side handle it, and how does your PA side?"
+   "ask": "Here's a tricky one: a vendor misses a delivery that affects a client meeting and a family dinner on the same evening. How does your EA side handle it, and how does your PA side?",
+   "scenario": "A catering vendor sends the wrong order to a client lunch at the office, and the same vendor is booked for the Thornes' dinner party on Saturday. How does your EA side handle the lunch, and how does your PA side handle Saturday?"
   }
  },
  "1::Basic Communication Principles for Legal EAs": {
@@ -110,7 +118,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we remember that confidentiality covers conversations too, even a casual chat in the hallway.",
     "Finally, when we have to say 'not now', we use tried-and-tested phrases, so we sound professional instead of flustered."
    ],
-   "ask": "Who do you find hardest to write for: the attorney, the client or the court? Why?"
+   "ask": "Who do you find hardest to write for: the attorney, the client or the court? Why?",
+   "scenario": "You need to tell three people that a hearing moved from Tuesday to Thursday: Elias, the client, and the court clerk (to confirm the new date). Draft the first line of each message. What changes between them, and what stays exactly the same?"
   },
   "p2": {
    "why": "The facts stay the same for every audience. What changes is how we say them.",
@@ -121,7 +130,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, when an EA has to hold someone off, a line like 'His schedule is fully committed; I'll follow up on your request' keeps it professional.",
     "Finally, a PA's version is warmer: 'He's not available right now. Can I pass on a message, or find a better time?'"
    ],
-   "ask": "Let's hear it. Three volunteers: read the attorney, client and court versions aloud, each in its own tone."
+   "ask": "Let's hear it. Three volunteers: read the attorney, client and court versions aloud, each in its own tone.",
+   "scenario": "In the lift, a colleague from another team asks, 'Did the Meridian thing settle? I heard it was big money.' The settlement is confidential. What do you say, in a way that doesn't sound rude or confirm anything?"
   }
  },
  "1::Gatekeeping Is Not 'No'": {
@@ -135,7 +145,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we always hand them something real: a specific time, a named colleague or a clear timeline.",
     "Finally, if they push back, we listen, explain the real constraint honestly and appeal to what we both want, instead of repeating the same no louder."
    ],
-   "ask": "What's the difference between a gatekeeper people respect and one people try to get around?"
+   "ask": "What's the difference between a gatekeeper people respect and one people try to get around?",
+   "scenario": "A long-standing client calls, upset, demanding to speak to Elias right now about a bill. Elias is in a deposition until 4 p.m. Script your response: what do you say first, and what real next step do you offer?"
   },
   "p2": {
    "why": "People remember how you made them feel when the answer was 'not now.'",
@@ -145,7 +156,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we never blame the person for their timing, and we always leave them with a real next step.",
     "Finally, when we need to persuade, we listen, frame the situation, appeal to shared goals and ask for their view."
    ],
-   "ask": "Let's practise. I'll play a pushy caller who wants Elias right now. First, a volunteer caves; then another holds the line politely. What made the difference?"
+   "ask": "Let's practise. I'll play a pushy caller who wants Elias right now. First, a volunteer caves; then another holds the line politely. What made the difference?",
+   "scenario": "A junior partner has asked for time with Elias three times this week and is getting frustrated. Elias has said he can't meet until next week. How do you respond so the partner feels heard and still leaves with a real next step?"
   }
  },
  "1::The Filtering Matrix": {
@@ -159,7 +171,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we jot down how we sorted it, especially anything we parked, so our thinking can be checked later.",
     "Finally, we come back to parked items exactly when we said we would, because a forgotten item is as bad as a mishandled one."
    ],
-   "ask": "Quick check: if a request scores high on just one of the four questions, what should happen to it?"
+   "ask": "Quick check: if a request scores high on just one of the four questions, what should happen to it?",
+   "scenario": "Before 9 a.m., four items reach you: a vendor invoice due Friday, a court notice moving a hearing, a client's assistant asking for a coffee catch-up, and a partner wanting Elias's view on a new hire. Run each one through money, legal risk, authority and relationship. Which one goes to Elias first?"
   },
   "p2": {
    "why": "One high-stakes answer is enough to make something urgent.",
@@ -169,7 +182,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, if the attorney doesn't personally need to decide, we look at handing it off or handling it ourselves within our limits.",
     "Finally, sometimes who is asking matters more than what they're asking for."
    ],
-   "ask": "Four requests land at once: a loyal client with a small billing question, a vendor wanting a signature today, opposing counsel proposing a deposition date and a colleague inviting Elias to speak at a lunch. Let's sort them together."
+   "ask": "Four requests land at once: a loyal client with a small billing question, a vendor wanting a signature today, opposing counsel proposing a deposition date and a colleague inviting Elias to speak at a lunch. Let's sort them together.",
+   "scenario": "A small request comes in from Elias's oldest client: 'Can he sign a birthday card for our CEO today?' It scores low on money, legal risk and authority. Why might it still go near the top of the list?"
   }
  },
  "1::Scripts That Redirect Without Alienating": {
@@ -183,7 +197,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when we're being plainly honest, we tell the truth about the constraint and immediately offer a specific alternative.",
     "Finally, whichever we use, we try to get a small yes first, like confirming what they need. It makes the redirect go down easier."
    ],
-   "ask": "When would you re-route a request instead of simply deferring it?"
+   "ask": "When would you re-route a request instead of simply deferring it?",
+   "scenario": "Three people want Elias today: a vendor selling software, a paralegal with a billing question and a client who wants a meeting this week. Which script do you use for each (defer, re-route or Drastic Contrast), and what exactly do you say?"
   },
   "p2": {
    "why": "A redirect isn't finished until the request actually lands somewhere.",
@@ -193,7 +208,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, when we give a hard answer, it comes with a real alternative time.",
     "Finally, we lean on a small early agreement and on the firm's process, never 'because I said so.'"
    ],
-   "ask": "Let's try all three. A senior partner wants 30 minutes with Elias this afternoon and his calendar is full. Three volunteers, three scripts, same request."
+   "ask": "Let's try all three. A senior partner wants 30 minutes with Elias this afternoon and his calendar is full. Three volunteers, three scripts, same request.",
+   "scenario": "You re-routed a client's billing question to the finance team a week ago. Today the client emails Elias directly, annoyed that nobody replied. What went wrong with your redirect, and what do you do now?"
   }
  },
  "1::Executive Presence in Action": {
@@ -207,7 +223,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when someone keeps pushing, we hold the same line. The EA asks for it in writing; the PA takes a message and promises a follow-up.",
     "Finally, in both roles, we protect before we try to resolve anything."
    ],
-   "ask": "A journalist calls asking whether Elias is handling a well-known client's divorce. Two volunteers, back to back: answer once as an EA and once as a PA."
+   "ask": "A journalist calls asking whether Elias is handling a well-known client's divorce. Two volunteers, back to back: answer once as an EA and once as a PA.",
+   "scenario": "A caller says she's from a national newspaper and asks whether Thorne & Partners is representing a well-known CEO in a fraud case. Two minutes later, Sarah Thorne's friend calls asking whether Elias and Sarah are 'going through a rough patch.' Answer the first as an EA and the second as a PA."
   }
  },
  "1::Virtual Meetings & Transcription Accuracy": {
@@ -221,7 +238,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if an AI tool made a transcript, we read it and clean it up before anyone else sees it.",
     "Finally, we give the executive what he actually needs: a short briefing memo, not forty pages of transcript."
    ],
-   "ask": "Has a meeting ever ended with nobody agreeing on what was decided? What would have saved it?"
+   "ask": "Has a meeting ever ended with nobody agreeing on what was decided? What would have saved it?",
+   "scenario": "Elias's 2 p.m. partners' call is on Zoom, and you're told the AI transcription will 'handle the notes.' Five minutes before, the recording button is greyed out. What do you do before the call starts, and what's your backup?"
   },
   "p2": {
    "why": "A raw transcript isn't a record. Our job is to turn it into one.",
@@ -232,7 +250,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, we review and clean every AI transcript before it's shared.",
     "Finally, after big meetings, we send a short executive brief headed with the meeting topic, instead of the whole transcript."
    ],
-   "ask": "Here's the situation: the partners' meeting ran long, the transcript is 40 pages, and two people remember the key decision differently. What do you send, to whom, and how do you settle what was decided?"
+   "ask": "Here's the situation: the partners' meeting ran long, the transcript is 40 pages, and two people remember the key decision differently. What do you send, to whom, and how do you settle what was decided?",
+   "scenario": "The AI transcript of a client call spells the client's company wrong, records a side comment about opposing counsel and lists an action item nobody agreed to. What do you fix before anything is shared, and what goes to Elias?"
   }
  },
  "1::Professional Standards & Confidentiality": {
@@ -246,7 +265,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we treat every channel as risky. A chat in the lift can do as much damage as a misdirected email.",
     "Finally, when in doubt, we protect it. Over-protecting costs almost nothing; a leak can cost everything."
    ],
-   "ask": "Without naming anyone, has a small slip ever turned into something bigger than you expected? Just a nod is fine."
+   "ask": "Without naming anyone, has a small slip ever turned into something bigger than you expected? Just a nod is fine.",
+   "scenario": "You're booking a medical appointment for Elias's mother and a board meeting for the firm on the same afternoon. Both calendars are open on your screen when a visitor sits down at your desk. Which information is business-confidential, which is personally private, and what do you do right now?"
   },
   "p2": {
    "why": "There's no such thing as a small leak.",
@@ -256,7 +276,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, a casual comment carries the same risk as a misdirected email.",
     "Finally, the safest habit is to never discuss a matter anywhere it doesn't belong."
    ],
-   "ask": "In the lobby, a friendly paralegal from another firm says, 'Is Elias on the Meridian matter? I heard it's getting messy.' What do you say, and what do you avoid saying?"
+   "ask": "In the lobby, a friendly paralegal from another firm says, 'Is Elias on the Meridian matter? I heard it's getting messy.' What do you say, and what do you avoid saying?",
+   "scenario": "At a family barbecue, your cousin asks what it's like working for 'that famous lawyer' and whether he's as tough as people say. What's safe to say, and what's off limits, even among family?"
   }
  },
  "1::Boundaries & Authorization Protocols": {
@@ -270,7 +291,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we keep business and personal systems completely separate: different calendars, storage and devices. That separation is what stops the lines from blurring.",
     "Finally, when something's unclear, we ask ourselves three things: is it within policy, is it legal, and would the executive trust us doing it? If any answer is no or unsure, we escalate."
    ],
-   "ask": "What's the real risk in going ahead with something because it will 'probably be approved anyway'?"
+   "ask": "What's the real risk in going ahead with something because it will 'probably be approved anyway'?",
+   "scenario": "A vendor sends a $480 invoice and a $520 invoice for the same event on the same day. Your approval limit is $500 per invoice. What do you approve, what do you escalate, and what might be going on here?"
   },
   "p2": {
    "why": "Clear limits make us faster, not slower.",
@@ -281,7 +303,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, we stop and escalate before anything that needs the executive's own sign-off.",
     "Finally, for grey areas, the quick check is policy, law and trust. If any of them is shaky, we escalate."
    ],
-   "ask": "Here's a real-life slip: you just approved a 600-dollar invoice by mistake, and your limit is 500. What do you do in the next ten minutes?"
+   "ask": "Here's a real-life slip: you just approved a 600-dollar invoice by mistake, and your limit is 500. What do you do in the next ten minutes?",
+   "scenario": "Sarah Thorne asks you to book a family flight upgrade that goes $300 over the travel budget Elias set. She says, 'He won't mind.' What do you do, and how do you say it to her?"
   }
  },
  "1::NDAs & Non-Disclosure Discipline": {
@@ -295,7 +318,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we keep a simple list of who's signed, what it covers and when it ends, so this check takes two minutes, not an afternoon.",
     "Finally, if someone we haven't cleared asks for sensitive information, we treat that as a flag to check, not a request to fulfil."
    ],
-   "ask": "If I asked you right now whether a particular vendor has a signed NDA, could you find out in under two minutes?"
+   "ask": "If I asked you right now whether a particular vendor has a signed NDA, could you find out in under two minutes?",
+   "scenario": "A temp starts on Monday to help digitize client files. Your NDA tracker shows her agency signed an NDA two years ago, but it expired last month. The files include settlement agreements. What do you do before she opens any file?"
   },
   "p2": {
    "why": "Our job isn't to write NDAs; it's to keep track of them.",
@@ -305,7 +329,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we remember that NDAs expire and have limits on what they cover.",
     "Finally, if we can't confirm coverage for a specific request, we pause and verify before sharing anything."
    ],
-   "ask": "A new IT contractor asks for the client list to 'set up the new CRM' and says legal already has their paperwork. You can't find an NDA in the tracker. What do you do?"
+   "ask": "A new IT contractor asks for the client list to 'set up the new CRM' and says legal already has their paperwork. You can't find an NDA in the tracker. What do you do?",
+   "scenario": "A long-time vendor asks for the Meridian board contact list to send them 'a courtesy update.' Their NDA covers IT services only. What do you tell them, and what do you check?"
   }
  },
  "1::Command Hierarchy": {
@@ -318,7 +343,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, we escalate. We take it to the right person through the proper channel, not around them.",
     "Finally, we inform. The executive should hear about it from us before he hears it from anyone else."
    ],
-   "ask": "In your own words, what does 'escalating instead of deciding alone' actually look like in a normal week?"
+   "ask": "In your own words, what does 'escalating instead of deciding alone' actually look like in a normal week?",
+   "scenario": "You notice a partner's assistant has scheduled a client meeting in Elias's name, using his calendar, without asking him. It's the second time this month. Walk through notice, assess, escalate and inform. What do you do first?"
   },
   "p2": {
    "why": "The worst way for Elias to learn about a problem is from someone else.",
@@ -328,7 +354,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we watch for red flags like a confidential document skipping legal review.",
     "Finally, we make sure critical news reaches the executive from us first."
    ],
-   "ask": "You notice a draft settlement letter was emailed to the client before the supervising partner reviewed it. Walk it through: notice, assess, escalate, inform. Who do you tell, in what order, and what do you say?"
+   "ask": "You notice a draft settlement letter was emailed to the client before the supervising partner reviewed it. Walk it through: notice, assess, escalate, inform. Who do you tell, in what order, and what do you say?",
+   "scenario": "At 4:30 p.m., you learn that a filing deadline for a Harlow matter document was missed at noon. Elias is in a meeting with the managing partner until 5:30. How do you make sure he hears it from you, and what do you say?"
   }
  },
  "1::Command Hierarchy Across Different Tracks": {
@@ -342,7 +369,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, at home, we go through the family's own ladder, from the household staff up to the family head.",
     "Finally, if a problem sits in two worlds at once, like a household matter with legal risk, we raise it in both."
    ],
-   "ask": "Elias's housekeeper tells you a process server came to the house with papers for him. That's a household matter with legal risk. Which ladders do you use, and who hears first?"
+   "ask": "Elias's housekeeper tells you a process server came to the house with papers for him. That's a household matter with legal risk. Which ladders do you use, and who hears first?",
+   "scenario": "The Thornes' nanny tells you a man came to the door asking questions about Elias's work and took photos of the house. It's a household matter, but it might involve a case. Who do you tell, in which order, and through which chains?"
   }
  },
  "1::Serving as Liaison & Point of Contact": {
@@ -356,7 +384,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we keep in mind which job we're doing at each moment: filtering access, or connecting two people.",
     "Finally, after the handoff, we check back with both sides to make sure it landed as intended."
    ],
-   "ask": "Think of a time information got garbled passing through someone in the middle. What would have prevented it?"
+   "ask": "Think of a time information got garbled passing through someone in the middle. What would have prevented it?",
+   "scenario": "The Meridian client's CFO and Elias's paralegal both keep emailing you different versions of the same deal document. Each thinks the other has the latest. How do you act as liaison so both sides end up with one correct version?"
   },
   "p2": {
    "why": "Most liaison failures aren't wrong answers. They're silence after the handoff.",
@@ -366,7 +395,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we translate: we restate it in the language the receiver needs.",
     "Finally, we close the loop: we confirm back to the sender once it's done."
    ],
-   "ask": "Let's try it. A client's finance director needs Elias's sign-off on revised deal terms by Thursday, and the other side's paralegal needs the same document for a filing. Walk through the loop for both."
+   "ask": "Let's try it. A client's finance director needs Elias's sign-off on revised deal terms by Thursday, and the other side's paralegal needs the same document for a filing. Walk through the loop for both.",
+   "scenario": "You passed a vendor's question to Elias on Monday, and he answered on Tuesday. On Friday, the vendor calls asking why they never heard back. What part of the liaison loop was missed, and how do you fix it?"
   }
  },
  "1::The Liaison Skill in Practice": {
@@ -380,7 +410,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we watch our own speed, because a slow liaison becomes a bottleneck.",
     "Finally, if we're not sure the message landed the way it was meant, we check back instead of assuming."
    ],
-   "ask": "Here's a tough one: Elias's reply to a partner's long request is one word: 'No.' How do you relay that accurately, without softening it into a maybe or making it sound harsher than he meant?"
+   "ask": "Here's a tough one: Elias's reply to a partner's long request is one word: 'No.' How do you relay that accurately, without softening it into a maybe or making it sound harsher than he meant?",
+   "scenario": "A partner sends Elias a long, polite email asking him to co-author a conference paper. Elias's reply to you is: 'Not this year. Too much on.' Write the message you'd send back to the partner, accurate but professional."
   }
  },
  "1::Client Profiling": {
@@ -394,7 +425,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we capture travel preferences in enough detail to book without asking.",
     "Finally, we note any quirks, in plain, respectful language."
    ],
-   "ask": "Without looking, can you name Elias's firm, one family member and one of his standing rules?"
+   "ask": "Without looking, can you name Elias's firm, one family member and one of his standing rules?",
+   "scenario": "It's your first week supporting Elias. You have his name, title and email, and not much else. What five things do you most need to find out, and who (other than Elias himself) could you ask?"
   },
   "p2": {
    "why": "This is the first topic that builds on itself. Everything later in the program assumes you know Elias.",
@@ -404,7 +436,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, for Elias, direct and brief communication is the rule.",
     "Finally, heavy travel and 'anticipate, don't wait' shape almost everything we'll do for him."
    ],
-   "ask": "Using what you now know about Elias, what's one question you'd never need to ask him again?"
+   "ask": "Using what you now know about Elias, what's one question you'd never need to ask him again?",
+   "scenario": "A new colleague books Elias an early-morning red-eye before a court day and schedules three back-to-back meetings after it. Which parts of his profile would have stopped both mistakes?"
   }
  },
  "1::Creating a Comprehensive Client Dossier": {
@@ -418,7 +451,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we describe his quirks in plain words, never judgment.",
     "Finally, we test it by asking: could someone who's never met him run the account from this alone?"
    ],
-   "ask": "Which of the four sections would be hardest to fill in accurately without meeting him?"
+   "ask": "Which of the four sections would be hardest to fill in accurately without meeting him?",
+   "scenario": "You're writing Elias's dossier and have these notes: 'likes quiet restaurants,' 'wife Sarah,' 'no calls before 7 a.m.,' 'hates being cc'd on long threads,' and 'daughter's school pickup Tuesdays.' Put each one in the right section, and say which needs rewriting to be usable."
   },
   "p2": {
    "why": "A vague entry is almost as useless as no entry at all.",
@@ -428,7 +462,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, every entry has a source and a date.",
     "Finally, sensitive details are locked away and shared only with those who truly need them."
    ],
-   "ask": "You're handing Elias's account to a substitute for two weeks. Which three entries would they be most likely to get wrong, and how would you write each one so they can't?"
+   "ask": "You're handing Elias's account to a substitute for two weeks. Which three entries would they be most likely to get wrong, and how would you write each one so they can't?",
+   "scenario": "A substitute assistant covers for you and books Elias a window seat in row 22 for a London flight, because the dossier said 'prefers comfortable seats.' Rewrite that entry so it can't be misread."
   }
  },
  "1::Dossier Excerpt — Elias Thorne": {
@@ -442,7 +477,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we write for someone who's never met him, with no inside shorthand.",
     "Finally, we compare our entries with the Elias examples to make sure ours are just as specific."
    ],
-   "ask": "Why does that fifteen-minute debrief matter enough to be a standing rule?"
+   "ask": "Why does that fifteen-minute debrief matter enough to be a standing rule?",
+   "scenario": "A new paralegal books a client call for Elias straight after a court session, with no gap. His dossier lists the 15-minute debrief buffer as a rule, but with no explanation. How would you rewrite the entry so nobody breaks it again?"
   },
   "p2": {
    "why": "Anyone can paste facts under headings. A good dossier explains why each fact matters.",
@@ -452,7 +488,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, a fact without its reason is just trivia.",
     "Finally, we write every entry for the person who inherits the account without warning."
    ],
-   "ask": "Let's build one section together from two raw facts: a fifteen-minute debrief after every key client or court session, and a strict Paleo diet with no dairy, with every client dinner checked in advance. What's the reason behind each?"
+   "ask": "Let's build one section together from two raw facts: a fifteen-minute debrief after every key client or court session, and a strict Paleo diet with no dairy, with every client dinner checked in advance. What's the reason behind each?",
+   "scenario": "Elias sends his 5:30 a.m. voice notes and expects an agenda by 8. A dossier entry says only: 'Voice notes early.' What would a new assistant get wrong, and what should the entry say?"
   }
  },
  "1::Setting Up Client Trackers": {
@@ -466,7 +503,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, the meetings tracker holds hard rules, such as no back-to-back sessions and the breaks he needs.",
     "Finally, we update every tracker the moment we learn something new."
    ],
-   "ask": "If you only had time to build one tracker for Elias, which would it be, and why?"
+   "ask": "If you only had time to build one tracker for Elias, which would it be, and why?",
+   "scenario": "You've built Elias's dossier. Now choose what goes into each of the three trackers from this list: aisle seat, no back-to-back sessions, one-line summaries at the top of emails, no connecting flights, weekly partners' meeting on Monday at 9. Which tracker does each belong in?"
   },
   "p2": {
    "why": "An out-of-date tracker is worse than no tracker at all, because it makes us confident about the wrong thing.",
@@ -476,7 +514,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, each one shows the date it was last reviewed, and we check them monthly.",
     "Finally, we add new trackers only when a real need repeats."
    ],
-   "ask": "Here's a test: Elias's London flight is delayed three hours. His travel tracker says aisle seat near the front, no connections, and rebook without being asked. What do you do before he even notices?"
+   "ask": "Here's a test: Elias's London flight is delayed three hours. His travel tracker says aisle seat near the front, no connections, and rebook without being asked. What do you do before he even notices?",
+   "scenario": "Your travel tracker says Elias prefers a certain hotel in London. After his last trip, he told you the hotel is under renovation and was noisy. It's now three weeks later and you're booking his next London trip. What should have happened after the last trip?"
   }
  },
  "1::Why One Client, All Ten Days": {
@@ -490,7 +529,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we let the repetition help us, because seeing the same family and rules again and again is what makes them stick.",
     "Finally, by the last day, we should be able to describe his rules, family and communication style from memory."
    ],
-   "ask": "What's one thing about Elias you're worried you'll forget by Day 5?"
+   "ask": "What's one thing about Elias you're worried you'll forget by Day 5?",
+   "scenario": "On Day 6, an exercise asks you to plan Elias's week. Without checking the dossier, list three standing rules from Day 1 that the plan must follow. Which one would be easiest to forget?"
   },
   "p2": {
    "why": "If something contradicts the dossier, flag it. Don't reinvent Elias.",
@@ -499,7 +539,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we flag contradictions to the trainer rather than making up a new version of Elias.",
     "Finally, we treat these ten days like a real placement, where what we learned on day one still counts on day ten."
    ],
-   "ask": "Let's write your answers on the board now, and we'll come back to this list on Day 5 to see what stuck."
+   "ask": "Let's write your answers on the board now, and we'll come back to this list on Day 5 to see what stuck.",
+   "scenario": "On Day 8, a scenario says Elias prefers window seats. Your Day 1 dossier says aisle seats only. What do you do, and why does it matter to raise it?"
   }
  },
  "1::The ACT Email Framework": {
@@ -513,7 +554,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we keep it short, with the answer first, the way a busy executive reads.",
     "Finally, we send it quickly, right after the request arrives, not as a summary hours later."
    ],
-   "ask": "Why isn't 'Got it, thanks!' a real acknowledgement?"
+   "ask": "Why isn't 'Got it, thanks!' a real acknowledgement?",
+   "scenario": "Elias sends a text: 'Need the Harlow numbers and move Thursday.' There are two Thursday meetings, and 'the Harlow numbers' could mean the settlement figures or the billing summary. Write your ACT reply: acknowledge, clarify and give a timeline."
   },
   "p2": {
    "why": "A timeline with no owner or date is where requests quietly die.",
@@ -523,7 +565,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, clarify only what's missing, after checking the dossier.",
     "Finally, close with what happens, when, and who owns it."
    ],
-   "ask": "Let's draft one. Elias's voice note says: 'Move the Meridian call, get me something on the Singapore thing, and find out why the retainer invoice hasn't gone out.' What's your ACT reply?"
+   "ask": "Let's draft one. Elias's voice note says: 'Move the Meridian call, get me something on the Singapore thing, and find out why the retainer invoice hasn't gone out.' What's your ACT reply?",
+   "scenario": "A colleague's reply to Elias's request reads: 'Got it, will look into it!' Two days later nothing has happened and Elias is annoyed. Rewrite the reply using ACT, so the owner and deadline are clear."
   }
  },
  "1::BLUF: Bottom Line Up Front": {
@@ -537,7 +580,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we move the background below a clear break or into an attachment.",
     "Finally, we finish with the exact next step and deadline, then reread just the first line the way he would."
    ],
-   "ask": "When you write an update, do you usually lead with the decision, or with the background?"
+   "ask": "When you write an update, do you usually lead with the decision, or with the background?",
+   "scenario": "You need Elias to approve an $8,000 expert fee by noon, because the expert won't hold the date otherwise. You also want to tell him the expert came highly recommended and why. Write the first line and the three lines after it."
   },
   "p2": {
    "why": "BLUF isn't rude. It's respecting the reader's time.",
@@ -547,7 +591,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep the courtesy short: one line, not a paragraph.",
     "Finally, write in the order the reader needs, not the order things happened."
    ],
-   "ask": "Here's a rambling update: three paragraphs about a courier delay before the question 'Should we refile tomorrow?' You've got sixty seconds. Rewrite just the first sentence."
+   "ask": "Here's a rambling update: three paragraphs about a courier delay before the question 'Should we refile tomorrow?' You've got sixty seconds. Rewrite just the first sentence.",
+   "scenario": "An update to Elias begins: 'Hi Elias, hope your trip was good! So yesterday I spoke to the courier, then the clerk…' The question he needs to answer is in the fourth paragraph. Rewrite just the first line."
   }
  },
  "1::BLUF in Practice: Emails, Updates & Voice Notes": {
@@ -561,7 +606,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we close with the next step and who owns it, and we attach the background instead of pasting it in.",
     "Finally, we check the preview: would the first line alone make sense on a phone?"
    ],
-   "ask": "What's a subject line you've seen recently that told you absolutely nothing?"
+   "ask": "What's a subject line you've seen recently that told you absolutely nothing?",
+   "scenario": "Elias sends a voice note asking whether the Meridian brief was filed. It was, at 3:40 p.m., and the confirmation is in your inbox. Reply by voice note in one sentence, bottom line first."
   },
   "p2": {
    "why": "Lead with where things stand, not with the story of how they got there.",
@@ -571,7 +617,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, status updates start with the status: on track, or at risk.",
     "Finally, BLUF and ACT work together, with the restated request right at the top."
    ],
-   "ask": "Pair up. Take a real message you sent recently and rewrite its subject and first line with the bottom line first. Then compare before and after out loud."
+   "ask": "Pair up. Take a real message you sent recently and rewrite its subject and first line with the bottom line first. Then compare before and after out loud.",
+   "scenario": "It's 2 p.m., and a filing due at 5 p.m. is at risk because the courier is delayed; your backup is e-filing. Write the subject line and first line of the status update to Elias."
   }
  }
 });

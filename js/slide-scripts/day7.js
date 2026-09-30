@@ -1,6 +1,6 @@
 /* Day 7 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "7::The EA/PA's Role in Finance": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if something looks off, flag it. Don't assume someone later will catch it.",
     "Finally, understand what depends on your step, so you know why getting it right matters."
    ],
-   "ask": "Who here has done any bookkeeping or invoicing before?"
+   "ask": "Who here has done any bookkeeping or invoicing before?",
+   "scenario": "Elias hands you a stack of receipts from a client lunch and a taxi ride, with 'Harlow' scribbled on one of them. The accountant will code them next week. What do you check and record now so nothing has to be guessed later?"
   },
   "p2": {
    "why": "A transposed number at your step becomes someone else's problem further down the line.",
@@ -23,7 +24,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, getting paid: preparing client invoices, tracking what's outstanding and sending polite reminders.",
     "Finally, expenses: gathering receipts, coding them to the right matter and flagging anything outside policy."
    ],
-   "ask": "A vendor invoice for $1,850 arrives, but the approved purchase order says $1,580. What do you do before it goes anywhere near payment?"
+   "ask": "A vendor invoice for $1,850 arrives, but the approved purchase order says $1,580. What do you do before it goes anywhere near payment?",
+   "scenario": "A court-reporter invoice for the Meridian deposition arrives with the right amount but the wrong matter number. If you pass it on as is, where does that error show up next, and who has to fix it?"
   }
  },
  "7::What an SOP Actually Needs": {
@@ -37,7 +39,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, controls: the checks built in to prove it was done right.",
     "Finally, escalation: when and how to report a problem."
    ],
-   "ask": "Have you ever had to follow a process that wasn't written down anywhere?"
+   "ask": "Have you ever had to follow a process that wasn't written down anywhere?",
+   "scenario": "The only person who knows how Elias's monthly card statements get reviewed is going on leave for six weeks. Her notes are a list of steps with no names or checks. Which of the five parts are missing?"
   },
   "p2": {
    "why": "A simple test for any procedure: could a temp follow it on their first day?",
@@ -47,7 +50,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, procedure and controls: numbered steps anyone can follow, plus checks and records that prove it was done properly.",
     "Finally, escalation: who to contact when something goes wrong, and by when."
    ],
-   "ask": "Let's draft the five parts, one line each, for a procedure on processing a client's expense reimbursement."
+   "ask": "Let's draft the five parts, one line each, for a procedure on processing a client's expense reimbursement.",
+   "scenario": "A temp starts Monday and will process vendor invoices while you're at a conference. Your written procedure says 'approve and pay as usual.' Could they follow it on day one? What would you add?"
   }
  },
  "7::The Financial Calendar": {
@@ -61,7 +65,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if one type of deadline keeps slipping, give it extra buffer.",
     "Finally, check each cycle whether a date or requirement has changed."
    ],
-   "ask": "Of billing, tax and month-end, which would you be most likely to let slip?"
+   "ask": "Of billing, tax and month-end, which would you be most likely to let slip?",
+   "scenario": "Last quarter, the firm paid a late fee on a payroll filing because the reminder was only in one partner's personal calendar, and he was on holiday. How do you set up the calendar so that can't happen again?"
   },
   "p2": {
    "why": "A reminder a week or more ahead gives you time to fix a problem, not just notice it.",
@@ -71,7 +76,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, quarterly: estimated tax payments and quarterly payroll filings.",
     "Finally, yearly: contractor and employee tax forms at the end of January, year-end close and license renewals."
    ],
-   "ask": "Let's build the next 90 days of the firm's financial calendar: which monthly, quarterly and yearly items fall in that window, and when does each reminder go off?"
+   "ask": "Let's build the next 90 days of the firm's financial calendar: which monthly, quarterly and yearly items fall in that window, and when does each reminder go off?",
+   "scenario": "It's mid-December. Your calendar shows month-end close, the trust reconciliation, the January estimated tax payment and the year-end contractor forms all within six weeks. Which one do you start first, and why?"
   }
  },
  "7::Financial KPIs for EAs/PAs": {
@@ -85,7 +91,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, review these numbers on a set schedule.",
     "Finally, if one keeps missing, look at the process, not just effort."
    ],
-   "ask": "Why do you think the retainer alert is set at 25 percent instead of zero?"
+   "ask": "Why do you think the retainer alert is set at 25 percent instead of zero?",
+   "scenario": "Elias asks, 'Are we on top of billing?' You know invoices usually go out about five days after month-end. Is that a good answer? Which three numbers would you bring him instead?"
   },
   "p2": {
    "why": "An alert at 25 percent gives you time to act before a client's account runs dry.",
@@ -94,7 +101,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, reconciliation accuracy of 98 to 100 percent.",
     "Finally, the retainer alert at 25 percent, which buys you runway."
    ],
-   "ask": "A client's $10,000 retainer is down to $2,300, and they have a hearing next week. What should have already happened, and what do you do now?"
+   "ask": "A client's $10,000 retainer is down to $2,300, and they have a hearing next week. What should have already happened, and what do you do now?",
+   "scenario": "The Harlow retainer dropped below 25 percent two weeks ago, but the alert went to an inbox nobody checks. The client now owes more than the retainer holds. What went wrong in the process, not just the person?"
   }
  },
  "7::Bookkeeping Basics & Compliance": {
@@ -108,7 +116,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, reconcile regularly, while mistakes are still easy to trace.",
     "Finally, flag anything that looks like a compliance gap straight away."
    ],
-   "ask": "Why does separating duties matter, even in a small office?"
+   "ask": "Why does separating duties matter, even in a small office?",
+   "scenario": "You enter the office supplies order into the books, and your manager says, 'You may as well approve it too; it's only $180.' What do you say, and why does the amount not change the answer?"
   },
   "p2": {
    "why": "Know whether your firm records money when it moves, or when it's earned.",
@@ -118,7 +127,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, cash versus accrual: cash records money when it moves; accrual records it when it's earned or owed.",
     "Finally, the chart of accounts: the list of categories every transaction is coded to. Consistent coding makes reports reliable."
    ],
-   "ask": "You're asked to both enter and approve a $2,400 vendor payment because the usual approver is out. What do you do, and what do you suggest for next time?"
+   "ask": "You're asked to both enter and approve a $2,400 vendor payment because the usual approver is out. What do you do, and what do you suggest for next time?",
+   "scenario": "A client pays a $6,000 invoice in March for work done in December. Under cash accounting, when is that income? Under accrual? Which one does Thorne & Partners use, and how would you find out?"
   }
  },
  "7::SOA Reconciliation": {
@@ -132,7 +142,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, make sure the closing balance matches exactly. Don't round away a small gap.",
     "Finally, write down what caused any adjustment."
    ],
-   "ask": "Why not just rebuild every report when something doesn't match?"
+   "ask": "Why not just rebuild every report when something doesn't match?",
+   "scenario": "Harlow's accounts team says their records show they owe $1,200 less than your statement of account. Before you rebuild the whole year, where do you start, and what do you compare first?"
   },
   "p2": {
    "why": "When the numbers don't match, start with the difference and find what explains it.",
@@ -142,7 +153,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, if the client's records say $5,000, look for the $250. Here, they never recorded the credit note.",
     "Finally, write up the reconciliation, so next month starts from an agreed number."
    ],
-   "ask": "Opening balance $3,200, invoices $4,800, payments $6,000 and a $150 late fee. What's the closing balance? The client says they owe $1,850. Where do you look first?"
+   "ask": "Opening balance $3,200, invoices $4,800, payments $6,000 and a $150 late fee. What's the closing balance? The client says they owe $1,850. Where do you look first?",
+   "scenario": "You find the $1,200 difference: a credit note the firm issued in June that Harlow never received. The numbers now agree. What do you send them, and what do you note so next month starts clean?"
   }
  },
  "7::Reconciliation Discrepancy Detection": {
@@ -156,7 +168,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, run through the checklist: every invoice listed, every payment recorded and every difference explained.",
     "Finally, watch for anything that looks like a duplicate payment."
    ],
-   "ask": "If a reconciliation came up $340 short, what would you check first?"
+   "ask": "If a reconciliation came up $340 short, what would you check first?",
+   "scenario": "The bank shows two payments of $875 to the same courier on consecutive days, but the ledger shows one. Is that a duplicate payment or a missing entry? How do you tell?"
   },
   "p2": {
    "why": "A payment put on the wrong client's account once ended up as a real legal dispute.",
@@ -165,7 +178,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, every invoice is listed, every payment is recorded, nothing is left unmatched and every difference has an explanation.",
     "Finally, to prevent duplicate payments, use system checks, manual checks and approval limits."
    ],
-   "ask": "Your reconciliation is $340 short. Walk through the checklist in order, and name the three most likely causes."
+   "ask": "Your reconciliation is $340 short. Walk through the checklist in order, and name the three most likely causes.",
+   "scenario": "A $3,000 payment from Meridian was recorded against another client with a similar name. That client has now been sent a statement showing a credit. Walk through what you correct, and who you tell, in order."
   }
  },
  "7::Client Trust Accounts (IOLTA) — Core Rules & Commingling Risk": {
@@ -177,7 +191,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, only move money out of trust for a specific, documented reason, like an approved invoice or a signed disbursement.",
     "Finally, keep a running ledger for each client, showing exactly what's held for them."
    ],
-   "ask": "What counts as a documented reason to move money out of trust?"
+   "ask": "What counts as a documented reason to move money out of trust?",
+   "scenario": "The operating account is short for payroll on Friday, and someone suggests 'borrowing' from the trust account until a big client payment clears Monday. What do you say, and who needs to know about the suggestion?"
   },
   "p2": {
    "why": "Trust transactions are meant to feel slower and more careful; that friction is on purpose.",
@@ -186,7 +201,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a client's trust balance must never go negative, not even for a moment, not even if it's fixed the same day.",
     "Finally, any trust transaction should feel more deliberate than a normal payment."
    ],
-   "ask": "One client's trust balance is $200 lower than the ledger says it should be. What's your first move, and who needs to know before you do anything else?"
+   "ask": "One client's trust balance is $200 lower than the ledger says it should be. What's your first move, and who needs to know before you do anything else?",
+   "scenario": "A client's $5,000 settlement check is deposited into trust today. Elias asks you to pay the $400 expert fee from it right away because 'the money's there.' What has to happen before any money leaves trust?"
   }
  },
  "7::Trust Account Reconciliation Discipline": {
@@ -198,7 +214,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, check the ledger total against the sum of every client's balance.",
     "Finally, document every reconciliation, even the clean ones."
    ],
-   "ask": "Why would you document a reconciliation that came out perfectly?"
+   "ask": "Why would you document a reconciliation that came out perfectly?",
+   "scenario": "The trust account reconciled perfectly this month, and a colleague says there's no point writing it up when nothing was wrong. A bar auditor asks to see the last 12 months. What would they want to find?"
   },
   "p2": {
    "why": "Even a one-dollar difference in a trust account gets escalated.",
@@ -207,7 +224,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the overall account can balance while one client's money is short, so check every client, not just the total.",
     "Finally, any difference, whatever its size, is escalated immediately."
    ],
-   "ask": "This month the bank and the trust ledger match, but one client's balance doesn't match what was deposited for them. Walk us through how you'd trace it."
+   "ask": "This month the bank and the trust ledger match, but one client's balance doesn't match what was deposited for them. Walk us through how you'd trace it.",
+   "scenario": "Your trust reconciliation is off by $1. It's 5:30 p.m. on the last day of the month, and everyone wants to leave. What do you do with that dollar?"
   }
  },
  "7::Billing & Invoicing": {
@@ -221,7 +239,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, recheck the final math yourself.",
     "Finally, send it promptly. A perfect invoice sitting unsent doesn't bring in money."
    ],
-   "ask": "What three things must every invoice state?"
+   "ask": "What three things must every invoice state?",
+   "scenario": "An invoice to Meridian goes out with the hours right but the old hourly rate from last year. The client pays it. What's the problem now, and what do you do about it?"
   },
   "p2": {
    "why": "Show the discount as its own line, so the client can see it.",
@@ -231,7 +250,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, the body: each entry with date, description, hours and rate, plus expenses, with any discount on its own line.",
     "Finally, the footer: total due, due date, terms, payment methods and any late-fee terms."
    ],
-   "ask": "Let's do one live: 12.5 hours at $350 an hour, $240 in filing fees and a 10 percent courtesy discount on the fees only. Call out each step. What's the total, and what else must the invoice say?"
+   "ask": "Let's do one live: 12.5 hours at $350 an hour, $240 in filing fees and a 10 percent courtesy discount on the fees only. Call out each step. What's the total, and what else must the invoice say?",
+   "scenario": "A client complains that your invoice just says 'Legal services — $4,200' with no detail. Their accounts team won't pay it. What should the invoice have shown, section by section?"
   }
  },
  "7::Contract-Aware Billing": {
@@ -245,7 +265,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, apply late fees and terms consistently, as written.",
     "Finally, if the terms are unclear, confirm before you bill."
    ],
-   "ask": "What would you do at 80 percent of an hour cap?"
+   "ask": "What would you do at 80 percent of an hour cap?",
+   "scenario": "A new corporate client's engagement letter says invoices over $10,000 need a purchase order number, and late payments carry 1.5 percent interest per month. Where do you record these terms so billing actually uses them?"
   },
   "p2": {
    "why": "Corporate clients often require specific billing codes, and invoices without them get rejected.",
@@ -255,7 +276,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, caps and budgets, and the notice needed before going over.",
     "Finally, payment and late-fee terms, plus any required format or codes."
    ],
-   "ask": "The Harlow matter has a 40-hour cap, with notice required at 80 percent. Time entries show 34.5 hours so far. What do you do today, and who do you tell?"
+   "ask": "The Harlow matter has a 40-hour cap, with notice required at 80 percent. Time entries show 34.5 hours so far. What do you do today, and who do you tell?",
+   "scenario": "The Harlow matter has gone over its 40-hour cap by six hours, and nobody sent the 80 percent notice. The invoice is due to go out tomorrow. What do you tell Elias, and what are his options?"
   }
  },
  "7::Real-Time Time Tracking for Billable Work": {
@@ -267,7 +289,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, write enough detail to support the invoice line: what was done, for which matter.",
     "Finally, compare logged time with the billing calendar regularly, before invoices go out."
    ],
-   "ask": "How accurate do you think time reconstructed at the end of the week really is?"
+   "ask": "How accurate do you think time reconstructed at the end of the week really is?",
+   "scenario": "On Friday afternoon, an associate reconstructs the whole week's time from his calendar and emails, and bills 'about 2 hours' for each call. What's likely wrong with those entries, and what would you suggest instead?"
   },
   "p2": {
    "why": "Accurate billing is impossible without accurate time.",
@@ -276,7 +299,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, time logged from memory is measurably less accurate, and that costs the firm or the client.",
     "Finally, good time tracking is what makes contract-aware billing possible."
    ],
-   "ask": "It's the end of a busy day and you haven't logged time for several tasks. How do you rebuild it as accurately as possible, and what will you do differently tomorrow?"
+   "ask": "It's the end of a busy day and you haven't logged time for several tasks. How do you rebuild it as accurately as possible, and what will you do differently tomorrow?",
+   "scenario": "A client questions a 3.5-hour entry that says 'research.' The associate can't remember what the research was about. How would a better time entry have prevented this?"
   }
  },
  "7::Handling a Billing Dispute": {
@@ -288,7 +312,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, acknowledge the dispute quickly, even before it's resolved.",
     "Finally, explain the answer with the supporting details, so the client can see how the charge was worked out."
    ],
-   "ask": "Why acknowledge a dispute before it's even resolved?"
+   "ask": "Why acknowledge a dispute before it's even resolved?",
+   "scenario": "Meridian's finance director emails an angry note about a $2,800 charge for 'document review.' Elias is in trial all week. What do you send today, and what do you pull before anyone explains the charge?"
   },
   "p2": {
    "why": "If it turns out to be our mistake, fix it plainly and quickly.",
@@ -297,7 +322,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, getting defensive before checking the records can turn a misunderstanding into a real problem.",
     "Finally, protecting the relationship matters more than protecting the original invoice."
    ],
-   "ask": "A client emails disputing a charge, saying it doesn't match what they remember agreeing to. What's your first move before you reply?"
+   "ask": "A client emails disputing a charge, saying it doesn't match what they remember agreeing to. What's your first move before you reply?",
+   "scenario": "You check the records and find the disputed charge was billed twice: once in May and again in June. How do you tell the client, and what else do you check before you reply?"
   }
  },
  "7::QuickBooks How-Tos — Step by Step": {
@@ -310,7 +336,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, reconcile an account: pick the account and statement date, tick every transaction that matches the bank and finish only when the difference is zero.",
     "Finally, run the overdue-invoices report, and look first at anything over 60 and 90 days. Those need a follow-up call."
    ],
-   "ask": "Which of these have you done before?"
+   "ask": "Which of these have you done before?",
+   "scenario": "Elias asks for a list of every client invoice more than 60 days overdue before tomorrow's partner meeting. Which QuickBooks task gets you there, and what would you add to make the list useful?"
   },
   "p2": {
    "why": "You don't need the whole platform, just these four workflows done well.",
@@ -320,7 +347,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, receive a payment and apply it to the right open invoice.",
     "Finally, enter vendor bills, and reconcile monthly against the bank statement."
    ],
-   "ask": "If you have access, let's create an invoice and reconcile an account live. Then a volunteer repeats the invoice steps from memory."
+   "ask": "If you have access, let's create an invoice and reconcile an account live. Then a volunteer repeats the invoice steps from memory.",
+   "scenario": "Harlow pays $7,500, but they have two open invoices of $5,000 and $2,500. Their payment note just says 'as agreed.' How do you apply the payment, and what do you check first?"
   }
  },
  "7::QuickBooks Common Mistakes & Tips": {
@@ -334,7 +362,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, remember that the online version saves automatically. A mistake needs a proper correction, not an undo.",
     "Finally, review recent entries now and then for repeated category mistakes."
    ],
-   "ask": "What share of errors do you think come from miscategorizing?"
+   "ask": "What share of errors do you think come from miscategorizing?",
+   "scenario": "Over three months, a new staff member coded all the courier costs as 'office supplies.' The accountant spots it at quarter-end. What needs fixing, and what do you change so it doesn't happen again?"
   },
   "p2": {
    "why": "Never force a reconciliation to balance by adjusting a line that has nothing to do with the difference.",
@@ -344,7 +373,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, check invoices against the contract before sending.",
     "Finally, in the online version there's no save button, so corrections need an edit or journal entry."
    ],
-   "ask": "Your reconciliation is off by $62.50, and a colleague suggests adjusting the office supplies line to make it balance. What do you say, and what do you look for instead?"
+   "ask": "Your reconciliation is off by $62.50, and a colleague suggests adjusting the office supplies line to make it balance. What do you say, and what do you look for instead?",
+   "scenario": "You finish the bank reconciliation, and it's off by exactly $450. You notice a $450 deposit entered twice. What does that tell you about where to look first next time something is off by a round amount?"
   }
  },
  "7::Credit Cards & Card Applications": {
@@ -358,7 +388,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, file tax-relevant receipts as they come in, all year.",
     "Finally, test yourself: could you hand over every receipt from the last 90 days quickly?"
    ],
-   "ask": "If the accountant asked for every receipt from the last 90 days, how fast could you deliver?"
+   "ask": "If the accountant asked for every receipt from the last 90 days, how fast could you deliver?",
+   "scenario": "Elias's firm card payment is due tomorrow. You haven't reviewed the statement yet, and there's a $2,300 charge you don't recognize. Do you pay the full balance, part of it, or wait? What do you do today?"
   },
   "p2": {
    "why": "With financial applications, 'close enough' paperwork causes real delays.",
@@ -367,7 +398,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, card payments follow the same discipline as any recurring payment: a calendar and a review before paying.",
     "Finally, applications need precision: exactly what's requested, in exactly the way the issuer asks."
    ],
-   "ask": "Reviewing Elias's card statement, you spot a $129 charge from an unfamiliar merchant and a hotel charged twice for the same night. What do you do before paying the bill?"
+   "ask": "Reviewing Elias's card statement, you spot a $129 charge from an unfamiliar merchant and a hotel charged twice for the same night. What do you do before paying the bill?",
+   "scenario": "The bank asks for 'the last two years of business tax returns and a current balance sheet' for a new firm card. A colleague wants to send the last three years 'to be safe' and a profit-and-loss statement too. What do you send, and why?"
   }
  },
  "7::Expense Report Auditing & Approval Workflows": {
@@ -379,7 +411,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, hold anything missing a receipt or reason until it's explained.",
     "Finally, send every report through the proper approver. Never approve your own."
    ],
-   "ask": "What three things should match between an expense line and its receipt?"
+   "ask": "What three things should match between an expense line and its receipt?",
+   "scenario": "An associate submits an expense report with a $210 dinner, the receipt attached, but no note on who attended or which matter it was for. Do you approve it, reject it or hold it, and what do you ask for?"
   },
   "p2": {
    "why": "Splitting one purchase into several smaller ones is a classic way to dodge approval limits.",
@@ -388,7 +421,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, approving reports in bulk without reading the lines defeats the purpose.",
     "Finally, watch for split transactions designed to stay under a threshold."
    ],
-   "ask": "An expense report has a receipt for exactly $499, one dollar under the $500 limit that needs extra approval. What do you do with that observation?"
+   "ask": "An expense report has a receipt for exactly $499, one dollar under the $500 limit that needs extra approval. What do you do with that observation?",
+   "scenario": "Reviewing a month of expense reports, you notice one staff member bought three laptop accessories from the same shop on the same day, at $180, $190 and $175. The limit without extra approval is $200. What do you do?"
   }
  },
  "7::Vendor Payment Terms & Cash Flow Timing": {
@@ -400,7 +434,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, pay in line with those terms, unless there's a specific reason not to.",
     "Finally, line up upcoming payments against expected money coming in, so they don't collide."
    ],
-   "ask": "When is it worth paying a bill early?"
+   "ask": "When is it worth paying a bill early?",
+   "scenario": "A new document-scanning vendor sends its first invoice with 'due on receipt' printed on it. The signed agreement says net 45. Which terms do you follow, and what do you do about the difference?"
   },
   "p2": {
    "why": "Paying early or late should always be a decision, never a habit.",
@@ -409,7 +444,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, paying everything the moment it arrives can squeeze cash flow for no reason.",
     "Finally, flag any payment outside its normal terms, so someone decides it on purpose."
    ],
-   "ask": "A net-30 invoice arrives, and the person who handles payments always pays within 48 hours 'to be safe.' Is that the right call, and what would you say?"
+   "ask": "A net-30 invoice arrives, and the person who handles payments always pays within 48 hours 'to be safe.' Is that the right call, and what would you say?",
+   "scenario": "Three large vendor bills are due on the 1st, and the firm's biggest client payment is expected on the 15th. The office manager wants to pay all three immediately. What do you flag to Elias?"
   }
  },
  "7::Payroll Basics for EA/PA Support Roles": {
@@ -421,7 +457,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, handle payroll paperwork, like new-hire forms and bank changes, as confidential documents.",
     "Finally, put payroll deadlines on the compliance calendar with the other hard deadlines."
    ],
-   "ask": "Which payroll-related tasks do you touch in your role?"
+   "ask": "Which payroll-related tasks do you touch in your role?",
+   "scenario": "An employee emails you a new bank account number for their pay and asks you to 'pass it on to payroll.' What's the right way to handle this, and what should you never do with that email?"
   },
   "p2": {
    "why": "Your late timesheet can turn into someone's missed paycheck.",
@@ -430,7 +467,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't treat payroll tasks as low priority just because it's someone else's system.",
     "Finally, never share pay or compensation details beyond the people who need them for the task."
    ],
-   "ask": "A new hire's onboarding paperwork is still incomplete two days before the payroll cut-off. What do you do so they don't get missed?"
+   "ask": "A new hire's onboarding paperwork is still incomplete two days before the payroll cut-off. What do you do so they don't get missed?",
+   "scenario": "A colleague asks you what the new associate earns, 'just roughly.' You processed the offer letter. How do you answer?"
   }
  },
  "7::Tax Season Support & Working with Accountants": {
@@ -444,7 +482,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, connect it to reconciliation: good records make reconciling fast.",
     "Finally, build a small daily or weekly filing habit instead of one giant push a year."
    ],
-   "ask": "The accountant emails asking for every charitable donation receipt and home-office expense from last year, by Friday. If you've filed all year, what does that take? If you haven't?"
+   "ask": "The accountant emails asking for every charitable donation receipt and home-office expense from last year, by Friday. If you've filed all year, what does that take? If you haven't?",
+   "scenario": "The accountant asks for all of last year's business travel receipts by Wednesday. Half are in a shared folder, labeled by date and trip, and half are photos in Elias's phone. What do you do now, and what habit do you start for this year?"
   }
  },
  "7::Quarterly Tax Schedules": {
@@ -456,7 +495,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, well before each date, confirm with the accountant that the amount and paperwork are ready.",
     "Finally, keep a record of each payment confirmation."
    ],
-   "ask": "Who confirms the payment amount, and when?"
+   "ask": "Who confirms the payment amount, and when?",
+   "scenario": "It's January, and you're setting up the year's calendar. Put the four estimated tax payment dates in, and decide how early each reminder goes out and who it goes to."
   },
   "p2": {
    "why": "Ask the accountant early, not the week the payment is due.",
@@ -465,7 +505,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, treat these as four separate deadlines, not one yearly job.",
     "Finally, coordinate early, so a question about the amount doesn't become a last-minute scramble."
    ],
-   "ask": "It's ten days before a quarterly estimated tax deadline, and you haven't heard from the accountant about the amount. What do you do?"
+   "ask": "It's ten days before a quarterly estimated tax deadline, and you haven't heard from the accountant about the amount. What do you do?",
+   "scenario": "The accountant sends the quarterly payment amount the day before the deadline. It's much higher than last quarter, and Elias is unreachable. What do you do, and what do you change so this doesn't happen next quarter?"
   }
  },
  "7::W-9/1099 Audits & Filing Deadlines": {
@@ -477,7 +518,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, check the vendor list against the W-9 files now and then, especially for vendors added mid-year.",
     "Finally, put the year-end filing deadline on the calendar with plenty of lead time."
    ],
-   "ask": "Which vendors do you think are easiest to miss?"
+   "ask": "Which vendors do you think are easiest to miss?",
+   "scenario": "An expert witness wants to be paid today for the Meridian report, and he hasn't sent a W-9. Elias says, 'Just pay him; we'll get the form later.' What do you suggest, and why?"
   },
   "p2": {
    "why": "These forms hold sensitive tax information, so store them securely.",
@@ -486,7 +528,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't wait until the deadline to look for missing forms.",
     "Finally, protect W-9s like any other confidential document."
    ],
-   "ask": "Preparing for the year-end filing, you find a vendor paid above the threshold never sent a W-9. What do you do now, with the deadline approaching?"
+   "ask": "Preparing for the year-end filing, you find a vendor paid above the threshold never sent a W-9. What do you do now, with the deadline approaching?",
+   "scenario": "In December, you compare the vendor payment report with the W-9 folder and find four contractors paid over the threshold with no form on file. Two of them are hard to reach. What's your plan, week by week, to January?"
   }
  },
  "7::Financial Record Retention Requirements": {
@@ -498,7 +541,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, store records somewhere durable and searchable.",
     "Finally, build the retention date into the filing, so reviews happen on schedule."
    ],
-   "ask": "Do you think trust account records have a different retention period?"
+   "ask": "Do you think trust account records have a different retention period?",
+   "scenario": "The auditor asks for the bank statements and invoices behind a 2021 transaction. You know the records exist, somewhere on a shared drive. How long should it take you to find them, and what would make that faster?"
   },
   "p2": {
    "why": "If you're not sure whether a record can be destroyed, keep it.",
@@ -507,7 +551,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, digital storage doesn't manage retention by itself. Files still get lost or deleted.",
     "Finally, keeping something too long costs little; destroying something you later need can cost a lot."
    ],
-   "ask": "During a clean-up you find trust account records from several years ago. Before deleting anything to save space, what do you need to confirm first?"
+   "ask": "During a clean-up you find trust account records from several years ago. Before deleting anything to save space, what do you need to confirm first?",
+   "scenario": "A partner wants to clear out the old storage room and says, 'Anything more than five years old can go.' The boxes include trust records and closed litigation files. What do you check before a single box leaves?"
   }
  },
  "7::Fraud Red Flags in Financial Documents": {
@@ -519,7 +564,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, confirm any change in payment details through a separate channel you already trust, never the contact details in the request itself.",
     "Finally, raise a real concern promptly, rather than trying to solve it alone."
    ],
-   "ask": "Why isn't a request from the vendor's usual email address enough to trust it?"
+   "ask": "Why isn't a request from the vendor's usual email address enough to trust it?",
+   "scenario": "An invoice arrives from 'Meridan Legal Services' for $4,000, with a new bank account and a note saying it's urgent. The usual vendor is Meridian Court Reporting. What stands out, and how do you check it?"
   },
   "p2": {
    "why": "A false alarm is cheap; a missed fraud isn't.",
@@ -528,7 +574,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't explain away each odd detail privately. Patterns only appear when anomalies get recorded.",
     "Finally, never let one false alarm stop you raising the next concern."
    ],
-   "ask": "A long-standing vendor emails asking to update their bank details for future payments. What's your checking process, and why doesn't their familiar email address settle it?"
+   "ask": "A long-standing vendor emails asking to update their bank details for future payments. What's your checking process, and why doesn't their familiar email address settle it?",
+   "scenario": "Last month, you flagged a suspicious invoice that turned out to be genuine, and you felt embarrassed. This month, an email from 'Elias' asks you to buy $1,500 in gift cards for a client, quickly and quietly. What do you do?"
   }
  }
 });

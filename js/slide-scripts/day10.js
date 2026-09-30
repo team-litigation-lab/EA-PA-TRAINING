@@ -1,6 +1,6 @@
 /* Day 10 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "10::Social Media Management vs. Marketing": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, use the right measure for each. Judge marketing by likes, and good work looks like failure.",
     "Finally, if a task covers both, split it into ongoing management and a separate campaign."
    ],
-   "ask": "In one sentence, what's the difference between managing an account and marketing it?"
+   "ask": "In one sentence, what's the difference between managing an account and marketing it?",
+   "scenario": "Elias's LinkedIn gets comments that go unanswered for weeks, and a partner wants to spend $2,000 on ads to 'grow it.' Which problem is management and which is marketing, and which do you fix first?"
   },
   "p2": {
    "why": "Management is the restaurant's dining room; marketing is the billboard on the highway.",
@@ -22,7 +23,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, management keeps things running and people happy; marketing attracts new ones.",
     "Finally, EAs usually own management: scheduling, filtering messages and consistency. Marketing specialists lean into growth and campaigns."
    ],
-   "ask": "Elias asks you to 'handle his LinkedIn' and also 'get more consultation leads from it this quarter.' Split it: which parts are management, which are marketing and how would you measure each?"
+   "ask": "Elias asks you to 'handle his LinkedIn' and also 'get more consultation leads from it this quarter.' Split it: which parts are management, which are marketing and how would you measure each?",
+   "scenario": "At the quarterly review, Elias asks why his LinkedIn 'isn't bringing in clients' when you've posted every week. What were you measuring, and what should you measure for his question?"
   }
  },
  "10::EA vs. PA Roles in Social Media": {
@@ -36,7 +38,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, as the PA, create the content: capture real moments and edit them with tools like Canva.",
     "Finally, as the PA, keep profiles and links current and reply to personal comments."
    ],
-   "ask": "Have you ever seen strategy and content creation split between two people? How did it work?"
+   "ask": "Have you ever seen strategy and content creation split between two people? How did it work?",
+   "scenario": "A PA drafts a funny post about a long day in court, with a photo that shows a client's file on the table. It's scheduled for tomorrow. Whose job was it to catch that, and what do you change?"
   },
   "p2": {
    "why": "The EA is the gatekeeper and moderator; the PA is the ghostwriter and promoter.",
@@ -45,7 +48,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the EA's crisis job is spotting negative publicity early.",
     "Finally, the PA's crisis job is sharing good news that shows the other side of the story."
    ],
-   "ask": "In one morning: a journalist messages Elias, a client comments on his post, event photos need editing and his profile still lists an old title. Who handles each one, the EA or the PA?"
+   "ask": "In one morning: a journalist messages Elias, a client comments on his post, event photos need editing and his profile still lists an old title. Who handles each one, the EA or the PA?",
+   "scenario": "A local newspaper criticizes the firm, and on the same day, Elias wins an award. Who handles each, and what goes out first?"
   }
  },
  "10::Personal vs. Firm Brand Account Separation": {
@@ -57,7 +61,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, set up access to match. A firm account should have firm-controlled access.",
     "Finally, give each account its own voice: personal ones can show more personality; firm ones stay closer to the firm's voice."
    ],
-   "ask": "Who controls the login to Elias's LinkedIn right now?"
+   "ask": "Who controls the login to Elias's LinkedIn right now?",
+   "scenario": "A partner has been running the firm's Instagram from her personal phone, logged in with her own email. She's retiring next month. What do you sort out now, and what should have been set up at the start?"
   },
   "p2": {
    "why": "Unclear ownership always comes to light at the worst possible moment.",
@@ -67,7 +72,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, confidential firm content needs the same review, even on a personal account.",
     "Finally, record logins and ownership in the firm's systems, not someone's notes."
    ],
-   "ask": "An executive with a big personal following is leaving the firm, and their account was used for both personal posts and firm announcements. What should have been settled long before now?"
+   "ask": "An executive with a big personal following is leaving the firm, and their account was used for both personal posts and firm announcements. What should have been settled long before now?",
+   "scenario": "A junior associate posts a photo from the office on his personal account, and a draft contract is visible on his screen. It's his account. Is it the firm's business? What happens next?"
   }
  },
  "10::The Executive Personal Brand Style Guide": {
@@ -81,7 +87,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, set the engagement rules, including what needs approval.",
     "Finally, agree the visual standard, so photos look consistent whoever picks them."
    ],
-   "ask": "What's one thing you'd put on an executive's 'never' list?"
+   "ask": "What's one thing you'd put on an executive's 'never' list?",
+   "scenario": "Three different people have written Elias's posts this year, and followers are commenting that 'he sounds different every week.' What goes in the style guide first, and who has to sign off on it?"
   },
   "p2": {
    "why": "An unwritten feel for the brand doesn't survive the second person who writes for it.",
@@ -91,7 +98,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, voice and tone, three to five topic areas and the 'never' list.",
     "Finally, visual rules and who approves posts before they go out."
    ],
-   "ask": "Let's draft version one of Elias's 'never' list together: three banned topics, two banned buzzwords and one formatting rule."
+   "ask": "Let's draft version one of Elias's 'never' list together: three banned topics, two banned buzzwords and one formatting rule.",
+   "scenario": "A new contractor writes a post for Elias criticizing a judge's recent ruling. It's clever and would get attention. Nothing in the guide says it's banned. What should the guide have said?"
   }
  },
  "10::Content Pillars & Finding the Brand Voice": {
@@ -105,7 +113,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if the voice wobbles, work out which scale it's drifting on.",
     "Finally, remember what's at stake: a voice that changes every few days makes people unfollow."
    ],
-   "ask": "Where would you put Elias between formal and casual?"
+   "ask": "Where would you put Elias between formal and casual?",
+   "scenario": "Elias's posts swing between long, formal legal analysis and jokey memes. Place him on the four scales, and pick which posts from last month fit."
   },
   "p2": {
    "why": "A consistent voice tells people there's a real person behind the account.",
@@ -114,7 +123,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the 'this, not that' pairs give writers clear boundaries.",
     "Finally, consistency is what makes the account feel human and trustworthy."
    ],
-   "ask": "Let's run 'this, not that' for Elias on the board: four pairs, then place him on each of the four scales."
+   "ask": "Let's run 'this, not that' for Elias on the board: four pairs, then place him on each of the four scales.",
+   "scenario": "A post written in Elias's voice gets strong engagement, but a partner calls it 'too casual for a lawyer.' How do you decide whether it's on-voice, and what do you check it against?"
   }
  },
  "10::Defining and Maintaining Brand Voice, Tone & Messaging": {
@@ -128,7 +138,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, find hedging phrases in drafts and rewrite them as direct statements.",
     "Finally, compare any draft with a real example of his voice before publishing."
    ],
-   "ask": "What hedging phrase do you see most in drafts?"
+   "ask": "What hedging phrase do you see most in drafts?",
+   "scenario": "A draft post for Elias starts, 'We're so incredibly excited to share some amazing news!' Rewrite the opening in his voice: direct, specific and unhurried."
   },
   "p2": {
    "why": "Defining a voice takes one workshop; keeping it for months is the real work.",
@@ -138,7 +149,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, tone changes with the moment: celebratory for a win, measured for industry news, gentle for hard topics.",
     "Finally, messaging is the core ideas he wants to be known for. Check a sample of posts against all three every quarter."
    ],
-   "ask": "Let's rewrite this line in Elias's voice: 'We believe our innovative, client-first approach may potentially deliver amazing results for businesses navigating complex disputes.'"
+   "ask": "Let's rewrite this line in Elias's voice: 'We believe our innovative, client-first approach may potentially deliver amazing results for businesses navigating complex disputes.'",
+   "scenario": "The firm lost a big case in the news this week, and Elias's next scheduled post is a celebratory team photo. Same voice, but what tone now? Do you still post it?"
   }
  },
  "10::Making a Voice Guide Actually Stick": {
@@ -152,7 +164,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, check new writers' first few drafts closely.",
     "Finally, update the guide when a good new pattern appears."
    ],
-   "ask": "Who would review drafts against the guide where you work?"
+   "ask": "Who would review drafts against the guide where you work?",
+   "scenario": "You wrote a great voice guide in January. By April, posts have drifted back to buzzwords, and nobody's checking. What do you put in place, and who owns it?"
   },
   "p2": {
    "why": "The guide is only as good as the review behind it.",
@@ -161,7 +174,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, messaging rules keep key descriptions identical from post to post.",
     "Finally, without a review step, the guide quietly gets ignored."
    ],
-   "ask": "A new marketing contractor's first three LinkedIn drafts for Elias are full of exclamation marks and 'game-changing.' What's your review process, and what do you add to the guide?"
+   "ask": "A new marketing contractor's first three LinkedIn drafts for Elias are full of exclamation marks and 'game-changing.' What's your review process, and what do you add to the guide?",
+   "scenario": "The firm's description changes from post to post: 'boutique litigation firm,' 'full-service firm,' 'employment specialists.' What messaging rule fixes this, and who decides the wording?"
   }
  },
  "10::Visual Brand Assets — Sample Color Palette": {
@@ -175,7 +189,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, make sure the background never competes with the main colors.",
     "Finally, when you look at any brand, check it against these four roles."
    ],
-   "ask": "Does your organization's palette follow this structure?"
+   "ask": "Does your organization's palette follow this structure?",
+   "scenario": "A designer's new event invitation uses the firm's navy, plus bright orange, lime green and purple 'to make it pop.' What do you say, and what do you send them?"
   },
   "p2": {
    "why": "A brand isn't just a logo; it's a small, deliberate set of colors, fonts and image rules.",
@@ -185,7 +200,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, record the exact color codes, so every designer and tool gets the same shade.",
     "Finally, check contrast, so text is easy to read, especially on phones."
    ],
-   "ask": "Pull up the firm's recent social graphics. Do they stick to one main color, one accent, one text color and one background? Where has a fifth color crept in?"
+   "ask": "Pull up the firm's recent social graphics. Do they stick to one main color, one accent, one text color and one background? Where has a fifth color crept in?",
+   "scenario": "The firm's logo looks slightly different blues on the website, the business cards and the email signature. What's missing, and how do you fix it everywhere?"
   }
  },
  "10::Brand Consistency: Palette, Typography & Imagery": {
@@ -199,7 +215,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, review recent content now and then for drift.",
     "Finally, use real examples of inconsistent brands to show what restraint prevents."
    ],
-   "ask": "Can you think of a brand that mixes fonts or colors inconsistently?"
+   "ask": "Can you think of a brand that mixes fonts or colors inconsistently?",
+   "scenario": "Each partner makes their own presentation slides in whatever font they like, and clients have noticed. What rule do you propose, and how do you make it easy to follow?"
   },
   "p2": {
    "why": "Consistency comes from rules decided in advance, not from each person's taste.",
@@ -208,7 +225,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, one heading font and one body font, everywhere.",
     "Finally, decide which images are off-limits up front, so everyone chooses against the same standard."
    ],
-   "ask": "Three recent posts for the firm used three different fonts and a stock photo of a gavel. Write the three rules you'd add to stop it happening again."
+   "ask": "Three recent posts for the firm used three different fonts and a stock photo of a gavel. Write the three rules you'd add to stop it happening again.",
+   "scenario": "The marketing intern chose a stock photo of a smiling family holding a gavel for a post about wills. Which image rule would have stopped it, and what would you use instead?"
   }
  },
  "10::Platform Proficiencies — Tool-Specific Best Practices": {
@@ -222,7 +240,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, don't assume skill on one platform carries over to another.",
     "Finally, walk through any new tool's publishing steps before using it live."
    ],
-   "ask": "Which tools does your organization publish with?"
+   "ask": "Which tools does your organization publish with?",
+   "scenario": "Elias's assistant posts the same long paragraph on LinkedIn, Instagram and X, word for word. What should each version have looked like?"
   },
   "p2": {
    "why": "The newsletter is the only channel the executive fully owns.",
@@ -232,7 +251,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, Instagram: visual storytelling, like behind-the-scenes and events, with strong images and short captions.",
     "Finally, X, Threads and newsletters: timely comment and direct relationships, and the newsletter is the one the executive owns outright."
    ],
-   "ask": "Elias wrote a 600-word article on a new employment law. How would you adapt it for LinkedIn, Instagram and the newsletter?"
+   "ask": "Elias wrote a 600-word article on a new employment law. How would you adapt it for LinkedIn, Instagram and the newsletter?",
+   "scenario": "The firm's newsletter goes to 1,800 people, but only 9 percent open it. What would you look at in the newsletter tool, and what's one change you'd test first?"
   }
  },
  "10::Platform Details & the One Rule That Applies to All Three": {
@@ -246,7 +266,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, on the website, make routine updates through the visual editor.",
     "Finally, everywhere, preview before publishing."
    ],
-   "ask": "Has something ever gone live that shouldn't have?"
+   "ask": "Has something ever gone live that shouldn't have?",
+   "scenario": "A colleague scheduled a post announcing a new partner, but the partner's name is misspelled, and it goes live at 8 a.m. It's 7:45. What do you do, and what step was skipped?"
   },
   "p2": {
    "why": "A typo in a draft costs nothing; the same typo sent to a mailing list is public.",
@@ -256,7 +277,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, on newsletters, it's segmenting lists, timing sends and reading the report.",
     "Finally, always test in draft or preview first."
    ],
-   "ask": "You need to fix a typo on the firm's live homepage and send the monthly newsletter to the Clients group. Walk through the draft-first steps for each."
+   "ask": "You need to fix a typo on the firm's live homepage and send the monthly newsletter to the Clients group. Walk through the draft-first steps for each.",
+   "scenario": "You're sending the monthly client newsletter, and the preview shows an old event date in the footer. The send is scheduled for 10 minutes' time. What do you do in order?"
   }
  },
  "10::The Content Calendar & Publishing Workflow": {
@@ -269,7 +291,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, week three, polish: draft a few caption versions and pick the best fit for the voice.",
     "Finally, week four, scheduling: load everything into the publishing tool."
    ],
-   "ask": "Who here manages content we could plan a real month for?"
+   "ask": "Who here manages content we could plan a real month for?",
+   "scenario": "Every morning, Elias's assistant scrambles to find something to post by noon. What would the four-week batch system change, and what's the first thing you'd set up?"
   },
   "p2": {
    "why": "Showing up consistently matters more than posting at the perfect minute.",
@@ -278,7 +301,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, track the platform, pillar, type, opening hook, keywords, call to action and status.",
     "Finally, aim for consistency. Platforms care more about regular activity than exact timing."
    ],
-   "ask": "Let's plan next month for Elias's LinkedIn using this method: three pillars, twelve ideas and what happens each week."
+   "ask": "Let's plan next month for Elias's LinkedIn using this method: three pillars, twelve ideas and what happens each week.",
+   "scenario": "Elias is in trial for two weeks and can't review anything. The content calendar has ten posts that need his sign-off. What should have happened a week earlier, and what do you do now?"
   }
  },
  "10::Video Content Basics for Executive Presence": {
@@ -290,7 +314,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, check the background and the sound. Anything visible in the frame is public.",
     "Finally, keep social videos short, about 60 to 90 seconds."
    ],
-   "ask": "What would you check in the background before recording?"
+   "ask": "What would you check in the background before recording?",
+   "scenario": "Elias wants to record a quick video in his office about a new employment law. Behind him, the whiteboard has client names and a court calendar. What do you check and change before recording?"
   },
   "p2": {
    "why": "Watch the whole video before it goes out, every time.",
@@ -300,7 +325,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, watch it through fully. Skimming misses the stray comment or detail in the background.",
     "Finally, keep a consistent setup, so his videos look recognizably his."
    ],
-   "ask": "Elias records a 90-second video answering a common client question, but a notification with a client's name flashes on his monitor behind him. What's your process before it's published?"
+   "ask": "Elias records a 90-second video answering a common client question, but a notification with a client's name flashes on his monitor behind him. What's your process before it's published?",
+   "scenario": "A video goes live, and a viewer comments that Elias's phone screen, visible for two seconds, shows a client's text message. What do you do immediately, and who do you tell?"
   }
  },
  "10::Accessibility in Digital Content": {
@@ -312,7 +338,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, add captions to every video, and don't rely on automatic ones without checking.",
     "Finally, check color contrast on graphics and text over images."
    ],
-   "ask": "What makes alt text genuinely useful rather than a box-ticking exercise?"
+   "ask": "What makes alt text genuinely useful rather than a box-ticking exercise?",
+   "scenario": "The firm's post about a charity fun run has four photos, each with alt text reading 'image.' Rewrite one properly, and explain who that helps."
   },
   "p2": {
    "why": "An automatic caption that misquotes the executive is a real problem.",
@@ -322,7 +349,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, always review automatic captions.",
     "Finally, make accessibility a standard step in content approval."
    ],
-   "ask": "You're finishing a LinkedIn post with a bar chart of the firm's pro bono hours by year, and it has no alt text. Let's write a description together that's actually useful."
+   "ask": "You're finishing a LinkedIn post with a bar chart of the firm's pro bono hours by year, and it has no alt text. Let's write a description together that's actually useful.",
+   "scenario": "Elias's video's automatic captions turn 'arbitration' into 'our bitter nation.' It's already had 300 views. What do you do, and what step goes into the approval process?"
   }
  },
  "10::Audience Psychology & Pain Points": {
@@ -336,7 +364,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, for trust worries, show real behind-the-scenes, not staged content.",
     "Finally, use persuasion techniques ethically and sparingly."
    ],
-   "ask": "Which pain point comes up most in your industry?"
+   "ask": "Which pain point comes up most in your industry?",
+   "scenario": "Small-business owners keep asking Elias the same question: 'How much will a lawsuit cost me?' Draft the first line of a post that answers that worry honestly."
   },
   "p2": {
    "why": "People are tired of polished ads, and they trust real proof.",
@@ -345,7 +374,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, audiences have digital overload fatigue and want authentic evidence.",
     "Finally, the bandwagon effect, reciprocity and pointing out a contradiction can all work, as long as they add real value."
    ],
-   "ask": "Potential clients worry about surprise legal bills. Draft one post that answers that worry with transparency, not reassurance."
+   "ask": "Potential clients worry about surprise legal bills. Draft one post that answers that worry with transparency, not reassurance.",
+   "scenario": "A partner wants a post that says 'Hundreds of businesses trust us, so should you!' with a stock photo. What makes this weak, and what real proof could you use instead?"
   }
  },
  "10::SEO, GEO & Funneling for Executives": {
@@ -359,7 +389,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, track the monthly scorecard.",
     "Finally, search the executive's name privately every month."
    ],
-   "ask": "Has anyone here asked an AI tool to recommend a business or a professional?"
+   "ask": "Has anyone here asked an AI tool to recommend a business or a professional?",
+   "scenario": "When you search 'employment lawyer' plus the city, Elias doesn't appear on the first page, but a competitor does. What would you check about Elias's online content first?"
   },
   "p2": {
    "why": "Search the executive's name in a private browser every month, and fix what's out of date.",
@@ -369,7 +400,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, the middle shows depth: articles, webinars and newsletters.",
     "Finally, the bottom makes it easy to act: case studies, testimonials and a clear way to get in touch."
    ],
-   "ask": "Let's search Elias's name privately together. What comes up first, what's out of date and which part of the funnel is weakest?"
+   "ask": "Let's search Elias's name privately together. What comes up first, what's out of date and which part of the funnel is weakest?",
+   "scenario": "Elias's LinkedIn posts reach lots of people, but nobody books a consultation. Which stage of the funnel is missing, and what would you add?"
   }
  },
  "10::GEO Tactics & Consistency": {
@@ -383,7 +415,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, check those bios regularly for drift.",
     "Finally, make sure every new profile uses the same wording."
    ],
-   "ask": "Is Elias's bio worded the same on LinkedIn and the firm website?"
+   "ask": "Is Elias's bio worded the same on LinkedIn and the firm website?",
+   "scenario": "Elias's bio says '15 years' on LinkedIn, '12 years' on the firm website and 'nearly two decades' on a conference page. What do you fix, and in what order?"
   },
   "p2": {
    "why": "Whatever the AI tool gets wrong about the executive becomes your to-do list.",
@@ -393,7 +426,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, they prefer clear, factual content from consistent sources.",
     "Finally, each month, ask an AI tool who the executive is, and note what it gets wrong."
    ],
-   "ask": "Let's ask an AI assistant, 'Who is Elias Thorne and what is he known for?' What would you do about each thing it gets wrong or misses?"
+   "ask": "Let's ask an AI assistant, 'Who is Elias Thorne and what is he known for?' What would you do about each thing it gets wrong or misses?",
+   "scenario": "An AI assistant describes Elias as a 'criminal defense lawyer.' He's never practiced criminal law. What do you do about it, and which sources would you check?"
   }
  },
  "10::Copywriting vs. Blog Writing": {
@@ -407,7 +441,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, add something first-hand, like a real example or unique data point.",
     "Finally, choose the format that fits the goal."
    ],
-   "ask": "What's wrong with 'click here' as a call to action?"
+   "ask": "What's wrong with 'click here' as a call to action?",
+   "scenario": "A partner writes a 1,200-word blog post that ends 'Contact us to learn more!' and a landing page with three long paragraphs about the firm's history. Which one needs to be copy, and what's wrong with each?"
   },
   "p2": {
    "why": "A blog that repeats what the top search results already say adds nothing.",
@@ -416,7 +451,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, copy is the closer; the blog is the friendly guide.",
     "Finally, add something the top five results don't have: a real example, a fresh angle or your own data."
    ],
-   "ask": "Two volunteers write the same announcement, the firm's new free contract-review consultation: one as sales copy, one as a blog introduction. Read them aloud back to back."
+   "ask": "Two volunteers write the same announcement, the firm's new free contract-review consultation: one as sales copy, one as a blog introduction. Read them aloud back to back.",
+   "scenario": "Your blog post on 'how to prepare for a deposition' says exactly what the top five search results already say. What could you add from Elias's real experience to make it worth reading?"
   }
  },
  "10::Reading the Numbers — Engagement Rate": {
@@ -430,7 +466,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, recalculate regularly.",
     "Finally, check your number against the platform's own figures."
    ],
-   "ask": "Why compare rates instead of raw likes?"
+   "ask": "Why compare rates instead of raw likes?",
+   "scenario": "Two posts: one got 200 likes on an account with 20,000 followers, and one got 60 likes on an account with 1,500. Elias says the first did better. Work out both rates. Was he right?"
   },
   "p2": {
    "why": "Compare a post with the account's own average before calling it good or bad.",
@@ -440,7 +477,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, comments and shares show deeper interest than likes.",
     "Finally, a small, engaged audience often beats a big, passive one."
    ],
-   "ask": "A post got 85 likes, 22 comments and 6 shares, and the account has 2,500 followers. What's the engagement rate, and is it good if the usual rate is 3 percent?"
+   "ask": "A post got 85 likes, 22 comments and 6 shares, and the account has 2,500 followers. What's the engagement rate, and is it good if the usual rate is 3 percent?",
+   "scenario": "A post about the firm's pro bono work got 40 likes and 25 comments. A post about a new hire got 90 likes and 2 comments. Which one showed deeper interest, and what would you post more of?"
   }
  },
  "10::Engagement Rate Benchmarks & Interpretation": {
@@ -454,7 +492,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, treat low reach with high engagement as a good sign: a small, loyal audience.",
     "Finally, revisit the benchmarks, because platforms keep changing."
    ],
-   "ask": "Post A reached 12,000 people with 0.8 percent engagement. Post B reached 900 people with 6.5 percent. What does each tell you, and what would you change?"
+   "ask": "Post A reached 12,000 people with 0.8 percent engagement. Post B reached 900 people with 6.5 percent. What does each tell you, and what would you change?",
+   "scenario": "Elias's post reached 15,000 people but got a 0.4 percent engagement rate. A smaller post reached 900 people and got 8 percent. Which one tells you more about his audience, and what would you do next?"
   }
  },
  "10::Basic Campaign Math": {
@@ -468,7 +507,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, compare them with the campaign's goals.",
     "Finally, track them across campaigns over time."
    ],
-   "ask": "Why can a high number of leads be misleading?"
+   "ask": "Why can a high number of leads be misleading?",
+   "scenario": "A $3,000 ad campaign produced 150 leads, and the marketing agency calls it a huge success. Before you agree, what else do you need to know?"
   },
   "p2": {
    "why": "Lead count on its own can make a losing campaign look impressive.",
@@ -477,7 +517,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, always know both numbers.",
     "Finally, judge success by return, not by volume."
    ],
-   "ask": "A $1,200 LinkedIn campaign produced 40 leads, 3 became clients and each client is worth $900. What's the cost per lead and the return, and was it a success?"
+   "ask": "A $1,200 LinkedIn campaign produced 40 leads, 3 became clients and each client is worth $900. What's the cost per lead and the return, and was it a success?",
+   "scenario": "The $3,000 campaign's 150 leads turned into 2 clients worth $1,000 each. What's the cost per lead and the return? What would you tell Elias about running it again?"
   }
  },
  "10::Social Listening & Monitoring": {
@@ -489,7 +530,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, separate routine mentions from ones that need attention. Most need nothing.",
     "Finally, log recurring themes, not just single mentions."
    ],
-   "ask": "Where would people talk about the firm without tagging it?"
+   "ask": "Where would people talk about the firm without tagging it?",
+   "scenario": "A local business forum has a thread discussing whether Thorne & Partners is 'worth the money.' The firm isn't tagged. How would you have found it, and do you respond?"
   },
   "p2": {
    "why": "A pattern across several mentions tells you more than any single one.",
@@ -499,7 +541,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, review your listening setup regularly.",
     "Finally, flag a worrying trend early, before it needs a crisis response."
    ],
-   "ask": "Your weekly check finds several posts mentioning the same complaint about the firm's billing, and nobody has raised it directly. What's your next step?"
+   "ask": "Your weekly check finds several posts mentioning the same complaint about the firm's billing, and nobody has raised it directly. What's your next step?",
+   "scenario": "Over three weeks, you notice five separate posts from different people complaining about slow replies from the firm. None are dramatic. What do you do with the pattern, and who do you tell?"
   }
  },
  "10::Crisis Response on Social Media": {
@@ -511,7 +554,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, reply publicly with a short, calm acknowledgment, and move the details to a private channel.",
     "Finally, bring in the executive or the right decision-maker for anything beyond routine."
    ],
-   "ask": "How do you tell a real complaint from bait?"
+   "ask": "How do you tell a real complaint from bait?",
+   "scenario": "A post calling the firm 'crooks' is spreading on X. The poster has never been a client and has a history of angry posts about lawyers. How do you decide whether to respond at all?"
   },
   "p2": {
    "why": "Deleting a genuine complaint usually makes things worse.",
@@ -521,7 +565,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, don't delete legitimate criticism just because it's unflattering.",
     "Finally, document what happens as it unfolds."
    ],
-   "ask": "A former client posts a detailed public complaint that's picking up attention. Some of it is accurate, some exaggerated. What do you do in the next 30 minutes, before anyone senior weighs in?"
+   "ask": "A former client posts a detailed public complaint that's picking up attention. Some of it is accurate, some exaggerated. What do you do in the next 30 minutes, before anyone senior weighs in?",
+   "scenario": "Your colleague has already replied to a complaint with 'This is completely false and you know it.' It's getting shared. What happens next, and who do you bring in?"
   }
  },
  "10::Endorsement & Disclosure Rules": {
@@ -533,7 +578,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep records of every such relationship.",
     "Finally, when partners post about the firm, check the disclosure is really there and easy to see."
    ],
-   "ask": "Does a discount count as payment?"
+   "ask": "Does a discount count as payment?",
+   "scenario": "The firm gives a well-known local influencer a free contract review, and she posts glowing praise about the firm the next week. Did she need to disclose anything? What do you check?"
   },
   "p2": {
    "why": "A deal without cash still counts, so when in doubt, disclose.",
@@ -543,7 +589,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, check disclosure before content is approved, not afterwards.",
     "Finally, over-disclosing costs almost nothing; not disclosing can cost a lot."
    ],
-   "ask": "A former client with a big following offers to post about the firm in exchange for a discount on future work. What do you need to confirm before this goes any further?"
+   "ask": "A former client with a big following offers to post about the firm in exchange for a discount on future work. What do you need to confirm before this goes any further?",
+   "scenario": "A partner's friend posts 'Best lawyers in town!' about the firm. You later learn the partner asked him to post it in exchange for a dinner. Is that a problem? What do you do?"
   }
  },
  "10::Legal Advertising & UPL Rules": {
@@ -555,7 +602,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, know the firm's local advertising rules, including any required disclaimers.",
     "Finally, when in doubt, escalate instead of publishing."
    ],
-   "ask": "When does a helpful post cross into legal advice?"
+   "ask": "When does a helpful post cross into legal advice?",
+   "scenario": "Someone comments on Elias's post, 'My boss fired me yesterday for being pregnant. Can I sue?' A colleague wants to reply with a detailed answer. What do you reply, and why?"
   },
   "p2": {
    "why": "Case results and client testimonials have their own strict rules.",
@@ -564,7 +612,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't treat the firm's social media like any other business's.",
     "Finally, take particular care with testimonials, results and client stories."
    ],
-   "ask": "A draft post shares an impressive case result and says, 'We can get you the same result.' What's the problem with that wording, and how would you revise it?"
+   "ask": "A draft post shares an impressive case result and says, 'We can get you the same result.' What's the problem with that wording, and how would you revise it?",
+   "scenario": "A happy client offers a video testimonial saying 'Elias won me $500,000 and he'll win for you too.' Can the firm post it as is? What do you check before it goes anywhere?"
   }
  },
  "10::Final Timed Evaluation & Capstone Checklist": {
@@ -576,7 +625,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, name the specific days or tools that still feel shaky.",
     "Finally, take the final evaluation with the same calm you've practiced all program."
    ],
-   "ask": "Which day's material do you feel least ready to use on the job?"
+   "ask": "Which day's material do you feel least ready to use on the job?",
+   "scenario": "Your results show strong scores in scheduling and travel but two missed questions on trust accounts and a Practice Lab task you rushed. Before the final evaluation, what do you review, and how?"
   },
   "p2": {
    "why": "A finished program isn't a finished skill set, so leave with a plan, not just a certificate.",
@@ -585,7 +635,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, this is your last chance in the program to close a known gap.",
     "Finally, the strongest ending is a specific plan for what you'll keep practicing."
    ],
-   "ask": "Looking back across all ten days, which single day or tool would you most want to revisit before calling yourself ready, and what exactly will you do to close that gap?"
+   "ask": "Looking back across all ten days, which single day or tool would you most want to revisit before calling yourself ready, and what exactly will you do to close that gap?",
+   "scenario": "You start with Elias next Monday. Write your 30-day practice plan: the two skills you'll keep working on and how you'll know you've improved."
   }
  }
 });

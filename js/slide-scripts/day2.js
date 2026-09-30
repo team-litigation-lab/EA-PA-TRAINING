@@ -1,6 +1,6 @@
 /* Day 2 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "2::Bulletproof Basics": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we set the meeting agenda before the meeting, which is how we go from taking notes to shaping the result.",
     "Finally, after the meeting, we follow every action item through until it's actually done, not just written down."
    ],
-   "ask": "Of these three, which do you already do well, and which is still more of an intention?"
+   "ask": "Of these three, which do you already do well, and which is still more of an intention?",
+   "scenario": "Elias flies to D.C. at 2 p.m. for a 9 a.m. hearing tomorrow, and the airline just posted a two-hour delay warning. His inbox has 40 unread emails, and there's a 4 p.m. client call nobody has set an agenda for. Which basic do you deal with first, and what do you do on each one before 11 a.m.?"
   },
   "p2": {
    "why": "Doing the basics on a calm Friday is easy. Doing them the same way on a chaotic Tuesday is what earns trust.",
@@ -22,7 +23,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the aim is consistency under pressure, not perfection on quiet days.",
     "Finally, we improve by picking one real habit, not a resolution."
    ],
-   "ask": "Pick the basic you're weakest on today. What's one real habit, not an intention, that would fix it this week?"
+   "ask": "Pick the basic you're weakest on today. What's one real habit, not an intention, that would fix it this week?",
+   "scenario": "It's a chaotic Tuesday: two court changes, a sick colleague and a vendor mix-up. By 6 p.m. you realise you skipped the meeting follow-ups from this morning's partners' meeting. What habit would have stopped that from slipping, and what do you do right now?"
   }
  },
  "2::The Three C's of Managing Up": {
@@ -36,7 +38,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when we're under pressure and clarity starts slipping, we slow down and restate the main point before we hit send.",
     "Finally, every so often we reread our own recent messages, because these habits fade quietly when we're busy."
    ],
-   "ask": "When you're overwhelmed, which of the three slips first for you?"
+   "ask": "When you're overwhelmed, which of the three slips first for you?",
+   "scenario": "At 7 p.m. you send Elias: 'Meridian stuff mostly sorted, a couple of things pending, will explain tomorrow.' He replies, 'What's pending and do I need to do anything?' Rewrite the original message so it passes clarity, consistency and credibility."
   },
   "p2": {
    "why": "One wrong 'it's done' costs more trust than ten honest 'confirming by noon's.",
@@ -46,7 +49,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, consistency means regular updates always look the same.",
     "Finally, credibility means saying 'I'll confirm by' when we're not certain."
    ],
-   "ask": "Try this one: Elias asks, 'Is the Meridian binder at the courthouse?' You think the courier picked it up, but you haven't confirmed. What's the reply that protects your credibility?"
+   "ask": "Try this one: Elias asks, 'Is the Meridian binder at the courthouse?' You think the courier picked it up, but you haven't confirmed. What's the reply that protects your credibility?",
+   "scenario": "Elias asks at 8 a.m. whether the signed Harlow engagement letter came back. You think the client said they'd send it last night, but it isn't in the inbox yet. Write the reply that protects your credibility."
   }
  },
  "2::Credibility Is Earned, Not Claimed": {
@@ -60,7 +64,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, discretion is our default, especially around investors, legal matters, family and deals.",
     "Finally, if we ever damage that trust, we rebuild it steadily over time. One good week doesn't undo a bad one."
    ],
-   "ask": "In practice, what does the no-surprises rule actually look like on a normal day?"
+   "ask": "In practice, what does the no-surprises rule actually look like on a normal day?",
+   "scenario": "On Friday you noticed that a client's retainer check bounced, but you meant to mention it Monday. Over the weekend, the client emails Elias directly about 'the check problem.' What rule did you break, and how do you handle Monday morning?"
   },
   "p2": {
    "why": "Lost credibility comes back slowly, roughly in proportion to how much was lost.",
@@ -70,7 +75,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, rebuilding it takes a track record, not an apology.",
     "Finally, the small, quiet decisions are often the ones that carry the most weight."
    ],
-   "ask": "Think of a real moment, from any job and kept anonymous, when a small decision turned out to carry real risk. What told you it mattered?"
+   "ask": "Think of a real moment, from any job and kept anonymous, when a small decision turned out to carry real risk. What told you it mattered?",
+   "scenario": "Last month you sent a partner the wrong version of a contract, and now Elias double-checks everything you send. What does rebuilding his trust look like over the next few weeks, specifically?"
   }
  },
  "2::Reframing Reactive Language": {
@@ -84,7 +90,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we reread it and ask: does this sound like a status report, or a plea for help?",
     "Finally, we practise on real messages from this week, because that's how the habit sticks."
    ],
-   "ask": "What's one reactive phrase you catch yourself using?"
+   "ask": "What's one reactive phrase you catch yourself using?",
+   "scenario": "Your draft to Elias reads: 'The courier didn't show up and the clerk's office closes at 5.' Rewrite it so it reports the problem and the plan in one message."
   },
   "p2": {
    "why": "Swap the report for an action, the blame for a plan, and the open question for a recommendation.",
@@ -94,7 +101,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we turn blame into a plan.",
     "Finally, we turn open questions into choices with a recommendation."
    ],
-   "ask": "Let's go around the room. Two or three people: take the opening line of a real message you sent this week and rewrite it, live, so it looks forward."
+   "ask": "Let's go around the room. Two or three people: take the opening line of a real message you sent this week and rewrite it, live, so it looks forward.",
+   "scenario": "Rewrite these three lines forward-looking: 'The client still hasn't signed.' 'The caterer messed up the order.' 'What should I do about Thursday's double booking?'"
   }
  },
  "2::Language Signals Level": {
@@ -106,7 +114,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, compare 'Should I respond?' with 'I've drafted a reply that holds our position without admitting anything. Could you take a look?'",
     "Finally, we practise turning our own recent messages from the first style into the second. It's usually about adding structure and a suggestion, not more words."
    ],
-   "ask": "Which helper phrase do you catch yourself using most often?"
+   "ask": "Which helper phrase do you catch yourself using most often?",
+   "scenario": "A reporter emails asking for Elias's comment on a new court ruling. The helper version of your message to Elias is: 'A reporter wants a comment.' Write the force-multiplier version, with options and a recommendation."
   },
   "p2": {
    "why": "The confident phrasing only works if the thinking behind it is real.",
@@ -115,7 +124,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, this isn't about sounding impressive. It's about doing more of the thinking before we send.",
     "Finally, the trap is copying the confident style without the real analysis behind it."
    ],
-   "ask": "Take this message: 'Opposing counsel emailed about the deposition.' Rewrite it the force-multiplier way. What did you need to find out first?"
+   "ask": "Take this message: 'Opposing counsel emailed about the deposition.' Rewrite it the force-multiplier way. What did you need to find out first?",
+   "scenario": "A new assistant starts writing 'Based on our objectives, I recommend…' in every message, but her recommendations are often based on guesses. Elias starts ignoring them. What's the real problem, and how does she fix it?"
   }
  },
  "2::Communication Mastery": {
@@ -129,7 +139,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we read the room and adjust our tone, without changing the facts.",
     "Finally, when a message gets misread, we work out why: was it unclear, the wrong channel or the wrong tone?"
    ],
-   "ask": "When has a message of yours been misread? What went wrong?"
+   "ask": "When has a message of yours been misread? What went wrong?",
+   "scenario": "You need to tell Elias three things: a meeting moved by 15 minutes, a client is unhappy with a bill and wants to talk, and his flight gate changed. Which channel do you use for each, and why?"
   },
   "p2": {
    "why": "Most breakdowns start one of two ways: the message was too vague, or it went through the wrong channel.",
@@ -139,7 +150,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, the usual culprits are vague wording or the wrong channel for the urgency.",
     "Finally, when something misfires, we name whether it was clarity, channel or tone."
    ],
-   "ask": "You texted Elias 'call moved, all good' about a client meeting, and he turned up at the original time. Was that a clarity, channel or tone problem, and what should the message have said?"
+   "ask": "You texted Elias 'call moved, all good' about a client meeting, and he turned up at the original time. Was that a clarity, channel or tone problem, and what should the message have said?",
+   "scenario": "You emailed a partner, 'The Harlow docs need a look before Friday.' The partner thought 'a look' meant a quick skim; you meant a full review and signature. Which failed, clarity, channel or tone? Rewrite the message."
   }
  },
  "2::Executive Presence": {
@@ -153,7 +165,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when we give bad news, we're calm, specific and accurate, without playing it down or sounding anxious.",
     "Finally, we remember why it matters: an assistant with presence is someone nobody feels they need to double-check."
    ],
-   "ask": "Think of someone who stayed calm when everything went wrong. What did they actually do?"
+   "ask": "Think of someone who stayed calm when everything went wrong. What did they actually do?",
+   "scenario": "Ten minutes before a client meeting, the conference room projector fails, the client is already in reception, and a junior associate starts panicking. What do you say and do in the next two minutes?"
   },
   "p2": {
    "why": "Calm, specific and accurate: that's what presence sounds like.",
@@ -163,7 +176,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, panic and fuzzy facts lose it fastest; calm, precise communication builds it.",
     "Finally, it makes the executive's life easier, because nobody needs to check up on us."
    ],
-   "ask": "Pair up, thirty seconds each. You have to tell Elias the court reporter for tomorrow's 9 a.m. deposition just cancelled. Say it calmly, with the facts and your next step."
+   "ask": "Pair up, thirty seconds each. You have to tell Elias the court reporter for tomorrow's 9 a.m. deposition just cancelled. Say it calmly, with the facts and your next step.",
+   "scenario": "You have to tell Elias that the expert witness for Thursday has pulled out. Say it in three sentences: calm, specific and with your next step."
   }
  },
  "2::Managing Constant Executive Exposure": {
@@ -177,7 +191,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we keep an eye on compliance deadlines ourselves, rather than waiting for a reminder.",
     "Finally, we handle sensitive messages with discretion by default."
    ],
-   "ask": "Of those five, which do you actually watch for today, and which would you have missed?"
+   "ask": "Of those five, which do you actually watch for today, and which would you have missed?",
+   "scenario": "Elias forwards you an invitation to a charity gala, asking you to 'accept for two.' The main sponsor is a company the firm is suing. What do you check, and what do you send Elias before accepting?"
   },
   "p2": {
    "why": "Managing risk starts with whoever sees the request first, and that's often us.",
@@ -186,7 +201,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we scan routine-looking work for risk, not just finish it.",
     "Finally, we treat risk as everyone's job, starting with us."
    ],
-   "ask": "Here's one: Elias is invited to speak on a panel sponsored by a company that's on the other side of one of the firm's active cases. It arrives as a routine invite. What do you do?"
+   "ask": "Here's one: Elias is invited to speak on a panel sponsored by a company that's on the other side of one of the firm's active cases. It arrives as a routine invite. What do you do?",
+   "scenario": "A friendly vendor asks you to share a photo of Elias with their product for their newsletter. It seems harmless. What exposure could it create, and what do you do?"
   }
  },
  "2::Stakeholder & Board Update Communications": {
@@ -198,7 +214,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we lead with what matters for oversight, whether that's a decision needed, a risk or a milestone, and add only the context they need to act or ask a good question.",
     "Finally, it gets a second pair of eyes before it goes out, however routine it seems."
    ],
-   "ask": "How would a board update differ from the weekly status email you're used to?"
+   "ask": "How would a board update differ from the weekly status email you're used to?",
+   "scenario": "You're drafting the quarterly update for the firm's advisory board, which includes two outside directors. The internal team's version includes a partner's frank comments about a difficult client. What changes before it goes to the board?"
   },
   "p2": {
    "why": "Board communication carries real weight. Casual wording that's fine in a chat message can be a genuine risk here.",
@@ -207,7 +224,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we treat a board update as its own kind of document, not a dressed-up status email.",
     "Finally, we confirm how confidential it is before drafting."
    ],
-   "ask": "You're asked to draft a board update on a project that's six weeks behind. What do you include so the board gets an honest picture without either downplaying it or causing panic?"
+   "ask": "You're asked to draft a board update on a project that's six weeks behind. What do you include so the board gets an honest picture without either downplaying it or causing panic?",
+   "scenario": "A board member emails you directly asking for 'the real story' behind a delayed project, outside the formal update. How do you respond without making a mistake with governance?"
   }
  },
  "2::Investor Briefing Preparation": {
@@ -219,7 +237,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we gather every figure from verified, original sources, so no unconfirmed number slips through.",
     "Finally, we give the executive a short heads-up on anything likely to draw a tough question, so he isn't caught off guard."
    ],
-   "ask": "Thinking of your own firm's last update, what question would an investor most likely push on?"
+   "ask": "Thinking of your own firm's last update, what question would an investor most likely push on?",
+   "scenario": "Elias is briefing investors tomorrow on the firm's growth. You have last quarter's revenue from the finance team, a projection from a partner's slide deck and a client count from memory. Which of these can go in the briefing, and what do you check first?"
   },
   "p2": {
    "why": "Never let an unconfirmed number reach an investor.",
@@ -228,7 +247,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we only use verified, current figures, never memory or a rough draft.",
     "Finally, when disclosure is in doubt, we escalate rather than guess."
    ],
-   "ask": "While preparing an investor briefing, you notice one figure you were given doesn't match the firm's own recent report. What do you do before the materials go out?"
+   "ask": "While preparing an investor briefing, you notice one figure you were given doesn't match the firm's own recent report. What do you do before the materials go out?",
+   "scenario": "An investor emails you before the briefing asking for 'the pipeline numbers in advance.' Elias hasn't approved sharing anything early. What do you reply?"
   }
  },
  "2::From Helper to Force Multiplier": {
@@ -242,7 +262,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we watch for requests that repeat. By the second or third time, we should be anticipating them.",
     "Finally, we check our own work now and then: are we still just finishing tasks, or arriving with the next step done?"
    ],
-   "ask": "Before I give you a definition, what do you think a force multiplier is, in your own words?"
+   "ask": "Before I give you a definition, what do you think a force multiplier is, in your own words?",
+   "scenario": "Elias asks you to book his flight to London for the Meridian arbitration. List three things the force-multiplier version of you would have ready before he asks."
   },
   "p2": {
    "why": "Nobody becomes a force multiplier overnight. It builds up from reliable work.",
@@ -252,7 +273,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, it grows from the three C's, used consistently.",
     "Finally, putting it in your own words is the best test of whether you've understood it."
    ],
-   "ask": "Elias asks you to book a conference room for Thursday's Meridian strategy meeting. What would the helper do, and what would the force multiplier have ready too?"
+   "ask": "Elias asks you to book a conference room for Thursday's Meridian strategy meeting. What would the helper do, and what would the force multiplier have ready too?",
+   "scenario": "For the third week in a row, Elias asks on Monday morning for 'the list of what's due this week.' What would a force multiplier do before next Monday?"
   }
  },
  "2::The Helper Identity vs. the Force Multiplier Identity": {
@@ -263,7 +285,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we notice our default when a request is unclear. Do we ask 'What should I do?', or do we suggest an approach and ask for a quick OK?",
     "Finally, we practise attaching a suggestion to every fact we pass on, even a tentative one."
    ],
-   "ask": "When a request is unclear, do you usually ask what to do, or suggest an approach?"
+   "ask": "When a request is unclear, do you usually ask what to do, or suggest an approach?",
+   "scenario": "Elias forwards an email with just 'deal with this.' It's a vendor asking to change payment terms. The helper asks what he wants. What does the force multiplier send back instead?"
   },
   "p2": {
    "why": "A helper makes life easier. A force multiplier makes performance stronger.",
@@ -272,7 +295,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, this takes deliberate practice, one request at a time.",
     "Finally, the aim is stronger performance, not just a lighter load."
    ],
-   "ask": "Which mindset describes you right now, and which one helper habit will you start replacing this week?"
+   "ask": "Which mindset describes you right now, and which one helper habit will you start replacing this week?",
+   "scenario": "You've spent a week making Elias's life easier: faster replies, tidier files. But nothing about his results has changed. What could you do next week that would actually make his performance stronger?"
   }
  },
  "2::Why the Force Multiplier Evolution Is Non-Negotiable": {
@@ -283,7 +307,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we look for signs we're still in helper mode: waiting for instructions on things we've done before, asking permission for decisions we've already shown we can make, or judging ourselves only by how fast we reply.",
     "Finally, we change it on purpose. The next time a familiar request comes in, we handle it with a recommendation attached."
    ],
-   "ask": "Which of those helper-mode signs do you recognise in yourself?"
+   "ask": "Which of those helper-mode signs do you recognise in yourself?",
+   "scenario": "Elias complains that decisions are stuck because 'everything waits on me.' You notice half of those items are things you've handled before but always ask him about. What do you change, and how do you get his agreement?"
   },
   "p2": {
    "why": "Being reachable at midnight isn't the same as making someone more effective.",
@@ -292,7 +317,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the aim is a better outcome than the literal request, not overstepping.",
     "Finally, constant availability isn't the same as value, and sometimes it works against it."
    ],
-   "ask": "Elias asks you to book a conference room for a client meeting, and you book it. What would the force multiplier version of that same task have looked like?"
+   "ask": "Elias asks you to book a conference room for a client meeting, and you book it. What would the force multiplier version of that same task have looked like?",
+   "scenario": "A colleague prides herself on answering Elias's messages at midnight. She's exhausted, and her work during the day is slipping. What's the better way to add value?"
   }
  },
  "2::Force Multiplier in the Wild": {
@@ -304,7 +330,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we coordinate: we put everyone on a shared board or document, with automatic reminders, so nobody's working from an old email.",
     "Finally, we close the loop: every task gets an owner, it all comes together in one report, and we confirm the client received it."
    ],
-   "ask": "When you're rushed, which of those three steps is easiest to skip?"
+   "ask": "When you're rushed, which of those three steps is easiest to skip?",
+   "scenario": "The day before a pitch, the client asks for three things: a revised fee proposal from finance, an updated team bio page from marketing and a conflicts confirmation from legal. Sort them by urgency and dependency. Which one could block the others?"
   },
   "p2": {
    "why": "The loop isn't closed until every owner has confirmed.",
@@ -314,7 +341,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, the order: prioritise, coordinate, close the loop.",
     "Finally, the hard part: coordinating across time zones when someone's gone quiet."
    ],
-   "ask": "You've got ninety seconds. Draft how you'd run the coordinate step when two teams are in other time zones and one isn't responding. Then we'll compare notes."
+   "ask": "You've got ninety seconds. Draft how you'd run the coordinate step when two teams are in other time zones and one isn't responding. Then we'll compare notes.",
+   "scenario": "It's 6 p.m. Finance and marketing have delivered, but legal's conflicts confirmation hasn't arrived, and the pitch is at 9 a.m. Close the loop: what do you do tonight, and what do you tell Elias?"
   }
  },
  "2::What Force Multiplier Autonomy Is — and Isn't": {
@@ -325,7 +353,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, before we act on our own on something new, we confirm it's inside the limits we've actually been given.",
     "Finally, if we're unsure whether something is ours to decide, that doubt is a signal. Check first."
    ],
-   "ask": "What's something you've been explicitly cleared to handle on your own?"
+   "ask": "What's something you've been explicitly cleared to handle on your own?",
+   "scenario": "You've been cleared to reschedule internal meetings without asking. A client meeting now clashes with an internal one. Which one can you move on your own, and which needs Elias?"
   },
   "p2": {
    "why": "Be decisive inside the line, and careful right at the edge.",
@@ -334,7 +363,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, 'I was being a force multiplier' never excuses going outside our scope.",
     "Finally, good confidence is decisive within the limits and cautious at their edge."
    ],
-   "ask": "A client asks you to push a filing deadline reminder back a week because 'Elias said it's fine.' Nobody told you that. Is acting on it empowerment or overstepping, and what do you do?"
+   "ask": "A client asks you to push a filing deadline reminder back a week because 'Elias said it's fine.' Nobody told you that. Is acting on it empowerment or overstepping, and what do you do?",
+   "scenario": "A partner tells you, 'Elias always lets you approve these, just sign off on the $2,000 expense.' Your written limit is $500. What do you say?"
   }
  },
  "2::Measuring the Force Multiplier Transformation": {
@@ -345,7 +375,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we pick one or two measures that fit our role, like inbox volume or reply time, and start noting them, even informally.",
     "Finally, when we talk about our performance, we point to real changes: 'reply time went from this to that.'"
    ],
-   "ask": "Which of those could you realistically measure in your role?"
+   "ask": "Which of those could you realistically measure in your role?",
+   "scenario": "Your review is next month. You believe you've reduced Elias's inbox load a lot, but you have no numbers. What could you start measuring today to show it?"
   },
   "p2": {
    "why": "If nobody measures it, nobody sees it.",
@@ -354,7 +385,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't assume the value speaks for itself.",
     "Finally, choose measures that match your real job, not all six."
    ],
-   "ask": "Which one would be easiest to start tracking this week, and what do you think a month of tracking would show?"
+   "ask": "Which one would be easiest to start tracking this week, and what do you think a month of tracking would show?",
+   "scenario": "Over a month, you tracked reply time: it dropped from about 24 hours to 5. How do you present that in your review so it lands, and what else would you want next to it?"
   }
  },
  "2::Strategic Time Engineering": {
@@ -365,7 +397,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, before we defend a block of time, we name what it's for. If we can't, it isn't really protected.",
     "Finally, we treat the calendar as an ongoing decision, and regularly check it still matches what matters."
    ],
-   "ask": "On a busy week, which of those five areas gets squeezed first?"
+   "ask": "On a busy week, which of those five areas gets squeezed first?",
+   "scenario": "Elias's next week has 14 meetings, and no time set aside for preparing a major brief due Friday. Where do you find the time, and how do you protect it once it's on the calendar?"
   },
   "p2": {
    "why": "Investments are made on purpose, not spent as requests come in.",
@@ -374,7 +407,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the trap is protecting time only after something goes wrong.",
     "Finally, the mindset is to invest time deliberately, not spend it as requests arrive."
    ],
-   "ask": "Look at a typical week on Elias's calendar. Which of the five areas gets the least protection, and why might that be?"
+   "ask": "Look at a typical week on Elias's calendar. Which of the five areas gets the least protection, and why might that be?",
+   "scenario": "Every week, Elias's Friday afternoon 'strategy time' gets taken by last-minute requests. What would investing that time on purpose look like, instead of spending it as requests arrive?"
   }
  },
  "2::Time Management Requires Energy Management": {
@@ -386,7 +420,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we build recovery breaks after the genuinely demanding events on purpose, not just as gaps between meetings.",
     "Finally, we notice patterns, like a recurring meeting that always leaves him drained, and we raise it instead of silently putting up with it."
    ],
-   "ask": "What does a draining week look like for an executive you've supported?"
+   "ask": "What does a draining week look like for an executive you've supported?",
+   "scenario": "Elias has depositions all day Monday and Tuesday. A partner wants a two-hour budget review Tuesday at 5 p.m., the only free slot. What do you suggest instead, and how do you explain it?"
   },
   "p2": {
    "why": "When one person does both business and personal work, the natural breaks disappear, so we have to create them.",
@@ -395,7 +430,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, mixed business-and-personal roles need extra care, because the usual boundaries blur.",
     "Finally, an open slot isn't automatically available. Ask whether he'll have the energy."
    ],
-   "ask": "Elias has a full-day mediation on Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you put a recovery break, and how do you explain it if they push back?"
+   "ask": "Elias has a full-day mediation on Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you put a recovery break, and how do you explain it if they push back?",
+   "scenario": "You support Elias at work and his family at home. His Saturday now has a work call at 9, a school event at 11 and a dinner party at 7. Where would you build in recovery time, and what might you move?"
   }
  },
  "2::Reducing Cognitive Load for Executives": {
@@ -406,7 +442,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, instead of asking what he wants to do, we give the options and point to the one that fits best.",
     "Finally, before bringing him any decision, we ask ourselves what we'd recommend if it were our call, and we bring that too."
    ],
-   "ask": "If you had to make that decision yourself, what would you recommend?"
+   "ask": "If you had to make that decision yourself, what would you recommend?",
+   "scenario": "Two client meetings clash on Thursday at 2 p.m. Instead of asking Elias what to do, prepare the message: the options, the trade-offs and your recommendation."
   },
   "p2": {
    "why": "A list of options with no recommendation still leaves all the thinking to him.",
@@ -415,7 +452,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, giving a recommendation supports his leadership. It doesn't take away his authority.",
     "Finally, options without a view don't reduce the load."
    ],
-   "ask": "You were about to ask Elias, 'What do you want to do about the Thursday conflict?' Let's reframe that live, with three options and a recommendation."
+   "ask": "You were about to ask Elias, 'What do you want to do about the Thursday conflict?' Let's reframe that live, with three options and a recommendation.",
+   "scenario": "A colleague sends Elias: 'Option A: hotel near the court. Option B: hotel near the client. Option C: hotel near the airport. Let me know.' Elias sighs. What's missing, and how would you rewrite it?"
   }
  },
  "2::\"If It Happens Twice, It Deserves a System\"": {
@@ -426,7 +464,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, when we notice a task repeating, we pause before doing it by hand again and ask what a simple system would look like.",
     "Finally, for each repeat task, the system has the same parts: the steps, what could be automated, where approval is needed and when to escalate."
    ],
-   "ask": "What have you done twice this month by hand?"
+   "ask": "What have you done twice this month by hand?",
+   "scenario": "For the second time this month, you've spent an hour gathering the same figures for Elias's weekly partner report from four different places. Sketch version one of a system for it: steps, what can be automated and where approval is needed."
   },
   "p2": {
    "why": "A checklist you actually use is a real system.",
@@ -435,7 +474,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the trap is waiting until it hurts before systemising.",
     "Finally, simple and consistently used beats sophisticated and ignored."
    ],
-   "ask": "Name one task you've done more than twice this month without a system. What would the first version look like if you built it in fifteen minutes?"
+   "ask": "Name one task you've done more than twice this month without a system. What would the first version look like if you built it in fifteen minutes?",
+   "scenario": "Your team has a beautiful project-management tool for travel bookings that nobody opens, and a scruffy checklist one colleague actually uses. Which is the real system, and what would you do about the other?"
   }
  },
  "2::Operational Excellence & Institutional Accountability": {
@@ -446,7 +486,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we know our limits clearly, not just by instinct: what's business, what's personal, and where the grey areas are.",
     "Finally, we keep our spending limits and escalation rules written down somewhere we can check quickly."
    ],
-   "ask": "Could you write down your spending limit and escalation rules right now?"
+   "ask": "Could you write down your spending limit and escalation rules right now?",
+   "scenario": "Elias tells you on a call, 'Just book whatever the family needs for the ski trip.' The trip will cost $12,000, and your written limit for personal travel is $5,000. What do you do?"
   },
   "p2": {
    "why": "Clear boundaries protect us when a decision gets questioned later.",
@@ -455,7 +496,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, high trust doesn't mean unlimited freedom.",
     "Finally, clear rules protect the assistant as well as the executive."
    ],
-   "ask": "Where is your own boundary genuinely fuzzy, a kind of decision where you're not sure whether to decide or escalate? What would you need clarified?"
+   "ask": "Where is your own boundary genuinely fuzzy, a kind of decision where you're not sure whether to decide or escalate? What would you need clarified?",
+   "scenario": "Six months later, the firm's finance team questions a $3,000 personal expense you approved on Elias's behalf. What written records would protect you, and where should they be?"
   }
  },
  "2::Email Is a Control System, Not Cleanup": {
@@ -469,7 +511,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, with triage only, we sort and escalate, and resist drafting replies he didn't ask for.",
     "Finally, if our level isn't clear, we ask rather than guess."
    ],
-   "ask": "Which access level do you work under now, if any?"
+   "ask": "Which access level do you work under now, if any?",
+   "scenario": "You're on draft and review for Elias's inbox. A client emails asking him to confirm a meeting time, and you're sure he's free. What can you do, and what must you wait for?"
   },
   "p2": {
    "why": "Full access is earned, and only after the rules are written down.",
@@ -479,7 +522,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, draft and review is the normal starting point, and standard for legal work.",
     "Finally, read-and-flag suits sensitive inboxes and new relationships."
    ],
-   "ask": "You're on draft and review. A client emails at 6 p.m. asking to confirm tomorrow's 9 a.m. meeting, and Elias is on a flight. What can you do now, and what has to wait for him?"
+   "ask": "You're on draft and review. A client emails at 6 p.m. asking to confirm tomorrow's 9 a.m. meeting, and Elias is on a flight. What can you do now, and what has to wait for him?",
+   "scenario": "After three months on draft and review, Elias says, 'Just handle routine scheduling yourself from now on.' Before you start, what should you put in writing?"
   }
  },
  "2::What High-Performing Inbox Triage Looks Like": {
@@ -493,7 +537,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, as we handle more, we guard the two big risks: never miss a critical deadline, and never breach confidentiality.",
     "Finally, we keep the inbox at or near zero every day, as visible proof the system's working."
    ],
-   "ask": "Does eighty to ninety percent sound realistic where you work? What's actually stopping you?"
+   "ask": "Does eighty to ninety percent sound realistic where you work? What's actually stopping you?",
+   "scenario": "You look back at last week: you escalated 60 emails to Elias, including meeting confirmations, newsletter sign-ups and document receipts. Which of those could you handle yourself, and how would you check your calls?"
   },
   "p2": {
    "why": "Speed is never worth a missed deadline or a confidentiality slip.",
@@ -502,7 +547,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the benchmark: eighty to ninety percent handled on our own, inbox near zero.",
     "Finally, the two failures we never trade for speed: missed deadlines and confidentiality breaches."
    ],
-   "ask": "Look at the last twenty emails you escalated. Which kinds could you have handled yourself, and what would you need in writing first?"
+   "ask": "Look at the last twenty emails you escalated. Which kinds could you have handled yourself, and what would you need in writing first?",
+   "scenario": "You're handling far more email on your own now, and it's going well. Then you notice an email with a filing deadline buried in a thread you archived as routine. What changes in your triage from now on?"
   }
  },
  "2::Authority & Boundary Management — EA vs. Legal EA": {
@@ -513,7 +559,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, as a general EA, we politely refuse expense approvals we're not authorised for, get written confirmation for budget exceptions, write up verbal approvals afterwards, send pushy vendors back to the normal process and keep personal and company expenses strictly apart.",
     "Finally, as a legal EA, we refuse unauthorised requests for client files, insist on a conflict check before any new matter opens, escalate anything over our financial limit, document settlement payments and follow client money rules without exception."
    ],
-   "ask": "What's one decision in your role you're sure is yours, and one you'd always escalate?"
+   "ask": "What's one decision in your role you're sure is yours, and one you'd always escalate?",
+   "scenario": "A long-time client asks you, as a legal EA, to send them a copy of another client's settlement agreement 'for reference.' They're friendly and in a hurry. What do you do?"
   },
   "p2": {
    "why": "If it involves money or legal weight, a spoken yes gets written down.",
@@ -523,7 +570,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we send vendor pressure back to procurement every time, not just when it's convenient.",
     "Finally, in legal work, we never skip a conflict check."
    ],
-   "ask": "A vendor insists an invoice be approved today to avoid a late fee, and the person who normally approves it can't be reached. What do you do, and how does that change if you're a legal EA handling a client trust payment?"
+   "ask": "A vendor insists an invoice be approved today to avoid a late fee, and the person who normally approves it can't be reached. What do you do, and how does that change if you're a legal EA handling a client trust payment?",
+   "scenario": "Elias tells you in the corridor, 'Yes, approve the Harlow expert's extra $3,500.' Nothing is in writing. What do you do before the payment goes through?"
   }
  },
  "2::Proactive Risk Mitigation & Strategic Support — EA vs. Legal EA": {
@@ -536,7 +584,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, for strategic support, a general EA builds a dashboard of key numbers, writes a 30-day action summary after a board meeting, tracks follow-ups, suggests better ways of working and maps who has influence before a negotiation.",
     "Finally, a legal EA prepares summaries of legal exposure for the attorney, organises case timelines to show gaps in evidence, drafts compliance checklists, tracks due diligence and builds templates that cut drafting errors."
    ],
-   "ask": "What's one thing you caught early that would have become a crisis if you hadn't?"
+   "ask": "What's one thing you caught early that would have become a crisis if you hadn't?",
+   "scenario": "Planning a client dinner, you notice one guest is the CFO of a company on the other side of an active case. Also, an engagement letter for a new matter hasn't been signed, but work started yesterday. Which is the bigger risk, and what do you do about each?"
   },
   "p2": {
    "why": "A dashboard that points to what matters is strategy. One that just lists numbers is admin.",
@@ -545,7 +594,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, prevention is invisible when it works, which is why it gets neglected.",
     "Finally, real strategic support highlights what needs attention instead of just showing data."
    ],
-   "ask": "Look at your own workload. Which regular tasks prevent problems, and which just react to them? If the first list is short, what would you change?"
+   "ask": "Look at your own workload. Which regular tasks prevent problems, and which just react to them? If the first list is short, what would you change?",
+   "scenario": "Elias asks for 'a dashboard of the Meridian matter.' You could list every document and date, or build something that shows him what needs attention. Describe the version you'd build."
   }
  },
  "2::The Legal VA's Force Multiplier Evolution": {
@@ -556,7 +606,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we notice where our own legal-support work sits today: closer to formatting and finishing tasks, or closer to filtering and anticipating risk.",
     "Finally, we pick one regular legal task and deliberately move it toward the force-multiplier way this week."
    ],
-   "ask": "Where does your current legal-support work sit between those two?"
+   "ask": "Where does your current legal-support work sit between those two?",
+   "scenario": "Your legal work this week: formatting three briefs, booking two depositions and managing the calendar. Pick one of those tasks and describe how the force-multiplier version of it would be different."
   },
   "p2": {
    "why": "In legal work, staying in helper mode costs more.",
@@ -565,7 +616,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the stakes are higher in legal work: missed deadlines and unflagged risks carry liability.",
     "Finally, this is the same shift from earlier today, applied to legal work."
    ],
-   "ask": "Of the four legal force-multiplier habits, filtering complexity, anticipating legal risk, protecting attorney time and structuring operations, which is furthest from how you work now, and what makes the gap hard to close?"
+   "ask": "Of the four legal force-multiplier habits, filtering complexity, anticipating legal risk, protecting attorney time and structuring operations, which is furthest from how you work now, and what makes the gap hard to close?",
+   "scenario": "A discovery deadline was missed last month because 'nobody flagged it,' even though the notice was in the inbox you manage. What would a legal force multiplier have done differently?"
   }
  },
  "2::Cognitive Relief for Attorneys": {
@@ -576,7 +628,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, instead of reporting the volume, we report what matters: which emails need their judgment, and what the rest are.",
     "Finally, we practise that sort-and-summarise habit on our own inbox review before we pass anything on."
    ],
-   "ask": "How would you sum up your own inbox right now, in one sentence?"
+   "ask": "How would you sum up your own inbox right now, in one sentence?",
+   "scenario": "Elias is between hearings and asks, 'Anything I need to know?' You have 23 new emails. Give him the answer in three lines."
   },
   "p2": {
    "why": "Forwarding isn't relief. Making sense of it is.",
@@ -585,7 +638,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we send summaries, not piles of email.",
     "Finally, consistent, accurate summaries earn the trust that saves the attorney time."
    ],
-   "ask": "Elias is back from a two-day trial with 58 unread emails. What's the three-line summary you give him before he opens his inbox?"
+   "ask": "Elias is back from a two-day trial with 58 unread emails. What's the three-line summary you give him before he opens his inbox?",
+   "scenario": "A colleague forwards Elias all 30 emails from a heated client thread 'so he has the full picture.' He asks you what the client actually wants. Write the summary you'd send."
   }
  },
  "2::Strategic Filtration for Legal Work": {
@@ -598,7 +652,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, we escalate press enquiries about active cases straight away, because they're a legal risk and a reputation risk at once.",
     "Finally, we sort client requests into those that need the attorney's review and those we can answer with a standard reply."
    ],
-   "ask": "Which kind of urgency do you find hardest to recognise?"
+   "ask": "Which kind of urgency do you find hardest to recognise?",
+   "scenario": "Four items arrive: a partner's newsletter draft marked urgent, a reporter asking about an active case, a client question that a standard reply would answer, and a new matter where the claim's time limit may run out in three weeks. Rank them and say who handles each."
   },
   "p2": {
    "why": "The sender's 'URGENT' label isn't the real urgency.",
@@ -607,7 +662,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we judge the urgency ourselves, not from the subject line.",
     "Finally, pattern recognition builds with practice, so every correct call makes the next one quicker."
    ],
-   "ask": "A client email marked URGENT asks a routine procedural question, while a quiet, polite email from opposing counsel mentions a deadline in passing. Which is really more urgent, and how do you know?"
+   "ask": "A client email marked URGENT asks a routine procedural question, while a quiet, polite email from opposing counsel mentions a deadline in passing. Which is really more urgent, and how do you know?",
+   "scenario": "A client emails in capitals, 'URGENT URGENT, call me now.' The question turns out to be about parking at the courthouse. Meanwhile, a polite email from opposing counsel mentions 'the response due Friday.' How do you handle both?"
   }
  },
  "2::Operational Architecture for Legal Work": {
@@ -619,7 +675,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we write down a standard process for taking on a new client, so it doesn't depend on one person remembering the steps.",
     "Finally, we add a checklist for reconciling client trust money, consistent file names across the firm and a tracker for discovery responses."
    ],
-   "ask": "Which of these five systems does your workplace already have?"
+   "ask": "Which of these five systems does your workplace already have?",
+   "scenario": "Three times this quarter, a new client was onboarded without a conflict check being logged, because each person did intake differently. What system would you build, and what are its first three steps?"
   },
   "p2": {
    "why": "A well-designed spreadsheet is a real system.",
@@ -628,7 +685,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the trap is rebuilding the same fix over and over.",
     "Finally, simple tools like spreadsheets and checklists count as real systems."
    ],
-   "ask": "Which of the five is most obviously missing where you work, and what real problem has that gap already caused?"
+   "ask": "Which of the five is most obviously missing where you work, and what real problem has that gap already caused?",
+   "scenario": "The team says fixing deadline tracking 'needs a new software purchase.' What could you build this week with a shared spreadsheet to solve most of the problem?"
   }
  },
  "2::Decision Compression": {
@@ -639,7 +697,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, instead of sending a long document with no guidance, we point out what changed and where to look.",
     "Finally, before sending anything long for review, we ask ourselves the three most important things the reviewer needs to know, and we lead with those."
    ],
-   "ask": "Think of the last document you forwarded. What were the three things the reviewer really needed to know?"
+   "ask": "Think of the last document you forwarded. What were the three things the reviewer really needed to know?",
+   "scenario": "Opposing counsel sends a 45-page amended agreement. You find three real changes: a new confidentiality carve-out, a shorter payment window and a different governing law. Write the three-line note you'd send Elias."
   },
   "p2": {
    "why": "Forwarding isn't compression. Highlighting is.",
@@ -648,7 +707,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, forwarding a document alone isn't support; pointing out what matters is.",
     "Finally, this is BLUF applied to document review."
    ],
-   "ask": "Opposing counsel sends back a 40-page settlement agreement full of tracked changes. Write the three-line note you'd send Elias with it."
+   "ask": "Opposing counsel sends back a 40-page settlement agreement full of tracked changes. Write the three-line note you'd send Elias with it.",
+   "scenario": "A colleague forwards Elias a 90-page expert report with the note 'FYI.' Elias asks, 'What do I need from this?' What should the note have said?"
   }
  },
  "2::Risk Buffering for Legal Work": {
@@ -659,7 +719,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, we check signatures, notarisation and witnesses as a standard step, not an afterthought.",
     "Finally, no engagement letter means no billable work, even for a trusted client who's been with us for years."
    ],
-   "ask": "Which of these six do you already do without being reminded?"
+   "ask": "Which of these six do you already do without being reminded?",
+   "scenario": "A returning client asks the firm to start work immediately on a new dispute, and says the engagement letter can 'follow next week.' Elias is keen to help. What do you do, and how do you explain it?"
   },
   "p2": {
    "why": "Cheap to do every time, expensive to skip even once.",
@@ -668,7 +729,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, risk buffering is core work, not optional extra.",
     "Finally, each habit is quick to do and very costly to skip."
    ],
-   "ask": "Of the six habits, which would be easiest to let slip under time pressure, and what would make it harder to skip?"
+   "ask": "Of the six habits, which would be easiest to let slip under time pressure, and what would make it harder to skip?",
+   "scenario": "It's 4:50 p.m. and a will signing is about to happen, but only one witness is present and the state requires two. Everyone wants to 'just get it done.' What do you do?"
   }
  },
  "2::Before You Begin: AI Use in the Legal Industry": {
@@ -682,7 +744,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if we're not sure it's appropriate, we ask first, rather than asking forgiveness later.",
     "Finally, we treat these rules as a filter every AI technique must pass, not a disclaimer we read once."
    ],
-   "ask": "Does your firm, or one you know, have a written AI policy? Do you know what it says?"
+   "ask": "Does your firm, or one you know, have a written AI policy? Do you know what it says?",
+   "scenario": "A partner asks you to use a free AI chatbot to summarise a client's medical records for a personal-injury file. You've never been told the firm's AI policy. What do you check before doing anything?"
   },
   "p2": {
    "why": "Privileged information pasted into the wrong tool is a real legal problem, not a technicality.",
@@ -692,7 +755,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, legal judgment, strategy and client representation stay with the attorney.",
     "Finally, nothing privileged goes into an AI tool without approval."
    ],
-   "ask": "Elias asks you to 'run the Meridian deposition transcript through AI and pull out the contradictions.' Before you do anything, what do you need to check, and what do you say to him?"
+   "ask": "Elias asks you to 'run the Meridian deposition transcript through AI and pull out the contradictions.' Before you do anything, what do you need to check, and what do you say to him?",
+   "scenario": "Elias uses AI for drafting emails, but another partner has said, 'No AI on my matters, ever.' You're working on a matter they share. What do you do?"
   }
  },
  "2::The Digital Edge": {
@@ -706,7 +770,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we use the three together to remove repetitive work, rather than mastering just one.",
     "Finally, once a month, we look at our task list for the next thing to automate."
    ],
-   "ask": "Is anyone already using an automation tool like Zapier, even informally?"
+   "ask": "Is anyone already using an automation tool like Zapier, even informally?",
+   "scenario": "Every Monday, you copy new client inquiries from email into a spreadsheet by hand, which takes 40 minutes. Describe a simple automation you could set up to do it, and what you'd still check yourself."
   },
   "p2": {
    "why": "If you're fighting the same fire every week, automate it away.",
@@ -715,7 +780,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, digital skills are what separate reactive assistants from strategic ones.",
     "Finally, small automations, like email rules and templates, count."
    ],
-   "ask": "Name one repeating task on your plate that a simple rule or template could take off your hands this week. How would you set it up?"
+   "ask": "Name one repeating task on your plate that a simple rule or template could take off your hands this week. How would you set it up?",
+   "scenario": "Every Friday, someone asks, 'Where are we on the billing numbers?', and you spend an hour pulling them together. What digital fix would stop that fire from starting each week?"
   }
  },
  "2::What Is a Large Language Model?": {
@@ -729,7 +795,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we notice where made-up answers tend to appear: usually where the tool doesn't really know, filling the gap smoothly instead of admitting it.",
     "Finally, we make 'how would I check this?' an automatic question for every output we plan to use."
    ],
-   "ask": "Has an AI tool ever told you something confidently that turned out to be wrong?"
+   "ask": "Has an AI tool ever told you something confidently that turned out to be wrong?",
+   "scenario": "An AI tool gives you a neat summary of a court case, with a citation and a quote from the judge. It looks perfect. What do you check before putting any of it in Elias's briefing, and how?"
   },
   "p2": {
    "why": "The very thing that makes it useful is the same thing that makes it invent things.",
@@ -738,7 +805,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the same ability produces useful drafts and confident inventions.",
     "Finally, we use AI to draft, and check every fact ourselves."
    ],
-   "ask": "An AI summary of a contract says the notice period is 30 days. How do you verify that before it goes into Elias's briefing?"
+   "ask": "An AI summary of a contract says the notice period is 30 days. How do you verify that before it goes into Elias's briefing?",
+   "scenario": "An AI draft of a client letter confidently says a filing deadline is 'within 21 days.' The actual rule for this court is 14 days. What does that tell you about using AI, and what's your checking habit from now on?"
   }
  },
  "2::Core AI Terms an EA/PA Needs": {
@@ -752,7 +820,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, we treat every output as something to check, not something to trust.",
     "Finally, when these words turn up in a tool's settings, we connect them back to what they mean in practice."
    ],
-   "ask": "Without looking back, can someone explain 'context window' in one sentence?"
+   "ask": "Without looking back, can someone explain 'context window' in one sentence?",
+   "scenario": "You paste a 120-page transcript into an AI tool and ask for every mention of 'delivery date.' It finds references from the first half but misses ones near the end. Using today's terms, explain why, and what you'd do differently."
   },
   "p2": {
    "why": "What we paste in may be stored, depending on the account, so privileged information never goes into an unapproved tool.",
@@ -762,7 +831,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, hallucinations mean every name, figure, date and citation gets checked.",
     "Finally, privileged client information never goes into an unapproved tool."
    ],
-   "ask": "You paste a 40-page contract and ask for a summary of section 12, and the answer mixes in details from section 3. Using today's terms, what probably happened, and what do you do next?"
+   "ask": "You paste a 40-page contract and ask for a summary of section 12, and the answer mixes in details from section 3. Using today's terms, what probably happened, and what do you do next?",
+   "scenario": "A colleague pastes a client's full name, medical details and settlement amount into a free AI account to 'tidy up the wording.' What's the risk, and what should she have done?"
   }
  },
  "2::Your AI Toolkit — Three Modes, Different Jobs": {
@@ -776,7 +846,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, for connecting a trigger to an action, we use a routing or automation tool, not a chatbot.",
     "Finally, if we're unsure, we choose extraction for anything involving exact facts or figures, because a changed detail is the costlier mistake."
    ],
-   "ask": "Take one task from your week. Which of the three modes did it really need?"
+   "ask": "Take one task from your week. Which of the three modes did it really need?",
+   "scenario": "You need to do three things today: list every date mentioned in a 30-email thread, write a warm thank-you note to a client, and get an alert whenever the court emails. Which AI mode fits each job?"
   },
   "p2": {
    "why": "When exact facts matter, pull them out. Don't let the tool rewrite them.",
@@ -785,7 +856,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the classic slip is using the creative mode when the task needed extraction.",
     "Finally, we name the mode before we start."
    ],
-   "ask": "Three tasks: pull every deadline out of a 20-email thread, draft a thank-you note to a client, and get an alert whenever opposing counsel emails. Which mode fits each?"
+   "ask": "Three tasks: pull every deadline out of a 20-email thread, draft a thank-you note to a client, and get an alert whenever opposing counsel emails. Which mode fits each?",
+   "scenario": "A colleague asked an AI tool to 'summarise the key dates' from a contract, and the summary shifted one deadline by a week. What mode should she have used, and how would she have spotted the error?"
   }
  },
  "2::Claude, ChatGPT, and Gemini — Practical Differences": {
@@ -799,7 +871,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, for anything that works on live email, documents or calendars, Gemini fits, with stricter security habits.",
     "Finally, when automating inside Google, we start with simple things like Gmail filters before reaching for anything advanced."
    ],
-   "ask": "Which of these tools have you used, and for what kind of task?"
+   "ask": "Which of these tools have you used, and for what kind of task?",
+   "scenario": "You need to review a 90-page settlement agreement for tone, draft five quick scheduling replies, and find every calendar clash in Elias's Google Calendar next month. Which tool fits each task, and what check applies to all three?"
   },
   "p2": {
    "why": "Start with the simplest automation that works. A Gmail filter beats a clever script nobody looks after.",
@@ -809,7 +882,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, live data access means more care with security, not less.",
     "Finally, automations run from simple filters to advanced scripts, and we start simple."
    ],
-   "ask": "Elias asks you to summarise a 70-page settlement, draft three quick replies to scheduling emails and set up something so every email labelled 'New Client' becomes a task. Which tool for each, and what do you check first?"
+   "ask": "Elias asks you to summarise a 70-page settlement, draft three quick replies to scheduling emails and set up something so every email labelled 'New Client' becomes a task. Which tool for each, and what do you check first?",
+   "scenario": "A colleague built a complex script that automatically files client emails into Drive folders. She's leaving, and nobody else understands it. What simpler automation could replace it, and why is simpler better here?"
   }
  }
 });

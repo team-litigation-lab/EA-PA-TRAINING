@@ -1,6 +1,6 @@
 /* Day 5 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "5::Running a Household Like a Business": {
   "p1": {
@@ -13,7 +13,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, review how things are going every so often: what's working and what keeps slipping.",
     "Finally, write down the household's standing decisions, so things run the same way even when you're not there."
    ],
-   "ask": "What household logistics have you managed before, even just for your own family?"
+   "ask": "What household logistics have you managed before, even just for your own family?",
+   "scenario": "In one morning, the gardener texts Sarah, the plumber calls Elias and the nanny emails you, all about the same broken sprinkler that's flooding the side path. How do you become the single point of contact, and what do you set up so this doesn't happen again?"
   },
   "p2": {
    "why": "A shared calendar, a budget and a directory: that's the household's operating system.",
@@ -23,7 +24,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, a household budget split into categories and checked monthly, like any business cost center.",
     "Finally, a directory of every vendor and staff member, with contracts, rates, emergency numbers and a backup for each key service."
    ],
-   "ask": "Sarah Thorne asks you to take over running the household next week. What are the first three things you set up, and who do you tell that you're now the main contact?"
+   "ask": "Sarah Thorne asks you to take over running the household next week. What are the first three things you set up, and who do you tell that you're now the main contact?",
+   "scenario": "You've just taken over the Thornes' household. There's no shared calendar, the budget is 'in Sarah's head' and vendor numbers are scattered across three phones. What do you build in your first week, in what order?"
   }
  },
  "5::Recurring Household Admin: Utilities, Purchasing & Subscriptions": {
@@ -37,7 +39,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, before each renewal, actively decide: keep it or cancel it.",
     "Finally, give all three the same attention, even though none feels urgent on any given day."
    ],
-   "ask": "Who here has had a subscription renew without noticing?"
+   "ask": "Who here has had a subscription renew without noticing?",
+   "scenario": "Reviewing the Thornes' card statement, you find a $299 annual software renewal that nobody remembers signing up for, charged yesterday. What do you do today, and what do you put in place so renewals never surprise the family again?"
   },
   "p2": {
    "why": "Nothing dramatic happens the first time you miss one of these, and that's exactly the trap.",
@@ -46,7 +49,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, recurring admin fails through slow neglect, not one big mistake.",
     "Finally, the fix is simple tracking, done consistently."
    ],
-   "ask": "You discover the Thornes pay for three streaming services, two meal-kit subscriptions and a gym nobody uses. How would you review them, and what would you bring to Sarah?"
+   "ask": "You discover the Thornes pay for three streaming services, two meal-kit subscriptions and a gym nobody uses. How would you review them, and what would you bring to Sarah?",
+   "scenario": "The Thornes' water bill went unpaid for two months because the paper bill went to the lake house. Now there's a late fee and a disconnection notice. What's your fix for this bill, and for all the utilities?"
   }
  },
  "5::Household Staff Management": {
@@ -59,7 +63,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, have a short, regular check-in with staff, even monthly, to catch small problems early.",
     "Finally, keep emergency contacts and basic medical information on file for each staff member."
    ],
-   "ask": "Why might household staff not tell you about a scheduling problem themselves?"
+   "ask": "Why might household staff not tell you about a scheduling problem themselves?",
+   "scenario": "The Thornes hire a new part-time driver. What goes in his written role description on day one, and who does he report to?"
   },
   "p2": {
    "why": "Many staff won't raise a problem on their own, so you have to ask.",
@@ -70,7 +75,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, treat staff with the same professionalism as any colleague.",
     "Finally, when someone leaves, allow proper handover time, so the household's routines aren't lost."
    ],
-   "ask": "The Thornes' housekeeper is going on six weeks of medical leave with two days' notice. What do you write down and hand over, so the replacement doesn't need to ask Sarah a dozen questions in week one?"
+   "ask": "The Thornes' housekeeper is going on six weeks of medical leave with two days' notice. What do you write down and hand over, so the replacement doesn't need to ask Sarah a dozen questions in week one?",
+   "scenario": "The nanny tells you, only when you ask, that she's been working an extra hour every evening for three weeks because the Thornes come home late. She never mentioned it. What do you do?"
   }
  },
  "5::Home Maintenance & Repair Coordination": {
@@ -83,7 +89,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, for any repair, get the scope and cost in writing before work starts, even with someone you trust.",
     "Finally, keep warranties and manuals in the Home Binder, so 'is this still covered?' takes seconds."
    ],
-   "ask": "Who's your go-to plumber, and how did you find them?"
+   "ask": "Who's your go-to plumber, and how did you find them?",
+   "scenario": "Build a maintenance calendar for the Thornes' home: heating, air conditioning, gutters, roof, smoke detectors and the pool. What goes on it, and how often?"
   },
   "p2": {
    "why": "Know your spending limit for repairs before the call, not in the middle of it.",
@@ -94,7 +101,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep photos and notes of big repairs, for warranties, insurance and any future sale.",
     "Finally, a maintenance calendar nobody looks at is worse than none, because it gives false comfort."
    ],
-   "ask": "The heating system's annual service is due, but the family has put it off for three months because 'it's working fine.' What's the real risk, and how do you raise it again without it sounding like nagging?"
+   "ask": "The heating system's annual service is due, but the family has put it off for three months because 'it's working fine.' What's the real risk, and how do you raise it again without it sounding like nagging?",
+   "scenario": "At 9 p.m., the housekeeper texts that there's water coming through the kitchen ceiling. Your approval limit for repairs is $1,000, and the emergency plumber quotes $1,800. What do you do tonight?"
   }
  },
  "5::Lifestyle & Personal Support": {
@@ -108,7 +116,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, check the tracker regularly, so nothing arrives as a last-minute panic.",
     "Finally, treat it like any other household system that only works if you actually use it."
    ],
-   "ask": "What would fall apart in your own life if you just stopped remembering it?"
+   "ask": "What would fall apart in your own life if you just stopped remembering it?",
+   "scenario": "In one conversation, Sarah mentions three things: her sister's birthday next month, a dress that needs altering before a gala and a restaurant booking for her anniversary. How do you make sure none of them depends on your memory?"
   },
   "p2": {
    "why": "Keep a note of what was given last year, so you never repeat a gift.",
@@ -118,7 +127,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, errands and appointments, fitted around the work calendar.",
     "Finally, events and experiences: reservations, tickets and family celebrations, confirmed in writing."
    ],
-   "ask": "In one week: Sarah's mother's birthday, the nanny's work anniversary, a client's holiday gift, dry cleaning before a gala and an anniversary dinner booking. Put them in the tracker with owners and deadlines."
+   "ask": "In one week: Sarah's mother's birthday, the nanny's work anniversary, a client's holiday gift, dry cleaning before a gala and an anniversary dinner booking. Put them in the tracker with owners and deadlines.",
+   "scenario": "You're choosing this year's holiday gift for Elias's biggest client. Last year's gift was a bottle of wine. The client has since stopped drinking. What does your tracker need to show, and what do you choose?"
   }
  },
  "5::Creating a Home Binder for a Busy Executive": {
@@ -132,7 +142,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, organize emergency contacts so anyone can find the right person fast.",
     "Finally, test it: could a substitute or a paramedic use it without calling you?"
    ],
-   "ask": "If you were unreachable for 24 hours, what would someone else need to know?"
+   "ask": "If you were unreachable for 24 hours, what would someone else need to know?",
+   "scenario": "You're building the Thornes' home binder from scratch. Name one item you'd put in each of the four sections, and one item you'd deliberately leave out."
   },
   "p2": {
    "why": "A binder is judged by whether someone else can use it cold, not by how complete it looks.",
@@ -141,7 +152,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember its one purpose: someone else, finding critical information, quickly.",
     "Finally, test it with a person who isn't you."
    ],
-   "ask": "You're unexpectedly unreachable for a day, and the Thornes' alarm goes off while the nanny is home with the kids. What does she need to find in the binder in the first two minutes?"
+   "ask": "You're unexpectedly unreachable for a day, and the Thornes' alarm goes off while the nanny is home with the kids. What does she need to find in the binder in the first two minutes?",
+   "scenario": "Test your binder: the nanny has to find the pediatrician's number, the alarm company and the location of the water shut-off valve in under two minutes, without calling you. What would make that possible, and what usually makes it fail?"
   }
  },
  "5::Home Binder: Format, Security & Maintenance": {
@@ -155,7 +167,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, update it the moment something changes.",
     "Finally, check now and then that nobody has written a sensitive number in by mistake."
    ],
-   "ask": "You're reviewing the Thornes' binder and find the safe combination and a bank account number written on the finance page. What do you change, and where does that information go instead?"
+   "ask": "You're reviewing the Thornes' binder and find the safe combination and a bank account number written on the finance page. What do you change, and where does that information go instead?",
+   "scenario": "The Thornes want the binder on a shared tablet in the kitchen and on paper in a drawer. The nanny, housekeeper and driver all need parts of it. How do you set it up, and what never goes in it?"
   }
  },
  "5::Digital Home Binder Tools & Platforms": {
@@ -168,7 +181,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, set permissions per section. A driver needs the household section, not the family's medical details.",
     "Finally, print or export a backup regularly, in case the tool is down."
    ],
-   "ask": "Who in the household needs which section?"
+   "ask": "Who in the household needs which section?",
+   "scenario": "The Thornes already use Notion for family recipes and school schedules. How would you build the digital binder there, and who gets access to which section?"
   },
   "p2": {
    "why": "Remove a departed employee's access on the day they leave.",
@@ -179,7 +193,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, review access whenever staff change.",
     "Finally, test it by asking someone unfamiliar to find something specific."
    ],
-   "ask": "The Thornes are choosing between a shared Notion workspace they already use and a dedicated home-management app with built-in permissions. What do you need to know about who needs what before recommending one?"
+   "ask": "The Thornes are choosing between a shared Notion workspace they already use and a dedicated home-management app with built-in permissions. What do you need to know about who needs what before recommending one?",
+   "scenario": "The Thornes' previous housekeeper left three months ago, and you discover she can still log into the digital binder, which includes the alarm codes. What do you do today, and what process stops it happening again?"
   }
  },
  "5::Procurement and Vendor/Supplier Management": {
@@ -192,7 +207,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, put it in writing: a real contract or statement of work, not a handshake.",
     "Finally, keep managing it: track performance and renewal dates, and have a backup ready."
    ],
-   "ask": "When has the cheapest option ended up costing you more?"
+   "ask": "When has the cheapest option ended up costing you more?",
+   "scenario": "The Thornes need a new house-cleaning company. The first one you find is cheapest and available tomorrow. What else do you compare, and what goes in writing before they start?"
   },
   "p2": {
    "why": "Anyone who works inside the home gets references, insurance and licensing checked first.",
@@ -202,7 +218,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, check references, insurance and licenses before hiring.",
     "Finally, write down scope, price, schedule and cancellation terms, and review the vendor at least once a year."
    ],
-   "ask": "The Thornes need a new landscaping company. Walk us through it: what you'd ask for, what you'd check and what goes in the written agreement."
+   "ask": "The Thornes need a new landscaping company. Walk us through it: what you'd ask for, what you'd check and what goes in the written agreement.",
+   "scenario": "A tree-removal company offers to do urgent work tomorrow for cash, with no written quote. They seem friendly and experienced. What do you check before they step onto the property?"
   }
  },
  "5::Vendor Relationships Beyond the Signature": {
@@ -216,7 +233,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, track renewal dates like any other recurring admin.",
     "Finally, have a backup ready before you need one."
    ],
-   "ask": "What does good vendor management look like after the contract is signed?"
+   "ask": "What does good vendor management look like after the contract is signed?",
+   "scenario": "The Thornes' window cleaner has been paid monthly for a year, but the windows are only cleaned every other visit and Sarah hasn't noticed. How would you have caught this, and what do you do now?"
   },
   "p2": {
    "why": "Signing is the start of the relationship, not the end.",
@@ -225,7 +243,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, keep watching performance, renewals and backups.",
     "Finally, put contract and renewal dates in the same tracker as other household admin."
    ],
-   "ask": "The Thornes' pool service has been paid on time every month, but the pool has turned green twice this summer. What should ongoing vendor management have caught, and what do you do now?"
+   "ask": "The Thornes' pool service has been paid on time every month, but the pool has turned green twice this summer. What should ongoing vendor management have caught, and what do you do now?",
+   "scenario": "The security company contract auto-renewed last month at a higher rate, and nobody noticed. Where should the renewal date have been tracked, and how far ahead?"
   }
  },
  "5::Negotiating Vendor Contracts & Terms": {
@@ -238,7 +257,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, get everything you agree into the written contract.",
     "Finally, renegotiate at renewal instead of letting it roll over automatically."
    ],
-   "ask": "Apart from price, what would you ask a vendor for?"
+   "ask": "Apart from price, what would you ask a vendor for?",
+   "scenario": "The landscaping contract is up for renewal at $900 a month. You have two other quotes: $750 and $820. What do you ask the current vendor for, beyond price, before deciding?"
   },
   "p2": {
    "why": "'This price is only good today' is a sales tactic, not a real deadline.",
@@ -249,7 +269,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep a short note of what you negotiated and why.",
     "Finally, a deal that damages a relationship you depend on isn't really a win."
    ],
-   "ask": "A vendor the family has used happily for two years sends a renewal with a 15 percent increase and no explanation. You have one untested alternative. How do you approach the conversation, and what would make you stay or switch?"
+   "ask": "A vendor the family has used happily for two years sends a renewal with a 15 percent increase and no explanation. You have one untested alternative. How do you approach the conversation, and what would make you stay or switch?",
+   "scenario": "A pool vendor says, 'This discount is only valid if you sign today.' You haven't read the cancellation terms. What do you do?"
   }
  },
  "5::When a Vendor Falls Through": {
@@ -263,7 +284,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, confirm the backup can actually deliver in time, so one failure doesn't become two.",
     "Finally, afterwards, update the vendor records with what happened."
    ],
-   "ask": "What would you do in the first five minutes?"
+   "ask": "What would you do in the first five minutes?",
+   "scenario": "It's Friday at noon. The catering company for tonight's 12-person dinner at the Thornes' has just cancelled. Write the message you send Sarah in the next five minutes, with alternatives."
   },
   "p2": {
    "why": "Try out your backup vendor before an emergency depends on them.",
@@ -273,7 +295,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, give the backup a small job now and then, so you know they're reliable.",
     "Finally, record every failure. A vendor that fails twice should be replaced, not tolerated."
    ],
-   "ask": "The caterer for Sarah Thorne's dinner party for 20 cancels at 2 PM on the day. What do you do in the first five minutes, and what does your message to Sarah say?"
+   "ask": "The caterer for Sarah Thorne's dinner party for 20 cancels at 2 PM on the day. What do you do in the first five minutes, and what does your message to Sarah say?",
+   "scenario": "The backup plumber on your list, whom you've never used, fails to show up during an emergency. What should you have done before you needed them?"
   }
  },
  "5::Vendor NDA Management": {
@@ -285,7 +308,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep a simple record of who has signed, when and what it covers.",
     "Finally, check it again whenever the vendor's work expands."
    ],
-   "ask": "Which household vendors do you think would need an NDA?"
+   "ask": "Which household vendors do you think would need an NDA?",
+   "scenario": "Three new vendors start this month: a gardener, an IT technician to set up the home network and a personal chef. Which ones need an NDA, and why?"
   },
   "p2": {
    "why": "A promise to sign an NDA later isn't an NDA.",
@@ -294,7 +318,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't treat NDAs as a one-time box to tick.",
     "Finally, never give access based on a promise that the paperwork will follow."
    ],
-   "ask": "A new vendor needs temporary access to the Thornes' home security system for a project lasting several weeks. What do you want in place before you grant that access?"
+   "ask": "A new vendor needs temporary access to the Thornes' home security system for a project lasting several weeks. What do you want in place before you grant that access?",
+   "scenario": "The home IT technician's work grows from setting up Wi-Fi to reorganizing the family's personal files. The original NDA only covered network setup. What do you do?"
   }
  },
  "5::The PA Risk Management Framework": {
@@ -308,7 +333,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, for reputational risk, make discretion a daily habit.",
     "Finally, when something happens, check it against all four, not just the obvious one."
    ],
-   "ask": "Which of these categories do you think is easiest to overlook?"
+   "ask": "Which of these categories do you think is easiest to overlook?",
+   "scenario": "The Thornes' nanny posts a photo of the children in the backyard on her public Instagram, with the house number visible. Which risk categories does this touch, and what do you do?"
   },
   "p2": {
    "why": "A burglary isn't one kind of risk; it's physical, financial and privacy risk all at once.",
@@ -318,7 +344,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, operational and reputational risks: disruptions, privacy leaks and social media.",
     "Finally, physical safety: home security, travel and emergencies. Map every incident to every category it touches."
    ],
-   "ask": "A delivery driver slips on the Thornes' icy driveway and posts about it on social media. Map it to every risk category it touches, and say what you'd do first."
+   "ask": "A delivery driver slips on the Thornes' icy driveway and posts about it on social media. Map it to every risk category it touches, and say what you'd do first.",
+   "scenario": "The Thornes' lake house is broken into while they're away. Map it against every risk category: what do you do in the first hour for each?"
   }
  },
  "5::The Four Core Risk Strategies": {
@@ -332,7 +359,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, retain: if insuring costs more than the risk itself, accept it on purpose.",
     "Finally, choose the approach for each specific risk, rather than using the same one for everything."
    ],
-   "ask": "What's the difference between reducing a risk and retaining it?"
+   "ask": "What's the difference between reducing a risk and retaining it?",
+   "scenario": "The Thornes are considering a family ski trip, and their teenage son wants to try back-country skiing. Which risk strategy would you suggest for the back-country part, and what would you suggest for the rest of the trip?"
   },
   "p2": {
    "why": "Most real situations use more than one strategy at once.",
@@ -342,7 +370,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, match by likelihood and impact: big impact, transfer or avoid; small and cheap, retain; frequent but manageable, reduce.",
     "Finally, combine them: insure the car, add a tracker and accept the deductible."
    ],
-   "ask": "Match each one to a strategy: the Thornes' teenager starts driving, a family trip to a country with a serious travel advisory, a $40 phone screen protection plan, and valuable art in the home."
+   "ask": "Match each one to a strategy: the Thornes' teenager starts driving, a family trip to a country with a serious travel advisory, a $40 phone screen protection plan, and valuable art in the home.",
+   "scenario": "Match a strategy to each risk: a leaky pool fence with young children in the house, a $3,000 painting, the family's annual trip to Europe and a scratch-prone rental car. Explain one choice in detail."
   }
  },
  "5::Insurance & Risk at a Glance": {
@@ -356,7 +385,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, twice a year, ask: new property or car? Marriage or divorce? New dependents? Business changes? More wealth? Tell the broker about every yes.",
     "Finally, treat each yes as a gap to close, not a note for later."
    ],
-   "ask": "Could you describe your own insurance coverage in one sentence?"
+   "ask": "Could you describe your own insurance coverage in one sentence?",
+   "scenario": "Build a one-page insurance summary for the Thornes: home, lake house, three cars and an umbrella policy. What columns does it need, and where do you keep it?"
   },
   "p2": {
    "why": "Every 'yes' on the twice-yearly check is a potential gap in cover.",
@@ -366,7 +396,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep the tracker secure and complete.",
     "Finally, tell the broker about every change."
    ],
-   "ask": "In the last six months the Thornes bought a lake house, hired a full-time nanny and started traveling abroad every quarter. Run the check: which gaps do you flag?"
+   "ask": "In the last six months the Thornes bought a lake house, hired a full-time nanny and started traveling abroad every quarter. Run the check: which gaps do you flag?",
+   "scenario": "At the six-month check, you learn the Thornes' daughter got her driver's license and the family bought a $40,000 piano. What does that mean for their coverage, and who do you contact?"
   }
  },
  "5::EA/PA Risk Framework: Information Security": {
@@ -379,7 +410,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, use secure channels for sensitive information, like protected documents or portals, never casual texts.",
     "Finally, know what to do if something leaks: stop it spreading, work out how much got out and escalate. Blame can wait."
    ],
-   "ask": "How do you confirm someone's identity over the phone?"
+   "ask": "How do you confirm someone's identity over the phone?",
+   "scenario": "A caller says they're from the Thornes' bank and need you to confirm the last four digits of Elias's card 'to stop fraudulent activity.' They know his full name and address. What do you do?"
   },
   "p2": {
    "why": "Report a near-miss early; it's far easier to contain than a real breach found late.",
@@ -390,7 +422,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, report even small incidents immediately.",
     "Finally, regularly ask who still needs access to sensitive systems."
    ],
-   "ask": "An email that looks like it's from Elias's bank asks you to confirm his account details to clear a 'security flag.' It looks real, but it arrived at an odd time. What do you do before replying?"
+   "ask": "An email that looks like it's from Elias's bank asks you to confirm his account details to clear a 'security flag.' It looks real, but it arrived at an odd time. What do you do before replying?",
+   "scenario": "You accidentally emailed the family's insurance summary to the wrong 'Sarah.' It's a near-miss: she replied saying she'd deleted it. What do you still do, and why?"
   }
  },
  "5::EA/PA Risk Framework: Operational Continuity": {
@@ -403,7 +436,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, have a backup contact for every critical vendor and system.",
     "Finally, create a simple 'if I'm unreachable' plan, and make sure someone knows it exists."
    ],
-   "ask": "What would break if you were unreachable for 48 hours?"
+   "ask": "What would break if you were unreachable for 48 hours?",
+   "scenario": "You're the only person who knows how to pay the household staff, reset the alarm and book Elias's recurring medical appointments. List what you'd document first, and who would be your backup."
   },
   "p2": {
    "why": "The best way to test a continuity plan is to have someone else follow it.",
@@ -414,7 +448,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep the plan current. An outdated one gives false comfort.",
     "Finally, this isn't pessimism. It's the same risk thinking applied to your own role."
    ],
-   "ask": "You're planning your first two-week vacation in over a year. What do you write down and hand over, so nothing critical slips while you're away?"
+   "ask": "You're planning your first two-week vacation in over a year. What do you write down and hand over, so nothing critical slips while you're away?",
+   "scenario": "You wrote a continuity plan six months ago. When a temp tries to follow it, the alarm company number is wrong and two vendors have changed. What do you change about how you keep the plan current?"
   }
  },
  "5::EA/PA Risk Framework: Reputational Risks": {
@@ -427,7 +462,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, know who needs to hear first if something goes wrong, and who is allowed to speak publicly.",
     "Finally, control what gets shared, with whom and when."
    ],
-   "ask": "Who at your firm is authorized to speak to the press?"
+   "ask": "Who at your firm is authorized to speak to the press?",
+   "scenario": "The Thornes are planning a large garden party. The guest list includes a local politician under investigation and a journalist who wrote critically about the firm. What do you raise, and with whom?"
   },
   "p2": {
    "why": "In a reputational situation, getting it right matters more than getting it fast.",
@@ -438,7 +474,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, know which topics are sensitive for this particular executive.",
     "Finally, when in doubt, escalate. This isn't a call to make alone."
    ],
-   "ask": "A journalist contacts you directly, outside the firm's usual channels, asking for comment on a sensitive matter involving Elias. They're polite but persistent. What do you do, and what do you deliberately avoid?"
+   "ask": "A journalist contacts you directly, outside the firm's usual channels, asking for comment on a sensitive matter involving Elias. They're polite but persistent. What do you do, and what do you deliberately avoid?",
+   "scenario": "A private text from Elias to a friend, joking about a judge, has been screenshotted and is starting to circulate. Sarah asks you what to do. What are your first steps, and what do you avoid?"
   }
  },
  "5::EA/PA Risk Framework: Physical & Travel Safety": {
@@ -451,7 +488,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, work with security staff where they exist, not around them.",
     "Finally, keep emergency and basic medical information where you can find it in seconds."
    ],
-   "ask": "Where would you find the nearest hospital for Elias's next destination?"
+   "ask": "Where would you find the nearest hospital for Elias's next destination?",
+   "scenario": "Elias is speaking at a conference in a city he hasn't visited before. Before he leaves, what safety information do you gather, and where do you keep it?"
   },
   "p2": {
    "why": "Know the limits of your role, and bring in security experts when the risk is real.",
@@ -462,7 +500,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, for high-risk situations, involve professional security.",
     "Finally, agree in advance what happens if a check-in is missed."
    ],
-   "ask": "Elias is attending a public event with heavy media attention, and the venue has only minimal security screening. What do you want arranged beforehand, and who do you involve?"
+   "ask": "Elias is attending a public event with heavy media attention, and the venue has only minimal security screening. What do you want arranged beforehand, and who do you involve?",
+   "scenario": "Elias's daughter is travelling alone to a summer program abroad. She's agreed to check in by text every evening. On day three, there's no message by midnight. What was agreed in advance, and what do you do now?"
   }
  },
  "5::EA/PA Risk Framework: Financial Controls": {
@@ -475,7 +514,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, reconcile recurring spending at least monthly.",
     "Finally, flag anything unusual straight away, even if you're not sure it's wrong."
    ],
-   "ask": "What's your approval limit, in dollars?"
+   "ask": "What's your approval limit, in dollars?",
+   "scenario": "A new pool vendor sends an invoice for $1,250 and asks to be paid to a personal account, 'to save on bank fees.' Your limit is $1,500. What do you check before paying, and what do you do?"
   },
   "p2": {
    "why": "Urgency plus an unusual channel is the classic pattern behind financial fraud.",
@@ -486,7 +526,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep approval records organized, so an audit is simple.",
     "Finally, if a request doesn't fit the usual pattern, confirm it another way, even if that slows things down."
    ],
-   "ask": "An email that seems to be from Elias asks you to urgently wire money to a vendor for a time-sensitive deal and to keep it quiet. The tone sounds like him, but something feels off. What do you do before anything else?"
+   "ask": "An email that seems to be from Elias asks you to urgently wire money to a vendor for a time-sensitive deal and to keep it quiet. The tone sounds like him, but something feels off. What do you do before anything else?",
+   "scenario": "A text from an unknown number says: 'It's Sarah, new phone. Please send $4,000 to this account for the kitchen contractor, I'm in a meeting.' What do you do in the next ten minutes?"
   }
  },
  "5::Private Expense Audit": {
@@ -498,7 +539,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, compare what was charged with what you expected: subscriptions, contracts and staff pay.",
     "Finally, flag anything unclear rather than assuming it's fine."
    ],
-   "ask": "What would you compare the charges against?"
+   "ask": "What would you compare the charges against?",
+   "scenario": "You're doing the Thornes' monthly spending review. Compare the card statement against what: subscriptions, vendor contracts and what else? What would make you stop and flag something?"
   },
   "p2": {
    "why": "A family's private finances deserve the same care as the firm's.",
@@ -507,7 +549,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't treat personal expenses as lower stakes than business ones.",
     "Finally, keep private financial records as securely as any confidential file."
    ],
-   "ask": "During a routine review, you find a recurring $89 monthly charge you don't recognize. What do you do before raising it with the family?"
+   "ask": "During a routine review, you find a recurring $89 monthly charge you don't recognize. What do you do before raising it with the family?",
+   "scenario": "The monthly review shows a $450 charge at a jewellery store that nobody has mentioned. How do you raise it without implying anyone did something wrong?"
   }
  },
  "5::Travel Risk Management": {
@@ -519,7 +562,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, during: keep an emergency contact sheet, copies of documents and safe Wi-Fi habits.",
     "Finally, after: reconcile expenses and file any claims while the details are fresh."
    ],
-   "ask": "Does anyone have a trip coming up we can use as an example?"
+   "ask": "Does anyone have a trip coming up we can use as an example?",
+   "scenario": "The Thornes are going on a two-week holiday to Japan. Walk through what you do before, during and after the trip to keep them safe and the paperwork in order."
   },
   "p2": {
    "why": "Keep a printed copy of the emergency sheet, in case the phone dies.",
@@ -529,7 +573,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, add copies of passport and visa pages, medical notes and a contact at home.",
     "Finally, share it with the traveler and one person at home, and carry a printed copy."
    ],
-   "ask": "Elias is taking his family to Italy for ten days. Let's build the emergency contact sheet together: what goes on it, and who gets a copy?"
+   "ask": "Elias is taking his family to Italy for ten days. Let's build the emergency contact sheet together: what goes on it, and who gets a copy?",
+   "scenario": "Elias is in Mexico City and his phone has been stolen. What should already be on his printed emergency sheet, and who does he call first?"
   }
  },
  "5::Handling a Travel Claim": {
@@ -543,7 +588,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, never admit fault on the executive's behalf, however it looks in the moment.",
     "Finally, only once things are safe, move on to the forms and the claim."
    ],
-   "ask": "Elias's rental car is rear-ended in Lisbon, and the other driver insists it was his fault. He calls you from the roadside. What do you tell him to do, and in what order?"
+   "ask": "Elias's rental car is rear-ended in Lisbon, and the other driver insists it was his fault. He calls you from the roadside. What do you tell him to do, and in what order?",
+   "scenario": "Sarah calls from a hotel in Rome: her luggage, with the children's medication inside, never arrived. Walk through what she does now for safety, evidence and the claim, in that order."
   }
  },
  "5::International Travel Risk & Duty of Care": {
@@ -556,7 +602,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, confirm international health cover, and for riskier places, medical evacuation insurance. It's often not in standard policies and can cost a fortune without it.",
     "Finally, make a destination emergency card: embassy, hospital, local emergency numbers and a check-in schedule."
    ],
-   "ask": "Does standard travel insurance usually cover medical evacuation?"
+   "ask": "Does standard travel insurance usually cover medical evacuation?",
+   "scenario": "Elias is attending a two-day arbitration in a country with a moderate travel advisory. Before booking, what do you check and register, and what goes on his emergency card?"
   },
   "p2": {
    "why": "Decide in advance how long a silence has to be before you act.",
@@ -567,7 +614,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, keep scans of every key document reachable online, separate from the originals.",
     "Finally, agree beforehand what happens if a check-in is missed."
    ],
-   "ask": "Elias is heading to an arbitration in a country with a moderate travel advisory and waves off extra precautions because he's been before. What do you want in place before he leaves, and how do you raise it while respecting his experience?"
+   "ask": "Elias is heading to an arbitration in a country with a moderate travel advisory and waves off extra precautions because he's been before. What do you want in place before he leaves, and how do you raise it while respecting his experience?",
+   "scenario": "Elias's daily check-in during an international trip is set for 8 p.m. local time. It's now 10 p.m. with no word and his phone goes to voicemail. What was your agreed plan, and what do you do next?"
   }
  },
  "5::Mid-Point 1-on-1 Performance Review": {
@@ -579,7 +627,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, use the real data: Knowledge Check scores, Practice Lab history and roleplay results.",
     "Finally, leave with one specific focus for the second half, not a vague 'try harder.'"
    ],
-   "ask": "Which day or tool feels shakiest for you right now?"
+   "ask": "Which day or tool feels shakiest for you right now?",
+   "scenario": "Your Knowledge Check scores are strong, but your Day 3 travel exercise scored low and you ran out of time on the Day 4 CRM task. What do you bring to your 1-on-1, and what focus do you ask for?"
   },
   "p2": {
    "why": "Raise it now, while there's still time to fix it.",
@@ -588,7 +637,8 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't treat this as a formality.",
     "Finally, if something specific is hard, say so directly."
    ],
-   "ask": "Look honestly at Days 1 to 5. Which day or Practice Lab tool would you most like to revisit before we move on, and what exactly still feels unclear?"
+   "ask": "Look honestly at Days 1 to 5. Which day or Practice Lab tool would you most like to revisit before we move on, and what exactly still feels unclear?",
+   "scenario": "A trainee says, 'Everything's fine,' in their mid-point review, but their Practice Lab history shows repeated low scores on email tasks. If you were the trainer, what would you ask, and what would you agree together?"
   }
  }
 });
