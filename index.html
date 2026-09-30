@@ -9042,7 +9042,7 @@ function initFinancial(body){
     <div id="auditResult"></div>
   `;
   const partC = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Attention to Detail Test</h3>
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. Attention to Detail Test</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 14px;">Below are three real documents for Matter 24-0113 — an invoice, a payment receipt, and the raw time-tracking export they were both supposed to come from. Nothing here is wrong within any single document at a glance — the errors only show up when you actually cross-check one against another, the way a careful EA would before filing.</p>
 
     <div class="mock-doc mock-invoice">
@@ -9121,7 +9121,7 @@ function initFinancial(body){
     <button class="btn btn-navy btn-sm" style="margin-top:16px;" onclick="downloadFinancialPdf()">⬇ Download My Work</button>
   `;
   const partF = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Invoice Follow-Up</h3>
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Invoice Follow-Up</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Today is June 30. For each open invoice in the register, choose the right next step.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
@@ -9905,7 +9905,8 @@ async function submitCalls(){
 window.submitCalls = submitCalls;
 async function downloadCallsPdf(){
   await ensureTraineeName();
-  const lines = ["## A. Cold-Calling Outreach Log"];
+  const tm = (typeof TM_TASKS!=="undefined") ? TM_TASKS.map((x,i)=>`${i+1}. ${x.t} — your call: ${((document.getElementById("tmTask"+i)||{}).value)||"(not chosen)"}`) : [];
+  const lines = ["## A. Prioritize the Day", ...tm, "", "Reply to the partner:", ((document.getElementById("tmPushback")||{}).value||"").trim()||"(not written)", "---", "## B. Cold-Calling Outreach Log"];
   COLD_LEADS.forEach((l,i)=>{
     const date=document.getElementById(`logDate${i}`)?.value||"";
     const outcome=document.getElementById(`logOutcome${i}`)?.value||"";
@@ -9915,7 +9916,7 @@ async function downloadCallsPdf(){
     lines.push(`   Called: ${date||"—"}   Outcome: ${outcome||"—"}   Follow-up: ${followup||"—"}   Notes: ${notes||"—"}`);
   });
   const leadGenDraft = document.getElementById("leadGenDraft");
-  lines.push("---", "## B. Lead Generation Practice", `Scenario: ${LEAD_GEN_SCENARIO.text}`, `Your plan: ${leadGenDraft && leadGenDraft.value.trim() ? leadGenDraft.value.trim() : "(not written)"}`);
+  lines.push("---", "## C. Lead Generation Practice", `Scenario: ${LEAD_GEN_SCENARIO.text}`, `Your plan: ${leadGenDraft && leadGenDraft.value.trim() ? leadGenDraft.value.trim() : "(not written)"}`);
   buildAndSavePdf("LSH EA / PA Upskill Program", "Cold-Calling & Lead Generation — Results", lines, "LSH_Cold_Calling");
 }
 window.downloadCallsPdf = downloadCallsPdf;
@@ -16613,7 +16614,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.30-v";
+var APP_BUILD = "2026.09.30-w";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -16676,7 +16677,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=2"></script>
 <script src="/js/days/day10/notes.js?v=1"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=wide2"></script>
+<script src="/js/eapa-updates.js?v=wide3"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=1"></script>
 </body>
