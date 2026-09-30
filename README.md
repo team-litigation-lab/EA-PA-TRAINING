@@ -34,6 +34,12 @@ A few rules keep saved progress safe:
   - JSON must be valid;
   - the Worker must build (`wrangler deploy --dry-run`; nothing is deployed).
 - **Smoke test in a browser:** serves the site through `worker.js` with an in-memory KV store (`.github/scripts/server.mjs`), signs in as a trainee, and renders every lesson slide, knowledge check, page and practice tool at desktop and phone width. It fails on any page error or a page that scrolls sideways (`.github/scripts/smoke.cjs`).
+- **Presenter view** (`.github/scripts/presenter.cjs`): opens Presenter view as a trainer and watches the slides window you share in Google Meet, which must never flicker.
+  - Next draws the slide once, cutting straight in with no slide-in or fade.
+  - The console re-drawing (its live copy reconnecting) doesn't draw the slides window again.
+  - A long slide's next and previous pages change in place.
+  - A resize lays the slide out again, still without animation.
+  - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
 
 To run the same checks locally:
 
@@ -41,6 +47,7 @@ To run the same checks locally:
 node .github/scripts/check-site.mjs
 node .github/scripts/server.mjs 8787 &      # then, with Playwright installed:
 node .github/scripts/smoke.cjs http://localhost:8787/
+node .github/scripts/presenter.cjs http://localhost:8787/
 ```
 
 `.assetsignore` keeps `worker.js`, the Wrangler config, `.github` and Markdown files from being published with the site.
