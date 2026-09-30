@@ -1491,13 +1491,21 @@ rect.svg-callout-badge{animation:none;}
 }
 .lab-attempt-banner{display:none !important;}
 
-/* ---------- dashboard v2 (sidebar layout — structure only, original colours) ---------- */
+/* ---------- dashboard v2 (stats band above the days — structure only, original colours) ---------- */
 main.main-dash{max-width:1600px;}
-.dash-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:18px;align-items:stretch;}
+.dash-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:stretch;}
 .dash-main{min-width:0;}
 .dash-main .module-grid{margin-bottom:0;}
-.dash-side{background:linear-gradient(180deg, var(--navy) 0%, var(--navy-soft) 100%);border-radius:14px;padding:16px;box-shadow:var(--shadow);}
-.dash-side-inner{display:flex;flex-direction:column;gap:14px;position:sticky;top:84px;}
+/* the progress stats run across the page in one navy band, above the Day cards */
+.dash-side{order:-1;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);border-radius:14px;padding:16px;box-shadow:var(--shadow);}
+.dash-side-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;align-items:stretch;}
+.dash-side-inner > .card{margin:0;}
+/* one row on a desktop: the four numbers, then the wider Feedback and Ranking cards */
+@media(min-width:1001px){.dash-side-inner{grid-template-columns:repeat(4,minmax(0,1fr)) repeat(2,minmax(0,1.6fr));}}
+.dash-side-inner > .tfb-dash, .dash-side-inner > .rank-card{grid-column:span 2;}
+@media(min-width:1001px){.dash-side-inner > .tfb-dash, .dash-side-inner > .rank-card{grid-column:auto;}}
+.dash-side-inner > .card.stat:not(.tfb-dash):not(.rank-card){display:flex;flex-direction:column;justify-content:center;}
+.dash-side .tfb-dash .tfb-dash-stars{margin-bottom:8px;}
 .dash-side .card.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);box-shadow:none;}
 .dash-side .stat .num{color:#fff;}
 .dash-side .stat .lbl{color:#C9CCDD;}
@@ -2004,7 +2012,7 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
   .tfb-fab .fab-label{display:none;}
 }
 
-/* bottom action bar lines up with the bottom of the stats panel */
+/* bottom action bar sits at the bottom of the Day cards column */
 @media(min-width:1001px){
   .dash-layout{align-items:stretch;}
   .dash-main{display:flex;flex-direction:column;}
@@ -16380,7 +16388,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.09.30-a";
+var APP_BUILD = "2026.09.30-b";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
