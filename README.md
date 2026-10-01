@@ -20,6 +20,10 @@ To change a day, edit only that day's folder, so one day's edit can't break anot
 
 **Blocks.** A topic with a `block` title opens a new part of the day with its own divider slide (*Day N · Part X of Y*, the block's title and its topics, or its sections when it has several). Day 4 uses two: *Time Management & Productivity* (moved from Day 3, plus Day 2's *Strategic Time Engineering* and *Time Management Requires Energy Management*) and *Data & Outreach*. To add one, set `"block": "<title>"` on the part's first topic.
 
+**Slides and Lesson Notes.** A topic slide shows each point's key line (`slideBrief` in `js/eapa-updates.js`: the first sentence, without bracketed asides, cut at a dash or colon when still long); "This connects directly to …" lines and the Go Deeper box stay off the slide. The full text of every topic is each day's **📖 Lesson Notes** in Handouts (Read, or ⬇ PDF), and **📖 Full notes for this topic** on a slide opens it at that topic. Write the full text in `lessons.js`; the slide's short version follows on its own.
+
+**Moving a Quick Check to another topic on the same day.** Change its `afterIndex` and add it to `QC_ANCHOR_MOVES` in `index.html` (`[day, the topic it used to follow, question]`), so saved answers and places move with it.
+
 A few rules keep saved progress safe:
 - **Titles are keys.** Topic titles must stay unique within a day, because notes, scripts and saved progress are matched by title.
 - **Adding or reordering topics.** A trainee's saved place and Quick Check answers are keyed by topic position. So when topics are added or reordered, also add the day's previous title order to the next entry in `DAY_LAYOUTS` in `index.html`. That moves each trainee's saved place to the same topic.
@@ -148,6 +152,15 @@ into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes co
 
 **Restore:** `wrangler kv key put --namespace-id=b121aa911590471bbad351d03274d7f4 <key> <value>` for single keys (values are in `kv-courses.json`), `wrangler d1 execute <database> --remote --file=d1-<name>.sql` into an empty database.
 
+## 📖 Handouts, Orientation and the Blueprint
+
+- **Handouts → 📖 Lesson Notes:** one card per day with the full text of every topic (see *Slides and Lesson Notes* above).
+- **Handouts → Templates & Checklists:** one per day (`HANDOUT_CONTENT` in `index.html`; Days 1–4 are set in `js/eapa-updates.js` to follow today's days: Day 1 command hierarchy, gatekeeping, BLUF and the Three C's; Day 2 inbox triage and safe AI use; Day 3 travel and court deadlines; Day 4 prioritizing the day and client data cleanup).
+- **Admin → 🧭 Orientation** is the screen-share deck; the **Blueprint PDF** (`/blueprint.pdf`, also in Handouts) is built from it and republishes itself after each build. Its Dashboard slide shows today's dashboard (day cards filling the screen, the scores band under them); its day-by-day roadmap reads the day titles and labs from the portal.
+- **Admin → SOP Reference:** each day's session plan ends with the take-home Lesson Notes; the Facilitator Guide's daily rhythm points trainees to them at the close.
+
 ## AI relay for the Training Portal
 
 `worker.js` → `/api/ai-relay` lets the LSH Training Portal's simulators (Call Simulator, Calendaring, Email Replies) send their Gemini calls from this Worker's US placement, since Gemini refuses some regions the Portal's Pages Functions run in (e.g. Hong Kong). It takes the same body as `/api/claude` (plus `json` and `temperature`) and uses this Worker's key pool. It only answers requests carrying `X-Relay-Key` equal to the secret **`AI_RELAY_SECRET`**; set the same value on the Portal's Pages project (see Training-Portal `SIMULATORS.md`). Without the secret the endpoint returns 403.
+
+**Gemini region refusals.** Gemini answers 400 *User location is not supported* for some regions. The Worker is placed in the US (`wrangler.json`), but placement is best-effort, so a refused call is sent again from **`GeminiRelay`**, a Durable Object pinned to western North America (`locationHint: "wnam"`, binding `GEMINI_RELAY`), and that Worker instance keeps using it. The relay only forwards to `generativelanguage.googleapis.com`. A Durable Object can't be created by a branch preview build, so a PR that changes its class shows a red *Workers Builds* preview; the `main` deploy applies it.

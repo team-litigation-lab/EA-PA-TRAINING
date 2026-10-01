@@ -2341,7 +2341,7 @@ function sopProgramFlow(){
         <li><b>Practise:</b> the day's Practice Lab, then a live debrief.</li>
         <li><b>Discuss:</b> the end-of-day question.</li>
         <li><b>Assess:</b> Knowledge Check (70% = day complete).</li>
-        <li><b>Close:</b> feedback button, preview tomorrow.</li></ol></section>
+        <li><b>Close:</b> feedback button, point trainees to the day\'s <b>📖 Lesson Notes</b> in Handouts (the full text behind the slides), preview tomorrow.</li></ol></section>
       <section class="card sopf-card"><h3>4 · Between sessions</h3><ul>
         <li>Send each trainee's <b>Day-by-Day Feedback</b> (Trainee Audit → View Detail).</li>
         <li>Set <b>🎯 Focus</b> items for anyone who needs a specific next step.</li>
@@ -2971,4 +2971,90 @@ if(document.querySelector(".topbar")) render();
 @media(max-width:760px){ .ln-more span{display:none;} }
 `; document.head.appendChild(st);
   if(typeof render === "function" && typeof state !== "undefined" && (state.view === "day" || state.view === "handouts")){ try{ render(); }catch(e){} }
+})();
+
+/* ================= Orientation / Blueprint, SOP Reference and handouts follow today's platform =================
+   • Orientation (and the Blueprint PDF built from it): how slides show key lines with 📖 Full notes, the dashboard
+     as it is now (day cards filling the screen, the scores band under them), Handouts with the Lesson Notes.
+   • Admin → SOP Reference: each day's session plan ends with the take-home Lesson Notes.
+   • Handouts & Templates: Days 1–4 follow the days' topics now (gatekeeping and the Three C's on Day 1, inbox
+     triage and AI on Day 2, travel and court deadlines on Day 3, prioritizing the day on Day 4). */
+(function(){
+  if(typeof window.orientSlides === "function" && !window.orientSlides.__now){
+    const __o = window.orientSlides;
+    const card = (n, cls)=>`<div class="or-d2-card ${cls||""}"><span>Day ${n}</span><i>Start</i><u>☰ Topics · ✓ Finish</u></div>`;
+    const DASH = `
+     <div class="or-dash2">
+       <div class="or-box or-hero"><span class="or-num">1</span><b>Banner &amp; progress track</b><em>Days 1–10 · ✓ = passed · click a circle to jump to that day</em></div>
+       <div class="or-box or-cards"><span class="or-num">2</span><b>Day cards fill the screen</b><em>Start a day · ☰ Topics lists its topics · ✓ Finish Training · 💬 trainer feedback appears on the card</em>
+         <div class="or-d2-row">${[1,2,3,4,5].map(n=>card(n, n%3===2 ? "or" : "")).join("")}</div></div>
+       <div class="or-box or-band"><span class="or-num">3</span><b>Scores band, under the lessons</b><em>Program complete · best competency score · quiz average · days done · 💬 your feedback · ranking</em></div>
+       <div class="or-box"><span class="or-num">4</span><b>Resume &amp; certificate</b><em>▶ Resume where you left off · download your certificate when earned</em></div>
+     </div>`;
+    window.orientSlides = function(){
+      const slides = __o.apply(this, arguments);
+      const at = k => slides.findIndex(x => x.k === k);
+      let i = at("A day");
+      if(i >= 0) slides[i] = Object.assign({}, slides[i], {body: slides[i].body.replace(/One topic at a time, every slide the same size\.[\s\S]*?Your place is saved\./, "One topic at a time, the key points on each slide. 📖 Full notes opens the complete text, which is also in Handouts → Lesson Notes. Your place is saved.")});
+      i = at("Dashboard");
+      if(i >= 0) slides[i] = Object.assign({}, slides[i], {body: DASH});
+      i = at("Navigation");
+      if(i >= 0) slides[i] = Object.assign({}, slides[i], {body: slides[i].body.replace("Printable checklists and Excel templates for each day.", "📖 Lesson Notes (the full text of every topic) and printable templates for each day.")});
+      return slides;
+    };
+    window.orientSlides.__now = true;
+  }
+
+  if(typeof sopLiveSections === "function" && !sopLiveSections.__notes){
+    const __s = sopLiveSections;
+    sopLiveSections = function(d){
+      const sec = __s.apply(this, arguments);
+      const plan = sec.find(x => x.type === "table" && /^Session plan/.test(x.h));
+      if(plan && d) plan.rows.push(["Take-home reading", "—", `Handouts → 📖 Day ${d.id} Lesson Notes: the full text of every topic (the slides show the key lines). Trainees read it after the session or download the PDF.`]);
+      return sec;
+    };
+    sopLiveSections.__notes = true;
+  }
+
+  if(typeof HANDOUT_CONTENT === "object" && !HANDOUT_CONTENT.__now){
+    const H = HANDOUT_CONTENT, old2 = H[2], old3 = H[3];
+    const pick = (h, re) => ((h && h.blocks) || []).filter(b => re.test(b.h));
+    H[1] = Object.assign({}, H[1], {title:"Command Hierarchy, Gatekeeping & BLUF Checklist", kind:"Checklist + scripts",
+      intro:"Day 1 at your desk: who decides what, how to screen and redirect without alienating anyone, and how to write so the bottom line comes first.",
+      blocks: H[1].blocks.concat(pick(old3, /./), pick(old2, /Three C/))});
+    H[2] = {title:"Inbox Triage & Safe AI Use Card", icon:"📥", kind:"Printable card",
+      intro:"Run the inbox as a control system: tier every item, brief the executive once a morning, and clear every AI use against the firm's rules first.",
+      blocks:[
+        {type:"table", h:"The Priority Matrix", headers:["Tier","What lands here","Your move"], rows:[
+          ["1 · Immediate","Legal deadlines, high-value clients, media, financial approvals, crisis comms","Tell the executive now — no exceptions"],
+          ["2 · Strategic","Revenue opportunities, partnerships, board comms, vendor negotiations","Draft a response within 2–4 hours"],
+          ["3 · Routine","Newsletters, internal FYIs, non-urgent scheduling","Batch into one daily block"],
+          ["4 · Archive / delegate","Promotions, automated notices, requests another team owns","File or forward — no executive time"]], blank:0},
+        {type:"checklist", h:"Tiering rules", items:["Classify every new item before acting on it","Not sure? Treat it as Tier 1 until you confirm otherwise","Re-tier when the facts change (a vendor email that mentions a missed payment is now Tier 1)"]},
+        {type:"template", h:"Morning briefing (same time every day)", lines:["Needs you today: ______________________________ by ______","Needs you today: ______________________________ by ______","Handled / in progress: ______________________________","Handled / in progress: ______________________________","Heads-up (this week): ______________________________"]},
+        {type:"checklist", h:"Before any AI use", items:["I know this attorney's and this matter's AI preference","The task doesn't decide legal judgment, case strategy or client representation","Nothing privileged or confidential goes into the tool without approval","I'll review every word of the output before it's used","Unsure? I ask first"]}]};
+    H[3] = {title:"Travel & Court-Deadline Checklist", icon:"🧳", kind:"Checklist",
+      intro:"Write it once, reuse it every trip — and count every court deadline from the source, with a second person checking it.",
+      blocks:[
+        {type:"checklist", h:"Documents (check first)", items:["Passport valid 6+ months beyond the travel dates","Visa / entry requirements checked for this trip, not a past one","Copies of passport and IDs stored securely"]},
+        {type:"checklist", h:"Bookings & logistics", items:["Flights, hotel and ground transport line up at every leg","Car pickup confirmed: time, place, driver contact","Buffer between connections","Loyalty numbers applied to every booking","One-page itinerary sent (not scattered confirmations)"]},
+        {type:"checklist", h:"Contingency", items:["Backup flight / route identified for the key leg","The trip's hard deadline (hearing, closing) noted","Contingency contact at the destination","Health & safety prep for this destination"]},
+        {type:"template", h:"Court deadline count", lines:["Trigger event & date (with source): ______________________________","Rule & kind of days (calendar / court): ______________________________","Count starts the day after the trigger → last day: __________","Weekend / court holiday? Moved to: __________   Service by mail +3? ____","Docketed with the rule cited · reminders at 14 / 7 / 2 days: [ ]","Second-person check by: __________"]}]};
+    const sched = pick(old2, /top 3|Hour by hour/);
+    H[4] = Object.assign({}, H[4], {title:"Prioritize the Day & Client Data Cleanup", kind:"Worksheet + spreadsheet template",
+      intro:"Plan the day's top three and protect the time for them, then clean contact data in order: de-duplicate → standardize → filter → sort.",
+      blocks: sched.concat(H[4].blocks)});
+    Object.defineProperty(H, "__now", {value:true});
+  }
+
+  const st = document.createElement("style"); st.id = "orient-now"; st.textContent = `
+.or-dash2{display:flex;flex-direction:column;gap:10px;}
+.or-d2-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px;}
+.or-d2-card{background:#fff;border:1px solid #E3E6EE;border-top:4px solid #4A5277;border-radius:10px;padding:8px 8px 9px;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;color:var(--navy);}
+.or-d2-card.or{border-top-color:var(--orange);}
+.or-d2-card span{font-weight:800;letter-spacing:.06em;color:var(--orange-deep);font-size:10.5px;text-transform:uppercase;}
+.or-d2-card i{font-style:normal;font-weight:700;background:#ECEEF5;border-radius:7px;width:100%;text-align:center;padding:4px 0;}
+.or-d2-card u{text-decoration:none;color:#5B6178;font-size:10px;}
+.or-box.or-band{background:#F7F8FB;border:1px solid #E3E6EE;border-style:solid;}
+`; document.head.appendChild(st);
 })();
