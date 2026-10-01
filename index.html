@@ -3122,8 +3122,8 @@ const mem = {}; // in-memory fallback if window.storage is unavailable
 
 /* ============================================================
    CLOUD PROGRESS — every trainee's progress is saved to the
-   server (Cloudflare KV, key "progress:<traineeId>"), not just to
-   this browser. Any change is saved within ~1.5s; logging in on
+   server (key "progress:<traineeId>": in R2, with a daily copy in
+   KV — worker.js → dataPut), not just to this browser. Any change is saved within ~1.5s; logging in on
    any device restores it; logging out flushes it first.
    ============================================================ */
 const PERSONAL_KEYS = ["day-progress","practice-progress","lab-attempts-global","lab-attempts-by-day","admin-unlocked-days","notes","completed-lab-actions",
