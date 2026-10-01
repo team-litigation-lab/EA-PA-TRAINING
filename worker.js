@@ -62,6 +62,41 @@ function candidateIds(name, batch) {
   return { newId: b ? `${slug}--${b}` : slug, legacyId: slugPart(name).slice(0, 40) || "trainee" };
 }
 
+/* ---------- trainees' saved progress lives in R2 ----------
+   Free Workers KV allows 1,000 writes a day for the whole account, and this namespace is shared with the
+   other LSH courses (ft:, cm:, pd:, md:). A trainee's progress (progress:<id>, the copy of their work the
+   portal saves a few seconds after each change) is by far the most-written record, so with the R2 binding
+   (DOCUMENTS, bucket lshtraining) it's kept in R2 under eapa/ (about a million writes a month free).
+   - KV still gets a copy at most once a day per trainee (R2_KV_COPY_MS), so the nightly backup
+     (.github/scripts/backup.mjs, which exports KV) has everyone's progress from the last day.
+   - A record saved before the move, or one not yet copied over, is read from KV.
+   - Everything else stays in KV: the LSH Training Portal reads trainee:, feedback:, tfeedback: and
+     checkin: from the namespace directly (its program progress and attendance pages).
+   Without the R2 binding everything stays in KV, as before. */
+const R2_ROOT = "eapa/";
+const R2_KV_COPY_MS = 20 * 3600 * 1000;
+const inR2 = (env, key) => !!env.DOCUMENTS && key.startsWith("progress:");
+async function dataGet(env, key) {
+  if (inR2(env, key)) {
+    const obj = await env.DOCUMENTS.get(R2_ROOT + key);
+    if (obj) return obj.text();
+  }
+  return env.LSH_KV.get(key);
+}
+async function dataPut(env, key, value) {
+  if (!inR2(env, key)) return env.LSH_KV.put(key, value);
+  const prev = await env.DOCUMENTS.head(R2_ROOT + key);
+  let kvAt = Number((prev && prev.customMetadata && prev.customMetadata.kvAt) || 0);
+  if (Date.now() - kvAt >= R2_KV_COPY_MS) {
+    try { await env.LSH_KV.put(key, value); kvAt = Date.now(); } catch (e) { /* KV's writes ran out for the day: the save still goes to R2, and the next one copies it */ }
+  }
+  await env.DOCUMENTS.put(R2_ROOT + key, value, { httpMetadata: { contentType: "application/json" }, customMetadata: { kvAt: String(kvAt) } });
+}
+async function dataDelete(env, key) {
+  if (inR2(env, key)) await env.DOCUMENTS.delete(R2_ROOT + key);
+  await env.LSH_KV.delete(key);   // and the copy (or the record from before the move), or it would be read back
+}
+
 /* ---------- what a trainee may touch ---------- */
 const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
@@ -74,6 +109,7 @@ function canRead(tok, key) {
 async function traineeWrite(env, tok, key, value) {
   const id = tok.id;
   let incoming; try { incoming = JSON.parse(value); } catch (e) { return "Invalid JSON"; }
+  if (key === `progress:${id}`) { await dataPut(env, key, value); return null; }   // their own copy, saved as is
   const existingRaw = await env.LSH_KV.get(key);
   const existing = existingRaw ? JSON.parse(existingRaw) : null;
   if (key === `trainee:${id}`) {
@@ -84,7 +120,6 @@ async function traineeWrite(env, tok, key, value) {
     merged.id = id;
     await env.LSH_KV.put(key, JSON.stringify(merged)); return null;
   }
-  if (key === `progress:${id}`) { await env.LSH_KV.put(key, value); return null; }
   if (key === `feedback:${id}`) {
     // Trainees (auto-review) may add days and mark reviews read — never rewrite a trainer's review.
     const out = existing && existing.days ? JSON.parse(JSON.stringify(existing)) : { days: {} };
@@ -243,9 +278,13 @@ async function callGemini(env, rawBody) {
 }
 
 async function listAll(env, prefix) {
-  const keys = []; let cursor;
-  do { const r = await env.LSH_KV.list({ prefix, cursor }); r.keys.forEach((k) => keys.push(k.name)); cursor = r.list_complete ? null : r.cursor; } while (cursor);
-  return keys;
+  const keys = new Set(); let cursor;
+  do { const r = await env.LSH_KV.list({ prefix, cursor }); r.keys.forEach((k) => keys.add(k.name)); cursor = r.list_complete ? null : r.cursor; } while (cursor);
+  if (env.DOCUMENTS && ("progress:".startsWith(prefix) || prefix.startsWith("progress:"))) {   // and the progress kept in R2
+    let c;
+    do { const r = await env.DOCUMENTS.list({ prefix: R2_ROOT + prefix, cursor: c }); r.objects.forEach((o) => keys.add(o.key.slice(R2_ROOT.length))); c = r.truncated ? r.cursor : null; } while (c);
+  }
+  return [...keys];
 }
 
 /* ---------- 🕘 automatic Time In (js/attendance.js) ----------
@@ -382,11 +421,22 @@ export default {
       if (path === "/api/storage/get") {
         if (!key) return json({ error: "Missing key" }, 400);
         if (!canRead(tok, key)) return json({ error: "Not allowed" }, 403);
-        return json({ value: await env.LSH_KV.get(key) });
+        return json({ value: await dataGet(env, key) });
+      }
+      if (path === "/api/storage/get-many") {
+        // Several records in one request (the admin ledger, attendance, a trainee's tasks for every
+        // day): every Worker request counts toward Cloudflare's daily limit for the whole account, so
+        // lists aren't fetched one request per record. The same rule as /get for each key; a key
+        // this user may not read is left out.
+        const keys = Array.isArray(body.keys) ? body.keys.map((k) => String(k || "")) : [];
+        if (!keys.length || keys.length > 100) return json({ error: "Send 1 to 100 keys" }, 400);
+        const values = {};
+        await Promise.all(keys.map(async (k) => { if (k && canRead(tok, k)) values[k] = await dataGet(env, k); }));
+        return json({ values });
       }
       if (path === "/api/storage/set") {
         if (!key) return json({ error: "Missing key" }, 400);
-        if (tok.role === "a") { await env.LSH_KV.put(key, body.value); return json({ ok: true }); }
+        if (tok.role === "a") { await dataPut(env, key, body.value); return json({ ok: true }); }
         const err = await traineeWrite(env, tok, key, body.value);
         return err ? json({ error: err }, 403) : json({ ok: true });
       }
@@ -396,7 +446,7 @@ export default {
       }
       if (path === "/api/storage/delete") {
         if (tok.role !== "a") return json({ error: "Not allowed" }, 403);
-        await env.LSH_KV.delete(key); return json({ ok: true });
+        await dataDelete(env, key); return json({ ok: true });
       }
       return json({ error: "Unknown endpoint" }, 404);
     } catch (e) {

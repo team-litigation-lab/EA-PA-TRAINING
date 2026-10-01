@@ -1,6 +1,6 @@
 # LSH EA / PA Training
 
-The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with progress kept in the `LSH_KV` KV namespace.
+The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with its records in the `LSH_KV` KV namespace and trainees' saved progress in R2 (see "Where records are kept").
 
 **🏠 Main Portal (admins):** while an admin is signed in, the top bar has **🏠 Main Portal** and the Admin screen has **← Back to Main Portal** (next to Log out). Both open the LSH Training Portal's Training Directory (`https://cm-training-activity.pages.dev/programs.html`), where admins open each program. Trainees and the 👁 Trainee view don't show them. It's `js/portal-link.js`, the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them.
 
@@ -39,6 +39,64 @@ Trainers take each day's attendance in **Admin → 🕘 Attendance** (`js/attend
 - **Google Sheet:** the LSH Training Portal keeps the attendance Google Sheet's **Platform Attendance** tab in step, both ways: everything here (automatic Time Ins included) goes to the sheet every 15 minutes, and edits made in the sheet to Training, Time In, Time Out, Status or Notes come back here straight away. See the Training Portal's README.
 - **Storage:** `attendance:<batch key>:<YYYY-MM-DD>` (`_none` for no batch) = `{batch, date, day, training, rows:{<trainee id>:{name, training, timeIn, timeOut, status, note, at, by}}}`, with no key prefix. The Worker's `/api/checkin` records the automatic Time In: `checkin:<YYYY-MM-DD>:<trainee id>` = `{timeIn, at, name, batch, training}` is the automatic Time In (each trainee's own key, so a room signing in at once never overwrites one another; its KV metadata carries the same for the portal; kept 40 days). Only admins can read or write these records.
 
+## 📉 Staying under Cloudflare's daily request limit
+
+On Cloudflare's free plan, Workers and Pages Functions get **100,000 requests a day for the whole account**: this portal's Worker (everything under `/api/` and `/version`) and the other LSH sites on the same account (the Case Management System's Pages Functions, for one) share it. When it runs out, the Worker answers 429 ("Error 1027") until 00:00 UTC: pages still load, but sign-in, saving and the trainer's screens don't work. The Workers Paid plan ($5 a month) raises the limit to 10 million requests a month. Usage is under **Workers & Pages** in the Cloudflare dashboard. Static files (the page, `js/`, images) are free and don't count.
+
+So an open page asks the server sparingly (`POLL` in `index.html`), and not at all while its tab is in the background. When it's back, whatever came due runs then; a quick look at another tab (Google Meet) asks nothing:
+
+| What | How often | Before |
+|---|---|---|
+| A trainee's access and new tasks (`startApprovalPolling`) | every minute: their record, and the tasks for every unlocked day in one request | every 45 s, one request per day, also in the background |
+| A Practice Lab attempt reset (`liveTick`) | every minute (the minute check above counts) | every 10 s |
+| Trainer feedback and Focus items | every 2 minutes | every 45 s |
+| Waiting for approval | every 15 s | every 8 s |
+| Admin: Trainee Audit, Rankings, Trainee Feedback | every minute, every trainee in one request | every 30 s, one request per trainee |
+| A new version (`/version`) | every 3 minutes (a change is confirmed 20 s later) | every 45 s |
+
+Lists of records (the Trainee Audit, attendance, trainee feedback, tasks) are read with `/api/storage/get-many` (up to 100 keys, the same rules as `/api/storage/get` for each key), not one request per record. A trainee is signed out as revoked only when the server answers that their record is gone or not approved: a server that doesn't answer (offline, or the daily limit) no longer signs anyone out.
+
+## 🗄 Where records are kept (KV and R2)
+
+The `LSH_KV` namespace is shared by every LSH course (EA/PA keys have no prefix; the others start with `ft:`, `cm:`, `pd:`, `md:`), and free Workers KV allows **1,000 writes a day** for the whole account: past that, saving fails until 00:00 UTC. A trainee's progress (`progress:<id>`, the copy of their work the portal saves a few seconds after each change) is by far the most-written record, so `worker.js` keeps it in **R2** instead (the `DOCUMENTS` binding, bucket `lshtraining`, under `eapa/`; about a million writes a month free):
+
+- KV still gets a copy of each trainee's progress **at most once a day**, so the nightly backup (which exports KV) has everyone's progress from the last day. If KV's writes have run out for the day, the save still goes to R2 and the next one makes the copy.
+- Progress saved before the move, or not yet copied over, is read from KV; lists include both; deleting removes both.
+- Everything else stays in KV. The LSH Training Portal reads `trainee:`, `feedback:`, `tfeedback:` and `checkin:` from the namespace directly (its program progress and attendance pages), so those can't move without changing the Portal too.
+- Without the R2 binding, everything stays in KV as before.
+
+Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/scripts/storage.mjs`.
+
+## 💳 Monthly request budget (hard limit for the whole Cloudflare account)
+
+The Workers Paid plan includes **10 million requests a billing month** across every Worker and Pages Function on the account (all the LSH sites: this course, the other courses, the CMS, the Training Portal, Ring Channel, the Knowledge Base), then charges **$0.30 per extra million**. Cloudflare has no spending cap, so `.github/workflows/request-budget.yml` is one. Every 10 minutes it:
+
+- reads the billing month's requests so far from Cloudflare's analytics (Workers and Pages Functions, per script) and shows them in the run's summary (**Actions → Request budget → a run**), with a projection for the month;
+- at **9,990,000** (`REQUEST_LIMIT`) switches the sites' server parts off until the next billing month, and the run turns red (GitHub emails you):
+  - **Workers:** their `workers.dev` address is turned off, so requests never reach them (the sites show Cloudflare's "not found" page);
+  - **Pages projects with Functions** (the CMS, the Training Portal): a static "This training site is paused until …" page is deployed to production (static pages are free); static-only projects are left alone;
+- keeps them off while paused (a deploy in between switches a Worker or a project back on; the next run switches it off again);
+- when the next billing month starts, switches back on what it switched off: `workers.dev` on again, each Pages project rolled back to the deployment it had.
+
+What it switched off is kept in KV (key `_request-budget`). Saved work is never touched. Code: `.github/scripts/request-budget.mjs`; test: `request-budget.test.mjs`.
+
+**Setup (once):**
+
+1. **Token:** Cloudflare → My Profile → API Tokens → Create Token → *Custom token*, for the LSH account: **Account Analytics: Read**, **Workers Scripts: Edit**, **Cloudflare Pages: Edit**, **Workers KV Storage: Edit**.
+2. **GitHub:** this repository → Settings → Secrets and variables → Actions:
+   - secret `CLOUDFLARE_BUDGET_TOKEN` = the token;
+   - variable `BILLING_DAY` = the day of the month your Cloudflare billing month starts (Cloudflare → Manage Account → Billing; default 1);
+   - optional variable `REQUEST_LIMIT` (default `9990000`).
+3. **Check it:** Actions → Request budget → Run workflow → `test`. It lists the Workers and Pages projects, reads the usage, deploys the paused page to a *preview* branch of each Pages project (`request-budget-test`; production isn't touched) and reads and saves the state. Every line should be ✅.
+
+**By hand:** Run workflow → `pause` or `resume`. Resuming while still over the limit pauses again at once: raise `REQUEST_LIMIT` first.
+
+**Limits of the limit:**
+- Cloudflare's analytics lag a few minutes and the check runs every 10 minutes (GitHub can delay scheduled runs), so the 10,000 requests between 9,990,000 and 10,000,000 are the margin. At today's traffic that's hours; if the sites ever get much busier, lower `REQUEST_LIMIT`.
+- It caps requests only. Other usage the paid plan bills beyond what's included (Workers CPU time, KV, D1, R2, Durable Objects) isn't capped; Cloudflare → Notifications → *Usage Based Billing* emails you when any of it starts costing.
+- Workers custom domains (if any are added later) keep running; the run's log names them.
+- GitHub turns off scheduled workflows in a repository with no activity for 60 days: if this repository goes quiet, re-enable it under Actions.
+
 ## Checks (GitHub Actions)
 
 `.github/workflows/checks.yml` runs on every pull request and every push to `main`. A red **Checks** status means something is broken, and the log says what:
@@ -47,7 +105,9 @@ Trainers take each day's attendance in **Admin → 🕘 Attendance** (`js/attend
   - every JavaScript file and inline `<script>` must parse;
   - every local file a page loads must exist;
   - JSON must be valid;
-  - the Worker must build (`wrangler deploy --dry-run`; nothing is deployed).
+  - the Worker must build (`wrangler deploy --dry-run`; nothing is deployed);
+  - **the monthly request budget** (`.github/scripts/request-budget.test.mjs`, against a stand-in Cloudflare account): under the limit nothing changes and every script is listed; at the limit each Worker's `workers.dev` (only those that were on) goes off and each Pages project with Functions gets the paused page (static projects untouched), with an email; while paused, anything a deploy switched back on goes off again; the next billing month brings back exactly what was switched off; billing months starting mid-month; usage read in several windows; missing numbers; a `test` run changes nothing in production;
+  - **where records are kept** (`.github/scripts/storage.mjs`): 30 progress saves write R2 each time and KV once (a day later, once more); with KV's writes used up, saving still works; progress saved in KV before the move is still read and listed; deleting clears both; trainee records and feedback stay in KV; without R2 everything stays in KV.
 - **Smoke test in a browser:** serves the site through `worker.js` with an in-memory KV store (`.github/scripts/server.mjs`), signs in as a trainee, and renders every lesson slide, knowledge check, page and practice tool at desktop and phone width. It fails on any page error or a page that scrolls sideways (`.github/scripts/smoke.cjs`).
 - **Presenter view** (`.github/scripts/presenter.cjs`): opens Presenter view as a trainer and watches the slides window you share in Google Meet, which must never flicker.
   - Next draws the slide once, cutting straight in with no slide-in or fade.
@@ -55,14 +115,17 @@ Trainers take each day's attendance in **Admin → 🕘 Attendance** (`js/attend
   - A long slide's next and previous pages change in place.
   - A resize lays the slide out again, still without animation.
   - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
+- **Server requests** (`.github/scripts/requests.cjs`): `get-many` gives a trainee only their own and public records, an Admin every one, and refuses more than 100 keys. With the checks sped up, a trainee's page reads the tasks for every day in one request and their record about once per check, checks for a new version rarely, and asks nothing while the tab is in the background (catching up when it's back) or on a quick switch to another tab and back. A server that doesn't answer doesn't sign the trainee out; a revoke does. The Trainee Audit reads every trainee in two requests.
 
 To run the same checks locally:
 
 ```
 node .github/scripts/check-site.mjs
+node .github/scripts/storage.mjs
 node .github/scripts/server.mjs 8787 &      # then, with Playwright installed:
 node .github/scripts/smoke.cjs http://localhost:8787/
 node .github/scripts/presenter.cjs http://localhost:8787/
+node .github/scripts/requests.cjs http://localhost:8787/
 ```
 
 `.assetsignore` keeps `worker.js`, the Wrangler config, `.github` and Markdown files from being published with the site.
@@ -71,7 +134,7 @@ node .github/scripts/presenter.cjs http://localhost:8787/
 
 `.github/workflows/backup.yml` runs every night (07:17 UTC ≈ 3 AM Eastern; also **Actions → Nightly backup → Run workflow**). `.github/scripts/backup.mjs` exports:
 
-- `kv-courses.json` — every key in the courses' KV namespace (`b121aa…`): EA/PA and CM progress, reviews, activities and their files (the CM course's keys start with `cm:`);
+- `kv-courses.json` — every key in the courses' KV namespace (`b121aa…`): EA/PA and CM progress, reviews, activities and their files (the CM course's keys start with `cm:`). EA/PA trainees' progress is kept in R2, with a copy in KV at most a day old (see "Where records are kept"), so it's in here as of the last day;
 - `d1-cms.sql`, `d1-portal-logins.sql`, `d1-portal-activities.sql` — the CMS and Training Portal databases (`wrangler d1 export`);
 
 into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes copies there older than 60 days, and also keeps a 14-day copy as a GitHub Actions artifact. A failed backup turns the run red (GitHub emails you). Not included: the CMS's R2 document storage.
