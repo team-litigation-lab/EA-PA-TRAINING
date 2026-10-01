@@ -45,7 +45,7 @@ async function workerChecks() {
     await workerChecks();
 
     const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
-    const page = await browser.newPage({ viewport: { width: 1360, height: 900 } });
+    const page = await (await browser.newContext({ viewport: { width: 1360, height: 900 } })).newPage();
     page.on('pageerror', e => fail(`page error: ${e.message}`));
     await page.addInitScript(() => { window.EAPA_POLL = { live: 500, approval: 2000, labReset: 2000, feedback: 4000, admin: 2000, update: 3000, updateConfirm: 500 }; });
     const log = [];
@@ -95,15 +95,20 @@ async function workerChecks() {
     if (hidden.length) fail(`${hidden.length} requests while the tab was in the background: ${JSON.stringify(hidden.map(x => x.path + ' ' + x.key.slice(0, 40)))}`);
     await page.evaluate(() => { Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'visible' }); document.dispatchEvent(new Event('visibilitychange')); });
     t0 = Date.now(); await page.waitForTimeout(800);
-    if (!since(t0, x => x.key === me).length) fail('coming back to the tab didn\'t check the trainee\'s record');
-    // a quick look at another tab (Meet) and back: nothing is due, so nothing is asked
-    await page.evaluate(() => { Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' }); document.dispatchEvent(new Event('visibilitychange')); });
-    await page.waitForTimeout(300);
-    t0 = Date.now();
-    await page.evaluate(() => { Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'visible' }); document.dispatchEvent(new Event('visibilitychange')); });
-    await page.waitForTimeout(400);
-    const flick = since(t0);
-    if (flick.length) fail(`a quick switch to another tab and back sent ${flick.length} requests: ${JSON.stringify(flick.map(x => x.path + ' ' + x.key.slice(0, 40)))}`);
+    if (!since(t0, x => x.key === me).length) fail(`coming back to the tab didn't check the trainee's record: ${JSON.stringify(since(t0 - 1000).map(x => x.path + ' ' + x.key.slice(0, 40)))}`);
+    // a quick look at another tab (Meet) and back asks nothing: a second tab with the real timings,
+    // between its scheduled checks (the first round runs as it opens; the next is a minute away)
+    const page2 = await page.context().newPage();
+    const log2 = [];
+    page2.on('request', r => { const u = new URL(r.url()); if (u.pathname.startsWith('/api/') || u.pathname === '/version') log2.push({ at: Date.now(), path: u.pathname }); });
+    page2.on('pageerror', e => fail(`page error (second tab): ${e.message}`));
+    await page2.goto(BASE, { waitUntil: 'load' }); await page2.waitForTimeout(22000);   // its first check rounds: 15 s (feedback), 20 s (version)
+    const flip = (v) => page2.evaluate((v) => { Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => v }); document.dispatchEvent(new Event('visibilitychange')); }, v);
+    await flip('hidden'); await page2.waitForTimeout(500);
+    t0 = Date.now(); await flip('visible'); await page2.waitForTimeout(1500);
+    const flick = log2.filter(x => x.at >= t0);
+    if (flick.length) fail(`a quick switch to another tab and back sent ${flick.length} requests: ${JSON.stringify(flick.map(x => x.path))}`);
+    await page2.close();
 
     // the server stops answering: the trainee stays signed in (it was signing them out as "revoked")
     refuse = true; await page.waitForTimeout(5000); refuse = false;

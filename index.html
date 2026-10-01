@@ -6534,6 +6534,7 @@ function startApprovalPolling(traineeId){
   // Once a minute while the page is in view (and on coming back to it).
   if(state.approvalPollInterval) clearInterval(state.approvalPollInterval);
   state.approvalPollId = traineeId;
+  state.approvalPolledAt = Date.now();   // signing in just read their record
   state.approvalPollInterval = setInterval(()=>{ if(document.visibilityState!=="hidden") approvalPollTick(traineeId); }, POLL.approval);
   if(!state.approvalPollWatch){
     state.approvalPollWatch = true;
