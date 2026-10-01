@@ -39,6 +39,23 @@ Trainers take each day's attendance in **Admin → 🕘 Attendance** (`js/attend
 - **Google Sheet:** the LSH Training Portal keeps the attendance Google Sheet's **Platform Attendance** tab in step, both ways: everything here (automatic Time Ins included) goes to the sheet every 15 minutes, and edits made in the sheet to Training, Time In, Time Out, Status or Notes come back here straight away. See the Training Portal's README.
 - **Storage:** `attendance:<batch key>:<YYYY-MM-DD>` (`_none` for no batch) = `{batch, date, day, training, rows:{<trainee id>:{name, training, timeIn, timeOut, status, note, at, by}}}`, with no key prefix. The Worker's `/api/checkin` records the automatic Time In: `checkin:<YYYY-MM-DD>:<trainee id>` = `{timeIn, at, name, batch, training}` is the automatic Time In (each trainee's own key, so a room signing in at once never overwrites one another; its KV metadata carries the same for the portal; kept 40 days). Only admins can read or write these records.
 
+## 📉 Staying under Cloudflare's daily request limit
+
+On Cloudflare's free plan, Workers and Pages Functions get **100,000 requests a day for the whole account**: this portal's Worker (everything under `/api/` and `/version`) and the other LSH sites on the same account (the Case Management System's Pages Functions, for one) share it. When it runs out, the Worker answers 429 ("Error 1027") until 00:00 UTC: pages still load, but sign-in, saving and the trainer's screens don't work. The Workers Paid plan ($5 a month) raises the limit to 10 million requests a month. Usage is under **Workers & Pages** in the Cloudflare dashboard. Static files (the page, `js/`, images) are free and don't count.
+
+So an open page asks the server sparingly (`POLL` in `index.html`), and not at all while its tab is in the background. When it's back, whatever came due runs then; a quick look at another tab (Google Meet) asks nothing:
+
+| What | How often | Before |
+|---|---|---|
+| A trainee's access and new tasks (`startApprovalPolling`) | every minute: their record, and the tasks for every unlocked day in one request | every 45 s, one request per day, also in the background |
+| A Practice Lab attempt reset (`liveTick`) | every minute (the minute check above counts) | every 10 s |
+| Trainer feedback and Focus items | every 2 minutes | every 45 s |
+| Waiting for approval | every 15 s | every 8 s |
+| Admin: Trainee Audit, Rankings, Trainee Feedback | every minute, every trainee in one request | every 30 s, one request per trainee |
+| A new version (`/version`) | every 3 minutes (a change is confirmed 20 s later) | every 45 s |
+
+Lists of records (the Trainee Audit, attendance, trainee feedback, tasks) are read with `/api/storage/get-many` (up to 100 keys, the same rules as `/api/storage/get` for each key), not one request per record. A trainee is signed out as revoked only when the server answers that their record is gone or not approved: a server that doesn't answer (offline, or the daily limit) no longer signs anyone out.
+
 ## Checks (GitHub Actions)
 
 `.github/workflows/checks.yml` runs on every pull request and every push to `main`. A red **Checks** status means something is broken, and the log says what:
@@ -55,6 +72,7 @@ Trainers take each day's attendance in **Admin → 🕘 Attendance** (`js/attend
   - A long slide's next and previous pages change in place.
   - A resize lays the slide out again, still without animation.
   - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
+- **Server requests** (`.github/scripts/requests.cjs`): `get-many` gives a trainee only their own and public records, an Admin every one, and refuses more than 100 keys. With the checks sped up, a trainee's page reads the tasks for every day in one request and their record about once per check, checks for a new version rarely, and asks nothing while the tab is in the background (catching up when it's back) or on a quick switch to another tab and back. A server that doesn't answer doesn't sign the trainee out; a revoke does. The Trainee Audit reads every trainee in two requests.
 
 To run the same checks locally:
 
@@ -63,6 +81,7 @@ node .github/scripts/check-site.mjs
 node .github/scripts/server.mjs 8787 &      # then, with Playwright installed:
 node .github/scripts/smoke.cjs http://localhost:8787/
 node .github/scripts/presenter.cjs http://localhost:8787/
+node .github/scripts/requests.cjs http://localhost:8787/
 ```
 
 `.assetsignore` keeps `worker.js`, the Wrangler config, `.github` and Markdown files from being published with the site.
