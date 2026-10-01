@@ -26,7 +26,16 @@ const ASSETS = {
         return new Response(fs.readFileSync(f), { headers: { 'Content-Type': TYPES[path.extname(f)] || 'application/octet-stream' } });
     }
 };
-const env = { LSH_KV: KV, ASSETS, SESSION_SECRET: 'ci-only-secret' };
+// R2 (the DOCUMENTS bucket), where worker.js keeps trainees' progress
+const objects = new Map();
+const R2 = {
+    get: async (k) => (objects.has(k) ? { key: k, text: async () => objects.get(k).value, customMetadata: objects.get(k).customMetadata } : null),
+    head: async (k) => (objects.has(k) ? { key: k, customMetadata: objects.get(k).customMetadata } : null),
+    put: async (k, v, o = {}) => { objects.set(k, { value: String(v), customMetadata: o.customMetadata || {} }); return { key: k }; },
+    delete: async (k) => { objects.delete(k); },
+    list: async ({ prefix = '' } = {}) => ({ objects: [...objects.keys()].filter(k => k.startsWith(prefix)).map(key => ({ key })), truncated: false })
+};
+const env = { LSH_KV: KV, DOCUMENTS: R2, ASSETS, SESSION_SECRET: 'ci-only-secret' };
 http.createServer(async (req, res) => {
     const chunks = []; for await (const c of req) chunks.push(c);
     const r = new Request(`http://localhost:${PORT}${req.url}`, { method: req.method, headers: req.headers, body: ['GET', 'HEAD'].includes(req.method) ? undefined : Buffer.concat(chunks) });
