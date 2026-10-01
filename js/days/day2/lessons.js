@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 2 — Managing Up, Leveraging AI & Email Management
+   DAY 2 — Force Multiplier, Leveraging AI & Email Management
    Everything a trainee reads on this day:
    - DAY2: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,7 +13,7 @@
    ============================================================ */
 const DAY2 = {
   "id": 2,
-  "title": "Managing Up, Leveraging AI & Email Management",
+  "title": "Force Multiplier, Leveraging AI & Email Management",
   "theme": "Managing Up in Practice · Communication & Executive Presence · The Force Multiplier Mindset · Cognitive Load & Systems · The Legal EA Force Multiplier · Leveraging AI with Precision · Email Management",
   "objective": "Put Day 1's Three C's into practice to manage up effectively, shift from task-completer to force multiplier, use AI tools with precision and good judgment, and run the executive's inbox as a control system.",
   "lessons": [
