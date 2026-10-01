@@ -351,58 +351,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "If nobody measures it, nobody sees it."
   }
 },
-"2::Strategic Time Engineering": {
-  "p1": {
-    "on": "This slide reframes the calendar as capital and the assistant as its portfolio manager, with a diagram of five categories: revenue, strategic growth, compliance and legal deadlines, reputation, and personal. The steps say every protected block should name the category it serves, and allocation is an ongoing decision.",
-    "say": "If you can't name what a block protects, it isn't protected. It's just unscheduled.",
-    "ask": "Which of the five categories gets squeezed first on a busy week?"
-  },
-  "p2": {
-    "on": "This slide warns against protecting time only after something gets disrupted, rather than engineering the allocation up front. It reinforces time as capital: it gets invested on purpose, not spent as requests arrive.",
-    "say": "Capital is invested on purpose, not spent as requests arrive.",
-    "wrap": "Engineer the calendar up front, category by category, and revisit it regularly.",
-    "scenario": "Look at a typical week on Elias's calendar. Which of the five categories is getting the least protection, and why might that be happening?"
-  },
-  "s1": {
-    "on": "This section reframes the calendar as capital with the assistant as portfolio manager, protecting revenue, growth, compliance deadlines, reputation events and personal commitments.",
-    "say": "Time is capital. You allocate it."
-  },
-  "s2": {
-    "on": "These steps say every protected block must name its category, and allocation is an ongoing decision you revisit.",
-    "say": "If you can't name what a block protects, it isn't protected.",
-    "ask": "Which category gets squeezed first in a busy week?"
-  },
-  "s3": {
-    "on": "This section warns against protecting time only after a disruption and says capital is invested on purpose, not spent as requests arrive.",
-    "say": "Engineer it up front, not after it breaks."
-  }
-},
-"2::Time Management Requires Energy Management": {
-  "p1": {
-    "on": "This slide says an exhausted executive makes expensive mistakes, so managing time isn't enough. Energy management means preventing meeting overload, building recovery buffers after demanding events, protecting deep-work windows, filtering low-leverage requests, and raising patterns of meetings that leave the executive drained.",
-    "say": "A free slot on the calendar isn't the same as available energy.",
-    "ask": "What does a draining week look like for an executive you've supported?"
-  },
-  "p2": {
-    "on": "This slide warns that hybrid roles covering business and personal support are the riskiest for energy, because the usual boundaries are gone. The pitfall is treating an open slot as automatically available without asking whether the executive has the energy for it.",
-    "say": "Hybrid roles lose natural boundaries, so you have to build them.",
-    "wrap": "Schedule for energy, not just availability, and protect recovery on purpose.",
-    "scenario": "Elias has a full-day mediation Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you insert a recovery buffer, and how do you justify it if they push back?"
-  },
-  "s1": {
-    "on": "This section says an exhausted executive makes expensive mistakes, and energy management means preventing overload, building recovery buffers, protecting deep work and filtering draining requests.",
-    "say": "A free slot isn't the same as available energy."
-  },
-  "s2": {
-    "on": "These steps look past free slots to fatigue from back-to-back intensity, build recovery buffers after demanding events, and raise draining patterns rather than silently accommodating them.",
-    "say": "Buffer after the hard meetings, not just between them.",
-    "ask": "What does a draining week look like for your executive?"
-  },
-  "s3": {
-    "on": "This section warns that hybrid business-and-personal roles blur the boundaries that create recovery, and against treating any open slot as available.",
-    "say": "Hybrid roles lose natural boundaries — build them."
-  }
-},
 "2::Reducing Cognitive Load for Executives": {
   "p1": {
     "on": "This slide explains decision fatigue: every open-ended question you route to the executive uses up a limited resource. A force multiplier presents structured options, trade-offs, pre-vetted risks and a recommendation, with a diagram. The model line: \"Here are three viable options; Option B aligns best with Q2 revenue objectives.\"",

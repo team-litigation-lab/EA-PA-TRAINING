@@ -67,6 +67,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Deciding and protecting are different jobs."
   }
 },
+"4::Strategic Time Engineering": {
+  "p1": {
+    "on": "This slide reframes the calendar as capital and the assistant as its portfolio manager, with a diagram of five categories: revenue, strategic growth, compliance and legal deadlines, reputation, and personal. The steps say every protected block should name the category it serves, and allocation is an ongoing decision.",
+    "say": "If you can't name what a block protects, it isn't protected. It's just unscheduled.",
+    "ask": "Which of the five categories gets squeezed first on a busy week?"
+  },
+  "p2": {
+    "on": "This slide warns against protecting time only after something gets disrupted, rather than engineering the allocation up front. It reinforces time as capital: it gets invested on purpose, not spent as requests arrive.",
+    "say": "Capital is invested on purpose, not spent as requests arrive.",
+    "wrap": "Engineer the calendar up front, category by category, and revisit it regularly.",
+    "scenario": "Look at a typical week on Elias's calendar. Which of the five categories is getting the least protection, and why might that be happening?"
+  },
+  "s1": {
+    "on": "This section reframes the calendar as capital with the assistant as portfolio manager, protecting revenue, growth, compliance deadlines, reputation events and personal commitments.",
+    "say": "Time is capital. You allocate it."
+  },
+  "s2": {
+    "on": "These steps say every protected block must name its category, and allocation is an ongoing decision you revisit.",
+    "say": "If you can't name what a block protects, it isn't protected.",
+    "ask": "Which category gets squeezed first in a busy week?"
+  },
+  "s3": {
+    "on": "This section warns against protecting time only after a disruption and says capital is invested on purpose, not spent as requests arrive.",
+    "say": "Engineer it up front, not after it breaks."
+  }
+},
 "4::When Time Management Fails Despite a Clean Calendar": {
   "steps": "So how do you diagnose a week that went wrong even though the calendar looked clean? Here are the steps:\n1. Look for reactive-meeting saturation: Don't just check for conflicts. A conflict-free calendar can still be packed with low-value reactive meetings that crowd out the real priorities.\n2. Confirm protected space exists: Make sure there's actual room for this week's most important work, not just that no two events overlap.\n3. Apply the same check to travel weeks: A trip only works if the calendar before, during and after it was managed with the same discipline as the itinerary.\n4. Diagnose the failure: Ask whether it was the decision, meaning the wrong priorities were set, or the protection, meaning the right priorities weren't defended. Each needs a different fix.\n5. Review it weekly: Don't wait for something to visibly break. A clean calendar with no protected priority time will quietly fail the same way every week until someone checks.",
   "p1": {
@@ -117,6 +143,32 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "on": "These steps apply it: find the energy pattern, protect the sharp-focus window, check high-stakes items against low-energy windows, flag the risk when you can't avoid one, and revisit as rhythms shift.",
     "say": "An open slot isn't a neutral slot.",
     "ask": "When is your sharpest hour of the day?"
+  }
+},
+"4::Time Management Requires Energy Management": {
+  "p1": {
+    "on": "This slide says an exhausted executive makes expensive mistakes, so managing time isn't enough. Energy management means preventing meeting overload, building recovery buffers after demanding events, protecting deep-work windows, filtering low-leverage requests, and raising patterns of meetings that leave the executive drained.",
+    "say": "A free slot on the calendar isn't the same as available energy.",
+    "ask": "What does a draining week look like for an executive you've supported?"
+  },
+  "p2": {
+    "on": "This slide warns that hybrid roles covering business and personal support are the riskiest for energy, because the usual boundaries are gone. The pitfall is treating an open slot as automatically available without asking whether the executive has the energy for it.",
+    "say": "Hybrid roles lose natural boundaries, so you have to build them.",
+    "wrap": "Schedule for energy, not just availability, and protect recovery on purpose.",
+    "scenario": "Elias has a full-day mediation Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you insert a recovery buffer, and how do you justify it if they push back?"
+  },
+  "s1": {
+    "on": "This section says an exhausted executive makes expensive mistakes, and energy management means preventing overload, building recovery buffers, protecting deep work and filtering draining requests.",
+    "say": "A free slot isn't the same as available energy."
+  },
+  "s2": {
+    "on": "These steps look past free slots to fatigue from back-to-back intensity, build recovery buffers after demanding events, and raise draining patterns rather than silently accommodating them.",
+    "say": "Buffer after the hard meetings, not just between them.",
+    "ask": "What does a draining week look like for your executive?"
+  },
+  "s3": {
+    "on": "This section warns that hybrid business-and-personal roles blur the boundaries that create recovery, and against treating any open slot as available.",
+    "say": "Hybrid roles lose natural boundaries — build them."
   }
 },
 "4::Handling Interruptions Without Losing the Day": {

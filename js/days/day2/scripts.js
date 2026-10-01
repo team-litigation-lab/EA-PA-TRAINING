@@ -312,51 +312,6 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "Over a month, you tracked reply time: it dropped from about 24 hours to 5. How do you present that in your review so it lands, and what else would you want next to it?"
   }
  },
- "2::Strategic Time Engineering": {
-  "p1": {
-   "why": "We don't just manage the executive's calendar. We design it, the way an investor decides where money goes.",
-   "talk": "Think of his time as money in a portfolio, with us as the portfolio manager. Some of it should go to work that brings in revenue, some to long-term growth, some to legal and compliance deadlines, some to events where his reputation is on the line, and some to personal commitments that genuinely matter. If we can't say which of those a block of time serves, it isn't protected. It's just empty space waiting to be filled.",
-   "walk": [
-    "First, before we defend a block of time, we name what it's for. If we can't, it isn't really protected.",
-    "Finally, we treat the calendar as an ongoing decision, and regularly check it still matches what matters."
-   ],
-   "ask": "On a busy week, which of those five areas gets squeezed first?",
-   "scenario": "Elias's next week has 14 meetings, and no time set aside for preparing a major brief due Friday. Where do you find the time, and how do you protect it once it's on the calendar?"
-  },
-  "p2": {
-   "why": "Investments are made on purpose, not spent as requests come in.",
-   "talk": "The mistake most people make is defending time only after it's been disrupted. By then, the week's already gone. Designing the calendar means deciding up front where the hours should go, then protecting that plan. Thinking of time as capital helps, because nobody sensible spends their savings on whatever asks first.",
-   "walk": [
-    "First, the trap is protecting time only after something goes wrong.",
-    "Finally, the mindset is to invest time deliberately, not spend it as requests arrive."
-   ],
-   "ask": "Look at a typical week on Elias's calendar. Which of the five areas gets the least protection, and why might that be?",
-   "scenario": "Every week, Elias's Friday afternoon 'strategy time' gets taken by last-minute requests. What would investing that time on purpose look like, instead of spending it as requests arrive?"
-  }
- },
- "2::Time Management Requires Energy Management": {
-  "p1": {
-   "why": "A free slot on the calendar isn't the same as having the energy to use it.",
-   "talk": "An exhausted executive makes expensive mistakes. The calendar might show an open hour at 6 p.m., but after a full day of mediation, he has nothing left for a demanding call. So as well as managing time, we manage energy. We avoid stacking draining meetings, build in recovery breaks, protect time for focused work, filter out low-value requests and notice which people or commitments quietly wear him down.",
-   "walk": [
-    "First, we look beyond whether a slot is technically free, and ask whether back-to-back intense meetings are wearing him out.",
-    "Next, we build recovery breaks after the genuinely demanding events on purpose, not just as gaps between meetings.",
-    "Finally, we notice patterns, like a recurring meeting that always leaves him drained, and we raise it instead of silently putting up with it."
-   ],
-   "ask": "What does a draining week look like for an executive you've supported?",
-   "scenario": "Elias has depositions all day Monday and Tuesday. A partner wants a two-hour budget review Tuesday at 5 p.m., the only free slot. What do you suggest instead, and how do you explain it?"
-  },
-  "p2": {
-   "why": "When one person does both business and personal work, the natural breaks disappear, so we have to create them.",
-   "talk": "Roles that mix business and personal support are the riskiest for energy. At an office, the commute home is a natural break. But when we're also handling his family and his evenings, work can bleed into everything. And the most common mistake of all is seeing an empty slot and assuming he's available, without asking whether he'll have anything left to give.",
-   "walk": [
-    "First, mixed business-and-personal roles need extra care, because the usual boundaries blur.",
-    "Finally, an open slot isn't automatically available. Ask whether he'll have the energy."
-   ],
-   "ask": "Elias has a full-day mediation on Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you put a recovery break, and how do you explain it if they push back?",
-   "scenario": "You support Elias at work and his family at home. His Saturday now has a work call at 9, a school event at 11 and a dinner party at 7. Where would you build in recovery time, and what might you move?"
-  }
- },
  "2::Reducing Cognitive Load for Executives": {
   "p1": {
    "why": "Every open-ended question we send an executive uses up some of his limited decision-making energy.",

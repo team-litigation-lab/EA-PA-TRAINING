@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 1 — Foundations of the Legal Executive Assistant Role
+   DAY 1 — The Legal EA/PA Role, Communication & Managing Up
    Everything a trainee reads on this day:
    - DAY1: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,8 +13,8 @@
    ============================================================ */
 const DAY1 = {
   "id": 1,
-  "title": "Foundations of the Legal Executive Assistant Role",
-  "theme": "Legal EA Task Overview · Legal Basics · Communication & Gatekeeping · Confidentiality & NDAs · Command Hierarchy & Liaison · Managing Up Basics",
+  "title": "The Legal EA/PA Role, Communication & Managing Up",
+  "theme": "EA vs. PA Roles · Legal Basics · Communication & Gatekeeping · Confidentiality & Boundaries · Command Hierarchy & Liaison · Managing Up Basics (Bulletproof Basics, the Three C's, Credibility) · Client Profiling & the Dossier · Written Communication (ACT, BLUF)",
   "objective": "Get a clear picture of what a Legal Executive Assistant actually does day to day, learn the legal basics every assistant needs, build the communication habits the role runs on, know when to escalate rather than act alone, and manage up with the Three C's.",
   "taskOverview": [
     {

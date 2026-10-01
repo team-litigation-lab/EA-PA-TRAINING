@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 2 — Managing Up & How to Leverage AI with Precision
+   DAY 2 — Managing Up, Leveraging AI & Email Management
    Everything a trainee reads on this day:
    - DAY2: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,9 +13,9 @@
    ============================================================ */
 const DAY2 = {
   "id": 2,
-  "title": "Managing Up & How to Leverage AI with Precision",
-  "theme": "Managing Up · AI Proficiency & the Digital Edge · Email Management",
-  "objective": "Put Day 1's Three C's into practice to manage up effectively, shift from task-completer to force multiplier, and run the executive's inbox as a control system.",
+  "title": "Managing Up, Leveraging AI & Email Management",
+  "theme": "Managing Up in Practice · Communication & Executive Presence · The Force Multiplier Mindset · Cognitive Load & Systems · The Legal EA Force Multiplier · Leveraging AI with Precision · Email Management",
+  "objective": "Put Day 1's Three C's into practice to manage up effectively, shift from task-completer to force multiplier, use AI tools with precision and good judgment, and run the executive's inbox as a control system.",
   "lessons": [
     {
       "h": "Reframing Reactive Language",
@@ -314,48 +314,8 @@ const DAY2 = {
       }
     },
     {
-      "h": "Strategic Time Engineering",
-      "section": "Time, Energy & Systems",
-      "svgDiagram": "<svg viewBox=\"0 0 560 190\" xmlns=\"http://www.w3.org/2000/svg\"><style>.tc{font:700 10.5px Arial,sans-serif;fill:#fff;}.tp{font:800 15px Arial,sans-serif;fill:#fff;}</style><text x=\"20\" y=\"22\" style=\"font:700 11px Arial,sans-serif;fill:#262B45;\">TIME AS CAPITAL — WHERE IT GETS ALLOCATED</text><g transform=\"translate(20,40)\"><rect width=\"140\" height=\"120\" fill=\"#B54A3F\"/><text x=\"70\" y=\"40\" text-anchor=\"middle\" class=\"tp\">Revenue</text><text x=\"70\" y=\"65\" text-anchor=\"middle\" class=\"tc\">Generating</text><circle cx=\"70\" cy=\"95\" r=\"7\" fill=\"#fff\" class=\"svg-pulse-dot\"/></g><g transform=\"translate(160,40)\"><rect width=\"100\" height=\"120\" fill=\"#DB8437\"/><text x=\"50\" y=\"55\" text-anchor=\"middle\" class=\"tc\">Strategic</text><text x=\"50\" y=\"70\" text-anchor=\"middle\" class=\"tc\">Growth</text></g><g transform=\"translate(260,40)\"><rect width=\"90\" height=\"120\" fill=\"#3C4268\"/><text x=\"45\" y=\"55\" text-anchor=\"middle\" class=\"tc\">Compliance</text><text x=\"45\" y=\"70\" text-anchor=\"middle\" class=\"tc\">&amp; Legal</text></g><g transform=\"translate(350,40)\"><rect width=\"90\" height=\"120\" fill=\"#5B6178\"/><text x=\"45\" y=\"55\" text-anchor=\"middle\" class=\"tc\">Reputation</text></g><g transform=\"translate(440,40)\"><rect width=\"100\" height=\"120\" fill=\"#3F7D58\"/><text x=\"50\" y=\"55\" text-anchor=\"middle\" class=\"tc\">Personal</text><text x=\"50\" y=\"70\" text-anchor=\"middle\" class=\"tc\">Commitments</text></g></svg>",
-      "fourPart": {
-        "corePrinciples": [
-          "This is not just managing a calendar — it's engineering it. Time becomes capital, and the assistant is effectively the portfolio manager deciding where that capital gets allocated.",
-          "Strategic time engineering means aligning time with revenue-generating activities, protecting strategic growth initiatives, buffering compliance and legal deadlines, managing reputation-sensitive events, and protecting personal commitments with real relational weight."
-        ],
-        "howTo": [
-          "Before defending any block of time, be able to say which category it serves — if you can't name the category, it's not actually a protected block, it's just unscheduled time.",
-          "Treat calendar allocation as an active, ongoing decision, not a one-time setup — revisit whether the current allocation still matches what actually matters."
-        ],
-        "bestPractices": [
-          "Pitfall: protecting time reactively (only after something gets disrupted) rather than proactively engineering the allocation from the start.",
-          "\"Time as capital\" is a genuinely useful reframe — capital gets deliberately invested, not just spent as requests arrive."
-        ],
-        "discussionCase": "Looking at a typical week on your executive's calendar: which of the five categories (revenue, growth, compliance, reputation, personal) is currently getting the least protection — and why might that be happening?"
-      }
-    },
-    {
-      "h": "Time Management Requires Energy Management",
-      "section": "Time, Energy & Systems",
-      "fourPart": {
-        "corePrinciples": [
-          "An exhausted executive makes expensive mistakes — managing time alone isn't enough if the executive's energy is being drained faster than their calendar reflects.",
-          "Energy management means preventing meeting overload, creating strategic recovery buffers, protecting deep-work windows, filtering low-leverage requests, and identifying which relationships or obligations are quietly draining."
-        ],
-        "howTo": [
-          "Look beyond whether a slot is technically free — consider whether back-to-back high-intensity meetings are compounding fatigue even if the calendar has no literal conflicts.",
-          "Build recovery buffers deliberately after genuinely demanding meetings or events, not just between unrelated ones.",
-          "Notice patterns: which recurring meetings or relationships seem to leave the executive visibly more depleted, and raise this pattern rather than just accommodating it silently."
-        ],
-        "bestPractices": [
-          "Hybrid roles (business and personal support combined) are the most dangerous to energy management if unmanaged — the boundaries that would normally create recovery time blur easily.",
-          "Pitfall: treating an open calendar slot as automatically available, without considering whether the executive actually has the energy left for what's being scheduled into it."
-        ],
-        "discussionCase": "Looking at a demanding week on the calendar: where would you insert a genuine recovery buffer, and how would you justify that choice if someone questioned why that slot isn't being used for another meeting?"
-      }
-    },
-    {
       "h": "Reducing Cognitive Load for Executives",
-      "section": "Time, Energy & Systems",
+      "section": "Cognitive Load & Systems",
       "svgDiagram": "<svg viewBox=\"0 0 560 196\" xmlns=\"http://www.w3.org/2000/svg\"><style>.cl{font:700 12px Arial,sans-serif;fill:#262B45;}.cs{font:700 10.5px Arial,sans-serif;fill:#5B6178;}</style><text x=\"20\" y=\"20\" class=\"cl\">UNFILTERED — EVERY QUESTION DRAINS THE RESERVE</text><rect x=\"20\" y=\"30\" width=\"520\" height=\"28\" rx=\"7\" fill=\"#F4F5F9\" stroke=\"#DCE0EA\"/><rect x=\"20\" y=\"30\" width=\"110\" height=\"28\" rx=\"7\" fill=\"#B54A3F\"/><circle cx=\"118\" cy=\"44\" r=\"4\" fill=\"#fff\" class=\"svg-pulse-dot\"/><text x=\"144\" y=\"48\" class=\"cs\">Depleted by noon — nothing left for the decisions that matter</text><text x=\"20\" y=\"88\" class=\"cl\">FILTERED — EA ABSORBS THE ROUTINE DECISIONS</text><rect x=\"20\" y=\"98\" width=\"520\" height=\"28\" rx=\"7\" fill=\"#F4F5F9\" stroke=\"#DCE0EA\"/><rect x=\"20\" y=\"98\" width=\"440\" height=\"28\" rx=\"7\" fill=\"#3F7D58\"/><text x=\"34\" y=\"116\" class=\"cs\" style=\"fill:#fff;\">Reserved for what matters</text><rect x=\"20\" y=\"144\" width=\"520\" height=\"40\" rx=\"10\" fill=\"#262B45\"/><text x=\"280\" y=\"168\" text-anchor=\"middle\" style=\"font:700 11.5px Arial,sans-serif;fill:#fff;\">Every open-ended question routed up is capital spent from a limited reserve</text></svg>",
       "fourPart": {
         "corePrinciples": [
@@ -375,7 +335,7 @@ const DAY2 = {
     },
     {
       "h": "\"If It Happens Twice, It Deserves a System\"",
-      "section": "Time, Energy & Systems",
+      "section": "Cognitive Load & Systems",
       "fourPart": {
         "corePrinciples": [
           "Systems create scale. Scale creates leverage. Helpers complete tasks one at a time; force multipliers design systems so the task stops needing to be solved fresh every time it recurs.",
@@ -394,7 +354,7 @@ const DAY2 = {
     },
     {
       "h": "Operational Excellence & Institutional Accountability",
-      "section": "Time, Energy & Systems",
+      "section": "Cognitive Load & Systems",
       "fourPart": {
         "corePrinciples": [
           "Without governance, high-trust roles become high-risk roles — the same access and autonomy that make an assistant valuable can create real exposure if it isn't paired with real accountability.",
@@ -413,7 +373,7 @@ const DAY2 = {
     },
     {
       "h": "File Naming, Folders & Version Control",
-      "section": "Time, Energy & Systems",
+      "section": "Cognitive Load & Systems",
       "fourPart": {
         "corePrinciples": [
           "In a law firm, the wrong version of a document can end up signed, filed or sent to the other side. Naming and version control are how you prevent that.",
@@ -895,7 +855,7 @@ const DAY2 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 29,
+      "afterIndex": 27,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -905,7 +865,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 30,
+      "afterIndex": 28,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Context window strain — it lost precision across a long document",
@@ -917,7 +877,7 @@ const DAY2 = {
       "r": "When a document is long, precision degrades across it — paste just the relevant section when precision matters."
     },
     {
-      "afterIndex": 37,
+      "afterIndex": 35,
       "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
       "opts": [
         "Something to batch with the newsletter",
@@ -929,7 +889,7 @@ const DAY2 = {
       "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
     },
     {
-      "afterIndex": 36,
+      "afterIndex": 34,
       "q": "What best distinguishes high-performing email management from average?",
       "opts": [
         "Forwarding every email so nothing is missed",
