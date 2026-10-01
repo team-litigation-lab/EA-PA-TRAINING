@@ -2812,3 +2812,163 @@ if(document.querySelector(".topbar")) render();
 `; document.head.appendChild(st);
   if(typeof render === "function" && typeof state !== "undefined" && state.view === "dashboard"){ try{ render(); }catch(e){} }
 })();
+
+/* ================= Lesson slides: the key line on the slide, the full text in the Handouts =================
+   A slide shows each point's key line (slideBrief: its first sentence, without asides in brackets, cut at a
+   dash or colon when still long); Go Deeper moves off the slide. The full text of every topic, as written in
+   js/days/dayN/lessons.js (principles, steps, best practices and pitfalls, Go Deeper), is each day's
+   📖 Lesson Notes in Handouts (Preview and PDF). "📖 Full notes" on a slide opens that topic there. */
+(function(){
+  function slideBrief(t){
+    let x = String(t || "").replace(/\s+/g, " ").trim();
+    const words = s => s.split(" ").filter(Boolean).length;
+    const end = s => /[.!?]["”’']?$/.test(s) ? s : s.replace(/[,;:\s—–-]+$/, "") + ".";
+    x = x.replace(/\s*\((?:[^()"]{3,})\)(?=[\s.,;:!?]|$)/g, "").replace(/\s+([.,;:!?])/g, "$1");
+    const re = /[.!?](?=["”’']?\s+[A-Z0-9"“'‘])/g; let m;
+    while((m = re.exec(x))){
+      const head = x.slice(0, m.index + 1);
+      if(head.length < 25 || /\b(e\.g|i\.e|vs|etc|Mr|Mrs|Ms|Dr|No|St|Inc|approx)\.$/i.test(head)) continue;
+      x = head; break;
+    }
+    if(words(x) > 16){ const k = x.search(/\s[—–]\s/); if(k > 0 && words(x.slice(0, k)) >= 4) x = end(x.slice(0, k)); }
+    if(words(x) > 18){ const k = x.indexOf(": "); if(k > 0 && words(x.slice(0, k)) >= 4) x = end(x.slice(0, k)); }
+    if(words(x) > 18){ const k = x.indexOf("; "); if(k > 0 && words(x.slice(0, k)) >= 5) x = end(x.slice(0, k)); }
+    return end(x);
+  }
+  window.slideBrief = slideBrief;
+  const briefs = a => Array.isArray(a) ? a.map(x => typeof x === "string" ? slideBrief(x) : x) : a;
+
+  if(typeof renderLessonCard === "function" && !renderLessonCard.__brief){
+    const __card = renderLessonCard;
+    renderLessonCard = function(l, i, d, u, part){
+      if(!l || l.__preview || !d) return __card.apply(this, arguments);
+      const s = Object.assign({}, l);
+      // "This connects directly to …" lines point elsewhere in the program: they stay in the notes, off the slide
+      const own = a => { const k = Array.isArray(a) ? a.filter(x => typeof x !== "string" || !/^This (connects|builds|links|ties) (directly |back )?(to|on)\b/i.test(x.trim())) : a; return k && k.length ? k : a; };
+      if(l.fourPart) s.fourPart = Object.assign({}, l.fourPart, {corePrinciples: briefs(own(l.fourPart.corePrinciples)), howTo: briefs(l.fourPart.howTo), bestPractices: briefs(l.fourPart.bestPractices)});
+      else{
+        s.b = briefs(l.b); s.howTo = briefs(l.howTo);
+        if(Array.isArray(l.processSteps)) s.processSteps = l.processSteps.map(p => Object.assign({}, p, p && typeof p.desc === "string" ? {desc: slideBrief(p.desc)} : {}));
+      }
+      const key = d.id + "::" + l.h, extra = LESSON_EXTRA_LEARNING[key];   // Go Deeper lives in the Lesson Notes
+      if(extra) delete LESSON_EXTRA_LEARNING[key];
+      let html; try{ html = __card.call(this, s, i, d, u, part); } finally { if(extra) LESSON_EXTRA_LEARNING[key] = extra; }
+      return html + `<div class="ln-more"><button type="button" onclick="openLessonNotes(${d.id}, ${esc(JSON.stringify(l.h))})">📖 Full notes for this topic</button><span>Day ${d.id} Lesson Notes · Handouts</span></div>`;
+    };
+    renderLessonCard.__brief = true;
+  }
+
+  /* ---------- 📖 Lesson Notes: the full text, per day ---------- */
+  const strs = a => (Array.isArray(a) ? a : []).filter(x => typeof x === "string" && x.trim());
+  function topicNotes(d, l){
+    const fp = l.fourPart || {};
+    const extra = LESSON_EXTRA_LEARNING[d.id + "::" + l.h];
+    const steps = strs(fp.howTo).length ? strs(fp.howTo) : strs(l.howTo).length ? strs(l.howTo)
+      : (Array.isArray(l.processSteps) ? l.processSteps.map(p => p && [p.label, p.desc].filter(Boolean).join(": ")).filter(Boolean) : []);
+    return {
+      h: l.h, section: l.section || "",
+      principles: strs(fp.corePrinciples).length ? strs(fp.corePrinciples) : strs(l.b),
+      steps,
+      practices: strs(fp.bestPractices),
+      callout: l.callout && l.callout.text ? String(l.callout.text) : "",
+      deeper: extra ? {t: extra.t, p: strs(extra.p)} : null
+    };
+  }
+  const dayNotes = d => (d.lessons || []).filter(l => !l.__extra).map(l => topicNotes(d, l));
+  const slug = t => String(t).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+  function notesHtml(d){
+    let sec = null;
+    return dayNotes(d).map((t, k) => {
+      const head = t.section && t.section !== sec ? `<div class="ln-sec">${esc(sec = t.section)}</div>` : "";
+      const list = (label, a, ol) => a.length ? `<div class="ln-part"><b>${label}</b><${ol ? "ol" : "ul"}>${a.map(x => `<li>${esc(x)}</li>`).join("")}</${ol ? "ol" : "ul"}></div>` : "";
+      return `${head}<div class="ln-topic" id="ln-${slug(t.h)}"><h4><span>${k + 1}</span>${esc(t.h)}</h4>
+        ${list("Core principles", t.principles)}${list("Step by step", t.steps, true)}${list("Best practices & pitfalls", t.practices)}
+        ${t.callout ? `<p class="ln-callout">${esc(t.callout)}</p>` : ""}
+        ${t.deeper ? list("Go deeper — " + esc(t.deeper.t), t.deeper.p) : ""}</div>`;
+    }).join("");
+  }
+  function previewLessonNotes(day, topic){
+    const d = DAYS.find(x => x.id === day); if(!d) return;
+    document.querySelectorAll(".overlay.ln-overlay").forEach(o => o.remove());
+    const overlay = document.createElement("div"); overlay.className = "overlay topics-overlay ln-overlay";
+    overlay.innerHTML = `<div class="card topics-modal ho-modal"><div class="module-head topics-modal-head"><div class="mh-day">Day ${day} · Lesson Notes · ${(d.lessons || []).length} topics</div><div class="mh-title">📖 ${esc(d.title)}</div>
+      <button type="button" class="topics-close" onclick="this.closest('.overlay').remove()">✕</button></div>
+      <div class="ho-body ln-body"><p class="ho-intro">The full text of every topic on Day ${day}. The slides show the key lines; this is the complete version to read, study and keep.</p>${notesHtml(d)}</div>
+      <div class="topics-modal-foot"><button class="btn btn-ghost btn-sm" onclick="this.closest('.overlay').remove()">Close</button>
+        <button class="btn btn-primary btn-sm" onclick="downloadLessonNotesPdf(${day})">⬇ Download PDF</button></div></div>`;
+    overlay.addEventListener("click", e => { if(e.target === overlay) overlay.remove(); });
+    document.body.appendChild(overlay);
+    if(topic){ const el = overlay.querySelector("#ln-" + slug(topic)); if(el){ el.classList.add("ln-hit"); setTimeout(() => el.scrollIntoView({block:"start"}), 30); } }
+  }
+  // From a slide: the notes open over the lesson, at that topic.
+  function openLessonNotes(day, topic){ previewLessonNotes(day, topic); }
+  async function downloadLessonNotesPdf(day){
+    const d = DAYS.find(x => x.id === day); if(!d) return;
+    if(!(await ensureJsPdf())){ toast("Couldn't load the PDF tools — try again."); return; }
+    const { jsPDF } = window.jspdf;
+    const doc = safeDoc(new jsPDF({unit:"pt", format:"letter"}));
+    drawPdfHeader(doc, `Day ${day} Lesson Notes`, d.title);
+    const W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight(), X = 54;
+    let y = 118, sec = null;
+    const need = h => { if(y + h > H - 50){ doc.addPage(); y = 60; } };
+    const para = (t, o = {}) => {
+      doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 10); doc.setTextColor(...(o.color || [27,30,46]));
+      const ind = o.indent || 0, lines = doc.splitTextToSize(t, W - X * 2 - ind);
+      lines.forEach((w, n) => { need(14); if(n === 0 && o.bullet) doc.text(o.bullet, X + ind - 12, y); doc.text(w, X + ind, y); y += (o.lh || 13.5); });
+    };
+    dayNotes(d).forEach((t, k) => {
+      if(t.section && t.section !== sec){ sec = t.section; need(34); y += 6; para(sec.toUpperCase(), {bold:true, size:9.5, color:[181,101,31]}); y += 2; }
+      need(40); y += 4; para(`${k + 1}. ${t.h}`, {bold:true, size:12, color:[38,43,69], lh:16});
+      const part = (label, a, ol) => { if(!a.length) return; need(28); para(label, {bold:true, size:9.5, color:[91,97,120]}); a.forEach((x, n) => para(x, {indent:16, bullet: ol ? (n + 1) + "." : "•"})); y += 3; };
+      part("Core principles", t.principles); part("Step by step", t.steps, true); part("Best practices & pitfalls", t.practices);
+      if(t.callout) para(t.callout, {indent:16, color:[91,97,120]});
+      if(t.deeper) part("Go deeper — " + t.deeper.t, t.deeper.p);
+      y += 6;
+    });
+    const pages = doc.getNumberOfPages();
+    for(let p = 1; p <= pages; p++){ doc.setPage(p); doc.setFontSize(8); doc.setTextColor(110,116,140); doc.text(`LSH EA / PA Upskill Program · Day ${day} Lesson Notes · page ${p} of ${pages}`, X, H - 28); }
+    doc.save(`LSH_Day${day}_Lesson_Notes.pdf`);
+    toast("Lesson Notes downloaded.");
+  }
+  Object.assign(window, {previewLessonNotes, openLessonNotes, downloadLessonNotesPdf});
+
+  // Handouts: the Lesson Notes for every day, above the templates.
+  if(typeof renderHandouts === "function" && !renderHandouts.__notes){
+    const __rh = renderHandouts;
+    renderHandouts = function(){
+      const html = __rh.apply(this, arguments);
+      const q = (state.hoQuery || "").toLowerCase();
+      const days = DAYS.filter(d => !q || ("lesson notes " + d.title).toLowerCase().includes(q) || String(d.id) === q);
+      const cur = state.traineeId && typeof nextDayId === "function" ? nextDayId() : 1;
+      const block = days.length ? `<h2 class="ln-h">📖 Lesson Notes <span>The full text of every topic, day by day. The slides show the key lines; read the complete version here.</span></h2>
+        <div class="ho-grid ln-grid">${days.map(d => `<div class="card ho-card ln-card ${d.id === cur ? "current" : ""}">
+          <div class="ho-top"><div class="ho-icon">📖</div><div><div class="ho-day">Day ${d.id}${d.id === cur ? " · you're here" : ""}</div><h4>${esc(d.title)}</h4><span>Lesson Notes · ${(d.lessons || []).length} topics</span></div></div>
+          <div class="ho-actions"><button class="btn btn-primary btn-sm" onclick="previewLessonNotes(${d.id})">Read</button><button class="btn btn-ghost btn-sm" onclick="downloadLessonNotesPdf(${d.id})">⬇ PDF</button></div>
+        </div>`).join("")}</div>
+        <h2 class="ln-h">🧰 Templates &amp; Checklists</h2>` : "";
+      return html.replace('<div class="ho-grid">', block + '<div class="ho-grid">');
+    };
+    renderHandouts.__notes = true;
+  }
+
+  const st = document.createElement("style"); st.id = "lesson-notes"; st.textContent = `
+.ln-more{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 0;font-size:12px;color:var(--ink-soft);}
+.ln-more button{border:1px solid #E3E6EE;background:#fff;color:var(--navy);font-weight:700;font-size:12.5px;border-radius:999px;padding:5px 14px;cursor:pointer;}
+.ln-more button:hover{background:#F3F4F8;}
+.ln-h{color:var(--navy);font-size:17px;margin:18px 0 10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.ln-h span{font-size:13px;font-weight:500;color:var(--ink-soft);}
+.ln-grid{margin-bottom:6px;}
+.ln-card .ho-actions{margin-top:10px;}
+.ln-body .ln-sec{margin:18px 0 4px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);}
+.ln-topic{border-top:1px solid #ECEEF4;padding:10px 0 4px;scroll-margin-top:12px;}
+.ln-topic.ln-hit{background:#FFF7EF;border-radius:10px;padding:10px 12px 4px;margin:0 -12px;}
+.ln-topic h4{margin:4px 0 6px !important;display:flex;gap:8px;align-items:baseline;font-size:16.5px !important;}
+.ln-topic h4 span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--orange-deep);}
+.ln-part{margin:6px 0;} .ln-part b{display:block;font-size:12px;color:#5B6178;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;}
+.ln-part ul,.ln-part ol{margin:2px 0 6px 20px;padding:0;} .ln-part li{font-size:13.5px;line-height:1.5;margin:3px 0;color:#2A2E40;}
+.ln-callout{font-size:13px;color:#5B6178;font-style:italic;margin:4px 0 8px;}
+@media(max-width:760px){ .ln-more span{display:none;} }
+`; document.head.appendChild(st);
+  if(typeof render === "function" && typeof state !== "undefined" && (state.view === "day" || state.view === "handouts")){ try{ render(); }catch(e){} }
+})();
