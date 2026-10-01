@@ -14,6 +14,8 @@
 //   - when the next billing month starts, it switches back on what it switched off: workers.dev on
 //     again, each Pages project rolled back to the deployment it had.
 // What it switched off is kept in KV (the courses' namespace, key "_request-budget").
+// The month's numbers go to KV too (key "_request-usage"): every LSH site's admin side shows them as the
+// server request meter (request-budget.js; README → Server request meter).
 //
 // Needs (repository secret / variables):
 //   CLOUDFLARE_BUDGET_TOKEN   API token: Account Analytics Read, Workers Scripts Edit,
@@ -31,7 +33,9 @@ import { pathToFileURL } from 'node:url';
 
 export const PAUSED_MARK = '[request-budget] paused';
 const STATE_KEY = '_request-budget';
-const DAY = 86400000;
+export const USAGE_KEY = '_request-usage';
+export const INCLUDED = 10000000;   // requests a billing month included in Workers Paid
+const DAY = 86400000, HOUR = 3600000;
 
 /* ---------- the billing month ---------- */
 // The billing month that `now` falls in: from BILLING_DAY (1–28) of this month or the last, to the same day a month later (UTC).
@@ -59,6 +63,16 @@ export function cloudflare(token, account, fetchImpl = fetch) {
             return j;
         }
     }
+    async function kvGet(ns, key, what) {
+        const r = await call(`/accounts/{account}/storage/kv/namespaces/${ns}/values/${key}`, {}, true);
+        if (r.status === 404) return null;
+        if (!r.ok) throw new Error(`reading ${what} from KV: HTTP ${r.status}`);
+        try { return JSON.parse(await r.text()); } catch (e) { return null; }
+    }
+    async function kvPut(ns, key, value, what) {
+        const r = await call(`/accounts/{account}/storage/kv/namespaces/${ns}/values/${key}`, { method: 'PUT', body: JSON.stringify(value), headers: { 'Content-Type': 'text/plain' } }, true);
+        if (!r.ok) throw new Error(`saving ${what} to KV: HTTP ${r.status}`);
+    }
     return {
         api: call,
         async gql(query, variables) {
@@ -67,23 +81,27 @@ export function cloudflare(token, account, fetchImpl = fetch) {
             if (!j || (j.errors && j.errors.length)) throw new Error(`GraphQL: ${j && j.errors ? j.errors.map(e => e.message).join('; ') : `HTTP ${r.status}`}`);
             return j.data;
         },
-        async getState(ns) {
-            const r = await call(`/accounts/{account}/storage/kv/namespaces/${ns}/values/${STATE_KEY}`, {}, true);
-            if (r.status === 404) return null;
-            if (!r.ok) throw new Error(`reading the state from KV: HTTP ${r.status}`);
-            try { return JSON.parse(await r.text()); } catch (e) { return null; }
-        },
-        async putState(ns, state) {
-            const r = await call(`/accounts/{account}/storage/kv/namespaces/${ns}/values/${STATE_KEY}`, { method: 'PUT', body: JSON.stringify(state), headers: { 'Content-Type': 'text/plain' } }, true);
-            if (!r.ok) throw new Error(`saving the state to KV: HTTP ${r.status}`);
-        }
+        getState: (ns) => kvGet(ns, STATE_KEY, 'the state'),
+        putState: (ns, state) => kvPut(ns, STATE_KEY, state, 'the state'),
+        getUsage: (ns) => kvGet(ns, USAGE_KEY, 'the usage'),
+        putUsage: (ns, usage) => kvPut(ns, USAGE_KEY, usage, 'the usage')
     };
 }
 
 /* ---------- usage this billing month ---------- */
 const DATASETS = { worker: 'workersInvocationsAdaptive', pages: 'pagesFunctionsInvocationsAdaptiveGroups' };
-// Requests per script from `from` to `to`, a dataset at a time, in windows no longer than the dataset allows.
-export async function usage(cf, account, from, to) {
+// The query window: as long as the dataset allows, up to a day, in whole hours that divide a day, so
+// every window falls within one UTC day and each day's requests are known.
+export function windowMs(maxSeconds) {
+    let h = Math.max(1, Math.floor(Math.min(Number(maxSeconds) || 86400, 86400) / 3600));
+    while (24 % h) h--;
+    return h * HOUR;
+}
+// Requests per script and per UTC day from `from` to `to`, a dataset at a time, a window at a time.
+// `base` ({ through, scripts, days }: what the last run had counted) saves asking for those days again.
+// Returns { total, scripts, days, notes, done }; `done` is what the next run can start from: the whole
+// days counted (ended over an hour ago, so Cloudflare's numbers for them are final), or null.
+export async function usage(cf, account, from, to, base = null) {
     let maxSec = {};
     try {
         const s = await cf.gql(`query($a: string!) { viewer { accounts(filter: { accountTag: $a }) { settings {
@@ -91,19 +109,29 @@ export async function usage(cf, account, from, to) {
         const st = (((s || {}).viewer || {}).accounts || [])[0] || {};
         for (const [k, ds] of Object.entries(DATASETS)) maxSec[k] = st.settings && st.settings[ds] && st.settings[ds].maxDuration;
     } catch (e) { maxSec = {}; }
-    const byScript = new Map(), notes = [];
+    const through = base && base.through ? new Date(base.through) : null;
+    const useBase = !!through && through > from && through <= to && through.getTime() % DAY === from.getTime() % DAY;
+    const start = useBase ? through : from;
+    const finalBefore = Math.max(start.getTime(), Math.floor((to.getTime() - HOUR) / DAY) * DAY + from.getTime() % DAY);
+    const all = new Map(), done = new Map(), days = {}, doneDays = {}, notes = [];
+    const bump = (map, kind, name, n) => { const k = kind + ':' + name; const x = map.get(k) || { kind, name, requests: 0 }; x.requests += n; map.set(k, x); };
+    if (useBase) {
+        for (const x of base.scripts || []) { bump(all, x.kind, x.name, Number(x.requests) || 0); bump(done, x.kind, x.name, Number(x.requests) || 0); }
+        for (const [d, n] of Object.entries(base.days || {})) { days[d] = Number(n) || 0; doneDays[d] = Number(n) || 0; }
+    }
     for (const [kind, ds] of Object.entries(DATASETS)) {
-        const step = Math.max(3600, Math.min(Number(maxSec[kind]) || DAY / 1000, 31 * 86400)) * 1000;
+        const step = windowMs(maxSec[kind]);
         try {
-            for (let t = from.getTime(); t < to.getTime(); t += step) {
+            for (let t = start.getTime(); t < to.getTime(); t += step) {
                 const a = new Date(t).toISOString(), b = new Date(Math.min(t + step, to.getTime())).toISOString();
                 const d = await cf.gql(`query($a: string!, $s: Time!, $e: Time!) { viewer { accounts(filter: { accountTag: $a }) {
                     rows: ${ds}(limit: 10000, filter: { datetime_geq: $s, datetime_lt: $e }) { sum { requests } dimensions { scriptName } } } } }`, { a: account, s: a, e: b });
                 const rows = ((((d || {}).viewer || {}).accounts || [])[0] || {}).rows || [];
+                const day = a.slice(0, 10), final = t + step <= finalBefore;
                 for (const r of rows) {
-                    const name = (r.dimensions && r.dimensions.scriptName) || '(unnamed)';
-                    const k = kind + ':' + name;
-                    byScript.set(k, { kind, name, requests: ((byScript.get(k) || {}).requests || 0) + Number((r.sum || {}).requests || 0) });
+                    const name = (r.dimensions && r.dimensions.scriptName) || '(unnamed)', n = Number((r.sum || {}).requests || 0);
+                    bump(all, kind, name, n); days[day] = (days[day] || 0) + n;
+                    if (final) { bump(done, kind, name, n); doneDays[day] = (doneDays[day] || 0) + n; }
                 }
             }
         } catch (e) {
@@ -111,8 +139,23 @@ export async function usage(cf, account, from, to) {
             notes.push(`Pages Functions usage couldn't be read (${e.message}). Their requests may be missing from the total.`);
         }
     }
-    const scripts = [...byScript.values()].sort((x, y) => y.requests - x.requests);
-    return { total: scripts.reduce((s, x) => s + x.requests, 0), scripts, notes };
+    const scripts = [...all.values()].sort((x, y) => y.requests - x.requests);
+    return {
+        total: scripts.reduce((s, x) => s + x.requests, 0), scripts, days, notes,
+        done: notes.length ? null : { through: new Date(finalBefore).toISOString(), scripts: [...done.values()], days: doneDays }
+    };
+}
+
+// The admin pages' request meter reads the usage from KV. It's saved about once an hour (KV writes are
+// counted too), and more often when it matters: a new month or day, a pause, 1% of the limit more, or
+// from 75% of the limit on (every run).
+export function shouldSaveUsage(prev, next) {
+    if (!prev || prev.v !== next.v || !prev.month || prev.month.start !== next.month.start) return true;
+    if (prev.paused !== next.paused || prev.limit !== next.limit) return true;
+    if (String(prev.at).slice(0, 10) !== next.at.slice(0, 10)) return true;
+    if (new Date(next.at) - new Date(prev.at) >= 55 * 60000) return true;
+    if (next.total >= 0.75 * next.limit) return true;
+    return Math.abs(next.total - (Number(prev.total) || 0)) >= 0.01 * next.limit;
 }
 
 /* ---------- switching off and on ---------- */
@@ -185,7 +228,9 @@ export async function run({ cf, deployPaused, account, ns, limit = 9990000, bill
         lines.push(action === 'resume' ? '**Switched back on (by hand).**' : `**A new billing month (${month.key}): everything switched back on.**`);
     }
 
-    const u = await usage(cf, account, month.start, now);
+    const prevUsage = await cf.getUsage(ns).catch(() => null);
+    const base = prevUsage && prevUsage.v === 1 && prevUsage.month && prevUsage.month.start === month.key ? prevUsage.cache : null;
+    const u = await usage(cf, account, month.start, now, base);
     const elapsed = Math.max(1 / 24, (now - month.start) / DAY), days = (month.end - month.start) / DAY;
     const projected = Math.round(u.total / elapsed * days);
     const pct = (n) => (100 * n / limit).toFixed(1) + '%';
@@ -203,13 +248,26 @@ export async function run({ cf, deployPaused, account, ns, limit = 9990000, bill
         if (action === 'resume' && u.total >= limit) lines.push(`Still over the limit, so it paused again: raise REQUEST_LIMIT to keep the sites on before ${month.end.toISOString().slice(0, 10)}.`);
     }
 
+    // for the admin pages' request meter (README → Server request meter)
+    const meter = {
+        v: 1, at: now.toISOString(), month: { start: month.key, end: month.end.toISOString().slice(0, 10) },
+        total: u.total, limit, included: INCLUDED, projected,
+        paused: !!state.paused, pausedAt: state.paused ? state.pausedAt || null : null,
+        sites: u.scripts, days: u.days, notes: u.notes, cache: u.done
+    };
+    let meterSaved = false;
+    if (action !== 'check' || shouldSaveUsage(prevUsage, meter)) {
+        try { await cf.putUsage(ns, meter); meterSaved = true; if (action === 'test') lines.push('- ✅ The usage saved for the admin pages\' request meter'); }
+        catch (e) { lines.push(action === 'test' ? `- ❌ The usage couldn't be saved for the admin pages' request meter: ${e.message}` : `⚠️ The usage couldn't be saved for the admin pages' request meter: ${e.message}`); }
+    }
+
     lines.push('', `Billing month ${month.key} → ${month.end.toISOString().slice(0, 10)}: **${u.total.toLocaleString('en-US')}** of ${limit.toLocaleString('en-US')} requests (${pct(u.total)}); at this rate about ${projected.toLocaleString('en-US')} by the end of the month.`, '',
         '| Script | Kind | Requests | Share |', '|---|---|---:|---:|',
         ...u.scripts.map(s => `| ${s.name} | ${s.kind === 'pages' ? 'Pages Functions' : 'Worker'} | ${s.requests.toLocaleString('en-US')} | ${u.total ? (100 * s.requests / u.total).toFixed(1) : '0'}% |`));
     u.notes.forEach(n => lines.push('', '⚠️ ' + n));
     if (!state.paused && u.total >= 0.8 * limit) lines.push('', `⚠️ ${pct(u.total)} of the limit used.`);
     if (!state.paused && projected > limit) lines.push('', `⚠️ At this rate the limit is reached before the month ends: the sites would pause.`);
-    return { action, total: u.total, limit, projected, scripts: u.scripts, notes: u.notes, state, notify, problems, lines };
+    return { action, total: u.total, limit, projected, scripts: u.scripts, days: u.days, notes: u.notes, meter, meterSaved, state, notify, problems, lines };
 }
 
 // Run workflow → test: checks every permission without changing production.
