@@ -67,6 +67,36 @@ The `LSH_KV` namespace is shared by every LSH course (EA/PA keys have no prefix;
 
 Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/scripts/storage.mjs`.
 
+## 💳 Monthly request budget (hard limit for the whole Cloudflare account)
+
+The Workers Paid plan includes **10 million requests a billing month** across every Worker and Pages Function on the account (all the LSH sites: this course, the other courses, the CMS, the Training Portal, Ring Channel, the Knowledge Base), then charges **$0.30 per extra million**. Cloudflare has no spending cap, so `.github/workflows/request-budget.yml` is one. Every 10 minutes it:
+
+- reads the billing month's requests so far from Cloudflare's analytics (Workers and Pages Functions, per script) and shows them in the run's summary (**Actions → Request budget → a run**), with a projection for the month;
+- at **9,990,000** (`REQUEST_LIMIT`) switches the sites' server parts off until the next billing month, and the run turns red (GitHub emails you):
+  - **Workers:** their `workers.dev` address is turned off, so requests never reach them (the sites show Cloudflare's "not found" page);
+  - **Pages projects with Functions** (the CMS, the Training Portal): a static "This training site is paused until …" page is deployed to production (static pages are free); static-only projects are left alone;
+- keeps them off while paused (a deploy in between switches a Worker or a project back on; the next run switches it off again);
+- when the next billing month starts, switches back on what it switched off: `workers.dev` on again, each Pages project rolled back to the deployment it had.
+
+What it switched off is kept in KV (key `_request-budget`). Saved work is never touched. Code: `.github/scripts/request-budget.mjs`; test: `request-budget.test.mjs`.
+
+**Setup (once):**
+
+1. **Token:** Cloudflare → My Profile → API Tokens → Create Token → *Custom token*, for the LSH account: **Account Analytics: Read**, **Workers Scripts: Edit**, **Cloudflare Pages: Edit**, **Workers KV Storage: Edit**.
+2. **GitHub:** this repository → Settings → Secrets and variables → Actions:
+   - secret `CLOUDFLARE_BUDGET_TOKEN` = the token;
+   - variable `BILLING_DAY` = the day of the month your Cloudflare billing month starts (Cloudflare → Manage Account → Billing; default 1);
+   - optional variable `REQUEST_LIMIT` (default `9990000`).
+3. **Check it:** Actions → Request budget → Run workflow → `test`. It lists the Workers and Pages projects, reads the usage, deploys the paused page to a *preview* branch of each Pages project (`request-budget-test`; production isn't touched) and reads and saves the state. Every line should be ✅.
+
+**By hand:** Run workflow → `pause` or `resume`. Resuming while still over the limit pauses again at once: raise `REQUEST_LIMIT` first.
+
+**Limits of the limit:**
+- Cloudflare's analytics lag a few minutes and the check runs every 10 minutes (GitHub can delay scheduled runs), so the 10,000 requests between 9,990,000 and 10,000,000 are the margin. At today's traffic that's hours; if the sites ever get much busier, lower `REQUEST_LIMIT`.
+- It caps requests only. Other usage the paid plan bills beyond what's included (Workers CPU time, KV, D1, R2, Durable Objects) isn't capped; Cloudflare → Notifications → *Usage Based Billing* emails you when any of it starts costing.
+- Workers custom domains (if any are added later) keep running; the run's log names them.
+- GitHub turns off scheduled workflows in a repository with no activity for 60 days: if this repository goes quiet, re-enable it under Actions.
+
 ## Checks (GitHub Actions)
 
 `.github/workflows/checks.yml` runs on every pull request and every push to `main`. A red **Checks** status means something is broken, and the log says what:
@@ -76,6 +106,7 @@ Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/script
   - every local file a page loads must exist;
   - JSON must be valid;
   - the Worker must build (`wrangler deploy --dry-run`; nothing is deployed);
+  - **the monthly request budget** (`.github/scripts/request-budget.test.mjs`, against a stand-in Cloudflare account): under the limit nothing changes and every script is listed; at the limit each Worker's `workers.dev` (only those that were on) goes off and each Pages project with Functions gets the paused page (static projects untouched), with an email; while paused, anything a deploy switched back on goes off again; the next billing month brings back exactly what was switched off; billing months starting mid-month; usage read in several windows; missing numbers; a `test` run changes nothing in production;
   - **where records are kept** (`.github/scripts/storage.mjs`): 30 progress saves write R2 each time and KV once (a day later, once more); with KV's writes used up, saving still works; progress saved in KV before the move is still read and listed; deleting clears both; trainee records and feedback stay in KV; without R2 everything stays in KV.
 - **Smoke test in a browser:** serves the site through `worker.js` with an in-memory KV store (`.github/scripts/server.mjs`), signs in as a trainee, and renders every lesson slide, knowledge check, page and practice tool at desktop and phone width. It fails on any page error or a page that scrolls sideways (`.github/scripts/smoke.cjs`).
 - **Presenter view** (`.github/scripts/presenter.cjs`): opens Presenter view as a trainer and watches the slides window you share in Google Meet, which must never flicker.

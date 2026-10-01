@@ -1,0 +1,43 @@
+# Monthly request budget: a hard limit on the Cloudflare account's Workers and Pages Functions
+# requests (every LSH site), so the card is never charged for them. Every 10 minutes it reads the
+# billing month's requests; at REQUEST_LIMIT it switches the sites' server parts off until the next
+# billing month, then back on. Setup and details: README → Monthly request budget.
+# Until CLOUDFLARE_BUDGET_TOKEN is set, a run just prints a notice.
+name: Request budget
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "check (what the schedule does), test (checks the token; changes nothing in production), pause, or resume"
+        type: choice
+        options: [check, test, pause, resume]
+        default: check
+
+permissions:
+  contents: read
+
+concurrency:
+  group: request-budget
+  cancel-in-progress: false
+
+jobs:
+  budget:
+    name: Check this month's requests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Check (and pause or resume)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_BUDGET_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          REQUEST_LIMIT: ${{ vars.REQUEST_LIMIT }}
+          BILLING_DAY: ${{ vars.BILLING_DAY }}
+          ACTION: ${{ inputs.action || 'check' }}
+        run: node .github/scripts/request-budget.mjs

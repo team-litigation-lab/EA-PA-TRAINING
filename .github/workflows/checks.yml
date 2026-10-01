@@ -30,6 +30,8 @@ jobs:
         run: node .github/scripts/check-site.mjs
       - name: Where records are kept (progress in R2, the rest in KV)
         run: node .github/scripts/storage.mjs
+      - name: Monthly request budget (pause at the limit, back on next month)
+        run: node .github/scripts/request-budget.test.mjs
       - name: Build the Worker without deploying (wrangler dry run)
         run: npx --yes wrangler@4 deploy --dry-run --outdir "$RUNNER_TEMP/dist"
 
