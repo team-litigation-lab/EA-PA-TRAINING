@@ -516,31 +516,6 @@ const DAY9 = {
       }
     },
     {
-      "h": "Federal/State/Financial Infrastructure",
-      "section": "Compliance Tracking & Professional Development",
-      "fourPart": {
-        "corePrinciples": [
-          "Once an entity is formed, it needs its own financial and regulatory infrastructure — a newly formed business with no EIN, no bank account, and no tax registrations isn't actually operational yet, just legally created.",
-          "This infrastructure exists at three distinct levels — federal (IRS), state (state tax and labor agencies), and financial (banking) — and each has its own separate setup process that formation alone doesn't complete.",
-          "Keeping these systems properly separated from day one (especially business and personal finances) is what preserves the liability protection the entity structure was chosen for in the first place."
-        ],
-        "howTo": [
-          "Obtain the EIN from the IRS immediately after formation is confirmed — this federal tax ID is required for nearly every subsequent step and is free to obtain directly from the IRS.",
-          "Register with the relevant state tax agency for any applicable state taxes (income, sales, franchise tax depending on the state and business type) and with the state labor/unemployment agency if the business will have employees.",
-          "Open a dedicated business bank account using the EIN and formation documents — never route business income or expenses through a personal account, even temporarily, since this undermines the liability separation.",
-          "Set up a bookkeeping system (even a simple one) before the first transaction happens, not after — reconstructing financial records after the fact is far harder than maintaining them from day one.",
-          "If the business will have employees, register for state and federal payroll tax withholding before the first paycheck is issued — this has hard compliance deadlines, not a grace period."
-        ],
-        "bestPractices": [
-          "Commingling personal and business funds — even briefly, even for a \"small\" expense — is one of the most common ways a founder accidentally undermines their own liability protection. Keep the separation absolute from the very first transaction.",
-          "Pitfall: assuming state tax registration is automatic upon formation. It's a separate, additional step in every state — formation and tax registration are not the same filing.",
-          "Keep copies of every federal and state registration confirmation in the business's permanent file — these are referenced repeatedly for licensing, banking, and any future audits.",
-          "If the business operates in multiple states, each state where it has a genuine business presence may require its own separate tax registration — this is easy to miss when a business expands beyond its home state."
-        ],
-        "discussionCase": "Elias's new consulting LLC has its EIN and a business bank account is being opened this week. He mentions he already paid the filing attorney's invoice from his personal credit card \"just to get it done faster,\" and plans to reimburse himself later. What's the actual risk in this, and what would you want to help him do about it before it becomes a habit?"
-      }
-    },
-    {
       "h": "Protecting the Brand Online",
       "section": "Reputation & Brand",
       "b": [
@@ -612,7 +587,7 @@ const DAY9 = {
       "r": "Attendance Tracking is where completion evidence — certificates, webinar reports — gets filed for audits."
     },
     {
-      "afterIndex": 23,
+      "afterIndex": 22,
       "q": "A client posts an inaccurate negative review. Best response?",
       "opts": [
         "Argue publicly to prove the client wrong",
@@ -778,17 +753,6 @@ const DAY9 = {
       ],
       "a": 0,
       "r": "The buffer is a real design decision with real trade-offs — it directly affects whether deadlines are caught in time."
-    },
-    {
-      "q": "What's a reasonable way to think about 'brand voice' consistency across an executive's public communications?",
-      "opts": [
-        "Each channel should have its own distinct voice, so followers on different platforms get a different experience",
-        "Consistency in voice is purely a marketing department concern",
-        "Consistent tone and messaging build recognizability and trust, so voice should be maintained across contexts",
-        "Voice matters most on social media, while speeches and articles can follow whatever style suits the moment"
-      ],
-      "a": 2,
-      "r": "A consistent voice across contexts is what makes an executive's public presence recognizable and trustworthy over time."
     },
     {
       "q": "Why should an EA flag a potential reputational issue even if they're not fully certain it will become a real problem?",

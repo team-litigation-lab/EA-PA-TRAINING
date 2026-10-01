@@ -14,7 +14,7 @@
 const DAY6 = {
   "id": 6,
   "title": "Business Formation, Compliance, Projects & SOPs",
-  "theme": "Business Structure & Formation · Compliance & Good Standing · Project Leadership · Process Improvement (Lean Six Sigma, KPI Dashboards) · SOPs",
+  "theme": "Business Structure, Formation & Federal/State Setup · Compliance & Good Standing · Project Leadership · Process Improvement (Lean Six Sigma, KPI Dashboards) · SOPs",
   "objective": "Guide business formation and compliance decisions, lead projects when timelines slip, improve processes with a real KPI dashboard, and write SOPs that hold up.",
   "lessons": [
     {
@@ -54,6 +54,31 @@ const DAY6 = {
           "Confirm the registered agent is set up correctly at formation, not as an afterthought — a formation filing with no valid registered agent can be rejected or later flagged."
         ],
         "discussionCase": "Elias is forming a new consulting entity and wants to open a business bank account \"as soon as possible.\" The state filing was approved yesterday, but the EIN application hasn't been submitted yet. What do you tell him about the actual sequence and realistic timeline?"
+      }
+    },
+    {
+      "h": "Federal/State/Financial Infrastructure",
+      "section": "Business Structure & Formation",
+      "fourPart": {
+        "corePrinciples": [
+          "Once an entity is formed, it needs its own financial and regulatory infrastructure — a newly formed business with no EIN, no bank account, and no tax registrations isn't actually operational yet, just legally created.",
+          "This infrastructure exists at three distinct levels — federal (IRS), state (state tax and labor agencies), and financial (banking) — and each has its own separate setup process that formation alone doesn't complete.",
+          "Keeping these systems properly separated from day one (especially business and personal finances) is what preserves the liability protection the entity structure was chosen for in the first place."
+        ],
+        "howTo": [
+          "Obtain the EIN from the IRS immediately after formation is confirmed — this federal tax ID is required for nearly every subsequent step and is free to obtain directly from the IRS.",
+          "Register with the relevant state tax agency for any applicable state taxes (income, sales, franchise tax depending on the state and business type) and with the state labor/unemployment agency if the business will have employees.",
+          "Open a dedicated business bank account using the EIN and formation documents — never route business income or expenses through a personal account, even temporarily, since this undermines the liability separation.",
+          "Set up a bookkeeping system (even a simple one) before the first transaction happens, not after — reconstructing financial records after the fact is far harder than maintaining them from day one.",
+          "If the business will have employees, register for state and federal payroll tax withholding before the first paycheck is issued — this has hard compliance deadlines, not a grace period."
+        ],
+        "bestPractices": [
+          "Commingling personal and business funds — even briefly, even for a \"small\" expense — is one of the most common ways a founder accidentally undermines their own liability protection. Keep the separation absolute from the very first transaction.",
+          "Pitfall: assuming state tax registration is automatic upon formation. It's a separate, additional step in every state — formation and tax registration are not the same filing.",
+          "Keep copies of every federal and state registration confirmation in the business's permanent file — these are referenced repeatedly for licensing, banking, and any future audits.",
+          "If the business operates in multiple states, each state where it has a genuine business presence may require its own separate tax registration — this is easy to miss when a business expands beyond its home state."
+        ],
+        "discussionCase": "Elias's new consulting LLC has its EIN and a business bank account is being opened this week. He mentions he already paid the filing attorney's invoice from his personal credit card \"just to get it done faster,\" and plans to reimburse himself later. What's the actual risk in this, and what would you want to help him do about it before it becomes a habit?"
       }
     },
     {
@@ -608,7 +633,7 @@ const DAY6 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 10,
+      "afterIndex": 11,
       "q": "A project is behind schedule due to missed deadlines from several team members. Best first response?",
       "opts": [
         "Take over the late tasks yourself so the schedule recovers",
@@ -620,7 +645,7 @@ const DAY6 = {
       "r": "You can't fix a delay effectively until you know why it happened."
     },
     {
-      "afterIndex": 20,
+      "afterIndex": 21,
       "q": "On the KPI dashboard, which category does 'Filing Deadline Adherence (100%)' belong to?",
       "opts": [
         "Legal Compliance",

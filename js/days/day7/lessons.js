@@ -813,7 +813,7 @@ const DAY7 = {
       "r": "Scope defines who the procedure covers; Purpose explains why it exists."
     },
     {
-      "afterIndex": 2,
+      "afterIndex": 3,
       "q": "What's the target range for Invoice Turnaround Time?",
       "opts": [
         "No target — whenever it gets done",

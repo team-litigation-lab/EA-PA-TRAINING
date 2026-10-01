@@ -448,14 +448,14 @@ const DAY3 = {
       "b": [
         "A real travel plan accounts for what happens when something goes wrong — a cancelled flight, a missed connection, a sudden weather event — not just the ideal-case itinerary.",
         "Knowing the backup options in advance (the next viable flight, an alternate routing, a local contact at the destination) turns a disruption into a quick pivot instead of a crisis handled from scratch under pressure.",
-        "This is the same principle as backup-vendor identification from Day 5 — a real contingency plan exists before it's needed, not improvised in the moment."
+        "A real contingency plan exists before it's needed, not improvised in the moment — the same principle you'll apply to backup vendors on Day 5."
       ],
       "howTo": [
         "Before finalizing any trip, identify the realistic disruption scenarios for that specific itinerary — a cancelled flight, a missed connection, severe weather at a key leg.",
         "Identify the actual backup options in advance for each scenario — the next viable flight, an alternate routing, a local contact at the destination.",
         "Document these contingencies alongside the itinerary itself, not as a separate afterthought that's hard to find under pressure.",
         "When a disruption actually happens, execute the pre-identified backup immediately rather than starting to research options from scratch.",
-        "Apply the same principle used for backup-vendor identification (per Day 5) — a real contingency plan exists before it's needed, not improvised in the moment."
+        "Have the contingency plan ready before it's needed, not improvised in the moment (you'll use the same principle for backup vendors on Day 5)."
       ],
       "trainerCue": "Ask for a real story of a travel disruption that was handled well because a backup plan already existed — versus one that turned into a scramble because it didn't."
     },
@@ -486,12 +486,12 @@ const DAY3 = {
       "b": [
         "Receipts get lost in real time far more easily while traveling than in a normal office routine — capturing them immediately (a photo, a folder, anything) beats trying to reconstruct a trip's expenses afterward from memory.",
         "Categorizing expenses as they happen (which client, which matter, which cost center) is much faster than doing it all at once after return, when the context has already faded.",
-        "This connects directly to the SOA reconciliation and expense-entry discipline from Day 7 — travel expense tracking is the same skill, applied under less controlled conditions."
+        "Travel expense tracking is the same reconciliation skill as everyday expense entry, applied under less controlled conditions — Day 7 covers the full SOA reconciliation process."
       ],
       "howTo": [
         "Capture every receipt immediately when it's received — a photo, a dedicated folder, anything — rather than planning to collect them all at the end of the trip.",
         "Categorize each expense as it happens (which client, which matter, which cost center) while the context is still fresh, not in a batch afterward.",
-        "Apply the same reconciliation discipline used for regular expense tracking (per the Day 7 SOA process) — travel expenses are the same skill under less controlled conditions.",
+        "Reconcile travel expenses with the same discipline as regular expense tracking — the same skill under less controlled conditions (Day 7 covers the full SOA process).",
         "Set aside a few minutes at the end of each travel day specifically to confirm nothing from that day was missed, rather than waiting until return.",
         "Submit and reconcile travel expenses within a defined window after return — don't let them accumulate indefinitely once the trip is over."
       ],
@@ -504,14 +504,14 @@ const DAY3 = {
       "b": [
         "A travel checklist that exists only in memory isn't a real checklist — writing it down once and reusing it for every trip is what actually prevents the same detail from being forgotten differently each time.",
         "A good checklist covers documentation, health/safety prep, packing considerations specific to the destination, loyalty numbers, and a contingency contact — not just 'book the flight and hotel.'",
-        "This connects directly to the Home Binder discipline from Day 5 — a travel checklist is the same kind of durable, written reference, just scoped to trip preparation specifically."
+        "A travel checklist is a durable, written reference scoped to trip preparation — the same discipline you'll use to build the Home Binder on Day 5."
       ],
       "howTo": [
         "Write the checklist down once, in a reusable form, rather than reconstructing it from memory for every trip.",
         "Cover documentation requirements (passport, visa) as a distinct section, separate from booking logistics.",
         "Include health and safety prep specific to the destination, not just a generic packing list.",
         "Add a loyalty-numbers-applied confirmation step and a contingency contact for the trip, so neither gets missed under time pressure.",
-        "Treat this checklist as a durable, written reference the same way the Home Binder (per Day 5) works — build it once, reuse and refine it every trip after."
+        "Treat this checklist as a durable, written reference — build it once, reuse and refine it every trip after (the Home Binder on Day 5 works the same way)."
       ],
       "trainerCue": "Ask who currently has an actual written travel checklist versus who rebuilds it from memory every time — building one live as a group is a strong close to this topic."
     },
@@ -522,14 +522,14 @@ const DAY3 = {
       "b": [
         "A trip isn't complete when the traveler gets home — expense reconciliation, thank-you follow-ups, and capturing what went wrong (so it doesn't repeat) are real, often-skipped final steps.",
         "A quick post-trip note on what worked and what didn't (a hotel that fell short, a connection that was too tight) is what makes the next trip's planning genuinely better instead of repeating the same mistakes.",
-        "This is the same continuous-improvement discipline as the seasonal-coordination playbook from Day 6 — a trip debrief is a small-scale version of the same habit."
+        "A trip debrief is continuous improvement at a small scale — the same habit you'll apply to the seasonal-coordination playbook on Day 6."
       ],
       "howTo": [
         "Reconcile travel expenses promptly after return, rather than letting receipts and costs accumulate unaddressed.",
         "Send any thank-you or follow-up communications the trip generated while it's still timely, not weeks later.",
         "Write a brief note on what worked and what didn't (a hotel that fell short, a connection that was too tight) while the details are still fresh.",
         "Feed that note back into the standing travel preferences or checklist, so the next trip's planning is genuinely improved, not a repeat of the same issue.",
-        "Treat this as the same continuous-improvement habit as the seasonal-coordination playbook (per Day 6), just applied at the scale of a single trip."
+        "Treat this as a continuous-improvement habit applied at the scale of a single trip (Day 6 applies the same habit to the seasonal-coordination playbook)."
       ],
       "trainerCue": "Ask the room whether they currently do any kind of post-trip debrief, even informally — most don't, which is exactly the gap this topic is meant to close."
     },
@@ -645,17 +645,6 @@ const DAY3 = {
   ],
   "quiz": [
     {
-      "q": "Which is a core principle of gatekeeping?",
-      "opts": [
-        "Always say no to protect the executive's time",
-        "Ignore requests that seem unimportant",
-        "Access is filtered, not denied",
-        "Blame the requester for bad timing"
-      ],
-      "a": 2,
-      "r": "Gatekeeping filters and redirects — it doesn't shut the door."
-    },
-    {
       "q": "A high-level client wants an urgent meeting but the executive is fully booked. Most effective response?",
       "opts": [
         "Tell the client politely that the executive's calendar is full this week and offer to take a message",
@@ -665,83 +654,6 @@ const DAY3 = {
       ],
       "a": 3,
       "r": "This balances responsiveness to the client with protecting the executive's actual priorities."
-    },
-    {
-      "q": "Best first step to ensure an accurate meeting transcription?",
-      "opts": [
-        "Verify the recording software is working before the meeting, and assign a backup note-taker",
-        "Rely on the platform's automatic transcript, since it captures every word more reliably than a person",
-        "Share the raw recording immediately with stakeholders",
-        "Clean up the transcript's wording for clarity afterwards, so it reads well before it's shared"
-      ],
-      "a": 0,
-      "r": "Catching a recording failure before it happens is far cheaper than fixing it after."
-    },
-    {
-      "q": "A stakeholder says the meeting minutes were unclear. Best course of action?",
-      "opts": [
-        "Explain that the minutes reflect what was said, and invite them to add their own notes",
-        "Apologize, revise the minutes for clarity, and standardize a template for next time",
-        "Send the full raw transcript next time instead, so nothing can be left out or misunderstood",
-        "Blame the executive for speaking unclearly"
-      ],
-      "a": 1,
-      "r": "Fix the immediate issue and the process, so it doesn't repeat."
-    },
-    {
-      "q": "A client updates their contact info, but teammates keep using the old details. What ensures accuracy?",
-      "opts": [
-        "Delete the old info without telling anyone",
-        "Update the details in your own address book and remind people when they ask",
-        "Email the new details to the colleagues who contact that client most",
-        "Update the master list and notify the whole team"
-      ],
-      "a": 3,
-      "r": "One source of truth, actively communicated, is what keeps a shared list reliable."
-    },
-    {
-      "q": "Why is gatekeeping described as 'not no'?",
-      "opts": [
-        "Because the gatekeeper's job is to agree to requests quickly, so the executive never looks unavailable",
-        "Effective gatekeeping filters and redirects appropriately rather than reflexively refusing access",
-        "Because a gatekeeper should pass every request to the executive and let them do the refusing",
-        "Because saying no is the executive's decision, so the gatekeeper passes every request on untouched"
-      ],
-      "a": 1,
-      "r": "Good gatekeeping protects the executive's time and attention while still routing legitimate needs appropriately."
-    },
-    {
-      "q": "What is the core purpose of a filtering matrix for incoming requests?",
-      "opts": [
-        "To reduce the number of requests the executive sees by declining everything that isn't from a client",
-        "To share requests evenly across the team, so no one person gets overloaded",
-        "To systematically sort requests by urgency and importance so the right ones reach the executive",
-        "To create a written record of every request so the assistant can prove what was received"
-      ],
-      "a": 2,
-      "r": "A filtering matrix gives a consistent, defensible way to decide what needs the executive's direct attention."
-    },
-    {
-      "q": "What makes a redirect script effective without alienating the person being redirected?",
-      "opts": [
-        "Acknowledging their need while clearly explaining the appropriate next step or contact",
-        "Keeping it short and firm, so the person understands the answer is final and doesn't push back",
-        "Blaming the executive for being unavailable",
-        "Staying vague about the reason, so the executive's schedule and priorities stay confidential"
-      ],
-      "a": 0,
-      "r": "Effective redirects validate the person's need while still protecting the executive's time — both matter."
-    },
-    {
-      "q": "Why does transcription accuracy in virtual meetings matter beyond just having a record?",
-      "opts": [
-        "Transcripts are legally required for every meeting and must be kept on file for seven years",
-        "Accuracy only matters for meetings over one hour",
-        "Errors can propagate into follow-up actions, decisions, and commitments made based on the notes",
-        "Accurate transcripts mean the assistant no longer needs to take any notes during the meeting"
-      ],
-      "a": 2,
-      "r": "A transcription error can quietly corrupt every decision or action item that gets built on top of it."
     },
     {
       "q": "What does 'calendar management that holds' mean in practice?",
@@ -766,17 +678,6 @@ const DAY3 = {
       "r": "A travel disruption is really a calendar and contact-coordination problem in disguise — they're inseparable in practice."
     },
     {
-      "q": "What is a reasonable first response when a stakeholder pushes back on being redirected by an EA?",
-      "opts": [
-        "Calmly restate the redirect with the reason and next step, without becoming defensive",
-        "Apologize and put them through to the executive, since pushback usually means it really is urgent",
-        "Escalate straight to the executive so they can decide, rather than risk upsetting the stakeholder",
-        "Offer to pass their message on to the executive word for word, and leave it there"
-      ],
-      "a": 0,
-      "r": "Holding a calm, clear redirect — without caving or becoming defensive — is the core gatekeeping skill being tested."
-    },
-    {
       "q": "Why is it useful to time-block recurring commitments on a calendar rather than adding them ad hoc each time?",
       "opts": [
         "It shows everyone viewing the calendar that the executive is busy, so fewer people ask for time",
@@ -786,17 +687,6 @@ const DAY3 = {
       ],
       "a": 3,
       "r": "Time-blocking recurring items proactively prevents the same scheduling conflict from being solved over and over."
-    },
-    {
-      "q": "What is the risk of a gatekeeper who says 'no' too bluntly, without redirecting?",
-      "opts": [
-        "The requester may simply go straight to the executive, but the decision itself is still protected",
-        "It damages the relationship and reflects poorly on the executive, even if the underlying decision was correct",
-        "It only matters for external contacts, not internal ones",
-        "Only a small one: a clear, blunt no saves everyone time, even if it feels a little abrupt"
-      ],
-      "a": 1,
-      "r": "How a 'no' is delivered matters as much as the decision itself — the executive's reputation is on the line too."
     },
     {
       "q": "Why might an EA choose to time-block 'buffer' periods between back-to-back meetings?",
@@ -819,17 +709,6 @@ const DAY3 = {
       ],
       "a": 3,
       "r": "Proactive resolution — not passive avoidance — is what a calendar owner is expected to do."
-    },
-    {
-      "q": "Why does a transcript need a review step even when using accurate transcription software?",
-      "opts": [
-        "Long transcripts need shortening into minutes before anyone will read them, so review is really about length",
-        "Names, technical terms, and context-specific phrasing are common error points even in generally accurate transcripts",
-        "Because transcripts must be signed off by every attendee before they can be stored or shared",
-        "Because transcription software can't be trusted, so every line must be retyped from the recording"
-      ],
-      "a": 1,
-      "r": "Even strong transcription tools commonly mishear names and specialized terms, which is exactly where review adds value."
     },
     {
       "q": "Which is an early warning sign of burnout?",
@@ -896,6 +775,116 @@ const DAY3 = {
       ],
       "a": 1,
       "r": "Bates numbers identify each produced page uniquely and prove what was produced. They don't rank importance, mark privilege or set fees."
+    },
+    {
+      "q": "The 'What If' approach to travel logistics means:",
+      "opts": [
+        "Having a backup option already secured before it's needed",
+        "Asking the executive what they'd like to do if something goes wrong on the trip",
+        "Booking the cheapest fare, so there's budget left over to rebook if needed",
+        "Avoiding travel bookings until the last minute"
+      ],
+      "a": 0,
+      "r": "E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."
+    },
+    {
+      "q": "A standing weekly meeting has no agenda, and nobody can say what this week's session is for. What should you do?",
+      "opts": [
+        "Leave it running, since a recurring meeting shouldn't be questioned once it's set",
+        "Raise it for a skip or a new format, and include it in the quarterly recurring-meeting audit",
+        "Cancel the whole series yourself, without checking with the meeting's organizer",
+        "Invite more people so that the time slot gets used for something worthwhile"
+      ],
+      "a": 1,
+      "r": "A recurring meeting nobody can explain in one sentence is a sign to skip or reformat it, and a quarterly audit catches the ones that have outlived their purpose."
+    },
+    {
+      "q": "You're scheduling a call for attendees in New York, London and Singapore. What prevents the most common confusion?",
+      "opts": [
+        "Rely on each attendee's calendar app to convert the time automatically",
+        "Send the time in your own local time zone and let the others convert it",
+        "Name the reference time zone in the invite and confirm each attendee's local time",
+        "Pick the hour you'd use for an in-person meeting at the head office"
+      ],
+      "a": 2,
+      "r": "Naming the reference time zone in the invite, and checking each person's actual local time, prevents the errors that automatic conversion and daylight saving changes cause."
+    },
+    {
+      "q": "A partner asks to move today's 2 p.m. meeting to 11 a.m. What do you do before confirming?",
+      "opts": [
+        "Check what the 11 a.m. slot displaces and who's affected, then tell everyone involved",
+        "Accept straight away, since the partner outranks the other attendees",
+        "Update the calendar quietly, so attendees see the change when they next look",
+        "Decline, because same-day changes to a meeting time shouldn't be allowed"
+      ],
+      "a": 0,
+      "r": "A last-minute change can cascade through the day: check what it displaces first, then communicate it to everyone affected rather than updating the calendar silently."
+    },
+    {
+      "q": "When should the statute-of-limitations deadline for a new matter be calculated and logged?",
+      "opts": [
+        "When the attorney first asks about the filing deadlines",
+        "After the complaint has been drafted and reviewed",
+        "Estimated from a similar matter the firm handled before",
+        "At intake, from the triggering event date and the jurisdiction's rule"
+      ],
+      "a": 3,
+      "r": "SOL rules vary by claim type and jurisdiction, and a missed SOL can bar the claim entirely, so it's calculated at intake from the real facts, never estimated."
+    },
+    {
+      "q": "You've confirmed the date for a deposition. What should you book right away?",
+      "opts": [
+        "The largest conference room available in the building",
+        "The court reporter and any interpreter the deposition needs",
+        "Lunch for every attorney and witness who will attend",
+        "A backup date that only fits the attorney's own calendar"
+      ],
+      "a": 1,
+      "r": "Court reporters and interpreters are often the tightest-constrained resources, so they're booked as soon as the date is confirmed."
+    },
+    {
+      "q": "Elias's passport expires four months after he returns from an overseas trip. Why is that a problem?",
+      "opts": [
+        "Passports have to be renewed every five years, whatever their expiry date",
+        "Airlines won't sell international tickets on a passport issued abroad",
+        "Many countries require six months of passport validity beyond the travel dates",
+        "It isn't a problem, as long as the passport is valid on the departure day"
+      ],
+      "a": 2,
+      "r": "Many destinations require six months of remaining validity beyond the trip, not just an unexpired passport, so this has to be caught well before travel."
+    },
+    {
+      "q": "What makes a complex multi-city, multi-leg trip manageable while it's under way?",
+      "opts": [
+        "Forwarding each booking confirmation to the executive as it comes in",
+        "Booking the tightest possible connections to save time between legs",
+        "Leaving ground transport to be arranged once each flight has landed",
+        "A one-page summary of the whole itinerary, with real buffer between connections"
+      ],
+      "a": 3,
+      "r": "Delays cascade across legs, so the plan needs buffer, and a single-page summary beats scattered confirmation emails when something changes."
+    },
+    {
+      "q": "What makes a court docketing workflow reliable?",
+      "opts": [
+        "Logging each deadline from the primary source, with several reminder checkpoints",
+        "Setting a single reminder for the morning of each deadline",
+        "Entering deadlines from the attorney's email summary of the order",
+        "Keeping deadlines in a personal notebook as the only backup copy"
+      ],
+      "a": 0,
+      "r": "Docketing needs redundancy: deadlines are logged from the court order or filing confirmation, with reminders at several points (for example 2 weeks, 3 days and the day of)."
+    },
+    {
+      "q": "Which part of a trip is most often under-planned?",
+      "opts": [
+        "The flight booking itself",
+        "The hotel reservation",
+        "Ground transportation on arrival",
+        "The airline seat selection"
+      ],
+      "a": 2,
+      "r": "Flights and hotels get attention while 'we'll figure out a car' becomes a problem on arrival; confirm a specific pickup time, place and contact."
     }
   ],
   "discussionQuestion": "Think of a time a calendar change or a travel disruption hit at the worst possible moment. What would have let you recover faster?"

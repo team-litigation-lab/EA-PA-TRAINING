@@ -150,7 +150,7 @@ const DAY2 = {
       "fourPart": {
         "corePrinciples": [
           "Board updates are a distinct communication genre from ordinary executive correspondence — they're read by people with formal governance authority, often reviewed after the fact, and held to a higher standard of precision.",
-          "The same Situation/Impact/Recommendation structure from earlier in this day applies here, but board audiences need more context upfront and less informal framing than an internal update would."
+          "Use a Situation/Impact/Recommendation structure (the same lead-with-the-point idea as Day 1's BLUF), but board audiences need more context upfront and less informal framing than an internal update would."
         ],
         "howTo": [
           "Confirm the actual audience and distribution list before drafting — a board update going to outside directors reads differently than one going to an internal management team.",
@@ -159,7 +159,7 @@ const DAY2 = {
         ],
         "bestPractices": [
           "Pitfall: treating a board update like an internal status email with a more formal tone. Board communications carry real governance and, in some contexts, legal weight — casual imprecision here is a different order of risk than in a Slack message.",
-          "Confirm confidentiality classification before drafting — some board content is genuinely restricted even from other internal audiences, and this connects directly to the confidentiality classifications covered earlier in this day."
+          "Confirm confidentiality classification before drafting — some board content is genuinely restricted even from other internal audiences, and this builds on the confidentiality standards from Day 1 (Day 8 covers classifying information by sensitivity level in depth)."
         ],
         "discussionCase": "You're asked to draft a board update summarizing a project that's behind schedule. What would you include to give the board an accurate picture without either downplaying the delay or creating unnecessary alarm?"
       }
@@ -170,7 +170,7 @@ const DAY2 = {
       "fourPart": {
         "corePrinciples": [
           "Investor briefings carry a different kind of scrutiny than internal updates — investors are evaluating both the substance of what's reported and, implicitly, the competence of whoever prepared it.",
-          "Preparation for an investor briefing is where the Decision Compression and Cognitive Relief principles from earlier in this day matter most — the executive walking into that meeting needs the material distilled, not raw."
+          "Preparation for an investor briefing is where the Decision Compression and Cognitive Relief principles (later today, in The Legal EA Force Multiplier) matter most — the executive walking into that meeting needs the material distilled, not raw."
         ],
         "howTo": [
           "Confirm exactly what the briefing needs to cover and in what format before assembling anything — investor materials often follow an established template or expectation that shouldn't be improvised.",
@@ -1039,17 +1039,6 @@ const DAY2 = {
       ],
       "a": 3,
       "r": "Practical AI literacy means understanding relative strengths, not treating every tool as interchangeable."
-    },
-    {
-      "q": "What is one of the 'golden rules' of admin data security mentioned in this program?",
-      "opts": [
-        "Share login credentials with trusted colleagues for convenience",
-        "Confidentiality rules only apply to paper documents",
-        "Never paste sensitive data into unverified or public tools",
-        "Use the same password across all accounts for consistency"
-      ],
-      "a": 2,
-      "r": "Protecting where sensitive data actually goes — including which digital tools receive it — is a core security practice."
     },
     {
       "q": "What does 'from Helper to Force Multiplier' describe as a career trajectory?",

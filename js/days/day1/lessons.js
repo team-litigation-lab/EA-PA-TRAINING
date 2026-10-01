@@ -862,7 +862,7 @@ const DAY1 = {
       "h": "Why One Client, All Ten Days",
       "section": "Client Profiling & the Dossier",
       "b": [
-        "Every exercise from today forward uses Elias Thorne. That's deliberate: in a real role, your value compounds — the calendar rules you learn on Day 1 inform how you triage his inbox on Day 4, and the travel preferences you document today are what make the Day 3 itinerary gradeable on accuracy rather than guesswork.",
+        "Every exercise from today forward uses Elias Thorne. That's deliberate: in a real role, your value compounds — the calendar rules you learn on Day 1 inform how you triage his inbox on Day 2, and the travel preferences you document today are what make the Day 3 itinerary gradeable on accuracy rather than guesswork.",
         "Treat inconsistencies across days as bugs to flag, not license to reinvent the client. If a later exercise seems to contradict something in the dossier, that's worth raising with your trainer — it's exactly the kind of discrepancy a real EA would catch.",
         "This is what separates a training program from a real tenure simulation: the same standing instructions, the same family details, the same quirks — carried forward and expected to be remembered, not reintroduced each time."
       ],
@@ -950,7 +950,7 @@ const DAY1 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 3,
+      "afterIndex": 8,
       "q": "Updating a client on a filing you just made, the tone should be:",
       "opts": [
         "Plain language and reassuring, focused on what it means for them",
@@ -962,7 +962,7 @@ const DAY1 = {
       "r": "Reading the audience means the same event gets a different register for the client than for the court or the attorney."
     },
     {
-      "afterIndex": 9,
+      "afterIndex": 13,
       "q": "In the 'Persistent Caller' scenario, the EA's scripted response focuses on:",
       "opts": [
         "Immediately connecting the call",
@@ -1351,17 +1351,6 @@ const DAY1 = {
       "r": "Managing up effectively rests on clear communication, consistent follow-through, and earned credibility."
     },
     {
-      "q": "The 'What If' approach to travel logistics means:",
-      "opts": [
-        "Having a backup option already secured before it's needed",
-        "Asking the executive what they'd like to do if something goes wrong on the trip",
-        "Booking the cheapest fare, so there's budget left over to rebook if needed",
-        "Avoiding travel bookings until the last minute"
-      ],
-      "a": 0,
-      "r": "E.g., if the 2:00 PM flight is canceled, the 4:00 PM should already be on hold."
-    },
-    {
       "q": "Why is credibility described as 'earned, not claimed'?",
       "opts": [
         "Credibility comes mainly from seniority, so it grows with each promotion and title change",
@@ -1371,6 +1360,116 @@ const DAY1 = {
       ],
       "a": 3,
       "r": "Trust accumulates from consistent, reliable follow-through — it can't be claimed into existence."
+    },
+    {
+      "q": "Which is a core principle of gatekeeping?",
+      "opts": [
+        "Always say no to protect the executive's time",
+        "Ignore requests that seem unimportant",
+        "Access is filtered, not denied",
+        "Blame the requester for bad timing"
+      ],
+      "a": 2,
+      "r": "Gatekeeping filters and redirects — it doesn't shut the door."
+    },
+    {
+      "q": "Best first step to ensure an accurate meeting transcription?",
+      "opts": [
+        "Verify the recording software is working before the meeting, and assign a backup note-taker",
+        "Rely on the platform's automatic transcript, since it captures every word more reliably than a person",
+        "Share the raw recording immediately with stakeholders",
+        "Clean up the transcript's wording for clarity afterwards, so it reads well before it's shared"
+      ],
+      "a": 0,
+      "r": "Catching a recording failure before it happens is far cheaper than fixing it after."
+    },
+    {
+      "q": "A stakeholder says the meeting minutes were unclear. Best course of action?",
+      "opts": [
+        "Explain that the minutes reflect what was said, and invite them to add their own notes",
+        "Apologize, revise the minutes for clarity, and standardize a template for next time",
+        "Send the full raw transcript next time instead, so nothing can be left out or misunderstood",
+        "Blame the executive for speaking unclearly"
+      ],
+      "a": 1,
+      "r": "Fix the immediate issue and the process, so it doesn't repeat."
+    },
+    {
+      "q": "Why is gatekeeping described as 'not no'?",
+      "opts": [
+        "Because the gatekeeper's job is to agree to requests quickly, so the executive never looks unavailable",
+        "Effective gatekeeping filters and redirects appropriately rather than reflexively refusing access",
+        "Because a gatekeeper should pass every request to the executive and let them do the refusing",
+        "Because saying no is the executive's decision, so the gatekeeper passes every request on untouched"
+      ],
+      "a": 1,
+      "r": "Good gatekeeping protects the executive's time and attention while still routing legitimate needs appropriately."
+    },
+    {
+      "q": "What is the core purpose of a filtering matrix for incoming requests?",
+      "opts": [
+        "To reduce the number of requests the executive sees by declining everything that isn't from a client",
+        "To share requests evenly across the team, so no one person gets overloaded",
+        "To systematically sort requests by urgency and importance so the right ones reach the executive",
+        "To create a written record of every request so the assistant can prove what was received"
+      ],
+      "a": 2,
+      "r": "A filtering matrix gives a consistent, defensible way to decide what needs the executive's direct attention."
+    },
+    {
+      "q": "What makes a redirect script effective without alienating the person being redirected?",
+      "opts": [
+        "Acknowledging their need while clearly explaining the appropriate next step or contact",
+        "Keeping it short and firm, so the person understands the answer is final and doesn't push back",
+        "Blaming the executive for being unavailable",
+        "Staying vague about the reason, so the executive's schedule and priorities stay confidential"
+      ],
+      "a": 0,
+      "r": "Effective redirects validate the person's need while still protecting the executive's time — both matter."
+    },
+    {
+      "q": "Why does transcription accuracy in virtual meetings matter beyond just having a record?",
+      "opts": [
+        "Transcripts are legally required for every meeting and must be kept on file for seven years",
+        "Accuracy only matters for meetings over one hour",
+        "Errors can propagate into follow-up actions, decisions, and commitments made based on the notes",
+        "Accurate transcripts mean the assistant no longer needs to take any notes during the meeting"
+      ],
+      "a": 2,
+      "r": "A transcription error can quietly corrupt every decision or action item that gets built on top of it."
+    },
+    {
+      "q": "What is a reasonable first response when a stakeholder pushes back on being redirected by an EA?",
+      "opts": [
+        "Calmly restate the redirect with the reason and next step, without becoming defensive",
+        "Apologize and put them through to the executive, since pushback usually means it really is urgent",
+        "Escalate straight to the executive so they can decide, rather than risk upsetting the stakeholder",
+        "Offer to pass their message on to the executive word for word, and leave it there"
+      ],
+      "a": 0,
+      "r": "Holding a calm, clear redirect — without caving or becoming defensive — is the core gatekeeping skill being tested."
+    },
+    {
+      "q": "What is the risk of a gatekeeper who says 'no' too bluntly, without redirecting?",
+      "opts": [
+        "The requester may simply go straight to the executive, but the decision itself is still protected",
+        "It damages the relationship and reflects poorly on the executive, even if the underlying decision was correct",
+        "It only matters for external contacts, not internal ones",
+        "Only a small one: a clear, blunt no saves everyone time, even if it feels a little abrupt"
+      ],
+      "a": 1,
+      "r": "How a 'no' is delivered matters as much as the decision itself — the executive's reputation is on the line too."
+    },
+    {
+      "q": "Why does a transcript need a review step even when using accurate transcription software?",
+      "opts": [
+        "Long transcripts need shortening into minutes before anyone will read them, so review is really about length",
+        "Names, technical terms, and context-specific phrasing are common error points even in generally accurate transcripts",
+        "Because transcripts must be signed off by every attendee before they can be stored or shared",
+        "Because transcription software can't be trusted, so every line must be retyped from the recording"
+      ],
+      "a": 1,
+      "r": "Even strong transcription tools commonly mishear names and specialized terms, which is exactly where review adds value."
     }
   ],
   "discussionQuestion": "Think of a moment (in this role or another) where you had to decide whether something was an EA-style problem or a PA-style problem. What tipped you off, and would you decide the same way again?"

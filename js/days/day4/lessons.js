@@ -14,7 +14,7 @@
 const DAY4 = {
   "id": 4,
   "title": "Time Management, Data, Sales & Outreach",
-  "theme": "Time Management & Productivity · Daily Operations & Spreadsheets · Research · Contact Lists, CRM & Data Hygiene · Sales & Lead Generation · Email Outreach & Marketing",
+  "theme": "Time Management & Productivity · Data Entry & Spreadsheets · Research · Contact Lists, CRM & Data Hygiene · Sales & Lead Generation · Email Outreach & Marketing",
   "objective": "Prioritize and protect your time, clean data before it becomes a report, run a workday that actually holds, and open cold outreach by phone and email the right way.",
   "lessons": [
     {
@@ -57,6 +57,26 @@ const DAY4 = {
       ],
       "trainerCue": "Don't lecture through all four frameworks back to back — pause after each one and ask who already uses it, even without knowing its name.",
       "block": "Time Management & Productivity"
+    },
+    {
+      "h": "Priority Collision Handling",
+      "section": "Time Management & Productivity",
+      "fourPart": {
+        "corePrinciples": [
+          "A priority collision is when two genuinely important things need attention at the same time, and neither can simply be deferred — this is different from routine prioritization, where one task is clearly more urgent than another.",
+          "This builds directly on the Priority Matrix (Day 2, Email Management) and the prioritization frameworks covered earlier in this program — collision handling is what happens when the matrix itself doesn't cleanly resolve which comes first."
+        ],
+        "howTo": [
+          "When a genuine collision occurs, quickly assess the real cost of delay on each side — what specifically breaks if this one waits ten minutes, versus what breaks if the other one does.",
+          "Where possible, partially address both — a brief acknowledgment or interim action on one while fully handling the other — rather than leaving one completely unaddressed while the other gets full attention.",
+          "When a collision is genuinely too close to call, escalate the decision rather than guessing — this is exactly the kind of judgment call worth a 30-second check-in rather than a wrong unilateral choice."
+        ],
+        "bestPractices": [
+          "Pitfall: treating every collision as solvable by working faster. Some collisions are genuine trade-offs, and pretending otherwise leads to both things being handled worse than either would be alone.",
+          "Document how a real collision was resolved and why — this becomes useful precedent for handling the next similar situation faster."
+        ],
+        "discussionCase": "Two urgent requests land within the same minute — one from the executive, one from a major client — and both genuinely can't wait. Walk through exactly how you'd decide what happens first."
+      }
     },
     {
       "h": "Time Management",
@@ -189,6 +209,26 @@ const DAY4 = {
       "trainerCue": "Ask the room how long it actually takes them to get back to full focus after a genuine interruption — most underestimate it badly until they think about it directly."
     },
     {
+      "h": "Mid-Stage Task Injections",
+      "section": "Time Management & Productivity",
+      "fourPart": {
+        "corePrinciples": [
+          "A mid-stage task injection is a new, unrelated request that lands while you're already partway through something else — distinct from a priority collision, since the original task usually can continue, just not uninterrupted.",
+          "How well an EA handles these injections without losing track of the original task is a real, measurable skill — dropped threads from interrupted work are one of the most common sources of real errors."
+        ],
+        "howTo": [
+          "The moment a new task lands mid-task, do a quick triage: does it need immediate action, or can it be logged and returned to once the current task is at a safe stopping point?",
+          "Before switching attention, leave yourself a clear marker of exactly where you left off on the original task — a note, a highlighted line, a saved draft — so resuming doesn't mean reconstructing your place from memory.",
+          "If the injected task is itself urgent enough to fully interrupt the original, communicate that explicitly to whoever's waiting on the original task, rather than letting it silently stall."
+        ],
+        "bestPractices": [
+          "Pitfall: trying to hold multiple in-progress tasks entirely in memory rather than externalizing your place in each — this is exactly how a detail gets dropped when the interruption runs longer than expected.",
+          "A task queue or simple running list of 'in progress, paused here' items is a lightweight system that prevents most of the real damage from frequent injections."
+        ],
+        "discussionCase": "You're halfway through drafting a detailed client response when an urgent, unrelated request comes in. What's your actual process for handling the interruption without losing your place or dropping either task?"
+      }
+    },
+    {
       "h": "The Two-Minute Rule",
       "section": "Time Management & Productivity",
       "b": [
@@ -241,6 +281,26 @@ const DAY4 = {
         "Track your own switching frequency for a day occasionally — most people significantly underestimate how often they do it until they actually count."
       ],
       "trainerCue": "Ask the room to count how many times they've switched between unrelated tasks in just the last hour — the number is usually far higher than they'd guess before counting."
+    },
+    {
+      "h": "Dual-Role Context Switching",
+      "section": "Time Management & Productivity",
+      "fourPart": {
+        "corePrinciples": [
+          "A hybrid EA/PA role means switching between genuinely different modes — business-formal and personal-informal — often within the same hour, and each switch carries real risk if it isn't done deliberately.",
+          "This connects directly to the EA (business-formal) versus PA (personal-informal) communication styles from Day 1 — context switching is where those two modes actually meet in practice, task by task."
+        ],
+        "howTo": [
+          "Before responding to any request, identify which domain it belongs to (business or personal) explicitly, rather than letting tone drift automatically from whatever you were doing a moment before.",
+          "Build a brief mental (or literal) reset between switching domains — closing out the business task fully before opening the personal one reduces the chance of tone or detail bleeding across.",
+          "Keep business and personal task tracking systems genuinely separate, even if you're the one person managing both — this connects to the system separation principle covered elsewhere in this program."
+        ],
+        "bestPractices": [
+          "Pitfall: carrying business-formal language into a personal-context message, or vice versa, simply because you switched tasks quickly. The tone mismatch is often small but noticeable, and it erodes the relationship-specific trust each mode is built on.",
+          "The switching itself is a skill that improves with deliberate practice — treat it as a real competency, not something that just happens automatically once you're experienced."
+        ],
+        "discussionCase": "You're mid-draft on a formal client email when a personal request comes in from the executive's spouse about a family event. How do you handle the switch without either message suffering from the wrong tone?"
+      }
     },
     {
       "h": "Weekly Planning Rituals",
@@ -344,7 +404,7 @@ const DAY4 = {
     },
     {
       "h": "Data Entry That Holds Up",
-      "section": "Daily Operations & Priorities",
+      "section": "Data Entry & Spreadsheets",
       "svgDiagram": "<svg viewBox=\"0 0 620 150\" xmlns=\"http://www.w3.org/2000/svg\"><style>.stg{font:700 13px Arial,sans-serif;fill:#fff;}.stn{font:800 18px 'IBM Plex Mono',monospace;fill:rgba(255,255,255,.5);}</style><g transform=\"translate(10,30)\"><rect width=\"128\" height=\"90\" rx=\"10\" fill=\"#262B45\"/><text x=\"12\" y=\"26\" class=\"stn\">1</text><text x=\"64\" y=\"55\" text-anchor=\"middle\" class=\"stg\">De-duplicate</text></g><path d=\"M142 75 L160 75\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" marker-end=\"url(#ahde2)\"/><g transform=\"translate(166,30)\"><rect width=\"128\" height=\"90\" rx=\"10\" fill=\"#3C4268\"/><text x=\"12\" y=\"26\" class=\"stn\">2</text><text x=\"64\" y=\"55\" text-anchor=\"middle\" class=\"stg\">Standardize</text></g><path d=\"M298 75 L316 75\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" marker-end=\"url(#ahde2)\"/><g transform=\"translate(322,30)\"><rect width=\"128\" height=\"90\" rx=\"10\" fill=\"#5B6178\"/><text x=\"12\" y=\"26\" class=\"stn\">3</text><text x=\"64\" y=\"55\" text-anchor=\"middle\" class=\"stg\">Filter</text></g><path d=\"M454 75 L472 75\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" marker-end=\"url(#ahde2)\"/><g transform=\"translate(478,30)\"><rect width=\"128\" height=\"90\" rx=\"10\" fill=\"#3F7D58\"/><text x=\"12\" y=\"26\" class=\"stn\">4</text><text x=\"64\" y=\"55\" text-anchor=\"middle\" class=\"stg\">Sort</text><circle cx=\"112\" cy=\"16\" r=\"5\" fill=\"#fff\" class=\"svg-pulse-dot\"/></g><defs><marker id=\"ahde2\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#DB8437\"/></marker></defs></svg>",
       "b": [
         "De-duplicate, standardize formatting, filter/validate against source, then sort — in that order.",
@@ -374,7 +434,7 @@ const DAY4 = {
     },
     {
       "h": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
-      "section": "Daily Operations & Priorities",
+      "section": "Data Entry & Spreadsheets",
       "fourPart": {
         "corePrinciples": [
           "Most trackers an assistant builds, like contact lists, deadlines, expenses and event RSVPs, are spreadsheets. A few core skills turn hours of manual work into minutes.",
@@ -397,66 +457,6 @@ const DAY4 = {
         "discussionCase": "Elias wants to know, by tomorrow, how much each matter spent on travel last quarter. You have 400 expense rows with dates, matters, categories and amounts. Which tools do you use, and in what order?"
       },
       "trainerCue": "If trainees have laptops, share a 50-row sample sheet and give them five minutes to build a pivot table of totals by category. Celebrate the first one done, then troubleshoot together."
-    },
-    {
-      "h": "Dual-Role Context Switching",
-      "section": "Daily Operations & Priorities",
-      "fourPart": {
-        "corePrinciples": [
-          "A hybrid EA/PA role means switching between genuinely different modes — business-formal and personal-informal — often within the same hour, and each switch carries real risk if it isn't done deliberately.",
-          "This connects directly to the Corporate Mode versus Personal Mode communication principles covered earlier in this program — context switching is where those two modes actually meet in practice, task by task."
-        ],
-        "howTo": [
-          "Before responding to any request, identify which domain it belongs to (business or personal) explicitly, rather than letting tone drift automatically from whatever you were doing a moment before.",
-          "Build a brief mental (or literal) reset between switching domains — closing out the business task fully before opening the personal one reduces the chance of tone or detail bleeding across.",
-          "Keep business and personal task tracking systems genuinely separate, even if you're the one person managing both — this connects to the system separation principle covered elsewhere in this program."
-        ],
-        "bestPractices": [
-          "Pitfall: carrying business-formal language into a personal-context message, or vice versa, simply because you switched tasks quickly. The tone mismatch is often small but noticeable, and it erodes the relationship-specific trust each mode is built on.",
-          "The switching itself is a skill that improves with deliberate practice — treat it as a real competency, not something that just happens automatically once you're experienced."
-        ],
-        "discussionCase": "You're mid-draft on a formal client email when a personal request comes in from the executive's spouse about a family event. How do you handle the switch without either message suffering from the wrong tone?"
-      }
-    },
-    {
-      "h": "Priority Collision Handling",
-      "section": "Daily Operations & Priorities",
-      "fourPart": {
-        "corePrinciples": [
-          "A priority collision is when two genuinely important things need attention at the same time, and neither can simply be deferred — this is different from routine prioritization, where one task is clearly more urgent than another.",
-          "This builds directly on the Priority Matrix (Day 2, Email Management) and the prioritization frameworks covered earlier in this program — collision handling is what happens when the matrix itself doesn't cleanly resolve which comes first."
-        ],
-        "howTo": [
-          "When a genuine collision occurs, quickly assess the real cost of delay on each side — what specifically breaks if this one waits ten minutes, versus what breaks if the other one does.",
-          "Where possible, partially address both — a brief acknowledgment or interim action on one while fully handling the other — rather than leaving one completely unaddressed while the other gets full attention.",
-          "When a collision is genuinely too close to call, escalate the decision rather than guessing — this is exactly the kind of judgment call worth a 30-second check-in rather than a wrong unilateral choice."
-        ],
-        "bestPractices": [
-          "Pitfall: treating every collision as solvable by working faster. Some collisions are genuine trade-offs, and pretending otherwise leads to both things being handled worse than either would be alone.",
-          "Document how a real collision was resolved and why — this becomes useful precedent for handling the next similar situation faster."
-        ],
-        "discussionCase": "Two urgent requests land within the same minute — one from the executive, one from a major client — and both genuinely can't wait. Walk through exactly how you'd decide what happens first."
-      }
-    },
-    {
-      "h": "Mid-Stage Task Injections",
-      "section": "Daily Operations & Priorities",
-      "fourPart": {
-        "corePrinciples": [
-          "A mid-stage task injection is a new, unrelated request that lands while you're already partway through something else — distinct from a priority collision, since the original task usually can continue, just not uninterrupted.",
-          "How well an EA handles these injections without losing track of the original task is a real, measurable skill — dropped threads from interrupted work are one of the most common sources of real errors."
-        ],
-        "howTo": [
-          "The moment a new task lands mid-task, do a quick triage: does it need immediate action, or can it be logged and returned to once the current task is at a safe stopping point?",
-          "Before switching attention, leave yourself a clear marker of exactly where you left off on the original task — a note, a highlighted line, a saved draft — so resuming doesn't mean reconstructing your place from memory.",
-          "If the injected task is itself urgent enough to fully interrupt the original, communicate that explicitly to whoever's waiting on the original task, rather than letting it silently stall."
-        ],
-        "bestPractices": [
-          "Pitfall: trying to hold multiple in-progress tasks entirely in memory rather than externalizing your place in each — this is exactly how a detail gets dropped when the interruption runs longer than expected.",
-          "A task queue or simple running list of 'in progress, paused here' items is a lightweight system that prevents most of the real damage from frequent injections."
-        ],
-        "discussionCase": "You're halfway through drafting a detailed client response when an urgent, unrelated request comes in. What's your actual process for handling the interruption without losing your place or dropping either task?"
-      }
     },
     {
       "h": "Research as a Core EA Skill",
@@ -1307,6 +1307,17 @@ const DAY4 = {
       ],
       "a": 2,
       "r": "A flat list treats every item as equal; a framework forces an explicit judgment about urgency and importance."
+    },
+    {
+      "q": "A client updates their contact info, but teammates keep using the old details. What ensures accuracy?",
+      "opts": [
+        "Delete the old info without telling anyone",
+        "Update the details in your own address book and remind people when they ask",
+        "Email the new details to the colleagues who contact that client most",
+        "Update the master list and notify the whole team"
+      ],
+      "a": 3,
+      "r": "One source of truth, actively communicated, is what keeps a shared list reliable."
     }
   ],
   "discussionQuestion": "Think of a cold email or call you actually answered. What made it worth answering, and what would you put in your own first outreach email because of it?"

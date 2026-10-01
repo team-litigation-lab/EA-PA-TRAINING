@@ -15,7 +15,7 @@ const DAY8 = {
   "id": 8,
   "title": "Access, Data Security & Crisis Management",
   "theme": "Access & Credentials · Data & Device Security · Threat Recognition · Incident Response · Crisis Management · Privilege, Privacy & Compliance",
-  "objective": "Manage account access responsibly, keep data and devices secure, recognize threats, respond correctly to an incident or crisis, and protect privilege and privacy.",
+  "objective": "Manage account access responsibly, keep data and devices secure, fix workflows before they cause a leak, recognize threats, respond correctly to an incident or crisis, and protect privilege and privacy.",
   "lessons": [
     {
       "h": "Credential Management",
@@ -225,7 +225,7 @@ const DAY8 = {
       "b": [
         "Standard email isn't inherently secure in transit or storage — for genuinely sensitive content, an encrypted email option (many providers now offer one) provides real additional protection.",
         "Knowing when a message actually needs encryption versus when it doesn't is itself a skill — not everything needs the heaviest security tool available, but privileged legal content usually does.",
-        "This connects directly to the Comprehensive Confidential Handling discipline covered earlier — encryption is one more layer, not a replacement for good judgment about what gets sent at all."
+        "This connects directly to the Golden Rules of Admin Data Security covered earlier in this day — encryption is one more layer, not a replacement for good judgment about what gets sent at all."
       ],
       "howTo": [
         "Identify whether a message contains genuinely sensitive or privileged content before deciding it needs standard versus encrypted sending.",
@@ -1069,6 +1069,17 @@ const DAY8 = {
       ],
       "a": 1,
       "r": "A hold overrides normal offboarding. The laptop and mailbox are preserved until the attorney releases the hold; wiping, selective deleting or forwarding and deleting can all destroy held information."
+    },
+    {
+      "q": "What is one of the 'golden rules' of admin data security mentioned in this program?",
+      "opts": [
+        "Share login credentials with trusted colleagues for convenience",
+        "Confidentiality rules only apply to paper documents",
+        "Never paste sensitive data into unverified or public tools",
+        "Use the same password across all accounts for consistency"
+      ],
+      "a": 2,
+      "r": "Protecting where sensitive data actually goes — including which digital tools receive it — is a core security practice."
     }
   ],
   "discussionQuestion": "Have you ever seen — or been part of — a situation where someone had more system access than their role actually required? What was the fix?"
