@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 8 — Access, Confidentiality & Crisis Management
+   DAY 8 — Access, Data Security & Crisis Management
    Everything a trainee reads on this day:
    - DAY8: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,9 +13,9 @@
    ============================================================ */
 const DAY8 = {
   "id": 8,
-  "title": "Access, Confidentiality & Crisis Management",
-  "theme": "Credential Management · Least-Privilege Access · Incident Response & AI Data Security",
-  "objective": "Manage account access responsibly, respond correctly to a suspected data risk, and fix workflows before they cause a leak.",
+  "title": "Access, Data Security & Crisis Management",
+  "theme": "Access & Credentials · Data & Device Security · Threat Recognition · Incident Response · Crisis Management · Privilege, Privacy & Compliance",
+  "objective": "Manage account access responsibly, keep data and devices secure, recognize threats, respond correctly to an incident or crisis, and protect privilege and privacy.",
   "lessons": [
     {
       "h": "Credential Management",

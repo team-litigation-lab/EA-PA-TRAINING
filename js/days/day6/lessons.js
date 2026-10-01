@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 6 — Business Setup, Compliance & Project Leadership
+   DAY 6 — Business Formation, Compliance, Projects & SOPs
    Everything a trainee reads on this day:
    - DAY6: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,9 +13,9 @@
    ============================================================ */
 const DAY6 = {
   "id": 6,
-  "title": "Business Setup, Compliance & Project Leadership",
-  "theme": "Entity Formation & Regulatory Compliance · Project Leadership & Seasonal Coordination · Lean Six Sigma & KPI Dashboards",
-  "objective": "Guide business formation and compliance decisions, lead projects when timelines slip, and optimize operations with a real KPI dashboard.",
+  "title": "Business Formation, Compliance, Projects & SOPs",
+  "theme": "Business Structure & Formation · Compliance & Good Standing · Project Leadership · Process Improvement (Lean Six Sigma, KPI Dashboards) · SOPs",
+  "objective": "Guide business formation and compliance decisions, lead projects when timelines slip, improve processes with a real KPI dashboard, and write SOPs that hold up.",
   "lessons": [
     {
       "h": "Choosing a Business Structure",

@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 3 — Calendar & Travel Management
+   DAY 3 — Calendar, Legal Calendaring & Travel Management
    Everything a trainee reads on this day:
    - DAY3: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,9 +13,9 @@
    ============================================================ */
 const DAY3 = {
   "id": 3,
-  "title": "Calendar & Travel Management",
-  "theme": "Calendar Discipline · Legal Calendaring · Travel Planning · Stress & Wellbeing",
-  "objective": "Keep a calendar that actually holds under pressure, track court deadlines precisely, and plan travel end-to-end.",
+  "title": "Calendar, Legal Calendaring & Travel Management",
+  "theme": "Calendar Management · Legal Calendaring & Court Deadlines · Travel Management · Stress & Wellbeing",
+  "objective": "Keep a calendar that actually holds under pressure, track court deadlines precisely, plan travel end-to-end, and manage stress in a high-pressure role.",
   "lessons": [
     {
       "h": "Calendar Management That Holds",

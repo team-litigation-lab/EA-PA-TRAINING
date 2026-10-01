@@ -18,7 +18,7 @@ To change a day, edit only that day's folder, so one day's edit can't break anot
 
 **Sections.** Each topic's `section` groups it with the topics around it (e.g. Day 2's *Email Management*, Day 4's *Email Outreach & Marketing*). Every topic opens with a divider slide (its section, *Topic N of M* and its title); the topic slides themselves show only *Day · Topic · Part*.
 
-**Blocks.** A topic with a `block` title opens a new part of the day with its own divider slide (*Day N · Part X of Y*, the block's title and its topics, or its sections when it has several). Day 4 uses two: *Time Management & Productivity* (moved from Day 3) and *Data & Outreach*. To add one, set `"block": "<title>"` on the part's first topic.
+**Blocks.** A topic with a `block` title opens a new part of the day with its own divider slide (*Day N · Part X of Y*, the block's title and its topics, or its sections when it has several). Day 4 uses two: *Time Management & Productivity* (moved from Day 3, plus Day 2's *Strategic Time Engineering* and *Time Management Requires Energy Management*) and *Data & Outreach*. To add one, set `"block": "<title>"` on the part's first topic.
 
 A few rules keep saved progress safe:
 - **Titles are keys.** Topic titles must stay unique within a day, because notes, scripts and saved progress are matched by title.

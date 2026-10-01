@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 5 — Household, Risk & Lifestyle Support
+   DAY 5 — Household Operations, Vendors & Risk Management
    Everything a trainee reads on this day:
    - DAY5: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,9 +13,9 @@
    ============================================================ */
 const DAY5 = {
   "id": 5,
-  "title": "Household, Risk & Lifestyle Support",
-  "theme": "Household Operations & Recurring Admin · Risk Framework, Insurance & Vendor Management · Travel, Lifestyle & Home Binder",
-  "objective": "Run household operations like a small business, apply a real risk-management framework, and keep lifestyle support organized and trackable.",
+  "title": "Household Operations, Vendors & Risk Management",
+  "theme": "Running the Household · The Home Binder · Vendors & Procurement · Risk Management Framework · Travel Risk · Mid-Point Review",
+  "objective": "Run household operations like a small business, keep a Home Binder the family can rely on, manage vendors and contracts, and apply a real risk-management framework.",
   "lessons": [
     {
       "h": "Running a Household Like a Business",

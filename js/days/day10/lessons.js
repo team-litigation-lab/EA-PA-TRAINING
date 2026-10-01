@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 10 — Digital Presence & Social Media Support
+   DAY 10 — Digital Presence & Social Media Management
    Everything a trainee reads on this day:
    - DAY10: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,8 +13,8 @@
    ============================================================ */
 const DAY10 = {
   "id": 10,
-  "title": "Digital Presence & Social Media Support",
-  "theme": "Management vs. Marketing · Brand Voice, Visual Assets & Platform Proficiencies · SEO/GEO & Campaign Math",
+  "title": "Digital Presence & Social Media Management",
+  "theme": "Management vs. Marketing · Brand Voice & Visual Assets · Platforms & Publishing · Content, SEO & Copy · Metrics & Campaign Math · Social Media Risk & Compliance · Capstone",
   "objective": "Read social performance numbers correctly, write for the platform, and understand the basic math behind a campaign's ROI.",
   "lessons": [
     {

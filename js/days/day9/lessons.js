@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 9 — Events, Compliance Tracking & Reputation
+   DAY 9 — Events, Meetings, CLE & Reputation
    Everything a trainee reads on this day:
    - DAY9: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,9 +13,9 @@
    ============================================================ */
 const DAY9 = {
   "id": 9,
-  "title": "Events, Compliance Tracking & Reputation",
-  "theme": "Event Management, Invites & Intake Forms · CLE for Firm Events · Meetings · Compliance Tracking · Brand Stewardship",
-  "objective": "Run events and compliance tracking with nothing falling through the cracks, and protect the organization's reputation online.",
+  "title": "Events, Meetings, CLE & Reputation",
+  "theme": "Event Management, Invites & Intake Forms · CLE for Firm Events · Meetings & Video Conferencing · CLE & Compliance Tracking · Reputation & Brand",
+  "objective": "Run events end-to-end — invites, intake forms and CLE included — keep meetings and compliance tracking on schedule, and protect the organization's reputation.",
   "lessons": [
     {
       "h": "Running an Event End-to-End",

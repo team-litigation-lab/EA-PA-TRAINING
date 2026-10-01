@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 4 — Time Management, Data & Outreach
+   DAY 4 — Time Management, Data, Sales & Outreach
    Everything a trainee reads on this day:
    - DAY4: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,8 +13,8 @@
    ============================================================ */
 const DAY4 = {
   "id": 4,
-  "title": "Time Management, Data & Outreach",
-  "theme": "Time Management & Productivity · Administrative Data & Research · Cold Calling & Lead Generation · Contact List Management · Email Outreach",
+  "title": "Time Management, Data, Sales & Outreach",
+  "theme": "Time Management & Productivity · Daily Operations & Spreadsheets · Research · Contact Lists, CRM & Data Hygiene · Sales & Lead Generation · Email Outreach & Marketing",
   "objective": "Prioritize and protect your time, clean data before it becomes a report, run a workday that actually holds, and open cold outreach by phone and email the right way.",
   "lessons": [
     {
@@ -86,6 +86,26 @@ const DAY4 = {
       "trainerCue": "Link this back to Day 3's Calendar Management: deciding priorities is only half the job, and protecting them on the calendar is the other half. Ask the room to name one priority from this week and where it's protected on the calendar."
     },
     {
+      "h": "Strategic Time Engineering",
+      "section": "Time Management & Productivity",
+      "svgDiagram": "<svg viewBox=\"0 0 560 190\" xmlns=\"http://www.w3.org/2000/svg\"><style>.tc{font:700 10.5px Arial,sans-serif;fill:#fff;}.tp{font:800 15px Arial,sans-serif;fill:#fff;}</style><text x=\"20\" y=\"22\" style=\"font:700 11px Arial,sans-serif;fill:#262B45;\">TIME AS CAPITAL — WHERE IT GETS ALLOCATED</text><g transform=\"translate(20,40)\"><rect width=\"140\" height=\"120\" fill=\"#B54A3F\"/><text x=\"70\" y=\"40\" text-anchor=\"middle\" class=\"tp\">Revenue</text><text x=\"70\" y=\"65\" text-anchor=\"middle\" class=\"tc\">Generating</text><circle cx=\"70\" cy=\"95\" r=\"7\" fill=\"#fff\" class=\"svg-pulse-dot\"/></g><g transform=\"translate(160,40)\"><rect width=\"100\" height=\"120\" fill=\"#DB8437\"/><text x=\"50\" y=\"55\" text-anchor=\"middle\" class=\"tc\">Strategic</text><text x=\"50\" y=\"70\" text-anchor=\"middle\" class=\"tc\">Growth</text></g><g transform=\"translate(260,40)\"><rect width=\"90\" height=\"120\" fill=\"#3C4268\"/><text x=\"45\" y=\"55\" text-anchor=\"middle\" class=\"tc\">Compliance</text><text x=\"45\" y=\"70\" text-anchor=\"middle\" class=\"tc\">&amp; Legal</text></g><g transform=\"translate(350,40)\"><rect width=\"90\" height=\"120\" fill=\"#5B6178\"/><text x=\"45\" y=\"55\" text-anchor=\"middle\" class=\"tc\">Reputation</text></g><g transform=\"translate(440,40)\"><rect width=\"100\" height=\"120\" fill=\"#3F7D58\"/><text x=\"50\" y=\"55\" text-anchor=\"middle\" class=\"tc\">Personal</text><text x=\"50\" y=\"70\" text-anchor=\"middle\" class=\"tc\">Commitments</text></g></svg>",
+      "fourPart": {
+        "corePrinciples": [
+          "This is not just managing a calendar — it's engineering it. Time becomes capital, and the assistant is effectively the portfolio manager deciding where that capital gets allocated.",
+          "Strategic time engineering means aligning time with revenue-generating activities, protecting strategic growth initiatives, buffering compliance and legal deadlines, managing reputation-sensitive events, and protecting personal commitments with real relational weight."
+        ],
+        "howTo": [
+          "Before defending any block of time, be able to say which category it serves — if you can't name the category, it's not actually a protected block, it's just unscheduled time.",
+          "Treat calendar allocation as an active, ongoing decision, not a one-time setup — revisit whether the current allocation still matches what actually matters."
+        ],
+        "bestPractices": [
+          "Pitfall: protecting time reactively (only after something gets disrupted) rather than proactively engineering the allocation from the start.",
+          "\"Time as capital\" is a genuinely useful reframe — capital gets deliberately invested, not just spent as requests arrive."
+        ],
+        "discussionCase": "Looking at a typical week on your executive's calendar: which of the five categories (revenue, growth, compliance, reputation, personal) is currently getting the least protection — and why might that be happening?"
+      }
+    },
+    {
       "h": "When Time Management Fails Despite a Clean Calendar",
       "section": "Time Management & Productivity",
       "b": [
@@ -119,6 +139,26 @@ const DAY4 = {
         "Revisit this pattern periodically — energy rhythms can shift with role changes, travel, or life circumstances, so don't treat it as fixed forever."
       ],
       "trainerCue": "Ask the room to name their own natural high-energy window — most people already know it intuitively but have never actually protected it on a calendar."
+    },
+    {
+      "h": "Time Management Requires Energy Management",
+      "section": "Time Management & Productivity",
+      "fourPart": {
+        "corePrinciples": [
+          "An exhausted executive makes expensive mistakes — managing time alone isn't enough if the executive's energy is being drained faster than their calendar reflects.",
+          "Energy management means preventing meeting overload, creating strategic recovery buffers, protecting deep-work windows, filtering low-leverage requests, and identifying which relationships or obligations are quietly draining."
+        ],
+        "howTo": [
+          "Look beyond whether a slot is technically free — consider whether back-to-back high-intensity meetings are compounding fatigue even if the calendar has no literal conflicts.",
+          "Build recovery buffers deliberately after genuinely demanding meetings or events, not just between unrelated ones.",
+          "Notice patterns: which recurring meetings or relationships seem to leave the executive visibly more depleted, and raise this pattern rather than just accommodating it silently."
+        ],
+        "bestPractices": [
+          "Hybrid roles (business and personal support combined) are the most dangerous to energy management if unmanaged — the boundaries that would normally create recovery time blur easily.",
+          "Pitfall: treating an open calendar slot as automatically available, without considering whether the executive actually has the energy left for what's being scheduled into it."
+        ],
+        "discussionCase": "Looking at a demanding week on the calendar: where would you insert a genuine recovery buffer, and how would you justify that choice if someone questioned why that slot isn't being used for another meeting?"
+      }
     },
     {
       "h": "Handling Interruptions Without Losing the Day",
@@ -1057,7 +1097,7 @@ const DAY4 = {
       "r": "Pareto's principle is about impact concentration — a small slice of effort driving most of the outcome."
     },
     {
-      "afterIndex": 44,
+      "afterIndex": 46,
       "q": "Your first outreach email got no reply after four days. What's the strongest follow-up?",
       "opts": [
         "\"Just bumping this to the top of your inbox.\"",

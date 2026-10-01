@@ -1,5 +1,5 @@
 /* ============================================================
-   DAY 7 — Financial Operations Support
+   DAY 7 — Finance: Invoicing, Billing & QuickBooks
    Everything a trainee reads on this day:
    - DAY7: the topics (lessons), Quick Checks, Knowledge Check questions (quiz)
      and the discussion question. A Quick Check's afterIndex is the position of
@@ -13,8 +13,8 @@
    ============================================================ */
 const DAY7 = {
   "id": 7,
-  "title": "Financial Operations Support",
-  "theme": "Finance Foundations · Reconciliation & Trust Accounts · Invoice Management · Time Tracking & QuickBooks · Credit Cards · Tax & Records",
+  "title": "Finance: Invoicing, Billing & QuickBooks",
+  "theme": "Finance Foundations · Reconciliation & Trust Accounts · Invoice Management · Billable Hours & QuickBooks · Credit Cards, Expenses & Payroll · Tax, Records & Fraud",
   "objective": "Support financial operations accurately: reconcile accounts, manage invoices from pre-bill to payment, track billable and non-billable time, work confidently in QuickBooks, manage the firm's cards, and stay audit-ready.",
   "lessons": [
     {
