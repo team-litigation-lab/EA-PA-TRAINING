@@ -556,9 +556,9 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   }
 },
 "3::Travel Risk Contingency Planning": {
-  "steps": "Here's the step-by-step for a contingency plan that's ready before it's needed:\n1. Identify realistic disruptions: For this specific itinerary, think through a cancelled flight, a missed connection or bad weather on a key leg.\n2. Line up backups in advance: For each scenario, know the next viable flight, an alternate route and a local contact at the destination.\n3. Keep contingencies with the itinerary: Store them alongside it, not as a separate note that's hard to find under pressure.\n4. Execute the backup immediately: When a disruption happens, use the plan you prepared instead of starting research from scratch.\n5. Apply the backup-vendor principle: Just like on Day 5, a real contingency plan exists before it's needed, not improvised in the moment.",
+  "steps": "Here's the step-by-step for a contingency plan that's ready before it's needed:\n1. Identify realistic disruptions: For this specific itinerary, think through a cancelled flight, a missed connection or bad weather on a key leg.\n2. Line up backups in advance: For each scenario, know the next viable flight, an alternate route and a local contact at the destination.\n3. Keep contingencies with the itinerary: Store them alongside it, not as a separate note that's hard to find under pressure.\n4. Execute the backup immediately: When a disruption happens, use the plan you prepared instead of starting research from scratch.\n5. Plan before you need it: A real contingency plan exists before it's needed, not improvised in the moment (the same principle you'll apply to backup vendors on Day 5).",
   "p1": {
-    "on": "This slide says a real travel plan covers what happens when something goes wrong, with a diagram: identify realistic disruptions for this itinerary, find the backup for each in advance (next flight, alternate route, local contact), keep the contingencies with the itinerary, and act on the backup immediately when disruption hits, the same principle as Day 5's backup vendors.",
+    "on": "This slide says a real travel plan covers what happens when something goes wrong, with a diagram: identify realistic disruptions for this itinerary, find the backup for each in advance (next flight, alternate route, local contact), keep the contingencies with the itinerary, and act on the backup immediately when disruption hits, the same principle you'll apply to backup vendors on Day 5.",
     "say": "The backup exists before the trip, not during the scramble.",
     "ask": "Tell us about a disruption that went smoothly because a backup already existed.",
     "wrap": "Identify disruptions and backups before departure, document them with the itinerary, and act on them fast.",
@@ -575,7 +575,7 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Plan for the bad day too."
   },
   "s2": {
-    "on": "These steps build it: name the likely disruptions, find backups in advance, document them with the itinerary, execute the backup at once, and apply the Day 5 backup-vendor principle.",
+    "on": "These steps build it: name the likely disruptions, find backups in advance, document them with the itinerary, execute the backup at once, and have the plan ready before it's needed.",
     "say": "The backup exists before it's needed.",
     "ask": "What's your backup if the first leg is cancelled?"
   }
@@ -607,9 +607,9 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
   }
 },
 "3::Expense Tracking While Traveling": {
-  "steps": "Here's our step-by-step for keeping travel expenses under control:\n1. Capture receipts immediately: Snap a photo or file it in a dedicated folder right away, instead of collecting everything at the end of the trip.\n2. Categorize as you go: Note the client, matter or cost center while the context is fresh, not in a batch afterward.\n3. Reconcile with the same discipline as always: Use the Day 7 statement-of-account process. Travel expenses are the same skill in less controlled conditions.\n4. Do a nightly check: Spend a few minutes at the end of each travel day confirming nothing from that day was missed.\n5. Submit within a set window: Reconcile and submit soon after returning, so expenses don't pile up once the trip is over.",
+  "steps": "Here's our step-by-step for keeping travel expenses under control:\n1. Capture receipts immediately: Snap a photo or file it in a dedicated folder right away, instead of collecting everything at the end of the trip.\n2. Categorize as you go: Note the client, matter or cost center while the context is fresh, not in a batch afterward.\n3. Reconcile with the same discipline as always: Match every expense to its receipt and matter (Day 7 covers the full statement-of-account process). Travel expenses are the same skill in less controlled conditions.\n4. Do a nightly check: Spend a few minutes at the end of each travel day confirming nothing from that day was missed.\n5. Submit within a set window: Reconcile and submit soon after returning, so expenses don't pile up once the trip is over.",
   "p1": {
-    "on": "This slide covers travel expenses, with a diagram: capture every receipt immediately (a photo or a folder), categorize each by client, matter or cost center as it happens, use the Day 7 SOA reconciliation discipline, check at the end of each travel day for anything missed, and submit within a set window after return.",
+    "on": "This slide covers travel expenses, with a diagram: capture every receipt immediately (a photo or a folder), categorize each by client, matter or cost center as it happens, reconcile them with the usual discipline, check at the end of each travel day for anything missed, and submit within a set window after return.",
     "say": "Capture the receipt the moment you get it, and tag the matter while you still remember.",
     "ask": "Who has lost a travel receipt before?",
     "wrap": "Travel expenses use the same reconciliation skill, under messier conditions. Capture and categorize in real time.",
@@ -626,14 +626,14 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Capture it the moment you get it."
   },
   "s2": {
-    "on": "These steps are the routine: capture every receipt, categorize as you go, apply the Day 7 SOA reconciliation discipline, do a nightly check, and submit within a set window after return.",
+    "on": "These steps are the routine: capture every receipt, categorize as you go, reconcile with the usual discipline, do a nightly check, and submit within a set window after return.",
     "say": "A few minutes each night saves hours later."
   }
 },
 "3::Building a Real Travel Checklist": {
-  "steps": "Here's how to build a travel checklist you can reuse, step by step:\n1. Write it down once: Create a reusable checklist instead of rebuilding it from memory for every trip.\n2. Give documentation its own section: Keep passport and visa checks separate from booking logistics.\n3. Add destination-specific health and safety prep: Go beyond a generic packing list.\n4. Include loyalty and contingency checks: Add a step confirming loyalty numbers were applied and a contingency contact for the trip, so neither gets missed under pressure.\n5. Treat it like the Home Binder: As on Day 5, build it once, then reuse and refine it after every trip.",
+  "steps": "Here's how to build a travel checklist you can reuse, step by step:\n1. Write it down once: Create a reusable checklist instead of rebuilding it from memory for every trip.\n2. Give documentation its own section: Keep passport and visa checks separate from booking logistics.\n3. Add destination-specific health and safety prep: Go beyond a generic packing list.\n4. Include loyalty and contingency checks: Add a step confirming loyalty numbers were applied and a contingency contact for the trip, so neither gets missed under pressure.\n5. Treat it as a living reference: Build it once, then reuse and refine it after every trip (the Home Binder on Day 5 works the same way).",
   "p1": {
-    "on": "This slide says a checklist that lives only in memory isn't a real checklist, with a diagram: write it once and reuse it, give documentation (passport, visa) its own section, include destination-specific health and safety prep, add a loyalty-numbers step and a contingency contact, and treat it like the Day 5 Home Binder, a durable reference refined after every trip.",
+    "on": "This slide says a checklist that lives only in memory isn't a real checklist, with a diagram: write it once and reuse it, give documentation (passport, visa) its own section, include destination-specific health and safety prep, add a loyalty-numbers step and a contingency contact, and treat it as a durable reference refined after every trip.",
     "say": "Write it once, reuse it every trip, and improve it each time.",
     "ask": "Who has a written travel checklist today?",
     "wrap": "A written, reusable checklist stops the same detail from being missed trip after trip.",
@@ -650,15 +650,15 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Write it down once."
   },
   "s2": {
-    "on": "These steps build it: a reusable written form, a documentation section, destination health and safety prep, loyalty and contingency confirmation steps, and refining it like the Day 5 Home Binder.",
+    "on": "These steps build it: a reusable written form, a documentation section, destination health and safety prep, loyalty and contingency confirmation steps, and refining it after every trip.",
     "say": "Build it once, refine it every trip.",
     "ask": "What would be on your first checklist?"
   }
 },
 "3::Post-Trip Debrief & Follow-Up": {
-  "steps": "Here's our step-by-step for closing out a trip properly:\n1. Reconcile expenses promptly: Deal with receipts and costs soon after return, before they pile up.\n2. Send follow-ups while they're timely: Thank-you notes and follow-up messages from the trip go out now, not weeks later.\n3. Note what worked and what didn't: Write it down while it's fresh, for example a hotel that fell short or a connection that was too tight.\n4. Feed it back into the system: Update the standing travel preferences or checklist so the next trip is genuinely better.\n5. Make it a habit: It's the same continuous-improvement habit as the seasonal-coordination playbook from Day 6, applied to a single trip.",
+  "steps": "Here's our step-by-step for closing out a trip properly:\n1. Reconcile expenses promptly: Deal with receipts and costs soon after return, before they pile up.\n2. Send follow-ups while they're timely: Thank-you notes and follow-up messages from the trip go out now, not weeks later.\n3. Note what worked and what didn't: Write it down while it's fresh, for example a hotel that fell short or a connection that was too tight.\n4. Feed it back into the system: Update the standing travel preferences or checklist so the next trip is genuinely better.\n5. Make it a habit: It's continuous improvement applied to a single trip (Day 6 uses the same habit for the seasonal-coordination playbook).",
   "p1": {
-    "on": "This slide says a trip isn't finished when the traveler gets home, with a diagram: reconcile expenses promptly, send thank-you and follow-up messages while they're timely, note what worked and what didn't, feed that note into the preferences and checklist, and treat it like the Day 6 seasonal playbook at the scale of one trip.",
+    "on": "This slide says a trip isn't finished when the traveler gets home, with a diagram: reconcile expenses promptly, send thank-you and follow-up messages while they're timely, note what worked and what didn't, feed that note into the preferences and checklist, and treat it as continuous improvement at the scale of one trip.",
     "say": "A two-line note after each trip makes the next one better.",
     "ask": "Does anyone do a post-trip debrief, even informally?",
     "wrap": "Close the trip: reconcile, follow up, write what went wrong, and update the checklist.",
@@ -675,7 +675,7 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "The trip ends after the follow-up."
   },
   "s2": {
-    "on": "These steps close it out: reconcile expenses, send follow-ups while timely, note what worked and what didn't, feed it into preferences or the checklist, and treat it like the Day 6 seasonal playbook.",
+    "on": "These steps close it out: reconcile expenses, send follow-ups while timely, note what worked and what didn't, feed it into preferences or the checklist, and treat it as a continuous-improvement habit.",
     "say": "Every trip should improve the next one."
   }
 },

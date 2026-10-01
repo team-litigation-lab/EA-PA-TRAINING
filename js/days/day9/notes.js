@@ -590,31 +590,6 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "That's the attorney's call."
   }
 },
-"9::Federal/State/Financial Infrastructure": {
-  "p1": {
-    "on": "This slide says a new entity needs financial and regulatory infrastructure at three levels: federal (IRS), state (tax and labor agencies) and financial (banking), kept separate from personal finances from day one. The steps: get the EIN right after formation, register with state tax agencies, open a dedicated business bank account, set up bookkeeping before the first transaction, and register for payroll withholding before the first paycheck.",
-    "say": "Business money never runs through a personal account.",
-    "ask": "Is state tax registration automatic when you form an entity?"
-  },
-  "p2": {
-    "on": "This slide warns that commingling personal and business funds, even briefly, is one of the most common ways founders undermine their liability protection, and state tax registration is never automatic. It says to keep every registration confirmation in the permanent file and register separately in each state with a real presence.",
-    "say": "Commingling, even once, weakens the liability shield.",
-    "wrap": "EIN, state registration, a separate bank account and books before day one.",
-    "scenario": "Elias's new consulting LLC has its EIN and a bank account opening this week. He paid the filing attorney's invoice on his personal card \"to get it done faster\" and plans to reimburse himself. What's the risk, and how do you help him before it becomes a habit?"
-  },
-  "s1": {
-    "on": "This section says a new entity needs federal, state and banking infrastructure to operate, with business and personal finances kept separate.",
-    "say": "Formed isn't operational."
-  },
-  "s2": {
-    "on": "These steps set it up: EIN first, state tax and labor registration, a dedicated bank account, bookkeeping before the first transaction, and payroll registration if hiring.",
-    "say": "Never run business money through personal accounts."
-  },
-  "s3": {
-    "on": "This section warns that commingling undermines liability protection, state registration isn't automatic, registrations must be kept, and expansion may need new state registrations.",
-    "say": "Keep the separation absolute."
-  }
-},
 "9::Protecting the Brand Online": {
   "p1": {
     "on": "This slide says to respond to negative reviews professionally and factually and never escalate publicly. The steps: monitor mentions and reviews proactively, respond calmly regardless of the tone of the original, apply the \"need to know\" principle to anything sensitive, draft a considered response rather than reacting, and escalate anything beyond a routine review, such as a legal threat or coordinated attack.",

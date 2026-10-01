@@ -769,7 +769,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Finally, by the last day, we should be able to describe his rules, family and communication style from memory."
    ],
    "ask": "What's one thing about Elias you're worried you'll forget by Day 5?",
-   "scenario": "On Day 6, an exercise asks you to plan Elias's week. Without checking the dossier, list three standing rules from Day 1 that the plan must follow. Which one would be easiest to forget?"
+   "scenario": "On Day 3, an exercise asks you to plan Elias's week. Without checking the dossier, list three standing rules from Day 1 that the plan must follow. Which one would be easiest to forget?"
   },
   "p2": {
    "why": "If something contradicts the dossier, flag it. Don't reinvent Elias.",
@@ -779,7 +779,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Finally, we treat these ten days like a real placement, where what we learned on day one still counts on day ten."
    ],
    "ask": "Let's write your answers on the board now, and we'll come back to this list on Day 5 to see what stuck.",
-   "scenario": "On Day 8, a scenario says Elias prefers window seats. Your Day 1 dossier says aisle seats only. What do you do, and why does it matter to raise it?"
+   "scenario": "On Day 3, a travel scenario says Elias prefers window seats. Your Day 1 dossier says aisle seats only. What do you do, and why does it matter to raise it?"
   }
  },
  "1::The ACT Email Framework": {

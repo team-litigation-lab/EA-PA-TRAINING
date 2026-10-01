@@ -987,6 +987,17 @@ const DAY10 = {
       ],
       "a": 3,
       "r": "Credit isn't permission. The firm needs a license or written permission. Being non-commercial or edited doesn't make an unlicensed use safe."
+    },
+    {
+      "q": "What's a reasonable way to think about 'brand voice' consistency across an executive's public communications?",
+      "opts": [
+        "Each channel should have its own distinct voice, so followers on different platforms get a different experience",
+        "Consistency in voice is purely a marketing department concern",
+        "Consistent tone and messaging build recognizability and trust, so voice should be maintained across contexts",
+        "Voice matters most on social media, while speeches and articles can follow whatever style suits the moment"
+      ],
+      "a": 2,
+      "r": "A consistent voice across contexts is what makes an executive's public presence recognizable and trustworthy over time."
     }
   ],
   "discussionQuestion": "Pick a recent announcement from your organization. How would you rewrite it differently for Instagram versus LinkedIn?"

@@ -567,33 +567,6 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "The firm's malpractice insurer sends a renewal questionnaire asking whether any client has threatened a claim this year. You remember the email from last month. What do you do?"
   }
  },
- "9::Federal/State/Financial Infrastructure": {
-  "p1": {
-   "why": "A newly formed company isn't ready to operate until its tax IDs, registrations and bank account are in place.",
-   "talk": "Forming the company makes it legal. Making it work needs three more layers: federal, with the IRS; state, with tax and labor agencies; and banking. And keeping business and personal money completely separate from day one is what protects the owner.",
-   "walk": [
-    "First, get the federal tax ID straight after formation. It's free from the IRS and needed for almost everything else.",
-    "Next, register with the state tax agency, and the labor agency if there'll be employees.",
-    "Then, open a separate business bank account, and never run business money through a personal one.",
-    "After that, set up simple bookkeeping before the first transaction.",
-    "Finally, if there'll be employees, register for payroll taxes before the first paycheck."
-   ],
-   "ask": "Is state tax registration automatic when a company is formed?",
-   "scenario": "Elias's new consulting company was formed last week, and he wants to invoice a client tomorrow. Which registrations and accounts need to be in place first, and in what order?"
-  },
-  "p2": {
-   "why": "Mixing personal and business money, even once, weakens the owner's legal protection.",
-   "talk": "Setting up a business properly means keeping its money completely separate from the owner's personal money, from the very first transaction. Mixing them, even once for convenience, can weaken the legal protection that the business structure is supposed to give. State tax registration is also a separate step that doesn't happen automatically, and each state where the business genuinely operates may need its own.",
-   "walk": [
-    "First, keep the separation absolute from the first transaction.",
-    "Next, state tax registration is a separate step, never automatic.",
-    "Then, keep copies of every registration in the permanent file.",
-    "Finally, each state where the business really operates may need its own registration."
-   ],
-   "ask": "Elias's new consulting company has its tax ID and a bank account opening this week. He paid the attorney's invoice on his personal card 'to get it done faster' and plans to pay himself back. What's the risk, and how do you help him before it becomes a habit?",
-   "scenario": "Elias paid the new company's first vendor invoice from his personal account 'just this once' because the business bank account wasn't open yet. What's the risk, and how do you fix the record?"
-  }
- },
  "9::Protecting the Brand Online": {
   "p1": {
    "why": "When someone posts a bad review, respond calmly and factually, and never argue in public.",

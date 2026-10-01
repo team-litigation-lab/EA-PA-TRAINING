@@ -476,7 +476,7 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
 },
 "4::Dual-Role Context Switching": {
   "p1": {
-    "on": "This slide explains that a hybrid EA/PA role switches between business-formal and personal-informal modes, often within an hour, linking to Corporate Mode versus Personal Mode. The steps: name the domain before responding, take a brief reset between domains, and keep business and personal task tracking separate.",
+    "on": "This slide explains that a hybrid EA/PA role switches between business-formal and personal-informal modes, often within an hour, linking to the EA versus PA communication styles from Day 1. The steps: name the domain before responding, take a brief reset between domains, and keep business and personal task tracking separate.",
     "say": "Name the domain before you answer.",
     "ask": "Have you ever sent a message in the wrong tone because you'd just switched tasks?"
   },
