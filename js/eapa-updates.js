@@ -3102,3 +3102,62 @@ if(document.querySelector(".topbar")) render();
 .lab-disclaimer.locked .lab-disc-body > b{color:var(--danger);} .lab-disclaimer.locked p{color:#7a352c;}
 `; document.head.appendChild(st);
 })();
+
+/* ===== Practice Lab reviews graded against Elias Thorne's client profile =====
+   Every AI review (written labs, roleplay calls, intake calls, quick practice) gets the full
+   client profile and is told to judge the work against it: contradicting a stated preference
+   costs Accuracy, applying it unprompted earns Presence. */
+(function(){
+  if(typeof CLIENT_DOSSIER_MD === "undefined") return;
+  const PROFILE_BLOCK = `\n\nCLIENT PROFILE — Elias Thorne (the executive every task is for; treat it as the source of truth):\n${CLIENT_DOSSIER_MD}`;
+  const PROFILE_NOTES = " CLIENT PROFILE: grade every category against Elias Thorne's profile above. Anything that contradicts a stated preference or standing rule (his channel ranking — Slack DM, then text, then email, phone only for emergencies; BLUF and blunt style; strict Paleo; black coffee; aisle seat and no connecting flights; the spending approval threshold; confidentiality; protected calendar blocks; family and household details) loses Accuracy points. Applying a profile detail without being told earns Presence points. At least one strength or blindspot must begin with \"Elias's profile:\" and name the specific detail it refers to.";
+  const hasProfile = (t)=> String(t||"").includes(CLIENT_DOSSIER_MD.slice(0, 120));
+  const withProfile = (t)=> hasProfile(t) ? String(t||"") : String(t||"") + PROFILE_BLOCK;
+  const tag = (report)=>{ if(report && typeof report === "object") report.eliasProfile = true; return report; };
+
+  const __rre = runRubricEvaluation;
+  runRubricEvaluation = async function(label, context, submission, notes){
+    return tag(await __rre.call(this, label, withProfile(context), submission, (notes||"") + PROFILE_NOTES));
+  };
+  // The call graders read the situation from scenario.topic.context / persona.context, so add the profile there.
+  const withTopicProfile = (scenario, extra)=> scenario && scenario.topic
+    ? Object.assign({}, scenario, {topic: Object.assign({}, scenario.topic, {context: withProfile(scenario.topic.context) + extra})})
+    : scenario;
+  const CALL_NOTES = "\n\nGRADE AGAINST THE PROFILE: where the call touches Elias's preferences, schedule, travel, family or standing rules, the trainee must follow his profile above. Contradicting it is a blindspot; applying it is a strength. Start that point with \"Elias's profile:\".";
+  if(typeof runRoleplayRubricEvaluation === "function"){
+    const __rrp = runRoleplayRubricEvaluation;
+    runRoleplayRubricEvaluation = async function(scenario, transcript){
+      return tag(await __rrp.call(this, withTopicProfile(scenario, CALL_NOTES), transcript));
+    };
+  }
+  if(typeof runQuickPracticeSummary === "function"){
+    const __rqp = runQuickPracticeSummary;
+    runQuickPracticeSummary = async function(scenario, transcript){
+      return __rqp.call(this, withTopicProfile(scenario, CALL_NOTES), transcript);
+    };
+  }
+  if(typeof runIntakeCallEvaluation === "function"){
+    const __ric = runIntakeCallEvaluation;
+    runIntakeCallEvaluation = async function(persona, transcript){
+      const p = persona ? Object.assign({}, persona, {context: withProfile(persona.context) + "\n\nThe trainee answers for Elias Thorne's firm (Thorne & Partners Law Group): judge scheduling, follow-up and escalation commitments against his profile above, and start that point with \"Elias's profile:\"."}) : persona;
+      return tag(await __ric.call(this, p, transcript));
+    };
+  }
+
+  // Show on each AI report that it was graded against the profile, and highlight the profile points.
+  const PROFILE_PILL = `<div class="eval-profile-pill">👤 Graded against Elias Thorne's client profile</div>`;
+  const decorate = (html, report)=>{
+    if(!report || !report.eliasProfile || typeof html !== "string") return html;
+    return html.replace(`<div class="eval-report">`, `<div class="eval-report">${PROFILE_PILL}`)
+      .replace(/<li>(Elias(?:&#39;|&#x27;|'|’)s profile:)/g, `<li class="eval-profile-pt"><b>$1</b>`);
+  };
+  ["renderEvaluationReport", "renderRoleplayEvaluationReport", "renderIntakeCallEvaluationReport"].forEach(name=>{
+    const fn = window[name];
+    if(typeof fn !== "function") return;
+    window[name] = function(report){ return decorate(fn.apply(this, arguments), report); };
+  });
+  const st = document.createElement("style"); st.id = "eval-profile"; st.textContent = `
+.eval-profile-pill{display:inline-block;font-size:12px;font-weight:600;color:var(--navy);background:#EEF2F8;border:1px solid #D5DEEC;border-radius:999px;padding:3px 11px;margin:0 0 12px;}
+.eval-section li.eval-profile-pt b{color:var(--navy);}
+`; document.head.appendChild(st);
+})();
