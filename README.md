@@ -183,6 +183,10 @@ into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes co
 - **Admin → 🧭 Orientation** is the screen-share deck; the **Blueprint PDF** (`/blueprint.pdf`, also in Handouts) is built from it and republishes itself after each build. Its Dashboard slide shows today's dashboard (day cards filling the screen, the scores band under them); its day-by-day roadmap reads the day titles and labs from the portal.
 - **Admin → SOP Reference:** each day's session plan ends with the take-home Lesson Notes; the Facilitator Guide's daily rhythm points trainees to them at the close.
 
+## 🔄 New versions (auto-update)
+
+Every open page checks every 3 minutes for a new deploy. When one is found, the page shows a banner with **Update now**. It reloads on its own only when it's safe: nobody has clicked, typed or scrolled for 2 minutes, and no call, quiz, pop-up or Presenter view is open. Lab answers are saved before the reload and put back after it, including the Day 4 dropdowns and the **📝 My Notes** card in Prioritize the Day. The 2-minute wait is in the "Calmer auto-update" block at the end of `js/eapa-updates.js`. Before it, a page reloaded within seconds of a deploy whenever nobody was typing, which trainees saw as the page flickering.
+
 ## 👤 Practice Lab reviews follow Elias Thorne's profile
 
 Every AI review in the Practice Labs (written labs, roleplay calls, intake calls and quick practice) gets Elias Thorne's full client profile (`CLIENT_DOSSIER_MD`, built from `CLIENT_PROFILE_DOC` in `index.html`) and grades the work against it. The code is the last block of `js/eapa-updates.js`:

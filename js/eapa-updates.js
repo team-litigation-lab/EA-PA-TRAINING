@@ -1335,6 +1335,10 @@ function renderTimeMgmtSection(){
     </div>
     <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkTmTasks()">Check My Plan</button>
     <div id="tmTasksResult" style="margin-top:8px;font-size:13px;"></div>
+    <div class="card lab-notes-card">
+      <label for="tmNotes"><span>📝 My Notes</span><small>Saved automatically · not graded · included in Download My Work</small></label>
+      <textarea id="tmNotes" placeholder="Jot down your thinking as you plan: what you'd block on the calendar first, who gets the catering request, what you'll tell the partner, questions for Elias…"></textarea>
+    </div>
     <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:18px 0 5px;">Now write your reply to the partner in task 5: acknowledge the request, explain the conflict briefly and offer a realistic alternative.</label>
     <textarea id="tmPushback" style="width:100%;min-height:120px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Hi …"></textarea>
     <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkTmPushback(this)">Get Review</button>
@@ -1342,7 +1346,9 @@ function renderTimeMgmtSection(){
 }
 function setTmTask(i,v){ toolState.tm = toolState.tm || {}; toolState.tm[i] = v; }
 async function checkTmTasks(){
-  const got = toolState.tm || {};
+  // choices brought back after a reload are only in the dropdowns, so read those too
+  const got = toolState.tm = toolState.tm || {};
+  TM_TASKS.forEach((_,i)=>{ const el = document.getElementById("tmTask"+i); if(el && el.value) got[i] = el.value; });
   if(TM_TASKS.some((_,i)=>!got[i])){ toast(`Choose how you'll handle all ${TM_TASKS.length} tasks first.`); return; }
   let correct = 0;
   const rows = TM_TASKS.map((x,i)=>{ const ok = got[i]===TM_ACTIONS[x.want]; if(ok) correct++;
@@ -3159,5 +3165,36 @@ if(document.querySelector(".topbar")) render();
   const st = document.createElement("style"); st.id = "eval-profile"; st.textContent = `
 .eval-profile-pill{display:inline-block;font-size:12px;font-weight:600;color:var(--navy);background:#EEF2F8;border:1px solid #D5DEEC;border-radius:999px;padding:3px 11px;margin:0 0 12px;}
 .eval-section li.eval-profile-pt b{color:var(--navy);}
+`; document.head.appendChild(st);
+})();
+
+/* ===== Calmer auto-update + lab notes card =====
+   A new deploy used to reload any page where nobody was typing, so a trainee choosing from
+   dropdowns or reading a lab saw the page flash and reload within seconds. Now the reload waits
+   until the page has been left alone (no clicks, keys or scrolling) for 2 minutes; until then the
+   banner's Update now button is there. */
+(function(){
+  const UPDATE_IDLE_MS = 2*60*1000;
+  let lastActivityAt = Date.now();
+  ["keydown","pointerdown","wheel","touchstart","input","change"].forEach(ev=>
+    document.addEventListener(ev, ()=>{ lastActivityAt = Date.now(); }, {capture:true, passive:true}));
+  if(typeof updateIsSafe === "function"){
+    const __uis = updateIsSafe;
+    updateIsSafe = function(){ return Date.now()-lastActivityAt >= UPDATE_IDLE_MS && __uis.apply(this, arguments); };
+  }
+  if(typeof showUpdateBanner === "function"){
+    const __sub = showUpdateBanner;
+    showUpdateBanner = function(){
+      __sub.apply(this, arguments);
+      const span = document.querySelector("#updateBanner span");
+      if(span && !state.presenting) span.textContent = "✨ A new version of the portal is ready. It updates on its own once you've paused for a couple of minutes, and your work is saved. Or click Update now.";
+    };
+  }
+  const st = document.createElement("style"); st.id = "lab-notes-card"; st.textContent = `
+.card.lab-notes-card{padding:14px 16px;margin:16px 0 4px;background:#FBFAF6;border:1px solid #E7E1D2;border-left:4px solid var(--navy);}
+.lab-notes-card label{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 8px;}
+.lab-notes-card label span{font-size:13.5px;font-weight:700;color:var(--navy);}
+.lab-notes-card label small{font-size:11.5px;color:var(--ink-soft);}
+.lab-notes-card textarea{width:100%;min-height:110px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:13px;font-family:inherit;line-height:1.5;resize:vertical;box-sizing:border-box;}
 `; document.head.appendChild(st);
 })();

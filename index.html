@@ -10040,7 +10040,7 @@ window.submitCalls = submitCalls;
 async function downloadCallsPdf(){
   await ensureTraineeName();
   const tm = (typeof TM_TASKS!=="undefined") ? TM_TASKS.map((x,i)=>`${i+1}. ${x.t} — your call: ${((document.getElementById("tmTask"+i)||{}).value)||"(not chosen)"}`) : [];
-  const lines = ["## A. Prioritize the Day", ...tm, "", "Reply to the partner:", ((document.getElementById("tmPushback")||{}).value||"").trim()||"(not written)", "---", "## B. Cold-Calling Outreach Log"];
+  const lines = ["## A. Prioritize the Day", ...tm, "", "Reply to the partner:", ((document.getElementById("tmPushback")||{}).value||"").trim()||"(not written)", ...(((document.getElementById("tmNotes")||{}).value||"").trim() ? ["", "My notes:", document.getElementById("tmNotes").value.trim()] : []), "---", "## B. Cold-Calling Outreach Log"];
   COLD_LEADS.forEach((l,i)=>{
     const date=document.getElementById(`logDate${i}`)?.value||"";
     const outcome=document.getElementById(`logOutcome${i}`)?.value||"";
@@ -16757,7 +16757,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.10.02-e";
+var APP_BUILD = "2026.10.02-f";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -16820,7 +16820,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=elias1"></script>
+<script src="/js/eapa-updates.js?v=notes1"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=1"></script>
 <script src="/js/request-budget.js?v=1"></script>
