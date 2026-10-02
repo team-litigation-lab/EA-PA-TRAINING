@@ -133,7 +133,15 @@ into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes co
 
 - **Handouts → 📖 Lesson Notes:** one card per day with the full text of every topic (see *Slides and Lesson Notes* above).
 - **Handouts → Templates & Checklists:** one per day (`HANDOUT_CONTENT` in `index.html`; Days 1–4 are set in `js/eapa-updates.js` to follow today's days: Day 1 command hierarchy, gatekeeping, BLUF and the Three C's; Day 2 inbox triage and safe AI use; Day 3 travel and court deadlines; Day 4 prioritizing the day and client data cleanup).
-- **Admin → 🧭 Orientation** is the screen-share deck; the **Blueprint PDF** (`/blueprint.pdf`, also in Handouts) is built from it and republishes itself after each build. Its Dashboard slide shows today's dashboard (day cards filling the screen, the scores band under them); its day-by-day roadmap reads the day titles and labs from the portal.
+- **Admin → 🧭 Orientation** has two tabs: **🧭 Trainee blueprint** and **🛠 Trainer blueprint**.
+  - **Trainee blueprint:** the screen-share deck. The **Blueprint PDF** (`/blueprint.pdf`, also in Handouts) is built from it. Its Dashboard slide shows today's dashboard (day cards filling the screen, the scores band under them); its day-by-day roadmap reads the day titles and labs from the portal.
+  - **It republishes itself after every deploy**, not only when `APP_BUILD` changes: the published copy is matched against `APP_BUILD` and the Worker's deployment id (`/version`), and the first admin page open after a deploy rebuilds it in the background (`js/lsh-blueprint-course.js`).
+  - **Trainer blueprint** (admins only): how to run the course from the trainer side. It covers signing in, approving trainees, the Trainee Audit, day feedback and Focus items, Surprise Tasks and Live Roleplay, certificates, Batch Folders, Rankings and the cohort report, SOP Reference and the Facilitator Guide, Presenter view, Content Studio, Attendance and Trainee view.
+    - ◀ ▶, the ← → keys or the contents strip move through it.
+    - **⬇ Download PDF** saves it as a landscape PDF, one page per slide, stamped with the build and the deployment.
+    - It's never at a public address.
+  - **Changing the wording:** the trainer slides are in `js/blueprint-content.js`. `js/lsh-blueprint.js` (the page and the PDF) is the same file on every LSH platform, and `js/lsh-blueprint-course.js` is the same on every LSH course: change either in one, copy it to all.
+  - **Test:** `.github/scripts/blueprint.cjs`.
 - **Admin → SOP Reference:** each day's session plan ends with the take-home Lesson Notes; the Facilitator Guide's daily rhythm points trainees to them at the close.
 
 ## 📞 Day 4 Practice Lab: simulated prospect calls and lead sourcing
