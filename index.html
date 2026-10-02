@@ -11992,7 +11992,7 @@ function sopLiveSections(d){
   ]});
   sec.push({h:`Topics covered in the portal (${lessons.length})`, type:"table", headers:["#","Topic","Key teaching point","Trainer cue"], rows:
     lessons.map((l,i)=>{ const {principles} = lessonParts(l); return [String(i+1), l.h + (l.__extra?" (added in Content Studio)":""), scriptShort(principles[0]||"", 160), scriptShort(l.trainerCue||"—", 140)]; })});
-  if(tools.length) sec.push({h:"Practice Lab", type:"bullets", items: tools.map(t=>`${t.title} — ${t.desc}`).concat(["First submission of each exercise is free; repeats use one of the trainee's 3 program-wide attempts (reset them in Trainee Audit if needed).","Completing the Practice Lab (any score) unlocks the next day."])});
+  if(tools.length) sec.push({h:"Practice Lab", type:"bullets", items: tools.map(t=>`${t.title} — ${t.desc}`).concat(["First submission of each exercise is free; repeats use one of the 3 attempts for this day's Practice Lab (reset them in Trainee Audit if needed).","Completing the Practice Lab (any score) unlocks the next day."])});
   sec.push({h:"After the session (trainer checklist)", type:"bullets", items:[
     "Trainee Audit → View Detail: review each trainee's Day-by-Day Feedback (auto-drafted when they finish) and click Send.",
     "Add any personal Focus items for trainees who need a specific next step.",
@@ -16756,7 +16756,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.10.02-b";
+var APP_BUILD = "2026.10.02-c";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -16819,7 +16819,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=1"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=now1"></script>
+<script src="/js/eapa-updates.js?v=labdisc1"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=1"></script>
 <script src="/js/request-budget.js?v=1"></script>
