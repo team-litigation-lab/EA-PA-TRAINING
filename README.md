@@ -73,56 +73,6 @@ The `LSH_KV` namespace is shared by every LSH course (EA/PA keys have no prefix;
 
 Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/scripts/storage.mjs`.
 
-## 💳 Monthly request budget (hard limit for the whole Cloudflare account)
-
-The Workers Paid plan includes **10 million requests a billing month** across every Worker and Pages Function on the account (all the LSH sites: this course, the other courses, the CMS, the Training Portal, Ring Channel, the Knowledge Base), then charges **$0.30 per extra million**. Cloudflare has no spending cap, so `.github/workflows/request-budget.yml` is one. Every 10 minutes it:
-
-- reads the billing month's requests so far from Cloudflare's analytics (Workers and Pages Functions, per script) and shows them in the run's summary (**Actions → Request budget → a run**), with a projection for the month;
-- at **9,990,000** (`REQUEST_LIMIT`) switches the sites' server parts off until the next billing month, and the run turns red (GitHub emails you):
-  - **Workers:** their `workers.dev` address is turned off, so requests never reach them (the sites show Cloudflare's "not found" page);
-  - **Pages projects with Functions** (the CMS, the Training Portal): a static "This training site is paused until …" page is deployed to production (static pages are free); static-only projects are left alone;
-- keeps them off while paused (a deploy in between switches a Worker or a project back on; the next run switches it off again);
-- when the next billing month starts, switches back on what it switched off: `workers.dev` on again, each Pages project rolled back to the deployment it had.
-
-What it switched off is kept in KV (key `_request-budget`). Saved work is never touched. Code: `.github/scripts/request-budget.mjs`; test: `request-budget.test.mjs`.
-
-**Setup (once):**
-
-1. **Token:** Cloudflare → My Profile → API Tokens → Create Token → *Custom token*, for the LSH account: **Account Analytics: Read**, **Workers Scripts: Edit**, **Cloudflare Pages: Edit**, **Workers KV Storage: Edit**.
-2. **GitHub:** this repository → Settings → Secrets and variables → Actions:
-   - secret `CLOUDFLARE_BUDGET_TOKEN` = the token;
-   - variable `BILLING_DAY` = the day of the month your Cloudflare billing month starts (Cloudflare → Manage Account → Billing; default 1);
-   - optional variable `REQUEST_LIMIT` (default `9990000`).
-3. **Check it:** Actions → Request budget → Run workflow → `test`. It lists the Workers and Pages projects, reads the usage, deploys the paused page to a *preview* branch of each Pages project (`request-budget-test`; production isn't touched) and reads and saves the state. Every line should be ✅.
-
-**By hand:** Run workflow → `pause` or `resume`. Resuming while still over the limit pauses again at once: raise `REQUEST_LIMIT` first.
-
-**Limits of the limit:**
-- Cloudflare's analytics lag a few minutes and the check runs every 10 minutes (GitHub can delay scheduled runs), so the 10,000 requests between 9,990,000 and 10,000,000 are the margin. At today's traffic that's hours; if the sites ever get much busier, lower `REQUEST_LIMIT`.
-- It caps requests only. Other usage the paid plan bills beyond what's included (Workers CPU time, KV, D1, R2, Durable Objects) isn't capped; Cloudflare → Notifications → *Usage Based Billing* emails you when any of it starts costing.
-- Workers custom domains (if any are added later) keep running; the run's log names them.
-- GitHub turns off scheduled workflows in a repository with no activity for 60 days: if this repository goes quiet, re-enable it under Actions.
-
-## 📊 Server request meter (admin side of every LSH site)
-
-Admins see how much of the month's request allowance is used, on every LSH platform's admin side: a small chip in a corner of the page (here: bottom left, once signed in to 🛡 Admin).
-
-| Chip | When |
-|---|---|
-| 🟢 **Requests 23%** | on track |
-| 🟠 **Getting close** / **On pace to run out Oct 24** | from 75%, or (after the month's first 3 days) when this month's pace reaches the limit before the allowance resets |
-| 🔴 **Nearly used up** | from 90% |
-| 🟥 **Paused until …** | the limit was reached: the sites' server parts are paused until the next billing month |
-| ⚪ **Not set up** / **Last checked 5 h ago** | no numbers yet (the token isn't set up: see above), or the workflow hasn't saved any for over 3 hours |
-
-When it's amber or red, a note appears above the chip (Dismiss hides it until it gets closer, or until next month). Click the chip for the details: the total and the limit, the projection for the month, each day (with a day's share of the limit as a dashed line), each site, and what happens at the limit.
-
-How it works:
-- The Request budget workflow (above) saves the month's numbers to KV (`_request-usage`, the courses' namespace) about once an hour, and every 10 minutes from 75% on. A `test` run saves them at once.
-- Each site's server answers its admins with them: here `POST /api/request-budget` (admins only, `worker.js`). Every LSH platform has the same endpoint for its own admins.
-- The meter is `js/request-budget.js`: **the same file in every LSH platform** (change it in one, copy it to all). It asks once when an admin opens the page, then every 15 minutes while the tab is in view, so it costs next to nothing.
-- Tests: `.github/scripts/request-meter-widget.cjs` (the meter: every level, the note, the details, how often it asks; the same test in every platform) and `.github/scripts/request-meter.cjs` (this site: admins only, one request).
-
 ## Checks (GitHub Actions)
 
 `.github/workflows/checks.yml` runs on every pull request and every push to `main`. A red **Checks** status means something is broken, and the log says what:
@@ -132,7 +82,6 @@ How it works:
   - every local file a page loads must exist;
   - JSON must be valid;
   - the Worker must build (`wrangler deploy --dry-run`; nothing is deployed);
-  - **the monthly request budget** (`.github/scripts/request-budget.test.mjs`, against a stand-in Cloudflare account): under the limit nothing changes and every script is listed; the usage is saved for the admin pages' request meter about once an hour (every run from 75%), and days already counted aren't asked for again; at the limit each Worker's `workers.dev` (only those that were on) goes off and each Pages project with Functions gets the paused page (static projects untouched), with an email; while paused, anything a deploy switched back on goes off again; the next billing month brings back exactly what was switched off; billing months starting mid-month; usage read in several windows; missing numbers; a `test` run changes nothing in production;
   - **where records are kept** (`.github/scripts/storage.mjs`): 30 progress saves write R2 each time and KV once (a day later, once more); with KV's writes used up, saving still works; progress saved in KV before the move is still read and listed; deleting clears both; trainee records and feedback stay in KV; without R2 everything stays in KV.
 - **Smoke test in a browser:** serves the site through `worker.js` with an in-memory KV store (`.github/scripts/server.mjs`), signs in as a trainee, and renders every lesson slide, knowledge check, page and practice tool at desktop and phone width. Then it opens every practice tool directly (as a lab opened in its own tab) with `js/eapa-updates.js` arriving late, the way it does on a normal connection. It fails on any page error, an empty lab or a page that scrolls sideways (`.github/scripts/smoke.cjs`).
 - **Presenter view** (`.github/scripts/presenter.cjs`): opens Presenter view as a trainer and watches the slides window you share in Google Meet, which must never flicker.
@@ -143,20 +92,16 @@ How it works:
   - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
 - **Every slide fits on one screen** (`.github/scripts/fit.cjs`): every page of every slide of every day, on a laptop (1366 × 768) and a large screen (1920 × 1080). The slide and its Previous / Next bar end inside the window, nothing in the slide is cut off or shrunk, every slide is laid out at 960 × 540 with one scale per screen, and every slide splits into the same pages on both screens.
 - **Server requests** (`.github/scripts/requests.cjs`): `get-many` gives a trainee only their own and public records, an Admin every one, and refuses more than 100 keys. With the checks sped up, a trainee's page reads the tasks for every day in one request and their record about once per check, checks for a new version rarely, and asks nothing while the tab is in the background (catching up when it's back) or on a quick switch to another tab and back. A server that doesn't answer doesn't sign the trainee out; a revoke does. The Trainee Audit reads every trainee in two requests.
-- **Server request meter** (`.github/scripts/request-meter-widget.cjs`, `request-meter.cjs`): only admins see it and only their pages ask for it, once on opening; each level (not set up, OK, getting close, nearly used up, on pace to run out, paused, old numbers, no answer) shows as it should; the note above the chip, dismissed, stays away until it gets closer; the details list each day and site; a background tab asks nothing.
 
 To run the same checks locally:
 
 ```
 node .github/scripts/check-site.mjs
 node .github/scripts/storage.mjs
-node .github/scripts/request-budget.test.mjs
 node .github/scripts/server.mjs 8787 &      # then, with Playwright installed:
 node .github/scripts/smoke.cjs http://localhost:8787/
 node .github/scripts/presenter.cjs http://localhost:8787/
 node .github/scripts/requests.cjs http://localhost:8787/
-node .github/scripts/request-meter-widget.cjs js/request-budget.js
-node .github/scripts/request-meter.cjs http://localhost:8787/
 ```
 
 `.assetsignore` keeps `worker.js`, the Wrangler config, `.github` and Markdown files from being published with the site.
