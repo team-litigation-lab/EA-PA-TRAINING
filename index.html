@@ -7130,8 +7130,10 @@ function renderDaySlideshow(d){
       }).join("")}
     </div>
     <div class="stage-body">
+      <div class="deck-fit" style="--deck-scale:${typeof window.__deckScale==="number" ? window.__deckScale : 1}">
       <div class="lesson-slide dir-${state.slideDir||'next'}" id="lessonSlideWrap">
         ${renderDaySlideContent(d, slide, idx)}
+      </div>
       </div>
       <img class="stage-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">
     </div>
@@ -7140,12 +7142,11 @@ function renderDaySlideshow(d){
         <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
         ${state.isAdmin && idx>0 ? `<button class="btn btn-ghost btn-sm" onclick="goToSlide(0)" title="Admin: go back to the first slide of Day ${d.id}">⏮ Slide 1</button>` : ""}
       </span>
-      <span class="slide-counter">Step ${idx+1} of ${total}</span>
+      <span class="slide-nav-mid"><span class="slide-counter">Step ${idx+1} of ${total}</span>${isLast ? `<span class="slide-done-note" title="That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.">🎉 That's everything for Day ${d.id}: the Knowledge Check is the last step</span>` : ""}</span>
       ${isLast
         ? `<button class="btn btn-primary" onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
         : `<button class="btn btn-primary" onclick="nextSlide()">Next &rarr;</button>`}
     </div>
-    ${isLast ? `<div class="slide-done-banner">🎉 That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.</div>` : ""}
   `;
   if(state.stageInnerOnly){ state.stageInnerOnly = false; return inner; }
   if(state.dayViewMode==="intro") return renderDayIntro(d);
@@ -16758,7 +16759,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.10.02-i";
+var APP_BUILD = "2026.10.02-j";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -16821,7 +16822,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=redraw1"></script>
+<script src="/js/eapa-updates.js?v=deck1"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=1"></script>
 <script src="/js/request-budget.js?v=1"></script>

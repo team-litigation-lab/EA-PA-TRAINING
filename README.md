@@ -22,6 +22,8 @@ To change a day, edit only that day's folder, so one day's edit can't break anot
 
 **Slides and Lesson Notes.** A topic slide shows each point's key line (`slideBrief` in `js/eapa-updates.js`: the first sentence, without bracketed asides, cut at a dash or colon when still long); "This connects directly to …" lines and the Go Deeper box stay off the slide. The full text of every topic is each day's **📖 Lesson Notes** in Handouts (Read, or ⬇ PDF), and **📖 Full notes for this topic** on a slide opens it at that topic. Write the full text in `lessons.js`; the slide's short version follows on its own.
 
+**One size for the deck.** Every lesson slide is laid out at one size, 960 × 540 (16:9), with fixed type, on a laptop, a large screen, in full screen and in the slides window shared in Meet. The whole slide is then scaled to fit, the way a slide deck is (`deckRescale` in `js/eapa-updates.js`): the same scale for every slide on a screen. Nothing grows or shrinks with the window, so a slide splits into the same pages everywhere, and a resize or full screen only changes the scale; the slide is never laid out again, so it doesn't flicker. A slide that doesn't fit continues on the next page; a diagram is never split. Phones (760px and narrower) keep a scrolling page.
+
 **Moving a Quick Check to another topic on the same day.** Change its `afterIndex` and add it to `QC_ANCHOR_MOVES` in `index.html` (`[day, the topic it used to follow, question]`), so saved answers and places move with it.
 
 A few rules keep saved progress safe:
@@ -137,8 +139,9 @@ How it works:
   - Next draws the slide once, cutting straight in with no slide-in or fade.
   - The console re-drawing (its live copy reconnecting) doesn't draw the slides window again.
   - A long slide's next and previous pages change in place.
-  - A resize lays the slide out again, still without animation.
+  - A resize only scales the deck: the slide isn't drawn or laid out again, keeps its 960 × 540 size and its pages.
   - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
+- **Every slide fits on one screen** (`.github/scripts/fit.cjs`): every page of every slide of every day, on a laptop (1366 × 768) and a large screen (1920 × 1080). The slide and its Previous / Next bar end inside the window, nothing in the slide is cut off or shrunk, every slide is laid out at 960 × 540 with one scale per screen, and every slide splits into the same pages on both screens.
 - **Server requests** (`.github/scripts/requests.cjs`): `get-many` gives a trainee only their own and public records, an Admin every one, and refuses more than 100 keys. With the checks sped up, a trainee's page reads the tasks for every day in one request and their record about once per check, checks for a new version rarely, and asks nothing while the tab is in the background (catching up when it's back) or on a quick switch to another tab and back. A server that doesn't answer doesn't sign the trainee out; a revoke does. The Trainee Audit reads every trainee in two requests.
 - **Server request meter** (`.github/scripts/request-meter-widget.cjs`, `request-meter.cjs`): only admins see it and only their pages ask for it, once on opening; each level (not set up, OK, getting close, nearly used up, on pace to run out, paused, old numbers, no answer) shows as it should; the note above the chip, dismissed, stays away until it gets closer; the details list each day and site; a background tab asks nothing.
 

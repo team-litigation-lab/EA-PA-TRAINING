@@ -1,6 +1,8 @@
 // Every slide fits on one screen: on the lesson page, the slide and its Previous / Next bar end inside the
 // window (no scrolling), and nothing inside the slide frame is cut off or scrolls — every slide, every page
-// of every day, on a laptop and on a large screen. On a desktop the lesson's controls sit to the right of
+// of every day, on a laptop and on a large screen. The deck has one size: every slide is laid out at
+// 960 × 540 and scaled as a whole, with the same scale on every slide of a screen, so a slide splits into
+// the same pages on the laptop and on the large screen. On a desktop the lesson's controls sit to the right of
 // the slide; on a narrower window (under 1000px) they stay above it, and the slide still never scrolls inside
 // (the page itself may: the site's top bar alone wraps to three rows there).
 // Usage: node .github/scripts/fit.cjs [baseUrl] [days]   (with .github/scripts/server.mjs running; needs `npm i playwright`;
@@ -11,7 +13,7 @@ const ONLY = process.argv[3] ? process.argv[3].split(',').map(Number) : null;
 const SIZES = [[1366, 768], [1920, 1080]];
 (async () => {
     const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
-    const failures = [], fail = (m) => failures.push(m), summary = [];
+    const failures = [], fail = (m) => failures.push(m), summary = [], pagesBySize = [];
     const sleep = (ms) => new Promise(r => setTimeout(r, ms));
     for (const [W, H] of SIZES) {
         const page = await browser.newPage({ viewport: { width: W, height: H } });
@@ -21,7 +23,7 @@ const SIZES = [[1366, 768], [1920, 1080]];
         await page.click('#loginSubmitBtn'); await sleep(1200);
         const r = await page.evaluate(async (only) => {
             const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-            const out = [], counts = { slides: 0, pages: 0, shrunk: 0 };
+            const out = [], counts = { slides: 0, pages: 0, shrunk: 0 }, pages = {}, scales = new Set();
             state.isAdmin = true;   // every day open, as the trainer sees it
             const loaded = async () => {   // pictures in the slide have loaded, and the slide was laid out again
                 const imgs = [...document.querySelectorAll('#lessonSlideWrap img')].filter(i => !i.complete);
@@ -34,13 +36,15 @@ const SIZES = [[1366, 768], [1920, 1080]];
                 for (let i = 0; i < slides.length; i++) {
                     state.lessonSlide = i; state.slidePage = 0; render(); await sleep(8); await loaded();
                     window.scrollTo(0, 0); await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-                    const n = state.slidePages || 1; counts.slides++;
+                    const n = state.slidePages || 1; counts.slides++; pages[`${d.id}:${i}`] = n;
                     for (let p = 0; p < n; p++) {
                         if (p) { showSlidePage(p); await sleep(5); }
                         counts.pages++;
                         const wrap = document.getElementById('lessonSlideWrap'), stage = document.getElementById('lessonStage');
                         const where = `Day ${d.id} slide ${i + 1} (${slides[i].type})${n > 1 ? ` page ${p + 1}/${n}` : ''}`;
                         if (!wrap || !stage) { out.push(`${where}: no slide drawn`); continue; }
+                        if (wrap.offsetWidth !== 960 || wrap.offsetHeight !== 540) out.push(`${where}: the slide is laid out at ${wrap.offsetWidth}x${wrap.offsetHeight}, not the deck's 960x540`);
+                        const fit = wrap.closest('.deck-fit'); if (fit) scales.add(getComputedStyle(fit).getPropertyValue('--deck-scale'));
                         const bottom = stage.getBoundingClientRect().bottom + window.scrollY;
                         if (bottom > innerHeight + 1) out.push(`${where}: the slide and its Previous / Next bar end ${Math.round(bottom - innerHeight)}px below the screen`);
                         const over = wrap.scrollHeight - wrap.clientHeight;
@@ -52,10 +56,15 @@ const SIZES = [[1366, 768], [1920, 1080]];
                 const top = document.querySelector('.ls-top'), stage = document.getElementById('lessonStage');
                 if (top && stage && innerWidth >= 1000 && top.getBoundingClientRect().left < stage.getBoundingClientRect().right) out.push(`Day ${d.id}: the lesson controls aren't in the column to the right of the slide`);
             }
-            return { out, counts };
+            if (scales.size > 1) out.push(`the deck's scale changes from slide to slide (${[...scales].join(', ')}): it should be one size on one screen`);
+            return { out, counts, pages, scale: [...scales].join(',') };
         }, ONLY);
         r.out.forEach(m => fail(`${W}x${H} ${m}`));
-        summary.push(`${W}x${H}: ${r.counts.slides} slides, ${r.counts.pages} pages, ${r.counts.shrunk} scaled down`);
+        if (r.counts.shrunk) fail(`${W}x${H}: ${r.counts.shrunk} slide(s) were shrunk to fit; the deck has one size`);
+        if (pagesBySize.length) { const first = pagesBySize[0], diff = Object.keys(r.pages).filter(k => r.pages[k] !== first.pages[k]);
+            if (diff.length) fail(`${W}x${H}: ${diff.length} slide(s) split into different pages than at ${first.size} (e.g. Day/slide ${diff.slice(0, 5).join(', ')})`); }
+        pagesBySize.push({ size: `${W}x${H}`, pages: r.pages });
+        summary.push(`${W}x${H}: ${r.counts.slides} slides, ${r.counts.pages} pages, deck scale ${r.scale}`);
         await page.close();
     }
     // a narrower window keeps the controls above the slide, and nothing in the slide is cut off

@@ -3,7 +3,7 @@
 //   - Next: the slide is drawn once, with no entrance animation (no blank first frames);
 //   - the console re-drawing (its live copy reconnects): the slides window is NOT drawn again;
 //   - a long slide's next page: shown in place, not drawn again;
-//   - the slides window resized: laid out again, still without animation;
+//   - the slides window resized: the deck is only scaled to the new size, not drawn or laid out again;
 //   - the slides window never reloads itself for an update.
 // Usage: node .github/scripts/presenter.cjs [baseUrl] [day]   (with .github/scripts/server.mjs running; needs `npm i playwright`;
 //        day: a day with several ordinary slides, default 1)
@@ -83,10 +83,17 @@ const DAY = Number(process.argv[3] || 1);
         if (r.draws !== 0 || !/^PAGE 1 \//.test(back)) fail(`Previous didn't go back to page 1 in place (${r.draws} redraws, badge "${back}")`);
     }
 
-    // the slides window resized (e.g. full screen): laid out again, without animation
+    // the slides window resized (e.g. full screen): the deck keeps its one size and is only scaled
+    const deck = () => aud.evaluate(() => { const w = document.getElementById('lessonSlideWrap'), f = document.querySelector('.deck-fit');
+        return { w: w.offsetWidth, h: w.offsetHeight, scale: f ? getComputedStyle(f).getPropertyValue('--deck-scale') : '', pages: state.slidePages || 1 }; });
+    const before = await deck();
     await aud.setViewportSize({ width: 1100, height: 700 }); await sleep(800);
     r = await take();
-    if (r.draws !== 1) fail(`resizing the slides window drew it ${r.draws} times (expected 1, to lay it out again)`);
+    const after = await deck();
+    if (r.draws !== 0) fail(`resizing the slides window drew it ${r.draws} times (expected 0: the deck is only scaled)`);
+    if (after.w !== before.w || after.h !== before.h) fail(`resizing the slides window changed the slide's own size (${before.w}x${before.h} -> ${after.w}x${after.h})`);
+    if (after.scale === before.scale) fail(`resizing the slides window didn't rescale the deck (still ${after.scale})`);
+    if (after.pages !== before.pages) fail(`resizing the slides window split the slide into different pages (${before.pages} -> ${after.pages})`);
     anim = await animations();
     if (anim.length) fail(`after a resize the slide animates in (${anim.join(', ')})`);
 
