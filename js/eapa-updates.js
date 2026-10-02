@@ -2285,7 +2285,7 @@ function sopRunOfShow(dRaw){
       `Trainees open it from the Practice Lab slide (or 🧪 Practice Lab). They work in their own portal; stop presenting or leave the Practice Lab slide up.`,
       acts.length ? `Activities (≈10 min each): ${acts.map((a,k)=>`<b>${k+1}. ${esc(a)}</b>`).join(" · ")}.` : "",
       acts.some(a=>/Roleplay/i.test(a)) ? `The Crisis Roleplay can be run live by you, or trainees rehearse solo first.` : "",
-      `First submission of each exercise is free; repeats use one of 3 program-wide attempts (reset in Trainee Audit if someone is blocked by a technical issue).`].filter(Boolean),
+      `First submission of each exercise is free; repeats use one of the 3 attempts for that day's Practice Lab (reset in Trainee Audit if someone is blocked by a technical issue).`].filter(Boolean),
       watch:"Anyone stuck on the same activity for more than 10 minutes — nudge them to submit and move on; the debrief is where the learning lands."});
     add(10, {title:"Practice Lab debrief", do:[`Ask 2–3 trainees to walk through what they did and why, and where their judgment differed from the model answer.`, `Point to the Evaluation Report's “Not this way — what to change” section: it's the next step, not a verdict.`]});
   }
@@ -3056,5 +3056,48 @@ if(document.querySelector(".topbar")) render();
 .or-d2-card i{font-style:normal;font-weight:700;background:#ECEEF5;border-radius:7px;width:100%;text-align:center;padding:4px 0;}
 .or-d2-card u{text-decoration:none;color:#5B6178;font-size:10px;}
 .or-box.or-band{background:#F7F8FB;border:1px solid #E3E6EE;border-style:solid;}
+`; document.head.appendChild(st);
+})();
+
+/* ================= Practice Lab disclaimer: 3 attempts only =================
+   Every day's Practice Lab opens with the disclaimer (it was hidden before): 3 attempts per day's lab, the
+   first submission of each part free, attempts left for the day (red when none are left), and how to get
+   more. Day 10 adds its stricter rule: the Brand Kit and the Marketing Plan can be submitted once only. */
+(function(){
+  if(typeof renderToolWizard !== "function" || renderToolWizard.__disclaimer) return;
+  renderLabAttemptBanner = function(dayId){
+    dayId = dayId || (typeof currentLabDay === "function" ? currentLabDay() : null);
+    if(!dayId) return "";
+    const left = labAttemptsRemaining(dayId), cap = LAB_ATTEMPT_CAP;
+    const day10 = +dayId === 10 ? `<p class="lab-disc-strict">Day 10 is the final evaluation: the <b>Brand Kit</b> and the <b>Marketing Plan</b> can be submitted <b>once only</b>.</p>` : "";
+    return `<div class="lab-disclaimer ${left ? "" : "locked"}" data-day="${dayId}" role="note">
+      <div class="lab-disc-ic">${left ? "⚠️" : "⛔"}</div>
+      <div class="lab-disc-body">
+        <b>Disclaimer: ${cap} attempts only</b>
+        <p>This Practice Lab allows <b>${cap} attempts</b>. Your first submission of each part is free; every resubmission uses one attempt, so check your work before you submit.</p>
+        ${day10}
+        <p class="lab-disc-left">${left ? `Attempts left for Day ${dayId}: <b>${left} of ${cap}</b>` : `No attempts left for Day ${dayId}. Use 🙋 Ask for more attempts, or ask your trainer to reset them.`}</p>
+      </div></div>`;
+  };
+  refreshLabAttemptBanners = function(){
+    document.querySelectorAll(".lab-disclaimer").forEach(el => { const h = renderLabAttemptBanner(+el.dataset.day); if(h) el.outerHTML = h; });
+  };
+  const __rtw = renderToolWizard;
+  renderToolWizard = function(dayId, parts){
+    const html = __rtw.apply(this, arguments);
+    if(dayId) return html;                    // the banner is already at the top
+    const d = typeof currentLabDay === "function" ? currentLabDay() : null;   // a lab opened without its day (Day 7)
+    return d ? renderLabAttemptBanner(d) + html : html;
+  };
+  renderToolWizard.__disclaimer = true;
+  const st = document.createElement("style"); st.id = "lab-disclaimer"; st.textContent = `
+.lab-disclaimer{display:flex;gap:14px;align-items:flex-start;background:#FFF7EF;border:1px solid #F3C9A0;border-left:5px solid var(--orange);border-radius:12px;padding:12px 16px;margin:0 0 14px;}
+.lab-disclaimer .lab-disc-ic{font-size:22px;line-height:1.2;flex-shrink:0;}
+.lab-disclaimer .lab-disc-body > b{display:block;font-size:13.5px;color:var(--orange-deep);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.lab-disclaimer p{font-size:13.5px;line-height:1.5;color:#5c3d17;margin:2px 0;}
+.lab-disclaimer .lab-disc-left{font-weight:600;}
+.lab-disclaimer .lab-disc-strict{color:#7a352c;}
+.lab-disclaimer.locked{background:var(--danger-bg);border-color:var(--danger);border-left-color:var(--danger);}
+.lab-disclaimer.locked .lab-disc-body > b{color:var(--danger);} .lab-disclaimer.locked p{color:#7a352c;}
 `; document.head.appendChild(st);
 })();
