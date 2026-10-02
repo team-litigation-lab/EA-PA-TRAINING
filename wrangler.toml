@@ -1,5 +1,6 @@
 name = "ea-pa-training"
 compatibility_date = "2024-09-23"
+keep_vars = true
 main = "worker.js"
 
 [assets]
