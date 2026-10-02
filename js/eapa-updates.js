@@ -1391,7 +1391,7 @@ window.initColdCalling4 = function(body){
   const partD = renderEmailOutreachSection().replace(">D. Email Outreach Simulator<", ">E. Email Outreach Simulator<");
   body.innerHTML = renderToolWizard(4, [
     {label:"Prioritize the Day", html:partTM},
-    {label:"Cold-Calling Log", html:partA},
+    {label:"Prospect Call Log", html:partA},
     {label:"Lead Generation Practice", html:partB},
     {label:"Live Intake Call Simulator", html:partC},
     {label:"Email Outreach Simulator", html:partD}
@@ -2200,7 +2200,7 @@ const SOP_LAB_ACTIVITIES = {
   dossier1:["Client Dossier","Preference Trackers","ACT Email","Gatekeeping Practice"],
   forcemultiplier2:["Anticipate the Real Need","Prompt Engineering","The Full Scenario","Inbox Triage"],
   calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel Management"],
-  coldcalling4:["Prioritize the Day","Cold-Calling Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator"],
+  coldcalling4:["Prioritize the Day","Prospect Call Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator"],
   insurance5:["Classify the Risk","Match the Strategy","Home Binder","Crisis Roleplay"],
   projectcompliance6:["Compliance Risk","Operational Warning Signs","Recovery Memo","Crisis Roleplay","Compliance Audit Simulation"],
   financial:["Trust Ledger Reconciliation","Invoice & Bill Audit","Invoice Follow-Up","Attention to Detail Test"],
@@ -2268,7 +2268,7 @@ function sopRunOfShow(dRaw){
     const inBlock = qcs.filter(q=>q.afterIndex>=i && q.afterIndex<j);
     add(Math.round((j-i)*perTopic + inBlock.length*1.5), {title:`Teach topics ${i+1}–${j} of ${n}`, do:[
       `Present each topic's two parts (principles & steps, then best practices & pitfalls). Longer topics continue on a second page — press Next.`,
-      `Use your notes for each slide: the Trainer Cue, Applied Discussion Case and the Say / Ask / Listen for / If quiet script. Take one or two answers per topic, not a round-robin.`,
+      `Use each slide's notes in Presenter view: On this slide, the script (Say / Ask) and the scenario for the room. Take one or two answers per topic, not a round-robin.`,
       inBlock.length ? `Quick Check${inBlock.length>1?"s":""} after topic${inBlock.length>1?"s":""} ${inBlock.map(q=>q.afterIndex+1).join(", ")}: let the room answer first, then reveal (the answer and rationale are in your notes).` : "",
       `Topics: ${d.lessons.slice(i,j).map((l,k)=>`${i+k+1}. ${esc(l.h)}`).join(" · ")}`].filter(Boolean),
       watch:"Silence usually means the example is too abstract — use the Applied Discussion Case from your notes."});
@@ -3651,5 +3651,41 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
   const st = document.createElement("style"); st.id = "c6-audit-missing"; st.textContent = `
 .audit-card.ca-missing{animation:caPulse 1.6s ease-out 1;border-color:var(--orange);box-shadow:0 0 0 3px rgba(224,122,47,.25);}
 @keyframes caPulse{0%{box-shadow:0 0 0 0 rgba(224,122,47,.55);}100%{box-shadow:0 0 0 3px rgba(224,122,47,.25);}}
+`; document.head.appendChild(st);
+})();
+
+/* ===== Lesson slide background: the LSH slide template =====
+   Navy, the grey plaid band with the logo across the top left, the orange rule under it and the
+   orange line-art waves on both edges (img/lesson-bg/). It's on .lesson-stage, so the trainee view,
+   full screen and the Presenter slides window shared in Meet all get it. The slide-progress dots
+   sit inside the band, so the slides keep their height. */
+(function(){
+  const st = document.createElement("style"); st.id = "lesson-bg"; st.textContent = `
+.lesson-stage{--band-h:clamp(50px,7vh,72px);position:relative;isolation:isolate;overflow:hidden;
+  background:url(/img/lesson-bg/wave-right.svg) right top/auto 64% no-repeat, url(/img/lesson-bg/wave-left.svg) left bottom/auto 62% no-repeat, #282B40 !important;
+  padding-top:calc(var(--band-h) + 18px) !important;}
+.lesson-stage::before{content:"";position:absolute;left:0;top:0;width:79%;height:var(--band-h);z-index:-1;
+  background:url(/img/lesson-bg/lsh-logo.png) max(18px,2.2vw) center/auto calc(var(--band-h) - 14px) no-repeat,
+    repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 40px),
+    repeating-linear-gradient(-45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 40px),
+    repeating-linear-gradient(45deg,rgba(40,43,64,.10) 0 8px,transparent 8px 40px),
+    rgba(138,139,150,.78);}
+.lesson-stage::after{content:"";position:absolute;left:21%;width:58%;top:calc(var(--band-h) + 9px);height:4px;background:#E0782F;z-index:-1;}
+.lesson-stage > .slide-dots, .lesson-stage .slide-dots{position:absolute;top:0;left:calc(max(18px,2.2vw) + var(--band-h) * 1.75);width:calc(79% - max(18px,2.2vw) - var(--band-h) * 1.75 - 18px);height:var(--band-h);
+  margin:0 !important;align-content:center;justify-content:flex-start;gap:5px;overflow:hidden;}
+.lesson-stage .slide-dot{width:8px;height:8px;background:rgba(255,255,255,.42);}
+.lesson-stage .slide-dot.visited{background:#F3C99A;}
+.lesson-stage .slide-dot.active{background:#E0782F;box-shadow:0 0 0 2px #fff;}
+.lesson-stage .slide-dot.locked{background:rgba(255,255,255,.2);}
+.lesson-stage:fullscreen, #audienceRoot .lesson-stage{--band-h:clamp(64px,11vh,118px);}
+#audienceRoot .lesson-stage{padding-top:calc(var(--band-h) + 3vh) !important;}
+.lesson-stage:fullscreen{padding-top:calc(var(--band-h) + 3vh) !important;}
+@media(max-width:760px){
+  .lesson-stage{--band-h:52px;padding-left:10px !important;padding-right:10px !important;background-size:auto 40%,auto 38%,auto !important;}
+  .lesson-stage::before{width:100%;}
+  .lesson-stage::after{left:30%;width:70%;}
+  .lesson-stage .slide-dot{width:6px;height:6px;}
+  .lesson-stage .slide-dots{gap:4px;width:calc(100% - var(--band-h) * 1.75 - 26px);}
+}
 `; document.head.appendChild(st);
 })();

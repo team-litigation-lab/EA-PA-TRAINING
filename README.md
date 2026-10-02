@@ -144,6 +144,18 @@ into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes co
   - **Test:** `.github/scripts/blueprint.cjs`.
 - **Admin → SOP Reference:** each day's session plan ends with the take-home Lesson Notes; the Facilitator Guide's daily rhythm points trainees to them at the close.
 
+## 🎨 Lesson slide background
+
+Every lesson slide sits on the LSH slide template:
+- navy background;
+- the grey plaid band with the Legal Support Help logo across the top left;
+- the orange rule under the band;
+- orange line-art waves on both edges.
+
+The files are in `img/lesson-bg/`: `lsh-logo.png` (the logo on a transparent background), `wave-left.svg` and `wave-right.svg`. The CSS is the "Lesson slide background" block near the end of `js/eapa-updates.js`. It styles `.lesson-stage`, so the trainee view, full screen and the Presenter slides window shared in Meet all get it.
+
+The slide-progress dots sit inside the band, so slides keep most of their height. The band is 50–72 px tall, depending on screen height. At 1366×768 slides split into about 4% more pages than without it; at 1920×1080 there's no change.
+
 ## 📞 Day 4 Practice Lab: simulated prospect calls and lead sourcing
 
 **Prospective Client Intake Call Log (activity 2):** each prospect row has a **📞 Call** button. The trainee rings the prospect and talks by voice (Chrome or Edge) or by typing, using the same call engine as the Live Intake Call Simulator. Each prospect picks up differently:
