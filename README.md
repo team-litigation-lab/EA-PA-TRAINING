@@ -11,7 +11,7 @@ Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three fi
 | File | What's in it |
 | --- | --- |
 | `lessons.js` | The topics (lessons), Quick Checks, Knowledge Check questions, discussion question and extra-learning boxes. |
-| `notes.js` | The trainer's speaker notes for Presenter view, Admin → Trainer Cues and the Speaker Notes PDF. |
+| `notes.js` | The trainer's speaker notes for Presenter view and the Speaker Notes PDF (Admin → SOP Reference). |
 | `scripts.js` | The spoken script and scenario for every slide. |
 
 To change a day, edit only that day's folder, so one day's edit can't break another day. After an edit, raise that file's `?v=` number in `index.html` so browsers fetch the new copy.

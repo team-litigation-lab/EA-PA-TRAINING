@@ -603,6 +603,7 @@ function renderSopDayContent(d){
     <div class="card sopx-hero">
       <div class="sopx-kicker">Day ${d.id} · Trainer SOP</div>
       <h2>${esc(d.title)}</h2>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 12px;"><button class="btn btn-navy btn-sm" onclick="downloadDayScriptsPdf(${d.id})">⬇ Day ${d.id} Speaker Notes (PDF)</button><span style="font-size:12.5px;color:var(--ink-soft);">The same notes are in 🖥 Presenter view, slide by slide.</span></div>
       ${d.introduction ? `<blockquote class="sopx-quote">“${esc(d.introduction)}”</blockquote>` : ""}
       ${meta.length ? `<div class="sopx-meta">${meta.map(([i,k,v])=>`<span>${i} <b>${k}</b> ${esc(v)}</span>`).join("")}</div>` : ""}
       <div class="sopx-cols">
@@ -2250,7 +2251,7 @@ function sopRunOfShow(dRaw){
   const add = (mins, s)=>{ steps.push(Object.assign({from:t, to:t+mins}, s)); t += mins; };
   add(15, {pre:true, title:"Before trainees join", do:[
     `Admin → <b>Trainee Audit</b>: approve anyone new; check everyone has Day ${d.id} unlocked (the previous day's Practice Lab submitted).`,
-    `Open <b>Admin → Trainer Cues → Day ${d.id}</b> in a second window, or use Presenter view (below) which shows the cues for each slide.`,
+    `Presenter view (below) shows each slide's notes, script and scenario; the day's Speaker Notes PDF is in Admin → SOP Reference.`,
     `Open Day ${d.id} → slides → <b>🖥 Presenter view</b>. Allow pop-ups. In Google Meet: <b>Present now → A window</b> → “LSH Slides — share this window”.`,
     `Pick your random-task moment (step marked below) and how long trainees get (15–30 min).`]});
   add(5, {title:"Welcome, recap & today's objectives", do:[
@@ -2357,7 +2358,7 @@ function sopProgramFlow(){
     <section class="card sopf-card" style="margin-top:14px;"><h3>I want to… → go here</h3>
       <table class="log-table sopx-table sopf-map"><thead><tr><th>I want to…</th><th>Where</th></tr></thead><tbody>
         <tr><td>Share only the slides while I see my notes</td><td>Day → slides → <b>🖥 Presenter view</b></td></tr>
-        <tr><td>See cues, discussion cases and scripts for a day</td><td>Admin → <b>Trainer Cues</b> (or Presenter view)</td></tr>
+        <tr><td>See the notes, scripts and scenarios for each slide</td><td>Day → slides → <b>🖥 Presenter view</b> (PDF: Admin → SOP Reference)</td></tr>
         <tr><td>Show the day's plan to the room</td><td>Admin → SOP Reference → <b>🎤 Present</b></td></tr>
         <tr><td>Drop an unannounced task on trainees</td><td>Admin → Trainee Audit → <b>🎲 Random Task Injection</b></td></tr>
         <tr><td>Approve, reset attempts, write feedback, set focus</td><td>Admin → <b>Trainee Audit</b> → View Detail</td></tr>

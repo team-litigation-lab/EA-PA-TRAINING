@@ -1,4 +1,4 @@
-/* Day 10 — trainer speaker notes for Presenter view, Admin → Trainer Cues and the Speaker Notes PDF.
+/* Day 10 — trainer speaker notes for Presenter view and the Speaker Notes PDF (Admin → SOP Reference).
    Written by hand for each slide, keyed "<day>::<topic title>".
    p1 = the topic's first slide, p2 = its second slide (Best Practices & Pitfalls).
    Each has "on" (what is on this slide, 2–3 sentences) and the script: say / ask (p1) or say / wrap (p2),
