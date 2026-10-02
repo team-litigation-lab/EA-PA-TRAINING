@@ -3570,3 +3570,86 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
 @media (max-width:520px){ .lg-sources,.lg-leads{grid-template-columns:1fr;} }
 `; document.head.appendChild(st);
 })();
+
+/* ===== Day 6: the 15-case Compliance Audit keeps its answers and names what's missing =====
+   The Clean / Issue Found choices lived only in memory, so a reload (for a new version, or a closed
+   tab) wiped them while the written actions waited in the autosave. Now the whole audit is saved
+   (`c6-audit`) and put back when the lab opens. The checks read the boxes on screen too, and when
+   something is missing they name the cases and jump to the first one. */
+(function(){
+  if(typeof initProjectCompliance6 !== "function") return;
+  const ACTION_MIN = 250;
+  let saveTimer = null;
+  const save = ()=>{ clearTimeout(saveTimer); saveTimer = setTimeout(()=>{ try{ storeSet("c6-audit", toolState.c6audit); }catch(e){} }, 500); };
+  const sync = ()=>{
+    const ca = toolState.c6audit; if(!ca) return;
+    COMPLIANCE_AUDIT_CASES.forEach((_,i)=>{
+      if(ca.verdicts[i]!=="issue") return;
+      const a = document.getElementById("caAction"+i), r = document.getElementById("caRisk"+i);
+      if(a && a.value.length > (ca.actions[i]||"").length) ca.actions[i] = a.value;
+      if(r && r.value && !ca.risks[i]) ca.risks[i] = r.value;
+    });
+  };
+  const flagged = (test)=>COMPLIANCE_AUDIT_CASES.map((c,i)=>({c,i})).filter(({i})=>toolState.c6audit.verdicts[i]==="issue" && test(i));
+  const point = (list, what)=>{
+    const names = list.map(({c})=>"Case "+c.id);
+    toast(`${what}: ${names.slice(0,6).join(", ")}${names.length>6 ? ` and ${names.length-6} more` : ""}.`);
+    const card = document.getElementById("caCard"+list[0].i);
+    if(card){ card.scrollIntoView({behavior:"smooth", block:"center"}); card.classList.remove("ca-missing"); void card.offsetWidth; card.classList.add("ca-missing"); }
+  };
+  // true when everything a check needs is there; otherwise says what's missing and where
+  const ready = (needAllVerdicts)=>{
+    sync();
+    const ca = toolState.c6audit;
+    if(needAllVerdicts){
+      const open = COMPLIANCE_AUDIT_CASES.map((c,i)=>({c,i})).filter(({i})=>!ca.verdicts[i]);
+      if(open.length){ point(open, `Mark Clean or Issue Found on every case first (${open.length} left)`); return false; }
+      const noRisk = flagged(i=>!ca.risks[i]);
+      if(noRisk.length){ point(noRisk, "Pick a risk level for"); return false; }
+    }
+    const short = flagged(i=>(ca.actions[i]||"").length < ACTION_MIN);
+    if(short.length){ point(short, `Each flagged case needs a Proposed Next Action of ${ACTION_MIN}+ characters. Still short`); return false; }
+    return true;
+  };
+
+  const __init = initProjectCompliance6;
+  initProjectCompliance6 = function(body){
+    const r = __init.apply(this, arguments);
+    storeGet("c6-audit").then(v=>{
+      const ca = toolState.c6audit;
+      if(!v || !v.verdicts || !ca || Object.keys(ca.verdicts).length) return;
+      toolState.c6audit = {verdicts:v.verdicts||{}, risks:v.risks||{}, actions:v.actions||{}};
+      const q = document.getElementById("complianceAuditQueue");
+      if(q) q.innerHTML = renderComplianceAuditQueue();
+    }).catch(()=>{});
+    return r;
+  };
+  const __verdict = setComplianceVerdict;
+  window.setComplianceVerdict = setComplianceVerdict = function(i, v){ sync(); __verdict.apply(this, arguments); save(); };
+  const __risk = setComplianceRisk;
+  window.setComplianceRisk = setComplianceRisk = function(){ __risk.apply(this, arguments); save(); };
+  const __action = setComplianceAction;
+  window.setComplianceAction = setComplianceAction = function(i, val){
+    __action.apply(this, arguments); save();
+    const counter = document.getElementById("caActionCounter"+i);
+    if(counter){
+      let badge = counter.nextElementSibling;
+      if(val.length >= ACTION_MIN && !badge){ counter.insertAdjacentHTML("afterend", `<span style="font-size:11px;color:var(--navy);font-weight:600;">✓ Action Drafted</span>`); }
+      else if(val.length < ACTION_MIN && badge){ badge.remove(); }
+    }
+    const card = document.getElementById("caCard"+i); if(card) card.classList.remove("ca-missing");
+  };
+  const __check = checkComplianceAudit;
+  window.checkComplianceAudit = checkComplianceAudit = async function(){ if(!ready(true)) return; return __check.apply(this, arguments); };
+  const __review = reviewComplianceAuditResponse;
+  window.reviewComplianceAuditResponse = reviewComplianceAuditResponse = async function(){
+    sync();
+    if(!Object.values(toolState.c6audit.verdicts).includes("issue")) return __review.apply(this, arguments);   // its own "flag a case first" message
+    if(!ready(false)) return;
+    return __review.apply(this, arguments);
+  };
+  const st = document.createElement("style"); st.id = "c6-audit-missing"; st.textContent = `
+.audit-card.ca-missing{animation:caPulse 1.6s ease-out 1;border-color:var(--orange);box-shadow:0 0 0 3px rgba(224,122,47,.25);}
+@keyframes caPulse{0%{box-shadow:0 0 0 0 rgba(224,122,47,.55);}100%{box-shadow:0 0 0 3px rgba(224,122,47,.25);}}
+`; document.head.appendChild(st);
+})();
