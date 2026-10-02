@@ -2769,8 +2769,6 @@ window.fitTopicsModal = fitTopicsModal;
 `; document.head.appendChild(st);
 })();
 
-/* if the portal already drew itself before this file loaded, redraw with the updates */
-if(document.querySelector(".topbar")) render();
 
 /* ================= A calm dashboard (easy on the eyes) =================
    Light day-card headers with a thin colour stripe instead of solid navy/orange blocks, titles in normal case,
@@ -3653,3 +3651,9 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
 @keyframes caPulse{0%{box-shadow:0 0 0 0 rgba(224,122,47,.55);}100%{box-shadow:0 0 0 3px rgba(224,122,47,.25);}}
 `; document.head.appendChild(st);
 })();
+
+/* If the portal already drew itself before this file loaded, redraw with the updates. This stays the
+   last line: on a normal connection the portal can be showing a page (e.g. a lab opened in its own tab)
+   before this file arrives, and a redraw any earlier runs that page before the parts further down are
+   defined (the Day 4 lab then stopped on LG_SCENARIO, and the rest of this file never loaded). */
+if(document.querySelector(".topbar")) render();
