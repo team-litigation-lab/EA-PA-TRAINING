@@ -1,5 +1,13 @@
 # LSH EA / PA Training
 
+## 🔐 Sign in on the Main Portal only
+
+Trainees and admins sign in once, on the LSH Training Portal, and open this program from there: this site shows no sign-in form to someone who arrives from the Portal. The Portal sends them here with a signed, short-lived ticket (`?ticket=…`); `js/portal-gate.js` posts it to `/api/auth/portal`, and the Worker signs a trainee in (same `trainee:<id>` records, so every current registration, progress and approval is kept) or an administrator in (their ticket is `{r: "a", exp}`: no passphrase again). Someone who opens this site's link directly sees a note with a **Go to the LSH Training Portal** button instead of the form, and the Worker refuses a name + batch typed here (403 `portal-required`), except to renew the session of a trainee already signed in on that device. The admin passphrase stays under *Sign in with your passphrase* for the direct link.
+
+- **Turning it on:** set `PORTAL_SSO_SECRET` (same value as the Portal) and the admin password (`ADMIN_PASSPHRASE`, or `MASTER_ADMIN_PASSWORD`, the Portal's master admin password) as Worker secrets. Until both are set, `/api/auth/status` reports `portalOnly: false` and the old name + batch form stays.
+- **Ticket format:** `base64url(JSON {first, last, b: <batch>, exp})` + `.` + `base64url(HMAC-SHA256(key = "portal-sso:" + secret, message = that text))`, good for 10 minutes at most. The Portal makes it (`functions/api/launch.js` there).
+- **Engine hooks:** `js/portal-gate.js` is loaded in `<head>`; `index.html` calls it in four places (the server status, the trainee sign-in request, `renderLogin`, and boot). Course repos built from this page (Foundational-Training's `build/build.py`) skip their own patch when these are already here. It's the same `js/portal-gate.js` in every LSH course repo.
+
 The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with its records in the `LSH_KV` KV namespace and trainees' saved progress in R2 (see "Where records are kept").
 
 **🏠 Main Portal (admins):** while an admin is signed in, the top bar has **🏠 Main Portal** and the Admin screen has **← Back to Main Portal** (next to Log out). Both open the LSH Training Portal's Training Directory (`https://cm-training-activity.pages.dev/programs.html`), where admins open each program. Trainees and the 👁 Trainee view don't show them. It's `js/portal-link.js`, the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them.

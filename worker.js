@@ -9,7 +9,11 @@
  *   GEMINI_MODEL       — optional: first model for grading and trainer tools (default gemini-3.8-flash).
  *                        Live chat always starts on gemini-3.5-flash-lite (the free tier's daily limit
  *                        is ~500 requests there, 20 on the Flash models); see geminiModels.
- *   ADMIN_PASSPHRASE   — trainer/admin sign-in. Setting this switches the portal
+ *   PORTAL_SSO_SECRET  — optional; the secret the LSH Training Portal signs its launch tickets with (the same value is set
+ *                        on the Portal). Setting it makes the Main Portal the only way in: /api/auth/trainee then refuses a name +
+ *                        batch typed on this site (except to renew a signed-in trainee's session), and /api/auth/portal signs a
+ *                        trainee or an administrator in from the Portal's ticket. Not set = the old name + batch sign-in.
+ *   ADMIN_PASSPHRASE   — trainer/admin sign-in (or MASTER_ADMIN_PASSWORD, the Portal's master admin password, when this isn't set). Setting this switches the portal
  *                        into SECURE MODE: every storage and AI request must carry
  *                        a signed session token.
  *   SESSION_SECRET     — optional; signs session tokens (defaults to ADMIN_PASSPHRASE)
@@ -27,7 +31,10 @@ async function hmac(secret, msg) {
   const sig = await crypto.subtle.sign("HMAC", key, enc.encode(msg));
   return btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
-function secretOf(env) { return env.SESSION_SECRET || env.ADMIN_PASSPHRASE || ""; }
+// The trainer/admin passphrase: ADMIN_PASSPHRASE, or else MASTER_ADMIN_PASSWORD (the LSH Training Portal's master admin password,
+// so one password signs an admin in on the Portal and here).
+function adminPass(env) { return env.ADMIN_PASSPHRASE || env.MASTER_ADMIN_PASSWORD || ""; }
+function secretOf(env) { return env.SESSION_SECRET || adminPass(env); }
 async function makeToken(env, role, subject, hours) {
   const exp = Date.now() + hours * 3600 * 1000;
   const body = `${role}.${encodeURIComponent(subject)}.${exp}`;
@@ -60,6 +67,39 @@ function candidateIds(name, batch) {
   if (!slug) { let h = 0; for (const c of String(name || "")) h = (h * 31 + c.codePointAt(0)) >>> 0; slug = "trainee-" + h.toString(36); }
   const b = slugPart(batch).slice(0, 20);
   return { newId: b ? `${slug}--${b}` : slug, legacyId: slugPart(name).slice(0, 40) || "trainee" };
+}
+
+/* ---------- Main Portal sign-in: the LSH Training Portal signs a trainee or an admin in, this site trusts its ticket ----------
+   ticket = "<base64url JSON {first, last, b, exp}>.<HMAC-SHA256 of that text, keyed with PORTAL_SSO_SECRET>"
+   (an administrator's ticket is {r: "a", exp}: they were signed in on the Portal with the master admin password).
+   exp is epoch milliseconds; a ticket is good for a few minutes, so a copied link is no use later. */
+const PORTAL_TICKET_MAX_MS = 10 * 60 * 1000;
+function portalOnly(env) { return !!(adminPass(env) && env.PORTAL_SSO_SECRET); }
+async function readPortalTicket(env, ticket) {
+  if (!env.PORTAL_SSO_SECRET) return null;
+  const parts = String(ticket || "").split(".");
+  if (parts.length !== 2) return null;
+  const good = await hmac("portal-sso:" + env.PORTAL_SSO_SECRET, parts[0]);
+  if (!safeEqual(good, parts[1])) return null;
+  let t; try { t = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(parts[0].replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0)))); } catch (e) { return null; }
+  const exp = Number(t && t.exp);
+  if (!exp || Date.now() > exp || exp - Date.now() > PORTAL_TICKET_MAX_MS) return null;
+  if (t.r === "a") return { admin: true };
+  const first = String(t.first || "").trim(), last = String(t.last || "").trim(), batch = String(t.b || "").trim();
+  if (!first || !last || !batch) return null;
+  return { name: `${first} ${last}`, first, last, batch };
+}
+// Like readToken, but an expired token still counts for a while (same signature, same trainee), so a trainee
+// midway through the course isn't sent back to the portal in the middle of a lesson.
+const TOKEN_GRACE_MS = 60 * 24 * 3600 * 1000;
+async function readTraineeTokenGrace(env, request) {
+  const h = request.headers.get("Authorization") || "";
+  const parts = (h.startsWith("Bearer ") ? h.slice(7) : "").split(".");
+  if (parts.length !== 4 || parts[0] !== "t") return null;
+  const [role, subj, exp, sig] = parts;
+  if (Date.now() > Number(exp) + TOKEN_GRACE_MS) return null;
+  if (!safeEqual(await hmac(secretOf(env), `${role}.${subj}.${exp}`), sig)) return null;
+  return { role, id: decodeURIComponent(subj) };
 }
 
 /* ---------- trainees' saved progress lives in R2 ----------
@@ -314,7 +354,7 @@ export default {
     try {
       const url = new URL(request.url);
       const path = url.pathname;
-      const secure = !!env.ADMIN_PASSPHRASE;
+      const secure = !!adminPass(env);
       if (path === "/blueprint.pdf") {
         // The Platform Blueprint PDF, rebuilt automatically by the portal after each update (trainee-safe content).
         const raw = env.LSH_KV ? await env.LSH_KV.get("blueprint:pdf") : null;
@@ -329,7 +369,7 @@ export default {
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
         const deployment = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || "unknown";
-        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${adminPass(env) ? "ON" : "OFF"}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
@@ -344,18 +384,16 @@ export default {
       if (!env.LSH_KV && path.startsWith("/api/storage")) return json({ error: "LSH_KV namespace is not bound on this Worker." }, 500);
 
       /* ---------- auth ---------- */
-      if (path === "/api/auth/status") return json({ secure });
+      if (path === "/api/auth/status") return json({ secure, portalOnly: portalOnly(env) });
       if (path === "/api/auth/admin") {
         if (!secure) return json({ error: "not-configured" }, 501);
         const { passphrase } = await request.json();
         await new Promise((r) => setTimeout(r, 400)); // slow down guessing
-        if (!safeEqual(String(passphrase || ""), env.ADMIN_PASSPHRASE)) return json({ error: "Incorrect passphrase" }, 401);
+        if (!safeEqual(String(passphrase || ""), adminPass(env))) return json({ error: "Incorrect passphrase" }, 401);
         return json({ token: await makeToken(env, "a", "admin", 12) });
       }
-      if (path === "/api/auth/trainee") {
-        if (!secure) return json({ error: "not-configured" }, 501);
-        const { name, batch, id } = await request.json();
-        if (!name || !batch) return json({ error: "Name and batch are required" }, 400);
+      // The trainee's session for a name + batch: their record id (new or legacy form) and token.
+      const traineeSession = async (name, batch, id) => {
         const { newId, legacyId } = candidateIds(name, batch);
         let chosen = newId, existing = await env.LSH_KV.get(`trainee:${newId}`);
         if (!existing) {
@@ -366,6 +404,31 @@ export default {
         if (id && id !== chosen && id !== newId && id !== legacyId) return json({ error: "Name/batch don't match this session" }, 403);
         if (id && (id === newId || id === legacyId)) chosen = id;
         return json({ id: chosen, token: await makeToken(env, "t", chosen, 24 * 30), existing: existing ? JSON.parse(existing) : null });
+      };
+      if (path === "/api/auth/trainee") {
+        if (!secure) return json({ error: "not-configured" }, 501);
+        const { name, batch, id } = await request.json();
+        if (!name || !batch) return json({ error: "Name and batch are required" }, 400);
+        if (portalOnly(env)) {
+          // Trainees come in through the LSH Training Portal (/api/auth/portal). A name + batch typed here is
+          // accepted only to renew the session of a trainee who is already signed in on this device.
+          const own = await readTraineeTokenGrace(env, request);
+          const { newId, legacyId } = candidateIds(name, batch);
+          if (!own || (own.id !== newId && own.id !== legacyId)) return json({ error: "portal-required" }, 403);
+        }
+        return traineeSession(name, batch, id);
+      }
+      if (path === "/api/auth/portal") {
+        // The Main Portal's sign-in: a signed ticket says who the trainee is (their name and batch as registered there),
+        // or that an administrator signed in on the Portal.
+        if (!portalOnly(env)) return json({ error: "not-configured" }, 501);
+        const { ticket } = await request.json().catch(() => ({}));
+        const who = await readPortalTicket(env, ticket);
+        if (!who) return json({ error: "This sign-in link has expired. Open the program again from the LSH Training Portal." }, 401);
+        if (who.admin) return json({ admin: true, token: await makeToken(env, "a", "admin", 12) });
+        const res = await traineeSession(who.name, who.batch, "");
+        const out = await res.json();
+        return json(Object.assign(out, { name: who.name, first: who.first, last: who.last, batch: who.batch }));
       }
 
       const tok = secure ? await readToken(env, request) : { role: "a", id: "open-mode" };
