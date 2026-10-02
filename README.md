@@ -205,6 +205,8 @@ Steps 1 and 2 are scored on the page and use no AI requests. The code is the las
 
 Every open page checks every 3 minutes for a new deploy. When one is found, the page shows a banner with **Update now**. It reloads on its own only when it's safe: nobody has clicked, typed or scrolled for 2 minutes, and no call, quiz, pop-up or Presenter view is open. Lab answers are saved before the reload and put back after it, including the Day 4 dropdowns and the **📝 My Notes** card in Prioritize the Day. The 2-minute wait is in the "Calmer auto-update" block at the end of `js/eapa-updates.js`. Before it, a page reloaded within seconds of a deploy whenever nobody was typing, which trainees saw as the page flickering.
 
+Lab work that isn't a plain text box is saved under its own key so a reload keeps it: Day 4's call transcripts (`outbound-calls`) and Day 6's 15-case Compliance Audit (`c6-audit`: Clean / Issue Found, risk levels and written actions). Both keys sync to the trainee's account with the other personal keys (`PERSONAL_KEYS` in `index.html`) and are cleared on sign-out. When a Day 6 check finds something missing, it names the cases and scrolls to the first one.
+
 ## 👤 Practice Lab reviews follow Elias Thorne's profile
 
 Every AI review in the Practice Labs (written labs, roleplay calls, intake calls and quick practice) gets Elias Thorne's full client profile (`CLIENT_DOSSIER_MD`, built from `CLIENT_PROFILE_DOC` in `index.html`) and grades the work against it. The code is the last block of `js/eapa-updates.js`:
