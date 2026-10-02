@@ -183,6 +183,24 @@ into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes co
 - **Admin → 🧭 Orientation** is the screen-share deck; the **Blueprint PDF** (`/blueprint.pdf`, also in Handouts) is built from it and republishes itself after each build. Its Dashboard slide shows today's dashboard (day cards filling the screen, the scores band under them); its day-by-day roadmap reads the day titles and labs from the portal.
 - **Admin → SOP Reference:** each day's session plan ends with the take-home Lesson Notes; the Facilitator Guide's daily rhythm points trainees to them at the close.
 
+## 📞 Day 4 Practice Lab: simulated prospect calls and lead sourcing
+
+**Prospective Client Intake Call Log (activity 2):** each prospect row has a **📞 Call** button. The trainee rings the prospect and talks by voice (Chrome or Edge) or by typing, using the same call engine as the Live Intake Call Simulator. Each prospect picks up differently:
+- Alex Kim: a busy referral who asks "do I have a case?"
+- Maria Lopez: a wary web lead, worried about confidentiality and cost.
+- John Carter: not ready, so the goal is a dated follow-up.
+- Emily Davis: voicemail.
+- David Wong: his office manager Tanya screens the call.
+
+The prospect hangs up when the call is naturally over. The date fills itself in, and the trainee logs the outcome, follow-up and notes. **Review My Calls** grades every call and the log together (one Practice Lab attempt). Transcripts are saved (`outbound-calls`) and included in Download My Work. A call costs one AI request per reply and none to start.
+
+**Lead Generation Practice (activity 3):** the scenario is a Data Privacy & Cybersecurity practice launching in New York.
+1. **Pick your sources:** within a 6-hour weekly budget. Bought lists and scraped numbers lose points.
+2. **Build the lead list:** decide on 12 raw leads (hot, warm, nurture, conflicts hold or skip), including a conflict with the Harlow matter, a duplicate, a competitor, an out-of-area company and a do-not-contact.
+3. **Write the plan:** AI-reviewed, with the trainee's own sources and list as context.
+
+Steps 1 and 2 are scored on the page and use no AI requests. The code is the last two blocks of `js/eapa-updates.js` (`OB_PROSPECTS`, `LG_SOURCES`, `LG_LEADS`).
+
 ## 🔄 New versions (auto-update)
 
 Every open page checks every 3 minutes for a new deploy. When one is found, the page shows a banner with **Update now**. It reloads on its own only when it's safe: nobody has clicked, typed or scrolled for 2 minutes, and no call, quiz, pop-up or Presenter view is open. Lab answers are saved before the reload and put back after it, including the Day 4 dropdowns and the **📝 My Notes** card in Prioritize the Day. The 2-minute wait is in the "Calmer auto-update" block at the end of `js/eapa-updates.js`. Before it, a page reloaded within seconds of a deploy whenever nobody was typing, which trainees saw as the page flickering.

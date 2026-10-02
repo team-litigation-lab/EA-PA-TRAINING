@@ -10049,8 +10049,9 @@ async function downloadCallsPdf(){
     lines.push(`${l.name} (${l.company}, ${l.phone})`);
     lines.push(`   Called: ${date||"—"}   Outcome: ${outcome||"—"}   Follow-up: ${followup||"—"}   Notes: ${notes||"—"}`);
   });
+  if(typeof obPdfLines==="function") lines.push(...obPdfLines());
   const leadGenDraft = document.getElementById("leadGenDraft");
-  lines.push("---", "## C. Lead Generation Practice", `Scenario: ${LEAD_GEN_SCENARIO.text}`, `Your plan: ${leadGenDraft && leadGenDraft.value.trim() ? leadGenDraft.value.trim() : "(not written)"}`);
+  lines.push("---", "## C. Lead Generation Practice", `Scenario: ${LEAD_GEN_SCENARIO.text}`, ...(typeof lgPdfLines==="function" ? lgPdfLines() : []), `Your plan: ${leadGenDraft && leadGenDraft.value.trim() ? leadGenDraft.value.trim() : "(not written)"}`);
   buildAndSavePdf("LSH EA / PA Upskill Program", "Prioritize the Day, Cold-Calling & Outreach — Results", lines, "LSH_Cold_Calling");
 }
 window.downloadCallsPdf = downloadCallsPdf;
@@ -16757,7 +16758,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.10.02-f";
+var APP_BUILD = "2026.10.02-g";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -16820,7 +16821,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=notes1"></script>
+<script src="/js/eapa-updates.js?v=calls1"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=1"></script>
 <script src="/js/request-budget.js?v=1"></script>
