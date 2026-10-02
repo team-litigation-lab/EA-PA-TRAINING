@@ -183,6 +183,14 @@ into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes co
 - **Admin → 🧭 Orientation** is the screen-share deck; the **Blueprint PDF** (`/blueprint.pdf`, also in Handouts) is built from it and republishes itself after each build. Its Dashboard slide shows today's dashboard (day cards filling the screen, the scores band under them); its day-by-day roadmap reads the day titles and labs from the portal.
 - **Admin → SOP Reference:** each day's session plan ends with the take-home Lesson Notes; the Facilitator Guide's daily rhythm points trainees to them at the close.
 
+## 👤 Practice Lab reviews follow Elias Thorne's profile
+
+Every AI review in the Practice Labs (written labs, roleplay calls, intake calls and quick practice) gets Elias Thorne's full client profile (`CLIENT_DOSSIER_MD`, built from `CLIENT_PROFILE_DOC` in `index.html`) and grades the work against it. The code is the last block of `js/eapa-updates.js`:
+- Contradicting his stated preferences or standing rules loses Accuracy points. These include his channel ranking, BLUF style, Paleo diet, black coffee, aisle seat and no connecting flights, the approval threshold, confidentiality, protected calendar blocks, and family and household details.
+- Applying a profile detail without being told earns Presence points.
+- Each review names at least one point starting with "Elias's profile:". The report shows these in bold, under a "Graded against Elias Thorne's client profile" tag.
+- Day 2's checklist scoring doesn't use AI, so it isn't tagged.
+
 ## AI relay for the Training Portal
 
 `worker.js` → `/api/ai-relay` lets the LSH Training Portal's simulators (Call Simulator, Calendaring, Email Replies) send their Gemini calls from this Worker's US placement, since Gemini refuses some regions the Portal's Pages Functions run in (e.g. Hong Kong). It takes the same body as `/api/claude` (plus `json` and `temperature`) and uses this Worker's key pool. It only answers requests carrying `X-Relay-Key` equal to the secret **`AI_RELAY_SECRET`**; set the same value on the Portal's Pages project (see Training-Portal `SIMULATORS.md`). Without the secret the endpoint returns 403.
