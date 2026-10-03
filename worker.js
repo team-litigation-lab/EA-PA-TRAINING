@@ -185,6 +185,8 @@ async function traineeWrite(env, tok, key, value) {
   }
   if (/^tfeedback:[a-z0-9]+$/.test(key) || /^cert:LSH-EAPA-\d{4}-[A-Z0-9]{6}$/.test(key)) {
     if (existing && /^tfeedback:/.test(key)) return "Already submitted";
+    // a certificate record is the trainee's own: a new one, or one already issued to them (never someone else's)
+    if (/^cert:/.test(key) && ((existing && existing.traineeId !== id) || (incoming && incoming.traineeId !== id))) return "Not allowed";
     await env.LSH_KV.put(key, value); return null;
   }
   return "Not allowed";
@@ -217,7 +219,6 @@ const GEMINI_FLASH = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash"
 const geminiModels = (env, feature) => (feature === "chat" || feature === "tracker" || !feature   // high-volume features start on Flash-Lite
   ? [GEMINI_LITE, ...GEMINI_FLASH]
   : [env.GEMINI_MODEL, ...GEMINI_FLASH, GEMINI_LITE]).filter((v, i, a) => v && a.indexOf(v) === i);
-const featureFromBody = (raw) => { try { return String(JSON.parse(raw).feature || ""); } catch (e) { return ""; } };
 
 /* Gemini refuses some regions ("User location is not supported for the API use"). The Worker is placed in
    the US (wrangler.json), but placement is best-effort: a request can still run near the trainee. A refused

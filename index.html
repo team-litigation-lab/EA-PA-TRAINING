@@ -3474,14 +3474,6 @@ async function getApprovalStatus(traineeId){
 }
 
 const SUBMISSION_INLINE_LIMIT = 200*1024; // 200KB — stored in full; larger files record metadata only
-function readFileAsDataURL(file){
-  return new Promise((resolve,reject)=>{
-    const reader = new FileReader();
-    reader.onload = ()=>resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
 
 async function loadAll(){
   const p = await storeGet("day-progress");
@@ -4063,8 +4055,6 @@ function renderClientProfile(){
   `;
 }
 
-function dismissNotifBanner(){ state.notifDismissed = true; render(); }
-window.dismissNotifBanner = dismissNotifBanner;
 
 function renderTopbar(){
   let views = [["dashboard","Dashboard"],["tasks","🎲 Tasks"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
@@ -5424,14 +5414,6 @@ function renderSurpriseTaskCard(){
       <p>${esc(t.task)}</p></div>
       <button class="btn btn-primary" onclick="goto('tasks')">${le && le.status==="progress" ? "Continue in 🎲 Tasks →" : "Handle it in 🎲 Tasks →"}</button>
     </div>`;
-  return `
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#FFF4E8;border:1.5px solid var(--orange);">
-      <div style="font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;">🎲 Surprise Task — Day ${t.dayId}</div>
-      <p style="font-size:14px;color:var(--navy);font-weight:600;margin:6px 0 10px;">${esc(t.task)}</p>
-      <textarea id="surpriseTaskInput" placeholder="Handle it — right now, using what you learned today..." style="width:100%;min-height:90px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;">${esc(state.surpriseDraft||"")}</textarea>
-      <button type="button" class="btn btn-navy btn-sm" id="surpriseSubmitBtn" style="margin-top:10px;" onclick="submitSurpriseTask(event)">Submit for Grading</button>
-      <div id="surpriseTaskResult" style="margin-top:12px;"></div>
-    </div>`;
 }
 function closeSurpriseResult(){
   state.surpriseResult = null;
@@ -5479,48 +5461,7 @@ function surpriseTaskSignature(){
   const t = state.activeSurpriseTask;
   return t ? (t.dayId+"|"+t.generatedAt) : "";
 }
-async function submitSurpriseTask(ev){
-  if(ev){ ev.preventDefault(); ev.stopPropagation(); }
-  const t = state.activeSurpriseTask;
-  if(!t){ toast("This surprise task has ended."); render(); return; }
-  const input = document.getElementById("surpriseTaskInput");
-  const val = input.value.trim();
-  const resultEl = document.getElementById("surpriseTaskResult");
-  const btn = document.getElementById("surpriseSubmitBtn");
-  if(val.length < 15){ toast("Write out how you'd actually handle this first."); return; }
-  if(btn){ btn.disabled = true; btn.textContent = "Grading…"; }
-  state.surpriseGrading = true;
-  resultEl.innerHTML = `<div class="ai-loading">Reviewing your response…</div>`;
-  try{
-    const day = DAYS.find(d=>d.id===t.dayId);
-    const report = await runRubricEvaluation(
-      `Surprise Task — Day ${t.dayId}`,
-      `The trainee was handed this task unannounced, mid-session, specifically to test real-time critical thinking, prioritization, and application of Day ${t.dayId}'s material (${day.title}) — not a rehearsed Practice Lab exercise. The task: ${t.task}`,
-      val,
-      `Did they correctly apply today's actual lesson content, not just general common sense? Did they prioritize correctly given it was dropped on them unannounced? Is the response decisive and realistic, not vague or hedging?`
-    );
-    // No dayId passed: the surprise-task report must NOT show the Practice Lab
-    // action row (Repeat / Retain & Advance / Jump to Knowledge Base).
-    state.surpriseResult = {dayId:t.dayId, task:t.task, html: renderEvaluationReport(report)};
-    state.surpriseDraft = "";
-    if(!state.progress[t.dayId]) state.progress[t.dayId] = {};
-    state.progress[t.dayId].surpriseTaskScore = report.totalScore;
-    state.progress[t.dayId].surpriseTaskAnsweredAt = t.generatedAt;
-    state.activeSurpriseTask = null;
-    await storeSet("day-progress", state.progress);
-    state.surpriseGrading = false;
-    if(state.view==="dashboard") render();
-    syncToLedger(); // background — don't block the UI on the ledger write
-    if(report.totalScore>=85) burstConfetti();
-  }catch(e){
-    state.surpriseGrading = false;
-    if(btn){ btn.disabled = false; btn.textContent = "Submit for Grading"; }
-    resultEl.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">Check your connection and try again.</div></div>`;
-  }
-}
-window.submitSurpriseTask = submitSurpriseTask;
 // Keep the draft in state so a refresh never erases what the trainee typed.
-document.addEventListener("input", (e)=>{ if(e.target && e.target.id==="surpriseTaskInput") state.surpriseDraft = e.target.value; });
 
 /* ---------- Day 10: strict single-attempt (no time limit) ---------- */
 function checkDay10SingleAttempt(actionId){
@@ -5831,10 +5772,6 @@ function averageCompetencyScore(){
   if(!allAttempts.length) return {score:0, tier:null};
   const score = Math.round(allAttempts.reduce((a,b)=>a+b,0)/allAttempts.length);
   return {score, tier: gradeTierFor(score)};
-}
-function practiceRunsCount(){
-  const pp = state.practiceProgress||{};
-  return Object.values(pp).reduce((a,v)=>a+(v.runs||0),0);
 }
 
 /* ---------- router ---------- */
@@ -12479,7 +12416,6 @@ function renderAdminRow(rec, day, practice){
           <button class="btn btn-sm btn-primary" onclick="openFeedbackFor('${rec.id}')" title="Write and send feedback to this trainee">✍ Feedback</button>
           <button class="btn btn-sm btn-ghost" onclick="adminOpenCertificate('${rec.id}')" title="Preview / download this trainee's Certificate of Completion">🎓 Certificate</button>
           ${rec.labResetRequestedAt && (!rec.labAttemptsResetAt || rec.labResetRequestedAt > rec.labAttemptsResetAt) ? `<span class="pill" style="background:var(--danger-bg);color:var(--danger);font-weight:800;" title="Asked ${fmtDate(rec.labResetRequestedAt)}${rec.labResetRequestedDay ? " (Day " + rec.labResetRequestedDay + ")" : ""}">🙋 Asked for more attempts</span>` : ""}<button class="btn btn-sm ${rec.labResetRequestedAt && (!rec.labAttemptsResetAt || rec.labResetRequestedAt > rec.labAttemptsResetAt) ? "btn-primary" : "btn-ghost"}" title="Give this trainee a fresh ${LAB_ATTEMPT_CAP} Practice Lab repeat attempts on every day" onclick="resetTraineeLabAttempts('${rec.id}')">↺ Reset Attempts${rec.labAttemptsGlobal ? ` (${rec.labAttemptsGlobal} used)` : ""}</button>
-          ${renderUnlockDaysControl(rec)}
           <button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee('${rec.id}', '${esc(rec.name||"this trainee").replace(/'/g,"\\'")}')">Revoke</button>
         </div>
       </div>
@@ -12491,33 +12427,6 @@ function renderAdminRow(rec, day, practice){
 /* Admin: open days for a trainee who missed a session. "Unlock up to Day N" opens Days 2..N
    whether or not the earlier Practice Labs are done; "Remove manual unlocks" returns the
    trainee to the normal rule (days they've already started stay open). */
-function renderUnlockDaysControl(rec){
-  return "";   // every day is open to everyone now, so there is nothing to unlock
-  const cur = (Array.isArray(rec.unlockedDays) ? rec.unlockedDays : []).map(Number);
-  const top = cur.length ? Math.max(...cur) : 0;
-  return `<select class="btn btn-sm btn-ghost" style="padding:4px 8px;" title="Open days for a trainee who missed a session" onchange="adminUnlockDays('${rec.id}', this.value); this.selectedIndex=0;">
-      <option value="">🔓 ${top ? `Unlocked to Day ${top}` : "Unlock days"}</option>
-      ${DAYS.filter(d=>d.id>1).map(d=>`<option value="${d.id}">Unlock up to Day ${d.id}</option>`).join("")}
-      ${top ? `<option value="0">Remove manual unlocks</option>` : ""}
-    </select>`;
-}
-async function adminUnlockDays(traineeId, value){
-  const n = parseInt(value, 10); if(isNaN(n)) return;
-  const rec = await sharedGet("trainee:"+traineeId);
-  if(!rec){ toast("Couldn't load that trainee — refresh and try again."); return; }
-  const who = cleanName(rec.name) || "this trainee";
-  if(n > 1 && !confirm(`Unlock Days 2–${n} for ${who}? They can open those lessons and Practice Labs right away, even if earlier labs aren't done.`)) return;
-  rec.unlockedDays = n > 1 ? DAYS.map(d=>d.id).filter(id=>id>1 && id<=n) : [];
-  rec.unlockedDaysAt = new Date().toISOString();
-  await sharedSet("trainee:"+traineeId, rec);
-  if(state.adminData){
-    const idx = state.adminData.findIndex(x=>x.id===traineeId);
-    if(idx!==-1) state.adminData[idx] = rec;
-    const wrap = document.getElementById("adminRowsWrap"); if(wrap) wrap.innerHTML = renderAdminRows();
-  }
-  toast(n > 1 ? `Days 2–${n} unlocked for ${who}. Their open page updates within about 10 seconds.` : `Manual unlocks removed for ${who}.`);
-}
-window.adminUnlockDays = adminUnlockDays;
 
 async function resetTraineeLabAttempts(traineeId){
   const rec = await sharedGet("trainee:"+traineeId);
@@ -13461,10 +13370,6 @@ function slideScript(d, l, part){
   const ask = key==="p1" ? (n.ask || (l.singleSlide ? n.wrap : "")) : (n.wrap || n.ask || "");
   return {why: n.say || "", talk, walk, ask, scenario: (key==="p2" || l.singleSlide) ? (n.scenario || "") : "", hand: false};
 }
-function slideScriptText(d, l, part){
-  const s = slideScript(d, l, part);
-  return [s.why, s.talk, s.walk.join("\n"), s.ask].filter(Boolean).join("\n\n");
-}
 /* When a long slide is split over pages, each page gets its own part of the slide's script:
    page 1 opens with the why and the explanation, the pages that show the steps (slide 1) or the
    practices (slide 2) share the walk-through in order, and the last page ends with the question. */
@@ -13826,8 +13731,6 @@ function renderAdminStudio(){
 `;
 }
 
-function setCuesDay(id){ state.cuesDay = id; render(); }
-window.setCuesDay = setCuesDay;
 function setAdminTab(t){ state.adminTab=t; render(); }
 window.setAdminTab = setAdminTab;
 function setSopDay(d){ state.sopDay=d; render(); }
@@ -16394,7 +16297,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.10.02-j";
+var APP_BUILD = "2026.10.03-a";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
