@@ -10,12 +10,12 @@ window.LSH_BLUEPRINT = {
     sub: 'Running the 10-day EA / PA course: the trainer side of the portal',
     slides: [
       { icon: '🔑', title: 'Signing in as a trainer', points: [
-          'Admin sign-in with the trainer passphrase. The server checks it, and every request after it needs your signed session.',
+          'Admin sign-in with the admin password. The server checks it, and every request after it needs your signed session.',
           'Your top bar: Dashboard, Client Profile, Practice Lab, 🧭 Orientation and the Facilitator Guide.',
           'Admin opens the trainer dashboard: Trainee Audit, Batch Folders, Rankings, SOP Reference, Content Studio, Trainee Feedback and 🕘 Attendance.',
           'Every day is open to you, so you can preview any lesson before you teach it.'],
         where: 'The sign-in screen → Admin sign-in · Admin in the top bar.',
-        tip: 'A red "Security not enabled" card in Admin means the passphrase isn\'t set on the Worker yet.' },
+        tip: 'A red "Security not enabled" card in Admin means the admin password isn\'t set on the Worker yet.' },
       { icon: '✅', title: 'Approving trainees', points: [
           'New trainees wait at "Waiting for approval" until you approve them.',
           'Approve or reject each one in the Trainee Audit. Approved trainees are let in within seconds.',

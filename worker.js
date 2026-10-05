@@ -13,12 +13,12 @@
  *                        on the Portal). Setting it makes the Main Portal the only way in: /api/auth/trainee then refuses a name +
  *                        batch typed on this site (except to renew a signed-in trainee's session), and /api/auth/portal signs a
  *                        trainee or an administrator in from the Portal's ticket. Not set = the old name + batch sign-in.
- *   ADMIN_PASSPHRASE   — trainer/admin sign-in (or MASTER_ADMIN_PASSWORD, the Portal's master admin password, when this isn't set). Setting this switches the portal
+ *   MASTER_ADMIN_PASSWORD — admin sign-in (the LSH Training Portal's master admin password: one password on every platform). Setting this switches the portal
  *                        into SECURE MODE: every storage and AI request must carry
  *                        a signed session token.
- *   SESSION_SECRET     — optional; signs session tokens (defaults to ADMIN_PASSPHRASE)
+ *   SESSION_SECRET     — optional; signs session tokens (defaults to MASTER_ADMIN_PASSWORD)
  *
- * Without ADMIN_PASSPHRASE the Worker runs in the old open mode so nothing breaks
+ * Without MASTER_ADMIN_PASSWORD the Worker runs in the old open mode so nothing breaks
  * before you've configured it (the Admin screen shows a warning).
  */
 const JSON_HEADERS = { "Content-Type": "application/json", "Cache-Control": "no-store" };
@@ -31,13 +31,12 @@ async function hmac(secret, msg) {
   const sig = await crypto.subtle.sign("HMAC", key, enc.encode(msg));
   return btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
-// The trainer/admin passphrase: ADMIN_PASSPHRASE, or else MASTER_ADMIN_PASSWORD (the LSH Training Portal's master admin password,
-// so one password signs an admin in on the Portal and here).
-function adminPass(env) { return env.ADMIN_PASSPHRASE || env.MASTER_ADMIN_PASSWORD || ""; }
+// The admin password: MASTER_ADMIN_PASSWORD, the LSH Training Portal's master admin password (one password signs an admin in on the Portal and on every platform).
+function adminPass(env) { return env.MASTER_ADMIN_PASSWORD || ""; }
 function secretOf(env) { return env.SESSION_SECRET || adminPass(env); }   // as stored (trimming it would sign everyone out)
-// The passwords an admin may type: ADMIN_PASSPHRASE and the Portal's MASTER_ADMIN_PASSWORD, whichever are set, without any
+// The password an admin may type: the Portal's MASTER_ADMIN_PASSWORD, without any
 // space or line break pasted around them (a secret pasted into Cloudflare with a trailing newline could never be typed).
-const ADMIN_PASS_VARS = ["ADMIN_PASSPHRASE", "MASTER_ADMIN_PASSWORD"];
+const ADMIN_PASS_VARS = ["MASTER_ADMIN_PASSWORD"];
 function adminPasswords(env) { return ADMIN_PASS_VARS.map((n) => String(env[n] || "").trim()).filter(Boolean); }
 function adminPassStatus(env) {
   const set = ADMIN_PASS_VARS.filter((n) => String(env[n] || "").trim());
@@ -405,7 +404,7 @@ export default {
         const { passphrase } = await request.json();
         await new Promise((r) => setTimeout(r, 400)); // slow down guessing
         const given = String(passphrase || "").trim();
-        if (!given || !adminPasswords(env).some((p) => safeEqual(given, p))) return json({ error: "Incorrect passphrase" }, 401);
+        if (!given || !adminPasswords(env).some((p) => safeEqual(given, p))) return json({ error: "Incorrect password" }, 401);
         return json({ token: await makeToken(env, "a", "admin", 12) });
       }
       // The trainee's session for a name + batch: their record id (new or legacy form) and token.
