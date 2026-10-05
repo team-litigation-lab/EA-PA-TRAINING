@@ -138,7 +138,12 @@ async function readTraineeTokenGrace(env, request) {
   if (parts.length !== 4 || parts[0] !== "t") return null;
   const [role, subj, exp, sig] = parts;
   if (Date.now() > Number(exp) + TOKEN_GRACE_MS) return null;
-  if (!safeEqual(await hmac(secretOf(env), `${role}.${subj}.${exp}`), sig)) return null;
+  const msg = `${role}.${subj}.${exp}`;
+  // A trainee session signed before the signing secret changed (e.g. the admin password, when SESSION_SECRET isn't set)
+  // still renews with PREVIOUS_SESSION_SECRET, the old value: renewal only, trainee sessions only (never admin), so a
+  // changed password doesn't sign every trainee out. Remove it from Cloudflare once everyone has been back.
+  const prev = String(env.PREVIOUS_SESSION_SECRET || "");
+  if (!safeEqual(await hmac(secretOf(env), msg), sig) && !(prev && prev !== secretOf(env) && safeEqual(await hmac(prev, msg), sig))) return null;
   return { role, id: decodeURIComponent(subj) };
 }
 
@@ -444,7 +449,7 @@ export default {
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
         const deployment = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || "unknown";
-        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${adminPass(env) ? "ON" : "OFF"}\nAdmin password: ${adminPassStatus(env)}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${adminPass(env) ? "ON" : "OFF"}\nAdmin password: ${adminPassStatus(env)}\nSessions signed with: ${env.SESSION_SECRET ? "SESSION_SECRET" : adminPass(env) ? "MASTER_ADMIN_PASSWORD (no SESSION_SECRET set: changing the password signs everyone out)" : "nothing (open mode)"}${env.PREVIOUS_SESSION_SECRET ? "; PREVIOUS_SESSION_SECRET renews trainee sessions signed before the change" : ""}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
