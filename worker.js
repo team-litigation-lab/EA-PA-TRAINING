@@ -142,8 +142,13 @@ async function readTraineeTokenGrace(env, request) {
   // A trainee session signed before the signing secret changed (e.g. the admin password, when SESSION_SECRET isn't set)
   // still renews with PREVIOUS_SESSION_SECRET, the old value: renewal only, trainee sessions only (never admin), so a
   // changed password doesn't sign every trainee out. Remove it from Cloudflare once everyone has been back.
-  const prev = String(env.PREVIOUS_SESSION_SECRET || "");
-  if (!safeEqual(await hmac(secretOf(env), msg), sig) && !(prev && prev !== secretOf(env) && safeEqual(await hmac(prev, msg), sig))) return null;
+  if (safeEqual(await hmac(secretOf(env), msg), sig)) return { role, id: decodeURIComponent(subj) };
+  // the value as stored, and without spaces, a line break or quotes pasted around it (either may be how it signed before)
+  const raw = String(env.PREVIOUS_SESSION_SECRET || "");
+  const prevs = [...new Set([raw, raw.trim(), normPass(raw)])].filter((p) => p && p !== secretOf(env));
+  let ok = false;
+  for (const p of prevs) if (safeEqual(await hmac(p, msg), sig)) { ok = true; break; }
+  if (!ok) return null;
   return { role, id: decodeURIComponent(subj) };
 }
 
