@@ -3858,7 +3858,7 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
   async function sourcesFor(rec, isTarget){
     const c = await copiesOf(rec.id), out = [];
     const cur = parse(c.current), daily = parse(c.daily), backup = parse(c.backup);
-    if(!isTarget) out.push({label: `Record <code>${esc(rec.id)}</code>${rec.batch ? ` · batch ${esc(cleanBatch(rec.batch))}` : ""}`, rec, snap: cur});
+    if(!isTarget) out.push({label: `Record <code>${esc(rec.id)}</code>${rec.batch ? ` · batch ${esc(cleanBatch(rec.batch))}` : ""} · last active ${rec.lastActive ? esc(fmtDate(rec.lastActive)) : "never"}`, rec, snap: cur});
     if(daily && daily.data) out.push({label: `${isTarget ? "Daily copy" : `Daily copy of <code>${esc(rec.id)}</code>`} (kept in KV)`, rec: isTarget ? null : rec, snap: daily});
     if(backup && backup.data) out.push({label: `${isTarget ? "Backup" : `Backup of <code>${esc(rec.id)}</code>`} (kept when a save had fewer finished days)`, rec: isTarget ? null : rec, snap: backup});
     return {cur, out};
@@ -3866,9 +3866,12 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
   function draw(){
     const box = document.getElementById("rpBody"); if(!box || !RP) return;
     const now = summary(RP.rec, RP.cur);
+    const key = nameKey(RP.rec), t0 = new Date(RP.rec.lastActive || 0).getTime();
+    const newer = (state.adminData || []).filter(r=>r.id !== RP.id && key && nameKey(r) === key && new Date(r.lastActive || 0).getTime() > t0).sort((a, b)=>new Date(b.lastActive || 0) - new Date(a.lastActive || 0))[0];
     const others = (state.adminData || []).filter(r=>r.id !== RP.id && !RP.checked.has(r.id)).sort((a, b)=>String(a.name || "").localeCompare(String(b.name || "")));
     box.innerHTML = `
-      <div class="rp-now"><span>Now</span> ${sumText(now)}</div>
+      <div class="rp-now"><span>Now</span> ${sumText(now)}<div class="rp-active">Last saved from their page: ${RP.rec.lastActive ? esc(fmtDate(RP.rec.lastActive)) : "never"}</div></div>
+      ${newer ? `<div class="rp-warn">⚠ <b>${esc(newer.name || newer.id)}</b> (<code>${esc(newer.id)}</code>${newer.batch ? ` · batch ${esc(cleanBatch(newer.batch))}` : ""}) was active more recently (${esc(fmtDate(newer.lastActive))}), so that's probably the record their page uses now. Restore into that one: close this and click ♻ Restore on its row.</div>` : ""}
       ${RP.sources.length ? RP.sources.map((s, i)=>{ const m = summary(s.rec, s.snap); return `
         <div class="rp-src ${m.done > now.done ? "rp-more" : ""}">
           <div><div class="rp-label">${s.label}</div><div class="rp-sum">${sumText(m)}</div></div>
@@ -3973,6 +3976,8 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
 .rp-card h3{margin:0 0 12px;}
 .rp-now{background:#F3F4F8;border-radius:8px;padding:10px 12px;font-size:13.5px;margin-bottom:10px;}
 .rp-now span{display:inline-block;font-weight:800;color:var(--navy);margin-right:6px;}
+.rp-active{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+.rp-warn{background:#FEF7C3;border-left:4px solid #C9A227;border-radius:8px;padding:9px 12px;font-size:13px;margin-bottom:10px;} .rp-warn code{font-size:12px;}
 .rp-src{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px;}
 .rp-src.rp-more{border-color:var(--success);background:var(--success-bg);}
 .rp-label{font-weight:700;font-size:13.5px;color:var(--navy);} .rp-label code, .rp-foot code{font-size:12px;}
@@ -3981,5 +3986,35 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
 .rp-pick{margin:12px 0 6px;font-size:13px;} .rp-pick label{display:block;font-weight:700;margin-bottom:4px;}
 .rp-pick > div{display:flex;gap:8px;flex-wrap:wrap;} .rp-pick select{flex:1;min-width:0;font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;}
 .rp-foot{font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;}
+`; document.head.appendChild(st);
+})();
+
+/* ===== A trainee whose sign-in can't be renewed is told so =====
+   When the server refuses a trainee's session and it can't be renewed (e.g. the signing secret changed, and in Portal
+   sign-in mode only the Portal can sign them in again), their progress can't load or save. Without this they saw an
+   empty dashboard and "Couldn't reach the server". Now a bar says what to do; it goes away once a renewal works. */
+(function(){
+  if(typeof reauthTrainee !== "function" || reauthTrainee.__bar) return;
+  const __reauth = reauthTrainee;
+  const hide = ()=>{ const b = document.getElementById("sessionExpiredBar"); if(b) b.remove(); };
+  const show = ()=>{
+    if(document.getElementById("sessionExpiredBar")) return;
+    const b = document.createElement("div"); b.id = "sessionExpiredBar"; b.setAttribute("role", "alert");
+    const portal = typeof window.goToMainPortal === "function";
+    b.innerHTML = `<span>⚠ <b>Your sign-in has expired</b>, so your progress can't load or save right now. ${state.portalOnly ? "Open EA/PA again from the LSH Training Portal:" : "Sign out and sign in again:"} everything you've saved is kept.</span>
+      ${state.portalOnly && portal ? `<button type="button" class="btn btn-sm btn-primary" onclick="goToMainPortal()">Open the Training Portal</button>` : `<button type="button" class="btn btn-sm btn-primary" onclick="logout()">Sign out</button>`}
+      <button type="button" class="btn btn-sm btn-ghost" onclick="location.reload()">Try again</button>`;
+    document.body.appendChild(b);
+  };
+  reauthTrainee = async function(){
+    const ok = await __reauth.apply(this, arguments);
+    if(ok) hide();
+    else if(state.traineeId && !state.isAdmin && state.secureMode === true) show();
+    return ok;
+  };
+  reauthTrainee.__bar = true;
+  const st = document.createElement("style"); st.id = "session-expired"; st.textContent = `
+#sessionExpiredBar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:4000;width:min(760px,calc(100vw - 32px));box-sizing:border-box;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#FEF3F2;color:#7A271A;border:1px solid #F5B5AB;border-left:5px solid #D92D20;border-radius:10px;padding:10px 14px;box-shadow:0 10px 30px rgba(16,24,40,.18);font-size:14px;}
+#sessionExpiredBar span{flex:1 1 300px;}
 `; document.head.appendChild(st);
 })();

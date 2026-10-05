@@ -17,6 +17,10 @@ The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `ind
 ### ♻ Restore progress (Admin)
 Each trainee row in Admin has **♻ Restore**. It lists every older copy of that trainee's progress: other records with the same name (a trainee who signed in under another batch or spelling gets a new record, and the old one keeps their work), the daily copy kept in KV, and the backup the server keeps when a save has fewer finished days (`backup:progress:<id>`). **Another record** checks any trainee by hand. **Restore** merges the copy in, keeping the current state first in `backup:restore:<id>`: finished days, scores, submissions, notes and slide progress are added and nothing is lost. The trainee's open page takes the restored progress on its next save (`progress-restore:<id>`), so it never writes the old state back.
 
+The window shows when each record was last saved from the trainee's page; if another record with the same name was active more recently, it says so (that's the record their page uses, so restore into that one).
+
+**A trainee whose sign-in can't be renewed** (for example after the signing secret changed: without `SESSION_SECRET`, sessions are signed with `MASTER_ADMIN_PASSWORD`) sees a bar telling them to open EA/PA again from the Training Portal, instead of an empty page. To renew every such session automatically, set `PREVIOUS_SESSION_SECRET` in Cloudflare to the value sessions were signed with before (the old admin passphrase, if `SESSION_SECRET` wasn't set). It renews trainee sessions only, never admin ones. Remove it once everyone has been back. `/version` shows what signs sessions now.
+
 The server also stops it happening: a trainee's own save can't drop finished days, practice tools or submissions from their record (only an admin can).
 
 ## Where each day's content lives
