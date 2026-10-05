@@ -13,9 +13,9 @@
  *                        on the Portal). Setting it makes the Main Portal the only way in: /api/auth/trainee then refuses a name +
  *                        batch typed on this site (except to renew a signed-in trainee's session), and /api/auth/portal signs a
  *                        trainee or an administrator in from the Portal's ticket. Not set = the old name + batch sign-in.
- *   MASTER_ADMIN_PASSWORD — the trainer/admin password: the LSH Training Portal's master admin password, the one admin
- *                        password on every platform. Setting it switches the portal into SECURE MODE: every storage and
- *                        AI request must carry a signed session token. (ADMIN_PASSPHRASE is no longer read.)
+ *   MASTER_ADMIN_PASSWORD — admin sign-in (the LSH Training Portal's master admin password: one password on every platform). Setting this switches the portal
+ *                        into SECURE MODE: every storage and AI request must carry
+ *                        a signed session token.
  *   SESSION_SECRET     — optional; signs session tokens (defaults to MASTER_ADMIN_PASSWORD)
  *
  * Without MASTER_ADMIN_PASSWORD the Worker runs in the old open mode so nothing breaks
@@ -31,11 +31,10 @@ async function hmac(secret, msg) {
   const sig = await crypto.subtle.sign("HMAC", key, enc.encode(msg));
   return btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
-// The trainer/admin password: MASTER_ADMIN_PASSWORD, the LSH Training Portal's master admin password, so one password signs an
-// admin in on the Portal and here. (ADMIN_PASSPHRASE, this site's own password before, is no longer read.)
+// The admin password: MASTER_ADMIN_PASSWORD, the LSH Training Portal's master admin password (one password signs an admin in on the Portal and on every platform).
 function adminPass(env) { return env.MASTER_ADMIN_PASSWORD || ""; }
 function secretOf(env) { return env.SESSION_SECRET || adminPass(env); }   // as stored (trimming it would sign everyone out)
-// The password an admin types: the Portal's MASTER_ADMIN_PASSWORD. Both the stored and
+// The password an admin may type: the Portal's MASTER_ADMIN_PASSWORD. Both the stored and
 // the typed password are compared as a person types them: without spaces or line breaks around them, quotes pasted around the whole
 // password, invisible characters (zero-width spaces, soft hyphens) or curly quotes and long dashes. A secret pasted into Cloudflare
 // with any of these signs in from a saved (autofilled) password but could never be typed.
@@ -466,7 +465,7 @@ export default {
         const { passphrase } = await request.json();
         await new Promise((r) => setTimeout(r, 400)); // slow down guessing
         const given = normPass(passphrase);
-        if (!given || !adminPasswords(env).some((p) => safeEqual(given, p))) return json({ error: "Incorrect passphrase" }, 401);
+        if (!given || !adminPasswords(env).some((p) => safeEqual(given, p))) return json({ error: "Incorrect password" }, 401);
         return json({ token: await makeToken(env, "a", "admin", 12) });
       }
       // The trainee's session for a name + batch: their record id (new or legacy form) and token.
