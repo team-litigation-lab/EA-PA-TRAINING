@@ -110,6 +110,7 @@ Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/script
   - A resize lays the slide out again, still without animation.
   - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
 - **Server requests** (`.github/scripts/requests.cjs`): `get-many` gives a trainee only their own and public records, an Admin every one, and refuses more than 100 keys. With the checks sped up, a trainee's page reads the tasks for every day in one request and their record about once per check, checks for a new version rarely, and asks nothing while the tab is in the background (catching up when it's back) or on a quick switch to another tab and back. A server that doesn't answer doesn't sign the trainee out; a revoke does. The Trainee Audit reads every trainee in two requests.
+- **Graded calls** (`.github/scripts/graded-calls.cjs`): a trainee reads their own `callsim:` record (kept by the Training Portal), never another trainee's, and can't write it; the dashboard band's Graded calls card shows — and 0 lines without graded calls, and the best on each line averaged with them.
 
 To run the same checks locally:
 
@@ -120,6 +121,7 @@ node .github/scripts/server.mjs 8787 &      # then, with Playwright installed:
 node .github/scripts/smoke.cjs http://localhost:8787/
 node .github/scripts/presenter.cjs http://localhost:8787/
 node .github/scripts/requests.cjs http://localhost:8787/
+node .github/scripts/graded-calls.cjs http://localhost:8787/
 ```
 
 `.assetsignore` keeps `worker.js`, the Wrangler config, `.github` and Markdown files from being published with the site.
@@ -187,6 +189,12 @@ The prospect hangs up when the call is naturally over. The date fills itself in,
 3. **Write the plan:** AI-reviewed, with the trainee's own sources and list as context.
 
 Steps 1 and 2 are scored on the page and use no AI requests. The code is the last two blocks of `js/eapa-updates.js` (`OB_PROSPECTS`, `LG_SOURCES`, `LG_LEADS`).
+
+## 📞 The Call Simulator (in the CMS) and graded calls
+
+The main Call Simulator is the CMS's: the **📞 Call Simulator (in the CMS)** card in the Live Roleplay hub and in the Intake Call Simulator section opens it on the EA / PA tab, signed in through the Training Portal (nobody signs in again). Its EA / PA lines (Executive Calls, Gatekeeping & Stakeholders, Legal Operations, Lifestyle & Estate, Intake Calls, Revenue & Outreach) each have Practice calls and numbered Graded calls (Graded call 1, 2…, the same for everyone; the caller is unknown until the debrief).
+
+A graded call counts here. The Training Portal (its `/api/call-results`) keeps the trainee's graded calls in `callsim:<trainee id>` (no key prefix; a trainee on an older id is found through `trainee-alias:`), by line, and the Worker lets the trainee read it but never write it. The dashboard band's **Graded calls** card (`js/graded-calls.js`) shows the best graded call on each line, averaged, with the lines and calls taken; each line's best is in its tooltip. It's read once a page load and again when the trainee comes back to the tab (at most every two minutes).
 
 ## 🔄 New versions (auto-update)
 
