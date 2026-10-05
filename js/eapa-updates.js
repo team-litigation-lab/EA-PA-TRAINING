@@ -3689,3 +3689,52 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
 }
 `; document.head.appendChild(st);
 })();
+
+/* ===== Calm page opening: no flashing while the page settles =====
+   Opening the portal draws the same screen several times in a row: the "resume where you left off"
+   jump, init's own render, published content arriving, the admin ledger loading. Each full redraw
+   replayed the page's entrance animation (main's pageIn, a slide's slide-in), which read as the page
+   flickering 3–4 times. Now a redraw of the screen that's already showing doesn't replay them; moving
+   to another screen animates as before.
+   Arriving from the LSH Training Portal: portal-gate.js (shared by every course) lifts its "Opening
+   your training…" cover as soon as the sign-in is through, which can be before this page has drawn,
+   so an empty page showed first. A matching cover stays up here until the first settled render. */
+(function(){
+  if(typeof render !== "function") return;
+  const screenKey = ()=>[state.view, state.dayId, state.toolId, state.lessonSlide, state.slidePage, state.dayViewMode, state.adminTab, state.sopDay, state.studioDay, state.orientIdx, state.isAdmin ? 1 : 0].join("|");
+  let lastKey = null;
+
+  // a cover like portal-gate's, kept until the page has really drawn
+  let veil = null, gateDone = !window.portalGate;
+  const gateCover = [...document.documentElement.children].find(n=>n.nodeType===1 && n.style && n.style.position==="fixed" && /Opening your training/.test(n.textContent||""));
+  if(gateCover){
+    veil = gateCover.cloneNode(true);
+    veil.style.zIndex = "2147482999";              // just under portal-gate's own cover
+    veil.style.transition = "opacity .2s ease";
+    document.documentElement.appendChild(veil);
+    setTimeout(()=>lift(), 10000);                 // never leave it on if something goes wrong
+  }
+  function lift(){
+    if(!veil) return; const v = veil; veil = null;
+    v.style.opacity = "0"; setTimeout(()=>{ if(v.parentNode) v.parentNode.removeChild(v); }, 220);
+  }
+  if(window.portalGate && typeof window.portalGate.init === "function"){
+    const __gi = window.portalGate.init;
+    window.portalGate.init = async function(){ try{ return await __gi.apply(this, arguments); } finally{ gateDone = true; } };
+  }
+
+  const __render = render;
+  window.render = render = function(){
+    const k = screenKey();
+    document.documentElement.classList.toggle("same-screen", k === lastKey);
+    lastKey = k;
+    const out = __render.apply(this, arguments);
+    if(veil && gateDone && state.routeReady && !/Signing you in/.test((document.getElementById("app")||{}).textContent||"")){
+      requestAnimationFrame(()=>requestAnimationFrame(lift));
+    }
+    return out;
+  };
+  const st = document.createElement("style"); st.id = "calm-open"; st.textContent = `
+html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-interstitial, html.same-screen .wizard-screen{animation:none !important;}
+`; document.head.appendChild(st);
+})();
