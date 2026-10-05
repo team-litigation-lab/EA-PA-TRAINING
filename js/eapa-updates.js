@@ -317,7 +317,7 @@ function renderTopbar(){
           ${(state.traineeId && !state.isAdmin) ? `<button type="button" class="nav-focus" onclick="openFocusPanel()" title="My Focus — trainer feedback and what to work on next">🎯 Focus${focusNewCount()?`<span class="nav-badge">${focusNewCount()}</span>`:""}</button>` : ""}
           ${state.adminPreview
             ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('admin')" title="Return to the admin (trainer) view">🛡 Back to Admin view</button>`
-            : `<button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>`}
+            : ((state.portalOnly && !state.isAdmin) ? "" : `<button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>`)}
           ${state.isAdmin ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('trainee')" title="See the portal exactly as a trainee does — no trainer tools or admin pages">👁 Trainee view</button>` : ""}
           <button type="button" class="nav-fs" onclick="openInNewTab()" title="Open this page in a new tab (e.g. to review a lesson while you work)">⧉</button>
           <button type="button" class="nav-fs" onclick="togglePageFullscreen()" title="Full screen (Esc to exit)">⛶</button>
@@ -1409,7 +1409,7 @@ window.initColdCalling4 = function(body){
   const partD = renderEmailOutreachSection().replace(">D. Email Outreach Simulator<", ">E. Email Outreach Simulator<");
   body.innerHTML = renderToolWizard(4, [
     {label:"Prioritize the Day", html:partTM},
-    {label:"Cold-Calling Log", html:partA},
+    {label:"Prospect Call Log", html:partA},
     {label:"Lead Generation Practice", html:partB},
     {label:"Live Intake Call Simulator", html:partC},
     {label:"Email Outreach Simulator", html:partD}
@@ -2218,7 +2218,7 @@ const SOP_LAB_ACTIVITIES = {
   dossier1:["Client Dossier","Preference Trackers","ACT Email","Gatekeeping Practice"],
   forcemultiplier2:["Anticipate the Real Need","Prompt Engineering","The Full Scenario","Inbox Triage"],
   calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel Management"],
-  coldcalling4:["Prioritize the Day","Cold-Calling Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator"],
+  coldcalling4:["Prioritize the Day","Prospect Call Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator"],
   insurance5:["Classify the Risk","Match the Strategy","Home Binder","Crisis Roleplay"],
   projectcompliance6:["Compliance Risk","Operational Warning Signs","Recovery Memo","Crisis Roleplay","Compliance Audit Simulation"],
   financial:["Trust Ledger Reconciliation","Invoice & Bill Audit","Invoice Follow-Up","Attention to Detail Test"],
@@ -2286,7 +2286,7 @@ function sopRunOfShow(dRaw){
     const inBlock = qcs.filter(q=>q.afterIndex>=i && q.afterIndex<j);
     add(Math.round((j-i)*perTopic + inBlock.length*1.5), {title:`Teach topics ${i+1}–${j} of ${n}`, do:[
       `Present each topic's two parts (principles & steps, then best practices & pitfalls). Longer topics continue on a second page — press Next.`,
-      `Use your notes for each slide: the Trainer Cue, Applied Discussion Case and the Say / Ask / Listen for / If quiet script. Take one or two answers per topic, not a round-robin.`,
+      `Use each slide's notes in Presenter view: On this slide, the script (Say / Ask) and the scenario for the room. Take one or two answers per topic, not a round-robin.`,
       inBlock.length ? `Quick Check${inBlock.length>1?"s":""} after topic${inBlock.length>1?"s":""} ${inBlock.map(q=>q.afterIndex+1).join(", ")}: let the room answer first, then reveal (the answer and rationale are in your notes).` : "",
       `Topics: ${d.lessons.slice(i,j).map((l,k)=>`${i+k+1}. ${esc(l.h)}`).join(" · ")}`].filter(Boolean),
       watch:"Silence usually means the example is too abstract — use the Applied Discussion Case from your notes."});
@@ -3670,6 +3670,377 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
 `; document.head.appendChild(st);
 })();
 
+/* ===== Lesson slide background: the LSH slide template =====
+   Navy, the grey plaid band with the logo across the top left, the orange rule under it and the
+   orange line-art waves on both edges (img/lesson-bg/). It's on .lesson-stage, so the trainee view,
+   full screen and the Presenter slides window shared in Meet all get it. The slide-progress dots
+   sit inside the band, so the slides keep their height. */
+(function(){
+  const st = document.createElement("style"); st.id = "lesson-bg"; st.textContent = `
+.lesson-stage{--band-h:clamp(50px,7vh,72px);position:relative;isolation:isolate;overflow:hidden;
+  background:url(/img/lesson-bg/wave-right.svg) right top/auto 64% no-repeat, url(/img/lesson-bg/wave-left.svg) left bottom/auto 62% no-repeat, #282B40 !important;
+  padding-top:calc(var(--band-h) + 18px) !important;}
+.lesson-stage::before{content:"";position:absolute;left:0;top:0;width:79%;height:var(--band-h);z-index:-1;
+  background:url(/img/lesson-bg/lsh-logo.png) max(18px,2.2vw) center/auto calc(var(--band-h) - 14px) no-repeat,
+    repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 40px),
+    repeating-linear-gradient(-45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 40px),
+    repeating-linear-gradient(45deg,rgba(40,43,64,.10) 0 8px,transparent 8px 40px),
+    rgba(138,139,150,.78);}
+.lesson-stage::after{content:"";position:absolute;left:21%;width:58%;top:calc(var(--band-h) + 9px);height:4px;background:#E0782F;z-index:-1;}
+.lesson-stage > .slide-dots, .lesson-stage .slide-dots{position:absolute;top:0;left:calc(max(18px,2.2vw) + var(--band-h) * 1.75);width:calc(79% - max(18px,2.2vw) - var(--band-h) * 1.75 - 18px);height:var(--band-h);
+  margin:0 !important;align-content:center;justify-content:flex-start;gap:5px;overflow:hidden;}
+.lesson-stage .slide-dot{width:8px;height:8px;background:rgba(255,255,255,.42);}
+.lesson-stage .slide-dot.visited{background:#F3C99A;}
+.lesson-stage .slide-dot.active{background:#E0782F;box-shadow:0 0 0 2px #fff;}
+.lesson-stage .slide-dot.locked{background:rgba(255,255,255,.2);}
+.lesson-stage:fullscreen, #audienceRoot .lesson-stage{--band-h:clamp(64px,11vh,118px);}
+#audienceRoot .lesson-stage{padding-top:calc(var(--band-h) + 3vh) !important;}
+.lesson-stage:fullscreen{padding-top:calc(var(--band-h) + 3vh) !important;}
+@media(max-width:760px){
+  .lesson-stage{--band-h:52px;padding-left:10px !important;padding-right:10px !important;background-size:auto 40%,auto 38%,auto !important;}
+  .lesson-stage::before{width:100%;}
+  .lesson-stage::after{left:30%;width:70%;}
+  .lesson-stage .slide-dot{width:6px;height:6px;}
+  .lesson-stage .slide-dots{gap:4px;width:calc(100% - var(--band-h) * 1.75 - 26px);}
+}
+`; document.head.appendChild(st);
+})();
+
+/* ===== Calm page opening: no flashing while the page settles =====
+   Opening the portal draws the same screen several times in a row: the "resume where you left off"
+   jump, init's own render, published content arriving, the admin ledger loading. Each full redraw
+   replayed the page's entrance animation (main's pageIn, a slide's slide-in), which read as the page
+   flickering 3–4 times. Now a redraw of the screen that's already showing doesn't replay them; moving
+   to another screen animates as before.
+   Arriving from the LSH Training Portal: portal-gate.js (shared by every course) lifts its "Opening
+   your training…" cover as soon as the sign-in is through, which can be before this page has drawn,
+   so an empty page showed first. A matching cover stays up here until the first settled render. */
+(function(){
+  if(typeof render !== "function") return;
+  const screenKey = ()=>[state.view, state.dayId, state.toolId, state.lessonSlide, state.slidePage, state.dayViewMode, state.adminTab, state.sopDay, state.studioDay, state.orientIdx, state.isAdmin ? 1 : 0].join("|");
+  let lastKey = null;
+
+  // a cover like portal-gate's, kept until the page has really drawn. portal-gate's own cover going away is the
+  // sign that its sign-in step is done (its init can run before this file loads, so it isn't wrapped).
+  let veil = null;
+  const gateCover = [...document.documentElement.children].find(n=>n.nodeType===1 && n.style && n.style.position==="fixed" && /Opening your training/.test(n.textContent||""));
+  if(gateCover){
+    veil = gateCover.cloneNode(true);
+    veil.style.zIndex = "2147482999";              // just under portal-gate's own cover
+    veil.style.transition = "opacity .2s ease";
+    document.documentElement.appendChild(veil);
+    setTimeout(()=>lift(), 10000);                 // never leave it on if something goes wrong
+    new MutationObserver((ms, obs)=>{ if(!gateCover.isConnected){ obs.disconnect(); settle(); } }).observe(document.documentElement, {childList:true});
+    const iv = setInterval(()=>{ if(!veil) clearInterval(iv); else settle(); }, 200);   // "ready" can be set just after the last redraw
+  }
+  function lift(){
+    if(!veil) return; const v = veil; veil = null;
+    v.style.opacity = "0"; setTimeout(()=>{ if(v.parentNode) v.parentNode.removeChild(v); }, 220);
+  }
+  // lift once the sign-in step is over and the page has drawn the screen it opens on
+  function settle(){
+    if(!veil || (gateCover && gateCover.isConnected) || typeof state === "undefined" || !state.routeReady) return;
+    if(/Signing you in/.test((document.getElementById("app")||{}).textContent||"")) return;
+    requestAnimationFrame(()=>requestAnimationFrame(lift));
+  }
+
+  const __render = render;
+  window.render = render = function(){
+    const k = screenKey();
+    document.documentElement.classList.toggle("same-screen", k === lastKey);
+    lastKey = k;
+    const out = __render.apply(this, arguments);
+    settle();
+    return out;
+  };
+  const st = document.createElement("style"); st.id = "calm-open"; st.textContent = `
+html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-interstitial, html.same-screen .wizard-screen{animation:none !important;}
+`; document.head.appendChild(st);
+})();
+
+/* ===== Day cards: the buttons as one full-width grid with lines =====
+   Start fills the top row edge to edge; Topics and Finish Training split the row under it (a completed
+   day: Review Score and Retake, then Topics across the bottom). Thin lines separate the cells, like a table, instead of
+   separate rounded buttons with gaps. */
+(function(){
+  if(typeof moduleCard !== "function" || moduleCard.__grid) return;
+  const __card = moduleCard;
+  moduleCard = function(d){
+    const html = __card(d), t = document.createElement("template"); t.innerHTML = html.trim();
+    const card = t.content.firstElementChild; if(!card) return html;
+    const start = card.querySelector(".module-start-btn"); if(!start) return html;
+    const grid = document.createElement("div"); grid.className = "mc-grid";
+    start.before(grid); grid.appendChild(start);
+    [...card.querySelectorAll(":scope > .mc-row > button, :scope > .module-finish-btn, :scope > .module-review-row > button")].forEach(b=>grid.appendChild(b));
+    card.querySelectorAll(":scope > .mc-row, :scope > .module-review-row").forEach(n=>n.remove());
+    grid.classList.add("mc-n" + grid.querySelectorAll(":scope > button:not(.module-start-btn)").length);   // 1 or 2 buttons share the row under Start; with 3 (a completed day), Topics gets its own row
+    return card.outerHTML;
+  };
+  moduleCard.__grid = true;
+  const line = "#E3E6EE";
+  const st = document.createElement("style"); st.id = "day-card-grid"; st.textContent = `
+.dash-main .module-card.mc-clean > .mc-grid{display:grid;grid-template-columns:repeat(6,1fr);margin:auto 0 0 !important;border-top:1px solid ${line};}
+.dash-main .module-card.mc-clean .mc-grid > button{margin:0 !important;width:auto !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dash-main .module-card.mc-clean .mc-grid > .module-start-btn{grid-column:span 6;padding:12px 10px;font-size:15px;background:#F3F4F8;color:var(--navy);font-weight:700;}
+.dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){padding:9px 6px;font-size:12.5px;background:#fff;color:#4A5070;font-weight:600;border-top:1px solid ${line} !important;}
+.dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:last-child){border-right:1px solid ${line} !important;}
+.dash-main .module-card.mc-clean .mc-grid.mc-n1 > button:not(.module-start-btn){grid-column:span 6;}
+.dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn){grid-column:span 3;}
+.dash-main .module-card.mc-clean .mc-grid.mc-n3 > button:not(.module-start-btn){grid-column:span 3;}
+.dash-main .module-card.mc-clean .mc-grid.mc-n3 > button.module-topics-btn{grid-column:span 6;order:2;border-right:0 !important;}
+.dash-main .module-card.mc-clean .mc-grid > .module-start-btn:not(:disabled):hover, .dash-main .module-card.mc-clean:hover .mc-grid > .module-start-btn:not(:disabled){background:#353B57;color:#fff;}
+.dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):hover{background:#F3F4F8;color:var(--navy);}
+.dash-main .module-card.mc-clean .mc-grid > .module-start-btn:disabled{background:#F7F8FB;color:#9AA0B4;}
+@media(max-width:1600px){ .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){font-size:11.5px;padding:8px 4px;} }
+`; document.head.appendChild(st);
+})();
+
+/* ===== Admin password boxes: a Show button =====
+   A saved (autofilled) password can be checked against what you type: Show reveals what's in the box. The boxes also never
+   auto-capitalize or auto-correct while shown as text. */
+(function(){
+  const IDS = ["gate-apass", "adminPass"];
+  const add = ()=>IDS.forEach(id=>{
+    const i = document.getElementById(id); if(!i || i.dataset.eye) return;
+    i.dataset.eye = "1";
+    ["autocapitalize","autocorrect"].forEach(a=>i.setAttribute(a, "off")); i.spellcheck = false;
+    const wrap = document.createElement("span"); wrap.className = "pw-eye-wrap"; i.before(wrap); wrap.appendChild(i);
+    const b = document.createElement("button"); b.type = "button"; b.className = "pw-eye"; b.textContent = "Show"; b.setAttribute("aria-label", "Show password");
+    b.onclick = ()=>{ const show = i.type === "password"; i.type = show ? "text" : "password"; b.textContent = show ? "Hide" : "Show"; b.setAttribute("aria-label", show ? "Hide password" : "Show password"); i.focus(); };
+    wrap.appendChild(b);
+  });
+  new MutationObserver(add).observe(document.body, {childList:true, subtree:true}); add();
+  const st = document.createElement("style"); st.id = "pw-eye"; st.textContent = `
+.pw-eye-wrap{position:relative;display:block;}
+.pw-eye-wrap > input{width:100%;box-sizing:border-box;padding-right:64px !important;}
+.pw-eye{position:absolute;right:6px;top:6px;height:28px;padding:0 10px;border:0;border-radius:5px;background:rgba(127,135,160,.18);color:inherit;font:600 12px/28px inherit;cursor:pointer;}
+#gate-box .pw-eye{color:#cfd6e6;}
+.pw-eye:hover{background:rgba(127,135,160,.32);}
+`; document.head.appendChild(st);
+})();
+
+/* ===== ♻ Restore progress (Admin) =====
+   A trainee's progress can go missing from view when they sign in under a name or batch that makes a new record (the
+   old one keeps their work), or when a device that signed in without its progress saved over it. Admin → a trainee →
+   ♻ Restore lists every older copy: other records with the same name, the daily copy kept in KV and the backup the
+   server keeps when a save shrinks. Restore merges the chosen copy in (finished days, scores, saved work: nothing the
+   trainee has now is lost), after keeping the current state in backup:restore:<id>. The trainee's open page picks it up
+   on its next save (applyAdminUnlocks below), so their device never writes the old state back over it. */
+(function(){
+  const plain = v=>v && typeof v === "object" && !Array.isArray(v);
+  const rank = x=>(x && x.done ? 1e9 : 0) + (Number(x && (x.score ?? x.bestScore)) || 0) * 1e5 + JSON.stringify(x ?? "").length;
+  const better = (a, b)=>{
+    if(a == null) return b; if(b == null) return a;
+    if(typeof a === "number" && typeof b === "number") return Math.max(a, b);
+    if(Array.isArray(a) && Array.isArray(b)) return mergeList(a, b);
+    return rank(b) > rank(a) ? b : a;
+  };
+  function mergeList(a, b){ const seen = new Set(a.map(x=>JSON.stringify(x))); return a.concat(b.filter(x=>!seen.has(JSON.stringify(x)))); }
+  function mergeMap(a, b){ const out = Object.assign({}, a || {}); for(const [k, v] of Object.entries(b || {})) out[k] = k in out ? better(out[k], v) : v; return out; }
+  function mergeVal(cur, inc){
+    if(cur == null || cur === "") return inc;
+    if(inc == null) return cur;
+    if(Array.isArray(cur) && Array.isArray(inc)) return mergeList(cur, inc);
+    if(plain(cur) && plain(inc)) return mergeMap(cur, inc);
+    if(typeof cur === "number" && typeof inc === "number") return Math.max(cur, inc);
+    return cur;
+  }
+  function mergeData(a, b){ const out = Object.assign({}, a || {}); for(const [k, v] of Object.entries(b || {})) out[k] = mergeVal(out[k], v); return out; }
+  function mergeRec(t, s){
+    const out = Object.assign({}, t);
+    out.dayProgress = mergeMap(t.dayProgress, s.dayProgress);
+    out.practiceProgress = mergeMap(t.practiceProgress, s.practiceProgress);
+    out.completedLabActions = mergeMap(t.completedLabActions, s.completedLabActions);
+    out.labAttemptsByDay = mergeMap(t.labAttemptsByDay, s.labAttemptsByDay);
+    out.submissions = mergeList(t.submissions || [], s.submissions || []);
+    out.roleplayHistory = mergeList(t.roleplayHistory || [], s.roleplayHistory || []);
+    return out;
+  }
+  const nameKey = r=>String(((r.firstName || "") + " " + (r.lastName || "")).trim() || r.name || "").toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/).filter(Boolean).sort().join(" ");
+  const parse = v=>{ try{ return typeof v === "string" ? JSON.parse(v) : v; }catch(e){ return null; } };
+  function summary(rec, snap){
+    const dp = mergeMap((rec && rec.dayProgress) || {}, (snap && snap.data && snap.data["day-progress"]) || {});
+    const done = Object.values(dp).filter(p=>p && p.done).length, started = Object.keys(dp).length;
+    const subs = Math.max(((rec && rec.submissions) || []).length, ((snap && snap.data && snap.data.submissions) || []).length);
+    const slides = Object.values((snap && snap.data && snap.data["slide-progress"]) || {}).reduce((n, v)=>n + (Number(v) || 0), 0);
+    return {done, started, subs, slides, at: (snap && snap.savedAt) || (rec && rec.lastActive) || ""};
+  }
+  const sumText = s=>`<b>${s.done}</b> day${s.done === 1 ? "" : "s"} finished · ${s.started} started · ${s.subs} submission${s.subs === 1 ? "" : "s"} · ${s.slides} slides seen${s.at ? ` · saved ${esc(fmtDate(s.at))}` : ""}`;
+  async function copiesOf(id){
+    try{ const r = await authFetch("/api/admin/progress-copies", {id}); if(r.ok) return await r.json(); }catch(e){}
+    return {};
+  }
+  let RP = null;   // the open Restore window: {id, rec, cur, sources:[{label, rec, snap}]}
+  async function sourcesFor(rec, isTarget){
+    const c = await copiesOf(rec.id), out = [];
+    const cur = parse(c.current), daily = parse(c.daily), backup = parse(c.backup);
+    if(!isTarget) out.push({label: `Record <code>${esc(rec.id)}</code>${rec.batch ? ` · batch ${esc(cleanBatch(rec.batch))}` : ""} · last active ${rec.lastActive ? esc(fmtDate(rec.lastActive)) : "never"}`, rec, snap: cur});
+    if(daily && daily.data) out.push({label: `${isTarget ? "Daily copy" : `Daily copy of <code>${esc(rec.id)}</code>`} (kept in KV)`, rec: isTarget ? null : rec, snap: daily});
+    if(backup && backup.data) out.push({label: `${isTarget ? "Backup" : `Backup of <code>${esc(rec.id)}</code>`} (kept when a save had fewer finished days)`, rec: isTarget ? null : rec, snap: backup});
+    return {cur, out};
+  }
+  function draw(){
+    const box = document.getElementById("rpBody"); if(!box || !RP) return;
+    const now = summary(RP.rec, RP.cur);
+    const key = nameKey(RP.rec), t0 = new Date(RP.rec.lastActive || 0).getTime();
+    const newer = (state.adminData || []).filter(r=>r.id !== RP.id && key && nameKey(r) === key && new Date(r.lastActive || 0).getTime() > t0).sort((a, b)=>new Date(b.lastActive || 0) - new Date(a.lastActive || 0))[0];
+    const others = (state.adminData || []).filter(r=>r.id !== RP.id && !RP.checked.has(r.id)).sort((a, b)=>String(a.name || "").localeCompare(String(b.name || "")));
+    box.innerHTML = `
+      <div class="rp-now"><span>Now</span> ${sumText(now)}<div class="rp-active">Last saved from their page: ${RP.rec.lastActive ? esc(fmtDate(RP.rec.lastActive)) : "never"}</div></div>
+      ${newer ? `<div class="rp-warn">⚠ <b>${esc(newer.name || newer.id)}</b> (<code>${esc(newer.id)}</code>${newer.batch ? ` · batch ${esc(cleanBatch(newer.batch))}` : ""}) was active more recently (${esc(fmtDate(newer.lastActive))}), so that's probably the record their page uses now. Restore into that one: close this and click ♻ Restore on its row.</div>` : ""}
+      ${RP.sources.length ? RP.sources.map((s, i)=>{ const m = summary(s.rec, s.snap); return `
+        <div class="rp-src ${m.done > now.done ? "rp-more" : ""}">
+          <div><div class="rp-label">${s.label}</div><div class="rp-sum">${sumText(m)}</div></div>
+          <button class="btn btn-sm ${m.done > now.done || m.subs > now.subs ? "btn-primary" : "btn-ghost"}" onclick="rpRestore(${i})">Restore into ${esc(RP.rec.name || "this trainee")}</button>
+        </div>`; }).join("") : `<p class="rp-none">No other copies were found for this trainee${RP.loading ? " yet…" : ""}.</p>`}
+      <div class="rp-pick"><label for="rpPick">Another record (a different spelling or batch)</label>
+        <div><select id="rpPick"><option value="">Choose a trainee…</option>${others.map(r=>`<option value="${esc(r.id)}">${esc(r.name || r.id)}${r.batch ? " · " + esc(cleanBatch(r.batch)) : ""} (${Object.values(r.dayProgress || {}).filter(p=>p && p.done).length} done)</option>`).join("")}</select>
+        <button class="btn btn-sm btn-ghost" onclick="rpAdd(document.getElementById('rpPick').value)">Check it</button></div></div>
+      <p class="rp-foot">Restoring merges: finished days, scores and saved work from the copy are added, and nothing this trainee has now is lost. The current state is kept first in <code>backup:restore:${esc(RP.id)}</code>.</p>`;
+  }
+  window.openRestoreProgress = async function(id){
+    const rec = (state.adminData || []).find(r=>r.id === id); if(!rec) return;
+    document.querySelectorAll(".overlay.rp-overlay").forEach(n=>n.remove());
+    const ov = document.createElement("div"); ov.className = "overlay rp-overlay";
+    ov.innerHTML = `<div class="card rp-card"><h3>♻ Restore progress · ${esc(rec.name || id)}</h3><div id="rpBody"><p class="rp-none">Looking for older copies…</p></div>
+      <div class="row"><button class="btn btn-ghost" onclick="this.closest('.overlay').remove()">Close</button></div></div>`;
+    ov.addEventListener("click", e=>{ if(e.target === ov) ov.remove(); });
+    document.body.appendChild(ov);
+    RP = {id, rec, cur: null, sources: [], checked: new Set([id]), loading: true};
+    const mine = await sourcesFor(rec, true); RP.cur = mine.cur; RP.sources.push(...mine.out); draw();
+    const key = nameKey(rec);
+    const same = key ? (state.adminData || []).filter(r=>r.id !== id && nameKey(r) === key) : [];
+    for(const r of same){ RP.checked.add(r.id); RP.sources.push(...(await sourcesFor(r, false)).out); draw(); }
+    RP.loading = false; draw();
+  };
+  window.rpAdd = async function(otherId){
+    if(!RP || !otherId || RP.checked.has(otherId)) return;
+    const r = (state.adminData || []).find(x=>x.id === otherId); if(!r) return;
+    RP.checked.add(otherId); RP.sources.push(...(await sourcesFor(r, false)).out); draw();
+  };
+  window.rpRestore = async function(i){
+    if(!RP || !RP.sources[i]) return;
+    const src = RP.sources[i], id = RP.id;
+    if(!confirm(`Merge this copy into ${RP.rec.name || id}'s progress? Nothing they have now is removed.`)) return;
+    const fresh = (await sharedGet("trainee:" + id)) || RP.rec;
+    const cur = parse((await copiesOf(id)).current) || RP.cur;
+    const at = new Date().toISOString();
+    await sharedSet("backup:restore:" + id, {at, rec: fresh, snap: cur});
+    let rec = src.rec ? mergeRec(fresh, src.rec) : Object.assign({}, fresh);
+    const sdata = (src.snap && src.snap.data) || {};
+    rec = mergeRec(rec, {dayProgress: sdata["day-progress"], practiceProgress: sdata["practice-progress"], completedLabActions: sdata["completed-lab-actions"], labAttemptsByDay: sdata["lab-attempts-by-day"], submissions: sdata.submissions, roleplayHistory: sdata.roleplayHistory});
+    rec.progressRestoredAt = at;
+    let data = mergeData((cur && cur.data) || {}, sdata);
+    data = mergeData(data, {"day-progress": rec.dayProgress, "practice-progress": rec.practiceProgress, "completed-lab-actions": rec.completedLabActions, "lab-attempts-by-day": rec.labAttemptsByDay, submissions: rec.submissions, roleplayHistory: rec.roleplayHistory});
+    const snap = {traineeId: id, savedAt: at, data};
+    const ok = (await sharedSet("trainee:" + id, rec)) && (await sharedSet("progress:" + id, snap)) && (await sharedSet("progress-restore:" + id, snap));
+    if(!ok){ toast("Couldn't save the restored progress. Please try again."); return; }
+    const s = summary(rec, snap);
+    toast(`♻ Restored: ${RP.rec.name || id} now has ${s.done} finished day${s.done === 1 ? "" : "s"}.`);
+    RP.rec = rec; RP.cur = snap; draw();
+    if(typeof loadAdminLedger === "function") loadAdminLedger();
+  };
+
+  /* the Restore button on each trainee row in Admin */
+  if(typeof renderAdminRow === "function" && !renderAdminRow.__rp){
+    const __row = renderAdminRow;
+    renderAdminRow = function(rec){
+      const html = __row.apply(this, arguments);
+      return html.replace(`<button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee(`,
+        `<button class="btn btn-sm btn-ghost" onclick="openRestoreProgress('${rec.id}')" title="Find older copies of this trainee's progress and bring them back">♻ Restore</button><button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee(`);
+    };
+    renderAdminRow.__rp = true;
+  }
+
+  /* a trainee's page takes progress their trainer restored (once), before its next save to their record */
+  if(typeof applyAdminUnlocks === "function" && !applyAdminUnlocks.__rp){
+    const __unlocks = applyAdminUnlocks;
+    applyAdminUnlocks = async function(rec){
+      try{ await adoptRestore(rec); }catch(e){}
+      return __unlocks.apply(this, arguments);
+    };
+    applyAdminUnlocks.__rp = true;
+  }
+  async function adoptRestore(rec){
+    if(!rec || !rec.progressRestoredAt || !state.traineeId || state.isAdmin) return;
+    let seen = ""; try{ seen = localStorage.getItem("lsh_progress-restored-seen") || ""; }catch(e){}
+    if(seen === rec.progressRestoredAt) return;
+    const before = JSON.stringify(state.progress || {});
+    const snap = await sharedGet("progress-restore:" + state.traineeId).catch(()=>null);
+    const data = mergeData((snap && snap.data) || {}, {"day-progress": rec.dayProgress, "practice-progress": rec.practiceProgress, "completed-lab-actions": rec.completedLabActions, "lab-attempts-by-day": rec.labAttemptsByDay, submissions: rec.submissions, roleplayHistory: rec.roleplayHistory});
+    state.cloudRestoring = true;
+    try{
+      for(const k of PERSONAL_KEYS){
+        if(!(k in data)) continue;
+        const next = mergeVal(await storeGet(k), data[k]);
+        await storeSet(k, next);
+        const field = (typeof TAB_SYNC_KEYS !== "undefined") && TAB_SYNC_KEYS[k];
+        if(field) state[field] = next;
+      }
+    }finally{ state.cloudRestoring = false; }
+    try{ localStorage.setItem("lsh_progress-restored-seen", rec.progressRestoredAt); }catch(e){}
+    if(typeof scheduleCloudSave === "function") scheduleCloudSave();
+    if(JSON.stringify(state.progress || {}) !== before){
+      toast("♻ Your trainer restored your progress.");
+      state.labResetRenderPending = true;
+      if(typeof renderLabResetIfSafe === "function") setTimeout(()=>renderLabResetIfSafe(), 0);
+    }
+  }
+
+  const st = document.createElement("style"); st.id = "restore-progress"; st.textContent = `
+.overlay.rp-overlay .card.rp-card{max-width:680px !important;width:calc(100vw - 32px) !important;max-height:calc(100vh - 48px);overflow:auto;}
+.rp-card h3{margin:0 0 12px;}
+.rp-now{background:#F3F4F8;border-radius:8px;padding:10px 12px;font-size:13.5px;margin-bottom:10px;}
+.rp-now span{display:inline-block;font-weight:800;color:var(--navy);margin-right:6px;}
+.rp-active{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+.rp-warn{background:#FEF7C3;border-left:4px solid #C9A227;border-radius:8px;padding:9px 12px;font-size:13px;margin-bottom:10px;} .rp-warn code{font-size:12px;}
+.rp-src{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px;}
+.rp-src.rp-more{border-color:var(--success);background:var(--success-bg);}
+.rp-label{font-weight:700;font-size:13.5px;color:var(--navy);} .rp-label code, .rp-foot code{font-size:12px;}
+.rp-sum{font-size:13px;color:var(--ink-soft);margin-top:2px;}
+.rp-none{color:var(--ink-soft);font-size:13.5px;}
+.rp-pick{margin:12px 0 6px;font-size:13px;} .rp-pick label{display:block;font-weight:700;margin-bottom:4px;}
+.rp-pick > div{display:flex;gap:8px;flex-wrap:wrap;} .rp-pick select{flex:1;min-width:0;font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;}
+.rp-foot{font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;}
+`; document.head.appendChild(st);
+})();
+
+/* ===== A trainee whose sign-in can't be renewed is told so =====
+   When the server refuses a trainee's session and it can't be renewed (e.g. the signing secret changed, and in Portal
+   sign-in mode only the Portal can sign them in again), their progress can't load or save. Without this they saw an
+   empty dashboard and "Couldn't reach the server". Now a bar says what to do; it goes away once a renewal works. */
+(function(){
+  if(typeof reauthTrainee !== "function" || reauthTrainee.__bar) return;
+  const __reauth = reauthTrainee;
+  const hide = ()=>{ const b = document.getElementById("sessionExpiredBar"); if(b) b.remove(); };
+  const show = ()=>{
+    if(document.getElementById("sessionExpiredBar")) return;
+    const b = document.createElement("div"); b.id = "sessionExpiredBar"; b.setAttribute("role", "alert");
+    const portal = typeof window.goToMainPortal === "function";
+    b.innerHTML = `<span>⚠ <b>Your sign-in has expired</b>, so your progress can't load or save right now. ${state.portalOnly ? "Open EA/PA again from the LSH Training Portal:" : "Sign out and sign in again:"} everything you've saved is kept.</span>
+      ${state.portalOnly && portal ? `<button type="button" class="btn btn-sm btn-primary" onclick="goToMainPortal()">Open the Training Portal</button>` : `<button type="button" class="btn btn-sm btn-primary" onclick="logout()">Sign out</button>`}
+      <button type="button" class="btn btn-sm btn-ghost" onclick="location.reload()">Try again</button>`;
+    document.body.appendChild(b);
+  };
+  reauthTrainee = async function(){
+    const ok = await __reauth.apply(this, arguments);
+    if(ok) hide();
+    else if(state.traineeId && !state.isAdmin && state.secureMode === true) show();
+    return ok;
+  };
+  reauthTrainee.__bar = true;
+  // any new sign-in (the Portal's, or a renewal) clears it
+  if(typeof setTraineeToken === "function" && !setTraineeToken.__bar){
+    const __set = setTraineeToken;
+    setTraineeToken = function(t){ const out = __set.apply(this, arguments); if(t) hide(); return out; };
+    setTraineeToken.__bar = true;
+  }
+  const st = document.createElement("style"); st.id = "session-expired"; st.textContent = `
+#sessionExpiredBar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:4000;width:min(760px,calc(100vw - 32px));box-sizing:border-box;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#FEF3F2;color:#7A271A;border:1px solid #F5B5AB;border-left:5px solid #D92D20;border-radius:10px;padding:10px 14px;box-shadow:0 10px 30px rgba(16,24,40,.18);font-size:14px;}
+#sessionExpiredBar span{flex:1 1 300px;}
+`; document.head.appendChild(st);
+})();
+
 /* ===== One fixed-size deck: the frame and its fixed type =====
    Last in this file so it wins over the earlier, screen-relative slide rules (titles in vw, full-screen and
    shared-window text multipliers, the frame's height in vh). The frame is DECK_W × DECK_H everywhere and
@@ -3687,10 +4058,10 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
   ${W} .topic-divider h2.td-title{font-size:44px;}
   ${W} .vis-step b{font-size:15px;} ${W} .vis-card p{font-size:16px;}
   ${W} .svg-diagram-card svg{max-height:320px !important;}
-  /* the room around the deck is the same on every slide: one row of progress dots, and the last
-     slide's note sits in the Previous / Next bar */
+  /* the room around the deck is the same on every slide: the progress dots stay on one row of the
+     top band, and the last slide's note sits in the Previous / Next bar */
   .lesson-stage .slide-dots{flex-wrap:nowrap;gap:3px;}
-  .lesson-stage .slide-dot{flex:0 1 10px;min-width:2px;}
+  .lesson-stage .slide-dot{flex:0 1 8px;min-width:2px;}
   .lesson-stage .slide-dot.active{flex:0 0 28px;}
   .lesson-stage .slide-nav{flex-wrap:nowrap;}
   .lesson-stage .slide-nav > *{flex-shrink:0;}

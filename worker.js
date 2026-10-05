@@ -9,12 +9,16 @@
  *   GEMINI_MODEL       — optional: first model for grading and trainer tools (default gemini-3.8-flash).
  *                        Live chat always starts on gemini-3.5-flash-lite (the free tier's daily limit
  *                        is ~500 requests there, 20 on the Flash models); see geminiModels.
- *   ADMIN_PASSPHRASE   — trainer/admin sign-in. Setting this switches the portal
+ *   PORTAL_SSO_SECRET  — optional; the secret the LSH Training Portal signs its launch tickets with (the same value is set
+ *                        on the Portal). Setting it makes the Main Portal the only way in: /api/auth/trainee then refuses a name +
+ *                        batch typed on this site (except to renew a signed-in trainee's session), and /api/auth/portal signs a
+ *                        trainee or an administrator in from the Portal's ticket. Not set = the old name + batch sign-in.
+ *   MASTER_ADMIN_PASSWORD — admin sign-in (the LSH Training Portal's master admin password: one password on every platform). Setting this switches the portal
  *                        into SECURE MODE: every storage and AI request must carry
  *                        a signed session token.
- *   SESSION_SECRET     — optional; signs session tokens (defaults to ADMIN_PASSPHRASE)
+ *   SESSION_SECRET     — optional; signs session tokens (defaults to MASTER_ADMIN_PASSWORD)
  *
- * Without ADMIN_PASSPHRASE the Worker runs in the old open mode so nothing breaks
+ * Without MASTER_ADMIN_PASSWORD the Worker runs in the old open mode so nothing breaks
  * before you've configured it (the Admin screen shows a warning).
  */
 const JSON_HEADERS = { "Content-Type": "application/json", "Cache-Control": "no-store" };
@@ -27,7 +31,46 @@ async function hmac(secret, msg) {
   const sig = await crypto.subtle.sign("HMAC", key, enc.encode(msg));
   return btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
-function secretOf(env) { return env.SESSION_SECRET || env.ADMIN_PASSPHRASE || ""; }
+// The admin password: MASTER_ADMIN_PASSWORD, the LSH Training Portal's master admin password (one password signs an admin in on the Portal and on every platform).
+function adminPass(env) { return env.MASTER_ADMIN_PASSWORD || ""; }
+function secretOf(env) { return env.SESSION_SECRET || adminPass(env); }   // as stored (trimming it would sign everyone out)
+// The password an admin may type: the Portal's MASTER_ADMIN_PASSWORD. Both the stored and
+// the typed password are compared as a person types them: without spaces or line breaks around them, quotes pasted around the whole
+// password, invisible characters (zero-width spaces, soft hyphens) or curly quotes and long dashes. A secret pasted into Cloudflare
+// with any of these signs in from a saved (autofilled) password but could never be typed.
+const ADMIN_PASS_VARS = ["MASTER_ADMIN_PASSWORD"];
+const PASS_INVISIBLE = /[\u00AD\u180E\u200B-\u200F\u2028-\u202F\u205F-\u206F\uFEFF]/g;
+const PASS_CURLY = /[\u2018\u2019\u201A\u201B\u2032\u201C\u201D\u201E\u201F\u2033\u2010-\u2015\u2212]/;
+function cleanPass(v) {   // without invisible characters, curly quotes or long dashes, or spaces around it
+  return String(v || "").normalize("NFKC").replace(PASS_INVISIBLE, "")
+    .replace(/[\u2018\u2019\u201A\u201B\u2032]/g, "'").replace(/[\u201C\u201D\u201E\u201F\u2033]/g, '"').replace(/[\u2010-\u2015\u2212]/g, "-").trim();
+}
+const PASS_QUOTED = /^(["'`])([\s\S]*)\1$/;
+function normPass(v) { const t = cleanPass(v), q = t.match(PASS_QUOTED); return q ? q[2].trim() : t; }
+function adminPasswords(env) { return ADMIN_PASS_VARS.map((n) => normPass(env[n])).filter(Boolean); }
+// What /version says about each stored password (never the password itself): what is ignored, and anything still hard to type.
+function passNotes(v) {
+  const raw = String(v), ignored = [];
+  if (raw !== raw.trim()) ignored.push("spaces or a line break around it");
+  if (new RegExp(PASS_INVISIBLE.source).test(raw)) ignored.push("invisible characters");
+  if (PASS_CURLY.test(raw)) ignored.push("curly quotes or long dashes");
+  if (PASS_QUOTED.test(cleanPass(raw))) ignored.push("quotes around it");
+  const odd = /[^\x20-\x7E]/.test(normPass(raw)) ? ["a character that isn't on a standard keyboard (an accented or look-alike letter): it must be typed exactly"] : [];
+  return { ignored, odd };
+}
+function adminPassStatus(env) {
+  const set = ADMIN_PASS_VARS.filter((n) => normPass(env[n]));
+  // set in Cloudflare but holding no password (only quotes, spaces or invisible characters, e.g. ""): never accepted
+  const blank = ADMIN_PASS_VARS.filter((n) => env[n] != null && String(env[n]) !== "" && !normPass(env[n]));
+  const blankNote = blank.length ? ` (${blank.join(" and ")} ${blank.length > 1 ? "are" : "is"} set but holds no password, only quotes, spaces or invisible characters: not accepted)` : "";
+  if (!set.length) return "not set (open mode)" + blankNote;
+  const notes = set.map((n) => {
+    const { ignored, odd } = passNotes(env[n]);
+    return [ignored.length ? `${n} had ${ignored.join(", ")}: ignored` : "", ...odd.map((o) => `${n} has ${o}`)].filter(Boolean).join("; ");
+  }).filter(Boolean);
+  return set.join(" or ") + (notes.length ? ` (${notes.join("; ")})` : "") + blankNote
+    + (env.ADMIN_PASSPHRASE ? " (ADMIN_PASSPHRASE is still set in Cloudflare but no longer used: it can be deleted)" : "");
+}
 async function makeToken(env, role, subject, hours) {
   const exp = Date.now() + hours * 3600 * 1000;
   const body = `${role}.${encodeURIComponent(subject)}.${exp}`;
@@ -60,6 +103,101 @@ function candidateIds(name, batch) {
   if (!slug) { let h = 0; for (const c of String(name || "")) h = (h * 31 + c.codePointAt(0)) >>> 0; slug = "trainee-" + h.toString(36); }
   const b = slugPart(batch).slice(0, 20);
   return { newId: b ? `${slug}--${b}` : slug, legacyId: slugPart(name).slice(0, 40) || "trainee" };
+}
+
+/* ---------- a trainee keeps their record when the Portal's batch differs ----------
+   Trainee ids are name + batch. The Portal signs trainees in with its own batch codes (e.g. B091826), so a trainee
+   registered here under another batch got a new, empty record and their progress stayed on the old one. On a Portal
+   sign-in whose record is missing or has no progress, the trainee's other record with the same name (any batch) that has
+   progress is used instead (the most recently active, if there are several), from then on: trainee-alias:<new id> points
+   to it, its batch becomes the Portal's, and the empty duplicate is removed (its progress copy kept in backup:progress).
+   Checked once per record (linkChecked), so it costs one KV list on a trainee's first Portal sign-in only. */
+function hasProgress(r) {
+  return !!r && (Object.values(r.dayProgress || {}).some((p) => p && (p.done || p.score)) || (r.submissions || []).length > 0 || Object.keys(r.practiceProgress || {}).length > 0);
+}
+async function linkSameName(env, who) {
+  const { newId, legacyId } = candidateIds(who.name, who.batch);
+  const alias = await env.LSH_KV.get(`trainee-alias:${newId}`);
+  if (alias && (await env.LSH_KV.get(`trainee:${alias}`))) return alias;
+  const curRaw = await env.LSH_KV.get(`trainee:${newId}`), cur = curRaw ? JSON.parse(curRaw) : null;
+  if (cur && (hasProgress(cur) || cur.linkChecked)) return "";
+  if (!cur) {   // the old name-only record, when its batch matches, is already found by traineeSession
+    const l = await env.LSH_KV.get(`trainee:${legacyId}`), lr = l ? JSON.parse(l) : null;
+    if (lr && (!lr.batch || slugPart(lr.batch) === slugPart(who.batch))) return "";
+  }
+  const slug = newId.includes("--") ? newId.slice(0, newId.indexOf("--")) : legacyId;
+  const ids = [];
+  let cursor;
+  do { const r = await env.LSH_KV.list({ prefix: `trainee:${slug}--`, cursor }); r.keys.forEach((k) => ids.push(k.name.slice(8))); cursor = r.list_complete ? null : r.cursor; } while (cursor);
+  if (!ids.includes(legacyId)) ids.push(legacyId);
+  let best = null;
+  for (const id of ids) {
+    if (id === newId) continue;
+    const raw = await env.LSH_KV.get(`trainee:${id}`), r = raw ? JSON.parse(raw) : null;
+    if (!r || r.rejected || !hasProgress(r)) continue;
+    if (!best || new Date(r.lastActive || 0) > new Date(best.lastActive || 0)) best = r;
+  }
+  if (!best) {
+    if (cur) { cur.linkChecked = true; await env.LSH_KV.put(`trainee:${newId}`, JSON.stringify(cur)); }
+    return "";
+  }
+  await env.LSH_KV.put(`trainee-alias:${newId}`, best.id);
+  if (cur) {
+    const p = await dataGet(env, `progress:${newId}`);
+    if (p) await env.LSH_KV.put(`backup:progress:${newId}`, p);
+    await dataDelete(env, `progress:${newId}`);
+    await env.LSH_KV.delete(`trainee:${newId}`);
+  }
+  const rec = Object.assign({}, best, { batch: who.batch, approved: best.approved === true || !best.rejected, linkedFrom: newId, linkChecked: true });
+  await env.LSH_KV.put(`trainee:${best.id}`, JSON.stringify(rec));
+  return best.id;
+}
+
+/* ---------- Main Portal sign-in: the LSH Training Portal signs a trainee or an admin in, this site trusts its ticket ----------
+   ticket = "<base64url JSON {first, last, b, exp}>.<HMAC-SHA256 of that text, keyed with PORTAL_SSO_SECRET>"
+   (an administrator's ticket is {r: "a", exp}: they were signed in on the Portal with the master admin password).
+   exp is epoch milliseconds; a ticket is good for a few minutes, so a copied link is no use later. */
+const PORTAL_TICKET_MAX_MS = 10 * 60 * 1000;
+// The Portal secret, without any space or line break pasted around it (the Portal does the same).
+function portalSecret(env) { return String(env.PORTAL_SSO_SECRET || "").trim(); }
+function portalOnly(env) { return !!(adminPass(env) && portalSecret(env)); }
+// why (optional) gets why a ticket was refused: "format", "signature" (the Portal and this program don't share the same secret) or "expired".
+async function readPortalTicket(env, ticket, why = {}) {
+  if (!portalSecret(env)) { why.r = "format"; return null; }
+  const parts = String(ticket || "").split(".");
+  if (parts.length !== 2) { why.r = "format"; return null; }
+  const good = await hmac("portal-sso:" + portalSecret(env), parts[0]);
+  if (!safeEqual(good, parts[1])) { why.r = "signature"; return null; }
+  let t; try { t = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(parts[0].replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0)))); } catch (e) { why.r = "format"; return null; }
+  const exp = Number(t && t.exp);
+  if (!exp || Date.now() > exp || exp - Date.now() > PORTAL_TICKET_MAX_MS) { why.r = "expired"; return null; }
+  if (t.r === "s") return { system: true };   // the Portal's own server-side tools (sign-in check, registration import): never given to a person
+  if (t.r === "a") return { admin: true };    // an administrator opened this from the Portal: they still sign in here with the admin password
+  const first = String(t.first || "").trim(), last = String(t.last || "").trim(), batch = String(t.b || "").trim();
+  if (!first || !last || !batch) return null;
+  return { name: `${first} ${last}`, first, last, batch };
+}
+// Like readToken, but an expired token still counts for a while (same signature, same trainee), so a trainee
+// midway through the course isn't sent back to the portal in the middle of a lesson.
+const TOKEN_GRACE_MS = 60 * 24 * 3600 * 1000;
+async function readTraineeTokenGrace(env, request) {
+  const h = request.headers.get("Authorization") || "";
+  const parts = (h.startsWith("Bearer ") ? h.slice(7) : "").split(".");
+  if (parts.length !== 4 || parts[0] !== "t") return null;
+  const [role, subj, exp, sig] = parts;
+  if (Date.now() > Number(exp) + TOKEN_GRACE_MS) return null;
+  const msg = `${role}.${subj}.${exp}`;
+  // A trainee session signed before the signing secret changed (e.g. the admin password, when SESSION_SECRET isn't set)
+  // still renews with PREVIOUS_SESSION_SECRET, the old value: renewal only, trainee sessions only (never admin), so a
+  // changed password doesn't sign every trainee out. Remove it from Cloudflare once everyone has been back.
+  if (safeEqual(await hmac(secretOf(env), msg), sig)) return { role, id: decodeURIComponent(subj) };
+  // the value as stored, and without spaces, a line break or quotes pasted around it (either may be how it signed before)
+  const raw = String(env.PREVIOUS_SESSION_SECRET || "");
+  const prevs = [...new Set([raw, raw.trim(), normPass(raw)])].filter((p) => p && p !== secretOf(env));
+  let ok = false;
+  for (const p of prevs) if (safeEqual(await hmac(p, msg), sig)) { ok = true; break; }
+  if (!ok) return null;
+  return { role, id: decodeURIComponent(subj) };
 }
 
 /* ---------- trainees' saved progress lives in R2 ----------
@@ -97,6 +235,27 @@ async function dataDelete(env, key) {
   await env.LSH_KV.delete(key);   // and the copy (or the record from before the move), or it would be read back
 }
 
+/* ---------- a trainee's progress never shrinks in their own save ----------
+   A device that signed in without its progress (a fresh browser, a failed restore) would otherwise write an empty
+   day list over the real one. Trainees can't un-finish a day (Retake only redoes the quiz), so a trainee's save keeps
+   every day, practice tool and saved submission already on record; a trainer (admin) can still change anything. */
+function daysDone(dp) { return Object.values(dp || {}).filter((p) => p && p.done).length; }
+function keepProgress(existing, merged) {
+  for (const f of ["dayProgress", "practiceProgress"]) {
+    const had = existing[f] && typeof existing[f] === "object" ? existing[f] : null;
+    if (!had) continue;
+    const now = merged[f] && typeof merged[f] === "object" ? merged[f] : {};
+    for (const [k, v] of Object.entries(had)) {
+      if (!(k in now) || !now[k]) now[k] = v;
+      else if (v && v.done && !now[k].done) now[k] = Object.assign({}, now[k], { done: true, score: Math.max(Number(v.score) || 0, Number(now[k].score) || 0) || v.score });
+    }
+    merged[f] = now;
+  }
+  for (const f of ["submissions", "roleplayHistory"]) {
+    if (Array.isArray(existing[f]) && (!Array.isArray(merged[f]) || merged[f].length < existing[f].length)) merged[f] = existing[f];
+  }
+}
+
 /* ---------- what a trainee may touch ---------- */
 const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
@@ -104,12 +263,25 @@ const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemp
 
 function canRead(tok, key) {
   if (tok.role === "a") return true;
-  return OWN(tok.id).includes(key) || PUBLIC_READ.some((re) => re.test(key));
+  // callsim:<id>: their graded calls from the CMS Call Simulator, kept by the Training Portal (read only: traineeWrite refuses it)
+  return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || key === `callsim:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
 }
 async function traineeWrite(env, tok, key, value) {
   const id = tok.id;
   let incoming; try { incoming = JSON.parse(value); } catch (e) { return "Invalid JSON"; }
-  if (key === `progress:${id}`) { await dataPut(env, key, value); return null; }   // their own copy, saved as is
+  if (key === `progress:${id}`) {   // their own copy, saved as is
+    // A save with fewer finished days than the copy it replaces (a device that signed in without its progress) first
+    // keeps that copy in backup:progress:<id>, so Admin → ♻ Restore progress can bring it back. Rare, so KV writes stay low.
+    try {
+      const prevRaw = await dataGet(env, key), prev = prevRaw ? JSON.parse(prevRaw) : null;
+      const had = daysDone(prev && prev.data && prev.data["day-progress"]), now = daysDone(incoming && incoming.data && incoming.data["day-progress"]);
+      if (had > now) {
+        const bRaw = await env.LSH_KV.get(`backup:progress:${id}`), b = bRaw ? JSON.parse(bRaw) : null;
+        if (!b || daysDone(b.data && b.data["day-progress"]) <= had) await env.LSH_KV.put(`backup:progress:${id}`, prevRaw);
+      }
+    } catch (e) { /* never block a save over its backup */ }
+    await dataPut(env, key, value); return null;
+  }
   const existingRaw = await env.LSH_KV.get(key);
   const existing = existingRaw ? JSON.parse(existingRaw) : null;
   if (key === `trainee:${id}`) {
@@ -117,6 +289,7 @@ async function traineeWrite(env, tok, key, value) {
     const merged = Object.assign({}, incoming);
     PROTECTED_TRAINEE_FIELDS.forEach((f) => { if (existing && f in existing) merged[f] = existing[f]; else delete merged[f]; });
     if (!existing) { merged.approved = false; merged.registeredAt = new Date().toISOString(); }
+    if (existing) keepProgress(existing, merged);
     merged.id = id;
     await env.LSH_KV.put(key, JSON.stringify(merged)); return null;
   }
@@ -141,6 +314,8 @@ async function traineeWrite(env, tok, key, value) {
   }
   if (/^tfeedback:[a-z0-9]+$/.test(key) || /^cert:LSH-EAPA-\d{4}-[A-Z0-9]{6}$/.test(key)) {
     if (existing && /^tfeedback:/.test(key)) return "Already submitted";
+    // a certificate record is the trainee's own: a new one, or one already issued to them (never someone else's)
+    if (/^cert:/.test(key) && ((existing && existing.traineeId !== id) || (incoming && incoming.traineeId !== id))) return "Not allowed";
     await env.LSH_KV.put(key, value); return null;
   }
   return "Not allowed";
@@ -173,7 +348,6 @@ const GEMINI_FLASH = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash"
 const geminiModels = (env, feature) => (feature === "chat" || feature === "tracker" || !feature   // high-volume features start on Flash-Lite
   ? [GEMINI_LITE, ...GEMINI_FLASH]
   : [env.GEMINI_MODEL, ...GEMINI_FLASH, GEMINI_LITE]).filter((v, i, a) => v && a.indexOf(v) === i);
-const featureFromBody = (raw) => { try { return String(JSON.parse(raw).feature || ""); } catch (e) { return ""; } };
 
 /* Gemini refuses some regions ("User location is not supported for the API use"). The Worker is placed in
    the US (wrangler.json), but placement is best-effort: a request can still run near the trainee. A refused
@@ -206,8 +380,29 @@ export class GeminiRelay {
   }
 }
 
-async function callGemini(env, rawBody) {
+// The shared AI gateway (the Main Portal's /api/ai-gateway): when AI_GATEWAY_SECRET is set on this Worker, every AI call goes there
+// and draws from the Portal's one master key pool and one shared budget (module "ea-pa") with the other programs, the CMS and the
+// Portal's simulators. Without the secret this Worker still uses its own GEMINI_API_KEY pool, as before.
+const gatewayOn = (env) => !!String((env && env.AI_GATEWAY_SECRET) || "").trim();
+async function viaGateway(env, req, user) {
+  const toText = (c) => typeof c === "string" ? c : (Array.isArray(c) ? c.map((p) => p && p.text ? p.text : "").join("\n") : "");
+  const messages = (req.messages || []).map((m) => ({ role: m.role === "assistant" ? "model" : "user", text: toText(m.content) }));
+  let r, data = null;
+  try {
+    r = await fetch(String(env.PORTAL_URL || "https://cm-training-activity.pages.dev").replace(/\/+$/, "") + "/api/ai-gateway", {
+      method: "POST", headers: { "Content-Type": "application/json", "X-Gateway-Key": String(env.AI_GATEWAY_SECRET).trim() },
+      body: JSON.stringify({ module: "ea-pa", user: String(user || "worker").slice(0, 80), system: toText(req.system), messages, maxTokens: Math.min(Math.max(Number(req.max_tokens) || 1024, 128), 4096) })
+    });
+    data = await r.json().catch(() => null);
+  } catch (e) { return json({ error: { message: "The shared AI gateway is unreachable: " + (e && e.message || e) } }, 502); }
+  if (data && data.success) return json({ content: [{ type: "text", text: data.text }], model: data.model, stop_reason: "end_turn", provider: "gemini-gateway" });
+  const status = r.status === 429 ? 429 : (r.status === 401 || r.status === 501) ? 502 : (r.status || 502);
+  return json({ error: { message: (status === 429 ? "rate limit (shared AI budget): " : "") + ((data && data.error) || "AI gateway error " + r.status) } }, status);
+}
+
+async function callGemini(env, rawBody, user) {
   let req; try { req = JSON.parse(rawBody); } catch (e) { return json({ error: "Invalid request" }, 400); }
+  if (gatewayOn(env)) return await viaGateway(env, req, user);
   // Keys in turn (see geminiKeyOrder): when a key's free-tier limit is used up (429) or the key is
   // rejected, it rests and the next key takes the request.
   const keys = geminiKeyOrder(env);
@@ -314,7 +509,7 @@ export default {
     try {
       const url = new URL(request.url);
       const path = url.pathname;
-      const secure = !!env.ADMIN_PASSPHRASE;
+      const secure = !!adminPass(env);
       if (path === "/blueprint.pdf") {
         // The Platform Blueprint PDF, rebuilt automatically by the portal after each update (trainee-safe content).
         const raw = env.LSH_KV ? await env.LSH_KV.get("blueprint:pdf") : null;
@@ -329,7 +524,7 @@ export default {
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
         const deployment = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || "unknown";
-        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${env.ADMIN_PASSPHRASE ? "ON" : "OFF"}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${adminPass(env) ? "ON" : "OFF"}\nAdmin password: ${adminPassStatus(env)}\nSessions signed with: ${env.SESSION_SECRET ? "SESSION_SECRET" : adminPass(env) ? "MASTER_ADMIN_PASSWORD (no SESSION_SECRET set: changing the password signs everyone out)" : "nothing (open mode)"}${env.PREVIOUS_SESSION_SECRET ? "; PREVIOUS_SESSION_SECRET renews trainee sessions signed before the change" : ""}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
@@ -344,19 +539,27 @@ export default {
       if (!env.LSH_KV && path.startsWith("/api/storage")) return json({ error: "LSH_KV namespace is not bound on this Worker." }, 500);
 
       /* ---------- auth ---------- */
-      if (path === "/api/auth/status") return json({ secure });
+      if (path === "/api/auth/status") return json({ secure, portalOnly: portalOnly(env) });
       if (path === "/api/auth/admin") {
         if (!secure) return json({ error: "not-configured" }, 501);
         const { passphrase } = await request.json();
         await new Promise((r) => setTimeout(r, 400)); // slow down guessing
-        if (!safeEqual(String(passphrase || ""), env.ADMIN_PASSPHRASE)) return json({ error: "Incorrect passphrase" }, 401);
+        const given = normPass(passphrase);
+        if (!given || !adminPasswords(env).some((p) => safeEqual(given, p))) return json({ error: "Incorrect password" }, 401);
         return json({ token: await makeToken(env, "a", "admin", 12) });
       }
-      if (path === "/api/auth/trainee") {
-        if (!secure) return json({ error: "not-configured" }, 501);
-        const { name, batch, id } = await request.json();
-        if (!name || !batch) return json({ error: "Name and batch are required" }, 400);
+      // The trainee's session for a name + batch: their record id (new or legacy form) and token.
+      const traineeSession = async (name, batch, id, linkedId) => {
         const { newId, legacyId } = candidateIds(name, batch);
+        // the record this name + batch was linked to (linkSameName): the trainee's earlier record under another batch
+        if (!linkedId && (!id || (id !== newId && id !== legacyId))) {
+          const al = await env.LSH_KV.get(`trainee-alias:${newId}`);
+          if (al && (!id || id === al)) linkedId = al;
+        }
+        if (linkedId) {
+          const ex = await env.LSH_KV.get(`trainee:${linkedId}`);
+          return json({ id: linkedId, token: await makeToken(env, "t", linkedId, 24 * 30), existing: ex ? JSON.parse(ex) : null });
+        }
         let chosen = newId, existing = await env.LSH_KV.get(`trainee:${newId}`);
         if (!existing) {
           const legacy = await env.LSH_KV.get(`trainee:${legacyId}`);
@@ -366,6 +569,43 @@ export default {
         if (id && id !== chosen && id !== newId && id !== legacyId) return json({ error: "Name/batch don't match this session" }, 403);
         if (id && (id === newId || id === legacyId)) chosen = id;
         return json({ id: chosen, token: await makeToken(env, "t", chosen, 24 * 30), existing: existing ? JSON.parse(existing) : null });
+      };
+      if (path === "/api/auth/trainee") {
+        if (!secure) return json({ error: "not-configured" }, 501);
+        const { name, batch, id } = await request.json();
+        if (!name || !batch) return json({ error: "Name and batch are required" }, 400);
+        if (portalOnly(env)) {
+          // Trainees come in through the LSH Training Portal (/api/auth/portal). A name + batch typed here is
+          // accepted only to renew the session of a trainee who is already signed in on this device.
+          const own = await readTraineeTokenGrace(env, request);
+          const { newId, legacyId } = candidateIds(name, batch);
+          if (!own || (own.id !== newId && own.id !== legacyId && own.id !== (await env.LSH_KV.get(`trainee-alias:${newId}`)))) return json({ error: "portal-required" }, 403);
+        }
+        return traineeSession(name, batch, id);
+      }
+      if (path === "/api/auth/portal") {
+        // The Main Portal's sign-in: a signed ticket says who the trainee is (their name and batch as registered there),
+        // or that an administrator signed in on the Portal.
+        if (!portalOnly(env)) return json({ error: "not-configured" }, 501);
+        const { ticket } = await request.json().catch(() => ({}));
+        const why = {};
+        const who = await readPortalTicket(env, ticket, why);
+        if (!who) return json({ error: why.r === "signature"
+          ? "The LSH Training Portal couldn't be verified (code: bad-signature). Please tell your administrator: the Portal and this program need the same sign-in secret."
+          : "This sign-in link has expired. Open the program again from the LSH Training Portal.", code: why.r || "format" }, 401);
+        if (who.system) return json({ admin: true, token: await makeToken(env, "a", "admin", 12) });
+        if (who.admin) return json({ error: "Administrators sign in with the admin password on every platform.", code: "admin-password" }, 403);
+        const res = await traineeSession(who.name, who.batch, "", await linkSameName(env, who));
+        const out = await res.json();
+        // The Portal's approval is the only trainee approval: a trainee it signs in is approved here too
+        // (unless an admin here rejected them), so this program never shows "Registration Pending Approval".
+        const cur = out.existing;
+        if (!cur || (cur.approved !== true && !cur.rejected)) {
+          const rec = Object.assign({}, cur || { id: out.id, linkChecked: true, name: who.name, firstName: who.first, lastName: who.last, batch: who.batch, registeredAt: new Date().toISOString() }, { approved: true });
+          await env.LSH_KV.put(`trainee:${out.id}`, JSON.stringify(rec));
+          out.existing = rec;
+        }
+        return json(Object.assign(out, { name: who.name, first: who.first, last: who.last, batch: who.batch }));
       }
 
       const tok = secure ? await readToken(env, request) : { role: "a", id: "open-mode" };
@@ -388,13 +628,13 @@ export default {
         // from this Worker's US placement with its key pool. Only with the shared AI_RELAY_SECRET.
         const given = request.headers.get("X-Relay-Key") || "";
         if (!env.AI_RELAY_SECRET || !safeEqual(given, env.AI_RELAY_SECRET)) return json({ error: "Not allowed" }, 403);
-        if (!hasGemini(env)) return json({ error: "No AI key is configured on this Worker." }, 500);
-        return await callGemini(env, await request.text());
+        if (!hasGemini(env) && !gatewayOn(env)) return json({ error: "No AI key is configured on this Worker." }, 500);
+        return await callGemini(env, await request.text(), tok && tok.id);
       }
       if (path === "/api/claude" || path === "/api/ai") {
         const body = await request.text();
-        if (!hasGemini(env)) return json({ error: "No AI key is configured on this Worker. Add GEMINI_API_KEY as a Secret in Cloudflare." }, 500);
-        return await callGemini(env, body);
+        if (!hasGemini(env) && !gatewayOn(env)) return json({ error: "No AI key is configured on this Worker. Add GEMINI_API_KEY as a Secret in Cloudflare." }, 500);
+        return await callGemini(env, body, tok && tok.id);
       }
 
       /* ---------- cohort ranking (first name + initial only) ---------- */
@@ -439,6 +679,15 @@ export default {
         if (tok.role === "a") { await dataPut(env, key, body.value); return json({ ok: true }); }
         const err = await traineeWrite(env, tok, key, body.value);
         return err ? json({ error: err }, 403) : json({ ok: true });
+      }
+      if (path === "/api/admin/progress-copies") {
+        // Admin → ♻ Restore progress: the older copies of a trainee's progress that /get can't reach (the daily KV copy
+        // of the R2 record, and the backup kept when a save shrank it).
+        if (tok.role !== "a") return json({ error: "Not allowed" }, 403);
+        const id = String(body.id || "");
+        if (!id) return json({ error: "Missing id" }, 400);
+        const [current, daily, backup] = await Promise.all([dataGet(env, `progress:${id}`), env.LSH_KV.get(`progress:${id}`), env.LSH_KV.get(`backup:progress:${id}`)]);
+        return json({ current, daily: daily !== current ? daily : null, backup });
       }
       if (path === "/api/storage/list") {
         if (tok.role !== "a") return json({ keys: [] });

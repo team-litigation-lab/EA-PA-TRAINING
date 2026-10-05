@@ -1,8 +1,29 @@
 # LSH EA / PA Training
 
+## 🔐 Sign in on the Main Portal only
+
+Trainees sign in once, on the LSH Training Portal, and open this program from there: this site shows no sign-in form to someone who arrives from the Portal. Admins always type the admin password here (`MASTER_ADMIN_PASSWORD`). The Portal sends them here with a signed, short-lived ticket (`?ticket=…`); `js/portal-gate.js` posts it to `/api/auth/portal`, and the Worker signs a trainee in (same `trainee:<id>` records, so every current registration, progress and approval is kept) (an administrator's ticket `{r: "a", exp}` never signs anyone in: the Worker answers 403 `admin-password`). Someone who opens this site's link directly sees a note with a **Go to the LSH Training Portal** button instead of the form, and the Worker refuses a name + batch typed here (403 `portal-required`), except to renew the session of a trainee already signed in on that device. Someone who opens the link directly gets the *Admin Portal* tab, where an admin types the admin password.
+
+- **Turning it on:** set `PORTAL_SSO_SECRET` (same value as the Portal) and the admin password (`MASTER_ADMIN_PASSWORD`, the Portal's master admin password: the one admin password on every platform) as Worker secrets. `ADMIN_PASSPHRASE` is no longer read, and the page has no built-in password of its own. Until both are set, `/api/auth/status` reports `portalOnly: false` and the old name + batch form stays.
+- **Admin password checks:** only `MASTER_ADMIN_PASSWORD`. Spaces or line breaks around it, quotes pasted around the whole password, invisible characters and curly quotes or long dashes are ignored, in the stored secret and in what's typed, so a password that only worked from the browser's saved copy works typed too. `/version` says if the stored password had any of these (never the password itself), and if `ADMIN_PASSPHRASE` is still set and can be deleted. Both admin password boxes have a **Show** button. Without `SESSION_SECRET`, sessions are signed with the admin password, so changing it signs everyone out (trainees come back in from the Portal).
+- **Ticket format:** `base64url(JSON {first, last, b: <batch>, exp})` + `.` + `base64url(HMAC-SHA256(key = "portal-sso:" + secret, message = that text))`, good for 10 minutes at most. The Portal makes it (`functions/api/launch.js` there).
+- **Engine hooks:** `js/portal-gate.js` is loaded in `<head>`; `index.html` calls it in four places (the server status, the trainee sign-in request, `renderLogin`, and boot). Course repos built from this page (Foundational-Training's `build/build.py`) skip their own patch when these are already here. It's the same `js/portal-gate.js` in every LSH course repo.
+
 The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with its records in the `LSH_KV` KV namespace and trainees' saved progress in R2 (see "Where records are kept").
 
 **🏠 Main Portal (admins):** while an admin is signed in, the top bar has **🏠 Main Portal** and the Admin screen has **← Back to Main Portal** (next to Log out). Both open the LSH Training Portal's Training Directory (`https://cm-training-activity.pages.dev/programs.html`), where admins open each program. Trainees and the 👁 Trainee view don't show them. It's `js/portal-link.js`, the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them.
+
+
+### ♻ Restore progress (Admin)
+Each trainee row in Admin has **♻ Restore**. It lists every older copy of that trainee's progress: other records with the same name (a trainee who signed in under another batch or spelling gets a new record, and the old one keeps their work), the daily copy kept in KV, and the backup the server keeps when a save has fewer finished days (`backup:progress:<id>`). **Another record** checks any trainee by hand. **Restore** merges the copy in, keeping the current state first in `backup:restore:<id>`: finished days, scores, submissions, notes and slide progress are added and nothing is lost. The trainee's open page takes the restored progress on its next save (`progress-restore:<id>`), so it never writes the old state back.
+
+The window shows when each record was last saved from the trainee's page; if another record with the same name was active more recently, it says so (that's the record their page uses, so restore into that one).
+
+**Same trainee, new batch code.** Trainee ids are name + batch, and the Portal signs trainees in with its own batch codes (e.g. `B091826`). A trainee registered here under another batch used to get a new, empty record on their first Portal sign-in. Now, when that record is missing or empty, the Portal sign-in uses their other record with the same name that has progress (the most recently active if several). The link is kept in `trainee-alias:<new id>`, the record takes the Portal's batch, and the empty duplicate is removed (its progress copy is kept in `backup:progress:<id>`). It's checked once per record.
+
+**A trainee whose sign-in can't be renewed** (for example after the signing secret changed: without `SESSION_SECRET`, sessions are signed with `MASTER_ADMIN_PASSWORD`) sees a bar telling them to open EA/PA again from the Training Portal, instead of an empty page. To renew every such session automatically, set `PREVIOUS_SESSION_SECRET` in Cloudflare to the value sessions were signed with before (the old admin passphrase, if `SESSION_SECRET` wasn't set). It renews trainee sessions only, never admin ones. Remove it once everyone has been back. `/version` shows what signs sessions now.
+
+The server also stops it happening: a trainee's own save can't drop finished days, practice tools or submissions from their record (only an admin can).
 
 ## Where each day's content lives
 
@@ -92,6 +113,7 @@ Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/script
   - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
 - **Every slide fits on one screen** (`.github/scripts/fit.cjs`): every page of every slide of every day, on a laptop (1366 × 768) and a large screen (1920 × 1080). The slide and its Previous / Next bar end inside the window, nothing in the slide is cut off or shrunk, every slide is laid out at 960 × 540 with one scale per screen, and every slide splits into the same pages on both screens.
 - **Server requests** (`.github/scripts/requests.cjs`): `get-many` gives a trainee only their own and public records, an Admin every one, and refuses more than 100 keys. With the checks sped up, a trainee's page reads the tasks for every day in one request and their record about once per check, checks for a new version rarely, and asks nothing while the tab is in the background (catching up when it's back) or on a quick switch to another tab and back. A server that doesn't answer doesn't sign the trainee out; a revoke does. The Trainee Audit reads every trainee in two requests.
+- **Graded calls** (`.github/scripts/graded-calls.cjs`): a trainee reads their own `callsim:` record (kept by the Training Portal), never another trainee's, and can't write it; the dashboard band's Graded calls card shows — and 0 lines without graded calls, and the best on each line averaged with them.
 
 To run the same checks locally:
 
@@ -102,6 +124,7 @@ node .github/scripts/server.mjs 8787 &      # then, with Playwright installed:
 node .github/scripts/smoke.cjs http://localhost:8787/
 node .github/scripts/presenter.cjs http://localhost:8787/
 node .github/scripts/requests.cjs http://localhost:8787/
+node .github/scripts/graded-calls.cjs http://localhost:8787/
 ```
 
 `.assetsignore` keeps `worker.js`, the Wrangler config, `.github` and Markdown files from being published with the site.
@@ -128,8 +151,29 @@ into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes co
 
 - **Handouts → 📖 Lesson Notes:** one card per day with the full text of every topic (see *Slides and Lesson Notes* above).
 - **Handouts → Templates & Checklists:** one per day (`HANDOUT_CONTENT` in `index.html`; Days 1–4 are set in `js/eapa-updates.js` to follow today's days: Day 1 command hierarchy, gatekeeping, BLUF and the Three C's; Day 2 inbox triage and safe AI use; Day 3 travel and court deadlines; Day 4 prioritizing the day and client data cleanup).
-- **Admin → 🧭 Orientation** is the screen-share deck; the **Blueprint PDF** (`/blueprint.pdf`, also in Handouts) is built from it and republishes itself after each build. Its Dashboard slide shows today's dashboard (day cards filling the screen, the scores band under them); its day-by-day roadmap reads the day titles and labs from the portal.
+- **Admin → 🧭 Orientation** has two tabs: **🧭 Trainee blueprint** and **🛠 Trainer blueprint**.
+  - **Trainee blueprint:** the screen-share deck. The **Blueprint PDF** (`/blueprint.pdf`, also in Handouts) is built from it. Its Dashboard slide shows today's dashboard (day cards filling the screen, the scores band under them); its day-by-day roadmap reads the day titles and labs from the portal.
+  - **It republishes itself after every deploy**, not only when `APP_BUILD` changes: the published copy is matched against `APP_BUILD` and the Worker's deployment id (`/version`), and the first admin page open after a deploy rebuilds it in the background (`js/lsh-blueprint-course.js`).
+  - **Trainer blueprint** (admins only): how to run the course from the trainer side. It covers signing in, approving trainees, the Trainee Audit, day feedback and Focus items, Surprise Tasks and Live Roleplay, certificates, Batch Folders, Rankings and the cohort report, SOP Reference and the Facilitator Guide, Presenter view, Content Studio, Attendance and Trainee view.
+    - ◀ ▶, the ← → keys or the contents strip move through it.
+    - **Numbering:** the cover is the Cover (★), then slides 1 to N, the same everywhere: the contents buttons, the counter under the slides ("Cover · N slides", then "1 / N" to "N / N"), each slide's header and footer, and the PDF's page footers.
+    - **⬇ Download PDF** saves it as a landscape PDF, one page per slide, stamped with the build and the deployment.
+    - It's never at a public address.
+  - **Changing the wording:** the trainer slides are in `js/blueprint-content.js`. `js/lsh-blueprint.js` (the page and the PDF) is the same file on every LSH platform, and `js/lsh-blueprint-course.js` is the same on every LSH course: change either in one, copy it to all.
+  - **Test:** `.github/scripts/blueprint.cjs`.
 - **Admin → SOP Reference:** each day's session plan ends with the take-home Lesson Notes; the Facilitator Guide's daily rhythm points trainees to them at the close.
+
+## 🎨 Lesson slide background
+
+Every lesson slide sits on the LSH slide template:
+- navy background;
+- the grey plaid band with the Legal Support Help logo across the top left;
+- the orange rule under the band;
+- orange line-art waves on both edges.
+
+The files are in `img/lesson-bg/`: `lsh-logo.png` (the logo on a transparent background), `wave-left.svg` and `wave-right.svg`. The CSS is the "Lesson slide background" block near the end of `js/eapa-updates.js`. It styles `.lesson-stage`, so the trainee view, full screen and the Presenter slides window shared in Meet all get it.
+
+The slide-progress dots sit inside the band, so slides keep most of their height. The band is 50–72 px tall, depending on screen height. At 1366×768 slides split into about 4% more pages than without it; at 1920×1080 there's no change.
 
 ## 📞 Day 4 Practice Lab: simulated prospect calls and lead sourcing
 
@@ -148,6 +192,12 @@ The prospect hangs up when the call is naturally over. The date fills itself in,
 3. **Write the plan:** AI-reviewed, with the trainee's own sources and list as context.
 
 Steps 1 and 2 are scored on the page and use no AI requests. The code is the last two blocks of `js/eapa-updates.js` (`OB_PROSPECTS`, `LG_SOURCES`, `LG_LEADS`).
+
+## 📞 The Call Simulator (in the CMS) and graded calls
+
+The main Call Simulator is the CMS's: the **📞 Call Simulator (in the CMS)** card in the Live Roleplay hub and in the Intake Call Simulator section opens it on the EA / PA tab, signed in through the Training Portal (nobody signs in again). Its EA / PA lines (Executive Calls, Gatekeeping & Stakeholders, Legal Operations, Lifestyle & Estate, Intake Calls, Revenue & Outreach) each have Practice calls and numbered Graded calls (Graded call 1, 2…, the same for everyone; the caller is unknown until the debrief).
+
+A graded call counts here. The Training Portal (its `/api/call-results`) keeps the trainee's graded calls in `callsim:<trainee id>` (no key prefix; a trainee on an older id is found through `trainee-alias:`), by line, and the Worker lets the trainee read it but never write it. The dashboard band's **Graded calls** card (`js/graded-calls.js`) shows the best graded call on each line, averaged, with the lines and calls taken; each line's best is in its tooltip. It's read once a page load and again when the trainee comes back to the tab (at most every two minutes).
 
 ## 🔄 New versions (auto-update)
 
@@ -168,3 +218,5 @@ Every AI review in the Practice Labs (written labs, roleplay calls, intake calls
 `worker.js` → `/api/ai-relay` lets the LSH Training Portal's simulators (Call Simulator, Calendaring, Email Replies) send their Gemini calls from this Worker's US placement, since Gemini refuses some regions the Portal's Pages Functions run in (e.g. Hong Kong). It takes the same body as `/api/claude` (plus `json` and `temperature`) and uses this Worker's key pool. It only answers requests carrying `X-Relay-Key` equal to the secret **`AI_RELAY_SECRET`**; set the same value on the Portal's Pages project (see Training-Portal `SIMULATORS.md`). Without the secret the endpoint returns 403.
 
 **Gemini region refusals.** Gemini answers 400 *User location is not supported* for some regions. The Worker is placed in the US (`wrangler.json`), but placement is best-effort, so a refused call is sent again from **`GeminiRelay`**, a Durable Object pinned to western North America (`locationHint: "wnam"`, binding `GEMINI_RELAY`), and that Worker instance keeps using it. The relay only forwards to `generativelanguage.googleapis.com`. A Durable Object can't be created by a branch preview build, so a PR that changes its class shows a red *Workers Builds* preview; the `main` deploy applies it.
+
+- `AI_GATEWAY_SECRET` (optional Secret, the same value as on the Portal): every AI call goes to the Main Portal's shared AI gateway, one master key pool and one shared budget for all call flows. Without it this Worker uses its own `GEMINI_API_KEY` pool.
