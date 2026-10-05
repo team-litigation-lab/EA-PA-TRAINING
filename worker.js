@@ -61,12 +61,15 @@ function passNotes(v) {
 }
 function adminPassStatus(env) {
   const set = ADMIN_PASS_VARS.filter((n) => normPass(env[n]));
-  if (!set.length) return "not set (open mode)";
+  // set in Cloudflare but holding no password (only quotes, spaces or invisible characters, e.g. ""): never accepted
+  const blank = ADMIN_PASS_VARS.filter((n) => env[n] != null && String(env[n]) !== "" && !normPass(env[n]));
+  const blankNote = blank.length ? ` (${blank.join(" and ")} ${blank.length > 1 ? "are" : "is"} set but holds no password, only quotes, spaces or invisible characters: not accepted)` : "";
+  if (!set.length) return "not set (open mode)" + blankNote;
   const notes = set.map((n) => {
     const { ignored, odd } = passNotes(env[n]);
     return [ignored.length ? `${n} had ${ignored.join(", ")}: ignored` : "", ...odd.map((o) => `${n} has ${o}`)].filter(Boolean).join("; ");
   }).filter(Boolean);
-  return set.join(" or ") + (notes.length ? ` (${notes.join("; ")})` : "");
+  return set.join(" or ") + (notes.length ? ` (${notes.join("; ")})` : "") + blankNote;
 }
 async function makeToken(env, role, subject, hours) {
   const exp = Date.now() + hours * 3600 * 1000;
