@@ -3738,3 +3738,40 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
 html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-interstitial, html.same-screen .wizard-screen{animation:none !important;}
 `; document.head.appendChild(st);
 })();
+
+/* ===== Day cards: the buttons as one full-width grid with lines =====
+   Start fills the top row edge to edge; Topics and Finish Training split the row under it (a completed
+   day: Review Score and Retake, then Topics across the bottom). Thin lines separate the cells, like a table, instead of
+   separate rounded buttons with gaps. */
+(function(){
+  if(typeof moduleCard !== "function" || moduleCard.__grid) return;
+  const __card = moduleCard;
+  moduleCard = function(d){
+    const html = __card(d), t = document.createElement("template"); t.innerHTML = html.trim();
+    const card = t.content.firstElementChild; if(!card) return html;
+    const start = card.querySelector(".module-start-btn"); if(!start) return html;
+    const grid = document.createElement("div"); grid.className = "mc-grid";
+    start.before(grid); grid.appendChild(start);
+    [...card.querySelectorAll(":scope > .mc-row > button, :scope > .module-finish-btn, :scope > .module-review-row > button")].forEach(b=>grid.appendChild(b));
+    card.querySelectorAll(":scope > .mc-row, :scope > .module-review-row").forEach(n=>n.remove());
+    grid.classList.add("mc-n" + grid.querySelectorAll(":scope > button:not(.module-start-btn)").length);   // 1 or 2 buttons share the row under Start; with 3 (a completed day), Topics gets its own row
+    return card.outerHTML;
+  };
+  moduleCard.__grid = true;
+  const line = "#E3E6EE";
+  const st = document.createElement("style"); st.id = "day-card-grid"; st.textContent = `
+.dash-main .module-card.mc-clean > .mc-grid{display:grid;grid-template-columns:repeat(6,1fr);margin:auto 0 0 !important;border-top:1px solid ${line};}
+.dash-main .module-card.mc-clean .mc-grid > button{margin:0 !important;width:auto !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dash-main .module-card.mc-clean .mc-grid > .module-start-btn{grid-column:span 6;padding:12px 10px;font-size:15px;background:#F3F4F8;color:var(--navy);font-weight:700;}
+.dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){padding:9px 6px;font-size:12.5px;background:#fff;color:#4A5070;font-weight:600;border-top:1px solid ${line} !important;}
+.dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:last-child){border-right:1px solid ${line} !important;}
+.dash-main .module-card.mc-clean .mc-grid.mc-n1 > button:not(.module-start-btn){grid-column:span 6;}
+.dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn){grid-column:span 3;}
+.dash-main .module-card.mc-clean .mc-grid.mc-n3 > button:not(.module-start-btn){grid-column:span 3;}
+.dash-main .module-card.mc-clean .mc-grid.mc-n3 > button.module-topics-btn{grid-column:span 6;order:2;border-right:0 !important;}
+.dash-main .module-card.mc-clean .mc-grid > .module-start-btn:not(:disabled):hover, .dash-main .module-card.mc-clean:hover .mc-grid > .module-start-btn:not(:disabled){background:#353B57;color:#fff;}
+.dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):hover{background:#F3F4F8;color:var(--navy);}
+.dash-main .module-card.mc-clean .mc-grid > .module-start-btn:disabled{background:#F7F8FB;color:#9AA0B4;}
+@media(max-width:1600px){ .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){font-size:11.5px;padding:8px 4px;} }
+`; document.head.appendChild(st);
+})();
