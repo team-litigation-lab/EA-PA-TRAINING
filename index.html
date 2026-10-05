@@ -4236,6 +4236,18 @@ const ROLEPLAY_MODES = [
   {id:"twopart", label:"2-Part Challenge", sub:"Crisis + Rapid Delegation", icon:"🎯", desc:"Part 1 is a high-stakes crisis call. Part 2 drops 3-4 unrelated tasks on you back-to-back, no break in between — testing whether you can context-switch cleanly under load."}
 ];
 
+// The main Call Simulator is the CMS's: Elias Thorne's calls (executive, gatekeeping, legal operations, lifestyle, intake and
+// outreach lines), each with Practice and Graded calls. It opens through the Portal's sign-in, so nobody signs in again.
+const CMS_CALLS = "https://cm-training-activity.pages.dev/api/launch?tool=cms&to=calls&program=EA";
+function cmsCallsCard(line, text){
+  return `<div class="card" style="padding:16px 18px;margin-bottom:24px;background:#EEF2FF;border:1px solid var(--navy);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <div>
+          <b style="display:block;font-size:14px;color:var(--navy);">📞 Call Simulator (in the CMS)</b>
+          <p style="font-size:12.5px;color:var(--ink-soft);margin:2px 0 0;">${text}</p>
+        </div>
+        <a class="btn btn-navy btn-sm" href="${CMS_CALLS}${line ? "&line=" + encodeURIComponent(line) : ""}" target="_blank" rel="noopener">Open the Call Simulator &rarr;</a>
+      </div>`;
+}
 function renderCrisisRoleplayHub(){
   const rp = state.rpHub || {step:"category", categoryId:null, topicId:null};
 
@@ -4264,6 +4276,8 @@ function renderCrisisRoleplayHub(){
         </div>
         <button class="btn btn-orange btn-sm" onclick="rpLaunchQuickPractice()">Start Random Call &rarr;</button>
       </div>
+
+      ${cmsCallsCard("", "Elias Thorne's calls on six lines (executive, gatekeeping, legal operations, lifestyle, intake, outreach), each with Practice and Graded calls. Opens in the CMS, already signed in.")}
 
       <h3 style="font-size:13px;color:var(--navy);margin:0 0 10px;">Pick a Category</h3>
       <div class="rp-category-grid">
@@ -9912,6 +9926,7 @@ function renderIntakeCallSection(){
           <span class="rp-topic-arrow">${esc(p.matter)} &rarr;</span>
         </div>`).join("")}
     </div>
+    <div style="margin-top:14px;">${cmsCallsCard("Intake Calls", "More intake callers, practice or graded, on the CMS Call Simulator's EA / PA Intake Calls line.")}</div>
   `;
 }
 function startIntakeVoiceCall(){
