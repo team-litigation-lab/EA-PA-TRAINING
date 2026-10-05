@@ -731,6 +731,84 @@ const DAY4 = {
       }
     },
     {
+      "h": "Manual Lead Generation Methods",
+      "section": "Sales & Lead Generation",
+      "fourPart": {
+        "corePrinciples": [
+          "Manual lead generation means a person finds and starts each lead by hand. It's slow, but it produces the leads most likely to become clients: referrals, people met in person, researched companies and real conversations.",
+          "The main manual methods are referral asks, networking and events, directory and registry research, follow-up on talks, articles and webinars, and re-engaging old contacts. Referrals come from past clients, other attorneys, accountants and financial advisors; events include bar association meetings, the chamber of commerce and industry conferences; directories include state business registries, industry association member lists and LinkedIn searches.",
+          "Bar rules limit how a law firm may approach prospective clients, so the attorney approves every approach. Live, person-to-person solicitation of someone who may need legal help is restricted (ABA Model Rule 7.3, adopted with variations by each state), while outreach to businesses that routinely use legal services is generally treated differently."
+        ],
+        "howTo": [
+          "List satisfied past clients and referral partners first, and draft a short referral ask for the attorney to approve and send.",
+          "Log every event contact in the CRM the same day, with where you met, what they need and the next step. Before the event, list the people worth meeting.",
+          "Research directories and registries against a clear target (for example, companies in the state with 50+ employees that handle customer data), and record the source and date for every lead you add.",
+          "Treat webinar attendees, people who asked a question after a talk and article downloads as leads, logged with the event as the source.",
+          "Every quarter, review dormant contacts in the CRM (past clients, old inquiries) and flag the ones worth a check-in."
+        ],
+        "bestPractices": [
+          "Log the source of every lead (a referral from whom, which event, which directory), so the firm learns which methods actually bring in clients.",
+          "Quality over quantity: ten researched leads that fit beat a hundred names copied from a directory.",
+          "Pitfall: contacting someone who may need legal help with a specific matter, such as an accident victim or a party in a filed case, just because their name is public. That can be prohibited solicitation; take it to the attorney instead.",
+          "Pitfall: collecting business cards at an event and logging them a week later. The context fades and the lead goes cold."
+        ],
+        "discussionCase": "Thorne & Partners is launching a Data Privacy & Cybersecurity practice. Elias asks you to find 20 companies worth approaching by Friday, using only manual methods. Where do you start, what do you record for each, and what needs his approval first?"
+      },
+      "trainerCue": "Ask the room to rank the manual methods by lead quality, then by speed. The two rankings point in opposite directions, which is the point: manual methods are slow because they're personal."
+    },
+    {
+      "h": "Automated Lead Generation Tools & Workflows",
+      "section": "Sales & Lead Generation",
+      "fourPart": {
+        "corePrinciples": [
+          "Automated lead generation uses software to find, capture and route leads without anyone typing each one in: forms that feed the CRM, saved searches and alerts, data-enrichment tools, and simple automations that connect them.",
+          "The common tools are web and webinar forms, LinkedIn Sales Navigator saved searches, news alerts, enrichment tools and workflow tools such as Zapier or Make. Forms create a CRM record and a follow-up task; saved searches alert you when a prospect changes jobs or a company grows; news alerts flag trigger events like a new regulation, a funding round or an expansion; enrichment tools fill in company size, industry and role; and workflow tools pass a lead from one system to the next.",
+          "Automation saves hours of capturing and routing, but every lead it produces still needs a person to verify it. Nothing goes to a prospect until a person approves it, because automation multiplies mistakes as fast as it multiplies leads."
+        ],
+        "howTo": [
+          "Before building anything, map where each lead comes from, what gets recorded, who is told and what happens next.",
+          "Send every form and alert to one place, the CRM, with the source filled in automatically, so no lead sits in an inbox or a spreadsheet nobody checks.",
+          "Set duplicate checks on email address and company name, so someone who fills in two forms becomes one lead, not two.",
+          "Have each new lead create a task for a person to verify and qualify it within one business day, instead of an automatic email to the prospect.",
+          "Review the automation every week for its first month: what came in, what was junk and what was missed, then adjust the rules."
+        ],
+        "bestPractices": [
+          "Automation captures and routes leads, and a person verifies them and approves any outreach.",
+          "Pitfall: buying a contact list and loading it into an automated email sequence. Bought lists are full of outdated, unverified contacts, and emailing them brings spam complaints and damages the firm's sending reputation.",
+          "Automated outreach must follow CAN-SPAM for email, the TCPA for calls and texts, and GDPR for EU or UK contacts. Commercial email needs a working opt-out and the firm's postal address; automated calls and texts to mobile phones generally need the person's prior consent; and the attorney approves any automated outreach before it runs.",
+          "Pitfall: an automation nobody owns. Name one person who checks that it works and fixes it when a form or tool changes."
+        ],
+        "discussionCase": "The webinar registration form now creates 40 new CRM records a week, and the partners complain that most are students and vendors. Without turning the form off, how would you change the workflow so only real leads reach the partners?"
+      },
+      "trainerCue": "Draw the flow on the board: form, CRM record, verification task, qualified lead, attorney-approved outreach. Ask where a person must step in, and why the automation stops there."
+    },
+    {
+      "h": "Verifying a Working Lead",
+      "section": "Sales & Lead Generation",
+      "fourPart": {
+        "corePrinciples": [
+          "A working lead is a real person in the role you think, at an active business that fits, whom you can reach and the firm may contact. If any of those fails, it's a name on a list, not a lead.",
+          "Verification takes a few minutes per lead and happens before any outreach and before the lead is counted in a report. It protects the firm's credibility, its email sending reputation and its conflict-check obligations.",
+          "This connects directly to the data-sourcing and qualifying topics in this section: sourcing finds the lead, verification proves it's real and reachable, and qualifying decides whether it's worth the firm's time."
+        ],
+        "howTo": [
+          "Person: confirm the person exists and still holds the role, on the company's own website or a recent LinkedIn profile, and check the spelling of their name and title.",
+          "Company: confirm the business is active (the state business registry shows it in good standing, the website is live, there's recent news or activity) and that it fits the target.",
+          "Contact details: check the email address's domain is the company's own (watch for misspellings), run it through the firm's email-verification tool if there is one, and prefer a named address to info@. Confirm the phone number reaches the company's main line or the person's voicemail.",
+          "Clearance: search the CRM for duplicates and check the do-not-contact and unsubscribe lists, then send the name and company for a conflict check, so the firm never approaches an existing client's opponent.",
+          "Record the result: mark the lead Verified, Needs check or Not workable, with the reason, the date and who checked. Verify again anything older than about 90 days before outreach."
+        ],
+        "bestPractices": [
+          "A lead isn't real if the email bounces, the number is disconnected, the business is dissolved or the title doesn't exist. Form entries with a free email and a nonsense name, or full of links or gibberish, are spam, not leads.",
+          "An existing client, an adverse party or someone who unsubscribed is never a workable lead, however good the fit. Nor is a person who needs help with a specific legal matter and could only be approached in ways bar rules restrict.",
+          "Pitfall: counting a lead as 'generated' before it's verified. Unverified totals look good in a report and fall apart in the pipeline.",
+          "Correct or remove a bounced address straight away; a bounce is a verification result, not bad luck. Repeated bounces hurt every email the firm sends after them."
+        ],
+        "discussionCase": "Your list has 'Dana Reyes, Chief Privacy Officer, Brightline Logistics, dana.reyes@brightline-logistcs.com'. LinkedIn shows Dana left Brightline in March, and the state registry shows Brightline merged into another company. What do you record, and is there still a lead here?"
+      },
+      "trainerCue": "Run three sample leads through the five checks live: one clean, one with a misspelled domain and one that's an adverse party. Trainees practise the same sorting in the Day 4 Practice Lab's Lead Generation Practice."
+    },
+    {
       "h": "Lead Quality, Qualifying & Tracking",
       "section": "Sales & Lead Generation",
       "b": [
@@ -1097,7 +1175,7 @@ const DAY4 = {
       "r": "Pareto's principle is about impact concentration — a small slice of effort driving most of the outcome."
     },
     {
-      "afterIndex": 46,
+      "afterIndex": 49,
       "q": "Your first outreach email got no reply after four days. What's the strongest follow-up?",
       "opts": [
         "\"Just bumping this to the top of your inbox.\"",
@@ -1107,6 +1185,18 @@ const DAY4 = {
       ],
       "a": 1,
       "r": "A follow-up should add something new and keep the ask small. A bare \"bump\" adds nothing, a longer pitch adds friction, and waiting a month loses the trigger that made the timing relevant."
+    },
+    {
+      "afterIndex": 34,
+      "q": "A new lead's email is jane@acme-c0rp.com, but the company's website is acme-corp.com. What's the right move?",
+      "opts": [
+        "Send the email anyway; it will probably arrive",
+        "Check the address on the company's own site, then correct it or mark the lead Needs check",
+        "Delete the lead from the CRM",
+        "Have Elias call the company's main number instead"
+      ],
+      "a": 1,
+      "r": "A misspelled domain (a zero for an o) is a classic verification failure. Confirm the address on the company's own site and correct it, or mark the lead Needs check. Never send to a guessed address."
     }
   ],
   "quiz": [
@@ -1318,6 +1408,50 @@ const DAY4 = {
       ],
       "a": 3,
       "r": "One source of truth, actively communicated, is what keeps a shared list reliable."
+    },
+    {
+      "q": "A partner wants new clients for the firm's Data Privacy practice. Which lead is most likely to become a client?",
+      "opts": [
+        "A business introduced by a satisfied past client",
+        "A company from a purchased list of 5,000 contacts",
+        "A name taken from a public court filing about a data breach",
+        "An anonymous visitor who downloaded a free article"
+      ],
+      "a": 0,
+      "r": "Referrals arrive with trust and context. A purchased list is unverified, an anonymous download isn't a lead yet, and approaching someone named in a filing about their own legal problem can breach solicitation rules."
+    },
+    {
+      "q": "The firm's webinar form now sends new sign-ups straight into the CRM. What should happen next for each new record?",
+      "opts": [
+        "An automatic sales email goes to the sign-up",
+        "The sign-up is added to the monthly newsletter list",
+        "Nothing, until someone happens to open the CRM",
+        "A task is created for a person to verify and qualify the lead"
+      ],
+      "a": 3,
+      "r": "Automation captures and routes leads; a person verifies them, qualifies them and approves any outreach. Auto-sending or auto-subscribing unverified contacts risks spam complaints and unapproved outreach."
+    },
+    {
+      "q": "Which of these leads is ready to work?",
+      "opts": [
+        "Strong title, but the email bounced on the first send",
+        "A good fit, but the state registry lists the company as dissolved",
+        "Confirmed in the role, company active, email verified, conflict check clear",
+        "A good fit, but the person unsubscribed from the firm's emails last month"
+      ],
+      "a": 2,
+      "r": "A working lead is reachable, real, active and allowed to be contacted. A bounce, a dissolved company and an unsubscribe each make a lead not workable."
+    },
+    {
+      "q": "A promising lead turns out to be the CEO of a company the firm is suing for another client. What do you do?",
+      "opts": [
+        "Mark the lead Not workable and flag the conflict to the attorney",
+        "Reach out quickly, before the case ends",
+        "Email them from a personal account instead of the firm's",
+        "Keep the lead and skip the conflict check this time"
+      ],
+      "a": 0,
+      "r": "An adverse party is never a lead for the firm. Record why it isn't workable and tell the attorney; the conflict check exists for exactly this."
     }
   ],
   "discussionQuestion": "Think of a cold email or call you actually answered. What made it worth answering, and what would you put in your own first outreach email because of it?"
@@ -1371,6 +1505,16 @@ const DAY4_EXTRA_LEARNING = {
       "Formula: verb + object + purpose — 'Drafted deposition notice for Harlow matter; circulated to counsel for review' tells a reviewer exactly what was done and why.",
       "Record in increments your firm uses (often 0.1 hour = 6 minutes) and round honestly — consistent small inaccuracies distort a whole month's billing.",
       "Tag each entry with the client/matter as you log it; assigning time to matters days later is where the most write-offs and disputes begin."
+    ]
+  },
+  "4::Verifying a Working Lead": {
+    "t": "The Two-Minute Verification Checklist",
+    "p": [
+      "Person: name spelled right, still in the role (the company's site, or LinkedIn updated in the last 90 days).",
+      "Company: active in the state business registry, live website, fits the target.",
+      "Contact: the company's own domain, spelled right; a verified or named email address; a phone number that reaches the company.",
+      "Clearance: no duplicate in the CRM, not on the do-not-contact or unsubscribe list, conflict check requested.",
+      "Record: Verified, Needs check or Not workable, with the reason, the date, the source and your initials."
     ]
   }
 };
