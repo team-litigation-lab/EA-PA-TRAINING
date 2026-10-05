@@ -68,7 +68,8 @@ function adminPassStatus(env) {
     const { ignored, odd } = passNotes(env[n]);
     return [ignored.length ? `${n} had ${ignored.join(", ")}: ignored` : "", ...odd.map((o) => `${n} has ${o}`)].filter(Boolean).join("; ");
   }).filter(Boolean);
-  return set.join(" or ") + (notes.length ? ` (${notes.join("; ")})` : "") + blankNote;
+  return set.join(" or ") + (notes.length ? ` (${notes.join("; ")})` : "") + blankNote
+    + (env.ADMIN_PASSPHRASE ? " (ADMIN_PASSPHRASE is still set in Cloudflare but no longer used: it can be deleted)" : "");
 }
 async function makeToken(env, role, subject, hours) {
   const exp = Date.now() + hours * 3600 * 1000;
@@ -176,6 +177,27 @@ async function dataDelete(env, key) {
   await env.LSH_KV.delete(key);   // and the copy (or the record from before the move), or it would be read back
 }
 
+/* ---------- a trainee's progress never shrinks in their own save ----------
+   A device that signed in without its progress (a fresh browser, a failed restore) would otherwise write an empty
+   day list over the real one. Trainees can't un-finish a day (Retake only redoes the quiz), so a trainee's save keeps
+   every day, practice tool and saved submission already on record; a trainer (admin) can still change anything. */
+function daysDone(dp) { return Object.values(dp || {}).filter((p) => p && p.done).length; }
+function keepProgress(existing, merged) {
+  for (const f of ["dayProgress", "practiceProgress"]) {
+    const had = existing[f] && typeof existing[f] === "object" ? existing[f] : null;
+    if (!had) continue;
+    const now = merged[f] && typeof merged[f] === "object" ? merged[f] : {};
+    for (const [k, v] of Object.entries(had)) {
+      if (!(k in now) || !now[k]) now[k] = v;
+      else if (v && v.done && !now[k].done) now[k] = Object.assign({}, now[k], { done: true, score: Math.max(Number(v.score) || 0, Number(now[k].score) || 0) || v.score });
+    }
+    merged[f] = now;
+  }
+  for (const f of ["submissions", "roleplayHistory"]) {
+    if (Array.isArray(existing[f]) && (!Array.isArray(merged[f]) || merged[f].length < existing[f].length)) merged[f] = existing[f];
+  }
+}
+
 /* ---------- what a trainee may touch ---------- */
 const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
@@ -183,12 +205,24 @@ const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemp
 
 function canRead(tok, key) {
   if (tok.role === "a") return true;
-  return OWN(tok.id).includes(key) || PUBLIC_READ.some((re) => re.test(key));
+  return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
 }
 async function traineeWrite(env, tok, key, value) {
   const id = tok.id;
   let incoming; try { incoming = JSON.parse(value); } catch (e) { return "Invalid JSON"; }
-  if (key === `progress:${id}`) { await dataPut(env, key, value); return null; }   // their own copy, saved as is
+  if (key === `progress:${id}`) {   // their own copy, saved as is
+    // A save with fewer finished days than the copy it replaces (a device that signed in without its progress) first
+    // keeps that copy in backup:progress:<id>, so Admin → ♻ Restore progress can bring it back. Rare, so KV writes stay low.
+    try {
+      const prevRaw = await dataGet(env, key), prev = prevRaw ? JSON.parse(prevRaw) : null;
+      const had = daysDone(prev && prev.data && prev.data["day-progress"]), now = daysDone(incoming && incoming.data && incoming.data["day-progress"]);
+      if (had > now) {
+        const bRaw = await env.LSH_KV.get(`backup:progress:${id}`), b = bRaw ? JSON.parse(bRaw) : null;
+        if (!b || daysDone(b.data && b.data["day-progress"]) <= had) await env.LSH_KV.put(`backup:progress:${id}`, prevRaw);
+      }
+    } catch (e) { /* never block a save over its backup */ }
+    await dataPut(env, key, value); return null;
+  }
   const existingRaw = await env.LSH_KV.get(key);
   const existing = existingRaw ? JSON.parse(existingRaw) : null;
   if (key === `trainee:${id}`) {
@@ -196,6 +230,7 @@ async function traineeWrite(env, tok, key, value) {
     const merged = Object.assign({}, incoming);
     PROTECTED_TRAINEE_FIELDS.forEach((f) => { if (existing && f in existing) merged[f] = existing[f]; else delete merged[f]; });
     if (!existing) { merged.approved = false; merged.registeredAt = new Date().toISOString(); }
+    if (existing) keepProgress(existing, merged);
     merged.id = id;
     await env.LSH_KV.put(key, JSON.stringify(merged)); return null;
   }
@@ -555,6 +590,15 @@ export default {
         if (tok.role === "a") { await dataPut(env, key, body.value); return json({ ok: true }); }
         const err = await traineeWrite(env, tok, key, body.value);
         return err ? json({ error: err }, 403) : json({ ok: true });
+      }
+      if (path === "/api/admin/progress-copies") {
+        // Admin → ♻ Restore progress: the older copies of a trainee's progress that /get can't reach (the daily KV copy
+        // of the R2 record, and the backup kept when a save shrank it).
+        if (tok.role !== "a") return json({ error: "Not allowed" }, 403);
+        const id = String(body.id || "");
+        if (!id) return json({ error: "Missing id" }, 400);
+        const [current, daily, backup] = await Promise.all([dataGet(env, `progress:${id}`), env.LSH_KV.get(`progress:${id}`), env.LSH_KV.get(`backup:progress:${id}`)]);
+        return json({ current, daily: daily !== current ? daily : null, backup });
       }
       if (path === "/api/storage/list") {
         if (tok.role !== "a") return json({ keys: [] });

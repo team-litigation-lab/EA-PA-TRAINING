@@ -3802,3 +3802,184 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
 .pw-eye:hover{background:rgba(127,135,160,.32);}
 `; document.head.appendChild(st);
 })();
+
+/* ===== ♻ Restore progress (Admin) =====
+   A trainee's progress can go missing from view when they sign in under a name or batch that makes a new record (the
+   old one keeps their work), or when a device that signed in without its progress saved over it. Admin → a trainee →
+   ♻ Restore lists every older copy: other records with the same name, the daily copy kept in KV and the backup the
+   server keeps when a save shrinks. Restore merges the chosen copy in (finished days, scores, saved work: nothing the
+   trainee has now is lost), after keeping the current state in backup:restore:<id>. The trainee's open page picks it up
+   on its next save (applyAdminUnlocks below), so their device never writes the old state back over it. */
+(function(){
+  const plain = v=>v && typeof v === "object" && !Array.isArray(v);
+  const rank = x=>(x && x.done ? 1e9 : 0) + (Number(x && (x.score ?? x.bestScore)) || 0) * 1e5 + JSON.stringify(x ?? "").length;
+  const better = (a, b)=>{
+    if(a == null) return b; if(b == null) return a;
+    if(typeof a === "number" && typeof b === "number") return Math.max(a, b);
+    if(Array.isArray(a) && Array.isArray(b)) return mergeList(a, b);
+    return rank(b) > rank(a) ? b : a;
+  };
+  function mergeList(a, b){ const seen = new Set(a.map(x=>JSON.stringify(x))); return a.concat(b.filter(x=>!seen.has(JSON.stringify(x)))); }
+  function mergeMap(a, b){ const out = Object.assign({}, a || {}); for(const [k, v] of Object.entries(b || {})) out[k] = k in out ? better(out[k], v) : v; return out; }
+  function mergeVal(cur, inc){
+    if(cur == null || cur === "") return inc;
+    if(inc == null) return cur;
+    if(Array.isArray(cur) && Array.isArray(inc)) return mergeList(cur, inc);
+    if(plain(cur) && plain(inc)) return mergeMap(cur, inc);
+    if(typeof cur === "number" && typeof inc === "number") return Math.max(cur, inc);
+    return cur;
+  }
+  function mergeData(a, b){ const out = Object.assign({}, a || {}); for(const [k, v] of Object.entries(b || {})) out[k] = mergeVal(out[k], v); return out; }
+  function mergeRec(t, s){
+    const out = Object.assign({}, t);
+    out.dayProgress = mergeMap(t.dayProgress, s.dayProgress);
+    out.practiceProgress = mergeMap(t.practiceProgress, s.practiceProgress);
+    out.completedLabActions = mergeMap(t.completedLabActions, s.completedLabActions);
+    out.labAttemptsByDay = mergeMap(t.labAttemptsByDay, s.labAttemptsByDay);
+    out.submissions = mergeList(t.submissions || [], s.submissions || []);
+    out.roleplayHistory = mergeList(t.roleplayHistory || [], s.roleplayHistory || []);
+    return out;
+  }
+  const nameKey = r=>String(((r.firstName || "") + " " + (r.lastName || "")).trim() || r.name || "").toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/).filter(Boolean).sort().join(" ");
+  const parse = v=>{ try{ return typeof v === "string" ? JSON.parse(v) : v; }catch(e){ return null; } };
+  function summary(rec, snap){
+    const dp = mergeMap((rec && rec.dayProgress) || {}, (snap && snap.data && snap.data["day-progress"]) || {});
+    const done = Object.values(dp).filter(p=>p && p.done).length, started = Object.keys(dp).length;
+    const subs = Math.max(((rec && rec.submissions) || []).length, ((snap && snap.data && snap.data.submissions) || []).length);
+    const slides = Object.values((snap && snap.data && snap.data["slide-progress"]) || {}).reduce((n, v)=>n + (Number(v) || 0), 0);
+    return {done, started, subs, slides, at: (snap && snap.savedAt) || (rec && rec.lastActive) || ""};
+  }
+  const sumText = s=>`<b>${s.done}</b> day${s.done === 1 ? "" : "s"} finished · ${s.started} started · ${s.subs} submission${s.subs === 1 ? "" : "s"} · ${s.slides} slides seen${s.at ? ` · saved ${esc(fmtDate(s.at))}` : ""}`;
+  async function copiesOf(id){
+    try{ const r = await authFetch("/api/admin/progress-copies", {id}); if(r.ok) return await r.json(); }catch(e){}
+    return {};
+  }
+  let RP = null;   // the open Restore window: {id, rec, cur, sources:[{label, rec, snap}]}
+  async function sourcesFor(rec, isTarget){
+    const c = await copiesOf(rec.id), out = [];
+    const cur = parse(c.current), daily = parse(c.daily), backup = parse(c.backup);
+    if(!isTarget) out.push({label: `Record <code>${esc(rec.id)}</code>${rec.batch ? ` · batch ${esc(cleanBatch(rec.batch))}` : ""}`, rec, snap: cur});
+    if(daily && daily.data) out.push({label: `${isTarget ? "Daily copy" : `Daily copy of <code>${esc(rec.id)}</code>`} (kept in KV)`, rec: isTarget ? null : rec, snap: daily});
+    if(backup && backup.data) out.push({label: `${isTarget ? "Backup" : `Backup of <code>${esc(rec.id)}</code>`} (kept when a save had fewer finished days)`, rec: isTarget ? null : rec, snap: backup});
+    return {cur, out};
+  }
+  function draw(){
+    const box = document.getElementById("rpBody"); if(!box || !RP) return;
+    const now = summary(RP.rec, RP.cur);
+    const others = (state.adminData || []).filter(r=>r.id !== RP.id && !RP.checked.has(r.id)).sort((a, b)=>String(a.name || "").localeCompare(String(b.name || "")));
+    box.innerHTML = `
+      <div class="rp-now"><span>Now</span> ${sumText(now)}</div>
+      ${RP.sources.length ? RP.sources.map((s, i)=>{ const m = summary(s.rec, s.snap); return `
+        <div class="rp-src ${m.done > now.done ? "rp-more" : ""}">
+          <div><div class="rp-label">${s.label}</div><div class="rp-sum">${sumText(m)}</div></div>
+          <button class="btn btn-sm ${m.done > now.done || m.subs > now.subs ? "btn-primary" : "btn-ghost"}" onclick="rpRestore(${i})">Restore into ${esc(RP.rec.name || "this trainee")}</button>
+        </div>`; }).join("") : `<p class="rp-none">No other copies were found for this trainee${RP.loading ? " yet…" : ""}.</p>`}
+      <div class="rp-pick"><label for="rpPick">Another record (a different spelling or batch)</label>
+        <div><select id="rpPick"><option value="">Choose a trainee…</option>${others.map(r=>`<option value="${esc(r.id)}">${esc(r.name || r.id)}${r.batch ? " · " + esc(cleanBatch(r.batch)) : ""} (${Object.values(r.dayProgress || {}).filter(p=>p && p.done).length} done)</option>`).join("")}</select>
+        <button class="btn btn-sm btn-ghost" onclick="rpAdd(document.getElementById('rpPick').value)">Check it</button></div></div>
+      <p class="rp-foot">Restoring merges: finished days, scores and saved work from the copy are added, and nothing this trainee has now is lost. The current state is kept first in <code>backup:restore:${esc(RP.id)}</code>.</p>`;
+  }
+  window.openRestoreProgress = async function(id){
+    const rec = (state.adminData || []).find(r=>r.id === id); if(!rec) return;
+    document.querySelectorAll(".overlay.rp-overlay").forEach(n=>n.remove());
+    const ov = document.createElement("div"); ov.className = "overlay rp-overlay";
+    ov.innerHTML = `<div class="card rp-card"><h3>♻ Restore progress · ${esc(rec.name || id)}</h3><div id="rpBody"><p class="rp-none">Looking for older copies…</p></div>
+      <div class="row"><button class="btn btn-ghost" onclick="this.closest('.overlay').remove()">Close</button></div></div>`;
+    ov.addEventListener("click", e=>{ if(e.target === ov) ov.remove(); });
+    document.body.appendChild(ov);
+    RP = {id, rec, cur: null, sources: [], checked: new Set([id]), loading: true};
+    const mine = await sourcesFor(rec, true); RP.cur = mine.cur; RP.sources.push(...mine.out); draw();
+    const key = nameKey(rec);
+    const same = key ? (state.adminData || []).filter(r=>r.id !== id && nameKey(r) === key) : [];
+    for(const r of same){ RP.checked.add(r.id); RP.sources.push(...(await sourcesFor(r, false)).out); draw(); }
+    RP.loading = false; draw();
+  };
+  window.rpAdd = async function(otherId){
+    if(!RP || !otherId || RP.checked.has(otherId)) return;
+    const r = (state.adminData || []).find(x=>x.id === otherId); if(!r) return;
+    RP.checked.add(otherId); RP.sources.push(...(await sourcesFor(r, false)).out); draw();
+  };
+  window.rpRestore = async function(i){
+    if(!RP || !RP.sources[i]) return;
+    const src = RP.sources[i], id = RP.id;
+    if(!confirm(`Merge this copy into ${RP.rec.name || id}'s progress? Nothing they have now is removed.`)) return;
+    const fresh = (await sharedGet("trainee:" + id)) || RP.rec;
+    const cur = parse((await copiesOf(id)).current) || RP.cur;
+    const at = new Date().toISOString();
+    await sharedSet("backup:restore:" + id, {at, rec: fresh, snap: cur});
+    let rec = src.rec ? mergeRec(fresh, src.rec) : Object.assign({}, fresh);
+    const sdata = (src.snap && src.snap.data) || {};
+    rec = mergeRec(rec, {dayProgress: sdata["day-progress"], practiceProgress: sdata["practice-progress"], completedLabActions: sdata["completed-lab-actions"], labAttemptsByDay: sdata["lab-attempts-by-day"], submissions: sdata.submissions, roleplayHistory: sdata.roleplayHistory});
+    rec.progressRestoredAt = at;
+    let data = mergeData((cur && cur.data) || {}, sdata);
+    data = mergeData(data, {"day-progress": rec.dayProgress, "practice-progress": rec.practiceProgress, "completed-lab-actions": rec.completedLabActions, "lab-attempts-by-day": rec.labAttemptsByDay, submissions: rec.submissions, roleplayHistory: rec.roleplayHistory});
+    const snap = {traineeId: id, savedAt: at, data};
+    const ok = (await sharedSet("trainee:" + id, rec)) && (await sharedSet("progress:" + id, snap)) && (await sharedSet("progress-restore:" + id, snap));
+    if(!ok){ toast("Couldn't save the restored progress. Please try again."); return; }
+    const s = summary(rec, snap);
+    toast(`♻ Restored: ${RP.rec.name || id} now has ${s.done} finished day${s.done === 1 ? "" : "s"}.`);
+    RP.rec = rec; RP.cur = snap; draw();
+    if(typeof loadAdminLedger === "function") loadAdminLedger();
+  };
+
+  /* the Restore button on each trainee row in Admin */
+  if(typeof renderAdminRow === "function" && !renderAdminRow.__rp){
+    const __row = renderAdminRow;
+    renderAdminRow = function(rec){
+      const html = __row.apply(this, arguments);
+      return html.replace(`<button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee(`,
+        `<button class="btn btn-sm btn-ghost" onclick="openRestoreProgress('${rec.id}')" title="Find older copies of this trainee's progress and bring them back">♻ Restore</button><button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee(`);
+    };
+    renderAdminRow.__rp = true;
+  }
+
+  /* a trainee's page takes progress their trainer restored (once), before its next save to their record */
+  if(typeof applyAdminUnlocks === "function" && !applyAdminUnlocks.__rp){
+    const __unlocks = applyAdminUnlocks;
+    applyAdminUnlocks = async function(rec){
+      try{ await adoptRestore(rec); }catch(e){}
+      return __unlocks.apply(this, arguments);
+    };
+    applyAdminUnlocks.__rp = true;
+  }
+  async function adoptRestore(rec){
+    if(!rec || !rec.progressRestoredAt || !state.traineeId || state.isAdmin) return;
+    let seen = ""; try{ seen = localStorage.getItem("lsh_progress-restored-seen") || ""; }catch(e){}
+    if(seen === rec.progressRestoredAt) return;
+    const before = JSON.stringify(state.progress || {});
+    const snap = await sharedGet("progress-restore:" + state.traineeId).catch(()=>null);
+    const data = mergeData((snap && snap.data) || {}, {"day-progress": rec.dayProgress, "practice-progress": rec.practiceProgress, "completed-lab-actions": rec.completedLabActions, "lab-attempts-by-day": rec.labAttemptsByDay, submissions: rec.submissions, roleplayHistory: rec.roleplayHistory});
+    state.cloudRestoring = true;
+    try{
+      for(const k of PERSONAL_KEYS){
+        if(!(k in data)) continue;
+        const next = mergeVal(await storeGet(k), data[k]);
+        await storeSet(k, next);
+        const field = (typeof TAB_SYNC_KEYS !== "undefined") && TAB_SYNC_KEYS[k];
+        if(field) state[field] = next;
+      }
+    }finally{ state.cloudRestoring = false; }
+    try{ localStorage.setItem("lsh_progress-restored-seen", rec.progressRestoredAt); }catch(e){}
+    if(typeof scheduleCloudSave === "function") scheduleCloudSave();
+    if(JSON.stringify(state.progress || {}) !== before){
+      toast("♻ Your trainer restored your progress.");
+      state.labResetRenderPending = true;
+      if(typeof renderLabResetIfSafe === "function") setTimeout(()=>renderLabResetIfSafe(), 0);
+    }
+  }
+
+  const st = document.createElement("style"); st.id = "restore-progress"; st.textContent = `
+.overlay.rp-overlay .card.rp-card{max-width:680px !important;width:calc(100vw - 32px) !important;max-height:calc(100vh - 48px);overflow:auto;}
+.rp-card h3{margin:0 0 12px;}
+.rp-now{background:#F3F4F8;border-radius:8px;padding:10px 12px;font-size:13.5px;margin-bottom:10px;}
+.rp-now span{display:inline-block;font-weight:800;color:var(--navy);margin-right:6px;}
+.rp-src{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px;}
+.rp-src.rp-more{border-color:var(--success);background:var(--success-bg);}
+.rp-label{font-weight:700;font-size:13.5px;color:var(--navy);} .rp-label code, .rp-foot code{font-size:12px;}
+.rp-sum{font-size:13px;color:var(--ink-soft);margin-top:2px;}
+.rp-none{color:var(--ink-soft);font-size:13.5px;}
+.rp-pick{margin:12px 0 6px;font-size:13px;} .rp-pick label{display:block;font-weight:700;margin-bottom:4px;}
+.rp-pick > div{display:flex;gap:8px;flex-wrap:wrap;} .rp-pick select{flex:1;min-width:0;font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;}
+.rp-foot{font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;}
+`; document.head.appendChild(st);
+})();
