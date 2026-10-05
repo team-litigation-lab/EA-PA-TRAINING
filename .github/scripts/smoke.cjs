@@ -1,6 +1,7 @@
 // Smoke test: signs in as a trainee, renders every lesson slide and quiz of every
-// day, every page and every practice tool (all parts), at desktop and phone width.
-// Fails on any page error, console error or render exception.
+// day, every page and every practice tool (all parts), at desktop and phone width,
+// then opens every practice tool directly with js/eapa-updates.js arriving late.
+// Fails on any page error, console error, render exception or empty lab.
 // Usage: node tests/smoke.cjs [baseUrl]   (needs `npm i playwright` and a browser)
 const { chromium } = require('playwright');
 const BASE = process.argv[2] || 'http://localhost:8787/';
@@ -50,6 +51,31 @@ const IGNORE = /Failed to load resource|ERR_|net::|favicon/;
         try { await page.evaluate(() => goto('practice')); await page.waitForTimeout(200); } catch (e) { failures.push(`[${vp.name}] Practice page: ${e.message.split('\n')[0]}`); }
         if (await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)) failures.push(`[${vp.name}] the page scrolls sideways`);
         await page.close();
+    }
+    // A lab opened in its own tab on a normal connection: the portal draws the page before the big
+    // update script arrives, then the script redraws it. Delay the script and open each lab directly.
+    {
+        const ctx = await browser.newContext({ viewport: { width: 1360, height: 900 } });
+        const page = await ctx.newPage();
+        page.on('pageerror', e => failures.push(`[late update script] page error: ${e.message}`));
+        await page.goto(BASE, { waitUntil: 'load' }); await page.waitForTimeout(800);
+        await page.fill('#loginFirstInput', 'Smoke'); await page.fill('#loginLastInput', 'Test'); await page.fill('#loginBatchInput', 'CIlate');
+        await page.click('#loginSubmitBtn'); await page.waitForTimeout(1200);
+        await page.evaluate(async () => {
+            const key = 'trainee:' + state.traineeId;
+            const r = await fetch('/api/storage/get', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key }) }).then(r => r.json());
+            const rec = JSON.parse(r.value || '{}'); rec.approved = true;
+            await fetch('/api/storage/set', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key, value: JSON.stringify(rec) }) });
+        });
+        const tools = await page.evaluate(() => (typeof PRACTICE_TOOLS !== 'undefined' ? PRACTICE_TOOLS : []).map(t => t.id));
+        await ctx.route(/\/js\/eapa-updates\.js/, async route => { await new Promise(r => setTimeout(r, 1500)); await route.continue(); });
+        for (const id of tools) {
+            await page.goto(BASE + '#/tool/' + id); await page.reload({ waitUntil: 'load' }); await page.waitForTimeout(2500);
+            const filled = await page.evaluate(() => ((document.getElementById('toolBody') || {}).innerText || '').trim().length > 0);
+            if (!filled) failures.push(`[late update script] tool ${id}: the lab is empty when opened directly`);
+        }
+        console.log(`opened ${tools.length} tools directly with a late update script`);
+        await ctx.close();
     }
     await browser.close();
     if (failures.length) { console.log(`\n${failures.length} failure(s):`); failures.forEach((f, i) => console.log(`${i + 1}. ${f}`)); process.exit(1); }

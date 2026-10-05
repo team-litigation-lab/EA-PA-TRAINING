@@ -42,21 +42,21 @@ window.EAPA_UPDATE_PACK = "z";
   .topbar-search .search-results{min-width:320px}
 }
 @container (max-width:170px){.topbar .brand-text{display:none !important}}
-/* ================= Standard-size, centred slides =================
-   Every slide is the same size. Content sits in a centred column; anything
-   that doesn't fit continues on a balanced next page (see paginateLessonSlide). */
-.lesson-stage #lessonSlideWrap{height:clamp(440px,66vh,720px);min-height:0;max-height:none;display:flex;flex-direction:column;justify-content:safe center;align-items:center;overflow-y:auto;}
-.lesson-stage #lessonSlideWrap > *{width:100%;max-width:1080px;flex-shrink:0;}
+/* ================= One fixed-size deck =================
+   A lesson slide is always laid out at one size, 960 × 540 (16:9), with fixed type: on a laptop, a large
+   screen, in full screen and in the shared slides window alike. The whole frame is then scaled to fit
+   (deckRescale), the way a slide deck is. Nothing grows or shrinks with the window, so a slide splits into
+   the same pages everywhere, and a resize only changes the scale: the slide is never laid out again, so it
+   doesn't flicker. Content sits in a centred column; anything that doesn't fit continues on a balanced next
+   page (see paginateLessonSlide). Phones (760px and narrower) keep a scrolling page instead. */
+.lesson-stage #lessonSlideWrap{min-height:0;max-height:none;display:flex;flex-direction:column;justify-content:safe center;align-items:center;}
+.lesson-stage #lessonSlideWrap > *{width:100%;flex-shrink:0;}
 .lesson-stage #lessonSlideWrap .topic-separator, .lesson-stage #lessonSlideWrap .lesson-card h4, .lesson-stage #lessonSlideWrap .meet-client-card h3, .lesson-stage #lessonSlideWrap .mc-tag, .lesson-stage #lessonSlideWrap .qc-tag{text-align:center;}
 .lesson-stage #lessonSlideWrap .fp-section:first-of-type p, .lesson-stage #lessonSlideWrap .fp-section:first-of-type > div > p{margin-left:auto;margin-right:auto;}
-.lesson-stage:fullscreen .stage-body > #lessonSlideWrap.lesson-slide{display:flex;flex-direction:column;justify-content:safe center;align-items:center;height:100%;}
-.lesson-stage:fullscreen #lessonSlideWrap > *{max-width:1400px;}
 .pg-hide{display:none !important;}
-.lesson-stage #lessonSlideWrap.pg-roomy .fp-body > p, .lesson-stage #lessonSlideWrap.pg-roomy .fp-body > ul > li, .lesson-stage #lessonSlideWrap.pg-roomy .fp-section:first-of-type p{font-size:clamp(19px,1.7vw,24px) !important;line-height:1.55;}
 .lesson-stage #lessonSlideWrap > .card::before{display:none;}
 .lesson-stage #lessonSlideWrap ol.fp-howto-list, .lesson-stage #lessonSlideWrap .fp-section ol{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));}
-.lesson-stage #lessonSlideWrap .svg-diagram-card svg{display:block;width:auto;max-width:100%;max-height:calc(clamp(440px,66vh,720px) - 200px);margin:0 auto;}
-.lesson-stage:fullscreen #lessonSlideWrap .svg-diagram-card svg{max-height:calc(100vh - 320px);}
+.lesson-stage #lessonSlideWrap .svg-diagram-card svg{display:block;width:auto;max-width:100%;max-height:430px;margin:0 auto;}
 .lesson-stage #lessonSlideWrap.pg-anim > *{animation:pgFade .35s ease both;}
 @keyframes pgFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 .lesson-stage #lessonSlideWrap .pg-badge{position:absolute;right:16px;bottom:12px;width:auto;max-width:none;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--orange-deep);background:#FFF1E2;border-radius:999px;padding:4px 10px;}
@@ -234,7 +234,7 @@ body.audience-mode > *:not(#audienceRoot):not(.aud-hint){display:none !important
 #audienceRoot .stage-body{flex:1;min-height:0;align-items:stretch;grid-template-rows:minmax(0,1fr);}
 #audienceRoot .stage-presenter{align-self:end;}
 #audienceRoot #lessonSlideWrap{height:100% !important;font-size:1.08em;}
-#audienceRoot .slide-nav .btn, #audienceRoot .slide-done-banner{visibility:hidden;}
+#audienceRoot .slide-nav .btn, #audienceRoot .slide-done-banner, #audienceRoot .slide-done-note{visibility:hidden;}
 #audienceRoot .slide-dot{pointer-events:none;}
 /* The shared window cuts straight to the next slide or page: no slide-in or fade (in a Meet share
    the empty first frames of an entrance animation read as a flicker). */
@@ -361,6 +361,8 @@ function collectSlideUnits(root, bigH){
     for(const c of el.children){
       if(c.matches(SLIDE_PG_HEADS) || c.classList.contains("pg-badge")) continue;
       if(c.matches(SLIDE_PG_BLOCKS)){ walk(c); continue; }
+      // a diagram or picture is one piece: its shapes are never split across pages
+      if(c.matches("svg, img, picture, canvas, video")){ units.push(c); continue; }
       // a tall wrapper around one thing (e.g. a diagram's frame): look inside it for places to break
       if(c.children.length === 1 && c.getBoundingClientRect().height > bigH && !c.matches("svg, img, picture, figure, table") &&
          [...c.childNodes].every(n=>n.nodeType !== 3 || !n.textContent.trim())){ walk(c); continue; }
@@ -376,47 +378,56 @@ function collectSlideUnits(root, bigH){
   walk(root);
   return units.filter(u=>u.getClientRects().length);
 }
-// Every slide fits on one screen: the frame is sized to the room left on the lesson page (fitSlideFrame),
-// what doesn't fit continues on the next page (paginateSlideUnits), and a block too big for one page is
-// scaled down a little (fitSlideZoom), so the frame never scrolls.
+// Every slide fits on one screen: the slide is laid out at the deck's one size (960 × 540), what doesn't
+// fit continues on the next page (paginateSlideUnits), and the whole frame is scaled to the room left on
+// the lesson page, the full screen or the shared window (deckRescale). Nothing inside the slide changes size.
+const DECK_W = 960, DECK_H = 540;
 function paginateLessonSlide(){
   const wrap = document.getElementById("lessonSlideWrap");
   fitSlideFrame(wrap);
   paginateSlideUnits();
-  fitSlideZoom(wrap);
+  waitForSlideImages(wrap);
   // something above the slide can still change height once the page is drawn (e.g. the top bar gains a
-  // button and wraps): fit again if the slide has moved
-  if(wrap && wrap.dataset.fitTop) requestAnimationFrame(()=>{
-    if(wrap.isConnected && Math.abs(wrap.getBoundingClientRect().top + window.scrollY - Number(wrap.dataset.fitTop)) > 1) paginateLessonSlide();
-  });
+  // button and wraps): scale again. Only the scale changes; the slide isn't laid out again.
+  requestAnimationFrame(deckRescale);
 }
 function fitSlideFrame(wrap){
   if(!wrap) return;
   slideZoomParts(wrap).forEach(n=>n.style.zoom = "");
   if(document.body.classList.contains("ft-fit")) return;   // Foundational's deck-page lessons size themselves (fitPages in js/ft-slides.js)
-  const stage = wrap.closest(".lesson-stage");
-  // full screen and the shared slides window already fill their window; phones scroll
-  if(!stage || stage.id !== "lessonStage" || wrap.closest("#audienceRoot") || document.fullscreenElement || window.innerWidth <= 760){ wrap.style.height = ""; delete wrap.dataset.fitTop; return; }
-  const r = wrap.getBoundingClientRect(), below = stage.getBoundingClientRect().bottom - r.bottom;
-  wrap.dataset.fitTop = String(r.top + window.scrollY);
-  // the top bar can gain a button (and wrap to a second row) after the page is drawn: fit again when it does
+  deckRescale();
+  // the top bar can gain a button (and wrap to a second row) after the page is drawn: scale again when it does
   const bar = document.querySelector(".topbar");
   if(bar && window.__fitBar !== bar && typeof ResizeObserver === "function"){
     if(window.__fitBarRO) window.__fitBarRO.disconnect();
     let h0 = bar.offsetHeight; window.__fitBar = bar;
-    window.__fitBarRO = new ResizeObserver(()=>{ const h = bar.offsetHeight; if(h !== h0){ h0 = h; if(state.view==="day" && document.getElementById("lessonSlideWrap")) paginateLessonSlide(); } });   // before the next paint: no jump
+    window.__fitBarRO = new ResizeObserver(()=>{ const h = bar.offsetHeight; if(h !== h0){ h0 = h; deckRescale(); } });
     window.__fitBarRO.observe(bar);
   }
-  wrap.style.height = Math.max(320, Math.floor(window.innerHeight - (r.top + window.scrollY) - below - 12)) + "px";
 }
+// The deck's scale: as large as the room allows, the same for every slide. On the lesson page the slide and
+// its Previous / Next bar end inside the window; full screen and the shared window fill their window.
+function deckRescale(){
+  const fit = document.querySelector("#lessonStage .deck-fit"); if(!fit) return;
+  if(window.innerWidth <= 760){ fit.style.removeProperty("--deck-scale"); return; }   // phones: the slide is a scrolling page
+  const stage = fit.closest(".lesson-stage"), body = fit.parentElement;
+  let roomH;
+  if(fit.closest("#audienceRoot") || document.fullscreenElement === stage) roomH = body.clientHeight;
+  else {
+    const r = fit.getBoundingClientRect(), below = stage.getBoundingClientRect().bottom - r.bottom;
+    roomH = window.innerHeight - (r.top + window.scrollY) - below - 12;
+  }
+  const scale = Math.max(0.3, Math.min(fit.clientWidth / DECK_W, roomH / DECK_H));
+  const v = String(Math.round(scale*10000)/10000);
+  if(fit.style.getPropertyValue("--deck-scale") !== v) fit.style.setProperty("--deck-scale", v);
+  window.__deckScale = +v;
+}
+window.deckRescale = deckRescale;
 function slideZoomParts(wrap){ return [...wrap.children].filter(n=>!n.classList.contains("pg-badge")); }
-function fitSlideZoom(wrap){
-  if(!wrap || !wrap.isConnected || window.innerWidth <= 760 || wrap.querySelector(".cs-page")) return;   // deck pages size themselves
-  // a picture that hasn't loaded yet has no height: lay the slide out again once it has
+// a picture that hasn't loaded yet has no height: lay the slide out again once it has
+function waitForSlideImages(wrap){
+  if(!wrap || !wrap.isConnected) return;
   wrap.querySelectorAll("img").forEach(img=>{ if(!img.complete && !img.dataset.fitWait){ img.dataset.fitWait = "1"; img.addEventListener("load", repaginateSoon, {once:true}); } });
-  const parts = slideZoomParts(wrap); let z = 1;
-  parts.forEach(n=>n.style.zoom = "");
-  while(wrap.scrollHeight > wrap.clientHeight + 2 && z > 0.6){ z = Math.round((z - 0.05)*100)/100; parts.forEach(n=>n.style.zoom = String(z)); }
 }
 function paginateSlideUnits(){
   const wrap = document.getElementById("lessonSlideWrap");
@@ -427,14 +438,15 @@ function paginateSlideUnits(){
   wrap.querySelectorAll(".pg-hide").forEach(n=>n.classList.remove("pg-hide"));
   wrap.querySelectorAll(".pg-badge").forEach(n=>n.remove());
   wrap.querySelectorAll("ol[data-pg-start]").forEach(ol=>{ ol.removeAttribute("start"); ol.style.counterReset = ""; ol.removeAttribute("data-pg-start"); });
-  wrap.classList.remove("pg-later", "pg-roomy");
+  wrap.classList.remove("pg-later");
   if(window.innerWidth <= 760){ state.slidePage = 0; updateSlidePageUi(); return; }   // phones: the page scrolls instead
   const cs = getComputedStyle(wrap);
   const padT = parseFloat(cs.paddingTop)||0, padB = parseFloat(cs.paddingBottom)||0;
   const avail = wrap.clientHeight - padT - padB;
-  const units = collectSlideUnits(wrap, avail*0.4);
-  const base = wrap.getBoundingClientRect().top - wrap.scrollTop;
-  const box = units.map(u=>{ const r = u.getBoundingClientRect(); return {top:r.top-base, bottom:r.bottom-base}; });
+  // the frame is scaled to the screen: measure in the deck's own pixels, so the pages are the same everywhere
+  const wr = wrap.getBoundingClientRect(), sc = (wr.height / wrap.offsetHeight) || 1;
+  const units = collectSlideUnits(wrap, avail*0.4*sc);
+  const box = units.map(u=>{ const r = u.getBoundingClientRect(); return {top:(r.top-wr.top)/sc + wrap.scrollTop, bottom:(r.bottom-wr.top)/sc + wrap.scrollTop}; });
   if(units.length < 2 || wrap.scrollHeight <= wrap.clientHeight + 2){ state.slidePage = 0; updateSlidePageUi(); return; }
   const headH = Math.max(0, box[0].top - padT);   // kicker + title, repeated on every page
   const room = Math.max(160, avail - headH - 56);   // 56px: section labels repeated on continued pages
@@ -481,11 +493,9 @@ function applySlidePage(){
     else if(ol.hasAttribute("data-pg-start")){ ol.removeAttribute("start"); ol.style.counterReset = ""; ol.removeAttribute("data-pg-start"); }
   });
   pg.wrap.classList.toggle("pg-later", p > 0);
-  pg.wrap.classList.toggle("pg-roomy", pg.heights[p] < pg.room*0.4);   // a light page gets larger type so it doesn't look empty
   pg.wrap.querySelectorAll(".pg-badge").forEach(n=>n.remove());
   pg.wrap.insertAdjacentHTML("beforeend", `<div class="pg-badge">PAGE ${p+1} / ${pg.pages.length}${p < pg.pages.length-1 ? " · CONTINUES →" : ""}</div>`);
   pg.wrap.scrollTop = 0;
-  fitSlideZoom(pg.wrap);
   updateSlidePageUi();
 }
 function updateSlidePageUi(){
@@ -513,8 +523,15 @@ function showSlidePage(p){
 window.showSlidePage = showSlidePage;
 let __pgResizeT = null;
 function repaginateSoon(){ clearTimeout(__pgResizeT); __pgResizeT = setTimeout(()=>{ if(state.view==="day" && document.getElementById("lessonSlideWrap")) paginateLessonSlide(); }, 180); }
-window.addEventListener("resize", repaginateSoon);
-document.addEventListener("fullscreenchange", repaginateSoon);
+// A new window size or full screen only scales the deck. Crossing the phone width switches between a
+// scrolling page and a paged slide, so that one lays the slide out again.
+let __deckPhone = window.innerWidth <= 760;
+function onDeckResize(){
+  const phone = window.innerWidth <= 760;
+  if(phone !== __deckPhone){ __deckPhone = phone; repaginateSoon(); } else requestAnimationFrame(deckRescale);
+}
+window.addEventListener("resize", onDeckResize);
+document.addEventListener("fullscreenchange", onDeckResize);
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(repaginateSoon);
 
 /* ---------- 2. admin ↔ trainee view ---------- */
@@ -968,15 +985,14 @@ if(PV_IS_AUDIENCE){
     const secsByPage = __slidePg ? __slidePg.pages.map(([a,b])=>[...new Set(__slidePg.units.slice(a,b+1).map(u=>{ const s = u.closest(".fp-section"); return s ? secNum(s) : 0; }).filter(Boolean))]) : [allSecs];
     pvChannel().postMessage({type:"rendered", dayId:d.id, slide, page:state.slidePage||0, pages:state.slidePages||1, w:root.clientWidth, h:root.clientHeight, secs, allSecs, secsByPage});
   };
-  // `force`: the window changed size, so lay the slide out again
-  const show = (m, force)=>{
+  const show = (m)=>{
     const d = DAYS.find(x=>x.id===m.dayId); if(!d) return;
     const same = !!(last && last.dayId===m.dayId && last.slide===m.slide && root.querySelector("#lessonStage"));
     last = m;
     // The slide on screen is never drawn again for the same step (the console re-drawing, its live
     // copy reconnecting): in the shared window a redraw is a visible flash. A page change within
     // the slide happens in place.
-    if(same && !force){
+    if(same){
       if(__slidePg){
         const n = __slidePg.pages.length, want = m.page === -1 ? n-1 : Math.max(0, Math.min(m.page||0, n-1));
         if(want !== (state.slidePage||0)){ state.slidePage = want; applySlidePage(); }
@@ -1001,11 +1017,13 @@ if(PV_IS_AUDIENCE){
     });
     PV.ch.postMessage({type:"hello"});
   }
+  // a new window size only scales the deck (the slide isn't drawn again: in Meet a redraw is a flash);
+  // once the fonts have loaded, the slide is laid out again in place
   let rt = null;
-  const reshow = ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ if(last) show(last, true); }, 200); };
-  window.addEventListener("resize", reshow);
-  document.addEventListener("fullscreenchange", reshow);
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(reshow);
+  const rescale = ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ if(!last || !root.querySelector("#lessonStage")) return; deckRescale(); report(DAYS.find(x=>x.id===last.dayId), last.slide); }, 120); };
+  window.addEventListener("resize", rescale);
+  document.addEventListener("fullscreenchange", rescale);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>{ if(last && root.querySelector("#lessonStage")){ paginateLessonSlide(); report(DAYS.find(x=>x.id===last.dayId), last.slide); } });
 }
 
 /* ---------- 5. Lessons fully centred · Orientation + Blueprint refresh ---------- */
@@ -2769,8 +2787,6 @@ window.fitTopicsModal = fitTopicsModal;
 `; document.head.appendChild(st);
 })();
 
-/* if the portal already drew itself before this file loaded, redraw with the updates */
-if(document.querySelector(".topbar")) render();
 
 /* ================= A calm dashboard (easy on the eyes) =================
    Light day-card headers with a thin colour stripe instead of solid navy/orange blocks, titles in normal case,
@@ -4024,3 +4040,41 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
 #sessionExpiredBar span{flex:1 1 300px;}
 `; document.head.appendChild(st);
 })();
+
+/* ===== One fixed-size deck: the frame and its fixed type =====
+   Last in this file so it wins over the earlier, screen-relative slide rules (titles in vw, full-screen and
+   shared-window text multipliers, the frame's height in vh). The frame is DECK_W × DECK_H everywhere and
+   .deck-fit scales it as a whole (deckRescale); phones (760px and narrower) keep the scrolling page. */
+(function(){
+  const F = ".lesson-stage .deck-fit > #lessonSlideWrap.lesson-slide, #audienceRoot .lesson-stage .deck-fit > #lessonSlideWrap.lesson-slide";
+  const W = ".lesson-stage .deck-fit #lessonSlideWrap";
+  const st = document.createElement("style"); st.id = "deck-fixed"; st.textContent = `
+@media(min-width:761px){
+  .lesson-stage .deck-fit{position:relative;width:100%;height:calc(${DECK_H}px * var(--deck-scale, 1));align-self:center;overflow:hidden;}
+  ${F}{position:absolute;top:0;left:50%;width:${DECK_W}px !important;height:${DECK_H}px !important;min-height:0 !important;max-height:none !important;margin:0 0 0 -${DECK_W/2}px !important;padding:24px 36px 28px !important;box-sizing:border-box;overflow:hidden !important;display:flex !important;flex-direction:column;justify-content:safe center;align-items:center;flex:none !important;font-size:16px !important;scale:var(--deck-scale, 1);transform-origin:50% 0;}
+  ${W} > *{max-width:none !important;}
+  ${W} .lesson-card h4, ${W} h2.section-title, ${W} .meet-client-card h3, ${W} > .card > b:first-child{font-size:30px !important;}
+  ${W} .quiz-q{font-size:22px !important;}
+  ${W} .topic-divider h2.td-title{font-size:44px;}
+  ${W} .vis-step b{font-size:15px;} ${W} .vis-card p{font-size:16px;}
+  ${W} .svg-diagram-card svg{max-height:320px !important;}
+  /* the room around the deck is the same on every slide: the progress dots stay on one row of the
+     top band, and the last slide's note sits in the Previous / Next bar */
+  .lesson-stage .slide-dots{flex-wrap:nowrap;gap:3px;}
+  .lesson-stage .slide-dot{flex:0 1 8px;min-width:2px;}
+  .lesson-stage .slide-dot.active{flex:0 0 28px;}
+  .lesson-stage .slide-nav{flex-wrap:nowrap;}
+  .lesson-stage .slide-nav > *{flex-shrink:0;}
+  .lesson-stage .slide-nav > .slide-nav-mid{flex:0 1 auto;min-width:0;}
+}
+.slide-nav-mid{display:flex;align-items:center;gap:12px;min-width:0;}
+.slide-nav-mid .slide-counter{white-space:nowrap;flex-shrink:0;}
+.slide-done-note{font-size:12.5px;font-weight:700;color:var(--navy);background:#FFF1E2;border-radius:999px;padding:5px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.lesson-stage .slide-done-note{color:#F0C08A;background:rgba(240,192,138,.14);border:1px solid rgba(240,192,138,.4);}`; document.head.appendChild(st);
+})();
+
+/* If the portal already drew itself before this file loaded, redraw with the updates. This stays the
+   last line: on a normal connection the portal can be showing a page (e.g. a lab opened in its own tab)
+   before this file arrives, and a redraw any earlier runs that page before the parts further down are
+   defined (the Day 4 lab then stopped on LG_SCENARIO, and the rest of this file never loaded). */
+if(document.querySelector(".topbar")) render();

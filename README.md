@@ -43,6 +43,8 @@ To change a day, edit only that day's folder, so one day's edit can't break anot
 
 **Slides and Lesson Notes.** A topic slide shows each point's key line (`slideBrief` in `js/eapa-updates.js`: the first sentence, without bracketed asides, cut at a dash or colon when still long); "This connects directly to …" lines and the Go Deeper box stay off the slide. The full text of every topic is each day's **📖 Lesson Notes** in Handouts (Read, or ⬇ PDF), and **📖 Full notes for this topic** on a slide opens it at that topic. Write the full text in `lessons.js`; the slide's short version follows on its own.
 
+**One size for the deck.** Every lesson slide is laid out at one size, 960 × 540 (16:9), with fixed type, on a laptop, a large screen, in full screen and in the slides window shared in Meet. The whole slide is then scaled to fit, the way a slide deck is (`deckRescale` in `js/eapa-updates.js`): the same scale for every slide on a screen. Nothing grows or shrinks with the window, so a slide splits into the same pages everywhere, and a resize or full screen only changes the scale; the slide is never laid out again, so it doesn't flicker. A slide that doesn't fit continues on the next page; a diagram is never split. Phones (760px and narrower) keep a scrolling page.
+
 **Moving a Quick Check to another topic on the same day.** Change its `afterIndex` and add it to `QC_ANCHOR_MOVES` in `index.html` (`[day, the topic it used to follow, question]`), so saved answers and places move with it.
 
 A few rules keep saved progress safe:
@@ -102,13 +104,14 @@ Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/script
   - JSON must be valid;
   - the Worker must build (`wrangler deploy --dry-run`; nothing is deployed);
   - **where records are kept** (`.github/scripts/storage.mjs`): 30 progress saves write R2 each time and KV once (a day later, once more); with KV's writes used up, saving still works; progress saved in KV before the move is still read and listed; deleting clears both; trainee records and feedback stay in KV; without R2 everything stays in KV.
-- **Smoke test in a browser:** serves the site through `worker.js` with an in-memory KV store (`.github/scripts/server.mjs`), signs in as a trainee, and renders every lesson slide, knowledge check, page and practice tool at desktop and phone width. It fails on any page error or a page that scrolls sideways (`.github/scripts/smoke.cjs`).
+- **Smoke test in a browser:** serves the site through `worker.js` with an in-memory KV store (`.github/scripts/server.mjs`), signs in as a trainee, and renders every lesson slide, knowledge check, page and practice tool at desktop and phone width. Then it opens every practice tool directly (as a lab opened in its own tab) with `js/eapa-updates.js` arriving late, the way it does on a normal connection. It fails on any page error, an empty lab or a page that scrolls sideways (`.github/scripts/smoke.cjs`).
 - **Presenter view** (`.github/scripts/presenter.cjs`): opens Presenter view as a trainer and watches the slides window you share in Google Meet, which must never flicker.
   - Next draws the slide once, cutting straight in with no slide-in or fade.
   - The console re-drawing (its live copy reconnecting) doesn't draw the slides window again.
   - A long slide's next and previous pages change in place.
-  - A resize lays the slide out again, still without animation.
+  - A resize only scales the deck: the slide isn't drawn or laid out again, keeps its 960 × 540 size and its pages.
   - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
+- **Every slide fits on one screen** (`.github/scripts/fit.cjs`): every page of every slide of every day, on a laptop (1366 × 768) and a large screen (1920 × 1080). The slide and its Previous / Next bar end inside the window, nothing in the slide is cut off or shrunk, every slide is laid out at 960 × 540 with one scale per screen, and every slide splits into the same pages on both screens.
 - **Server requests** (`.github/scripts/requests.cjs`): `get-many` gives a trainee only their own and public records, an Admin every one, and refuses more than 100 keys. With the checks sped up, a trainee's page reads the tasks for every day in one request and their record about once per check, checks for a new version rarely, and asks nothing while the tab is in the background (catching up when it's back) or on a quick switch to another tab and back. A server that doesn't answer doesn't sign the trainee out; a revoke does. The Trainee Audit reads every trainee in two requests.
 - **Graded calls** (`.github/scripts/graded-calls.cjs`): a trainee reads their own `callsim:` record (kept by the Training Portal), never another trainee's, and can't write it; the dashboard band's Graded calls card shows — and 0 lines without graded calls, and the best on each line averaged with them.
 

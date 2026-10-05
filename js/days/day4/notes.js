@@ -865,6 +865,88 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "say": "Quality over volume."
   }
 },
+"4::Manual Lead Generation Methods": {
+  "p1": {
+    "on": "This slide defines manual lead generation (finding each lead by hand: referrals, meeting people, directory research, following up on real conversations), lists the main methods, and flags the bar's solicitation limits: the attorney approves who may be contacted and how. The steps: start with referral asks, log event contacts the same day, research against a clear target with the source recorded, follow up on webinar and article signals, and review dormant CRM contacts each quarter.",
+    "say": "Manual is slow because it's personal, and that's why it works.",
+    "ask": "Where have the best clients you've seen come from: a referral, an event or a cold list?"
+  },
+  "p2": {
+    "on": "This slide covers recording every lead's source, quality over quantity, and two pitfalls: approaching someone who needs help with a specific legal matter just because their name is public, and logging business cards days later.",
+    "say": "If you can't say where a lead came from, the firm can't learn from it.",
+    "wrap": "Warmest source first, log it the same day, and the attorney approves the approach.",
+    "scenario": "Thorne & Partners is launching a Data Privacy & Cybersecurity practice. Elias asks you to find 20 companies worth approaching by Friday, using only manual methods. Where do you start, what do you record for each, and what needs his approval first?"
+  },
+  "s1": {
+    "on": "This section defines manual lead generation, lists the methods and explains the bar's limits on soliciting prospective clients.",
+    "say": "Referrals first; the attorney approves every approach."
+  },
+  "s2": {
+    "on": "These steps: referral asks, same-day logging after events, targeted directory research with the source recorded, following up on webinar and article signals, and a quarterly review of dormant contacts.",
+    "say": "Log it the same day, with the source.",
+    "ask": "Which of these could you start this week?"
+  },
+  "s3": {
+    "on": "This section says to record every lead's source and favor quality over quantity, and warns against approaching people with a specific legal problem and against logging contacts late.",
+    "say": "Ten leads that fit beat a hundred names."
+  }
+},
+"4::Automated Lead Generation Tools & Workflows": {
+  "p1": {
+    "on": "This slide defines automated lead generation (software that finds, captures and routes leads), lists the common tools (forms that feed the CRM, Sales Navigator saved searches, news alerts for trigger events, enrichment tools, Zapier or Make), and says automation still needs every lead verified and every outreach approved by a person. The steps: map the flow, send everything to the CRM with its source, check for duplicates, create a verification task instead of an automatic email, and review weekly for the first month.",
+    "say": "Automation captures and routes; people verify and approve.",
+    "ask": "What part of finding leads would you most want a tool to do for you?"
+  },
+  "p2": {
+    "on": "This slide covers keeping a person in the loop, the pitfall of loading a bought list into an email sequence, the rules automation can break (CAN-SPAM, TCPA, GDPR) and naming an owner for every automation.",
+    "say": "Automation multiplies mistakes as fast as it multiplies leads.",
+    "wrap": "Map it, route it to the CRM, and put a person between the tool and the prospect.",
+    "scenario": "The webinar registration form now creates 40 new CRM records a week, and the partners complain that most are students and vendors. Without turning the form off, how would you change the workflow so only real leads reach the partners?"
+  },
+  "s1": {
+    "on": "This section defines automated lead generation, lists the common tools and says a person still verifies and approves.",
+    "say": "Tools capture; people decide."
+  },
+  "s2": {
+    "on": "These steps: map the flow, route everything to the CRM with its source, check for duplicates, create a verification task rather than an automatic email, and review the automation weekly at first.",
+    "say": "Every new lead becomes a task for a person.",
+    "ask": "Where would duplicates come from in our forms?"
+  },
+  "s3": {
+    "on": "This section covers keeping a person in the loop, not loading bought lists, the CAN-SPAM, TCPA and GDPR rules, and giving every automation an owner.",
+    "say": "No bought lists, no unapproved sends."
+  }
+},
+"4::Verifying a Working Lead": {
+  "p1": {
+    "on": "This slide defines a working lead (reachable, a real person in the role, an active business that fits, and the firm is allowed to contact them) and says verification happens before outreach and before reporting. The five checks: the person, the company, the contact details, clearance (duplicates, do-not-contact, conflict check) and recording the result as Verified, Needs check or Not workable.",
+    "say": "If you can't reach them, or the firm can't contact them, it's not a lead.",
+    "ask": "What's the quickest way to tell a real lead from a bad one?"
+  },
+  "p2": {
+    "on": "This slide lists the signs a lead isn't real (nonsense names, spam form entries, titles that don't exist, dissolved businesses, bounces, disconnected numbers) and the signs it isn't workable (an existing client or adverse party, an unsubscribe, a person with a specific legal problem), warns against counting unverified leads, and says to act on a bounce at once. The Go Deeper box is the two-minute checklist.",
+    "say": "A bounce is a result, not bad luck.",
+    "wrap": "Person, company, contact, clearance, record: then it counts.",
+    "scenario": "Your list has 'Dana Reyes, Chief Privacy Officer, Brightline Logistics, dana.reyes@brightline-logistcs.com'. LinkedIn shows Dana left Brightline in March, and the state registry shows Brightline merged into another company. What do you record, and is there still a lead here?"
+  },
+  "s1": {
+    "on": "This section defines a working lead and says verification comes before outreach and before reporting.",
+    "say": "Reachable, real, active, allowed."
+  },
+  "s2": {
+    "on": "These steps are the five checks: the person, the company, the contact details, clearance and recording the result with a date.",
+    "say": "Five checks, a few minutes, every lead.",
+    "ask": "Which check would you most likely skip under pressure?"
+  },
+  "s3": {
+    "on": "This section lists the signs a lead isn't real or isn't workable, warns against counting unverified leads, and says to correct or remove a bounced address at once.",
+    "say": "Unverified totals fall apart in the pipeline."
+  },
+  "s4": {
+    "on": "The Go Deeper box is the two-minute verification checklist: person, company, contact, clearance and record.",
+    "say": "Use it on every lead before outreach."
+  }
+},
 "4::Lead Quality, Qualifying & Tracking": {
   "p1": {
     "on": "This slide says referrals are consistently the highest-quality leads because they come with built-in trust. The steps: actively ask satisfied clients for introductions, qualify every lead early on fit, need, authority and timeline, log leads the moment they exist, follow through consistently, and feed qualified leads into the contact list.",

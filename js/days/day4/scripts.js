@@ -787,6 +787,87 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "scenario": "Your manager wants 200 leads by Friday. You can find 60 well-researched ones, or pad the list with names from an old conference list. What do you do, and how do you explain it?"
   }
  },
+ "4::Manual Lead Generation Methods": {
+  "p1": {
+   "why": "The leads most likely to become clients are usually the ones someone found by hand, through a person who already trusts the firm.",
+   "talk": "Manual lead generation means finding each lead ourselves. We ask happy clients and partners for referrals, we meet people at bar and industry events, we research directories and business registries, we follow up with people who came to Elias's webinar or read his article, and we look back through old contacts in the CRM. It's slower than a tool, but these leads arrive with context and trust. One rule sits over all of it: bar rules limit how a firm may approach people who might need legal help, so the attorney approves who we contact and how.",
+   "walk": [
+    "First, start with the warmest source: past clients and referral partners, with a short referral ask for the attorney to send.",
+    "Next, after any event, log every contact the same day, with where you met and the next step.",
+    "Then research directories against a clear target, and record the source and date for each lead.",
+    "After that, follow up on real signals, like webinar attendees and people who asked questions.",
+    "Finally, every quarter, review dormant contacts in the CRM for a check-in."
+   ],
+   "ask": "Think of the best client relationship you've seen. How did that first contact actually happen?",
+   "scenario": "Elias meets six people at a cybersecurity conference and hands you their business cards on Monday. Two mentioned a data breach last year. What do you log for each, and what do you check with Elias before anyone follows up?"
+  },
+  "p2": {
+   "why": "Manual leads are only valuable if the firm knows where they came from and reaches out the right way.",
+   "talk": "Write down the source of every lead, whether it's a referral from a named person, an event or a directory, so the firm learns which methods bring in clients. Ten researched leads that fit beat a hundred names copied from a list. Two traps: contacting someone because their name is public in a legal matter, like an accident report or a lawsuit, which can be prohibited solicitation, and collecting cards at an event but logging them a week later, when nobody remembers the conversation.",
+   "walk": [
+    "First, record the source of every lead.",
+    "Next, choose a few leads that fit over a long list.",
+    "Then, never approach someone about their own legal problem without the attorney.",
+    "Finally, log event contacts the same day."
+   ],
+   "ask": "Why would a name in a court filing be a risky lead, even though it's public?",
+   "scenario": "Thorne & Partners is launching a Data Privacy & Cybersecurity practice. Elias asks you to find 20 companies worth approaching by Friday, using only manual methods. Where do you start, what do you record for each, and what needs his approval first?"
+  }
+ },
+ "4::Automated Lead Generation Tools & Workflows": {
+  "p1": {
+   "why": "Tools can catch leads around the clock, but only if someone designs where those leads go.",
+   "talk": "Automated lead generation is software doing the finding and capturing for us. A form on the website or a webinar page creates a record in the CRM. A saved search in LinkedIn Sales Navigator tells us when a prospect changes jobs. A news alert flags a company that just expanded or a new privacy law that affects an industry. Enrichment tools fill in company size and role, and tools like Zapier or Make pass the lead from one system to the next. What automation doesn't do is decide: every lead still gets verified, and nothing goes to a prospect until a person approves it.",
+   "walk": [
+    "First, map the flow on paper: where the lead comes from, what's recorded, who's told, and what happens next.",
+    "Next, send every form and alert into the CRM, with the source filled in automatically.",
+    "Then set duplicate checks on email and company name.",
+    "After that, make each new lead create a task for a person to verify it, not an automatic email to the prospect.",
+    "Finally, review what the automation caught every week for the first month."
+   ],
+   "ask": "Where in our own work would an alert or a form save the most time?",
+   "scenario": "Elias wants to know whenever a company in the firm's target list announces a data breach or a new privacy officer. What would you set up, where would the alerts go, and who acts on them?"
+  },
+  "p2": {
+   "why": "Automation multiplies mistakes as fast as it multiplies leads, so it needs a person, an owner and the rules in place.",
+   "talk": "Keep a person in the loop: the tool captures and routes leads, and a person verifies them and approves any outreach. Never load a bought list into an email sequence; those lists are full of old and wrong contacts, and the spam complaints damage every email the firm sends after. Know the rules automation can break: commercial email needs a working opt-out and the firm's address, automated calls and texts to mobile phones generally need prior consent, and contacts in the EU or UK come with data-protection rules. And give every automation an owner who checks it still works.",
+   "walk": [
+    "First, a person between the tool and the prospect.",
+    "Next, no bought lists in automated sequences.",
+    "Then, opt-outs, consent and data-protection rules respected, with the attorney approving outreach.",
+    "Finally, one named owner for each automation."
+   ],
+   "ask": "What could go wrong if an automated email went to every new webinar sign-up without a check?",
+   "scenario": "The webinar registration form now creates 40 new CRM records a week, and the partners complain that most are students and vendors. Without turning the form off, how would you change the workflow so only real leads reach the partners?"
+  }
+ },
+ "4::Verifying a Working Lead": {
+  "p1": {
+   "why": "A name on a list isn't a lead until you know it's real, reachable and allowed.",
+   "talk": "A working lead passes four tests: it's a real person, in the role we think, at a business that's still active and fits what the firm does, and the firm is allowed to contact them. We check before any outreach and before we count the lead in a report. It takes a few minutes, and it protects the firm's credibility, its email reputation and its conflict checks. Sourcing finds the lead, verification proves it, and qualifying decides if it's worth the time.",
+   "walk": [
+    "First, the person: are they real and still in that role? Check the company's site or a recent LinkedIn profile.",
+    "Next, the company: is it active in the state registry, with a live website, and does it fit?",
+    "Then the contact details: the company's own email domain, spelled right, verified if we have a tool, and a phone number that reaches them.",
+    "After that, clearance: no duplicate in the CRM, not on a do-not-contact list, and a conflict check requested.",
+    "Finally, record the result: Verified, Needs check or Not workable, with the reason and the date."
+   ],
+   "ask": "Which of these five checks do you think gets skipped most often, and what happens when it does?",
+   "scenario": "A web form lead arrives: 'J. Smith, CEO, smith.j1987@freemail.com, company: Global Solutions'. There's no website for the company and no matching LinkedIn profile. Do you mark it Verified, Needs check or Not workable, and why?"
+  },
+  "p2": {
+   "why": "The warning signs are easy to spot once you know them, and acting on them early saves the firm's reputation.",
+   "talk": "Some signs mean a lead isn't real: a free email with a nonsense name, a form entry full of links, a job title that doesn't exist, a business that's dissolved, an email that bounces or a number that's disconnected. Other signs mean it's real but not workable: they're already a client, they're on the other side of a case, they unsubscribed, or they need help with their own legal problem and bar rules limit how they can be approached. Don't count a lead until it's verified, and when a first email bounces, fix or remove the address straight away.",
+   "walk": [
+    "First, watch for signs it isn't real.",
+    "Next, watch for signs it isn't workable, especially conflicts.",
+    "Then, only count verified leads.",
+    "Finally, treat a bounce as a result and fix it at once."
+   ],
+   "ask": "Why does one bounced email matter to the firm's future emails?",
+   "scenario": "Your list has 'Dana Reyes, Chief Privacy Officer, Brightline Logistics, dana.reyes@brightline-logistcs.com'. LinkedIn shows Dana left Brightline in March, and the state registry shows Brightline merged into another company. What do you record, and is there still a lead here?"
+  }
+ },
  "4::Lead Quality, Qualifying & Tracking": {
   "p1": {
    "why": "Referrals are the best leads you'll get, so ask for them instead of waiting.",
