@@ -105,6 +105,54 @@ function candidateIds(name, batch) {
   return { newId: b ? `${slug}--${b}` : slug, legacyId: slugPart(name).slice(0, 40) || "trainee" };
 }
 
+/* ---------- a trainee keeps their record when the Portal's batch differs ----------
+   Trainee ids are name + batch. The Portal signs trainees in with its own batch codes (e.g. B091826), so a trainee
+   registered here under another batch got a new, empty record and their progress stayed on the old one. On a Portal
+   sign-in whose record is missing or has no progress, the trainee's other record with the same name (any batch) that has
+   progress is used instead (the most recently active, if there are several), from then on: trainee-alias:<new id> points
+   to it, its batch becomes the Portal's, and the empty duplicate is removed (its progress copy kept in backup:progress).
+   Checked once per record (linkChecked), so it costs one KV list on a trainee's first Portal sign-in only. */
+function hasProgress(r) {
+  return !!r && (Object.values(r.dayProgress || {}).some((p) => p && (p.done || p.score)) || (r.submissions || []).length > 0 || Object.keys(r.practiceProgress || {}).length > 0);
+}
+async function linkSameName(env, who) {
+  const { newId, legacyId } = candidateIds(who.name, who.batch);
+  const alias = await env.LSH_KV.get(`trainee-alias:${newId}`);
+  if (alias && (await env.LSH_KV.get(`trainee:${alias}`))) return alias;
+  const curRaw = await env.LSH_KV.get(`trainee:${newId}`), cur = curRaw ? JSON.parse(curRaw) : null;
+  if (cur && (hasProgress(cur) || cur.linkChecked)) return "";
+  if (!cur) {   // the old name-only record, when its batch matches, is already found by traineeSession
+    const l = await env.LSH_KV.get(`trainee:${legacyId}`), lr = l ? JSON.parse(l) : null;
+    if (lr && (!lr.batch || slugPart(lr.batch) === slugPart(who.batch))) return "";
+  }
+  const slug = newId.includes("--") ? newId.slice(0, newId.indexOf("--")) : legacyId;
+  const ids = [];
+  let cursor;
+  do { const r = await env.LSH_KV.list({ prefix: `trainee:${slug}--`, cursor }); r.keys.forEach((k) => ids.push(k.name.slice(8))); cursor = r.list_complete ? null : r.cursor; } while (cursor);
+  if (!ids.includes(legacyId)) ids.push(legacyId);
+  let best = null;
+  for (const id of ids) {
+    if (id === newId) continue;
+    const raw = await env.LSH_KV.get(`trainee:${id}`), r = raw ? JSON.parse(raw) : null;
+    if (!r || r.rejected || !hasProgress(r)) continue;
+    if (!best || new Date(r.lastActive || 0) > new Date(best.lastActive || 0)) best = r;
+  }
+  if (!best) {
+    if (cur) { cur.linkChecked = true; await env.LSH_KV.put(`trainee:${newId}`, JSON.stringify(cur)); }
+    return "";
+  }
+  await env.LSH_KV.put(`trainee-alias:${newId}`, best.id);
+  if (cur) {
+    const p = await dataGet(env, `progress:${newId}`);
+    if (p) await env.LSH_KV.put(`backup:progress:${newId}`, p);
+    await dataDelete(env, `progress:${newId}`);
+    await env.LSH_KV.delete(`trainee:${newId}`);
+  }
+  const rec = Object.assign({}, best, { batch: who.batch, approved: best.approved === true || !best.rejected, linkedFrom: newId, linkChecked: true });
+  await env.LSH_KV.put(`trainee:${best.id}`, JSON.stringify(rec));
+  return best.id;
+}
+
 /* ---------- Main Portal sign-in: the LSH Training Portal signs a trainee or an admin in, this site trusts its ticket ----------
    ticket = "<base64url JSON {first, last, b, exp}>.<HMAC-SHA256 of that text, keyed with PORTAL_SSO_SECRET>"
    (an administrator's ticket is {r: "a", exp}: they were signed in on the Portal with the master admin password).
@@ -142,8 +190,13 @@ async function readTraineeTokenGrace(env, request) {
   // A trainee session signed before the signing secret changed (e.g. the admin password, when SESSION_SECRET isn't set)
   // still renews with PREVIOUS_SESSION_SECRET, the old value: renewal only, trainee sessions only (never admin), so a
   // changed password doesn't sign every trainee out. Remove it from Cloudflare once everyone has been back.
-  const prev = String(env.PREVIOUS_SESSION_SECRET || "");
-  if (!safeEqual(await hmac(secretOf(env), msg), sig) && !(prev && prev !== secretOf(env) && safeEqual(await hmac(prev, msg), sig))) return null;
+  if (safeEqual(await hmac(secretOf(env), msg), sig)) return { role, id: decodeURIComponent(subj) };
+  // the value as stored, and without spaces, a line break or quotes pasted around it (either may be how it signed before)
+  const raw = String(env.PREVIOUS_SESSION_SECRET || "");
+  const prevs = [...new Set([raw, raw.trim(), normPass(raw)])].filter((p) => p && p !== secretOf(env));
+  let ok = false;
+  for (const p of prevs) if (safeEqual(await hmac(p, msg), sig)) { ok = true; break; }
+  if (!ok) return null;
   return { role, id: decodeURIComponent(subj) };
 }
 
@@ -474,8 +527,17 @@ export default {
         return json({ token: await makeToken(env, "a", "admin", 12) });
       }
       // The trainee's session for a name + batch: their record id (new or legacy form) and token.
-      const traineeSession = async (name, batch, id) => {
+      const traineeSession = async (name, batch, id, linkedId) => {
         const { newId, legacyId } = candidateIds(name, batch);
+        // the record this name + batch was linked to (linkSameName): the trainee's earlier record under another batch
+        if (!linkedId && (!id || (id !== newId && id !== legacyId))) {
+          const al = await env.LSH_KV.get(`trainee-alias:${newId}`);
+          if (al && (!id || id === al)) linkedId = al;
+        }
+        if (linkedId) {
+          const ex = await env.LSH_KV.get(`trainee:${linkedId}`);
+          return json({ id: linkedId, token: await makeToken(env, "t", linkedId, 24 * 30), existing: ex ? JSON.parse(ex) : null });
+        }
         let chosen = newId, existing = await env.LSH_KV.get(`trainee:${newId}`);
         if (!existing) {
           const legacy = await env.LSH_KV.get(`trainee:${legacyId}`);
@@ -495,7 +557,7 @@ export default {
           // accepted only to renew the session of a trainee who is already signed in on this device.
           const own = await readTraineeTokenGrace(env, request);
           const { newId, legacyId } = candidateIds(name, batch);
-          if (!own || (own.id !== newId && own.id !== legacyId)) return json({ error: "portal-required" }, 403);
+          if (!own || (own.id !== newId && own.id !== legacyId && own.id !== (await env.LSH_KV.get(`trainee-alias:${newId}`)))) return json({ error: "portal-required" }, 403);
         }
         return traineeSession(name, batch, id);
       }
@@ -511,13 +573,13 @@ export default {
           : "This sign-in link has expired. Open the program again from the LSH Training Portal.", code: why.r || "format" }, 401);
         if (who.system) return json({ admin: true, token: await makeToken(env, "a", "admin", 12) });
         if (who.admin) return json({ error: "Administrators sign in with the admin password on every platform.", code: "admin-password" }, 403);
-        const res = await traineeSession(who.name, who.batch, "");
+        const res = await traineeSession(who.name, who.batch, "", await linkSameName(env, who));
         const out = await res.json();
         // The Portal's approval is the only trainee approval: a trainee it signs in is approved here too
         // (unless an admin here rejected them), so this program never shows "Registration Pending Approval".
         const cur = out.existing;
         if (!cur || (cur.approved !== true && !cur.rejected)) {
-          const rec = Object.assign({}, cur || { id: out.id, name: who.name, firstName: who.first, lastName: who.last, batch: who.batch, registeredAt: new Date().toISOString() }, { approved: true });
+          const rec = Object.assign({}, cur || { id: out.id, linkChecked: true, name: who.name, firstName: who.first, lastName: who.last, batch: who.batch, registeredAt: new Date().toISOString() }, { approved: true });
           await env.LSH_KV.put(`trainee:${out.id}`, JSON.stringify(rec));
           out.existing = rec;
         }

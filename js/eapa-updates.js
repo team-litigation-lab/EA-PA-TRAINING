@@ -4013,6 +4013,12 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
     return ok;
   };
   reauthTrainee.__bar = true;
+  // any new sign-in (the Portal's, or a renewal) clears it
+  if(typeof setTraineeToken === "function" && !setTraineeToken.__bar){
+    const __set = setTraineeToken;
+    setTraineeToken = function(t){ const out = __set.apply(this, arguments); if(t) hide(); return out; };
+    setTraineeToken.__bar = true;
+  }
   const st = document.createElement("style"); st.id = "session-expired"; st.textContent = `
 #sessionExpiredBar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:4000;width:min(760px,calc(100vw - 32px));box-sizing:border-box;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#FEF3F2;color:#7A271A;border:1px solid #F5B5AB;border-left:5px solid #D92D20;border-radius:10px;padding:10px 14px;box-shadow:0 10px 30px rgba(16,24,40,.18);font-size:14px;}
 #sessionExpiredBar span{flex:1 1 300px;}
