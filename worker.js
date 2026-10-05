@@ -13,12 +13,12 @@
  *                        on the Portal). Setting it makes the Main Portal the only way in: /api/auth/trainee then refuses a name +
  *                        batch typed on this site (except to renew a signed-in trainee's session), and /api/auth/portal signs a
  *                        trainee or an administrator in from the Portal's ticket. Not set = the old name + batch sign-in.
- *   ADMIN_PASSPHRASE   — trainer/admin sign-in (or MASTER_ADMIN_PASSWORD, the Portal's master admin password, when this isn't set). Setting this switches the portal
- *                        into SECURE MODE: every storage and AI request must carry
- *                        a signed session token.
- *   SESSION_SECRET     — optional; signs session tokens (defaults to ADMIN_PASSPHRASE)
+ *   MASTER_ADMIN_PASSWORD — the trainer/admin password: the LSH Training Portal's master admin password, the one admin
+ *                        password on every platform. Setting it switches the portal into SECURE MODE: every storage and
+ *                        AI request must carry a signed session token. (ADMIN_PASSPHRASE is no longer read.)
+ *   SESSION_SECRET     — optional; signs session tokens (defaults to MASTER_ADMIN_PASSWORD)
  *
- * Without ADMIN_PASSPHRASE the Worker runs in the old open mode so nothing breaks
+ * Without MASTER_ADMIN_PASSWORD the Worker runs in the old open mode so nothing breaks
  * before you've configured it (the Admin screen shows a warning).
  */
 const JSON_HEADERS = { "Content-Type": "application/json", "Cache-Control": "no-store" };
@@ -31,15 +31,15 @@ async function hmac(secret, msg) {
   const sig = await crypto.subtle.sign("HMAC", key, enc.encode(msg));
   return btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
-// The trainer/admin passphrase: ADMIN_PASSPHRASE, or else MASTER_ADMIN_PASSWORD (the LSH Training Portal's master admin password,
-// so one password signs an admin in on the Portal and here).
-function adminPass(env) { return env.ADMIN_PASSPHRASE || env.MASTER_ADMIN_PASSWORD || ""; }
+// The trainer/admin password: MASTER_ADMIN_PASSWORD, the LSH Training Portal's master admin password, so one password signs an
+// admin in on the Portal and here. (ADMIN_PASSPHRASE, this site's own password before, is no longer read.)
+function adminPass(env) { return env.MASTER_ADMIN_PASSWORD || ""; }
 function secretOf(env) { return env.SESSION_SECRET || adminPass(env); }   // as stored (trimming it would sign everyone out)
-// The passwords an admin may type: ADMIN_PASSPHRASE and the Portal's MASTER_ADMIN_PASSWORD, whichever are set. Both the stored and
+// The password an admin types: the Portal's MASTER_ADMIN_PASSWORD. Both the stored and
 // the typed password are compared as a person types them: without spaces or line breaks around them, quotes pasted around the whole
 // password, invisible characters (zero-width spaces, soft hyphens) or curly quotes and long dashes. A secret pasted into Cloudflare
 // with any of these signs in from a saved (autofilled) password but could never be typed.
-const ADMIN_PASS_VARS = ["ADMIN_PASSPHRASE", "MASTER_ADMIN_PASSWORD"];
+const ADMIN_PASS_VARS = ["MASTER_ADMIN_PASSWORD"];
 const PASS_INVISIBLE = /[\u00AD\u180E\u200B-\u200F\u2028-\u202F\u205F-\u206F\uFEFF]/g;
 const PASS_CURLY = /[\u2018\u2019\u201A\u201B\u2032\u201C\u201D\u201E\u201F\u2033\u2010-\u2015\u2212]/;
 function cleanPass(v) {   // without invisible characters, curly quotes or long dashes, or spaces around it
@@ -69,7 +69,8 @@ function adminPassStatus(env) {
     const { ignored, odd } = passNotes(env[n]);
     return [ignored.length ? `${n} had ${ignored.join(", ")}: ignored` : "", ...odd.map((o) => `${n} has ${o}`)].filter(Boolean).join("; ");
   }).filter(Boolean);
-  return set.join(" or ") + (notes.length ? ` (${notes.join("; ")})` : "") + blankNote;
+  return set.join(" or ") + (notes.length ? ` (${notes.join("; ")})` : "") + blankNote
+    + (env.ADMIN_PASSPHRASE ? " (ADMIN_PASSPHRASE is still set in Cloudflare but no longer used: it can be deleted)" : "");
 }
 async function makeToken(env, role, subject, hours) {
   const exp = Date.now() + hours * 3600 * 1000;
@@ -177,6 +178,27 @@ async function dataDelete(env, key) {
   await env.LSH_KV.delete(key);   // and the copy (or the record from before the move), or it would be read back
 }
 
+/* ---------- a trainee's progress never shrinks in their own save ----------
+   A device that signed in without its progress (a fresh browser, a failed restore) would otherwise write an empty
+   day list over the real one. Trainees can't un-finish a day (Retake only redoes the quiz), so a trainee's save keeps
+   every day, practice tool and saved submission already on record; a trainer (admin) can still change anything. */
+function daysDone(dp) { return Object.values(dp || {}).filter((p) => p && p.done).length; }
+function keepProgress(existing, merged) {
+  for (const f of ["dayProgress", "practiceProgress"]) {
+    const had = existing[f] && typeof existing[f] === "object" ? existing[f] : null;
+    if (!had) continue;
+    const now = merged[f] && typeof merged[f] === "object" ? merged[f] : {};
+    for (const [k, v] of Object.entries(had)) {
+      if (!(k in now) || !now[k]) now[k] = v;
+      else if (v && v.done && !now[k].done) now[k] = Object.assign({}, now[k], { done: true, score: Math.max(Number(v.score) || 0, Number(now[k].score) || 0) || v.score });
+    }
+    merged[f] = now;
+  }
+  for (const f of ["submissions", "roleplayHistory"]) {
+    if (Array.isArray(existing[f]) && (!Array.isArray(merged[f]) || merged[f].length < existing[f].length)) merged[f] = existing[f];
+  }
+}
+
 /* ---------- what a trainee may touch ---------- */
 const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
@@ -184,12 +206,24 @@ const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemp
 
 function canRead(tok, key) {
   if (tok.role === "a") return true;
-  return OWN(tok.id).includes(key) || PUBLIC_READ.some((re) => re.test(key));
+  return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
 }
 async function traineeWrite(env, tok, key, value) {
   const id = tok.id;
   let incoming; try { incoming = JSON.parse(value); } catch (e) { return "Invalid JSON"; }
-  if (key === `progress:${id}`) { await dataPut(env, key, value); return null; }   // their own copy, saved as is
+  if (key === `progress:${id}`) {   // their own copy, saved as is
+    // A save with fewer finished days than the copy it replaces (a device that signed in without its progress) first
+    // keeps that copy in backup:progress:<id>, so Admin → ♻ Restore progress can bring it back. Rare, so KV writes stay low.
+    try {
+      const prevRaw = await dataGet(env, key), prev = prevRaw ? JSON.parse(prevRaw) : null;
+      const had = daysDone(prev && prev.data && prev.data["day-progress"]), now = daysDone(incoming && incoming.data && incoming.data["day-progress"]);
+      if (had > now) {
+        const bRaw = await env.LSH_KV.get(`backup:progress:${id}`), b = bRaw ? JSON.parse(bRaw) : null;
+        if (!b || daysDone(b.data && b.data["day-progress"]) <= had) await env.LSH_KV.put(`backup:progress:${id}`, prevRaw);
+      }
+    } catch (e) { /* never block a save over its backup */ }
+    await dataPut(env, key, value); return null;
+  }
   const existingRaw = await env.LSH_KV.get(key);
   const existing = existingRaw ? JSON.parse(existingRaw) : null;
   if (key === `trainee:${id}`) {
@@ -197,6 +231,7 @@ async function traineeWrite(env, tok, key, value) {
     const merged = Object.assign({}, incoming);
     PROTECTED_TRAINEE_FIELDS.forEach((f) => { if (existing && f in existing) merged[f] = existing[f]; else delete merged[f]; });
     if (!existing) { merged.approved = false; merged.registeredAt = new Date().toISOString(); }
+    if (existing) keepProgress(existing, merged);
     merged.id = id;
     await env.LSH_KV.put(key, JSON.stringify(merged)); return null;
   }
@@ -556,6 +591,15 @@ export default {
         if (tok.role === "a") { await dataPut(env, key, body.value); return json({ ok: true }); }
         const err = await traineeWrite(env, tok, key, body.value);
         return err ? json({ error: err }, 403) : json({ ok: true });
+      }
+      if (path === "/api/admin/progress-copies") {
+        // Admin → ♻ Restore progress: the older copies of a trainee's progress that /get can't reach (the daily KV copy
+        // of the R2 record, and the backup kept when a save shrank it).
+        if (tok.role !== "a") return json({ error: "Not allowed" }, 403);
+        const id = String(body.id || "");
+        if (!id) return json({ error: "Missing id" }, 400);
+        const [current, daily, backup] = await Promise.all([dataGet(env, `progress:${id}`), env.LSH_KV.get(`progress:${id}`), env.LSH_KV.get(`backup:progress:${id}`)]);
+        return json({ current, daily: daily !== current ? daily : null, backup });
       }
       if (path === "/api/storage/list") {
         if (tok.role !== "a") return json({ keys: [] });

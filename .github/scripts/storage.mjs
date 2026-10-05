@@ -16,7 +16,7 @@ const failures = []; const fail = (m) => failures.push(m);
 function makeEnv(withR2) {
     const kv = new Map(), r2 = new Map(), kvPuts = [];
     const env = {
-        ADMIN_PASSPHRASE: 'ci-pass', SESSION_SECRET: 'ci-secret',
+        MASTER_ADMIN_PASSWORD: 'ci-pass', SESSION_SECRET: 'ci-secret',
         LSH_KV: {
             get: async (k) => (kv.has(k) ? kv.get(k) : null),
             put: async (k, v) => { kvPuts.push(k); kv.set(k, String(v)); },

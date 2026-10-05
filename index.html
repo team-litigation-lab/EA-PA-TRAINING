@@ -3195,7 +3195,7 @@ document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState=
    SECURE MODE — every storage/AI request carries a signed session
    token from the Worker (trainee: from name + batch; admin: from the
    passphrase checked on the server). If the Worker has no
-   ADMIN_PASSPHRASE set, the portal runs in the old open mode.
+   MASTER_ADMIN_PASSWORD set, the portal runs in the old open mode.
    ============================================================ */
 state.authToken = (()=>{ try{ return localStorage.getItem("lsh_auth_token")||""; }catch(e){ return ""; } })();
 state.adminToken = (()=>{ try{ return sessionStorage.getItem("lsh_admin_token")||""; }catch(e){ return ""; } })();
@@ -4016,7 +4016,7 @@ function renderFacilitatorGuide(){
     <div class="card fg-card">
       <h3>Access, Security &amp; Troubleshooting</h3>
       <ul>
-        <li><b>Secure mode:</b> once <code>ADMIN_PASSPHRASE</code> is set on the Worker, the passphrase is checked on the server, every request needs a signed session, trainees can only read and change their own records (never approval or attempt resets), and the AI can only be used by signed-in users. Admin shows a red warning while this is off.</li>
+        <li><b>Secure mode:</b> once <code>MASTER_ADMIN_PASSWORD</code> is set on the Worker, the passphrase is checked on the server, every request needs a signed session, trainees can only read and change their own records (never approval or attempt resets), and the AI can only be used by signed-in users. Admin shows a red warning while this is off.</li>
         <li><b>Which version is live?</b> The footer shows the build number. If a fix "doesn't work", check the build first — a renamed download (e.g. <i>index (1).html</i>) is the usual cause.</li>
         <li><b>AI features failing?</b> Every AI button shows the real reason. "Key isn't set / invalid" means <code>GEMINI_API_KEY</code> needs setting on the Worker (Cloudflare → Workers &amp; Pages → ea-pa-training → Settings → Variables and Secrets).</li>
         <li><b>Revoke</b> deletes a trainee's record and saved progress; invalid names/batches are cleaned automatically.</li>
@@ -10875,30 +10875,7 @@ window.downloadNotesPdf = downloadNotesPdf;
    if this ever needs to hold sensitive records.
    ============================================================ */
 
-const ADMIN_PASSPHRASE_SHA256 = "589ac8a309a0ad863b69842a505b2640dfada184f4ed85b8897b09f7434a25b2"; // SHA-256 of the passphrase — never store it in plain text
-async function sha256Hex(t){
-  if(window.crypto && crypto.subtle){ const b=await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join(""); }
-  return sha256Fallback(t);
-}
-function sha256Fallback(ascii){
-  // Compact SHA-256 for non-HTTPS previews where crypto.subtle is unavailable.
-  const rr=(v,a)=>(v>>>a)|(v<<(32-a)); const K=[]; const H=[]; let pc=0;
-  const isC={}; for(let c=2;pc<64;c++){ if(!isC[c]){ for(let i=0;i<313;i+=c) isC[i]=c; if(pc<8) H[pc]=(Math.pow(c,.5)*4294967296)|0; K[pc++]=(Math.pow(c,1/3)*4294967296)|0; } }
-  const bytes=[...new TextEncoder().encode(ascii)]; const bl=bytes.length*8; bytes.push(0x80); while(bytes.length%64!==56) bytes.push(0);
-  for(let i=7;i>=0;i--) bytes.push(i>3?0:(bl>>>(i*8))&255);
-  const h=H.slice(0,8);
-  for(let j=0;j<bytes.length;j+=64){
-    const w=[]; for(let i=0;i<16;i++) w[i]=(bytes[j+i*4]<<24)|(bytes[j+i*4+1]<<16)|(bytes[j+i*4+2]<<8)|bytes[j+i*4+3];
-    let [a,b,c,d,e,f,g,hh]=h;
-    for(let i=0;i<64;i++){
-      if(i>=16){ const w15=w[i-15], w2=w[i-2]; w[i]=(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0; }
-      const t1=(hh+(rr(e,6)^rr(e,11)^rr(e,25))+((e&f)^(~e&g))+K[i]+w[i])|0; const t2=((rr(a,2)^rr(a,13)^rr(a,22))+((a&b)^(a&c)^(b&c)))|0;
-      hh=g; g=f; f=e; e=(d+t1)|0; d=c; c=b; b=a; a=(t1+t2)|0;
-    }
-    h[0]=(h[0]+a)|0; h[1]=(h[1]+b)|0; h[2]=(h[2]+c)|0; h[3]=(h[3]+d)|0; h[4]=(h[4]+e)|0; h[5]=(h[5]+f)|0; h[6]=(h[6]+g)|0; h[7]=(h[7]+hh)|0;
-  }
-  return h.map(x=>(x>>>0).toString(16).padStart(8,"0")).join("");
-}
+// The admin password is checked on the server only: the Worker's MASTER_ADMIN_PASSWORD (the Portal's master admin password).
 
 function openAdmin(){
   if(state.isAdmin){ goto("admin"); return; }
@@ -10907,7 +10884,7 @@ function openAdmin(){
   overlay.innerHTML=`
     <div class="card">
       <h3>🛡 Admin Access</h3>
-      <p>Enter the admin passphrase. Note: this is a lightweight gate for internal use, not secure authentication — anyone with the passphrase (or browser dev tools) can view all trainee data.</p>
+      <p>Enter the admin password: the LSH Training Portal's master admin password.</p>
       <input id="adminPass" type="password" placeholder="Passphrase">
       <div class="row">
         <button class="btn btn-ghost" id="cancelAdmin">Cancel</button>
@@ -10927,13 +10904,7 @@ function openAdmin(){
       }catch(e){ toast("Couldn't reach the server — try again."); }
       return;
     }
-    if((await sha256Hex(v))===ADMIN_PASSPHRASE_SHA256){
-      state.isAdmin=true;
-      overlay.remove();
-      goto("admin");
-    }else{
-      toast("Incorrect passphrase.");
-    }
+    toast("Admin sign-in needs MASTER_ADMIN_PASSWORD set on the server (Cloudflare → Worker → Settings → Variables and Secrets).");
   };
   document.getElementById("submitAdmin").onclick=tryLogin;
   document.getElementById("adminPass").addEventListener("keydown",(e)=>{ if(e.key==="Enter") tryLogin(); });
@@ -16297,7 +16268,7 @@ window.downloadProjectCompliance6Pdf = downloadProjectCompliance6Pdf;
    that was clicked, and any failure is shown on screen instead of
    disappearing silently in the browser console.
    ============================================================ */
-var APP_BUILD = "2026.10.05-d";
+var APP_BUILD = "2026.10.05-e";
 console.info("LSH EA/PA portal build", APP_BUILD);
 let busyDepth = 0;
 function showActionError(e, label){
@@ -16360,7 +16331,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=admin2"></script>
+<script src="/js/eapa-updates.js?v=restore1"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=2"></script>
 <!-- 🧭 Blueprints: the Trainer blueprint (blueprint-content.js) and the Trainee blueprint (Orientation, /blueprint.pdf) rebuilt after every deploy -->
