@@ -19,6 +19,8 @@ Each trainee row in Admin has **♻ Restore**. It lists every older copy of that
 
 The window shows when each record was last saved from the trainee's page; if another record with the same name was active more recently, it says so (that's the record their page uses, so restore into that one).
 
+**Same trainee, new batch code.** Trainee ids are name + batch, and the Portal signs trainees in with its own batch codes (e.g. `B091826`). A trainee registered here under another batch used to get a new, empty record on their first Portal sign-in. Now, when that record is missing or empty, the Portal sign-in uses their other record with the same name that has progress (the most recently active if several). The link is kept in `trainee-alias:<new id>`, the record takes the Portal's batch, and the empty duplicate is removed (its progress copy is kept in `backup:progress:<id>`). It's checked once per record.
+
 **A trainee whose sign-in can't be renewed** (for example after the signing secret changed: without `SESSION_SECRET`, sessions are signed with `MASTER_ADMIN_PASSWORD`) sees a bar telling them to open EA/PA again from the Training Portal, instead of an empty page. To renew every such session automatically, set `PREVIOUS_SESSION_SECRET` in Cloudflare to the value sessions were signed with before (the old admin passphrase, if `SESSION_SECRET` wasn't set). It renews trainee sessions only, never admin ones. Remove it once everyone has been back. `/version` shows what signs sessions now.
 
 The server also stops it happening: a trainee's own save can't drop finished days, practice tools or submissions from their record (only an admin can).
