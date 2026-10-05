@@ -34,7 +34,17 @@ async function hmac(secret, msg) {
 // The trainer/admin passphrase: ADMIN_PASSPHRASE, or else MASTER_ADMIN_PASSWORD (the LSH Training Portal's master admin password,
 // so one password signs an admin in on the Portal and here).
 function adminPass(env) { return env.ADMIN_PASSPHRASE || env.MASTER_ADMIN_PASSWORD || ""; }
-function secretOf(env) { return env.SESSION_SECRET || adminPass(env); }
+function secretOf(env) { return env.SESSION_SECRET || adminPass(env); }   // as stored (trimming it would sign everyone out)
+// The passwords an admin may type: ADMIN_PASSPHRASE and the Portal's MASTER_ADMIN_PASSWORD, whichever are set, without any
+// space or line break pasted around them (a secret pasted into Cloudflare with a trailing newline could never be typed).
+const ADMIN_PASS_VARS = ["ADMIN_PASSPHRASE", "MASTER_ADMIN_PASSWORD"];
+function adminPasswords(env) { return ADMIN_PASS_VARS.map((n) => String(env[n] || "").trim()).filter(Boolean); }
+function adminPassStatus(env) {
+  const set = ADMIN_PASS_VARS.filter((n) => String(env[n] || "").trim());
+  if (!set.length) return "not set (open mode)";
+  const padded = set.filter((n) => String(env[n]) !== String(env[n]).trim());
+  return set.join(" or ") + (padded.length ? ` (${padded.join(", ")} had spaces or a line break around it: ignored)` : "");
+}
 async function makeToken(env, role, subject, hours) {
   const exp = Date.now() + hours * 3600 * 1000;
   const body = `${role}.${encodeURIComponent(subject)}.${exp}`;
@@ -374,7 +384,7 @@ export default {
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
         const deployment = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || "unknown";
-        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${adminPass(env) ? "ON" : "OFF"}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${adminPass(env) ? "ON" : "OFF"}\nAdmin password: ${adminPassStatus(env)}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
@@ -394,7 +404,8 @@ export default {
         if (!secure) return json({ error: "not-configured" }, 501);
         const { passphrase } = await request.json();
         await new Promise((r) => setTimeout(r, 400)); // slow down guessing
-        if (!safeEqual(String(passphrase || ""), adminPass(env))) return json({ error: "Incorrect passphrase" }, 401);
+        const given = String(passphrase || "").trim();
+        if (!given || !adminPasswords(env).some((p) => safeEqual(given, p))) return json({ error: "Incorrect passphrase" }, 401);
         return json({ token: await makeToken(env, "a", "admin", 12) });
       }
       // The trainee's session for a name + batch: their record id (new or legacy form) and token.

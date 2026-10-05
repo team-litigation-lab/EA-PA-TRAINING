@@ -3704,8 +3704,9 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
   const screenKey = ()=>[state.view, state.dayId, state.toolId, state.lessonSlide, state.slidePage, state.dayViewMode, state.adminTab, state.sopDay, state.studioDay, state.orientIdx, state.isAdmin ? 1 : 0].join("|");
   let lastKey = null;
 
-  // a cover like portal-gate's, kept until the page has really drawn
-  let veil = null, gateDone = !window.portalGate;
+  // a cover like portal-gate's, kept until the page has really drawn. portal-gate's own cover going away is the
+  // sign that its sign-in step is done (its init can run before this file loads, so it isn't wrapped).
+  let veil = null;
   const gateCover = [...document.documentElement.children].find(n=>n.nodeType===1 && n.style && n.style.position==="fixed" && /Opening your training/.test(n.textContent||""));
   if(gateCover){
     veil = gateCover.cloneNode(true);
@@ -3713,14 +3714,18 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
     veil.style.transition = "opacity .2s ease";
     document.documentElement.appendChild(veil);
     setTimeout(()=>lift(), 10000);                 // never leave it on if something goes wrong
+    new MutationObserver((ms, obs)=>{ if(!gateCover.isConnected){ obs.disconnect(); settle(); } }).observe(document.documentElement, {childList:true});
+    const iv = setInterval(()=>{ if(!veil) clearInterval(iv); else settle(); }, 200);   // "ready" can be set just after the last redraw
   }
   function lift(){
     if(!veil) return; const v = veil; veil = null;
     v.style.opacity = "0"; setTimeout(()=>{ if(v.parentNode) v.parentNode.removeChild(v); }, 220);
   }
-  if(window.portalGate && typeof window.portalGate.init === "function"){
-    const __gi = window.portalGate.init;
-    window.portalGate.init = async function(){ try{ return await __gi.apply(this, arguments); } finally{ gateDone = true; } };
+  // lift once the sign-in step is over and the page has drawn the screen it opens on
+  function settle(){
+    if(!veil || (gateCover && gateCover.isConnected) || typeof state === "undefined" || !state.routeReady) return;
+    if(/Signing you in/.test((document.getElementById("app")||{}).textContent||"")) return;
+    requestAnimationFrame(()=>requestAnimationFrame(lift));
   }
 
   const __render = render;
@@ -3729,9 +3734,7 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
     document.documentElement.classList.toggle("same-screen", k === lastKey);
     lastKey = k;
     const out = __render.apply(this, arguments);
-    if(veil && gateDone && state.routeReady && !/Signing you in/.test((document.getElementById("app")||{}).textContent||"")){
-      requestAnimationFrame(()=>requestAnimationFrame(lift));
-    }
+    settle();
     return out;
   };
   const st = document.createElement("style"); st.id = "calm-open"; st.textContent = `
