@@ -35,15 +35,38 @@ async function hmac(secret, msg) {
 // so one password signs an admin in on the Portal and here).
 function adminPass(env) { return env.ADMIN_PASSPHRASE || env.MASTER_ADMIN_PASSWORD || ""; }
 function secretOf(env) { return env.SESSION_SECRET || adminPass(env); }   // as stored (trimming it would sign everyone out)
-// The passwords an admin may type: ADMIN_PASSPHRASE and the Portal's MASTER_ADMIN_PASSWORD, whichever are set, without any
-// space or line break pasted around them (a secret pasted into Cloudflare with a trailing newline could never be typed).
+// The passwords an admin may type: ADMIN_PASSPHRASE and the Portal's MASTER_ADMIN_PASSWORD, whichever are set. Both the stored and
+// the typed password are compared as a person types them: without spaces or line breaks around them, quotes pasted around the whole
+// password, invisible characters (zero-width spaces, soft hyphens) or curly quotes and long dashes. A secret pasted into Cloudflare
+// with any of these signs in from a saved (autofilled) password but could never be typed.
 const ADMIN_PASS_VARS = ["ADMIN_PASSPHRASE", "MASTER_ADMIN_PASSWORD"];
-function adminPasswords(env) { return ADMIN_PASS_VARS.map((n) => String(env[n] || "").trim()).filter(Boolean); }
+const PASS_INVISIBLE = /[\u00AD\u180E\u200B-\u200F\u2028-\u202F\u205F-\u206F\uFEFF]/g;
+const PASS_CURLY = /[\u2018\u2019\u201A\u201B\u2032\u201C\u201D\u201E\u201F\u2033\u2010-\u2015\u2212]/;
+function cleanPass(v) {   // without invisible characters, curly quotes or long dashes, or spaces around it
+  return String(v || "").normalize("NFKC").replace(PASS_INVISIBLE, "")
+    .replace(/[\u2018\u2019\u201A\u201B\u2032]/g, "'").replace(/[\u201C\u201D\u201E\u201F\u2033]/g, '"').replace(/[\u2010-\u2015\u2212]/g, "-").trim();
+}
+const PASS_QUOTED = /^(["'`])([\s\S]*)\1$/;
+function normPass(v) { const t = cleanPass(v), q = t.match(PASS_QUOTED); return q ? q[2].trim() : t; }
+function adminPasswords(env) { return ADMIN_PASS_VARS.map((n) => normPass(env[n])).filter(Boolean); }
+// What /version says about each stored password (never the password itself): what is ignored, and anything still hard to type.
+function passNotes(v) {
+  const raw = String(v), ignored = [];
+  if (raw !== raw.trim()) ignored.push("spaces or a line break around it");
+  if (new RegExp(PASS_INVISIBLE.source).test(raw)) ignored.push("invisible characters");
+  if (PASS_CURLY.test(raw)) ignored.push("curly quotes or long dashes");
+  if (PASS_QUOTED.test(cleanPass(raw))) ignored.push("quotes around it");
+  const odd = /[^\x20-\x7E]/.test(normPass(raw)) ? ["a character that isn't on a standard keyboard (an accented or look-alike letter): it must be typed exactly"] : [];
+  return { ignored, odd };
+}
 function adminPassStatus(env) {
-  const set = ADMIN_PASS_VARS.filter((n) => String(env[n] || "").trim());
+  const set = ADMIN_PASS_VARS.filter((n) => normPass(env[n]));
   if (!set.length) return "not set (open mode)";
-  const padded = set.filter((n) => String(env[n]) !== String(env[n]).trim());
-  return set.join(" or ") + (padded.length ? ` (${padded.join(", ")} had spaces or a line break around it: ignored)` : "");
+  const notes = set.map((n) => {
+    const { ignored, odd } = passNotes(env[n]);
+    return [ignored.length ? `${n} had ${ignored.join(", ")}: ignored` : "", ...odd.map((o) => `${n} has ${o}`)].filter(Boolean).join("; ");
+  }).filter(Boolean);
+  return set.join(" or ") + (notes.length ? ` (${notes.join("; ")})` : "");
 }
 async function makeToken(env, role, subject, hours) {
   const exp = Date.now() + hours * 3600 * 1000;
@@ -404,7 +427,7 @@ export default {
         if (!secure) return json({ error: "not-configured" }, 501);
         const { passphrase } = await request.json();
         await new Promise((r) => setTimeout(r, 400)); // slow down guessing
-        const given = String(passphrase || "").trim();
+        const given = normPass(passphrase);
         if (!given || !adminPasswords(env).some((p) => safeEqual(given, p))) return json({ error: "Incorrect passphrase" }, 401);
         return json({ token: await makeToken(env, "a", "admin", 12) });
       }
