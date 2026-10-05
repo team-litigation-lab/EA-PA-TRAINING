@@ -3778,3 +3778,27 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
 @media(max-width:1600px){ .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){font-size:11.5px;padding:8px 4px;} }
 `; document.head.appendChild(st);
 })();
+
+/* ===== Admin password boxes: a Show button =====
+   A saved (autofilled) password can be checked against what you type: Show reveals what's in the box. The boxes also never
+   auto-capitalize or auto-correct while shown as text. */
+(function(){
+  const IDS = ["gate-apass", "adminPass"];
+  const add = ()=>IDS.forEach(id=>{
+    const i = document.getElementById(id); if(!i || i.dataset.eye) return;
+    i.dataset.eye = "1";
+    ["autocapitalize","autocorrect"].forEach(a=>i.setAttribute(a, "off")); i.spellcheck = false;
+    const wrap = document.createElement("span"); wrap.className = "pw-eye-wrap"; i.before(wrap); wrap.appendChild(i);
+    const b = document.createElement("button"); b.type = "button"; b.className = "pw-eye"; b.textContent = "Show"; b.setAttribute("aria-label", "Show password");
+    b.onclick = ()=>{ const show = i.type === "password"; i.type = show ? "text" : "password"; b.textContent = show ? "Hide" : "Show"; b.setAttribute("aria-label", show ? "Hide password" : "Show password"); i.focus(); };
+    wrap.appendChild(b);
+  });
+  new MutationObserver(add).observe(document.body, {childList:true, subtree:true}); add();
+  const st = document.createElement("style"); st.id = "pw-eye"; st.textContent = `
+.pw-eye-wrap{position:relative;display:block;}
+.pw-eye-wrap > input{width:100%;box-sizing:border-box;padding-right:64px !important;}
+.pw-eye{position:absolute;right:6px;top:6px;height:28px;padding:0 10px;border:0;border-radius:5px;background:rgba(127,135,160,.18);color:inherit;font:600 12px/28px inherit;cursor:pointer;}
+#gate-box .pw-eye{color:#cfd6e6;}
+.pw-eye:hover{background:rgba(127,135,160,.32);}
+`; document.head.appendChild(st);
+})();
