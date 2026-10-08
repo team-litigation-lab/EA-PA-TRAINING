@@ -173,7 +173,7 @@ Every lesson slide sits on the LSH slide template:
 - the orange rule under the band;
 - orange line-art waves on both edges.
 
-The files are in `img/lesson-bg/`: `lsh-logo.png` (the logo on a transparent background), `wave-left.svg` and `wave-right.svg`. The CSS is the "Lesson slide background" block near the end of `js/eapa-updates.js`. It styles `.lesson-stage`, so the trainee view, full screen and the Presenter slides window shared in Meet all get it.
+The files are in `img/lesson-bg/`: `lsh-logo.png` (the standardized LSH logo, the same file as `js/lsh-logo-dark.png`, on a transparent background), `wave-left.svg` and `wave-right.svg`. The CSS is the "Lesson slide background" block near the end of `js/eapa-updates.js`. It styles `.lesson-stage`, so the trainee view, full screen and the Presenter slides window shared in Meet all get it.
 
 The slide-progress dots sit inside the band, so slides keep most of their height. The band is 50–72 px tall, depending on screen height. At 1366×768 slides split into about 4% more pages than without it; at 1920×1080 there's no change.
 

@@ -3681,7 +3681,7 @@ Object.assign(window, {lgUpdateBudget, lgCheckSources, lgCheckList, lgReviewPlan
   background:url(/img/lesson-bg/wave-right.svg) right top/auto 64% no-repeat, url(/img/lesson-bg/wave-left.svg) left bottom/auto 62% no-repeat, #282B40 !important;
   padding-top:calc(var(--band-h) + 18px) !important;}
 .lesson-stage::before{content:"";position:absolute;left:0;top:0;width:79%;height:var(--band-h);z-index:-1;
-  background:url(/img/lesson-bg/lsh-logo.png) max(18px,2.2vw) center/auto calc(var(--band-h) - 14px) no-repeat,
+  background:url(/img/lesson-bg/lsh-logo.png?v=std) max(18px,2.2vw) center/auto calc(var(--band-h) - 14px) no-repeat,
     repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 40px),
     repeating-linear-gradient(-45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 40px),
     repeating-linear-gradient(45deg,rgba(40,43,64,.10) 0 8px,transparent 8px 40px),
