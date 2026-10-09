@@ -4,6 +4,7 @@
 // Fails on any page error, console error, render exception or empty lab.
 // Usage: node tests/smoke.cjs [baseUrl]   (needs `npm i playwright` and a browser)
 const { chromium } = require('playwright');
+const signIn = require('./sign-in.cjs');   // the name + batch form is gone: trainees arrive from the Portal
 const BASE = process.argv[2] || 'http://localhost:8787/';
 const IGNORE = /Failed to load resource|ERR_|net::|favicon/;
 (async () => {
@@ -15,8 +16,7 @@ const IGNORE = /Failed to load resource|ERR_|net::|favicon/;
         page.on('console', m => { if (m.type() === 'error' && !IGNORE.test(m.text())) failures.push(`[${vp.name}] console error: ${m.text()}`); });
         await page.goto(BASE, { waitUntil: 'load' });
         await page.waitForTimeout(800);
-        await page.fill('#loginFirstInput', 'Smoke'); await page.fill('#loginLastInput', 'Test'); await page.fill('#loginBatchInput', 'CI' + vp.name);
-        await page.click('#loginSubmitBtn'); await page.waitForTimeout(1200);
+        await signIn(page, 'Smoke', 'Test ' + vp.name, 'B100926');
         // approve the trainee (the storage API is the same one the admin screen uses)
         await page.evaluate(async () => {
             const key = 'trainee:' + state.traineeId;
@@ -59,8 +59,7 @@ const IGNORE = /Failed to load resource|ERR_|net::|favicon/;
         const page = await ctx.newPage();
         page.on('pageerror', e => failures.push(`[late update script] page error: ${e.message}`));
         await page.goto(BASE, { waitUntil: 'load' }); await page.waitForTimeout(800);
-        await page.fill('#loginFirstInput', 'Smoke'); await page.fill('#loginLastInput', 'Test'); await page.fill('#loginBatchInput', 'CIlate');
-        await page.click('#loginSubmitBtn'); await page.waitForTimeout(1200);
+        await signIn(page, 'Smoke', 'Test late', 'B100926');
         await page.evaluate(async () => {
             const key = 'trainee:' + state.traineeId;
             const r = await fetch('/api/storage/get', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key }) }).then(r => r.json());
