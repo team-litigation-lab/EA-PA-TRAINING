@@ -8,6 +8,7 @@
 // Usage: node .github/scripts/presenter.cjs [baseUrl] [day]   (with .github/scripts/server.mjs running; needs `npm i playwright`;
 //        day: a day with several ordinary slides, default 1)
 const { chromium } = require('playwright');
+const signIn = require('./sign-in.cjs');   // the name + batch form is gone: trainees arrive from the Portal
 const BASE = process.argv[2] || 'http://localhost:8787/';
 const DAY = Number(process.argv[3] || 1);
 (async () => {
@@ -18,8 +19,7 @@ const DAY = Number(process.argv[3] || 1);
     const sleep = (ms) => new Promise(r => setTimeout(r, ms));
     page.on('pageerror', e => fail(`console tab page error: ${e.message}`));
     await page.goto(BASE, { waitUntil: 'load' }); await sleep(800);
-    await page.fill('#loginFirstInput', 'Presenter'); await page.fill('#loginLastInput', 'Test'); await page.fill('#loginBatchInput', 'CIPV');
-    await page.click('#loginSubmitBtn'); await sleep(1200);
+    await signIn(page, 'Presenter', 'Test', 'B100926');
     await page.evaluate(async () => {   // approve the trainee, as the admin screen does
         const key = 'trainee:' + state.traineeId;
         const r = await fetch('/api/storage/get', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key }) }).then(r => r.json());
