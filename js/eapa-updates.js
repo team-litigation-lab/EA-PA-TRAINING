@@ -32,7 +32,6 @@ window.EAPA_UPDATE_PACK = "z";
   .topbar-right{min-width:auto}
   .topbar .nav{flex:0 1 auto;min-width:0;flex-wrap:wrap;column-gap:0;row-gap:4px}
   .topbar .nav>*+*{margin-left:2px}  /* margins, not column-gap: Chrome leaves the gap out of a wrapping row's width */
-  .trainee-chip{flex-shrink:0}
 }
 @container (max-width:170px){.topbar .brand-text{display:none !important}}
 /* ================= One fixed-size deck =================
@@ -307,9 +306,6 @@ function renderTopbar(){
             ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('admin')" title="Return to the admin (trainer) view">🛡 Back to Admin view</button>`
             : ((state.portalOnly && !state.isAdmin) ? "" : `<button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>`)}
           ${state.isAdmin ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('trainee')" title="See the portal exactly as a trainee does — no trainer tools or admin pages">👁 Trainee view</button>` : ""}
-        </div>
-        <div class="trainee-chip" onclick="promptName()">
-          <span class="dot"></span> ${state.traineeName ? esc(state.traineeName) : "Set your name"}
         </div>
       </div>
     </div>
