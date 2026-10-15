@@ -172,6 +172,17 @@ The files are in `img/lesson-bg/`: `lsh-logo.png` (the standardized LSH logo, th
 
 The slide-progress dots sit inside the band, so slides keep most of their height. The band is 50–72 px tall, depending on screen height. At 1366×768 slides split into about 4% more pages than without it; at 1920×1080 there's no change.
 
+## ◫ Day 3 Practice Lab: the Calendar Conflict Resolver
+
+Activity 1 is built like the Training Portal's **Google Calendar Simulator** (a Google Calendar look-alike; no real Google). The week sits in a calendar card with its own bar (the Calendar mark, *October 12 – 16, 2026*, Week, **+ Create**, Reset to original), a sidebar with **+ Create**, the October mini month with the practice week selected, and **My calendars** — one box per priority, which shows or hides those events (the check always grades every event, hidden or not). The week itself is Google's grid: day names over date circles with Thursday the 15th as today, the hour rail, hour lines, and events as Google event chips laid out in side-by-side lanes where they overlap, each one outlined in red while it still clashes.
+
+- **Drag** an event to another day or time (it snaps to the half hour); a blue slot and its start time follow the pointer.
+- **Click** an event for Google's detail card: its day, time, location and type, the three priority colors to recolor it, a note naming what it still overlaps, and **⇄ Move** (the exact day/time dialog) and **🗑 Delete**.
+- **Remaining Conflicts** lists each clash as two draggable chips: drag whichever side should move straight onto a free slot in the calendar above, and the conflict leaves the list as soon as the two no longer overlap.
+- On a phone the sidebar folds away (**+ Create** moves into the bar) and the week scrolls sideways inside the card, so the page itself never scrolls sideways.
+
+Everything is kept in the trainee's saved work as before (`calendar-edits`, `calendar-custom`), and nothing is graded until **Check My Plan**.
+
 ## 📞 Day 4 Practice Lab: simulated prospect calls and lead sourcing
 
 **Prospective Client Intake Call Log (activity 2):** each prospect row has a **📞 Call** button. The trainee rings the prospect and talks by voice (Chrome or Edge) or by typing, using the same call engine as the Live Intake Call Simulator. Each prospect picks up differently:

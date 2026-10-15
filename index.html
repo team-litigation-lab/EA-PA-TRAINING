@@ -2406,6 +2406,119 @@ em.warn{font-style:normal;color:var(--danger);}
 .ho-bp{display:flex;align-items:center;gap:14px;padding:14px 18px;margin-bottom:16px;border-left:5px solid var(--navy);}
 .ho-bp-i{font-size:30px;} .ho-bp b{display:block;color:var(--navy);font-size:15px;} .ho-bp span{font-size:13px;color:var(--ink-soft);} .ho-bp .btn{margin-left:auto;white-space:nowrap;}
 @media(max-width:760px){.ho-bp{flex-wrap:wrap;} .ho-bp .btn{margin-left:0;}}
+
+/* ============================================================
+   Google Calendar look for the Calendar Conflict Resolver
+   (Day 3 Practice Lab, Part 1 — built like the Training Portal's
+   Google Calendar Simulator: sidebar, mini month, week grid,
+   event chips, click-to-open detail card. No real Google.)
+   ============================================================ */
+.gcw{--gl:#dadce0;--gink:#1f1f1f;--gink2:#444746;--gmute:#70757a;--gblue:#0b57d0;--ghover:#f1f3f4;--gsel:#c2e7ff;
+  display:flex;flex-direction:column;background:#fff;border:1px solid var(--gl);border-radius:16px;overflow:hidden;
+  font-family:Roboto,'IBM Plex Sans',Arial,sans-serif;color:var(--gink);font-size:14px;margin-bottom:18px;}
+.gcw button{font:inherit;color:inherit;}
+.gcw-head{display:flex;align-items:center;gap:8px;min-height:60px;padding:8px 12px;border-bottom:1px solid var(--gl);flex-wrap:wrap;}
+.gcw-logo{display:flex;align-items:center;gap:9px;flex:none;}
+.gcw-logo .cal{width:34px;height:34px;border-radius:8px;background:#fff;border:2px solid #1a73e8;display:flex;flex-direction:column;overflow:hidden;}
+.gcw-logo .cal i{height:8px;background:#1a73e8;display:block;}
+.gcw-logo .cal b{flex:1;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:#1a73e8;font-style:normal;}
+.gcw-logo span{font-size:19px;color:var(--gink2);white-space:nowrap;}
+.gcw-logo small{display:block;font-size:10px;color:var(--gmute);letter-spacing:.02em;margin-top:-2px;}
+.gcw-title{font-size:19px;color:var(--gink);margin-left:6px;white-space:nowrap;}
+.gcw-head .grow{flex:1;min-width:0;}
+.gcw-pill{height:34px;padding:0 16px;border-radius:18px;border:1px solid #747775;background:none;font-weight:500;font-size:13.5px;color:var(--gink2);cursor:pointer;}
+.gcw-pill:hover{background:var(--ghover);}
+.gcw-pill.on{background:var(--gsel);border-color:transparent;color:#001d35;}
+.gcw-body{display:flex;min-height:0;}
+.gcw-side{width:230px;flex:none;padding:10px 10px 16px 12px;}
+.gcw-create{display:flex;align-items:center;gap:10px;height:48px;padding:0 20px 0 14px;border-radius:16px;background:#fff;border:0;cursor:pointer;
+  font-weight:500;font-size:14px;color:var(--gink2);box-shadow:0 1px 3px rgba(60,64,67,.3),0 4px 8px 3px rgba(60,64,67,.15);margin:2px 0 16px;}
+.gcw-create:hover{background:#f6fafe;}
+.gcw-create .plus{font-size:21px;color:#1a73e8;line-height:1;}
+.gcw-mini{padding:0 2px 10px;}
+.gcw-mini .mh{font-weight:500;padding:0 0 6px 4px;font-size:13.5px;}
+.gcw-mini table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.gcw-mini th{font-size:10px;font-weight:500;color:var(--gmute);height:22px;}
+.gcw-mini td{text-align:center;height:26px;padding:0;}
+.gcw-mini td i{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:10.5px;font-style:normal;font-weight:500;}
+.gcw-mini td i.o{color:var(--gmute);}
+.gcw-mini td i.s{background:var(--gsel);color:#001d35;}
+.gcw-mini td i.t{background:var(--gblue);color:#fff;}
+.gcw-cals h4{margin:12px 0 4px 4px;font-size:13.5px;font-weight:500;color:var(--gink2);}
+.gcw-cals label{display:flex;align-items:center;gap:11px;padding:4px 6px;border-radius:6px;cursor:pointer;font-size:13.5px;color:var(--gink);
+  text-transform:none;letter-spacing:normal;font-weight:400;margin:0;}
+.gcw-cals label:hover{background:var(--ghover);}
+.gcw-cals input{position:absolute;opacity:0;pointer-events:none;}
+.gcw-cals .box{width:17px;height:17px;border-radius:3px;border:2px solid;display:flex;align-items:center;justify-content:center;flex:none;color:#fff;font-size:11px;line-height:1;}
+.gcw-main{flex:1;min-width:0;display:flex;flex-direction:column;border-left:1px solid var(--gl);}
+.gcw-wk-head{display:flex;flex:none;border-bottom:1px solid var(--gl);}
+.gcw-gut{width:58px;flex:none;position:relative;font-size:10px;color:var(--gmute);}
+.gcw-gut .tz{position:absolute;bottom:4px;right:6px;text-align:right;line-height:1.3;}
+.gcw-wk-day{flex:1;min-width:0;text-align:center;padding:8px 0 6px;border-left:1px solid var(--gl);}
+.gcw-wk-day .dn{font-size:10.5px;font-weight:500;color:var(--gink2);letter-spacing:.06em;}
+.gcw-wk-day .dd{width:38px;height:38px;margin:3px auto 0;border-radius:50%;font-size:22px;display:flex;align-items:center;justify-content:center;color:var(--gink2);}
+.gcw-wk-day.today .dn{color:var(--gblue);}
+.gcw-wk-day.today .dd{background:var(--gblue);color:#fff;}
+.gcw-grid{display:flex;position:relative;}
+.gcw-hours{width:58px;flex:none;position:relative;}
+.gcw-hours span{position:absolute;right:7px;font-size:10px;color:var(--gmute);transform:translateY(-50%);white-space:nowrap;}
+.gcw-col{flex:1;min-width:0;position:relative;border-left:1px solid var(--gl);}
+.gcw-col .ln{position:absolute;left:0;right:0;border-top:1px solid var(--gl);pointer-events:none;}
+.gcw-col.over{background:#e8f0fe66;}
+.gcw-ev{position:absolute;left:1px;right:1px;border-radius:4px;padding:2px 6px;font-size:11.5px;line-height:1.3;color:#fff;overflow:hidden;cursor:grab;
+  border:1px solid #fff;box-sizing:border-box;user-select:none;}
+.gcw-ev:active{cursor:grabbing;}
+.gcw-ev b{font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.gcw-ev span{display:block;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.gcw-ev.short{padding:0 6px;}
+.gcw-ev.short b{display:inline;} .gcw-ev.short span{display:inline;margin-left:5px;}
+.gcw-ev.conflict{border-color:#d93025;box-shadow:0 0 0 2px #d93025 inset;}
+.gcw-ev:hover{filter:brightness(1.06);box-shadow:0 2px 6px rgba(60,64,67,.35);z-index:4;}
+.gcw-ev.dim{opacity:.35;}
+.gcw-ghost{position:absolute;left:1px;right:1px;border-radius:4px;border:2px dashed var(--gblue);background:#e8f0fe;color:var(--gblue);
+  font-size:11px;font-weight:500;padding:2px 6px;pointer-events:none;z-index:6;}
+/* the event's detail card, Google's popup */
+.gcw-pop{position:fixed;z-index:120;width:308px;max-width:calc(100vw - 24px);background:#fff;border-radius:12px;
+  box-shadow:0 8px 10px 1px rgba(60,64,67,.15),0 3px 14px 2px rgba(60,64,67,.12),0 5px 5px -3px rgba(60,64,67,.3);
+  font-family:Roboto,'IBM Plex Sans',Arial,sans-serif;color:#1f1f1f;padding:6px 8px 14px;}
+.gcw-pop .pb{display:flex;justify-content:flex-end;gap:2px;}
+.gcw-pop .pb button{width:34px;height:34px;border-radius:50%;border:0;background:none;cursor:pointer;font-size:14px;color:#444746;}
+.gcw-pop .pb button:hover{background:#f1f3f4;}
+.gcw-pop .pt{display:flex;gap:12px;padding:0 10px 2px;}
+.gcw-pop .pt i{width:14px;height:14px;border-radius:4px;margin-top:6px;flex:none;}
+.gcw-pop .pt h4{font-size:20px;font-weight:400;margin:0 0 2px;color:#1f1f1f;line-height:1.3;}
+.gcw-pop .pt p{font-size:13px;color:#444746;margin:0;line-height:1.5;}
+.gcw-pop .pr{display:flex;align-items:center;gap:12px;padding:8px 10px 0;font-size:13px;color:#444746;}
+.gcw-pop .pr .ic{width:14px;text-align:center;flex:none;color:#70757a;}
+.gcw-pop .dots{display:flex;gap:8px;align-items:center;}
+.gcw-pop .dots button{width:18px;height:18px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;}
+.gcw-pop .dots button.sel{border-color:#1f1f1f;}
+.gcw-pop .acts{display:flex;gap:8px;padding:14px 10px 0;}
+.gcw-pop .acts button{flex:1;height:34px;border-radius:18px;border:1px solid #747775;background:none;cursor:pointer;font-size:13px;font-weight:500;color:#444746;}
+.gcw-pop .acts button:hover{background:#f1f3f4;}
+.gcw-pop .acts button.danger{color:#b3261e;border-color:#f2b8b5;}
+.gcw-pop .warn{margin:10px 10px 0;padding:7px 10px;border-radius:8px;background:#fce8e6;color:#b3261e;font-size:12px;line-height:1.45;}
+/* Remaining conflicts — each side is a chip you drag onto the calendar */
+.gcw-cf{display:flex;flex-direction:column;gap:10px;}
+.gcw-cf-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#FFF8F4;}
+.gcw-cf-row .when{font-size:12px;color:var(--ink-soft);width:100%;}
+.gcw-cf-chip{display:flex;align-items:center;gap:8px;max-width:100%;padding:6px 10px;border-radius:8px;color:#fff;font-size:12.5px;font-weight:600;
+  cursor:grab;box-shadow:0 1px 3px rgba(0,0,0,.25);}
+.gcw-cf-chip:active{cursor:grabbing;}
+.gcw-cf-chip .grip{opacity:.8;font-size:12px;}
+.gcw-cf-chip small{font-weight:400;opacity:.9;}
+.gcw-cf-vs{font-size:12px;color:var(--ink-soft);font-weight:700;}
+.gcw-drag-on .gcw-col{background:#f8fbff;}
+.gcw-scroll{overflow-x:auto;}
+.gcw-create-sm{display:none;}
+@media(max-width:900px){
+  .gcw-side{display:none;}
+  .gcw-main{border-left:0;}
+  .gcw-title{margin-left:0;}
+  .gcw-create-sm{display:inline-block;}
+  .gcw-track{min-width:660px;}
+  .gcw-cf-row{padding:10px;}
+}
 </style>
 <script src="/js/portal-gate.js?v=2026.10.08-admin"></script>
 </head>
@@ -8363,7 +8476,7 @@ window.downloadDrillPdf = downloadDrillPdf;
 /* ============================================================
    2. LEGAL CALENDAR CONFLICT RESOLVER (week view, draggable, colorable)
    ============================================================ */
-const CAL_DAY_START = 8.5, CAL_DAY_END = 17.5, CAL_PX_PER_HR = 46;
+const CAL_DAY_START = 8.5, CAL_DAY_END = 17.5, CAL_PX_PER_HR = 48;
 
 function calMergedEvents(){
   const originals = CAL_EVENTS.map((e,i)=>{
@@ -8398,15 +8511,18 @@ function renderCalendarBody(body){
   // without this, any text typed into other wizard parts would be lost.
   const savedCalPrompt = document.getElementById("calPromptInput") ? document.getElementById("calPromptInput").value : "";
   const savedTravelAct = document.getElementById("travelActDraft") ? document.getElementById("travelActDraft").value : "";
+  closeEventPopup();
   const events = calMergedEvents();
   const conflicts = calFindConflicts(events);
   const conflictIdx = new Set(conflicts.flat());
-  const hours=[]; for(let h=Math.ceil(CAL_DAY_START);h<=Math.floor(CAL_DAY_END);h++) hours.push(h);
+  toolState.calHidden = toolState.calHidden || {};
+  const hidden = toolState.calHidden;
   const colH = (CAL_DAY_END-CAL_DAY_START)*CAL_PX_PER_HR;
+  const hourLines=[]; for(let h=Math.ceil(CAL_DAY_START);h<=Math.floor(CAL_DAY_END);h++) hourLines.push(h);
 
   function colFor(day){
-    const dayEvents = events.filter(e=>e.day===day).slice().sort((a,b)=>a.s-b.s || b.e-a.e);
-    // Lay overlapping events out in side-by-side lanes (like Outlook/Google Calendar)
+    const dayEvents = events.filter(e=>e.day===day && !hidden[e.p]).slice().sort((a,b)=>a.s-b.s || b.e-a.e);
+    // Lay overlapping events out in side-by-side lanes (like Google Calendar)
     const lanes = []; const laneOf = new Map(); let cluster = [], clusterEnd = -1; const widthOf = new Map();
     const flush = ()=>{ const n = Math.max(1, ...cluster.map(x=>laneOf.get(x)+1)); cluster.forEach(x=>widthOf.set(x, n)); cluster = []; lanes.length = 0; };
     dayEvents.forEach(e=>{
@@ -8417,60 +8533,90 @@ function renderCalendarBody(body){
     if(cluster.length) flush();
     return dayEvents.map(e=>{
       const n = widthOf.get(e)||1, li = laneOf.get(e)||0;
-      const laneStyle = n>1 ? `left:calc(${(li/n*100).toFixed(3)}% + 3px);right:auto;width:calc(${(100/n).toFixed(3)}% - 6px);` : "";
-      const tip = `${e.t}\n${e.day} · ${fmtHr12(e.s)}–${fmtHr12(e.e)}\n${e.p} priority · ${e.type}${e.loc && e.loc!=="—" ? "\n📍 "+e.loc : ""}\n(Drag to move, or use ⇄)`;
+      const laneStyle = n>1 ? `left:calc(${(li/n*100).toFixed(3)}% + 1px);right:auto;width:calc(${(100/n).toFixed(3)}% - 2px);` : "";
+      const tip = `${e.t}\n${e.day} · ${fmtHr12(e.s)}–${fmtHr12(e.e)}\n${e.p} priority · ${e.type}${e.loc && e.loc!=="—" ? "\n📍 "+e.loc : ""}\n(Drag to move, or click to open)`;
       const top = (e.s-CAL_DAY_START)*CAL_PX_PER_HR;
-      const h = Math.max((e.e-e.s)*CAL_PX_PER_HR, 30);
+      const h = Math.max((e.e-e.s)*CAL_PX_PER_HR, 22);
       const isConflict = conflictIdx.has(e.idx);
       const bg = e.color || PRI_COLOR[e.p];
-      return `<div class="cal-block ${isConflict?'conflict':''}" draggable="true"
-                ondragstart="calDragStart(event,${e.idx})"
-                style="top:${top}px;height:${h}px;background:${bg};${laneStyle}" title="${esc(tip)}" data-lanes="${n}">
-        <div class="cal-color-picker" onclick="event.stopPropagation()">
-          ${Object.entries(PRI_COLOR).map(([p,hex])=>`<span class="cal-color-dot ${toHex(bg)===hex?'selected':''}" style="background:${hex};" onclick="calColorChange(${e.idx}, '${hex}')" title="${p}"></span>`).join("")}
-        </div>
-        <button class="cal-move-btn" onclick="event.stopPropagation(); openMoveDialog(${e.idx})" title="Move this to a different day/time">⇄</button>
-        <button class="cal-del-btn" onclick="event.stopPropagation(); calDeleteEvent(${e.idx})" title="Remove this event">✕</button>
-        <b>${esc(e.t)}</b><span class="cal-sub">${e.loc!=="—"?esc(e.loc)+" · ":""}${esc(e.type)}</span>
-        <div class="cal-hover"><b>${esc(e.t)}</b><span>${esc(e.day)} · ${fmtHr12(e.s)}–${fmtHr12(e.e)}</span><span>${esc(e.p)} priority · ${esc(e.type)}</span>${e.loc && e.loc!=="—" ? `<span>📍 ${esc(e.loc)}</span>` : ""}</div>
+      return `<div class="gcw-ev ${isConflict?'conflict':''} ${h<30?'short':''}" draggable="true"
+                ondragstart="calDragStart(event,${e.idx})" onclick="openEventPopup(event,${e.idx})"
+                style="top:${top}px;height:${h}px;background:${bg};${laneStyle}" title="${esc(tip)}">
+        <b>${esc(e.t)}</b><span>${fmtHr12(e.s)}${h>=42?" – "+fmtHr12(e.e):""}${e.loc && e.loc!=="—" && h>=58 ? " · "+esc(e.loc) : ""}</span>
       </div>`;
     }).join("");
   }
 
+  const calBoxes = ["High","Medium","Low"].map(p=>`
+    <label onclick="event.preventDefault(); gcwToggleCalendar('${p}')">
+      <span class="box" style="border-color:${PRI_COLOR[p]};background:${hidden[p]?'transparent':PRI_COLOR[p]};">${hidden[p]?"":"✓"}</span>
+      ${p} priority
+    </label>`).join("");
+
   toolState.wizardIndex = toolState.wizardIndex || 0;
   const partA = `
-    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any block</b> to a new day or time, or click the <b>⇄ Move button</b> on a block for precise day/time selection if dragging is fiddly. Click one of the three priority-color dots to recolor, <b>✕</b> to remove an event entirely, or <b>+ Add Event</b> to schedule something new — including proactive tasks you spot are missing, like a debrief buffer or prep block. Nothing here is graded until you click Check My Plan.</p>
-    <div class="legend-row">
-      ${["High","Medium","Low"].map(p=>`<span class="legend-chip"><span class="sw" style="background:${PRI_COLOR[p]};"></span>${p} priority</span>`).join("")}
-      <button class="btn btn-navy btn-sm" style="margin-left:auto;" onclick="openAddEventDialog()">+ Add Event</button>
-      <button class="btn btn-ghost btn-sm" onclick="calReset()">Reset to Original</button>
-    </div>
-    <div class="week-grid">
-      <div class="week-gutter" style="height:${colH+30}px;">
-        <div class="week-corner"></div>
-        ${hours.map(h=>`<div class="week-hour" style="height:${CAL_PX_PER_HR}px;">${h>12?h-12:h}${h>=12?'PM':'AM'}</div>`).join("")}
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:12px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any event</b> to a new day or time, or <b>click it</b> to open it — move it to an exact slot, recolor it by priority, or delete it. <b>+ Create</b> schedules something new, including proactive blocks you spot are missing, like a debrief buffer or prep time. Under <b>Remaining Conflicts</b> you can drag either side of a clash straight onto the calendar; a conflict leaves the list as soon as it no longer overlaps. Nothing here is graded until you click Check My Plan.</p>
+    <div class="gcw">
+      <div class="gcw-head">
+        <div class="gcw-logo">
+          <div class="cal"><i></i><b>15</b></div>
+          <span>Calendar<small>Elias Thorne — practice week</small></span>
+        </div>
+        <div class="gcw-title">October 12 – 16, 2026</div>
+        <div class="grow"></div>
+        <button class="gcw-pill on" type="button" onclick="return false;" title="This practice week is a fixed Monday–Friday week">Week</button>
+        <button class="gcw-pill gcw-create-sm" type="button" onclick="openAddEventDialog()">+ Create</button>
+        <button class="gcw-pill" type="button" onclick="calReset()">Reset to original</button>
       </div>
-      ${DAY_ORDER.map(day=>`
-        <div class="week-col" ondragover="calDragOver(event,'${day}')" ondragleave="calDragLeave(event,'${day}')" ondrop="calDrop(event,'${day}')">
-          <div class="week-day-header">${day}</div>
-          <div class="week-col-body" id="colBody-${cssId(day)}" style="height:${colH}px;position:relative;">
-            <div class="cal-drop-ghost" id="ghost-${cssId(day)}" style="display:none;"></div>
-            ${colFor(day)}
+      <div class="gcw-body">
+        <aside class="gcw-side">
+          <button class="gcw-create" type="button" onclick="openAddEventDialog()"><span class="plus">+</span> Create</button>
+          ${gcwMiniMonth()}
+          <div class="gcw-cals">
+            <h4>My calendars</h4>
+            ${calBoxes}
           </div>
-        </div>`).join("")}
+        </aside>
+        <div class="gcw-main">
+         <div class="gcw-scroll"><div class="gcw-track">
+          <div class="gcw-wk-head">
+            <div class="gcw-gut"><span class="tz">GMT-04</span></div>
+            ${DAY_ORDER.map((day,i)=>`
+              <div class="gcw-wk-day ${i===3?'today':''}">
+                <div class="dn">${day.toUpperCase()}</div>
+                <div class="dd">${12+i}</div>
+              </div>`).join("")}
+          </div>
+          <div class="gcw-grid" style="height:${colH}px;">
+            <div class="gcw-hours">
+              ${hourLines.map(h=>`<span style="top:${(h-CAL_DAY_START)*CAL_PX_PER_HR}px;">${h>12?h-12:h} ${h>=12?'PM':'AM'}</span>`).join("")}
+            </div>
+            ${DAY_ORDER.map(day=>`
+              <div class="gcw-col" id="colBody-${cssId(day)}" ondragover="calDragOver(event,'${day}')" ondragleave="calDragLeave(event,'${day}')" ondrop="calDrop(event,'${day}')">
+                ${hourLines.map(h=>`<div class="ln" style="top:${(h-CAL_DAY_START)*CAL_PX_PER_HR}px;"></div>`).join("")}
+                <div class="gcw-ghost" id="ghost-${cssId(day)}" style="display:none;"></div>
+                ${colFor(day)}
+              </div>`).join("")}
+          </div>
+         </div></div>
+        </div>
+      </div>
     </div>
     <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">Remaining Conflicts</h3>
     <div class="card" style="padding:14px 20px;">
       ${conflicts.length===0
         ? `<p style="font-size:13px;color:var(--success);margin:6px 0;">✅ No overlapping commitments remain.</p>`
-        : conflicts.map(([i,j])=>{
+        : `<p style="font-size:12.5px;color:var(--ink-soft);margin:2px 0 12px;">Drag whichever side should move onto an open slot in the calendar above. Once the two no longer overlap, the conflict disappears from this list.</p>
+           <div class="gcw-cf">${conflicts.map(([i,j])=>{
             const ei = events.find(e=>e.idx===i), ej = events.find(e=>e.idx===j);
             if(!ei||!ej) return "";
-            return `
-          <div class="decision-row" style="grid-template-columns:1fr;">
-            <div class="lbl"><b>${esc(ei.t)}</b> (${ei.p}, ${ei.day}) overlaps <b>${esc(ej.t)}</b> (${ej.p}, ${ej.day})</div>
-          </div>`;
-          }).join("")}
+            const chip = e=>`<span class="gcw-cf-chip" draggable="true" ondragstart="calDragStart(event,${e.idx})" title="Drag me onto the calendar, or click to open"
+                onclick="openEventPopup(event,${e.idx})" style="background:${e.color||PRI_COLOR[e.p]};"><span class="grip">⠿</span>${esc(e.t)} <small>${esc(e.p)} · ${fmtHr12(e.s)}–${fmtHr12(e.e)}</small></span>`;
+            return `<div class="gcw-cf-row">
+              <div class="when">${esc(ei.day)} · ${fmtHr12(Math.max(ei.s,ej.s))}–${fmtHr12(Math.min(ei.e,ej.e))} overlap</div>
+              ${chip(ei)}<span class="gcw-cf-vs">overlaps</span>${chip(ej)}
+            </div>`;
+          }).join("")}</div>`}
     </div>
     <button class="btn btn-primary" style="margin-top:16px;" onclick="submitCalendar()">Check My Plan</button>
     <div id="calResult"></div>
@@ -8561,6 +8707,76 @@ function toHex(c){
   if(c.startsWith("#")) return c;
   return "#DB8437";
 }
+
+/* The sidebar's mini month: October 2026, with the practice week (12–16) selected. */
+function gcwMiniMonth(){
+  const first = new Date(2026,9,1), lead = (first.getDay()+6)%7; // Monday-first
+  const days = new Date(2026,10,0).getDate();
+  const cells = []; for(let i=0;i<lead;i++) cells.push(null);
+  for(let d=1;d<=days;d++) cells.push(d);
+  while(cells.length%7) cells.push(null);
+  const rows = []; for(let i=0;i<cells.length;i+=7) rows.push(cells.slice(i,i+7));
+  return `<div class="gcw-mini">
+    <div class="mh">October 2026</div>
+    <table><thead><tr>${["M","T","W","T","F","S","S"].map(d=>`<th>${d}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(r=>`<tr>${r.map(d=>`<td>${d?`<i class="${d===15?'t':(d>=12&&d<=16?'s':'o')}">${d}</i>`:""}</td>`).join("")}</tr>`).join("")}</tbody></table>
+  </div>`;
+}
+/* Sidebar calendars: show or hide one priority's events (the grading always
+   counts every event, hidden or not — this only clears the view). */
+function gcwToggleCalendar(p){
+  toolState.calHidden = toolState.calHidden || {};
+  toolState.calHidden[p] = !toolState.calHidden[p];
+  renderCalendarBody(document.getElementById("toolBody"));
+}
+window.gcwToggleCalendar = gcwToggleCalendar;
+
+function closeEventPopup(){
+  const old = document.getElementById("gcwPop");
+  if(old) old.remove();
+  if(toolState.gcwPopAway){ document.removeEventListener("mousedown", toolState.gcwPopAway, true); document.removeEventListener("keydown", toolState.gcwPopKey, true); toolState.gcwPopAway = null; }
+}
+window.closeEventPopup = closeEventPopup;
+
+/* Click an event → Google's detail card: move it, recolor it by priority, delete it. */
+function openEventPopup(ev, idx){
+  ev.stopPropagation();
+  closeEventPopup();
+  const e = calMergedEvents().find(x=>x.idx===idx);
+  if(!e) return;
+  const conflictWith = calMergedEvents().filter(o=>o.idx!==idx && o.day===e.day && o.s<e.e && e.s<o.e);
+  const bg = e.color || PRI_COLOR[e.p];
+  const dayName = {Mon:"Monday, October 12",Tue:"Tuesday, October 13",Wed:"Wednesday, October 14",Thu:"Thursday, October 15",Fri:"Friday, October 16"}[e.day] || e.day;
+  const pop = document.createElement("div");
+  pop.className = "gcw-pop"; pop.id = "gcwPop";
+  pop.innerHTML = `
+    <div class="pb"><button type="button" title="Close" onclick="closeEventPopup()">✕</button></div>
+    <div class="pt">
+      <i style="background:${bg};"></i>
+      <div><h4>${esc(e.t)}</h4><p>${esc(dayName)} · ${fmtHr12(e.s)} – ${fmtHr12(e.e)}</p></div>
+    </div>
+    ${e.loc && e.loc!=="—" ? `<div class="pr"><span class="ic">📍</span><span>${esc(e.loc)}</span></div>` : ""}
+    <div class="pr"><span class="ic">🏷</span><span>${esc(e.type)}</span></div>
+    <div class="pr"><span class="ic">🎨</span><span class="dots">${["High","Medium","Low"].map(p=>`<button type="button" class="${toHex(bg)===PRI_COLOR[p]?'sel':''}" style="background:${PRI_COLOR[p]};" title="${p} priority" onclick="calColorChange(${e.idx}, '${PRI_COLOR[p]}')"></button>`).join("")}</span></div>
+    ${conflictWith.length ? `<div class="warn">Overlaps ${conflictWith.map(o=>esc(o.t)).join(", ")}. Move one of them to a free slot.</div>` : ""}
+    <div class="acts">
+      <button type="button" onclick="closeEventPopup(); openMoveDialog(${e.idx});">⇄ Move</button>
+      <button type="button" class="danger" onclick="closeEventPopup(); calDeleteEvent(${e.idx});">🗑 Delete</button>
+    </div>`;
+  document.body.appendChild(pop);
+  // Sit the card beside what was clicked, kept inside the window.
+  const r = ev.currentTarget.getBoundingClientRect(), pr = pop.getBoundingClientRect();
+  let left = r.right + 8, top = r.top - 8;
+  if(left + pr.width > window.innerWidth - 8) left = r.left - pr.width - 8;
+  if(top + pr.height > window.innerHeight - 8) top = window.innerHeight - pr.height - 8;
+  left = Math.max(8, left); top = Math.max(8, top);
+  pop.style.left = left+"px"; pop.style.top = top+"px";
+  toolState.gcwPopAway = ev2 => { if(!pop.contains(ev2.target)) closeEventPopup(); };
+  toolState.gcwPopKey = ev2 => { if(ev2.key==="Escape") closeEventPopup(); };
+  document.addEventListener("mousedown", toolState.gcwPopAway, true);
+  document.addEventListener("keydown", toolState.gcwPopKey, true);
+}
+window.openEventPopup = openEventPopup;
 function calDragStart(ev, idx){
   ev.dataTransfer.setData("text/plain", String(idx));
   toolState.calDraggingIdx = idx;
