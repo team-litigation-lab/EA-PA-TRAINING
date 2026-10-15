@@ -1,4 +1,4 @@
-/* EA / PA — graded calls from the CMS Call Simulator (the main Call Simulator).
+/* EA / PA — graded calls from the Call Simulator (☎ LSH Ring Channel, the training phone).
    A graded call taken there (Graded call 1, 2… on a line; the caller is unknown until the debrief) counts in this course: the Training Portal keeps
    the trainee's graded calls in callsim:<id> (its /api/call-results; EA / PA has no key prefix, and a trainee on an older
    id is found through trainee-alias:), by the Call Simulator line they were taken on (Executive Calls, Gatekeeping &
@@ -26,7 +26,7 @@
     const g = state.gradedCalls || { best: {} }, lines = Object.entries(g.best || {}).filter(([, b])=> b && typeof b.score === "number");
     const calls = Array.isArray(g.calls) ? g.calls.length : lines.reduce((n, [, b])=> n + (b.calls || 0), 0);
     const avg = lines.length ? Math.round(lines.reduce((n, [, b])=> n + b.score, 0) / lines.length) : null;
-    const tip = lines.length ? lines.map(([k, b])=> `${(b.line || k.replace(/^line:/, ""))}: best ${b.score}% (${b.calls} call${b.calls === 1 ? "" : "s"})`).join("\n") : "No graded call yet: take one in the CMS Call Simulator.";
+    const tip = lines.length ? lines.map(([k, b])=> `${(b.line || k.replace(/^line:/, ""))}: best ${b.score}% (${b.calls} call${b.calls === 1 ? "" : "s"})`).join("\n") : "No graded call yet: take one on the Call Simulator (☎ LSH Ring Channel).";
     return `<div class="card stat graded-calls-stat" title="${esc(tip)}"><div class="num">${avg === null ? "—" : avg + "%"}</div><div class="lbl">Graded calls · ${lines.length} line${lines.length === 1 ? "" : "s"} · ${calls} call${calls === 1 ? "" : "s"}</div></div>`;
   }
   const __dash = renderDashboard;

@@ -4165,13 +4165,15 @@ const ROLEPLAY_MODES = [
   {id:"twopart", label:"2-Part Challenge", sub:"Crisis + Rapid Delegation", icon:"🎯", desc:"Part 1 is a high-stakes crisis call. Part 2 drops 3-4 unrelated tasks on you back-to-back, no break in between — testing whether you can context-switch cleanly under load."}
 ];
 
-// The main Call Simulator is the CMS's: Elias Thorne's calls (executive, gatekeeping, legal operations, lifestyle, intake and
-// outreach lines), each with Practice and Graded calls. It opens through the Portal's sign-in, so nobody signs in again.
-const CMS_CALLS = "https://cm-training-activity.pages.dev/api/launch?tool=cms&to=calls&program=EA";
+// The Call Simulator is ☎ LSH Ring Channel's: the training phone itself. A caller rings the trainee's phone on the line the
+// card names, they answer with a headset and use the phone's own keys (mute, hold, transfer) and 🔎 Case lookup, and the call
+// is graded on that line's Mock Calls Metrics; a graded call is reported to the Portal, so it still counts in this course.
+// It opens through the Portal's sign-in, so nobody signs in again.
+const CMS_CALLS = "https://cm-training-activity.pages.dev/api/launch?tool=ringchannel&to=calls&program=EA";
 function cmsCallsCard(line, text){
   return `<div class="card" style="padding:16px 18px;margin-bottom:24px;background:#EEF2FF;border:1px solid var(--navy);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
         <div>
-          <b style="display:block;font-size:14px;color:var(--navy);">📞 Call Simulator (in the CMS)</b>
+          <b style="display:block;font-size:14px;color:var(--navy);">📞 Call Simulator (☎ LSH Ring Channel)</b>
           <p style="font-size:12.5px;color:var(--ink-soft);margin:2px 0 0;">${text}</p>
         </div>
         <a class="btn btn-navy btn-sm" href="${CMS_CALLS}${line ? "&line=" + encodeURIComponent(line) : ""}" target="_blank" rel="noopener">Open the Call Simulator &rarr;</a>
@@ -9822,7 +9824,7 @@ function renderIntakeCallSection(){
           <span class="rp-topic-arrow">${esc(p.matter)} &rarr;</span>
         </div>`).join("")}
     </div>
-    <div style="margin-top:14px;">${cmsCallsCard("Intake Calls", "More intake callers, practice or graded, on the CMS Call Simulator's EA / PA Intake Calls line.")}</div>
+    <div style="margin-top:14px;">${cmsCallsCard("Intake Calls", "More intake callers, practice or graded, on the Call Simulator's Intake Line — the training phone rings and you answer it.")}</div>
   `;
 }
 function startIntakeVoiceCall(){
