@@ -302,7 +302,7 @@ const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemp
 
 function canRead(tok, key) {
   if (tok.role === "a") return true;
-  // callsim:<id>: their graded calls from the CMS Call Simulator, kept by the Training Portal (read only: traineeWrite refuses it)
+  // callsim:<id>: their graded calls from the Call Simulator (☎ LSH Ring Channel), kept by the Training Portal (read only: traineeWrite refuses it)
   return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || key === `callsim:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
 }
 async function traineeWrite(env, tok, key, value) {

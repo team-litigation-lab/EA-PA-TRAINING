@@ -195,9 +195,11 @@ The prospect hangs up when the call is naturally over. The date fills itself in,
 
 Steps 1 and 2 are scored on the page and use no AI requests. The code is the last two blocks of `js/eapa-updates.js` (`OB_PROSPECTS`, `LG_SOURCES`, `LG_LEADS`).
 
-## 📞 The Call Simulator (in the CMS) and graded calls
+## 📞 The Call Simulator (☎ LSH Ring Channel) and graded calls
 
-The main Call Simulator is the CMS's: the **📞 Call Simulator (in the CMS)** card in the Live Roleplay hub and in the Intake Call Simulator section opens it on the EA / PA tab, signed in through the Training Portal (nobody signs in again). Its EA / PA lines (Executive Calls, Gatekeeping & Stakeholders, Legal Operations, Lifestyle & Estate, Intake Calls, Revenue & Outreach) each have Practice calls and numbered Graded calls (Graded call 1, 2…, the same for everyone; the caller is unknown until the debrief).
+The Call Simulator is **☎ LSH Ring Channel's** — the training phone itself (the lshringchannel repo). The **📞 Call Simulator (☎ LSH Ring Channel)** card in the Live Roleplay hub and in the Intake Call Simulator section opens it signed in through the Training Portal (`/api/launch?tool=ringchannel&to=calls&program=EA`, plus `&line=` for the card's line), in its own tab: the phone rings, the trainee answers with a headset and works the call with the phone's own keys (mute, hold, transfer) and 🔎 Case lookup, and the call is graded on that line's Mock Calls Metrics. A graded call (a caller unknown until the debrief) is reported to the Portal's `/api/call-results`, so it still counts in this course.
+
+**Note on the call packs:** Ring Channel's scenario library is the Foundational pack on three lines (Reception and Calendar Management on the Main Line, Intake on the Intake Line), so a card naming an EA / PA line it doesn't have (Executive Calls, Gatekeeping & Stakeholders, Legal Operations, Lifestyle & Estate, Revenue & Outreach) lands the trainee on the phone's line picker until those calls are added on Ring Channel itself — a trainer writes them in its **📚 Scenarios**, or they are ported into its `src/scenarios.js`.
 
 A graded call counts here. The Training Portal (its `/api/call-results`) keeps the trainee's graded calls in `callsim:<trainee id>` (no key prefix; a trainee on an older id is found through `trainee-alias:`), by line, and the Worker lets the trainee read it but never write it. The dashboard band's **Graded calls** card (`js/graded-calls.js`) shows the best graded call on each line, averaged, with the lines and calls taken; each line's best is in its tooltip. It's read once a page load and again when the trainee comes back to the tab (at most every two minutes).
 
