@@ -367,6 +367,7 @@ const DECK_W = 960, DECK_H = 540;
 function paginateLessonSlide(){
   const wrap = document.getElementById("lessonSlideWrap");
   fitSlideFrame(wrap);
+  if(typeof xdFit === "function") xdFit(wrap);   // a lesson-run slide scales to its frame instead of paging
   paginateSlideUnits();
   waitForSlideImages(wrap);
   // something above the slide can still change height once the page is drawn (e.g. the top bar gains a
@@ -814,7 +815,15 @@ function presenterCountText(d){
 }
 function presenterCues(d, slide){
   const out = [];
-  if(slide.type==="topic"){
+  if(slide.type==="lesson"){
+    // the five slides of a topic's run share its two spoken scripts: Why It Matters and The Rules use the
+    // first, See It, On the Job and Do & Don't the second
+    const l = d.lessons[slide.lessonIndex], part = slide.view < 2 ? 1 : 2;
+    out.push(`<h3>${esc(l.h)} <small style="font-size:12px;color:var(--ink-soft);">${esc(LESSON_VIEWS[slide.view].label)} · ${slide.view+1} of ${LESSON_VIEWS.length}</small></h3>`);
+    out.push(renderPresenterNote(d, l, part, null, null, null));
+  }else if(slide.type==="agenda"){
+    out.push(`<h3>Day ${d.id} agenda</h3><p>Walk the room through today's sections and the goal for the day. Each lesson runs the same five steps: Why It Matters, The Rules, See It, On the Job, Do &amp; Don't.</p>`);
+  }else if(slide.type==="topic"){
     const l = d.lessons[slide.lessonIndex];
     out.push(`<h3>${esc(l.h)}${l.singleSlide ? "" : ` <small style="font-size:12px;color:var(--ink-soft);">Part ${slide.part} of 2</small>`}</h3>`);
     const pageInfo = state.presentSecsFor === (state.lessonSlide||0);

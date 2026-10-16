@@ -1395,6 +1395,31 @@ rect.svg-callout-badge{animation:none;}
   font-family:inherit;resize:vertical;min-height:120px;color:var(--ink);
 }
 .note-textarea:focus{outline:none;border-color:var(--navy-soft);}
+/* The note editor: a small word processor (ribbon, page, status bar), like a document in Word. */
+.wd{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#EEF0F5;}
+.wd-ribbon{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;padding:6px 8px;background:#F8F9FC;border-bottom:1px solid var(--line);}
+.wd-grp{display:flex;align-items:center;gap:2px;padding:0 6px;border-right:1px solid #E1E4EC;}
+.wd-grp:last-child{border-right:0;}
+.wd-btn{min-width:30px;height:30px;padding:0 7px;border:1px solid transparent;border-radius:6px;background:transparent;color:var(--ink);font:600 13px var(--font-ui);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;}
+.wd-btn:hover{background:#E9ECF4;}
+.wd-btn.on{background:#E3E8F6;border-color:#C9D2EA;color:var(--navy);}
+.wd-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.wd-sel{height:30px;border:1px solid #DCE0EA;border-radius:6px;background:#fff;font:500 12.5px var(--font-ui);color:var(--ink);padding:0 6px;}
+.wd-color{position:relative;flex-direction:column;gap:0;}
+.wd-color input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.wd-color i{display:block;width:16px;height:3px;border-radius:2px;}
+.wd-canvas{padding:22px 18px;max-height:560px;overflow:auto;}
+.wd-page{background:#fff;max-width:800px;min-height:320px;margin:0 auto;padding:44px 56px;box-shadow:0 1px 3px rgba(22,24,41,.12),0 6px 18px -8px rgba(22,24,41,.18);border-radius:2px;font:15px/1.6 Georgia,'Times New Roman',serif;color:#1B1E2E;outline:none;}
+.wd-page:empty::before{content:attr(data-placeholder);color:#9AA0B4;}
+.wd-page h1{font:700 24px/1.25 'Fraunces',Georgia,serif;color:var(--navy);margin:.4em 0 .3em;}
+.wd-page h2{font:700 19px/1.3 'Fraunces',Georgia,serif;color:var(--navy);margin:.6em 0 .3em;}
+.wd-page h3{font:700 16px/1.35 var(--font-ui);color:#2F3B63;margin:.6em 0 .25em;}
+.wd-page p,.wd-page div{margin:0 0 .5em;}
+.wd-page ul,.wd-page ol{margin:0 0 .6em;padding-left:1.6em;}
+.wd-page blockquote{margin:.4em 0 .7em;padding:.3em 0 .3em 14px;border-left:3px solid var(--orange);color:#3A3F55;font-style:italic;}
+.wd-page a{color:#2457C5;}
+.wd-status{display:flex;justify-content:space-between;gap:10px;padding:5px 12px;background:#F8F9FC;border-top:1px solid var(--line);font:500 11.5px var(--font-ui);color:var(--ink-soft);}
+@media (max-width:640px){ .wd-page{padding:22px 18px;} .wd-canvas{padding:10px 8px;} .wd-grp{padding:0 3px;} .wd-status span:last-child{display:none;} }
 .note-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;}
 .note-saved{font-size:var(--font-sub);color:var(--ink-soft);}
 .ai-feedback{margin-top:12px;}
@@ -2705,6 +2730,128 @@ body::before{opacity:.40;}
 .xl-tab.active{background:var(--paper);color:var(--xl-accent);font-weight:700;border-bottom-color:var(--xl-accent);}
 .xl-status{display:flex;justify-content:space-between;padding:4px 10px;font-size:11.5px;color:var(--ink-soft);background:#F8F9FC;border-top:1px solid var(--line);}
 @media (max-width:640px){ .xl-tools .xl-hint{display:none;} .xl-scroll{max-height:300px;} }
+/* ---------- Lesson runs (EA/PA deck format): a navy rail with the topic and its five steps, and a
+   warm paper page with one idea in big type. Highlights are a marker stroke under the key phrase. ---------- */
+.xd{--xd-paper:#FCFAF6;--xd-ink:#1B1E2E;--xd-soft:#4A4F66;--xd-rule:#E8E2D6;--xd-accent:#DB8437;--xd-accent-d:#B5651F;
+  display:grid;grid-template-columns:250px minmax(0,1fr);min-height:440px;border-radius:18px;overflow:hidden;background:var(--xd-paper);
+  box-shadow:0 1px 2px rgba(22,24,41,.06),0 18px 40px -22px rgba(22,24,41,.45);color:var(--xd-ink);text-align:left;}
+.xd mark.xh{background:linear-gradient(transparent 58%, rgba(219,132,55,.38) 58%, rgba(219,132,55,.38) 92%, transparent 92%);color:inherit;padding:0 .08em;font-weight:700;}
+.xd-rail{background:linear-gradient(170deg,#262B45 0%,#1E2238 100%);color:#fff;padding:22px 20px 18px;display:flex;flex-direction:column;gap:10px;position:relative;}
+.xd-rail::after{content:"";position:absolute;right:0;top:22px;bottom:22px;width:3px;border-radius:3px;background:linear-gradient(var(--xd-accent),rgba(219,132,55,0));}
+.xd-kick{font:600 10.5px/1.35 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#F0C08A;}
+.xd-num{font:700 46px/1 'Fraunces',Georgia,serif;color:var(--xd-accent);display:flex;align-items:baseline;gap:6px;}
+.xd-num small{font:600 11px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55);letter-spacing:.05em;}
+.xd-title{font:600 19px/1.25 'Fraunces',Georgia,serif;margin:0 0 6px;color:#fff;}
+.xd-steps{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px;counter-reset:xs;}
+.xd-steps li{counter-increment:xs;}
+.xd-steps button{width:100%;display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:9px;border:0;background:transparent;color:rgba(255,255,255,.62);font:600 12.5px var(--font-ui);cursor:pointer;text-align:left;}
+.xd-steps button::before{content:counter(xs);width:20px;height:20px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;font:700 10.5px var(--font-ui);border:1.5px solid rgba(255,255,255,.35);}
+.xd-steps li.done button{color:rgba(255,255,255,.85);}
+.xd-steps li.done button::before{content:"✓";background:rgba(240,192,138,.25);border-color:#F0C08A;color:#F0C08A;}
+.xd-steps li.on button{background:#fff;color:#262B45;}
+.xd-steps li.on button::before{background:var(--xd-accent);border-color:var(--xd-accent);color:#fff;}
+.xd-steps button:hover{background:rgba(255,255,255,.1);}
+.xd-steps li.on button:hover{background:#fff;}
+.xd-full{margin-top:auto;align-self:flex-start;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;border-radius:999px;padding:6px 12px;font:600 12px var(--font-ui);cursor:pointer;}
+.xd-full:hover{background:rgba(255,255,255,.16);}
+.xd-main{padding:26px 34px 28px;display:flex;flex-direction:column;min-width:0;
+  background:radial-gradient(circle at 100% 0,rgba(219,132,55,.08),transparent 40%),var(--xd-paper);}
+.xd-eyebrow{display:flex;align-items:center;gap:8px;font:700 12px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--xd-accent-d);padding-bottom:12px;border-bottom:1px solid var(--xd-rule);margin-bottom:18px;}
+.xd-ic{font-size:15px;letter-spacing:0;}
+.xd-pos{margin-left:auto;font:600 11px 'IBM Plex Mono',monospace;color:#9A9285;letter-spacing:.06em;}
+.xd-body{flex:1;display:flex;flex-direction:column;justify-content:center;}
+/* Why it matters */
+.xv-why{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:24px;align-items:center;}
+.xv-hook{font:600 32px/1.28 'Fraunces',Georgia,serif;color:#262B45;margin:0;text-wrap:balance;}
+.xv-art svg{width:100%;height:auto;max-height:230px;display:block;}
+.xv-art-sm svg{max-height:120px;}
+/* The rules */
+.xv-rules{list-style:none;margin:0;padding:0;display:grid;gap:9px;}
+.xv-rules li{display:flex;align-items:baseline;gap:16px;font:500 19.5px/1.32 var(--font-ui);color:var(--xd-ink);padding-bottom:9px;border-bottom:1px dashed var(--xd-rule);}
+.xv-rules li:last-child{border-bottom:0;padding-bottom:0;}
+.xv-rn{font:700 26px/1 'Fraunces',Georgia,serif;color:var(--xd-accent);min-width:40px;}
+.xv-line{margin-top:12px;display:flex;gap:14px;align-items:center;background:#262B45;color:#fff;border-radius:12px;padding:12px 16px;font:500 16.5px/1.4 var(--font-ui);}
+.xv-line b{flex:none;font:700 11px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:#F0C08A;border:1px solid rgba(240,192,138,.5);border-radius:999px;padding:4px 10px;}
+.xv-line mark.xh{background:linear-gradient(transparent 58%, rgba(240,192,138,.45) 58%);}
+/* See it */
+.xv-see{display:grid;grid-template-columns:minmax(0,1fr) 190px;grid-template-areas:"scene art" "move art";gap:14px 22px;align-items:center;}
+.xv-scene{grid-area:scene;margin:0;background:#fff;border:1px solid var(--xd-rule);border-left:5px solid var(--xd-accent);border-radius:12px;padding:16px 20px;}
+.xv-scene figcaption{font:700 11px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--xd-soft);margin-bottom:6px;}
+.xv-scene p{margin:0;font:italic 500 21px/1.4 'Fraunces',Georgia,serif;color:var(--xd-ink);}
+.xv-move{grid-area:move;display:flex;flex-direction:column;align-items:flex-start;gap:6px;background:#EAF3EE;border:1px solid #CBE2D5;border-radius:12px;padding:12px 16px;font:600 18.5px/1.4 var(--font-ui);color:#1F3B2C;}
+.xv-move b{flex:none;font:700 11px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#3F7D58;border-radius:999px;padding:5px 10px;}
+.xv-see .xv-art{grid-area:art;}
+.xv-see-own{grid-template-columns:1fr;grid-template-areas:"visual" "move";}
+.xv-see-own .xv-move{flex-direction:row;align-items:center;gap:14px;}
+.xv-visual{grid-area:visual;background:#fff;border:1px solid var(--xd-rule);border-radius:12px;padding:12px;display:flex;justify-content:center;align-items:center;}
+.xv-vin{width:100%;}
+.xv-vin > svg{display:block;width:100%;max-height:270px;height:auto;margin:0 auto;}
+/* On the job */
+.xv-job{display:grid;gap:8px;}
+.xv-jh,.xv-jr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
+.xv-jh span{font:700 11px var(--font-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--xd-soft);padding:0 4px;}
+.xv-jc{position:relative;background:#fff;border:1px solid var(--xd-rule);border-radius:10px;padding:12px 13px;font:600 15.5px/1.35 var(--font-ui);color:var(--xd-ink);min-height:62px;display:flex;align-items:center;}
+.xv-jc:not(.xv-jc3)::after{content:"";position:absolute;right:-9px;top:50%;width:8px;height:8px;border-top:2px solid var(--xd-accent);border-right:2px solid var(--xd-accent);transform:translateY(-50%) rotate(45deg);z-index:1;}
+.xv-jc0{background:#F3F1EC;}
+.xv-jc3{background:#EAF3EE;border-color:#CBE2D5;color:#1F3B2C;}
+/* Do & Don't */
+.xv-dd{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.xv-dd > div{border-radius:14px;padding:16px 20px;}
+.xv-do{background:#EAF3EE;border:1px solid #CBE2D5;}
+.xv-dont{background:#FBEDEA;border:1px solid #F0D2CB;}
+.xv-dd h4{display:flex;align-items:center;gap:10px;margin:0 0 10px;font:700 18px 'Fraunces',Georgia,serif;}
+.xv-dd h4 i{font-style:normal;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font:700 14px var(--font-ui);}
+.xv-do h4{color:#2D5E41;} .xv-do h4 i{background:#3F7D58;}
+.xv-dont h4{color:#8A2F25;} .xv-dont h4 i{background:#B4483B;}
+.xv-dd ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+.xv-dd li{font:500 18.5px/1.38 var(--font-ui);padding-left:16px;position:relative;}
+.xv-dd li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.35;}
+/* The day's agenda */
+.xd-agenda{display:block;padding:22px 30px;background:radial-gradient(circle at 0 0,rgba(38,43,69,.06),transparent 45%),var(--xd-paper);}
+.xa-kicker{font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--xd-accent-d);}
+.xa-title{font:700 24px/1.2 'Fraunces',Georgia,serif;color:#262B45;margin:4px 0 12px;}
+.xa-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+.xa-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;}
+.xa-list li{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--xd-rule);border-radius:12px;padding:6px 12px;}
+.xa-n{font:700 22px/1 'Fraunces',Georgia,serif;color:var(--xd-accent);min-width:34px;}
+.xa-s{display:flex;flex-direction:column;}
+.xa-s b{font:600 15px/1.25 var(--font-ui);color:var(--xd-ink);}
+.xa-s small{font:500 12px var(--font-ui);color:var(--xd-soft);}
+.xa-goal{background:#262B45;color:#fff;border-radius:14px;padding:14px 18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:start;}
+.xa-goal-k{font:700 11px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:#F0C08A;padding-top:3px;}
+.xa-goal p{margin:0;font:500 13.5px/1.42 var(--font-ui);color:rgba(255,255,255,.92);}
+.xa-legend{grid-column:2;font:600 11px/1.9 var(--font-ui);color:rgba(255,255,255,.7);}
+.xa-legend span{display:inline-block;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:1px 9px;margin:0 4px 4px 0;color:#fff;}
+/* Full text */
+.xd-overlay{position:fixed;inset:0;z-index:9999;background:rgba(22,24,41,.55);display:flex;align-items:center;justify-content:center;padding:24px;}
+.xd-sheet{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.6);}
+.xd-sheet-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);font:600 15px 'Fraunces',Georgia,serif;color:var(--navy);}
+.xd-sheet-body{overflow:auto;padding:16px 18px;}
+@media (max-width:820px){
+  .xd{grid-template-columns:1fr;}
+  .xd-rail{padding:16px 16px 12px;}
+  .xd-rail::after{display:none;}
+  .xd-num{font-size:30px;}
+  .xd-steps{grid-template-columns:repeat(5,minmax(0,1fr));}
+  .xd-steps button{flex-direction:column;gap:3px;font-size:10px;padding:5px 2px;text-align:center;justify-content:center;}
+  .xd-full{margin-top:4px;}
+  .xd-main{padding:18px 16px 20px;}
+  .xv-hook{font-size:23px;}
+  .xv-why,.xa-list,.xa-goal{grid-template-columns:1fr;}
+  .xa-legend{grid-column:1;}
+  .xv-art svg{max-height:150px;}
+  .xv-rules li{font-size:17px;gap:10px;}
+  .xv-see{grid-template-columns:1fr;grid-template-areas:"scene" "move";}
+  .xv-see .xv-art{display:none;}
+  .xv-scene p{font-size:18px;}
+  .xv-move{font-size:16px;flex-direction:column;align-items:flex-start;gap:6px;}
+  .xv-jh{display:none;}
+  .xv-jr{grid-template-columns:1fr 1fr;}
+  .xv-jc::after{display:none;}
+  .xv-dd{grid-template-columns:1fr;}
+  .xv-dd li{font-size:16px;}
+  .xd-agenda{padding:18px 16px;}
+}
 </style>
 <script src="/js/portal-gate.js?v=2026.10.08-admin"></script>
 </head>
@@ -2721,6 +2868,17 @@ body::before{opacity:.40;}
 <script src="/js/days/day8/lessons.js?v=3"></script>
 <script src="/js/days/day9/lessons.js?v=4"></script>
 <script src="/js/days/day10/lessons.js?v=3"></script>
+<script src="/js/days/day1/slides.js?v=1"></script>
+<script src="/js/days/day2/slides.js?v=1"></script>
+<script src="/js/days/day3/slides.js?v=1"></script>
+<script src="/js/days/day4/slides.js?v=1"></script>
+<script src="/js/days/day5/slides.js?v=1"></script>
+<script src="/js/days/day6/slides.js?v=1"></script>
+<script src="/js/days/day7/slides.js?v=1"></script>
+<script src="/js/days/day8/slides.js?v=1"></script>
+<script src="/js/days/day9/slides.js?v=1"></script>
+<script src="/js/days/day10/slides.js?v=1"></script>
+<script src="/js/eapa-deck-art.js?v=1"></script>
 <script>
 /* Each day's lessons live in js/days/dayN/lessons.js, loaded just above this script.
    A day whose file didn't load is left out and a banner asks the trainee to refresh,
@@ -7026,12 +7184,18 @@ window.backToSlidesFromKnowledgeCheck = backToSlidesFromKnowledgeCheck;
 /* ---------- unified day slideshow: Task Overview -> Topics -> Practice Lab -> Discussion -> Knowledge Check ---------- */
 function buildDaySlides(d){
   const slides = [];
+  if(d.lessons.some(l=>lessonCopy(d, l))) slides.push({type:"agenda"});   // the day opens on its agenda
   if(d.taskOverview) slides.push({type:"taskOverview"});
   if(d.id===1) slides.push({type:"meetClient"});
   d.lessons.forEach((l,i)=>{
     // each topic opens with a divider slide (noDividers: a saved layout from before they existed)
     // a topic with "block" opens a part of the day (noBlocks: a saved layout from before blocks existed)
     if(l.block && !d.noBlocks) slides.push({type:"block", lessonIndex:i});
+    if(lessonCopy(d, l)){   // a topic with concise copy is a run of five slides
+      LESSON_VIEWS.forEach((_,v)=>slides.push({type:"lesson", lessonIndex:i, view:v}));
+      if((d.quickChecks||[]).some(q=>q.afterIndex===i)) slides.push({type:"quickCheck", lessonIndex:i});
+      return;
+    }
     if(!d.noDividers) slides.push({type:"divider", lessonIndex:i});
     slides.push({type:"topic", lessonIndex:i, part:1});
     if(!l.singleSlide) slides.push({type:"topic", lessonIndex:i, part:2});   // singleSlide: Part 2 would only repeat Part 1
@@ -7045,6 +7209,8 @@ function buildDaySlides(d){
 function daySlideTitle(d, slide){
   if(slide.type==="video") return "Video Recap";
   if(slide.type==="taskOverview") return "Legal EA Task Overview";
+  if(slide.type==="agenda") return `Day ${d.id} Agenda`;
+  if(slide.type==="lesson") return `${d.lessons[slide.lessonIndex].h} · ${LESSON_VIEWS[slide.view].label}`;
   if(slide.type==="meetClient") return "Meet Elias Thorne — Live Q&A";
   if(slide.type==="block"){ const b = dayBlock(d, slide.lessonIndex); return `Part ${b.n} of ${b.of}: ${b.title}`; }
   if(slide.type==="divider") return `Topic ${slide.lessonIndex+1}: ${d.lessons[slide.lessonIndex].h}`;
@@ -7057,6 +7223,8 @@ function daySlideTitle(d, slide){
 function renderDaySlideContent(d, slide, idx){
   if(slide.type==="video") return renderVideoPlaceholder(d);
   if(slide.type==="taskOverview") return renderTaskOverview(d.taskOverview);
+  if(slide.type==="agenda") return renderDayAgenda(d);
+  if(slide.type==="lesson") return renderLessonRun(d, slide.lessonIndex, slide.view);
   if(slide.type==="meetClient") return renderMeetClientSlide();
   if(slide.type==="block") return renderBlockDivider(d, slide.lessonIndex);
   if(slide.type==="divider") return renderTopicDivider(d, slide.lessonIndex);
@@ -7091,6 +7259,114 @@ function renderBlockDivider(d, i){
       <ul class="bd-list" style="--bd-rows:${Math.ceil(items.length/2)}">${items.join("")}</ul>
     </div>`;
 }
+/* ============================================================
+   LESSON RUNS: each topic is a short run of slides, one idea per slide in big type
+   (Why It Matters · The Rules · See It · On the Job · Do & Don't), from the concise copy in
+   js/days/dayN/slides.js (window.EA_SLIDE_COPY, built from build/slides/dN.json). The topic's full
+   text stays one tap away ("Full text") and in Presenter view. A topic without copy keeps its
+   original divider + Part 1/Part 2 slides.
+   ============================================================ */
+const LESSON_VIEWS = [
+  {k:"why",   label:"Why It Matters", icon:"💡"},
+  {k:"rules", label:"The Rules",      icon:"📏"},
+  {k:"see",   label:"See It",         icon:"👁"},
+  {k:"job",   label:"On the Job",     icon:"🛠"},
+  {k:"dd",    label:"Do & Don't",     icon:"✓"}
+];
+function lessonCopy(d, l){ const c = window.EA_SLIDE_COPY; return (c && l && c[`${d.id}::${l.h}`]) || null; }
+// **phrase** → a highlighter mark on the one thing to remember
+const xhl = (s)=>esc(String(s||"")).replace(/\*\*(.+?)\*\*/g, '<mark class="xh">$1</mark>');
+// The topic's own picture, if it has one: a hand-drawn diagram, a lesson diagram or a layout visual.
+function lessonOwnVisual(d, l){
+  if(l.svgDiagram) return l.svgDiagram;
+  const dg = (typeof LESSON_DIAGRAMS!=="undefined") && LESSON_DIAGRAMS[d.id+"::"+l.h];
+  if(dg) return dg;
+  try{ return renderLessonVisual(l) || ""; }catch(e){ return ""; }
+}
+/* The day's sections, in order, with their topics: the agenda slide and each run's header use them. */
+function daySections(d){
+  const out = [];
+  d.lessons.forEach((l,i)=>{ const s = out[out.length-1]; const name = l.section || d.title; if(s && s.name===name) s.items.push(i); else out.push({name, items:[i]}); });
+  return out;
+}
+function renderDayAgenda(d){
+  const secs = daySections(d);
+  return `<div class="xd xd-agenda">
+    <div class="xa-head"><div class="xa-kicker">Day ${d.id} · Today's agenda</div><h2 class="xa-title">${esc(d.title)}</h2></div>
+    <div class="xa-grid">
+      <ol class="xa-list">${secs.map((s,k)=>`<li><span class="xa-n">${String(k+1).padStart(2,"0")}</span><span class="xa-s"><b>${esc(s.name)}</b><small>${s.items.length} lesson${s.items.length===1?"":"s"}</small></span></li>`).join("")}</ol>
+      <aside class="xa-goal"><div class="xa-goal-k">By the end of today</div><p>${esc(d.objective||"")}</p>
+        <div class="xa-legend">Every lesson runs: ${LESSON_VIEWS.map(v=>`<span>${esc(v.label)}</span>`).join("")}</div></aside>
+    </div>
+  </div>`;
+}
+function renderLessonRun(d, i, view){
+  const l = d.lessons[i], c = lessonCopy(d, l) || {}, v = LESSON_VIEWS[view] || LESSON_VIEWS[0];
+  const slides = buildDaySlides(d), first = slides.findIndex(s=>s.type==="lesson" && s.lessonIndex===i);
+  const art = (typeof EAPA_ART!=="undefined" && EAPA_ART[c.image]) || "";
+  let body = "";
+  if(v.k==="why"){
+    body = `<div class="xv-why"><p class="xv-hook">${xhl(c.hook)}</p>${art ? `<div class="xv-art">${art}</div>` : ""}</div>`;
+  }else if(v.k==="rules"){
+    body = `<ol class="xv-rules">${(c.points||[]).map((p,k)=>`<li><span class="xv-rn">${String(k+1).padStart(2,"0")}</span><span>${xhl(p)}</span></li>`).join("")}</ol>
+      ${c.line ? `<div class="xv-line"><b>Hold the line</b><span>${xhl(c.line)}</span></div>` : ""}`;
+  }else if(v.k==="see"){
+    const own = lessonOwnVisual(d, l);
+    body = own
+      ? `<div class="xv-see xv-see-own"><div class="xv-visual"><div class="xv-vin">${own}</div></div><div class="xv-move"><b>Your move</b><span>${xhl(c.move)}</span></div></div>`
+      : `<div class="xv-see"><figure class="xv-scene"><figcaption>The moment</figcaption><p>${xhl(c.scene)}</p></figure><div class="xv-move"><b>Your move</b><span>${xhl(c.move)}</span></div>${art ? `<div class="xv-art xv-art-sm">${art}</div>` : ""}</div>`;
+  }else if(v.k==="job"){
+    const heads = ["What lands", "What you do", "Where / with what", "Done when"];
+    body = `<div class="xv-job"><div class="xv-jh">${heads.map(h=>`<span>${h}</span>`).join("")}</div>
+      ${(c.job||[]).map(r=>`<div class="xv-jr">${r.map((x,k)=>`<span class="xv-jc xv-jc${k}">${esc(x)}</span>`).join("")}</div>`).join("")}</div>`;
+  }else{
+    body = `<div class="xv-dd"><div class="xv-do"><h4><i>✓</i>Do</h4><ul>${(c.dos||[]).map(x=>`<li>${xhl(x)}</li>`).join("")}</ul></div>
+      <div class="xv-dont"><h4><i>✕</i>Don't</h4><ul>${(c.donts||[]).map(x=>`<li>${xhl(x)}</li>`).join("")}</ul></div></div>`;
+  }
+  return `<div class="xd xd-run" data-view="${v.k}">
+    <aside class="xd-rail">
+      <div class="xd-kick">Day ${d.id} · ${esc(l.section || d.title)}</div>
+      <div class="xd-num">${String(i+1).padStart(2,"0")}<small>of ${d.lessons.length}</small></div>
+      <h2 class="xd-title">${esc(l.h)}</h2>
+      <ol class="xd-steps">${LESSON_VIEWS.map((x,k)=>`<li class="${k===view?"on":k<view?"done":""}"><button type="button" onclick="goToSlide(${first+k})">${esc(x.label)}</button></li>`).join("")}</ol>
+      <button type="button" class="xd-full" onclick="openLessonFullText(${d.id},${i})">📖 Full text</button>
+    </aside>
+    <section class="xd-main">
+      <div class="xd-eyebrow"><span class="xd-ic">${v.icon}</span>${esc(v.label)}<span class="xd-pos">${view+1} / ${LESSON_VIEWS.length}</span></div>
+      <div class="xd-body">${body}</div>
+    </section>
+  </div>`;
+}
+/* "See It" shows a topic's original diagram or layout as a picture in its box: a tall one is scaled to the box,
+   like an image. The slide's text is never scaled: every run slide is laid out to fit the deck's one size.
+   Runs before the deck measures the slide for pages. */
+function xdFit(wrap){
+  const xd = wrap && wrap.querySelector(".xd-run"); if(!xd) return;
+  xd.querySelectorAll(".xv-vin").forEach(v=>v.style.zoom = "");
+  if(window.innerWidth <= 760) return;   // phones: the slide is a scrolling page
+  xd.querySelectorAll(".xv-visual").forEach(box=>{
+    const inner = box.querySelector(".xv-vin"); if(!inner) return;
+    const z = Math.min(1, (box.clientWidth - 8) / Math.max(1, inner.scrollWidth), 240 / Math.max(1, inner.scrollHeight));
+    if(z < 1) inner.style.zoom = String(Math.max(0.4, z));
+  });
+}
+/* "Full text": the topic as it was written, both parts, over the slide. */
+function openLessonFullText(dayId, i){
+  const d = DAYS.find(x=>x.id===dayId); if(!d) return;
+  const l = d.lessons[i];
+  const ov = document.createElement("div");
+  ov.className = "overlay xd-overlay";
+  ov.innerHTML = `<div class="xd-sheet" role="dialog" aria-modal="true" aria-label="${esc(l.h)} — full text">
+    <div class="xd-sheet-head"><b>${esc(l.h)}</b><button type="button" class="btn btn-ghost btn-sm" onclick="this.closest('.xd-overlay').remove()">Close ✕</button></div>
+    <div class="xd-sheet-body">${renderLessonCard(l, i, d, "", 1)}${l.singleSlide ? "" : renderLessonCard(l, i, d, "", 2)}</div></div>`;
+  ov.addEventListener("click", e=>{ if(e.target===ov) ov.remove(); });
+  const host = document.fullscreenElement || document.body;
+  host.appendChild(ov);
+  const esc1 = (e)=>{ if(e.key==="Escape"){ ov.remove(); document.removeEventListener("keydown", esc1); } };
+  document.addEventListener("keydown", esc1);
+}
+window.openLessonFullText = openLessonFullText;
+
 /* The divider that opens a topic: which section it's in, its number and its title. */
 function renderTopicDivider(d, i){
   const l = d.lessons[i];
@@ -11190,6 +11466,135 @@ function renderNotes(){
   `;
 }
 
+
+/* ---------- the note editor: a small word processor ----------
+   Each note is a document: a ribbon (undo/redo, paragraph style, font, size, bold/italic/underline/strike,
+   text and highlight colour, lists, indent, alignment, link, clear formatting), a white page and a status
+   bar with the word count. The note keeps its formatted HTML (n.html, cleaned on every save) and its plain
+   text (n.content), which the review, the PDF and older notes use. */
+const WD_ICONS = {"undo": "<path d=\"M9 14 4 9l5-5\"/><path d=\"M4 9h10a6 6 0 0 1 0 12h-3\"/>", "redo": "<path d=\"m15 14 5-5-5-5\"/><path d=\"M20 9H10a6 6 0 0 0 0 12h3\"/>", "ul": "<path d=\"M9 6h11M9 12h11M9 18h11\"/><circle cx=\"4.5\" cy=\"6\" r=\"1\"/><circle cx=\"4.5\" cy=\"12\" r=\"1\"/><circle cx=\"4.5\" cy=\"18\" r=\"1\"/>", "ol": "<path d=\"M10 6h10M10 12h10M10 18h10\"/><path d=\"M4 4h1v4M4 8h2M4 11h2l-2 3h2\"/>", "left": "<path d=\"M4 6h16M4 12h10M4 18h13\"/>", "center": "<path d=\"M4 6h16M7 12h10M5 18h14\"/>", "right": "<path d=\"M4 6h16M10 12h10M7 18h13\"/>", "outdent": "<path d=\"M21 6H11M21 12H11M21 18H11M7 8l-4 4 4 4\"/>", "indent": "<path d=\"M21 6H11M21 12H11M21 18H11M3 8l4 4-4 4\"/>", "link": "<path d=\"M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7\"/><path d=\"M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7\"/>", "clear": "<path d=\"M4 7V4h16v3M9 20h6M12 4v16\"/><path d=\"m3 21 18-18\"/>"};
+const wdIcon = (k)=>`<svg viewBox="0 0 24 24" aria-hidden="true">${WD_ICONS[k]}</svg>`;
+function wdRibbon(id){
+  const b = (cmd, label, inner)=>`<button type="button" class="wd-btn" data-cmd="${cmd}" title="${label}" aria-label="${label}" onmousedown="event.preventDefault()" onclick="wdCmd('${id}','${cmd}')">${inner}</button>`;
+  return `<div class="wd-ribbon" role="toolbar" aria-label="Formatting">
+    <div class="wd-grp">${b("undo","Undo (Ctrl+Z)",wdIcon("undo"))}${b("redo","Redo (Ctrl+Y)",wdIcon("redo"))}</div>
+    <div class="wd-grp"><select class="wd-sel" title="Paragraph style" aria-label="Paragraph style" onmousedown="wdKeep('${id}')" onchange="wdCmd('${id}','formatBlock',this.value);this.value=''"><option value="">Style</option><option value="P">Normal</option><option value="H1">Heading 1</option><option value="H2">Heading 2</option><option value="H3">Heading 3</option><option value="BLOCKQUOTE">Quote</option></select>
+      <select class="wd-sel" title="Font" aria-label="Font" onmousedown="wdKeep('${id}')" onchange="wdCmd('${id}','fontName',this.value);this.value=''"><option value="">Font</option><option value="Georgia">Georgia</option><option value="Calibri, Arial, sans-serif">Calibri</option><option value="Arial">Arial</option><option value="Times New Roman">Times New Roman</option><option value="Courier New">Courier New</option></select>
+      <select class="wd-sel" title="Font size" aria-label="Font size" onmousedown="wdKeep('${id}')" onchange="wdCmd('${id}','fontSize',this.value);this.value=''"><option value="">Size</option><option value="2">10</option><option value="3">12</option><option value="4">14</option><option value="5">18</option><option value="6">24</option></select></div>
+    <div class="wd-grp">${b("bold","Bold (Ctrl+B)","<b>B</b>")}${b("italic","Italic (Ctrl+I)","<i style='font-family:Georgia'>I</i>")}${b("underline","Underline (Ctrl+U)","<u>U</u>")}${b("strikeThrough","Strikethrough","<s>S</s>")}
+      <label class="wd-btn wd-color" title="Text colour" onmousedown="wdKeep('${id}')">A<i style="background:#C0392B"></i><input type="color" value="#C0392B" aria-label="Text colour" onchange="wdCmd('${id}','foreColor',this.value)"></label>
+      <label class="wd-btn wd-color" title="Highlight" onmousedown="wdKeep('${id}')"><span style="background:#FFE58A;padding:0 3px;border-radius:2px">ab</span><input type="color" value="#FFE58A" aria-label="Highlight colour" onchange="wdCmd('${id}','hiliteColor',this.value)"></label></div>
+    <div class="wd-grp">${b("insertUnorderedList","Bulleted list",wdIcon("ul"))}${b("insertOrderedList","Numbered list",wdIcon("ol"))}${b("outdent","Decrease indent",wdIcon("outdent"))}${b("indent","Increase indent",wdIcon("indent"))}</div>
+    <div class="wd-grp">${b("justifyLeft","Align left",wdIcon("left"))}${b("justifyCenter","Centre",wdIcon("center"))}${b("justifyRight","Align right",wdIcon("right"))}</div>
+    <div class="wd-grp">${b("createLink","Insert link",wdIcon("link"))}${b("removeFormat","Clear formatting",wdIcon("clear"))}</div>
+  </div>`;
+}
+// A note written before the editor: its plain text becomes paragraphs.
+function wdHtmlOf(n){
+  if(n.html) return wdClean(n.html);
+  return String(n.content||"").split(/\n/).map(l=>`<p>${esc(l)||"<br>"}</p>`).join("");
+}
+// Only formatting survives a save or a paste: no scripts, no attributes beyond a colour, size, alignment or link.
+function wdClean(html){
+  const box = document.createElement("div"); box.innerHTML = String(html||"");
+  const OK = /^(P|DIV|BR|B|STRONG|I|EM|U|S|STRIKE|DEL|H1|H2|H3|UL|OL|LI|BLOCKQUOTE|SPAN|FONT|A|SUB|SUP)$/;
+  const STY = {"color":/(?:^|;)\s*color:\s*([^;]+)/i, "background-color":/background(?:-color)?:\s*([^;]+)/i, "text-align":/text-align:\s*(left|right|center|justify)/i, "font-family":/font-family:\s*([^;]+)/i, "font-size":/font-size:\s*([^;]+)/i, "margin-left":/margin-left:\s*(\d+px)/i};
+  (function walk(el){
+    [...el.children].forEach(c=>{
+      walk(c);
+      if(!OK.test(c.tagName)){ c.replaceWith(...c.childNodes); return; }
+      const keep = {};
+      const st = c.getAttribute("style")||"";
+      const style = Object.entries(STY).map(([k,re])=>{ const x = st.match(re); return x && !/url|expression|[<>]/i.test(x[1]) ? `${k}:${x[1].trim()}` : ""; }).filter(Boolean).join(";");
+      if(c.tagName==="FONT"){ ["color","face","size"].forEach(a=>{ const v=c.getAttribute(a); if(v && /^[#\w ,.-]+$/.test(v)) keep[a]=v; }); }
+      if(c.tagName==="A"){ const h = c.getAttribute("href")||""; if(/^(https?:|mailto:)/i.test(h)){ keep.href = h; keep.target = "_blank"; keep.rel = "noopener"; } }
+      const al = c.getAttribute("align"); if(al && /^(left|right|center|justify)$/i.test(al)) keep.align = al;
+      [...c.attributes].forEach(a=>c.removeAttribute(a.name));
+      Object.entries(keep).forEach(([k,v])=>c.setAttribute(k,v));
+      if(style) c.setAttribute("style", style);
+    });
+  })(box);
+  return box.innerHTML;
+}
+// The note as plain text: one line per paragraph, heading or list item (for the review and the PDF).
+function wdText(html){
+  const box = document.createElement("div"); box.innerHTML = String(html||"");
+  const out = [];
+  let cur = "";
+  const flush = ()=>{ out.push(cur.replace(/\s+$/,"")); cur = ""; };
+  (function walk(el){
+    el.childNodes.forEach(c=>{
+      if(c.nodeType===3){ cur += c.textContent.replace(/\s+/g," "); return; }
+      if(c.nodeType!==1) return;
+      const tag = c.tagName;
+      if(tag==="BR"){ flush(); return; }
+      if(tag==="UL" || tag==="OL"){
+        if(cur.trim()) flush();
+        let k = 0;
+        [...c.children].filter(li=>li.tagName==="LI").forEach(li=>{ k++; wdText(li.innerHTML).split("\n").filter(x=>x.trim()).forEach((x,j)=>out.push((j ? "   " : (tag==="OL" ? k+". " : "• ")) + x)); });
+        return;
+      }
+      if(/^(P|DIV|H1|H2|H3|BLOCKQUOTE|LI)$/.test(tag)){ if(cur.trim()) flush(); walk(c); flush(); return; }
+      walk(c);
+    });
+  })(box);
+  if(cur.trim()) flush();
+  return out.map(l=>l.trim()).join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
+const wdSel = {};
+function wdKeep(id){ const s = window.getSelection(), page = document.getElementById("wd_"+id); if(s && s.rangeCount && page && page.contains(s.anchorNode)) wdSel[id] = s.getRangeAt(0).cloneRange(); }
+function wdCmd(id, cmd, arg){
+  const page = document.getElementById("wd_"+id); if(!page) return;
+  if((cmd==="formatBlock" || cmd==="fontName" || cmd==="fontSize") && !arg) return;
+  page.focus();
+  // a colour picker or a drop-down takes the focus: put the selection back first
+  if(wdSel[id] && /^(foreColor|hiliteColor|formatBlock|fontName|fontSize)$/.test(cmd)){ const s = window.getSelection(); s.removeAllRanges(); s.addRange(wdSel[id]); }
+  if(cmd==="createLink"){ const url = prompt("Link address (https://…)", "https://"); if(!url || !/^(https?:|mailto:)/i.test(url)) return; arg = url; }
+  try{ document.execCommand("styleWithCSS", false, cmd==="hiliteColor" || cmd==="foreColor"); }catch(e){}
+  document.execCommand(cmd, false, cmd==="formatBlock" ? `<${arg}>` : (arg==null ? null : arg));
+  wdChanged(id);
+}
+function wdChanged(id){
+  const page = document.getElementById("wd_"+id); if(!page) return;
+  const n = findNote(id); if(!n) return;
+  n.html = wdClean(page.innerHTML);
+  wdStatus(id);
+  onNoteChange(id, "content", wdText(n.html));
+}
+function wdStatus(id){
+  const page = document.getElementById("wd_"+id), st = document.getElementById("wdst_"+id); if(!page || !st) return;
+  const t = (page.innerText||"").trim(), w = t ? t.split(/\s+/).length : 0;
+  st.textContent = `${w} word${w===1?"":"s"} · ${t.length} characters`;
+  const sel = window.getSelection(), inside = sel && page.contains(sel.anchorNode);
+  document.querySelectorAll(`#notecard_${id} .wd-btn[data-cmd]`).forEach(b=>{
+    const c = b.dataset.cmd; if(!/^(bold|italic|underline|strikeThrough|insertUnorderedList|insertOrderedList|justifyLeft|justifyCenter|justifyRight)$/.test(c)) return;
+    let on = false; try{ on = inside && document.queryCommandState(c); }catch(e){}
+    b.classList.toggle("on", !!on);
+  });
+}
+function wdPaste(e, id){
+  e.preventDefault();
+  const html = e.clipboardData.getData("text/html"), text = e.clipboardData.getData("text/plain");
+  document.execCommand("insertHTML", false, html ? wdClean(html) : esc(text).replace(/\n/g,"<br>"));
+  wdChanged(id);
+}
+function wdKey(e, id){
+  if((e.ctrlKey||e.metaKey) && !e.altKey){
+    const k = e.key.toLowerCase();
+    if(k==="b"||k==="i"||k==="u"){ e.preventDefault(); wdCmd(id, k==="b"?"bold":k==="i"?"italic":"underline"); }
+  }
+  if(e.key==="Tab"){ e.preventDefault(); wdCmd(id, e.shiftKey ? "outdent" : "indent"); }
+}
+function renderNoteEditor(n){
+  const t = String(n.content||"").trim(), w = t ? t.split(/\s+/).length : 0;
+  return `<div class="wd">${wdRibbon(n.id)}
+    <div class="wd-canvas"><div class="wd-page" id="wd_${n.id}" contenteditable="true" spellcheck="true" role="textbox" aria-multiline="true" aria-label="${esc(n.title||"Note")}" data-placeholder="Write your action plan or notes here…"
+      oninput="wdChanged('${n.id}')" onkeyup="wdStatus('${n.id}')" onmouseup="wdStatus('${n.id}')" onpaste="wdPaste(event,'${n.id}')" onkeydown="wdKey(event,'${n.id}')" onblur="wdKeep('${n.id}')">${wdHtmlOf(n)}</div></div>
+    <div class="wd-status"><span id="wdst_${n.id}">${w} word${w===1?"":"s"} · ${t.length} characters</span><span>Ctrl+B · Ctrl+I · Ctrl+U · Tab to indent</span></div>
+  </div>`;
+}
+Object.assign(window, {wdCmd, wdChanged, wdStatus, wdPaste, wdKey, wdKeep});
+
 function renderNoteCard(n){
   return `
     <div class="card note-card" id="notecard_${n.id}">
@@ -11197,7 +11602,7 @@ function renderNoteCard(n){
         <input type="text" class="note-title-input" value="${esc(n.title)}" placeholder="Note title" oninput="onNoteChange('${n.id}','title',this.value)">
         ${n.pinned?'<span class="pill pill-open">Pinned</span>':`<button class="btn btn-sm btn-ghost" onclick="deleteNote('${n.id}')">Delete</button>`}
       </div>
-      <textarea class="note-textarea" rows="7" placeholder="Write your action plan or notes here..." oninput="onNoteChange('${n.id}','content',this.value)">${esc(n.content)}</textarea>
+      ${renderNoteEditor(n)}
       <div class="note-foot">
         <span class="note-saved" id="saved_${n.id}">${n.updatedAt?('Saved '+fmtDate(n.updatedAt)):'Not saved yet'}</span>
         <button class="btn btn-sm btn-navy" onclick="getAIFeedback('${n.id}')" id="aiBtn_${n.id}">✨ Get Review</button>
@@ -11230,7 +11635,7 @@ async function addNote(){
   state.notes.unshift({id, title:"New Note", content:"", updatedAt:new Date().toISOString(), pinned:false});   // newest at the top
   await storeSet("notes", state.notes);
   render();
-  setTimeout(()=>{ const card = document.getElementById("notecard_"+id); if(card){ card.scrollIntoView({behavior:"smooth", block:"center"}); const ta = card.querySelector("textarea"); if(ta) ta.focus(); card.classList.add("note-new"); } }, 60);
+  setTimeout(()=>{ const card = document.getElementById("notecard_"+id); if(card){ card.scrollIntoView({behavior:"smooth", block:"center"}); const ta = card.querySelector(".wd-page"); if(ta) ta.focus(); card.classList.add("note-new"); } }, 60);
 }
 window.addNote = addNote;
 
@@ -11270,14 +11675,16 @@ ${n.content}
 """`;
 
   try{
-    const text = await callAIText(prompt, 600, undefined, "grading");
+    // "tracker" starts on the high-volume model: the grading models' small daily quota is what made this
+    // review fail with "Couldn't get feedback" once the labs had used it up
+    const text = await callAIText(prompt, 600, undefined, "tracker");
     fb.innerHTML = text
       ? `<div class="ai-result"><b>Feedback</b><div class="ai-result-body">${esc(text).replace(/\n/g,"<br>")}</div></div>`
       : `<div class="ai-result"><b>Feedback</b><div class="ai-result-body">No feedback returned — try again in a moment.</div></div>`;
   }catch(e){
-    fb.innerHTML = `<div class="ai-result ai-error"><b>Couldn't get feedback</b><div class="ai-result-body">The review service didn't respond. Check your connection and try again.</div></div>`;
+    fb.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
   }finally{
-    btn.disabled = false; btn.textContent = "✨ Get Feedback";
+    btn.disabled = false; btn.textContent = "✨ Get Review";
   }
 }
 window.getAIFeedback = getAIFeedback;
@@ -13553,7 +13960,7 @@ function lessonParts(l){
 /* Which slides a lesson occupies, using the same numbering trainees see ("Step X of N"). */
 function lessonSlideSteps(d, i){
   const slides = buildDaySlides(d);
-  const idx = slides.map((s,k)=>(s.type==="topic" && s.lessonIndex===i) ? k+1 : null).filter(Boolean);
+  const idx = slides.map((s,k)=>((s.type==="topic" || s.type==="lesson") && s.lessonIndex===i) ? k+1 : null).filter(Boolean);
   return {first: idx[0]||null, last: idx[idx.length-1]||null, total: slides.length};
 }
 function slideLabel(d, i){
@@ -17558,7 +17965,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=dash-onescreen-crisis"></script>
+<script src="/js/eapa-updates.js?v=lesson-runs"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=3"></script>
 <script src="/js/graded-calls.js?v=1"></script>
