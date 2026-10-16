@@ -9022,7 +9022,8 @@ function renderCalendarBody(body){
     {label:"Calendar Conflict Resolver", html:partA},
     {label:"Daily Briefing Prompt", html:partB},
     {label:"Proactive EA Tasks", html:partC},
-    {label:"Travel & the Trip That Breaks", html:partD}
+    {label:"Travel & the Trip That Breaks", html:partD},
+    crisisLabPart("calendar", "E. Live Crisis Roleplay — Calendar & Travel")
   ]);
   if(savedCalPrompt) document.getElementById("calPromptInput").value = savedCalPrompt;
 }
@@ -9664,7 +9665,8 @@ function initFinancial(body){
     {label:"Trust Ledger Reconciliation", html:partA},
     {label:"Invoice & Bill Audit", html:partB},
     {label:"Invoice Follow-Up", html:partF},
-    {label:"Attention to Detail Test", html:partC}
+    {label:"Attention to Detail Test", html:partC},
+    crisisLabPart("financial", "E. Live Crisis Roleplay — Trust & Billing")
   ]);
   recalcSoa();
 }
@@ -10257,7 +10259,8 @@ function initColdCalling4(body){
   body.innerHTML = renderToolWizard(4, [
     {label:"Cold-Calling Log", html:partA},
     {label:"Lead Generation Practice", html:partB},
-    {label:"Live Intake Call Simulator", html:partC}
+    {label:"Live Intake Call Simulator", html:partC},
+    crisisLabPart("coldcalling4", "D. Live Crisis Roleplay — Outreach & Intake")
   ]);
   loadCallLog();
 }
@@ -15004,6 +15007,237 @@ CURVEBALL: "How did this even lapse — isn't this exactly the kind of thing you
   ]
 };
 
+/* Crisis practice from Day 3 on: every lab from Day 3 onward ends with a live crisis roleplay
+   drawn from that day's work (Days 5, 6 and 9 already had one; these sets cover 3, 4, 7, 8 and 10). */
+Object.assign(CRISIS_SCENARIO_SETS, {
+  calendar: [
+    {
+      id:"grounded",
+      title:"Direct Flight Cancelled at the Gate",
+      setup:"Elias is at JFK for the direct overnight flight to Singapore. The arbitration team's client meeting is tomorrow at 2:00 PM Singapore time. The flight has just been cancelled for a mechanical fault, and the airline is offering a one-stop routing via Tokyo that lands at 1:15 PM.",
+      stakes:"He hates connecting flights and needs to arrive rested. Missing the client meeting before the hearing undermines the arbitration team. Every minute you spend deciding, the remaining seats on other carriers sell out.",
+      script:`OPENING LINE (Elias, played live, standing at the gate): "They cancelled it. They want me on some connection through Tokyo. I am not walking into that meeting off two flights. Fix this."
+FOLLOW-UP PRESSURE: "The gate agent says there's nothing direct until Thursday. Is that true or is she just lazy?"
+CURVEBALL: "Should I just do the meeting by video and skip the trip entirely?"`,
+      objective:{
+        recommendation:"Hold the Tokyo connection as a fallback seat immediately, check every other carrier's direct options in parallel, and give Elias a decision window. If nothing direct gets him there in time, have the arbitration team confirm whether the meeting can move a few hours or run as a video call with an in-person follow-up.",
+        risksTradeoffs:"Insisting on a direct flight could mean missing the meeting altogether. Taking the connection breaks a standing preference and costs him rest. Hold the fallback first, then pursue better options, so you never trade a sure seat for a maybe.",
+        blufStatement:`"I'm holding a seat on the Tokyo connection so you're covered either way. I'm checking direct options on other carriers now and will have your choice to you in 15 minutes."`
+      }
+    },
+    {
+      id:"courtmove",
+      title:"The Court Moves the Hearing",
+      setup:"The court clerk has emailed: tomorrow's Meridian Dynamics hearing moves from 2:00 PM to 10:00 AM. Elias already has the Harlow Industries client strategy meeting at 10:00 AM, followed by back-to-back internal meetings until noon.",
+      stakes:"A court time is not negotiable. Harlow's general counsel has flown in for the meeting. Elias's standing rule is no back-to-back court sessions or hearings without his 15-minute debrief buffer.",
+      script:`OPENING LINE (Elias, played live): "The court just moved Meridian to ten. I have Harlow at ten. Their GC flew in for this. What are we doing?"
+FOLLOW-UP PRESSURE: "Don't just tell me to cancel Harlow. That relationship is worth more than this hearing."
+CURVEBALL: "Can David take the hearing? Actually, no. Can he? You tell me."`,
+      objective:{
+        recommendation:"Treat the court time as fixed. Offer Harlow a concrete new slot later the same day (or a working lunch), with a personal call from Elias, and protect the post-hearing debrief buffer. Raise the question of David Reyes covering the hearing as Elias's decision rather than presenting it as already arranged.",
+        risksTradeoffs:"Moving a client who travelled risks the relationship; asking to move a court date risks credibility with the judge. The answer is to move the one meeting that can move, and make the move feel like respect, not a brush-off.",
+        blufStatement:`"Court can't move, so Harlow moves to 2:30 with lunch on us. I'll draft the note to their GC for you to send personally, and your 15-minute buffer after the hearing stays."`
+      }
+    },
+    {
+      id:"passport",
+      title:"Passport Stolen in London",
+      setup:"Elias is in London. His bag, with his passport inside, has just been stolen from a restaurant. His flight home leaves tonight, and Maya's recital is tomorrow evening.",
+      stakes:"Without a passport he cannot board. An emergency passport needs an appointment, a police report and photos. Sarah will want to know immediately whether he will make the recital.",
+      script:`OPENING LINE (Elias, played live, outside the restaurant): "Someone took my bag. Passport, everything. My flight's at nine. Tell me I'm still getting home."
+FOLLOW-UP PRESSURE: "I can't sit in an embassy all day. I have calls at three."
+CURVEBALL: "Don't tell Sarah yet. I don't want her panicking."`,
+      objective:{
+        recommendation:"Walk him through the immediate steps (police report, cancel cards, book the earliest emergency passport appointment) while you rebook the flight to the first realistic departure and clear his afternoon calls. Advise against keeping Sarah in the dark about the recital, and offer to call her with a plan rather than a problem.",
+        risksTradeoffs:"Promising he will make tonight's flight sets him up for a second disappointment. Hiding the situation from Sarah protects her for an hour but costs trust if the recital is missed. Under-promise on timing and give her a plan she can rely on.",
+        blufStatement:`"File the police report first, and I'll book the emergency passport appointment and move you to the first flight after it. You'll most likely make the recital, and I'll give Sarah the plan, not the panic."`
+      }
+    }
+  ],
+  coldcalling4: [
+    {
+      id:"conflict",
+      title:"The Prospect Who Is Adverse to a Client",
+      setup:"A prospect from yesterday's outreach calls back eager to sign: their general counsel wants Thorne & Partners to start this week. Partway through the call you realize the matter is a dispute against Meridian Dynamics, one of the firm's existing clients.",
+      stakes:"Taking any confidential detail from them, or implying the firm will act, creates a conflict problem. Brushing them off loses a warm lead and reflects badly on the outreach you ran.",
+      script:`OPENING LINE (prospect GC, played live, upbeat): "We're ready to go. Let me walk you through the dispute with Meridian so Elias is up to speed before Monday."
+FOLLOW-UP PRESSURE: "Why can't you just take the details now? It'll save time."
+CURVEBALL: "Is there a problem? Does Elias already know someone at Meridian?"`,
+      objective:{
+        recommendation:"Stop the caller from sharing any substantive details, explain politely that the firm must run a conflict check before discussing any matter, take only the names needed for that check, and route it to Elias and the conflicts process the same day.",
+        risksTradeoffs:"Listening to the facts risks confidentiality and the firm's ability to act for either side. Shutting the caller down abruptly loses the lead. The holding position is warmth plus process: grateful, quick, and careful.",
+        blufStatement:`"Thank you, we'd love to help. Before you share any details, our firm runs a standard conflict check. I just need the parties' names, and I'll have an answer to you by tomorrow."`
+      }
+    },
+    {
+      id:"mailmerge",
+      title:"The Outreach Email Went Out Wrong",
+      setup:"This morning's outreach email went out to 40 prospects with a mail-merge error. Every recipient can see the full list, and the greeting addresses each one by another prospect's name. One prospect, the head of HR at a major hospital group, is on the phone.",
+      stakes:"Exposing a prospect list is a confidentiality and reputation issue. The caller is irritated, and others will notice soon. Elias does not know yet.",
+      script:`OPENING LINE (prospect, played live, cool): "I just got an email from your firm addressed to someone else, with forty of my peers in the To line. Is this how you handle confidential information?"
+FOLLOW-UP PRESSURE: "Who else has my email address now?"
+CURVEBALL: "Should I be worried about what else your firm sends to the wrong people?"`,
+      objective:{
+        recommendation:"Own the mistake plainly, apologize without excuses, explain that no confidential client information was involved (only contact details), stop any further sends, tell Elias immediately, and offer a personal follow-up. Then send one short correction email to the list, using BCC.",
+        risksTradeoffs:"Over-explaining or blaming the software sounds evasive. Minimizing it angers a prospect who is right to be annoyed. A clean, fast apology protects the relationship far better than a defence.",
+        blufStatement:`"You're right, and I'm sorry. That was our error. It shared contact details only, no client information. I've stopped all further sends, and Elias will call you personally today."`
+      }
+    },
+    {
+      id:"distress",
+      title:"An Intake Caller in Distress",
+      setup:"A small-business owner calls the main line. They have just been served with a lawsuit, their answer is due in two days, and they want to speak to Elias right now. Elias is in a deposition until 4:00 PM.",
+      stakes:"You cannot give legal advice or promise representation, but a real deadline is running. Mishandling the call loses a potential client and could leave a frightened person without help.",
+      script:`OPENING LINE (caller, played live, panicked): "I just got served. They're saying I have two days to respond or I lose everything. I need to talk to Elias Thorne right now."
+FOLLOW-UP PRESSURE: "Just tell me — do I need to file something today? Yes or no?"
+CURVEBALL: "If he can't call me, I'll just go with the first lawyer I find."`,
+      objective:{
+        recommendation:"Stay calm, take the intake details (names, court, date served, deadline) for a conflict check, do not give legal advice, and get a callback commitment from an attorney today. Escalate to Elias at his 4:00 PM break, or to David Reyes sooner if the deadline demands it.",
+        risksTradeoffs:"Answering their legal question risks unauthorized advice and liability. Simply taking a message risks the deadline passing. The middle path is a firm callback time from someone who is allowed to advise.",
+        blufStatement:`"I can't give legal advice myself, but I can get you an attorney today. I'll take your details now for our conflict check, and someone from the firm will call you by 4:30 this afternoon."`
+      }
+    }
+  ],
+  financial: [
+    {
+      id:"trustshort",
+      title:"A Shortfall in the Trust Account",
+      setup:"While reconciling the trust account you find that a $9,800 disbursement for the Alvarez matter was paid from another client's trust ledger. The Alvarez balance is now negative. The bookkeeper suggests quietly moving money from the operating account to cover it before month-end.",
+      stakes:"Client trust funds are strictly regulated. Commingling or concealing a shortfall can lead to bar discipline. The bookkeeper is senior to you and wants this handled quietly.",
+      script:`OPENING LINE (bookkeeper, played live, casual): "It's a simple mistake. I'll just move ten thousand over from operating and nobody needs to make a fuss."
+FOLLOW-UP PRESSURE: "If you take this to Elias, it'll look like I'm incompetent. It's one entry."
+CURVEBALL: "Fine. Then don't put it in writing. Just mention it to him in passing."`,
+      objective:{
+        recommendation:"Decline to move any funds, document what you found, and escalate to Elias (as the responsible attorney) in writing the same day so the correction is made properly and any required reporting can be assessed. Be respectful toward the bookkeeper, but do not soften the facts.",
+        risksTradeoffs:"Escalating strains a working relationship. Staying quiet makes you part of a trust-account violation. The trade-off is not loyalty against honesty; the correct route protects the bookkeeper too.",
+        blufStatement:`"I can't move funds or keep this off the record. Trust accounting has to be corrected properly. I'm sending Elias a short note with the ledger entries this afternoon, and I'll say it was caught in reconciliation."`
+      }
+    },
+    {
+      id:"angryclient",
+      title:"Client Furious About a Double Bill",
+      setup:"Harlow Industries' general counsel calls about INV-2027: the same 6.5 hours of document review appear twice. They are threatening to move the matter to another firm and to complain to the bar.",
+      stakes:"The double entry looks real. Harlow is an important client, and Elias is on a flight for three more hours. Anything you promise binds the firm.",
+      script:`OPENING LINE (Harlow GC, played live, angry): "You billed us twice for the same review. I've checked it three times. Is this how your firm pads invoices?"
+FOLLOW-UP PRESSURE: "I want a corrected invoice and an apology today, or we take the matter elsewhere."
+CURVEBALL: "Did Elias approve this? Is he aware his firm overcharges?"`,
+      objective:{
+        recommendation:"Acknowledge the concern without arguing, confirm the duplicate in front of them if you can see it, pause collection on the invoice, and commit to a reviewed, corrected invoice and a call from Elias once he lands. Do not speculate about intent or offer discounts yourself.",
+        risksTradeoffs:"Defending the bill escalates the anger. Conceding more than the facts (credits, refunds) commits the firm without authority. Own the error you can see and route everything else to Elias.",
+        blufStatement:`"I can see the duplicate entry, and I'm sorry. I've paused the invoice, Elias will call you as soon as he lands this afternoon, and the corrected invoice will reach you today."`
+      }
+    },
+    {
+      id:"wirefraud",
+      title:"“Elias” Asks for an Urgent Wire",
+      setup:"An email that appears to come from Elias asks you to wire $185,000 in settlement funds from trust to a new account before 3:00 PM, “because the other side changed banks.” It is 2:20 PM. The address is off by one letter, and Elias is in a hearing.",
+      stakes:"Wire-fraud losses from a trust account are often unrecoverable. If the request is genuine, missing the deadline could delay a settlement.",
+      script:`OPENING LINE (“Elias”, played live by phone, rushed): "Did you get my email? I need that wire out in the next 30 minutes. Don't make me chase this."
+FOLLOW-UP PRESSURE: "I'm about to go back in. Just send it — I'll sign whatever later."
+CURVEBALL: "Why are you questioning me? Do you want me to tell the client you held up their money?"`,
+      objective:{
+        recommendation:"Do not send the wire. Verify through a known channel (Elias's number on file, or David Reyes at the hearing) and confirm the account details by phone with the receiving party using numbers from the file, never from the email. Report the suspicious email to IT.",
+        risksTradeoffs:"Pausing may delay a genuine settlement by an hour. Sending a fraudulent wire loses client trust money. The cost of verifying is tiny compared with the downside.",
+        blufStatement:`"I'm not able to send any trust wire until I've confirmed it through your number on file and the bank details from the file. I'm calling now, and if it's genuine it goes out right after."`
+      }
+    }
+  ],
+  accessincident8: [
+    {
+      id:"laptop",
+      title:"Laptop Left in a London Cab",
+      setup:"Elias left his firm laptop in a black cab in London twenty minutes ago. It holds Meridian Dynamics case files. He has called you, embarrassed, and wants to handle it quietly.",
+      stakes:"Lost devices with client data may trigger reporting duties and need IT action immediately (remote lock and wipe, password resets). Every minute without containment increases the exposure.",
+      script:`OPENING LINE (Elias, played live, embarrassed): "I left the laptop in a cab. It's probably fine — it's got a password. Let's not make a big deal of it."
+FOLLOW-UP PRESSURE: "If IT gets involved, the whole firm will know by lunch."
+CURVEBALL: "Can't you just change my password and leave it at that?"`,
+      objective:{
+        recommendation:"Report it to IT immediately for a remote lock and wipe and credential resets, start the cab-company lost-property request, and note what data was on the device for the firm's incident process. Handle it discreetly, but do not keep it from IT.",
+        risksTradeoffs:"Keeping it quiet spares Elias embarrassment but leaves client data exposed and the firm out of compliance. Discretion and speed are compatible; secrecy is not.",
+        blufStatement:`"I'm calling IT now to lock and wipe it remotely. That's the quietest fix there is. I'll file the lost-property request with the cab company, and you'll have new passwords within the hour."`
+      }
+    },
+    {
+      id:"ransom",
+      title:"Ransomware on the Night Before Trial",
+      setup:"At 7:00 PM the paralegal calls: their screen says the shared drive is encrypted and demands payment. Trial prep for tomorrow's hearing is on that drive. Elias wants it fixed tonight “whatever it costs.”",
+      stakes:"Paying a ransom has legal, ethical and practical risks. Touching the infected machine can spread the damage. The hearing is at 9:00 AM.",
+      script:`OPENING LINE (paralegal, played live, panicking): "Everything on the shared drive just turned into gibberish and there's a ransom note. Elias says just pay it. What do I do?"
+FOLLOW-UP PRESSURE (Elias): "I don't care how — I need those files by morning. If paying fixes it, pay."
+CURVEBALL (paralegal): "Should I try restarting? Or unplug everything?"`,
+      objective:{
+        recommendation:"Tell the paralegal to disconnect the machine from the network without turning it off, escalate to IT and the firm's incident response contact immediately, and do not pay or contact the attackers. In parallel, rebuild what is needed for the hearing from backups, email attachments and the court's e-filing system.",
+        risksTradeoffs:"Paying may not return the files and can create legal exposure. Waiting for a full recovery risks the hearing. Contain first, escalate, and work around the outage for tomorrow.",
+        blufStatement:`"Unplug the network cable now, but don't shut it down. I'm calling IT's incident line, and we won't pay anyone. I'm pulling the hearing files from e-filing and email so you have them by 7:00 AM."`
+      }
+    },
+    {
+      id:"autocomplete",
+      title:"Strategy Memo Sent to Opposing Counsel",
+      setup:"David Reyes calls: an associate's email autocompleted the wrong “Michael” and sent the privileged Meridian settlement strategy memo to opposing counsel ten minutes ago. Elias is in a client lunch.",
+      stakes:"Privilege may be at risk, and there are steps (recall, a clawback notice) that work best in the first minutes. David is under pressure and wants action, not discussion.",
+      script:`OPENING LINE (David Reyes, played live, clipped): "Our settlement memo just went to opposing counsel. I need Elias, and I need a plan, right now."
+FOLLOW-UP PRESSURE: "Can IT pull it back out of their inbox?"
+CURVEBALL: "Should we call opposing counsel and ask them to delete it, or does that make it worse?"`,
+      objective:{
+        recommendation:"Get Elias out of the lunch (this justifies an interruption), ask IT to attempt a recall and preserve the logs, and have David draft the clawback notice to opposing counsel under the applicable rules. Record the timeline as it happens.",
+        risksTradeoffs:"Interrupting a client lunch is costly, but this is exactly what the interruption threshold is for. Calling opposing counsel informally without the right notice could weaken the clawback. The attorneys decide legal steps; you make them fast.",
+        blufStatement:`"I'm pulling Elias out of lunch now. IT is attempting a recall and preserving the logs, and I'll have the timeline written up for your clawback notice in five minutes."`
+      }
+    }
+  ],
+  socialmedia10: [
+    {
+      id:"overshare",
+      title:"A Victory Post That Says Too Much",
+      setup:"This morning's LinkedIn post celebrating a Meridian Dynamics win mentions the settlement range and a confidential product name. Meridian's general counsel has called, furious. The post already has 300 reactions and is being reshared.",
+      stakes:"Client confidentiality may have been breached in public. Deleting the post won't remove the reshares. Elias approved the general idea of the post, but not that wording.",
+      script:`OPENING LINE (Meridian GC, played live, cold): "Your firm just announced our settlement terms on LinkedIn. Who approved that?"
+FOLLOW-UP PRESSURE: "Take it down. Now. And I want to know who else has seen it."
+CURVEBALL: "Should we expect a press statement from your firm, too?"`,
+      objective:{
+        recommendation:"Take the post down at once, screenshot it and record the reshares for the record, tell Elias immediately, and give the GC a clear account of what was removed and when. Make no further public statement unless Elias approves it with the client.",
+        risksTradeoffs:"Deleting it quietly may look like a cover-up; leaving it up while you consult makes the damage worse. Remove it first, then be transparent with the client about what happened.",
+        blufStatement:`"It's down as of now, and I've recorded the reshares. Elias will call you within the hour, and nothing else goes out publicly without your sign-off."`
+      }
+    },
+    {
+      id:"impostor",
+      title:"An Impostor Account Using Elias's Name",
+      setup:"A prospect messages the firm's page asking whether “Elias's new X account” is real. It uses his headshot and offers “free case evaluations” via a payment link. Two people have already paid.",
+      stakes:"People are losing money in the firm's name, and the impersonation could look like Elias soliciting clients improperly. Platforms take time to act.",
+      script:`OPENING LINE (prospect, played live, wary): "Is this Elias Thorne's account? It's asking me to pay $150 for a consultation. Is that legit?"
+FOLLOW-UP PRESSURE: "My friend already paid. Is your firm going to refund her?"
+CURVEBALL: "Why should I trust your firm's page over that one? They look identical."`,
+      objective:{
+        recommendation:"Confirm clearly that the account is not genuine, ask the prospect not to pay or click anything, report the impersonation to the platform, post a short warning from the firm's verified channels, and escalate to Elias. Direct anyone who paid to their bank. The firm should not promise refunds itself.",
+        risksTradeoffs:"Promising refunds creates a liability the firm did not cause. Saying nothing publicly lets more people get scammed. Warn quickly through official channels, and route the money question to the victims' banks.",
+        blufStatement:`"That account isn't Elias. Please don't pay or click anything. We're reporting it now and posting a warning on our verified pages. Your friend should contact her bank today about the charge."`
+      }
+    },
+    {
+      id:"tonedeaf",
+      title:"A Cheerful Post on the Wrong Morning",
+      setup:"A scheduled post celebrating the firm's “best quarter ever” went live at 8:00 AM. At 6:00 AM, one of the firm's major clients announced layoffs of 2,000 people. Comments are turning hostile, and a reporter has messaged asking whether the firm is “celebrating while its client cuts jobs.”",
+      stakes:"The post makes the firm look indifferent toward its own client. Anything you say to the reporter will be quoted. Elias is about to walk into a board meeting.",
+      script:`OPENING LINE (reporter, played live, by direct message): "Quick question for the firm — is it celebrating record profits the same morning its client laid off 2,000 people?"
+FOLLOW-UP PRESSURE: "I'm filing in an hour. A 'no comment' will go in the story as-is."
+CURVEBALL: "Can you confirm what the firm billed that client this year?"`,
+      objective:{
+        recommendation:"Unpublish the post and pause the whole content queue. Do not comment to the reporter yourself; route the request to Elias (and the firm's communications lead) with a proposed holding line. Never disclose anything about client billing.",
+        risksTradeoffs:"Responding off the cuff risks being quoted in the story; staying silent with the post still up compounds the damage. Pull the post first, then let the people authorized to speak decide the response.",
+        blufStatement:`"I've taken the post down and paused everything scheduled. I'm not able to comment, but I'll pass your request to the firm right away. You'll hear back before your deadline."`
+      }
+    }
+  ]
+});
+// One wizard part: the day's crisis roleplay. Resets the shared roleplay state to this lab's set.
+function crisisLabPart(setKey, sectionLabel){
+  const first = CRISIS_SCENARIO_SETS[setKey][0];
+  toolState.cr = {setKey, activeScenario: first.id, chatHistory:[{role:"client", text: first.script.split("\n")[0].replace(/^OPENING LINE[^:]*:\s*/,"").replace(/^"|"$/g,"")}]};
+  return {label:"Crisis Roleplay", html: renderCrisisRoleplaySection(setKey, sectionLabel).replace("margin:36px 0 6px;", "margin:0 0 6px;")};
+}
+
 function renderCrisisRoleplaySection(setKey, sectionLabel){
   sectionLabel = sectionLabel || "C. Live Crisis Roleplay";
   const scenarios = CRISIS_SCENARIO_SETS[setKey];
@@ -15562,7 +15796,8 @@ async function initAccessIncident8(body){
     {label:"Contain the Leak", html:partC},
     {label:"The Firm Is Exposed — Size It", html:partD},
     {label:"Recommendation & Action Plan", html:partE},
-    {label:"The Client Conversation", html:partF}
+    {label:"The Client Conversation", html:partF},
+    crisisLabPart("accessincident8", "G. Live Crisis Roleplay — Security Incidents")
   ]);
 }
 
@@ -16266,7 +16501,8 @@ function initSocial10(body){
     {label:"Version Matching", html:partB},
     {label:"Campaign Math", html:partC},
     {label:"Brand Kit", html:partD},
-    {label:"Marketing Plan", html:partE}
+    {label:"Marketing Plan", html:partE},
+    crisisLabPart("socialmedia10", "F. Live Crisis Roleplay — Social Media")
   ]);
   recalcS10Campaign();
 }
@@ -17322,7 +17558,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=dash-onescreen"></script>
+<script src="/js/eapa-updates.js?v=dash-onescreen-crisis"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=3"></script>
 <script src="/js/graded-calls.js?v=1"></script>
