@@ -190,6 +190,28 @@ The brief above the calendar is two short columns (*Look past the obvious clashe
 
 Saved with the trainee's work: `calendar-edits`, `calendar-custom` and `calendar-decisions`; **Download My Work** includes the week, every decision with its reason and the review.
 
+### ✈ Day 3, Part 4: a business trip that can go wrong
+
+The old family-holiday itinerary (blank forms, links to flight-search screenshots, a check that passed anyone who typed "aisle") is replaced by a work trip with fixed anchors: a Chicago arbitration the tribunal set for **Thursday 9:00 AM**, a client meeting the next day, and a Wednesday 9:00–10:30 client call he can't be in the air for. The firm's travel policy caps fares at $750 and hotels at $320 a night, requires nonstop and refundable court travel, and Elias flies aisle, no redeye before he appears.
+
+1. **Book the flight** from eight fares (`FLIGHT_OPTIONS`). Seven each break exactly one rule — lands on hearing morning, connects, redeye, over the cap, middle seats only, in the air during the client call — and one is compliant. The trainee writes a line of why: if the fare breaks policy, that line is the written reason on file.
+2. **Book the hotel** from five (`HOTEL_OPTIONS`), trading distance, price, food, refundability and a renovation; one is fully compliant.
+3. **Thursday hour by hour**: car, arrival 30 minutes before, run-through, the fixed hearing, a debrief buffer.
+   **Check My Trip Plan** shows 17 hard constraints (`tripHardChecks`, no AI call) and unlocks part 4.
+4. **It falls apart the night before** (`TRIP_DISRUPTION`): the flight is cancelled at 9:42 PM, the rebooking lands after the hearing starts, the tribunal has refused one continuance, and the client is in the air. The trainee picks a first move from five (`TRIP_RECOVERY`), writes the action plan with owners, deadlines and a fallback running in parallel, a **BLUF note to Elias**, and the **message to the client tonight**. One rubric review (`reviewTripCrisis`, one of the 3 attempts) grades the booking and the night together: margin before a fixed time, the parallel backstop, putting over-cap spend and continuances to the people who own them, and client messaging that neither panics nor over-promises.
+
+Saved as `trip-plan`; **Download My Work** carries the choices, the reasons, the hard constraints and the review.
+
+### 🚨 Day 8, Parts D–F: Firm Risk & Crisis Response
+
+The Day 8 lab (now **Access, Incident & Firm Crisis Simulator**) gains three parts after *Contain the Leak*. The scenario (`CRISIS_SCENARIO`): Friday's production in *Halvorsen Logistics v. Dunmore Freight* sent 63 privileged settlement-strategy emails to opposing counsel; Halvorsen is 38% of the firm's revenue; Elias is in the air until 11:15.
+
+- **D. The Firm Is Exposed — Size It.** Eight signals land before 8:00 AM (`CRISIS_SIGNALS`): the clawback letter with its 10-day clock, the client's GC who already suspects, a reporter, the malpractice policy's 72-hour notice clause, the associate about to email the other side, the IT export log, today's client QBR, and a $184,000 invoice due out. For each: how fast (now / today / hold) and whose desk. Checked against a key with the reason shown for every row, right or wrong (`checkCrisisTriage`, no AI call).
+- **E. Recommendation & Action Plan.** Three ways to play the first 24 hours (`CRISIS_OPTIONS`) — front-foot it with the client, contain first and brief later, or lead with the press narrative. The trainee recommends one in a **BLUF memo to Elias** with the trade-offs of all three and the decisions only he can make, plus an action plan with owners and deadlines. Rubric review (`reviewCrisisRecommendation`).
+- **F. The Client Conversation.** The follow-up email to Halvorsen's GC for Elias's signature — fact not speculation, the firm owns it, no one named or blamed, no liability admitted or outcome promised — then her hard reply (`CRISIS_PUSHBACK`: who did this, write off the fees, we may move everything), which the trainee answers for Elias: each demand met directly, the line held where it has to be, the door kept open. Rubric review (`reviewCrisisClient`).
+
+Saved as `crisis-firm`; **Download My Work** on Part F produces the triage, the memo, the plan, the exchange and the reviews. The trainer run of show (`SOP_LAB_ACTIVITIES` in `js/eapa-updates.js`) lists the new parts.
+
 ## 📞 Day 4 Practice Lab: simulated prospect calls and lead sourcing
 
 **Prospective Client Intake Call Log (activity 2):** each prospect row has a **📞 Call** button. The trainee rings the prospect and talks by voice (Chrome or Edge) or by typing, using the same call engine as the Live Intake Call Simulator. Each prospect picks up differently:
