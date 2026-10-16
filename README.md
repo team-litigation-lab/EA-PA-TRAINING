@@ -190,6 +190,10 @@ The brief above the calendar is two short columns (*Look past the obvious clashe
 
 Saved with the trainee's work: `calendar-edits`, `calendar-custom` and `calendar-decisions`; **Download My Work** includes the week, every decision with its reason and the review.
 
+### 🚪 The program opens on the dashboard
+
+Signing in, being approved, arriving from the LSH Portal and reopening a tab all land on the **Dashboard**; Client Profile is a tab like any other. Resuming is untouched: a trainee who left off inside a lesson or a lab still reopens there, and the skip that used to avoid resuming onto the landing page now names the dashboard instead. Only a trainee with no bookmark — a first sign-in, or anyone who has not yet opened a day — lands on the dashboard outright.
+
 ### 🗂 The Trainee Audit lives in the batch folder
 
 A trainee's audit row is in the folder of the batch they registered in, not in a cohort-wide list behind a batch dropdown. A batch folder's first tab is **🗂 Trainee Audit**: the same rows as before, with the same search and sort, over that batch only — including when a keystroke or the 30-second poll redraws them, which is where a scoped list most easily widens back out by accident. The admin tab that used to hold them is **Settings & Reports** and keeps what is genuinely cohort-wide: certificate signatories, pending registrations, the daily-review setting and the cohort report.
