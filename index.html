@@ -2640,6 +2640,32 @@ body::before{opacity:.40;}
 @media print{
   .topbar,.btn-primary,.btn-navy{background-image:none;box-shadow:none;}
 }
+/* Day 1 Preference Trackers: an Excel-style workbook (one sheet per tracker). */
+.xl-book{--xl-accent:#217346;--xl-grid:#E1E4EA;--xl-head:#F3F4F8;border:1px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden;font-size:13px;margin:4px 0 12px;}
+.xl-tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line);background:#F8F9FC;}
+.xl-tools .xl-hint{margin-left:auto;font-size:11.5px;color:var(--ink-soft);}
+.xl-fbar{display:flex;align-items:stretch;border-bottom:1px solid var(--line);background:var(--paper);}
+.xl-name{width:72px;flex:none;padding:6px 8px;border-right:1px solid var(--line);font:600 12.5px 'IBM Plex Mono',monospace;color:var(--navy);text-align:center;}
+.xl-fx{flex:none;padding:6px 10px;border-right:1px solid var(--line);font-style:italic;font-family:Georgia,serif;color:var(--ink-soft);}
+.xl-formula{flex:1;min-width:0;border:0;outline:0;padding:6px 10px;font:13px var(--font-ui);color:var(--ink);background:transparent;}
+.xl-scroll{overflow:auto;max-height:340px;outline:none;}
+.xl-grid{border-collapse:separate;border-spacing:0;table-layout:fixed;}
+.xl-grid th,.xl-grid td{border-right:1px solid var(--xl-grid);border-bottom:1px solid var(--xl-grid);height:26px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.xl-grid thead th{position:sticky;top:0;z-index:2;background:var(--xl-head);font-weight:500;font-size:11.5px;color:var(--ink-soft);text-align:center;}
+.xl-grid th.xl-rh{position:sticky;left:0;z-index:1;background:var(--xl-head);font-weight:500;font-size:11.5px;color:var(--ink-soft);text-align:center;width:40px;}
+.xl-grid thead th.xl-corner{left:0;z-index:3;}
+.xl-grid th.xl-on{background:#DDE8E1;color:var(--xl-accent);font-weight:700;}
+.xl-grid td{background:var(--paper);color:var(--ink);font-weight:400;font-size:13px;cursor:cell;position:relative;}
+.xl-grid tr.xl-hdr td{font-weight:700;color:var(--navy);background:#FAFBFD;}
+.xl-grid td.xl-sel{outline:2px solid var(--xl-accent);outline-offset:-2px;z-index:1;}
+.xl-grid td.xl-edit{padding:0;overflow:visible;}
+.xl-grid td input.xl-editor{width:100%;height:100%;border:0;outline:2px solid var(--xl-accent);outline-offset:-2px;padding:0 6px;font:inherit;background:#fff;color:var(--ink);}
+.xl-tabs{display:flex;align-items:stretch;gap:0;border-top:1px solid var(--line);background:#F3F4F8;overflow-x:auto;}
+.xl-tab{border:0;border-right:1px solid var(--line);background:transparent;padding:7px 14px;font:500 12.5px var(--font-ui);color:var(--ink-soft);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;}
+.xl-tab:hover{background:#E9EBF2;}
+.xl-tab.active{background:var(--paper);color:var(--xl-accent);font-weight:700;border-bottom-color:var(--xl-accent);}
+.xl-status{display:flex;justify-content:space-between;padding:4px 10px;font-size:11.5px;color:var(--ink-soft);background:#F8F9FC;border-top:1px solid var(--line);}
+@media (max-width:640px){ .xl-tools .xl-hint{display:none;} .xl-scroll{max-height:300px;} }
 </style>
 <script src="/js/portal-gate.js?v=2026.10.08-admin"></script>
 </head>
@@ -16141,6 +16167,11 @@ window.downloadSocial10Pdf = downloadSocial10Pdf;
 
 function initDossier1(body){
   toolState.d1 = {dossierScore:undefined, trackerScore:undefined};
+  toolState.d1Book = d1xlNewBook(); toolState.d1xlSel = {r:1, c:0}; toolState.d1xlEdit = null;
+  // Trackers written as free text before the workbook existed: carry each one into its sheet.
+  const oldDrafts = (state.labDrafts||{}).dossier1 || {};
+  let migrated = false;
+  if(!oldDrafts.d1trkData) TRACKER_SECTIONS.forEach((_,si)=>{ const t = String(oldDrafts[`d1trk${si}`]||"").trim(); if(t){ toolState.d1Book.sheets[si].rows[1] = ["Notes (earlier draft)", t, "", ""]; migrated = true; } });
   toolState.calls = {};
   toolState.wizardIndex = 0;
   const partA = `
@@ -16160,12 +16191,9 @@ function initDossier1(body){
   `;
   const partB = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Set Up the Preference Trackers</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn Elias's operational details into three live trackers, written in your own words, using the Client Profile page as your reference.</p>
-    ${TRACKER_SECTIONS.map((sec,si)=>`
-      <div style="margin-bottom:14px;">
-        <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">${esc(sec)}</label>
-        <textarea id="d1trk${si}" placeholder="Write this tracker in your own words…" style="width:100%;min-height:90px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
-      </div>`).join("")}
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn Elias's operational details into three live trackers, in your own words, using the Client Profile page as your reference. It works like Excel: one sheet per tracker (tabs along the bottom), one preference per row. Click a cell and type; Enter, Tab and the arrow keys move between cells.</p>
+    <div id="d1xlHost"></div>
+    <textarea id="d1trkData" hidden aria-hidden="true"></textarea>
     <button class="btn btn-ghost btn-sm" onclick="checkD1Tracker()">Check My Trackers</button>
     <div id="d1TrackerResult" style="margin-top:8px;font-size:13px;"></div>
   `;
@@ -16202,7 +16230,321 @@ function initDossier1(body){
     {label:"ACT Email", html:partC},
     {label:"Gatekeeping Practice", html:partD}
   ]);
+  d1xlRender();
+  if(migrated) d1xlSave();
 }
+
+/* ---------- Part B: the preference trackers as an Excel-style workbook ----------
+   One sheet per tracker (TRACKER_SECTIONS), row 1 holds the column headers.
+   The whole workbook lives as JSON in the hidden #d1trkData textarea, so the
+   lab's usual autosave/restore keeps it like any other field. */
+const TRACKER_COLUMNS = {
+  "Travel Preferences": ["Preference", "Details", "Action / rule", "Last updated"],
+  "Inbox Preferences":  ["Preference", "Details", "Action / rule", "Last updated"],
+  "Meeting Rhythms":    ["Rhythm / rule", "Details", "Action / rule", "Last updated"]
+};
+const XL_COL_WIDTHS = [170, 250, 230, 110];
+const XL_START_ROWS = 8;
+const xlColLetter = (c)=>{ let s=""; c++; while(c>0){ const m=(c-1)%26; s=String.fromCharCode(65+m)+s; c=Math.floor((c-1)/26); } return s; };
+const xlToday = ()=>{ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; };
+
+function d1xlNewBook(){
+  return {active:0, sheets: TRACKER_SECTIONS.map(sec=>{
+    const cols = TRACKER_COLUMNS[sec] || ["Preference","Details","Action / rule","Last updated"];
+    return {name:sec, rows:[cols.slice(), ...Array.from({length:XL_START_ROWS}, ()=>cols.map(()=> ""))]};
+  })};
+}
+function d1xlBook(){
+  if(!toolState.d1Book) toolState.d1Book = d1xlNewBook();
+  return toolState.d1Book;
+}
+// Each tracker's text, as the old free-text box read: every filled cell below the header,
+// minus the "Last updated" dates (they hold no preference, only when it changed).
+function d1xlSheetText(si){
+  const sh = d1xlBook().sheets[si]; if(!sh) return "";
+  const last = sh.rows[0].length-1;
+  return sh.rows.slice(1).map(r=>r.filter((v,c)=>c!==last).map(v=>String(v||"").trim()).filter(Boolean).join(" — ")).filter(Boolean).join("\n");
+}
+function d1xlFilledRows(si){
+  const sh = d1xlBook().sheets[si];
+  if(!sh) return [];
+  const last = sh.rows[0].length-1;   // a date on its own is not a filled row
+  return sh.rows.slice(1).filter(r=>r.some((v,c)=>c!==last && String(v||"").trim()));
+}
+function d1xlSave(){
+  const ta = document.getElementById("d1trkData"); if(!ta) return;
+  const b = d1xlBook();
+  ta.value = JSON.stringify({active:b.active, sheets:b.sheets.map(s=>({name:s.name, rows:s.rows}))});
+  toolState.d1xlWriting = true;
+  ta.dispatchEvent(new Event("input", {bubbles:true}));   // the lab autosave picks it up from here
+  toolState.d1xlWriting = false;
+}
+// A saved workbook coming back (lab drafts restore the hidden field and fire "input").
+document.addEventListener("input", e=>{
+  if(!e.target || e.target.id!=="d1trkData" || toolState.d1xlWriting) return;
+  try{
+    const data = JSON.parse(e.target.value||"{}");
+    if(!Array.isArray(data.sheets)) return;
+    const book = d1xlNewBook();
+    book.sheets.forEach(sh=>{
+      const saved = data.sheets.find(s=>s && s.name===sh.name);
+      if(saved && Array.isArray(saved.rows) && saved.rows.length){
+        const w = sh.rows[0].length;
+        sh.rows = saved.rows.map(r=>Array.from({length:w}, (_,c)=>String((Array.isArray(r)?r[c]:"")??"")));
+      }
+    });
+    book.active = Math.min(Math.max(0, data.active|0), book.sheets.length-1);
+    toolState.d1Book = book; toolState.d1xlSel = {r:1, c:0};
+    d1xlRender();
+  }catch(err){}
+}, true);
+
+function d1xlSel(){ return toolState.d1xlSel || (toolState.d1xlSel = {r:1, c:0}); }
+function d1xlRender(){
+  const host = document.getElementById("d1xlHost"); if(!host) return;
+  const book = d1xlBook(), sh = book.sheets[book.active], sel = d1xlSel();
+  const nCols = sh.rows[0].length;
+  sel.r = Math.min(sel.r, sh.rows.length-1); sel.c = Math.min(sel.c, nCols-1);
+  host.innerHTML = `
+    <div class="xl-book">
+      <div class="xl-tools">
+        <button type="button" class="btn btn-ghost btn-sm" onclick="d1xlAddRow()">＋ Add row</button>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="d1xlDeleteRow()">− Delete row</button>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="downloadD1TrackerXlsx()">⬇ Download as Excel</button>
+        <span class="xl-hint">Click a cell and type · Enter / Tab / arrows to move · double-click to edit</span>
+      </div>
+      <div class="xl-fbar">
+        <div class="xl-name" data-xl="name" aria-label="Name box">${xlColLetter(sel.c)}${sel.r+1}</div>
+        <div class="xl-fx">fx</div>
+        <input class="xl-formula" data-xl="formula" aria-label="Formula bar" autocomplete="off" value="${esc(sh.rows[sel.r][sel.c]||"")}">
+      </div>
+      <div class="xl-scroll" tabindex="0" data-xl="scroll" role="grid" aria-label="${esc(sh.name)} sheet">
+        <table class="xl-grid">
+          <colgroup><col style="width:40px">${XL_COL_WIDTHS.slice(0,nCols).map(w=>`<col style="width:${w}px">`).join("")}</colgroup>
+          <thead><tr><th class="xl-corner"></th>${sh.rows[0].map((_,c)=>`<th data-col="${c}" class="${c===sel.c?'xl-on':''}">${xlColLetter(c)}</th>`).join("")}</tr></thead>
+          <tbody>${sh.rows.map((row,r)=>`<tr class="${r===0?'xl-hdr':''}"><th class="xl-rh ${r===sel.r?'xl-on':''}" data-row="${r}">${r+1}</th>${row.map((v,c)=>`<td data-r="${r}" data-c="${c}" class="${r===sel.r&&c===sel.c?'xl-sel':''}" title="${esc(v)}">${esc(v)}</td>`).join("")}</tr>`).join("")}</tbody>
+        </table>
+      </div>
+      <div class="xl-tabs" role="tablist">${book.sheets.map((s,i)=>`<button type="button" role="tab" class="xl-tab ${i===book.active?'active':''}" aria-selected="${i===book.active}" onclick="d1xlSheet(${i})">${esc(s.name)}</button>`).join("")}</div>
+      <div class="xl-status"><span data-xl="mode">Ready</span><span>${d1xlFilledRows(book.active).length} row(s) filled on this sheet</span></div>
+    </div>`;
+  const scroll = host.querySelector('[data-xl="scroll"]');
+  scroll.addEventListener("mousedown", d1xlMouseDown);
+  scroll.addEventListener("dblclick", e=>{ const td=e.target.closest("td[data-r]"); if(td) d1xlStartEdit(null); });
+  scroll.addEventListener("keydown", d1xlKeyDown);
+  scroll.addEventListener("paste", d1xlPaste);
+  const fx = host.querySelector('[data-xl="formula"]');
+  fx.addEventListener("input", ()=>{ const s=d1xlSel(); d1xlSetCell(s.r, s.c, fx.value, true); });
+  fx.addEventListener("keydown", e=>{
+    if(e.key==="Enter" || e.key==="Tab"){ e.preventDefault(); d1xlStamp(d1xlSel().r, d1xlSel().c); d1xlMove(e.key==="Tab"?0:(e.shiftKey?-1:1), e.key==="Tab"?(e.shiftKey?-1:1):0); d1xlFocusGrid(); }
+    else if(e.key==="Escape"){ e.preventDefault(); d1xlFocusGrid(); }
+  });
+  fx.addEventListener("change", ()=>{ const s=d1xlSel(); d1xlStamp(s.r, s.c); d1xlRefreshStatus(); });
+}
+function d1xlCell(r, c){ return document.querySelector(`#d1xlHost td[data-r="${r}"][data-c="${c}"]`); }
+function d1xlFocusGrid(){ const s=document.querySelector('#d1xlHost [data-xl="scroll"]'); if(s) s.focus({preventScroll:true}); }
+// Write one cell. live=true comes from the formula bar: update the cell in place, no re-render.
+function d1xlSetCell(r, c, v, live){
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  if(!sh.rows[r]) return;
+  sh.rows[r][c] = String(v);
+  const td = d1xlCell(r, c);
+  if(td && !td.classList.contains("xl-edit")){ td.textContent = v; td.title = v; }
+  d1xlSave();
+  d1xlRefreshStatus();
+  if(!live) d1xlUpdateBars();
+}
+// The "Last updated" column stamps itself when anything else on a data row changes.
+function d1xlStamp(r, c){
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  const last = sh.rows[0].length-1;
+  if(r<1 || c===last || !sh.rows[r]) return;
+  const stamp = sh.rows[r].slice(0,last).some(v=>String(v||"").trim()) ? xlToday() : "";   // an emptied row loses its date
+  if(sh.rows[r][last]!==stamp) d1xlSetCell(r, last, stamp);
+}
+function d1xlUpdateBars(){
+  const host = document.getElementById("d1xlHost"); if(!host) return;
+  const sh = d1xlBook().sheets[d1xlBook().active], s = d1xlSel();
+  const name = host.querySelector('[data-xl="name"]'); if(name) name.textContent = `${xlColLetter(s.c)}${s.r+1}`;
+  const fx = host.querySelector('[data-xl="formula"]'); if(fx && document.activeElement!==fx) fx.value = sh.rows[s.r][s.c]||"";
+  host.querySelectorAll("td.xl-sel").forEach(x=>x.classList.remove("xl-sel"));
+  host.querySelectorAll("th.xl-on").forEach(x=>x.classList.remove("xl-on"));
+  const td = d1xlCell(s.r, s.c); if(td){ td.classList.add("xl-sel"); td.scrollIntoView({block:"nearest", inline:"nearest"}); }
+  const ch = host.querySelector(`thead th[data-col="${s.c}"]`); if(ch) ch.classList.add("xl-on");
+  const rh = host.querySelector(`th.xl-rh[data-row="${s.r}"]`); if(rh) rh.classList.add("xl-on");
+}
+function d1xlSelect(r, c){
+  d1xlCommitEdit();
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  const s = d1xlSel();
+  s.r = Math.max(0, Math.min(r, sh.rows.length-1));
+  s.c = Math.max(0, Math.min(c, sh.rows[0].length-1));
+  d1xlUpdateBars();
+}
+function d1xlMove(dr, dc){
+  const sh = d1xlBook().sheets[d1xlBook().active], s = d1xlSel(), w = sh.rows[0].length;
+  let r = s.r+dr, c = s.c+dc;
+  if(dc && c>=w){ c=0; r++; } else if(dc && c<0){ c=w-1; r--; }
+  if(r>=sh.rows.length && dr>0){ d1xlAddRow(true); }   // Enter off the last row adds one, like a table
+  d1xlSelect(r, c);
+}
+function d1xlMouseDown(e){
+  const td = e.target.closest("td[data-r]");
+  if(!td || td.classList.contains("xl-edit")) return;
+  e.preventDefault();
+  const r = +td.dataset.r, c = +td.dataset.c, s = d1xlSel();
+  const again = s.r===r && s.c===c && !toolState.d1xlEdit;
+  d1xlSelect(r, c);
+  d1xlFocusGrid();
+  if(again && matchMedia("(pointer:coarse)").matches) d1xlStartEdit(null);   // a second tap edits on a phone
+}
+function d1xlStartEdit(initial){
+  const s = d1xlSel(), td = d1xlCell(s.r, s.c); if(!td || toolState.d1xlEdit) return;
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  const old = sh.rows[s.r][s.c]||"";
+  toolState.d1xlEdit = {r:s.r, c:s.c, old};
+  td.classList.add("xl-edit"); td.textContent = "";
+  const inp = document.createElement("input");
+  inp.className = "xl-editor"; inp.autocomplete = "off";
+  inp.value = initial===null ? old : initial;
+  td.appendChild(inp);
+  inp.focus({preventScroll:true});
+  inp.setSelectionRange(inp.value.length, inp.value.length);
+  const mode = document.querySelector('#d1xlHost [data-xl="mode"]'); if(mode) mode.textContent = initial===null ? "Edit" : "Enter";
+  inp.addEventListener("input", ()=>{ const fx=document.querySelector('#d1xlHost [data-xl="formula"]'); if(fx) fx.value = inp.value; });
+  inp.addEventListener("keydown", e=>{
+    const k = e.key;
+    if(k==="Escape"){ e.preventDefault(); d1xlCommitEdit(true); d1xlFocusGrid(); return; }
+    if(k==="Enter"){ e.preventDefault(); d1xlCommitEdit(); d1xlMove(e.shiftKey?-1:1, 0); d1xlFocusGrid(); return; }
+    if(k==="Tab"){ e.preventDefault(); d1xlCommitEdit(); d1xlMove(0, e.shiftKey?-1:1); d1xlFocusGrid(); return; }
+    // in "Enter" mode (started by typing) the arrows leave the cell, as in Excel
+    if(toolState.d1xlEdit && toolState.d1xlEdit.typed && /^Arrow/.test(k)){
+      e.preventDefault(); d1xlCommitEdit();
+      d1xlMove(k==="ArrowDown"?1:k==="ArrowUp"?-1:0, k==="ArrowRight"?1:k==="ArrowLeft"?-1:0); d1xlFocusGrid();
+    }
+  });
+  inp.addEventListener("blur", ()=>{ setTimeout(()=>{ if(toolState.d1xlEdit && toolState.d1xlEdit.input===inp) d1xlCommitEdit(); }, 0); });
+  toolState.d1xlEdit.input = inp;
+  toolState.d1xlEdit.typed = initial!==null;
+}
+function d1xlCommitEdit(cancel){
+  const ed = toolState.d1xlEdit; if(!ed) return;
+  toolState.d1xlEdit = null;
+  const v = cancel ? ed.old : ed.input.value;
+  const td = d1xlCell(ed.r, ed.c);
+  if(td){ td.classList.remove("xl-edit"); td.textContent = v; td.title = v; }
+  const mode = document.querySelector('#d1xlHost [data-xl="mode"]'); if(mode) mode.textContent = "Ready";
+  if(!cancel && v!==ed.old){ d1xlSetCell(ed.r, ed.c, v); d1xlStamp(ed.r, ed.c); d1xlRefreshStatus(); }
+}
+function d1xlRefreshStatus(){
+  const st = document.querySelector("#d1xlHost .xl-status span:last-child");
+  if(st) st.textContent = `${d1xlFilledRows(d1xlBook().active).length} row(s) filled on this sheet`;
+}
+function d1xlKeyDown(e){
+  if(toolState.d1xlEdit || e.target.classList.contains("xl-editor")) return;
+  const k = e.key;
+  const moves = {ArrowUp:[-1,0], ArrowDown:[1,0], ArrowLeft:[0,-1], ArrowRight:[0,1]};
+  if(moves[k]){ e.preventDefault(); const s=d1xlSel(); d1xlSelect(s.r+moves[k][0], s.c+moves[k][1]); return; }
+  if(k==="Enter"){ e.preventDefault(); d1xlMove(e.shiftKey?-1:1, 0); return; }
+  if(k==="Tab"){ e.preventDefault(); d1xlMove(0, e.shiftKey?-1:1); return; }
+  if(k==="F2"){ e.preventDefault(); d1xlStartEdit(null); return; }
+  if(k==="Delete" || k==="Backspace"){ e.preventDefault(); const s=d1xlSel(); d1xlSetCell(s.r, s.c, ""); d1xlStamp(s.r, s.c); d1xlRefreshStatus(); return; }
+  if(k.length===1 && !e.ctrlKey && !e.metaKey && !e.altKey){ e.preventDefault(); d1xlStartEdit(k); }
+}
+// Pasting rows/columns from Excel or Sheets (tab-separated) fills cells from the selected one.
+function d1xlPaste(e){
+  if(toolState.d1xlEdit) return;
+  const text = (e.clipboardData && e.clipboardData.getData("text/plain")) || "";
+  if(!text) return;
+  e.preventDefault();
+  const sh = d1xlBook().sheets[d1xlBook().active], s = d1xlSel(), w = sh.rows[0].length;
+  text.replace(/\r/g,"").replace(/\n$/,"").split("\n").forEach((line,i)=>{
+    const r = s.r+i;
+    while(r>=sh.rows.length) sh.rows.push(sh.rows[0].map(()=> ""));
+    line.split("\t").forEach((v,j)=>{ if(s.c+j<w) sh.rows[r][s.c+j] = v; });
+    d1xlStampRow(sh, r);
+  });
+  d1xlSave(); d1xlRender(); d1xlFocusGrid();
+}
+function d1xlStampRow(sh, r){
+  const last = sh.rows[0].length-1;
+  if(r>=1 && sh.rows[r].slice(0,last).some(v=>String(v||"").trim()) && !sh.rows[r][last]) sh.rows[r][last] = xlToday();
+}
+function d1xlAddRow(quiet){
+  d1xlCommitEdit();
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  sh.rows.push(sh.rows[0].map(()=> ""));
+  d1xlSave(); d1xlRender();
+  if(!quiet){ d1xlSelect(sh.rows.length-1, 0); d1xlFocusGrid(); }
+}
+function d1xlDeleteRow(){
+  d1xlCommitEdit();
+  const sh = d1xlBook().sheets[d1xlBook().active], s = d1xlSel();
+  if(s.r===0){ toast("Row 1 holds the column headers — pick a data row to delete."); return; }
+  if(sh.rows.length<=2){ sh.rows[1] = sh.rows[0].map(()=> ""); }
+  else sh.rows.splice(s.r, 1);
+  d1xlSave(); d1xlRender(); d1xlFocusGrid();
+}
+function d1xlSheet(i){
+  d1xlCommitEdit();
+  const book = d1xlBook();
+  book.active = Math.max(0, Math.min(i, book.sheets.length-1));
+  toolState.d1xlSel = {r:1, c:0};
+  d1xlSave(); d1xlRender(); d1xlFocusGrid();
+}
+window.d1xlAddRow = d1xlAddRow; window.d1xlDeleteRow = d1xlDeleteRow; window.d1xlSheet = d1xlSheet;
+
+/* ---------- ⬇ Download as Excel: a real .xlsx (zip of SpreadsheetML), no library ---------- */
+function xlCrc32(bytes){
+  let t = xlCrc32.t;
+  if(!t){ t = xlCrc32.t = new Uint32Array(256); for(let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++) c = c&1 ? 0xEDB88320^(c>>>1) : c>>>1; t[n]=c>>>0; } }
+  let c = 0xFFFFFFFF;
+  for(let i=0;i<bytes.length;i++) c = t[(c^bytes[i])&0xFF]^(c>>>8);
+  return (c^0xFFFFFFFF)>>>0;
+}
+// Stored (uncompressed) zip: plenty for a few kilobytes of XML.
+function xlZip(files){
+  const enc = new TextEncoder(), parts = [], central = [];
+  let offset = 0;
+  const u16 = (v)=>[v&255, (v>>>8)&255], u32 = (v)=>[v&255, (v>>>8)&255, (v>>>16)&255, (v>>>24)&255];
+  files.forEach(f=>{
+    const name = enc.encode(f.name), data = enc.encode(f.data), crc = xlCrc32(data);
+    const common = [...u16(20), ...u16(0x0800), ...u16(0), ...u16(0), ...u16(0x21), ...u32(crc), ...u32(data.length), ...u32(data.length), ...u16(name.length), ...u16(0)];
+    const local = new Uint8Array([...u32(0x04034b50), ...common]);
+    parts.push(local, name, data);
+    central.push(new Uint8Array([...u32(0x02014b50), ...u16(20), ...common, ...u16(0), ...u16(0), ...u16(0), ...u32(0), ...u32(offset)]), name);
+    offset += local.length + name.length + data.length;
+  });
+  const cdSize = central.reduce((n,p)=>n+p.length, 0);
+  const end = new Uint8Array([...u32(0x06054b50), ...u16(0), ...u16(0), ...u16(files.length), ...u16(files.length), ...u32(cdSize), ...u32(offset), ...u16(0)]);
+  return new Blob([...parts, ...central, end], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+}
+function d1xlXlsxBlob(){
+  const x = (s)=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,"");
+  const sheets = d1xlBook().sheets;
+  const files = [
+    {name:"[Content_Types].xml", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${sheets.map((_,i)=>`<Override PartName="/xl/worksheets/sheet${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join("")}</Types>`},
+    {name:"_rels/.rels", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`},
+    {name:"xl/workbook.xml", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>${sheets.map((s,i)=>`<sheet name="${x(s.name.slice(0,31))}" sheetId="${i+1}" r:id="rId${i+1}"/>`).join("")}</sheets></workbook>`},
+    {name:"xl/_rels/workbook.xml.rels", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sheets.map((_,i)=>`<Relationship Id="rId${i+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i+1}.xml"/>`).join("")}<Relationship Id="rId${sheets.length+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`},
+    {name:"xl/styles.xml", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE7EDF3"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="3"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment wrapText="1" vertical="top"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`}
+  ];
+  sheets.forEach((s,i)=>{
+    const rows = [s.rows[0], ...d1xlFilledRows(i)];
+    files.push({name:`xl/worksheets/sheet${i+1}.xml`, data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0"${i===0?' tabSelected="1"':''}><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols>${s.rows[0].map((_,c)=>`<col min="${c+1}" max="${c+1}" width="${Math.round((XL_COL_WIDTHS[c]||120)/6.5)}" customWidth="1"/>`).join("")}</cols><sheetData>${rows.map((r,ri)=>`<row r="${ri+1}">${r.map((v,c)=> String(v||"")==="" ? "" : `<c r="${xlColLetter(c)}${ri+1}" t="inlineStr" s="${ri===0?1:2}"><is><t xml:space="preserve">${x(v)}</t></is></c>`).join("")}</row>`).join("")}</sheetData></worksheet>`});
+  });
+  return xlZip(files);
+}
+function downloadD1TrackerXlsx(){
+  d1xlCommitEdit();
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(d1xlXlsxBlob());
+  a.download = "LSH_Preference_Trackers.xlsx";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+}
+window.downloadD1TrackerXlsx = downloadD1TrackerXlsx;
+
 
 /* ---------- coverage-based scoring for free text ---------- */
 function coverageScore(facts, sectionNames, getTextForSection){
@@ -16243,8 +16585,9 @@ async function checkD1Dossier(){
 window.checkD1Dossier = checkD1Dossier;
 
 async function checkD1Tracker(){
-  const texts = TRACKER_SECTIONS.map((_,si)=>document.getElementById(`d1trk${si}`).value.trim());
-  if(texts.some(t=>t.length<15)){ inlineNotice("d1TrackerResult","Write something in every tracker before checking."); return; }
+  d1xlCommitEdit();
+  const texts = TRACKER_SECTIONS.map((_,si)=>d1xlSheetText(si));
+  if(texts.some(t=>t.length<15)){ inlineNotice("d1TrackerResult","Fill in a few rows on every sheet (Travel, Inbox and Meeting Rhythms) before checking."); return; }
   if(labInputRejected(texts, "d1TrackerResult")) return;
   const result = coverageScore(TRACKER_FACTS, TRACKER_SECTIONS, (sec)=>{
     const si = TRACKER_SECTIONS.indexOf(sec);
@@ -16314,9 +16657,12 @@ async function downloadDossier1Pdf(){
     lines.push(document.getElementById(`d1sec${si}`).value.trim() || "(not written)");
   });
   lines.push("---", "## B. Preference Trackers");
+  d1xlCommitEdit();
   TRACKER_SECTIONS.forEach((sec,si)=>{
     lines.push(`## ${sec}`);
-    lines.push(document.getElementById(`d1trk${si}`).value.trim() || "(not written)");
+    const head = d1xlBook().sheets[si].rows[0], rows = d1xlFilledRows(si);
+    if(!rows.length) lines.push("(not written)");
+    rows.forEach((r,ri)=>lines.push(`${ri+1}. ` + head.map((h,c)=>String(r[c]||"").trim() ? `${h}: ${String(r[c]).trim()}` : "").filter(Boolean).join("  |  ")));
   });
   const actDraft = document.getElementById("d1ActDraft");
   if(actDraft && actDraft.value.trim()){
