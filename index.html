@@ -2658,7 +2658,7 @@ const CAL_EVENTS = [
   {t:"Co-Counsel Sync — Reyes Group", day:"Mon", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Case Team"},
   {t:"Mail & Filing Review", day:"Mon", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Internal"},
   {t:"Client Intake — New Referral", day:"Mon", s:13.25, e:13.75, p:"Medium", loc:"Virtual", type:"Client"},
-  {t:"Vendor Review — Court Reporter Svc.", day:"Tue", s:9, e:10, p:"Medium", loc:"In-person", type:"Vendor"},
+  {t:"Vendor Review — Court Reporter Svc.", day:"Tue", s:9, e:10, p:"Medium", loc:"In-person · firm office", type:"Vendor"},
   {t:"Deposition Prep — Matter 24-0113", day:"Tue", s:9.5, e:10.5, p:"High", loc:"Virtual", type:"Deposition"},
   {t:"Media Inquiry Response", day:"Tue", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
   {t:"Press Statement Review", day:"Tue", s:12, e:13, p:"Medium", loc:"Virtual", type:"Internal"},
@@ -2669,16 +2669,16 @@ const CAL_EVENTS = [
   {t:"Trust Account Spot-Check", day:"Tue", s:10.5, e:11.25, p:"Medium", loc:"Virtual", type:"Trust & Billing"},
   {t:"Vendor Contract Signature", day:"Tue", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
   {t:"CLE Session — Ethics Update", day:"Wed", s:9, e:10, p:"Low", loc:"Virtual", type:"Compliance"},
-  {t:"Court Filing Prep", day:"Wed", s:9.5, e:10.5, p:"Medium", loc:"In-person", type:"Court / Filing"},
+  {t:"Court Filing Prep", day:"Wed", s:9.5, e:10.5, p:"Medium", loc:"In-person · Harrow County Courthouse (40 min each way)", type:"Court / Filing"},
   {t:"Contract Review — NDA", day:"Wed", s:11.5, e:12.5, p:"Medium", loc:"Virtual", type:"Case Team"},
-  {t:"Client Consultation — Whitfield", day:"Wed", s:12, e:13, p:"High", loc:"Virtual", type:"Client"},
+  {t:"Client Consultation — Whitfield", day:"Wed", s:12, e:13, p:"High", loc:"In-person · client's office, Midtown (30 min each way)", type:"Client"},
   {t:"Co-Counsel Debrief", day:"Wed", s:14, e:15, p:"Low", loc:"Virtual", type:"Case Team"},
   {t:"Team 1:1 — Paralegal", day:"Wed", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Internal"},
-  {t:"Deposition — Matter 24-0155", day:"Wed", s:15.75, e:16.75, p:"High", loc:"In-person", type:"Deposition"},
+  {t:"Deposition — Matter 24-0155", day:"Wed", s:15.75, e:16.75, p:"High", loc:"In-person · Reyes & Mackey LLP, downtown (35 min each way)", type:"Deposition"},
   {t:"Client Update Call — Farrow", day:"Wed", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Billing Cycle Review", day:"Wed", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Trust & Billing"},
   {t:"Vendor Invoice Approval", day:"Wed", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
-  {t:"Motion Hearing — Matter 24-0098", day:"Thu", s:9, e:10, p:"High", loc:"In-person", type:"Court / Filing"},
+  {t:"Motion Hearing — Matter 24-0098", day:"Thu", s:9, e:10, p:"High", loc:"In-person · Harrow County Courthouse — the court set this time (40 min each way)", type:"Court / Filing"},
   {t:"Client Consultation — Osei", day:"Thu", s:9.5, e:10.5, p:"Medium", loc:"Virtual", type:"Client"},
   {t:"Board Call Prep", day:"Thu", s:11.5, e:12.5, p:"High", loc:"Virtual", type:"Internal"},
   {t:"Executive Briefing Review", day:"Thu", s:12, e:13, p:"Medium", loc:"Virtual", type:"Internal"},
@@ -2694,10 +2694,35 @@ const CAL_EVENTS = [
   {t:"Referral Intake Follow-up", day:"Fri", s:12, e:13, p:"Low", loc:"Virtual", type:"Client"},
   {t:"Prospective Client Intake", day:"Fri", s:14, e:15, p:"Low", loc:"Virtual", type:"Client"},
   {t:"Compliance Check-in", day:"Fri", s:14.5, e:15.5, p:"Low", loc:"Virtual", type:"Compliance"},
-  {t:"Filing Deadline — Matter 24-0201", day:"Fri", s:15.75, e:16.75, p:"High", loc:"In-person", type:"Court / Filing"},
+  {t:"Filing Deadline — Matter 24-0201", day:"Fri", s:15.75, e:16.75, p:"High", loc:"In-person · clerk's window closes at 5:00PM sharp (40 min each way)", type:"Court / Filing"},
   {t:"Court Clerk Confirmation Call", day:"Fri", s:16.25, e:17.25, p:"Medium", loc:"Virtual", type:"Court / Filing"},
   {t:"Week Wrap-up & Handoff Notes", day:"Fri", s:10.5, e:11.25, p:"Low", loc:"Virtual", type:"Internal"},
-  {t:"Vendor Renewal Review", day:"Fri", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"}
+  {t:"Vendor Renewal Review", day:"Fri", s:13.25, e:13.75, p:"Low", loc:"Virtual", type:"Vendor"},
+  /* The collisions below are not simple double-bookings: each one only shows up if the
+     trainee reads the week for sequence, travel, who is needed where, and what the firm
+     actually owes. Nothing in the simulator flags them. Appended, never reordered — a
+     trainee's saved edits are keyed by position in this list. */
+  // A family commitment the dossier says Elias does not miss, sitting on top of two work blocks.
+  {t:"Maya's School Recital — Elias attending", day:"Mon", s:15.5, e:16.5, p:"High", loc:"In-person · Bayview Elementary (25 min each way)", type:"Personal"},
+  // The deposition the Tuesday prep is for — in person downtown, 30 minutes after the prep ends,
+  // with an in-person vendor meeting at the office before it.
+  {t:"Deposition — Matter 24-0113", day:"Tue", s:11, e:13, p:"High", loc:"In-person · Reyes & Mackey LLP, downtown (35 min each way)", type:"Deposition"},
+  // Prep scheduled AFTER the thing it prepares for.
+  {t:"Deposition Prep — Matter 24-0155", day:"Wed", s:16.75, e:17.5, p:"High", loc:"Virtual", type:"Deposition"},
+  // The paralegal is already in the Team 1:1 at this time: one person, two rooms.
+  {t:"Paralegal — Deposition Exhibit Handoff", day:"Wed", s:15, e:15.5, p:"Medium", loc:"In-person · firm office", type:"Internal"},
+  // The board call itself, running straight through the prep that is supposed to come first.
+  {t:"Board of Directors Call — Thorne Holdings", day:"Thu", s:12, e:13, p:"High", loc:"In-person · Thorne Holdings, Midtown (30 min each way)", type:"Internal"},
+  // Opposing counsel's own deadline: the extension has to be answered before it, not after.
+  {t:"Opposing Counsel Deadline — extension response due 12:00PM", day:"Thu", s:11.75, e:12, p:"High", loc:"Virtual", type:"Court / Filing"},
+  // A review of a filing that is due before the review happens.
+  {t:"Final Review Before Filing — Matter 24-0201", day:"Fri", s:16.5, e:17, p:"High", loc:"Virtual", type:"Court / Filing"},
+  // A third billing review of the same ledger in one week.
+  {t:"Trust Reconciliation — same ledger as Tue/Wed reviews", day:"Fri", s:11, e:11.5, p:"Low", loc:"Virtual", type:"Trust & Billing"},
+  // Two client calls booked into one slot by two different people.
+  {t:"Client Call — Farrow (booked by reception)", day:"Fri", s:14, e:15, p:"Medium", loc:"Virtual", type:"Client"},
+  // A 9am start that needs him on the road before it.
+  {t:"Breakfast Meeting — Referral Source", day:"Tue", s:8.5, e:9.25, p:"Low", loc:"In-person · Cardell's, uptown (20 min to the office)", type:"Marketing"}
 ];
 const PRI_COLOR = {High:"#B54A3F", Medium:"#DB8437", Low:"#7C82A0"};
 const COLOR_PRESETS = ["#B54A3F","#DB8437","#7C82A0","#3F7D58","#3C4268","#6B4FA0","#2C7A7B","#B5651F"];
@@ -8585,7 +8610,7 @@ function renderCalendarBody(body){
   const partA = `
     <div class="card" style="padding:14px 18px;margin-bottom:14px;background:#F8F9FC;">
       <b style="font-size:13px;color:var(--navy);">This is the attorney's week as it actually came in. Nothing in it has been sorted out for you.</b>
-      <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;line-height:1.6;">Read the week the way you'd read it on a Monday morning and work out for yourself where it doesn't hold up — what double-books the attorney, what he has to be in the room for personally, what somebody else in the firm can take, and what shouldn't be on his calendar at all. Nothing is flagged, counted or outlined: that judgment is the exercise.</p>
+      <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;line-height:1.6;">Read the week the way you'd read it on a Monday morning and work out for yourself where it doesn't hold up — what double-books the attorney, what he has to be in the room for personally, what somebody else in the firm can take, and what shouldn't be on his calendar at all. Nothing is flagged, counted or outlined: that judgment is the exercise. <b>Not every problem here is two blocks on top of each other.</b> Check the order things happen in, how long it takes to get between the in-person ones (each says where it is), what the court and the clerk's window fix in place, who is needed in two rooms at once, what's duplicated, and what he personally does not miss.</p>
       <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;line-height:1.6;"><b>Open an event</b> to decide it — <b>✓ Keep</b> on his calendar, <b>⇢ Delegate</b> to someone (and say who), or <b>✕ Take off</b> his calendar (declined, cancelled, handled in writing, pushed) — with one line on <i>why</i>. <b>Drag</b> an event to move it, <b>⇄ Move</b> for an exact slot, and <b>+ Create</b> to add what's missing, like prep or a debrief buffer. Your decisions and your reasoning are what <b>Check My Plan</b> grades — not how empty the week looks.</p>
     </div>
     <div class="gcw">
@@ -9173,7 +9198,7 @@ function calPlanSummary(){
   DAY_ORDER.forEach(day=>{
     const dayEvents = onCal.filter(e=>e.day===day).sort((a,b)=>a.s-b.s);
     if(!dayEvents.length){ lines.push(`${day}: nothing left on the attorney's calendar.`); return; }
-    lines.push(`${day}: ` + dayEvents.map(e=>`${fmtHr12(e.s)}–${fmtHr12(e.e)} ${e.t} (${e.p} priority, ${e.type}${e.custom?", added by the trainee":""})`).join("; ") + ".");
+    lines.push(`${day}: ` + dayEvents.map(e=>`${fmtHr12(e.s)}–${fmtHr12(e.e)} ${e.t} (${e.p} priority, ${e.type}, ${e.loc||"no location"}${e.custom?", added by the trainee":""})`).join("; ") + ".");
   });
   const decided = events.filter(e=>e.d);
   const say = kind => decided.filter(e=>e.d.kind===kind).map(e=>
@@ -9210,7 +9235,7 @@ async function submitCalendar(){
       "Calendar Conflict Resolver — the attorney's week",
       `The trainee EA was handed one week of Elias Thorne's calendar exactly as it arrived — overlapping commitments, internal check-ins, vendor calls, court and client work all on it — with nothing flagged, counted or outlined. Finding the collisions and deciding what belongs on a managing attorney's calendar was the whole exercise.\n\nThe attorney's day runs 8:30am–5:30pm Eastern. Work he must personally be in: court appearances, hearings, depositions and their prep, filing deadlines, client consultations and client emergencies, co-counsel strategy on live matters, board and executive commitments. Work a competent firm can take off him: routine internal check-ins and standups, vendor and billing calls, mail and filing review, compliance and ledger reviews, status updates that only need an outcome reported. He has a paralegal, a receptionist, co-counsel, another attorney, billing/bookkeeping, and the trainee EA.\n\nTHE WEEK AND THE TRAINEE'S DECISIONS:\n${plan.text}`,
       plan.text,
-      `Grade the JUDGMENT, not how empty the week looks. Did they protect what the attorney must personally attend — court, depositions, filing deadlines, client consultations and emergencies — and leave those on his calendar? Did they catch the double-bookings (the "DOUBLE-BOOKINGS STILL ON HIS CALENDAR" list is what is still overlapping after their work: each one left is a real miss, and nothing was marked for them) and fix them by moving the LOWER-priority side rather than the higher? Did they delegate the right kind of work — routine internal, vendor, billing, administrative — and to a plausible person (a paralegal, not the receptionist, for substantive case work; never a client consultation or a court appearance to anyone)? Is anything taken off his calendar that a managing attorney genuinely owed his client or the court — that is a serious accuracy failure. Are the written reasons specific to the event and to this firm, or generic filler? Credit any proactive block they ADDED (prep, debrief buffer, travel time) where the week implies it is needed, and note events they left undecided. A trainee who delegated or deleted most of the week to clear it should score low on judgment however tidy the result.`
+      `Grade the JUDGMENT, not how empty the week looks. Did they protect what the attorney must personally attend — court, depositions, filing deadlines, client consultations and emergencies — and leave those on his calendar? Did they catch the double-bookings (the "DOUBLE-BOOKINGS STILL ON HIS CALENDAR" list is what is still overlapping after their work: each one left is a real miss, and nothing was marked for them) and fix them by moving the LOWER-priority side rather than the higher? Did they delegate the right kind of work — routine internal, vendor, billing, administrative — and to a plausible person (a paralegal, not the receptionist, for substantive case work; never a client consultation or a court appearance to anyone)? Is anything taken off his calendar that a managing attorney genuinely owed his client or the court — that is a serious accuracy failure. Are the written reasons specific to the event and to this firm, or generic filler? This week also holds collisions that are NOT simple double-bookings, and nothing flagged them: prep or a final review scheduled AFTER the deposition, board call or filing deadline it is meant to serve; in-person commitments across town with no travel time between them or before a 9am start (each location carries its travel time in the event); a court-set hearing time and a clerk's window that cannot move at all, whatever else is booked against them; one person — the paralegal — needed in two rooms at once; a family commitment the dossier says Elias does not miss, which is protected time rather than something to delegate away; the same trust ledger reviewed three times in one week, which a sharp EA consolidates; two client calls booked into one slot by two different people, which needs one of them re-booked and the double-booker told; and days with no break at all. Credit the trainee for each of these they caught and sorted out, and name the ones they walked past — especially anything left running after a hard deadline or a court time. Credit any proactive block they ADDED (prep, debrief buffer, travel time, a lunch hold) where the week implies it is needed, and note events they left undecided. A trainee who delegated or deleted most of the week to clear it should score low on judgment however tidy the result.`
     );
     toolState.calReport = plan;
     toolState.calPlanReport = report;
