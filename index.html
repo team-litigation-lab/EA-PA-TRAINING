@@ -4581,7 +4581,7 @@ function renderFacilitatorGuide(){
         <li><b>Set personal Focus items</b> in View Detail → <b>🎯 Trainer focus</b> (priority + day). They're pinned at the top of the trainee's Focus panel; you'll see when they're seen and marked done.</li>
         <li><b>Check Rankings</b> and each trainee's competency picture; trainees see their own rank within their batch and a 7-skill Competency Profile.</li>
         <li><b>Random tasks</b>: broadcast from Trainee Audit with a live window. Trainees handle them in <b>🎲 Tasks</b> (acknowledge → plan → resolve); each is graded on timeliness, prioritisation, applying the day's lesson, communication and risk. Missed tasks count as 0. Scores feed the Competency Profile (Real-Time Task Handling), Rankings and the Audit.</li>
-        <li><b>Read trainee feedback</b> about the platform, lessons and facilitation in <b>Admin → Trainee Feedback</b> (star averages by area and day, comments, status, CSV export). Trainees send it from the 💬 Feedback button or right after each Knowledge Check, and can choose to be anonymous.</li>
+        <li><b>Read trainee feedback</b> about the platform, lessons and facilitation in <b>Admin → 📁 Batch Folders → 💬 Trainee Feedback</b> (per batch, with comments, status and CSV export). Trainees send it from the 💬 Feedback button or right after each Knowledge Check, and can choose to be anonymous.</li>
       </ol>
     </div>
 
@@ -11938,8 +11938,9 @@ function adminPracticeStats(rec){
   return {runs, avg};
 }
 
-function renderPendingApprovalsPanel(){
-  const pending = state.adminData.filter(r => r.approved!==true && !r.rejected);
+function renderPendingApprovalsPanel(batch){
+  let pending = state.adminData.filter(r => r.approved!==true && !r.rejected);
+  if(batch) pending = pending.filter(r => batchKey(r)===batch);
   if(!pending.length) return "";
   return `
     <div class="card" style="padding:18px 20px;margin-bottom:20px;border-left:4px solid var(--orange-deep);">
@@ -12729,7 +12730,7 @@ function renderFeedbackDashCard(){
     return `<div class="card stat tfb-dash">
     <div class="lbl">💬 Trainee feedback</div>
     <div class="sub" style="margin:4px 0 10px;">Trainees rate the platform, lessons and facilitator from this card. See what they've sent.</div>
-    <div class="tfb-dash-actions"><button type="button" class="btn btn-primary btn-sm" onclick="state.adminTab='tfeedback'; goto('admin')">View trainee feedback →</button></div>
+    <div class="tfb-dash-actions"><button type="button" class="btn btn-primary btn-sm" onclick="state.adminTab='batches'; goto('admin')">View trainee feedback →</button></div>
   </div>`;
   }
   if(!state.traineeId){
@@ -12766,19 +12767,20 @@ async function loadTraineeFeedbackAdmin(){
   const keys = await sharedList("tfeedback:");
   const items = (await sharedGetMany(keys)).filter(Boolean).sort((a,b)=>(b.at||"").localeCompare(a.at||""));
   state.tfbAdmin = {items};
-  if(state.view==="admin" && state.adminTab==="tfeedback") render();
+  if(state.view==="admin" && state.adminTab==="batches") render();
 }
 async function tfbSetStatus(id, status){
   const it = ((state.tfbAdmin||{}).items||[]).find(x=>x.id===id); if(!it) return;
   it.status = status; await sharedSet("tfeedback:"+id, it); render();
 }
-function tfbExportCsv(){
-  const items = (state.tfbAdmin||{}).items||[];
+function tfbExportCsv(batch){
+  let items = (state.tfbAdmin||{}).items||[];
+  if(batch) items = items.filter(x=>(cleanBatch(x.batch)||NO_BATCH)===batch);
   const head = ["Date","Name","Batch","Day",...TFB_AREAS.map(a=>a.label),"Worked well","Improve","For facilitator","Status"];
   const q = (v)=>`"${String(v??"").replace(/"/g,'""')}"`;
   const rows = items.map(x=>[x.at, x.name, x.batch, x.dayId||"Overall", ...TFB_AREAS.map(a=>x.ratings&&x.ratings[a.id]||""), x.good, x.improve, x.facilitator, x.status].map(q).join(","));
   const blob = new Blob([[head.map(q).join(","), ...rows].join("\n")], {type:"text/csv"});
-  saveBlob(blob, "LSH_trainee_feedback.csv");
+  saveBlob(blob, batch ? `LSH_trainee_feedback_${String(batch).replace(/[^\w.-]+/g,"_")}.csv` : "LSH_trainee_feedback.csv");
 }
 Object.assign(window, {tfbSetStatus, tfbExportCsv, loadTraineeFeedbackAdmin});
 function tfbItemCard(x){
@@ -12882,82 +12884,10 @@ function renderSopSection(s){
     </div>`;
 }
 
-function renderAdmin(){
-  if(!state.isAdmin){
-    return `
-      <div class="card" style="padding:40px;text-align:center;">
-        <div style="font-size:30px;margin-bottom:10px;">🛡</div>
-        <h2 style="color:var(--navy);margin:0 0 8px;">Admin access required</h2>
-        <p style="color:var(--ink-soft);font-size:14px;">Use the Admin button in the top navigation to sign in.</p>
-      </div>`;
-  }
-  // "cues" (Trainer Cues) was removed: Presenter view has the notes; the Speaker Notes PDF is in SOP Reference
-  if(state.adminTab === "cues") state.adminTab = "audit";
-  const tab = state.adminTab || "audit";
-  const tabBar = `
-    <div class="admin-tabs" style="display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line);">
-      <button class="admin-tab-btn ${tab==='audit'?'active':''}" onclick="setAdminTab('audit')">Settings &amp; Reports</button>
-      <button class="admin-tab-btn ${tab==='batches'?'active':''}" onclick="setAdminTab('batches')">📁 Batch Folders</button>
-      <button class="admin-tab-btn ${tab==='rankings'?'active':''}" onclick="setAdminTab('rankings')">Rankings</button>
-      <button class="admin-tab-btn ${tab==='sop'?'active':''}" onclick="setAdminTab('sop')">SOP Reference</button>
-      <button class="admin-tab-btn ${tab==='studio'?'active':''}" onclick="setAdminTab('studio')">Content Studio</button>
-      <button class="admin-tab-btn ${tab==='tfeedback'?'active':''}" onclick="setAdminTab('tfeedback')">Trainee Feedback</button>
-    </div>`;
-  if(tab==="sop") return tabBar + renderAdminSOP();
-  if(tab==="studio") return tabBar + renderAdminStudio();
-  if(tab==="tfeedback") return tabBar + renderAdminTraineeFeedback();
-  if(tab==="rankings") return tabBar + renderAdminRankings();
-  if(tab==="batches") return tabBar + renderAdminBatchFolders();
-
-  if(state.adminLoading || !state.adminData){
-    return tabBar + `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
-  }
-
-  const sort = state.adminSort || "completion_desc";
-
-  const totalTrainees = state.adminData.length;
-  const avgCompletion = totalTrainees ? Math.round(state.adminData.reduce((a,r)=>a+adminDayStats(r).done,0)/totalTrainees/DAYS.length*100) : 0;
-  const avgScoreAll = (()=>{
-    const all = state.adminData.flatMap(r=>Object.values(r.dayProgress||{}).filter(p=>p&&typeof p.score==="number").map(p=>p.score));
-    return all.length ? Math.round(all.reduce((a,b)=>a+b,0)/all.length) : 0;
-  })();
-  const fullyDone = state.adminData.filter(r=>adminDayStats(r).done===DAYS.length).length;
-
-  return tabBar + `
-    <div class="audit-page-head" style="display:flex;gap:12px 16px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;">
-      <div>
-        <p class="eyebrow">Admin Dashboard</p>
-        <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Settings &amp; Reports</h1>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-        <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
-        <button class="btn btn-navy btn-sm" onclick="downloadCohortPdf()">⬇ Download Cohort Report</button>
-        <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Log out</button>
-      </div>
-    </div>
-    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Cohort-wide settings, pending registrations and the reports that span every batch. Individual trainees live in their batch folder — refreshed automatically every 30 seconds.</p>
-
-    ${state.secureMode===false ? `<div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--danger);background:var(--danger-bg);"><b style="color:var(--danger);">⚠ Security not enabled.</b> <span style="font-size:13px;">Storage and AI are open to anyone who finds the API. Run <code>wrangler secret put MASTER_ADMIN_PASSWORD</code> (and redeploy the updated worker.js) to require sign-in.</span></div>` : ""}
-    <div class="card cert-settings">
-      <b style="color:var(--navy);font-size:13.5px;">🎓 Certificate signatories</b>
-      <p>Signatures are generated automatically from these names. The trainer can also be set per trainee in <b>View Detail → Certificate details</b>.</p>
-      <div class="cert-settings-grid">
-        <input id="certTrainer" placeholder="Default trainer name" value="${esc((state.certSettings||{}).trainerName||"")}">
-        <input id="certTrainerTitle" placeholder="Trainer title" value="${esc((state.certSettings||{}).trainerTitle||"Trainer")}">
-        <input id="certHead" placeholder="Training Head name" value="${esc((state.certSettings||{}).headName||"Martin Anthony Gan")}">
-        <input id="certHeadTitle" placeholder="Title" value="${esc((state.certSettings||{}).headTitle||"Training Head")}">
-        <input id="certGm" placeholder="General Manager name" value="${esc((state.certSettings||{}).gmName||"Gwen Paiso")}">
-        <input id="certGmTitle" placeholder="Title" value="${esc((state.certSettings||{}).gmTitle||"General Manager")}">
-      </div>
-      <label class="cert-fmt">Trainee name on certificate:
-        <select id="certNameFmt"><option value="lastFirst" ${((state.certSettings||{}).nameFormat||"lastFirst")==="lastFirst"?"selected":""}>Last name, First name (Abut, Lei)</option><option value="firstLast" ${((state.certSettings||{}).nameFormat)==="firstLast"?"selected":""}>First name Last name (Lei Abut)</option></select></label>
-      <div style="margin-top:8px;"><button class="btn btn-navy btn-sm" onclick="saveCertSettings()">Save signatories</button></div>
-    </div>
-    <div class="card fb-settings">
-      <b style="color:var(--navy);font-size:13.5px;">💬 Trainer feedback</b>
-      <p>Trainers write each trainee's day-by-day feedback in <b>View Detail → Day-by-Day Feedback → ✍ Write feedback</b>, then click <b>Send to trainee</b>. Trainees only ever see feedback a trainer has sent.</p>
-      <label><input type="checkbox" id="fbAutoDraft" ${(state.fbSettings && state.fbSettings.autoDraft)?"checked":""} onchange="saveFeedbackSettings()"> Optional: pre-fill a suggested draft (from the trainee's work) for trainers to edit — never sent automatically</label>
-    </div>
+/* Cards shared by the admin tabs: the random task card stays on the admin
+   landing tab; the settings cards live inside each batch folder. */
+function renderRandomTaskCard(){
+  return `
     <div class="card" style="padding:16px 18px;margin-bottom:20px;background:rgba(255,244,232,.62);border-color:var(--orange-soft);">
       <b style="color:var(--navy);font-size:13.5px;">🎲 Random Task Injection</b>
       <p style="font-size:12.5px;color:#5A4A32;margin:6px 0 12px;">Generates one unscripted task grounded in that day's actual lesson material and broadcasts it to every trainee currently on that day — an unannounced, real-time test of what they just learned. Timing is up to you; trigger it whenever fits the live session.</p>
@@ -12977,33 +12907,92 @@ function renderAdmin(){
       <p style="font-size:11.5px;color:#5A4A32;margin:8px 0 0;">Only trainees already registered at broadcast time receive it. It disappears automatically when the live window ends, or immediately when you end it.</p>
       <div class="tk-admin-note">Trainees track each task in <b>🎲 Tasks</b>: acknowledge → plan → resolve before the timer ends. Resolutions are graded on timeliness, prioritisation, applying the day's lesson, communication and risk; missed tasks score 0. Results appear in each trainee's audit row, their Competency Profile and Rankings.</div>
       <div id="surpriseTaskInjectResult" style="margin-top:10px;"></div>
+    </div>`;
+}
+function renderProgramSettingsCards(){
+  return `
+    <div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--orange-soft);">
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:0;">These settings apply to the whole program, not just this batch — they are here so a trainer can set everything from the folder they work in.</p>
     </div>
-
-    <div class="stat-row">
-      <div class="card stat"><div class="num">${totalTrainees}</div><div class="lbl">Trainees tracked</div></div>
-      <div class="card stat"><div class="num">${avgCompletion}%</div><div class="lbl">Avg. completion</div></div>
-      <div class="card stat"><div class="num">${avgScoreAll}%</div><div class="lbl">Avg. quiz score</div></div>
-      <div class="card stat"><div class="num">${fullyDone}</div><div class="lbl">Finished all 10 days</div></div>
+    <div class="card cert-settings">
+      <b style="color:var(--navy);font-size:13.5px;">🎓 Certificate signatories</b>
+      <p>Signatures are generated automatically from these names. The trainer can also be set per trainee in <b>View Detail → Certificate details</b>.</p>
+      <div class="cert-settings-grid">
+        <input id="certTrainer" placeholder="Default trainer name" value="${esc((state.certSettings||{}).trainerName||"")}">
+        <input id="certTrainerTitle" placeholder="Trainer title" value="${esc((state.certSettings||{}).trainerTitle||"Trainer")}">
+        <input id="certHead" placeholder="Training Head name" value="${esc((state.certSettings||{}).headName||"Martin Anthony Gan")}">
+        <input id="certHeadTitle" placeholder="Title" value="${esc((state.certSettings||{}).headTitle||"Training Head")}">
+        <input id="certGm" placeholder="General Manager name" value="${esc((state.certSettings||{}).gmName||"Gwen Paiso")}">
+        <input id="certGmTitle" placeholder="Title" value="${esc((state.certSettings||{}).gmTitle||"General Manager")}">
+      </div>
+      <label class="cert-fmt">Trainee name on certificate:
+        <select id="certNameFmt"><option value="lastFirst" ${((state.certSettings||{}).nameFormat||"lastFirst")==="lastFirst"?"selected":""}>Last name, First name (Abut, Lei)</option><option value="firstLast" ${((state.certSettings||{}).nameFormat)==="firstLast"?"selected":""}>First name Last name (Lei Abut)</option></select></label>
+      <div style="margin-top:8px;"><button class="btn btn-navy btn-sm" onclick="saveCertSettings()">Save signatories</button></div>
     </div>
+    <div class="card fb-settings">
+      <b style="color:var(--navy);font-size:13.5px;">💬 Trainer feedback</b>
+      <p>Trainers write each trainee's day-by-day feedback in <b>View Detail → Day-by-Day Feedback → ✍ Write feedback</b>, then click <b>Send to trainee</b>. Trainees only ever see feedback a trainer has sent.</p>
+      <label><input type="checkbox" id="fbAutoDraft" ${(state.fbSettings && state.fbSettings.autoDraft)?"checked":""} onchange="saveFeedbackSettings()"> Optional: pre-fill a suggested draft (from the trainee's work) for trainers to edit — never sent automatically</label>
+    </div>`;
+}
+function renderAdmin(){
+  if(!state.isAdmin){
+    return `
+      <div class="card" style="padding:40px;text-align:center;">
+        <div style="font-size:30px;margin-bottom:10px;">🛡</div>
+        <h2 style="color:var(--navy);margin:0 0 8px;">Admin access required</h2>
+        <p style="color:var(--ink-soft);font-size:14px;">Use the Admin button in the top navigation to sign in.</p>
+      </div>`;
+  }
+  // "cues" (Trainer Cues) was removed: Presenter view has the notes; the Speaker Notes PDF is in SOP Reference
+  if(state.adminTab === "cues") state.adminTab = "audit";
+  // Trainee Feedback is no longer a cohort-wide tab: each batch folder holds its own.
+  if(state.adminTab === "tfeedback") state.adminTab = "batches";
+  const tab = state.adminTab || "audit";
+  const tabBar = `
+    <div class="admin-tabs" style="display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line);">
+      <button class="admin-tab-btn ${tab==='audit'?'active':''}" onclick="setAdminTab('audit')">🎲 Random Task</button>
+      <button class="admin-tab-btn ${tab==='batches'?'active':''}" onclick="setAdminTab('batches')">📁 Batch Folders</button>
+      <button class="admin-tab-btn ${tab==='rankings'?'active':''}" onclick="setAdminTab('rankings')">Rankings</button>
+      <button class="admin-tab-btn ${tab==='sop'?'active':''}" onclick="setAdminTab('sop')">SOP Reference</button>
+      <button class="admin-tab-btn ${tab==='studio'?'active':''}" onclick="setAdminTab('studio')">Content Studio</button>
+    </div>`;
+  if(tab==="sop") return tabBar + renderAdminSOP();
+  if(tab==="studio") return tabBar + renderAdminStudio();
+  if(tab==="rankings") return tabBar + renderAdminRankings();
+  if(tab==="batches") return tabBar + renderAdminBatchFolders();
 
-    ${renderPendingApprovalsPanel()}
+  if(state.adminLoading || !state.adminData){
+    return tabBar + `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
+  }
 
-    <div class="card" style="padding:16px 20px;">
-      <b style="color:var(--navy);font-size:13.5px;">🗂 Looking for a trainee?</b>
-      <p style="font-size:13px;color:var(--ink-soft);margin:6px 0 10px;max-width:70ch;">Each trainee's audit row now sits in the batch folder they belong to, so a trainer works one batch at a time instead of filtering a cohort-wide list. Open <b>📁 Batch Folders</b> and pick a batch; its <b>🗂 Trainee Audit</b> tab has the rows, with the same search and sort.</p>
-      <button class="btn btn-navy btn-sm" onclick="setAdminTab('batches')">📁 Open Batch Folders</button>
+  return tabBar + `
+    <div class="audit-page-head" style="display:flex;gap:12px 16px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;">
+      <div>
+        <p class="eyebrow">Admin Dashboard</p>
+        <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Random Task Injection</h1>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+        <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
+        <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Log out</button>
+      </div>
     </div>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Everything else — trainees, approvals, rankings, feedback, reports and certificate settings — now lives inside <b>📁 Batch Folders</b>, one folder per batch.</p>
+
+    ${state.secureMode===false ? `<div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--danger);background:var(--danger-bg);"><b style="color:var(--danger);">⚠ Security not enabled.</b> <span style="font-size:13px;">Storage and AI are open to anyone who finds the API. Run <code>wrangler secret put MASTER_ADMIN_PASSWORD</code> (and redeploy the updated worker.js) to require sign-in.</span></div>` : ""}
+    ${renderRandomTaskCard()}
   `;
 }
-async function downloadCohortPdf(){
-  const lines = ["## Trainee Audit — Cohort Report"];
-  state.adminData.forEach(rec=>{
+async function downloadCohortPdf(batch){
+  const recs = batch ? (state.adminData||[]).filter(r=>batchKey(r)===batch) : (state.adminData||[]);
+  const lines = [batch ? `## Trainee Audit — ${folderLabel(batch)}` : "## Trainee Audit — Cohort Report"];
+  recs.forEach(rec=>{
     const day = adminDayStats(rec);
     const practice = adminPracticeStats(rec);
     lines.push(`${cleanName(rec.name)||"Unnamed"} (${String(rec.id).slice(0,48)})${cleanBatch(rec.batch)?` · ${cleanBatch(rec.batch)}`:""}`);
     lines.push(`   Days: ${day.done}/${day.total}  ·  Avg score: ${day.avg}%  ·  Practice runs: ${practice.runs}, avg best ${practice.avg}%  ·  Last active: ${rec.lastActive?fmtDate(rec.lastActive):"—"}`);
   });
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Admin — Cohort Report", lines, "LSH_Cohort_Report");
+  buildAndSavePdf("LSH EA / PA Upskill Program", batch ? `Admin — ${folderLabel(batch)} Report` : "Admin — Cohort Report", lines, batch ? `LSH_Batch_${String(batch).replace(/[^\w.-]+/g,"_")}_Report` : "LSH_Cohort_Report");
 }
 window.downloadCohortPdf = downloadCohortPdf;
 
@@ -13033,7 +13022,13 @@ function renderAdminBatchFolders(){
   if(state.batchFolder) return renderBatchFolder(state.batchFolder);
   const head = `
     <p class="eyebrow">Admin Dashboard</p>
-    <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Batch Folders</h1>
+    <div style="display:flex;gap:10px 16px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;">
+      <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Batch Folders</h1>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+        <button class="btn btn-ghost btn-sm" onclick="refreshAdminData();loadTraineeFeedbackAdmin()">🔄 Refresh</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadCohortPdf()">⬇ Download Cohort Report</button>
+      </div>
+    </div>
     <p style="color:var(--ink-soft);font-size:13px;max-width:72ch;margin:0 0 18px;">Each batch has its own folder: the trainees registered in it, their rankings, the feedback they sent and their latest activity — kept apart from every other batch.</p>`;
   if(!keys.length) return head + `<div class="empty-note">No trainees yet — a folder appears for each batch as trainees register.</div>`;
   const strayNote = strays ? `<div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--orange,#DB8437);">
@@ -13055,7 +13050,7 @@ function renderAdminBatchFolders(){
 function renderBatchFolder(k){
   const sub = state.batchSub || "registry";
   const members = batchMembers(k);
-  const tabs = [["registry","🗂 Trainee Audit"],["rankings","🏆 Rankings"],["feedback","💬 Feedback"],["activities","📈 Activities"]];
+  const tabs = [["registry","🗂 Trainee Audit"],["rankings","🏆 Rankings"],["feedback","💬 Trainee Feedback"],["activities","📈 Activities"],["settings","⚙ Settings & Reports"]];
   return `
     <div class="bf-crumb"><button type="button" class="btn btn-ghost btn-sm" onclick="closeBatchFolder()">← All batch folders</button></div>
     <p class="eyebrow">Batch Folder</p>
@@ -13064,6 +13059,7 @@ function renderBatchFolder(k){
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;align-items:center;">
         <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-soft);cursor:pointer;"><input type="checkbox" ${state.batchShowArchived?"checked":""} onchange="state.batchShowArchived=this.checked;render()"> Include archived</label>
         <button class="btn btn-ghost btn-sm" onclick="refreshAdminData();loadTraineeFeedbackAdmin()">🔄 Refresh</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadCohortPdf('${esc(k)}')">⬇ Download Batch Report</button>
         ${k!==NO_BATCH && members.some(r=>!r.archived) ? `<button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="confirmArchiveBatch('${esc(k)}')">📦 Archive This Batch</button>` : ""}
       </div>
     </div>
@@ -13074,13 +13070,16 @@ function renderBatchFolderBody(){
   const k = state.batchFolder; if(!k) return "";
   const sub = state.batchSub || "registry";
   const members = batchMembers(k);
+  if(sub==="settings") return renderProgramSettingsCards();
   if(sub==="rankings") return renderAdminRankings(k);
   if(sub==="feedback"){
     if(!state.tfbAdmin || state.tfbAdmin.loading) return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">Loading trainee feedback…</div>`;
     const items = batchFeedback(k);
-    return items.length ? items.map(tfbItemCard).join("") : `<div class="empty-note">No feedback from ${esc(folderLabel(k))} yet.</div>`;
+    const bar = `<div class="tfb-filters"><button class="btn btn-ghost btn-sm" onclick="loadTraineeFeedbackAdmin()">↻ Refresh</button><button class="btn btn-navy btn-sm" onclick="tfbExportCsv('${esc(k)}')" ${items.length?"":"disabled"}>⬇ Export CSV</button></div>`;
+    return bar + (items.length ? items.map(tfbItemCard).join("") : `<div class="empty-note">No feedback from ${esc(folderLabel(k))} yet.</div>`);
   }
-  if(!members.length) return `<div class="empty-note">No trainees in ${esc(folderLabel(k))}${state.batchShowArchived?"":" (archived trainees are hidden)"}.</div>`;
+  const pend = sub==="registry" ? renderPendingApprovalsPanel(k) : "";
+  if(!members.length) return pend + `<div class="empty-note">No trainees in ${esc(folderLabel(k))}${state.batchShowArchived?"":" (archived trainees are hidden)"}.</div>`;
   if(members.some(r=>!state.auditExtra[r.id] || Date.now()-state.auditExtra[r.id].at>60000)) setTimeout(()=>loadAuditExtras(), 0);
   if(sub==="activities"){
     const rows = members.map(rec=>({rec, day:adminDayStats(rec), practice:adminPracticeStats(rec), a:auditSummary(rec)}))
@@ -13099,7 +13098,7 @@ function renderBatchFolderBody(){
     </div>`;
   }
   const sort = state.adminSort || "completion_desc";
-  return `
+  return pend + `
     <div class="bf-audit-controls">
       <input type="text" id="adminSearchInput" placeholder="Search by name…" value="${esc(state.adminSearch||"")}" oninput="setAdminSearch(this.value)">
       <select onchange="setAdminSort(this.value)">

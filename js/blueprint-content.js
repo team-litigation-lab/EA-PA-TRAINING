@@ -114,7 +114,7 @@ window.LSH_BLUEPRINT = {
       { icon: '🔑', title: 'Signing in as a trainer', points: [
           'Admin sign-in with the admin password. The server checks it, and every request after it needs your signed session.',
           'Your top bar: Dashboard, Client Profile, Practice Lab, 🧭 Orientation and the Facilitator Guide.',
-          'Admin opens the trainer dashboard: Trainee Audit, Batch Folders, Rankings, SOP Reference, Content Studio and Trainee Feedback. Attendance is on the Main Portal.',
+          'Admin opens the trainer dashboard: Random Task, Batch Folders, Rankings, SOP Reference and Content Studio. Each batch folder holds that batch\u2019s trainee audit, rankings, trainee feedback, activities and settings. Attendance is on the Main Portal.',
           'Every day is open to you, so you can preview any lesson before you teach it.'],
         where: 'The sign-in screen → Admin sign-in · Admin in the top bar.',
         tip: 'A red "Security not enabled" card in Admin means the admin password isn\'t set on the Worker yet.' },
@@ -136,8 +136,8 @@ window.LSH_BLUEPRINT = {
           'Write each day\'s feedback for a trainee, or let ✨ Suggest wording for all days (AI) pre-fill the forms for you to edit.',
           'Save each day, or 📤 Send all the drafts together.',
           'Trainees read it under 💬 Feedback, with 🎯 Focus items for what to work on next.',
-          'Trainee Feedback shows what trainees said about each day and each part of the course.'],
-        where: 'Admin → Trainee Audit (feedback) · Admin → Trainee Feedback.',
+          'Each batch folder\u2019s Trainee Feedback tab shows what that batch said about each day and each part of the course.'],
+        where: 'Admin → 📁 Batch Folders → 🗂 Trainee Audit · 💬 Trainee Feedback.',
         tip: 'Short and specific beats long: one thing they did well, one thing to change.' },
       { icon: '🎲', title: 'Surprise tasks and Live Roleplay', points: [
           'Send a 🎲 Surprise Task to a trainee mid-day. It\'s graded, and you can end it from Admin.',
@@ -156,7 +156,7 @@ window.LSH_BLUEPRINT = {
           'Batch Folders: each class in its own folder. Archive a finished batch to clear the list.',
           'Rankings: the class side by side, by progress and scores.',
           '⬇ Download Cohort Report: a PDF of the whole class\'s results.'],
-        where: 'Admin → 📁 Batch Folders · Rankings · Trainee Audit.',
+        where: 'Admin → 📁 Batch Folders (Trainee Audit, Rankings, Feedback, Activities, Settings).',
         tip: 'Download the cohort report before you archive a batch.' },
       { icon: '📋', title: 'SOP Reference and the Facilitator Guide', points: [
           'SOP Reference: each day\'s session plan, run of show and script.',
