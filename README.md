@@ -190,6 +190,10 @@ The brief above the calendar is two short columns (*Look past the obvious clashe
 
 Saved with the trainee's work: `calendar-edits`, `calendar-custom` and `calendar-decisions`; **Download My Work** includes the week, every decision with its reason and the review.
 
+### 🖥 The Client Profile fits one screen
+
+The dossier is eleven sections — the *Read This First* note and the ten reference sections — and as a stacked grid it ran well past the fold. It is now a rail beside a single pane: the rail lists the sections, the pane shows the one that is open, and `cpFit()` sizes the pane to whatever the window has left under the hero and the header card. Long sections flow in two columns, and the pane's text steps down to a readable floor if a section still runs past the bottom, so the rule survives a trainer editing the dossier. Phones and narrow windows (900px and under) keep the stacked, scrolling layout. The client header card is a light card with dark ink: it previously set a navy gradient that the later glass rule overrode, which left white lettering on near-white. Checked at 1366×768, 1920×1080 and 1474×761 by `.github/scripts/client-profile-fit.cjs`, which also holds the card's three lines to AA.
+
 ### 🖥 The trainee dashboard fits one screen
 
 On a desktop or laptop the dashboard shows everything without scrolling: the hero and step dots, the ten day cards, the stats band, the **Competency profile** — now one compact row of eight skills (labels on one line, full name on hover) placed **above** Resume / Certificate — and the Resume / Certificate row. **▶ Resume where you left off** is always there: it goes back to the saved lesson slide or lab part, and when nothing is saved yet (a first visit, a new device) it opens the next day to do. The rules are the *Dashboard: one screen* block at the end of `js/eapa-updates.js` (loaded last, so it wins): tighter day cards from 1100px wide, and on shorter screens (860px tall and under — a 1366×768, or a larger screen at 125% scaling) a smaller ribbon, smaller step dots and tighter cards. Checked at 1474×761, 1366×768, 1536×864 and 1920×1080. Phones and narrow windows keep their scrolling layout.

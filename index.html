@@ -714,17 +714,17 @@ rect.svg-callout-badge{animation:none;}
 .profile-section{padding:18px 20px;}
 
 .client-header-card{
-  display:flex;align-items:center;gap:32px;padding:40px 44px;margin-bottom:30px;
-  background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+  display:flex;align-items:center;gap:20px;padding:14px 22px;margin-bottom:16px;
+  background:linear-gradient(135deg,#F8FAFC 0%,#EEF1F6 100%);border:1px solid #D7DCEB;
 }
-.client-avatar-svg{width:150px;height:150px;flex:0 0 auto;filter:drop-shadow(0 8px 20px rgba(0,0,0,.25));}
+.client-avatar-svg{width:96px;height:96px;flex:0 0 auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,.18));}
 .client-photo-img{
-  width:150px;height:150px;flex:0 0 auto;object-fit:cover;border-radius:14px;
-  border:3px solid var(--orange);box-shadow:0 8px 20px rgba(0,0,0,.3);
+  width:96px;height:96px;flex:0 0 auto;object-fit:cover;border-radius:12px;
+  border:3px solid var(--orange);box-shadow:0 4px 12px rgba(0,0,0,.18);
 }
-.client-header-text h2{margin:0 0 8px;font-family:'Fraunces';font-size:32px;color:#fff;}
-.client-header-text p{margin:0 0 10px;font-size:16px;color:#C9CCE6;}
-.client-tagline{font-size:var(--font-body);font-style:italic;color:var(--orange-soft);font-weight:600;}
+.client-header-text h2{margin:0 0 2px;font-family:'Fraunces';font-size:26px;line-height:1.2;color:#1E293B;}
+.client-header-text p{margin:0 0 4px;font-size:14px;font-weight:600;color:#475569;}
+.client-tagline{font-size:13px;font-style:italic;color:#9C4408;font-weight:600;}
 
 .client-intro-banner{
   background:linear-gradient(135deg, #FFF3E4 0%, #FDEBD8 100%);border:1px solid var(--orange-soft);
@@ -735,6 +735,63 @@ rect.svg-callout-badge{animation:none;}
 .client-intro-banner p{font-size:var(--font-body);color:#3A2F22;line-height:1.65;margin:0 0 10px;}
 .client-intro-banner p:last-child{margin-bottom:0;}
 .client-intro-banner b{color:var(--orange-deep);}
+/* ---------- Client Profile: one screen, no scrolling (desktop) ----------
+   The rail lists the orientation note and the ten dossier sections; the pane
+   shows one at a time and is sized to the window by cpFit(). Phones and narrow
+   windows fall back to the stacked, scrolling layout below. */
+.cp-top h1{color:var(--navy);font-size:24px;margin:0 0 4px;font-family:'Fraunces';}
+.cp-top p{font-size:var(--font-body);color:#37394A;margin:0 0 14px;line-height:1.5;}
+.cp-shell{display:grid;grid-template-columns:248px minmax(0,1fr);gap:16px;align-items:stretch;}
+.cp-rail{display:flex;flex-direction:column;gap:4px;overflow:auto;padding-right:2px;}
+.cp-rail button{
+  text-align:left;background:#fff;border:1px solid var(--line);border-radius:9px;
+  padding:8px 11px;font-size:12.5px;font-weight:600;color:var(--navy);line-height:1.3;
+  cursor:pointer;transition:background .12s ease,border-color .12s ease;
+}
+.cp-rail button:hover{background:#F2F4FA;}
+.cp-rail button.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+.cp-pane{padding:18px 22px;overflow:auto;font-size:var(--font-body);}
+.cp-pane h3{margin:0 0 10px;font-size:16px;color:var(--navy);font-family:'Fraunces';}
+.cp-pane ul{margin:0;padding-left:18px;}
+.cp-pane li{font-size:1em;color:#37394A;margin-bottom:8px;line-height:1.5;}
+.cp-pane li:last-child{margin-bottom:0;}
+.cp-intro .cib-tag{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--orange-deep);letter-spacing:.05em;margin-bottom:10px;}
+.cp-intro h2{font-family:'Fraunces';font-size:19px;color:var(--navy);margin:0 0 12px;}
+.cp-intro p{font-size:1em;color:#3A2F22;line-height:1.6;margin:0 0 10px;}
+.cp-intro p:last-child{margin-bottom:0;}
+.cp-intro b{color:var(--orange-deep);}
+.cp-pane ul.two-col{columns:2;column-gap:30px;}
+.cp-pane ul.two-col li{break-inside:avoid;}
+/* Shorter laptops (1366x768, 1474x761, or a larger screen at 125% scaling): the
+   rail goes two-up and the chrome above it gives back its padding, so eleven
+   sections and the longest list both still end inside the window. */
+@media (min-width:901px) and (max-height:900px){
+  .cp-onescreen .page-hero{padding-top:10px !important;padding-bottom:8px !important;}
+  .cp-onescreen .page-hero .eyebrow{display:none;}
+  .cp-top h1{font-size:20px;margin-bottom:2px;}
+  .cp-top p{font-size:12px;margin-bottom:6px;}
+  .client-header-card{padding:7px 14px;margin-bottom:8px;gap:13px;}
+  .client-avatar-svg,.client-photo-img{width:58px;height:58px;}
+  .client-header-text h2{font-size:20px;}
+  .client-header-text p{font-size:12.5px;margin-bottom:2px;}
+  .client-tagline{font-size:12px;}
+  .cp-shell{grid-template-columns:330px minmax(0,1fr);}
+  .cp-rail{display:grid;grid-template-columns:1fr 1fr;gap:4px;align-content:start;}
+  .cp-rail button{padding:5px 8px;font-size:11.5px;}
+  .cp-pane{padding:11px 16px;}
+  .cp-pane h3{font-size:15px;margin-bottom:8px;}
+  .cp-pane{font-size:12.5px;}
+  .cp-pane li{margin-bottom:5px;line-height:1.42;}
+  .cp-intro h2{font-size:17px;margin-bottom:9px;}
+  .cp-intro p{line-height:1.5;margin-bottom:8px;}
+}
+/* Phones and narrow windows: stack the rail above the pane and scroll normally. */
+@media (max-width:900px){
+  .cp-shell{display:block;height:auto !important;}
+  .cp-rail{flex-direction:row;flex-wrap:wrap;overflow:visible;margin-bottom:12px;}
+  .cp-rail button{flex:0 0 auto;}
+  .cp-pane{overflow:visible;}
+}
 .profile-section h3{margin:0 0 10px;font-size:var(--font-body);color:var(--navy);font-family:'Fraunces';}
 .profile-section ul{margin:0;padding-left:18px;}
 .profile-section li{font-size:var(--font-sub);color:#37394A;margin-bottom:7px;line-height:1.45;}
@@ -2645,6 +2702,9 @@ body::before{opacity:.40;}
   backdrop-filter:var(--surface-blur);
   -webkit-backdrop-filter:var(--surface-blur);
 }
+/* The client header card is a light card with dark ink by design — keep the glass
+   rule from repainting it translucent, which is what put white text on near-white. */
+.card.client-header-card{background:linear-gradient(135deg,#F8FAFC 0%,#EEF1F6 100%);backdrop-filter:none;-webkit-backdrop-filter:none;}
 .empty-note{background:rgba(246,247,251,.72);backdrop-filter:var(--surface-blur);-webkit-backdrop-filter:var(--surface-blur);}
 .tk-admin-note{background:rgba(255,255,255,.72);backdrop-filter:var(--surface-blur);-webkit-backdrop-filter:var(--surface-blur);}
 /* The admin tab strip sits straight on the glass over the darkest part of the
@@ -3611,6 +3671,7 @@ const state = {
   slideProgress:{},  // {1: maxSlideIndexReached, 2: ...} — powers sequential locking
   traineeName:"",
   traineeId:"",
+  cpSection:0,     // Client Profile: which dossier section the rail has open
   isAdmin:false,
   storageReady:false
 };
@@ -4542,17 +4603,72 @@ function renderFacilitatorGuide(){
     </div>
   `;
 }
-function renderClientProfile(){
-  return `
-    <h1 style="color:var(--navy);font-size:28px;margin:0 0 22px;">Client Profile</h1>
-    <p>Everything about Elias Thorne, your client for all 10 days — read this before Day 1 and come back whenever you need a fact, a preference or a quirk.</p>
+function cpGo(i){ state.cpSection = i; render(); }
 
-    <div class="client-intro-banner">
-      <div class="cib-tag">📌 Read This First</div>
-      <h2>Your Client for All 10 Days</h2>
-      <p>Every exercise in this program — every dossier, every calendar, every email, every crisis scenario — is built around <b>one single client: Elias Thorne</b>. This isn't a new persona introduced each day; it's the same person, the same firm, and the same standing rules from Day 1 straight through to Day 10.</p>
-      <p>That's deliberate. In a real role, your value compounds — the calendar rules you learn early inform how you triage an inbox later, and the preferences you document up front are what make later exercises gradeable on real accuracy rather than guesswork. Treat this page as your standing reference: come back to it any time you need to check a fact, a preference, or a quirk before drafting a response.</p>
-      <p>If a later exercise ever seems to contradict something on this page, that's worth raising with your trainer — it's exactly the kind of discrepancy a real EA would catch.</p>
+/* The dossier is ten sections and an orientation note — far more than a screen
+   as a stacked grid. The rail shows one section at a time, so the whole view
+   ends inside the window on a laptop. Phones keep the stacked layout. */
+function cpFit(){
+  const shell = document.querySelector(".cp-shell");
+  if(!shell) return;
+  if(window.matchMedia("(max-width:900px)").matches){ shell.style.height=""; return; }
+  // The shell takes what is left of the window under the hero and the header
+  // card, minus the footer. Measured directly rather than from a probe height:
+  // the page keeps its footer at the bottom of a short screen, so slack under it
+  // always reads zero and a probe would never grow the pane. A transient toast
+  // is an overlay, not layout, so it is correctly ignored either way.
+  let below = 0;
+  document.querySelectorAll(".footer-note").forEach(n=>{
+    const r = n.getBoundingClientRect(); if(!r.height) return;
+    const cs = getComputedStyle(n);
+    below += r.height + (parseFloat(cs.marginTop)||0) + (parseFloat(cs.marginBottom)||0);
+  });
+  const top = shell.getBoundingClientRect().top;
+  // A generous first estimate, then one correction for whatever the estimate
+  // missed (container padding under the footer). The correction only ever reads
+  // overflow, which is enough: the page pins its footer to the bottom of a short
+  // window, so slack never shows up as scrollHeight and the estimate has to be
+  // the generous end. The toast is position:fixed and so is not in this sum.
+  const est = Math.max(180, window.innerHeight - top - below - 10);
+  shell.style.height = est + "px";
+  const over = document.documentElement.scrollHeight - window.innerHeight;
+  if(over > 0) shell.style.height = Math.max(180, est - over) + "px";
+
+  // The longest section still runs past the pane on a short laptop, and the
+  // dossier is content a trainer edits. Rather than hand-tuning type for the
+  // section that happens to be longest today, step the pane's text down to a
+  // readable floor until it fits — the same "lay it out, then scale" idea the
+  // deck uses. Below the floor the pane keeps overflow:auto as a safety net.
+  const pane = shell.querySelector(".cp-pane");
+  if(!pane) return;
+  pane.style.fontSize = "";
+  const base = parseFloat(getComputedStyle(pane).fontSize) || 14;
+  for(let f = 1; f >= 0.82 && pane.scrollHeight - pane.clientHeight > 1; f -= 0.02){
+    pane.style.fontSize = (base * f).toFixed(2) + "px";
+  }
+}
+window.addEventListener("resize", ()=>{ if(state.view==="clientprofile") cpFit(); });
+
+function renderClientProfile(){
+  const tabs = ["\u{1F4CC} Read This First", ...CLIENT_PROFILE_DOC.map(sec=>sec.section)];
+  const idx = Math.min(Math.max(state.cpSection|0, 0), tabs.length-1);
+
+  const intro = `
+        <div class="cib-tag">\u{1F4CC} Read This First</div>
+        <h2>Your Client for All 10 Days</h2>
+        <p>Every exercise in this program \u2014 every dossier, every calendar, every email, every crisis scenario \u2014 is built around <b>one single client: Elias Thorne</b>. This isn't a new persona introduced each day; it's the same person, the same firm, and the same standing rules from Day 1 straight through to Day 10.</p>
+        <p>That's deliberate. In a real role, your value compounds \u2014 the calendar rules you learn early inform how you triage an inbox later, and the preferences you document up front are what make later exercises gradeable on real accuracy rather than guesswork. Treat this page as your standing reference: come back to it any time you need to check a fact, a preference, or a quirk before drafting a response.</p>
+        <p>If a later exercise ever seems to contradict something on this page, that's worth raising with your trainer \u2014 it's exactly the kind of discrepancy a real EA would catch.</p>`;
+
+  const sec = CLIENT_PROFILE_DOC[idx-1];
+  const pane = idx===0 ? `<div class="cp-intro">${intro}</div>` : `
+        <h3>${esc(sec.section)}</h3>
+        <ul class="${sec.items.length>5?"two-col":""}">${sec.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`;
+
+  return `
+    <div class="cp-top">
+      <h1>Client Profile</h1>
+      <p>Everything about Elias Thorne, your client for all 10 days \u2014 read this before Day 1 and come back whenever you need a fact, a preference or a quirk.</p>
     </div>
 
     <div class="card client-header-card">
@@ -4563,12 +4679,12 @@ function renderClientProfile(){
         <span class="client-tagline">"The Legal Strategist"</span>
       </div>
     </div>
-    <div class="profile-grid">
-      ${CLIENT_PROFILE_DOC.map(sec=>`
-        <div class="card profile-section">
-          <h3>${esc(sec.section)}</h3>
-          <ul>${sec.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>
-        </div>`).join("")}
+
+    <div class="cp-shell">
+      <nav class="cp-rail" aria-label="Dossier sections">
+        ${tabs.map((t,i)=>`<button type="button" class="${i===idx?"on":""}" aria-current="${i===idx?"true":"false"}" onclick="cpGo(${i})">${esc(t)}</button>`).join("")}
+      </nav>
+      <div class="card cp-pane">${pane}</div>
     </div>
   `;
 }
@@ -6537,6 +6653,8 @@ function afterRender(){
   applyPageHero();
   narratorAfterRender();
   bookmarkView();
+  document.body.classList.toggle("cp-onescreen", state.view==="clientprofile");
+  if(state.view==="clientprofile"){ cpFit(); setTimeout(cpFit,0); }
   if(state.view==="dashboard"){ fitHeroText(); setTimeout(fitHeroText, 250); setTimeout(fitHeroText, 1200); if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeroText); }
   if(state.traineeId && !state.isAdmin && (!state.feedbackLoadedAt || Date.now()-state.feedbackLoadedAt > 5*60*1000)){ state.feedbackLoadedAt = Date.now(); setTimeout(()=>{ loadMyFeedback(); loadMyFocus(); }, 0); }
   if(state.view==="tool"){
