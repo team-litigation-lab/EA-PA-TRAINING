@@ -58,16 +58,25 @@ A few rules keep saved progress safe:
 
 ## 🕘 Attendance
 
-Trainers take each day's attendance in **Admin → 🕘 Attendance** (`js/attendance.js`). Trainees don't see it. It's the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them. The LSH Training Portal's admin **🕘 Attendance** page shows and edits the same records, for every program.
+**Attendance is not taken in this course.** It is centralized on the LSH Training Portal: **Master
+Control → 🕘 Attendance** (`/attendance.html`), which takes and reviews attendance for every program,
+per program per batch. This course has no Admin → 🕘 Attendance tab (`js/attendance.js` is gone), so
+there is no second place to take it and no copy of that file to keep in step.
 
-- **By batch:** one section per batch (newest first), listing its approved, active trainees, with a count of each status.
-- **The day:** today's date in Eastern time (EST, or EDT in summer). ◀ ▶ step through the training days, and the date picker opens any day. The batch's **Day N** counts its days already logged; the trainer can change it.
-- **Each trainee's row:** Name; **Training** (the lesson, "Day N: title": for the batch it starts as the day most of the batch is on, from their progress, and it can be changed for the batch or one trainee); **Time In / Time Out** in Eastern time (typed, or ⏱ Now; **Time In fills in on its own** the first time a trainee opens the course each day, marked "auto" until a trainer sets one, and saved when a trainer tags that trainee; trainers always tag the status); **Status**, tagged from the attendance sheet's dropdown in its colors (Present, Late, Late with Notif, Early Out - POC Approved, Undertime - POC Approved, Undertime - No Approval, NCNS, Sick Leave, RL, EOP, Absent with Notif; **✓ Mark the rest Present** tags everyone not yet tagged); and Notes.
-- **Saving:** each change saves as you go. A save re-reads the day and writes only the rows changed on that screen, so two trainers can take one batch's attendance at the same time.
-- **📊 Summary** (per batch): each trainee's count of every status over the batch's logged days, with the last 10 days as colored squares. **⬇ CSV** downloads a day (every batch) or a batch's history.
-- **Google Sheet:** the LSH Training Portal keeps the attendance Google Sheet's **Platform Attendance** tab in step, both ways: everything here (automatic Time Ins included) goes to the sheet every 15 minutes, and edits made in the sheet to Training, Time In, Time Out, Status or Notes come back here straight away. See the Training Portal's README.
-- **Storage:** `attendance:<batch key>:<YYYY-MM-DD>` (`_none` for no batch) = `{batch, date, day, training, rows:{<trainee id>:{name, training, timeIn, timeOut, status, note, at, by}}}`, with no key prefix. The Worker's `/api/checkin` records the automatic Time In: `checkin:<YYYY-MM-DD>:<trainee id>` = `{timeIn, at, name, batch, training}` is the automatic Time In (each trainee's own key, so a room signing in at once never overwrites one another; its KV metadata carries the same for the portal; kept 40 days). Only admins can read or write these records.
+What this course still does for attendance:
 
+- **Automatic Time In.** The Worker's `/api/checkin` records a trainee's first visit each day (Eastern
+  time) as `checkin:<YYYY-MM-DD>:<trainee id>` = `{timeIn, at, name, batch, training}` — each trainee
+  their own key, so a room signing in at once never overwrites one another; the same values are in the
+  key's KV metadata for the portal; kept 40 days. The portal's page shows it marked "auto" until a
+  trainer sets a Time In.
+- **The records live in this course's KV**, with no key prefix: `attendance:<batch key>:<YYYY-MM-DD>` (`_none` for
+  no batch) = `{batch, date, day, training, rows:{<trainee id>:{name, training, timeIn, timeOut,
+  status, note, at, by}}}`. The portal reads and writes them directly, and keeps the attendance
+  Google Sheet's **Platform Attendance** tab in step both ways. Only admins can read or write them.
+
+The statuses, the per-batch summaries, the CSV downloads and the Google Sheet sync are all documented
+in the Training Portal's README.
 ## 📉 Staying under Cloudflare's daily request limit
 
 On Cloudflare's free plan, Workers and Pages Functions get **100,000 requests a day for the whole account**: this portal's Worker (everything under `/api/` and `/version`) and the other LSH sites on the same account (the Case Management System's Pages Functions, for one) share it. When it runs out, the Worker answers 429 ("Error 1027") until 00:00 UTC: pages still load, but sign-in, saving and the trainer's screens don't work. The Workers Paid plan ($5 a month) raises the limit to 10 million requests a month. Usage is under **Workers & Pages** in the Cloudflare dashboard. Static files (the page, `js/`, images) are free and don't count.
@@ -83,7 +92,7 @@ So an open page asks the server sparingly (`POLL` in `index.html`), and not at a
 | Admin: Trainee Audit, Rankings, Trainee Feedback | every minute, every trainee in one request | every 30 s, one request per trainee |
 | A new version (`/version`) | every 3 minutes (a change is confirmed 20 s later) | every 45 s |
 
-Lists of records (the Trainee Audit, attendance, trainee feedback, tasks) are read with `/api/storage/get-many` (up to 100 keys, the same rules as `/api/storage/get` for each key), not one request per record. A trainee is signed out as revoked only when the server answers that their record is gone or not approved: a server that doesn't answer (offline, or the daily limit) no longer signs anyone out.
+Lists of records (the Trainee Audit, trainee feedback, tasks) are read with `/api/storage/get-many` (up to 100 keys, the same rules as `/api/storage/get` for each key), not one request per record. A trainee is signed out as revoked only when the server answers that their record is gone or not approved: a server that doesn't answer (offline, or the daily limit) no longer signs anyone out.
 
 ## 🗄 Where records are kept (KV and R2)
 
