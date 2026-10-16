@@ -2528,6 +2528,16 @@ em.warn{font-style:normal;color:var(--danger);}
 .gcw-pop .warn{margin:10px 10px 0;padding:7px 10px;border-radius:8px;background:#fce8e6;color:#b3261e;font-size:12px;line-height:1.45;}
 .gcw-drag-on .gcw-col{background:#f8fbff;}
 .gcw-scroll{overflow-x:auto;}
+/* the brief above the calendar: two short columns, so the week gets the height */
+.cal-brief{border-left:4px solid var(--orange);background:#FDFAF6;border-radius:10px;padding:10px 14px 11px;margin-bottom:10px;}
+.cal-brief .lead{font-size:12.5px;color:#37394A;margin:0 0 7px;line-height:1.5;}
+.cal-brief .lead b{color:var(--navy);}
+.cal-brief-cols{display:grid;grid-template-columns:1fr 1fr;gap:6px 26px;}
+.cal-brief-cols h4{margin:0 0 3px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-deep);}
+.cal-brief-cols ul{margin:0;padding-left:15px;}
+.cal-brief-cols li{font-size:12.2px;color:#37394A;line-height:1.45;margin-bottom:2px;}
+.cal-brief-cols li b{color:var(--navy);}
+@media(max-width:860px){.cal-brief-cols{grid-template-columns:1fr;gap:8px;}}
 .gcw-create-sm{display:none;}
 @media(max-width:900px){
   .gcw-side{display:none;}
@@ -8612,7 +8622,7 @@ window.downloadDrillPdf = downloadDrillPdf;
 /* ============================================================
    2. LEGAL CALENDAR CONFLICT RESOLVER (week view, draggable, colorable)
    ============================================================ */
-const CAL_DAY_START = 8.5, CAL_DAY_END = 17.5, CAL_PX_PER_HR = 48;
+const CAL_DAY_START = 8.5, CAL_DAY_END = 17.5, CAL_PX_PER_HR = 60;
 
 function calMergedEvents(){
   const dec = toolState.calDecisions || {};
@@ -8705,10 +8715,29 @@ function renderCalendarBody(body){
 
   toolState.wizardIndex = toolState.wizardIndex || 0;
   const partA = `
-    <div class="card" style="padding:14px 18px;margin-bottom:14px;background:#F8F9FC;">
-      <b style="font-size:13px;color:var(--navy);">This is the attorney's week as it actually came in. Nothing in it has been sorted out for you.</b>
-      <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;line-height:1.6;">Read the week the way you'd read it on a Monday morning and work out for yourself where it doesn't hold up — what double-books the attorney, what he has to be in the room for personally, what somebody else in the firm can take, and what shouldn't be on his calendar at all. Nothing is flagged, counted or outlined: that judgment is the exercise. <b>Not every problem here is two blocks on top of each other.</b> Check the order things happen in, how long it takes to get between the in-person ones (each says where it is), what the court and the clerk's window fix in place, who is needed in two rooms at once, what's duplicated, and what he personally does not miss.</p>
-      <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;line-height:1.6;"><b>Open an event</b> to decide it — <b>✓ Keep</b> on his calendar, <b>⇢ Delegate</b> to someone (and say who), or <b>✕ Take off</b> his calendar (declined, cancelled, handled in writing, pushed) — with one line on <i>why</i>. <b>Drag</b> an event to move it, <b>⇄ Move</b> for an exact slot, and <b>+ Create</b> to add what's missing, like prep or a debrief buffer. Your decisions and your reasoning are what <b>Check My Plan</b> grades — not how empty the week looks.</p>
+    <div class="cal-brief">
+      <p class="lead">This is the attorney's week as it came in — <b>nothing in it has been sorted out for you.</b> Nothing is flagged, counted or outlined: working out where the week doesn't hold up is the exercise.</p>
+      <div class="cal-brief-cols">
+        <div>
+          <h4>Look past the obvious clashes</h4>
+          <ul>
+            <li>the <b>order</b> things happen in — prep, reviews, deadlines</li>
+            <li><b>travel time</b> between the in-person ones (each says where it is)</li>
+            <li>what the <b>court and the clerk's window</b> fix in place</li>
+            <li>who is needed in <b>two rooms at once</b>, and what's <b>duplicated</b></li>
+            <li>what he <b>personally doesn't miss</b></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Decide every event</h4>
+          <ul>
+            <li><b>Open an event</b> → <b>✓ Keep</b>, <b>⇢ Delegate</b> (say who) or <b>✕ Take off</b> his calendar — with one line on <i>why</i></li>
+            <li><b>Drag</b> to move it, <b>⇄ Move</b> for an exact slot</li>
+            <li><b>+ Create</b> what's missing — prep, travel, a debrief buffer</li>
+            <li><b>Check My Plan</b> grades your decisions and reasoning, not how empty the week looks</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="gcw">
       <div class="gcw-head">
