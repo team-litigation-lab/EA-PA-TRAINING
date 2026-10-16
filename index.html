@@ -2561,6 +2561,12 @@ em.warn{font-style:normal;color:var(--danger);}
 .crisis-card .crisis-when{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--danger);margin-bottom:6px;}
 .crisis-card p{font-size:13px;color:#37394A;margin:0;line-height:1.6;}
 .crisis-card .ask{margin-top:8px;font-weight:600;color:var(--navy);}
+.crisis-sig{padding:12px 14px;margin-bottom:8px;}
+.crisis-sig .from{display:block;font-size:11.5px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.crisis-sig p{font-size:12.8px;color:#37394A;margin:0 0 8px;line-height:1.5;}
+.crisis-sig .pick{display:flex;gap:8px;flex-wrap:wrap;}
+.crisis-sig select{flex:1;min-width:180px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:12.8px;font-family:inherit;background:#fff;}
+.trip-check div span.why{color:#37394A;font-style:italic;margin-top:3px;}
 /* the brief above the calendar: two short columns, so the week gets the height */
 .cal-brief{border-left:4px solid var(--orange);background:#FDFAF6;border-radius:10px;padding:10px 14px 11px;margin-bottom:10px;}
 .cal-brief .lead{font-size:12.5px;color:#37394A;margin:0 0 7px;line-height:1.5;}
@@ -2748,8 +2754,8 @@ const PRACTICE_TOOLS = [
    desc:"Check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind."},
   {id:"financial", icon:"Σ", title:"Trust Account, Invoices & Billing", relates:"Day 7",
    desc:"Reconcile a client trust ledger, audit a queue of invoices and bills, decide the right follow-up for every open invoice, then find the planted errors in a set of billing documents."},
-  {id:"accessincident8", icon:"🔐", title:"The Access & Incident Response Simulator", relates:"Day 8",
-   desc:"Audit who actually has too much system access, decide how to verify a caller before disclosing anything sensitive, then write your real containment response to an active confidentiality leak."},
+  {id:"accessincident8", icon:"🔐", title:"Access, Incident & Firm Crisis Simulator", relates:"Day 8",
+   desc:"Audit who actually has too much system access, verify a caller before disclosing anything sensitive, contain a confidentiality leak — then face a firm-level crisis: size the risk, recommend a course with its trade-offs in BLUF, and handle the client through the hard reply."},
   {id:"compliance9", icon:"📋", title:"Events, CLE & Reputation Tracker", relates:"Day 9",
    desc:"Write the invitation and registration form for a firm CLE seminar, catch unconfirmed registrants, turn a strategy call into clean meeting notes, spot who's behind on CLE hours, answer a negative review and track which awards deadlines are still open."},
   {id:"socialmedia10", icon:"📱", title:"Social Media Metrics Lab", relates:"Day 10",
@@ -15367,8 +15373,53 @@ const AI8_LEAK_SCENARIO = {
   text:"Twenty minutes ago, you accidentally CC'd a confidential settlement document to the wrong client entirely — not the intended recipient. You just noticed."
 };
 
-function initAccessIncident8(body){
+/* ---------- Firm Risk & Crisis Response (Day 8, parts D–F) ----------
+   The firm, not one email, is exposed: its largest client, privilege, the press and
+   an insurance deadline all land in one morning. The trainee sizes it, recommends a
+   course with its trade-offs, and handles the client — BLUF, framed professionally,
+   and then the hard reply. */
+const CRISIS_SCENARIO = {
+  when:"Monday, 7:40 AM — Elias lands from London at 11:15 AM",
+  title:"Privileged documents went to the other side",
+  text:"Last Friday the firm's production of 4,200 documents in Halvorsen Logistics v. Dunmore Freight went out to opposing counsel. Over the weekend an associate realised 63 of them were privileged — emails between Halvorsen's general counsel and the firm about settlement strategy. Halvorsen is the firm's largest client: 38% of last year's revenue. Elias is in the air until 11:15. You are the first person who has seen everything that follows."
+};
+/* What is landing this morning. Each has a right urgency and a right owner — the key the
+   triage is checked against, with the reason the trainee sees afterwards. */
+const CRISIS_SIGNALS = [
+  {id:"s1", from:"Opposing counsel — letter, 7:02 AM", text:"\"We are in receipt of documents that appear to be privileged. Under the protective order you have 10 business days to assert a clawback, failing which we will treat privilege as waived.\"",
+   urgency:"now", owner:"Head of Litigation", why:"The clawback is the single thing that can save the privilege, and its clock is already running. It goes to the litigator who can assert it today — not into a queue for Elias's return."},
+  {id:"s2", from:"Halvorsen's General Counsel — email, 7:15 AM", text:"\"Dunmore's counsel just mentioned 'your settlement memos' on a call. What did you send them? Call me.\"",
+   urgency:"now", owner:"Elias", why:"The client already knows something is wrong. Silence until 11:15 reads as hiding it. Elias owns this relationship; you get him the facts and a holding line the moment he lands, and the Head of Litigation calls in the meantime if Elias agrees."},
+  {id:"s3", from:"Front desk — 7:28 AM", text:"\"A reporter from Freight Law Weekly called asking whether we 'leaked the Halvorsen strategy'. I said someone would call back.\"",
+   urgency:"today", owner:"Marketing / communications", why:"Nobody comments to press on a client matter without the client's consent and the partner's sign-off. Today, through comms, with a holding line — and never before the client has heard it from the firm."},
+  {id:"s4", from:"Professional liability policy — clause 7.2", text:"\"The Insured shall give written notice of any circumstance that may give rise to a claim within 72 hours of becoming aware of it.\"",
+   urgency:"today", owner:"General Counsel / ethics partner", why:"Late notice can void the cover the firm may need. It runs from when the firm became aware — the associate's realisation on Saturday — so it is already ticking. The firm's GC owns the notice, not the EA."},
+  {id:"s5", from:"The associate — Slack DM, 7:31 AM", text:"\"I think I used the wrong review tag on the export. I'm so sorry. Should I email Dunmore's counsel and ask them to delete it?\"",
+   urgency:"now", owner:"Head of Litigation", why:"A well-meant email to the other side can make it worse — it can concede facts and undercut the clawback. Stop that message now and route it to the litigator who will handle the clawback properly."},
+  {id:"s6", from:"IT — ticket auto-update, 7:35 AM", text:"\"Export job 'HALV-PROD-03' completed Fri 4:51 PM by user m.okafor. Review-tag filter: none applied.\"",
+   urgency:"today", owner:"IT", why:"This is the record of what happened. It needs preserving today — logs, the export, the review set — before anyone tidies it. IT holds it; nobody edits it."},
+  {id:"s7", from:"Elias's calendar — 2:00 PM today", text:"\"Quarterly business review — Halvorsen Logistics, their offices.\"",
+   urgency:"today", owner:"Elias", why:"Walking into a QBR without having addressed this would be the worst version of the day. Whether it goes ahead, moves, or becomes the conversation is Elias's call — put the choice to him with your recommendation."},
+  {id:"s8", from:"Billing — 7:38 AM", text:"\"Halvorsen's October invoice ($184,000) is due out today. Send as usual?\"",
+   urgency:"wait", owner:"Elias", why:"Sending a six-figure bill the morning the client finds out is tone-deaf, and it doesn't have to go today. Hold it and let Elias decide — it is a quiet, cheap move that matters later."}
+];
+const CRISIS_URGENCY = {now:"Escalate now", today:"Handle today", wait:"Hold — it can wait"};
+const CRISIS_OWNERS = ["Elias","Head of Litigation","General Counsel / ethics partner","Marketing / communications","IT","Me (the EA)"];
+/* Three ways the firm could play the first 24 hours. None is free. */
+const CRISIS_OPTIONS = [
+  {id:"A", label:"Front-foot it: tell Halvorsen everything this morning",
+   detail:"Head of Litigation calls Halvorsen's GC before 9:00 with the facts known so far, the clawback being asserted today and a time Elias will call when he lands. Insurer and press handled in parallel."},
+  {id:"B", label:"Contain first: clawback and investigation, then brief the client",
+   detail:"Assert the clawback and investigate for 24–48 hours so the client hears a complete account with the fix in place. A holding acknowledgment to the GC's email this morning; the full conversation tomorrow."},
+  {id:"C", label:"Lead with the narrative: comms answers the reporter, legal follows",
+   detail:"Get ahead of the story with a statement to Freight Law Weekly this morning so the firm isn't defined by the leak, then work the client and the clawback."}
+];
+/* The reply that tests the framing: the client pushes back hard. */
+const CRISIS_PUSHBACK = "From: Dana Whitcombe, General Counsel, Halvorsen Logistics — 4:12 PM\n\n\"I appreciate the call, but let me be blunt. Our settlement position is now in Dunmore's hands. I want to know who did this, I want your fees on this matter written off, and I'm going to have to explain to my CEO why we shouldn't move this case — and everything else — to another firm. What exactly are you going to do?\"";
+
+async function initAccessIncident8(body){
   toolState.ai8 = {auditAnswers:{}, verifyAnswer:null, containmentDraft:""};
+  toolState.crisis = Object.assign({triage:{}}, (await storeGet("crisis-firm")) || {});
   toolState.wizardIndex = 0;
   const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Least-Privilege Access Audit</h3>
@@ -15411,10 +15462,77 @@ function initAccessIncident8(body){
     <div id="ai8ContainmentResult" style="margin-top:14px;"></div>
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadAi8Pdf()">⬇ Download My Work</button>
   `;
+  const cr = toolState.crisis;
+  const crisisHead = `
+    <div class="card crisis-card" style="margin-bottom:14px;">
+      <span class="crisis-when">${esc(CRISIS_SCENARIO.when)}</span>
+      <b style="display:block;font-size:14px;color:var(--navy);margin-bottom:4px;">${esc(CRISIS_SCENARIO.title)}</b>
+      <p>${esc(CRISIS_SCENARIO.text)}</p>
+    </div>`;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. The Firm Is Exposed — Size It</h3>
+    ${crisisHead}
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Eight things land before 8:00 AM. For each, decide how fast it moves and whose desk it goes to. Some of these will hurt the firm more if they're handled fast by the wrong person than slowly by the right one.</p>
+    ${CRISIS_SIGNALS.map(sg=>`
+      <div class="card crisis-sig">
+        <span class="from">${esc(sg.from)}</span>
+        <p>${esc(sg.text)}</p>
+        <div class="pick">
+          <select onchange="crisisTriage('${sg.id}','urgency',this.value)">
+            <option value="">How fast?</option>
+            ${Object.entries(CRISIS_URGENCY).map(([k,v])=>`<option value="${k}" ${(cr.triage[sg.id]||{}).urgency===k?"selected":""}>${esc(v)}</option>`).join("")}
+          </select>
+          <select onchange="crisisTriage('${sg.id}','owner',this.value)">
+            <option value="">Whose desk?</option>
+            ${CRISIS_OWNERS.map(o=>`<option value="${esc(o)}" ${(cr.triage[sg.id]||{}).owner===o?"selected":""}>${esc(o)}</option>`).join("")}
+          </select>
+        </div>
+      </div>`).join("")}
+    <button class="btn btn-primary btn-sm" style="margin-top:6px;" onclick="checkCrisisTriage()">Check My Triage</button>
+    <div id="crisisTriageResult" style="margin-top:12px;"></div>
+  `;
+  const partE = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">E. Your Recommendation &amp; the Action Plan</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias lands at 11:15 and will read one thing on the jet bridge. Three ways to play the first 24 hours — none of them free. Pick the one you'd recommend, then write it up so he can decide in two minutes.</p>
+    <div class="opt-grid one">
+      ${CRISIS_OPTIONS.map(o=>`
+        <label class="opt-card ${cr.option===o.id?'sel':''}">
+          <input type="radio" name="crisisOption" value="${o.id}" ${cr.option===o.id?"checked":""} onchange="crisisPick('${o.id}')">
+          <div class="oc-head"><b>${esc(o.id)}. ${esc(o.label)}</b></div>
+          <div class="oc-row">${esc(o.detail)}</div>
+        </label>`).join("")}
+    </div>
+    <label class="trip-lbl">The recommendation to Elias — BLUF: your recommendation in the first line; then what each option gains and costs; then the decisions only he can make, and by when</label>
+    <textarea id="crisisRecDraft" class="trip-why tall" placeholder="BOTTOM LINE: I recommend … because …&#10;&#10;Trade-offs: A … / B … / C …&#10;&#10;Needed from you by 11:45: …" oninput="crisisNote('rec', this.value)">${esc(cr.rec||"")}</textarea>
+    <label class="trip-lbl">The action plan — first two hours, the rest of today, this week. Each step with an owner and a deadline.</label>
+    <textarea id="crisisPlanDraft" class="trip-why tall" placeholder="By 8:30 — …  (owner: …)&#10;By 10:00 — …&#10;Today — …&#10;This week — …" oninput="crisisNote('plan', this.value)">${esc(cr.plan||"")}</textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" id="crisisRecBtn" onclick="reviewCrisisRecommendation()">Get Review</button>
+    <div id="crisisRecResult" style="margin-top:14px;"></div>
+  `;
+  const partF = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">F. The Client Conversation</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias has called Dana Whitcombe, Halvorsen's General Counsel, and wants the follow-up email in her inbox within the hour — you're drafting it for his signature. Lead with the bottom line. Say what happened as fact, what the firm has already done, what happens next and when, and what you need from her. Own it as the firm.</p>
+    <label class="trip-lbl">The email to Dana Whitcombe, for Elias's signature</label>
+    <textarea id="crisisClientDraft" class="trip-why tall" placeholder="Dana —&#10;&#10;Bottom line: …" oninput="crisisNote('client', this.value)">${esc(cr.client||"")}</textarea>
+    <div class="card crisis-card" style="margin-top:18px;">
+      <span class="crisis-when">She writes back</span>
+      <p style="white-space:pre-line;">${esc(CRISIS_PUSHBACK)}</p>
+    </div>
+    <label class="trip-lbl">Elias's reply — for his signature. Answer what she actually asked, hold the line where you have to, and keep the door open.</label>
+    <textarea id="crisisReplyDraft" class="trip-why tall" placeholder="Dana —" oninput="crisisNote('reply', this.value)">${esc(cr.reply||"")}</textarea>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+      <button class="btn btn-primary btn-sm" id="crisisClientBtn" onclick="reviewCrisisClient()">Submit for Review</button>
+      <button class="btn btn-navy btn-sm" onclick="downloadCrisisPdf()">⬇ Download My Work</button>
+    </div>
+    <div id="crisisClientResult" style="margin-top:14px;"></div>
+  `;
   body.innerHTML = renderToolWizard(8, [
     {label:"Least-Privilege Access Audit", html:partA},
     {label:"Verify Before You Disclose", html:partB},
-    {label:"Contain the Leak", html:partC}
+    {label:"Contain the Leak", html:partC},
+    {label:"The Firm Is Exposed — Size It", html:partD},
+    {label:"Recommendation & Action Plan", html:partE},
+    {label:"The Client Conversation", html:partF}
   ]);
 }
 
@@ -15464,6 +15582,122 @@ async function reviewAi8Containment(){
   }
 }
 window.reviewAi8Containment = reviewAi8Containment;
+
+/* ---------- Firm Risk & Crisis Response: the functions ---------- */
+async function crisisSave(){ await storeSet("crisis-firm", toolState.crisis); }
+function crisisTriage(id, field, value){ const t = toolState.crisis.triage; t[id] = Object.assign({}, t[id], {[field]:value}); crisisSave(); }
+window.crisisTriage = crisisTriage;
+function crisisPick(id){ toolState.crisis.option = id; crisisSave(); document.querySelectorAll('input[name="crisisOption"]').forEach(inp=>inp.closest(".opt-card").classList.toggle("sel", inp.value===id)); }
+window.crisisPick = crisisPick;
+function crisisNote(field, value){ toolState.crisis[field] = value; clearTimeout(toolState.crisisTimer); toolState.crisisTimer = setTimeout(crisisSave, 800); }
+window.crisisNote = crisisNote;
+
+/* Triage is checked against a key — how fast, and whose desk — with the reason shown
+   for every signal, right or wrong. No AI call. */
+async function checkCrisisTriage(){
+  const t = toolState.crisis.triage;
+  const done = CRISIS_SIGNALS.filter(sg=>t[sg.id] && t[sg.id].urgency && t[sg.id].owner).length;
+  if(done < CRISIS_SIGNALS.length){ toast(`Decide all ${CRISIS_SIGNALS.length} — how fast, and whose desk.`); return; }
+  let pts = 0;
+  const rows = CRISIS_SIGNALS.map(sg=>{
+    const a = t[sg.id], uOk = a.urgency===sg.urgency, oOk = a.owner===sg.owner;
+    pts += (uOk?1:0) + (oOk?1:0);
+    return `<div class="trip-check ${uOk&&oOk?'ok':'bad'}"><span>${uOk&&oOk?"✓":"✕"}</span><div>
+      <b>${esc(sg.from)}</b>
+      <span>You: ${esc(CRISIS_URGENCY[a.urgency])} → ${esc(a.owner)}${uOk&&oOk?"":` · Better: ${esc(CRISIS_URGENCY[sg.urgency])} → ${esc(sg.owner)}`}</span>
+      <span class="why">${esc(sg.why)}</span></div></div>`;
+  }).join("");
+  const score = Math.round(pts / (CRISIS_SIGNALS.length*2) * 100);
+  toolState.crisis.triageScore = score;
+  await crisisSave();
+  document.getElementById("crisisTriageResult").innerHTML = `
+    <div class="card" style="padding:16px 18px;">
+      <b style="color:var(--navy);font-size:13.5px;">Triage: ${score}%</b>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 10px;">The three that move before Elias lands are the clawback clock, the client who already knows, and the associate about to email the other side. Everything else is today — through the person who owns it.</p>
+      ${rows}
+    </div>`;
+  await bumpPracticeProgress("accessincident8", score);
+  if(score===100) burstConfetti();
+}
+window.checkCrisisTriage = checkCrisisTriage;
+
+function crisisContext(){
+  const lines = CRISIS_SIGNALS.map(sg=>`- ${sg.from}: ${sg.text}`).join("\n");
+  return `THE SITUATION (${CRISIS_SCENARIO.when}):\n${CRISIS_SCENARIO.text}\n\nWHAT LANDED THIS MORNING:\n${lines}\n\nThe trainee is the managing partner's EA. Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group) is in the air until 11:15 AM. The firm has a Head of Litigation (who can assert the clawback), a General Counsel / ethics partner (who owns insurer notice and ethics duties), communications, and IT. The EA coordinates, drafts and escalates; legal decisions, money, press statements and anything said to the client are the partners' to make.`;
+}
+async function reviewCrisisRecommendation(){
+  const c = toolState.crisis;
+  if(!c.option){ toast("Pick the option you'd recommend first."); return; }
+  if((c.rec||"").trim().length < 60 || (c.plan||"").trim().length < 60){ toast("Write both — the recommendation and the action plan."); return; }
+  if(!(await useLabAttempt(8, "reviewCrisisRecommendation"))) return;
+  const btn = document.getElementById("crisisRecBtn"), el = document.getElementById("crisisRecResult");
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  el.innerHTML = `<div class="ai-loading">Reviewing your recommendation…</div>`;
+  const opt = CRISIS_OPTIONS.find(o=>o.id===c.option);
+  try{
+    const report = await runRubricEvaluation(
+      "Firm crisis — the recommendation memo and action plan",
+      `${crisisContext()}\n\nTHE THREE OPTIONS THE TRAINEE WEIGHED:\n${CRISIS_OPTIONS.map(o=>`${o.id}. ${o.label} — ${o.detail}`).join("\n")}\n\nTHE OPTION THE TRAINEE RECOMMENDED: ${opt.id}. ${opt.label}`,
+      `RECOMMENDATION TO ELIAS:\n${c.rec}\n\nACTION PLAN:\n${c.plan}`,
+      `Is the memo genuinely BLUF — the recommendation in the first line, readable on a phone in two minutes — rather than a narrative that builds to it? Does it set out the TRADE-OFFS of all three options honestly (what each gains, what it costs, what it risks), including the downside of the one recommended? Option A is the defensible default because the client already suspects and silence reads as concealment, but B can be argued if the trainee still gets a holding acknowledgment to the client this morning; C (press before client) is a serious misjudgment — penalise it unless the trainee explicitly sequences the client first. Does the action plan put the three urgent items first — asserting the clawback inside its window, stopping the associate's email to opposing counsel, and getting the client a response before Elias lands — and then today's: insurer notice within the 72-hour clause through the firm's GC, preserving the IT export logs, routing the reporter through comms with no comment before the client is told, and holding the invoice? Is every step owned by a named person with a deadline? Does the trainee keep to the EA's lane — coordinating, drafting, escalating — and put the partners' decisions (what to tell the client, the press, money) to them as decisions rather than making them? Penalise naming or blaming the associate, promising outcomes no one can guarantee, and anything that would waive privilege further.`
+    );
+    c.recReport = report; await crisisSave();
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Recommendation</b>` + renderEvaluationReport(report, 8);
+    await bumpPracticeProgress("accessincident8", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{
+    btn.disabled = false; btn.textContent = "Get Review";
+  }
+}
+window.reviewCrisisRecommendation = reviewCrisisRecommendation;
+
+async function reviewCrisisClient(){
+  const c = toolState.crisis;
+  if((c.client||"").trim().length < 80){ toast("Write the email to Dana first."); return; }
+  if((c.reply||"").trim().length < 60){ toast("Write Elias's reply to her pushback too."); return; }
+  if(!(await useLabAttempt(8, "reviewCrisisClient"))) return;
+  const btn = document.getElementById("crisisClientBtn"), el = document.getElementById("crisisClientResult");
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  el.innerHTML = `<div class="ai-loading">Reviewing the client exchange…</div>`;
+  try{
+    const report = await runRubricEvaluation(
+      "Firm crisis — the client exchange (BLUF, framing, the hard reply)",
+      `${crisisContext()}\n\nElias has called Dana Whitcombe, Halvorsen's General Counsel. The trainee drafted his follow-up email and then his reply to her pushback:\n\n${CRISIS_PUSHBACK}`,
+      `FOLLOW-UP EMAIL TO DANA (for Elias's signature):\n${c.client}\n\nELIAS'S REPLY TO HER PUSHBACK:\n${c.reply}`,
+      `The follow-up email: is it BLUF — where things stand and what is being done in the first two lines? Does it state what happened as FACT (63 privileged documents in Friday's production) without speculation, without minimising, and without naming or blaming the associate — the firm owns it? Does it say what has already been done (clawback asserted under the protective order, the other side put on notice, the export preserved), what happens next with dates, and what the firm needs from her? Does it avoid admitting legal liability or promising outcomes (\"privilege will be restored\") the firm cannot guarantee, and avoid anything that would waive privilege further? The reply to her pushback: does it answer each of her three demands directly rather than deflecting — who did this (the firm takes responsibility; the internal review is the firm's and names no one to the client), the fees (an EA's draft does not unilaterally write off fees: credit a reply that commits to addressing the matter's fees with her in a named conversation, or that defers a specific offer to Elias's decision — penalise either an outright refusal or a reflexive full write-off with no thought), and moving the work (acknowledges it is her right, makes the case to stay on the strength of the response, offers a specific next step such as a meeting with Elias and the Head of Litigation)? Tone: calm, accountable, not defensive, not grovelling, no corporate filler. Penalise blame, excuses, over-promising, or a reply that ignores what she asked.`
+    );
+    c.clientReport = report; await crisisSave();
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — The Client Exchange</b>` + renderEvaluationReport(report, 8);
+    await bumpPracticeProgress("accessincident8", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{
+    btn.disabled = false; btn.textContent = "Submit for Review";
+  }
+}
+window.reviewCrisisClient = reviewCrisisClient;
+
+async function downloadCrisisPdf(){
+  await ensureTraineeName();
+  const c = toolState.crisis;
+  const lines = [`## ${CRISIS_SCENARIO.title}`, CRISIS_SCENARIO.when, CRISIS_SCENARIO.text, "---", "## Triage"];
+  CRISIS_SIGNALS.forEach(sg=>{
+    const a = c.triage[sg.id] || {};
+    lines.push(`${sg.from}: ${a.urgency ? CRISIS_URGENCY[a.urgency] : "(not decided)"} → ${a.owner || "(no owner)"}${a.urgency===sg.urgency && a.owner===sg.owner ? "" : `   [key: ${CRISIS_URGENCY[sg.urgency]} → ${sg.owner}]`}`);
+  });
+  if(typeof c.triageScore==="number") lines.push(`Triage score: ${c.triageScore}%`);
+  const opt = CRISIS_OPTIONS.find(o=>o.id===c.option);
+  lines.push("---", "## Recommendation", `Recommended: ${opt ? opt.id+". "+opt.label : "(none chosen)"}`, c.rec || "(not written)", "", "## Action Plan", c.plan || "(not written)");
+  if(c.recReport) lines.push("", `Review: ${c.recReport.totalScore}/100 (${c.recReport.gradeTier})`);
+  lines.push("---", "## Email to Dana Whitcombe", c.client || "(not written)", "", "## Her reply", CRISIS_PUSHBACK, "", "## Elias's reply", c.reply || "(not written)");
+  if(c.clientReport) lines.push("", `Review: ${c.clientReport.totalScore}/100 (${c.clientReport.gradeTier})`,
+    ...(c.clientReport.strengths||[]).map(x=>`+ ${x}`), ...(c.clientReport.blindspots||[]).map(x=>`- ${x}`));
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Firm Crisis Response — Halvorsen Logistics", lines, "LSH_Firm_Crisis");
+}
+window.downloadCrisisPdf = downloadCrisisPdf;
 
 async function downloadAi8Pdf(){
   await ensureTraineeName();
@@ -16738,7 +16972,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=deck2-logo"></script>
+<script src="/js/eapa-updates.js?v=crisis-lab"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=3"></script>
 <script src="/js/graded-calls.js?v=1"></script>

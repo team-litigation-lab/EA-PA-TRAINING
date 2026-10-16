@@ -2199,12 +2199,12 @@ window.afterRender = function(){
 const SOP_LAB_ACTIVITIES = {
   dossier1:["Client Dossier","Preference Trackers","ACT Email","Gatekeeping Practice"],
   forcemultiplier2:["Anticipate the Real Need","Prompt Engineering","The Full Scenario","Inbox Triage"],
-  calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel Management"],
+  calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel & the Trip That Breaks"],
   coldcalling4:["Prioritize the Day","Prospect Call Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator"],
   insurance5:["Classify the Risk","Match the Strategy","Home Binder","Crisis Roleplay"],
   projectcompliance6:["Compliance Risk","Operational Warning Signs","Recovery Memo","Crisis Roleplay","Compliance Audit Simulation"],
   financial:["Trust Ledger Reconciliation","Invoice & Bill Audit","Invoice Follow-Up","Attention to Detail Test"],
-  accessincident8:["Least-Privilege Access Audit","Verify Before You Disclose","Contain the Leak"],
+  accessincident8:["Least-Privilege Access Audit","Verify Before You Disclose","Contain the Leak","The Firm Is Exposed — Size It","Recommendation & Action Plan","The Client Conversation"],
   compliance9:["Event Invite & Registration Form","Event Follow-Up","Meeting Notes & Action Items","CLE Compliance Dashboard","Negative Review Response","Awards Tracker","Crisis Roleplay"],
   socialmedia10:["Engagement Rate","Version Matching","Campaign Math","Brand Kit","Marketing Plan"]
 };
