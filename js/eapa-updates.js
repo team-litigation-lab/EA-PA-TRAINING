@@ -2200,12 +2200,12 @@ window.afterRender = function(){
 const SOP_LAB_ACTIVITIES = {
   dossier1:["Client Dossier","Preference Trackers","ACT Email","Gatekeeping Practice"],
   forcemultiplier2:["Anticipate the Real Need","Prompt Engineering","The Full Scenario","Inbox Triage"],
-  calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel Management","Crisis Roleplay"],
+  calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel & the Trip That Breaks","Crisis Roleplay"],
   coldcalling4:["Prioritize the Day","Prospect Call Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator","Crisis Roleplay"],
   insurance5:["Classify the Risk","Match the Strategy","Home Binder","Crisis Roleplay"],
   projectcompliance6:["Compliance Risk","Operational Warning Signs","Recovery Memo","Crisis Roleplay","Compliance Audit Simulation"],
   financial:["Trust Ledger Reconciliation","Invoice & Bill Audit","Invoice Follow-Up","Attention to Detail Test","Crisis Roleplay"],
-  accessincident8:["Least-Privilege Access Audit","Verify Before You Disclose","Contain the Leak","Crisis Roleplay"],
+  accessincident8:["Least-Privilege Access Audit","Verify Before You Disclose","Contain the Leak","The Firm Is Exposed — Size It","Recommendation & Action Plan","The Client Conversation","Crisis Roleplay"],
   compliance9:["Event Invite & Registration Form","Event Follow-Up","Meeting Notes & Action Items","CLE Compliance Dashboard","Negative Review Response","Awards Tracker","Crisis Roleplay"],
   socialmedia10:["Engagement Rate","Version Matching","Campaign Math","Brand Kit","Marketing Plan","Crisis Roleplay"]
 };
@@ -2807,7 +2807,7 @@ window.fitTopicsModal = fitTopicsModal;
 .dash-main > .dash-side .card *{color:inherit;}
 .dash-main > .dash-side .stat .num{color:var(--navy) !important;}
 .dash-main > .dash-side .stat .lbl, .dash-main > .dash-side .card .sub, .dash-main > .dash-side .stat .lbl span{color:#6B7088 !important;}
-.dash-main > .dash-side .tfb-dash{background:#FFF7EF !important;border-color:#F7DEC6 !important;}
+.dash-main > .dash-side .tfb-dash{background:rgba(255,247,239,.55) !important;border-color:#F7DEC6 !important;}
 /* The primary button here is a solid orange; a white label on it is 3.6:1,
    so only the ghost button (transparent, on the navy rail) stays white. */
 .dash-main > .dash-side .tfb-dash .btn-ghost{color:#fff !important;}
@@ -4072,3 +4072,45 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
    before this file arrives, and a redraw any earlier runs that page before the parts further down are
    defined (the Day 4 lab then stopped on LG_SCENARIO, and the rest of this file never loaded). */
 if(document.querySelector(".topbar")) render();
+
+/* ---------- Dashboard: one screen, no scrolling (desktop) ----------
+   The day cards, the stats band, the competency profile and Resume / Certificate
+   all fit a laptop screen: the profile is one compact row (labels on one line,
+   a thin bar), and the day cards lose the padding that pushed it off the bottom.
+   Phones and narrow windows keep their scrolling layout. Loaded last, so it wins. */
+(function(){ const s = document.createElement("style"); s.id = "eapa-dash-onescreen"; s.textContent = `
+@media (min-width:1100px){
+  .dash-top{padding-top:12px !important;padding-bottom:8px !important;margin-bottom:8px !important;}
+  .dash-main .module-card .module-head{padding:7px 10px 6px !important;min-height:54px !important;}
+  .dash-main .module-card .module-body{padding:2px 16px 0 !important;}
+  .dash-main .module-card .module-start-btn{padding:8px 10px !important;}
+  .dash-main .module-card .module-finish-btn, .dash-main .module-card .module-review-row .btn{padding:6px 6px !important;}
+  .dash-main .module-grid{gap:10px !important;}
+  .dash-main > .dash-side{margin-top:8px !important;}
+  .dash-main .comp-strip{margin-top:8px;padding:8px 16px 10px;}
+  .dash-main .comp-strip-head{margin-bottom:6px;}
+  .dash-main .comp-strip-head h3{font-size:11.5px;}
+  .dash-main .comp-strip-head span{font-size:10.5px;}
+  .dash-main .comp-strip-grid{gap:12px;}
+  .dash-main .comp-cell-top{min-height:0;font-size:11.2px;line-height:1.25;}
+  .dash-main .comp-cell-top span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+  .dash-main .comp-track{height:5px;margin-top:4px;}
+  .dash-main .bottom-actions{margin-top:8px;}
+}
+/* Shorter laptop screens (a 1366×768, or a larger one at 125% scaling): a smaller
+   ribbon and step dots, and tighter day cards. */
+@media (min-width:1100px) and (max-height:860px){
+  .dash-top{padding-top:8px !important;padding-bottom:6px !important;}
+  .dash-hero{margin-bottom:2px !important;}
+  .dash-hero-ribbon svg{max-width:52px !important;}
+  .dash-hero h1{margin:0 0 3px !important;}
+  .dash-hero p:not(.eyebrow){font-size:12.5px !important;margin:0 !important;}
+  .dash-hero .eyebrow{margin-bottom:4px !important;}
+  .dash-top .step-timeline{padding-top:5px !important;}
+  .dash-top .step-circle{width:27px !important;height:27px !important;font-size:12px !important;}
+  .dash-main .module-card .module-head{padding:5px 10px 4px !important;min-height:46px !important;}
+  .dash-main .module-card .module-start-btn{padding:6px 10px !important;}
+  .dash-main .module-card .module-finish-btn, .dash-main .module-card .module-review-row .btn{padding:4px 6px !important;}
+  .dash-main .module-grid{gap:8px !important;}
+  .dash-main .comp-strip{padding:7px 16px 8px;}
+}`; document.head.appendChild(s); })();

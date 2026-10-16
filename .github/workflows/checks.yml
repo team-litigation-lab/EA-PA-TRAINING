@@ -57,6 +57,10 @@ jobs:
           node .github/scripts/server.mjs 8787 > "$RUNNER_TEMP/server.log" 2>&1 &
           sleep 2
           node .github/scripts/smoke.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
+      - name: Day 1 Preference Trackers workbook (cells, sheet tabs, scoring, PDF lines, .xlsx download)
+        env:
+          NODE_PATH: ${{ runner.temp }}/pw/node_modules
+        run: node .github/scripts/tracker.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
       - name: Crisis roleplay in every lab from Day 3 on (scenario tabs and opening lines)
         env:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules

@@ -26,9 +26,9 @@
   --ink-soft:#2B2F3E;
   --line:#DCE0EA;
   --success:#3F7D58;
-  --success-bg:#E7F1EA;
+  --success-bg:rgba(231,241,234,.62);   /* tints go translucent with everything else */
   --danger:#9B3A30;   /* 4.4:1 on its own chip before, 5.8:1 now */
-  --danger-bg:#F7E9E6;
+  --danger-bg:rgba(247,233,230,.62);
   --radius:14px;
   --shadow:0 1px 2px rgba(22,24,41,.04), 0 8px 24px -12px rgba(22,24,41,.18);
   /* Global typography: Inter first, then the native OS stack, so the UI renders sharp with
@@ -1678,7 +1678,7 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .quiz-next-step .qns-title{font-weight:800;font-size:14.5px;margin-bottom:6px;}
 .quiz-next-step p{margin:4px 0 0;font-size:13.5px;line-height:1.5;color:var(--ink);}
 .qns-ok{background:var(--success-bg);border-color:var(--success);} .qns-ok .qns-title{color:var(--success);}
-.qns-warn{background:#FFF4E8;border-color:var(--orange);} .qns-warn .qns-title{color:var(--orange-deep);}
+.qns-warn{background:rgba(255,244,232,.62);border-color:var(--orange);} .qns-warn .qns-title{color:var(--orange-deep);}
 .qns-stop{background:var(--danger-bg);border-color:var(--danger);} .qns-stop .qns-title{color:var(--danger);}
 
 .pn-on{background:#F3F5FA;border-radius:10px;padding:10px 14px;margin:8px 0;} .pn-on b, .pn-scen b{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:4px;} .pn-on p, .pn-scen p{margin:0;line-height:1.5;}
@@ -1720,7 +1720,7 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .lab-save-status{font-size:12px;font-weight:700;color:var(--success);}
 .resume-btn{margin-top:12px;display:inline-flex;align-items:center;gap:10px;}
 .resume-btn span{font-weight:600;opacity:.9;font-size:12.5px;}
-.mindset-note{background:#FFF4E8;border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:13.5px;}
+.mindset-note{background:rgba(255,244,232,.62);border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:13.5px;}
 .mindset-note b{color:var(--orange-deep);}
 
 .dash-side .rank-card .num span{font-size:14px;color:#9EA3BD;font-family:inherit;}
@@ -1898,7 +1898,7 @@ img[alt="Legal Support Help"]{border-radius:8px;}
 .cert-scale .cert{transform-origin:top left;position:absolute;top:0;left:0;}
 .cert-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
 .cert-actions .btn-ghost{background:#fff;}
-.cert-warn{background:#FFF4E8;border:1px solid var(--orange);border-radius:10px;padding:10px 14px;font-size:13px;max-width:900px;}
+.cert-warn{background:rgba(255,244,232,.62);border:1px solid var(--orange);border-radius:10px;padding:10px 14px;font-size:13px;max-width:900px;}
 .dash-side .cert-dash .sub{font-size:12px;color:#E4E6F0;margin:6px 0 10px;line-height:1.4;}
 .dash-side .cert-dash.ready{background:linear-gradient(135deg, rgba(63,125,88,.45), rgba(255,255,255,.06)) !important;border-color:rgba(120,200,150,.5) !important;}
 .cert-prog{height:6px;border-radius:6px;background:rgba(255,255,255,.14);margin-top:8px;overflow:hidden;} .cert-prog div{height:100%;background:#F0C08A;border-radius:6px;}
@@ -2183,7 +2183,7 @@ em.warn{font-style:normal;color:var(--danger);}
 .lesson-stage .slide-dot.locked{background:rgba(255,255,255,.12);}
 .lesson-stage .lesson-slide{max-height:min(64vh,720px);}
 .lesson-stage .topic-separator{background:transparent !important;color:#F0C08A !important;border:1px solid rgba(240,192,138,.45);font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;}
-.lesson-stage .lesson-slide > .card, .lesson-stage .lesson-slide .lesson-card{position:relative;background:#FFFDF8 !important;border:none !important;border-radius:16px;box-shadow:none;overflow:hidden;}
+.lesson-stage .lesson-slide > .card, .lesson-stage .lesson-slide .lesson-card{position:relative;background:rgba(255,253,248,.82) !important;border:none !important;border-radius:16px;box-shadow:none;overflow:hidden;}
 .lesson-stage .lesson-slide > .card::before, .lesson-stage .lesson-slide .lesson-card::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--navy),var(--orange));}
 .lesson-stage .lesson-card h4{font-family:'Fraunces',Georgia,serif;}
 .lesson-stage .slide-nav{margin-top:14px;} .lesson-stage .slide-nav .btn-ghost{background:#fff;}
@@ -2265,13 +2265,13 @@ em.warn{font-style:normal;color:var(--danger);}
 .day-intro h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(24px,2.2vw,34px);color:var(--navy);margin:6px 0 4px;}
 .di-theme{color:var(--ink-soft);margin:0 0 14px;font-size:14.5px;}
 .di-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;}
-.di-box{background:#fff;border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:12px;padding:14px 16px;}
+.di-box{background:rgba(255,255,255,.62);border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:12px;padding:14px 16px;}
 .di-box:nth-child(2){border-top-color:var(--navy);}
 .di-box b{display:block;color:var(--navy);margin-bottom:6px;}
 .topics-modal-sec{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--orange-deep);margin:12px 0 2px;} .di-box li{font-size:14px;line-height:1.5;margin-bottom:4px;} .di-topics .more{list-style:none;color:var(--ink-soft);font-style:italic;}
 .di-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:6px 0 12px;}
 .di-strip > div{background:#F3F5FB;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:2px;} .di-strip span{font-size:22px;} .di-strip b{color:var(--navy);font-size:14px;} .di-strip em{font-style:normal;font-size:12.5px;color:var(--ink-soft);}
-.di-warm{background:#FFF8EF;border:1px solid #F0D2AE;border-radius:12px;padding:12px 16px;} .di-warm > span{font-size:12.5px;color:var(--ink-soft);}
+.di-warm{background:rgba(255,248,239,.66);border:1px solid #F0D2AE;border-radius:12px;padding:12px 16px;} .di-warm > span{font-size:12.5px;color:var(--ink-soft);}
 .nav-back-row{margin:0 0 12px;} .nav-back{font:inherit;font-size:13px;font-weight:700;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;box-shadow:0 1px 2px rgba(20,30,60,.06);} .nav-back:hover{border-color:var(--orange);color:var(--orange);}
 .quiz-key-locked{background:#FFF8EF;border:1px solid #F0D2AE;border-radius:12px;padding:12px 16px;font-size:14px;color:var(--ink);margin:0 0 14px;}
 .di-wq{margin-top:10px;} .di-wq-q{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px;} .di-wq-opts{display:flex;flex-direction:column;gap:6px;} .di-wq-opt{display:flex;gap:8px;align-items:flex-start;text-align:left;font:inherit;font-size:13.5px;background:#fff;border:1px solid #E6D6C2;border-radius:9px;padding:7px 10px;cursor:pointer;color:var(--ink);} .di-wq-opt span{font-weight:800;color:var(--ink-soft);min-width:14px;} .di-wq-opt:hover:not([disabled]){border-color:var(--orange);background:#FFFDF9;} .di-wq-opt[disabled]{cursor:default;} .di-wq-opt.ok{border-color:#3F7D58;background:#EEF7F1;color:#2E6546;font-weight:700;} .di-wq-opt.no{border-color:#C9544A;background:#FCEFEE;color:#9B3A32;} .di-wq-opt.dim{opacity:.6;} .di-wq-fb{font-size:13px;margin-top:6px;color:var(--ink-soft);} .di-wq-fb.ok b{color:#3F7D58;} .di-wq-fb.no b{color:#9B3A32;} .di-wq-hint{font-size:12px;color:var(--ink-soft);margin-top:4px;font-style:italic;}
@@ -2329,7 +2329,7 @@ em.warn{font-style:normal;color:var(--danger);}
 .tk-more summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:13px;margin-top:6px;} .tk-resp{white-space:pre-wrap;background:#F8F9FC;border-radius:8px;padding:10px;font-size:13px;}
 .tk-missed-note{font-size:13px;color:var(--danger);margin:4px 0 0;}
 .tk-how{padding:14px 18px;margin-top:18px;} .tk-how ul{margin:8px 0;padding-left:20px;} .tk-how li{font-size:13.5px;margin-bottom:4px;} .tk-how > span{font-size:12.5px;color:var(--ink-soft);}
-.tk-dash{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px;margin-bottom:20px;background:#FFF4E8;border:1.5px solid var(--orange);flex-wrap:wrap;}
+.tk-dash{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px;margin-bottom:20px;background:rgba(255,244,232,.62);border:1.5px solid var(--orange);flex-wrap:wrap;}
 .tk-dash-k{font-size:11px;color:var(--orange-deep);font-weight:800;text-transform:uppercase;letter-spacing:.05em;} .tk-dash p{margin:6px 0 0;font-size:14px;font-weight:600;color:var(--navy);max-width:90ch;}
 .tk-admin-note{font-size:12.5px;color:#5B4A36;background:#fff;border:1px dashed #F0C08A;border-radius:10px;padding:8px 12px;margin-top:10px;}
 .comp-strip-grid{grid-template-columns:repeat(8,minmax(0,1fr)) !important;}
@@ -2528,6 +2528,45 @@ em.warn{font-style:normal;color:var(--danger);}
 .gcw-pop .warn{margin:10px 10px 0;padding:7px 10px;border-radius:8px;background:#fce8e6;color:#b3261e;font-size:12px;line-height:1.45;}
 .gcw-drag-on .gcw-col{background:#f8fbff;}
 .gcw-scroll{overflow-x:auto;}
+/* Business travel: option cards, the day sheet, the night it falls apart */
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:10px;}
+.opt-grid.one{grid-template-columns:1fr;}
+.opt-card{display:block;position:relative;padding:11px 13px;border:1.5px solid var(--line);border-radius:11px;background:#fff;cursor:pointer;transition:border-color .12s ease,box-shadow .12s ease;}
+.opt-card:hover{border-color:var(--orange);}
+.opt-card.sel{border-color:var(--navy);box-shadow:0 0 0 3px rgba(38,43,69,.09);background:#FBFCFE;}
+.opt-card:focus-within{border-color:var(--navy);box-shadow:0 0 0 3px rgba(38,43,69,.22);}
+.opt-card input{position:absolute;opacity:0;pointer-events:none;}
+.oc-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:4px;}
+.oc-head b{font-size:13px;color:var(--navy);}
+.oc-price{font-size:13px;font-weight:700;color:var(--orange-deep);white-space:nowrap;}
+.oc-price small{font-weight:400;font-size:10.5px;color:var(--ink-soft);}
+.oc-row{font-size:12px;color:#37394A;line-height:1.45;}
+.oc-row.muted{color:var(--ink-soft);margin-top:3px;}
+.trip-why{width:100%;min-height:62px;margin-top:10px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;}
+.trip-why.tall{min-height:132px;}
+.trip-lbl{display:block;font-size:12.8px;font-weight:600;color:var(--navy);margin:14px 0 2px;}
+.trip-row{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);}
+.trip-row:last-child{border-bottom:none;}
+.trip-row b{display:block;font-size:13px;color:var(--navy);}
+.trip-row > div > span{display:block;font-size:11.8px;color:var(--ink-soft);}
+.trip-row input[type=time]{padding:7px 9px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;}
+.trip-fixed{font-size:13px;font-weight:700;color:var(--danger);white-space:nowrap;}
+.trip-check{display:flex;gap:9px;align-items:flex-start;padding:6px 0;}
+.trip-check > span{font-weight:700;line-height:1.5;}
+.trip-check.ok > span{color:var(--success);} .trip-check.bad > span{color:var(--danger);}
+.trip-check b{display:block;font-size:12.8px;color:var(--navy);font-weight:600;}
+.trip-check div span{display:block;font-size:12px;color:var(--ink-soft);margin-top:1px;}
+.trip-check.ok b{font-weight:500;color:#37394A;}
+.crisis-card{padding:16px 18px;background:#FDF3F1;border-left:4px solid var(--danger);}
+.crisis-card .crisis-when{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--danger);margin-bottom:6px;}
+.crisis-card p{font-size:13px;color:#37394A;margin:0;line-height:1.6;}
+.crisis-card .ask{margin-top:8px;font-weight:600;color:var(--navy);}
+.crisis-sig{padding:12px 14px;margin-bottom:8px;}
+.crisis-sig .from{display:block;font-size:11.5px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.crisis-sig p{font-size:12.8px;color:#37394A;margin:0 0 8px;line-height:1.5;}
+.crisis-sig .pick{display:flex;gap:8px;flex-wrap:wrap;}
+.crisis-sig select{flex:1;min-width:180px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:12.8px;font-family:inherit;background:#fff;}
+.trip-check div span.why{color:#37394A;font-style:italic;margin-top:3px;}
 /* the brief above the calendar: two short columns, so the week gets the height */
 .cal-brief{border-left:4px solid var(--orange);background:#FDFAF6;border-radius:10px;padding:10px 14px 11px;margin-bottom:10px;}
 .cal-brief .lead{font-size:12.5px;color:#37394A;margin:0 0 7px;line-height:1.5;}
@@ -2640,6 +2679,32 @@ body::before{opacity:.40;}
 @media print{
   .topbar,.btn-primary,.btn-navy{background-image:none;box-shadow:none;}
 }
+/* Day 1 Preference Trackers: an Excel-style workbook (one sheet per tracker). */
+.xl-book{--xl-accent:#217346;--xl-grid:#E1E4EA;--xl-head:#F3F4F8;border:1px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden;font-size:13px;margin:4px 0 12px;}
+.xl-tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line);background:#F8F9FC;}
+.xl-tools .xl-hint{margin-left:auto;font-size:11.5px;color:var(--ink-soft);}
+.xl-fbar{display:flex;align-items:stretch;border-bottom:1px solid var(--line);background:var(--paper);}
+.xl-name{width:72px;flex:none;padding:6px 8px;border-right:1px solid var(--line);font:600 12.5px 'IBM Plex Mono',monospace;color:var(--navy);text-align:center;}
+.xl-fx{flex:none;padding:6px 10px;border-right:1px solid var(--line);font-style:italic;font-family:Georgia,serif;color:var(--ink-soft);}
+.xl-formula{flex:1;min-width:0;border:0;outline:0;padding:6px 10px;font:13px var(--font-ui);color:var(--ink);background:transparent;}
+.xl-scroll{overflow:auto;max-height:340px;outline:none;}
+.xl-grid{border-collapse:separate;border-spacing:0;table-layout:fixed;}
+.xl-grid th,.xl-grid td{border-right:1px solid var(--xl-grid);border-bottom:1px solid var(--xl-grid);height:26px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.xl-grid thead th{position:sticky;top:0;z-index:2;background:var(--xl-head);font-weight:500;font-size:11.5px;color:var(--ink-soft);text-align:center;}
+.xl-grid th.xl-rh{position:sticky;left:0;z-index:1;background:var(--xl-head);font-weight:500;font-size:11.5px;color:var(--ink-soft);text-align:center;width:40px;}
+.xl-grid thead th.xl-corner{left:0;z-index:3;}
+.xl-grid th.xl-on{background:#DDE8E1;color:var(--xl-accent);font-weight:700;}
+.xl-grid td{background:var(--paper);color:var(--ink);font-weight:400;font-size:13px;cursor:cell;position:relative;}
+.xl-grid tr.xl-hdr td{font-weight:700;color:var(--navy);background:#FAFBFD;}
+.xl-grid td.xl-sel{outline:2px solid var(--xl-accent);outline-offset:-2px;z-index:1;}
+.xl-grid td.xl-edit{padding:0;overflow:visible;}
+.xl-grid td input.xl-editor{width:100%;height:100%;border:0;outline:2px solid var(--xl-accent);outline-offset:-2px;padding:0 6px;font:inherit;background:#fff;color:var(--ink);}
+.xl-tabs{display:flex;align-items:stretch;gap:0;border-top:1px solid var(--line);background:#F3F4F8;overflow-x:auto;}
+.xl-tab{border:0;border-right:1px solid var(--line);background:transparent;padding:7px 14px;font:500 12.5px var(--font-ui);color:var(--ink-soft);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;}
+.xl-tab:hover{background:#E9EBF2;}
+.xl-tab.active{background:var(--paper);color:var(--xl-accent);font-weight:700;border-bottom-color:var(--xl-accent);}
+.xl-status{display:flex;justify-content:space-between;padding:4px 10px;font-size:11.5px;color:var(--ink-soft);background:#F8F9FC;border-top:1px solid var(--line);}
+@media (max-width:640px){ .xl-tools .xl-hint{display:none;} .xl-scroll{max-height:300px;} }
 </style>
 <script src="/js/portal-gate.js?v=2026.10.08-admin"></script>
 </head>
@@ -2715,8 +2780,8 @@ const PRACTICE_TOOLS = [
    desc:"Check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind."},
   {id:"financial", icon:"Σ", title:"Trust Account, Invoices & Billing", relates:"Day 7",
    desc:"Reconcile a client trust ledger, audit a queue of invoices and bills, decide the right follow-up for every open invoice, then find the planted errors in a set of billing documents."},
-  {id:"accessincident8", icon:"🔐", title:"The Access & Incident Response Simulator", relates:"Day 8",
-   desc:"Audit who actually has too much system access, decide how to verify a caller before disclosing anything sensitive, then write your real containment response to an active confidentiality leak."},
+  {id:"accessincident8", icon:"🔐", title:"Access, Incident & Firm Crisis Simulator", relates:"Day 8",
+   desc:"Audit who actually has too much system access, verify a caller before disclosing anything sensitive, contain a confidentiality leak — then face a firm-level crisis: size the risk, recommend a course with its trade-offs in BLUF, and handle the client through the hard reply."},
   {id:"compliance9", icon:"📋", title:"Events, CLE & Reputation Tracker", relates:"Day 9",
    desc:"Write the invitation and registration form for a firm CLE seminar, catch unconfirmed registrants, turn a strategy call into clean meeting notes, spot who's behind on CLE hours, answer a negative review and track which awards deadlines are still open."},
   {id:"socialmedia10", icon:"📱", title:"Social Media Metrics Lab", relates:"Day 10",
@@ -3001,23 +3066,66 @@ const INVOICE_QUEUE = [
 ];
 
 /* ---------- 4. Travel Itinerary Planner (build-your-own) ---------- */
-const FLIGHT_PREFS = {
-  seat: "Aisle, near the front of the cabin — every time, no exceptions.",
-  routing: "Direct only — zero connections, regardless of cost difference.",
-  redeye: "No standing rule on record — use judgment based on what the next day demands.",
-  hotel: "No fixed chain preference on record — prioritize proximity to the day's main venue, and reconfirm strict Paleo / zero-dairy dining options before booking."
+/* ---------- 4b. Business travel: a trip that can actually go wrong ----------
+   The old version was a blank itinerary sheet for a family holiday — nothing in it
+   could be right or wrong, and the check looked for the word "aisle". This one has
+   fixed anchors (a tribunal's hearing time), a firm travel policy with caps, options
+   that each break something, and a cancellation the night before. */
+const TRIP_BRIEF = {
+  title: "Business Travel — Chicago arbitration, Thursday 9:00 AM",
+  text: "Elias is arguing a contested arbitration in Chicago on Thursday at 9:00 AM — the tribunal set the time and will not move it. He has a client meeting with Mr. Reyes in Chicago on Friday at 2:00 PM and flies home Friday evening. You are booking the whole trip: flights out on Wednesday, the hotel, the ground transport and the day sheet for Thursday.",
+  anchors: [
+    "Thursday 9:00 AM — arbitration hearing, Keller Center, downtown Chicago. Fixed by the tribunal.",
+    "Counsel must be in the room and checked in at least 30 minutes before the hearing.",
+    "Friday 2:00 PM — client meeting with Mr. Reyes, same city.",
+    "Wednesday 9:00–10:30 AM — he is on a client call here and cannot be in the air."
+  ],
+  policy: [
+    "Airfare cap $750 round trip. Above it needs the managing partner's written approval.",
+    "Hotel cap $320 a night, and court travel is booked refundable.",
+    "Direct flights only; a connection needs a written reason on file.",
+    "No redeye the night before he appears.",
+    "Aisle seat, near the front of the cabin — every time.",
+    "Strict Paleo, zero dairy."
+  ]
 };
-
-const TRAVEL_SCENARIO = {
-  title:"Personal Travel — The Thorne Family, Spain",
-  text:"Elias is taking Sarah, Leo (8), and Maya (5) to Spain for a week — Madrid, then Barcelona. Nothing is pre-built. Create the full itinerary sheet yourself: flights, lodging, and day notes for each leg, applying everything you know about how Elias travels."
+/* Each option breaks something, or costs something, or both. Nothing here is labelled. */
+const FLIGHT_OPTIONS = [
+  {id:"F1", carrier:"Meridian Air 428", route:"Nonstop", day:"Wednesday", dep:"2:10 PM", arr:"3:35 PM", stops:0, cabin:"Economy", seat:"Aisle 4C available", aisle:true, price:689, change:"Free changes up to 2 hours before departure"},
+  {id:"F2", carrier:"Meridian Air 101", route:"Nonstop", day:"Thursday", dep:"6:05 AM", arr:"7:30 AM", stops:0, cabin:"Economy", seat:"Aisle 7D available", aisle:true, price:512, change:"Changes $200"},
+  {id:"F3", carrier:"Gulfline 2217 / 884", route:"Connects in Charlotte — 55 minutes between flights", day:"Wednesday", dep:"4:00 PM", arr:"9:10 PM", stops:1, cabin:"Economy", seat:"Aisle on both legs", aisle:true, price:398, change:"Non-refundable, no changes"},
+  {id:"F4", carrier:"Meridian Air 902", route:"Nonstop — redeye", day:"Wednesday", dep:"11:40 PM", arr:"1:05 AM Thursday", stops:0, cabin:"Economy", seat:"Aisle 3C available", aisle:true, price:455, change:"Changes $150"},
+  {id:"F5", carrier:"Meridian Air 210", route:"Nonstop", day:"Wednesday", dep:"8:30 AM", arr:"9:55 AM", stops:0, cabin:"Economy", seat:"Aisle 2D available", aisle:true, price:705, change:"Free changes"},
+  {id:"F6", carrier:"Meridian Air 428", route:"Nonstop — first class", day:"Wednesday", dep:"2:10 PM", arr:"3:35 PM", stops:0, cabin:"First", seat:"Aisle 1C", aisle:true, price:1480, change:"Fully flexible"},
+  {id:"F7", carrier:"Northbound 55", route:"Nonstop", day:"Wednesday", dep:"7:50 PM", arr:"9:15 PM", stops:0, cabin:"Economy", seat:"Middle seats only — no aisle left", aisle:false, price:640, change:"Changes $100"},
+  {id:"F8", carrier:"Gulfline 1180 / 77", route:"Connects in Detroit — 2 hours between flights", day:"Wednesday", dep:"11:00 AM", arr:"5:05 PM", stops:1, cabin:"Economy", seat:"Aisle on both legs", aisle:true, price:540, change:"Changes $75"}
+];
+const HOTEL_OPTIONS = [
+  {id:"H1", name:"The Keller House", dist:"Across the street from the Keller Center — 2 min walk", price:412, room:"King, work desk", food:"Room service, kitchen will do Paleo on request", cancel:"Free cancellation until 6:00 PM day of arrival"},
+  {id:"H2", name:"Lakeside Court", dist:"8 min walk to the Keller Center", price:298, room:"King, work desk, quiet floor", food:"Breakfast à la carte — eggs, fruit, no dairy needed", cancel:"Free cancellation until 24 hours before"},
+  {id:"H3", name:"Airport Inn & Suites", dist:"35 min by car to the Keller Center, longer in morning traffic", price:179, room:"Double queen", food:"Free breakfast buffet — pastries, yoghurt, cereal", cancel:"Non-refundable, prepaid"},
+  {id:"H4", name:"Rowan Street Hotel", dist:"12 min walk to the Keller Center", price:305, room:"King", food:"No breakfast; cafés nearby", cancel:"Non-refundable, prepaid"},
+  {id:"H5", name:"The Benton", dist:"15 min by car to the Keller Center", price:265, room:"King, renovation on floors 3–6", food:"Restaurant closed for the renovation", cancel:"Free cancellation until 48 hours before"}
+];
+/* The Thursday day sheet the trainee lays out. "fixed" rows cannot be edited. */
+const TRIP_DAY_BLOCKS = [
+  {id:"wake", label:"Car collects him at the hotel", hint:"He is not walking with an exhibit case."},
+  {id:"arrive", label:"Arrives at the Keller Center", hint:"Counsel checks in 30 minutes before the hearing."},
+  {id:"prep", label:"Final run-through with co-counsel", hint:"Where does the prep actually happen?"},
+  {id:"hearing", label:"Arbitration hearing begins", fixed:"9:00 AM"},
+  {id:"debrief", label:"Debrief buffer after the hearing", hint:"Nothing booked hard against it."}
+];
+const TRIP_DISRUPTION = {
+  when:"Wednesday, 9:42 PM — he is already at the airport",
+  text:"The airline cancels the flight. Weather at the hub has grounded the fleet for the night; the counter is rebooking everyone onto the 11:20 AM Thursday nonstop, which lands two hours and twenty minutes AFTER the arbitration starts. The tribunal set that time and has refused one continuance in this matter already. Mr. Reyes, the client, is flying in from Dallas and does not know yet.",
+  ask:"You have the night. Work out how he is in that room at 8:30 AM, what you set running in parallel in case it fails, and what you tell him and the client — tonight, not in the morning."
 };
-const TRAVEL_REQUIREMENTS = [
-  {id:"seat", label:"Seat preference addressed (aisle, near the front)", keywords:["aisle"]},
-  {id:"direct", label:"No connecting flights noted", keywords:["direct","nonstop","non-stop","no connection","no layover"]},
-  {id:"dietary", label:"Dietary needs flagged (strict Paleo, zero dairy)", keywords:["paleo","dairy","dietary"]},
-  {id:"family", label:"Something age-appropriate planned for Leo and/or Maya", keywords:["leo","maya","kid","child","family-friendly","family friendly"]},
-  {id:"contingency", label:"A contingency / delay-monitoring note included somewhere", keywords:["delay","backup","rebook","contingency","monitor"]}
+const TRIP_RECOVERY = [
+  {id:"R1", label:"5:10 AM flight into Milwaukee, car service from there", detail:"Lands 6:55 AM. The drive is 90 minutes without traffic, and the morning build-up starts at 7:00. $340 plus $210 for the car."},
+  {id:"R2", label:"Car service overnight, leaving at 1:00 AM", detail:"Four hours forty-five minutes on the road, arriving around 5:45 AM. $820. He arrives having slept in a moving car before argument."},
+  {id:"R3", label:"Ask the tribunal to let him appear remotely", detail:"Has to be in writing tonight, with opposing counsel's position stated. They refused a continuance here once already; remote appearance is a different request, but it is still theirs to grant."},
+  {id:"R4", label:"Co-counsel in Chicago covers it and asks for a short continuance", detail:"She knows the file but has not argued it. The client has to consent, and the tribunal has refused once."},
+  {id:"R5", label:"Walk-up seat on the 6:00 AM nonstop — one left, middle, $930", detail:"Lands 7:25 AM, 35 minutes to the Keller Center. Breaks the fare cap and the aisle rule; needs the managing partner's approval tonight."}
 ];
 
 /* ---------- 5. Call Handling Studio ---------- */
@@ -5364,9 +5472,8 @@ function renderCompetencyStrip(){
   const any = prof.some(c=>c.score!==null);
   const band = (v)=> v>=85 ? "strong" : v>=70 ? "ok" : "build";
   return `<section class="comp-strip">
-    <div class="comp-strip-head"><h3>Competency profile</h3><span>Green 85%+ · Amber 70–84% · Orange = not yet</span></div>
-    ${any ? "" : `<p class="comp-strip-empty">Complete a Knowledge Check or a graded Practice Lab to see your competency profile.</p>`}
-    <div class="comp-strip-grid">${prof.map(c=>`<div class="comp-cell" title="${c.n} data point(s)">
+    <div class="comp-strip-head"><h3>Competency profile</h3><span>${any ? "" : "Fills in as Knowledge Checks and graded Practice Labs come back · "}Green 85%+ · Amber 70–84% · Orange = not yet</span></div>
+    <div class="comp-strip-grid">${prof.map(c=>`<div class="comp-cell" title="${esc(c.label)} — ${c.n} data point(s)">
         <div class="comp-cell-top"><span>${esc(c.label)}</span><b>${c.score===null ? "—" : c.score+"%"}</b></div>
         <div class="comp-track"><div class="comp-fill ${c.score===null?"none":band(c.score)}" style="width:${c.score||0}%"></div></div>
       </div>`).join("")}</div>
@@ -5437,14 +5544,19 @@ function renderDashboard(){
         ${renderFeedbackDashCard()}
         ${renderRankingCard()}
       </div></aside>
+          ${renderCompetencyStrip()}
           <div class="hero-actions bottom-actions">${[
-            resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : "",
+            (()=>{ // always on the dashboard: back to the saved place, or on to the next day when nothing is saved yet
+              const saved = resumeLabel();
+              const nd = DAYS.find(x=>x.id===nextDayId()) || DAYS[0];
+              const label = saved || (nd ? `Day ${nd.id} · ${nd.title}` : "");
+              const go = saved ? "resumeWhereLeftOff()" : (nd ? `goto('day',${nd.id})` : "");
+              return label ? `<button class="btn btn-primary resume-btn" onclick="${go}">▶ Resume where you left off <span>${esc(label)}</span></button>` : ""; })(),
             (()=>{ if(!state.traineeId) return ""; const c = certData();
               return c.eligible
                 ? `<button class="btn cert-hero-btn" onclick="downloadCertificatePdf(null)">🎓 Download my Certificate</button><button class="btn btn-ghost cert-hero-view" onclick="openCertificate()">View</button>`
                 : `<span class="cert-hero-locked" title="Pass all ${c.total} Knowledge Checks (70%+) to unlock">🎓 Certificate · ${c.passed}/${c.total} Knowledge Checks passed</span>`; })()
           ].join("")}</div>
-          ${renderCompetencyStrip()}
     </div>
 
   </div>
@@ -5598,7 +5710,7 @@ function renderSurpriseTaskCard(){
   const r = state.surpriseResult;
   if(r){
     return `
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#FFF4E8;border:1.5px solid var(--orange);">
+    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:rgba(255,244,232,.62);border:1.5px solid var(--orange);">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
         <div style="font-size:11px;color:var(--orange-deep);font-weight:700;text-transform:uppercase;letter-spacing:.03em;">🎲 Surprise Task — Day ${r.dayId} · Graded</div>
         <button class="btn btn-ghost btn-sm" onclick="closeSurpriseResult()">Close ✕</button>
@@ -8658,9 +8770,9 @@ async function initCalendar(body){
   toolState.calEdits = (await storeGet("calendar-edits")) || {};
   toolState.calCustomEvents = (await storeGet("calendar-custom")) || [];
   toolState.calDecisions = (await storeGet("calendar-decisions")) || {};
+  toolState.trip = (await storeGet("trip-plan")) || {day:{}};
   // Kept for the review and the report only — the trainee is never shown where the overlaps are.
   toolState.calBaseline = calFindConflicts(CAL_EVENTS).length;
-  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   renderCalendarBody(body);
 }
 
@@ -8669,7 +8781,6 @@ function renderCalendarBody(body){
   // function re-runs on every drag/drop, color change, or delete, and
   // without this, any text typed into other wizard parts would be lost.
   const savedCalPrompt = document.getElementById("calPromptInput") ? document.getElementById("calPromptInput").value : "";
-  const savedTravelAct = document.getElementById("travelActDraft") ? document.getElementById("travelActDraft").value : "";
   closeEventPopup();
   const events = calMergedEvents();
   // Overlaps are NOT marked for the trainee: finding them is the exercise. The check
@@ -8824,75 +8935,97 @@ function renderCalendarBody(body){
     <button class="btn btn-orange btn-sm" onclick="generateProactiveTasks()">Generate Proactive Tasks</button>
     <div id="proactiveResult" style="margin-top:14px;"></div>
   `;
+  const trip = toolState.trip || {};
   const partD = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Travel Management, Start to Finish</h3>
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
-      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
-      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
-      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">Build this the way you'd build a real one: real flight-search screenshots (linked), real direct booking links, real venue photos, real proximity research. Vague placeholders will show up as vague in the review.</p>
-    </div>
-
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Client Travel Preferences (reference)</h3>
-      <div class="pref-ref-grid">
-        <div><b>Seat</b><span>${esc(FLIGHT_PREFS.seat)}</span></div>
-        <div><b>Routing</b><span>${esc(FLIGHT_PREFS.routing)}</span></div>
-        <div><b>Redeye</b><span>${esc(FLIGHT_PREFS.redeye)}</span></div>
-        <div><b>Hotel</b><span>${esc(FLIGHT_PREFS.hotel)}</span></div>
+    <div class="cal-brief">
+      <p class="lead"><b>${esc(TRIP_BRIEF.title)}</b></p>
+      <p class="lead" style="margin-bottom:8px;">${esc(TRIP_BRIEF.text)}</p>
+      <div class="cal-brief-cols">
+        <div><h4>Fixed — these don't move</h4><ul>${TRIP_BRIEF.anchors.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>
+        <div><h4>Firm policy &amp; how he travels</h4><ul>${TRIP_BRIEF.policy.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>
       </div>
     </div>
 
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the review checks whether your notes actually match Elias's stated preferences.</p>
-    <div id="legList">${renderLegs()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
-    <div id="hotelList">${renderHotels()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
-    <div id="groundList">${renderGroundTransport()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
-    <div id="stopList">${renderStops()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addStop()">+ Add Stop</button>
-
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">ACT Practice — A Task Lands Mid-Planning</h3>
-      <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">While you're building this itinerary, David Reyes (Head of Litigation) emails you directly. Reply using the same <b>ACT</b> framework from Day 1 — Acknowledge, Clarify, Timeline.</p>
-      <div class="voice-note" style="background:var(--navy-deep);">
-        <span class="vn-time">David Reyes — 2:14 PM</span>
-        <p style="font-size:13px;color:#fff;margin:8px 0 0;line-height:1.6;">"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."</p>
-      </div>
-      <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your ACT email reply</label>
-      <textarea id="travelActDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Subject: ...&#10;&#10;David — ..."></textarea>
-      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewTravelActEmail()">Get Review</button>
-      <div id="travelActFeedback" style="margin-top:14px;"></div>
+    <h3 style="margin:18px 0 4px;color:var(--navy);font-size:15px;">1. Book the flight out</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Every one of these is really bookable. Pick the one you'd put in front of him, and say why in a line — if it breaks policy, your line is the written reason on file.</p>
+    <div class="opt-grid">
+      ${FLIGHT_OPTIONS.map(f=>`
+        <label class="opt-card ${trip.flight===f.id?'sel':''}">
+          <input type="radio" name="tripFlight" value="${f.id}" ${trip.flight===f.id?"checked":""} onchange="tripPick('flight','${f.id}')">
+          <div class="oc-head"><b>${esc(f.carrier)}</b><span class="oc-price">$${f.price}</span></div>
+          <div class="oc-row">${esc(f.day)} · ${esc(f.dep)} → ${esc(f.arr)}</div>
+          <div class="oc-row">${esc(f.route)}</div>
+          <div class="oc-row">${esc(f.cabin)} · ${esc(f.seat)}</div>
+          <div class="oc-row muted">${esc(f.change)}</div>
+        </label>`).join("")}
     </div>
+    <textarea id="tripFlightWhy" class="trip-why" placeholder="Why this flight — and if it breaks the cap, the seat rule or the direct-only rule, the reason you'd put on file…" oninput="tripNote('flightWhy', this.value)">${esc(trip.flightWhy||"")}</textarea>
 
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Review &amp; Export Travel Plan</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-primary btn-sm" id="travelReviewBtn" onclick="reviewItinerary()">Get Review</button>
-        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download Travel Plan as PDF</button>
+    <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">2. Book the hotel</h3>
+    <div class="opt-grid">
+      ${HOTEL_OPTIONS.map(h=>`
+        <label class="opt-card ${trip.hotel===h.id?'sel':''}">
+          <input type="radio" name="tripHotel" value="${h.id}" ${trip.hotel===h.id?"checked":""} onchange="tripPick('hotel','${h.id}')">
+          <div class="oc-head"><b>${esc(h.name)}</b><span class="oc-price">$${h.price}<small>/night</small></span></div>
+          <div class="oc-row">${esc(h.dist)}</div>
+          <div class="oc-row">${esc(h.room)}</div>
+          <div class="oc-row">${esc(h.food)}</div>
+          <div class="oc-row muted">${esc(h.cancel)}</div>
+        </label>`).join("")}
+    </div>
+    <textarea id="tripHotelWhy" class="trip-why" placeholder="Why this hotel — distance, what he eats, and what happens to the booking if the trip moves…" oninput="tripNote('hotelWhy', this.value)">${esc(trip.hotelWhy||"")}</textarea>
+
+    <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">3. Thursday, hour by hour</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Lay out the morning with the travel time in it, not around it. The hearing is the one time you can't change.</p>
+    <div class="card" style="padding:12px 16px;">
+      ${TRIP_DAY_BLOCKS.map(b=>`
+        <div class="trip-row">
+          <div><b>${esc(b.label)}</b>${b.hint?`<span>${esc(b.hint)}</span>`:""}</div>
+          ${b.fixed
+            ? `<span class="trip-fixed">${esc(b.fixed)}</span>`
+            : `<input type="time" value="${esc((trip.day&&trip.day[b.id])||"")}" onchange="tripDay('${b.id}', this.value)">`}
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-primary" style="margin-top:14px;" onclick="checkTripPlan()">Check My Trip Plan</button>
+    <div id="tripResult"></div>
+
+    <div id="tripCrisis" style="${trip.checked?"":"display:none;"}">
+      <h3 style="margin:26px 0 4px;color:var(--danger);font-size:15px;">4. It falls apart the night before</h3>
+      <div class="card crisis-card">
+        <span class="crisis-when">${esc(TRIP_DISRUPTION.when)}</span>
+        <p>${esc(TRIP_DISRUPTION.text)}</p>
+        <p class="ask">${esc(TRIP_DISRUPTION.ask)}</p>
       </div>
-      <div id="itinReview" style="margin-top:14px;"></div>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:14px 0 8px;"><b>Your call.</b> Pick what you're putting in motion first — then say what runs alongside it in case it fails.</p>
+      <div class="opt-grid one">
+        ${TRIP_RECOVERY.map(r=>`
+          <label class="opt-card ${trip.recovery===r.id?'sel':''}">
+            <input type="radio" name="tripRecovery" value="${r.id}" ${trip.recovery===r.id?"checked":""} onchange="tripPick('recovery','${r.id}')">
+            <div class="oc-head"><b>${esc(r.label)}</b></div>
+            <div class="oc-row">${esc(r.detail)}</div>
+          </label>`).join("")}
+      </div>
+      <label class="trip-lbl">Your action plan — the steps, tonight and tomorrow morning, who does each one, by when, and the fallback if your first move fails</label>
+      <textarea id="tripPlanDraft" class="trip-why tall" placeholder="Tonight, 9:45 PM — …&#10;Tonight, 10:15 PM — …&#10;If that fails by 5:30 AM — …" oninput="tripNote('plan', this.value)">${esc(trip.plan||"")}</textarea>
+      <label class="trip-lbl">The note to Elias — BLUF: the bottom line first, then what you've already done, then the one decision only he can make</label>
+      <textarea id="tripBlufDraft" class="trip-why" placeholder="Bottom line: you are in the room at 8:30. Here's how…" oninput="tripNote('bluf', this.value)">${esc(trip.bluf||"")}</textarea>
+      <label class="trip-lbl">The message to Mr. Reyes, the client — he's flying in from Dallas and doesn't know yet</label>
+      <textarea id="tripClientDraft" class="trip-why" placeholder="Mr. Reyes — …" oninput="tripNote('client', this.value)">${esc(trip.client||"")}</textarea>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+        <button class="btn btn-primary btn-sm" id="tripCrisisBtn" onclick="reviewTripCrisis()">Submit My Response</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download My Work</button>
+      </div>
+      <div id="tripCrisisResult" style="margin-top:14px;"></div>
     </div>
   `;
   body.innerHTML = renderToolWizard(3, [
     {label:"Calendar Conflict Resolver", html:partA},
     {label:"Daily Briefing Prompt", html:partB},
     {label:"Proactive EA Tasks", html:partC},
-    {label:"Travel Management", html:partD},
+    {label:"Travel & the Trip That Breaks", html:partD},
     crisisLabPart("calendar", "E. Live Crisis Roleplay — Calendar & Travel")
   ]);
   if(savedCalPrompt) document.getElementById("calPromptInput").value = savedCalPrompt;
-  if(savedTravelAct) document.getElementById("travelActDraft").value = savedTravelAct;
 }
 function toHex(c){
   if(c.startsWith("#")) return c;
@@ -9872,252 +10005,148 @@ function mapsDirectionsLink(origin, destination){
   return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
 }
 
-/* ---------- Flight Legs ---------- */
-function renderLegs(){
-  if(!toolState.travel.legs.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No flight legs yet.</p>`;
-  return toolState.travel.legs.map((l,i)=>{
-    const seatOk = /aisle/i.test(l.seat) && /(front|row [1-6]|bulkhead)/i.test(l.seat);
-    const directOk = l.direct;
-    return `
-    <div class="leg-card">
-      <button class="btn btn-ghost btn-sm rm" onclick="removeLeg(${i})">Remove</button>
-      <div class="field-grid-2">
-        <div class="fg-field"><label>Route</label><input type="text" value="${esc(l.route)}" oninput="updateLeg(${i},'route',this.value)" placeholder="JFK → MAD"></div>
-        <div class="fg-field"><label>Date</label><input type="date" value="${esc(l.date)}" oninput="updateLeg(${i},'date',this.value)"></div>
-        <div class="fg-field"><label>Seat assignment</label><input type="text" value="${esc(l.seat)}" oninput="updateLeg(${i},'seat',this.value); refreshLeg(${i});" placeholder="e.g. 3A — Aisle, front of Business cabin"></div>
-        <div class="fg-field"><label>Routing</label>
-          <select onchange="updateLeg(${i},'direct',this.value==='direct'); refreshLeg(${i});">
-            <option value="direct" ${l.direct?"selected":""}>Direct</option>
-            <option value="connecting" ${!l.direct?"selected":""}>Connecting</option>
-          </select>
-        </div>
-        <div class="fg-field"><label>Flight-search screenshot (link)</label><input type="url" value="${esc(l.screenshotUrl)}" oninput="updateLeg(${i},'screenshotUrl',this.value); refreshLeg(${i});" placeholder="https://..."></div>
-        <div class="fg-field"><label>Direct booking link</label><input type="url" value="${esc(l.bookingLink)}" oninput="updateLeg(${i},'bookingLink',this.value)" placeholder="https://..."></div>
-      </div>
-      ${imgOrPlaceholder(l.screenshotUrl, "Flight search screenshot")}
-      <div class="pref-check">
-        <span class="pref-badge ${seatOk?'pref-ok':'pref-bad'}">${seatOk?"✓":"✕"} Aisle, front of cabin</span>
-        <span class="pref-badge ${directOk?'pref-ok':'pref-bad'}">${directOk?"✓":"✕"} Direct routing</span>
-      </div>
-      <div class="fg-field" style="margin-top:10px;"><label>Notes</label><textarea oninput="updateLeg(${i},'notes',this.value)" style="min-height:50px;">${esc(l.notes)}</textarea></div>
-    </div>`;
-  }).join("");
-}
-function addLeg(){
-  toolState.travel.legs.push({route:"", date:"", seat:"", direct:true, screenshotUrl:"", bookingLink:"", notes:""});
-  document.getElementById("legList").innerHTML = renderLegs();
-}
-window.addLeg = addLeg;
-function removeLeg(i){
-  toolState.travel.legs.splice(i,1);
-  document.getElementById("legList").innerHTML = renderLegs();
-}
-window.removeLeg = removeLeg;
-function updateLeg(i,field,value){ toolState.travel.legs[i][field]=value; }
-window.updateLeg = updateLeg;
-function refreshLeg(i){ document.getElementById("legList").innerHTML = renderLegs(); }
-window.refreshLeg = refreshLeg;
+/* ---------- Business travel: choices, a day sheet, and the night it falls apart ---------- */
+function tripState(){ toolState.trip = toolState.trip || {day:{}}; toolState.trip.day = toolState.trip.day || {}; return toolState.trip; }
+async function tripSave(){ await storeSet("trip-plan", toolState.trip); }
+function tripPick(field, id){ const t = tripState(); t[field] = id; tripSave(); document.querySelectorAll(`input[name="trip${field.charAt(0).toUpperCase()+field.slice(1)}"]`).forEach(inp=>inp.closest(".opt-card").classList.toggle("sel", inp.value===id)); }
+window.tripPick = tripPick;
+function tripNote(field, value){ const t = tripState(); t[field] = value; clearTimeout(toolState.tripSaveTimer); toolState.tripSaveTimer = setTimeout(tripSave, 800); }
+window.tripNote = tripNote;
+function tripDay(id, value){ const t = tripState(); t.day[id] = value; tripSave(); }
+window.tripDay = tripDay;
+function tripMinutes(hhmm){ if(!hhmm) return null; const [h,m] = hhmm.split(":").map(Number); return h*60+m; }
+/* "8:30 AM" → minutes after midnight (null when the text carries a next-day note it can't place) */
+function tripClock(txt){ const m = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(String(txt).trim()); if(!m) return null; let h = +m[1] % 12; if(/PM/i.test(m[3])) h += 12; return h*60 + +m[2]; }
+function tripFmt(hhmm){ const mins = tripMinutes(hhmm); if(mins===null) return "(not set)"; const h = Math.floor(mins/60), m = mins%60; const ap = h>=12?"PM":"AM"; const h12 = h>12?h-12:(h===0?12:h); return `${h12}:${String(m).padStart(2,"0")} ${ap}`; }
 
-/* ---------- Hotel Accommodation ---------- */
-function renderHotels(){
-  if(!toolState.travel.hotels.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No hotels added yet.</p>`;
-  return toolState.travel.hotels.map((h,i)=>`
-    <div class="leg-card">
-      <button class="btn btn-ghost btn-sm rm" onclick="removeHotel(${i})">Remove</button>
-      <div class="field-grid-2">
-        <div class="fg-field"><label>Hotel name</label><input type="text" value="${esc(h.name)}" oninput="updateHotel(${i},'name',this.value)" placeholder="e.g. Hotel Villa Magna, Madrid"></div>
-        <div class="fg-field"><label>Address</label><input type="text" value="${esc(h.address)}" oninput="updateHotel(${i},'address',this.value)"></div>
-        <div class="fg-field"><label>Check-in</label><input type="date" value="${esc(h.checkin)}" oninput="updateHotel(${i},'checkin',this.value)"></div>
-        <div class="fg-field"><label>Check-out</label><input type="date" value="${esc(h.checkout)}" oninput="updateHotel(${i},'checkout',this.value)"></div>
-        <div class="fg-field"><label>Room type</label><input type="text" value="${esc(h.roomType)}" oninput="updateHotel(${i},'roomType',this.value)" placeholder="e.g. Two-bedroom suite, sleeps 4"></div>
-        <div class="fg-field"><label>Confirmation number</label><input type="text" value="${esc(h.confirmation)}" oninput="updateHotel(${i},'confirmation',this.value)"></div>
-        <div class="fg-field"><label>Booking link</label><input type="url" value="${esc(h.bookingLink)}" oninput="updateHotel(${i},'bookingLink',this.value)" placeholder="https://..."></div>
-        <div class="fg-field"><label>Booking screenshot (link)</label><input type="url" value="${esc(h.screenshotUrl)}" oninput="updateHotel(${i},'screenshotUrl',this.value); refreshHotel(${i});" placeholder="https://..."></div>
-      </div>
-      ${imgOrPlaceholder(h.screenshotUrl, "Hotel booking screenshot")}
-      <div class="fg-field" style="margin-top:10px;"><label>Notes</label><textarea oninput="updateHotel(${i},'notes',this.value)" style="min-height:50px;" placeholder="Room size for a family of 4, dietary accommodation confirmed with the hotel, etc.">${esc(h.notes)}</textarea></div>
-    </div>`).join("");
-}
-function addHotel(){
-  toolState.travel.hotels.push({name:"", address:"", checkin:"", checkout:"", roomType:"", confirmation:"", bookingLink:"", screenshotUrl:"", notes:""});
-  document.getElementById("hotelList").innerHTML = renderHotels();
-}
-window.addHotel = addHotel;
-function removeHotel(i){
-  toolState.travel.hotels.splice(i,1);
-  document.getElementById("hotelList").innerHTML = renderHotels();
-}
-window.removeHotel = removeHotel;
-function updateHotel(i,field,value){ toolState.travel.hotels[i][field]=value; }
-window.updateHotel = updateHotel;
-function refreshHotel(i){ document.getElementById("hotelList").innerHTML = renderHotels(); }
-window.refreshHotel = refreshHotel;
-
-/* ---------- Ground Transportation ---------- */
-function renderGroundTransport(){
-  if(!toolState.travel.groundTransport.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No ground transportation added yet.</p>`;
-  return toolState.travel.groundTransport.map((g,i)=>`
-    <div class="leg-card">
-      <button class="btn btn-ghost btn-sm rm" onclick="removeGroundTransport(${i})">Remove</button>
-      <div class="field-grid-2">
-        <div class="fg-field"><label>Type</label>
-          <select onchange="updateGroundTransport(${i},'type',this.value)">
-            <option value="Private car service" ${g.type==="Private car service"?"selected":""}>Private car service</option>
-            <option value="Rental car" ${g.type==="Rental car"?"selected":""}>Rental car</option>
-            <option value="Rideshare" ${g.type==="Rideshare"?"selected":""}>Rideshare</option>
-            <option value="Train" ${g.type==="Train"?"selected":""}>Train</option>
-            <option value="Other" ${g.type==="Other"?"selected":""}>Other</option>
-          </select>
-        </div>
-        <div class="fg-field"><label>Date &amp; time</label><input type="text" value="${esc(g.datetime)}" oninput="updateGroundTransport(${i},'datetime',this.value)" placeholder="e.g. Jun 14, 2:30 PM"></div>
-        <div class="fg-field"><label>From</label><input type="text" value="${esc(g.from)}" oninput="updateGroundTransport(${i},'from',this.value)" placeholder="e.g. Madrid–Barajas Airport"></div>
-        <div class="fg-field"><label>To</label><input type="text" value="${esc(g.to)}" oninput="updateGroundTransport(${i},'to',this.value)" placeholder="e.g. Hotel Villa Magna"></div>
-        <div class="fg-field"><label>Confirmation / booking link</label><input type="url" value="${esc(g.bookingLink)}" oninput="updateGroundTransport(${i},'bookingLink',this.value)" placeholder="https://..."></div>
-      </div>
-      <div class="fg-field" style="margin-top:10px;"><label>Notes</label><textarea oninput="updateGroundTransport(${i},'notes',this.value)" style="min-height:50px;" placeholder="Car seat needed for Maya (age 5), driver contact number, etc.">${esc(g.notes)}</textarea></div>
-    </div>`).join("");
-}
-function addGroundTransport(){
-  toolState.travel.groundTransport.push({type:"Private car service", datetime:"", from:"", to:"", bookingLink:"", notes:""});
-  document.getElementById("groundList").innerHTML = renderGroundTransport();
-}
-window.addGroundTransport = addGroundTransport;
-function removeGroundTransport(i){
-  toolState.travel.groundTransport.splice(i,1);
-  document.getElementById("groundList").innerHTML = renderGroundTransport();
-}
-window.removeGroundTransport = removeGroundTransport;
-function updateGroundTransport(i,field,value){ toolState.travel.groundTransport[i][field]=value; }
-window.updateGroundTransport = updateGroundTransport;
-
-/* ---------- Itinerary Stops ---------- */
-function renderStops(){
-  if(!toolState.travel.stops.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No stops yet.</p>`;
-  return toolState.travel.stops.map((s,i)=>`
-    <div class="stop-card">
-      <button class="btn btn-ghost btn-sm rm" onclick="removeStop(${i})">Remove</button>
-      <div class="field-grid-2">
-        <div class="fg-field"><label>Venue / activity</label><input type="text" value="${esc(s.venue)}" oninput="updateStop(${i},'venue',this.value)"></div>
-        <div class="fg-field"><label>Address</label><input type="text" value="${esc(s.address)}" oninput="updateStop(${i},'address',this.value)"></div>
-        <div class="fg-field"><label>Hotel (for proximity)</label><input type="text" value="${esc(s.hotel)}" oninput="updateStop(${i},'hotel',this.value)"></div>
-        <div class="fg-field"><label>Est. travel time from hotel</label><input type="text" value="${esc(s.travelTime)}" oninput="updateStop(${i},'travelTime',this.value)" placeholder="e.g. 12 min by car"></div>
-        <div class="fg-field"><label>Venue photo (link)</label><input type="url" value="${esc(s.photoUrl)}" oninput="updateStop(${i},'photoUrl',this.value); refreshStop(${i});" placeholder="https://..."></div>
-        <div class="fg-field"><label>Direct link (menu / booking / info)</label><input type="url" value="${esc(s.link)}" oninput="updateStop(${i},'link',this.value)" placeholder="https://..."></div>
-      </div>
-      <div class="stop-photo-grid">
-        ${imgOrPlaceholder(s.photoUrl, "Venue photo")}
-        <div class="fg-field"><label>Why this fits the trip</label>
-          <textarea oninput="updateStop(${i},'insight',this.value)" style="min-height:100px;" placeholder="Client-relevant reasoning — not just &quot;nice restaurant&quot;">${esc(s.insight)}</textarea>
-        </div>
-      </div>
-      ${s.address && s.hotel ? `<a href="${mapsDirectionsLink(s.hotel, s.address)}" target="_blank" rel="noopener" class="directions-link">↗ Check directions from hotel</a>` : ""}
-    </div>
-  `).join("");
-}
-function addStop(){
-  toolState.travel.stops.push({venue:"", address:"", hotel:"", travelTime:"", photoUrl:"", link:"", insight:""});
-  document.getElementById("stopList").innerHTML = renderStops();
-}
-window.addStop = addStop;
-function removeStop(i){
-  toolState.travel.stops.splice(i,1);
-  document.getElementById("stopList").innerHTML = renderStops();
-}
-window.removeStop = removeStop;
-function updateStop(i,field,value){ toolState.travel.stops[i][field]=value; }
-window.updateStop = updateStop;
-function refreshStop(i){ document.getElementById("stopList").innerHTML = renderStops(); }
-window.refreshStop = refreshStop;
-
-/* ---------- AI Review ---------- */
-async function reviewItinerary(){
-  const el = document.getElementById("itinReview");
-  const btn = document.getElementById("travelReviewBtn");
-  const { legs, hotels, groundTransport, stops } = toolState.travel;
-  if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
-  if(!(await useLabAttempt(3, "reviewItinerary"))) return;
-  btn.disabled = true;
-  el.innerHTML = `<div class="ai-loading">Reviewing for meticulousness and resourcefulness…</div>`;
-  const legsSummary = legs.map(l=>`- ${l.route||"(route TBD)"} on ${l.date||"(date TBD)"}, seat "${l.seat||"(not set)"}", ${l.direct?"direct":"connecting"}, screenshot: ${l.screenshotUrl?"provided":"MISSING"}, booking link: ${l.bookingLink?"provided":"MISSING"}. Notes: ${l.notes||"(none)"}`).join("\n");
-  const hotelsSummary = hotels.map(h=>`- ${h.name||"(hotel TBD)"} at ${h.address||"(address TBD)"}, ${h.checkin||"?"} to ${h.checkout||"?"}, room: ${h.roomType||"(not specified)"}, confirmation: ${h.confirmation?"provided":"MISSING"}, booking link: ${h.bookingLink?"provided":"MISSING"}. Notes: ${h.notes||"(none)"}`).join("\n");
-  const groundSummary = groundTransport.map(g=>`- ${g.type} from ${g.from||"(from TBD)"} to ${g.to||"(to TBD)"} at ${g.datetime||"(time TBD)"}, booking link: ${g.bookingLink?"provided":"MISSING"}. Notes: ${g.notes||"(none)"}`).join("\n");
-  const stopsSummary = stops.map(s=>`- ${s.venue||"(venue TBD)"} at ${s.address||"(address TBD)"}, ${s.travelTime||"(no travel time given)"} from ${s.hotel||"(no hotel given)"}. Photo: ${s.photoUrl?"provided":"MISSING"}. Link: ${s.link?"provided":"MISSING"}. Rationale: ${s.insight||"(none)"}`).join("\n");
-  try{
-    const report = await runRubricEvaluation(
-      "Travel Itinerary — Personal Family Trip",
-      `This is a personal family trip for the client, Elias Thorne, taking his wife Sarah and children Leo (8) and Maya (5) to Spain. Grade strictly on meticulous detail and resourcefulness — this is the hardest exercise in the program by design.\n\nCLIENT TRAVEL PREFERENCES (hard constraints):\n- Seat: ${FLIGHT_PREFS.seat}\n- Routing: ${FLIGHT_PREFS.routing}\n- Redeye: ${FLIGHT_PREFS.redeye}\n- Hotel: ${FLIGHT_PREFS.hotel}\n- Also relevant: strict Paleo diet, zero dairy for Elias; something age-appropriate should be planned for the kids; a car seat is needed for Maya (age 5) on any ground transportation.`,
-      `FLIGHT LEGS SUBMITTED:\n${legsSummary || "(none)"}\n\nHOTEL ACCOMMODATION SUBMITTED:\n${hotelsSummary || "(none)"}\n\nGROUND TRANSPORTATION SUBMITTED:\n${groundSummary || "(none)"}\n\nITINERARY STOPS SUBMITTED:\n${stopsSummary || "(none)"}`,
-      `Do the flights actually match seat/routing preferences? Does the hotel actually fit a family of four with specific room type/dates? Is ground transportation planned end-to-end including the car seat need? Are screenshots, confirmation numbers, and direct links present — missing evidence should be penalized heavily, since a real EA doesn't hand over an itinerary without proof of booking. Are venue/stop choices backed by real, client-specific reasoning (Paleo/dairy-free, age-appropriate for kids) rather than generic placeholders? Is travel time/proximity actually addressed? Overall: does this look like real research, or placeholder content?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Itinerary</b>` + renderEvaluationReport(report, 3);
-    toolState.travel.score = report.totalScore;
-    await bumpPracticeProgress("calendar", report.totalScore);
-    if(report.totalScore>=90) burstConfetti();
-  }catch(e){
-    el.innerHTML = renderAiErrorBlock(e, "Couldn't get a review");
-  }finally{
-    btn.disabled = false;
+/* The hard constraints — fixed times, caps and rules, checked without an AI call.
+   The trainee sees these only after they submit; nothing is flagged while they work. */
+function tripHardChecks(){
+  const t = tripState();
+  const f = FLIGHT_OPTIONS.find(x=>x.id===t.flight);
+  const h = HOTEL_OPTIONS.find(x=>x.id===t.hotel);
+  const d = t.day || {};
+  const HEARING = 9*60;
+  const checks = [];
+  const add = (ok, label, fix) => checks.push({ok, label, fix});
+  add(!!f, "A flight is booked", "No flight chosen.");
+  add(!!h, "A hotel is booked", "No hotel chosen.");
+  if(f){
+    add(f.day==="Wednesday", "He is on the ground the night before, not travelling on hearing morning",
+      `${f.carrier} gets in on ${f.day}. One delay on hearing morning and the tribunal starts without him.`);
+    add(f.stops===0, "Nonstop, as the policy requires", `${f.carrier} connects — ${f.route}. A missed connection the night before a fixed hearing is the whole trip.`);
+    add(f.price<=750, "Within the $750 fare cap", `$${f.price} is over the cap and needs the managing partner's written approval.`);
+    add(f.aisle, "Aisle seat, as he books every time", `${f.seat}.`);
+    add(!/redeye/i.test(f.route), "Not a redeye before he appears", "He argues the morning after a redeye.");
+    const dep = tripClock(f.dep), arr = tripClock(f.arr);
+    const inAirDuringCall = f.day==="Wednesday" && dep!==null && arr!==null && arr>dep && dep < 10*60+30 && arr > 9*60;
+    add(!inAirDuringCall, "Doesn't fly during Wednesday's 9:00–10:30 client call", `${f.carrier} is in the air ${f.dep}–${f.arr} Wednesday, through the client call.`);
   }
+  if(h){
+    const far = /35 min|15 min by car/.test(h.dist);
+    add(!far, "Hotel is walking distance from the Keller Center", `${h.name} is ${h.dist} — morning traffic decides whether he makes a fixed hearing.`);
+    add(h.price<=320, "Within the $320 a night cap", `$${h.price} a night is over the cap.`);
+    add(/Free cancellation/i.test(h.cancel), "Refundable, as court travel has to be", `${h.cancel} — if the trip moves, the firm eats it.`);
+    add(!/closed|renovation/i.test(h.food+h.room), "No renovation or closed restaurant to work around", `${h.name}: ${h.room}; ${h.food}.`);
+  }
+  const arrive = tripMinutes(d.arrive), car = tripMinutes(d.wake), prep = tripMinutes(d.prep), debrief = tripMinutes(d.debrief);
+  add(arrive!==null, "Thursday morning is laid out", "The day sheet is empty — no arrival time at the Keller Center.");
+  if(arrive!==null){
+    add(arrive <= HEARING-30, "At the Keller Center 30+ minutes before the hearing", `Arriving ${tripFmt(d.arrive)} for a 9:00 AM hearing — counsel checks in 30 minutes before.`);
+    if(car!==null) add(arrive-car >= 15, "Real travel time between the hotel and the hearing", `${tripFmt(d.wake)} to ${tripFmt(d.arrive)} doesn't cover the ride and the exhibit case.`);
+    else add(false, "The car to the Keller Center is on the sheet", "No pickup time — he is walking out of the hotel on hope.");
+    if(prep!==null) add(prep < HEARING && prep >= arrive, "The run-through happens after he arrives and before the hearing", `Prep at ${tripFmt(d.prep)} doesn't sit between arriving and 9:00 AM.`);
+    else add(false, "A final run-through is on the sheet", "No run-through with co-counsel before argument.");
+  }
+  add(debrief!==null && debrief >= HEARING, "A debrief buffer after the hearing", "Nothing held after the hearing — the client will want to talk and so will he.");
+  return {checks, f, h};
 }
-window.reviewItinerary = reviewItinerary;
+async function checkTripPlan(){
+  const t = tripState();
+  if(!t.flight || !t.hotel){ toast("Pick a flight and a hotel first."); return; }
+  const {checks} = tripHardChecks();
+  const passed = checks.filter(c=>c.ok).length;
+  const el = document.getElementById("tripResult");
+  el.innerHTML = `
+    <div class="card" style="padding:16px 18px;margin-top:14px;">
+      <b style="color:var(--navy);font-size:13.5px;">${passed} of ${checks.length} held up</b>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 10px;">These are the trip's hard constraints — the tribunal's time, the firm's caps, how he travels. Change anything above and check again; nothing is graded yet.</p>
+      ${checks.map(c=>`<div class="trip-check ${c.ok?'ok':'bad'}"><span>${c.ok?"✓":"✕"}</span><div><b>${esc(c.label)}</b>${c.ok?"":`<span>${esc(c.fix)}</span>`}</div></div>`).join("")}
+    </div>`;
+  t.checked = true;
+  t.hardScore = Math.round(passed/checks.length*100);
+  await tripSave();
+  document.getElementById("tripCrisis").style.display = "block";
+  toast("Now the night before…");
+}
+window.checkTripPlan = checkTripPlan;
 
-async function reviewTravelActEmail(){
-  const draft = document.getElementById("travelActDraft").value.trim();
-  const el = document.getElementById("travelActFeedback");
-  if(draft.length < 20){ toast("Write your ACT email first."); return; }
-  if(!(await useLabAttempt(3, "reviewTravelActEmail"))) return;
-  el.innerHTML = `<div class="ai-loading">Reviewing your ACT email…</div>`;
+function tripSummaryText(){
+  const t = tripState();
+  const {checks, f, h} = tripHardChecks();
+  const d = t.day||{};
+  const r = TRIP_RECOVERY.find(x=>x.id===t.recovery);
+  return [
+    `FLIGHT BOOKED: ${f ? `${f.carrier}, ${f.day} ${f.dep}–${f.arr}, ${f.route}, ${f.cabin}, ${f.seat}, $${f.price}, ${f.change}` : "none"}`,
+    `Trainee's reason: ${t.flightWhy || "(none written)"}`,
+    `HOTEL BOOKED: ${h ? `${h.name}, ${h.dist}, $${h.price}/night, ${h.room}, ${h.food}, ${h.cancel}` : "none"}`,
+    `Trainee's reason: ${t.hotelWhy || "(none written)"}`,
+    `THURSDAY DAY SHEET: car at ${tripFmt(d.wake)}; at the Keller Center ${tripFmt(d.arrive)}; run-through ${tripFmt(d.prep)}; hearing 9:00 AM (fixed); debrief ${tripFmt(d.debrief)}.`,
+    `HARD CONSTRAINTS: ${checks.filter(c=>c.ok).length} of ${checks.length} met. Missed: ${checks.filter(c=>!c.ok).map(c=>c.label).join("; ") || "none"}.`,
+    "",
+    `THE CANCELLATION: ${TRIP_DISRUPTION.text}`,
+    `FIRST MOVE CHOSEN: ${r ? r.label + " — " + r.detail : "none chosen"}`,
+    "",
+    `ACTION PLAN:\n${t.plan || "(not written)"}`,
+    "",
+    `NOTE TO ELIAS:\n${t.bluf || "(not written)"}`,
+    "",
+    `MESSAGE TO THE CLIENT, MR. REYES:\n${t.client || "(not written)"}`
+  ].join("\n");
+}
+async function reviewTripCrisis(){
+  const t = tripState();
+  if(!t.recovery){ toast("Choose what you're putting in motion first."); return; }
+  if((t.plan||"").trim().length < 40){ toast("Write the action plan — the steps, the owners, the fallback."); return; }
+  if((t.bluf||"").trim().length < 30 || (t.client||"").trim().length < 30){ toast("Write both messages — one to Elias, one to the client."); return; }
+  if(!(await useLabAttempt(3, "reviewTripCrisis"))) return;
+  const btn = document.getElementById("tripCrisisBtn");
+  const el = document.getElementById("tripCrisisResult");
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  el.innerHTML = `<div class="ai-loading">Reviewing the trip and how you handled the night…</div>`;
   try{
     const report = await runRubricEvaluation(
-      "ACT Framework Reply Email — Travel Logistics",
-      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}\n\nTHE TASK DAVID REYES (HEAD OF LITIGATION) SENT BY EMAIL:\n"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."\n\nNote: this email actually contains TWO separate asks tangled together (a hotel/IT security check, and a schedule cross-check against Elias's flight). A strong reply should separate them rather than answering as one blended task.`,
-      draft,
-      `Acknowledge — did they restate both threads (not just one), showing they understood what David actually needs? Clarify — did they ask only for genuinely missing information, rather than something they could reasonably confirm themselves (e.g. checking the hotel listing, checking the itinerary they're already building)? Timeline — is there a clear "by when" and "who owns it" for each thread? Tone/format — professional but efficient, appropriate for a busy Head of Litigation?`
+      "Business travel under pressure — a fixed hearing and a cancelled flight",
+      `The trainee EA booked a work trip for Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group) around an arbitration the tribunal set for Thursday 9:00 AM in Chicago, with a client meeting the next day. The firm caps airfare at $750 and hotels at $320 a night, requires nonstop flights and refundable court-travel bookings, and Elias takes an aisle near the front, no redeye before he appears, strict Paleo and zero dairy. On Wednesday night the flight was cancelled; the airline's rebooking lands two hours after the hearing starts; the tribunal has already refused one continuance; the client, Mr. Reyes, is flying in from Dallas and has not been told.\n\nWHAT THE TRAINEE DID:\n${tripSummaryText()}`,
+      tripSummaryText(),
+      `Grade the judgment under pressure, not the tidiness. On the booking: did they put him on the ground the night before with real margin, keep inside the caps or write a reason that would actually stand up, and lay Thursday out with the travel time inside it rather than around it? Cheapest is not the answer when a tribunal's time is fixed; neither is the most expensive when a compliant option exists. On the night: does the plan actually get him in that room by 8:30, with times, owners and a named fallback running in PARALLEL rather than after the first move fails? A plan with one move and no backstop is a gamble, however good the move. Does it respect what is not theirs to decide — spending over the cap, a continuance, consenting to co-counsel arguing — by putting those to Elias or the client as a decision rather than assuming them? On the two messages: is the note to Elias genuinely BLUF (bottom line first, what is already done next, the single decision he owns last), short enough to read on a phone at 10 PM? Is the client message sent TONIGHT rather than in the morning, does it lead with where things stand and what the client should do, state the trade-off plainly, and avoid both panic and the over-promise ("he will definitely be there") that an EA cannot guarantee? Penalise blaming the airline, hiding the problem until morning, or any promise the trainee cannot keep. Credit a named cost, a named deadline, and a line that tells the client exactly what changes for them.`
     );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your ACT Email</b>` + renderEvaluationReport(report, 3);
+    toolState.tripReport = report;
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — The Trip and the Night It Broke</b>` + renderEvaluationReport(report, 3);
     await bumpPracticeProgress("calendar", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
   }catch(e){
     el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{
+    btn.disabled = false; btn.textContent = "Submit My Response";
   }
 }
-window.reviewTravelActEmail = reviewTravelActEmail;
+window.reviewTripCrisis = reviewTripCrisis;
 
 async function downloadTravelPdf(){
   await ensureTraineeName();
-  const { legs, hotels, groundTransport, stops } = toolState.travel;
-  if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
-  const lines = [`## ${TRAVEL_SCENARIO.title}`, TRAVEL_SCENARIO.text, "---", "## Flight Legs"];
-  legs.forEach(l=>{
-    lines.push(`${l.route || "(route TBD)"} — ${l.date || "(date TBD)"}`);
-    lines.push(`   Seat: ${l.seat || "(not set)"}   Routing: ${l.direct?"Direct":"Connecting"}`);
-    lines.push(`   Screenshot: ${l.screenshotUrl || "(none provided)"}`);
-    lines.push(`   Booking link: ${l.bookingLink || "(none provided)"}`);
-    if(l.notes) lines.push(`   Notes: ${l.notes}`);
-  });
-  lines.push("---", "## Hotel Accommodation");
-  hotels.forEach(h=>{
-    lines.push(`${h.name || "(hotel TBD)"} — ${h.address || "(address TBD)"}`);
-    lines.push(`   Check-in: ${h.checkin || "(not set)"}   Check-out: ${h.checkout || "(not set)"}   Room: ${h.roomType || "(not specified)"}`);
-    lines.push(`   Confirmation #: ${h.confirmation || "(none provided)"}   Booking link: ${h.bookingLink || "(none provided)"}`);
-    if(h.notes) lines.push(`   Notes: ${h.notes}`);
-  });
-  lines.push("---", "## Ground Transportation");
-  groundTransport.forEach(g=>{
-    lines.push(`${g.type} — ${g.from || "(from TBD)"} to ${g.to || "(to TBD)"} at ${g.datetime || "(time TBD)"}`);
-    lines.push(`   Booking link: ${g.bookingLink || "(none provided)"}`);
-    if(g.notes) lines.push(`   Notes: ${g.notes}`);
-  });
-  lines.push("---", "## Itinerary Stops");
-  stops.forEach(s=>{
-    lines.push(`${s.venue || "(venue TBD)"} — ${s.address || "(address TBD)"}`);
-    lines.push(`   From hotel (${s.hotel||"—"}): ${s.travelTime || "(not estimated)"}`);
-    lines.push(`   Photo: ${s.photoUrl || "(none provided)"}   Link: ${s.link || "(none provided)"}`);
-    if(s.insight) lines.push(`   Why it fits: ${s.insight}`);
-  });
-  if(typeof toolState.travel.score === "number"){
-    lines.push("---", `Review Score: ${toolState.travel.score}%`);
-  }
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Advanced Travel Itinerary — Elias Thorne", lines, "LSH_Travel_Itinerary");
+  const t = tripState();
+  if(!t.flight && !t.hotel){ toast("Book the trip first."); return; }
+  const {checks} = tripHardChecks();
+  const lines = [`## ${TRIP_BRIEF.title}`, TRIP_BRIEF.text, "---", "## What I Booked And Why"];
+  tripSummaryText().split("\n").forEach(l=>lines.push(l));
+  lines.push("---", "## Hard Constraints");
+  checks.forEach(c=>lines.push(`${c.ok?"MET":"MISSED"} — ${c.label}${c.ok?"":"  («"+c.fix+"»)"}`));
+  if(toolState.tripReport) lines.push("---", "## Review",
+    `Score: ${toolState.tripReport.totalScore}/100 (${toolState.tripReport.gradeTier})`,
+    ...(toolState.tripReport.strengths||[]).map(x=>`+ ${x}`),
+    ...(toolState.tripReport.blindspots||[]).map(x=>`- ${x}`));
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Business Travel — Chicago Arbitration", lines, "LSH_Travel_Plan");
 }
 window.downloadTravelPdf = downloadTravelPdf;
 
@@ -12397,7 +12426,7 @@ function renderAdmin(){
       <p>Trainers write each trainee's day-by-day feedback in <b>View Detail → Day-by-Day Feedback → ✍ Write feedback</b>, then click <b>Send to trainee</b>. Trainees only ever see feedback a trainer has sent.</p>
       <label><input type="checkbox" id="fbAutoDraft" ${(state.fbSettings && state.fbSettings.autoDraft)?"checked":""} onchange="saveFeedbackSettings()"> Optional: pre-fill a suggested draft (from the trainee's work) for trainers to edit — never sent automatically</label>
     </div>
-    <div class="card" style="padding:16px 18px;margin-bottom:20px;background:#FFF4E8;border-color:var(--orange-soft);">
+    <div class="card" style="padding:16px 18px;margin-bottom:20px;background:rgba(255,244,232,.62);border-color:var(--orange-soft);">
       <b style="color:var(--navy);font-size:13.5px;">🎲 Random Task Injection</b>
       <p style="font-size:12.5px;color:#5A4A32;margin:6px 0 12px;">Generates one unscripted task grounded in that day's actual lesson material and broadcasts it to every trainee currently on that day — an unannounced, real-time test of what they just learned. Timing is up to you; trigger it whenever fits the live session.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
@@ -15608,8 +15637,53 @@ const AI8_LEAK_SCENARIO = {
   text:"Twenty minutes ago, you accidentally CC'd a confidential settlement document to the wrong client entirely — not the intended recipient. You just noticed."
 };
 
-function initAccessIncident8(body){
+/* ---------- Firm Risk & Crisis Response (Day 8, parts D–F) ----------
+   The firm, not one email, is exposed: its largest client, privilege, the press and
+   an insurance deadline all land in one morning. The trainee sizes it, recommends a
+   course with its trade-offs, and handles the client — BLUF, framed professionally,
+   and then the hard reply. */
+const CRISIS_SCENARIO = {
+  when:"Monday, 7:40 AM — Elias lands from London at 11:15 AM",
+  title:"Privileged documents went to the other side",
+  text:"Last Friday the firm's production of 4,200 documents in Halvorsen Logistics v. Dunmore Freight went out to opposing counsel. Over the weekend an associate realised 63 of them were privileged — emails between Halvorsen's general counsel and the firm about settlement strategy. Halvorsen is the firm's largest client: 38% of last year's revenue. Elias is in the air until 11:15. You are the first person who has seen everything that follows."
+};
+/* What is landing this morning. Each has a right urgency and a right owner — the key the
+   triage is checked against, with the reason the trainee sees afterwards. */
+const CRISIS_SIGNALS = [
+  {id:"s1", from:"Opposing counsel — letter, 7:02 AM", text:"\"We are in receipt of documents that appear to be privileged. Under the protective order you have 10 business days to assert a clawback, failing which we will treat privilege as waived.\"",
+   urgency:"now", owner:"Head of Litigation", why:"The clawback is the single thing that can save the privilege, and its clock is already running. It goes to the litigator who can assert it today — not into a queue for Elias's return."},
+  {id:"s2", from:"Halvorsen's General Counsel — email, 7:15 AM", text:"\"Dunmore's counsel just mentioned 'your settlement memos' on a call. What did you send them? Call me.\"",
+   urgency:"now", owner:"Elias", why:"The client already knows something is wrong. Silence until 11:15 reads as hiding it. Elias owns this relationship; you get him the facts and a holding line the moment he lands, and the Head of Litigation calls in the meantime if Elias agrees."},
+  {id:"s3", from:"Front desk — 7:28 AM", text:"\"A reporter from Freight Law Weekly called asking whether we 'leaked the Halvorsen strategy'. I said someone would call back.\"",
+   urgency:"today", owner:"Marketing / communications", why:"Nobody comments to press on a client matter without the client's consent and the partner's sign-off. Today, through comms, with a holding line — and never before the client has heard it from the firm."},
+  {id:"s4", from:"Professional liability policy — clause 7.2", text:"\"The Insured shall give written notice of any circumstance that may give rise to a claim within 72 hours of becoming aware of it.\"",
+   urgency:"today", owner:"General Counsel / ethics partner", why:"Late notice can void the cover the firm may need. It runs from when the firm became aware — the associate's realisation on Saturday — so it is already ticking. The firm's GC owns the notice, not the EA."},
+  {id:"s5", from:"The associate — Slack DM, 7:31 AM", text:"\"I think I used the wrong review tag on the export. I'm so sorry. Should I email Dunmore's counsel and ask them to delete it?\"",
+   urgency:"now", owner:"Head of Litigation", why:"A well-meant email to the other side can make it worse — it can concede facts and undercut the clawback. Stop that message now and route it to the litigator who will handle the clawback properly."},
+  {id:"s6", from:"IT — ticket auto-update, 7:35 AM", text:"\"Export job 'HALV-PROD-03' completed Fri 4:51 PM by user m.okafor. Review-tag filter: none applied.\"",
+   urgency:"today", owner:"IT", why:"This is the record of what happened. It needs preserving today — logs, the export, the review set — before anyone tidies it. IT holds it; nobody edits it."},
+  {id:"s7", from:"Elias's calendar — 2:00 PM today", text:"\"Quarterly business review — Halvorsen Logistics, their offices.\"",
+   urgency:"today", owner:"Elias", why:"Walking into a QBR without having addressed this would be the worst version of the day. Whether it goes ahead, moves, or becomes the conversation is Elias's call — put the choice to him with your recommendation."},
+  {id:"s8", from:"Billing — 7:38 AM", text:"\"Halvorsen's October invoice ($184,000) is due out today. Send as usual?\"",
+   urgency:"wait", owner:"Elias", why:"Sending a six-figure bill the morning the client finds out is tone-deaf, and it doesn't have to go today. Hold it and let Elias decide — it is a quiet, cheap move that matters later."}
+];
+const CRISIS_URGENCY = {now:"Escalate now", today:"Handle today", wait:"Hold — it can wait"};
+const CRISIS_OWNERS = ["Elias","Head of Litigation","General Counsel / ethics partner","Marketing / communications","IT","Me (the EA)"];
+/* Three ways the firm could play the first 24 hours. None is free. */
+const CRISIS_OPTIONS = [
+  {id:"A", label:"Front-foot it: tell Halvorsen everything this morning",
+   detail:"Head of Litigation calls Halvorsen's GC before 9:00 with the facts known so far, the clawback being asserted today and a time Elias will call when he lands. Insurer and press handled in parallel."},
+  {id:"B", label:"Contain first: clawback and investigation, then brief the client",
+   detail:"Assert the clawback and investigate for 24–48 hours so the client hears a complete account with the fix in place. A holding acknowledgment to the GC's email this morning; the full conversation tomorrow."},
+  {id:"C", label:"Lead with the narrative: comms answers the reporter, legal follows",
+   detail:"Get ahead of the story with a statement to Freight Law Weekly this morning so the firm isn't defined by the leak, then work the client and the clawback."}
+];
+/* The reply that tests the framing: the client pushes back hard. */
+const CRISIS_PUSHBACK = "From: Dana Whitcombe, General Counsel, Halvorsen Logistics — 4:12 PM\n\n\"I appreciate the call, but let me be blunt. Our settlement position is now in Dunmore's hands. I want to know who did this, I want your fees on this matter written off, and I'm going to have to explain to my CEO why we shouldn't move this case — and everything else — to another firm. What exactly are you going to do?\"";
+
+async function initAccessIncident8(body){
   toolState.ai8 = {auditAnswers:{}, verifyAnswer:null, containmentDraft:""};
+  toolState.crisis = Object.assign({triage:{}}, (await storeGet("crisis-firm")) || {});
   toolState.wizardIndex = 0;
   const partA = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Least-Privilege Access Audit</h3>
@@ -15652,11 +15726,78 @@ function initAccessIncident8(body){
     <div id="ai8ContainmentResult" style="margin-top:14px;"></div>
     <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadAi8Pdf()">⬇ Download My Work</button>
   `;
+  const cr = toolState.crisis;
+  const crisisHead = `
+    <div class="card crisis-card" style="margin-bottom:14px;">
+      <span class="crisis-when">${esc(CRISIS_SCENARIO.when)}</span>
+      <b style="display:block;font-size:14px;color:var(--navy);margin-bottom:4px;">${esc(CRISIS_SCENARIO.title)}</b>
+      <p>${esc(CRISIS_SCENARIO.text)}</p>
+    </div>`;
+  const partD = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">D. The Firm Is Exposed — Size It</h3>
+    ${crisisHead}
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Eight things land before 8:00 AM. For each, decide how fast it moves and whose desk it goes to. Some of these will hurt the firm more if they're handled fast by the wrong person than slowly by the right one.</p>
+    ${CRISIS_SIGNALS.map(sg=>`
+      <div class="card crisis-sig">
+        <span class="from">${esc(sg.from)}</span>
+        <p>${esc(sg.text)}</p>
+        <div class="pick">
+          <select onchange="crisisTriage('${sg.id}','urgency',this.value)">
+            <option value="">How fast?</option>
+            ${Object.entries(CRISIS_URGENCY).map(([k,v])=>`<option value="${k}" ${(cr.triage[sg.id]||{}).urgency===k?"selected":""}>${esc(v)}</option>`).join("")}
+          </select>
+          <select onchange="crisisTriage('${sg.id}','owner',this.value)">
+            <option value="">Whose desk?</option>
+            ${CRISIS_OWNERS.map(o=>`<option value="${esc(o)}" ${(cr.triage[sg.id]||{}).owner===o?"selected":""}>${esc(o)}</option>`).join("")}
+          </select>
+        </div>
+      </div>`).join("")}
+    <button class="btn btn-primary btn-sm" style="margin-top:6px;" onclick="checkCrisisTriage()">Check My Triage</button>
+    <div id="crisisTriageResult" style="margin-top:12px;"></div>
+  `;
+  const partE = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">E. Your Recommendation &amp; the Action Plan</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias lands at 11:15 and will read one thing on the jet bridge. Three ways to play the first 24 hours — none of them free. Pick the one you'd recommend, then write it up so he can decide in two minutes.</p>
+    <div class="opt-grid one">
+      ${CRISIS_OPTIONS.map(o=>`
+        <label class="opt-card ${cr.option===o.id?'sel':''}">
+          <input type="radio" name="crisisOption" value="${o.id}" ${cr.option===o.id?"checked":""} onchange="crisisPick('${o.id}')">
+          <div class="oc-head"><b>${esc(o.id)}. ${esc(o.label)}</b></div>
+          <div class="oc-row">${esc(o.detail)}</div>
+        </label>`).join("")}
+    </div>
+    <label class="trip-lbl">The recommendation to Elias — BLUF: your recommendation in the first line; then what each option gains and costs; then the decisions only he can make, and by when</label>
+    <textarea id="crisisRecDraft" class="trip-why tall" placeholder="BOTTOM LINE: I recommend … because …&#10;&#10;Trade-offs: A … / B … / C …&#10;&#10;Needed from you by 11:45: …" oninput="crisisNote('rec', this.value)">${esc(cr.rec||"")}</textarea>
+    <label class="trip-lbl">The action plan — first two hours, the rest of today, this week. Each step with an owner and a deadline.</label>
+    <textarea id="crisisPlanDraft" class="trip-why tall" placeholder="By 8:30 — …  (owner: …)&#10;By 10:00 — …&#10;Today — …&#10;This week — …" oninput="crisisNote('plan', this.value)">${esc(cr.plan||"")}</textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" id="crisisRecBtn" onclick="reviewCrisisRecommendation()">Get Review</button>
+    <div id="crisisRecResult" style="margin-top:14px;"></div>
+  `;
+  const partF = `
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">F. The Client Conversation</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias has called Dana Whitcombe, Halvorsen's General Counsel, and wants the follow-up email in her inbox within the hour — you're drafting it for his signature. Lead with the bottom line. Say what happened as fact, what the firm has already done, what happens next and when, and what you need from her. Own it as the firm.</p>
+    <label class="trip-lbl">The email to Dana Whitcombe, for Elias's signature</label>
+    <textarea id="crisisClientDraft" class="trip-why tall" placeholder="Dana —&#10;&#10;Bottom line: …" oninput="crisisNote('client', this.value)">${esc(cr.client||"")}</textarea>
+    <div class="card crisis-card" style="margin-top:18px;">
+      <span class="crisis-when">She writes back</span>
+      <p style="white-space:pre-line;">${esc(CRISIS_PUSHBACK)}</p>
+    </div>
+    <label class="trip-lbl">Elias's reply — for his signature. Answer what she actually asked, hold the line where you have to, and keep the door open.</label>
+    <textarea id="crisisReplyDraft" class="trip-why tall" placeholder="Dana —" oninput="crisisNote('reply', this.value)">${esc(cr.reply||"")}</textarea>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+      <button class="btn btn-primary btn-sm" id="crisisClientBtn" onclick="reviewCrisisClient()">Submit for Review</button>
+      <button class="btn btn-navy btn-sm" onclick="downloadCrisisPdf()">⬇ Download My Work</button>
+    </div>
+    <div id="crisisClientResult" style="margin-top:14px;"></div>
+  `;
   body.innerHTML = renderToolWizard(8, [
     {label:"Least-Privilege Access Audit", html:partA},
     {label:"Verify Before You Disclose", html:partB},
     {label:"Contain the Leak", html:partC},
-    crisisLabPart("accessincident8", "D. Live Crisis Roleplay — Security Incidents")
+    {label:"The Firm Is Exposed — Size It", html:partD},
+    {label:"Recommendation & Action Plan", html:partE},
+    {label:"The Client Conversation", html:partF},
+    crisisLabPart("accessincident8", "G. Live Crisis Roleplay — Security Incidents")
   ]);
 }
 
@@ -15706,6 +15847,122 @@ async function reviewAi8Containment(){
   }
 }
 window.reviewAi8Containment = reviewAi8Containment;
+
+/* ---------- Firm Risk & Crisis Response: the functions ---------- */
+async function crisisSave(){ await storeSet("crisis-firm", toolState.crisis); }
+function crisisTriage(id, field, value){ const t = toolState.crisis.triage; t[id] = Object.assign({}, t[id], {[field]:value}); crisisSave(); }
+window.crisisTriage = crisisTriage;
+function crisisPick(id){ toolState.crisis.option = id; crisisSave(); document.querySelectorAll('input[name="crisisOption"]').forEach(inp=>inp.closest(".opt-card").classList.toggle("sel", inp.value===id)); }
+window.crisisPick = crisisPick;
+function crisisNote(field, value){ toolState.crisis[field] = value; clearTimeout(toolState.crisisTimer); toolState.crisisTimer = setTimeout(crisisSave, 800); }
+window.crisisNote = crisisNote;
+
+/* Triage is checked against a key — how fast, and whose desk — with the reason shown
+   for every signal, right or wrong. No AI call. */
+async function checkCrisisTriage(){
+  const t = toolState.crisis.triage;
+  const done = CRISIS_SIGNALS.filter(sg=>t[sg.id] && t[sg.id].urgency && t[sg.id].owner).length;
+  if(done < CRISIS_SIGNALS.length){ toast(`Decide all ${CRISIS_SIGNALS.length} — how fast, and whose desk.`); return; }
+  let pts = 0;
+  const rows = CRISIS_SIGNALS.map(sg=>{
+    const a = t[sg.id], uOk = a.urgency===sg.urgency, oOk = a.owner===sg.owner;
+    pts += (uOk?1:0) + (oOk?1:0);
+    return `<div class="trip-check ${uOk&&oOk?'ok':'bad'}"><span>${uOk&&oOk?"✓":"✕"}</span><div>
+      <b>${esc(sg.from)}</b>
+      <span>You: ${esc(CRISIS_URGENCY[a.urgency])} → ${esc(a.owner)}${uOk&&oOk?"":` · Better: ${esc(CRISIS_URGENCY[sg.urgency])} → ${esc(sg.owner)}`}</span>
+      <span class="why">${esc(sg.why)}</span></div></div>`;
+  }).join("");
+  const score = Math.round(pts / (CRISIS_SIGNALS.length*2) * 100);
+  toolState.crisis.triageScore = score;
+  await crisisSave();
+  document.getElementById("crisisTriageResult").innerHTML = `
+    <div class="card" style="padding:16px 18px;">
+      <b style="color:var(--navy);font-size:13.5px;">Triage: ${score}%</b>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 10px;">The three that move before Elias lands are the clawback clock, the client who already knows, and the associate about to email the other side. Everything else is today — through the person who owns it.</p>
+      ${rows}
+    </div>`;
+  await bumpPracticeProgress("accessincident8", score);
+  if(score===100) burstConfetti();
+}
+window.checkCrisisTriage = checkCrisisTriage;
+
+function crisisContext(){
+  const lines = CRISIS_SIGNALS.map(sg=>`- ${sg.from}: ${sg.text}`).join("\n");
+  return `THE SITUATION (${CRISIS_SCENARIO.when}):\n${CRISIS_SCENARIO.text}\n\nWHAT LANDED THIS MORNING:\n${lines}\n\nThe trainee is the managing partner's EA. Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group) is in the air until 11:15 AM. The firm has a Head of Litigation (who can assert the clawback), a General Counsel / ethics partner (who owns insurer notice and ethics duties), communications, and IT. The EA coordinates, drafts and escalates; legal decisions, money, press statements and anything said to the client are the partners' to make.`;
+}
+async function reviewCrisisRecommendation(){
+  const c = toolState.crisis;
+  if(!c.option){ toast("Pick the option you'd recommend first."); return; }
+  if((c.rec||"").trim().length < 60 || (c.plan||"").trim().length < 60){ toast("Write both — the recommendation and the action plan."); return; }
+  if(!(await useLabAttempt(8, "reviewCrisisRecommendation"))) return;
+  const btn = document.getElementById("crisisRecBtn"), el = document.getElementById("crisisRecResult");
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  el.innerHTML = `<div class="ai-loading">Reviewing your recommendation…</div>`;
+  const opt = CRISIS_OPTIONS.find(o=>o.id===c.option);
+  try{
+    const report = await runRubricEvaluation(
+      "Firm crisis — the recommendation memo and action plan",
+      `${crisisContext()}\n\nTHE THREE OPTIONS THE TRAINEE WEIGHED:\n${CRISIS_OPTIONS.map(o=>`${o.id}. ${o.label} — ${o.detail}`).join("\n")}\n\nTHE OPTION THE TRAINEE RECOMMENDED: ${opt.id}. ${opt.label}`,
+      `RECOMMENDATION TO ELIAS:\n${c.rec}\n\nACTION PLAN:\n${c.plan}`,
+      `Is the memo genuinely BLUF — the recommendation in the first line, readable on a phone in two minutes — rather than a narrative that builds to it? Does it set out the TRADE-OFFS of all three options honestly (what each gains, what it costs, what it risks), including the downside of the one recommended? Option A is the defensible default because the client already suspects and silence reads as concealment, but B can be argued if the trainee still gets a holding acknowledgment to the client this morning; C (press before client) is a serious misjudgment — penalise it unless the trainee explicitly sequences the client first. Does the action plan put the three urgent items first — asserting the clawback inside its window, stopping the associate's email to opposing counsel, and getting the client a response before Elias lands — and then today's: insurer notice within the 72-hour clause through the firm's GC, preserving the IT export logs, routing the reporter through comms with no comment before the client is told, and holding the invoice? Is every step owned by a named person with a deadline? Does the trainee keep to the EA's lane — coordinating, drafting, escalating — and put the partners' decisions (what to tell the client, the press, money) to them as decisions rather than making them? Penalise naming or blaming the associate, promising outcomes no one can guarantee, and anything that would waive privilege further.`
+    );
+    c.recReport = report; await crisisSave();
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Recommendation</b>` + renderEvaluationReport(report, 8);
+    await bumpPracticeProgress("accessincident8", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{
+    btn.disabled = false; btn.textContent = "Get Review";
+  }
+}
+window.reviewCrisisRecommendation = reviewCrisisRecommendation;
+
+async function reviewCrisisClient(){
+  const c = toolState.crisis;
+  if((c.client||"").trim().length < 80){ toast("Write the email to Dana first."); return; }
+  if((c.reply||"").trim().length < 60){ toast("Write Elias's reply to her pushback too."); return; }
+  if(!(await useLabAttempt(8, "reviewCrisisClient"))) return;
+  const btn = document.getElementById("crisisClientBtn"), el = document.getElementById("crisisClientResult");
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  el.innerHTML = `<div class="ai-loading">Reviewing the client exchange…</div>`;
+  try{
+    const report = await runRubricEvaluation(
+      "Firm crisis — the client exchange (BLUF, framing, the hard reply)",
+      `${crisisContext()}\n\nElias has called Dana Whitcombe, Halvorsen's General Counsel. The trainee drafted his follow-up email and then his reply to her pushback:\n\n${CRISIS_PUSHBACK}`,
+      `FOLLOW-UP EMAIL TO DANA (for Elias's signature):\n${c.client}\n\nELIAS'S REPLY TO HER PUSHBACK:\n${c.reply}`,
+      `The follow-up email: is it BLUF — where things stand and what is being done in the first two lines? Does it state what happened as FACT (63 privileged documents in Friday's production) without speculation, without minimising, and without naming or blaming the associate — the firm owns it? Does it say what has already been done (clawback asserted under the protective order, the other side put on notice, the export preserved), what happens next with dates, and what the firm needs from her? Does it avoid admitting legal liability or promising outcomes (\"privilege will be restored\") the firm cannot guarantee, and avoid anything that would waive privilege further? The reply to her pushback: does it answer each of her three demands directly rather than deflecting — who did this (the firm takes responsibility; the internal review is the firm's and names no one to the client), the fees (an EA's draft does not unilaterally write off fees: credit a reply that commits to addressing the matter's fees with her in a named conversation, or that defers a specific offer to Elias's decision — penalise either an outright refusal or a reflexive full write-off with no thought), and moving the work (acknowledges it is her right, makes the case to stay on the strength of the response, offers a specific next step such as a meeting with Elias and the Head of Litigation)? Tone: calm, accountable, not defensive, not grovelling, no corporate filler. Penalise blame, excuses, over-promising, or a reply that ignores what she asked.`
+    );
+    c.clientReport = report; await crisisSave();
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — The Client Exchange</b>` + renderEvaluationReport(report, 8);
+    await bumpPracticeProgress("accessincident8", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{
+    btn.disabled = false; btn.textContent = "Submit for Review";
+  }
+}
+window.reviewCrisisClient = reviewCrisisClient;
+
+async function downloadCrisisPdf(){
+  await ensureTraineeName();
+  const c = toolState.crisis;
+  const lines = [`## ${CRISIS_SCENARIO.title}`, CRISIS_SCENARIO.when, CRISIS_SCENARIO.text, "---", "## Triage"];
+  CRISIS_SIGNALS.forEach(sg=>{
+    const a = c.triage[sg.id] || {};
+    lines.push(`${sg.from}: ${a.urgency ? CRISIS_URGENCY[a.urgency] : "(not decided)"} → ${a.owner || "(no owner)"}${a.urgency===sg.urgency && a.owner===sg.owner ? "" : `   [key: ${CRISIS_URGENCY[sg.urgency]} → ${sg.owner}]`}`);
+  });
+  if(typeof c.triageScore==="number") lines.push(`Triage score: ${c.triageScore}%`);
+  const opt = CRISIS_OPTIONS.find(o=>o.id===c.option);
+  lines.push("---", "## Recommendation", `Recommended: ${opt ? opt.id+". "+opt.label : "(none chosen)"}`, c.rec || "(not written)", "", "## Action Plan", c.plan || "(not written)");
+  if(c.recReport) lines.push("", `Review: ${c.recReport.totalScore}/100 (${c.recReport.gradeTier})`);
+  lines.push("---", "## Email to Dana Whitcombe", c.client || "(not written)", "", "## Her reply", CRISIS_PUSHBACK, "", "## Elias's reply", c.reply || "(not written)");
+  if(c.clientReport) lines.push("", `Review: ${c.clientReport.totalScore}/100 (${c.clientReport.gradeTier})`,
+    ...(c.clientReport.strengths||[]).map(x=>`+ ${x}`), ...(c.clientReport.blindspots||[]).map(x=>`- ${x}`));
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Firm Crisis Response — Halvorsen Logistics", lines, "LSH_Firm_Crisis");
+}
+window.downloadCrisisPdf = downloadCrisisPdf;
 
 async function downloadAi8Pdf(){
   await ensureTraineeName();
@@ -16377,6 +16634,11 @@ window.downloadSocial10Pdf = downloadSocial10Pdf;
 
 function initDossier1(body){
   toolState.d1 = {dossierScore:undefined, trackerScore:undefined};
+  toolState.d1Book = d1xlNewBook(); toolState.d1xlSel = {r:1, c:0}; toolState.d1xlEdit = null;
+  // Trackers written as free text before the workbook existed: carry each one into its sheet.
+  const oldDrafts = (state.labDrafts||{}).dossier1 || {};
+  let migrated = false;
+  if(!oldDrafts.d1trkData) TRACKER_SECTIONS.forEach((_,si)=>{ const t = String(oldDrafts[`d1trk${si}`]||"").trim(); if(t){ toolState.d1Book.sheets[si].rows[1] = ["Notes (earlier draft)", t, "", ""]; migrated = true; } });
   toolState.calls = {};
   toolState.wizardIndex = 0;
   const partA = `
@@ -16396,12 +16658,9 @@ function initDossier1(body){
   `;
   const partB = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">B. Set Up the Preference Trackers</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn Elias's operational details into three live trackers, written in your own words, using the Client Profile page as your reference.</p>
-    ${TRACKER_SECTIONS.map((sec,si)=>`
-      <div style="margin-bottom:14px;">
-        <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">${esc(sec)}</label>
-        <textarea id="d1trk${si}" placeholder="Write this tracker in your own words…" style="width:100%;min-height:90px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;"></textarea>
-      </div>`).join("")}
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Same idea — turn Elias's operational details into three live trackers, in your own words, using the Client Profile page as your reference. It works like Excel: one sheet per tracker (tabs along the bottom), one preference per row. Click a cell and type; Enter, Tab and the arrow keys move between cells.</p>
+    <div id="d1xlHost"></div>
+    <textarea id="d1trkData" hidden aria-hidden="true"></textarea>
     <button class="btn btn-ghost btn-sm" onclick="checkD1Tracker()">Check My Trackers</button>
     <div id="d1TrackerResult" style="margin-top:8px;font-size:13px;"></div>
   `;
@@ -16438,7 +16697,321 @@ function initDossier1(body){
     {label:"ACT Email", html:partC},
     {label:"Gatekeeping Practice", html:partD}
   ]);
+  d1xlRender();
+  if(migrated) d1xlSave();
 }
+
+/* ---------- Part B: the preference trackers as an Excel-style workbook ----------
+   One sheet per tracker (TRACKER_SECTIONS), row 1 holds the column headers.
+   The whole workbook lives as JSON in the hidden #d1trkData textarea, so the
+   lab's usual autosave/restore keeps it like any other field. */
+const TRACKER_COLUMNS = {
+  "Travel Preferences": ["Preference", "Details", "Action / rule", "Last updated"],
+  "Inbox Preferences":  ["Preference", "Details", "Action / rule", "Last updated"],
+  "Meeting Rhythms":    ["Rhythm / rule", "Details", "Action / rule", "Last updated"]
+};
+const XL_COL_WIDTHS = [170, 250, 230, 110];
+const XL_START_ROWS = 8;
+const xlColLetter = (c)=>{ let s=""; c++; while(c>0){ const m=(c-1)%26; s=String.fromCharCode(65+m)+s; c=Math.floor((c-1)/26); } return s; };
+const xlToday = ()=>{ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; };
+
+function d1xlNewBook(){
+  return {active:0, sheets: TRACKER_SECTIONS.map(sec=>{
+    const cols = TRACKER_COLUMNS[sec] || ["Preference","Details","Action / rule","Last updated"];
+    return {name:sec, rows:[cols.slice(), ...Array.from({length:XL_START_ROWS}, ()=>cols.map(()=> ""))]};
+  })};
+}
+function d1xlBook(){
+  if(!toolState.d1Book) toolState.d1Book = d1xlNewBook();
+  return toolState.d1Book;
+}
+// Each tracker's text, as the old free-text box read: every filled cell below the header,
+// minus the "Last updated" dates (they hold no preference, only when it changed).
+function d1xlSheetText(si){
+  const sh = d1xlBook().sheets[si]; if(!sh) return "";
+  const last = sh.rows[0].length-1;
+  return sh.rows.slice(1).map(r=>r.filter((v,c)=>c!==last).map(v=>String(v||"").trim()).filter(Boolean).join(" — ")).filter(Boolean).join("\n");
+}
+function d1xlFilledRows(si){
+  const sh = d1xlBook().sheets[si];
+  if(!sh) return [];
+  const last = sh.rows[0].length-1;   // a date on its own is not a filled row
+  return sh.rows.slice(1).filter(r=>r.some((v,c)=>c!==last && String(v||"").trim()));
+}
+function d1xlSave(){
+  const ta = document.getElementById("d1trkData"); if(!ta) return;
+  const b = d1xlBook();
+  ta.value = JSON.stringify({active:b.active, sheets:b.sheets.map(s=>({name:s.name, rows:s.rows}))});
+  toolState.d1xlWriting = true;
+  ta.dispatchEvent(new Event("input", {bubbles:true}));   // the lab autosave picks it up from here
+  toolState.d1xlWriting = false;
+}
+// A saved workbook coming back (lab drafts restore the hidden field and fire "input").
+document.addEventListener("input", e=>{
+  if(!e.target || e.target.id!=="d1trkData" || toolState.d1xlWriting) return;
+  try{
+    const data = JSON.parse(e.target.value||"{}");
+    if(!Array.isArray(data.sheets)) return;
+    const book = d1xlNewBook();
+    book.sheets.forEach(sh=>{
+      const saved = data.sheets.find(s=>s && s.name===sh.name);
+      if(saved && Array.isArray(saved.rows) && saved.rows.length){
+        const w = sh.rows[0].length;
+        sh.rows = saved.rows.map(r=>Array.from({length:w}, (_,c)=>String((Array.isArray(r)?r[c]:"")??"")));
+      }
+    });
+    book.active = Math.min(Math.max(0, data.active|0), book.sheets.length-1);
+    toolState.d1Book = book; toolState.d1xlSel = {r:1, c:0};
+    d1xlRender();
+  }catch(err){}
+}, true);
+
+function d1xlSel(){ return toolState.d1xlSel || (toolState.d1xlSel = {r:1, c:0}); }
+function d1xlRender(){
+  const host = document.getElementById("d1xlHost"); if(!host) return;
+  const book = d1xlBook(), sh = book.sheets[book.active], sel = d1xlSel();
+  const nCols = sh.rows[0].length;
+  sel.r = Math.min(sel.r, sh.rows.length-1); sel.c = Math.min(sel.c, nCols-1);
+  host.innerHTML = `
+    <div class="xl-book">
+      <div class="xl-tools">
+        <button type="button" class="btn btn-ghost btn-sm" onclick="d1xlAddRow()">＋ Add row</button>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="d1xlDeleteRow()">− Delete row</button>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="downloadD1TrackerXlsx()">⬇ Download as Excel</button>
+        <span class="xl-hint">Click a cell and type · Enter / Tab / arrows to move · double-click to edit</span>
+      </div>
+      <div class="xl-fbar">
+        <div class="xl-name" data-xl="name" aria-label="Name box">${xlColLetter(sel.c)}${sel.r+1}</div>
+        <div class="xl-fx">fx</div>
+        <input class="xl-formula" data-xl="formula" aria-label="Formula bar" autocomplete="off" value="${esc(sh.rows[sel.r][sel.c]||"")}">
+      </div>
+      <div class="xl-scroll" tabindex="0" data-xl="scroll" role="grid" aria-label="${esc(sh.name)} sheet">
+        <table class="xl-grid">
+          <colgroup><col style="width:40px">${XL_COL_WIDTHS.slice(0,nCols).map(w=>`<col style="width:${w}px">`).join("")}</colgroup>
+          <thead><tr><th class="xl-corner"></th>${sh.rows[0].map((_,c)=>`<th data-col="${c}" class="${c===sel.c?'xl-on':''}">${xlColLetter(c)}</th>`).join("")}</tr></thead>
+          <tbody>${sh.rows.map((row,r)=>`<tr class="${r===0?'xl-hdr':''}"><th class="xl-rh ${r===sel.r?'xl-on':''}" data-row="${r}">${r+1}</th>${row.map((v,c)=>`<td data-r="${r}" data-c="${c}" class="${r===sel.r&&c===sel.c?'xl-sel':''}" title="${esc(v)}">${esc(v)}</td>`).join("")}</tr>`).join("")}</tbody>
+        </table>
+      </div>
+      <div class="xl-tabs" role="tablist">${book.sheets.map((s,i)=>`<button type="button" role="tab" class="xl-tab ${i===book.active?'active':''}" aria-selected="${i===book.active}" onclick="d1xlSheet(${i})">${esc(s.name)}</button>`).join("")}</div>
+      <div class="xl-status"><span data-xl="mode">Ready</span><span>${d1xlFilledRows(book.active).length} row(s) filled on this sheet</span></div>
+    </div>`;
+  const scroll = host.querySelector('[data-xl="scroll"]');
+  scroll.addEventListener("mousedown", d1xlMouseDown);
+  scroll.addEventListener("dblclick", e=>{ const td=e.target.closest("td[data-r]"); if(td) d1xlStartEdit(null); });
+  scroll.addEventListener("keydown", d1xlKeyDown);
+  scroll.addEventListener("paste", d1xlPaste);
+  const fx = host.querySelector('[data-xl="formula"]');
+  fx.addEventListener("input", ()=>{ const s=d1xlSel(); d1xlSetCell(s.r, s.c, fx.value, true); });
+  fx.addEventListener("keydown", e=>{
+    if(e.key==="Enter" || e.key==="Tab"){ e.preventDefault(); d1xlStamp(d1xlSel().r, d1xlSel().c); d1xlMove(e.key==="Tab"?0:(e.shiftKey?-1:1), e.key==="Tab"?(e.shiftKey?-1:1):0); d1xlFocusGrid(); }
+    else if(e.key==="Escape"){ e.preventDefault(); d1xlFocusGrid(); }
+  });
+  fx.addEventListener("change", ()=>{ const s=d1xlSel(); d1xlStamp(s.r, s.c); d1xlRefreshStatus(); });
+}
+function d1xlCell(r, c){ return document.querySelector(`#d1xlHost td[data-r="${r}"][data-c="${c}"]`); }
+function d1xlFocusGrid(){ const s=document.querySelector('#d1xlHost [data-xl="scroll"]'); if(s) s.focus({preventScroll:true}); }
+// Write one cell. live=true comes from the formula bar: update the cell in place, no re-render.
+function d1xlSetCell(r, c, v, live){
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  if(!sh.rows[r]) return;
+  sh.rows[r][c] = String(v);
+  const td = d1xlCell(r, c);
+  if(td && !td.classList.contains("xl-edit")){ td.textContent = v; td.title = v; }
+  d1xlSave();
+  d1xlRefreshStatus();
+  if(!live) d1xlUpdateBars();
+}
+// The "Last updated" column stamps itself when anything else on a data row changes.
+function d1xlStamp(r, c){
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  const last = sh.rows[0].length-1;
+  if(r<1 || c===last || !sh.rows[r]) return;
+  const stamp = sh.rows[r].slice(0,last).some(v=>String(v||"").trim()) ? xlToday() : "";   // an emptied row loses its date
+  if(sh.rows[r][last]!==stamp) d1xlSetCell(r, last, stamp);
+}
+function d1xlUpdateBars(){
+  const host = document.getElementById("d1xlHost"); if(!host) return;
+  const sh = d1xlBook().sheets[d1xlBook().active], s = d1xlSel();
+  const name = host.querySelector('[data-xl="name"]'); if(name) name.textContent = `${xlColLetter(s.c)}${s.r+1}`;
+  const fx = host.querySelector('[data-xl="formula"]'); if(fx && document.activeElement!==fx) fx.value = sh.rows[s.r][s.c]||"";
+  host.querySelectorAll("td.xl-sel").forEach(x=>x.classList.remove("xl-sel"));
+  host.querySelectorAll("th.xl-on").forEach(x=>x.classList.remove("xl-on"));
+  const td = d1xlCell(s.r, s.c); if(td){ td.classList.add("xl-sel"); td.scrollIntoView({block:"nearest", inline:"nearest"}); }
+  const ch = host.querySelector(`thead th[data-col="${s.c}"]`); if(ch) ch.classList.add("xl-on");
+  const rh = host.querySelector(`th.xl-rh[data-row="${s.r}"]`); if(rh) rh.classList.add("xl-on");
+}
+function d1xlSelect(r, c){
+  d1xlCommitEdit();
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  const s = d1xlSel();
+  s.r = Math.max(0, Math.min(r, sh.rows.length-1));
+  s.c = Math.max(0, Math.min(c, sh.rows[0].length-1));
+  d1xlUpdateBars();
+}
+function d1xlMove(dr, dc){
+  const sh = d1xlBook().sheets[d1xlBook().active], s = d1xlSel(), w = sh.rows[0].length;
+  let r = s.r+dr, c = s.c+dc;
+  if(dc && c>=w){ c=0; r++; } else if(dc && c<0){ c=w-1; r--; }
+  if(r>=sh.rows.length && dr>0){ d1xlAddRow(true); }   // Enter off the last row adds one, like a table
+  d1xlSelect(r, c);
+}
+function d1xlMouseDown(e){
+  const td = e.target.closest("td[data-r]");
+  if(!td || td.classList.contains("xl-edit")) return;
+  e.preventDefault();
+  const r = +td.dataset.r, c = +td.dataset.c, s = d1xlSel();
+  const again = s.r===r && s.c===c && !toolState.d1xlEdit;
+  d1xlSelect(r, c);
+  d1xlFocusGrid();
+  if(again && matchMedia("(pointer:coarse)").matches) d1xlStartEdit(null);   // a second tap edits on a phone
+}
+function d1xlStartEdit(initial){
+  const s = d1xlSel(), td = d1xlCell(s.r, s.c); if(!td || toolState.d1xlEdit) return;
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  const old = sh.rows[s.r][s.c]||"";
+  toolState.d1xlEdit = {r:s.r, c:s.c, old};
+  td.classList.add("xl-edit"); td.textContent = "";
+  const inp = document.createElement("input");
+  inp.className = "xl-editor"; inp.autocomplete = "off";
+  inp.value = initial===null ? old : initial;
+  td.appendChild(inp);
+  inp.focus({preventScroll:true});
+  inp.setSelectionRange(inp.value.length, inp.value.length);
+  const mode = document.querySelector('#d1xlHost [data-xl="mode"]'); if(mode) mode.textContent = initial===null ? "Edit" : "Enter";
+  inp.addEventListener("input", ()=>{ const fx=document.querySelector('#d1xlHost [data-xl="formula"]'); if(fx) fx.value = inp.value; });
+  inp.addEventListener("keydown", e=>{
+    const k = e.key;
+    if(k==="Escape"){ e.preventDefault(); d1xlCommitEdit(true); d1xlFocusGrid(); return; }
+    if(k==="Enter"){ e.preventDefault(); d1xlCommitEdit(); d1xlMove(e.shiftKey?-1:1, 0); d1xlFocusGrid(); return; }
+    if(k==="Tab"){ e.preventDefault(); d1xlCommitEdit(); d1xlMove(0, e.shiftKey?-1:1); d1xlFocusGrid(); return; }
+    // in "Enter" mode (started by typing) the arrows leave the cell, as in Excel
+    if(toolState.d1xlEdit && toolState.d1xlEdit.typed && /^Arrow/.test(k)){
+      e.preventDefault(); d1xlCommitEdit();
+      d1xlMove(k==="ArrowDown"?1:k==="ArrowUp"?-1:0, k==="ArrowRight"?1:k==="ArrowLeft"?-1:0); d1xlFocusGrid();
+    }
+  });
+  inp.addEventListener("blur", ()=>{ setTimeout(()=>{ if(toolState.d1xlEdit && toolState.d1xlEdit.input===inp) d1xlCommitEdit(); }, 0); });
+  toolState.d1xlEdit.input = inp;
+  toolState.d1xlEdit.typed = initial!==null;
+}
+function d1xlCommitEdit(cancel){
+  const ed = toolState.d1xlEdit; if(!ed) return;
+  toolState.d1xlEdit = null;
+  const v = cancel ? ed.old : ed.input.value;
+  const td = d1xlCell(ed.r, ed.c);
+  if(td){ td.classList.remove("xl-edit"); td.textContent = v; td.title = v; }
+  const mode = document.querySelector('#d1xlHost [data-xl="mode"]'); if(mode) mode.textContent = "Ready";
+  if(!cancel && v!==ed.old){ d1xlSetCell(ed.r, ed.c, v); d1xlStamp(ed.r, ed.c); d1xlRefreshStatus(); }
+}
+function d1xlRefreshStatus(){
+  const st = document.querySelector("#d1xlHost .xl-status span:last-child");
+  if(st) st.textContent = `${d1xlFilledRows(d1xlBook().active).length} row(s) filled on this sheet`;
+}
+function d1xlKeyDown(e){
+  if(toolState.d1xlEdit || e.target.classList.contains("xl-editor")) return;
+  const k = e.key;
+  const moves = {ArrowUp:[-1,0], ArrowDown:[1,0], ArrowLeft:[0,-1], ArrowRight:[0,1]};
+  if(moves[k]){ e.preventDefault(); const s=d1xlSel(); d1xlSelect(s.r+moves[k][0], s.c+moves[k][1]); return; }
+  if(k==="Enter"){ e.preventDefault(); d1xlMove(e.shiftKey?-1:1, 0); return; }
+  if(k==="Tab"){ e.preventDefault(); d1xlMove(0, e.shiftKey?-1:1); return; }
+  if(k==="F2"){ e.preventDefault(); d1xlStartEdit(null); return; }
+  if(k==="Delete" || k==="Backspace"){ e.preventDefault(); const s=d1xlSel(); d1xlSetCell(s.r, s.c, ""); d1xlStamp(s.r, s.c); d1xlRefreshStatus(); return; }
+  if(k.length===1 && !e.ctrlKey && !e.metaKey && !e.altKey){ e.preventDefault(); d1xlStartEdit(k); }
+}
+// Pasting rows/columns from Excel or Sheets (tab-separated) fills cells from the selected one.
+function d1xlPaste(e){
+  if(toolState.d1xlEdit) return;
+  const text = (e.clipboardData && e.clipboardData.getData("text/plain")) || "";
+  if(!text) return;
+  e.preventDefault();
+  const sh = d1xlBook().sheets[d1xlBook().active], s = d1xlSel(), w = sh.rows[0].length;
+  text.replace(/\r/g,"").replace(/\n$/,"").split("\n").forEach((line,i)=>{
+    const r = s.r+i;
+    while(r>=sh.rows.length) sh.rows.push(sh.rows[0].map(()=> ""));
+    line.split("\t").forEach((v,j)=>{ if(s.c+j<w) sh.rows[r][s.c+j] = v; });
+    d1xlStampRow(sh, r);
+  });
+  d1xlSave(); d1xlRender(); d1xlFocusGrid();
+}
+function d1xlStampRow(sh, r){
+  const last = sh.rows[0].length-1;
+  if(r>=1 && sh.rows[r].slice(0,last).some(v=>String(v||"").trim()) && !sh.rows[r][last]) sh.rows[r][last] = xlToday();
+}
+function d1xlAddRow(quiet){
+  d1xlCommitEdit();
+  const sh = d1xlBook().sheets[d1xlBook().active];
+  sh.rows.push(sh.rows[0].map(()=> ""));
+  d1xlSave(); d1xlRender();
+  if(!quiet){ d1xlSelect(sh.rows.length-1, 0); d1xlFocusGrid(); }
+}
+function d1xlDeleteRow(){
+  d1xlCommitEdit();
+  const sh = d1xlBook().sheets[d1xlBook().active], s = d1xlSel();
+  if(s.r===0){ toast("Row 1 holds the column headers — pick a data row to delete."); return; }
+  if(sh.rows.length<=2){ sh.rows[1] = sh.rows[0].map(()=> ""); }
+  else sh.rows.splice(s.r, 1);
+  d1xlSave(); d1xlRender(); d1xlFocusGrid();
+}
+function d1xlSheet(i){
+  d1xlCommitEdit();
+  const book = d1xlBook();
+  book.active = Math.max(0, Math.min(i, book.sheets.length-1));
+  toolState.d1xlSel = {r:1, c:0};
+  d1xlSave(); d1xlRender(); d1xlFocusGrid();
+}
+window.d1xlAddRow = d1xlAddRow; window.d1xlDeleteRow = d1xlDeleteRow; window.d1xlSheet = d1xlSheet;
+
+/* ---------- ⬇ Download as Excel: a real .xlsx (zip of SpreadsheetML), no library ---------- */
+function xlCrc32(bytes){
+  let t = xlCrc32.t;
+  if(!t){ t = xlCrc32.t = new Uint32Array(256); for(let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++) c = c&1 ? 0xEDB88320^(c>>>1) : c>>>1; t[n]=c>>>0; } }
+  let c = 0xFFFFFFFF;
+  for(let i=0;i<bytes.length;i++) c = t[(c^bytes[i])&0xFF]^(c>>>8);
+  return (c^0xFFFFFFFF)>>>0;
+}
+// Stored (uncompressed) zip: plenty for a few kilobytes of XML.
+function xlZip(files){
+  const enc = new TextEncoder(), parts = [], central = [];
+  let offset = 0;
+  const u16 = (v)=>[v&255, (v>>>8)&255], u32 = (v)=>[v&255, (v>>>8)&255, (v>>>16)&255, (v>>>24)&255];
+  files.forEach(f=>{
+    const name = enc.encode(f.name), data = enc.encode(f.data), crc = xlCrc32(data);
+    const common = [...u16(20), ...u16(0x0800), ...u16(0), ...u16(0), ...u16(0x21), ...u32(crc), ...u32(data.length), ...u32(data.length), ...u16(name.length), ...u16(0)];
+    const local = new Uint8Array([...u32(0x04034b50), ...common]);
+    parts.push(local, name, data);
+    central.push(new Uint8Array([...u32(0x02014b50), ...u16(20), ...common, ...u16(0), ...u16(0), ...u16(0), ...u32(0), ...u32(offset)]), name);
+    offset += local.length + name.length + data.length;
+  });
+  const cdSize = central.reduce((n,p)=>n+p.length, 0);
+  const end = new Uint8Array([...u32(0x06054b50), ...u16(0), ...u16(0), ...u16(files.length), ...u16(files.length), ...u32(cdSize), ...u32(offset), ...u16(0)]);
+  return new Blob([...parts, ...central, end], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+}
+function d1xlXlsxBlob(){
+  const x = (s)=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,"");
+  const sheets = d1xlBook().sheets;
+  const files = [
+    {name:"[Content_Types].xml", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${sheets.map((_,i)=>`<Override PartName="/xl/worksheets/sheet${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join("")}</Types>`},
+    {name:"_rels/.rels", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`},
+    {name:"xl/workbook.xml", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>${sheets.map((s,i)=>`<sheet name="${x(s.name.slice(0,31))}" sheetId="${i+1}" r:id="rId${i+1}"/>`).join("")}</sheets></workbook>`},
+    {name:"xl/_rels/workbook.xml.rels", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sheets.map((_,i)=>`<Relationship Id="rId${i+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i+1}.xml"/>`).join("")}<Relationship Id="rId${sheets.length+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`},
+    {name:"xl/styles.xml", data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE7EDF3"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="3"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment wrapText="1" vertical="top"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`}
+  ];
+  sheets.forEach((s,i)=>{
+    const rows = [s.rows[0], ...d1xlFilledRows(i)];
+    files.push({name:`xl/worksheets/sheet${i+1}.xml`, data:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0"${i===0?' tabSelected="1"':''}><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols>${s.rows[0].map((_,c)=>`<col min="${c+1}" max="${c+1}" width="${Math.round((XL_COL_WIDTHS[c]||120)/6.5)}" customWidth="1"/>`).join("")}</cols><sheetData>${rows.map((r,ri)=>`<row r="${ri+1}">${r.map((v,c)=> String(v||"")==="" ? "" : `<c r="${xlColLetter(c)}${ri+1}" t="inlineStr" s="${ri===0?1:2}"><is><t xml:space="preserve">${x(v)}</t></is></c>`).join("")}</row>`).join("")}</sheetData></worksheet>`});
+  });
+  return xlZip(files);
+}
+function downloadD1TrackerXlsx(){
+  d1xlCommitEdit();
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(d1xlXlsxBlob());
+  a.download = "LSH_Preference_Trackers.xlsx";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+}
+window.downloadD1TrackerXlsx = downloadD1TrackerXlsx;
+
 
 /* ---------- coverage-based scoring for free text ---------- */
 function coverageScore(facts, sectionNames, getTextForSection){
@@ -16479,8 +17052,9 @@ async function checkD1Dossier(){
 window.checkD1Dossier = checkD1Dossier;
 
 async function checkD1Tracker(){
-  const texts = TRACKER_SECTIONS.map((_,si)=>document.getElementById(`d1trk${si}`).value.trim());
-  if(texts.some(t=>t.length<15)){ inlineNotice("d1TrackerResult","Write something in every tracker before checking."); return; }
+  d1xlCommitEdit();
+  const texts = TRACKER_SECTIONS.map((_,si)=>d1xlSheetText(si));
+  if(texts.some(t=>t.length<15)){ inlineNotice("d1TrackerResult","Fill in a few rows on every sheet (Travel, Inbox and Meeting Rhythms) before checking."); return; }
   if(labInputRejected(texts, "d1TrackerResult")) return;
   const result = coverageScore(TRACKER_FACTS, TRACKER_SECTIONS, (sec)=>{
     const si = TRACKER_SECTIONS.indexOf(sec);
@@ -16550,9 +17124,12 @@ async function downloadDossier1Pdf(){
     lines.push(document.getElementById(`d1sec${si}`).value.trim() || "(not written)");
   });
   lines.push("---", "## B. Preference Trackers");
+  d1xlCommitEdit();
   TRACKER_SECTIONS.forEach((sec,si)=>{
     lines.push(`## ${sec}`);
-    lines.push(document.getElementById(`d1trk${si}`).value.trim() || "(not written)");
+    const head = d1xlBook().sheets[si].rows[0], rows = d1xlFilledRows(si);
+    if(!rows.length) lines.push("(not written)");
+    rows.forEach((r,ri)=>lines.push(`${ri+1}. ` + head.map((h,c)=>String(r[c]||"").trim() ? `${h}: ${String(r[c]).trim()}` : "").filter(Boolean).join("  |  ")));
   });
   const actDraft = document.getElementById("d1ActDraft");
   if(actDraft && actDraft.value.trim()){
@@ -16981,7 +17558,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=crisis-labs"></script>
+<script src="/js/eapa-updates.js?v=dash-onescreen-crisis"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=3"></script>
 <script src="/js/graded-calls.js?v=1"></script>
