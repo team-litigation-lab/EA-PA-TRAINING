@@ -190,6 +190,10 @@ The brief above the calendar is two short columns (*Look past the obvious clashe
 
 Saved with the trainee's work: `calendar-edits`, `calendar-custom` and `calendar-decisions`; **Download My Work** includes the week, every decision with its reason and the review.
 
+### 🖥 The trainee dashboard fits one screen
+
+On a desktop or laptop the dashboard shows everything without scrolling: the hero and step dots, the ten day cards, the stats band, the **Competency profile** — now one compact row of eight skills (labels on one line, full name on hover) placed **above** Resume / Certificate — and the Resume / Certificate row. The rules are the *Dashboard: one screen* block at the end of `js/eapa-updates.js` (loaded last, so it wins): tighter day cards from 1100px wide, and on shorter screens (860px tall and under — a 1366×768, or a larger screen at 125% scaling) a smaller ribbon, smaller step dots and tighter cards. Checked at 1474×761, 1366×768, 1536×864 and 1920×1080. Phones and narrow windows keep their scrolling layout.
+
 ### ✈ Day 3, Part 4: a business trip that can go wrong
 
 The old family-holiday itinerary (blank forms, links to flight-search screenshots, a check that passed anyone who typed "aisle") is replaced by a work trip with fixed anchors: a Chicago arbitration the tribunal set for **Thursday 9:00 AM**, a client meeting the next day, and a Wednesday 9:00–10:30 client call he can't be in the air for. The firm's travel policy caps fares at $750 and hotels at $320 a night, requires nonstop and refundable court travel, and Elias flies aisle, no redeye before he appears.
