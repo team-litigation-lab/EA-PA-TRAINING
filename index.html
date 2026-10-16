@@ -5446,9 +5446,8 @@ function renderCompetencyStrip(){
   const any = prof.some(c=>c.score!==null);
   const band = (v)=> v>=85 ? "strong" : v>=70 ? "ok" : "build";
   return `<section class="comp-strip">
-    <div class="comp-strip-head"><h3>Competency profile</h3><span>Green 85%+ · Amber 70–84% · Orange = not yet</span></div>
-    ${any ? "" : `<p class="comp-strip-empty">Complete a Knowledge Check or a graded Practice Lab to see your competency profile.</p>`}
-    <div class="comp-strip-grid">${prof.map(c=>`<div class="comp-cell" title="${c.n} data point(s)">
+    <div class="comp-strip-head"><h3>Competency profile</h3><span>${any ? "" : "Fills in as Knowledge Checks and graded Practice Labs come back · "}Green 85%+ · Amber 70–84% · Orange = not yet</span></div>
+    <div class="comp-strip-grid">${prof.map(c=>`<div class="comp-cell" title="${esc(c.label)} — ${c.n} data point(s)">
         <div class="comp-cell-top"><span>${esc(c.label)}</span><b>${c.score===null ? "—" : c.score+"%"}</b></div>
         <div class="comp-track"><div class="comp-fill ${c.score===null?"none":band(c.score)}" style="width:${c.score||0}%"></div></div>
       </div>`).join("")}</div>
@@ -5519,14 +5518,19 @@ function renderDashboard(){
         ${renderFeedbackDashCard()}
         ${renderRankingCard()}
       </div></aside>
+          ${renderCompetencyStrip()}
           <div class="hero-actions bottom-actions">${[
-            resumeLabel() ? `<button class="btn btn-primary resume-btn" onclick="resumeWhereLeftOff()">▶ Resume where you left off <span>${esc(resumeLabel())}</span></button>` : "",
+            (()=>{ // always on the dashboard: back to the saved place, or on to the next day when nothing is saved yet
+              const saved = resumeLabel();
+              const nd = DAYS.find(x=>x.id===nextDayId()) || DAYS[0];
+              const label = saved || (nd ? `Day ${nd.id} · ${nd.title}` : "");
+              const go = saved ? "resumeWhereLeftOff()" : (nd ? `goto('day',${nd.id})` : "");
+              return label ? `<button class="btn btn-primary resume-btn" onclick="${go}">▶ Resume where you left off <span>${esc(label)}</span></button>` : ""; })(),
             (()=>{ if(!state.traineeId) return ""; const c = certData();
               return c.eligible
                 ? `<button class="btn cert-hero-btn" onclick="downloadCertificatePdf(null)">🎓 Download my Certificate</button><button class="btn btn-ghost cert-hero-view" onclick="openCertificate()">View</button>`
                 : `<span class="cert-hero-locked" title="Pass all ${c.total} Knowledge Checks (70%+) to unlock">🎓 Certificate · ${c.passed}/${c.total} Knowledge Checks passed</span>`; })()
           ].join("")}</div>
-          ${renderCompetencyStrip()}
     </div>
 
   </div>
@@ -16972,7 +16976,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=crisis-lab"></script>
+<script src="/js/eapa-updates.js?v=dash-onescreen"></script>
 <script src="/js/attendance.js?v=2"></script>
 <script src="/js/portal-link.js?v=3"></script>
 <script src="/js/graded-calls.js?v=1"></script>
