@@ -2528,6 +2528,39 @@ em.warn{font-style:normal;color:var(--danger);}
 .gcw-pop .warn{margin:10px 10px 0;padding:7px 10px;border-radius:8px;background:#fce8e6;color:#b3261e;font-size:12px;line-height:1.45;}
 .gcw-drag-on .gcw-col{background:#f8fbff;}
 .gcw-scroll{overflow-x:auto;}
+/* Business travel: option cards, the day sheet, the night it falls apart */
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:10px;}
+.opt-grid.one{grid-template-columns:1fr;}
+.opt-card{display:block;position:relative;padding:11px 13px;border:1.5px solid var(--line);border-radius:11px;background:#fff;cursor:pointer;transition:border-color .12s ease,box-shadow .12s ease;}
+.opt-card:hover{border-color:var(--orange);}
+.opt-card.sel{border-color:var(--navy);box-shadow:0 0 0 3px rgba(38,43,69,.09);background:#FBFCFE;}
+.opt-card:focus-within{border-color:var(--navy);box-shadow:0 0 0 3px rgba(38,43,69,.22);}
+.opt-card input{position:absolute;opacity:0;pointer-events:none;}
+.oc-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:4px;}
+.oc-head b{font-size:13px;color:var(--navy);}
+.oc-price{font-size:13px;font-weight:700;color:var(--orange-deep);white-space:nowrap;}
+.oc-price small{font-weight:400;font-size:10.5px;color:var(--ink-soft);}
+.oc-row{font-size:12px;color:#37394A;line-height:1.45;}
+.oc-row.muted{color:var(--ink-soft);margin-top:3px;}
+.trip-why{width:100%;min-height:62px;margin-top:10px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;}
+.trip-why.tall{min-height:132px;}
+.trip-lbl{display:block;font-size:12.8px;font-weight:600;color:var(--navy);margin:14px 0 2px;}
+.trip-row{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);}
+.trip-row:last-child{border-bottom:none;}
+.trip-row b{display:block;font-size:13px;color:var(--navy);}
+.trip-row > div > span{display:block;font-size:11.8px;color:var(--ink-soft);}
+.trip-row input[type=time]{padding:7px 9px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;}
+.trip-fixed{font-size:13px;font-weight:700;color:var(--danger);white-space:nowrap;}
+.trip-check{display:flex;gap:9px;align-items:flex-start;padding:6px 0;}
+.trip-check > span{font-weight:700;line-height:1.5;}
+.trip-check.ok > span{color:var(--success);} .trip-check.bad > span{color:var(--danger);}
+.trip-check b{display:block;font-size:12.8px;color:var(--navy);font-weight:600;}
+.trip-check div span{display:block;font-size:12px;color:var(--ink-soft);margin-top:1px;}
+.trip-check.ok b{font-weight:500;color:#37394A;}
+.crisis-card{padding:16px 18px;background:#FDF3F1;border-left:4px solid var(--danger);}
+.crisis-card .crisis-when{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--danger);margin-bottom:6px;}
+.crisis-card p{font-size:13px;color:#37394A;margin:0;line-height:1.6;}
+.crisis-card .ask{margin-top:8px;font-weight:600;color:var(--navy);}
 /* the brief above the calendar: two short columns, so the week gets the height */
 .cal-brief{border-left:4px solid var(--orange);background:#FDFAF6;border-radius:10px;padding:10px 14px 11px;margin-bottom:10px;}
 .cal-brief .lead{font-size:12.5px;color:#37394A;margin:0 0 7px;line-height:1.5;}
@@ -3001,23 +3034,66 @@ const INVOICE_QUEUE = [
 ];
 
 /* ---------- 4. Travel Itinerary Planner (build-your-own) ---------- */
-const FLIGHT_PREFS = {
-  seat: "Aisle, near the front of the cabin — every time, no exceptions.",
-  routing: "Direct only — zero connections, regardless of cost difference.",
-  redeye: "No standing rule on record — use judgment based on what the next day demands.",
-  hotel: "No fixed chain preference on record — prioritize proximity to the day's main venue, and reconfirm strict Paleo / zero-dairy dining options before booking."
+/* ---------- 4b. Business travel: a trip that can actually go wrong ----------
+   The old version was a blank itinerary sheet for a family holiday — nothing in it
+   could be right or wrong, and the check looked for the word "aisle". This one has
+   fixed anchors (a tribunal's hearing time), a firm travel policy with caps, options
+   that each break something, and a cancellation the night before. */
+const TRIP_BRIEF = {
+  title: "Business Travel — Chicago arbitration, Thursday 9:00 AM",
+  text: "Elias is arguing a contested arbitration in Chicago on Thursday at 9:00 AM — the tribunal set the time and will not move it. He has a client meeting with Mr. Reyes in Chicago on Friday at 2:00 PM and flies home Friday evening. You are booking the whole trip: flights out on Wednesday, the hotel, the ground transport and the day sheet for Thursday.",
+  anchors: [
+    "Thursday 9:00 AM — arbitration hearing, Keller Center, downtown Chicago. Fixed by the tribunal.",
+    "Counsel must be in the room and checked in at least 30 minutes before the hearing.",
+    "Friday 2:00 PM — client meeting with Mr. Reyes, same city.",
+    "Wednesday 9:00–10:30 AM — he is on a client call here and cannot be in the air."
+  ],
+  policy: [
+    "Airfare cap $750 round trip. Above it needs the managing partner's written approval.",
+    "Hotel cap $320 a night, and court travel is booked refundable.",
+    "Direct flights only; a connection needs a written reason on file.",
+    "No redeye the night before he appears.",
+    "Aisle seat, near the front of the cabin — every time.",
+    "Strict Paleo, zero dairy."
+  ]
 };
-
-const TRAVEL_SCENARIO = {
-  title:"Personal Travel — The Thorne Family, Spain",
-  text:"Elias is taking Sarah, Leo (8), and Maya (5) to Spain for a week — Madrid, then Barcelona. Nothing is pre-built. Create the full itinerary sheet yourself: flights, lodging, and day notes for each leg, applying everything you know about how Elias travels."
+/* Each option breaks something, or costs something, or both. Nothing here is labelled. */
+const FLIGHT_OPTIONS = [
+  {id:"F1", carrier:"Meridian Air 428", route:"Nonstop", day:"Wednesday", dep:"2:10 PM", arr:"3:35 PM", stops:0, cabin:"Economy", seat:"Aisle 4C available", aisle:true, price:689, change:"Free changes up to 2 hours before departure"},
+  {id:"F2", carrier:"Meridian Air 101", route:"Nonstop", day:"Thursday", dep:"6:05 AM", arr:"7:30 AM", stops:0, cabin:"Economy", seat:"Aisle 7D available", aisle:true, price:512, change:"Changes $200"},
+  {id:"F3", carrier:"Gulfline 2217 / 884", route:"Connects in Charlotte — 55 minutes between flights", day:"Wednesday", dep:"4:00 PM", arr:"9:10 PM", stops:1, cabin:"Economy", seat:"Aisle on both legs", aisle:true, price:398, change:"Non-refundable, no changes"},
+  {id:"F4", carrier:"Meridian Air 902", route:"Nonstop — redeye", day:"Wednesday", dep:"11:40 PM", arr:"1:05 AM Thursday", stops:0, cabin:"Economy", seat:"Aisle 3C available", aisle:true, price:455, change:"Changes $150"},
+  {id:"F5", carrier:"Meridian Air 210", route:"Nonstop", day:"Wednesday", dep:"8:30 AM", arr:"9:55 AM", stops:0, cabin:"Economy", seat:"Aisle 2D available", aisle:true, price:705, change:"Free changes"},
+  {id:"F6", carrier:"Meridian Air 428", route:"Nonstop — first class", day:"Wednesday", dep:"2:10 PM", arr:"3:35 PM", stops:0, cabin:"First", seat:"Aisle 1C", aisle:true, price:1480, change:"Fully flexible"},
+  {id:"F7", carrier:"Northbound 55", route:"Nonstop", day:"Wednesday", dep:"7:50 PM", arr:"9:15 PM", stops:0, cabin:"Economy", seat:"Middle seats only — no aisle left", aisle:false, price:640, change:"Changes $100"},
+  {id:"F8", carrier:"Gulfline 1180 / 77", route:"Connects in Detroit — 2 hours between flights", day:"Wednesday", dep:"11:00 AM", arr:"5:05 PM", stops:1, cabin:"Economy", seat:"Aisle on both legs", aisle:true, price:540, change:"Changes $75"}
+];
+const HOTEL_OPTIONS = [
+  {id:"H1", name:"The Keller House", dist:"Across the street from the Keller Center — 2 min walk", price:412, room:"King, work desk", food:"Room service, kitchen will do Paleo on request", cancel:"Free cancellation until 6:00 PM day of arrival"},
+  {id:"H2", name:"Lakeside Court", dist:"8 min walk to the Keller Center", price:298, room:"King, work desk, quiet floor", food:"Breakfast à la carte — eggs, fruit, no dairy needed", cancel:"Free cancellation until 24 hours before"},
+  {id:"H3", name:"Airport Inn & Suites", dist:"35 min by car to the Keller Center, longer in morning traffic", price:179, room:"Double queen", food:"Free breakfast buffet — pastries, yoghurt, cereal", cancel:"Non-refundable, prepaid"},
+  {id:"H4", name:"Rowan Street Hotel", dist:"12 min walk to the Keller Center", price:305, room:"King", food:"No breakfast; cafés nearby", cancel:"Non-refundable, prepaid"},
+  {id:"H5", name:"The Benton", dist:"15 min by car to the Keller Center", price:265, room:"King, renovation on floors 3–6", food:"Restaurant closed for the renovation", cancel:"Free cancellation until 48 hours before"}
+];
+/* The Thursday day sheet the trainee lays out. "fixed" rows cannot be edited. */
+const TRIP_DAY_BLOCKS = [
+  {id:"wake", label:"Car collects him at the hotel", hint:"He is not walking with an exhibit case."},
+  {id:"arrive", label:"Arrives at the Keller Center", hint:"Counsel checks in 30 minutes before the hearing."},
+  {id:"prep", label:"Final run-through with co-counsel", hint:"Where does the prep actually happen?"},
+  {id:"hearing", label:"Arbitration hearing begins", fixed:"9:00 AM"},
+  {id:"debrief", label:"Debrief buffer after the hearing", hint:"Nothing booked hard against it."}
+];
+const TRIP_DISRUPTION = {
+  when:"Wednesday, 9:42 PM — he is already at the airport",
+  text:"The airline cancels the flight. Weather at the hub has grounded the fleet for the night; the counter is rebooking everyone onto the 11:20 AM Thursday nonstop, which lands two hours and twenty minutes AFTER the arbitration starts. The tribunal set that time and has refused one continuance in this matter already. Mr. Reyes, the client, is flying in from Dallas and does not know yet.",
+  ask:"You have the night. Work out how he is in that room at 8:30 AM, what you set running in parallel in case it fails, and what you tell him and the client — tonight, not in the morning."
 };
-const TRAVEL_REQUIREMENTS = [
-  {id:"seat", label:"Seat preference addressed (aisle, near the front)", keywords:["aisle"]},
-  {id:"direct", label:"No connecting flights noted", keywords:["direct","nonstop","non-stop","no connection","no layover"]},
-  {id:"dietary", label:"Dietary needs flagged (strict Paleo, zero dairy)", keywords:["paleo","dairy","dietary"]},
-  {id:"family", label:"Something age-appropriate planned for Leo and/or Maya", keywords:["leo","maya","kid","child","family-friendly","family friendly"]},
-  {id:"contingency", label:"A contingency / delay-monitoring note included somewhere", keywords:["delay","backup","rebook","contingency","monitor"]}
+const TRIP_RECOVERY = [
+  {id:"R1", label:"5:10 AM flight into Milwaukee, car service from there", detail:"Lands 6:55 AM. The drive is 90 minutes without traffic, and the morning build-up starts at 7:00. $340 plus $210 for the car."},
+  {id:"R2", label:"Car service overnight, leaving at 1:00 AM", detail:"Four hours forty-five minutes on the road, arriving around 5:45 AM. $820. He arrives having slept in a moving car before argument."},
+  {id:"R3", label:"Ask the tribunal to let him appear remotely", detail:"Has to be in writing tonight, with opposing counsel's position stated. They refused a continuance here once already; remote appearance is a different request, but it is still theirs to grant."},
+  {id:"R4", label:"Co-counsel in Chicago covers it and asks for a short continuance", detail:"She knows the file but has not argued it. The client has to consent, and the tribunal has refused once."},
+  {id:"R5", label:"Walk-up seat on the 6:00 AM nonstop — one left, middle, $930", detail:"Lands 7:25 AM, 35 minutes to the Keller Center. Breaks the fare cap and the aisle rule; needs the managing partner's approval tonight."}
 ];
 
 /* ---------- 5. Call Handling Studio ---------- */
@@ -8658,9 +8734,9 @@ async function initCalendar(body){
   toolState.calEdits = (await storeGet("calendar-edits")) || {};
   toolState.calCustomEvents = (await storeGet("calendar-custom")) || [];
   toolState.calDecisions = (await storeGet("calendar-decisions")) || {};
+  toolState.trip = (await storeGet("trip-plan")) || {day:{}};
   // Kept for the review and the report only — the trainee is never shown where the overlaps are.
   toolState.calBaseline = calFindConflicts(CAL_EVENTS).length;
-  toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   renderCalendarBody(body);
 }
 
@@ -8669,7 +8745,6 @@ function renderCalendarBody(body){
   // function re-runs on every drag/drop, color change, or delete, and
   // without this, any text typed into other wizard parts would be lost.
   const savedCalPrompt = document.getElementById("calPromptInput") ? document.getElementById("calPromptInput").value : "";
-  const savedTravelAct = document.getElementById("travelActDraft") ? document.getElementById("travelActDraft").value : "";
   closeEventPopup();
   const events = calMergedEvents();
   // Overlaps are NOT marked for the trainee: finding them is the exercise. The check
@@ -8824,74 +8899,96 @@ function renderCalendarBody(body){
     <button class="btn btn-orange btn-sm" onclick="generateProactiveTasks()">Generate Proactive Tasks</button>
     <div id="proactiveResult" style="margin-top:14px;"></div>
   `;
+  const trip = toolState.trip || {};
   const partD = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">Travel Management, Start to Finish</h3>
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
-      <b style="font-size:13px;color:var(--navy);">${esc(TRAVEL_SCENARIO.title)}</b>
-      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">${esc(TRAVEL_SCENARIO.text)}</p>
-      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">Build this the way you'd build a real one: real flight-search screenshots (linked), real direct booking links, real venue photos, real proximity research. Vague placeholders will show up as vague in the review.</p>
-    </div>
-
-    <div class="card" style="padding:16px 18px;margin-bottom:16px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Client Travel Preferences (reference)</h3>
-      <div class="pref-ref-grid">
-        <div><b>Seat</b><span>${esc(FLIGHT_PREFS.seat)}</span></div>
-        <div><b>Routing</b><span>${esc(FLIGHT_PREFS.routing)}</span></div>
-        <div><b>Redeye</b><span>${esc(FLIGHT_PREFS.redeye)}</span></div>
-        <div><b>Hotel</b><span>${esc(FLIGHT_PREFS.hotel)}</span></div>
+    <div class="cal-brief">
+      <p class="lead"><b>${esc(TRIP_BRIEF.title)}</b></p>
+      <p class="lead" style="margin-bottom:8px;">${esc(TRIP_BRIEF.text)}</p>
+      <div class="cal-brief-cols">
+        <div><h4>Fixed — these don't move</h4><ul>${TRIP_BRIEF.anchors.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>
+        <div><h4>Firm policy &amp; how he travels</h4><ul>${TRIP_BRIEF.policy.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>
       </div>
     </div>
 
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Flight Legs</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per flight. Paste a link to a real flight-search screenshot for the exact seat/route you're proposing — the review checks whether your notes actually match Elias's stated preferences.</p>
-    <div id="legList">${renderLegs()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addLeg()">+ Add Flight Leg</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Hotel Accommodation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">One card per stay. Include a confirmation number and a link to the actual booking — and double-check the room type actually fits a family of four.</p>
-    <div id="hotelList">${renderHotels()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addHotel()">+ Add Hotel</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Ground Transportation</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Airport transfers, car service, or rentals — anything that gets the family from one fixed point to another. A real itinerary doesn't leave this to "we'll figure it out at the airport."</p>
-    <div id="groundList">${renderGroundTransport()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addGroundTransport()">+ Add Ground Transportation</button>
-
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:14.5px;">Itinerary Stops (venues / activities)</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Include a venue photo link, a direct booking/info link, why it fits the trip, and how far it is from the hotel.</p>
-    <div id="stopList">${renderStops()}</div>
-    <button class="btn btn-ghost btn-sm" style="margin-bottom:24px;" onclick="addStop()">+ Add Stop</button>
-
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;background:#F8F9FC;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">ACT Practice — A Task Lands Mid-Planning</h3>
-      <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">While you're building this itinerary, David Reyes (Head of Litigation) emails you directly. Reply using the same <b>ACT</b> framework from Day 1 — Acknowledge, Clarify, Timeline.</p>
-      <div class="voice-note" style="background:var(--navy-deep);">
-        <span class="vn-time">David Reyes — 2:14 PM</span>
-        <p style="font-size:13px;color:#fff;margin:8px 0 0;line-height:1.6;">"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."</p>
-      </div>
-      <label style="font-size:12.8px;font-weight:600;color:var(--navy);display:block;margin:14px 0 5px;">Your ACT email reply</label>
-      <textarea id="travelActDraft" style="width:100%;min-height:150px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;" placeholder="Subject: ...&#10;&#10;David — ..."></textarea>
-      <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="reviewTravelActEmail()">Get Review</button>
-      <div id="travelActFeedback" style="margin-top:14px;"></div>
+    <h3 style="margin:18px 0 4px;color:var(--navy);font-size:15px;">1. Book the flight out</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Every one of these is really bookable. Pick the one you'd put in front of him, and say why in a line — if it breaks policy, your line is the written reason on file.</p>
+    <div class="opt-grid">
+      ${FLIGHT_OPTIONS.map(f=>`
+        <label class="opt-card ${trip.flight===f.id?'sel':''}">
+          <input type="radio" name="tripFlight" value="${f.id}" ${trip.flight===f.id?"checked":""} onchange="tripPick('flight','${f.id}')">
+          <div class="oc-head"><b>${esc(f.carrier)}</b><span class="oc-price">$${f.price}</span></div>
+          <div class="oc-row">${esc(f.day)} · ${esc(f.dep)} → ${esc(f.arr)}</div>
+          <div class="oc-row">${esc(f.route)}</div>
+          <div class="oc-row">${esc(f.cabin)} · ${esc(f.seat)}</div>
+          <div class="oc-row muted">${esc(f.change)}</div>
+        </label>`).join("")}
     </div>
+    <textarea id="tripFlightWhy" class="trip-why" placeholder="Why this flight — and if it breaks the cap, the seat rule or the direct-only rule, the reason you'd put on file…" oninput="tripNote('flightWhy', this.value)">${esc(trip.flightWhy||"")}</textarea>
 
-    <div class="card" style="padding:18px 20px;margin-bottom:20px;">
-      <h3 style="margin:0 0 10px;color:var(--navy);font-size:14.5px;">Review &amp; Export Travel Plan</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-primary btn-sm" id="travelReviewBtn" onclick="reviewItinerary()">Get Review</button>
-        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download Travel Plan as PDF</button>
+    <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">2. Book the hotel</h3>
+    <div class="opt-grid">
+      ${HOTEL_OPTIONS.map(h=>`
+        <label class="opt-card ${trip.hotel===h.id?'sel':''}">
+          <input type="radio" name="tripHotel" value="${h.id}" ${trip.hotel===h.id?"checked":""} onchange="tripPick('hotel','${h.id}')">
+          <div class="oc-head"><b>${esc(h.name)}</b><span class="oc-price">$${h.price}<small>/night</small></span></div>
+          <div class="oc-row">${esc(h.dist)}</div>
+          <div class="oc-row">${esc(h.room)}</div>
+          <div class="oc-row">${esc(h.food)}</div>
+          <div class="oc-row muted">${esc(h.cancel)}</div>
+        </label>`).join("")}
+    </div>
+    <textarea id="tripHotelWhy" class="trip-why" placeholder="Why this hotel — distance, what he eats, and what happens to the booking if the trip moves…" oninput="tripNote('hotelWhy', this.value)">${esc(trip.hotelWhy||"")}</textarea>
+
+    <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">3. Thursday, hour by hour</h3>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Lay out the morning with the travel time in it, not around it. The hearing is the one time you can't change.</p>
+    <div class="card" style="padding:12px 16px;">
+      ${TRIP_DAY_BLOCKS.map(b=>`
+        <div class="trip-row">
+          <div><b>${esc(b.label)}</b>${b.hint?`<span>${esc(b.hint)}</span>`:""}</div>
+          ${b.fixed
+            ? `<span class="trip-fixed">${esc(b.fixed)}</span>`
+            : `<input type="time" value="${esc((trip.day&&trip.day[b.id])||"")}" onchange="tripDay('${b.id}', this.value)">`}
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-primary" style="margin-top:14px;" onclick="checkTripPlan()">Check My Trip Plan</button>
+    <div id="tripResult"></div>
+
+    <div id="tripCrisis" style="${trip.checked?"":"display:none;"}">
+      <h3 style="margin:26px 0 4px;color:var(--danger);font-size:15px;">4. It falls apart the night before</h3>
+      <div class="card crisis-card">
+        <span class="crisis-when">${esc(TRIP_DISRUPTION.when)}</span>
+        <p>${esc(TRIP_DISRUPTION.text)}</p>
+        <p class="ask">${esc(TRIP_DISRUPTION.ask)}</p>
       </div>
-      <div id="itinReview" style="margin-top:14px;"></div>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:14px 0 8px;"><b>Your call.</b> Pick what you're putting in motion first — then say what runs alongside it in case it fails.</p>
+      <div class="opt-grid one">
+        ${TRIP_RECOVERY.map(r=>`
+          <label class="opt-card ${trip.recovery===r.id?'sel':''}">
+            <input type="radio" name="tripRecovery" value="${r.id}" ${trip.recovery===r.id?"checked":""} onchange="tripPick('recovery','${r.id}')">
+            <div class="oc-head"><b>${esc(r.label)}</b></div>
+            <div class="oc-row">${esc(r.detail)}</div>
+          </label>`).join("")}
+      </div>
+      <label class="trip-lbl">Your action plan — the steps, tonight and tomorrow morning, who does each one, by when, and the fallback if your first move fails</label>
+      <textarea id="tripPlanDraft" class="trip-why tall" placeholder="Tonight, 9:45 PM — …&#10;Tonight, 10:15 PM — …&#10;If that fails by 5:30 AM — …" oninput="tripNote('plan', this.value)">${esc(trip.plan||"")}</textarea>
+      <label class="trip-lbl">The note to Elias — BLUF: the bottom line first, then what you've already done, then the one decision only he can make</label>
+      <textarea id="tripBlufDraft" class="trip-why" placeholder="Bottom line: you are in the room at 8:30. Here's how…" oninput="tripNote('bluf', this.value)">${esc(trip.bluf||"")}</textarea>
+      <label class="trip-lbl">The message to Mr. Reyes, the client — he's flying in from Dallas and doesn't know yet</label>
+      <textarea id="tripClientDraft" class="trip-why" placeholder="Mr. Reyes — …" oninput="tripNote('client', this.value)">${esc(trip.client||"")}</textarea>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+        <button class="btn btn-primary btn-sm" id="tripCrisisBtn" onclick="reviewTripCrisis()">Submit My Response</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download My Work</button>
+      </div>
+      <div id="tripCrisisResult" style="margin-top:14px;"></div>
     </div>
   `;
   body.innerHTML = renderToolWizard(3, [
     {label:"Calendar Conflict Resolver", html:partA},
     {label:"Daily Briefing Prompt", html:partB},
     {label:"Proactive EA Tasks", html:partC},
-    {label:"Travel Management", html:partD}
+    {label:"Travel & the Trip That Breaks", html:partD}
   ]);
   if(savedCalPrompt) document.getElementById("calPromptInput").value = savedCalPrompt;
-  if(savedTravelAct) document.getElementById("travelActDraft").value = savedTravelAct;
 }
 function toHex(c){
   if(c.startsWith("#")) return c;
@@ -9870,252 +9967,148 @@ function mapsDirectionsLink(origin, destination){
   return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
 }
 
-/* ---------- Flight Legs ---------- */
-function renderLegs(){
-  if(!toolState.travel.legs.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No flight legs yet.</p>`;
-  return toolState.travel.legs.map((l,i)=>{
-    const seatOk = /aisle/i.test(l.seat) && /(front|row [1-6]|bulkhead)/i.test(l.seat);
-    const directOk = l.direct;
-    return `
-    <div class="leg-card">
-      <button class="btn btn-ghost btn-sm rm" onclick="removeLeg(${i})">Remove</button>
-      <div class="field-grid-2">
-        <div class="fg-field"><label>Route</label><input type="text" value="${esc(l.route)}" oninput="updateLeg(${i},'route',this.value)" placeholder="JFK → MAD"></div>
-        <div class="fg-field"><label>Date</label><input type="date" value="${esc(l.date)}" oninput="updateLeg(${i},'date',this.value)"></div>
-        <div class="fg-field"><label>Seat assignment</label><input type="text" value="${esc(l.seat)}" oninput="updateLeg(${i},'seat',this.value); refreshLeg(${i});" placeholder="e.g. 3A — Aisle, front of Business cabin"></div>
-        <div class="fg-field"><label>Routing</label>
-          <select onchange="updateLeg(${i},'direct',this.value==='direct'); refreshLeg(${i});">
-            <option value="direct" ${l.direct?"selected":""}>Direct</option>
-            <option value="connecting" ${!l.direct?"selected":""}>Connecting</option>
-          </select>
-        </div>
-        <div class="fg-field"><label>Flight-search screenshot (link)</label><input type="url" value="${esc(l.screenshotUrl)}" oninput="updateLeg(${i},'screenshotUrl',this.value); refreshLeg(${i});" placeholder="https://..."></div>
-        <div class="fg-field"><label>Direct booking link</label><input type="url" value="${esc(l.bookingLink)}" oninput="updateLeg(${i},'bookingLink',this.value)" placeholder="https://..."></div>
-      </div>
-      ${imgOrPlaceholder(l.screenshotUrl, "Flight search screenshot")}
-      <div class="pref-check">
-        <span class="pref-badge ${seatOk?'pref-ok':'pref-bad'}">${seatOk?"✓":"✕"} Aisle, front of cabin</span>
-        <span class="pref-badge ${directOk?'pref-ok':'pref-bad'}">${directOk?"✓":"✕"} Direct routing</span>
-      </div>
-      <div class="fg-field" style="margin-top:10px;"><label>Notes</label><textarea oninput="updateLeg(${i},'notes',this.value)" style="min-height:50px;">${esc(l.notes)}</textarea></div>
-    </div>`;
-  }).join("");
-}
-function addLeg(){
-  toolState.travel.legs.push({route:"", date:"", seat:"", direct:true, screenshotUrl:"", bookingLink:"", notes:""});
-  document.getElementById("legList").innerHTML = renderLegs();
-}
-window.addLeg = addLeg;
-function removeLeg(i){
-  toolState.travel.legs.splice(i,1);
-  document.getElementById("legList").innerHTML = renderLegs();
-}
-window.removeLeg = removeLeg;
-function updateLeg(i,field,value){ toolState.travel.legs[i][field]=value; }
-window.updateLeg = updateLeg;
-function refreshLeg(i){ document.getElementById("legList").innerHTML = renderLegs(); }
-window.refreshLeg = refreshLeg;
+/* ---------- Business travel: choices, a day sheet, and the night it falls apart ---------- */
+function tripState(){ toolState.trip = toolState.trip || {day:{}}; toolState.trip.day = toolState.trip.day || {}; return toolState.trip; }
+async function tripSave(){ await storeSet("trip-plan", toolState.trip); }
+function tripPick(field, id){ const t = tripState(); t[field] = id; tripSave(); document.querySelectorAll(`input[name="trip${field.charAt(0).toUpperCase()+field.slice(1)}"]`).forEach(inp=>inp.closest(".opt-card").classList.toggle("sel", inp.value===id)); }
+window.tripPick = tripPick;
+function tripNote(field, value){ const t = tripState(); t[field] = value; clearTimeout(toolState.tripSaveTimer); toolState.tripSaveTimer = setTimeout(tripSave, 800); }
+window.tripNote = tripNote;
+function tripDay(id, value){ const t = tripState(); t.day[id] = value; tripSave(); }
+window.tripDay = tripDay;
+function tripMinutes(hhmm){ if(!hhmm) return null; const [h,m] = hhmm.split(":").map(Number); return h*60+m; }
+/* "8:30 AM" → minutes after midnight (null when the text carries a next-day note it can't place) */
+function tripClock(txt){ const m = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(String(txt).trim()); if(!m) return null; let h = +m[1] % 12; if(/PM/i.test(m[3])) h += 12; return h*60 + +m[2]; }
+function tripFmt(hhmm){ const mins = tripMinutes(hhmm); if(mins===null) return "(not set)"; const h = Math.floor(mins/60), m = mins%60; const ap = h>=12?"PM":"AM"; const h12 = h>12?h-12:(h===0?12:h); return `${h12}:${String(m).padStart(2,"0")} ${ap}`; }
 
-/* ---------- Hotel Accommodation ---------- */
-function renderHotels(){
-  if(!toolState.travel.hotels.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No hotels added yet.</p>`;
-  return toolState.travel.hotels.map((h,i)=>`
-    <div class="leg-card">
-      <button class="btn btn-ghost btn-sm rm" onclick="removeHotel(${i})">Remove</button>
-      <div class="field-grid-2">
-        <div class="fg-field"><label>Hotel name</label><input type="text" value="${esc(h.name)}" oninput="updateHotel(${i},'name',this.value)" placeholder="e.g. Hotel Villa Magna, Madrid"></div>
-        <div class="fg-field"><label>Address</label><input type="text" value="${esc(h.address)}" oninput="updateHotel(${i},'address',this.value)"></div>
-        <div class="fg-field"><label>Check-in</label><input type="date" value="${esc(h.checkin)}" oninput="updateHotel(${i},'checkin',this.value)"></div>
-        <div class="fg-field"><label>Check-out</label><input type="date" value="${esc(h.checkout)}" oninput="updateHotel(${i},'checkout',this.value)"></div>
-        <div class="fg-field"><label>Room type</label><input type="text" value="${esc(h.roomType)}" oninput="updateHotel(${i},'roomType',this.value)" placeholder="e.g. Two-bedroom suite, sleeps 4"></div>
-        <div class="fg-field"><label>Confirmation number</label><input type="text" value="${esc(h.confirmation)}" oninput="updateHotel(${i},'confirmation',this.value)"></div>
-        <div class="fg-field"><label>Booking link</label><input type="url" value="${esc(h.bookingLink)}" oninput="updateHotel(${i},'bookingLink',this.value)" placeholder="https://..."></div>
-        <div class="fg-field"><label>Booking screenshot (link)</label><input type="url" value="${esc(h.screenshotUrl)}" oninput="updateHotel(${i},'screenshotUrl',this.value); refreshHotel(${i});" placeholder="https://..."></div>
-      </div>
-      ${imgOrPlaceholder(h.screenshotUrl, "Hotel booking screenshot")}
-      <div class="fg-field" style="margin-top:10px;"><label>Notes</label><textarea oninput="updateHotel(${i},'notes',this.value)" style="min-height:50px;" placeholder="Room size for a family of 4, dietary accommodation confirmed with the hotel, etc.">${esc(h.notes)}</textarea></div>
-    </div>`).join("");
-}
-function addHotel(){
-  toolState.travel.hotels.push({name:"", address:"", checkin:"", checkout:"", roomType:"", confirmation:"", bookingLink:"", screenshotUrl:"", notes:""});
-  document.getElementById("hotelList").innerHTML = renderHotels();
-}
-window.addHotel = addHotel;
-function removeHotel(i){
-  toolState.travel.hotels.splice(i,1);
-  document.getElementById("hotelList").innerHTML = renderHotels();
-}
-window.removeHotel = removeHotel;
-function updateHotel(i,field,value){ toolState.travel.hotels[i][field]=value; }
-window.updateHotel = updateHotel;
-function refreshHotel(i){ document.getElementById("hotelList").innerHTML = renderHotels(); }
-window.refreshHotel = refreshHotel;
-
-/* ---------- Ground Transportation ---------- */
-function renderGroundTransport(){
-  if(!toolState.travel.groundTransport.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No ground transportation added yet.</p>`;
-  return toolState.travel.groundTransport.map((g,i)=>`
-    <div class="leg-card">
-      <button class="btn btn-ghost btn-sm rm" onclick="removeGroundTransport(${i})">Remove</button>
-      <div class="field-grid-2">
-        <div class="fg-field"><label>Type</label>
-          <select onchange="updateGroundTransport(${i},'type',this.value)">
-            <option value="Private car service" ${g.type==="Private car service"?"selected":""}>Private car service</option>
-            <option value="Rental car" ${g.type==="Rental car"?"selected":""}>Rental car</option>
-            <option value="Rideshare" ${g.type==="Rideshare"?"selected":""}>Rideshare</option>
-            <option value="Train" ${g.type==="Train"?"selected":""}>Train</option>
-            <option value="Other" ${g.type==="Other"?"selected":""}>Other</option>
-          </select>
-        </div>
-        <div class="fg-field"><label>Date &amp; time</label><input type="text" value="${esc(g.datetime)}" oninput="updateGroundTransport(${i},'datetime',this.value)" placeholder="e.g. Jun 14, 2:30 PM"></div>
-        <div class="fg-field"><label>From</label><input type="text" value="${esc(g.from)}" oninput="updateGroundTransport(${i},'from',this.value)" placeholder="e.g. Madrid–Barajas Airport"></div>
-        <div class="fg-field"><label>To</label><input type="text" value="${esc(g.to)}" oninput="updateGroundTransport(${i},'to',this.value)" placeholder="e.g. Hotel Villa Magna"></div>
-        <div class="fg-field"><label>Confirmation / booking link</label><input type="url" value="${esc(g.bookingLink)}" oninput="updateGroundTransport(${i},'bookingLink',this.value)" placeholder="https://..."></div>
-      </div>
-      <div class="fg-field" style="margin-top:10px;"><label>Notes</label><textarea oninput="updateGroundTransport(${i},'notes',this.value)" style="min-height:50px;" placeholder="Car seat needed for Maya (age 5), driver contact number, etc.">${esc(g.notes)}</textarea></div>
-    </div>`).join("");
-}
-function addGroundTransport(){
-  toolState.travel.groundTransport.push({type:"Private car service", datetime:"", from:"", to:"", bookingLink:"", notes:""});
-  document.getElementById("groundList").innerHTML = renderGroundTransport();
-}
-window.addGroundTransport = addGroundTransport;
-function removeGroundTransport(i){
-  toolState.travel.groundTransport.splice(i,1);
-  document.getElementById("groundList").innerHTML = renderGroundTransport();
-}
-window.removeGroundTransport = removeGroundTransport;
-function updateGroundTransport(i,field,value){ toolState.travel.groundTransport[i][field]=value; }
-window.updateGroundTransport = updateGroundTransport;
-
-/* ---------- Itinerary Stops ---------- */
-function renderStops(){
-  if(!toolState.travel.stops.length) return `<p style="font-size:12.5px;color:var(--ink-soft);">No stops yet.</p>`;
-  return toolState.travel.stops.map((s,i)=>`
-    <div class="stop-card">
-      <button class="btn btn-ghost btn-sm rm" onclick="removeStop(${i})">Remove</button>
-      <div class="field-grid-2">
-        <div class="fg-field"><label>Venue / activity</label><input type="text" value="${esc(s.venue)}" oninput="updateStop(${i},'venue',this.value)"></div>
-        <div class="fg-field"><label>Address</label><input type="text" value="${esc(s.address)}" oninput="updateStop(${i},'address',this.value)"></div>
-        <div class="fg-field"><label>Hotel (for proximity)</label><input type="text" value="${esc(s.hotel)}" oninput="updateStop(${i},'hotel',this.value)"></div>
-        <div class="fg-field"><label>Est. travel time from hotel</label><input type="text" value="${esc(s.travelTime)}" oninput="updateStop(${i},'travelTime',this.value)" placeholder="e.g. 12 min by car"></div>
-        <div class="fg-field"><label>Venue photo (link)</label><input type="url" value="${esc(s.photoUrl)}" oninput="updateStop(${i},'photoUrl',this.value); refreshStop(${i});" placeholder="https://..."></div>
-        <div class="fg-field"><label>Direct link (menu / booking / info)</label><input type="url" value="${esc(s.link)}" oninput="updateStop(${i},'link',this.value)" placeholder="https://..."></div>
-      </div>
-      <div class="stop-photo-grid">
-        ${imgOrPlaceholder(s.photoUrl, "Venue photo")}
-        <div class="fg-field"><label>Why this fits the trip</label>
-          <textarea oninput="updateStop(${i},'insight',this.value)" style="min-height:100px;" placeholder="Client-relevant reasoning — not just &quot;nice restaurant&quot;">${esc(s.insight)}</textarea>
-        </div>
-      </div>
-      ${s.address && s.hotel ? `<a href="${mapsDirectionsLink(s.hotel, s.address)}" target="_blank" rel="noopener" class="directions-link">↗ Check directions from hotel</a>` : ""}
-    </div>
-  `).join("");
-}
-function addStop(){
-  toolState.travel.stops.push({venue:"", address:"", hotel:"", travelTime:"", photoUrl:"", link:"", insight:""});
-  document.getElementById("stopList").innerHTML = renderStops();
-}
-window.addStop = addStop;
-function removeStop(i){
-  toolState.travel.stops.splice(i,1);
-  document.getElementById("stopList").innerHTML = renderStops();
-}
-window.removeStop = removeStop;
-function updateStop(i,field,value){ toolState.travel.stops[i][field]=value; }
-window.updateStop = updateStop;
-function refreshStop(i){ document.getElementById("stopList").innerHTML = renderStops(); }
-window.refreshStop = refreshStop;
-
-/* ---------- AI Review ---------- */
-async function reviewItinerary(){
-  const el = document.getElementById("itinReview");
-  const btn = document.getElementById("travelReviewBtn");
-  const { legs, hotels, groundTransport, stops } = toolState.travel;
-  if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
-  if(!(await useLabAttempt(3, "reviewItinerary"))) return;
-  btn.disabled = true;
-  el.innerHTML = `<div class="ai-loading">Reviewing for meticulousness and resourcefulness…</div>`;
-  const legsSummary = legs.map(l=>`- ${l.route||"(route TBD)"} on ${l.date||"(date TBD)"}, seat "${l.seat||"(not set)"}", ${l.direct?"direct":"connecting"}, screenshot: ${l.screenshotUrl?"provided":"MISSING"}, booking link: ${l.bookingLink?"provided":"MISSING"}. Notes: ${l.notes||"(none)"}`).join("\n");
-  const hotelsSummary = hotels.map(h=>`- ${h.name||"(hotel TBD)"} at ${h.address||"(address TBD)"}, ${h.checkin||"?"} to ${h.checkout||"?"}, room: ${h.roomType||"(not specified)"}, confirmation: ${h.confirmation?"provided":"MISSING"}, booking link: ${h.bookingLink?"provided":"MISSING"}. Notes: ${h.notes||"(none)"}`).join("\n");
-  const groundSummary = groundTransport.map(g=>`- ${g.type} from ${g.from||"(from TBD)"} to ${g.to||"(to TBD)"} at ${g.datetime||"(time TBD)"}, booking link: ${g.bookingLink?"provided":"MISSING"}. Notes: ${g.notes||"(none)"}`).join("\n");
-  const stopsSummary = stops.map(s=>`- ${s.venue||"(venue TBD)"} at ${s.address||"(address TBD)"}, ${s.travelTime||"(no travel time given)"} from ${s.hotel||"(no hotel given)"}. Photo: ${s.photoUrl?"provided":"MISSING"}. Link: ${s.link?"provided":"MISSING"}. Rationale: ${s.insight||"(none)"}`).join("\n");
-  try{
-    const report = await runRubricEvaluation(
-      "Travel Itinerary — Personal Family Trip",
-      `This is a personal family trip for the client, Elias Thorne, taking his wife Sarah and children Leo (8) and Maya (5) to Spain. Grade strictly on meticulous detail and resourcefulness — this is the hardest exercise in the program by design.\n\nCLIENT TRAVEL PREFERENCES (hard constraints):\n- Seat: ${FLIGHT_PREFS.seat}\n- Routing: ${FLIGHT_PREFS.routing}\n- Redeye: ${FLIGHT_PREFS.redeye}\n- Hotel: ${FLIGHT_PREFS.hotel}\n- Also relevant: strict Paleo diet, zero dairy for Elias; something age-appropriate should be planned for the kids; a car seat is needed for Maya (age 5) on any ground transportation.`,
-      `FLIGHT LEGS SUBMITTED:\n${legsSummary || "(none)"}\n\nHOTEL ACCOMMODATION SUBMITTED:\n${hotelsSummary || "(none)"}\n\nGROUND TRANSPORTATION SUBMITTED:\n${groundSummary || "(none)"}\n\nITINERARY STOPS SUBMITTED:\n${stopsSummary || "(none)"}`,
-      `Do the flights actually match seat/routing preferences? Does the hotel actually fit a family of four with specific room type/dates? Is ground transportation planned end-to-end including the car seat need? Are screenshots, confirmation numbers, and direct links present — missing evidence should be penalized heavily, since a real EA doesn't hand over an itinerary without proof of booking. Are venue/stop choices backed by real, client-specific reasoning (Paleo/dairy-free, age-appropriate for kids) rather than generic placeholders? Is travel time/proximity actually addressed? Overall: does this look like real research, or placeholder content?`
-    );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Itinerary</b>` + renderEvaluationReport(report, 3);
-    toolState.travel.score = report.totalScore;
-    await bumpPracticeProgress("calendar", report.totalScore);
-    if(report.totalScore>=90) burstConfetti();
-  }catch(e){
-    el.innerHTML = renderAiErrorBlock(e, "Couldn't get a review");
-  }finally{
-    btn.disabled = false;
+/* The hard constraints — fixed times, caps and rules, checked without an AI call.
+   The trainee sees these only after they submit; nothing is flagged while they work. */
+function tripHardChecks(){
+  const t = tripState();
+  const f = FLIGHT_OPTIONS.find(x=>x.id===t.flight);
+  const h = HOTEL_OPTIONS.find(x=>x.id===t.hotel);
+  const d = t.day || {};
+  const HEARING = 9*60;
+  const checks = [];
+  const add = (ok, label, fix) => checks.push({ok, label, fix});
+  add(!!f, "A flight is booked", "No flight chosen.");
+  add(!!h, "A hotel is booked", "No hotel chosen.");
+  if(f){
+    add(f.day==="Wednesday", "He is on the ground the night before, not travelling on hearing morning",
+      `${f.carrier} gets in on ${f.day}. One delay on hearing morning and the tribunal starts without him.`);
+    add(f.stops===0, "Nonstop, as the policy requires", `${f.carrier} connects — ${f.route}. A missed connection the night before a fixed hearing is the whole trip.`);
+    add(f.price<=750, "Within the $750 fare cap", `$${f.price} is over the cap and needs the managing partner's written approval.`);
+    add(f.aisle, "Aisle seat, as he books every time", `${f.seat}.`);
+    add(!/redeye/i.test(f.route), "Not a redeye before he appears", "He argues the morning after a redeye.");
+    const dep = tripClock(f.dep), arr = tripClock(f.arr);
+    const inAirDuringCall = f.day==="Wednesday" && dep!==null && arr!==null && arr>dep && dep < 10*60+30 && arr > 9*60;
+    add(!inAirDuringCall, "Doesn't fly during Wednesday's 9:00–10:30 client call", `${f.carrier} is in the air ${f.dep}–${f.arr} Wednesday, through the client call.`);
   }
+  if(h){
+    const far = /35 min|15 min by car/.test(h.dist);
+    add(!far, "Hotel is walking distance from the Keller Center", `${h.name} is ${h.dist} — morning traffic decides whether he makes a fixed hearing.`);
+    add(h.price<=320, "Within the $320 a night cap", `$${h.price} a night is over the cap.`);
+    add(/Free cancellation/i.test(h.cancel), "Refundable, as court travel has to be", `${h.cancel} — if the trip moves, the firm eats it.`);
+    add(!/closed|renovation/i.test(h.food+h.room), "No renovation or closed restaurant to work around", `${h.name}: ${h.room}; ${h.food}.`);
+  }
+  const arrive = tripMinutes(d.arrive), car = tripMinutes(d.wake), prep = tripMinutes(d.prep), debrief = tripMinutes(d.debrief);
+  add(arrive!==null, "Thursday morning is laid out", "The day sheet is empty — no arrival time at the Keller Center.");
+  if(arrive!==null){
+    add(arrive <= HEARING-30, "At the Keller Center 30+ minutes before the hearing", `Arriving ${tripFmt(d.arrive)} for a 9:00 AM hearing — counsel checks in 30 minutes before.`);
+    if(car!==null) add(arrive-car >= 15, "Real travel time between the hotel and the hearing", `${tripFmt(d.wake)} to ${tripFmt(d.arrive)} doesn't cover the ride and the exhibit case.`);
+    else add(false, "The car to the Keller Center is on the sheet", "No pickup time — he is walking out of the hotel on hope.");
+    if(prep!==null) add(prep < HEARING && prep >= arrive, "The run-through happens after he arrives and before the hearing", `Prep at ${tripFmt(d.prep)} doesn't sit between arriving and 9:00 AM.`);
+    else add(false, "A final run-through is on the sheet", "No run-through with co-counsel before argument.");
+  }
+  add(debrief!==null && debrief >= HEARING, "A debrief buffer after the hearing", "Nothing held after the hearing — the client will want to talk and so will he.");
+  return {checks, f, h};
 }
-window.reviewItinerary = reviewItinerary;
+async function checkTripPlan(){
+  const t = tripState();
+  if(!t.flight || !t.hotel){ toast("Pick a flight and a hotel first."); return; }
+  const {checks} = tripHardChecks();
+  const passed = checks.filter(c=>c.ok).length;
+  const el = document.getElementById("tripResult");
+  el.innerHTML = `
+    <div class="card" style="padding:16px 18px;margin-top:14px;">
+      <b style="color:var(--navy);font-size:13.5px;">${passed} of ${checks.length} held up</b>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:6px 0 10px;">These are the trip's hard constraints — the tribunal's time, the firm's caps, how he travels. Change anything above and check again; nothing is graded yet.</p>
+      ${checks.map(c=>`<div class="trip-check ${c.ok?'ok':'bad'}"><span>${c.ok?"✓":"✕"}</span><div><b>${esc(c.label)}</b>${c.ok?"":`<span>${esc(c.fix)}</span>`}</div></div>`).join("")}
+    </div>`;
+  t.checked = true;
+  t.hardScore = Math.round(passed/checks.length*100);
+  await tripSave();
+  document.getElementById("tripCrisis").style.display = "block";
+  toast("Now the night before…");
+}
+window.checkTripPlan = checkTripPlan;
 
-async function reviewTravelActEmail(){
-  const draft = document.getElementById("travelActDraft").value.trim();
-  const el = document.getElementById("travelActFeedback");
-  if(draft.length < 20){ toast("Write your ACT email first."); return; }
-  if(!(await useLabAttempt(3, "reviewTravelActEmail"))) return;
-  el.innerHTML = `<div class="ai-loading">Reviewing your ACT email…</div>`;
+function tripSummaryText(){
+  const t = tripState();
+  const {checks, f, h} = tripHardChecks();
+  const d = t.day||{};
+  const r = TRIP_RECOVERY.find(x=>x.id===t.recovery);
+  return [
+    `FLIGHT BOOKED: ${f ? `${f.carrier}, ${f.day} ${f.dep}–${f.arr}, ${f.route}, ${f.cabin}, ${f.seat}, $${f.price}, ${f.change}` : "none"}`,
+    `Trainee's reason: ${t.flightWhy || "(none written)"}`,
+    `HOTEL BOOKED: ${h ? `${h.name}, ${h.dist}, $${h.price}/night, ${h.room}, ${h.food}, ${h.cancel}` : "none"}`,
+    `Trainee's reason: ${t.hotelWhy || "(none written)"}`,
+    `THURSDAY DAY SHEET: car at ${tripFmt(d.wake)}; at the Keller Center ${tripFmt(d.arrive)}; run-through ${tripFmt(d.prep)}; hearing 9:00 AM (fixed); debrief ${tripFmt(d.debrief)}.`,
+    `HARD CONSTRAINTS: ${checks.filter(c=>c.ok).length} of ${checks.length} met. Missed: ${checks.filter(c=>!c.ok).map(c=>c.label).join("; ") || "none"}.`,
+    "",
+    `THE CANCELLATION: ${TRIP_DISRUPTION.text}`,
+    `FIRST MOVE CHOSEN: ${r ? r.label + " — " + r.detail : "none chosen"}`,
+    "",
+    `ACTION PLAN:\n${t.plan || "(not written)"}`,
+    "",
+    `NOTE TO ELIAS:\n${t.bluf || "(not written)"}`,
+    "",
+    `MESSAGE TO THE CLIENT, MR. REYES:\n${t.client || "(not written)"}`
+  ].join("\n");
+}
+async function reviewTripCrisis(){
+  const t = tripState();
+  if(!t.recovery){ toast("Choose what you're putting in motion first."); return; }
+  if((t.plan||"").trim().length < 40){ toast("Write the action plan — the steps, the owners, the fallback."); return; }
+  if((t.bluf||"").trim().length < 30 || (t.client||"").trim().length < 30){ toast("Write both messages — one to Elias, one to the client."); return; }
+  if(!(await useLabAttempt(3, "reviewTripCrisis"))) return;
+  const btn = document.getElementById("tripCrisisBtn");
+  const el = document.getElementById("tripCrisisResult");
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  el.innerHTML = `<div class="ai-loading">Reviewing the trip and how you handled the night…</div>`;
   try{
     const report = await runRubricEvaluation(
-      "ACT Framework Reply Email — Travel Logistics",
-      `CLIENT CONTEXT (Elias Thorne — Managing Owner & CEO, Thorne & Partners Law Group):\n${CLIENT_DOSSIER_MD}\n\nTHE TASK DAVID REYES (HEAD OF LITIGATION) SENT BY EMAIL:\n"Quick one — can you check if the Madrid hotel has a secure business center? I may need to review case documents remotely while we're there, and if so I'll need IT looped in on a VPN setup before we leave. Also, does Elias's flight land before or after my call with opposing counsel on the 14th? Need to know if I should plan around him."\n\nNote: this email actually contains TWO separate asks tangled together (a hotel/IT security check, and a schedule cross-check against Elias's flight). A strong reply should separate them rather than answering as one blended task.`,
-      draft,
-      `Acknowledge — did they restate both threads (not just one), showing they understood what David actually needs? Clarify — did they ask only for genuinely missing information, rather than something they could reasonably confirm themselves (e.g. checking the hotel listing, checking the itinerary they're already building)? Timeline — is there a clear "by when" and "who owns it" for each thread? Tone/format — professional but efficient, appropriate for a busy Head of Litigation?`
+      "Business travel under pressure — a fixed hearing and a cancelled flight",
+      `The trainee EA booked a work trip for Elias Thorne (Managing Owner & CEO, Thorne & Partners Law Group) around an arbitration the tribunal set for Thursday 9:00 AM in Chicago, with a client meeting the next day. The firm caps airfare at $750 and hotels at $320 a night, requires nonstop flights and refundable court-travel bookings, and Elias takes an aisle near the front, no redeye before he appears, strict Paleo and zero dairy. On Wednesday night the flight was cancelled; the airline's rebooking lands two hours after the hearing starts; the tribunal has already refused one continuance; the client, Mr. Reyes, is flying in from Dallas and has not been told.\n\nWHAT THE TRAINEE DID:\n${tripSummaryText()}`,
+      tripSummaryText(),
+      `Grade the judgment under pressure, not the tidiness. On the booking: did they put him on the ground the night before with real margin, keep inside the caps or write a reason that would actually stand up, and lay Thursday out with the travel time inside it rather than around it? Cheapest is not the answer when a tribunal's time is fixed; neither is the most expensive when a compliant option exists. On the night: does the plan actually get him in that room by 8:30, with times, owners and a named fallback running in PARALLEL rather than after the first move fails? A plan with one move and no backstop is a gamble, however good the move. Does it respect what is not theirs to decide — spending over the cap, a continuance, consenting to co-counsel arguing — by putting those to Elias or the client as a decision rather than assuming them? On the two messages: is the note to Elias genuinely BLUF (bottom line first, what is already done next, the single decision he owns last), short enough to read on a phone at 10 PM? Is the client message sent TONIGHT rather than in the morning, does it lead with where things stand and what the client should do, state the trade-off plainly, and avoid both panic and the over-promise ("he will definitely be there") that an EA cannot guarantee? Penalise blaming the airline, hiding the problem until morning, or any promise the trainee cannot keep. Credit a named cost, a named deadline, and a line that tells the client exactly what changes for them.`
     );
-    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your ACT Email</b>` + renderEvaluationReport(report, 3);
+    toolState.tripReport = report;
+    el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — The Trip and the Night It Broke</b>` + renderEvaluationReport(report, 3);
     await bumpPracticeProgress("calendar", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
   }catch(e){
     el.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{
+    btn.disabled = false; btn.textContent = "Submit My Response";
   }
 }
-window.reviewTravelActEmail = reviewTravelActEmail;
+window.reviewTripCrisis = reviewTripCrisis;
 
 async function downloadTravelPdf(){
   await ensureTraineeName();
-  const { legs, hotels, groundTransport, stops } = toolState.travel;
-  if(!legs.length && !hotels.length && !groundTransport.length && !stops.length){ toast("Add at least one flight leg, hotel, transport, or stop first."); return; }
-  const lines = [`## ${TRAVEL_SCENARIO.title}`, TRAVEL_SCENARIO.text, "---", "## Flight Legs"];
-  legs.forEach(l=>{
-    lines.push(`${l.route || "(route TBD)"} — ${l.date || "(date TBD)"}`);
-    lines.push(`   Seat: ${l.seat || "(not set)"}   Routing: ${l.direct?"Direct":"Connecting"}`);
-    lines.push(`   Screenshot: ${l.screenshotUrl || "(none provided)"}`);
-    lines.push(`   Booking link: ${l.bookingLink || "(none provided)"}`);
-    if(l.notes) lines.push(`   Notes: ${l.notes}`);
-  });
-  lines.push("---", "## Hotel Accommodation");
-  hotels.forEach(h=>{
-    lines.push(`${h.name || "(hotel TBD)"} — ${h.address || "(address TBD)"}`);
-    lines.push(`   Check-in: ${h.checkin || "(not set)"}   Check-out: ${h.checkout || "(not set)"}   Room: ${h.roomType || "(not specified)"}`);
-    lines.push(`   Confirmation #: ${h.confirmation || "(none provided)"}   Booking link: ${h.bookingLink || "(none provided)"}`);
-    if(h.notes) lines.push(`   Notes: ${h.notes}`);
-  });
-  lines.push("---", "## Ground Transportation");
-  groundTransport.forEach(g=>{
-    lines.push(`${g.type} — ${g.from || "(from TBD)"} to ${g.to || "(to TBD)"} at ${g.datetime || "(time TBD)"}`);
-    lines.push(`   Booking link: ${g.bookingLink || "(none provided)"}`);
-    if(g.notes) lines.push(`   Notes: ${g.notes}`);
-  });
-  lines.push("---", "## Itinerary Stops");
-  stops.forEach(s=>{
-    lines.push(`${s.venue || "(venue TBD)"} — ${s.address || "(address TBD)"}`);
-    lines.push(`   From hotel (${s.hotel||"—"}): ${s.travelTime || "(not estimated)"}`);
-    lines.push(`   Photo: ${s.photoUrl || "(none provided)"}   Link: ${s.link || "(none provided)"}`);
-    if(s.insight) lines.push(`   Why it fits: ${s.insight}`);
-  });
-  if(typeof toolState.travel.score === "number"){
-    lines.push("---", `Review Score: ${toolState.travel.score}%`);
-  }
-  buildAndSavePdf("LSH EA / PA Upskill Program", "Advanced Travel Itinerary — Elias Thorne", lines, "LSH_Travel_Itinerary");
+  const t = tripState();
+  if(!t.flight && !t.hotel){ toast("Book the trip first."); return; }
+  const {checks} = tripHardChecks();
+  const lines = [`## ${TRIP_BRIEF.title}`, TRIP_BRIEF.text, "---", "## What I Booked And Why"];
+  tripSummaryText().split("\n").forEach(l=>lines.push(l));
+  lines.push("---", "## Hard Constraints");
+  checks.forEach(c=>lines.push(`${c.ok?"MET":"MISSED"} — ${c.label}${c.ok?"":"  («"+c.fix+"»)"}`));
+  if(toolState.tripReport) lines.push("---", "## Review",
+    `Score: ${toolState.tripReport.totalScore}/100 (${toolState.tripReport.gradeTier})`,
+    ...(toolState.tripReport.strengths||[]).map(x=>`+ ${x}`),
+    ...(toolState.tripReport.blindspots||[]).map(x=>`- ${x}`));
+  buildAndSavePdf("LSH EA / PA Upskill Program", "Business Travel — Chicago Arbitration", lines, "LSH_Travel_Plan");
 }
 window.downloadTravelPdf = downloadTravelPdf;
 
