@@ -2766,22 +2766,23 @@ body::before{opacity:.40;}
 .xv-art svg{width:100%;height:auto;max-height:230px;display:block;}
 .xv-art-sm svg{max-height:120px;}
 /* The rules */
-.xv-rules{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
-.xv-rules li{display:flex;align-items:baseline;gap:16px;font:500 21px/1.35 var(--font-ui);color:var(--xd-ink);padding-bottom:12px;border-bottom:1px dashed var(--xd-rule);}
+.xv-rules{list-style:none;margin:0;padding:0;display:grid;gap:9px;}
+.xv-rules li{display:flex;align-items:baseline;gap:16px;font:500 19.5px/1.32 var(--font-ui);color:var(--xd-ink);padding-bottom:9px;border-bottom:1px dashed var(--xd-rule);}
 .xv-rules li:last-child{border-bottom:0;padding-bottom:0;}
 .xv-rn{font:700 26px/1 'Fraunces',Georgia,serif;color:var(--xd-accent);min-width:40px;}
-.xv-line{margin-top:16px;display:flex;gap:14px;align-items:center;background:#262B45;color:#fff;border-radius:12px;padding:12px 16px;font:500 16.5px/1.4 var(--font-ui);}
+.xv-line{margin-top:12px;display:flex;gap:14px;align-items:center;background:#262B45;color:#fff;border-radius:12px;padding:12px 16px;font:500 16.5px/1.4 var(--font-ui);}
 .xv-line b{flex:none;font:700 11px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:#F0C08A;border:1px solid rgba(240,192,138,.5);border-radius:999px;padding:4px 10px;}
 .xv-line mark.xh{background:linear-gradient(transparent 58%, rgba(240,192,138,.45) 58%);}
 /* See it */
-.xv-see{display:grid;grid-template-columns:minmax(0,1fr) 220px;grid-template-areas:"scene art" "move art";gap:14px 22px;align-items:center;}
+.xv-see{display:grid;grid-template-columns:minmax(0,1fr) 190px;grid-template-areas:"scene art" "move art";gap:14px 22px;align-items:center;}
 .xv-scene{grid-area:scene;margin:0;background:#fff;border:1px solid var(--xd-rule);border-left:5px solid var(--xd-accent);border-radius:12px;padding:16px 20px;}
 .xv-scene figcaption{font:700 11px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--xd-soft);margin-bottom:6px;}
-.xv-scene p{margin:0;font:italic 500 22px/1.42 'Fraunces',Georgia,serif;color:var(--xd-ink);}
-.xv-move{grid-area:move;display:flex;align-items:center;gap:14px;background:#EAF3EE;border:1px solid #CBE2D5;border-radius:12px;padding:12px 16px;font:600 18.5px/1.4 var(--font-ui);color:#1F3B2C;}
+.xv-scene p{margin:0;font:italic 500 21px/1.4 'Fraunces',Georgia,serif;color:var(--xd-ink);}
+.xv-move{grid-area:move;display:flex;flex-direction:column;align-items:flex-start;gap:6px;background:#EAF3EE;border:1px solid #CBE2D5;border-radius:12px;padding:12px 16px;font:600 18.5px/1.4 var(--font-ui);color:#1F3B2C;}
 .xv-move b{flex:none;font:700 11px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#3F7D58;border-radius:999px;padding:5px 10px;}
 .xv-see .xv-art{grid-area:art;}
 .xv-see-own{grid-template-columns:1fr;grid-template-areas:"visual" "move";}
+.xv-see-own .xv-move{flex-direction:row;align-items:center;gap:14px;}
 .xv-visual{grid-area:visual;background:#fff;border:1px solid var(--xd-rule);border-radius:12px;padding:12px;display:flex;justify-content:center;align-items:center;}
 .xv-vin{width:100%;}
 .xv-vin > svg{display:block;width:100%;max-height:270px;height:auto;margin:0 auto;}
@@ -2806,19 +2807,19 @@ body::before{opacity:.40;}
 .xv-dd li{font:500 18.5px/1.38 var(--font-ui);padding-left:16px;position:relative;}
 .xv-dd li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.35;}
 /* The day's agenda */
-.xd-agenda{display:block;padding:28px 34px;background:radial-gradient(circle at 0 0,rgba(38,43,69,.06),transparent 45%),var(--xd-paper);}
+.xd-agenda{display:block;padding:22px 30px;background:radial-gradient(circle at 0 0,rgba(38,43,69,.06),transparent 45%),var(--xd-paper);}
 .xa-kicker{font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--xd-accent-d);}
-.xa-title{font:700 26px/1.2 'Fraunces',Georgia,serif;color:#262B45;margin:4px 0 14px;}
-.xa-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+.xa-title{font:700 24px/1.2 'Fraunces',Georgia,serif;color:#262B45;margin:4px 0 12px;}
+.xa-grid{display:grid;grid-template-columns:1fr;gap:12px;}
 .xa-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;}
-.xa-list li{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--xd-rule);border-radius:12px;padding:8px 12px;}
+.xa-list li{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--xd-rule);border-radius:12px;padding:6px 12px;}
 .xa-n{font:700 22px/1 'Fraunces',Georgia,serif;color:var(--xd-accent);min-width:34px;}
 .xa-s{display:flex;flex-direction:column;}
 .xa-s b{font:600 15px/1.25 var(--font-ui);color:var(--xd-ink);}
 .xa-s small{font:500 12px var(--font-ui);color:var(--xd-soft);}
 .xa-goal{background:#262B45;color:#fff;border-radius:14px;padding:14px 18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:start;}
 .xa-goal-k{font:700 11px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:#F0C08A;padding-top:3px;}
-.xa-goal p{margin:0;font:500 14px/1.45 var(--font-ui);color:rgba(255,255,255,.92);}
+.xa-goal p{margin:0;font:500 13.5px/1.42 var(--font-ui);color:rgba(255,255,255,.92);}
 .xa-legend{grid-column:2;font:600 11px/1.9 var(--font-ui);color:rgba(255,255,255,.7);}
 .xa-legend span{display:inline-block;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:1px 9px;margin:0 4px 4px 0;color:#fff;}
 /* Full text */
@@ -7336,21 +7337,18 @@ function renderLessonRun(d, i, view){
     </section>
   </div>`;
 }
-/* A run slide always fits its frame: a tall visual or a long list is scaled down (never clipped or split
-   across pages). Runs before the deck measures the slide for pages. */
+/* "See It" shows a topic's original diagram or layout as a picture in its box: a tall one is scaled to the box,
+   like an image. The slide's text is never scaled: every run slide is laid out to fit the deck's one size.
+   Runs before the deck measures the slide for pages. */
 function xdFit(wrap){
-  const xd = wrap && wrap.querySelector(".xd-run, .xd-agenda"); if(!xd) return;
-  const body = xd.querySelector(".xd-body") || xd;
-  body.style.zoom = ""; xd.querySelectorAll(".xv-vin").forEach(v=>v.style.zoom = "");
+  const xd = wrap && wrap.querySelector(".xd-run"); if(!xd) return;
+  xd.querySelectorAll(".xv-vin").forEach(v=>v.style.zoom = "");
   if(window.innerWidth <= 760) return;   // phones: the slide is a scrolling page
-  // the original diagram or layout of "See It" first: fit it to its box
   xd.querySelectorAll(".xv-visual").forEach(box=>{
     const inner = box.querySelector(".xv-vin"); if(!inner) return;
-    const z = Math.min(1, (box.clientWidth - 8) / Math.max(1, inner.scrollWidth), 270 / Math.max(1, inner.scrollHeight));
-    if(z < 1) inner.style.zoom = String(Math.max(0.45, z));
+    const z = Math.min(1, (box.clientWidth - 8) / Math.max(1, inner.scrollWidth), 240 / Math.max(1, inner.scrollHeight));
+    if(z < 1) inner.style.zoom = String(Math.max(0.4, z));
   });
-  const over = wrap.scrollHeight - wrap.clientHeight;
-  if(over > 1){ const h = body.scrollHeight; body.style.zoom = String(Math.max(0.7, (h - over - 4) / h)); }
 }
 /* "Full text": the topic as it was written, both parts, over the slide. */
 function openLessonFullText(dayId, i){
