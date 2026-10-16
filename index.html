@@ -3780,6 +3780,31 @@ function authHeaders(){
 }
 function setTraineeToken(t){ state.authToken = t||""; try{ t ? localStorage.setItem("lsh_auth_token", t) : localStorage.removeItem("lsh_auth_token"); }catch(e){} }
 function setAdminToken(t){ state.adminToken = t||""; try{ t ? sessionStorage.setItem("lsh_admin_token", t) : sessionStorage.removeItem("lsh_admin_token"); }catch(e){} }
+/* 🛡 Who may open a trainer tool.
+   An administrator signed in on the Main Portal is signed in here too — they are never asked for the admin
+   password again (js/portal-gate.js hands the Portal's ticket to the Worker, which answers with an admin
+   token). So the one thing that opens the admin screen and the trainer tools is that signed token, and it is
+   checked on the server (/api/auth/admin-check), not taken from a flag in this page: a token that has
+   expired, was signed with another secret, or is really a trainee's is refused and cleared, and whoever holds
+   it is asked for the admin password. The answer is remembered for a minute, so moving around the admin
+   screen doesn't cost a request per click. The server checks every request of its own as well — this is the
+   page refusing to open trainer tools it has no business opening, not the only lock on the door. */
+let adminCheck = null, adminCheckAt = 0;
+async function verifyAdmin(force){
+  if(!(await authStatus())) return true;                 // open mode: this Worker has no admin password at all
+  if(!state.adminToken) return false;
+  if(!force && adminCheck && adminCheck.token === state.adminToken && Date.now()-adminCheckAt < 60000) return adminCheck.ok;
+  let ok = false, decided = false;
+  try{
+    const r = await fetch("/api/auth/admin-check", {method:"POST", headers:{"Content-Type":"application/json","Authorization":"Bearer "+state.adminToken}, body:"{}"});
+    const j = r.ok ? await r.json().catch(()=>({})) : {};
+    ok = !!(r.ok && j.admin); decided = true;
+    if(!ok && (r.status===401 || r.status===403)){ setAdminToken(""); state.isAdmin = false; }
+  }catch(e){ ok = true; }                                // the server couldn't be reached: it still checks every request
+  if(decided){ adminCheck = {ok, token: state.adminToken}; adminCheckAt = Date.now(); }
+  return ok;
+}
+window.verifyAdmin = verifyAdmin;
 async function authStatus(){
   if(typeof state.secureMode === "boolean") return state.secureMode;
   try{ const r = await fetch("/api/auth/status", {method:"POST", headers:{"Content-Type":"application/json"}, body:"{}"}); const j = r.ok ? await r.json() : {}; state.secureMode = !!j.secure; state.portalOnly = !!j.portalOnly; state.portalSecret = j.portalSecret !== false; }
@@ -3800,7 +3825,7 @@ async function authFetch(url, payload){
   const doFetch = ()=>fetch(url, {method:"POST", headers:authHeaders(), body: JSON.stringify(payload)});
   let res = await doFetch();
   if(res.status===401 && !state.isAdmin && await reauthTrainee()) res = await doFetch();
-  if(res.status===401 && state.isAdmin){ setAdminToken(""); state.isAdmin = false; toast("Your admin session expired — click 🛡 Admin and sign in again."); }
+  if(res.status===401 && state.isAdmin){ setAdminToken(""); adminCheck = null; state.isAdmin = false; toast("Your admin session expired — click 🛡 Admin and sign in again."); }
   return res;
 }
 async function storeGet(key){
@@ -6385,6 +6410,13 @@ function goto(view, id){
   state.mobileNavOpen = false;
   state.searchQuery = "";
   if(VoiceCall.active && view!=="openroleplay") VoiceCall.hangup(true);
+  // 🛡 The trainer-only screens never open on a flag alone: without a verified admin token the admin screen
+  // asks for the password and the facilitator guide is simply not opened.
+  if((view==="admin" || view==="facilitatorguide") && !state.isAdmin){
+    if(view==="admin") openAdmin();
+    else toast("The Facilitator Guide is for trainers — sign in with 🛡 Admin to open it.");
+    return;
+  }
   state.view=view;
   if(view==="dashboard" || view==="tasks"){ state.surpriseTaskChecked = false; }
   if(view==="day"){ state.dayId=id; state.quizAnswers={}; state.quizQuestionIndex=0; state.quizSubmitted=false; state.slideDir="next"; state.slideInterstitial=null; state.dayViewMode="slides"; state.maxSlideReached=(state.slideProgress&&state.slideProgress[id])||0; state.lessonSlide=resumeSlideFor(id); }
@@ -6436,8 +6468,8 @@ function render(){
   else if(state.view==="clientprofile") body=renderClientProfile();
   else if(state.view==="crisisroleplay") body=renderCrisisRoleplayHub();
   else if(state.view==="openroleplay") body=renderOpenRoleplay();
-  else if(state.view==="admin") body=renderAdmin();
-  else if(state.view==="facilitatorguide") body=renderFacilitatorGuide();
+  else if(state.view==="admin") body = state.isAdmin ? renderAdmin() : renderDashboard();
+  else if(state.view==="facilitatorguide") body = state.isAdmin ? renderFacilitatorGuide() : renderDashboard();
   else if(state.view==="tasks") body=renderTasksPage();
   else if(state.view==="orientation") body = state.isAdmin ? renderOrientation() : renderDashboard();
   const presenterView = false;   // the presenter now lives inside the lesson stage
@@ -7197,7 +7229,9 @@ window.applyUpdate = applyUpdate;
   startUpdateChecks();
   await loadAll();
   if(window.portalGate) await window.portalGate.init();   // js/portal-gate.js: trainees and admins come in from the LSH Training Portal
-  if(state.adminToken && (await authStatus())) state.isAdmin = true;
+  // 🛡 Admin, at boot, is the signed admin token and nothing else: verified on the server, so a stale or
+  // borrowed token (or a flag left in this page) opens no trainer tool.
+  if(await authStatus()) state.isAdmin = !!(state.adminToken && (await verifyAdmin(true)));
   if(state.isAdmin && !state.adminToken && (await authStatus())){ state.isAdmin = false; setTimeout(()=>{ toast("Secure mode is on — please sign in to Admin again with the admin password."); }, 600); }
   if(state.traineeId && (await authStatus()) && !state.authToken){
     if(!(await reauthTrainee())){ state.traineeId = ""; await storeSet("trainee-id", ""); state.view = "login"; render(); return; }
@@ -11867,8 +11901,11 @@ window.downloadNotesPdf = downloadNotesPdf;
    if this ever needs to hold sensitive records.
    ============================================================ */
 
-function openAdmin(){
-  if(state.isAdmin){ goto("admin"); return; }
+async function openAdmin(){
+  // An admin who came in from the Main Portal (or signed in earlier in this tab) holds a valid admin token:
+  // the admin screen opens straight away, with no second password. Anyone else is asked for it.
+  if(state.adminToken && (await verifyAdmin())){ state.isAdmin = true; goto("admin"); return; }
+  state.isAdmin = false;
   const overlay=document.createElement("div");
   overlay.className="overlay";
   overlay.innerHTML=`
@@ -11904,6 +11941,7 @@ window.openAdmin = openAdmin;
 
 function adminLogout(){
   setAdminToken("");
+  adminCheck = null;
   state.isAdmin=false;
   state.adminData=null;
   goto("dashboard");

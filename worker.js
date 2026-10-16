@@ -673,6 +673,17 @@ export default {
       const tok = secure ? await readToken(env, request) : { role: "a", id: "open-mode" };
       if (!tok) return json({ error: "Sign-in required" }, 401);
 
+      /* ---------- is this caller still a trainer? ----------
+         An admin signed in on the Main Portal is signed in here too (no second password), so the only thing that
+         decides whether the admin screen and the trainer tools open is the signed admin token itself — checked
+         here, on the server, not a flag in the browser. The page asks before it opens any trainer tool, and an
+         admin token that has expired, was signed with another secret, or is really a trainee's token is refused:
+         the trainee is sent back to their own dashboard and an administrator is asked for the password again. */
+      if (path === "/api/auth/admin-check") {
+        if (tok.role !== "a") return json({ admin: false, error: "Not allowed" }, 403);
+        return json({ admin: true, secure });
+      }
+
       /* ---------- 🕘 automatic Time In: a trainee's first visit today (see checkIn) ---------- */
       if (path === "/api/checkin") {
         const b = await request.json().catch(() => ({}));

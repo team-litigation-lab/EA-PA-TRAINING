@@ -6,9 +6,15 @@
    (?ticket=…); the Worker checks it (/api/auth/portal) and the trainee
    is signed in, registered and waiting for approval exactly as before.
    Someone who opens this program's link directly sees a short note
-   with a button back to the Portal instead of a form. Admins sign in on the
-   Portal too, but every platform asks an admin for the admin password: no
-   ticket signs an admin in (the Admin Portal tab on that note).
+   with a button back to the Portal instead of a form. Admins come in the same
+   way: an administrator signed in on the Main Portal opens this program as a
+   trainer with no password here (their ticket is an admin ticket, which the
+   Worker answers with an admin token, and it works once). The admin password
+   form is only for someone who has no such ticket — a program link opened
+   directly. Access to the trainer tools is strict either way: the signed admin
+   token is what opens them, checked on the server (/api/auth/admin-check) on
+   the way in and on every request, so a trainee's session or an expired admin
+   token opens nothing.
    Single sign-on is how every LSH platform works now: there is no name +
    batch form on a program's own site any more, whatever the Worker is
    configured with. The Worker needs PORTAL_SSO_SECRET (the Portal's value)
@@ -80,10 +86,14 @@ window.portalGate = {
     try{ await authStatus(); }catch(e){}
     // authStatus() above has already asked the Worker; it costs no request of its own.
     try{ secretMissing = !!(state.portalOnly && state.portalSecret === false); }catch(e){}
-    // The Portal sends an administrator here as /?admin=1 (no ticket: admins type the admin password). A trainee session
-    // saved in this browser (an earlier test, a shared computer) is signed out first, so the admin password prompt shows
-    // instead of that trainee's dashboard.
+    // An administrator opening this program as /?admin=1: a trainee session saved in this browser (an earlier test, a
+    // shared computer) is signed out first, or it would open that trainee's dashboard instead of the admin screen.
     if(wantAdmin && state.traineeId && !state.adminToken){ try{ await logout(); }catch(e){} }
+    // Already signed in as an admin in this tab (a refresh, or back from another page) and the token still checks out:
+    // straight to the admin screen, no password.
+    if(wantAdmin && state.adminToken && typeof verifyAdmin === "function" && (await verifyAdmin())){
+      state.isAdmin = true; wantAdmin = false; uncover(0); return;
+    }
     if(!ticket){ uncover(150); return; }
     var t = ticket; ticket = "";
     // Arriving from the Portal lands on the dashboard (it has its own "Resume where you left off" button) instead of
@@ -104,9 +114,11 @@ window.portalGate = {
       // An admin from the Portal is never a trainee here: a trainee session saved in this browser (an earlier test, a
       // shared computer) is signed out first, or it would open the trainee's dashboard instead of the admin screen.
       if((j.code === "admin-password" || j.admin) && state.traineeId){ try{ await logout(); }catch(e){} }
-      if(j.code === "admin-password"){ wantAdmin = true; uncover(0); return; }   // administrators always type the admin password: straight to that prompt
+      // An older Worker (one before admins were signed in from the Portal too) answers an admin's ticket with
+      // admin-password: that administrator types the password here, as that Worker still expects.
+      if(j.code === "admin-password"){ wantAdmin = true; uncover(0); return; }
       if(!r.ok || !j.token){ notice = j.error || "We couldn't sign you in from the LSH Training Portal. Open the program from the Portal again."; uncover(0); return; }
-      if(j.admin){ setAdminToken(j.token); uncover(250); return; }                                        // an admin signed in on the Portal: no password here (boot picks up the token)
+      if(j.admin){ setAdminToken(j.token); state.isAdmin = true; uncover(250); return; }                   // an admin signed in on the Portal: no password here (boot picks up the token)
       if(state.traineeId && state.traineeId === j.id){ setTraineeToken(j.token); uncover(250); return; }   // already signed in as them
       if(state.traineeId){ try{ await logout(); }catch(e){} }                               // someone else was signed in on this device
       setTraineeToken(j.token);
@@ -185,7 +197,7 @@ window.portalGate = {
       +   '<div class="brand"><img src="'+((typeof LOGO_FULL_SRC !== "undefined") ? LOGO_FULL_SRC : "/favicon.png")+'" alt="" onerror="this.style.display=\'none\'"><div><h1>Legal Support Help</h1><span>Training Interface Access</span></div></div>'
       +   '<div class="pane on" data-p="admin">'
       +     (msg ? '<p class="err">'+esc(msg)+'</p>' : '')
-      +     '<p>Administrators sign in with the admin password. Trainees are signed in automatically when they open this training from the LSH Training Portal.</p>'
+      +     '<p>Open this program from the Main Portal and you are signed in automatically — trainees and administrators alike. Opened directly, an administrator signs in here with the admin password.</p>'
       +     (secretMissing ? '<p class="err">This program isn\'t connected to the LSH Training Portal yet: set PORTAL_SSO_SECRET on its Worker, to the same value as the Portal\'s. Until then no trainee can be signed in.</p>' : '')
       +     '<div id="gate-aerr" class="err" style="display:none;margin:0 0 10px;font-size:12px"></div>'
       +     '<label for="gate-apass">Admin password</label><input id="gate-apass" type="password" autocomplete="off" onkeydown="if(event.key===\'Enter\')portalGate.admin()">'
