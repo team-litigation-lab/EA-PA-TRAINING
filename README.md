@@ -235,3 +235,34 @@ Every AI review in the Practice Labs (written labs, roleplay calls, intake calls
 **Gemini region refusals.** Gemini answers 400 *User location is not supported* for some regions. The Worker is placed in the US (`wrangler.json`), but placement is best-effort, so a refused call is sent again from **`GeminiRelay`**, a Durable Object pinned to western North America (`locationHint: "wnam"`, binding `GEMINI_RELAY`), and that Worker instance keeps using it. The relay only forwards to `generativelanguage.googleapis.com`. A Durable Object can't be created by a branch preview build, so a PR that changes its class shows a red *Workers Builds* preview; the `main` deploy applies it.
 
 - `AI_GATEWAY_SECRET` (optional Secret, the same value as on the Portal): every AI call goes to the Main Portal's shared AI gateway, one master key pool and one shared budget for all call flows. Without it this Worker uses its own `GEMINI_API_KEY` pool.
+
+## 🎨 The standard page style
+
+This program's look is the LSH standard, shared with the Training Portal and
+the other four programs. The block that carries it sits at the end of the
+`<style>` in `index.html`, marked **"The LSH standard page style"**, and is
+byte-identical in all five programs.
+
+**It is a vendored copy, not a link.** The Portal's `theme.css` — and the
+"The standard page style" section of the Portal's README — is the source of
+truth. Change it there first, then copy the block down into each program. The
+copy is deliberate: every program deploys on its own, and no other site's
+deploy can restyle this one.
+
+What it does:
+
+- The page sits on a photo behind a wash. Each program keeps **its own image**,
+  pointed at by its own `body::before`; only the strength is shared (`.40`).
+- The panels on top of it are translucent (`--surface-glass`, `--surface-blur`),
+  so the backdrop carries on underneath instead of stopping at every card.
+- The colour rules in the block are what the backdrop costs, not decoration.
+  Text must clear WCAG AA (4.5:1, or 3:1 at 24px / 18.7px bold) against the
+  **photo**, not against a white card that is no longer white. That is why
+  `--ink-soft` is `#2B2F3E` rather than the `#5B6178` tuned for white, why
+  orange is never used as lettering on the photo, and why a label on an orange
+  fill is dark rather than white.
+
+Changing any surface here means re-checking contrast against the photo. The
+audit that produced these numbers screenshots each view twice — normally and
+with every glyph transparent — and scores each text run against the pixels
+actually behind its own lettering.
