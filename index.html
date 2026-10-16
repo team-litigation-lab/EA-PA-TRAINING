@@ -2472,7 +2472,32 @@ em.warn{font-style:normal;color:var(--danger);}
 .gcw-ev span{display:block;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .gcw-ev.short{padding:0 6px;}
 .gcw-ev.short b{display:inline;} .gcw-ev.short span{display:inline;margin-left:5px;}
-.gcw-ev.conflict{border-color:#d93025;box-shadow:0 0 0 2px #d93025 inset;}
+/* an event the trainee has delegated or taken off the attorney's calendar */
+.gcw-ev.off{opacity:.5;border-style:dashed;}
+.gcw-ev.off b{text-decoration:line-through;}
+/* the detail card's decision block */
+.gcw-pop .dec-now{margin:10px 10px 0;padding:7px 10px;border-radius:8px;background:#e8f0fe;color:#0b57d0;font-size:12px;line-height:1.45;}
+.gcw-pop .dec-now b{display:block;font-weight:500;}
+.gcw-pop .dec-now span{display:block;color:#444746;margin-top:2px;}
+.gcw-pop .dec-q{padding:12px 10px 0;font-size:12.5px;color:#70757a;}
+.gcw-pop .acts.dec3{padding-top:6px;gap:6px;}
+.gcw-pop .acts.dec3 button{font-size:12.5px;padding:0 4px;}
+.gcw-pop .acts.dec3 button.on{background:#c2e7ff;border-color:transparent;color:#001d35;}
+/* Your Decisions */
+.cal-dec-group{margin:4px 0 14px;}
+.cal-dec-group:last-child{margin-bottom:2px;}
+.cal-dec-group h4{margin:0 0 2px;font-size:13.5px;color:var(--navy);}
+.cal-dec-group h4 span{color:var(--ink-soft);font-weight:400;}
+.cal-dec-group .note{font-size:12px;color:var(--ink-soft);margin:0 0 8px;}
+.cal-dec-row{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;margin-bottom:6px;}
+.cal-dec-row .sw{width:10px;height:10px;border-radius:3px;margin-top:4px;flex:0 0 auto;}
+.cal-dec-row > div{flex:1;min-width:0;}
+.cal-dec-row b{display:block;font-size:13px;color:var(--navy);}
+.cal-dec-row .meta{display:block;font-size:11.5px;color:var(--ink-soft);}
+.cal-dec-row .to{display:block;font-size:12px;color:#37394A;margin-top:3px;font-weight:600;}
+.cal-dec-row .why{display:block;font-size:12px;color:#37394A;margin-top:2px;font-style:italic;}
+.cal-dec-row .why.missing{color:var(--danger);font-style:normal;}
+.cal-dec-row .btn{flex:0 0 auto;}
 .gcw-ev:hover{filter:brightness(1.06);box-shadow:0 2px 6px rgba(60,64,67,.35);z-index:4;}
 .gcw-ev.dim{opacity:.35;}
 .gcw-ghost{position:absolute;left:1px;right:1px;border-radius:4px;border:2px dashed var(--gblue);background:#e8f0fe;color:var(--gblue);
@@ -2498,16 +2523,6 @@ em.warn{font-style:normal;color:var(--danger);}
 .gcw-pop .acts button:hover{background:#f1f3f4;}
 .gcw-pop .acts button.danger{color:#b3261e;border-color:#f2b8b5;}
 .gcw-pop .warn{margin:10px 10px 0;padding:7px 10px;border-radius:8px;background:#fce8e6;color:#b3261e;font-size:12px;line-height:1.45;}
-/* Remaining conflicts — each side is a chip you drag onto the calendar */
-.gcw-cf{display:flex;flex-direction:column;gap:10px;}
-.gcw-cf-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#FFF8F4;}
-.gcw-cf-row .when{font-size:12px;color:var(--ink-soft);width:100%;}
-.gcw-cf-chip{display:flex;align-items:center;gap:8px;max-width:100%;padding:6px 10px;border-radius:8px;color:#fff;font-size:12.5px;font-weight:600;
-  cursor:grab;box-shadow:0 1px 3px rgba(0,0,0,.25);}
-.gcw-cf-chip:active{cursor:grabbing;}
-.gcw-cf-chip .grip{opacity:.8;font-size:12px;}
-.gcw-cf-chip small{font-weight:400;opacity:.9;}
-.gcw-cf-vs{font-size:12px;color:var(--ink-soft);font-weight:700;}
 .gcw-drag-on .gcw-col{background:#f8fbff;}
 .gcw-scroll{overflow-x:auto;}
 .gcw-create-sm{display:none;}
@@ -2517,7 +2532,6 @@ em.warn{font-style:normal;color:var(--danger);}
   .gcw-title{margin-left:0;}
   .gcw-create-sm{display:inline-block;}
   .gcw-track{min-width:660px;}
-  .gcw-cf-row{padding:10px;}
 }
 </style>
 <script src="/js/portal-gate.js?v=2026.10.08-admin"></script>
@@ -8479,12 +8493,23 @@ window.downloadDrillPdf = downloadDrillPdf;
 const CAL_DAY_START = 8.5, CAL_DAY_END = 17.5, CAL_PX_PER_HR = 48;
 
 function calMergedEvents(){
+  const dec = toolState.calDecisions || {};
   const originals = CAL_EVENTS.map((e,i)=>{
     const ov = toolState.calEdits[i]||{};
-    return Object.assign({}, e, ov, {idx:i, custom:false, _deleted:!!ov.deleted});
+    return Object.assign({}, e, ov, {idx:i, key:"o"+i, custom:false, _deleted:!!ov.deleted});
   });
-  const customs = (toolState.calCustomEvents||[]).map((e,ci)=>Object.assign({}, e, {idx:CAL_EVENTS.length+ci, custom:true, _deleted:false}));
-  return originals.concat(customs).filter(e=>!e._deleted);
+  // A block the trainee added keeps its own id, so its decision survives another block being removed.
+  const customs = (toolState.calCustomEvents||[]).map((e,ci)=>Object.assign({}, e, {idx:CAL_EVENTS.length+ci, key:"c"+(e.cid||ci), custom:true, _deleted:false}));
+  return originals.concat(customs).filter(e=>!e._deleted).map(e=>Object.assign(e, {d: dec[e.key] || null}));
+}
+/* What the trainee can decide about an event, and who they can hand it to. */
+const CAL_DELEGATES = ["Paralegal","Receptionist / front desk","Co-counsel","Another attorney","Billing / bookkeeping","Me (the EA)"];
+const CAL_REMOVE_WAYS = ["Declined — the attorney shouldn't be in this at all","Cancelled — it isn't needed this week","Handled by email / written update instead","Pushed to next week"];
+function calDecisionLabel(d){
+  if(!d) return "";
+  if(d.kind==="keep") return "Stays on the attorney's calendar";
+  if(d.kind==="delegate") return "Delegated to " + (d.to||"someone else");
+  return "Off the attorney's calendar — " + (d.to||"removed");
 }
 function calFindConflicts(events){
   const conflicts=[];
@@ -8500,7 +8525,9 @@ function calFindConflicts(events){
 async function initCalendar(body){
   toolState.calEdits = (await storeGet("calendar-edits")) || {};
   toolState.calCustomEvents = (await storeGet("calendar-custom")) || [];
-  toolState.calBaseline = calFindConflicts(CAL_EVENTS).length; // conflicts before any edits, fixed for this session
+  toolState.calDecisions = (await storeGet("calendar-decisions")) || {};
+  // Kept for the review and the report only — the trainee is never shown where the overlaps are.
+  toolState.calBaseline = calFindConflicts(CAL_EVENTS).length;
   toolState.travel = { legs: [], hotels: [], groundTransport: [], stops: [] };
   renderCalendarBody(body);
 }
@@ -8513,8 +8540,8 @@ function renderCalendarBody(body){
   const savedTravelAct = document.getElementById("travelActDraft") ? document.getElementById("travelActDraft").value : "";
   closeEventPopup();
   const events = calMergedEvents();
-  const conflicts = calFindConflicts(events);
-  const conflictIdx = new Set(conflicts.flat());
+  // Overlaps are NOT marked for the trainee: finding them is the exercise. The check
+  // (submitCalendar) works them out at review time.
   toolState.calHidden = toolState.calHidden || {};
   const hidden = toolState.calHidden;
   const colH = (CAL_DAY_END-CAL_DAY_START)*CAL_PX_PER_HR;
@@ -8534,15 +8561,16 @@ function renderCalendarBody(body){
     return dayEvents.map(e=>{
       const n = widthOf.get(e)||1, li = laneOf.get(e)||0;
       const laneStyle = n>1 ? `left:calc(${(li/n*100).toFixed(3)}% + 1px);right:auto;width:calc(${(100/n).toFixed(3)}% - 2px);` : "";
-      const tip = `${e.t}\n${e.day} · ${fmtHr12(e.s)}–${fmtHr12(e.e)}\n${e.p} priority · ${e.type}${e.loc && e.loc!=="—" ? "\n📍 "+e.loc : ""}\n(Drag to move, or click to open)`;
+      const tip = `${e.t}\n${e.day} · ${fmtHr12(e.s)}–${fmtHr12(e.e)}\n${e.p} priority · ${e.type}${e.loc && e.loc!=="—" ? "\n📍 "+e.loc : ""}${e.d ? "\n"+calDecisionLabel(e.d)+(e.d.why?" — "+e.d.why:"") : ""}\n(Drag to move, or click to decide)`;
       const top = (e.s-CAL_DAY_START)*CAL_PX_PER_HR;
       const h = Math.max((e.e-e.s)*CAL_PX_PER_HR, 22);
-      const isConflict = conflictIdx.has(e.idx);
       const bg = e.color || PRI_COLOR[e.p];
-      return `<div class="gcw-ev ${isConflict?'conflict':''} ${h<30?'short':''}" draggable="true"
+      const off = e.d && e.d.kind!=="keep";
+      const mark = !e.d ? "" : (e.d.kind==="delegate" ? "⇢ " : (e.d.kind==="keep" ? "" : "✕ "));
+      return `<div class="gcw-ev ${off?'off':''} ${h<30?'short':''}" draggable="true"
                 ondragstart="calDragStart(event,${e.idx})" onclick="openEventPopup(event,${e.idx})"
                 style="top:${top}px;height:${h}px;background:${bg};${laneStyle}" title="${esc(tip)}">
-        <b>${esc(e.t)}</b><span>${fmtHr12(e.s)}${h>=42?" – "+fmtHr12(e.e):""}${e.loc && e.loc!=="—" && h>=58 ? " · "+esc(e.loc) : ""}</span>
+        <b>${mark}${esc(e.t)}</b><span>${fmtHr12(e.s)}${h>=42?" – "+fmtHr12(e.e):""}${e.loc && e.loc!=="—" && h>=58 ? " · "+esc(e.loc) : ""}</span>
       </div>`;
     }).join("");
   }
@@ -8555,7 +8583,11 @@ function renderCalendarBody(body){
 
   toolState.wizardIndex = toolState.wizardIndex || 0;
   const partA = `
-    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:12px;">This attorney's <b>week</b> has <b>${toolState.calBaseline} overlapping commitments</b> (outlined in red). <b>Drag any event</b> to a new day or time, or <b>click it</b> to open it — move it to an exact slot, recolor it by priority, or delete it. <b>+ Create</b> schedules something new, including proactive blocks you spot are missing, like a debrief buffer or prep time. Under <b>Remaining Conflicts</b> you can drag either side of a clash straight onto the calendar; a conflict leaves the list as soon as it no longer overlaps. Nothing here is graded until you click Check My Plan.</p>
+    <div class="card" style="padding:14px 18px;margin-bottom:14px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">This is the attorney's week as it actually came in. Nothing in it has been sorted out for you.</b>
+      <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;line-height:1.6;">Read the week the way you'd read it on a Monday morning and work out for yourself where it doesn't hold up — what double-books the attorney, what he has to be in the room for personally, what somebody else in the firm can take, and what shouldn't be on his calendar at all. Nothing is flagged, counted or outlined: that judgment is the exercise.</p>
+      <p style="font-size:12.8px;color:#37394A;margin:8px 0 0;line-height:1.6;"><b>Open an event</b> to decide it — <b>✓ Keep</b> on his calendar, <b>⇢ Delegate</b> to someone (and say who), or <b>✕ Take off</b> his calendar (declined, cancelled, handled in writing, pushed) — with one line on <i>why</i>. <b>Drag</b> an event to move it, <b>⇄ Move</b> for an exact slot, and <b>+ Create</b> to add what's missing, like prep or a debrief buffer. Your decisions and your reasoning are what <b>Check My Plan</b> grades — not how empty the week looks.</p>
+    </div>
     <div class="gcw">
       <div class="gcw-head">
         <div class="gcw-logo">
@@ -8602,21 +8634,28 @@ function renderCalendarBody(body){
         </div>
       </div>
     </div>
-    <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">Remaining Conflicts</h3>
+    <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">Your Decisions</h3>
     <div class="card" style="padding:14px 20px;">
-      ${conflicts.length===0
-        ? `<p style="font-size:13px;color:var(--success);margin:6px 0;">✅ No overlapping commitments remain.</p>`
-        : `<p style="font-size:12.5px;color:var(--ink-soft);margin:2px 0 12px;">Drag whichever side should move onto an open slot in the calendar above. Once the two no longer overlap, the conflict disappears from this list.</p>
-           <div class="gcw-cf">${conflicts.map(([i,j])=>{
-            const ei = events.find(e=>e.idx===i), ej = events.find(e=>e.idx===j);
-            if(!ei||!ej) return "";
-            const chip = e=>`<span class="gcw-cf-chip" draggable="true" ondragstart="calDragStart(event,${e.idx})" title="Drag me onto the calendar, or click to open"
-                onclick="openEventPopup(event,${e.idx})" style="background:${e.color||PRI_COLOR[e.p]};"><span class="grip">⠿</span>${esc(e.t)} <small>${esc(e.p)} · ${fmtHr12(e.s)}–${fmtHr12(e.e)}</small></span>`;
-            return `<div class="gcw-cf-row">
-              <div class="when">${esc(ei.day)} · ${fmtHr12(Math.max(ei.s,ej.s))}–${fmtHr12(Math.min(ei.e,ej.e))} overlap</div>
-              ${chip(ei)}<span class="gcw-cf-vs">overlaps</span>${chip(ej)}
-            </div>`;
-          }).join("")}</div>`}
+      ${(()=>{
+        const decided = events.filter(e=>e.d);
+        if(!decided.length) return `<p style="font-size:13px;color:var(--ink-soft);margin:6px 0;">Nothing decided yet. Open an event on the calendar and say whether it stays with the attorney, goes to someone else, or comes off his week — with one line on why.</p>`;
+        const group = (kind, title, note)=>{
+          const rows = decided.filter(e=>e.d.kind===kind);
+          if(!rows.length) return "";
+          return `<div class="cal-dec-group"><h4>${title} <span>(${rows.length})</span></h4>
+            <p class="note">${note}</p>
+            ${rows.map(e=>`<div class="cal-dec-row">
+              <span class="sw" style="background:${e.color||PRI_COLOR[e.p]};"></span>
+              <div><b>${esc(e.t)}</b><span class="meta">${esc(e.day)} · ${fmtHr12(e.s)}–${fmtHr12(e.e)} · ${esc(e.p)} priority · ${esc(e.type)}</span>
+              ${e.d.to ? `<span class="to">${kind==="delegate"?"To: ":""}${esc(e.d.to)}</span>` : ""}
+              ${e.d.why ? `<span class="why">“${esc(e.d.why)}”</span>` : (kind==="keep" ? "" : `<span class="why missing">No reason written yet — open it and add one.</span>`)}</div>
+              <button class="btn btn-ghost btn-sm" onclick="calClearDecision('${e.key}')" title="Undo this decision">↩ Undo</button>
+            </div>`).join("")}</div>`;
+        };
+        return group("keep", "Staying with the attorney", "He has to be in these personally.")
+             + group("delegate", "Delegated", "Someone else in the firm covers these.")
+             + group("remove", "Off his calendar", "Declined, cancelled, handled in writing or pushed.");
+      })()}
     </div>
     <button class="btn btn-primary" style="margin-top:16px;" onclick="submitCalendar()">Check My Plan</button>
     <div id="calResult"></div>
@@ -8744,7 +8783,6 @@ function openEventPopup(ev, idx){
   closeEventPopup();
   const e = calMergedEvents().find(x=>x.idx===idx);
   if(!e) return;
-  const conflictWith = calMergedEvents().filter(o=>o.idx!==idx && o.day===e.day && o.s<e.e && e.s<o.e);
   const bg = e.color || PRI_COLOR[e.p];
   const dayName = {Mon:"Monday, October 12",Tue:"Tuesday, October 13",Wed:"Wednesday, October 14",Thu:"Thursday, October 15",Fri:"Friday, October 16"}[e.day] || e.day;
   const pop = document.createElement("div");
@@ -8758,10 +8796,18 @@ function openEventPopup(ev, idx){
     ${e.loc && e.loc!=="—" ? `<div class="pr"><span class="ic">📍</span><span>${esc(e.loc)}</span></div>` : ""}
     <div class="pr"><span class="ic">🏷</span><span>${esc(e.type)}</span></div>
     <div class="pr"><span class="ic">🎨</span><span class="dots">${["High","Medium","Low"].map(p=>`<button type="button" class="${toHex(bg)===PRI_COLOR[p]?'sel':''}" style="background:${PRI_COLOR[p]};" title="${p} priority" onclick="calColorChange(${e.idx}, '${PRI_COLOR[p]}')"></button>`).join("")}</span></div>
-    ${conflictWith.length ? `<div class="warn">Overlaps ${conflictWith.map(o=>esc(o.t)).join(", ")}. Move one of them to a free slot.</div>` : ""}
+    ${e.d ? `<div class="dec-now"><b>${esc(calDecisionLabel(e.d))}</b>${e.d.why?`<span>“${esc(e.d.why)}”</span>`:""}</div>` : ""}
+    <div class="dec-q">Does the attorney have to be in this one?</div>
+    <div class="acts dec3">
+      <button type="button" class="${e.d&&e.d.kind==='keep'?'on':''}" onclick="calKeepEvent('${e.key}')">✓ Keep</button>
+      <button type="button" class="${e.d&&e.d.kind==='delegate'?'on':''}" onclick="openDecisionDialog('${e.key}','delegate')">⇢ Delegate</button>
+      <button type="button" class="${e.d&&e.d.kind==='remove'?'on':''}" onclick="openDecisionDialog('${e.key}','remove')">✕ Take off</button>
+    </div>
     <div class="acts">
       <button type="button" onclick="closeEventPopup(); openMoveDialog(${e.idx});">⇄ Move</button>
-      <button type="button" class="danger" onclick="closeEventPopup(); calDeleteEvent(${e.idx});">🗑 Delete</button>
+      ${e.custom
+        ? `<button type="button" class="danger" onclick="closeEventPopup(); calDeleteEvent(${e.idx});">🗑 Delete my block</button>`
+        : (e.d ? `<button type="button" onclick="calClearDecision('${e.key}')">↩ Undo decision</button>` : "")}
     </div>`;
   document.body.appendChild(pop);
   // Sit the card beside what was clicked, kept inside the window.
@@ -8777,6 +8823,65 @@ function openEventPopup(ev, idx){
   document.addEventListener("keydown", toolState.gcwPopKey, true);
 }
 window.openEventPopup = openEventPopup;
+
+/* Keep / Delegate / Take off — the trainee's call on every event, with the reason that
+   the review grades. Saved with their work (`calendar-decisions`). */
+async function calSaveDecision(key, dec){
+  toolState.calDecisions = toolState.calDecisions || {};
+  if(dec) toolState.calDecisions[key] = dec; else delete toolState.calDecisions[key];
+  await storeSet("calendar-decisions", toolState.calDecisions);
+  renderCalendarBody(document.getElementById("toolBody"));
+}
+async function calKeepEvent(key){
+  const e = calMergedEvents().find(x=>x.key===key);
+  closeEventPopup();
+  await calSaveDecision(key, {kind:"keep", to:"", why:(e && e.d && e.d.why) || ""});
+  toast("Kept on the attorney's calendar");
+}
+window.calKeepEvent = calKeepEvent;
+async function calClearDecision(key){
+  closeEventPopup();
+  await calSaveDecision(key, null);
+  toast("Decision undone");
+}
+window.calClearDecision = calClearDecision;
+function openDecisionDialog(key, kind){
+  const e = calMergedEvents().find(x=>x.key===key);
+  if(!e) return;
+  closeEventPopup();
+  const opts = kind==="delegate" ? CAL_DELEGATES : CAL_REMOVE_WAYS;
+  const cur = e.d && e.d.kind===kind ? e.d : null;
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  overlay.innerHTML = `
+    <div class="card">
+      <h3>${kind==="delegate" ? "Delegate" : "Take off the calendar"} — "${esc(e.t)}"</h3>
+      <p>${kind==="delegate"
+        ? "Who in the firm takes this instead, and why doesn't the attorney need to be in it?"
+        : "How does this come off his week, and why shouldn't it be on it?"}</p>
+      <label style="font-size:12.5px;color:var(--ink-soft);display:block;margin-bottom:4px;">${kind==="delegate" ? "Hand it to" : "How"}</label>
+      <select id="decWho" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:14px;margin-bottom:14px;">
+        ${opts.map(o=>`<option value="${esc(o)}" ${cur&&cur.to===o?"selected":""}>${esc(o)}</option>`).join("")}
+      </select>
+      <label style="font-size:12.5px;color:var(--ink-soft);display:block;margin-bottom:4px;">Why — one line, in your own words</label>
+      <textarea id="decWhy" placeholder="${kind==="delegate" ? "e.g. It's a status check the paralegal already runs; he only needs the outcome." : "e.g. It duplicates Thursday's update and can go out as a written note instead."}" style="width:100%;min-height:76px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;resize:vertical;margin-bottom:14px;">${esc(cur&&cur.why||"")}</textarea>
+      <div class="row">
+        <button class="btn btn-ghost" id="decCancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="decSaveBtn">Save decision</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  document.getElementById("decCancelBtn").onclick = ()=>overlay.remove();
+  document.getElementById("decSaveBtn").onclick = async ()=>{
+    const to = document.getElementById("decWho").value;
+    const why = document.getElementById("decWhy").value.trim();
+    if(why.length < 10){ toast("Add one line on why before saving."); return; }
+    overlay.remove();
+    await calSaveDecision(key, {kind, to, why});
+    toast(kind==="delegate" ? "Delegated" : "Taken off the calendar");
+  };
+}
+window.openDecisionDialog = openDecisionDialog;
 function calDragStart(ev, idx){
   ev.dataTransfer.setData("text/plain", String(idx));
   toolState.calDraggingIdx = idx;
@@ -8961,7 +9066,7 @@ function openAddEventDialog(){
     const dur = Number(document.getElementById("addDurSelect").value);
     const p = document.getElementById("addPrioritySelect").value;
     toolState.calCustomEvents = toolState.calCustomEvents || [];
-    toolState.calCustomEvents.push({t:title, day, s, e:s+dur, p, loc:"Virtual", type:"Internal"});
+    toolState.calCustomEvents.push({t:title, day, s, e:s+dur, p, loc:"Virtual", type:"Internal", cid:"n"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)});
     await storeSet("calendar-custom", toolState.calCustomEvents);
     overlay.remove();
     renderCalendarBody(document.getElementById("toolBody"));
@@ -8972,8 +9077,10 @@ window.openAddEventDialog = openAddEventDialog;
 async function calReset(){
   toolState.calEdits = {};
   toolState.calCustomEvents = [];
+  toolState.calDecisions = {};
   await storeSet("calendar-edits", {});
   await storeSet("calendar-custom", []);
+  await storeSet("calendar-decisions", {});
   renderCalendarBody(document.getElementById("toolBody"));
   toast("Calendar reset to original");
 }
@@ -9056,50 +9163,81 @@ Return ONLY a JSON array of objects like: [{"task":"...", "why":"..."}]`;
 }
 window.generateProactiveTasks = generateProactiveTasks;
 
-async function submitCalendar(){
+/* Builds what the review reads: the week as it now stands, every decision with its
+   reason, and the overlaps the trainee did or didn't catch (worked out here, never
+   shown on the calendar). */
+function calPlanSummary(){
   const events = calMergedEvents();
-  const remaining = calFindConflicts(events).length;
-  const baseline = toolState.calBaseline || 1;
-  const resolved = Math.max(0, baseline - remaining);
-  const score = baseline===0 ? 100 : Math.round((resolved/baseline)*100);
-  document.getElementById("calResult").innerHTML=`
-    <div class="card" style="padding:18px 20px;margin-top:16px;">
-      <b style="color:var(--navy);">${resolved} / ${baseline} conflicts resolved (${score}%)</b>
-      <p style="font-size:12.8px;color:var(--ink-soft);margin:8px 0 0;">Best practice when reshuffling: move the lower-priority commitment, and keep High-priority items — depositions, hearings, client emergencies — right where they are.</p>
-    </div>`;
-  await bumpPracticeProgress("calendar", score);
-  const lines = [
-    "LEGAL CALENDAR CONFLICT RESOLVER — Activity Report",
-    `Conflicts resolved: ${resolved} / ${baseline} (${score}%)`, "---",
-    "Final weekly schedule:"
-  ];
+  const onCal = events.filter(e=>!e.d || e.d.kind==="keep");
+  const lines = [];
   DAY_ORDER.forEach(day=>{
-    const dayEvents = events.filter(e=>e.day===day).sort((a,b)=>a.s-b.s);
-    if(!dayEvents.length) return;
-    lines.push(`${day}:`);
-    dayEvents.forEach(e=>lines.push(`  ${fmtHr(e.s)}–${fmtHr(e.e)}  ${e.t} (${e.p}, ${e.type})`));
+    const dayEvents = onCal.filter(e=>e.day===day).sort((a,b)=>a.s-b.s);
+    if(!dayEvents.length){ lines.push(`${day}: nothing left on the attorney's calendar.`); return; }
+    lines.push(`${day}: ` + dayEvents.map(e=>`${fmtHr12(e.s)}–${fmtHr12(e.e)} ${e.t} (${e.p} priority, ${e.type}${e.custom?", added by the trainee":""})`).join("; ") + ".");
   });
-  toolState.calReport = lines;
-  document.getElementById("calResult").innerHTML += `<button class="btn btn-navy btn-sm" style="margin-top:12px;" onclick="downloadCalendarPdf()">⬇ Download My Work</button>`;
-  if(score===100) burstConfetti();
+  const decided = events.filter(e=>e.d);
+  const say = kind => decided.filter(e=>e.d.kind===kind).map(e=>
+    `- ${e.t} (${e.day} ${fmtHr12(e.s)}–${fmtHr12(e.e)}, ${e.p} priority, ${e.type})` +
+    (kind==="delegate" ? ` delegated to ${e.d.to}.` : kind==="remove" ? ` taken off his calendar: ${e.d.to}.` : ` kept on his calendar.`) +
+    (e.d.why ? ` Trainee's reason: "${e.d.why}"` : " Trainee gave no reason."));
+  const keeps = say("keep"), dels = say("delegate"), offs = say("remove");
+  const undecided = events.filter(e=>!e.d);
+  const overlaps = calFindConflicts(events.filter(e=>!e.d || e.d.kind==="keep")).map(([i,j])=>{
+    const a = events.find(e=>e.idx===i), b = events.find(e=>e.idx===j);
+    return a && b ? `- ${a.day}: "${a.t}" (${fmtHr12(a.s)}–${fmtHr12(a.e)}) still runs into "${b.t}" (${fmtHr12(b.s)}–${fmtHr12(b.e)})` : "";
+  }).filter(Boolean);
+  return {events, lines, keeps, dels, offs, undecided, overlaps,
+    text: [
+      "THE ATTORNEY'S WEEK AS THE TRAINEE LEFT IT:", ...lines,
+      "", `KEPT ON HIS CALENDAR (${keeps.length}):`, ...(keeps.length?keeps:["- none"]),
+      "", `DELEGATED (${dels.length}):`, ...(dels.length?dels:["- none"]),
+      "", `TAKEN OFF HIS CALENDAR (${offs.length}):`, ...(offs.length?offs:["- none"]),
+      "", `NOT DECIDED AT ALL (${undecided.length}): ` + (undecided.length ? undecided.map(e=>e.t).join("; ") : "none — every event was decided."),
+      "", `DOUBLE-BOOKINGS STILL ON HIS CALENDAR (${overlaps.length}):`, ...(overlaps.length?overlaps:["- none; nothing he is still attending overlaps."])
+    ].join("\n")};
+}
+async function submitCalendar(){
+  const plan = calPlanSummary();
+  const decidedCount = plan.keeps.length + plan.dels.length + plan.offs.length;
+  if(decidedCount < 5){ toast("Decide more of the week first — open the events and say what stays, what you'd delegate and what comes off."); return; }
+  const btn = document.querySelector('button[onclick="submitCalendar()"]');
+  const resultEl = document.getElementById("calResult");
+  if(!(await useLabAttempt(3, "submitCalendar"))) return;
+  if(btn){ btn.disabled = true; btn.textContent = "Reviewing…"; }
+  resultEl.innerHTML = `<div class="ai-loading">Reviewing the week you built…</div>`;
+  try{
+    const report = await runRubricEvaluation(
+      "Calendar Conflict Resolver — the attorney's week",
+      `The trainee EA was handed one week of Elias Thorne's calendar exactly as it arrived — overlapping commitments, internal check-ins, vendor calls, court and client work all on it — with nothing flagged, counted or outlined. Finding the collisions and deciding what belongs on a managing attorney's calendar was the whole exercise.\n\nThe attorney's day runs 8:30am–5:30pm Eastern. Work he must personally be in: court appearances, hearings, depositions and their prep, filing deadlines, client consultations and client emergencies, co-counsel strategy on live matters, board and executive commitments. Work a competent firm can take off him: routine internal check-ins and standups, vendor and billing calls, mail and filing review, compliance and ledger reviews, status updates that only need an outcome reported. He has a paralegal, a receptionist, co-counsel, another attorney, billing/bookkeeping, and the trainee EA.\n\nTHE WEEK AND THE TRAINEE'S DECISIONS:\n${plan.text}`,
+      plan.text,
+      `Grade the JUDGMENT, not how empty the week looks. Did they protect what the attorney must personally attend — court, depositions, filing deadlines, client consultations and emergencies — and leave those on his calendar? Did they catch the double-bookings (the "DOUBLE-BOOKINGS STILL ON HIS CALENDAR" list is what is still overlapping after their work: each one left is a real miss, and nothing was marked for them) and fix them by moving the LOWER-priority side rather than the higher? Did they delegate the right kind of work — routine internal, vendor, billing, administrative — and to a plausible person (a paralegal, not the receptionist, for substantive case work; never a client consultation or a court appearance to anyone)? Is anything taken off his calendar that a managing attorney genuinely owed his client or the court — that is a serious accuracy failure. Are the written reasons specific to the event and to this firm, or generic filler? Credit any proactive block they ADDED (prep, debrief buffer, travel time) where the week implies it is needed, and note events they left undecided. A trainee who delegated or deleted most of the week to clear it should score low on judgment however tidy the result.`
+    );
+    toolState.calReport = plan;
+    toolState.calPlanReport = report;
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — The Week You Built</b>` + renderEvaluationReport(report, 3)
+      + `<button class="btn btn-navy btn-sm" style="margin-top:12px;" onclick="downloadCalendarPdf()">⬇ Download My Work</button>`;
+    await bumpPracticeProgress("calendar", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    resultEl.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{
+    if(btn){ btn.disabled = false; btn.textContent = "Check My Plan"; }
+  }
 }
 window.submitCalendar = submitCalendar;
 async function downloadCalendarPdf(){
   await ensureTraineeName();
-  const events = calMergedEvents();
-  const remaining = calFindConflicts(events).length;
-  const baseline = toolState.calBaseline || 1;
-  const resolved = Math.max(0, baseline - remaining);
-  const score = baseline===0 ? 100 : Math.round((resolved/baseline)*100);
-  const lines = [`## Legal Calendar Conflict Resolver`, `Conflicts resolved: ${resolved} / ${baseline} (${score}%)`, "---", "## Final Weekly Schedule"];
-  DAY_ORDER.forEach(day=>{
-    const dayEvents = events.filter(e=>e.day===day).sort((a,b)=>a.s-b.s);
-    if(!dayEvents.length) return;
-    lines.push(`${day}:`);
-    dayEvents.forEach(e=>lines.push(`   ${fmtHr(e.s)}–${fmtHr(e.e)}  ${e.t}  (${e.p} priority, ${e.type})`));
-  });
+  const plan = calPlanSummary();
+  const lines = ["## Calendar Conflict Resolver — The Attorney's Week", "## Final Weekly Schedule", ...plan.lines];
+  lines.push("---", "## My Decisions");
+  lines.push("Staying with the attorney:", ...(plan.keeps.length?plan.keeps:["- none"]));
+  lines.push("Delegated:", ...(plan.dels.length?plan.dels:["- none"]));
+  lines.push("Off his calendar:", ...(plan.offs.length?plan.offs:["- none"]));
+  if(plan.undecided.length) lines.push("Left undecided: " + plan.undecided.map(e=>e.t).join("; "));
+  if(toolState.calPlanReport) lines.push("---", "## Review", `Score: ${toolState.calPlanReport.totalScore}/100 (${toolState.calPlanReport.gradeTier})`,
+    ...(toolState.calPlanReport.strengths||[]).map(x=>`+ ${x}`), ...(toolState.calPlanReport.blindspots||[]).map(x=>`- ${x}`));
   lines.push("---", "## Daily Briefing Prompt", document.getElementById("calPromptInput")?.value.trim() || "(not written)");
-  if(toolState.calPromptReport) lines.push("", "Feedback:", toolState.calPromptReport);
+  if(toolState.calPromptReport && toolState.calPromptReport.totalScore) lines.push(`Prompt score: ${toolState.calPromptReport.totalScore}/100`);
   buildAndSavePdf("LSH EA / PA Upskill Program", "Weekly Calendar — Results", lines, "LSH_Calendar_Plan");
 }
 window.downloadCalendarPdf = downloadCalendarPdf;

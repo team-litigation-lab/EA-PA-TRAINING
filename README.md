@@ -176,12 +176,15 @@ The slide-progress dots sit inside the band, so slides keep most of their height
 
 Activity 1 is built like the Training Portal's **Google Calendar Simulator** (a Google Calendar look-alike; no real Google). The week sits in a calendar card with its own bar (the Calendar mark, *October 12 – 16, 2026*, Week, **+ Create**, Reset to original), a sidebar with **+ Create**, the October mini month with the practice week selected, and **My calendars** — one box per priority, which shows or hides those events (the check always grades every event, hidden or not). The week itself is Google's grid: day names over date circles with Thursday the 15th as today, the hour rail, hour lines, and events as Google event chips laid out in side-by-side lanes where they overlap, each one outlined in red while it still clashes.
 
+**Nothing in the week is sorted out for the trainee.** The lab no longer counts the overlaps, outlines them in red, or lists them: finding the collisions and deciding what belongs on a managing attorney's calendar *is* the exercise. `calFindConflicts` still exists, but only `submitCalendar` and the PDF read it, at review time.
+
 - **Drag** an event to another day or time (it snaps to the half hour); a blue slot and its start time follow the pointer.
-- **Click** an event for Google's detail card: its day, time, location and type, the three priority colors to recolor it, a note naming what it still overlaps, and **⇄ Move** (the exact day/time dialog) and **🗑 Delete**.
-- **Remaining Conflicts** lists each clash as two draggable chips: drag whichever side should move straight onto a free slot in the calendar above, and the conflict leaves the list as soon as the two no longer overlap.
+- **Click** an event for Google's detail card: its day, time, location and type, the three priority colors, **⇄ Move** (the exact day/time dialog) — and the decision: **✓ Keep** on his calendar, **⇢ Delegate** (to the paralegal, the receptionist, co-counsel, another attorney, billing, or the EA) or **✕ Take off** his calendar (declined, cancelled, handled in writing, pushed to next week). Delegating or taking something off asks for one line on *why*; keeping it doesn't. A block the trainee added themselves can be deleted outright instead.
+- A delegated or removed event stays visible on the week, faded and struck through with a ⇢ or ✕, so the trainee sees what they've taken off him. **Your Decisions** under the calendar groups them (staying with the attorney / delegated / off his calendar) with the person, the reason and **↩ Undo**.
+- **Check My Plan** is an AI rubric review of the judgment, not a conflict count (one of the 3 attempts, `runRubricEvaluation`). It reads the finished week, every decision and reason, the events left undecided, and the double-bookings still on his calendar — worked out at review time, never shown before — and grades whether they protected court, deposition, filing-deadline, client-consultation and emergency time, fixed clashes by moving the lower-priority side, delegated the right work to a plausible person, and wrote reasons specific to the event. Clearing the week by delegating or deleting most of it scores low.
 - On a phone the sidebar folds away (**+ Create** moves into the bar) and the week scrolls sideways inside the card, so the page itself never scrolls sideways.
 
-Everything is kept in the trainee's saved work as before (`calendar-edits`, `calendar-custom`), and nothing is graded until **Check My Plan**.
+Saved with the trainee's work: `calendar-edits`, `calendar-custom` and `calendar-decisions`; **Download My Work** includes the week, every decision with its reason and the review.
 
 ## 📞 Day 4 Practice Lab: simulated prospect calls and lead sourcing
 
