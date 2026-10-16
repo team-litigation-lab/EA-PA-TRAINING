@@ -190,6 +190,12 @@ The brief above the calendar is two short columns (*Look past the obvious clashe
 
 Saved with the trainee's work: `calendar-edits`, `calendar-custom` and `calendar-decisions`; **Download My Work** includes the week, every decision with its reason and the review.
 
+### 🗂 The Trainee Audit lives in the batch folder
+
+A trainee's audit row is in the folder of the batch they registered in, not in a cohort-wide list behind a batch dropdown. A batch folder's first tab is **🗂 Trainee Audit**: the same rows as before, with the same search and sort, over that batch only — including when a keystroke or the 30-second poll redraws them, which is where a scoped list most easily widens back out by accident. The admin tab that used to hold them is **Settings & Reports** and keeps what is genuinely cohort-wide: certificate signatories, pending registrations, the daily-review setting and the cohort report.
+
+A record with no batch is no longer a normal state: signing in requires a valid Batch ID, and the admin repair pass no longer blanks a batch it cannot read — blanking was itself producing the state we disallow, and the raw value is what a trainer needs to fix it. The **⚠ Needs a batch** folder therefore appears only when such records exist, above a note explaining that they are older records; each leaves for its own folder as soon as it has a real Batch ID.
+
 ### 🖥 The Client Profile fits one screen
 
 The dossier is eleven sections — the *Read This First* note and the ten reference sections — and as a stacked grid it ran well past the fold. It is now a rail beside a single pane: the rail lists the sections, the pane shows the one that is open, and `cpFit()` sizes the pane to whatever the window has left under the hero and the header card. Long sections flow in two columns, and the pane's text steps down to a readable floor if a section still runs past the bottom, so the rule survives a trainer editing the dossier. Phones and narrow windows (900px and under) keep the stacked, scrolling layout. The client header card is a light card with dark ink: it previously set a navy gradient that the later glass rule overrode, which left white lettering on near-white. Checked at 1366×768, 1920×1080 and 1474×761 by `.github/scripts/client-profile-fit.cjs`, which also holds the card's three lines to AA.

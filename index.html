@@ -2028,6 +2028,9 @@ img[alt="Legal Support Help"]{border-radius:8px;}
 .batch-folder .bf-name{font-weight:800;color:var(--navy);font-size:15px;margin-top:4px;}
 .batch-folder .bf-meta{font-size:12px;color:var(--ink-soft);}
 .bf-crumb{margin-bottom:6px;}
+.bf-audit-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
+.bf-audit-controls input[type=text]{padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;min-width:200px;}
+.bf-audit-controls select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;}
 .bf-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 16px;}
 .bf-tabs button{font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;}
 .bf-tabs button.active{background:var(--navy);color:#fff;border-color:var(--navy);}
@@ -11905,7 +11908,9 @@ async function loadAdminLedger(){
     const badBatch = rec.batch && !cleanBatch(rec.batch);
     if(badName || badBatch){
       if(badName) rec.name = "Invalid name (" + String(rec.id||"").slice(0,30) + ")";
-      if(badBatch) rec.batch = "";
+      // The batch is kept exactly as it was found. Blanking it used to be the
+      // repair, but a record with no batch is the one state we no longer allow,
+      // and the raw value is what a trainer needs in order to correct it.
       rec.flaggedInvalidInput = true;
       try{ await sharedSet(key, rec); }catch(e){ /* repair is best-effort */ }
     }
@@ -12889,7 +12894,7 @@ function renderAdmin(){
   const tab = state.adminTab || "audit";
   const tabBar = `
     <div class="admin-tabs" style="display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line);">
-      <button class="admin-tab-btn ${tab==='audit'?'active':''}" onclick="setAdminTab('audit')">Trainee Audit</button>
+      <button class="admin-tab-btn ${tab==='audit'?'active':''}" onclick="setAdminTab('audit')">Settings &amp; Reports</button>
       <button class="admin-tab-btn ${tab==='batches'?'active':''}" onclick="setAdminTab('batches')">📁 Batch Folders</button>
       <button class="admin-tab-btn ${tab==='rankings'?'active':''}" onclick="setAdminTab('rankings')">Rankings</button>
       <button class="admin-tab-btn ${tab==='sop'?'active':''}" onclick="setAdminTab('sop')">SOP Reference</button>
@@ -12920,7 +12925,7 @@ function renderAdmin(){
     <div class="audit-page-head" style="display:flex;gap:12px 16px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;">
       <div>
         <p class="eyebrow">Admin Dashboard</p>
-        <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Trainee Audit</h1>
+        <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Settings &amp; Reports</h1>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
         <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
@@ -12928,7 +12933,7 @@ function renderAdmin(){
         <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Log out</button>
       </div>
     </div>
-    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Every trainee's registration, exact progress, Knowledge Checks, Practice Labs and your day-by-day feedback — refreshed automatically every 30 seconds.</p>
+    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Cohort-wide settings, pending registrations and the reports that span every batch. Individual trainees live in their batch folder — refreshed automatically every 30 seconds.</p>
 
     ${state.secureMode===false ? `<div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--danger);background:var(--danger-bg);"><b style="color:var(--danger);">⚠ Security not enabled.</b> <span style="font-size:13px;">Storage and AI are open to anyone who finds the API. Run <code>wrangler secret put MASTER_ADMIN_PASSWORD</code> (and redeploy the updated worker.js) to require sign-in.</span></div>` : ""}
     <div class="card cert-settings">
@@ -12981,40 +12986,13 @@ function renderAdmin(){
 
     ${renderPendingApprovalsPanel()}
 
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <input type="text" id="adminSearchInput" placeholder="Search by name…" value="${esc(state.adminSearch||"")}" oninput="setAdminSearch(this.value)"
-               style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;min-width:200px;">
-        <select onchange="setAdminSort(this.value)" style="padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;">
-          <option value="completion_desc" ${sort==="completion_desc"?"selected":""}>Sort: Most days completed</option>
-          <option value="completion_asc" ${sort==="completion_asc"?"selected":""}>Sort: Fewest days completed</option>
-          <option value="score_desc" ${sort==="score_desc"?"selected":""}>Sort: Highest avg. score</option>
-          <option value="name_asc" ${sort==="name_asc"?"selected":""}>Sort: Name (A–Z)</option>
-          <option value="recent" ${sort==="recent"?"selected":""}>Sort: Most recently active</option>
-        </select>
-        ${renderBatchFilter()}
-        <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-soft);cursor:pointer;">
-          <input type="checkbox" ${state.adminShowArchived?"checked":""} onchange="setAdminShowArchived(this.checked)"> Show archived
-        </label>
-      </div>
-      <div style="display:flex;gap:8px;">
-        ${state.adminBatchFilter ? `<button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="confirmArchiveBatch('${esc(state.adminBatchFilter)}')">📦 Archive This Batch</button>` : ""}
-      </div>
+    <div class="card" style="padding:16px 20px;">
+      <b style="color:var(--navy);font-size:13.5px;">🗂 Looking for a trainee?</b>
+      <p style="font-size:13px;color:var(--ink-soft);margin:6px 0 10px;max-width:70ch;">Each trainee's audit row now sits in the batch folder they belong to, so a trainer works one batch at a time instead of filtering a cohort-wide list. Open <b>📁 Batch Folders</b> and pick a batch; its <b>🗂 Trainee Audit</b> tab has the rows, with the same search and sort.</p>
+      <button class="btn btn-navy btn-sm" onclick="setAdminTab('batches')">📁 Open Batch Folders</button>
     </div>
-
-    <div id="adminRowsWrap">${renderAdminRows()}</div>
   `;
 }
-function renderBatchFilter(){
-  const batches = Array.from(new Set(state.adminData.map(r=>cleanBatch(r.batch)).filter(Boolean))).sort();
-  if(!batches.length) return "";
-  return `
-    <select onchange="setAdminBatchFilter(this.value)" style="padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;">
-      <option value="">All batches</option>
-      ${batches.map(b=>`<option value="${esc(b)}" ${state.adminBatchFilter===b?"selected":""}>${esc(b)}</option>`).join("")}
-    </select>`;
-}
-
 async function downloadCohortPdf(){
   const lines = ["## Trainee Audit — Cohort Report"];
   state.adminData.forEach(rec=>{
@@ -13031,7 +13009,7 @@ window.downloadCohortPdf = downloadCohortPdf;
    registry, rankings, trainee feedback and activity ---------- */
 // batchKey / NO_BATCH come from Rankings below (function declarations hoist; the
 // const is set before any render runs).
-function folderLabel(k){ return k===NO_BATCH ? "No batch" : `Batch ${k}`; }
+function folderLabel(k){ return k===NO_BATCH ? "⚠ Needs a batch" : `Batch ${k}`; }
 function batchMembers(k){ return (state.adminData||[]).filter(r=>batchKey(r)===k && (state.batchShowArchived || !r.archived)); }
 function batchFeedback(k){ return ((state.tfbAdmin||{}).items||[]).filter(x=>(cleanBatch(x.batch)||NO_BATCH)===k); }
 function openBatchFolder(k, sub){ state.batchFolder = k; state.batchSub = sub || state.batchSub || "registry"; render(); }
@@ -13046,13 +13024,21 @@ function renderAdminBatchFolders(){
   if(!state.tfbAdmin) setTimeout(()=>loadTraineeFeedbackAdmin(), 0);
   const keys = Array.from(new Set(state.adminData.map(batchKey))).sort((a,b)=> a===NO_BATCH ? 1 : b===NO_BATCH ? -1 : a.localeCompare(b, undefined, {numeric:true}));
   if(state.batchFolder && !keys.includes(state.batchFolder)) state.batchFolder = null;
+  // Registration requires a batch, so the no-batch group should be empty. It is
+  // still shown when it is not, because the alternative is records that no
+  // trainer can reach — but it is named as the exception it now is.
+  const strays = state.adminData.filter(r=>batchKey(r)===NO_BATCH).length;
   if(state.batchFolder) return renderBatchFolder(state.batchFolder);
   const head = `
     <p class="eyebrow">Admin Dashboard</p>
     <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Batch Folders</h1>
     <p style="color:var(--ink-soft);font-size:13px;max-width:72ch;margin:0 0 18px;">Each batch has its own folder: the trainees registered in it, their rankings, the feedback they sent and their latest activity — kept apart from every other batch.</p>`;
   if(!keys.length) return head + `<div class="empty-note">No trainees yet — a folder appears for each batch as trainees register.</div>`;
-  return head + `<div class="batch-folder-grid">${keys.map(k=>{
+  const strayNote = strays ? `<div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--orange,#DB8437);">
+      <b style="color:var(--navy);font-size:13.5px;">⚠ ${strays} record${strays===1?"":"s"} without a usable batch.</b>
+      <p style="font-size:13px;color:var(--ink-soft);margin:6px 0 0;max-width:70ch;">Registration will not create these any more — a trainee cannot sign in without a valid Batch ID. These are older records, or ones whose batch could not be read. Open <b>⚠ Needs a batch</b> to see them; once each one has a real Batch ID it moves into that batch's folder on its own.</p>
+    </div>` : "";
+  return head + strayNote + `<div class="batch-folder-grid">${keys.map(k=>{
     const all = state.adminData.filter(r=>batchKey(r)===k);
     const active = all.filter(r=>!r.archived);
     const done = active.length ? Math.round(active.reduce((a,r)=>a+adminDayStats(r).done,0)/active.length/DAYS.length*100) : 0;
@@ -13067,7 +13053,7 @@ function renderAdminBatchFolders(){
 function renderBatchFolder(k){
   const sub = state.batchSub || "registry";
   const members = batchMembers(k);
-  const tabs = [["registry","🗂 Registry"],["rankings","🏆 Rankings"],["feedback","💬 Feedback"],["activities","📈 Activities"]];
+  const tabs = [["registry","🗂 Trainee Audit"],["rankings","🏆 Rankings"],["feedback","💬 Feedback"],["activities","📈 Activities"]];
   return `
     <div class="bf-crumb"><button type="button" class="btn btn-ghost btn-sm" onclick="closeBatchFolder()">← All batch folders</button></div>
     <p class="eyebrow">Batch Folder</p>
@@ -13110,8 +13096,19 @@ function renderBatchFolderBody(){
       </div>`).join("")}
     </div>`;
   }
-  const rows = members.map(r=>({rec:r, day:adminDayStats(r), practice:adminPracticeStats(r)})).sort((a,b)=>(a.rec.name||"").localeCompare(b.rec.name||""));
-  return `<div class="card" style="padding:0;overflow:hidden;">${rows.map(({rec,day,practice})=>renderAdminRow(rec,day,practice)).join("")}</div>`;
+  const sort = state.adminSort || "completion_desc";
+  return `
+    <div class="bf-audit-controls">
+      <input type="text" id="adminSearchInput" placeholder="Search by name…" value="${esc(state.adminSearch||"")}" oninput="setAdminSearch(this.value)">
+      <select onchange="setAdminSort(this.value)">
+        <option value="completion_desc" ${sort==="completion_desc"?"selected":""}>Sort: Most days completed</option>
+        <option value="completion_asc" ${sort==="completion_asc"?"selected":""}>Sort: Fewest days completed</option>
+        <option value="score_desc" ${sort==="score_desc"?"selected":""}>Sort: Highest avg. score</option>
+        <option value="name_asc" ${sort==="name_asc"?"selected":""}>Sort: Name (A–Z)</option>
+        <option value="recent" ${sort==="recent"?"selected":""}>Sort: Most recently active</option>
+      </select>
+    </div>
+    <div id="adminRowsWrap">${renderAdminRows(k)}</div>`;
 }
 
 // Batch key for ranking/archiving; trainees with no (valid) batch share one group.
@@ -13243,13 +13240,19 @@ function renderAdminRankings(onlyBatch){
     ${archivedList}
   `;
 }
-function renderAdminRows(){
+function renderAdminRows(onlyBatch){
+  // The live refreshers (a search keystroke, the 30s poll, a row action) re-render
+  // these rows without an argument. Inside a batch folder that would quietly widen
+  // the audit back to the whole cohort, so the open folder is the scope either way.
+  if(!onlyBatch && state.adminTab==="batches" && state.batchFolder && (state.batchSub||"registry")==="registry") onlyBatch = state.batchFolder;
   if(state.adminData && state.adminData.length && state.adminData.some(r=>!state.auditExtra[r.id] || Date.now()-state.auditExtra[r.id].at>60000)) setTimeout(()=>loadAuditExtras(), 0);
   const search = (state.adminSearch||"").toLowerCase();
   const sort = state.adminSort || "completion_desc";
   let rows = state.adminData.filter(r=>!search || (r.name||"").toLowerCase().includes(search));
-  if(!state.adminShowArchived) rows = rows.filter(r=>!r.archived);
-  if(state.adminBatchFilter) rows = rows.filter(r=>batchKey(r)===state.adminBatchFilter);
+  // Inside a batch folder the folder's own "Include archived" box is the one on screen.
+  if(!(onlyBatch ? state.batchShowArchived : state.adminShowArchived)) rows = rows.filter(r=>!r.archived);
+  const bf = onlyBatch || state.adminBatchFilter;
+  if(bf) rows = rows.filter(r=>batchKey(r)===bf);
   rows = rows.map(r=>({rec:r, day:adminDayStats(r), practice:adminPracticeStats(r)}));
   const sorters = {
     completion_desc: (a,b)=>b.day.done-a.day.done,
@@ -13261,7 +13264,7 @@ function renderAdminRows(){
   rows.sort(sorters[sort]||sorters.completion_desc);
 
   if(rows.length===0){
-    return `<div class="empty-note">No trainees found${search?" matching that search":" yet — once someone sets their name in the app, they'll show up here."}.</div>`;
+    return `<div class="empty-note">No trainees found${search?" matching that search":onlyBatch?" in this batch yet":" yet — once someone sets their name in the app, they'll show up here."}.</div>`;
   }
   return `
     <div class="card" style="padding:0;overflow:hidden;">

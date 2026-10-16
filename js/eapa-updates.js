@@ -2573,7 +2573,15 @@ function renderAdminBatchFolders(){
     <p style="color:var(--ink-soft);font-size:13px;max-width:72ch;margin:0 0 18px;">Each batch has its own folder: the trainees registered in it, their rankings, the feedback they sent and their latest activity — kept apart from every other batch. Archive a batch when it finishes; its records stay available on the Archive shelf.</p>`;
   if(!keys.length) return head + `<div class="empty-note">No trainees yet — a folder appears for each batch as trainees register.</div>`;
   const nArch = keys.filter(k=>bfIsArchived(k)).length;
-  return head + `
+  // Registration will not create a record without a batch, so this group should
+  // be empty. When it is not, say so rather than letting the folder sit in the
+  // grid looking like an ordinary batch.
+  const strays = (state.adminData||[]).filter(r=>batchKey(r)===NO_BATCH).length;
+  const strayNote = strays ? `<div class="card" style="padding:14px 18px;margin-bottom:14px;border-left:4px solid var(--orange,#DB8437);">
+      <b style="color:var(--navy);font-size:13.5px;">&#9888; ${strays} record${strays===1?"":"s"} without a usable batch.</b>
+      <p style="font-size:13px;color:var(--ink-soft);margin:6px 0 0;max-width:70ch;">A trainee cannot sign in without a valid Batch ID, so registration no longer produces these. They are older records, or ones whose batch could not be read. Open <b>&#9888; Needs a batch</b> to see them; each one moves into its own folder as soon as it has a real Batch ID.</p>
+    </div>` : "";
+  return head + strayNote + `
     <div class="bf-toolbar">
       <label class="bf-search"><span>🔍</span><input type="search" placeholder="Find a batch or trainee (active and archived)" value="${esc(state.bfSearch||"")}" oninput="bfSearch(this.value)"></label>
       <span class="bf-count">${keys.length-nArch} active · ${nArch} archived</span>
