@@ -2454,6 +2454,12 @@ em.warn{font-style:normal;color:var(--danger);}
 .lesson-stage #lessonSlideWrap::after{content:"";position:absolute;left:0;bottom:0;width:104px;height:34%;background:var(--navy);clip-path:polygon(0 36%,100% 100%,0 100%);pointer-events:none;}
 @media(max-width:760px){.lesson-stage #lessonSlideWrap{overflow:visible;padding:26px 20px 28px 44px;background-size:62px auto;background-position:right 14px top 14px;}
   .lesson-stage #lessonSlideWrap::before,.lesson-stage #lessonSlideWrap::after{width:40px;}}
+/* A slide that draws its own card (a lesson run, a divider) gets no deck card behind it: the card it
+   draws IS the slide. The deck card stays for the slides that have none of their own (Quick Checks,
+   Meet-the-client), which sit straight on it. */
+.lesson-stage #lessonSlideWrap:has(> .xd, > .topic-divider, > .card > .xd){background:none;padding:0;overflow:visible;}
+.lesson-stage #lessonSlideWrap:has(> .xd, > .topic-divider, > .card > .xd)::before,
+.lesson-stage #lessonSlideWrap:has(> .xd, > .topic-divider, > .card > .xd)::after{display:none;}
 .lesson-stage #lessonSlideWrap > .card, .lesson-stage #lessonSlideWrap > .qcheck-card, .lesson-stage #lessonSlideWrap .lesson-card, .lesson-stage #lessonSlideWrap .meet-client-card{background:transparent !important;border:none !important;box-shadow:none !important;padding:0 !important;margin:0 !important;min-height:0 !important;}
 .lesson-stage #lessonSlideWrap .lesson-card::before{display:none;}
 /* kicker + title */
