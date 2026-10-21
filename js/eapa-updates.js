@@ -4131,3 +4131,45 @@ if(document.querySelector(".topbar")) render();
   .dash-main .module-grid{gap:8px !important;}
   .dash-main .comp-strip{padding:7px 16px 8px;}
 }`; document.head.appendChild(s); })();
+
+/* ---------- Lesson slides: one screen, no scrolling (desktop) ----------
+   A lesson fits the window the way the dashboard does: the slide, its step dots and the
+   Previous / Next row sit inside one screen and the page itself doesn't scroll. The stage
+   is measured from where it starts down to the bottom of the window, so the top bar, the
+   day header and whatever else a day puts above it are all accounted for; the slide then
+   takes the room that is left, and a slide with more in it than fits scrolls inside its own
+   card instead of pushing the buttons off the bottom. Phones, short windows and full screen
+   keep what they had. Loaded last, so it wins. */
+(function(){
+  const s = document.createElement("style"); s.id = "eapa-lesson-onescreen"; s.textContent = `
+@media (min-width:1001px) and (min-height:620px){
+  .lesson-stage:not(:fullscreen){display:flex;flex-direction:column;max-height:var(--ls-max,none);}
+  .lesson-stage:not(:fullscreen) .stage-body{flex:1 1 auto;min-height:0;}
+  .lesson-stage:not(:fullscreen) #lessonSlideWrap{min-height:0 !important;max-height:none !important;height:100%;overflow:auto;}
+  .lesson-stage:not(:fullscreen) .slide-nav{flex:0 0 auto;}
+}`;
+  document.head.appendChild(s);
+
+  // The room left under the stage's top edge, less a small gap so the last row isn't flush
+  // with the bottom of the window.
+  const GAP = 16, LEAST = 360;
+  let pending = 0;
+  function fit(){
+    pending = 0;
+    const stage = document.getElementById("lessonStage");
+    if(!stage) return;
+    if(window.innerWidth < 1001 || window.innerHeight < 620 || document.fullscreenElement){
+      stage.style.removeProperty("--ls-max"); return;
+    }
+    const top = stage.getBoundingClientRect().top;
+    stage.style.setProperty("--ls-max", Math.max(LEAST, window.innerHeight - top - GAP) + "px");
+  }
+  function soon(){ if(!pending) pending = requestAnimationFrame(fit); }
+
+  addEventListener("resize", soon);
+  addEventListener("fullscreenchange", soon);
+  document.addEventListener("DOMContentLoaded", soon);
+  addEventListener("load", soon);
+  // Each slide is drawn into the same page, so re-measure when the app replaces it.
+  new MutationObserver(soon).observe(document.getElementById("app") || document.body, {childList:true, subtree:true});
+})();
