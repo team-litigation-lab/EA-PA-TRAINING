@@ -289,6 +289,23 @@ Every AI review in the Practice Labs (written labs, roleplay calls, intake calls
 
 - `AI_GATEWAY_SECRET` (optional Secret, the same value as on the Portal): every AI call goes to the Main Portal's shared AI gateway, one master key pool and one shared budget for all call flows. Without it this Worker uses its own `GEMINI_API_KEY` pool.
 
+**The Gemini key pool.** Every `GEMINI_API_KEY` secret on this Worker is in the pool: `GEMINI_API_KEY`
+and **any numbered one** (`GEMINI_API_KEY1`, `GEMINI_API_KEY14`, …) — the same rule as the Case
+Management Worker and the CMS site's `functions/_ai.js`. The pool used to be a list that stopped at
+`GEMINI_API_KEY9`, so a key numbered above that was set in Cloudflare and silently never used; now a
+new key joins the pool by being set, with no change to `worker.js`. Set as many as you have, **one key
+per Google Cloud project** (free-tier limits are per project).
+
+They are interchangeable and rotate automatically: each request starts on the next key in turn, and a
+key that answers 429 (its credits or free-tier limit used up) is rested while the next key takes the
+request — a minute for a per-minute limit, an hour for a daily/quota one, ten minutes for a key Google
+rejects. Each model is tried on every key before falling back to the next model, so the better model is
+used up across the whole pool first. A key set twice under two names is counted once. `/version` lists
+the keys that are set and which are resting (never the keys themselves).
+
+`.github/scripts/ai-keys.mjs` (CI, Gemini faked) holds it to that, including that a numbered key above
+9 is used.
+
 ## 🎨 The standard page style
 
 This program's look is the LSH standard, shared with the Training Portal and

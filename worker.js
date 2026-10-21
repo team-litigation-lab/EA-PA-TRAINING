@@ -2,8 +2,8 @@
  * LSH EA/PA Upskill Program — Cloudflare Worker (secured)
  *
  * Secrets (set once with `wrangler secret put <NAME>`):
- *   GEMINI_API_KEY, GEMINI_API_KEY1 … GEMINI_API_KEY9 — the Gemini key pool behind every AI
- *                        feature (see GEMINI_POOL). Set as many as you have, one per Google Cloud
+ *   GEMINI_API_KEY, GEMINI_API_KEY1 … GEMINI_API_KEY<n> — the Gemini key pool behind every AI
+ *                        feature (see geminiPool). Set as many as you have, one per Google Cloud
  *                        project. Each request starts on the next key in turn; a key that hits its
  *                        limit is rested and the next key takes over. At least one is required.
  *   GEMINI_MODEL       — optional: first model for grading and trainer tools (default gemini-3.8-flash).
@@ -367,10 +367,16 @@ async function traineeWrite(env, tok, key, value) {
    each falling back to the next model, then the next key, if busy or unavailable. */
 // Every AI feature (chat, grading, tracker notes review, trainer tools) shares one pool of keys.
 // Free-tier limits are per Google Cloud project, so each key should come from its own project.
-// Every Gemini key set on this Worker is in the pool: GEMINI_API_KEY and GEMINI_API_KEY1 … GEMINI_API_KEY9.
-const GEMINI_POOL = ["GEMINI_API_KEY", ...Array.from({ length: 9 }, (_, i) => "GEMINI_API_KEY" + (i + 1))];
+// Every Gemini key set on this Worker is in the pool: GEMINI_API_KEY and any numbered one
+// (GEMINI_API_KEY1, GEMINI_API_KEY14, …), the same rule as the CMS site's functions/_ai.js and the
+// Case Management Worker. So a new key joins the pool by being set in Cloudflare, with no change here:
+// it used to be a list that stopped at GEMINI_API_KEY9, and keys numbered above that were never used.
+// GEMINI_API_KEY first, then in number order.
+const geminiPool = (env) => Object.keys(env || {}).filter((n) => /^GEMINI_API_KEY\d*$/.test(n) && String(env[n] || "").trim())
+  .sort((a, b) => (a.length - b.length) || a.localeCompare(b));
+// Keys deliberately kept out of the rotation, tried only after every pooled key.
 const GEMINI_SPARE = [];
-const geminiKeyNames = (env) => [...GEMINI_POOL, ...GEMINI_SPARE].filter((n, i, a) => env[n] && a.findIndex((m) => env[m] === env[n]) === i);
+const geminiKeyNames = (env) => [...geminiPool(env), ...GEMINI_SPARE].filter((n, i, a) => env[n] && a.findIndex((m) => env[m] === env[n]) === i);
 const hasGemini = (env) => geminiKeyNames(env).length > 0;
 // Per Worker instance: which key the next request starts on, and keys resting after a limit.
 // A per-minute limit rests the key for a minute; a daily limit for an hour; a rejected key for 10 minutes.
@@ -379,7 +385,8 @@ const geminiRest = new Map();   // "<key name>|<model>" or "<key name>|*" → re
 const resting = (name, model) => Math.max(geminiRest.get(name + "|*") || 0, geminiRest.get(name + "|" + model) || 0) > Date.now();
 function geminiKeyOrder(env) {
   const names = geminiKeyNames(env);
-  const pool = names.filter((n) => GEMINI_POOL.includes(n)), spare = names.filter((n) => !GEMINI_POOL.includes(n));
+  const inPool = geminiPool(env);
+  const pool = names.filter((n) => inPool.includes(n)), spare = names.filter((n) => !inPool.includes(n));
   const start = pool.length ? geminiTurn++ % pool.length : 0;
   return [...pool.slice(start), ...pool.slice(0, start), ...spare];
 }
@@ -563,7 +570,7 @@ export default {
         const html = await page.text();
         const m = html.match(/APP_BUILD = "([^"]+)"/);
         const deployment = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || "unknown";
-        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${adminPass(env) ? "ON" : "OFF"}\nAdmin password: ${adminPassStatus(env)}\nSessions signed with: ${env.SESSION_SECRET ? "SESSION_SECRET" : adminPass(env) ? "MASTER_ADMIN_PASSWORD (no SESSION_SECRET set: changing the password signs everyone out)" : "nothing (open mode)"}${env.PREVIOUS_SESSION_SECRET ? "; PREVIOUS_SESSION_SECRET renews trainee sessions signed before the change" : ""}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${GEMINI_POOL.filter((n) => env[n]).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
+        return new Response(`Portal build deployed: ${m ? m[1] : "unknown (old index.html — no build tag)"}\nDeployment: ${deployment}\nWorker: secure-mode worker.js\nSecure mode: ${adminPass(env) ? "ON" : "OFF"}\nAdmin password: ${adminPassStatus(env)}\nSessions signed with: ${env.SESSION_SECRET ? "SESSION_SECRET" : adminPass(env) ? "MASTER_ADMIN_PASSWORD (no SESSION_SECRET set: changing the password signs everyone out)" : "nothing (open mode)"}${env.PREVIOUS_SESSION_SECRET ? "; PREVIOUS_SESSION_SECRET renews trainee sessions signed before the change" : ""}\nAI provider: ${hasGemini(env) ? "Google Gemini (chat starts on " + geminiModels(env, "chat")[0] + ", grading and trainer tools on " + geminiModels(env, "grading")[0] + ")" : "none — add GEMINI_API_KEY"}\nAI key pool: ${geminiPool(env).map((n) => `${n}${geminiKeyNames(env).includes(n) ? "" : " (same key as another)"}${resting(n, "*") ? " (resting)" : ""}`).join(", ") || "no keys set"}\n`, { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } });
       }
       if (!path.startsWith("/api/")) {
         const res = await env.ASSETS.fetch(request);
