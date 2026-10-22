@@ -2297,7 +2297,15 @@ em.warn{font-style:normal;color:var(--danger);}
 .lesson-stage .lesson-slide > .card, .lesson-stage .lesson-slide .lesson-card{position:relative;background:rgba(255,253,248,.68) !important;border:none !important;border-radius:16px;box-shadow:none;overflow:hidden;}
 .lesson-stage .lesson-slide > .card::before, .lesson-stage .lesson-slide .lesson-card::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--navy),var(--orange));}
 .lesson-stage .lesson-card h4{font-family:'Fraunces',Georgia,serif;}
-.lesson-stage .slide-nav{margin-top:14px;} .lesson-stage .slide-nav .btn-ghost{background:#fff;}
+/* The room the slide gets must not change from slide to slide. The deck is scaled to fit whatever is
+   left under the top bar (deckRescale in js/eapa-updates.js), so a Previous / Next bar that grows by a
+   few pixels on one slide — the last one carries a note and a wider button — scales that slide
+   differently, and "one size on one screen" is the rule fit.cjs enforces. On a machine whose fonts
+   are a shade taller than ours that is exactly what happened in CI. So the bar is one fixed height
+   here, whatever it is carrying, and its middle ellipsises rather than growing. */
+.lesson-stage .slide-nav{margin-top:14px;height:44px;min-height:44px;flex-wrap:nowrap;overflow:hidden;}
+.lesson-stage .slide-nav-mid{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lesson-stage .slide-nav .btn-ghost{background:#fff;}
 .lesson-stage .slide-counter{color:var(--ink-soft);}
 .lesson-stage .slide-done-banner{margin-top:10px;}
 /* full screen */

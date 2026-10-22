@@ -399,6 +399,17 @@ function deckRescale(){
     const r = fit.getBoundingClientRect(), below = stage.getBoundingClientRect().bottom - r.bottom;
     roomH = window.innerHeight - (r.top + window.scrollY) - below - 12;
   }
+  // One size on one screen, by construction. The room is measured once per screen (and once per
+  // height of the top bar, which can wrap) and then reused for every slide of that screen, so a
+  // pixel of difference in the chrome under one slide cannot scale that slide on its own. The
+  // smallest room seen for the key wins, so the slide is never scaled up into space it hasn't got.
+  const bar = document.querySelector(".topbar");
+  const key = window.innerWidth + "x" + window.innerHeight + ":" + (bar ? bar.offsetHeight : 0)
+    + ":" + (document.fullscreenElement === stage ? 1 : 0) + ":" + (fit.closest("#audienceRoot") ? 1 : 0)
+    + ":" + Math.round(fit.clientWidth);
+  if(window.__deckRoomKey !== key){ window.__deckRoomKey = key; window.__deckRoom = roomH; }
+  else if(roomH < window.__deckRoom){ window.__deckRoom = roomH; }
+  roomH = window.__deckRoom;
   const scale = Math.max(0.3, Math.min(fit.clientWidth / DECK_W, roomH / DECK_H));
   const v = String(Math.round(scale*10000)/10000);
   if(fit.style.getPropertyValue("--deck-scale") !== v) fit.style.setProperty("--deck-scale", v);
