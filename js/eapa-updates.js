@@ -2956,7 +2956,7 @@ window.fitTopicsModal = fitTopicsModal;
     doc.save(`LSH_Day${day}_Lesson_Notes.pdf`);
     toast("Lesson Notes downloaded.");
   }
-  Object.assign(window, {previewLessonNotes, openLessonNotes, downloadLessonNotesPdf});
+  Object.assign(window, {previewLessonNotes, openLessonNotes, downloadLessonNotesPdf, lessonNotesHtml: notesHtml});
 
   // Handouts: the Lesson Notes for every day, above the templates.
   if(typeof renderHandouts === "function" && !renderHandouts.__notes){
