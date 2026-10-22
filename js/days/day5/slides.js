@@ -1,0 +1,1084 @@
+/* Day 5 lesson slides: the concise copy for each topic's run of slides (Why It Matters · The Rules ·
+   See It · On the Job · Do & Don't), keyed "day::topic title". Generated from build/slides/d5.json by
+   build/slides/assemble.cjs: edit the JSON, then run the assembler. */
+window.EA_SLIDE_COPY = Object.assign(window.EA_SLIDE_COPY || {}, {
+ "5::Running a Household Like a Business": {
+  "image": "household-home",
+  "hook": "Run the Thorne household with **real business discipline**, not ad hoc fixes",
+  "points": [
+   "Plan, organize, budget and **evaluate** — like a business",
+   "You are the **main point of contact** for family, staff, contractors",
+   "Build **simple systems** for bills, staff schedules and maintenance",
+   "Document **standing decisions and preferences** so the house runs consistently"
+  ],
+  "scene": "Bills, staff schedules and maintenance are each handled as they come up. Nobody is sure **who to call** when something slips.",
+  "move": "Become the **single point of contact** and build a system per category",
+  "job": [
+   [
+    "Recurring household task appears",
+    "Fold it into a system",
+    "Household tracker",
+    "Category has an owner"
+   ],
+   [
+    "Periodic review is due",
+    "Check what works, what slips",
+    "Review notes",
+    "Fixes assigned to systems"
+   ],
+   [
+    "Family states a preference",
+    "Record it as standing decision",
+    "Household reference file",
+    "Anyone can follow it"
+   ]
+  ],
+  "dos": [
+   "Review household operations like **business performance**",
+   "Write down **standing decisions** for whoever covers that day"
+  ],
+  "donts": [
+   "Don't handle recurring categories **reactively, one by one**",
+   "Don't leave family and contractors **guessing who to reach**"
+  ]
+ },
+ "5::Recurring Household Admin: Utilities, Purchasing & Subscriptions": {
+  "image": "invoice-ledger",
+  "hook": "Low-drama recurring tasks slide quietly — **until the power is cut**",
+  "points": [
+   "Put every utility on a calendar with **real due dates**",
+   "Log purchases, business and personal, so **nothing is duplicated**",
+   "Log each **subscription's renewal date** the moment you sign up",
+   "The risk is **in the accumulation**, not one missed item"
+  ],
+  "scene": "A subscription nobody remembers signing up for **renews at triple** the promotional rate, a year later.",
+  "move": "Log renewals at sign-up and **decide keep or cancel** before each one",
+  "job": [
+   [
+    "Utility bill arrives",
+    "Schedule payment before due date",
+    "Calendar",
+    "Paid, no late fee"
+   ],
+   [
+    "Purchase requested",
+    "Log item and date",
+    "Purchasing log",
+    "No duplicates or gaps"
+   ],
+   [
+    "Subscription renewal approaching",
+    "Decide keep or cancel",
+    "Subscription tracker",
+    "Decision made, not defaulted"
+   ]
+  ],
+  "dos": [
+   "Track all three categories as **equally worth tracking**",
+   "Review subscriptions **before each renewal date**"
+  ],
+  "donts": [
+   "Don't keep due dates **in your memory**",
+   "Don't let **auto-renewal decide** by default"
+  ]
+ },
+ "5::Household Staff Management": {
+  "image": "team-huddle",
+  "hook": "Managing household staff is **coordination, not micromanagement**",
+  "points": [
+   "**Written expectations from day one** prevent most staff friction",
+   "Keep a **role description** for each position: hours, duties, reporting",
+   "Schedules must respect **staff's reasonable boundaries** too",
+   "Keep **emergency and medical info** on file for every staff member"
+  ],
+  "scene": "The Thorne housekeeper goes on **six weeks' medical leave** with **two days' notice**. A temporary replacement must get up to speed fast.",
+  "move": "Hand off **written routines and preferences** so Sarah isn't asked basic questions",
+  "job": [
+   [
+    "New staff position or hire",
+    "Write hours, duties, reporting line",
+    "Role description",
+    "Scope questions have an answer"
+   ],
+   [
+    "Staff schedules change",
+    "Update each person's schedule",
+    "Shared household calendar",
+    "Gaps and overlaps visible"
+   ],
+   [
+    "Monthly check-in due",
+    "Brief chat with each staff member",
+    "Check-in notes",
+    "Friction raised and resolved"
+   ]
+  ],
+  "dos": [
+   "**Check in proactively** — many staff won't raise conflicts",
+   "Build **real handoff time** into every staff turnover",
+   "Treat staff with **full professionalism and discretion**"
+  ],
+  "donts": [
+   "Never let the schedule **live in one memory**",
+   "Don't rely on **verbal understandings** that drift"
+  ]
+ },
+ "5::Home Maintenance & Repair Coordination": {
+  "image": "calendar-week",
+  "hook": "A maintenance calendar keeps **small, cheap fixes** from becoming expensive ones",
+  "points": [
+   "Handle **routine maintenance and reactive repairs** differently",
+   "Skipped routine service can **void a warranty**",
+   "Keep a list of **vetted contractors** by specialty",
+   "Get **scope and cost in writing** before work begins"
+  ],
+  "line": "Never authorize significant repairs without a **clear sign-off threshold**",
+  "scene": "The HVAC annual service is due, but the household has declined the reminder **for three months** because \"it's working fine.\"",
+  "move": "Explain the **warranty and repair-cost risk**, not just another reminder",
+  "job": [
+   [
+    "Service interval comes due",
+    "Book the routine service",
+    "Maintenance calendar",
+    "Service logged, warranty intact"
+   ],
+   [
+    "Something breaks",
+    "Triage, call vetted contractor",
+    "Contractor list",
+    "Written scope and cost"
+   ],
+   [
+    "Repair call starts",
+    "Check warranty status first",
+    "Home Binder",
+    "Answered in seconds"
+   ]
+  ],
+  "dos": [
+   "**Triage urgency**: a dripping faucet isn't a gas smell",
+   "Keep **photos and records** of major repairs"
+  ],
+  "donts": [
+   "Don't hire **whoever's available fastest**",
+   "Never keep a calendar that's **never actually checked**"
+  ]
+ },
+ "5::Lifestyle & Personal Support": {
+  "image": "project-board",
+  "hook": "Errands and gifts get dropped not from carelessness — **memory doesn't scale**",
+  "points": [
+   "Track errands, gifts and events in **one shared tool**",
+   "Give every item a **deadline and an owner**",
+   "Log a request **the moment it's made**, not when urgent",
+   "Review the tracker on a **regular cadence**"
+  ],
+  "scene": "Elias asks for a gift to be sent. Nobody logs it, and **the deadline arrives** before anyone remembers.",
+  "move": "Log it **the moment it's requested**, with a deadline and owner",
+  "job": [
+   [
+    "Gift or errand requested",
+    "Log with deadline, owner",
+    "Shared tracker",
+    "Item has clear owner"
+   ],
+   [
+    "Regular review comes round",
+    "Scan for nearing deadlines",
+    "Shared tracker",
+    "Nothing goes last-minute"
+   ]
+  ],
+  "dos": [
+   "Assign an owner **even if it's you**",
+   "Check the tracker **consistently**, not just once"
+  ],
+  "donts": [
+   "Don't keep errands **in your head**",
+   "Don't leave items in an **ambiguous state**"
+  ]
+ },
+ "5::Creating a Home Binder for a Busy Executive": {
+  "image": "sop-binder",
+  "hook": "The binder exists for one moment: **someone else needs it fast**",
+  "points": [
+   "**Household Operations**: staff, vendors, manuals, alarm/wifi, utilities",
+   "**Family & Medical**: doctors, allergies, medications, school info",
+   "**Financial & Legal**: pointers to where things are, not the numbers",
+   "**Emergency Contacts**: who to call first, for what"
+  ],
+  "scene": "A substitute PA must find **the plumber and the alarm code** while you're unreachable.",
+  "move": "If they'd need to **call you first**, the binder isn't finished",
+  "job": [
+   [
+    "Starting the binder",
+    "Build Household Operations first",
+    "Home Binder",
+    "Staff, vendors, codes included"
+   ],
+   [
+    "Adding family details",
+    "Add doctors, allergies, medications",
+    "Family & Medical section",
+    "Usable in an emergency"
+   ],
+   [
+    "Binder looks complete",
+    "Test it as a stranger",
+    "Substitute PA walkthrough",
+    "Works without calling you"
+   ]
+  ],
+  "dos": [
+   "Organize contacts so **anyone finds them fast**",
+   "Judge it by **usability, not completeness**"
+  ],
+  "donts": [
+   "Don't put **sensitive numbers themselves** in the binder",
+   "Don't build it **only for yourself**"
+  ]
+ },
+ "5::Home Binder: Format, Security & Maintenance": {
+  "image": "confidential-lock",
+  "hook": "A binder in the wrong hands **shouldn't be a security incident**",
+  "points": [
+   "Physical works **when power or internet is down**",
+   "Digital works for **easy updates and remote access**",
+   "Most households need both: **a physical copy from a digital master**",
+   "An **outdated binder is worse** than no binder"
+  ],
+  "line": "Never store **passwords, full account numbers or SSNs** in the binder",
+  "scene": "A detail in the binder changes, but the update waits — the binder now gives **false confidence**.",
+  "move": "Update the binder **the moment a covered detail changes**",
+  "job": [
+   [
+    "Choosing a format",
+    "Match format to real use",
+    "Digital master + printed copy",
+    "Works offline and remotely"
+   ],
+   [
+    "Covered detail changes",
+    "Update digital master, reprint",
+    "Home Binder",
+    "Binder matches reality"
+   ],
+   [
+    "Periodic security check",
+    "Scan for real sensitive numbers",
+    "Binder review",
+    "Only references, no secrets"
+   ]
+  ],
+  "dos": [
+   "Reference **where to find** sensitive data securely",
+   "Treat updates like **the contact list**"
+  ],
+  "donts": [
+   "Don't treat format as **mere preference**",
+   "Never let the binder **go stale**"
+  ]
+ },
+ "5::Digital Home Binder Tools & Platforms": {
+  "image": "access-keys",
+  "hook": "Pick a binder tool by **who needs access, and how**",
+  "points": [
+   "**Structure beats platform**: organized simple tool wins",
+   "Build it where the household **already works**, like Notion",
+   "Mirror the **four binder categories** as section headers",
+   "Set **permissions per section** — a driver needs no medical info"
+  ],
+  "scene": "The Thorne household weighs its **shared Notion workspace** against a dedicated app with built-in permission controls.",
+  "move": "Map **who needs access to what** before recommending either",
+  "job": [
+   [
+    "Choosing a platform",
+    "Map who needs which sections",
+    "Access plan",
+    "Each role has right sections"
+   ],
+   [
+    "Staff member leaves",
+    "Revoke their binder access",
+    "Sharing permissions",
+    "No departed staff access"
+   ],
+   [
+    "Monthly or quarterly",
+    "Export or print backup",
+    "Physical copy",
+    "Usable if tool is down"
+   ]
+  ],
+  "dos": [
+   "Have **someone unfamiliar** test finding something",
+   "Revisit permissions **whenever staff changes**"
+  ],
+  "donts": [
+   "Don't choose a tool **nobody else can use**",
+   "Never rely on **one personal login** for access"
+  ]
+ },
+ "5::Procurement and Vendor/Supplier Management": {
+  "image": "vendor-handshake",
+  "hook": "Good procurement means **fewer vendors fall through** in the first place",
+  "points": [
+   "**Source multiple options** — the first vendor isn't always right",
+   "Compare **terms, not just price**: reliability, response time",
+   "Formalize it in **a real contract** or statement of work",
+   "Track performance and renewals; **keep a backup identified**"
+  ],
+  "scene": "The cheapest vendor quoted turns out unreliable, and **costs more in the long run**.",
+  "move": "Compare **at least a couple of real options** on terms",
+  "job": [
+   [
+    "New service needed",
+    "Source and compare options",
+    "Vendor comparison",
+    "Choice is defensible"
+   ],
+   [
+    "Vendor chosen",
+    "Formalize the agreement",
+    "Contract or SOW",
+    "Signed, not verbal"
+   ],
+   [
+    "Engagement underway",
+    "Track performance and renewal",
+    "Vendor tracker",
+    "Backup vendor identified"
+   ]
+  ],
+  "dos": [
+   "Weigh **reliability and response time** with price",
+   "Identify a backup **before you need one**"
+  ],
+  "donts": [
+   "Don't rely on **a verbal understanding**",
+   "Don't pick **the cheapest unreliable option**"
+  ]
+ },
+ "5::Vendor Relationships Beyond the Signature": {
+  "image": "data-chart",
+  "hook": "Supplier management **doesn't end at signing**",
+  "points": [
+   "Choose deliberately — **compare real options**, not the easiest",
+   "Track whether the vendor is **actually performing as agreed**",
+   "Feed **renewal dates** into your recurring tracker",
+   "Keep a **backup option** for every vendor"
+  ],
+  "scene": "Invoices are paid on schedule, but **nobody checks whether the vendor delivers** what was agreed.",
+  "move": "Track **performance against the agreement**, not just payments",
+  "job": [
+   [
+    "Vendor needed",
+    "Compare options and terms",
+    "Vendor comparison",
+    "Deliberate choice made"
+   ],
+   [
+    "Contract signed",
+    "Log renewal date",
+    "Recurring tracker",
+    "Renewal on calendar"
+   ],
+   [
+    "Ongoing engagement",
+    "Review performance, name backup",
+    "Vendor tracker",
+    "Backup ready before needed"
+   ]
+  ],
+  "dos": [
+   "Review **actual terms** before signing",
+   "Keep vendor facts **in a tracked reference**"
+  ],
+  "donts": [
+   "Don't default to **whoever's easiest to reach**",
+   "Don't confuse **paid invoices** with good performance"
+  ]
+ },
+ "5::Negotiating Vendor Contracts & Terms": {
+  "image": "trust-scale",
+  "hook": "Negotiate for **terms that protect you**, not just a lower price",
+  "points": [
+   "**Real alternatives** give you your strongest position",
+   "The vendor's default contract is **a starting point**",
+   "Ask for **one better term beyond price**",
+   "Get every concession **written into the contract**"
+  ],
+  "scene": "A vendor used reliably **for two years** sends a renewal with a **15% price increase** and no explanation.",
+  "move": "Use the alternative vendor as leverage and **renegotiate at renewal**",
+  "job": [
+   [
+    "Negotiation coming up",
+    "Rank priorities in order",
+    "Notes",
+    "Know what matters most"
+   ],
+   [
+    "Terms agreed",
+    "Write them into contract",
+    "The contract",
+    "No side verbal deals"
+   ],
+   [
+    "Renewal arrives",
+    "Revisit terms, don't auto-renew",
+    "Vendor tracker",
+    "Record of what and why"
+   ]
+  ],
+  "dos": [
+   "Negotiate **cancellation and dispute terms** too",
+   "Keep a **record of what was negotiated** and why",
+   "Protect the **working relationship** while negotiating"
+  ],
+  "donts": [
+   "Never sign under **vendor-created time pressure**",
+   "Don't **negotiate on price alone**"
+  ]
+ },
+ "5::Reading a Contract: The Clauses to Recognize": {
+  "image": "compliance-checklist",
+  "hook": "You don't set the terms, but you **catch the dates and duties**",
+  "points": [
+   "Know the building blocks: **parties, scope, payment, term**, termination",
+   "**Dated clauses** cause most trouble: auto-renewals, notice periods",
+   "Make a **one-page summary** for the file",
+   "Flag anything unusual, like **unlimited liability**"
+  ],
+  "line": "Your summary is **a guide, not legal advice** — the attorney reviews",
+  "scene": "A three-year catering contract started **March 1, 2024** and renews automatically unless **90 days' written notice** is given.",
+  "move": "Calendar the **notice deadline**, with a reminder before it",
+  "job": [
+   [
+    "New contract arrives",
+    "Find parties, date, term clause",
+    "The contract",
+    "Renewal terms known"
+   ],
+   [
+    "Dates and notices found",
+    "Calendar each with reminder",
+    "Calendar",
+    "Reminder before notice deadline"
+   ],
+   [
+    "Before signing",
+    "Send to attorney, flag oddities",
+    "One-page summary",
+    "Attorney reviewed"
+   ]
+  ],
+  "dos": [
+   "Check the **signer has authority**",
+   "Keep the **fully signed copy** with all attachments"
+  ],
+  "donts": [
+   "Don't miss an **auto-renewal notice window**",
+   "Don't present a summary as **legal interpretation**"
+  ]
+ },
+ "5::When a Vendor Falls Through": {
+  "image": "escalation-alert",
+  "hook": "When a vendor fails, **tell the household first**, with alternatives ready",
+  "points": [
+   "**Notify immediately** — don't quietly fix it first",
+   "Propose **real, specific alternatives** right away",
+   "Reach for a **pre-identified backup**, not a cold search",
+   "Confirm the backup can meet **the same timeline**"
+  ],
+  "scene": "A recurring household vendor cancels at short notice. **No backup** has been lined up.",
+  "move": "Notify the household now and **propose real alternatives**",
+  "job": [
+   [
+    "Vendor falls through",
+    "Notify household immediately",
+    "Phone or email",
+    "Household informed"
+   ],
+   [
+    "Replacement needed",
+    "Contact backup, confirm timeline",
+    "Vendor tracker",
+    "Backup can deliver"
+   ],
+   [
+    "Situation resolved",
+    "Record what happened",
+    "Vendor tracker",
+    "Better info next time"
+   ]
+  ],
+  "dos": [
+   "Keep backups for **every recurring service**",
+   "Update the tracker **after it's resolved**"
+  ],
+  "donts": [
+   "Don't **hide the failure** while fixing it",
+   "Don't let **one failure become two**"
+  ]
+ },
+ "5::Vendor NDA Management": {
+  "image": "confidential-lock",
+  "hook": "An NDA is **real legal protection**, not a formality",
+  "points": [
+   "Require an NDA **before access**, not after",
+   "Track **who signed, when, and the scope**",
+   "Revisit the NDA when **the scope changes**"
+  ],
+  "line": "Never grant sensitive access on **a promise to sign later**",
+  "scene": "A new household vendor needs **temporary access to the home security system** for a multi-week project.",
+  "move": "Get the **NDA signed first**, then grant access",
+  "job": [
+   [
+    "New vendor gets access",
+    "Decide if NDA needed",
+    "Vendor tracker",
+    "NDA signed before access"
+   ],
+   [
+    "NDA signed",
+    "Log date and scope",
+    "NDA tracker",
+    "Coverage visible at a glance"
+   ],
+   [
+    "Engagement expands",
+    "Recheck NDA coverage",
+    "NDA tracker",
+    "Scope still covered"
+   ]
+  ],
+  "dos": [
+   "Base the need on **what they'll access**",
+   "Track NDAs **alongside the vendor relationship**"
+  ],
+  "donts": [
+   "Don't treat NDAs as **a one-time box**",
+   "Never accept **a verbal assurance**"
+  ]
+ },
+ "5::The PA Risk Management Framework": {
+  "image": "risk-umbrella",
+  "hook": "Four risk categories — and **most incidents touch more than one**",
+  "points": [
+   "Financial: **monitor renewals, verify payments**, watch for fraud",
+   "Legal & liability: injury, contracts, **household-staff exposure**",
+   "Operational: build **contingency plans before disruption**",
+   "Reputational: practice **discretion as a standing habit**"
+  ],
+  "scene": "A vendor failure disrupts an event and the dispute **spills onto social media**.",
+  "move": "Check the incident against **all four categories**",
+  "job": [
+   [
+    "Policy renewal approaches",
+    "Verify payment and coverage",
+    "Policy tracker",
+    "No lapse"
+   ],
+   [
+    "Disruption is possible",
+    "Build a contingency plan",
+    "Contingency plan",
+    "Plan exists beforehand"
+   ],
+   [
+    "Incident occurs",
+    "Check all four categories",
+    "Risk framework",
+    "Every exposure addressed"
+   ]
+  ],
+  "dos": [
+   "Spot **liability exposure** as it arises",
+   "Plan contingencies **before they're needed**"
+  ],
+  "donts": [
+   "Don't assume **coverage is continuous**",
+   "Don't stop at **the most obvious category**"
+  ]
+ },
+ "5::The Four Core Risk Strategies": {
+  "image": "trust-scale",
+  "hook": "Every risk gets one of **four strategies** — match it deliberately",
+  "points": [
+   "**Avoidance**: skip the risky activity entirely",
+   "**Reduction**: add safety measures like alarms",
+   "**Transfer**: shift the financial risk to an insurer",
+   "**Retention**: accept minor risk when insuring costs more"
+  ],
+  "scene": "A small car repair comes up. Insuring against it **costs more than the risk** itself.",
+  "move": "Apply **retention**: pay it out of pocket, deliberately",
+  "job": [
+   [
+    "Risk can be skipped",
+    "Apply avoidance",
+    "Risk review",
+    "Activity not undertaken"
+   ],
+   [
+    "Risk can be lowered",
+    "Add safety measures",
+    "Smoke detectors, security systems",
+    "Measures installed"
+   ],
+   [
+    "Real financial exposure",
+    "Transfer to an insurer",
+    "Homeowners or auto policy",
+    "Policy in place"
+   ]
+  ],
+  "dos": [
+   "Match **the strategy to the risk**",
+   "Accept minor risks **deliberately**"
+  ],
+  "donts": [
+   "Don't default to **one strategy for everything**",
+   "Don't **over-insure** minor risks"
+  ]
+ },
+ "5::Insurance & Risk at a Glance": {
+  "image": "compliance-checklist",
+  "hook": "A policy tracker is **what prevents lapses** and missed payments",
+  "points": [
+   "Keep a **secure policy tracker** with renewal dates",
+   "Compare coverage to **what's actually recommended**",
+   "Run the risk review **twice a year**",
+   "Every **\"yes\" means notifying the broker**"
+  ],
+  "scene": "The semi-annual review shows **a new vehicle** and **more international travel** since last time.",
+  "move": "Treat each \"yes\" as a gap and **notify the broker**",
+  "job": [
+   [
+    "New policy bought",
+    "Add to tracker",
+    "Secure spreadsheet",
+    "All columns complete"
+   ],
+   [
+    "Renewal date nears",
+    "Renew ahead of lapse",
+    "Policy tracker",
+    "No coverage gap"
+   ],
+   [
+    "Six months pass",
+    "Run risk review checklist",
+    "Annual Risk Review Checklist",
+    "Broker told of changes"
+   ]
+  ],
+  "dos": [
+   "Track **every policy's expiration date**",
+   "Ask: **new property, dependents, staff, net worth?**"
+  ],
+  "donts": [
+   "Don't **discover lapses after** the fact",
+   "Don't park a \"yes\" **to revisit eventually**"
+  ]
+ },
+ "5::EA/PA Risk Framework: Information Security": {
+  "image": "security-shield",
+  "hook": "You see more sensitive information than almost anyone — **security is your job**",
+  "points": [
+   "Apply **least-privilege access** by default",
+   "**Verify identity** before disclosing anything sensitive",
+   "Send sensitive data through **secure channels only**",
+   "Breach: **stop the spread**, assess scope, then escalate"
+  ],
+  "line": "Report **every suspected incident immediately**, even a small one",
+  "scene": "An email that looks like **Elias's bank** asks you to confirm his account details, arriving at **an unusual time**.",
+  "move": "Don't reply — **verify with the bank** through a known channel",
+  "job": [
+   [
+    "Request for sensitive data",
+    "Verify the requester's identity",
+    "Known contact details",
+    "Identity confirmed first"
+   ],
+   [
+    "Sensitive file must go",
+    "Send it securely",
+    "Secure portal or protected file",
+    "No plain email or text"
+   ],
+   [
+    "Suspected leak",
+    "Contain, assess, escalate",
+    "Escalation path",
+    "Spread stopped, reported"
+   ]
+  ],
+  "dos": [
+   "Reassess **who needs standing access**",
+   "Reference **where secrets live**, don't copy them"
+  ],
+  "donts": [
+   "Don't assume **\"IT handles that\"**",
+   "Don't treat **confidence as verification**"
+  ]
+ },
+ "5::EA/PA Risk Framework: Operational Continuity": {
+  "image": "sop-binder",
+  "hook": "\"Only I know how\" is **a single point of failure**",
+  "points": [
+   "Find tasks that **break if you're gone 48 hours**",
+   "**Document critical processes** so others can run them",
+   "Keep a **backup contact** for every critical vendor",
+   "Share an **\"if I'm unreachable\" protocol** with someone"
+  ],
+  "scene": "You're planning **a two-week vacation**, your first real time away in over a year.",
+  "move": "Document and hand off **everything that can't wait**",
+  "job": [
+   [
+    "Absence or risk review",
+    "List 48-hour breaking points",
+    "Continuity list",
+    "Real risks named"
+   ],
+   [
+    "Critical recurring process",
+    "Write brief steps",
+    "SOP",
+    "Someone else can execute"
+   ],
+   [
+    "Protocol written",
+    "Have someone follow it",
+    "Continuity test",
+    "Gaps found and fixed"
+   ]
+  ],
+  "dos": [
+   "**Test the plan** with someone else",
+   "Keep continuity docs **current**"
+  ],
+  "donts": [
+   "Don't become **indispensable** — it's a risk",
+   "Don't trust **an outdated backup plan**"
+  ]
+ },
+ "5::EA/PA Risk Framework: Reputational Risks": {
+  "image": "reputation-star",
+  "hook": "Reputational damage **spreads fast and lasts** — prevent it early",
+  "points": [
+   "Assume **anything could surface** outside its audience",
+   "Vet guest lists and posts for **reputational exposure**",
+   "Know who's **authorized to respond publicly**",
+   "Control **what's shared, with whom, and when**"
+  ],
+  "line": "When unsure if it's risky, **escalate — don't decide alone**",
+  "scene": "A journalist contacts you directly, **outside the firm's usual channels**, seeking comment on a sensitive matter involving Elias.",
+  "move": "Give no comment; **escalate through the proper path**",
+  "job": [
+   [
+    "Event or post planned",
+    "Vet for reputational exposure",
+    "Guest list, content review",
+    "Risks flagged early"
+   ],
+   [
+    "Issue in progress",
+    "Inform the right people",
+    "Escalation path",
+    "Authorized voice responds"
+   ]
+  ],
+  "dos": [
+   "Pause briefly, **respond correctly**",
+   "Keep a list of **sensitive topics for Elias**"
+  ],
+  "donts": [
+   "Don't respond **fast instead of correct**",
+   "Never assume **private stays private**"
+  ]
+ },
+ "5::EA/PA Risk Framework: Physical & Travel Safety": {
+  "image": "travel-plane",
+  "hook": "Physical safety is **the highest-stakes risk** — least reversible",
+  "points": [
+   "**Duty of care**: know where they are, reach them",
+   "Know **local emergency numbers** and nearest medical care",
+   "Coordinate **with security personnel**, not around them",
+   "Keep **emergency and medical info** findable in seconds"
+  ],
+  "line": "Elevated risk? **Loop in professional security** — don't handle alone",
+  "scene": "Elias attends a public event with **elevated media attention**; the venue confirms only **minimal security screening**.",
+  "move": "Confirm arrangements in advance and **loop in security**",
+  "job": [
+   [
+    "Trip or event booked",
+    "Confirm itinerary visibility",
+    "Itinerary",
+    "Location always known"
+   ],
+   [
+    "Unfamiliar destination",
+    "Research emergency numbers, hospitals",
+    "Advisories",
+    "Safety facts on file"
+   ],
+   [
+    "Check-in missed",
+    "Trigger pre-agreed escalation",
+    "Escalation protocol",
+    "No guessing game"
+   ]
+  ],
+  "dos": [
+   "Scale planning to **actual risk level**",
+   "Agree an **escalation for missed check-ins**"
+  ],
+  "donts": [
+   "Never **guess at emergency response**",
+   "Don't skip **baseline awareness** on \"normal\" trips"
+  ]
+ },
+ "5::EA/PA Risk Framework: Financial Controls": {
+  "image": "accounting-screen",
+  "hook": "Clear controls **protect you** as much as Elias",
+  "points": [
+   "Know your **approval authority in dollars**",
+   "Require **documentation for every transaction**",
+   "Reconcile recurring activity **monthly at minimum**",
+   "**Flag the unusual** immediately, even if unsure"
+  ],
+  "line": "Never process money requests from **an unusual channel** unverified",
+  "scene": "An email that seems to be from Elias asks you to **urgently wire funds** and **keep it discreet**.",
+  "move": "Stop; **verify with Elias through a second channel**",
+  "job": [
+   [
+    "Invoice to approve",
+    "Check against your threshold",
+    "Approval policy",
+    "Within authority or escalated"
+   ],
+   [
+    "Month ends",
+    "Reconcile recurring charges",
+    "Statements",
+    "Errors caught early"
+   ],
+   [
+    "Out-of-pattern request",
+    "Verify via second channel",
+    "Phone call",
+    "Confirmed before acting"
+   ]
+  ],
+  "dos": [
+   "Keep **approval records organized**",
+   "Question **duplicate charges** and unexpected invoices"
+  ],
+  "donts": [
+   "Don't let **urgency skip verification**",
+   "Never act on **verbal-only financial decisions**"
+  ]
+ },
+ "5::Private Expense Audit": {
+  "image": "invoice-ledger",
+  "hook": "Errors are **easier to catch in review** than in the moment",
+  "points": [
+   "Review household expenses on **a monthly cadence**",
+   "Compare charges to **expected recurring expenses**",
+   "**Flag the unclear** for confirmation, don't assume",
+   "Secure private records like **any confidential information**"
+  ],
+  "scene": "A routine review turns up **a recurring charge** you don't recognize and can't place.",
+  "move": "Check it against **subscriptions, contracts and payroll**, then flag it",
+  "job": [
+   [
+    "Month ends",
+    "Review household expense records",
+    "Expense records",
+    "Review done on schedule"
+   ],
+   [
+    "Charge doesn't match",
+    "Compare to agreed terms",
+    "Vendor and subscription trackers",
+    "Drift identified"
+   ],
+   [
+    "Still unclear",
+    "Flag for confirmation",
+    "Note to household",
+    "Confirmed, not assumed"
+   ]
+  ],
+  "dos": [
+   "Catch **unflagged price increases**",
+   "Keep private records **secure**"
+  ],
+  "donts": [
+   "Don't treat private finances as **lower-stakes**",
+   "Don't check only when **something's obviously wrong**"
+  ]
+ },
+ "5::Travel Risk Management": {
+  "image": "itinerary-map",
+  "hook": "Manage travel risk **before, during and after** every trip",
+  "points": [
+   "Before: confirm **travel insurance and international medical** coverage",
+   "Before: **register with the embassy** if high-profile",
+   "During: **emergency contact sheet**, document copies, secure Wi-Fi",
+   "After: reconcile and **file claims promptly**"
+  ],
+  "scene": "Elias returns from a trip with expenses and **a possible claim** outstanding.",
+  "move": "Reconcile and file **while details are fresh**",
+  "job": [
+   [
+    "Trip booked",
+    "Confirm insurance and coverage",
+    "Policy tracker",
+    "International medical confirmed"
+   ],
+   [
+    "Trip underway",
+    "Share emergency sheet, copies",
+    "Emergency contact sheet",
+    "Copies accessible"
+   ],
+   [
+    "Trip ends",
+    "Reconcile expenses, file claims",
+    "Expense report",
+    "Filed promptly"
+   ]
+  ],
+  "dos": [
+   "Keep **digital copies** of documents",
+   "Use **secure Wi-Fi practices**"
+  ],
+  "donts": [
+   "Don't **delay claims** until details fade",
+   "Don't assume **coverage extends abroad**"
+  ]
+ },
+ "5::Handling a Travel Claim": {
+  "image": "crisis-alert",
+  "hook": "A claim is **a risk event**, not just paperwork",
+  "points": [
+   "You are **coordinator, document controller and liaison**",
+   "**Safety first**: call emergency services if needed",
+   "**Preserve evidence**: photos, damaged items, report numbers, witnesses",
+   "File **only after** the immediate response is secure"
+  ],
+  "line": "Never **admit fault** on the executive's behalf",
+  "scene": "An incident during Elias's trip damages property. **Everyone is safe**, and pressure is high.",
+  "move": "Preserve evidence and **never admit fault**",
+  "job": [
+   [
+    "Incident happens",
+    "Ensure safety first",
+    "Emergency services",
+    "Everyone safe"
+   ],
+   [
+    "Scene secured",
+    "Photograph, save items, get numbers",
+    "Phone camera, incident report",
+    "Evidence preserved"
+   ],
+   [
+    "Immediate phase secured",
+    "Document and file claim",
+    "Claim file",
+    "Claim submitted"
+   ]
+  ],
+  "dos": [
+   "Collect **witness details** at the scene",
+   "Get **police or incident report numbers**"
+  ],
+  "donts": [
+   "Never **admit fault**, however it looks",
+   "Don't start filing **before safety is secured**"
+  ]
+ },
+ "5::International Travel Risk & Duty of Care": {
+  "image": "travel-plane",
+  "hook": "Abroad, risks multiply — **plan before departure**, not during a crisis",
+  "points": [
+   "Check **government travel advisories** before booking",
+   "**Register the trip** with the travel registration program",
+   "Confirm **medical evacuation insurance** for higher-risk destinations",
+   "Build an **emergency card**: embassy, hospital, local numbers, check-ins"
+  ],
+  "line": "High-risk destination? **Loop in security** — not your call alone",
+  "scene": "Elias travels for **an arbitration matter** to a country with **a moderate advisory**, dismissing precautions as unnecessary.",
+  "move": "Respect his experience and **put core protections in place**",
+  "job": [
+   [
+    "Trip being planned",
+    "Check official advisories",
+    "Government advisory site",
+    "Precautions decided"
+   ],
+   [
+    "Before departure",
+    "Register, confirm evacuation coverage",
+    "Registration program, policy",
+    "Coverage confirmed"
+   ],
+   [
+    "Trip underway",
+    "Hold check-in schedule",
+    "Emergency card",
+    "Missed check-in escalated"
+   ]
+  ],
+  "dos": [
+   "Keep **scanned copies** of passport, visas, prescriptions",
+   "Decide the **missed check-in protocol** in advance"
+  ],
+  "donts": [
+   "Don't reuse **the domestic checklist** plus passport",
+   "Don't assume standard insurance **covers evacuation**"
+  ]
+ },
+ "5::Mid-Point 1-on-1 Performance Review": {
+  "image": "meeting-notes",
+  "hook": "Day 5 is the midpoint — **redirect effort** while gaps can close",
+  "points": [
+   "It's **a two-way conversation**, not a one-way evaluation",
+   "Name **which days and tools feel shaky**",
+   "Start from **real data**: Knowledge Check, Practice Lab scores",
+   "Leave with **one concrete focus** for the second half"
+  ],
+  "scene": "Looking back at Days 1–5, you must name **the day or Practice Lab tool** you most need to revisit.",
+  "move": "Say **specifically what's unclear** and make it your focus",
+  "job": [
+   [
+    "Review is scheduled",
+    "Assess solid versus shaky",
+    "Practice Lab history",
+    "Specific gaps listed"
+   ],
+   [
+    "During the review",
+    "Discuss data and gaps",
+    "Knowledge Check scores",
+    "Two-way conversation held"
+   ],
+   [
+    "Review ends",
+    "Agree one focus area",
+    "Notes",
+    "Named skill to target"
+   ]
+  ],
+  "dos": [
+   "Raise a **specific struggle** directly",
+   "Bring **honest self-assessment**"
+  ],
+  "donts": [
+   "Don't treat it as **a formality**",
+   "Don't say vague things like **\"it's all fine\"**"
+  ]
+ }
+});
