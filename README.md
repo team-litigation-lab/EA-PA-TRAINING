@@ -4,6 +4,8 @@
 
 Trainees sign in once, on the LSH Training Portal, and open this program from there: this site shows no sign-in form to someone who arrives from the Portal. Admins always type the admin password here (`MASTER_ADMIN_PASSWORD`). The Portal sends them here with a signed, short-lived ticket (`?ticket=…`); `js/portal-gate.js` posts it to `/api/auth/portal`, and the Worker signs a trainee in (same `trainee:<id>` records, so every current registration, progress and approval is kept) (an administrator's ticket `{r: "a", exp}` never signs anyone in: the Worker answers 403 `admin-password`). Someone who opens this site's link directly sees a note with a **Go to the LSH Training Portal** button instead of the form, and the Worker refuses a name + batch typed here (403 `portal-required`), except to renew the session of a trainee already signed in on that device. Someone who opens the link directly gets the *Admin Portal* tab, where an admin types the admin password.
 
+**Everyone lands on the dashboard.** A trainee and a trainer both open the program on 📚 Dashboard, whether they arrive from the Portal or sign in here. A trainer used to be taken straight to the Admin screen, so they never saw the program the way their trainees do; Admin is still one click away on the top bar (🛡 Admin). A trainee who left off inside a lesson or a lab still reopens there — the dashboard's **▶ Resume where you left off** is the way back in. It's `js/portal-gate.js`, the same file in every LSH course repo (Foundational-Training already did this).
+
 - **Turning it on:** set `PORTAL_SSO_SECRET` (same value as the Portal) and the admin password (`MASTER_ADMIN_PASSWORD`, the Portal's master admin password: the one admin password on every platform) as Worker secrets. `ADMIN_PASSPHRASE` is no longer read, and the page has no built-in password of its own. Until both are set, `/api/auth/status` reports `portalOnly: false` and the old name + batch form stays.
 - **Admin password checks:** only `MASTER_ADMIN_PASSWORD`. Spaces or line breaks around it, quotes pasted around the whole password, invisible characters and curly quotes or long dashes are ignored, in the stored secret and in what's typed, so a password that only worked from the browser's saved copy works typed too. `/version` says if the stored password had any of these (never the password itself), and if `ADMIN_PASSPHRASE` is still set and can be deleted. Both admin password boxes have a **Show** button. Without `SESSION_SECRET`, sessions are signed with the admin password, so changing it signs everyone out (trainees come back in from the Portal).
 - **Ticket format:** `base64url(JSON {first, last, b: <batch>, exp})` + `.` + `base64url(HMAC-SHA256(key = "portal-sso:" + secret, message = that text))`, good for 10 minutes at most. The Portal makes it (`functions/api/launch.js` there).
@@ -126,6 +128,7 @@ Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/script
   - The slides window never reloads itself for a new version mid-class. The console's **Update now** banner is there instead; after updating, press ↗ Re-open slides window.
 - **Every slide fits on one screen** (`.github/scripts/fit.cjs`): every page of every slide of every day, on a laptop (1366 × 768) and a large screen (1920 × 1080). The slide and its Previous / Next bar end inside the window, nothing in the slide is cut off or shrunk, every slide is laid out at 960 × 540 with one scale per screen, and every slide splits into the same pages on both screens.
 - **Server requests** (`.github/scripts/requests.cjs`): `get-many` gives a trainee only their own and public records, an Admin every one, and refuses more than 100 keys. With the checks sped up, a trainee's page reads the tasks for every day in one request and their record about once per check, checks for a new version rarely, and asks nothing while the tab is in the background (catching up when it's back) or on a quick switch to another tab and back. A server that doesn't answer doesn't sign the trainee out; a revoke does. The Trainee Audit reads every trainee in two requests.
+- **⧉ Side by side** (`.github/scripts/splitscreen.cjs`): every day offers **⧉ Beside the slide**; the day's Lesson Notes and its handout open in the frame on the right with the slide still live and clear of it on the left; the slide is scaled down to the room it has left and grows back on ✕ Close; the edge drags and the width is remembered; a screen under 900px never splits.
 - **Graded calls** (`.github/scripts/graded-calls.cjs`): a trainee reads their own `callsim:` record (kept by the Training Portal), never another trainee's, and can't write it; the dashboard band's Graded calls card shows — and 0 lines without graded calls, and the best on each line averaged with them.
 
 To run the same checks locally:
@@ -138,6 +141,7 @@ node .github/scripts/smoke.cjs http://localhost:8787/
 node .github/scripts/presenter.cjs http://localhost:8787/
 node .github/scripts/requests.cjs http://localhost:8787/
 node .github/scripts/graded-calls.cjs http://localhost:8787/
+node .github/scripts/splitscreen.cjs http://localhost:8787/
 ```
 
 `.assetsignore` keeps `worker.js`, the Wrangler config, `.github` and Markdown files from being published with the site.
@@ -182,6 +186,20 @@ Every lesson slide sits on the LSH slide template:
 The files are in `img/lesson-bg/`: `lsh-logo.png` (the standardized LSH logo, the same file as `js/lsh-logo-dark.png`, on a transparent background), `wave-left.svg` and `wave-right.svg`. The CSS is the "Lesson slide background" block near the end of `js/eapa-updates.js`. It styles `.lesson-stage`, so the trainee view, full screen and the Presenter slides window shared in Meet all get it.
 
 The slide-progress dots sit inside the band, so slides keep most of their height. The band is 50–72 px tall, depending on screen height. At 1366×768 slides split into about 4% more pages than without it; at 1920×1080 there's no change.
+
+## ⧉ Side by side (every day)
+
+The Case Management course's split screen, ported here as `js/eapa-toolframe.js` and wired to what this course has. On every day, Day 1 to Day 10, the lesson stage's top bar carries **⧉ Beside the slide**: it opens that day's material in a frame on the right while the slide, its steps and its Previous / Next bar stay live on the left.
+
+- **📖 Day N Lesson Notes** — the full text of every topic (`lessonNotesHtml`, exported from `js/eapa-updates.js`), so a trainee reads the long version while the slide stays on screen instead of behind an overlay.
+- **Day N handout** — the day's handout (`handoutHtml`), or the admin's own file when one is linked for that day on the Handouts page.
+- **📞 Call Simulator** and **🏠 Training Portal** — the Portal's pages sign the trainee in with the Portal's own cookie, which a frame doesn't send, so these open in their own window, the same rule the CM course follows for its Portal simulators.
+
+The frame's bar has **⧉ Side by side** (on or off), **🖥 Second screen** (its own window — on another screen when the browser can say where one is, after the trainee allows it) and **✕ Close**. Drag the frame's left edge to resize it; the width and the on/off choice are remembered per browser (`eapa-tf-w`, `eapa-tf-split`). The frame starts under the top bar and moves with it, and the slide is scaled down to the room it has left (`deckRescale`, through a `resize` event), so it still fits on one screen beside the frame. Esc closes a full-width pane; side by side it stays, since the trainee is working in both. Under 900px wide there is no room for two columns: the button isn't offered and a pane opens full width.
+
+The button is added to whatever lesson stage is on screen rather than to each day's template (the way `js/portal-link.js` adds its top-bar buttons), so no day's content has to know about it and every day gets it at once. Slide content can also call the frame directly, with the same names the CM course uses: `openPane(key, url, name, icon, mode)` for a page by address, `openPaneHTML(key, html, name, icon, mode)` for the course's own HTML, `openTool(id, mode)` for a Portal tool, and `closeToolFrame()`. `mode` is `"split"`, `"full"`, `"tab"`, or left out to follow the trainee's last choice.
+
+`.github/scripts/splitscreen.cjs` checks it on every day: the button is there, the notes and the handout open beside the slide, the slide stays live and clear of the frame, the slide is rescaled and grows back on Close, the edge drags and the width is kept, and a narrow screen never splits.
 
 ## ◫ Day 3 Practice Lab: the Calendar Conflict Resolver
 
@@ -287,24 +305,9 @@ Every AI review in the Practice Labs (written labs, roleplay calls, intake calls
 
 **Gemini region refusals.** Gemini answers 400 *User location is not supported* for some regions. The Worker is placed in the US (`wrangler.json`), but placement is best-effort, so a refused call is sent again from **`GeminiRelay`**, a Durable Object pinned to western North America (`locationHint: "wnam"`, binding `GEMINI_RELAY`), and that Worker instance keeps using it. The relay only forwards to `generativelanguage.googleapis.com`. A Durable Object can't be created by a branch preview build, so a PR that changes its class shows a red *Workers Builds* preview; the `main` deploy applies it.
 
+**The Gemini key pool.** Every Gemini secret set on this Worker is in the pool: `GEMINI_API_KEY` and any numbered one — `GEMINI_API_KEY1`, `GEMINI_API_KEY14`, `GEMINI_API_KEY15`, `GEMINI_API_KEY16`, as many as you have. The pool is read from the Worker's environment (`geminiPool` in `worker.js`), so a key added in Cloudflare joins the rotation on the next deploy with no code change, and a key removed leaves it. Each request starts on the next key in turn; a key that hits a per-minute limit rests a minute, a daily limit an hour, and one out of credits or with billing off rests an hour, with the request moving on to the next key. `/version` lists the pool and which keys are resting. Give each key its own Google Cloud project: free-tier limits are per project. `.github/scripts/ai-keys.mjs` (CI, with Gemini faked) holds the pool to all of that: every numbered key is used (including above `GEMINI_API_KEY9`, where the old hard-coded list stopped), a key set twice under two names is used once, keys take turns, a key out of credits rests while the next takes the request, a rejected key is never asked twice, and with every key resting the answer is a 429 that says so rather than "no key configured".
+
 - `AI_GATEWAY_SECRET` (optional Secret, the same value as on the Portal): every AI call goes to the Main Portal's shared AI gateway, one master key pool and one shared budget for all call flows. Without it this Worker uses its own `GEMINI_API_KEY` pool.
-
-**The Gemini key pool.** Every `GEMINI_API_KEY` secret on this Worker is in the pool: `GEMINI_API_KEY`
-and **any numbered one** (`GEMINI_API_KEY1`, `GEMINI_API_KEY14`, …) — the same rule as the Case
-Management Worker and the CMS site's `functions/_ai.js`. The pool used to be a list that stopped at
-`GEMINI_API_KEY9`, so a key numbered above that was set in Cloudflare and silently never used; now a
-new key joins the pool by being set, with no change to `worker.js`. Set as many as you have, **one key
-per Google Cloud project** (free-tier limits are per project).
-
-They are interchangeable and rotate automatically: each request starts on the next key in turn, and a
-key that answers 429 (its credits or free-tier limit used up) is rested while the next key takes the
-request — a minute for a per-minute limit, an hour for a daily/quota one, ten minutes for a key Google
-rejects. Each model is tried on every key before falling back to the next model, so the better model is
-used up across the whole pool first. A key set twice under two names is counted once. `/version` lists
-the keys that are set and which are resting (never the keys themselves).
-
-`.github/scripts/ai-keys.mjs` (CI, Gemini faked) holds it to that, including that a numbered key above
-9 is used.
 
 ## 🎨 The standard page style
 

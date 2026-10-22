@@ -48,7 +48,10 @@ window.EAPA_UPDATE_PACK = "z";
 .pg-hide{display:none !important;}
 .lesson-stage #lessonSlideWrap > .card::before{display:none;}
 .lesson-stage #lessonSlideWrap ol.fp-howto-list, .lesson-stage #lessonSlideWrap .fp-section ol{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));}
-.lesson-stage #lessonSlideWrap .svg-diagram-card svg{display:block;width:auto;max-width:100%;max-height:430px;margin:0 auto;}
+/* 430px when a topic slide had no header of its own; every topic now carries the deck's navy strip
+   (renderTopicDeck), and a diagram is one piece the paginator cannot split — so it has to fit the
+   page the strip leaves behind it, or it would overflow the slide on its own. */
+.lesson-stage #lessonSlideWrap .svg-diagram-card svg{display:block;width:auto;max-width:100%;max-height:270px;margin:0 auto;}
 .lesson-stage #lessonSlideWrap.pg-anim > *{animation:pgFade .35s ease both;}
 @keyframes pgFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 .lesson-stage #lessonSlideWrap .pg-badge{position:absolute;right:16px;bottom:12px;width:auto;max-width:none;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--orange-deep);background:#FFF1E2;border-radius:999px;padding:4px 10px;}
@@ -335,7 +338,7 @@ Narrator.slideText = function(){
    page). Next / Previous (and the arrow keys) step through pages before slides.
    Headings (kicker, title, section labels) repeat on every page of their block. */
 const SLIDE_PG_BLOCKS = ".card, .lesson-card, .meet-client-card, .qcheck-card, .fp-section, .fp-body, .trainer-checkpoint, .ft-body, .cs, .cs-tablewrap, .cs-tablewrap > table, .cs-tablewrap > table > tbody, .svg-diagram-card";
-const SLIDE_PG_HEADS = "h2, h3, h4, .topic-separator, .fp-label, .mc-tag, .tc-tag, .qc-tag, .discussion-tag, .vis-label";
+const SLIDE_PG_HEADS = ".xd-head, h2, h3, h4, .topic-separator, .fp-label, .mc-tag, .tc-tag, .qc-tag, .discussion-tag, .vis-label";
 let __slidePg = null;
 function collectSlideUnits(root, bigH){
   const units = [];
@@ -2956,7 +2959,7 @@ window.fitTopicsModal = fitTopicsModal;
     doc.save(`LSH_Day${day}_Lesson_Notes.pdf`);
     toast("Lesson Notes downloaded.");
   }
-  Object.assign(window, {previewLessonNotes, openLessonNotes, downloadLessonNotesPdf});
+  Object.assign(window, {previewLessonNotes, openLessonNotes, downloadLessonNotesPdf, lessonNotesHtml: notesHtml});
 
   // Handouts: the Lesson Notes for every day, above the templates.
   if(typeof renderHandouts === "function" && !renderHandouts.__notes){
@@ -4068,7 +4071,9 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
   ${W} .quiz-q{font-size:22px !important;}
   ${W} .topic-divider h2.td-title{font-size:44px;}
   ${W} .vis-step b{font-size:15px;} ${W} .vis-card p{font-size:16px;}
-  ${W} .svg-diagram-card svg{max-height:320px !important;}
+  /* A diagram is one piece the paginator cannot split, so it has to fit the page left after the
+     topic's navy strip and its heading — 320px did before every topic carried the strip. */
+  ${W} .svg-diagram-card svg{max-height:270px !important;}
   /* the room around the deck is the same on every slide: the progress dots stay on one row of the
      top band, and the last slide's note sits in the Previous / Next bar */
   .lesson-stage .slide-dots{flex-wrap:nowrap;gap:3px;}
@@ -4131,3 +4136,45 @@ if(document.querySelector(".topbar")) render();
   .dash-main .module-grid{gap:8px !important;}
   .dash-main .comp-strip{padding:7px 16px 8px;}
 }`; document.head.appendChild(s); })();
+
+/* ---------- Lesson slides: one screen, no scrolling (desktop) ----------
+   A lesson fits the window the way the dashboard does: the slide, its step dots and the
+   Previous / Next row sit inside one screen and the page itself doesn't scroll. The stage
+   is measured from where it starts down to the bottom of the window, so the top bar, the
+   day header and whatever else a day puts above it are all accounted for; the slide then
+   takes the room that is left, and a slide with more in it than fits scrolls inside its own
+   card instead of pushing the buttons off the bottom. Phones, short windows and full screen
+   keep what they had. Loaded last, so it wins. */
+(function(){
+  const s = document.createElement("style"); s.id = "eapa-lesson-onescreen"; s.textContent = `
+@media (min-width:1001px) and (min-height:620px){
+  .lesson-stage:not(:fullscreen){display:flex;flex-direction:column;max-height:var(--ls-max,none);}
+  .lesson-stage:not(:fullscreen) .stage-body{flex:1 1 auto;min-height:0;}
+  .lesson-stage:not(:fullscreen) #lessonSlideWrap{min-height:0 !important;max-height:none !important;height:100%;overflow:auto;}
+  .lesson-stage:not(:fullscreen) .slide-nav{flex:0 0 auto;}
+}`;
+  document.head.appendChild(s);
+
+  // The room left under the stage's top edge, less a small gap so the last row isn't flush
+  // with the bottom of the window.
+  const GAP = 16, LEAST = 360;
+  let pending = 0;
+  function fit(){
+    pending = 0;
+    const stage = document.getElementById("lessonStage");
+    if(!stage) return;
+    if(window.innerWidth < 1001 || window.innerHeight < 620 || document.fullscreenElement){
+      stage.style.removeProperty("--ls-max"); return;
+    }
+    const top = stage.getBoundingClientRect().top;
+    stage.style.setProperty("--ls-max", Math.max(LEAST, window.innerHeight - top - GAP) + "px");
+  }
+  function soon(){ if(!pending) pending = requestAnimationFrame(fit); }
+
+  addEventListener("resize", soon);
+  addEventListener("fullscreenchange", soon);
+  document.addEventListener("DOMContentLoaded", soon);
+  addEventListener("load", soon);
+  // Each slide is drawn into the same page, so re-measure when the app replaces it.
+  new MutationObserver(soon).observe(document.getElementById("app") || document.body, {childList:true, subtree:true});
+})();

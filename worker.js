@@ -2,8 +2,8 @@
  * LSH EA/PA Upskill Program — Cloudflare Worker (secured)
  *
  * Secrets (set once with `wrangler secret put <NAME>`):
- *   GEMINI_API_KEY, GEMINI_API_KEY1 … GEMINI_API_KEY<n> — the Gemini key pool behind every AI
- *                        feature (see geminiPool). Set as many as you have, one per Google Cloud
+ *   GEMINI_API_KEY, and any numbered one (GEMINI_API_KEY1, GEMINI_API_KEY14, …) — the Gemini key
+ *                        pool behind every AI feature (see geminiPool). Set as many as you have, one per Google Cloud
  *                        project. Each request starts on the next key in turn; a key that hits its
  *                        limit is rested and the next key takes over. At least one is required.
  *   GEMINI_MODEL       — optional: first model for grading and trainer tools (default gemini-3.8-flash).
@@ -368,15 +368,13 @@ async function traineeWrite(env, tok, key, value) {
 // Every AI feature (chat, grading, tracker notes review, trainer tools) shares one pool of keys.
 // Free-tier limits are per Google Cloud project, so each key should come from its own project.
 // Every Gemini key set on this Worker is in the pool: GEMINI_API_KEY and any numbered one
-// (GEMINI_API_KEY1, GEMINI_API_KEY14, …), the same rule as the CMS site's functions/_ai.js and the
-// Case Management Worker. So a new key joins the pool by being set in Cloudflare, with no change here:
-// it used to be a list that stopped at GEMINI_API_KEY9, and keys numbered above that were never used.
-// GEMINI_API_KEY first, then in number order.
-const geminiPool = (env) => Object.keys(env || {}).filter((n) => /^GEMINI_API_KEY\d*$/.test(n) && String(env[n] || "").trim())
-  .sort((a, b) => (a.length - b.length) || a.localeCompare(b));
-// Keys deliberately kept out of the rotation, tried only after every pooled key.
-const GEMINI_SPARE = [];
-const geminiKeyNames = (env) => [...geminiPool(env), ...GEMINI_SPARE].filter((n, i, a) => env[n] && a.findIndex((m) => env[m] === env[n]) === i);
+// (GEMINI_API_KEY1, GEMINI_API_KEY14, …), read from the environment, so a key added in Cloudflare
+// joins the rotation with no code change. Same rule as the CMS site's pool (functions/_ai.js).
+// Numbered keys come in number order (…KEY9 before KEY10), the plain one first.
+const geminiPool = (env) => Object.keys(env || {})
+  .filter((n) => /^GEMINI_API_KEY\d*$/.test(n) && String(env[n] || "").trim())
+  .sort((a, b) => (Number(a.slice(14)) || 0) - (Number(b.slice(14)) || 0));
+const geminiKeyNames = (env) => geminiPool(env).filter((n, i, a) => a.findIndex((m) => env[m] === env[n]) === i);
 const hasGemini = (env) => geminiKeyNames(env).length > 0;
 // Per Worker instance: which key the next request starts on, and keys resting after a limit.
 // A per-minute limit rests the key for a minute; a daily limit for an hour; a rejected key for 10 minutes.
@@ -385,10 +383,8 @@ const geminiRest = new Map();   // "<key name>|<model>" or "<key name>|*" → re
 const resting = (name, model) => Math.max(geminiRest.get(name + "|*") || 0, geminiRest.get(name + "|" + model) || 0) > Date.now();
 function geminiKeyOrder(env) {
   const names = geminiKeyNames(env);
-  const inPool = geminiPool(env);
-  const pool = names.filter((n) => inPool.includes(n)), spare = names.filter((n) => !inPool.includes(n));
-  const start = pool.length ? geminiTurn++ % pool.length : 0;
-  return [...pool.slice(start), ...pool.slice(0, start), ...spare];
+  const start = names.length ? geminiTurn++ % names.length : 0;
+  return [...names.slice(start), ...names.slice(0, start)];
 }
 const GEMINI_FLASH = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash"], GEMINI_LITE = "gemini-3.5-flash-lite";
 const geminiModels = (env, feature) => (feature === "chat" || feature === "tracker" || !feature   // high-volume features start on Flash-Lite
