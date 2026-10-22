@@ -393,6 +393,22 @@ function fitSlideFrame(wrap){
 }
 // The deck's scale: as large as the room allows, the same for every slide. On the lesson page the slide and
 // its Previous / Next bar end inside the window; full screen and the shared window fill their window.
+/* The room under the slide (its Previous / Next bar) is not the same on every slide: a slide that runs to
+   several pages carries a row of page dots, which makes that bar about 4px taller. Measured per slide,
+   that fed straight back into the scale and the deck came out 0.869 on a slide with pages and 0.8764 on
+   one without — a deck that changes size as the trainer moves through it, which is what it must never do.
+   So the room is reserved for the tallest bar this screen has shown, not the one under the slide that
+   happens to be up: the first slide with pages settles it, and every slide after is the same size. The
+   larger bar is also the safe one to reserve — scaled to the shorter bar, a slide that then gains the
+   dots row would push the Previous / Next bar past the bottom of the window. Reset by the screen's own
+   signature, so a resize or full screen measures again from scratch. */
+let deckBelow = {sig:"", px:0};
+function deckBelowMax(stage, fitRect){
+  const sig = `${window.innerWidth}x${window.innerHeight}|${document.fullscreenElement ? "fs" : ""}|${document.body.classList.contains("one-screen") ? "one" : ""}`;
+  if(deckBelow.sig !== sig) deckBelow = {sig, px:0};
+  deckBelow.px = Math.max(deckBelow.px, stage.getBoundingClientRect().bottom - fitRect.bottom);
+  return deckBelow.px;
+}
 function deckRescale(){
   const fit = document.querySelector("#lessonStage .deck-fit"); if(!fit) return;
   if(window.innerWidth <= 760){ fit.style.removeProperty("--deck-scale"); return; }   // phones: the slide is a scrolling page
@@ -400,7 +416,7 @@ function deckRescale(){
   let roomH;
   if(fit.closest("#audienceRoot") || document.fullscreenElement === stage) roomH = body.clientHeight;
   else {
-    const r = fit.getBoundingClientRect(), below = stage.getBoundingClientRect().bottom - r.bottom;
+    const r = fit.getBoundingClientRect(), below = deckBelowMax(stage, r);
     // Where the slide has to end. On a window the whole page fits on (js/lsh-one-screen.js) that is
     // the bottom of the page's body, so the slide and its Previous / Next bar stay above the footer
     // line and the lesson page never scrolls; on a narrow or short window, which scrolls as it
