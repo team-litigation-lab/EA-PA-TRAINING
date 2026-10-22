@@ -94,8 +94,16 @@ ${S}::before, ${S}::after{display:none !important;}
 .ea-deck-card #lessonSlideWrap::before, .ea-deck-card #lessonSlideWrap::after{display:none !important;}
 /* a topic's navy strip (its number and title) is the Topic Bar and the ribbon now */
 .ea-deck-card #lessonSlideWrap .xd-head{display:none !important;}
-/* a title slide (a topic or part divider) is its own navy card: it fills the sheet */
-.ea-deck-card #lessonSlideWrap:has(> .xd, > .topic-divider, > .card > .xd){background:transparent !important;border:0;box-shadow:none !important;padding:0 !important;}
+/* two cards only, the navy card and the white sheet: a title slide (a topic or part divider) is no third card,
+   its words sit straight on the sheet */
+.ea-deck-card #lessonSlideWrap > .topic-divider{background:transparent !important;color:var(--ink,#1e293b);border-radius:0;box-shadow:none !important;}
+.ea-deck-card #lessonSlideWrap > .topic-divider::before, .ea-deck-card #lessonSlideWrap > .topic-divider::after{display:none !important;}
+.ea-deck-card #lessonSlideWrap > .topic-divider h2.td-title{color:var(--navy,#262B45);}
+.ea-deck-card #lessonSlideWrap > .topic-divider .td-kicker{color:var(--orange-deep,#B5651F);}
+.ea-deck-card #lessonSlideWrap > .topic-divider .td-num{color:#6B7088;}
+.ea-deck-card #lessonSlideWrap > .block-divider .bd-list li{color:var(--ink,#1e293b);}
+.ea-deck-card #lessonSlideWrap > .block-divider .bd-list li b{color:var(--orange-deep,#B5651F);}
+.ea-deck-card #lessonSlideWrap > .xd, .ea-deck-card #lessonSlideWrap > .card > .xd{background:transparent !important;border:0 !important;box-shadow:none !important;}
 /* Previous / Next: on the page, under the card */
 ${S} > .slide-nav{margin:10px 0 0 !important;padding:8px 12px;background:rgba(255,255,255,.82);border:1px solid rgba(38,43,69,.12);border-radius:14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
 ${S} > .slide-nav .slide-counter{color:#262B45 !important;}
