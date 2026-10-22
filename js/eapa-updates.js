@@ -403,10 +403,15 @@ function deckRescale(){
     // line and the lesson page never scrolls; on a narrow or short window, which scrolls as it
     // always did, it is the window's.
     const page = stage.closest("main");
-    const floor = (page && document.body.classList.contains("one-screen"))
-      ? page.getBoundingClientRect().bottom - (parseFloat(getComputedStyle(page).paddingBottom) || 0)
-      : window.innerHeight;
-    roomH = floor - (r.top + window.scrollY) - below - 12;
+    if(page && document.body.classList.contains("one-screen")){
+      // All three measured from the top of the window, so the scale can't depend on how far the
+      // page body happens to be scrolled — window.scrollY is the body's scrollTop here, and
+      // mixing it in made the deck a different size from one slide to the next.
+      const floor = page.getBoundingClientRect().bottom - (parseFloat(getComputedStyle(page).paddingBottom) || 0);
+      roomH = floor - r.top - below - 12;
+    } else {
+      roomH = window.innerHeight - (r.top + window.scrollY) - below - 12;
+    }
   }
   const scale = Math.max(0.3, Math.min(fit.clientWidth / DECK_W, roomH / DECK_H));
   const v = String(Math.round(scale*10000)/10000);
