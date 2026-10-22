@@ -60,11 +60,6 @@ const DAY = Number(process.argv[3] || 1);
     if (r.draws !== 0) fail(`the console re-drawing made the slides window redraw the same slide ${r.draws} time(s): that's the flicker`);
 
     // a long slide split into pages: the next page is shown in place
-    // Every topic now runs as short slides that always fit one page (window.EA_SLIDE_COPY), so no lesson slide
-    // splits into pages any more. The page test needs one that does: in both windows, take the copy away so
-    // the day falls back to the topics' original long slides, which the pager still serves.
-    for (const w of [page, aud]) await w.evaluate(() => { window.EA_SLIDE_COPY = {}; render(); });
-    await sleep(800);
     const total = await page.evaluate(() => buildDaySlides(DAYS.find(d => d.id === state.dayId)).length);
     let paged = -1;
     for (let i = 0; i < total && paged < 0; i++) {
