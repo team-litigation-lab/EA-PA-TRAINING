@@ -32,6 +32,8 @@ jobs:
         run: node .github/scripts/batch-id.cjs
       - name: Single sign-on (the Portal is the only way a trainee gets in; a missing PORTAL_SSO_SECRET says so)
         run: node .github/scripts/sso.cjs
+      - name: Gemini key pool (every numbered key is used, keys take turns, a key out of credits rests; Google answered by the test)
+        run: node .github/scripts/ai-keys.mjs
       - name: Where records are kept (progress in R2, the rest in KV)
         run: node .github/scripts/storage.mjs
       - name: Build the Worker without deploying (wrangler dry run)
