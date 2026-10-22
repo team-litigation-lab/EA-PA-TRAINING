@@ -40,22 +40,39 @@
     return t.innerHTML;
   }
 
+  // the presenter in the lesson's side column, under its controls (the CSS shows it only on a desktop). It is drawn
+  // with the page, not added after it: a later change to the page would size the slide again mid-way through the
+  // page's opening animation, and the deck would come out a few pixels different from slide to slide.
+  const sidePresenter = () => typeof PRESENTER_IMG === "string" ? `<img class="ea-side-presenter" src="${PRESENTER_IMG}" alt="" aria-hidden="true">` : "";
   const __render = window.renderDaySlideshow;
   window.renderDaySlideshow = function(d){
-    const out = deckCard(__render.apply(this, arguments), d);
-    requestAnimationFrame(sidePresenter);
+    let out = deckCard(__render.apply(this, arguments), d);
+    if(typeof out === "string" && out.indexOf('id="lessonStage"') >= 0 && out.indexOf("ea-deck-card") >= 0) out += sidePresenter();
     return out;
   };
   window.renderDaySlideshow.__deckCard = true;
 
-  // the presenter in the lesson's side column, under its controls (the CSS shows it only on a desktop)
-  function sidePresenter(){
-    const main = document.querySelector("main");
-    if(!main || !main.querySelector(":scope > #lessonStage .ea-deck-card")) return;
-    if(main.querySelector(":scope > .ea-side-presenter")) return;
-    const img = document.createElement("img"); img.className = "ea-side-presenter"; img.alt = ""; img.setAttribute("aria-hidden", "true");
-    img.src = typeof PRESENTER_IMG === "string" ? PRESENTER_IMG : ""; if(!img.src) return;
-    main.appendChild(img);
+  // The deck's scale on the lesson page, measured where the slide is laid out rather than where it is drawn: the page
+  // slides in (main's 8px "pageIn" animation), and the card is tall enough that the height left on screen, not the
+  // width, sets the scale, so a measurement taken during that animation came out a few pixels off from slide to slide.
+  // Full screen, the shared window and phones are as before (deckRescale in js/eapa-updates.js).
+  if(typeof deckRescale === "function" && !deckRescale.__deckCard){
+    const __rescale = deckRescale;
+    const layoutTop = el => { let t = 0; for(; el; el = el.offsetParent) t += el.offsetTop; return t; };   // offsetTop ignores transforms
+    deckRescale = function(){
+      const fit = document.querySelector("#lessonStage .deck-fit"), stage = fit && fit.closest(".lesson-stage");
+      if(!fit || !fit.closest(".ea-deck-card") || window.innerWidth <= 760 || fit.closest("#audienceRoot") || document.fullscreenElement === stage) return __rescale.apply(this, arguments);
+      // down to the bottom of what's under the slide (Previous / Next), not of the stage: the one-screen rule caps the
+      // stage's height, and that cap moves with the animation too
+      const end = Math.max(...[...stage.children].map(c => c.getBoundingClientRect().bottom));
+      const below = end - fit.getBoundingClientRect().bottom;
+      const roomH = window.innerHeight - layoutTop(fit) - below - 12;
+      const scale = Math.max(0.3, Math.min(fit.clientWidth / DECK_W, roomH / DECK_H));
+      const v = String(Math.round(scale*10000)/10000);
+      if(fit.style.getPropertyValue("--deck-scale") !== v) fit.style.setProperty("--deck-scale", v);
+      window.__deckScale = +v;
+    };
+    deckRescale.__deckCard = true; window.deckRescale = deckRescale;
   }
 
   const ORN_TR = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='70' viewBox='0 0 90 70' fill='none' stroke-linecap='round'%3E%3Cpath d='M6 8H76V60' stroke='%23DB8437' stroke-width='1.6'/%3E%3Cpath d='M22 14H70V44' stroke='%238E97C4' stroke-width='1.2'/%3E%3Cpath d='M40 4H84V24' stroke='%23DB8437' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='8' r='2.2' fill='%23DB8437' stroke='none'/%3E%3Ccircle cx='76' cy='60' r='2.2' fill='%23DB8437' stroke='none'/%3E%3Ccircle cx='22' cy='14' r='1.8' fill='%238E97C4' stroke='none'/%3E%3Ccircle cx='70' cy='44' r='1.8' fill='%238E97C4' stroke='none'/%3E%3Ccircle cx='84' cy='24' r='1.8' fill='%23DB8437' stroke='none'/%3E%3C/svg%3E")`;
@@ -69,6 +86,10 @@ ${S}{background:transparent !important;box-shadow:none !important;padding:0 !imp
 ${S}::before, ${S}::after{display:none !important;}
 .ea-deck-card{position:relative;overflow:hidden;min-width:0;background:rgba(30,35,64,.9);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);
   border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:14px 20px 16px;box-shadow:0 18px 40px -22px rgba(20,24,48,.65);}
+/* the card never gives way to the one-screen rule's cap on the stage's height (js/eapa-updates.js): that cap is
+   measured while the page slides in, so a card that shrank to it came out a few pixels different on every slide.
+   The deck's scale (deckRescale) is what makes it fit. */
+${S}:not(:fullscreen) > .ea-deck-card{flex:0 0 auto;}
 .ea-deck-card::before, .ea-deck-card::after{content:"";position:absolute;pointer-events:none;background-repeat:no-repeat;z-index:0;}
 .ea-deck-card::before{top:6px;right:6px;width:90px;height:70px;background-image:${ORN_TR};}
 .ea-deck-card::after{bottom:6px;left:6px;width:70px;height:70px;background-image:${ORN_BL};}
@@ -92,8 +113,14 @@ ${S}::before, ${S}::after{display:none !important;}
 .ea-deck-card .stage-presenter{display:none !important;}
 .ea-deck-card #lessonSlideWrap{background:#fff ${ORN_SHEET} no-repeat right 8px bottom 8px / 110px !important;border:1px solid rgba(255,255,255,.6);border-radius:14px !important;box-shadow:0 8px 22px rgba(0,0,0,.18) !important;}
 .ea-deck-card #lessonSlideWrap::before, .ea-deck-card #lessonSlideWrap::after{display:none !important;}
-/* a topic's navy strip (its number and title) is the Topic Bar and the ribbon now */
-.ea-deck-card #lessonSlideWrap .xd-head{display:none !important;}
+/* a topic's strip (its number, title and Part buttons) is no third card: a plain row on the sheet, ruled off */
+.ea-deck-card #lessonSlideWrap .xd-head{background:transparent !important;color:var(--navy,#262B45);border-radius:0;padding:0 0 8px;border-bottom:1px solid #E6E8F0;}
+.ea-deck-card #lessonSlideWrap .xd-head-n small{color:#6B7088;}
+.ea-deck-card #lessonSlideWrap .xd-head .xd-kick{color:var(--orange-deep,#B5651F);}
+.ea-deck-card #lessonSlideWrap .xd-head .xd-title{color:var(--navy,#262B45);}
+.ea-deck-card #lessonSlideWrap .xd-head-steps button{border-color:#C9CEDB;background:#fff;color:#4A5070;}
+.ea-deck-card #lessonSlideWrap .xd-head-steps li.on button{background:#DB8437;border-color:#DB8437;color:#fff;}
+.ea-deck-card #lessonSlideWrap .xd-head-steps button:hover{background:#F3F4F8;}
 /* two cards only, the navy card and the white sheet: a title slide (a topic or part divider) is no third card,
    its words sit straight on the sheet */
 .ea-deck-card #lessonSlideWrap > .topic-divider{background:transparent !important;color:var(--ink,#1e293b);border-radius:0;box-shadow:none !important;}
@@ -110,7 +137,7 @@ ${S} > .slide-nav .slide-counter{color:#262B45 !important;}
 ${S} > .slide-nav .btn-ghost{background:#fff;border:1px solid rgba(38,43,69,.2);}
 ${S} .slide-done-note{color:var(--navy);background:#FFF1E2;border:0;}
 /* the presenter: in the side column on a desktop; beside the slide in full screen and the Presenter slides window */
-main > .ea-side-presenter{display:none;}
+.ea-side-presenter{display:none;}
 @media(min-width:1000px){
   body:not(.ft-fit) main:has(> #lessonStage .ea-deck-card) > .ea-side-presenter{display:block;width:min(180px, calc((100vh - 470px) * .56));height:auto;margin:6px auto 0 !important;transform:scaleX(-1);
     pointer-events:none;user-select:none;filter:drop-shadow(0 10px 14px rgba(20,24,48,.25));}
