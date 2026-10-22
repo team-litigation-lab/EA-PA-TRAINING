@@ -1,0 +1,517 @@
+{
+ "Prioritization Frameworks": {
+  "image": "time-blocks",
+  "hook": "Four simple frameworks put your effort on **what truly matters**, not what's loudest",
+  "points": ["Eisenhower Matrix: sort by **urgency and importance** first", "Pomodoro: **25 minutes focused**, 5-minute break, longer every 4", "Time blocking: keep **deep work and email** apart", "80/20: find the **20% driving 80%** of results"],
+  "scene": "Your task list is overwhelming on a Monday and **every item feels urgent**. Elias's real priorities are buried somewhere in it.",
+  "move": "Run **the Eisenhower Matrix** first, then block time for the top items",
+  "job": [["List feels overwhelming", "Sort by urgency, importance", "Eisenhower Matrix", "Effort on what matters"], ["Priorities sorted", "Work in focused sprints", "Pomodoro timer", "25 on, 5 off"], ["Week ahead", "Separate deep work, email", "Calendar time blocks", "Blocks on the calendar"]],
+  "dos": ["Pick **one framework** for your biggest gap", "Step back regularly to **apply the 80/20 rule**"],
+  "donts": ["Don't **run all four** from day one", "Don't let **the loudest task** set your order"]
+ },
+ "Priority Collision Handling": {
+  "image": "clock-deadline",
+  "hook": "When two genuine priorities hit at once, **judgment beats speed**",
+  "points": ["A collision: two **important things, neither deferrable**", "Weigh the **real cost of delay** on each side", "**Partially address both** rather than drop one", "Document how it was **resolved and why**"],
+  "line": "When it's too close to call, **escalate the decision**; never guess",
+  "scene": "Within the same minute, Elias needs something urgently and **a major client** needs an answer. Neither can wait.",
+  "move": "Weigh what breaks if each waits; **acknowledge one, handle the other**",
+  "job": [["Two urgent requests land", "Compare cost of delay", "Quick impact check", "Clear first choice"], ["One must wait", "Send interim acknowledgment", "Brief message", "Nobody left hanging"], ["Still too close", "Escalate in 30 seconds", "Quick check-in", "Decided, not guessed"]],
+  "dos": ["**Document the resolution** as precedent for next time", "Give the waiting side **an interim action**"],
+  "donts": ["Don't assume **working faster** solves every collision", "Don't leave one side **completely unaddressed**"]
+ },
+ "Time Management": {
+  "image": "calendar-week",
+  "hook": "Decide what deserves time first; **the calendar protects that decision**",
+  "points": ["Time management decides; **calendar management protects**", "**Decide** what deserves protected time before touching the calendar", "**Block it** before others' requests fill the day", "**Review weekly** whether protected time actually held"],
+  "scene": "Monday morning, Elias's week is still open. By Tuesday, other people's requests will fill it, and you haven't **decided what deserves protection**.",
+  "move": "Decide first, then **block it today**, before requests arrive",
+  "job": [["Start of week", "Decide what deserves time", "Priority list", "Protected items named"], ["Priorities decided", "Turn into calendar blocks", "Calendar", "Blocks booked early"], ["End of week", "Check which blocks held", "Weekly review", "Losses to urgency noted"]],
+  "dos": ["Defend blocks like **any other commitment**", "**Review weekly** what held and what slipped"],
+  "donts": ["Don't call a block **with no protection** managed", "Don't let **whatever feels urgent** always win"]
+ },
+ "Strategic Time Engineering": {
+  "image": "data-chart",
+  "hook": "Treat Elias's time as **capital to invest**, not just spend",
+  "points": ["You're the **portfolio manager** of his time", "Align time with **revenue-generating activity**", "Protect growth; buffer **compliance and legal deadlines**", "Guard reputation-sensitive events and **personal commitments**"],
+  "scene": "You review a typical week on Elias's calendar against the five categories. **One category** gets far less protection than the others.",
+  "move": "Name the gap, find why, and **re-engineer the allocation**",
+  "job": [["Any block to defend", "Name its category", "Five categories", "Category named"], ["Compliance deadline ahead", "Buffer time before it", "Calendar", "Buffer in place"], ["Calendar drifting", "Revisit current allocation", "Calendar review", "Matches what matters"]],
+  "dos": ["Name **which category** each block serves", "Engineer the allocation **from the start**"],
+  "donts": ["Don't protect time **only after a disruption**", "Don't call **unscheduled time** a protected block"]
+ },
+ "When Time Management Fails Despite a Clean Calendar": {
+  "image": "calendar-week",
+  "hook": "A **conflict-free calendar** can still fail the work that matters most",
+  "points": ["Check for **reactive-meeting saturation**, not just conflicts", "Confirm **protected space exists** for this week's top work", "Travel weeks need discipline **before, during and after**", "Diagnose the failure: **the decision or the protection**"],
+  "scene": "Elias's week looked fine on paper, with no overlaps. Yet **the priority work never got done**, crowded out by reactive meetings.",
+  "move": "Diagnose it: wrong priorities, or **right priorities not defended**",
+  "job": [["Weekly review", "Scan for reactive meetings", "Calendar", "Priority space confirmed"], ["Trip on the calendar", "Check before, during, after", "Calendar and itinerary", "Whole trip managed"], ["Week went wrong", "Find decision or protection", "Weekly review", "Fix matches the cause"]],
+  "dos": ["Review the pattern **weekly**, not after breakage", "Apply the same check to **travel weeks**"],
+  "donts": ["Don't equate **no overlaps** with good management", "Don't let **reactive meetings** crowd out priorities"]
+ },
+ "Energy Management vs. Time Management": {
+  "image": "time-blocks",
+  "hook": "Time asks when; energy asks **can this be done well** right now",
+  "points": ["Most people have **a predictable energy pattern**", "Protect the **sharp-focus window** for work that needs it", "Flag high-stakes items in **a known low-energy window**", "Rhythms shift with role, travel, life: **revisit periodically**"],
+  "scene": "A high-stakes negotiation is offered a slot in Elias's **known low-energy window**. The slot is open, so it looks fine.",
+  "move": "Flag it as **a real risk** before confirming the time",
+  "job": [["New high-stakes item", "Check against energy pattern", "Calendar", "Lands in focus window"], ["Only low-energy slot left", "Flag the risk explicitly", "Calendar note", "Risk raised, not ignored"]],
+  "dos": ["Treat the focus window as **a real scheduling decision**", "**Revisit the pattern** after role or travel changes"],
+  "donts": ["Don't treat **an open slot as neutral**", "Don't sacrifice **the sharp-focus window** first"]
+ },
+ "Time Management Requires Energy Management": {
+  "image": "exec-partner",
+  "hook": "An **exhausted executive makes expensive mistakes**, whatever the calendar says",
+  "points": ["Prevent **meeting overload**, even without literal conflicts", "Build **recovery buffers** after demanding meetings", "Protect deep work; **filter low-leverage requests**", "Spot and raise **draining relationships or obligations**"],
+  "scene": "Elias has three back-to-back high-intensity meetings, then a free slot. Someone asks to **book the open slot**.",
+  "move": "Keep it as **a recovery buffer** and explain why",
+  "job": [["Back-to-back intense meetings", "Assess compounding fatigue", "Calendar", "Load judged, not slots"], ["Demanding meeting booked", "Add recovery buffer after", "Calendar", "Buffer protected"], ["Meeting keeps draining him", "Raise the pattern", "Friday check-in", "Pattern discussed"]],
+  "dos": ["Raise **draining patterns** instead of silently accommodating", "Guard boundaries hard **in hybrid roles**"],
+  "donts": ["Don't treat **an open slot** as automatically available", "Don't fill **every free slot** with meetings"]
+ },
+ "Handling Interruptions Without Losing the Day": {
+  "image": "inbox-triage",
+  "hook": "A **two-minute interruption** can cost fifteen minutes of real focus",
+  "points": ["**Triage in seconds**: truly urgent, or just happening now?", "**Capture, don't solve**: write it where you'll see it", "**Return deliberately** and finish the thought you were on", "**Batch the non-urgent** into one later block"],
+  "scene": "You're mid-task when a colleague drops by with a request. It feels urgent because **it's happening right now**.",
+  "move": "Triage fast, **capture it**, finish your thought, batch it later",
+  "job": [["Interruption arrives", "Judge genuine urgency", "Seconds of triage", "Urgent or capturable"], ["Not truly urgent", "Write it down", "Task list", "Captured, not memorized"], ["Captured items pile up", "Handle in one block", "Batch block", "List cleared"]],
+  "dos": ["Write it down; **don't trust memory**", "Finish **the thought you were on** first"],
+  "donts": ["Don't confuse **arriving now** with urgent", "Don't handle captured items **one at a time**"]
+ },
+ "Mid-Stage Task Injections": {
+  "image": "project-board",
+  "hook": "**Dropped threads** from interrupted work cause some of the most common errors",
+  "points": ["An injection pauses your task; **it rarely cancels it**", "Triage: **act now or log it** until a safe stop", "**Leave a marker** exactly where you stopped", "If fully interrupting, **tell whoever's waiting**"],
+  "scene": "You're halfway through **a detailed client response** when an urgent, unrelated request lands.",
+  "move": "**Mark your place**, triage the new task, then resume deliberately",
+  "job": [["New task mid-task", "Triage: now or later", "Running task list", "Decision made"], ["Switching attention", "Leave a clear marker", "Note or saved draft", "Resume point recorded"], ["Original task stalls", "Tell whoever's waiting", "Quick message", "No silent stall"]],
+  "dos": ["Keep an **'in progress, paused here'** list", "Externalize **your place** in every task"],
+  "donts": ["Don't hold tasks **in memory alone**", "Don't let the original **stall silently**"]
+ },
+ "The Two-Minute Rule": {
+  "image": "clock-deadline",
+  "hook": "If it **truly takes under two minutes**, do it now",
+  "points": ["Tracking a tiny task **costs more than finishing it**", "Estimate **honestly, not hopefully**", "If it starts expanding, **stop and schedule it**", "Stops small tasks becoming **an overwhelming backlog**"],
+  "scene": "A quick confirmation email lands that would take a minute. Your list already holds **several items like it**, sitting for days.",
+  "move": "**Send it now**, then clear the qualifying items on the list",
+  "job": [["Task lands", "Estimate honestly", "Two-minute check", "Done now or listed"], ["Task keeps expanding", "Stop and schedule it", "Calendar", "Properly scheduled"], ["Periodic list check", "Spot lingering two-minute items", "Task list", "Discipline restored"]],
+  "dos": ["Apply the rule **across every session**", "Check your list for **lingering two-minute items**"],
+  "donts": ["Don't force **an expanding task** through", "Don't list tasks **quicker done than tracked**"]
+ },
+ "Batch Processing Similar Tasks": {
+  "image": "phone-call",
+  "hook": "Group similar tasks to **cut the cost of switching** between kinds of work",
+  "points": ["All calls in one block, **all replies in another**", "Batching **deliberately delays** some tasks slightly", "Best for tasks **without a hard deadline**", "**Genuinely urgent items** still break the batch"],
+  "scene": "Five vendor callbacks arrive across the morning, none with a hard deadline. You've been **returning each as it lands**.",
+  "move": "Hold them for **one call block** later in the day",
+  "job": [["Similar tasks arrive", "Group by category", "Task list", "Categories set"], ["Batch block starts", "Work one type only", "Calendar block", "Batch cleared"], ["Urgent item lands", "Break the batch", "Quick triage", "Urgent item handled"]],
+  "dos": ["Review **batching categories** as workload shifts", "Batch only **tasks without hard deadlines**"],
+  "donts": ["Don't default to **first-in, first-out**", "Don't **hold an urgent item** for the batch"]
+ },
+ "The Cost of Context-Switching": {
+  "image": "data-chart",
+  "hook": "**23 minutes**: the average time to regain full focus after a significant interruption",
+  "points": ["Voluntary switching **costs as much as interruptions**", "Batching and focus blocks **cut re-entry costs**", "Multitasking different work is **almost always slower**", "**Close out one task** before starting the next"],
+  "scene": "You toggle between a spreadsheet, an email draft and a travel booking all morning. It feels productive, but **nothing is finished**.",
+  "move": "Work them **one at a time**, closing each before switching",
+  "job": [["Urge to jump tasks", "Close out current task", "Task list", "Clean stopping point"], ["Planning the day", "Set focus blocks", "Calendar", "Fewer switches"], ["Occasional self-check", "Count your switches", "One-day tally", "Real frequency known"]],
+  "dos": ["**Track your switching** for a day", "Use **focus blocks** to reduce re-entry costs"],
+  "donts": ["Don't **multitask different cognitive work**", "Don't **jump abruptly** between unrelated tasks"]
+ },
+ "Dual-Role Context Switching": {
+  "image": "household-home",
+  "hook": "Switching between **business and personal modes** carries real risk if done carelessly",
+  "points": ["**Name the domain** before responding to any request", "**Reset between domains** so tone doesn't bleed across", "Keep business and personal **tracking separate**", "Switching is **a skill you practice** deliberately"],
+  "scene": "You're mid-draft on **a formal client email** when Sarah Thorne asks about a family event.",
+  "move": "Close out the client draft, reset, **then answer Sarah warmly**",
+  "job": [["Request arrives", "Identify business or personal", "Quick check", "Domain named"], ["Switching domains", "Close out first task", "Brief reset", "No tone bleed"], ["New task logged", "File in right system", "Separate trackers", "Systems stay apart"]],
+  "dos": ["**Finish one domain** before opening the other", "Treat switching as **a real competency**"],
+  "donts": ["Don't carry **formal tone into personal** messages", "Don't **merge business and personal** task tracking"]
+ },
+ "Weekly Planning Rituals": {
+  "image": "calendar-week",
+  "hook": "A **short weekly plan** prevents the Monday-morning scramble",
+  "points": ["Review **the week ahead**, not just today", "Decide whether **last week's leftovers** still matter", "Block time now for **multi-day lead time** items", "**Protect the ritual** like any real commitment"],
+  "scene": "A deadline is three days out but **needs prep starting today**. Only a weekly review would catch it in time.",
+  "move": "**Block prep time now**, not the day it becomes urgent",
+  "job": [["Fixed weekly slot", "Review week ahead", "Calendar", "Upcoming items seen"], ["Unfinished items", "Keep or drop each", "Task list", "Nothing silently rolls"], ["Lead-time item found", "Block prep time", "Calendar", "Prep scheduled"]],
+  "dos": ["Set **a fixed, recurring** planning time", "**Drop deliberately** what no longer matters"],
+  "donts": ["Don't **bump the session** for something urgent", "Don't let **unfinished items** silently roll forward"]
+ },
+ "Saying No Without Damaging Relationships": {
+  "image": "team-huddle",
+  "hook": "Yes to everything just **moves the disappointment** to later",
+  "points": ["**Respond promptly**, even when the answer is no", "Give **the real, specific reason**", "Offer **a genuine alternative** where possible", "Be honest up front **about your capacity**"],
+  "scene": "A colleague asks you to take on a project this week. Given your current load, **you can't before Thursday**.",
+  "move": "Say so now, **give the reason**, offer a later date or partial version",
+  "job": [["Request you can't take", "Reply promptly", "Email or Slack", "No silence"], ["Declining", "State specific constraint", "Clear reply", "Reason given"], ["Declining", "Offer an alternative", "Timeline, person, partial", "Option on the table"]],
+  "dos": ["Be **specific about the constraint**", "Pair the no with **an alternative**"],
+  "donts": ["Don't **agree, then quietly not deliver**", "Don't go silent or give **a flat no**"]
+ },
+ "Setting Realistic Deadlines": {
+  "image": "clock-deadline",
+  "hook": "A deadline set without counting the work is **a guess, not a commitment**",
+  "points": ["**Account for the real work** before naming a date", "**Check with whoever does the work** first", "Build **real buffer for uncertainty**, not blind padding", "Every deadline needs **a clear owner**"],
+  "scene": "Elias asks when a report will be ready. A colleague is doing the work, and **you haven't asked them yet**.",
+  "move": "Check with them, **add honest buffer**, then commit with an owner",
+  "job": [["Deadline needed", "Check with the doer", "Quick conversation", "Honest estimate"], ["Setting the date", "Add buffer, name owner", "ACT Email", "Owner and date stated"], ["Deadline at risk", "Flag it early", "Email to stakeholders", "Options still open"]],
+  "dos": ["**Flag risk early** while options exist", "Attach **an owner** to every deadline"],
+  "donts": ["Don't **commit for others** without asking", "Don't **pad every estimate** blindly"]
+ },
+ "Time Tracking Done Right": {
+  "image": "invoice-ledger",
+  "hook": "Accurate time logs show **where time really goes**, billable or not",
+  "points": ["**Log as you work**, not at week's end", "Write **specific descriptions** someone can review later", "Log small tasks and **communications** too", "Build a **Weekly Time Summary**, even for non-billable work"],
+  "scene": "It's Friday, and you're rebuilding the week's time entries **from memory**. Calls and quick emails for Elias are missing.",
+  "move": "Log entries **as you work**, starting Monday",
+  "job": [["Task finished", "Log it immediately", "Time log", "Specific entry made"], ["Call or email handled", "Log the communication", "Time log", "Nothing forgotten"], ["End of week", "Build Weekly Time Summary", "Summary sheet", "Time pattern visible"]],
+  "dos": ["Write descriptions **useful to a reviewer**", "**Log small tasks**; they add up"],
+  "donts": ["Don't **reconstruct the week** from memory", "Don't **forget communications** in your log"]
+ },
+ "The Weekly Time Audit": {
+  "image": "data-chart",
+  "hook": "Your sense of where time goes is usually wrong; **an audit shows the truth**",
+  "points": ["Track **one representative week** of actual activity", "Compare against **what you thought mattered**", "A periodic check **to catch drift**, not forever", "**Act on the findings** in next week's plan"],
+  "scene": "You track one representative week and compare it with the priorities you believed you had. **The gap is the finding**.",
+  "move": "**Change next week's plan** based on what the audit revealed",
+  "job": [["Periodic check-in", "Track one real week", "Time log", "Accurate data captured"], ["Week tracked", "Compare to priorities", "Weekly Time Summary", "Gap identified"], ["Gap found", "Adjust next week's plan", "Calendar", "Plan changed"]],
+  "dos": ["Feed it **accurately tracked data**", "Treat it like **a budget review**"],
+  "donts": ["Don't trust **intuition about your time**", "Don't **audit without acting**"]
+ },
+ "Data Entry That Holds Up": {
+  "image": "compliance-checklist",
+  "hook": "Clean data **before it goes anywhere**, in the same order every time",
+  "points": ["Step 1: **de-duplicate** before anything else", "Step 2: **standardize formatting** across every field", "Step 3: **validate against source** documents", "Step 4: **sort** by the relevant columns"],
+  "line": "Never submit **raw data** for someone downstream to fix",
+  "scene": "You're about to send Elias a contact list merged from three sources. Some names appear twice and **phone formats don't match**.",
+  "move": "De-duplicate, standardize, **check against source**, then sort",
+  "job": [["Raw data arrives", "Remove duplicates", "Spreadsheet", "One record each"], ["Formats inconsistent", "Standardize every field", "Spreadsheet", "Uniform formatting"], ["Before it goes out", "Validate against source, sort", "Source documents", "Checked and ordered"]],
+  "dos": ["Follow the four steps **in that order**", "**Cross-check** against source documents"],
+  "donts": ["Don't **sort before cleaning**", "Don't leave **your errors for others**"]
+ },
+ "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables": {
+  "image": "accounting-screen",
+  "hook": "A few core spreadsheet skills **turn hours into minutes**",
+  "points": ["**One header row**, one row per record, no merged cells", "Five tools: sort, filter, dedupe, **lookups, pivot tables**", "**COUNTIF and SUMIF** answer most how-many, how-much questions", "**Always sort the whole table**, never one column"],
+  "scene": "Elias wants, by tomorrow, **travel spend per matter** last quarter. You have 400 expense rows with dates, matters, categories and amounts.",
+  "move": "Make it a table, filter travel, **pivot by matter**",
+  "job": [["New tracker", "Freeze header, make table", "Excel, Ctrl+T", "Sort includes every column"], ["Need another sheet's data", "Pull it with XLOOKUP", "Lookup formula", "Fields filled in"], ["Summary needed", "Build a pivot table", "Pivot table", "Totals match source"]],
+  "dos": ["Keep **raw data and summaries** on separate tabs", "Enter dates as **real dates**, not text"],
+  "donts": ["Don't **sort one column** on its own", "Don't **type totals by hand**"]
+ },
+ "Research as a Core EA Skill": {
+  "image": "dossier-profile",
+  "hook": "Research is **the quiet discipline** under most of the EA role",
+  "points": ["**Vet vendors and contacts** before committing time or money", "Brief **who's in the room** and what's at stake", "**Fact-check before forwarding** anything as fact", "Go to **the primary source** first"],
+  "line": "Never present **unverified information** as settled fact",
+  "scene": "A new vendor describes itself impressively, and Elias is about to **commit time and money**. You haven't checked their actual standing.",
+  "move": "**Verify independently** before scheduling, or flag them as unconfirmed",
+  "job": [["New vendor or contact", "Verify they're legitimate", "Primary sources", "Standing confirmed"], ["Meeting on calendar", "Brief attendees and stakes", "Short brief", "Brief delivered"], ["Claim to forward", "Fact-check it first", "Original source", "Verified or flagged"]],
+  "dos": ["Check **actual standing**, not self-description", "Flag it **unconfirmed** when time runs out"],
+  "donts": ["Don't **forward a claim** unverified", "Don't stop at **the first search result**"]
+ },
+ "Research Method & the Real Failure Mode": {
+  "image": "knowledge-check",
+  "hook": "The real failure isn't laziness; it's **trusting a single source**",
+  "points": ["Start at **the primary source**, then secondary summaries", "Cross-check anything **driving a decision or dollar amount**", "**Calibrate depth** to the stakes", "A vendor's own claims **aren't verification**"],
+  "scene": "A vendor's own site lists impressive credentials, and the fee is significant. That's **one source**, and it's theirs.",
+  "move": "Find **a second, independent source** before treating it as confirmed",
+  "job": [["Research task lands", "Go to primary source", "Company site, filing, email", "Original seen"], ["Affects decision or money", "Cross-check independently", "Second source", "Confirmed twice"], ["Time-sensitive task", "Match depth to stakes", "Judgment call", "Good enough, knowingly"]],
+  "dos": ["Know when **good enough** is enough", "Get **an independent source** for big decisions"],
+  "donts": ["Don't treat **self-description** as confirmation", "Don't **start with secondary** summaries"]
+ },
+ "Creating and Maintaining a Comprehensive Contact List": {
+  "image": "phone-call",
+  "hook": "A contact list is **operational infrastructure**, not a phone book",
+  "points": ["Capture **context, preferred method** and their assistant's name", "**Categorize on purpose**: business, personal, vendor, medical, legal", "**Update immediately** after any interaction with new info", "Test: could **a stand-in find anyone** in seconds?"],
+  "scene": "On a call, a contact mentions they now prefer email and you should **always CC his EA**.",
+  "move": "**Update the entry now**, including the standing note",
+  "job": [["New contact", "Capture the full fields", "Contact list", "Context recorded"], ["Adding an entry", "Assign a category", "Contact list", "Categorized on entry"], ["Interaction reveals change", "Update immediately", "Contact list", "Entry current"]],
+  "dos": ["Record **standing notes** like 'always CC his EA'", "Build it so **anyone stepping in** can use it"],
+  "donts": ["Don't keep **a flat, uncategorized** list", "Don't defer updates to **a cleanup session**"]
+ },
+ "Contact List Failure Modes & Upkeep": {
+  "image": "compliance-checklist",
+  "hook": "The biggest risk isn't missing contacts; it's **stale ones**",
+  "points": ["Watch for **old assistants, changed numbers, outdated categories**", "**Centralize in one system**, not scattered copies", "A **quarterly 10-minute audit** prevents slow rot", "**Fix stale entries immediately** when you find them"],
+  "scene": "A key vendor's details live on a personal phone, an old spreadsheet and email signatures. **They don't agree**.",
+  "move": "**Consolidate into one system** and fix discrepancies now",
+  "job": [["Stale entry found", "Fix it immediately", "Contact system", "Entry corrected"], ["Contacts scattered", "Consolidate into one", "CRM or synced address book", "Single list"], ["Each quarter", "10-minute audit pass", "Contact list", "Duplicates removed"]],
+  "dos": ["Run **a quarterly 10-minute** pass", "Treat three partial lists **as one problem**"],
+  "donts": ["Don't **note a fix for later**", "Don't split contacts **across phone and spreadsheets**"]
+ },
+ "Master Contact List Discipline": {
+  "image": "team-huddle",
+  "hook": "**One master list** the whole team uses, because copies drift invisibly",
+  "points": ["**Personal copies** drift out of sync", "Know **who to loop in** for each meeting type", "**Update the master** the moment a change is known", "A discrepancy means **reinforce single-source discipline**"],
+  "scene": "Two assistants keep their own copies of a key contact. In a time-sensitive moment, the call goes to **a disconnected number**.",
+  "move": "Retire personal copies; keep **one master list** current",
+  "job": [["Contact detail changes", "Update master list", "Master contact list", "Change live for all"], ["Meeting being set", "Check who to loop in", "Master contact list", "Right people included"], ["Parallel copy found", "Reconcile, retire the copy", "Master contact list", "One source remains"]],
+  "dos": ["Prioritize contacts **needed in urgent situations**", "Check for **quiet parallel copies**"],
+  "donts": ["Don't keep **your own private version**", "Don't just **fix the one entry**"]
+ },
+ "Client Relationship Management": {
+  "image": "vendor-handshake",
+  "hook": "CRM is how relationships **grow after the first yes**",
+  "points": ["**Log every interaction** so the next touch starts accurate", "Be **proactive**: renewals, promised follow-ups, relevant updates", "Segment by **relationship stage**", "**Check history** before any client call or email"],
+  "scene": "A client closed three months ago was never contacted again. Now they email a question **hinting at a competitor**.",
+  "move": "Answer promptly, reference their history, and **rebuild the relationship**",
+  "job": [["Interaction ends", "Log discussion, promise, next step", "CRM", "Logged right away"], ["Commitment made", "Set specific follow-up reminder", "CRM task", "Reminder dated"], ["Before client contact", "Review their history", "CRM record", "Specific reference ready"]],
+  "dos": ["Tie reminders to **specific commitments**", "One **well-timed check-in** beats costly recovery"],
+  "donts": ["Don't let the CRM become **where data dies**", "Don't let **a promised follow-up** go unlogged"]
+ },
+ "CRM Software Fundamentals": {
+  "image": "accounting-screen",
+  "hook": "A CRM is only as good as **what you put in it**",
+  "points": ["Three core objects: **contacts, deals, activities**", "The CRM is **the single source of truth** for status", "**Map pipeline stages** to your real process first", "Use custom fields and **built-in reminders**, not side lists"],
+  "scene": "You inherit 40 open deals, most untouched for months. Elias wants **an accurate pipeline forecast** by end of day.",
+  "move": "Close or reactivate stale deals, **reset honest stages**, then forecast",
+  "job": [["New CRM", "Map stages to process", "Pipeline settings", "Reports mean something"], ["New contact to add", "Search before creating", "CRM search", "No duplicate"], ["Monthly hygiene pass", "Close or reactivate stale deals", "CRM pipeline", "Nothing idle 60+ days"]],
+  "dos": ["Keep **deal stages honest**", "Review deals idle **60+ days** monthly"],
+  "donts": ["Don't **create a contact** without searching first", "Don't bury trackable data **in notes fields**"]
+ },
+ "Data Hygiene & Deduplication": {
+  "image": "compliance-checklist",
+  "hook": "Duplicates and stale records **fragment a contact's history**",
+  "points": ["**Data decays on its own** every month", "Search by **name, company and email domain** before adding", "**Merge forward**, keeping both records' history", "**Clean bounces and unsubscribes** on a schedule"],
+  "scene": "You find **three records** for what seems to be the same person at the same company, each with different interaction history.",
+  "move": "Verify it's one person, then **merge forward** with all history",
+  "job": [["Adding a contact", "Search name, company, domain", "CRM", "No hidden duplicate"], ["Duplicates found", "Merge forward, keep history", "CRM merge", "Full history intact"], ["Recurring hygiene", "Remove dead emails", "Bounce report", "List current"]],
+  "dos": ["**Standardize entry formats** from the start", "Schedule hygiene as **a recurring task**"],
+  "donts": ["Don't merge by **deleting the thinner record**", "Don't treat cleanup as **one-time**"]
+ },
+ "Sales Mindset": {
+  "image": "sales-outreach",
+  "hook": "Sales is **solving a real problem** for the other person, not persuading",
+  "points": ["Know **what problem they have** before any outreach", "Bring **real curiosity**, not a script", "Rejection is **information, not failure**", "**Track outcomes honestly**, rejections included"],
+  "scene": "You've sent 15 cold outreach emails this week and received **zero responses**.",
+  "move": "Treat it as information: **review targeting and message**, keep going",
+  "job": [["Before outreach", "Define their problem", "Research notes", "Need stated clearly"], ["After each attempt", "Log outcome honestly", "CRM", "Rejections tracked"], ["Pattern of no's", "Adjust approach, not tone", "Outreach log", "Process improving"]],
+  "dos": ["**Invest more** in leads that deserve it", "Use the same skill **for internal buy-in**"],
+  "donts": ["Don't **take a no personally**", "Don't **fake curiosity**; it shows"]
+ },
+ "Cold Calling, Appointment Setting & Lead Generation": {
+  "image": "phone-call",
+  "hook": "A cold call's goal is **a warmer second conversation**, rarely the close",
+  "points": ["**Research before calling**: specifics beat scripts", "Open with **a brief, relevant value proposition**", "Guard outbound contact lists **like confidential email**", "**Log every call outcome** immediately"],
+  "scene": "Before calling a prospect on Elias's behalf, you find **a current, specific reference** about their business.",
+  "move": "**Open with that reference** and a brief value proposition, not a pitch",
+  "job": [["Call on the list", "Research person and business", "Company site", "Specific reference ready"], ["Call connects", "Tailored value proposition", "Research notes", "Second conversation earned"], ["Call ends", "Log the outcome", "CRM", "Logged immediately"]],
+  "dos": ["Tailor the opener **to your research**", "Aim for **the next conversation**"],
+  "donts": ["Don't **read a rehearsed pitch**", "Don't treat contact lists **with less discretion**"]
+ },
+ "How to Generate Leads for Business": {
+  "image": "business-building",
+  "hook": "Lead generation **finds the lead**; cold calling works it",
+  "points": ["Draw from **more than one channel**", "Qualify on **fit, need, authority, timeline**", "First contact: **researched, specific, brief**", "**A lead not logged** is a lead lost"],
+  "scene": "A promising contact surfaces through **a past client's referral**. Nobody has logged it yet.",
+  "move": "**Qualify it, log it**, then make a researched first contact",
+  "job": [["Building a pipeline", "Tap several sources", "Referrals, directories, networking", "Several channels feeding"], ["New lead found", "Check fit, need, authority, timeline", "Qualifying checklist", "Worth outreach or not"], ["Lead qualified", "Log and follow up", "Contact list or CRM", "Tracked"]],
+  "dos": ["**Re-engage past clients** as a source", "Keep first contact **specific and brief**"],
+  "donts": ["Don't **chase unqualified leads**", "Don't **rely on one channel**"]
+ },
+ "Lead Generation & Data Sourcing": {
+  "image": "dossier-profile",
+  "hook": "**Data quality** decides whether every outreach effort downstream pays off",
+  "points": ["Confirm **role, company context and recent activity** first", "Verify contacts at **the primary source**", "Capture **qualifying details** at the point of sourcing", "A few **well-sourced leads** beat a long loose list"],
+  "line": "Use only **legitimately available, professional** information",
+  "scene": "You need **50 leads by end of day** for a campaign. Verifying each one properly will take real time.",
+  "move": "Hit what you can verify; **don't trade accuracy for volume**",
+  "job": [["Prospect identified", "Confirm role and context", "LinkedIn Sales Navigator", "Current details confirmed"], ["Contact details found", "Verify at primary source", "Company website", "Not just third-party"], ["Lead sourced", "Log with qualifying details", "CRM or spreadsheet", "Captured at sourcing"]],
+  "dos": ["**Refresh lead lists** before they go stale", "Prioritize **leads matching qualifying criteria**"],
+  "donts": ["Don't reference **an outdated job title**", "Don't **trade data quality** for volume"]
+ },
+ "Manual Lead Generation Methods": {
+  "image": "event-stage",
+  "hook": "Manual methods are slow but produce **the leads most likely to convert**",
+  "points": ["Start with **referrals** from clients and partners", "**Log event contacts** in the CRM the same day", "**Record the source** of every lead", "Bar rules apply: **the attorney approves every approach**"],
+  "line": "Never approach someone **needing help with a specific matter**; take it to the attorney",
+  "scene": "Thorne & Partners is launching a Data Privacy & Cybersecurity practice. Elias wants **20 companies to approach by Friday**, manual methods only.",
+  "move": "Start with referrals and registries; **get Elias's approval** before approaching",
+  "job": [["Referral opportunity", "Draft a referral ask", "Email for attorney", "Attorney approves, sends"], ["After an event", "Log contacts same day", "CRM", "Context and next step"], ["Each quarter", "Review dormant contacts", "CRM", "Check-ins flagged"]],
+  "dos": ["**Ten fitting leads** beat a hundred copied names", "List **people worth meeting** before an event"],
+  "donts": ["Don't log business cards **a week later**", "Don't contact someone just because **their name is public**"]
+ },
+ "Automated Lead Generation Tools & Workflows": {
+  "image": "ai-assistant",
+  "hook": "Automation saves hours, but **a person verifies every lead**",
+  "points": ["Forms, alerts and enrichment **feed one place: the CRM**", "Set **duplicate checks** on email and company", "Each new lead creates **a task to verify within a day**", "**Name one owner** for every automation"],
+  "line": "**Nothing goes to a prospect** until a person approves it",
+  "scene": "The webinar form creates 40 CRM records a week, and partners complain that **most are students and vendors**.",
+  "move": "Keep the form; route new leads to **a verification task first**",
+  "job": [["Before building", "Map source to next step", "Workflow map", "Every step owned"], ["Form or alert fires", "Route to CRM with source", "Zapier or Make", "One record, source filled"], ["New lead created", "Verify, qualify within a day", "CRM task", "Human checked"]],
+  "dos": ["**Review weekly** for the first month", "Follow **CAN-SPAM, TCPA and GDPR**"],
+  "donts": ["Don't load **a bought list** into sequences", "Don't auto-email **unverified prospects**"]
+ },
+ "Verifying a Working Lead": {
+  "image": "dossier-profile",
+  "hook": "A few minutes of verification separates **a real lead** from a name",
+  "points": ["Confirm **the person still holds the role**", "Confirm the business is **active and fits**", "Check **email domain and phone** actually reach them", "**Clear it**: duplicates, do-not-contact list, conflict check"],
+  "line": "Never approach **an existing client's opponent**; run the conflict check",
+  "scene": "Your list shows Dana Reyes at Brightline Logistics. **Dana left in March**, the email domain is misspelled, and **Brightline merged**.",
+  "move": "Mark it **Not workable**, with reason, date and who checked",
+  "job": [["Lead on the list", "Confirm person and company", "Website, LinkedIn, state registry", "Role and status confirmed"], ["Email and phone", "Check domain, verify contact", "Email-verification tool", "Reachable"], ["Before outreach", "Duplicates, do-not-contact, conflicts", "CRM and conflict check", "Verified, Needs check, Not workable"]],
+  "dos": ["**Re-verify leads** older than about 90 days", "**Fix bounced addresses** straight away"],
+  "donts": ["Don't **count unverified leads** in reports", "Don't treat **a bounce as bad luck**"]
+ },
+ "Lead Quality, Qualifying & Tracking": {
+  "image": "sales-outreach",
+  "hook": "**Referrals** arrive with trust a cold list never has",
+  "points": ["**Ask satisfied clients** for referrals; don't wait", "**Qualify early**: fit, need, authority, timeline", "**Log every lead** the moment it exists", "The difference is **follow-through**, not first touch"],
+  "scene": "A promising contact replied warmly to a first email weeks ago. **No one followed up**, and the lead has gone cold.",
+  "move": "**Log it, follow up now**, and track every next step",
+  "job": [["Satisfied client", "Ask for an introduction", "Email or call", "Referral requested"], ["New lead appears", "Log and qualify", "Contact list", "Fit judged early"], ["Promising lead", "Follow through consistently", "CRM reminders", "Never left cold"]],
+  "dos": ["**Ask for referrals** actively", "Feed qualified leads into **the contact list**"],
+  "donts": ["Don't **chase leads** that never fit", "Don't let a lead **exist untracked**"]
+ },
+ "Appointment Setting (BANT/MEDDPICC)": {
+  "image": "calendar-week",
+  "hook": "**Qualify before you schedule**: a meeting must be worth both sides' time",
+  "points": ["**BANT**: budget, authority, need, timeline, as a quick check", "**MEDDPICC** for complex, high-value, multi-stakeholder deals", "Let qualified leads **pick a slot** via Calendly or Bookings", "**Remind 24-48 hours prior** with agenda and prep"],
+  "scene": "A prospect enthusiastically wants a call right now, but you haven't confirmed **budget or decision authority**.",
+  "move": "Ask **a few qualifying questions** before booking, keeping their interest",
+  "job": [["Positive response", "Run a BANT check", "Qualifying notes", "Fit confirmed"], ["Qualified lead", "Send booking link", "Calendly or Microsoft Bookings", "Slot chosen"], ["Meeting approaching", "Confirm agenda, send reminder", "Email", "Reminder 24-48 hours prior"]],
+  "dos": ["Match **the framework** to the stakes", "**Confirm and remind** close to the meeting"],
+  "donts": ["Don't book just because of **a fast yes**", "Don't **overpromise the meeting's** content"]
+ },
+ "Cold Outbound Execution": {
+  "image": "phone-call",
+  "hook": "Outbound is where research **pays off or doesn't**",
+  "points": ["Open with **something specific** to the recipient", "Keep the ask **small: 15 minutes**", "**Prepare for likely objections**, not just the opener", "**Listen more than you talk** once it starts"],
+  "scene": "On a cold call, the prospect says **'I'm not interested'** right after your opening line.",
+  "move": "Ask **one clarifying question**, or offer to follow up gracefully",
+  "job": [["Before the call", "Prepare likely objections", "Research notes", "Real responses ready"], ["Attempt made", "Log attempt and outcome", "CRM, call tracking", "Logged immediately"]],
+  "dos": ["Use the script **as a starting point**", "Offer to **follow up with information**"],
+  "donts": ["Don't **recite a script** through objections", "Don't **push past objections**"]
+ },
+ "Handling Sales Objections Beyond the Script": {
+  "image": "meeting-notes",
+  "hook": "Diagnose **what the objection really means** before you answer it",
+  "points": ["Most objections: **information, trust or timing**", "Ask **one clarifying question** first", "**Acknowledge specifically** before addressing it", "Timing issue? **Get a specific follow-up date**"],
+  "line": "Never **push past a real no**; it closes future doors",
+  "scene": "A prospect says **'we already have a vendor for this'**. Happy, locked in, or just politely ending the call?",
+  "move": "Ask **one clarifying question** to learn which, then adapt",
+  "job": [["Objection lands", "Ask a clarifying question", "Conversation", "Real concern found"], ["Timing objection", "Set specific follow-up date", "CRM reminder", "Date agreed"], ["Call ends", "Log exact objection wording", "CRM", "Wording captured"]],
+  "dos": ["**Correct the information**, respect the concern", "Accept when it's **genuinely not the right fit**"],
+  "donts": ["Don't **argue with a stated concern**", "Don't log just **'objected'**"]
+ },
+ "Pipeline Reporting & Forecasting Basics": {
+  "image": "data-chart",
+  "hook": "A forecast is only as honest as **the deal stages under it**",
+  "points": ["Apply **realistic, historical probabilities** per stage", "Separate **committed from best case**", "**Flag deals stuck** in a stage too long", "Review **weekly, same day, same format**"],
+  "scene": "Elias asks for a realistic quarterly forecast. Two **early-stage deals** make up **60% of the raw total**.",
+  "move": "Report the weighted number and **flag both deals' risk** explicitly",
+  "job": [["Weekly review", "Check stages against reality", "CRM pipeline", "Drift caught"], ["Forecast requested", "Weight by stage probability", "Pipeline report", "Committed vs. best case"], ["Deal stalls", "Flag for attention", "Pipeline report", "Owner alerted"]],
+  "dos": ["Keep **the reporting cadence** consistent", "Call out **a dominant deal's risk**"],
+  "donts": ["Don't report **unweighted pipeline totals**", "Don't set **every deal at 50%**"]
+ },
+ "Email Marketing vs. Cold Outreach": {
+  "image": "email-draft",
+  "hook": "**Marketing and cold outreach** follow different rules; mixing them hurts the firm",
+  "points": ["Marketing: **one message to many** who know the firm", "Outreach: **one-to-one**, individually relevant, low-volume", "**Keep the lists separate**, recording how each joined", "**Attorney approves** every template and script"],
+  "line": "Never send **bulk marketing** from the attorney's personal mailbox",
+  "scene": "Elias hands you **400 business cards** from a legal-tech conference and asks you to send everyone the newsletter.",
+  "move": "Don't add them silently; **offer opt-in or one-to-one outreach**",
+  "job": [["Any send planned", "Name: marketing or outreach", "Quick check", "Type decided"], ["Marketing email", "Send via email platform", "Mailchimp, Constant Contact, HubSpot", "Subscribed audience only"], ["Cold outreach", "Send in small batches", "Attorney's own mailbox", "Individually relevant"]],
+  "dos": ["**Answer marketing replies personally**", "Record **how each contact joined**"],
+  "donts": ["Don't send **newsletters to cold prospects**", "Don't **add contacts silently** to newsletters"]
+ },
+ "Outreach Compliance Basics": {
+  "image": "compliance-checklist",
+  "hook": "Outreach is regulated; **violations carry real legal and financial risk**",
+  "points": ["**CAN-SPAM** for email; do-not-call and TCPA for phone, text", "**Each channel** has its own rules", "**Honor opt-outs** immediately and completely", "**Record consent** or relationship basis for every list"],
+  "line": "Confirm **the firm's policy or counsel**, not general knowledge",
+  "scene": "A colleague hands you a conference contact list for a new campaign, with **no notes on how it was collected**.",
+  "move": "**Confirm provenance and consent** before sending anything",
+  "job": [["New campaign", "Confirm firm's compliance policy", "Firm policy or counsel", "Approach confirmed"], ["Opt-out received", "Honor it immediately", "Email platform", "Contact suppressed"], ["List in use", "Record consent basis", "CRM", "Basis documented"]],
+  "dos": ["**Escalate and confirm** when in doubt", "Include **a working opt-out** on every email"],
+  "donts": ["Don't assume **purchased lists** are safe", "Don't **read opt-outs narrowly**"]
+ },
+ "Building & Segmenting an Email List": {
+  "image": "inbox-triage",
+  "hook": "A small list **who want to hear from you** beats a big one",
+  "points": ["Record **source and consent** for every contact", "**Tag on entry**: source, date, interest, relationship", "Start with **Clients, Referral Partners, Prospects**", "**Clean quarterly**: bounces, duplicates, unsubscribes, 12-month non-openers"],
+  "line": "Keep **opposing parties and conflicts** off every marketing list",
+  "scene": "A partner wants the estate-planning newsletter sent **'to everyone'**: 1,800 contacts, including **opposing counsel** from past matters.",
+  "move": "**Segment by relationship**, excluding opposing counsel and conflicts",
+  "job": [["New contact", "Tag source, date, interest", "Email platform", "Segment-ready"], ["Newsletter planned", "Pick the right segment", "Segments", "Right audience only"], ["Each quarter", "Remove bounces, merge, suppress", "Email platform", "List clean"]],
+  "dos": ["Collect **only through legitimate channels**", "Add **practice-area segments** as the list grows"],
+  "donts": ["Don't **buy or scrape** a list", "Don't **re-add an unsubscriber**, ever"]
+ },
+ "Writing Outreach Emails That Get Replies": {
+  "image": "email-draft",
+  "hook": "Short, specific, **one easy ask**: that's what gets replies",
+  "points": ["Keep it to **50–125 words**", "Open with **why them, specifically**", "Subject lines: **clear and honest**, never misleading", "One ask: **'a 15-minute call next week?'**"],
+  "line": "Never state or imply **a guaranteed legal outcome**",
+  "scene": "A draft to a founder whose startup just raised a Series A opens with **the firm's history**.",
+  "move": "Open with **their Series A**, then one line of value",
+  "job": [["Drafting outreach", "Open with their situation", "Email draft", "Reason in sentence one"], ["Body written", "One value line, one ask", "Email draft", "50–125 words"], ["Before sending", "Proofread names, company, links", "Email draft", "Signature and opt-out included"]],
+  "dos": ["**Proofread names and links** before sending", "Show you know **why this person**"],
+  "donts": ["Don't lead with **firm history and awards**", "Don't use **misleading 'Re:' subjects**"]
+ },
+ "Email Outreach Sequencing & Follow-Up Cadence": {
+  "image": "clock-deadline",
+  "hook": "Most replies come from **the follow-ups**, not the first touch",
+  "points": ["Space follow-ups **3-5 business days** apart", "**Add a new angle** at every step", "End with **a clear close-the-loop** message", "Track **reply rate by step**"],
+  "scene": "A prospect **opened your first three emails** but never replied. One email remains in your sequence.",
+  "move": "Send **a courteous close-out** that leaves the door open",
+  "job": [["Sequence planned", "Space touches 3-5 days", "Sequence plan", "No daily follow-ups"], ["Next touch due", "Add proof point or question", "Email draft", "New reason to reply"], ["Last step", "Close the loop clearly", "Final email", "Sequence ended cleanly"]],
+  "dos": ["Always leave **an easy opt-out**", "Find which step **does the work**"],
+  "donts": ["Don't send **the same message** repeatedly", "Don't **follow up daily**"]
+ },
+ "Email Deliverability Basics": {
+  "image": "security-shield",
+  "hook": "A damaged domain can push **even client emails into spam**",
+  "points": ["**SPF, DKIM and DMARC** authenticate the firm's email", "**One-click unsubscribe** in every marketing email", "Keep **hard bounces under about 2%**, complaints under 0.3%", "**Warm up** new domains and platforms gradually"],
+  "scene": "After the last newsletter, three clients say **firm emails are landing in spam**.",
+  "move": "**Involve IT**: check SPF, DKIM, DMARC and the send report",
+  "job": [["Before first campaign", "Confirm SPF, DKIM, DMARC", "IT", "Records in place"], ["After each send", "Check bounces and complaints", "Platform report", "Under 2% and 0.3%"], ["New domain or platform", "Ramp volume gradually", "Email platform", "Warm-up complete"]],
+  "dos": ["Use **a marketing subdomain** for bulk mail", "Send from **a reply-able address**"],
+  "donts": ["Don't blast **an old, uncleaned list**", "Don't send marketing **from 'noreply'**"]
+ },
+ "Email Metrics & A/B Testing": {
+  "image": "data-chart",
+  "hook": "Judge emails by **replies and consultations**, not opens alone",
+  "points": ["**Open rates** are inflated by Apple Mail Privacy Protection", "**Pick the goal metric** before sending", "A/B tests **change one thing only**", "Compare to **the firm's own averages**"],
+  "scene": "Subject A: **42% opens, 1 reply**. Subject B: 31% opens, **6 replies**.",
+  "move": "**Subject B won**; tell the attorney replies matter more",
+  "job": [["Planning a send", "Set the goal metric", "Campaign log", "Goal written first"], ["Testing a subject", "Split 20% sample, 10% each", "Email platform", "Winner sent to rest"], ["Monthly", "Review trends with attorney", "Campaign log", "Compared to firm averages"]],
+  "dos": ["Log **every campaign's results**", "Keep tests **small and regular**"],
+  "donts": ["Don't call **a winner from tiny numbers**", "Don't judge **by opens alone**"]
+ },
+ "Law Firm Email Newsletters": {
+  "image": "email-draft",
+  "hook": "A newsletter keeps the firm **top-of-mind** between matters",
+  "points": ["**Consistency beats frequency**: monthly or quarterly, reliably", "Lead with **information the reader can use**", "Every issue gets **attorney review and sign-off**", "**Archive every issue** with its approval date"],
+  "line": "Never name **a client, matter or outcome** without documented consent",
+  "scene": "Elias wants this month's newsletter to celebrate **a big settlement win**, with the client's company in the headline.",
+  "move": "Get **documented client consent** first; without it, drop the name",
+  "job": [["New issue", "Draft in approved template", "Email platform", "Plain-text, mobile-friendly"], ["Draft ready", "Route for attorney sign-off", "Approval workflow", "Disclaimer included"], ["Approved", "Test, check links, schedule", "Phone and desktop", "Consistent day and time"]],
+  "dos": ["Add **a disclaimer** where the jurisdiction requires", "**Send a test** to yourself and a reviewer"],
+  "donts": ["Don't make it **only about the firm**", "Don't give **advice for specific situations**"]
+ },
+ "Email Marketing Tools & Approval Workflow": {
+  "image": "sop-binder",
+  "hook": "A written approval workflow **protects the firm** from one bad send",
+  "points": ["Draft → review → **compliance check** → schedule → report", "Templates carry **firm address, unsubscribe and disclaimer**", "**Limit send permission** in the platform", "**Save every sent version** and approval note"],
+  "line": "No **'quick send' skips review**, even under time pressure",
+  "scene": "Elias wants an event invitation sent tonight, but **the reviewing associate** is unavailable until tomorrow.",
+  "move": "Don't skip review: **ask Elias to review it**, or send tomorrow",
+  "job": [["New campaign", "Draft from approved template", "Email platform", "Template current"], ["Draft done", "Attorney review, compliance check", "Approval workflow", "Signed off"], ["Before scheduling", "Test every link, unsubscribe", "Test email", "All working"]],
+  "dos": ["**Review templates periodically** for outdated content", "Schedule in **the recipient's time zone**"],
+  "donts": ["Don't test the unsubscribe **after scheduling**", "Don't give **everyone send permission**"]
+ },
+ "Email Outreach End-to-End: Research, Write, Follow Up": {
+  "image": "sales-outreach",
+  "hook": "An outreach email is judged in **about three seconds** on a phone",
+  "points": ["**One verified, specific fact** beats clever phrasing", "Every email has **exactly one job**: a small yes", "**Plan the sequence** before the first send", "**Stop the moment** they reply or opt out"],
+  "line": "Only the attorney speaks to a matter; **never promise outcomes**",
+  "scene": "A regional construction company just announced **a two-state expansion**. Your first email to its operations director got **no reply after four days**.",
+  "move": "Follow up with **a new angle**; close out around day 8–10",
+  "job": [["Prospect identified", "Confirm role, find trigger", "CRM, public news", "Source logged"], ["Writing the email", "3–7 word subject, 50–125 body", "Email draft", "Ask visible on phone"], ["No reply", "Follow up day 3–4", "Sequence plan", "Close out day 8–10"]],
+  "dos": ["Use **'you' more than 'we'**", "**Read it on a phone** before sending"],
+  "donts": ["Don't swap **only the name** in templates", "Don't send **guilt-trip follow-ups**"]
+ }
+}

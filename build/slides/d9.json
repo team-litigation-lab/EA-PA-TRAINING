@@ -1,0 +1,640 @@
+{
+ "Running an Event End-to-End": {
+  "image": "event-stage",
+  "hook": "Track every guest **by name**, so gaps surface now, not at the door",
+  "points": [
+   "Track **registration status by name**, not a running headcount",
+   "Build the **engagement-tracking plan** before the event starts",
+   "Chase **incomplete registrations early**, with real time to fix",
+   "Reconcile registrations against **actual attendance** afterwards"
+  ],
+  "scene": "Registration for the firm's client breakfast opens. Two names show unconfirmed, and **the event is still weeks away**.",
+  "move": "Follow up with both now, **well before the event**",
+  "job": [
+   ["Registration opens", "Track status by name", "Registration list", "Every name has a status"],
+   ["Unconfirmed registration spotted", "Follow up early", "Email or phone", "Registration resolved before event"],
+   ["Event ends", "Reconcile list against attendance", "Attendance record", "Record matches reality"]
+  ],
+  "dos": [
+   "Plan **who needs what materials** before the day",
+   "Feed **what went wrong** into the next event"
+  ],
+  "donts": [
+   "Don't rely on **a running headcount** alone",
+   "Don't treat each event as **a fresh start**"
+  ]
+ },
+ "Event Management Tips: Checklists, Run Sheets & the Day-Of Kit": {
+  "image": "compliance-checklist",
+  "hook": "Most event problems are predictable, so **planning for them is the job**",
+  "points": [
+   "Run every event on **three documents**: checklist, run sheet, contact sheet",
+   "Give every checklist line **an owner and a due date**",
+   "Confirm every vendor **48 hours before**",
+   "On the day, you are **the calm center**"
+  ],
+  "scene": "The client breakfast starts at 8:00. At 7:20 **the caterer hasn't arrived**, Elias's projector won't connect, and **two guests are early**.",
+  "move": "Work the **run sheet and contact sheet**: call, delegate, greet",
+  "job": [
+   ["Event date set", "Build master checklist backwards", "Checklist template", "Every line owned and dated"],
+   ["48 hours out", "Confirm every vendor", "Contact sheet", "Arrival, contact, payment confirmed"],
+   ["Event day", "Pack kit, walk venue", "Day-of kit", "Signage, seating, sound checked"]
+  ],
+  "dos": [
+   "Give each helper **one clear role** and the run sheet",
+   "Build **10 to 15 minutes** of slack in",
+   "Debrief **within a week** and update the template"
+  ],
+  "donts": [
+   "Don't keep the plan **in one person's head**",
+   "Don't **skip the debrief**"
+  ]
+ },
+ "Sending Invites: Calendar Invites & Event Invitations": {
+  "image": "calendar-week",
+  "hook": "A wrong title, time or link means **people miss the meeting**",
+  "points": [
+   "Answer what, when, where, who and **what to prepare**",
+   "Always show **the time zone**",
+   "Save-the-date **six to eight weeks** ahead, invitation three to four",
+   "Change it by **updating the existing invite**"
+  ],
+  "scene": "Elias wants **a 45-minute call** next week with a client in London, a partner in New York and an expert in **Denver**.",
+  "move": "Check availability, then send **one invite showing each zone**",
+  "job": [
+   ["Meeting requested", "Check availability first", "Scheduling assistant", "One invite, not a chain"],
+   ["Invite drafted", "Add title, link, agenda", "Calendar invite", "Required and optional marked"],
+   ["Event planned", "Save-the-date, invite, reminders", "Registration link", "Reminders at one week, one day"]
+  ],
+  "dos": [
+   "Hide the guest list for **large external events**",
+   "Confirm invitees with Elias; **send from his calendar**",
+   "Cancel **through the calendar**, not by email"
+  ],
+  "donts": [
+   "Don't send **a new invite for every change**",
+   "Don't forget **time zones** across regions"
+  ]
+ },
+ "Sending Intake Forms: Event Registration & New-Client Questionnaires": {
+  "image": "confidential-lock",
+  "hook": "Collect what you need **before the meeting**, securely and in plain language",
+  "points": [
+   "Ask **only what's needed**; extra questions lose finishers",
+   "Use the **firm's approved form tool**, never a personal account",
+   "Collect **every party involved** for the conflict check",
+   "Get **the attorney's approval** for client intake questions"
+  ],
+  "line": "Never ask a new client for **sensitive documents by email**",
+  "scene": "Elias meets **a small construction company** on Monday and wants their details and **everyone in their dispute** beforehand.",
+  "move": "Send a short, tested form with **a deadline and contact**",
+  "job": [
+   ["New client meeting booked", "Draft approved intake questions", "Firm intake software", "Attorney approved the questions"],
+   ["Form ready", "Test link, send note", "Email with form link", "Deadline and contact stated"],
+   ["Answers arrive", "Track, remind, move answers", "CRM or matter file", "Answers in the right system"]
+  ],
+  "dos": [
+   "Pre-fill what you know; keep it **phone-friendly**",
+   "Tell people **how their information is used**",
+   "Request documents through **the secure upload**"
+  ],
+  "donts": [
+   "Don't leave answers **sitting in the form**",
+   "Don't **skip testing the link**"
+  ]
+ },
+ "CLE Management for Firm-Hosted Events": {
+  "image": "cle-certificate",
+  "hook": "When the firm hosts CLE, it is **the course provider**, with real duties",
+  "points": [
+   "Each state sets **its own CLE rules**",
+   "Apply for approval **before each state's deadline**",
+   "Attendees' credit **depends on the paperwork**",
+   "Keep records **as long as each state requires**"
+  ],
+  "line": "Say 'credit has been applied for' **until it is approved**",
+  "scene": "The firm hosts a two-hour webinar, 'Employment Law Update,' in **six weeks**, with one ethics hour, for **New York, New Jersey and California**.",
+  "move": "Check **all three states' approval rules** this week",
+  "job": [
+   ["Months before the event", "Check each state's rules", "State bar websites", "Application submitted before deadline"],
+   ["During the event", "Track sign-in and sign-out", "Platform attendance report", "Verification codes captured"],
+   ["After the event", "Issue certificates, report attendance", "CLE file", "Records kept per state"]
+  ],
+  "dos": [
+   "Collect **bar numbers and states** at registration",
+   "Keep **a CLE file** for every event"
+  ],
+  "donts": [
+   "Don't **promise credit** before approval",
+   "Don't certify **hours not actually attended**"
+  ]
+ },
+ "Speaker & Panelist Logistics for Conferences": {
+  "image": "event-stage",
+  "hook": "A speaking slot runs on **the organizer's deadlines**, not the executive's",
+  "points": [
+   "A speaking slot is **far more than a calendar entry**",
+   "Missing an organizer deadline can **cost the slot**",
+   "Confirm **the format** early: keynote, panel, fireside chat",
+   "Send Elias **one consolidated briefing** before the event"
+  ],
+  "scene": "Elias is a panelist **in three weeks**. The organizer wants his bio, headshot and pre-submitted questions **by end of week**.",
+  "move": "Put each item on **one checklist with its due date**",
+  "job": [
+   ["Engagement confirmed", "Build one engagement checklist", "Checklist", "Every item has a due date"],
+   ["Organizer request arrives", "Confirm the expected format", "Email to organizer", "Format confirmed in writing"],
+   ["Days before event", "Send consolidated briefing", "Briefing note", "Time, format, panel covered"]
+  ],
+  "dos": [
+   "Confirm AV **with the venue directly**",
+   "Send slides **24-48 hours before** the deadline"
+  ],
+  "donts": [
+   "Don't treat it as **just another calendar item**",
+   "Don't **assume the format**"
+  ]
+ },
+ "Sponsorship & Vendor Contract Basics for Events": {
+  "image": "vendor-handshake",
+  "hook": "Sponsorships are **real contracts**, so verify you got what you paid for",
+  "points": [
+   "Treat sponsorship and vendor agreements as **real obligations**",
+   "Check **every deliverable owed** against what's provided",
+   "Keep **the signed agreement on hand** at the event",
+   "Track **costs against value delivered**"
+  ],
+  "scene": "At a sponsored event, you notice **the firm's logo is missing** from the printed program the agreement guarantees.",
+  "move": "Flag the gap to the organizer **in writing, promptly**",
+  "job": [
+   ["Before the event", "Confirm every owed deliverable", "Sponsorship agreement", "Each deliverable verified"],
+   ["Deliverable gap spotted", "Flag it in writing", "Email to organizer", "Written flag sent same day"],
+   ["After the event", "Compare cost with value", "Cost tracker", "ROI data ready"]
+  ],
+  "dos": [
+   "Verify directly: **check the signage**",
+   "Assess value **before any renewal**"
+  ],
+  "donts": [
+   "Don't assume **promised means delivered**",
+   "Don't let renewals get **automatically approved**"
+  ]
+ },
+ "Live Event Moderation": {
+  "image": "team-huddle",
+  "hook": "During the event, you keep it smooth **for audience and presenter alike**",
+  "points": [
+   "Moderation is **active, real-time management** during the call",
+   "Follow the sequence: Reminder → Login → Attendance → **Monitor → Document → Follow-Up**",
+   "Catch technical problems **before the event starts**",
+   "Track **minimum attendance time** for CLE sessions"
+  ],
+  "scene": "Ten minutes into Elias's webinar, **his audio starts cutting out**. The audience is **commenting in the chat**.",
+  "move": "Fix it quietly, **without disrupting his presentation** more than necessary",
+  "job": [
+   ["Before the event", "Confirm login, audio, video", "Platform checklist", "Attendance screenshot taken"],
+   ["During the event", "Monitor and route questions", "Chat and Q&A", "Issues caught early"],
+   ["Right after", "Confirm records and credit", "Attendance report", "Session documented"]
+  ],
+  "dos": [
+   "Keep **a visible checklist** during the event",
+   "Document **every technical issue** as it happens",
+   "Confirm **introduction and materials** for speaking events"
+  ],
+  "donts": [
+   "Don't moderate **passively**, waiting for problems",
+   "Don't run live moderation **from memory**"
+  ]
+ },
+ "Post-Event Follow-Up & ROI Tracking": {
+  "image": "sales-outreach",
+  "hook": "An event's real value is made **in the follow-up**, not on the day",
+  "points": [
+   "Build the follow-up list **during the event**",
+   "Follow up **within 48-72 hours**",
+   "Log outcomes in **the same relationship system**",
+   "Track **a simple ROI measure** per event"
+  ],
+  "scene": "Elias returns from a 3-day conference with **40 new contacts** and **no notes** on any of them.",
+  "move": "Rebuild context, then send **specific, personal follow-ups**",
+  "job": [
+   ["During the event", "Note who, what discussed", "Follow-up list", "Every contact has context"],
+   ["Within 48-72 hours", "Send specific follow-up", "Outlook", "Each message references conversation"],
+   ["After follow-up", "Log attendance and outcomes", "CRM", "Leads and deals recorded"]
+  ],
+  "dos": [
+   "Reference **the specific conversation**",
+   "Record **leads, relationships, deals influenced**"
+  ],
+  "donts": [
+   "Don't collect cards with **no conversation notes**",
+   "Don't send **generic \"great meeting you\" emails**"
+  ]
+ },
+ "High-Stakes Travel Disruption Management": {
+  "image": "travel-plane",
+  "hook": "Solve for **what Elias would miss**, not just the flight",
+  "points": [
+   "Disruption is **triage**: decide what must happen next",
+   "Find **the fixed point** and solve around it",
+   "Check **airline app and phone** in parallel",
+   "Send Elias **one clear plan**, not live narration"
+  ],
+  "scene": "Elias's connection to **a closing-day meeting** is cancelled. Options: **a red-eye** with two hours to spare, or a costlier private car.",
+  "move": "Weigh both against his constraints; present **one clear recommendation**",
+  "job": [
+   ["Flight cancelled", "Identify the fixed point", "Travel file", "Critical commitment named"],
+   ["No direct rebooking", "Try airport, airline, ground", "Airline app and phone", "Option preserves the fixed point"],
+   ["Plan settled", "Update every downstream party", "Drivers, hotels, host", "Everyone re-confirmed"]
+  ],
+  "dos": [
+   "Be on it **before Elias's app tells him**",
+   "Keep **his hard constraints** on a standing note"
+  ],
+  "donts": [
+   "Don't forget **the ripple effects** downstream",
+   "Don't report **every micro-update**"
+  ]
+ },
+ "Everyday Meeting Notes & Action Items": {
+  "image": "meeting-notes",
+  "hook": "Notes capture **decisions, actions and open questions**, never a transcript",
+  "points": [
+   "Every action needs **an owner and a due date**",
+   "Write decisions as **clear statements**",
+   "Send notes **within 24 hours**, actions on top",
+   "Label **privileged notes** and limit who gets them"
+  ],
+  "scene": "After a Harlow strategy call, your notes read: **'Discussed deposition. Expert maybe.** Budget concerns. Elias to think about it.'",
+  "move": "Rewrite as **decisions, owned actions with dates**, open questions",
+  "job": [
+   ["Before the meeting", "Confirm agenda, set template", "Notes template", "Decisions, actions, questions sections"],
+   ["During the meeting", "Capture verb, owner, date", "Notes template", "Every action owned"],
+   ["Within 24 hours", "Send notes, update tracker", "Outlook and tracker", "Status round ready next meeting"]
+  ],
+  "dos": [
+   "Ask in the room: **'So we're agreed?'**",
+   "Mark privileged notes **when the attorney says**"
+  ],
+  "donts": [
+   "Don't record who said what, **not what was decided**",
+   "Don't write **'Someone will look into it'**"
+  ]
+ },
+ "Board Meeting Preparation & Minute Drafting": {
+  "image": "business-building",
+  "hook": "Minutes are **a legal record** of what was decided, not a transcript",
+  "points": [
+   "Most board work happens **in the days before**",
+   "Circulate packets with **real review time**",
+   "Record attendance, motions, seconders and **exact vote outcomes**",
+   "Use **neutral, factual language**"
+  ],
+  "line": "Never record opinions or disagreements; **capture decisions only**",
+  "scene": "A motion is debated with real disagreement, **amended once**, and passes **4-1**. You're taking minutes live.",
+  "move": "Record the motion, amendment, seconder and **the 4-1 vote**",
+  "job": [
+   ["Meeting scheduled", "Confirm agenda with Elias", "Board packet", "Packet sent with review time"],
+   ["During the meeting", "Capture motions and votes", "Minutes template", "Every vote outcome recorded"],
+   ["After the meeting", "Draft and circulate minutes", "Draft minutes", "Corrections in before approval"]
+  ],
+  "dos": [
+   "Keep **the packet structure** the same every time",
+   "Ask Elias or counsel **about sensitive topics**"
+  ],
+  "donts": [
+   "Don't write **vague motion language**",
+   "Don't send **a last-minute packet**"
+  ]
+ },
+ "Shareholder & Investor Meeting (AGM) Logistics": {
+  "image": "business-building",
+  "hook": "AGMs carry **formal legal requirements** a routine board meeting doesn't",
+  "points": [
+   "Confirm **the required notice period** for the jurisdiction",
+   "Track RSVPs **against quorum**",
+   "No quorum means **no valid business**",
+   "Add **proxy materials and voting procedures** to the packet"
+  ],
+  "line": "Notice and quorum are **legal requirements**, not loose best practice",
+  "scene": "You're coordinating an AGM and realize **the notice went out late** for the jurisdiction's minimum period.",
+  "move": "Get it confirmed **before proceeding as scheduled**",
+  "job": [
+   ["AGM planned", "Confirm notice period", "Compliance calendar", "Notice sent on time"],
+   ["RSVPs arrive", "Track against quorum", "RSVP tracker", "Quorum confirmed"],
+   ["Formal votes planned", "Confirm proxy and voting procedures", "AGM packet", "Procedures set in advance"]
+  ],
+  "dos": [
+   "Apply **the board packet discipline**, scaled up",
+   "Confirm voting procedures **well in advance**"
+  ],
+  "donts": [
+   "Don't treat an AGM as **a bigger board meeting**",
+   "Don't **improvise voting** once shareholders arrive"
+  ]
+ },
+ "Executive Meeting Etiquette": {
+  "image": "phone-call",
+  "hook": "Your conduct on a call **reflects on Elias**, even when you're not presenting",
+  "points": [
+   "Executive calls carry **a higher standard**",
+   "Etiquette means **removing friction**, not rigid formality",
+   "**Join early** to confirm the technology",
+   "Handle the mechanics **quietly in the background**"
+  ],
+  "line": "Never let a tech issue **become Elias's problem** live",
+  "scene": "Thirty seconds before a prospective-client call, you see **the link is for the wrong time zone**. The client **may already be waiting**.",
+  "move": "Act right now: **reach the client** and get Elias connected",
+  "job": [
+   ["Important call booked", "Send pre-call note", "Briefing note", "Agenda, roles, format covered"],
+   ["24-48 hours before", "Send reminder with materials", "Outlook", "Prep materials attached"],
+   ["Call starting", "Join early, test tech", "Video platform", "Working before Elias joins"]
+  ],
+  "dos": [
+   "Confirm **participants and roles** in advance",
+   "Mind **mute, framing and background**"
+  ],
+  "donts": [
+   "Don't assume **etiquette is obvious**",
+   "Don't let Elias join **unprepared**"
+  ]
+ },
+ "Video Conferencing: Platform Admin (Zoom/Teams/Meet)": {
+  "image": "access-keys",
+  "hook": "Most platform problems are **prevented by correct setup**, not solved live",
+  "points": [
+   "Platform admin means **owning the settings**",
+   "Know **your firm's primary platform** well",
+   "Set waiting room, sharing and recording **before scheduling**",
+   "**Review account settings** periodically"
+  ],
+  "scene": "Elias's **confidential strategy call** with senior partners went out on **a general link** with no waiting room.",
+  "move": "Secure the settings and **send the updated invite**",
+  "job": [
+   ["Meeting being scheduled", "Confirm core settings", "Zoom, Teams or Meet", "Waiting room and recording set"],
+   ["Before the meeting", "Run platform checklist", "Pre-meeting checklist", "Access and agenda confirmed"],
+   ["During the meeting", "Manage participants live", "Host controls", "Mute, remove, promote smoothly"]
+  ],
+  "dos": [
+   "Test **new formats** before they're needed live",
+   "Give **a backup person** platform access",
+   "Document **platform quirks** for the next person"
+  ],
+  "donts": [
+   "Don't use **the same defaults** for every meeting",
+   "Don't let **only one person** run meetings"
+  ]
+ },
+ "Video Conferencing: Technical Troubleshooting": {
+  "image": "crisis-alert",
+  "hook": "Calm, structured triage **beats panic** almost every time",
+  "points": [
+   "Most issues are **login, audio/video or screen-share**",
+   "**Get the call working** first; diagnose afterwards",
+   "Work through likely causes **in order**",
+   "Have **a backup channel** ready before high-stakes calls"
+  ],
+  "scene": "Fifteen minutes before a critical client call, **the platform is down** for planned maintenance you didn't know about.",
+  "move": "Switch to **the backup channel** and tell participants now",
+  "job": [
+   ["Login failure", "Check link and browser", "Provider support contact", "Escalated, not guessing"],
+   ["Audio or video drops", "Check device, permissions, rejoin", "Platform settings", "Audio and video restored"],
+   ["Issue resolved", "Document what happened", "Issue log", "Cause, fix, time recorded"]
+  ],
+  "dos": [
+   "Keep **provider support contacts** ready",
+   "Test-run **unfamiliar setups** in advance",
+   "Tell participants calmly: **'one moment'**"
+  ],
+  "donts": [
+   "Don't try **every fix at once**",
+   "Don't meet a delay with **silence or panic**"
+  ]
+ },
+ "Four SOPs That Keep Professional Development on Track": {
+  "image": "sop-binder",
+  "hook": "Each SOP prevents **a specific, predictable failure**",
+  "points": [
+   "Registration: **verify the provider** and approval first",
+   "Attendance: save certificates in **an audit-ready folder**",
+   "Upskilling: track **completion and ROI**, not just sessions",
+   "Recognition: **escalate negative publicity** immediately"
+  ],
+  "scene": "A busy month: registrations and certificates get done, but **Reputation & Recognition** quietly slips **off the list**.",
+  "move": "Run **all four SOPs**, including the least urgent one",
+  "job": [
+   ["Event to register for", "Verify provider, budget, approval", "Event Registration SOP", "Confirmation and receipt recorded"],
+   ["Session completed", "Export reports, save certificates", "Audit-ready folder", "Certificate filed"],
+   ["Each quarter", "Run needs assessment", "Team Upskilling SOP", "Vendor evaluated before budget"]
+  ],
+  "dos": [
+   "Record confirmations and receipts **immediately**",
+   "Keep **bios current**"
+  ],
+  "donts": [
+   "Don't scatter **certificates across email**",
+   "Don't skip **the least urgent SOP**"
+  ]
+ },
+ "CLE / Compliance Tracking": {
+  "image": "clock-deadline",
+  "hook": "Compliance deadlines rarely extend, so **flag people early**",
+  "points": [
+   "Log completed, pending and **the deadline per person**",
+   "An aggregate number **hides who's at risk**",
+   "Verify hours count: **right category, right jurisdiction**",
+   "Reconcile the tracker **against certificates on file**"
+  ],
+  "scene": "The tracker shows the team on target overall, but one attorney is **short on ethics hours**, with a deadline approaching.",
+  "move": "Flag them now, **with real time left to act**",
+  "job": [
+   ["Course completed", "Log hours per person", "CLE tracker", "Category and jurisdiction verified"],
+   ["Deadline approaching", "Flag the person early", "Reminder", "Time left to act"],
+   ["Periodic review", "Reconcile tracker with certificates", "Certificate folder", "Every hour documented"]
+  ],
+  "dos": [
+   "Build **long lead times** into reminders",
+   "Track **each person individually**"
+  ],
+  "donts": [
+   "Don't flag **the week it's due**",
+   "Don't assume **any course qualifies**"
+  ]
+ },
+ "Planning Professional Development": {
+  "image": "team-huddle",
+  "hook": "Measure whether training **actually landed**, not just who attended",
+  "points": [
+   "Offer **virtual and in-person** options",
+   "Set **an effectiveness metric** before each session",
+   "Gather feedback **immediately after**",
+   "Track outcomes **over time**, not just per session"
+  ],
+  "scene": "A development session drew a full room, but **nobody defined how to measure** whether the content landed.",
+  "move": "Set **a clear effectiveness metric** before the next one",
+  "job": [
+   ["Session planned", "Define effectiveness metric", "Session plan", "Metric set before it runs"],
+   ["Session ends", "Gather feedback", "Feedback form", "Responses collected while fresh"],
+   ["Over time", "Track patterns, adjust format", "Outcome tracker", "Next session adjusted"]
+  ],
+  "dos": [
+   "Fit **varied schedules and locations**",
+   "Use past results to **adjust the next session**"
+  ],
+  "donts": [
+   "Don't count **attendance as success**",
+   "Don't repeat **a format regardless of results**"
+  ]
+ },
+ "Membership Renewals": {
+  "image": "invoice-ledger",
+  "hook": "A renewal tracker **catches lapses** before they happen",
+  "points": [
+   "Track name, expiration, status and **follow-up owner**",
+   "Set reminders **well ahead of expiration**",
+   "**Automate reminders** once volume grows",
+   "Confirm **terms haven't changed** before renewing"
+  ],
+  "scene": "A renewal notice arrives for a membership **nobody has used** this year, at **a higher price**.",
+  "move": "Check terms and use, **don't renew by default**",
+  "job": [
+   ["New membership", "Add to renewal tracker", "Renewal tracker", "Expiration and owner logged"],
+   ["Renewal approaching", "Confirm price and requirements", "Renewal tracker", "Terms checked before processing"],
+   ["Periodic review", "Flag unused memberships", "Renewal tracker", "Keep or let go decided"]
+  ],
+  "dos": [
+   "Remind before the date, **not on notice arrival**",
+   "Review **the full tracker** periodically"
+  ],
+  "donts": [
+   "Don't rely on **memory** as volume grows",
+   "Don't **renew by default**"
+  ]
+ },
+ "Ethics & Gift Compliance": {
+  "image": "trust-scale",
+  "hook": "A modest courtesy **can still cross a compliance line**",
+  "points": [
+   "Gift rules are **more precise than intuition** suggests",
+   "Know **the firm's gift policy** before accepting or offering",
+   "Log gifts **above the policy threshold**",
+   "Take **extra care with officials** and regulated parties"
+  ],
+  "line": "When unsure, **ask before accepting or sending**",
+  "scene": "A vendor sends **an expensive holiday gift** to the office.",
+  "move": "Check the policy and threshold, **then ask before accepting**",
+  "job": [
+   ["Gift arrives", "Check firm gift policy", "Gift policy", "Threshold confirmed"],
+   ["Gift above threshold", "Log it", "Gift log", "Record created"],
+   ["Official or regulated party", "Ask before acting", "Escalation to attorney", "Decision cleared first"]
+  ],
+  "dos": [
+   "Log gifts **even when clearly appropriate**",
+   "Ask **the possibly-unnecessary question**"
+  ],
+  "donts": [
+   "Don't assume **'everyone does this'**",
+   "Don't judge gifts by **general intuition**"
+  ]
+ },
+ "Professional Liability & Insurance Awareness": {
+  "image": "risk-umbrella",
+  "hook": "Spotting a possible claim **early gives the firm options**",
+  "points": [
+   "Know that **malpractice coverage** exists and what it covers",
+   "Know **where policies and renewal dates** are filed",
+   "**Flag dissatisfaction language** immediately",
+   "Keep renewal dates **on the compliance calendar**"
+  ],
+  "line": "Never assess **coverage or liability yourself**; send it to the attorney",
+  "scene": "A client emails: **\"we're considering our options** given how this was handled.\"",
+  "move": "Flag it **to the attorney immediately**, and keep it confidential",
+  "job": [
+   ["Threatening client language", "Flag to designated contact", "Email escalation", "Flagged the same day"],
+   ["Policy renewal ahead", "Calendar the dates", "Compliance calendar", "Renewal and review dated"]
+  ],
+  "dos": [
+   "Handle it with **privileged-matter discretion**",
+   "Treat renewals as **hard deadlines**"
+  ],
+  "donts": [
+   "Don't treat complaints as **routine correspondence**",
+   "Don't **assess liability** yourself"
+  ]
+ },
+ "Protecting the Brand Online": {
+  "image": "reputation-star",
+  "hook": "A well-handled negative review **beats ten positive ones**",
+  "points": [
+   "**Monitor proactively** for mentions and reviews",
+   "Respond **professionally and factually**",
+   "Apply **'need to know'**: The Vault",
+   "Escalate **legal threats or coordinated attacks**"
+  ],
+  "line": "Never **escalate publicly**, however the comment is phrased",
+  "scene": "A harsh review of the firm appears overnight and is **gaining traction**.",
+  "move": "Draft **a considered, factual response**, never a heated one",
+  "job": [
+   ["Brand mention appears", "Monitor and assess", "Review alerts", "Seen before it spreads"],
+   ["Negative review", "Draft factual response", "Response draft", "Reviewed before posting"],
+   ["Legal threat or attack", "Escalate immediately", "Escalation to attorney", "Right person informed"]
+  ],
+  "dos": [
+   "Take **a moment to draft**",
+   "Keep sensitive details in **the Cone of Silence**"
+  ],
+  "donts": [
+   "Don't **react cold** in the moment",
+   "Don't handle **a legal threat alone**"
+  ]
+ },
+ "Awards, Recognition & Charitable Coordination": {
+  "image": "cle-certificate",
+  "hook": "Awards and giving are **proactive reputation-building**",
+  "points": [
+   "Keep **an annual awards tracker**",
+   "Missing **eligibility, materials or deadline** disqualifies",
+   "Confirm donations were **actually fulfilled**",
+   "Keep documentation for **tax and reporting**"
+  ],
+  "scene": "You spot **a good-fit award** for Elias, but **its deadline passed** last week.",
+  "move": "Add it to **the awards tracker** for next year",
+  "job": [
+   ["Award worth pursuing", "Log name, deadline, eligibility", "Awards tracker", "Materials listed, status set"],
+   ["Charitable commitment made", "Confirm it was fulfilled", "Donation tracker", "Fulfillment confirmed"],
+   ["Donation made", "Keep documentation", "Donation file", "Tax records filed"]
+  ],
+  "dos": [
+   "Confirm eligibility **well before the deadline**",
+   "Track commitments **through to fulfillment**"
+  ],
+  "donts": [
+   "Don't rely on **someone remembering** an award",
+   "Don't treat donations as **informal**"
+  ]
+ },
+ "Building an Executive's Media & Speaking Kit": {
+  "image": "brand-palette",
+  "hook": "A current media kit turns press requests into **a same-day response**",
+  "points": [
+   "Keep bio, headshot, talking points and **past coverage** ready",
+   "Hold **short and long** bio versions",
+   "Log past **media and speaking engagements**",
+   "**Refresh quarterly**, not on request"
+  ],
+  "scene": "A journalist wants Elias's bio and headshot **in two hours**. The bio is **over a year old**, with an outdated role.",
+  "move": "Update the bio, **get it reviewed**, then send",
+  "job": [
+   ["Anything material changes", "Update bio and summary", "Media kit folder", "Folder current"],
+   ["Each quarter", "Review and refresh kit", "Media kit folder", "No stale details"],
+   ["Media request arrives", "Review, then send", "Outlook", "Right headshot format sent"]
+  ],
+  "dos": [
+   "Keep **print and web** headshot formats",
+   "Review **before anything goes out**"
+  ],
+  "donts": [
+   "Don't update the bio **only when asked**",
+   "Don't send **an old title**"
+  ]
+ }
+}
