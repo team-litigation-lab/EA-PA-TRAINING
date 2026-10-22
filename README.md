@@ -106,6 +106,7 @@ The `LSH_KV` namespace is shared by every LSH course (EA/PA keys have no prefix;
 - Progress saved before the move, or not yet copied over, is read from KV; lists include both; deleting removes both.
 - Everything else stays in KV. The LSH Training Portal reads `trainee:`, `feedback:`, `tfeedback:` and `checkin:` from the namespace directly (its program progress and attendance pages), so those can't move without changing the Portal too.
 - Without the R2 binding, everything stays in KV as before.
+- `drive:<trainee id>` is a trainee's Backup Drive (below): the Google account's email, the folder ids, the Day 1 grade and the documents saved, with the Google tokens sealed. It is written when they connect, build, check or file — a handful of times in ten days.
 
 Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/scripts/storage.mjs`.
 
@@ -119,6 +120,7 @@ Code: `dataGet` / `dataPut` / `dataDelete` in `worker.js`. Test: `.github/script
   - JSON must be valid;
   - the Worker must build (`wrangler deploy --dry-run`; nothing is deployed);
   - **where records are kept** (`.github/scripts/storage.mjs`): 30 progress saves write R2 each time and KV once (a day later, once more); with KV's writes used up, saving still works; progress saved in KV before the move is still read and listed; deleting clears both; trainee records and feedback stay in KV; without R2 everything stays in KV.
+  - **filing documents and the Backup Drive** (`.github/scripts/doc-filing.cjs`): every lab document has a ⬇ Download PDF function that goes through the one builder, an ⬆ Upload in the CMS button beside it, a real Doc Hub tab with the rule behind it and a folder in the firm's structure; the builder still saves the file and still hands the same bytes over; the folder structure is a tree with a rule for every folder and asks Google for `drive.file` only; the Day 1 grading passes the firm's own structure and refuses a missing, misspelled, invented or misordered folder.
 - **Smoke test in a browser:** serves the site through `worker.js` with an in-memory KV store (`.github/scripts/server.mjs`), signs in as a trainee, and renders every lesson slide, knowledge check, page and practice tool at desktop and phone width. Then it opens every practice tool directly (as a lab opened in its own tab) with `js/eapa-updates.js` arriving late, the way it does on a normal connection. It fails on any page error, an empty lab or a page that scrolls sideways (`.github/scripts/smoke.cjs`).
 - **Presenter view** (`.github/scripts/presenter.cjs`): opens Presenter view as a trainer and watches the slides window you share in Google Meet, which must never flicker.
   - Next draws the slide once, cutting straight in with no slide-in or fade.
@@ -135,6 +137,7 @@ To run the same checks locally:
 ```
 node .github/scripts/check-site.mjs
 node .github/scripts/storage.mjs
+node .github/scripts/doc-filing.cjs
 node .github/scripts/server.mjs 8787 &      # then, with Playwright installed:
 node .github/scripts/smoke.cjs http://localhost:8787/
 node .github/scripts/presenter.cjs http://localhost:8787/
@@ -161,6 +164,40 @@ into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes co
 4. Run it once by hand (Actions → Nightly backup → Run workflow) and check the folder.
 
 **Restore:** `wrangler kv key put --namespace-id=b121aa911590471bbad351d03274d7f4 <key> <value>` for single keys (values are in `kv-courses.json`), `wrangler d1 execute <database> --remote --file=d1-<name>.sql` into an empty database.
+
+## ⬆ Filing the labs' documents in the CMS (the tab, and the firm's name)
+
+An EA or PA does not print a calendar and does not leave an itinerary in their Downloads folder. So a lab no longer ends at "save the file": every document a lab produces is **filed into the client's case file in the CMS**, on the right tab, under the firm's name. **⬇ Download PDF stays beside it**, because a trainee still keeps a copy on their own backup drive (below) — and because a trainer sometimes wants the file in hand.
+
+`js/eapa-cms-filing.js` is the panel; `.github/scripts/doc-filing.cjs` is its test.
+
+- **⬆ Upload in the CMS** sits next to every lab's **⬇ Download My Work**. It opens one panel for every lab: which case file is open in the CMS, the tab to file this document under, and the file name. Once a document is filed the button reads **✓ Filed in the CMS**.
+- **The CMS opens signed in, beside the lab.** 🗂 Open the CMS frames it next to the panel on a wide screen (the case needs about 1,030 px, so under 1,500 px it opens in its own tab instead). `js/lsh-tool-links.js` — the same file in every LSH course repo — puts a fresh Portal ticket on the link and the Worker signs it at `/api/auth/tool-ticket` with `PORTAL_SSO_SECRET`, so the trainee never meets the CMS's log-in page. Without that secret the link still opens; the CMS asks who they are.
+- **Nothing is filed without a case file open.** The panel asks the CMS which case is open (its `course-bridge.js` answers `{lsh:"cms-case"}`) and says so when there is none, or when the open file has no Case ID yet (a new case takes its ID when it is saved). A Training Library file is view only and the CMS refuses it.
+- **The naming convention is the CMS's own, checked by the CMS:** `<Case ID>_<Last-First>_<Type>_<YYYY-MM-DD>.<ext>`, e.g. `LSH-2026-MVA-901379_Thorne-Elias_Case-Files_2026-10-22.pdf`. The type is the tab it is filed under and the date is the day it is uploaded. **Check the name** asks the CMS without uploading anything (`cms-doc-check`), so a trainee can get it right before they file. `caseFileName` in the CMS's `app.js` is the one source of truth: this course never writes a second copy of the rule, and never quietly corrects a name.
+- **Graded on the two things a repository lives or dies by.** The **tab** is checked here first and nothing is uploaded when it is wrong — a document on the wrong tab is a document nobody finds, and the refusal says where the firm keeps it *and why*. The **name** is checked by the CMS, which says what is wrong with each part (the Case ID, the client last name first, the type, the date, the extension, the characters allowed). Every attempt is kept in the trainee's record (`cms-filing`), so **first time right** is visible and not just "filed eventually".
+- **The document filed is the document downloaded.** Every one of these PDFs is built by the single builder `buildAndSavePdf` in `index.html`. When the panel asks for a document, `capturePdf` runs the lab's own ⬇ Download PDF and takes the bytes instead of letting the browser save them — so what lands in the case file can never drift from what the trainee downloads. A lab that isn't finished stops where it always did, and the panel says to finish it first.
+- **The eight documents, and where the firm files them** (`DOCS` in `js/eapa-cms-filing.js`): the Weekly Calendar, the Chicago arbitration itinerary, the Inbox Triage record, the client dossier and the Insurance & Risk Assessment under **Case Files**; the Trust Ledger & Billing sheet under **Invoices**; the prospect-call sheet under **Intake Documents**; the Halvorsen Logistics crisis response under **Litigation Documents**. Each carries the rule behind its tab, which is what a trainee is told when they file it elsewhere.
+  - **Knowledge Check results and evaluation reports are not on that list.** They are the trainee's own record, not the client's, and they keep ⬇ Download PDF alone. Nothing belongs in a case file because it was easy to put there.
+- **Adding a document:** one entry in `DOCS` (its id, day, its ⬇ Download PDF function, the tab and the rule behind it), the ⬆ button beside that lab's download button, and its folder in `DRIVE_HOMES` in `worker.js`. The test fails until all three are there.
+
+## 📂 The trainee's Backup Drive (Day 1, graded)
+
+A real practice keeps a backup drive of every case document in one folder structure everybody knows by heart: a paralegal who has never touched a matter can still find the executed engagement letter. Trainees practise that on **their own Google Drive**, and they build it **on Day 1** — file management is a habit, not a module, and a trainee who builds their drive on Day 7 has spent six days putting documents nowhere.
+
+`js/eapa-drive.js` is the page, `/api/drive` in `worker.js` the server; the dashboard's first card under the day cards is the way in, and it stays there until the drive is built.
+
+1. **Connect** their own Google account (a personal Gmail address is fine), once. The platform asks Google for **`drive.file` only**: it can see and change the folders and files it makes and nothing else in their Drive.
+2. **Lay the structure out themselves.** Nothing is prefilled: they add each folder, name it, nest it and put it in order. The structure is the thing being learned, so it is typed, not accepted.
+3. **Submit it, and it is graded** against the firm's standard folder by folder: what is missing, what is spelled differently, what they invented and what is out of order, each with the rule behind that folder. A layout that is right is then **made in their Drive exactly as they laid it out**. The score and the number of attempts are kept.
+4. **Keep it.** **↻ Check my drive** asks Google whether every folder is still there and names any that someone deleted; **🔁 Put the missing folders back** makes them again. Every document filed in the CMS is also saved into its folder here, so the drive is in use for ten days rather than set up and forgotten.
+
+- **The standard lives in one place:** `FOLDER_STANDARD` in `worker.js` — 14 folders, `01 Clients` first (a drive is read top to bottom under pressure), a client folder named last name first, `02 Firm Administration` apart from client work, then `03 Templates` and `04 Archive`. `FOLDER_WHY` holds the rule for each one and `DRIVE_HOMES` says which filed document belongs in which folder. The page draws the structure from what the Worker sends it and never carries a copy; the test fails if it starts to.
+- **The numbers are the point.** A layout with the right folders in the wrong order is refused: every drive in the firm has to read the same way. Stray spaces and a leading slash are not held against anyone.
+- **Where it is kept:** `drive:<trainee id>` in KV — the Google account's email, the folder ids, the Day 1 grade and the list of documents saved. The refresh and access tokens are sealed with AES-GCM under a key derived from `SESSION_SECRET` and never leave the Worker. **Disconnect** gives the access back to Google and drops the link; the copies already in their Drive stay there, and the Day 1 grade is kept. A trainer can read a trainee's status to grade it and can change nothing.
+- **The CMS is the file of record.** A Drive copy that can't be made — not connected, not set up yet, a folder deleted — never undoes a filing. The trainee is told what didn't reach their Drive.
+- **Setting it up (an admin, once):** `GOOGLE_CLIENT_ID` (a plain variable) and `GOOGLE_CLIENT_SECRET` (a secret) on this Worker. In that Google Cloud project: turn the **Google Drive API** on, add the `…/auth/drive.file` scope to the OAuth consent screen, and put this site's address among the OAuth client's **Authorized JavaScript origins**. Until both are set, `/api/drive` says the Backup Drive isn't switched on, the dashboard card stays away and nothing else is blocked. It is the same Google set-up the CMS's Doc Hub backup uses; a separate OAuth client is fine.
+- **Test:** `.github/scripts/doc-filing.cjs` (no browser needed) checks the structure is a tree with a rule for every folder, that the scopes stay at `drive.file`, and that the Day 1 grading passes the firm's own structure while refusing a missing, misspelled, invented or misordered folder.
 
 ## 📖 Handouts, Orientation and the Blueprint
 

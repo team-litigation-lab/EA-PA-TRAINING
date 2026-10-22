@@ -5859,6 +5859,8 @@ function renderDashboard(){
   </div>
   <div class="dash-layout">
     <div class="dash-main">
+      <!-- 📂 Day 1's first job, and after that a line on whether the backup drive is still in order -->
+      ${window.EAPADrive ? EAPADrive.slot() : ""}
       <div class="module-grid">
         ${DAYS.map(d=>moduleCard(d)).join("")}
       </div>
@@ -9482,7 +9484,7 @@ function renderCalendarBody(body){
       <textarea id="tripClientDraft" class="trip-why" placeholder="Mr. Reyes — …" oninput="tripNote('client', this.value)">${esc(trip.client||"")}</textarea>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
         <button class="btn btn-primary btn-sm" id="tripCrisisBtn" onclick="reviewTripCrisis()">Submit My Response</button>
-        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download My Work</button>
+        <button class="btn btn-navy btn-sm" onclick="downloadTravelPdf()">⬇ Download My Work</button>${window.EAPACMSFiling ? EAPACMSFiling.button("travel") : ""}
       </div>
       <div id="tripCrisisResult" style="margin-top:14px;"></div>
     </div>
@@ -9969,7 +9971,7 @@ async function submitCalendar(){
     toolState.calReport = plan;
     toolState.calPlanReport = report;
     resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — The Week You Built</b>` + renderEvaluationReport(report, 3)
-      + `<button class="btn btn-navy btn-sm" style="margin-top:12px;" onclick="downloadCalendarPdf()">⬇ Download My Work</button>`;
+      + `<button class="btn btn-navy btn-sm" style="margin-top:12px;" onclick="downloadCalendarPdf()">⬇ Download My Work</button>${window.EAPACMSFiling ? EAPACMSFiling.button("calendar") : ""}`;
     await bumpPracticeProgress("calendar", report.totalScore);
     if(report.totalScore>=85) burstConfetti();
   }catch(e){
@@ -10107,7 +10109,7 @@ function initFinancial(body){
       </ul>
     </div>` : ""}
 
-    <button class="btn btn-navy btn-sm" style="margin-top:16px;" onclick="downloadFinancialPdf()">⬇ Download My Work</button>
+    <button class="btn btn-navy btn-sm" style="margin-top:16px;" onclick="downloadFinancialPdf()">⬇ Download My Work</button>${window.EAPACMSFiling ? EAPACMSFiling.button("financial") : ""}
   `;
   const partF = `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Invoice Follow-Up</h3>
@@ -10664,7 +10666,7 @@ function renderColdCallingSection(letter){
     </div>
     <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
       <button class="btn btn-ghost btn-sm" onclick="saveCallLog()">Save Log</button>
-      <button class="btn btn-navy btn-sm" onclick="downloadCallsPdf()">⬇ Download My Work</button>
+      <button class="btn btn-navy btn-sm" onclick="downloadCallsPdf()">⬇ Download My Work</button>${window.EAPACMSFiling ? EAPACMSFiling.button("calls") : ""}
     </div>
   `;
 }
@@ -11354,6 +11356,23 @@ function safeDoc(doc){
   doc.__lshSafe = true;
   return doc;
 }
+/* ⬆ Upload in the CMS: the same document, handed over instead of saved.
+   A lab's deliverable is built once, by the one function that builds all of them. When the CMS filing
+   panel asks for a document (js/eapa-cms-filing.js), it runs the lab's own ⬇ Download PDF and takes the
+   bytes here rather than letting the browser save the file — so what is filed into the client's case
+   file is exactly the document the trainee downloads, never a second rendering of it that could drift.
+   A lab with nothing to show still stops where it always did (its own toast), and the capture comes
+   back empty, which the panel reads as "finish the lab first". */
+let PDF_CAPTURE = null;
+async function capturePdf(fnName){
+  const fn = window[fnName];
+  if(typeof fn !== "function") return null;
+  const outer = PDF_CAPTURE;                       // never lose an outer capture if one is somehow running
+  PDF_CAPTURE = {};
+  try{ await fn(); return PDF_CAPTURE.bytes ? PDF_CAPTURE : null; }
+  catch(e){ return null; }
+  finally{ PDF_CAPTURE = outer; }
+}
 function buildAndSavePdf(title, subtitle, bodyLines, filenameBase){
   const { jsPDF } = window.jspdf;
   const doc = safeDoc(new jsPDF({unit:"pt", format:"letter"}));
@@ -11388,7 +11407,9 @@ function buildAndSavePdf(title, subtitle, bodyLines, filenameBase){
 
   doc.setFontSize(8); doc.setTextColor(110,116,140);
   doc.text("LSH EA / PA Upskill Program — generated from this trainee's saved activity.", marginX, pageH-30);
-  doc.save(`${filenameBase}_${(state.traineeName||"trainee").replace(/\s+/g,"_")}.pdf`);
+  const filename = `${filenameBase}_${(state.traineeName||"trainee").replace(/\s+/g,"_")}.pdf`;
+  if(PDF_CAPTURE){ PDF_CAPTURE.bytes = doc.output("arraybuffer"); PDF_CAPTURE.filename = filename; return; }
+  doc.save(filename);
   toast("Downloaded");
 }
 
@@ -14899,7 +14920,7 @@ function renderEsimBody(body){
         <div class="ai-result"><b>Evaluation — Writing DNA Match &amp; Professionalism</b><div class="ai-result-body">${esc(e.report).replace(/\n/g,"<br>")}</div></div>
         <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
           <button class="btn btn-ghost" onclick="initEmailSim(document.getElementById('toolBody'))">Run It Again</button>
-          <button class="btn btn-navy" onclick="downloadEmailSimPdf()">⬇ Download My Work</button>
+          <button class="btn btn-navy" onclick="downloadEmailSimPdf()">⬇ Download My Work</button>${window.EAPACMSFiling ? EAPACMSFiling.button("inbox") : ""}
         </div>
       </div>`;
     return;
@@ -16386,7 +16407,7 @@ async function initAccessIncident8(body){
     <textarea id="crisisReplyDraft" class="trip-why tall" placeholder="Dana —" oninput="crisisNote('reply', this.value)">${esc(cr.reply||"")}</textarea>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
       <button class="btn btn-primary btn-sm" id="crisisClientBtn" onclick="reviewCrisisClient()">Submit for Review</button>
-      <button class="btn btn-navy btn-sm" onclick="downloadCrisisPdf()">⬇ Download My Work</button>
+      <button class="btn btn-navy btn-sm" onclick="downloadCrisisPdf()">⬇ Download My Work</button>${window.EAPACMSFiling ? EAPACMSFiling.button("crisis") : ""}
     </div>
     <div id="crisisClientResult" style="margin-top:14px;"></div>
   `;
@@ -17289,7 +17310,7 @@ function initDossier1(body){
   `;
   const partD = `
     ${renderGatekeepingSection('D')}
-    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
+    <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>${window.EAPACMSFiling ? EAPACMSFiling.button("dossier") : ""}
   `;
   body.innerHTML = renderToolWizard(1, [
     {label:"Client Dossier", html:partA},
@@ -17788,7 +17809,7 @@ function initInsurance5(body){
   `;
   const partD = `
     ${renderCrisisRoleplaySection("insurance5", "D. Live Crisis Roleplay")}
-    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>
+    <button class="btn btn-navy btn-sm" style="margin-top:20px;" onclick="downloadInsurance5Pdf()">⬇ Download Risk Assessment as PDF</button>${window.EAPACMSFiling ? EAPACMSFiling.button("insurance") : ""}
   `;
   body.innerHTML = renderToolWizard(5, [
     {label:"Classify the Risk", html:partA},
@@ -18166,6 +18187,12 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/lsh-blueprint-course.js?v=2"></script>
 <script src="/js/lsh-blueprint.js?v=2"></script>
 <script src="/js/lsh-card-frame.js?v=3"></script>
+<!-- 📤 The documents a lab produces are filed in the CMS (the right tab, the firm's name), and 📂 the
+     trainee's own Backup Drive keeps the firm's folder structure. lsh-tool-links.js signs the links out
+     to the CMS so it opens without a log-in page. -->
+<script src="/js/lsh-tool-links.js?v=1"></script>
+<script src="/js/eapa-cms-filing.js?v=1"></script>
+<script src="/js/eapa-drive.js?v=1"></script>
 <script src="/js/lsh-topbar.js?v=2"></script>
 </body>
 </html>

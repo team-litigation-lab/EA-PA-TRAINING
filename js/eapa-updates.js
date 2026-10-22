@@ -3413,7 +3413,7 @@ renderColdCallingSection = function(letter){
     <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
       <button class="btn btn-ghost btn-sm" onclick="saveCallLog()">Save Log</button>
       <button class="btn btn-navy btn-sm" onclick="obReview(this)">Review My Calls</button>
-      <button class="btn btn-ghost btn-sm" onclick="downloadCallsPdf()">⬇ Download My Work</button>
+      <button class="btn btn-ghost btn-sm" onclick="downloadCallsPdf()">⬇ Download My Work</button>${window.EAPACMSFiling ? EAPACMSFiling.button("calls") : ""}
     </div>
     <div id="obReview" style="margin-top:12px;"></div>
   `;

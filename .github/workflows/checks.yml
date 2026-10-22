@@ -36,6 +36,8 @@ jobs:
         run: node .github/scripts/sso.cjs
       - name: Where records are kept (progress in R2, the rest in KV)
         run: node .github/scripts/storage.mjs
+      - name: Filing documents in the CMS and the trainee's Backup Drive (the tab, the name, the firm's folder structure and its grading)
+        run: node .github/scripts/doc-filing.cjs
       - name: Build the Worker without deploying (wrangler dry run)
         run: npx --yes wrangler@4 deploy --dry-run --outdir "$RUNNER_TEMP/dist"
 
