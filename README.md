@@ -29,6 +29,10 @@ The window shows when each record was last saved from the trainee's page; if ano
 
 The server also stops it happening: a trainee's own save can't drop finished days, practice tools or submissions from their record (only an admin can).
 
+## 🃏 The lesson deck card
+
+Every lesson slide sits on one navy glass card over the page's background, the same card as the Case Management course's Case Flow slides: the **Topic Bar** (e.g. *Topic 2 of 30*) and the progress dots in a dark pill across the top, the **ribbon** with the slide's title under them, and the slide itself on a white sheet. Line ornaments sit at the card's top-right and bottom-left corners and in the sheet's bottom-right. Previous / Next sit under the card, and on a desktop the presenter stands in the side column under the lesson's controls. The top bar and the page background are unchanged. It's `js/eapa-deck-card.js`, loaded last; it wraps `renderDaySlideshow`, so full screen and the Presenter slides window get it too.
+
 ## Where each day's content lives
 
 Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three files:
