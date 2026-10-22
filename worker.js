@@ -702,7 +702,14 @@ async function driveBuild(env, id, rec) {
    job, so a folder someone deleted is reported rather than quietly made again. */
 async function driveVerify(env, id, rec) {
   const missing = [];
-  if (!(await folderLives(env, id, rec, rec.rootId))) return { missing: [DRIVE_ROOT].concat(FOLDER_STANDARD), rootGone: true };
+  if (!(await folderLives(env, id, rec, rec.rootId))) {
+    // The whole drive is gone (the root folder was deleted), so every folder is missing. Recorded like
+    // any other check: without this the dashboard card read "in order" for a drive that wasn't there.
+    rec.checkedAt = new Date().toISOString();
+    rec.lastMissing = FOLDER_STANDARD.slice();
+    await driveWrite(env, id, rec);
+    return { missing: [DRIVE_ROOT].concat(FOLDER_STANDARD), rootGone: true };
+  }
   for (const path of FOLDER_STANDARD) if (!(await folderLives(env, id, rec, rec.folders && rec.folders[path]))) missing.push(path);
   rec.checkedAt = new Date().toISOString();
   rec.lastMissing = missing;

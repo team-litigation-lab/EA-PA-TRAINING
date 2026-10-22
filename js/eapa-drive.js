@@ -258,6 +258,9 @@ async function submit(){
   try{
     const out = await api({action:"setup", layout});
     graded = out.graded; built = out.built || null; D = out.drive;
+    // The grade also goes into the trainee's own progress, so a trainer reads it in the Trainee Audit
+    // beside everything else rather than having to ask the Worker about each trainee's Google account.
+    try{ if(typeof storeSet === "function") await storeSet("drive-setup", {score:graded.score, ok:graded.ok, attempts:(D.setup && D.setup.attempts) || 1, at:new Date().toISOString(), left:graded.problems.length}); }catch(e){}
     if(graded.ok) say("Your Backup Drive is built — the structure is in your Drive.");
     else say(`${graded.problems.length} thing${graded.problems.length === 1 ? "" : "s"} to fix before it is built.`);
     fillSlot();

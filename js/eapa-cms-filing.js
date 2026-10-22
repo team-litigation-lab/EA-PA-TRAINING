@@ -68,6 +68,27 @@ const byFn = (fn)=> DOCS.find(d=>d.fn === fn) || null;
 const log = ()=> (state.cmsFiling = state.cmsFiling || {});
 const recOf = (id)=> log()[id] || null;
 async function save(){ try{ if(typeof storeSet === "function") await storeSet(KEY, log()); }catch(e){} }
+/* The record, read again from storage and merged in rather than replaced. A trainee's progress comes
+   down from their account some seconds after the page loads, so a record read once at load can be the
+   empty one — and writing that back over a restored record would lose documents they had already filed.
+   So it is read before the panel opens and before anything is written, and a document already filed is
+   never dropped by a merge. */
+async function loadRecord(){
+  if(typeof storeGet !== "function") return;
+  let saved = null;
+  try{ saved = await storeGet(KEY); }catch(e){ return; }
+  if(!saved || typeof saved !== "object") return;
+  const now = log();
+  Object.keys(saved).forEach(id=>{
+    const mine = now[id], theirs = saved[id];
+    if(!mine) { now[id] = theirs; return; }
+    // whichever knows more wins, attempt by attempt: filed beats unfiled, and attempts only ever rise
+    if(theirs.filed && !mine.filed) now[id] = Object.assign({}, mine, theirs);
+    now[id].attempts = Math.max(mine.attempts || 0, theirs.attempts || 0);
+    now[id].wrongTab = Math.max(mine.wrongTab || 0, theirs.wrongTab || 0);
+    now[id].wrongName = Math.max(mine.wrongName || 0, theirs.wrongName || 0);
+  });
+}
 
 /* What a trainer sees, and what the dashboard counts. */
 function health(){
@@ -151,8 +172,15 @@ function open(id){
   panelFor = id; problems = []; expected = ""; note = "";
   paint();
   askWhichCase();
+  loadRecord().then(paint);
 }
-function close(){ panelFor = ""; frameOpen = false; paint(); }
+function close(){
+  panelFor = ""; frameOpen = false;
+  // The framed address carried a sign-in ticket good for five minutes. Dropping it means the next
+  // opening asks for a fresh one, instead of framing the CMS's log-in page with a ticket that has run out.
+  framed = "";
+  paint();
+}
 
 function paint(){
   let host = document.getElementById("cmsFilingHost");
@@ -247,6 +275,7 @@ async function check(){
 async function file(btn){
   const doc = docOf(panelFor); if(!doc) return;
   const {category, name} = fields();
+  await loadRecord();
   const r = log()[doc.id] = Object.assign({attempts:0, wrongTab:0, wrongName:0}, recOf(doc.id));
 
   if(!openCase.caseId){ problems = ["No case file with a Case ID is open in the CMS. Open the client's file there (a new case takes its Case ID when it is saved), then file the document."]; paint(); return; }
@@ -361,7 +390,7 @@ window.addEventListener("load", ()=>{
     // No render() here: this runs while the page may still be booting, and a redraw then would rewrite
     // the address the trainee arrived on. The record only changes a button's label, which the next
     // ordinary redraw picks up.
-    try{ const v = await storeGet(KEY); if(v && typeof v === "object") state.cmsFiling = v; }catch(e){}
+    await loadRecord();
   }, 340);
 });
 })();

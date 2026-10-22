@@ -143,6 +143,22 @@ if (/function gradeLayout|FOLDER_STANDARD\s*=/.test(driveCode)) fail('js/eapa-dr
 if (!/action:"setup"/.test(drive)) fail('js/eapa-drive.js no longer sends the layout to the Worker to be graded.');
 ok('the page loads both features, and the structure and its grading live only on the Worker');
 
+/* ---------- the grades have to reach the trainee's account, and a trainer ----------
+   Both records are written with storeSet, which only syncs to the server for a key in PERSONAL_KEYS.
+   Left out, they live in one browser: the trainee loses them on another device and no trainer ever sees
+   them, which makes grading pointless. This is how that happened once, so it is checked. */
+const personal = html.slice(html.indexOf('const PERSONAL_KEYS = ['), html.indexOf('const PERSONAL_KEY_SET'));
+['cms-filing', 'drive-setup'].forEach((k) => {
+  if (!personal.includes(`"${k}"`)) fail(`"${k}" isn't in PERSONAL_KEYS, so the grade never leaves the trainee's browser.`);
+});
+if (!/function loadRecord\(/.test(filing) || !/await loadRecord\(\)/.test(filing))
+  fail('js/eapa-cms-filing.js no longer re-reads and merges its record before writing: a late restore of the trainee\'s progress would be overwritten.');
+if (!/function renderAdminFilingPanel\(/.test(html) || !/\$\{renderAdminFilingPanel\(rec\)\}/.test(html))
+  fail('A trainer can no longer see the filing and Backup Drive grades in the trainee\'s row.');
+if (!/framed = "";/.test(filing))
+  fail('The framed CMS address is kept when the panel closes: its sign-in ticket runs out after five minutes.');
+ok('both grades ride the trainee\'s progress to their account and show in the trainee\'s row');
+
 if (failures.length) {
   console.log('\n' + failures.length + ' problem' + (failures.length === 1 ? '' : 's') + ':');
   failures.forEach((f) => console.log(' - ' + f));
