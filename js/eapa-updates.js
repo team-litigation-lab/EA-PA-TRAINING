@@ -401,7 +401,20 @@ function deckRescale(){
   if(fit.closest("#audienceRoot") || document.fullscreenElement === stage) roomH = body.clientHeight;
   else {
     const r = fit.getBoundingClientRect(), below = stage.getBoundingClientRect().bottom - r.bottom;
-    roomH = window.innerHeight - (r.top + window.scrollY) - below - 12;
+    // Where the slide has to end. On a window the whole page fits on (js/lsh-one-screen.js) that is
+    // the bottom of the page's body, so the slide and its Previous / Next bar stay above the footer
+    // line and the lesson page never scrolls; on a narrow or short window, which scrolls as it
+    // always did, it is the window's.
+    const page = stage.closest("main");
+    if(page && document.body.classList.contains("one-screen")){
+      // All three measured from the top of the window, so the scale can't depend on how far the
+      // page body happens to be scrolled — window.scrollY is the body's scrollTop here, and
+      // mixing it in made the deck a different size from one slide to the next.
+      const floor = page.getBoundingClientRect().bottom - (parseFloat(getComputedStyle(page).paddingBottom) || 0);
+      roomH = floor - r.top - below - 12;
+    } else {
+      roomH = window.innerHeight - (r.top + window.scrollY) - below - 12;
+    }
   }
   const scale = Math.max(0.3, Math.min(fit.clientWidth / DECK_W, roomH / DECK_H));
   const v = String(Math.round(scale*10000)/10000);
@@ -4167,7 +4180,13 @@ if(document.querySelector(".topbar")) render();
       stage.style.removeProperty("--ls-max"); return;
     }
     const top = stage.getBoundingClientRect().top;
-    stage.style.setProperty("--ls-max", Math.max(LEAST, window.innerHeight - top - GAP) + "px");
+    // On a window the whole page fits on (js/lsh-one-screen.js) the stage ends at the bottom of the
+    // page's body, above the footer line; otherwise at the bottom of the window.
+    const page = stage.closest("main");
+    const floor = (page && document.body.classList.contains("one-screen"))
+      ? page.getBoundingClientRect().bottom - (parseFloat(getComputedStyle(page).paddingBottom) || 0)
+      : window.innerHeight;
+    stage.style.setProperty("--ls-max", Math.max(LEAST, floor - top - GAP) + "px");
   }
   function soon(){ if(!pending) pending = requestAnimationFrame(fit); }
 
