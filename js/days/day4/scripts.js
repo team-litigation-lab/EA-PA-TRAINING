@@ -1135,40 +1135,73 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  },
  "4::Client Relationship Management": {
   "p1": {
+   "icebreaker": "Game: 'Remember me?' Stand up if you can name the last person who followed up with you after buying something: a garage, a dentist, a shop. Keep standing if they mentioned something specific you'd told them. Look around. That's how rare it is.",
+   "teaser": "The people still standing just showed you the whole topic. One small habit made that company memorable, and it isn't the software. Let's find it.",
    "why": "Winning a client is the start; the relationship lives or dies on the follow-through.",
-   "talk": "Everything we've covered today helps someone say yes. Client relationship management is what happens next: remembering what was said, keeping promises and getting in touch at the right moments. A CRM helps, but the real value is the habit of recording every conversation.",
+   "talk": "Everything we've covered today helps someone say yes. Client relationship management is what happens next. It means remembering what was said, keeping promises and getting in touch at the right moments. A CRM helps, but the real value is the habit of recording every conversation. That's the habit the people standing up just felt from the other side.",
    "walk": [
     "First, log every real conversation right after it happens: what was discussed, what was promised and what's next.",
     "Next, group contacts by where they are: new, active, quiet or past.",
     "Then, set specific reminders tied to promises, like 'check in after their trial ends,' not vague 'touch base' tasks.",
     "Finally, before any call or email, look at their history first, so you can mention something specific."
    ],
-   "ask": "What would you look at in the CRM before calling a client?",
-   "scenario": "Before Elias calls a client he hasn't spoken to in four months, what would you look up in the CRM, and what three lines would you give him?"
+   "jargon": [
+    {
+     "term": "CRM (Client Relationship Management)",
+     "hint": "the system where we record every contact, conversation and follow-up"
+    },
+    {
+     "term": "Touch base",
+     "hint": "a vague check-in with no clear purpose"
+    }
+   ],
+   "story": "A common pattern in real offices: an attorney rang a client he hadn't spoken to in months and opened with 'How's business?' The client had told the firm, on the last call, that her father had just died and she was stepping in to run the company. It was in nobody's notes. The call was polite but cool, and she moved some work elsewhere that year. A two-line CRM note and a 30-second look before the call would have changed the whole conversation.",
+   "ask": "[Name], Elias is about to call a client he hasn't spoken to in four months. What would you look at in the CRM first? [Name], what three lines would you hand him before he dials?"
   },
   "p2": {
    "why": "A follow-up you promised and then forgot costs more trust than never offering it.",
    "talk": "Relationships rarely end with an argument. They usually fade because nobody followed up. A client who hears nothing for three months starts to feel forgotten, and a competitor who calls at the right time looks attentive. So we make sure the CRM is actually used, check in at sensible moments and turn every follow-up we promise into a task with a date.",
    "walk": [
     "First, don't let the CRM become a place where information goes to die.",
-    "Next, one well-timed check-in is far cheaper than winning back a client who drifted away.",
+    "Next, remember that one well-timed check-in is far cheaper than winning back a client who drifted away.",
     "Finally, log every promised follow-up as a task, so it can't slip."
    ],
-   "ask": "A client you signed three months ago never got a follow-up, and they've just emailed a question that hints they're looking at a competitor. Do you just answer the question, or use it to rebuild the relationship? What do you say?",
-   "scenario": "After a big win, Elias promised a client he'd 'check in after the holidays.' It's now March. What do you do, and how would a CRM task have prevented this?"
+   "contrast": {
+    "lazy": "Adds a note saying 'Good call, touch base later' and moves on. Nothing has a date, so nothing happens.",
+    "excellent": "Logs 'Client starting new site in May; Elias promised to check in on staff contracts' and sets a task: 'Call re new site contracts, 2 May, owner: Elias.' The reminder arrives before the client has to ask."
+   },
+   "outcome": "A client who feels forgotten doesn't complain; they quietly take the next matter to someone else. For the firm, that's lost revenue and lost referrals. Inside a live case, a client who trusts us shares bad news early, which is when we can still do something about it.",
+   "ask": "[Name], a client you signed three months ago never got a follow-up and has just emailed a question that hints they're looking at a competitor. Do you just answer, or use it to rebuild the relationship? [Name], give me the first two lines of your reply.",
+   "mystery": "The case of the holiday promise. After a big win, Elias promised a client he'd 'check in after the holidays.' It's now March and nobody has called. In pairs, you have three minutes: find the exact moment this promise should have become a task, write the task as it should have looked, and draft the message Elias sends today. Bring back the task and the message."
   }
  },
  "4::CRM Software Fundamentals": {
   "p1": {
+   "icebreaker": "Game: 'People, deal or activity?' I'll call out something you'd find in a CRM. Point up for a person, point left for a deal, point right for an activity. Ready? Harlow Industries' HR director. A call last Tuesday. The Meridian employment retainer. An email sent this morning. Sarah Thorne's charity contact.",
+   "teaser": "Every item I called out fits one of those three boxes, and that's the secret to learning any CRM in an afternoon. But there's a fourth place information hides, and that's where CRMs go wrong.",
    "why": "Every CRM is built on three things: people, deals and activities. Learn those, and any CRM makes sense.",
-   "talk": "The software doesn't create discipline; you do. A CRM is only as good as what gets put into it. And if the real status of a deal lives in someone's head or a side spreadsheet, the CRM has already stopped doing its job.",
+   "talk": "The software doesn't create discipline; you do. A CRM is only as good as what gets put into it. And that fourth hiding place? Someone's head, or a side spreadsheet. If the real status of a deal lives there, the CRM has already stopped doing its job.",
    "walk": [
     "First, before you use a new CRM, match its deal stages to how the firm actually wins work.",
     "Next, if you need to track something the standard fields don't cover, add a proper field instead of burying it in notes.",
     "Finally, use the CRM's own reminders instead of a separate to-do list."
    ],
-   "ask": "What happens when the real status of a deal only lives in someone's head?",
-   "scenario": "Your firm is moving to a new CRM. Before anyone starts using it, what do you set up to match how the firm actually works: stages, fields and reminders?"
+   "jargon": [
+    {
+     "term": "Deal (or opportunity)",
+     "hint": "a possible piece of work you're trying to win"
+    },
+    {
+     "term": "Deal stage",
+     "hint": "the step a deal has reached, like 'first meeting' or 'proposal sent'"
+    },
+    {
+     "term": "Field",
+     "hint": "one labelled box of information on a record"
+    }
+   ],
+   "story": "This happens in real offices: a business development lead kept the true state of every deal in a personal spreadsheet and only updated the CRM 'when there was time.' She went on two weeks' leave. A prospect called to accept a proposal, and nobody could tell what had been offered or at what fee. The firm asked the prospect to resend the details, which didn't look good. If the deal had lived in the CRM, anyone could have picked it up in a minute.",
+   "ask": "[Name], what actually happens when the real status of a deal only lives in someone's head? [Name], who in the firm feels that first?"
   },
   "p2": {
    "why": "Deals move forward on facts, not on hope.",
@@ -1178,64 +1211,109 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, only move a deal to the next stage when something has actually happened.",
     "Finally, once a month, close or revive deals that haven't moved in two months."
    ],
-   "ask": "You inherit a CRM with 40 open deals, most untouched for months, and Elias wants an accurate forecast by the end of the day. How do you get to a number you can stand behind?",
-   "scenario": "A colleague moved five deals to 'Negotiation' because the clients 'seemed interested' on calls. Elias's forecast now looks far too high. What rule would you suggest for moving a deal forward?"
+   "contrast": {
+    "lazy": "Moves a deal to 'Negotiation' because 'they sounded keen on the call.' The note just says 'positive.'",
+    "excellent": "Keeps it at 'Meeting held' until something real happens, then moves it with a reason: 'Proposal requested by email, 14 March, fee range agreed in principle.'"
+   },
+   "outcome": "A forecast built on hope leads to bad decisions: hiring too early, turning work away, or promising partners revenue that never arrives. When the numbers are honest, Elias knows where to spend his time, and the deals that are really close get the attention that closes them.",
+   "ask": "[Name], you inherit a CRM with 40 open deals, most untouched for months, and Elias wants an accurate forecast by the end of the day. Where do you start? [Name], how do you get to a number you can stand behind?",
+   "mystery": "The case of the hopeful forecast. A colleague moved five deals to 'Negotiation' because the clients 'seemed interested' on calls. Elias's forecast now looks far too high. In teams of three, you have four minutes: find the clues in what a real move forward looks like, write a one-line rule for moving a deal to the next stage, and tell me which of the five you'd move back first and why."
   }
  },
  "4::Data Hygiene & Deduplication": {
   "p1": {
+   "icebreaker": "Game: 'Same person or not?' I'll read two names; thumbs up if it's the same person, thumbs down if not. 'Jon Martinez, Harlow Logistics' and 'J. Martinez, Harlow Log.' 'Sarah Thorne' and 'S. Thorne, Thorne Foundation.' 'jmartinez@harlow.com' and 'jon.m@harlowlogistics.com.' Look how split the room is.",
+   "teaser": "If a room of people looking carefully can't agree, imagine what a CRM does with them. One of those pairs is almost certainly a duplicate hiding in plain sight. Let's see how to catch it.",
    "why": "Duplicate records aren't just untidy; they split a person's history so nobody sees the whole picture.",
-   "talk": "If one client has two records, half their emails are in one and half in the other. And data goes stale on its own, because people change jobs and email addresses all the time. Emailing dead addresses even hurts the firm's ability to reach everyone else.",
+   "talk": "If one client has two records, half their emails are in one and half in the other. Nobody sees the whole story. And data goes stale on its own, because people change jobs and email addresses all the time. Emailing dead addresses even hurts the firm's ability to reach everyone else.",
    "walk": [
     "First, before adding a new contact, search by name, company and email domain, not just the exact name.",
     "Next, when you merge two records, keep the history from both.",
     "Finally, regularly remove or flag contacts whose emails bounce or who have unsubscribed."
    ],
-   "ask": "How would you search for a duplicate beyond an exact name match?",
-   "scenario": "You're about to add 'J. Martinez, Harlow Logistics' to the CRM. What do you search for first so you don't create a duplicate?"
+   "jargon": [
+    {
+     "term": "Deduplication",
+     "hint": "finding and merging records that are really the same person"
+    },
+    {
+     "term": "Email domain",
+     "hint": "the part after the @, which shows the company"
+    },
+    {
+     "term": "Bounce",
+     "hint": "an email that couldn't be delivered"
+    }
+   ],
+   "story": "A real pattern from the field: a client had two records, one under her maiden name. She'd asked, on one record, never to be contacted about a sensitive family matter. The firm's newsletter team used the other record and sent her an article on exactly that topic. She was upset, and a partner had to call and apologise. A search by email domain and phone number before creating the second record would have caught it.",
+   "ask": "[Name], you're about to add 'J. Martinez, Harlow Logistics' to the CRM. What do you search for first? [Name], what else would you check beyond the exact name?"
   },
   "p2": {
    "why": "When you merge duplicates, merge forward and keep everything.",
-   "talk": "The easy mistake is deleting the record with less in it and losing its history. The other two habits stop duplicates forming in the first place.",
+   "talk": "The easy mistake is deleting the record with less in it and losing its history. Small notes often matter most. The other two habits stop duplicates forming in the first place: one agreed format for entering data, and clean-up as a regular job.",
    "walk": [
     "First, always merge the history from both records.",
     "Next, agree one way to enter names, phones and companies, because inconsistent formats hide duplicates.",
     "Finally, make clean-up a regular task, not a one-off."
    ],
-   "ask": "You find three records that look like the same person at the same company, each with different history. How do you confirm they're the same person before merging, and what if you're not sure?",
-   "scenario": "You find two records for the same client: one has the last three emails, the other has the meeting notes from last year. How do you merge them without losing anything?"
+   "contrast": {
+    "lazy": "Spots two records, deletes the thinner one and moves on. The 'do not contact on Fridays' note goes with it.",
+    "excellent": "Confirms it's the same person by email, phone and company, merges both histories into one record, and adds a note: 'Merged from duplicate, 10 April.'"
+   },
+   "outcome": "When history is split, someone eventually acts on half the story: they call a client who asked not to be called, or miss a conflict of interest in a new matter. In legal work that's not just embarrassing; it can mean a complaint or a conflict that stops the firm taking a case.",
+   "ask": "[Name], you find three records that look like the same person at the same company, each with different history. How do you confirm they're the same before merging? [Name], and what do you do if you're still not sure?",
+   "mystery": "The case of the split client. You find two records for the same client. One has the last three emails; the other has last year's meeting notes. In pairs, two minutes: list the clues that prove it's the same person, write the steps for merging without losing anything, and tell me which details you'd double-check with the client."
   }
  },
  "4::Sales Mindset": {
   "p1": {
+   "icebreaker": "Game: 'Shout it out.' When I say 'sales person,' shout the first word that comes into your head. Ready? Sales person! I heard 'pushy,' 'car,' 'annoying.' Now: 'someone who helped you solve a problem.' Shout again. Different words, aren't they?",
+   "teaser": "Those two lists describe the same job done two different ways. By the end of this topic, you'll know which list the best legal outreach belongs on, and the one word that moves you from the first list to the second.",
    "why": "Selling isn't talking someone into something; it's finding a real problem you can help solve.",
-   "talk": "If you support business development, you need to understand why outreach works, not just how to format it. A message built around what the firm offers falls flat. A message built around what the other person needs gets read. And most outreach gets a no. That's normal. A no is information, not a verdict on you.",
+   "talk": "If you support business development, you need to understand why outreach works, not just how to format it. A message built around what the firm offers falls flat. A message built around what the other person needs gets read. The word, by the way, is 'problem.' And most outreach gets a no. That's normal. A no is information, not a verdict on you.",
    "walk": [
     "First, before any outreach, be clear on the problem the other person actually has.",
     "Next, be genuinely curious about their situation. The best messages read like they were written for one person.",
     "Then, keep an honest record of what you send and what comes back, including the rejections.",
     "Finally, keep the result separate from your feelings, so a no doesn't wear you down."
    ],
-   "ask": "What problem does our outreach actually solve for the person receiving it?",
-   "scenario": "Elias wants to reach small construction companies about employment-law support. Before writing anything, what problem do these companies actually have that the firm could help with? Write one sentence about it."
+   "jargon": [
+    {
+     "term": "Business development (BD)",
+     "hint": "the work of winning new clients and new work"
+    },
+    {
+     "term": "Outreach",
+     "hint": "contacting people who haven't asked to hear from you yet"
+    }
+   ],
+   "story": "This happens in real offices: an assistant drafted an outreach email for a partner that listed every service the firm offered, in a long paragraph. Out of 40 sent, none got a reply. The second version opened with one line about a new rule affecting the reader's industry and asked a single question. That one got four replies. Same firm, same services; the only change was starting from their problem instead of ours.",
+   "ask": "[Name], what problem does our outreach actually solve for the person receiving it? [Name], Elias wants to reach small construction companies about employment-law support. Give me one sentence on the problem they have."
   },
   "p2": {
    "why": "A no is information, not a judgment about you.",
    "talk": "Three ideas make this sustainable. Not every lead deserves the same effort, so part of the skill is choosing where to spend it. Rejection is part of the job, and one person's no shouldn't sour our tone with the next person. And curiosity has to be genuine; people can tell when interest is fake, even in an email. Those same ideas help inside the firm too, whenever we need someone's buy-in.",
    "walk": [
-    "First, not every lead deserves the same effort. Knowing where to invest is part of the skill.",
+    "First, accept that not every lead deserves the same effort. Knowing where to invest is part of the skill.",
     "Next, never let one no change your tone for the next person.",
-    "Then, real curiosity can't be faked, not even in writing.",
-    "Finally, the same mindset helps inside the firm, when you need a colleague's buy-in or want to persuade Elias."
+    "Then, remember that real curiosity can't be faked, not even in writing.",
+    "Finally, use the same mindset inside the firm, when you need a colleague's buy-in or want to persuade Elias."
    ],
-   "ask": "You've sent 15 cold emails this week and had no replies. What would a good sales mindset tell you to do next, and what would the opposite look like?",
-   "scenario": "After 20 cold emails and no replies, a colleague's messages have become short and slightly bitter. What would you say to her, and what would you look at in her emails?"
+   "contrast": {
+    "lazy": "After ten no's, sends 'Just checking if you got my last email' to everyone and takes the silence personally.",
+    "excellent": "Looks at what came back, notices the replies all came from one type of company, and rewrites the next batch around that company's real problem."
+   },
+   "outcome": "Bitter or desperate outreach doesn't just fail; it damages the firm's name with the very people who might need it next year. Steady, curious outreach builds a pipeline of clients who come in trusting the firm, and trusting clients are easier to advise, keep and settle cases for.",
+   "ask": "[Name], you've sent 15 cold emails this week and had no replies. What would a good sales mindset tell you to do next? [Name], what would the opposite look like?",
+   "mystery": "The case of the bitter inbox. After 20 cold emails and no replies, a colleague's messages have become short and slightly bitter. In pairs, three minutes: find three clues in the tone of her emails that show it, decide what you'd say to her, and rewrite one of her lines. Bring back the before and after."
   }
  },
  "4::Cold Calling, Appointment Setting & Lead Generation": {
   "p1": {
+   "icebreaker": "Game: 'Hang up or hold on?' I'll read two call openers. Hold your hand to your ear if you'd keep listening; drop it if you'd hang up. One: 'Hi, I'm calling from Thorne & Partners, we offer a full range of legal services.' Two: 'Hi, I saw you just announced 200 new hires; I had a quick question about your contracts.'",
+   "teaser": "Nearly every hand stayed up for the second one. But there's a part of cold calling nobody sees on the call itself, and it's where most calls are won or lost. It's on this slide.",
    "why": "A specific, current detail about the person you're calling beats any script.",
-   "talk": "When someone hears their own situation in the first sentence, they keep listening. A generic pitch sounds like every other call they ignore. That's why research comes before the call.",
+   "talk": "When someone hears their own situation in the first sentence, they keep listening. A generic pitch sounds like every other call they ignore. That's why research comes before the call. That's the hidden part: the five minutes before you dial.",
    "walk": [
     "First, research the person or business before you dial.",
     "Next, open with a short reason this is relevant to them, not a rehearsed pitch.",
@@ -1243,8 +1321,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, treat call lists with the same care as confidential email.",
     "Finally, record the outcome of every call straight away."
    ],
-   "ask": "What's a realistic goal for a first cold call?",
-   "scenario": "You're about to call the HR director of a regional hospital group that just announced 200 new hires. What's your opening line, and what's your goal for the call?"
+   "jargon": [
+    {
+     "term": "Cold call",
+     "hint": "a call to someone who isn't expecting to hear from you"
+    },
+    {
+     "term": "Appointment setting",
+     "hint": "booking a proper meeting from a first conversation"
+    },
+    {
+     "term": "Lead",
+     "hint": "a person or company who might become a client"
+    }
+   ],
+   "story": "A common pattern from the field: an assistant made 30 calls in a morning and logged none of them, planning to 'do it after lunch.' By the afternoon she couldn't remember who'd said 'call me Thursday' and who'd said 'never call again.' The person who'd asked not to be contacted got a second call the next week and complained. Logging each call in the 30 seconds after hanging up would have prevented it.",
+   "ask": "[Name], what's a realistic goal for a first cold call? [Name], you're calling the HR director of a regional hospital group that just announced 200 new hires. What's your opening line?"
   },
   "p2": {
    "why": "The aim of a first call isn't the sale; it's the second conversation.",
@@ -1252,24 +1344,45 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "walk": [
     "First, open with value, not a pitch.",
     "Next, aim for the next conversation, not the close.",
-    "Finally, outbound call lists deserve the same discretion as any sensitive information."
+    "Finally, give outbound call lists the same discretion as any sensitive information."
    ],
-   "ask": "You're calling the office manager of a 12-doctor medical practice about Elias's employment-law work. You found out they just opened a second location. Deliver the first 20 seconds of the call.",
-   "scenario": "A colleague leaves a printed list of prospects, with phone numbers and notes about their legal problems, on the printer. Why does that matter, and what should happen to call lists?"
+   "contrast": {
+    "lazy": "'Hi, is this a good time? We're a law firm and we do employment, estates and commercial work. Would you like a meeting?'",
+    "excellent": "'Hi, it's [your name] at Thorne & Partners. Congratulations on the second location. When practices expand, staff contracts often get missed. Would a 15-minute call with Elias next week be useful?'"
+   },
+   "outcome": "A pushy first call closes the door for good, and a careless call list can expose people's legal problems to anyone walking past the printer. Researched, low-pressure calls turn strangers into meetings, meetings into clients, and protect the firm's reputation while doing it.",
+   "ask": "[Name], you're calling the office manager of a 12-doctor medical practice about Elias's employment-law work. They just opened a second location. Give me the first 20 seconds. [Name], what would you change about it?",
+   "mystery": "The case of the printer list. A colleague leaves a printed list of prospects, with phone numbers and notes about their legal problems, on the shared printer. In pairs, two minutes: list every person who could have seen it, explain why it matters, and write the three rules you'd put in place for call lists. Bring back your three rules."
   }
  },
  "4::How to Generate Leads for Business": {
   "p1": {
+   "icebreaker": "Game: 'Line it up.' I need four volunteers. Each gets a card: 'Track it,' 'Find the source,' 'First contact,' 'Qualify.' Room, you have 30 seconds to put them in the right order. Shout instructions.",
+   "teaser": "Most rooms get three of the four right first time. The one people always put in the wrong place is the one that saves the most time. Let's see if you did.",
    "why": "Before you can call a lead, you have to find one, and that's a four-step process.",
-   "talk": "Lead generation comes before cold calling. Cold calling works a lead you already have; this is about finding that lead in the first place, and making sure it's worth your time.",
+   "talk": "Lead generation comes before cold calling. Cold calling works a lead you already have; this is about finding that lead in the first place, and making sure it's worth your time. The step people misplace is qualifying. It comes before first contact, so you don't spend effort on people who were never a fit.",
    "walk": [
     "First, identify sources: referrals, past clients, networking, directories and content that draws people in. A healthy pipeline uses more than one.",
     "Next, qualify: does this lead fit, need the service, have authority and have a timeline?",
     "Then, make first contact: specific, researched and short.",
     "Finally, track it and follow up. A lead nobody logged is a lead that's lost."
    ],
-   "ask": "Where have your own best professional leads come from?",
-   "scenario": "Elias wants five new estate-planning clients this quarter. Walk through the four steps: where would you find leads, how would you qualify them, what's your first contact, and how do you track them?"
+   "jargon": [
+    {
+     "term": "Lead generation",
+     "hint": "finding people who might become clients"
+    },
+    {
+     "term": "Qualify",
+     "hint": "checking a lead is worth pursuing before you spend time on it"
+    },
+    {
+     "term": "Pipeline",
+     "hint": "all the possible work you're currently chasing"
+    }
+   ],
+   "story": "This happens in real offices: a firm ran a busy month of networking events, and the assistant collected a pile of business cards. They stayed in a drawer for six weeks. When someone finally emailed, most people didn't remember the conversation, and two had already hired another firm. A five-minute CRM entry the morning after each event, with one follow-up date, would have kept those leads warm.",
+   "ask": "[Name], where have your own best professional leads come from? [Name], Elias wants five new estate-planning clients this quarter. Where would you look first?"
   },
   "p2": {
    "why": "Record where every lead came from, so the firm learns which channels actually work.",
@@ -1279,103 +1392,195 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, public sources: bar directories, court filings, business registries and industry lists.",
     "Finally, inbound sources: website inquiries, webinars, articles and talks."
    ],
-   "ask": "Name three referral sources Thorne & Partners should be tracking, and one small thing you could do this month to warm each one up.",
-   "scenario": "At the end of the quarter, the firm has 30 new clients but no idea where they came from. What should have been recorded, and how would that help next quarter?"
+   "contrast": {
+    "lazy": "Logs a new client as 'New client, called in.' Nobody knows it came from an accountant who has sent three others this year.",
+    "excellent": "Records 'Source: referral, Priya Shah, accountant (third referral this year)' and adds a task for Elias to thank her personally."
+   },
+   "outcome": "If the firm doesn't know where its clients come from, it spends money on channels that don't work and neglects the people who quietly send the best work. Tracking sources keeps referrers warm, and well-referred clients usually arrive with clearer problems, better trust and stronger cases.",
+   "ask": "[Name], name three referral sources Thorne & Partners should be tracking. [Name], pick one and tell me one small thing you could do this month to warm it up.",
+   "mystery": "The case of the 30 mystery clients. At the end of the quarter, the firm has 30 new clients but no idea where any of them came from. In teams, four minutes: list the clues you could still dig up to trace their sources, write the one field that should have been filled in for every lead, and tell me how that changes next quarter's plan."
   }
  },
  "4::Lead Generation & Data Sourcing": {
   "p1": {
+   "icebreaker": "Game: 'Real or out of date?' I'll read three 'facts' from a two-year-old directory. Stand if you'd trust it today, sit if you wouldn't. 'CFO, Harlow Industries, J. Patel.' 'Meridian has 40 staff.' 'Head office: Market Street.' Most of you sat down. Good instinct.",
+   "teaser": "You were right to sit, but one of those three is the most dangerous to get wrong, because it shows up in the very first line you write. Which one? We'll see.",
    "why": "A brilliant message sent to the wrong person is wasted.",
-   "talk": "Data sourcing is the research behind lead generation: making sure you know who the prospect really is, what they do and why they might be a fit. The quality of that research decides whether everything after it works. It's the same check-the-source habit from earlier, applied to prospects.",
+   "talk": "Data sourcing is the research behind lead generation: making sure you know who the prospect really is, what they do and why they might be a fit. The quality of that research decides whether everything after it works. The dangerous one is the name and job title, because it goes in your greeting. It's the same check-the-source habit from earlier, applied to prospects.",
    "walk": [
     "First, use research tools, like LinkedIn and company websites, to confirm someone's current role and what's happening at their company.",
     "Next, confirm contact details at the original source, not from a single third-party list.",
     "Then, record each lead in a shared system with the key details captured right away.",
     "Finally, focus your research on leads that actually fit, rather than collecting everyone and sorting later."
    ],
-   "ask": "Which tool would you use to confirm someone's current job title?",
-   "scenario": "You have a list of 50 CFOs from a two-year-old industry directory. Before any outreach goes out, how do you check the list, and which tools do you use?"
+   "jargon": [
+    {
+     "term": "Data sourcing",
+     "hint": "finding and checking the facts about a prospect"
+    },
+    {
+     "term": "Third-party list",
+     "hint": "contact data bought or copied from someone else"
+    },
+    {
+     "term": "Prospect",
+     "hint": "a person or business you'd like to win as a client"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant sent a carefully written letter to 'the CFO' of a company using a bought list. The named CFO had left eight months earlier, under a cloud, and was in a dispute with the company. The new CFO forwarded it round the finance team as an example of firms that 'don't do their homework.' Two minutes on the company website would have shown the right name.",
+   "ask": "[Name], which tool would you use to confirm someone's current job title? [Name], you have 50 CFOs from a two-year-old directory. How would you check the list before anything goes out?"
   },
   "p2": {
    "why": "Fifty well-checked leads beat 500 guesses.",
    "talk": "When there's pressure to hit a number, it's tempting to grab as many names as possible. But an email to someone with an out-of-date job title loses us credibility in the first line. So we use professional information that's legitimately available, refresh our lists regularly, because six months is plenty of time for people to move, and we choose accuracy over volume.",
    "walk": [
-    "First, outdated details, like an old job title, damage your credibility in the first line.",
+    "First, remember that outdated details, like an old job title, damage your credibility in the first line.",
     "Next, use only professional information that's legitimately available.",
     "Then, refresh lists regularly. Six months is long enough for plenty to change.",
     "Finally, resist the pressure to chase volume over accuracy."
    ],
-   "ask": "You've been asked for 50 leads by the end of the day. How do you balance checking against the target, and where won't you cut corners even under time pressure?",
-   "scenario": "Your manager wants 200 leads by Friday. You can find 60 well-researched ones, or pad the list with names from an old conference list. What do you do, and how do you explain it?"
+   "contrast": {
+    "lazy": "Pastes 500 names from an old conference list into the spreadsheet and reports 'target hit.'",
+    "excellent": "Delivers 60 checked leads with current titles, the source of each detail and the date it was confirmed, plus a note: 'Old list not used: over a year out of date.'"
+   },
+   "outcome": "Bad data burns the firm's name with exactly the people it wants to impress, and using information that wasn't legitimately available can create privacy complaints. Clean, checked leads mean better meetings, better clients and fewer awkward apologies from Elias.",
+   "ask": "[Name], you've been asked for 50 leads by the end of the day. How do you balance checking against the target? [Name], where won't you cut corners, even under time pressure?",
+   "mystery": "The case of the padded list. Your manager wants 200 leads by Friday. You can find 60 well-researched ones, or pad the list with names from an old conference list. In pairs, three minutes: list the risks hidden in the padded version, decide what you'll deliver, and write the two-sentence message explaining your choice to your manager. Bring back the message."
   }
  },
  "4::Manual Lead Generation Methods": {
   "p1": {
+   "icebreaker": "Game: 'Warm or cold?' I'll name a lead source. Rub your hands together if it's warm, wrap your arms round yourself if it's cold. A past client's introduction. A name from a bar directory. Someone who asked a question at Elias's webinar. A card from a conference. A contact who went quiet two years ago.",
+   "teaser": "The room got most of those right. But one of the warmest-looking sources can land the firm in trouble with the bar, and it's hiding in the last sentence of this slide.",
    "why": "The leads most likely to become clients are usually the ones someone found by hand, through a person who already trusts the firm.",
-   "talk": "Manual lead generation means finding each lead ourselves. We ask happy clients and partners for referrals, we meet people at bar and industry events, we research directories and business registries, we follow up with people who came to Elias's webinar or read his article, and we look back through old contacts in the CRM. It's slower than a tool, but these leads arrive with context and trust. One rule sits over all of it: bar rules limit how a firm may approach people who might need legal help, so the attorney approves who we contact and how.",
+   "talk": "Manual lead generation means finding each lead ourselves. We ask happy clients and partners for referrals, meet people at bar and industry events, research directories and business registries, follow up with people who came to Elias's webinar or read his article, and look back through old contacts in the CRM. It's slower than a tool, but these leads arrive with context and trust. Here's the catch I promised: bar rules limit how a firm may approach people who might need legal help, so the attorney approves who we contact and how.",
    "walk": [
     "First, start with the warmest source: past clients and referral partners, with a short referral ask for the attorney to send.",
     "Next, after any event, log every contact the same day, with where you met and the next step.",
-    "Then research directories against a clear target, and record the source and date for each lead.",
+    "Then, research directories against a clear target, and record the source and date for each lead.",
     "After that, follow up on real signals, like webinar attendees and people who asked questions.",
     "Finally, every quarter, review dormant contacts in the CRM for a check-in."
    ],
-   "ask": "Think of the best client relationship you've seen. How did that first contact actually happen?",
-   "scenario": "Elias meets six people at a cybersecurity conference and hands you their business cards on Monday. Two mentioned a data breach last year. What do you log for each, and what do you check with Elias before anyone follows up?"
+   "jargon": [
+    {
+     "term": "Referral partner",
+     "hint": "someone, like an accountant, who regularly sends clients our way"
+    },
+    {
+     "term": "Bar rules",
+     "hint": "the professional conduct rules lawyers must follow"
+    },
+    {
+     "term": "Dormant contact",
+     "hint": "someone we haven't been in touch with for a long time"
+    },
+    {
+     "term": "Business registry",
+     "hint": "the official public record of registered companies"
+    }
+   ],
+   "story": "A real pattern from the field: after a conference, an eager assistant emailed everyone whose card she'd been given, including two people who had mentioned a data breach at their company. Her email offered help 'with your breach.' One of them complained that a private conversation had been turned into a sales pitch. The attorney had to apologise. A quick check with him first, and a general follow-up instead, would have kept both contacts warm.",
+   "ask": "[Name], think of the best client relationship you've seen. How did that first contact actually happen? [Name], Elias hands you six conference cards on Monday. What do you log for each?"
   },
   "p2": {
    "why": "Manual leads are only valuable if the firm knows where they came from and reaches out the right way.",
-   "talk": "Write down the source of every lead, whether it's a referral from a named person, an event or a directory, so the firm learns which methods bring in clients. Ten researched leads that fit beat a hundred names copied from a list. Two traps: contacting someone because their name is public in a legal matter, like an accident report or a lawsuit, which can be prohibited solicitation, and collecting cards at an event but logging them a week later, when nobody remembers the conversation.",
+   "talk": "Write down the source of every lead, whether it's a referral from a named person, an event or a directory, so the firm learns which methods bring in clients. Ten researched leads that fit beat a hundred names copied from a list. Watch for two traps. One is contacting someone because their name is public in a legal matter, like an accident report or a lawsuit, which can be prohibited solicitation. The other is collecting cards at an event but logging them a week later, when nobody remembers the conversation.",
    "walk": [
     "First, record the source of every lead.",
     "Next, choose a few leads that fit over a long list.",
     "Then, never approach someone about their own legal problem without the attorney.",
     "Finally, log event contacts the same day."
    ],
-   "ask": "Why would a name in a court filing be a risky lead, even though it's public?",
-   "scenario": "Thorne & Partners is launching a Data Privacy & Cybersecurity practice. Elias asks you to find 20 companies worth approaching by Friday, using only manual methods. Where do you start, what do you record for each, and what needs his approval first?"
+   "contrast": {
+    "lazy": "Copies 100 company names from a directory into a spreadsheet with no source, no date and no reason they fit.",
+    "excellent": "Lists 10 companies, each with 'Source: state registry, checked 3 June; fits because: 200+ staff, handles customer data,' and flags any that need Elias's approval before contact."
+   },
+   "outcome": "Prohibited solicitation isn't a style problem; it can lead to a bar complaint against the attorney. Sloppy logging loses the best leads the firm will ever get. Done properly, manual leads turn into clients who already trust the firm, and those are the relationships that last for years.",
+   "ask": "[Name], why would a name in a court filing be a risky lead, even though it's public? [Name], what would you do if Elias's colleague asked you to email that person anyway?",
+   "mystery": "The case of the new practice. Thorne & Partners is launching a Data Privacy & Cybersecurity practice, and Elias wants 20 companies worth approaching by Friday, using only manual methods. In teams of three, five minutes: decide where you start, list what you record for each company, and circle anything that needs Elias's approval first. Bring back your plan on one page."
   }
  },
  "4::Automated Lead Generation Tools & Workflows": {
   "p1": {
+   "icebreaker": "Game: 'Robot or human?' I'll name a job. Do a robot arm if a tool should do it, put your hand on your heart if a person must. Capturing a web form into the CRM. Spotting a prospect's job change. Deciding whether to email a prospect. Filling in company size. Approving the first message.",
+   "teaser": "Most robot arms went up fast. But there's one word in this slide that tells you where the robot has to stop, every time. Listen for it.",
    "why": "Tools can catch leads around the clock, but only if someone designs where those leads go.",
-   "talk": "Automated lead generation is software doing the finding and capturing for us. A form on the website or a webinar page creates a record in the CRM. A saved search in LinkedIn Sales Navigator tells us when a prospect changes jobs. A news alert flags a company that just expanded or a new privacy law that affects an industry. Enrichment tools fill in company size and role, and tools like Zapier or Make pass the lead from one system to the next. What automation doesn't do is decide: every lead still gets verified, and nothing goes to a prospect until a person approves it.",
+   "talk": "Automated lead generation is software doing the finding and capturing for us. A form on the website or a webinar page creates a record in the CRM. A saved search in LinkedIn Sales Navigator tells us when a prospect changes jobs. A news alert flags a company that just expanded, or a new privacy law that affects an industry. Enrichment tools fill in company size and role, and tools like Zapier or Make pass the lead from one system to the next. The word is 'decide.' Automation doesn't decide: every lead still gets verified, and nothing goes to a prospect until a person approves it.",
    "walk": [
     "First, map the flow on paper: where the lead comes from, what's recorded, who's told, and what happens next.",
     "Next, send every form and alert into the CRM, with the source filled in automatically.",
-    "Then set duplicate checks on email and company name.",
+    "Then, set duplicate checks on email and company name.",
     "After that, make each new lead create a task for a person to verify it, not an automatic email to the prospect.",
     "Finally, review what the automation caught every week for the first month."
    ],
-   "ask": "Where in our own work would an alert or a form save the most time?",
-   "scenario": "Elias wants to know whenever a company in the firm's target list announces a data breach or a new privacy officer. What would you set up, where would the alerts go, and who acts on them?"
+   "jargon": [
+    {
+     "term": "LinkedIn Sales Navigator",
+     "hint": "a paid LinkedIn tool for finding and tracking prospects"
+    },
+    {
+     "term": "Enrichment tool",
+     "hint": "software that adds missing details, like company size, to a record"
+    },
+    {
+     "term": "Zapier / Make",
+     "hint": "tools that pass information automatically between apps"
+    },
+    {
+     "term": "Workflow",
+     "hint": "the set route a lead follows from one step to the next"
+    }
+   ],
+   "story": "This happens in real offices: a firm connected its webinar form straight to a welcome email sequence, with no person in between. A journalist signed up, got three sales emails in a week, and quoted one in a piece about pushy law firm marketing. Nobody had looked at the sign-ups. One verification task before any email went out would have caught it on day one.",
+   "ask": "[Name], where in our own work would an alert or a form save the most time? [Name], Elias wants to hear whenever a target company announces a data breach. Where should that alert go, and who acts on it?"
   },
   "p2": {
    "why": "Automation multiplies mistakes as fast as it multiplies leads, so it needs a person, an owner and the rules in place.",
-   "talk": "Keep a person in the loop: the tool captures and routes leads, and a person verifies them and approves any outreach. Never load a bought list into an email sequence; those lists are full of old and wrong contacts, and the spam complaints damage every email the firm sends after. Know the rules automation can break: commercial email needs a working opt-out and the firm's address, automated calls and texts to mobile phones generally need prior consent, and contacts in the EU or UK come with data-protection rules. And give every automation an owner who checks it still works.",
+   "talk": "Keep a person in the loop: the tool captures and routes leads, and a person verifies them and approves any outreach. Never load a bought list into an email sequence. Those lists are full of old and wrong contacts, and the spam complaints damage every email the firm sends after. Know the rules automation can break: commercial email needs a working opt-out and the firm's address, automated calls and texts to mobile phones generally need prior consent, and contacts in the EU or UK come with data-protection rules. And give every automation an owner who checks it still works.",
    "walk": [
-    "First, a person between the tool and the prospect.",
-    "Next, no bought lists in automated sequences.",
-    "Then, opt-outs, consent and data-protection rules respected, with the attorney approving outreach.",
-    "Finally, one named owner for each automation."
+    "First, put a person between the tool and the prospect.",
+    "Next, keep bought lists out of automated sequences.",
+    "Then, respect opt-outs, consent and data-protection rules, with the attorney approving outreach.",
+    "Finally, name one owner for each automation."
    ],
-   "ask": "What could go wrong if an automated email went to every new webinar sign-up without a check?",
-   "scenario": "The webinar registration form now creates 40 new CRM records a week, and the partners complain that most are students and vendors. Without turning the form off, how would you change the workflow so only real leads reach the partners?"
+   "contrast": {
+    "lazy": "Plugs the form into an auto-email sequence, uploads a bought list 'to fill the pipeline,' and never looks at it again.",
+    "excellent": "Routes each new record to a 'Verify lead' task with an owner, blocks bought lists from sequences, checks every message has an opt-out and the firm's address, and reviews the results every Friday."
+   },
+   "outcome": "An unchecked automation can send hundreds of non-compliant messages before anyone notices: spam complaints, regulator attention and a damaged email reputation for the whole firm. With a person and an owner in place, the same tools give partners a steady flow of real, verified leads.",
+   "ask": "[Name], what could go wrong if an automated email went to every new webinar sign-up without a check? [Name], which rule on this slide would you check first?",
+   "mystery": "The case of the noisy webinar form. The registration form now creates 40 new CRM records a week, and the partners complain most are students and vendors. You can't turn the form off. In pairs, four minutes: find the clues that separate a real lead from noise, redesign the workflow on paper, and show me exactly where the person in the loop sits."
   }
  },
  "4::Verifying a Working Lead": {
   "p1": {
+   "icebreaker": "Game: 'Real or fake?' I'll read three leads. Shout 'Real!' or 'Fake!' One: 'Priya Shah, HR Director, priya.shah@harlowindustries.com.' Two: 'J. Smith, CEO, smith.j1987@freemail.com, Global Solutions.' Three: 'Office Manager, info@meridian.co, no name.' Interesting. The room wasn't sure about number three.",
+   "teaser": "Number three is real but still might not be workable. There's a difference between 'real' and 'workable,' and missing it is how firms end up emailing the other side of a case. Let's see the four tests.",
    "why": "A name on a list isn't a lead until you know it's real, reachable and allowed.",
    "talk": "A working lead passes four tests: it's a real person, in the role we think, at a business that's still active and fits what the firm does, and the firm is allowed to contact them. We check before any outreach and before we count the lead in a report. It takes a few minutes, and it protects the firm's credibility, its email reputation and its conflict checks. Sourcing finds the lead, verification proves it, and qualifying decides if it's worth the time.",
    "walk": [
-    "First, the person: are they real and still in that role? Check the company's site or a recent LinkedIn profile.",
-    "Next, the company: is it active in the state registry, with a live website, and does it fit?",
-    "Then the contact details: the company's own email domain, spelled right, verified if we have a tool, and a phone number that reaches them.",
-    "After that, clearance: no duplicate in the CRM, not on a do-not-contact list, and a conflict check requested.",
+    "First, check the person: are they real and still in that role? Look at the company's site or a recent LinkedIn profile.",
+    "Next, check the company: is it active in the state registry, with a live website, and does it fit?",
+    "Then, check the contact details: the company's own email domain, spelled right, verified if we have a tool, and a phone number that reaches them.",
+    "After that, check clearance: no duplicate in the CRM, not on a do-not-contact list, and a conflict check requested.",
     "Finally, record the result: Verified, Needs check or Not workable, with the reason and the date."
    ],
-   "ask": "Which of these five checks do you think gets skipped most often, and what happens when it does?",
-   "scenario": "A web form lead arrives: 'J. Smith, CEO, smith.j1987@freemail.com, company: Global Solutions'. There's no website for the company and no matching LinkedIn profile. Do you mark it Verified, Needs check or Not workable, and why?"
+   "jargon": [
+    {
+     "term": "Conflict check",
+     "hint": "making sure the firm doesn't already act against this person or company"
+    },
+    {
+     "term": "Do-not-contact list",
+     "hint": "people who've asked not to hear from us, or must not be approached"
+    },
+    {
+     "term": "State registry",
+     "hint": "the official record showing whether a company is still active"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant built a prospect list and sent a friendly introduction to a company's general counsel. Nobody had run a conflict check. The firm was acting for a client in a dispute against that same company. The other side's lawyer mentioned the email in a letter, and the partner had to explain it to his own client. A conflict check before outreach is a two-minute request.",
+   "ask": "[Name], which of these five checks gets skipped most often? [Name], what happens when it does?"
   },
   "p2": {
    "why": "The warning signs are easy to spot once you know them, and acting on them early saves the firm's reputation.",
@@ -1386,14 +1591,21 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, only count verified leads.",
     "Finally, treat a bounce as a result and fix it at once."
    ],
-   "ask": "Why does one bounced email matter to the firm's future emails?",
-   "scenario": "Your list has 'Dana Reyes, Chief Privacy Officer, Brightline Logistics, dana.reyes@brightline-logistcs.com'. LinkedIn shows Dana left Brightline in March, and the state registry shows Brightline merged into another company. What do you record, and is there still a lead here?"
+   "contrast": {
+    "lazy": "Counts every form entry as a lead in the weekly report and leaves bounced addresses on the list 'in case they work next time.'",
+    "excellent": "Marks the J. Smith entry 'Not workable: free email, no company website, no LinkedIn match, 12 May,' removes bounced addresses the same day, and only reports verified leads."
+   },
+   "outcome": "Each bounce and spam complaint lowers the firm's email reputation, so real clients start missing real emails. A skipped conflict check can embarrass the firm in front of its own client and, at worst, threaten its ability to act. Clean verification keeps the reports honest and the firm safe.",
+   "ask": "[Name], why does one bounced email matter to the firm's future emails? [Name], what would you record in the CRM when it happens?",
+   "mystery": "The case of the vanished privacy officer. Your list has 'Dana Reyes, Chief Privacy Officer, Brightline Logistics, dana.reyes@brightline-logistcs.com.' LinkedIn shows Dana left Brightline in March, and the state registry shows Brightline merged into another company. In pairs, three minutes: find every clue that's wrong with this record (there are at least three), decide what you record, and tell me whether there's still a lead hiding here."
   }
  },
  "4::Lead Quality, Qualifying & Tracking": {
   "p1": {
+   "icebreaker": "Game: 'Count the yeses.' Hold up fingers: how many times this year have you recommended a business to a friend? Now, keep them up if that business actually asked you to. Most hands are down, aren't they?",
+   "teaser": "That gap between the fingers you held up and the fingers left standing is worth a lot of money to a firm. And there's one stage on this slide that decides whether those referrals are ever seen again.",
    "why": "Referrals are the best leads you'll get, so ask for them instead of waiting.",
-   "talk": "A referral arrives with trust already built in, because someone the prospect respects vouched for the firm. A cold list never has that. Firms that ask happy clients for introductions get far more of them than firms that hope.",
+   "talk": "A referral arrives with trust already built in, because someone the prospect respects vouched for the firm. A cold list never has that. Firms that ask happy clients for introductions get far more of them than firms that hope. The stage that decides whether they're ever seen again is the follow-up.",
    "walk": [
     "First, actively ask satisfied clients for introductions.",
     "Next, qualify every lead early: fit, need, authority and timeline.",
@@ -1401,33 +1613,64 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, follow through. The difference between good and bad lead generation is almost always the follow-up, not the first contact.",
     "Finally, feed every qualified lead into the contact list, so it doesn't disappear."
    ],
-   "ask": "How often do you actually ask happy clients for referrals?",
-   "scenario": "A client just told Elias how pleased she is with the firm's work. How would you turn that into a referral, and what would you log afterwards?"
+   "jargon": [
+    {
+     "term": "Referral",
+     "hint": "a new contact introduced by someone who already trusts the firm"
+    },
+    {
+     "term": "Authority",
+     "hint": "whether this person can actually say yes to hiring the firm"
+    }
+   ],
+   "story": "A common pattern from the field: a delighted client told a partner, at the end of a meeting, that her brother-in-law 'really needs someone like you.' The partner said 'Wonderful, have him call me,' and nobody wrote it down. Three months later the brother-in-law hired another firm. A one-line note and a task, 'Ask client for intro email to brother-in-law,' would have turned the compliment into a client.",
+   "ask": "[Name], how often do you actually ask happy clients for referrals? [Name], a client just told Elias how pleased she is. What would you suggest he says, and what do you log?"
   },
   "p2": {
    "why": "A lead nobody wrote down doesn't exist.",
    "talk": "Two things matter here. The first is spending our effort where it counts: qualifying early means we don't spend hours on people who were never going to become clients. The second is never losing a good lead. Finding people and keeping track of them go hand in hand, and the follow-through matters as much as the first hello.",
    "walk": [
-    "First, qualifying early stops you spending hours on people who were never going to become clients.",
-    "Next, lead generation and the contact list work together: one finds people, the other keeps them.",
+    "First, qualify early, so you don't spend hours on people who were never going to become clients.",
+    "Next, let lead generation and the contact list work together: one finds people, the other keeps them.",
     "Finally, think about the follow-through, not just the first hello."
    ],
-   "ask": "Share one business that followed up on a lead really well, and one that let a promising contact go cold. What exactly was different?",
-   "scenario": "You spent two hours preparing a proposal for a prospect, then learned they have no budget until next year and aren't the decision-maker. What should you have checked first?"
+   "contrast": {
+    "lazy": "Spends an afternoon on a polished proposal for anyone who sounds interested, and keeps lead notes on sticky notes.",
+    "excellent": "Asks four quick questions first, on fit, need, authority and timeline, logs the answers in the CRM, and only then decides whether a proposal is worth the time."
+   },
+   "outcome": "Hours spent on leads that were never going to buy are hours taken from real clients and real deadlines. And the lost referral is worse: it's often the best client the firm never had. Qualifying and tracking keep the firm's effort on the work that actually pays.",
+   "ask": "[Name], share one business that followed up on a lead really well. [Name], now one that let a promising contact go cold. What exactly was different?",
+   "mystery": "The case of the wasted proposal. You spent two hours preparing a proposal for a prospect, then learned they have no budget until next year and aren't the decision-maker. In pairs, three minutes: find the two questions that would have saved you, write them as you'd ask them, and decide what you log now so this lead isn't lost for next year."
   }
  },
  "4::Appointment Setting (BANT/MEDDPICC)": {
   "p1": {
+   "icebreaker": "Game: 'Guess the letters.' BANT has four letters. Each stands for a question you'd want answered before booking a sales meeting. Shout your guesses. B? A? N? T? Let's see how many you got.",
+   "teaser": "You probably got at least two. But BANT has a much bigger cousin with eight letters, and one of its letters asks a question most assistants never think to ask. Keep an eye out for it.",
    "why": "Check that a meeting is worth having before you put it on the executive's calendar.",
-   "talk": "Appointment setting isn't about filling slots; it's about productive conversations. Two frameworks help you check a prospect first. BANT is quick: budget, authority, need and timeline. MEDDPICC is the thorough version for bigger, more complex deals, covering things like who really pays, how they decide and who the competition is.",
+   "talk": "Appointment setting isn't about filling slots; it's about productive conversations. Two frameworks help you check a prospect first. BANT is quick: budget, authority, need and timeline. MEDDPICC is the thorough version for bigger, more complex deals, covering things like who really pays, how they decide and who the competition is. That last one, the competition, is the question most of us forget.",
    "walk": [
     "First, use BANT as a quick check. If two or more of the four are clearly missing, the meeting probably isn't ready.",
     "Next, use MEDDPICC for bigger, more complicated opportunities.",
     "Then, only book people who are genuinely interested, and let them pick a time with a booking tool.",
     "Finally, confirm the agenda, length and attendees, and send a reminder a day or two before."
    ],
-   "ask": "When would you use the quick framework, and when the thorough one?",
-   "scenario": "A small-business owner replies to outreach asking to 'chat sometime.' Run a quick BANT check. What would you ask before putting her on Elias's calendar?"
+   "jargon": [
+    {
+     "term": "BANT",
+     "hint": "budget, authority, need, timeline: a quick check on a prospect"
+    },
+    {
+     "term": "MEDDPICC",
+     "hint": "a longer checklist for big deals, including who pays and how they decide"
+    },
+    {
+     "term": "Booking tool",
+     "hint": "a link that lets people pick a free slot in the calendar themselves"
+    }
+   ],
+   "story": "This happens in real offices: an assistant booked an hour with Elias for a business owner who wanted to 'chat sometime.' It turned out she had no budget, wasn't the decision-maker and needed help next year, maybe. The hour came out of a day with a filing deadline. Two quick BANT questions in the reply email would have turned it into a 15-minute call booked for the right month.",
+   "ask": "[Name], when would you use the quick framework, and when the thorough one? [Name], a small-business owner replies asking to 'chat sometime.' What BANT question do you ask first?"
   },
   "p2": {
    "why": "A fast yes isn't the same as a good fit.",
@@ -1438,22 +1681,39 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, never overpromise what a meeting will cover just to get it booked.",
     "Finally, remind people close to the date, not only when you book. No-shows are the most avoidable failure."
    ],
-   "ask": "A prospect replies eagerly and wants a call right away, but you don't know if they have the budget or authority. Do you book it, check first or something in between? Tell us what you'd write back.",
-   "scenario": "Three of Elias's last five sales meetings were no-shows. You booked them all with a single email and no reminder. What would you change?"
+   "contrast": {
+    "lazy": "'Great, how about Thursday at 2?' One email, no agenda, no reminder. Elias waits in an empty video call.",
+    "excellent": "'Thanks, happy to set this up. So I can match you with the right person: is this for this quarter, and will anyone else be involved in the decision?' Then a booking link, a confirmed agenda and a reminder the day before."
+   },
+   "outcome": "Every wasted meeting is an hour Elias didn't spend on a client's case or a deadline. Qualified, confirmed meetings mean he walks into rooms where a yes is possible, and the firm's new work comes from good-fit clients rather than whoever replied first.",
+   "ask": "[Name], a prospect replies eagerly and wants a call right away, but you don't know if they have the budget or authority. Book it, check first or something in between? [Name], tell us what you'd write back.",
+   "mystery": "The case of the empty chairs. Three of Elias's last five sales meetings were no-shows. You booked them all with a single email and no reminder. In teams, four minutes: find the three points where each booking could have been saved, design the new booking routine, and write the reminder message. Bring back the routine and the reminder."
   }
  },
  "4::Cold Outbound Execution": {
   "p1": {
+   "icebreaker": "Game: 'Which ask wins?' I'll read two endings to an email. Left hand up for the first, right hand up for the second. One: 'Let's connect sometime.' Two: 'Could we have 15 minutes next Tuesday?' Now, quick: why did almost every right hand go up?",
+   "teaser": "You chose right, and you felt the reason before you could explain it. By the end of this slide you'll be able to say why, and you'll see the step most people forget after they hit send.",
    "why": "A specific opening, a small ask and a logged result: that's cold outreach done well.",
-   "talk": "This is the moment all the research and mindset turn into an actual message or call. It's where the work either pays off or gets deleted. Quality matters more than quantity: one strong, relevant message beats ten generic ones.",
+   "talk": "This is the moment all the research and mindset turn into an actual message or call. It's where the work either pays off or gets deleted. Quality matters more than quantity: one strong, relevant message beats ten generic ones. A small, concrete ask is easy to say yes to. And the step people forget is tracking the attempt, so the follow-up doesn't depend on memory.",
    "walk": [
     "First, open with something real about the person, so it doesn't feel mass-produced.",
     "Next, keep the ask small and concrete. Fifteen minutes next Tuesday gets more yeses than 'let's connect sometime.'",
     "Then, use your tools to track every attempt, so follow-up doesn't rely on memory.",
     "Finally, prepare for the conversation, not just the first line. Think about the likely objections."
    ],
-   "ask": "Why does 'fifteen minutes next Tuesday' work better than 'let's connect'?",
-   "scenario": "Write the first two lines of a cold email to the COO of a company that just opened a second factory, asking for a 15-minute call about workplace compliance. Make it specific to them."
+   "jargon": [
+    {
+     "term": "Cold outbound",
+     "hint": "messages or calls we start, to people who haven't contacted us"
+    },
+    {
+     "term": "Objection",
+     "hint": "a reason the person gives for saying no or not yet"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant's cold email got a quick reply, 'Sure, happy to talk.' She was so pleased she forgot to log it, and the reply sat under a pile of other emails. When she found it two weeks later and wrote back, the prospect had already spoken to another firm. Logging the reply and booking the call the same day was all it needed.",
+   "ask": "[Name], why does 'fifteen minutes next Tuesday' work better than 'let's connect'? [Name], give me the first line of a cold email to the COO of a company that just opened a second factory."
   },
   "p2": {
    "why": "A script is a starting point, not a performance.",
@@ -1464,12 +1724,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, handle objections gracefully. Offer to follow up rather than argue.",
     "Finally, log each attempt right away, while you still remember the details."
    ],
-   "ask": "On a cold call, the prospect says 'I'm not interested' right after your first sentence. Do you push on, ask a question or end politely? What would you want to know to decide?",
-   "scenario": "On a call, a prospect interrupts your script to ask about a specific problem with a contractor. Do you go back to the script or follow the conversation? What do you log afterwards?"
+   "contrast": {
+    "lazy": "'That's interesting, but let me just tell you about our services first...' and carries on with the script.",
+    "excellent": "'Tell me more about the contractor issue. When did it start?' Listens, offers a short call with Elias on that exact problem, and logs 'Contractor dispute, payment terms, wants call this week' straight after."
+   },
+   "outcome": "A prospect who feels unheard doesn't come back. One who feels listened to tells you exactly what the firm can help with, and that detail becomes the meeting, the engagement and, often, a well-prepared case from day one.",
+   "ask": "[Name], the prospect says 'I'm not interested' right after your first sentence. Push on, ask a question or end politely? [Name], what would you want to know to decide?",
+   "mystery": "The case of the contractor interruption. On a call, a prospect interrupts your script to ask about a specific problem with a contractor. In pairs, three minutes: decide whether you go back to the script or follow the conversation, write the next two questions you'd ask, and write the exact CRM note you'd log afterwards."
   }
  },
  "4::Handling Sales Objections Beyond the Script": {
   "p1": {
+   "icebreaker": "Game: 'What do they really mean?' I'll say an objection; shout what's really behind it. 'This isn't a good time.' 'Send me some information.' 'We're fine for now.' 'I'll have to think about it.' Great, I heard about five different answers for each one.",
+   "teaser": "That's exactly the point. The same sentence can hide three completely different problems, and if you answer the wrong one, you lose the person. Let's name the three.",
    "why": "Understand what an objection really means before you answer it.",
    "talk": "Scripts only work when the objection matches the script, and real conversations rarely do. Most objections are one of three things in disguise: they don't know enough, they don't trust us yet, or the timing is wrong. Each needs a different response. And pushing past a genuine no ruins the chance of a future yes.",
    "walk": [
@@ -1477,32 +1744,59 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, acknowledge the concern specifically before you address it, so they know you listened.",
     "Finally, if the issue is timing, agree a specific date to follow up."
    ],
-   "ask": "Which of those three do you think is behind most objections you've heard?",
-   "scenario": "A prospect says, 'This isn't a good time.' Ask one clarifying question to find out what's really behind it, then say how your next step changes depending on the answer."
+   "jargon": [
+    {
+     "term": "Clarifying question",
+     "hint": "a short question that checks what the person really means"
+    }
+   ],
+   "story": "This happens in real offices: a prospect told an assistant, 'Now's not a good time.' She took it as a polite no and closed the record. A year later the same company hired the firm, and the managing director mentioned that, back then, they'd been in the middle of an office move and would have been glad of a call in a month. One question, 'Is it timing, or is it something else?', would have saved a year.",
+   "ask": "[Name], which of the three do you think is behind most objections you've heard? [Name], a prospect says 'This isn't a good time.' What one question do you ask?"
   },
   "p2": {
    "why": "Correct the facts if you need to, but never argue with someone's right to their concern.",
    "talk": "Not every objection is something to overcome. Sometimes the person is simply right: they don't need us, or now isn't the time. Accepting that gracefully keeps the door open for later. We might correct a fact if they've misunderstood something, but we never argue with their right to be concerned. And we note their exact words, because they tell us how to improve our message.",
    "walk": [
-    "First, not every objection needs to be overcome. Some are accurate.",
+    "First, accept that not every objection needs to be overcome. Some are accurate.",
     "Next, never argue with a stated concern.",
     "Finally, record the prospect's exact words in the CRM. They help improve future messages."
    ],
-   "ask": "A prospect says, 'We already have a vendor for this.' That could mean they're happy, locked into a contract or just ending the call politely. What's your next question, and how does the answer change your approach?",
-   "scenario": "A prospect says, 'Your firm is too expensive for us.' It's true: the firm isn't a budget option. How do you respond honestly without arguing?"
+   "contrast": {
+    "lazy": "'Oh, I think you'll find we're very competitive actually.' Argues, then logs 'Not interested.'",
+    "excellent": "'That's fair, we're not the cheapest option. Where we tend to help is on matters where getting it wrong costs more than the fee. Would it help if I checked back in when that kind of issue comes up?' Then logs the exact words: 'Too expensive for us.'"
+   },
+   "outcome": "Arguing with a prospect turns a 'not now' into a 'never.' An honest, gracious answer keeps the firm in mind for the day a real problem lands, often a dispute where the stakes justify the fee and where having trusted counsel early changes the result.",
+   "ask": "[Name], a prospect says 'We already have a vendor for this.' That could mean they're happy, locked into a contract or ending the call politely. What's your next question? [Name], how does the answer change your approach?",
+   "mystery": "The case of the honest price tag. A prospect says, 'Your firm is too expensive for us.' It's true: the firm isn't a budget option. In pairs, three minutes: work out which of the three hidden problems this might be, write an honest reply that doesn't argue, and write the exact note you'd put in the CRM. Best reply gets read out."
   }
  },
  "4::Pipeline Reporting & Forecasting Basics": {
   "p1": {
+   "icebreaker": "Game: 'Higher or lower?' The pipeline holds $400,000 of deals. I'll suggest a number Elias should expect this quarter; point up if you think the real answer is higher, down if lower. $400,000? $300,000? $150,000? Notice how fast the room started pointing down.",
+   "teaser": "You sensed $400,000 was wrong before you knew why. One stage on this slide explains the gap, and it's the one most reports quietly inflate.",
    "why": "A forecast is only as honest as the deal stages behind it.",
-   "talk": "Forecasting isn't guessing the future. It's putting an honest probability on what's in the pipeline today. If deals sit in the wrong stages, the forecast will be wrong, and usually too optimistic. A weekly review catches that drift.",
+   "talk": "Forecasting isn't guessing the future. It's putting an honest probability on what's in the pipeline today. If deals sit in the wrong stages, the forecast will be wrong, and usually too optimistic. The stage that inflates reports is the early one: a first meeting is worth far less than a signature. A weekly review catches that drift.",
    "walk": [
     "First, give each stage a realistic chance of closing, based on what has actually happened before.",
     "Next, report 'committed' and 'best case' separately, so nobody gets a nasty surprise.",
     "Finally, flag any deal that has sat in one stage far longer than normal."
    ],
-   "ask": "Why is the total value of all open deals a misleading number?",
-   "scenario": "The pipeline has $400,000 of deals: $50,000 signed, $150,000 in late-stage negotiation and $200,000 at first-meeting stage. Elias asks what to expect this quarter. What numbers do you report, and how?"
+   "jargon": [
+    {
+     "term": "Pipeline",
+     "hint": "all the deals currently being worked on"
+    },
+    {
+     "term": "Forecast",
+     "hint": "an honest estimate of what will actually close in a period"
+    },
+    {
+     "term": "Committed vs. best case",
+     "hint": "what we're confident of vs. what might happen if things go well"
+    }
+   ],
+   "story": "A common pattern in real offices: an assistant reported the 'pipeline total' as the quarter's expected revenue, every week, because that's what the report showed by default. The partners planned a new hire around it. Most of that total was first meetings, and the quarter came in at less than half. Nobody was blamed, but the hire was delayed and the next forecast was read with suspicion. Splitting committed from best case would have told the truth from the start.",
+   "ask": "[Name], why is the total value of all open deals a misleading number? [Name], with $50,000 signed, $150,000 in late negotiation and $200,000 at first meeting, what would you tell Elias to expect?"
   },
   "p2": {
    "why": "Committed and best case are two different numbers, so report both.",
@@ -1512,120 +1806,229 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, if one big deal dominates, say how risky it is.",
     "Finally, report the same way, on the same day, every week, so trends mean something."
    ],
-   "ask": "Elias asks for a realistic revenue forecast for the quarter. Two early-stage deals make up 60 percent of the raw total. How do you present the number so it's useful, not misleading?",
-   "scenario": "One $250,000 deal makes up most of the quarter's forecast, and the client hasn't replied in three weeks. How do you show that risk in your weekly report?"
+   "contrast": {
+    "lazy": "'Pipeline this quarter: $400,000.' One number, no breakdown, a different format each week.",
+    "excellent": "'Committed: $50,000 signed. Best case: up to $170,000 more if the two late-stage deals close. Early stage: $200,000, unlikely this quarter. Risk: one deal is most of the late-stage value.' Same layout, every Monday."
+   },
+   "outcome": "Partners make real decisions from these numbers: hiring, taking on cases, how hard to push a negotiation. An inflated forecast can lead the firm to over-commit, or to accept a weak deal in a hurry when the expected money doesn't arrive. Honest numbers protect both the firm and its bargaining position.",
+   "ask": "[Name], two early-stage deals make up 60 percent of the raw total. How do you present the number so it's useful, not misleading? [Name], what's the one sentence of warning you'd add?",
+   "mystery": "The case of the silent big deal. One $250,000 deal makes up most of the quarter's forecast, and the client hasn't replied in three weeks. In pairs, three minutes: list the clues that this deal is at risk, decide which number it belongs in, and write the two lines that show the risk in your weekly report. Bring back the two lines."
   }
  },
  "4::Email Marketing vs. Cold Outreach": {
   "p1": {
+   "icebreaker": "Game: 'Stand for marketing, sit for outreach.' A monthly newsletter to existing clients. A personal note to a CFO you've never met. An invite to past webinar guests. An email to someone whose card Elias got yesterday. Ready, go. Careful with the last one.",
+   "teaser": "The last one split the room, and that's the most common mistake in this whole area. One simple question settles it every time. Let's find it.",
    "why": "Did they ask to hear from us? That one question tells you whether it's marketing or outreach.",
-   "talk": "Email marketing is one message to many people who already know the firm: clients, referral partners, subscribers. Cold outreach is one-to-one, to people who don't know the firm yet. They follow different rules, and mixing them up is the most common mistake: newsletters blasted at strangers, or personal notes sent to thousands.",
+   "talk": "Email marketing is one message to many people who already know the firm: clients, referral partners, subscribers. Cold outreach is one-to-one, to people who don't know the firm yet. They follow different rules, and mixing them up is the most common mistake: newsletters blasted at strangers, or personal notes sent to thousands. A business card isn't a sign-up, so that last one is outreach.",
    "walk": [
     "First, before any send, ask: are these people who asked to hear from us, or people we're introducing ourselves to?",
     "Next, send marketing through the email platform, and outreach from the attorney's own mailbox in small batches.",
     "Then, keep the two lists separate, and note how each person joined.",
     "Finally, get the attorney to approve every template and script, because law firm emails can count as advertising."
    ],
-   "ask": "Is a follow-up after a webinar marketing or outreach?",
-   "scenario": "Elias wants to email 60 people he met at a legal conference last week. Some gave cards, some signed up for updates. Which of them get the newsletter, which get a personal note, and why?"
+   "jargon": [
+    {
+     "term": "Email marketing",
+     "hint": "one message sent to many people who already know the firm"
+    },
+    {
+     "term": "Cold outreach",
+     "hint": "personal messages to people who don't know the firm yet"
+    },
+    {
+     "term": "Email platform",
+     "hint": "software built for sending bulk email, like a newsletter tool"
+    },
+    {
+     "term": "Attorney advertising",
+     "hint": "the rules on how lawyers may promote their services"
+    }
+   ],
+   "story": "This happens in real offices: after a conference, an assistant added every name from the attendee list to the firm's newsletter. Several people unsubscribed and two replied asking how the firm got their address. One was a general counsel the partner had been hoping to win as a client. A short personal note, asking if she'd like updates, would have started that relationship instead of souring it.",
+   "ask": "[Name], is a follow-up after a webinar marketing or outreach? [Name], Elias met 60 people at a conference; some gave cards, some signed up for updates. Who gets what?"
   },
   "p2": {
    "why": "Never send a bulk email from the attorney's own mailbox.",
    "talk": "A few practical rules keep the firm out of trouble. People we met at an event didn't sign up for a newsletter, so we ask before adding them. Bulk emails never go from an attorney's own mailbox, because it damages that mailbox's reputation and starts to look like spam. And when someone replies to a marketing email, a real person answers them.",
    "walk": [
     "First, don't add event contacts or business cards to the newsletter without telling them what they'll receive.",
-    "Next, bulk mail from a personal mailbox damages its reputation and looks like spam.",
+    "Next, remember that bulk mail from a personal mailbox damages its reputation and looks like spam.",
     "Finally, when someone replies to a marketing email, answer them personally."
    ],
-   "ask": "Elias hands you 400 business cards from a conference and says, 'Send everyone our newsletter.' What do you do instead, and what do you say to him?",
-   "scenario": "A partner sends the firm's newsletter to 900 contacts from his own Outlook. The next day, his normal client emails start bouncing. What went wrong, and how do you fix it going forward?"
+   "contrast": {
+    "lazy": "Uploads all 400 business cards into the newsletter and hits send from Elias's Outlook.",
+    "excellent": "Sends a short personal note from Elias in small batches: 'Good to meet you at the conference. We send a monthly update on employment law; would you like to receive it?' Only those who say yes go on the list."
+   },
+   "outcome": "When an attorney's mailbox gets marked as spam, his ordinary emails to clients, the court and opposing counsel can stop arriving. A missed email in a live case can mean a missed deadline or a missed settlement offer. Keeping the two channels separate protects the emails that matter most.",
+   "ask": "[Name], Elias hands you 400 business cards and says, 'Send everyone our newsletter.' What do you do instead? [Name], what do you actually say to him?",
+   "mystery": "The case of the bouncing partner. A partner sends the firm's newsletter to 900 contacts from his own Outlook. The next day, his normal client emails start bouncing. In teams, three minutes: find the two mistakes that caused it, list who you'd involve to fix it, and write the rule you'd suggest so it never happens again."
   }
  },
  "4::Outreach Compliance Basics": {
   "p1": {
+   "icebreaker": "Game: 'Allowed or check first?' Green hand, palm up, if it's allowed; red hand, palm out, if you'd check first. An email with an unsubscribe link to a past client. A text message to 200 prospects. A cold call to a number on a do-not-call list. An email to a list someone bought.",
+   "teaser": "Lots of green hands on the text messages. That's the one I'd worry about most. One sentence on this slide explains why.",
    "why": "Outreach is regulated, so check the rules before the campaign, not after a complaint.",
-   "talk": "Email, phone and text outreach each have their own laws, and breaking them costs the firm real money. What's fine for email isn't automatically fine for texts. And because the details change and vary by place, this is one area where you confirm with the firm's policy rather than going from memory.",
+   "talk": "Email, phone and text outreach each have their own laws, and breaking them costs the firm real money. What's fine for email isn't automatically fine for texts. That's the sentence. And because the details change and vary by place, this is one area where you confirm with the firm's policy rather than going from memory.",
    "walk": [
     "First, confirm the firm's outreach policy before any new campaign.",
     "Next, include a working unsubscribe or opt-out, and honor it immediately.",
     "Finally, keep a record of why each person on the list can be contacted."
    ],
-   "ask": "What's different about texting a prospect compared with emailing them?",
-   "scenario": "A partner wants to text 200 prospects about a new service. Before anything is sent, what do you check about the rules and the list?"
+   "jargon": [
+    {
+     "term": "Opt-out",
+     "hint": "a way for someone to say 'stop contacting me'"
+    },
+    {
+     "term": "Do-not-call list",
+     "hint": "a register of numbers that mustn't get sales calls"
+    },
+    {
+     "term": "Consent",
+     "hint": "the person's permission to be contacted that way"
+    }
+   ],
+   "story": "A real pattern from the field: a partner asked for a 'quick text' to prospects about a new service. The assistant sent it from a texting tool to a list of mobile numbers collected at events, with no record of permission. A recipient complained, and the firm spent weeks with its compliance adviser working out what it owed. The partner's comment afterwards: 'I'd have happily waited a day for someone to check.'",
+   "ask": "[Name], what's different about texting a prospect compared with emailing them? [Name], a partner wants to text 200 prospects. What do you check before anything goes out?"
   },
   "p2": {
    "why": "Asking a quick question costs far less than a violation.",
    "talk": "Where a list came from matters. A bought or scraped list isn't automatically safe to email, and there are real rules about it. When someone opts out or asks not to be called, we honour that fully and quickly, not in the narrowest possible way. And when we're unsure, we check before sending. A two-minute question costs far less than a violation.",
    "walk": [
-    "First, a bought or scraped list isn't automatically safe to email. Where it came from matters.",
+    "First, remember a bought or scraped list isn't automatically safe to email. Where it came from matters.",
     "Next, treat opt-out and do-not-call requests fully and promptly, never narrowly.",
     "Finally, when in doubt, check before you send."
    ],
-   "ask": "A colleague hands you a conference contact list with no notes on how it was collected. What do you need to know before you're comfortable sending to it?",
-   "scenario": "A prospect replied 'stop' to one email campaign. Two weeks later, they get a different campaign from the same firm. What went wrong, and what does a proper opt-out look like?"
+   "contrast": {
+    "lazy": "Removes the person from the one campaign they replied 'stop' to and leaves them on every other list.",
+    "excellent": "Adds them to the firm-wide suppression list the same day, so no campaign from any team reaches them again, and logs the date and how they asked."
+   },
+   "outcome": "Outreach violations can mean fines, regulator complaints and, for a law firm, questions about professional conduct. And a firm that can't respect a simple 'stop' is hard to trust with a client's confidential case. Getting compliance right is part of the firm's reputation for judgment.",
+   "ask": "[Name], a colleague hands you a conference contact list with no notes on how it was collected. What do you need to know before sending to it? [Name], who would you ask?",
+   "mystery": "The case of the second 'stop.' A prospect replied 'stop' to one email campaign. Two weeks later, they got a different campaign from the same firm. In pairs, three minutes: trace how it happened, find the clue in how the opt-out was handled, and describe what a proper firm-wide opt-out looks like. Bring back the fix in three steps."
   }
  },
  "4::Building & Segmenting an Email List": {
   "p1": {
+   "icebreaker": "Game: 'Sort the room.' Everyone, pick a group in your head: client, past client, referral partner or prospect. When I call your group, wave. Now imagine I'm sending you all the same email about a new estate-planning service. Who's waving back happily? Who's confused?",
+   "teaser": "One of those groups shouldn't get some emails at all, and on the next slide there's a group that must never get any marketing email. Keep guessing who.",
    "why": "A small list of people who want to hear from the firm beats a big list of people who don't.",
-   "talk": "List quality decides who opens, who replies and whether emails reach inboxes at all. Every contact should have a record of how and when they joined. And different groups need different emails: clients, past clients, referral partners and prospects rarely want the same message.",
+   "talk": "List quality decides who opens, who replies and whether emails reach inboxes at all. Every contact should have a record of how and when they joined. And different groups need different emails: clients, past clients, referral partners and prospects rarely want the same message. That's what segmenting means.",
    "walk": [
     "First, collect contacts only in legitimate ways: sign-up forms, events, client intake and people who ask.",
     "Next, tag each contact when they join: source, date, interest and relationship.",
     "Then, start with three groups: clients, referral partners and prospects. Add practice-area groups as the list grows.",
     "Finally, clean the list every quarter: remove bounces, merge duplicates and suppress anyone who unsubscribed or never opens."
    ],
-   "ask": "Which three groups would you start with?",
-   "scenario": "You're setting up the firm's first email list from scratch. Name the three starting groups, and the tags you'd record for each new contact."
+   "jargon": [
+    {
+     "term": "Segment",
+     "hint": "a group within the list that gets its own kind of email"
+    },
+    {
+     "term": "Tag",
+     "hint": "a label on a contact, like source or interest"
+    },
+    {
+     "term": "Suppress",
+     "hint": "keep a contact on file but block them from receiving emails"
+    },
+    {
+     "term": "Client intake",
+     "hint": "the process of taking on a new client"
+    }
+   ],
+   "story": "A common first-month story: an assistant built the firm's first list by exporting every contact from Outlook. It included former clients, a judge's clerk, vendors and the partner's dentist. The first newsletter went to all of them. The clerk's reply was polite but short, and the partner had to make an awkward call. Three clear groups and source tags would have kept it to the people who actually wanted it.",
+   "ask": "[Name], which three groups would you start with? [Name], what tags would you record for each new contact?"
   },
   "p2": {
    "why": "An unsubscribe always wins.",
-   "talk": "A few rules protect the firm's reputation. We never buy or scrape email lists. Once someone unsubscribes, they stay off, even if their name turns up again on a new list. And opposing parties, or anyone flagged in a conflict check, never go on a marketing list at all. One wrong email to the other side of a case can cause real trouble.",
+   "talk": "A few rules protect the firm's reputation. We never buy or scrape email lists. Once someone unsubscribes, they stay off, even if their name turns up again on a new list. And here's the group I promised: opposing parties, and anyone flagged in a conflict check, never go on a marketing list at all. One wrong email to the other side of a case can cause real trouble.",
    "walk": [
     "First, never buy or scrape an email list.",
     "Next, never re-add someone who unsubscribed, even if they appear on a new list.",
     "Finally, keep opposing parties and anyone flagged in conflict checks off every marketing list."
    ],
-   "ask": "A partner wants the next newsletter, about a new estate-planning service, sent 'to everyone': 1,800 contacts, including corporate clients and opposing counsel from past cases. How do you split it up, and who shouldn't get it at all?",
-   "scenario": "A newsletter about a new litigation service is ready to go to the full list. You notice the list includes the other side's attorneys from two active cases. What do you do?"
+   "contrast": {
+    "lazy": "'Send to everyone' means all 1,800 contacts, including opposing counsel from last year's case and three people who unsubscribed.",
+    "excellent": "Filters the list to clients and prospects tagged 'estate planning,' runs it against the suppression and conflict lists, removes opposing counsel, and shows the partner the final count before sending."
+   },
+   "outcome": "Marketing to the other side of an active case can look like an attempt to contact a represented party, and it hands opposing counsel an easy complaint. Ignoring unsubscribes invites regulator attention. A clean, segmented list keeps the firm credible, and credibility matters at every negotiating table.",
+   "ask": "[Name], a partner wants the estate-planning newsletter sent 'to everyone': 1,800 contacts, including corporate clients and opposing counsel from past cases. How do you split it? [Name], who shouldn't get it at all?",
+   "mystery": "The case of the opposing attorneys. A newsletter about a new litigation service is ready to go to the full list. You notice it includes the other side's attorneys from two active cases. In pairs, three minutes: decide what you do in the next five minutes, find out how they got on the list, and write the check you'd add so it can't happen again. Bring back your three steps."
   }
  },
  "4::Writing Outreach Emails That Get Replies": {
   "p1": {
+   "icebreaker": "Game: 'Delete or read?' I'll read the first line of three emails. Mime pressing delete or lean in to read. 'Dear Sir, Thorne & Partners was founded in 1998.' 'Congratulations on the merger; I had one question about staff contracts.' 'Hi {FirstName}, I hope this email finds you well.'",
+   "teaser": "Everyone deleted the third one, and it had the person's name in it. So personalizing must mean something else. This slide tells you what.",
    "why": "Short, specific and one clear ask: that's an outreach email that gets answered.",
-   "talk": "The best outreach emails are about 50 to 125 words. The subject line's only job is to get it opened honestly. And personalizing means showing why you're writing to this person, like an article they wrote or a change at their company, not just inserting their first name.",
+   "talk": "The best outreach emails are about 50 to 125 words. The subject line's only job is to get it opened honestly. And personalizing means showing why you're writing to this person, like an article they wrote or a change at their company, not just inserting their first name. That's why the merger line worked.",
    "walk": [
     "First, open with why you're writing to them in particular.",
     "Next, explain the value in a sentence or two, in terms of their problem.",
     "Then, make one easy ask, like a 15-minute call next week.",
     "Finally, sign off with the attorney's details and an easy opt-out, and proofread names and links."
    ],
-   "ask": "What's wrong with opening an email with who the firm is?",
-   "scenario": "Rewrite this email in under 80 words: 'Dear Sir, Thorne & Partners was founded in 1998 and has 40 attorneys practising in many areas of law. We would welcome the opportunity to discuss our services with you at your convenience.' The recipient's company just announced a merger."
+   "jargon": [
+    {
+     "term": "Personalization",
+     "hint": "showing why this email is for this person, not just using their name"
+    },
+    {
+     "term": "Subject line",
+     "hint": "the short line shown in the inbox before the email is opened"
+    }
+   ],
+   "story": "This happens in real offices: an assistant prepared 30 outreach emails from a template and sent them in a hurry. Twelve still said 'Dear {FirstName}' and one congratulated a company on a merger that had been called off the week before. A five-minute proofread, names and facts only, would have caught both.",
+   "ask": "[Name], what's wrong with opening an email with who the firm is? [Name], rewrite this one in a sentence: 'Thorne & Partners was founded in 1998 and has 40 attorneys,' for a company that just announced a merger."
   },
   "p2": {
    "why": "Never promise a legal outcome in outreach.",
    "talk": "The emails that fail usually fail in one of three ways. They open with long paragraphs about the firm's history, when the reader only cares about their own problem. They use spammy tricks, like capital letters, exclamation marks or a fake 'Re:' in the subject line. Or they hint at a guaranteed result, which in legal work can break advertising rules.",
    "walk": [
-    "First, long paragraphs about the firm's history. The reader cares about their problem.",
-    "Next, spammy habits: capitals, exclamation marks, 'guaranteed', fake 'Re:' subject lines and image-only emails.",
-    "Finally, any promise or hint of a guaranteed result. That can break advertising rules."
+    "First, avoid long paragraphs about the firm's history. The reader cares about their problem.",
+    "Next, drop spammy habits: capitals, exclamation marks, 'guaranteed', fake 'Re:' subject lines and image-only emails.",
+    "Finally, cut any promise or hint of a guaranteed result. That can break advertising rules."
    ],
-   "ask": "Let's rewrite this opener live, for a founder whose startup just raised a funding round: 'Dear Sir or Madam, Thorne & Partners is a leading full-service law firm founded in 1998 with over 40 attorneys...'",
-   "scenario": "A draft email says, 'We've won every case like yours and can guarantee a great result!!!' List everything wrong with it, and rewrite the line."
+   "contrast": {
+    "lazy": "'RE: AMAZING legal help!!! We've won every case like yours and can guarantee a great result.'",
+    "excellent": "'Subject: Your funding round and founder agreements. Congratulations on the raise. After funding, founder share terms often need updating. Would 15 minutes with Elias next week be useful?'"
+   },
+   "outcome": "A promised result in outreach can become an advertising complaint, and it can come back to haunt the firm if the matter later goes badly. Clear, honest emails get replies from the right people and set realistic expectations, which makes every later conversation about the case, the fee and any settlement easier.",
+   "ask": "[Name], let's rewrite this opener live, for a founder whose startup just raised a funding round: 'Dear Sir or Madam, Thorne & Partners is a leading full-service law firm founded in 1998 with over 40 attorneys...' [Name], now cut it to one sentence.",
+   "mystery": "The case of the guaranteed result. A draft email says, 'We've won every case like yours and can guarantee a great result!!!' In pairs, two minutes: find every problem in that one line (there are at least four), then rewrite it so it's honest and still worth replying to. Best rewrite gets read out."
   }
  },
  "4::Email Outreach Sequencing & Follow-Up Cadence": {
   "p1": {
+   "icebreaker": "Game: 'How many is too many?' I'll count follow-up emails out loud. Put your hand up the moment you'd be annoyed. One... two... three... four... five. Look around: where did most hands go up?",
+   "teaser": "Most hands went up around three or four. But here's the twist: it's not really the number that annoys people. It's two words in the email. Let's see which.",
    "why": "Every follow-up needs a new reason to reply.",
-   "talk": "Most replies come from follow-ups, not the first email. But 'just following up' gives nobody a reason to answer. Each message should add something new. And there's a limit: too many, too often, and you damage the relationship you're trying to build.",
+   "talk": "Most replies come from follow-ups, not the first email. But 'just following up' gives nobody a reason to answer. Those are the two words. Each message should add something new. And there's a limit: too many, too often, and you damage the relationship you're trying to build.",
    "walk": [
     "First, space follow-ups a few working days apart, not daily.",
     "Next, change the angle each time: first the offer, then a relevant example, then a genuine, low-pressure question.",
     "Finally, end with a clear closing message, like 'I'll leave this here unless I hear from you.'"
    ],
-   "ask": "Why is 'just following up' such a weak message?",
-   "scenario": "Plan a three-email sequence for a prospect who runs a chain of dental practices. What's the new angle in each email, and how many days apart are they?"
+   "jargon": [
+    {
+     "term": "Sequence",
+     "hint": "a planned series of emails sent over time"
+    },
+    {
+     "term": "Cadence",
+     "hint": "how far apart the follow-ups are spaced"
+    },
+    {
+     "term": "Closing message",
+     "hint": "the polite last email that ends the sequence"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant set up a sequence and forgot to set it to stop when someone replied. A prospect wrote back 'Yes, let's talk Thursday' and then received two more 'just checking in' emails. He asked, a little sharply, whether anyone was reading his replies. Checking the 'stop on reply' setting before launch would have saved the moment.",
+   "ask": "[Name], why is 'just following up' such a weak message? [Name], plan a three-email sequence for someone who runs a chain of dental practices. What's the new angle in email two?"
   },
   "p2": {
    "why": "Make it easy to say no, or you'll get a complaint instead of a reply.",
@@ -1635,22 +2038,47 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, track replies at each step, so you know which email is actually working.",
     "Finally, always give an easy way to opt out."
    ],
-   "ask": "A prospect opened your first three emails but never replied, and one email is left in the sequence. What does the last one say, and what would make you extend the sequence instead?",
-   "scenario": "A colleague's sequence sends the same email four times, two days apart. One prospect replied angrily. What would you change?"
+   "contrast": {
+    "lazy": "The same email, four times, two days apart, each starting 'Just following up on my last note.'",
+    "excellent": "Day 1, the offer; day 5, a short example of a similar practice the firm helped; day 10, one genuine question; day 15, 'I'll leave this here unless I hear from you,' with an easy opt-out each time."
+   },
+   "outcome": "A pushy sequence turns a possible client into a complaint, and complaints hurt the firm's email reputation for everyone. A thoughtful sequence keeps the firm in mind until the prospect's problem becomes urgent, which is exactly when they need advice early enough to protect their position.",
+   "ask": "[Name], a prospect opened your first three emails but never replied, and one email is left. What does the last one say? [Name], what would make you extend the sequence instead?",
+   "mystery": "The case of the angry reply. A colleague's sequence sends the same email four times, two days apart. One prospect replied angrily. In pairs, three minutes: find three things wrong with the sequence, redesign it with a new angle each time and sensible spacing, and write the apology you'd send to the angry prospect."
   }
  },
  "4::Email Deliverability Basics": {
   "p1": {
+   "icebreaker": "Game: 'Guess the acronym.' Three tech words: SPF, DKIM, DMARC. Shout what you think any of them stand for. Wrong answers welcome. 'Sun Protection Factor' gets a laugh every time.",
+   "teaser": "You don't need to know what the letters stand for to do this job well. But there's one person in the firm you need to ask about them, and if you don't, even Elias's ordinary client emails can land in spam.",
    "why": "If the firm's email reputation gets damaged, even ordinary client emails can land in spam.",
-   "talk": "Deliverability is simply whether an email reaches the inbox. It depends on the firm's sending reputation, some technical settings and how people react. Three technical records, called SPF, DKIM and DMARC, prove to inbox providers that emails really come from the firm. Big providers like Gmail require them for bulk senders.",
+   "talk": "Deliverability is simply whether an email reaches the inbox. It depends on the firm's sending reputation, some technical settings and how people react. Three technical records, called SPF, DKIM and DMARC, prove to inbox providers that emails really come from the firm. Big providers like Gmail require them for bulk senders. The person you ask is in IT.",
    "walk": [
     "First, ask IT to confirm those three records are set up before the first campaign.",
     "Next, include a one-click unsubscribe in every marketing email, and honor it promptly.",
     "Then, check the report after each send: keep bounces low and spam complaints very low.",
     "Finally, when a new domain starts sending, build up volume gradually instead of emailing everyone on day one."
    ],
-   "ask": "Who at the firm would you ask about those technical records?",
-   "scenario": "The firm is about to send its first newsletter to 2,000 contacts from a brand-new email platform. What do you check with IT and set up before the send?"
+   "jargon": [
+    {
+     "term": "Deliverability",
+     "hint": "whether an email actually reaches the inbox"
+    },
+    {
+     "term": "SPF, DKIM, DMARC",
+     "hint": "technical records that prove an email really comes from the firm"
+    },
+    {
+     "term": "Domain",
+     "hint": "the firm's address online, the part after the @"
+    },
+    {
+     "term": "Sender reputation",
+     "hint": "how much inbox providers trust email from the firm"
+    }
+   ],
+   "story": "This happens in real offices: a firm launched a new email platform and sent its first newsletter to its whole list on day one, before IT had set up the technical records. A large share went to spam, and the provider flagged the domain. For a week, some clients didn't receive ordinary emails from their lawyers, including a signed document that had to be re-sent by courier. A short check with IT and a gradual start would have avoided it.",
+   "ask": "[Name], who at the firm would you ask about those technical records? [Name], the firm is about to send its first newsletter to 2,000 contacts from a new platform. What do you check first?"
   },
   "p2": {
    "why": "Keep marketing on its own domain, so a bad campaign can't hurt client email.",
@@ -1660,22 +2088,43 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, don't use a no-reply address. Replies are a good sign, and some people will need to reach you.",
     "Finally, separate bulk marketing from everyday firm email."
    ],
-   "ask": "After the last newsletter, three clients say the firm's emails are landing in their spam. What do you check first, who do you involve, and what do you pause?",
-   "scenario": "After last month's newsletter, the bounce rate was 18 percent and several clients found firm emails in spam. What caused it, and what do you do before the next send?"
+   "contrast": {
+    "lazy": "Sends the newsletter from noreply@ the firm's main domain to a three-year-old list, and doesn't look at the report.",
+    "excellent": "Sends from a separate marketing domain, with a real reply address, to a list cleaned last month, and checks bounces and complaints within 24 hours."
+   },
+   "outcome": "If the main domain's reputation drops, emails to clients, courts and opposing counsel can go to spam without anyone knowing. A settlement offer or a deadline notice that never arrives can change the outcome of a case. Protecting deliverability is protecting the firm's everyday legal work.",
+   "ask": "[Name], after the last newsletter, three clients say the firm's emails are landing in spam. What do you check first? [Name], who do you involve, and what do you pause?",
+   "mystery": "The case of the 18 percent. After last month's newsletter, the bounce rate was 18 percent and several clients found firm emails in spam. In teams, four minutes: find the likely causes (there are at least three), decide what to pause today, and write the checklist you'd run with IT before the next send. Bring back the checklist."
   }
  },
  "4::Email Metrics & A/B Testing": {
   "p1": {
+   "icebreaker": "Game: 'Pick the winner.' Two newsletters. Left hand for A, right hand for B. A: 45 percent opened it, nobody booked a consultation. B: 28 percent opened it, three people booked consultations. Hands up now. Interesting, the room is split.",
+   "teaser": "The split tells me some of you trust one number on this slide more than you should. That number has been quietly inflated by your own phones. Let's find out which.",
    "why": "Decide what success looks like before you send, not after you see the numbers.",
-   "talk": "There are many email numbers, but not all are trustworthy. Opens are inflated these days by privacy features on phones. Clicks, replies and booked consultations tell you much more. And when you test two versions, change only one thing, so you know what caused the difference.",
+   "talk": "There are many email numbers, but not all are trustworthy. Opens are inflated these days by privacy features on phones, so that's the number to be careful with. Clicks, replies and booked consultations tell you much more. And when you test two versions, change only one thing, so you know what caused the difference.",
    "walk": [
     "First, pick the goal before sending, like replies or consultations.",
     "Next, to test, change one thing, send each version to a small random group, then send the winner to everyone else.",
     "Then, keep a simple log of every campaign's results.",
     "Finally, review the trends monthly with the attorney, against the firm's own history."
    ],
-   "ask": "Why can't we trust open rates the way we used to?",
-   "scenario": "Before the next newsletter, Elias asks, 'How will we know if it worked?' Define the goal and how you'd measure it, and describe one A/B test you'd run."
+   "jargon": [
+    {
+     "term": "Open rate",
+     "hint": "the share of people who appear to have opened the email"
+    },
+    {
+     "term": "A/B test",
+     "hint": "sending two versions that differ in one thing, to see which works better"
+    },
+    {
+     "term": "Click rate",
+     "hint": "the share of people who clicked a link in the email"
+    }
+   ],
+   "story": "A common pattern in real offices: an assistant changed the subject line, the layout and the send day all at once, and replies doubled. Everyone was pleased until the next month, when replies dropped again and nobody could say which change had worked. The test had to start over. Changing one thing at a time would have given a clear answer in a single send.",
+   "ask": "[Name], why can't we trust open rates the way we used to? [Name], Elias asks, 'How will we know if the next newsletter worked?' What goal would you set?"
   },
   "p2": {
    "why": "Replies and consultations matter more than opens.",
@@ -1685,12 +2134,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, don't judge a newsletter by opens alone. One that books two consultations did the real work.",
     "Finally, test small and often instead of redesigning everything after one weak send."
    ],
-   "ask": "Subject line A got a 42 percent open rate and one reply. Subject line B got 31 percent and six replies. Which won, and what do you tell the attorney?",
-   "scenario": "Version A got 45 percent opens and no consultations. Version B got 28 percent opens and three consultation requests. A colleague says A won. What do you say?"
+   "contrast": {
+    "lazy": "'Version A won, 45 percent opens!' Reports the biggest number and redesigns everything next month.",
+    "excellent": "'Version B had fewer opens but produced three consultation requests, against none for A. Next month I'll keep B's subject line and test only the call-to-action wording.'"
+   },
+   "outcome": "If the firm chases the wrong number, it keeps sending emails that look good and bring in nothing, and Elias's time and budget go to the wrong things. Measuring consultations means marketing feeds real matters, and real matters are what the firm's results are built on.",
+   "ask": "[Name], subject line A got a 42 percent open rate and one reply; B got 31 percent and six replies. Which won? [Name], what exactly do you tell the attorney?",
+   "mystery": "The case of the false winner. Version A got 45 percent opens and no consultations. Version B got 28 percent opens and three consultation requests. A colleague says A won. In pairs, three minutes: find the clue your colleague missed, write the one-paragraph summary you'd send Elias, and design the next single-change test."
   }
  },
  "4::Law Firm Email Newsletters": {
   "p1": {
+   "icebreaker": "Game: 'Thumbs up, thumbs down.' Would you read a law firm newsletter with: a short legal update? Thumbs. The partners' holiday photos? Thumbs. A practical tip for business owners? Thumbs. A list of every case the firm won this year? Careful on that last one.",
+   "teaser": "That last one feels like great marketing, and in legal work it can be the riskiest thing in the whole issue. The next slide tells you why. First, the plan.",
    "why": "A newsletter keeps the firm in people's minds between cases, and that's where most new work comes from.",
    "talk": "Most small firms win work from people who already know them. A newsletter keeps that connection alive. Reliability matters more than frequency: steady monthly or quarterly beats weekly bursts followed by silence. And because it comes from attorneys, it may need an advertising label, and it must never read as legal advice for someone's specific situation.",
    "walk": [
@@ -1699,23 +2155,44 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, get the attorney to review and sign off every issue, including any disclaimer.",
     "Finally, send a test, check the links on phone and computer, then schedule it for a consistent day and time."
    ],
-   "ask": "What three sections would you put in the firm's newsletter?",
-   "scenario": "Elias wants a quarterly newsletter. Agree the plan: which sections, how often, who reviews it and when it goes out."
+   "jargon": [
+    {
+     "term": "Disclaimer",
+     "hint": "a short notice, like 'this is not legal advice'"
+    },
+    {
+     "term": "Advertising label",
+     "hint": "a marking some places require on lawyers' promotional material"
+    },
+    {
+     "term": "Image description (alt text)",
+     "hint": "a short text version of a picture, for screen readers and blocked images"
+    }
+   ],
+   "story": "This happens in real offices: a firm launched a weekly newsletter with lots of energy, sent four issues, then went quiet for five months during a busy trial. When it restarted, many readers had forgotten they'd signed up and marked it as spam. A realistic quarterly schedule, agreed up front, would have kept it going through the busy months.",
+   "ask": "[Name], what three sections would you put in the firm's newsletter? [Name], Elias wants it quarterly. Who reviews it, and when does it go out?"
   },
   "p2": {
    "why": "Never mention a client or a case without written consent.",
-   "talk": "A good newsletter gives readers something useful, not just news about the firm. And in legal work there's one firm line: no client, case or result is mentioned without written consent and attorney approval. We also keep a copy of every issue exactly as it was sent, with the date it was approved, in case anyone asks later.",
+   "talk": "A good newsletter gives readers something useful, not just news about the firm. And in legal work there's one firm line: no client, case or result is mentioned without written consent and attorney approval. That's why the list of wins was risky. We also keep a copy of every issue exactly as it was sent, with the date it was approved, in case anyone asks later.",
    "walk": [
     "First, lead with information readers can use, not just news about the firm.",
-    "Next, no client, case or result without documented consent and attorney approval.",
+    "Next, include no client, case or result without documented consent and attorney approval.",
     "Finally, keep a copy of every issue as sent, with its approval date."
    ],
-   "ask": "Elias wants this month's newsletter to celebrate a big settlement, with the client's company in the headline. What do you need before it can go out, and what would you suggest if consent isn't available?",
-   "scenario": "A draft newsletter includes a photo from a client event where a well-known client is clearly visible. No consent is on file. What do you do?"
+   "contrast": {
+    "lazy": "'Big win! Thorne & Partners secures major settlement for Harlow Industries!' with no consent on file.",
+    "excellent": "Checks the consent file, finds nothing, and suggests: 'Recent result: we helped a manufacturing client resolve a contract dispute without going to trial,' approved by Elias, with the approved copy saved."
+   },
+   "outcome": "Naming a client without consent can breach confidentiality, damage the relationship and, if the settlement terms are confidential, put the client in breach of their own agreement. A careful newsletter shows the firm can be trusted with secrets, which is exactly what new clients are looking for.",
+   "ask": "[Name], Elias wants this month's newsletter to celebrate a big settlement, with the client's company in the headline. What do you need before it can go out? [Name], what would you suggest if consent isn't available?",
+   "mystery": "The case of the famous face. A draft newsletter includes a photo from a client event where a well-known client is clearly visible. No consent is on file. In pairs, two minutes: decide what you do with the draft, find the other places in the issue where the same problem could hide, and write the message you'd send Elias. Bring back the message."
   }
  },
  "4::Email Marketing Tools & Approval Workflow": {
   "p1": {
+   "icebreaker": "Game: 'Name that tool.' I'll describe it; shout the name. 'The one with the monkey logo for newsletters.' 'The big one that tracks everything with a CRM built in.' 'The email you already use every day at work.' Good. Now, a harder one: who in this firm is allowed to press send?",
+   "teaser": "Silence on the last one. That's the point of this topic: everyone knows the tools, but the thing that actually protects the firm isn't a tool at all.",
    "why": "A written approval process is what stops one quick send from reaching thousands of people with a mistake.",
    "talk": "There are plenty of tools: Mailchimp or Constant Contact for newsletters, HubSpot or a CRM when we want everything tracked together, and simple Outlook or Gmail templates for one-to-one emails. But the tool matters much less than the process around it. Who writes it, who reviews it, who checks it's compliant and who actually presses send? That's what needs to be written down.",
    "walk": [
@@ -1724,23 +2201,44 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, schedule sends for business hours in the recipient's time zone.",
     "Finally, save every version and approval, so any send can be checked later."
    ],
-   "ask": "In your workflow, who actually presses send?",
-   "scenario": "An associate drafts a seminar invitation and asks you to send it to the whole list today. Walk through the approval flow before it goes out. Who does what?"
+   "jargon": [
+    {
+     "term": "Approval workflow",
+     "hint": "the agreed steps and people a send must pass through"
+    },
+    {
+     "term": "Template",
+     "hint": "a pre-approved layout with the fixed parts already in place"
+    },
+    {
+     "term": "Compliance check",
+     "hint": "making sure the email follows the rules before it goes"
+    }
+   ],
+   "story": "A real pattern from the field: an associate asked an assistant to 'just send' a seminar invite to the whole list that afternoon. It went out with the wrong date. A hundred people registered for a day the room wasn't booked, and the firm spent the next morning emailing corrections. A five-minute review by the attorney, as the process required, would have caught it.",
+   "ask": "[Name], in your workflow, who actually presses send? [Name], an associate wants a seminar invitation sent to the whole list today. Walk us through the approval flow."
   },
   "p2": {
    "why": "There's no such thing as a harmless quick send that skips review.",
    "talk": "The danger with email marketing is how fast a mistake travels. One wrong list or a missing disclaimer can reach thousands of people in a second, and there's no calling it back. That's why only a few people are allowed to press send, the same way we'd limit access to any other firm system, and why every link gets tested before anything is scheduled.",
    "walk": [
-    "First, one wrong group or missing disclaimer can reach thousands instantly.",
+    "First, remember one wrong group or missing disclaimer can reach thousands instantly.",
     "Next, limit who can press send, the same way you limit access to other firm systems.",
     "Finally, test every link, including unsubscribe, before scheduling."
    ],
-   "ask": "Elias wants an event invitation sent tonight, and the associate who reviews it isn't available until tomorrow. What are your options, and what do you recommend?",
-   "scenario": "A staff member accidentally sent a draft newsletter, with typos and a placeholder saying 'INSERT CLIENT NAME,' to 1,500 contacts. What do you do in the first hour, and what control would have prevented it?"
+   "contrast": {
+    "lazy": "'It's only an invite, I'll send it now and we can fix anything later.'",
+    "excellent": "'I can have it ready tonight and scheduled for 9 a.m. tomorrow, once you've reviewed it. If it must go tonight, can Elias approve the final version in the next hour?' Then tests every link before scheduling."
+   },
+   "outcome": "A mistake sent to 1,500 people can't be recalled, and if it exposes a client's name or a confidential detail, it can become a breach the firm has to report and explain. A clear approval flow keeps the firm's public voice as careful as its court filings.",
+   "ask": "[Name], Elias wants an event invitation sent tonight, and the associate who reviews it isn't available until tomorrow. What are your options? [Name], which one do you recommend, and why?",
+   "mystery": "The case of 'INSERT CLIENT NAME.' A staff member accidentally sent a draft newsletter, with typos and a placeholder saying 'INSERT CLIENT NAME,' to 1,500 contacts. In teams, four minutes: plan the first hour minute by minute, decide who you tell and in what order, and name the one control that would have prevented it. Bring back your first-hour plan."
   }
  },
  "4::Email Outreach End-to-End: Research, Write, Follow Up": {
   "p1": {
+   "icebreaker": "Game: 'Three-second test.' I'll show you a subject line for three seconds. Stand if you'd open it, stay seated if not. 'Quick question about your new hospital wing.' Now: 'Thorne & Partners: Full-Service Legal Solutions.' Now: 'Re: our conversation' (when you've never spoken). Notice how fast you decided.",
+   "teaser": "You just made three decisions in nine seconds, and that's the whole challenge. Today's last topic puts every skill together, and one step in it gets more replies than all the others. It's not the first email.",
    "why": "An outreach email gets about three seconds on a phone screen, so the subject line and first sentence decide everything.",
    "talk": "This lesson pulls the whole day together. One specific, true fact about the person does more than any clever wording. Each email has one job, usually a small, easy yes, like a short call with Elias. And since most replies come from follow-ups, you plan the sequence before the first email goes out.",
    "walk": [
@@ -1751,21 +2249,40 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, plan the follow-ups: a new angle around day three or four, and a polite close-out around day eight to ten.",
     "Finally, stop as soon as they reply or opt out, log the outcome and pass any interest to Elias in one line."
    ],
-   "ask": "What would count as a good trigger for reaching out to someone?",
-   "scenario": "Elias wants to reach the general counsel of a hospital system that just announced a new wing. Research the trigger, and write a subject line and a 60-word email with one small ask."
+   "jargon": [
+    {
+     "term": "Trigger",
+     "hint": "a recent event that gives you a real reason to get in touch"
+    },
+    {
+     "term": "General counsel (GC)",
+     "hint": "the senior in-house lawyer at a company"
+    },
+    {
+     "term": "Close-out email",
+     "hint": "the polite last message that ends the sequence"
+    }
+   ],
+   "story": "This happens in real offices: an assistant wrote a strong first email to a general counsel about a new hospital wing, but used a news story from two years earlier that she hadn't dated. The wing had opened long ago. The GC replied, kindly, that the firm seemed 'a little behind.' Logging the source and date of the trigger, as step one says, would have caught it.",
+   "ask": "[Name], what would count as a good trigger for reaching out to someone? [Name], Elias wants to reach the GC of a hospital system that just announced a new wing. Give me a subject line."
   },
   "p2": {
    "why": "The polite close-out email is often the one that gets the most replies.",
    "talk": "What makes outreach feel human is simple: it's about them, not us, and every follow-up brings something new. What burns bridges is just as simple: the same template with the name swapped, guilt-trip follow-ups, and anything that sounds like a promised result or legal advice. The plan is three touches, a first email, a new angle a few days later and a gracious close-out, and then we stop.",
    "walk": [
     "First, write about their priorities. 'You' should appear more than 'we'.",
-    "Next, every follow-up adds something new, never just 'bumping this up'.",
+    "Next, make every follow-up add something new, never just 'bumping this up'.",
     "Then, read it on a phone first. If the ask needs scrolling, it's too long.",
     "After that, avoid the traps: the same template with only the name swapped, guilt-trip follow-ups, and anything that promises results or gives legal advice.",
-    "Finally, the three touches: the trigger and a small ask, a new angle a few days later, and a short, gracious close-out. Then stop."
+    "Finally, stick to the three touches: the trigger and a small ask, a new angle a few days later, and a short, gracious close-out. Then stop."
    ],
-   "ask": "Elias wants to reach the operations director of a construction company that just announced a two-state expansion, and your first email got no reply after four days. What does your follow-up say, what new angle does it use and when do you stop?",
-   "scenario": "You've sent two emails to a prospect with no reply. Write the third, a short, gracious close-out, and say what you log after sending it."
+   "contrast": {
+    "lazy": "'Bumping this up again! I haven't heard back and I'm sure you're busy, but I'd really appreciate a reply.'",
+    "excellent": "'I'll leave this here so I'm not cluttering your inbox. If staff contracts for the new sites come up, Elias would be glad to help. All the best with the expansion.' Then logs 'Sequence closed, no reply, revisit in Q3.'"
+   },
+   "outcome": "Pushy outreach closes doors the firm may need later, sometimes with the very company that ends up across the table in a dispute. A gracious close-out leaves a good impression, keeps the relationship open, and means the firm is the one they call when a real problem lands.",
+   "ask": "[Name], your first email to a construction company's operations director, about its two-state expansion, got no reply after four days. What does your follow-up say, and what new angle does it use? [Name], when do you stop?",
+   "mystery": "The case of the quiet prospect. You've sent two emails to a prospect with no reply. In pairs, three minutes: check the clues in your first two emails for what might have gone wrong, write the third, a short, gracious close-out, and write the exact line you log in the CRM after sending it. Best close-out gets read to the room."
   }
  }
 });
