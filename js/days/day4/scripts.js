@@ -1,6 +1,10 @@
 /* Day 4 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through).
+   Every topic is written in the trainer's style: icebreaker (a quick game to open) · teaser (the curiosity gap
+   before the reveal) · jargon ([{term, hint}] for the trainer to explain) · story (a real-life incident from the field) ·
+   contrast ({lazy, excellent}) · outcome (where it lands: deadlines, the case, the settlement) ·
+   ask (calls on trainees by name, "[Name]") · mystery (the closing challenge, in place of scenario). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "4::Prioritization Frameworks": {
   "p1": {
