@@ -33,6 +33,12 @@ The server also stops it happening: a trainee's own save can't drop finished day
 
 Every lesson slide sits on one navy glass card over the page's background, the same card as the Case Management course's Case Flow slides: the **Topic Bar** (e.g. *Topic 2 of 30*) and the progress dots in a dark pill across the top, the **ribbon** with the slide's title under them, and the slide itself on a white sheet. Line ornaments sit at the card's top-right and bottom-left corners and in the sheet's bottom-right. Previous / Next sit under the card, and on a desktop the presenter stands in the side column under the lesson's controls. The top bar and the page background are unchanged. It's `js/eapa-deck-card.js`, loaded last; it wraps `renderDaySlideshow`, so full screen and the Presenter slides window get it too.
 
+## 👁 Up next: preview the next slide
+
+Rest the mouse on **Next** (without clicking) and a small copy of the next slide appears above it, with its title and step number (*Up next · Step 6 of 114*), so the trainer knows what's coming before moving on. On a long slide it says *Next page · 3 of 4 of this slide*; on the last slide, *Knowledge Check*. **👁 Peek next**, beside Next, pins the preview open (or press **N**); it stays up, following each new slide, until it's turned off, and the choice is remembered per browser (`eapa-peek-next`).
+
+It works on the lesson page, in full screen and on the Presenter view console's Next. It never appears in the slides window shared in Meet, so with Presenter view only the trainer sees it; when sharing the lesson tab itself, the room sees it too. Phones and touch screens don't get it. It's `js/eapa-next-preview.js`, loaded after the deck card: the preview is the next slide's own content drawn at the deck's size (960 × 540) and scaled down, inert, and removed before any slide is drawn.
+
 ## Where each day's content lives
 
 Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three files:
