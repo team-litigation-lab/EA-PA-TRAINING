@@ -4,6 +4,8 @@
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "4::Prioritization Frameworks": {
   "p1": {
+   "icebreaker": "Game: 'Four corners.' Each corner of the room is a box: do now, schedule, hand off, let go. I'll read a task, you walk to the corner you'd put it in. 'Renew Elias's parking permit.' 'Prepare the Meridian hearing binder.' 'Reply to a newsletter invite.' 'Book his flights for next month.' Look around after each one: who's standing alone?",
+   "teaser": "One corner of this room is going to get much more crowded by the end of this topic, and it isn't 'do now.' Watch which one.",
    "why": "When everything feels important, you need a way to decide what actually gets your time, and these four tools give you that.",
    "talk": "Think of these as four different lenses. Some days the problem is that there's too much on the list. Some days you know exactly what matters, but you can't concentrate. And some days the important work never happens because meetings eat it. Each of these tools fixes one of those problems. The four-box grid is the one you'll use most: it splits work into do now, schedule, hand off and let go.",
    "walk": [
@@ -13,23 +15,52 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, every so often, ask which small share of your work is producing most of the results, and give that part more of your time.",
     "Finally, don't try all four at once. Pick the one that fixes your biggest problem this week, get good at it, then add another."
    ],
-   "ask": "Who already uses one of these, maybe without knowing it had a name?",
-   "scenario": "Your own list this morning has 22 items, from 'renew Elias's parking permit' to 'prepare the Meridian hearing binder.' You keep jumping between them and finishing nothing. Which framework do you reach for first, and what does your list look like after ten minutes with it?"
+   "jargon": [
+    {
+     "term": "Four-box grid (Eisenhower Matrix)",
+     "hint": "sorts tasks by urgent and important into four boxes"
+    },
+    {
+     "term": "Focus bursts (Pomodoro)",
+     "hint": "about 25 minutes on one task, then a short break"
+    },
+    {
+     "term": "Time blocking",
+     "hint": "putting a task on the calendar like a meeting"
+    },
+    {
+     "term": "80/20 rule (Pareto)",
+     "hint": "a small share of the work produces most of the results"
+    },
+    {
+     "term": "Hearing binder",
+     "hint": "the organised set of papers the attorney takes to a court hearing"
+    }
+   ],
+   "story": "A common first-week story: a new assistant had 20-odd items on her list and decided to clear the small ones first to 'get momentum.' By 4 p.m. she'd ticked off fifteen things, and the hearing binder for the next morning was still in pieces. She stayed until nine to finish it, and two exhibits went in out of order. Ten minutes sorting the list into four boxes at 9 a.m. would have put the binder first and shown her half the small items could be handed off.",
+   "ask": "[Name], who already uses one of these, maybe without knowing it had a name? Which one? Then, [Name], which of the four do you think you'd struggle with most?"
   },
   "p2": {
    "why": "Executives lose a huge chunk of their week to email, and good sorting can give them back ten hours or more.",
-   "talk": "That's a whole working day, every week. So the question isn't whether to use these tools; it's which one to reach for, and that depends on what's going wrong.",
+   "talk": "That's a whole working day, every week. So the question isn't whether to use these tools; it's which one to reach for, and that depends on what's going wrong. Diagnose first, then pick the tool.",
    "walk": [
     "First, if you're drowning, use the four-box grid. Its real power is showing you what you can stop doing.",
     "Next, if you know what matters but keep getting distracted, use the short focus bursts.",
     "Finally, if the important work keeps getting pushed aside, protect it with a fixed calendar block before the week fills up."
    ],
-   "ask": "Monday morning, Elias has 14 open items: a brief due Wednesday, three client callbacks, an expense report and a conference RSVP among them. Let's sort them into the four boxes together. What can we hand off or drop?",
-   "scenario": "Elias says he spends four hours a day in email and still misses important things. Using one of the four frameworks, describe how you'd restructure his inbox day so the important work gets done."
+   "contrast": {
+    "lazy": "Works the list top to bottom in the order things arrived, and tells Elias at 5 p.m., 'I got through most of it.'",
+    "excellent": "Spends ten minutes sorting first, then says, 'The brief prep is blocked for Tuesday morning, I've handed the RSVP and expense report to the team assistant, and two items I've dropped. Here's why.'"
+   },
+   "outcome": "Every hour lost to low-value email is an hour not spent on the brief due Wednesday. In litigation, a rushed brief is a weaker brief, and a weaker brief shifts what the other side thinks the case is worth. Good sorting protects the work that actually moves the result.",
+   "ask": "[Name], Monday morning, Elias has 14 open items: a brief due Wednesday, three client callbacks, an expense report and a conference RSVP among them. Which box does the brief go in? [Name], what can we hand off or drop?",
+   "mystery": "The case of the four-hour inbox. Elias says he spends four hours a day in email and still misses important things. In pairs, you have five minutes: find the clues for why his inbox day isn't working, pick one of the four frameworks, and bring back a one-paragraph plan for how his inbox day would look next Monday."
   }
  },
  "4::Time Management": {
   "p1": {
+   "icebreaker": "Game: 'Put us in order.' I need four volunteers. Each of you gets a card: Decide, Block, Protect, Review. Without talking, line yourselves up in the right order. The rest of you: thumbs up if it's right, thumbs down if it's wrong. Thirty seconds, go.",
+   "teaser": "Most people in a real office do three of these four steps and drop one. There's one step people skip most often, and it's not the one you'd guess.",
    "why": "Knowing what matters isn't enough; you have to decide it, put it on the calendar, guard it and check it held.",
    "talk": "Most people stop after the first step. They know the brief is the priority, and then Thursday comes and there was never any time for it. That's why this is four steps, in order, and skipping one breaks the chain.",
    "walk": [
@@ -38,8 +69,18 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, protect it. If someone asks for that time, treat it like any other meeting you've already committed to.",
     "Finally, review it. At the end of the week, look back: did the protected time actually happen, or did something 'urgent' take it every time?"
    ],
-   "ask": "Be honest: which of the four steps do you usually skip?",
-   "scenario": "It's Friday. Next week Elias has a brief due Thursday, but his calendar is already filling with meetings. Walk through decide, block, protect and review for that brief."
+   "jargon": [
+    {
+     "term": "Brief",
+     "hint": "a written legal argument submitted to the court"
+    },
+    {
+     "term": "Protected time",
+     "hint": "calendar time you defend like a fixed meeting"
+    }
+   ],
+   "story": "This happens in real offices: an assistant blocked three mornings for a partner's brief, then gave two of them away when other partners asked 'just for an hour.' Each request seemed small. By Wednesday night the brief was being written at the kitchen table, and it went in with a citation error the court noticed. The block was there; the protection wasn't. Treating the block like a client meeting would have kept it.",
+   "ask": "[Name], be honest: which of the four steps do you usually skip? [Name], what do you think it costs when you skip that one?"
   },
   "p2": {
    "why": "Deciding what matters and defending it on the calendar are two different skills, and you need both.",
@@ -48,20 +89,37 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, time management answers: what deserves time this week?",
     "Finally, calendar management makes sure the calendar actually shows that answer, and keeps it there."
    ],
-   "ask": "Elias says the Harlow summary judgment brief is his top priority this week, but there's no time for it anywhere on his calendar. Walk us through decide, block, protect and review for his week.",
-   "scenario": "Elias says his priority this quarter is winning the Meridian arbitration. You look at his last four weeks and find only three hours spent on it. Is this a time management problem, a calendar management problem, or both? What do you change?"
+   "contrast": {
+    "lazy": "'Elias said the brief is the priority, so I'll fit it in where there's space.' By Thursday there is no space.",
+    "excellent": "'The Harlow brief has Monday and Wednesday 8 to 11 blocked as Brief Prep. Two requests for that time have been offered Tuesday instead. Friday I'll check whether both blocks held.'"
+   },
+   "outcome": "A summary judgment brief that gets squeezed into leftover hours is a brief written tired and in pieces. That can mean a missed filing deadline, or a weaker argument that lets the case go to a costly trial instead of ending early. The bodyguard is what turns a good intention into a filed brief.",
+   "ask": "[Name], Elias says the Harlow summary judgment brief is his top priority this week, but there's no time for it anywhere on his calendar. Walk us through decide and block. [Name], take protect and review.",
+   "mystery": "The case of the three missing hours. Elias says his priority this quarter is winning the Meridian arbitration. His last four weeks show only three hours spent on it. Teams of three, five minutes: is this a time management problem, a calendar management problem, or both? Find the clues in his calendar pattern and bring back two changes you'd make starting Monday."
   }
  },
  "4::Strategic Time Engineering": {
   "p1": {
+   "icebreaker": "Game: 'Spend the week.' Everyone has 10 imaginary coins, one per four hours of Elias's week. Hold up fingers for how many you'd put on each as I call it out: revenue work, long-term growth, legal and compliance deadlines, reputation events, personal commitments. Quick, no overthinking.",
+   "teaser": "Look at your hands. One of those five areas got almost nothing from most of you, and on a real calendar that's exactly the one that ends up costing money.",
    "why": "We don't just manage the executive's calendar. We design it, the way an investor decides where money goes.",
    "talk": "Think of his time as money in a portfolio, with us as the portfolio manager. Some of it should go to work that brings in revenue, some to long-term growth, some to legal and compliance deadlines, some to events where his reputation is on the line, and some to personal commitments that genuinely matter. If we can't say which of those a block of time serves, it isn't protected. It's just empty space waiting to be filled.",
    "walk": [
     "First, before we defend a block of time, we name what it's for. If we can't, it isn't really protected.",
     "Finally, we treat the calendar as an ongoing decision, and regularly check it still matches what matters."
    ],
-   "ask": "On a busy week, which of those five areas gets squeezed first?",
-   "scenario": "Elias's next week has 14 meetings, and no time set aside for preparing a major brief due Friday. Where do you find the time, and how do you protect it once it's on the calendar?"
+   "jargon": [
+    {
+     "term": "Portfolio",
+     "hint": "a mix of investments spread across different goals"
+    },
+    {
+     "term": "Compliance deadline",
+     "hint": "a date set by a rule or regulator that must be met"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant kept a block called 'Hold' on her attorney's Friday afternoons. Nobody knew what it was for, so when a client asked for Friday, she gave it away, week after week. Meanwhile his continuing education hours quietly fell behind and he had to cram them in before the bar deadline. If the block had been named 'CLE and compliance,' she'd have defended it without a second thought.",
+   "ask": "[Name], on a busy week, which of those five areas gets squeezed first? [Name], why do you think that one is the easiest to give away?"
   },
   "p2": {
    "why": "Investments are made on purpose, not spent as requests come in.",
@@ -70,12 +128,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, the trap is protecting time only after something goes wrong.",
     "Finally, the mindset is to invest time deliberately, not spend it as requests arrive."
    ],
-   "ask": "Look at a typical week on Elias's calendar. Which of the five areas gets the least protection, and why might that be?",
-   "scenario": "Every week, Elias's Friday afternoon 'strategy time' gets taken by last-minute requests. What would investing that time on purpose look like, instead of spending it as requests arrive?"
+   "contrast": {
+    "lazy": "'His calendar's full, so I guess the brief prep will have to happen in the evenings.'",
+    "excellent": "'Next week has 14 meetings. Before anyone else books, I've placed two named blocks, Brief Prep Wednesday and Thursday mornings, and moved two internal check-ins to make room. Here's what each block is for.'"
+   },
+   "outcome": "Time that isn't invested on purpose drifts to whoever asks loudest. When that's the brief due Friday, the cost is a rushed filing or a missed one. Over months, an unplanned calendar means the high-value work, the work that wins cases and keeps clients, gets the leftovers.",
+   "ask": "[Name], look at a typical week on Elias's calendar. Which of the five areas gets the least protection? [Name], why might that be?",
+   "mystery": "The case of the vanishing Friday. Every week, Elias's Friday afternoon 'strategy time' gets taken by last-minute requests. In pairs, three minutes: find the clues for why it keeps disappearing (who asks, how, what the block is called) and bring back a redesigned Friday that shows exactly what that time is invested in and how you'll defend it."
   }
  },
  "4::When Time Management Fails Despite a Clean Calendar": {
   "p1": {
+   "icebreaker": "Game: 'Real or fake problem?' I'll describe a week. Shout 'Real!' if it's a problem, 'Fake!' if it's fine. 'No clashes, 23 meetings.' 'Two clashes, one free morning.' 'Nothing booked the day after a long flight.' 'Back-to-back from nine to five, all confirmed.' Loud answers, please.",
+   "teaser": "Some of you shouted 'Fake!' at a week that would ruin Elias's Friday. By the end of this you'll spot it in two seconds.",
    "why": "No conflicts doesn't mean no problems.",
    "talk": "A calendar can look perfect, with nothing overlapping, and still be a bad week. Picture a day that's back-to-back reactive meetings from nine to five. Technically clean. But when does the real work happen? So the question isn't just 'are there any clashes?' It's 'is this week actually set up for the things that matter to get done?'",
    "walk": [
@@ -85,22 +150,39 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when a week goes wrong, work out why. Did we choose the wrong priority, or choose the right one and fail to protect it? The fix is different for each.",
     "Finally, do this check every week, not only when something falls apart."
    ],
-   "ask": "Think of a week where the calendar looked fine but the important things still didn't get done. What broke?",
-   "scenario": "Elias's week has no clashes at all, yet on Friday he says he got nothing important done. You look: 23 meetings, each between 20 and 45 minutes, spread across every day. What went wrong, and what would you change next week?"
+   "jargon": [
+    {
+     "term": "Reactive meeting",
+     "hint": "a meeting set up in response to someone else's request"
+    },
+    {
+     "term": "Meeting overload",
+     "hint": "so many meetings there's no time left for real work"
+    }
+   ],
+   "story": "This happens in real offices: an assistant was praised for a 'perfect' calendar with zero double bookings. Her attorney still missed an internal deadline for a draft settlement memo, because every day was cut into 30-minute meetings with no stretch longer than 15 minutes in between. The partner asked why the memo was late, and the honest answer was that there had never been time to write it. A weekly look for protected space, not just clashes, would have caught it on Monday.",
+   "ask": "[Name], think of a week where the calendar looked fine but the important things still didn't get done. What broke? [Name], was it the same kind of thing for you?"
   },
   "p2": {
    "why": "A trip only goes well if the days around it were planned as carefully as the itinerary.",
-   "talk": "People plan the flight and hotel perfectly and forget that the day before is packed and the day after is a wall of catch-up. The trip is fine; the week around it is a mess.",
+   "talk": "People plan the flight and hotel perfectly and forget that the day before is packed and the day after is a wall of catch-up. The trip is fine; the week around it is a mess. So we plan the whole travel week, not just the travel days.",
    "walk": [
     "First, treat the calendar before, during and after travel with the same care as the trip itself.",
     "Finally, when a clean-looking week fails, ask the key question: was it the decision or the protection that broke?"
    ],
-   "ask": "Share a real week where your calendar looked fine on paper but the priorities still didn't happen. Was it the decision or the protection?",
-   "scenario": "Elias is in London Tuesday to Thursday. On Monday, the day before he flies, he has seven meetings; on Friday, the day after he lands, he has six. What's wrong with this plan, and how would you fix the days either side of the trip?"
+   "contrast": {
+    "lazy": "'No clashes this week, all good.' Sends the calendar over without looking at the shape of each day.",
+    "excellent": "'No clashes, but Monday has seven meetings before your flight and nothing protected for packing or prep. I've moved two internal ones to next week and kept Friday morning clear for catch-up.'"
+   },
+   "outcome": "A worn-out attorney landing in London with no prep time walks into meetings less sharp than the people across the table. The day after, a wall of catch-up means deadlines slip. A clean calendar that hides overload ends in missed work and weaker positions, which clients feel in the result.",
+   "ask": "[Name], share a real week where your calendar looked fine on paper but the priorities still didn't happen. Was it the decision or the protection? [Name], what would you have changed on Monday?",
+   "mystery": "The case of the London sandwich. Elias is in London Tuesday to Thursday. On Monday, the day before he flies, he has seven meetings; on Friday, the day after he lands, he has six. In pairs, four minutes: find what's wrong with the days either side, decide what moves and what stays, and bring back the new Monday and Friday."
   }
  },
  "4::Energy Management vs. Time Management": {
   "p1": {
+   "icebreaker": "Game: 'Show me your energy.' Hand at head height means sharp, at chest height means okay, at your waist means empty. I'll call times of day: 8 a.m. 11 a.m. 2:30 p.m. 4 p.m. on a Friday. 7 p.m. Look around the room after each one.",
+   "teaser": "There's one slot on this slide that looks perfectly free, and booking the wrong thing into it can cost a client real money. Let's find it.",
    "why": "An open slot at someone's worst hour of the day isn't really open.",
    "talk": "Time management asks when something should happen. Energy management asks a different question: will this person be at their best at that moment? Most of us have a pattern. Sharp in the morning, strong until lunch, a slump mid-afternoon, then a second wind late in the day. The curve on the slide shows that pattern. If you book a tough negotiation into the slump, you've scheduled it for failure.",
    "walk": [
@@ -110,12 +192,34 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if it has to go in a low time, say so. Flag it as a risk rather than pretending the slot is neutral.",
     "Finally, check the pattern again now and then. Travel, new roles and life changes shift it."
    ],
-   "ask": "Opposing counsel wants 4 PM Friday for a settlement negotiation, and you know Elias is running on empty by then after a full week. What do you tell him, and what do you propose instead?",
-   "scenario": "Elias is sharpest from 8 to 11 a.m. and fades after 3 p.m. This week you have to schedule a tough negotiation, a routine staff check-in, expense sign-offs and a strategy session. Where does each one go, and why?"
+   "jargon": [
+    {
+     "term": "Energy management",
+     "hint": "scheduling around when a person is sharpest, not just when they're free"
+    },
+    {
+     "term": "Opposing counsel",
+     "hint": "the lawyer representing the other side"
+    },
+    {
+     "term": "Settlement negotiation",
+     "hint": "talks to end a dispute with a deal instead of a trial"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant accepted the other side's request for a late Friday settlement call because it was 'the only free slot.' The attorney had spent the week in depositions and agreed to a term on the call he would normally have pushed back on. He spent the next month trying to walk it back. A one-line flag, 'Friday 4 p.m. is your lowest point this week, could we offer Monday 9 a.m.?', would have given him the choice.",
+   "contrast": {
+    "lazy": "'Opposing counsel asked for Friday at 4, and he's free, so I've confirmed it.'",
+    "excellent": "'They've asked for Friday at 4. You'll have had depositions all week. I'd suggest offering Monday 9 or Tuesday 10 instead. If Friday is the only option, I'll keep the hour before it clear so you can prepare.'"
+   },
+   "outcome": "Negotiations are where case value gets decided. A tired attorney concedes more, notices less and pushes back later. Putting the hardest conversations in the sharpest hours is one of the simplest ways an assistant protects the final settlement figure.",
+   "ask": "[Name], opposing counsel wants 4 PM Friday for a settlement negotiation, and you know Elias is running on empty by then after a full week. What do you tell him? [Name], what do you propose to the other side instead?",
+   "mystery": "The case of the four meetings. Elias is sharpest from 8 to 11 a.m. and fades after 3 p.m. This week you have to schedule a tough negotiation, a routine staff check-in, expense sign-offs and a strategy session. Teams of three, three minutes: place each one on the energy curve and bring back one sentence per meeting explaining why it goes where you put it."
   }
  },
  "4::Time Management Requires Energy Management": {
   "p1": {
+   "icebreaker": "Game: 'Stand if it drains you.' Stand up if this would drain you: a full day of depositions. A two-hour budget review at 5 p.m. A quick catch-up with a favourite colleague. A recurring meeting where the same person always argues. Sit back down between each one.",
+   "teaser": "One of those is a 'quiet drain': it never looks heavy on a calendar, but it wears people down week after week. Remember which one made the most of you stand.",
    "why": "A free slot on the calendar isn't the same as having the energy to use it.",
    "talk": "An exhausted executive makes expensive mistakes. The calendar might show an open hour at 6 p.m., but after a full day of mediation, he has nothing left for a demanding call. So as well as managing time, we manage energy. We avoid stacking draining meetings, build in recovery breaks, protect time for focused work, filter out low-value requests and notice which people or commitments quietly wear him down.",
    "walk": [
@@ -123,8 +227,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we build recovery breaks after the genuinely demanding events on purpose, not just as gaps between meetings.",
     "Finally, we notice patterns, like a recurring meeting that always leaves him drained, and we raise it instead of silently putting up with it."
    ],
-   "ask": "What does a draining week look like for an executive you've supported?",
-   "scenario": "Elias has depositions all day Monday and Tuesday. A partner wants a two-hour budget review Tuesday at 5 p.m., the only free slot. What do you suggest instead, and how do you explain it?"
+   "jargon": [
+    {
+     "term": "Mediation",
+     "hint": "a meeting where a neutral person helps both sides try to settle"
+    },
+    {
+     "term": "Deposition",
+     "hint": "a witness answering questions under oath before trial"
+    },
+    {
+     "term": "Recovery break",
+     "hint": "planned downtime after a demanding event"
+    }
+   ],
+   "story": "A common story in legal offices: after two days of depositions, an attorney was booked into an evening budget review because it was the only gap. He was short with a partner in the meeting, and the budget he approved had an error he'd normally have caught. It took a week of emails to fix both. Suggesting the review for Thursday morning, with a reason, would have cost nobody anything.",
+   "ask": "[Name], what does a draining week look like for an executive you've supported? [Name], what was the first sign you noticed?"
   },
   "p2": {
    "why": "When one person does both business and personal work, the natural breaks disappear, so we have to create them.",
@@ -133,12 +251,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, mixed business-and-personal roles need extra care, because the usual boundaries blur.",
     "Finally, an open slot isn't automatically available. Ask whether he'll have the energy."
    ],
-   "ask": "Elias has a full-day mediation on Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you put a recovery break, and how do you explain it if they push back?",
-   "scenario": "You support Elias at work and his family at home. His Saturday now has a work call at 9, a school event at 11 and a dinner party at 7. Where would you build in recovery time, and what might you move?"
+   "contrast": {
+    "lazy": "'Tuesday at 6 is free, so I've booked it.'",
+    "excellent": "'Tuesday at 6 is technically free, but it's straight after a full-day mediation, and you have a hearing Wednesday morning. I've kept 5:30 to 7 clear and offered them Thursday at 10 instead.'"
+   },
+   "outcome": "The night before a hearing is preparation time, not spare time. If it gets spent on a draining call, he walks into court less prepared and more tired. Courts and opponents don't adjust for that, so the cost lands on the client's case.",
+   "ask": "[Name], Elias has a full-day mediation on Tuesday and a hearing Wednesday morning. Someone asks for Tuesday at 6 p.m. Where do you put a recovery break? [Name], how do you explain it if they push back?",
+   "mystery": "The case of the overbooked Saturday. You support Elias at work and his family at home. His Saturday now has a work call at 9, a school event at 11 and a dinner party at 7. In pairs, three minutes: find where the energy runs out, decide what moves and where recovery time goes, and bring back the new Saturday plus the one line you'd send Sarah Thorne about it."
   }
  },
  "4::Handling Interruptions Without Losing the Day": {
   "p1": {
+   "icebreaker": "Game: 'Count and interrupt.' Everyone count silently from 1 upwards. Every time I clap, stop and tell your neighbour your favourite lunch. Then carry on counting from where you were. Ready? Count. (Clap.) Go back to counting. (Clap.) Now: who lost their number?",
+   "teaser": "That clap took five seconds. Finding your number again took much longer. There's a number on this slide that shows how much longer at work, and it's bigger than you'd think.",
    "why": "One small interruption can eat your whole afternoon if you let it.",
    "talk": "Picture yourself halfway through a tricky email when someone leans over your desk with 'quick question'. The question itself takes two minutes. The damage is the twenty minutes it takes to find your place again. So the skill isn't avoiding interruptions; in this job, that's impossible. It's handling them in seconds, so they stay small, and getting straight back to what you were doing.",
    "walk": [
@@ -147,8 +272,18 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, go back to exactly where you were and finish that thought before anything else.",
     "Finally, save up the things that can wait and handle them together later, in one go."
    ],
-   "ask": "When you get interrupted, how long does it take you to get back to full focus?",
-   "scenario": "You're drafting a sensitive email to a client when three people stop by in 20 minutes: one asking where the stapler is, one with a vendor question and one saying the client on line 2 is angry. How do you handle each one in seconds?"
+   "jargon": [
+    {
+     "term": "Capture list",
+     "hint": "one place you write down things to deal with later"
+    },
+    {
+     "term": "Filing",
+     "hint": "a document formally submitted to the court"
+    }
+   ],
+   "story": "This happens in real offices: an assistant was proofing a filing when a colleague stopped by with a 'quick' question about a vendor invoice. She solved it on the spot, came back to the filing and carried on from the wrong page. A paragraph with the wrong exhibit number went to the court. A ten-second 'Can I come to you at 4:30?' and a note on her pad would have kept her place.",
+   "ask": "[Name], when you get interrupted, how long does it take you to get back to full focus? [Name], what's your trick for finding your place again?"
   },
   "p2": {
    "why": "A two-minute interruption can cost you fifteen minutes of real focus.",
@@ -157,12 +292,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember the cost: every interruption comes with a recovery time you don't see.",
     "Finally, practice telling real urgency from something that only feels urgent because it's happening right now."
    ],
-   "ask": "You're halfway through proofing a filing due at 5 PM, and a colleague stops by to chat about next month's office lunch. Walk us through the four moves out loud.",
-   "scenario": "You're proofreading a court filing due at 4 p.m. At 3:15, a partner asks you to 'quickly' reformat a slide deck for tomorrow. What do you say, and what do you do with the request?"
+   "contrast": {
+    "lazy": "Drops the filing to help with the office lunch plans 'because it's only two minutes', then rushes the proofing at 4:55.",
+    "excellent": "'I'm on a filing due at 5. Can I find you at 5:15?' Writes 'office lunch, see Sam' on the capture list and is back on the same line within ten seconds."
+   },
+   "outcome": "Filings due at 5 p.m. don't move because someone dropped by. A proofing error caused by a broken train of thought can mean a corrected filing, an embarrassed partner, or in the worst case a missed deadline. Keeping interruptions small keeps the court work clean.",
+   "ask": "[Name], you're halfway through proofing a filing due at 5 PM, and a colleague stops by to chat about next month's office lunch. Walk us through the four moves out loud. [Name], what exact words would you use?",
+   "mystery": "The case of the 3:15 slide deck. You're proofreading a court filing due at 4 p.m. At 3:15, a partner asks you to 'quickly' reformat a slide deck for tomorrow. In pairs, two minutes: work out what's truly urgent, write the exact sentence you'd say to the partner, and show me where the deck request goes so it doesn't get lost."
   }
  },
  "4::The Two-Minute Rule": {
   "p1": {
+   "icebreaker": "Game: 'Under or over?' I'll read a task. Hands up if it takes under two minutes, hands down if it's over. 'Reply \"noted\" to a calendar update.' 'Prepare a two-page summary for Elias.' 'Forward a receipt to finance.' 'Find last year's invoice for a client.' Watch your neighbours, not just me.",
+   "teaser": "One of those tasks looks like a two-minute job and quietly turns into a twenty-minute one. There's a rule for the moment that happens, and most people break it.",
    "why": "If it takes less time to do than to write down, just do it.",
    "talk": "Writing a tiny task on a list, remembering it, finding it later and coming back to it takes more effort than simply doing it. That's the whole idea. Quick things get done immediately; bigger things get scheduled properly.",
    "walk": [
@@ -172,8 +314,18 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, keep applying the rule all day, not just when you remember.",
     "Finally, glance at your list for tiny tasks that have been sitting there for days. That's the sign the habit has slipped."
    ],
-   "ask": "How many two-minute tasks are sitting in your inbox right now?",
-   "scenario": "In your inbox: confirm a restaurant booking, forward a receipt to finance, reply 'noted' to a calendar update, and prepare a two-page summary for Elias. Which ones do you do right now, and which get a slot on your list?"
+   "jargon": [
+    {
+     "term": "Two-minute rule",
+     "hint": "if it takes under two minutes, do it now"
+    },
+    {
+     "term": "Court notice",
+     "hint": "an official message from the court about a case"
+    }
+   ],
+   "story": "A common first-week story: a new assistant left a dozen tiny tasks on her list, including 'reply received to court notice.' Each one would have taken a minute. Two weeks later, the court clerk's office called to check the notice had been seen, and the partner wanted to know why nobody had acknowledged it. Nothing was lost, but it looked careless. Doing it the moment it arrived would have taken less time than the phone call did.",
+   "ask": "[Name], how many two-minute tasks are sitting in your inbox right now? Guess a number. [Name], what's the oldest one you can think of?"
   },
   "p2": {
    "why": "The rule only works if you're honest about the two minutes.",
@@ -182,12 +334,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a task that 'should' take two minutes but keeps growing is telling you to stop and schedule it.",
     "Finally, the real reward is a list that never fills up with small stuff."
    ],
-   "ask": "Five things land in ten minutes: confirm a lunch booking, reply 'received' to a court notice, reformat a 20-page exhibit list, forward an invoice to billing and update a phone number. Which ones pass the two-minute rule?",
-   "scenario": "You started replying to 'a quick question' from a client about fees. Twenty minutes later you're still digging through invoices. What should you have done at the two-minute mark?"
+   "contrast": {
+    "lazy": "Starts the 'quick' 20-page exhibit list reformat because it felt small, and is still on it 40 minutes later while three real two-minute replies wait.",
+    "excellent": "Sends 'received' to the court notice, confirms the lunch, forwards the invoice and updates the number in five minutes, then books 'Exhibit list reformat, 45 min' for this afternoon."
+   },
+   "outcome": "Small unanswered items are where court notices, client confirmations and billing details slip through. A missed acknowledgment or a forgotten invoice can turn into a missed date or a client who feels ignored. Clearing the tiny stuff keeps the important items visible.",
+   "ask": "[Name], five things land in ten minutes: confirm a lunch booking, reply 'received' to a court notice, reformat a 20-page exhibit list, forward an invoice to billing and update a phone number. Which ones pass the two-minute rule? [Name], which one fails, and where does it go?",
+   "mystery": "The case of the 'quick' fee question. You started replying to 'a quick question' from a client about fees. Twenty minutes later you're still digging through invoices. In pairs, two minutes: find the exact moment the rule should have kicked in, and write the one-line holding reply you'd have sent the client at the two-minute mark."
   }
  },
  "4::Batch Processing Similar Tasks": {
   "p1": {
+   "icebreaker": "Game: 'Sort the pile.' I'll call out a quick stream of tasks. Point left for calls, point right for emails, point up for expense approvals. Call back the client. Approve a taxi receipt. Reply to a scheduling request. Call the court. Approve hotel costs. Fast as you can.",
+   "teaser": "Your arms got faster the longer you stayed on the same direction. That's this whole topic in one exercise. But there's one kind of task that should make you drop the pile entirely.",
    "why": "Your brain works faster when it does the same kind of task several times in a row.",
    "talk": "Think about cooking: you wouldn't chop one onion, wash the board, then come back later for the next onion. Work is the same. Every time you jump from a call to an email to a spreadsheet, your brain has to warm up again. Batching means doing all your calls together, then all your replies, so you only warm up once for each.",
    "walk": [
@@ -197,8 +356,18 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if something truly urgent arrives, break the batch. Batching is a tool, not a rule.",
     "Finally, revisit your batches when your workload changes."
    ],
-   "ask": "What do you currently handle one at a time that could be batched?",
-   "scenario": "Your day has 12 calls to return, 9 expense approvals and 15 scheduling emails, all arriving at random times. Design your batches for the day. Which one would you break for, and why?"
+   "jargon": [
+    {
+     "term": "Batching",
+     "hint": "doing similar tasks together in one block"
+    },
+    {
+     "term": "Expense approval",
+     "hint": "signing off a cost so it can be paid or reimbursed"
+    }
+   ],
+   "story": "This happens in real offices: an assistant who had just learned batching held every scheduling email for her 3 p.m. block. One of them, sent at 10 a.m., was a client moving that day's 1 p.m. meeting. The attorney sat in an empty conference room for 20 minutes. Batching was the right habit; she just needed a quick scan of new messages for anything with today's date.",
+   "ask": "[Name], what do you currently handle one at a time that could be batched? [Name], what time of day would you put that batch?"
   },
   "p2": {
    "why": "Batch what can wait; break the batch for what can't.",
@@ -207,12 +376,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember that batching is a deliberate choice to delay a little for efficiency.",
     "Finally, anything with its own urgent deadline jumps the queue."
    ],
-   "ask": "In one day you get six expense approvals, four scheduling requests and three short client replies, scattered from morning to evening. Design the batches, and tell us the one thing that would make you break one.",
-   "scenario": "You batch your scheduling emails for 3 p.m. At 10 a.m. a message arrives: a client needs to move today's 1 p.m. meeting. Does it wait for the batch? What rule helps you decide?"
+   "contrast": {
+    "lazy": "Answers every expense, request and reply the moment it pings, all day, and is never quite finished with anything.",
+    "excellent": "'Expenses at 11 and 4, scheduling at 3, client replies at 12 and 5. I scan new messages every hour for anything due today, and those jump the queue.'"
+   },
+   "outcome": "Batching buys back hours for the work that matters, like preparing for hearings. But a batch that swallows a same-day client change means a missed meeting and an unhappy client. The skill is both: efficiency for what can wait, speed for what can't.",
+   "ask": "[Name], in one day you get six expense approvals, four scheduling requests and three short client replies, scattered from morning to evening. Design the batches. [Name], tell us the one thing that would make you break one.",
+   "mystery": "The case of the 10 a.m. message. You batch your scheduling emails for 3 p.m. At 10 a.m. a message arrives: a client needs to move today's 1 p.m. meeting. Teams of three, two minutes: decide whether it waits, find the clue in the message that settles it, and bring back a one-sentence rule you could stick on your monitor."
   }
  },
  "4::The Cost of Context-Switching": {
   "p1": {
+   "icebreaker": "Game: 'Alphabet and numbers.' Everyone, out loud with me: A, 1, B, 2, C, 3, all the way to J, 10. Now do just the letters A to J. Now just the numbers 1 to 10. Hands up: which was slowest?",
+   "teaser": "The mixed one was slower even though it's the same twenty items. There's a number on this slide for how long that costs at work, and it's measured in minutes, not seconds.",
    "why": "It takes most people over twenty minutes to get fully back into deep work after a real interruption.",
    "talk": "And here's the part people miss: it isn't only other people's interruptions. The switches we choose cost us too. Jumping from a filing to an email to a travel booking feels productive, because we're busy all the time. But every jump means warming our brain up again from cold, and those minutes quietly add up across the day.",
    "walk": [
@@ -222,8 +398,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when you do switch, take a moment to close off the first task properly before starting the next.",
     "Finally, try counting your switches for one day. Almost everyone is surprised."
    ],
-   "ask": "How many times do you think you switched tasks in the last hour?",
-   "scenario": "In one hour you checked email eight times, answered four chat pings, took two calls and tried to finish one travel booking, which still isn't done. What would you change about the next hour?"
+   "jargon": [
+    {
+     "term": "Context-switching",
+     "hint": "moving your attention from one type of task to another"
+    },
+    {
+     "term": "Deep work",
+     "hint": "focused, uninterrupted work on something demanding"
+    },
+    {
+     "term": "Focus block",
+     "hint": "calendar time kept for one task with no interruptions"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant kept her inbox open while preparing a filing index, glancing over every time a message arrived. She felt on top of everything. At the end, two exhibits were listed under the wrong numbers, and the associate had to refile a corrected index the next morning. Closing the inbox for 40 minutes would have cost nothing and caught both errors.",
+   "ask": "[Name], how many times do you think you switched tasks in the last hour? Give me a number. [Name], is yours higher or lower?"
   },
   "p2": {
    "why": "Multitasking feels fast and almost always turns out slower.",
@@ -233,12 +423,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, that's the real reason batching and focus blocks exist: fewer switches, less wasted time.",
     "Finally, one task at a time wins over juggling, even when juggling feels busier."
    ],
-   "ask": "In one hour you touch a legal filing question, a personal travel request for Elias, a board deck edit and two Slack pings. How would you rearrange that hour to cut the switching?",
-   "scenario": "A colleague says she's great at multitasking: she drafts emails during video calls and books travel while on hold. Her work has had three errors this week. How would you talk her through what's happening?"
+   "contrast": {
+    "lazy": "Answers a Slack ping, edits two slides, checks the filing question, goes back to the deck, books half a flight, and ends the hour with nothing finished.",
+    "excellent": "'Filing question first, 15 minutes. Board deck, 25 minutes, notifications off. Then Elias's travel and both Slack replies together at the end of the hour.'"
+   },
+   "outcome": "Errors creep in at the switch points: a wrong exhibit number, a wrong date in a travel booking, the wrong attachment. In legal work those become corrected filings, extra cost and a partner explaining a mistake to the court or the client. Fewer switches means fewer of those moments.",
+   "ask": "[Name], in one hour you touch a legal filing question, a personal travel request for Elias, a board deck edit and two Slack pings. How would you rearrange that hour? [Name], what would you do first, and why?",
+   "mystery": "The case of the multitasking colleague. A colleague says she's great at multitasking: she drafts emails during video calls and books travel while on hold. Her work has had three errors this week. In pairs, three minutes: find the clues that link her habits to the errors, and bring back what you'd actually say to her, kindly, in three sentences."
   }
  },
  "4::Weekly Planning Rituals": {
   "p1": {
+   "icebreaker": "Game: 'Stand on your planning style.' Stand up if you plan your whole week ahead. Stay seated if you plan each morning. Put your hand up if you mostly plan as things happen. No judging, just look around the room.",
+   "teaser": "Morning planners, there's one kind of task that you'll almost never see coming in time. It's on next Thursday's calendar right now.",
    "why": "Fifteen minutes of planning once a week saves you from rebuilding your priorities every Monday morning.",
    "talk": "Daily planning is good for today. But some things need several days of preparation, and you only see them if you look at the whole week at once. That's what this ritual is for.",
    "walk": [
@@ -248,8 +445,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, if something needs prep several days ahead, block that prep time now.",
     "Finally, defend the session. If it keeps getting bumped, it isn't a ritual anymore."
    ],
-   "ask": "Who here has a standing weekly planning block, and who plans each morning?",
-   "scenario": "It's Friday at 3 p.m., your weekly planning slot. Looking ahead, you see: a hearing on Wednesday, a board pack due Thursday, Elias travelling Friday and a client dinner Tuesday. What do you block now for prep, and what do you carry over from this week?"
+   "jargon": [
+    {
+     "term": "Lead time",
+     "hint": "how far ahead something has to be started to be ready on time"
+    },
+    {
+     "term": "Board pack",
+     "hint": "the set of papers sent to board members before a meeting"
+    },
+    {
+     "term": "Carry-over",
+     "hint": "unfinished items moved from last week into this one"
+    }
+   ],
+   "story": "A common story in legal offices: an assistant planned each morning and was good at it. On a Wednesday she spotted a hearing set for Thursday, with no binder prepared and the attorney out at a client meeting all afternoon. The binder got done, late at night, with a missing tab the judge noticed. A Friday look at the whole week would have put 'binder prep' on Monday.",
+   "ask": "[Name], do you have a standing weekly planning block, or do you plan each morning? [Name], what's one thing that's caught you out because you only saw it the day before?"
   },
   "p2": {
    "why": "If your planning session keeps getting bumped, you don't really have one.",
@@ -258,12 +469,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember what weekly planning is for: the things with a long lead time.",
     "Finally, protect it on the calendar, or it quietly disappears."
    ],
-   "ask": "It's Friday afternoon. Next Thursday Elias has a mediation that needs a binder, two witness calls and a travel booking. Plan backwards: what goes on the calendar today, and for which days?",
-   "scenario": "Your Friday planning block has been bumped four weeks in a row by 'urgent' requests. Monday mornings have become chaotic. What do you change so the ritual actually happens?"
+   "contrast": {
+    "lazy": "'I'll plan on Monday when I see what's come in.' Monday arrives with a mediation on Thursday and nothing booked for it.",
+    "excellent": "'Friday 3 p.m.: mediation Thursday. Binder prep blocked Monday and Tuesday, witness calls Tuesday and Wednesday morning, travel booked today. Two carry-overs from this week, one dropped.'"
+   },
+   "outcome": "Mediations, hearings and board meetings need days of preparation. A week planned only one day at a time arrives at the big event under-prepared, and that shows in the room. Fifteen minutes on Friday protects the client's position on Thursday.",
+   "ask": "[Name], it's Friday afternoon. Next Thursday Elias has a mediation that needs a binder, two witness calls and a travel booking. Plan backwards: what goes on the calendar today? [Name], which days get what?",
+   "mystery": "The case of the vanishing Friday block. Your Friday planning block has been bumped four weeks in a row by 'urgent' requests, and Monday mornings have become chaotic. Teams of three, three minutes: find who or what keeps taking the slot, decide what you change, and bring back the new time, the new name for the block and the sentence you'll use to defend it."
   }
  },
  "4::Saying No Without Damaging Relationships": {
   "p1": {
+   "icebreaker": "Game: 'Which no would you rather get?' I'll read three ways to say no. Hold up one, two or three fingers for the one you'd prefer to receive. One: silence. Two: 'No, sorry.' Three: 'I can't this week because of the Harlow filing, but I can do Monday, or ask Priya.' Look around.",
+   "teaser": "Almost everyone picked three. And yet there's a fourth answer, the one we give most often, that does more damage than all three. It's coming up.",
    "why": "A quick, honest no with an alternative protects a relationship far better than a yes you can't keep.",
    "talk": "We often say yes because no feels uncomfortable. But think about what damages trust: silence, a flat no with no reason, or a yes that quietly never gets done. What builds trust is a fast answer, a real reason and something else you can offer.",
    "walk": [
@@ -273,8 +491,18 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, never say yes just to escape the awkward moment and then fail to deliver.",
     "Finally, if you're genuinely full, say so up front."
    ],
-   "ask": "Has a no ever actually made a working relationship stronger for you?",
-   "scenario": "A partner asks you to organize his team's holiday party on top of your work for Elias. You're at capacity through December. Say the no in two sentences, with a real reason and something you can offer."
+   "jargon": [
+    {
+     "term": "At capacity",
+     "hint": "your workload is full; nothing more fits without something slipping"
+    },
+    {
+     "term": "Trial prep",
+     "hint": "the preparation work in the days before a trial"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant said yes to helping another partner with his travel 'whenever she had a minute.' She never had a minute. Two weeks later his flights hadn't been booked, prices had doubled and he'd had to sort it himself. He was far more annoyed than he would have been with a polite no on day one. A two-line no with 'Lena on the team can help this week' would have kept the relationship intact.",
+   "ask": "[Name], has a no ever actually made a working relationship stronger for you? [Name], what made it land well?"
   },
   "p2": {
    "why": "Saying yes to everything doesn't make you generous; it just moves the disappointment to later.",
@@ -283,12 +511,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, remember that yes-to-everything only delays the letdown.",
     "Finally, a good no names the real constraint, like 'I can't take this on before Thursday because of the Harlow filing.'"
    ],
-   "ask": "A partner wants 30 minutes with Elias tomorrow, but his whole day is trial prep. Say the no out loud, with the reason and an alternative.",
-   "scenario": "Last month you said yes to three extra projects to be helpful, then delivered all three late. The people who asked are now frustrated. What would a good no have sounded like at the start?"
+   "contrast": {
+    "lazy": "'Sure, I'll try to squeeze you in,' then nothing happens, or the holiday party gets done badly while Elias's work slides.",
+    "excellent": "'I can't take the party on, I'm at capacity with Elias's trial prep through December. I can send you the venue list I used last year and introduce you to the events team today.'"
+   },
+   "outcome": "Every yes you can't keep takes time from the work that's already committed, often the trial prep or the filing. When that slips, the cost lands on a client's case. A clean no keeps both the relationship and the deadline safe.",
+   "ask": "[Name], a partner wants 30 minutes with Elias tomorrow, but his whole day is trial prep. Say the no out loud, with the reason and an alternative. [Name], what would you change about how it sounded?",
+   "mystery": "The case of the three late projects. Last month you said yes to three extra projects to be helpful, then delivered all three late. The people who asked are now frustrated. In pairs, three minutes: find the moment each yes should have been a no, and bring back the two-sentence no you'd have sent for one of them, with a real reason and an offer."
   }
  },
  "4::Setting Realistic Deadlines": {
   "p1": {
+   "icebreaker": "Game: 'Shout the real date.' I'll give you a promise, you shout the date it'll really happen. 'The associate says probably Thursday.' 'She has a deposition Wednesday.' 'And it needs Elias's review.' 'And he's in court Friday morning.' Loudest realistic answer wins.",
+   "teaser": "Each clue moved your date. But one step on this slide would have given you all those clues before anybody promised anything, and it takes one message.",
    "why": "A deadline nobody checked against the actual work isn't a deadline; it's a hope.",
    "talk": "And a hope feels fine right up until it's missed. As an EA, you often set dates for work someone else is doing, so the most important step is simply asking them.",
    "walk": [
@@ -298,8 +533,26 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, say the date clearly with a name attached, just like the timeline in an ACT email.",
     "Finally, if it starts to slip, say so early, while there are still options."
    ],
-   "ask": "When has an optimistic deadline cost you something?",
-   "scenario": "A client asks when the firm can send the revised settlement draft. The associate says 'probably Thursday,' but she has a deposition Wednesday and the draft needs Elias's review. What date do you give the client, and how do you work it out?"
+   "jargon": [
+    {
+     "term": "Associate",
+     "hint": "a lawyer at the firm who isn't yet a partner"
+    },
+    {
+     "term": "Buffer",
+     "hint": "extra time added for things that might go wrong"
+    },
+    {
+     "term": "ACT email",
+     "hint": "the course's email format with a clear action and timeline"
+    },
+    {
+     "term": "Settlement draft",
+     "hint": "the written version of the proposed deal"
+    }
+   ],
+   "story": "This happens in real offices: an assistant told a client the settlement draft would be with them 'by Thursday' because the associate had said 'probably.' The associate was in a deposition Wednesday and the attorney hadn't reviewed it. Friday afternoon, the client emailed the partner directly to ask where it was. One message to the associate, and a promise of Monday, would have looked more reliable, not less.",
+   "ask": "[Name], when has an optimistic deadline cost you something? [Name], who ended up paying for it?"
   },
   "p2": {
    "why": "Never promise a date for someone else without asking them first.",
@@ -308,12 +561,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, build in buffer for genuine risk, so people can actually plan around your date.",
     "Finally, check with the doer before you commit. It takes one message and saves a broken promise."
    ],
-   "ask": "A client asks when they'll get the draft engagement agreement, and the associate writing it is in trial until Wednesday. What do you do before answering, and what do you tell the client?",
-   "scenario": "Elias promised a client a memo by Monday, without asking the associate, who's on leave until Tuesday. It's Friday. What do you do now, and what do you suggest for next time?"
+   "contrast": {
+    "lazy": "'You'll have it this week.' No check, no name, no buffer.",
+    "excellent": "'I've checked with the associate. She's in trial until Wednesday, so the draft engagement agreement will be with you by end of day Friday, from her, after Elias's review. I'll update you Thursday if anything changes.'"
+   },
+   "outcome": "Clients and opposing counsel plan around the dates we give. A missed date makes the firm look disorganised, can push a negotiation back or hand the other side an excuse. In court matters, a missed date can mean a sanction. Honest dates are part of the firm's credibility.",
+   "ask": "[Name], a client asks when they'll get the draft engagement agreement, and the associate writing it is in trial until Wednesday. What do you do before answering? [Name], what do you tell the client?",
+   "mystery": "The case of the Monday memo. Elias promised a client a memo by Monday, without asking the associate, who's on leave until Tuesday. It's Friday. Teams of three, four minutes: find your options, decide who you message first, and bring back two things: the message to the client today, and one habit you'd suggest to Elias for next time."
   }
  },
  "4::Time Tracking Done Right": {
   "p1": {
+   "icebreaker": "Game: 'Memory test.' No looking at your phones. Hands up if you can say exactly what you were doing last Tuesday at 2 p.m. Keep it up if you could tell me for how many minutes. Keep it up if you could say which client it was for.",
+   "teaser": "Almost every hand went down by the third question. On this slide there's a habit that costs firms real money every year, and almost nobody notices it happening.",
    "why": "Record your time as you go, because by Friday your memory is guessing.",
    "talk": "Try remembering exactly what you did last Tuesday at 2 PM. You can't, and neither can anyone. That's why time logged at the end of the week comes out vague and short, and the firm loses money it earned.",
    "walk": [
@@ -323,8 +583,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, include calls and emails. They're real work and the most forgotten.",
     "Finally, keep a weekly summary, even for work that isn't billed, so you can see where your time really goes."
    ],
-   "ask": "Which of those mistakes do you think costs a firm the most over a year?",
-   "scenario": "It's Friday and you haven't logged any time since Monday. You remember roughly what you did, but not for which matters. How do you rebuild the week as honestly as possible, and what will you do differently next week?"
+   "jargon": [
+    {
+     "term": "Billable time",
+     "hint": "work the firm can charge a client for"
+    },
+    {
+     "term": "Matter",
+     "hint": "a specific case or piece of work for a client"
+    },
+    {
+     "term": "Time entry",
+     "hint": "one recorded block of work with a description"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant logged her whole week on Friday afternoon from memory. Three hours of calls and emails on a client's matter never made it in, and the ones that did said 'admin.' Multiply that across a year and the firm had written off thousands in work it had actually done. Logging as she went, in two-minute bursts, would have caught all of it.",
+   "ask": "[Name], which of those mistakes do you think costs a firm the most over a year? [Name], do you agree, or is there one you'd pick instead?"
   },
   "p2": {
    "why": "A good time entry says what you did, to what, and why, and it's tagged to the right matter.",
@@ -334,12 +608,29 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, use your firm's time units, often six minutes, and round honestly.",
     "Finally, tag the client and matter right away. Sorting it out days later is where disputes begin."
    ],
-   "ask": "Your entry for yesterday says 'Emails, 1.0.' Rewrite it as three proper entries, each with an action, an object and a purpose, tagged to the right matters.",
-   "scenario": "Rewrite these entries properly: 'Calls 0.5,' 'Admin 1.2,' 'Harlow stuff 0.8.' Use action, object and purpose, and tag each one to a matter."
+   "jargon": [
+    {
+     "term": "Time unit (0.1)",
+     "hint": "billing in six-minute blocks; 0.1 of an hour"
+    },
+    {
+     "term": "Deposition notice",
+     "hint": "the formal letter telling a witness when and where they'll be questioned"
+    }
+   ],
+   "contrast": {
+    "lazy": "'Emails, 1.0.' No matter, no action, no purpose. The client queries it and the partner writes it off.",
+    "excellent": "'0.3 Reviewed and forwarded Meridian's revised timeline to Elias for approval. 0.4 Drafted the deposition notice for the Harlow matter and sent it to counsel for review. 0.3 Confirmed hearing logistics with the court clerk, Harlow.'"
+   },
+   "outcome": "Vague entries get queried, and queried entries get cut. That's lost revenue for the firm and lost trust with the client, who starts reading every bill with suspicion. In a fee dispute or a costs application after a case, clear entries are what prove the work was done.",
+   "ask": "[Name], your entry for yesterday says 'Emails, 1.0.' Rewrite it as three proper entries, each with an action, an object and a purpose. [Name], which matter would you tag each one to?",
+   "mystery": "The case of the three mystery entries. Your log shows: 'Calls 0.5,' 'Admin 1.2,' 'Harlow stuff 0.8.' In pairs, four minutes: work out what each entry probably covered, rewrite each one using action, object and purpose, tag it to a matter, and bring back the one you think a client would most likely have queried."
   }
  },
  "4::The Weekly Time Audit": {
   "p1": {
+   "icebreaker": "Game: 'Guess the percentage.' Hold up fingers, one finger for every 10 percent. What share of your week goes to your top priority? Now, what share goes to email and chasing replies? Keep your hands up and look around.",
+   "teaser": "When people actually track a real week, one of those two numbers usually swaps places with the other. There's a figure on this slide that shows how far off we tend to be.",
    "why": "Where you think your time goes and where it actually goes are almost never the same.",
    "talk": "Most of us believe we spend our days on the important work, with a few interruptions. When people actually track a week, they usually find the important work squeezed into the gaps and reactive meetings taking over. The gap between those two pictures is the useful part.",
    "walk": [
@@ -349,8 +640,18 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, make sure your time tracking is accurate, because the audit is only as good as the data.",
     "Finally, change something next week based on what you found."
    ],
-   "ask": "Take a guess: what percentage of your week goes to your top priority?",
-   "scenario": "You believe most of your week goes to supporting Elias's cases. After tracking one real week, you find 35 percent went to rescheduling and chasing people for replies. What do you do with that finding?"
+   "jargon": [
+    {
+     "term": "Time audit",
+     "hint": "tracking a real week to see where time actually went"
+    },
+    {
+     "term": "Drift",
+     "hint": "time slowly moving away from your priorities without you noticing"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant was sure most of her week went to case support. When she tracked a week, a third of it had gone to rescheduling and chasing replies, mostly for one recurring internal meeting that moved every week. She suggested a fixed slot to the partner, and got back nearly four hours a week. Without the audit she'd have kept blaming herself for being slow.",
+   "ask": "[Name], take a guess: what percentage of your week goes to your top priority? [Name], what do you think is eating the rest?"
   },
   "p2": {
    "why": "An audit only helps if it changes next week.",
@@ -359,12 +660,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, it's a periodic check to catch drift.",
     "Finally, it turns your time log into an actual improvement, instead of a record nobody reads."
    ],
-   "ask": "Your audit shows 40 percent of your week went to rescheduling meetings and only 10 percent to Elias's most important matter. What two things do you change next week?",
-   "scenario": "Your audit shows you spend six hours a week re-sending the same meeting details to different people. Name one change you'd make next week, and how you'd check whether it worked."
+   "contrast": {
+    "lazy": "'Interesting, I spend a lot of time rescheduling.' Files the audit and changes nothing.",
+    "excellent": "'40 percent went to rescheduling, so next week I'm proposing fixed slots for the three recurring meetings, and I've blocked two mornings for the Meridian work. I'll re-check in four weeks.'"
+   },
+   "outcome": "Time that drifts away from the most important matter shows up later as rushed prep and missed details. An audit that leads to a change gives those hours back to the work that decides cases. One that sits in a folder is just a record of what went wrong.",
+   "ask": "[Name], your audit shows 40 percent of your week went to rescheduling meetings and only 10 percent to Elias's most important matter. What two things do you change next week? [Name], how would you know in a month whether it worked?",
+   "mystery": "The case of the six lost hours. Your audit shows you spend six hours a week re-sending the same meeting details to different people. In pairs, three minutes: find the root cause in that clue, name one change you'd make next week, and bring back exactly how you'd measure whether it worked."
   }
  },
  "4::Data Entry That Holds Up": {
   "p1": {
+   "icebreaker": "Game: 'Spot the twins.' I'll read three client names. Thumbs up if they're the same client, thumbs down if they're different. 'Harlow Industries,' 'Harlow Ind.,' 'Harlow Industries Ltd.' Next: '12 Main St.' and '12 Main Street.' Next: 'CA' and 'California.'",
+   "teaser": "Those all felt obvious to you. A spreadsheet search finds none of them. And the order you fix them in matters more than you'd think.",
    "why": "Clean data isn't about being tidy; it's about making sure nobody downstream gets a wrong number, a double invoice or a missed client.",
    "talk": "When data is messy, the problems show up later and somewhere else: a client gets the same email twice, a report adds up wrong, a search misses someone. The fix is a simple routine done in the same order every time, and the order matters.",
    "walk": [
@@ -373,8 +681,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, check the entries against the original documents, especially numbers, dates and names.",
     "Finally, sort it in the order the next person will need it."
    ],
-   "ask": "Why do you think the order of those four steps matters?",
-   "scenario": "Finance asks you for Elias's client list to send year-end invoices. Your spreadsheet has 310 rows, including the same client three times under slightly different names and two different addresses for one company. What do you do before anything goes to finance, and in what order?"
+   "jargon": [
+    {
+     "term": "Duplicate",
+     "hint": "the same record entered more than once"
+    },
+    {
+     "term": "Downstream",
+     "hint": "whoever uses the data after you"
+    },
+    {
+     "term": "Source document",
+     "hint": "the original paper or file the data came from"
+    }
+   ],
+   "story": "This happens in real offices: an assistant passed a client list to finance for year-end invoices without cleaning it. One company appeared three times under slightly different names and received three invoices. Their finance team flagged it to the partner, who then had to apologise to a client already unhappy about fees. Ten minutes removing duplicates first would have meant one invoice.",
+   "ask": "[Name], why do you think the order of those four steps matters? [Name], what goes wrong if you swap the first two?"
   },
   "p2": {
    "why": "Never hand over raw data and expect someone else to clean up after you.",
@@ -384,23 +706,48 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, formatting comes before checking, because a search for 'California' quietly misses everyone entered as 'CA'.",
     "Finally, check against the source, not your memory. Pull a sample and compare it with the original."
    ],
-   "ask": "Here's a sample client list with 40 rows, some duplicates, 'CA' and 'California', and two phone formats. Let's clean it together in the four steps. What did each step catch?",
-   "scenario": "You sent a contact list to the marketing team without cleaning it. The next week, two clients got the newsletter three times and complained. What should the handover have looked like?"
+   "contrast": {
+    "lazy": "'Here's the client list, it's all in there.' 310 raw rows, sent as-is.",
+    "excellent": "'Attached: 287 clients after removing 23 duplicates. States and phone numbers standardised. I checked 20 addresses against the engagement letters and fixed two. One company has two addresses; I've flagged it in yellow for you to confirm.'"
+   },
+   "outcome": "Bad data leaves the building with the firm's name on it: double invoices, misaddressed letters, a notice that never reaches the right person. In litigation, a wrong address on a service list can mean a party claims they were never notified. Clean data is part of getting things legally right.",
+   "ask": "[Name], here's a sample client list with 40 rows, some duplicates, 'CA' and 'California', and two phone formats. Which step do you start with, and what does it catch? [Name], take the next step.",
+   "mystery": "The case of the triple newsletter. You sent a contact list to the marketing team without cleaning it. The next week, two clients got the newsletter three times and complained. In pairs, three minutes: find which step would have caught it, then bring back what the handover email should have said, including the numbers."
   }
  },
  "4::Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables": {
   "p1": {
+   "icebreaker": "Game: 'Confidence line.' Stand at the left wall if you've never used a pivot table, the right wall if you use them every week, somewhere in between if you're in between. Now move again for XLOOKUP. Who moved the most?",
+   "teaser": "The tool most of you just walked away from can do an afternoon's work in about five minutes. And the biggest spreadsheet disaster on the next slide needs no formula at all.",
    "why": "A few spreadsheet skills can turn an afternoon of copying and counting into five minutes.",
    "talk": "Contact lists, deadlines, expenses, RSVPs: most of our trackers are spreadsheets. A good one has one header row, one row per record and one column per piece of information, with no merged cells and no blank rows in the middle. Then five tools do most of the work: sort, filter, remove duplicates, lookups and pivot tables, plus two small formulas, COUNTIF and SUMIF, for 'how many' and 'how much'.",
    "walk": [
     "First, freeze the header row and turn the data into a table, so sorting and filtering include every column.",
     "Next, use drop-down lists for columns like Status, so everyone types the same thing.",
-    "Then use a lookup, like XLOOKUP, to pull information across from another sheet.",
+    "Then, use a lookup, like XLOOKUP, to pull information across from another sheet.",
     "After that, build a pivot table for summaries, like totals by matter and month.",
     "Finally, before sharing, check totals against the source and remove duplicates."
    ],
-   "ask": "Which of these tools have you used before, and which one makes you nervous?",
-   "scenario": "You have a list of 120 event attendees with emails only, and the firm's contact list has emails and companies. Elias wants attendees grouped by company by noon. How do you do it without copying anything by hand?"
+   "jargon": [
+    {
+     "term": "XLOOKUP",
+     "hint": "finds a value in one list and pulls matching details from another"
+    },
+    {
+     "term": "Pivot table",
+     "hint": "a quick summary table, like totals by matter and month"
+    },
+    {
+     "term": "COUNTIF / SUMIF",
+     "hint": "count or add up only the rows that meet a condition"
+    },
+    {
+     "term": "Freeze header row",
+     "hint": "keeps the column titles visible as you scroll"
+    }
+   ],
+   "story": "A common first-week story: an assistant was asked to group 120 event attendees by company. She copied and pasted company names by hand from the firm contact list for three hours, and got eleven wrong. A lookup on the email address would have done it in two minutes, with no typing. Nobody minded that she didn't know the tool; they minded that the list went out with errors.",
+   "ask": "[Name], which of these tools have you used before? [Name], which one makes you most nervous, and why?"
   },
   "p2": {
    "why": "Spreadsheet disasters are usually one careless click, not a hard formula.",
@@ -411,12 +758,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, sort the whole table, never one column.",
     "Finally, use formulas for totals."
    ],
-   "ask": "Has a sorting mistake ever caught you out? How did you notice?",
-   "scenario": "Elias wants to know, by tomorrow, how much each matter spent on travel last quarter. You have 400 expense rows with dates, matters, categories and amounts. Which tools do you use, and in what order?"
+   "contrast": {
+    "lazy": "Sorts the Amount column on its own, types the quarterly total in by hand, and sends it. The matters no longer match their costs.",
+    "excellent": "'Raw expenses on tab one, untouched. Pivot on tab two: travel by matter for last quarter. Totals are SUMIF formulas, and I've checked the grand total against the finance export.'"
+   },
+   "outcome": "Expense and billing figures end up on client bills, in budget reviews and sometimes in court costs claims. A scrambled sort or a stale hand-typed total means the wrong client gets charged or a figure has to be corrected in front of the partner or the client. Accurate numbers protect the firm's credibility and its fees.",
+   "ask": "[Name], has a sorting mistake ever caught you out? How did you notice? [Name], what would have stopped it happening?",
+   "mystery": "The case of the quarterly travel bill. Elias wants to know, by tomorrow, how much each matter spent on travel last quarter. You have 400 expense rows with dates, matters, categories and amounts. Teams of three, four minutes: list the tools you'd use, in order, find the two traps you must avoid, and bring back what the finished summary tab looks like."
   }
  },
  "4::Dual-Role Context Switching": {
   "p1": {
+   "icebreaker": "Game: 'Say it two ways.' I'll give you a message, and two volunteers say it out loud: one as a formal email to opposing counsel, one as a text to Sarah Thorne. The message: 'Saturday works, see you at seven.' Room votes: who nailed their tone?",
+   "teaser": "It's easy when you're told which voice to use. The trap on this slide is the moment nobody tells you, about two minutes after the last message.",
    "why": "When you switch between business and personal work, switch your tone on purpose, or the wrong one will slip through.",
    "talk": "In a combined EA and PA role, you might write a formal client email and then answer a family text two minutes later. Each needs a different voice. If you switch too fast, a stiff tone ends up in the family message, or a casual one ends up with a client.",
    "walk": [
@@ -424,8 +778,18 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, take a brief pause between the two. Finish one fully before you open the other.",
     "Finally, keep separate task lists for business and personal, even though you manage both."
    ],
-   "ask": "Have you ever sent a message in the wrong tone because you'd just switched tasks?",
-   "scenario": "In ten minutes you have to reply to opposing counsel about a deposition date, then to Sarah Thorne about her mother's birthday dinner. How do you make sure each reply has the right tone and nothing from one leaks into the other?"
+   "jargon": [
+    {
+     "term": "Combined EA/PA role",
+     "hint": "one person supporting both the business and the private life"
+    },
+    {
+     "term": "Tone",
+     "hint": "how formal or warm a message sounds"
+    }
+   ],
+   "story": "This happens in real offices: an assistant answered a family text and then, still in that mood, replied to opposing counsel with 'No worries, Tuesday's fine for the depo!' Opposing counsel forwarded it to his partner with a raised eyebrow, and the attorney heard about it at the next hearing. Harmless in itself, but it made the firm look casual about a serious matter. A ten-second pause to name the world would have caught it.",
+   "ask": "[Name], have you ever sent a message in the wrong tone because you'd just switched tasks? [Name], how did the other person react?"
   },
   "p2": {
    "why": "A small tone slip is usually the sign of a rushed switch.",
@@ -434,12 +798,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, watch out for business language leaking into personal messages, and the other way round.",
     "Finally, treat switching as a real skill you practice, not something that just happens."
    ],
-   "ask": "You're halfway through a formal client email when Elias's spouse texts about a family birthday dinner. How do you switch so that neither message ends up in the wrong tone?",
-   "scenario": "You sent Sarah a text that began 'Per our discussion, please find below the options for Saturday.' She replied, 'Are you OK? You sound like a lawyer.' What slipped, and how do you avoid it?"
+   "contrast": {
+    "lazy": "Fires off the client email, then texts Sarah 'Per your request, the birthday dinner reservation has been confirmed for 19:00.'",
+    "excellent": "Sends the client email, closes it, takes a breath, names the world, then texts Sarah: 'All booked for your mum's birthday, 7 p.m. at the usual place. Want me to order a cake?'"
+   },
+   "outcome": "With opposing counsel, a casual tone can read as not taking the matter seriously, and that can soften our position. With family, a cold tone erodes the trust that lets you handle private matters at all. Both relationships feed into how well you can protect the client and Elias.",
+   "ask": "[Name], you're halfway through a formal client email when Elias's spouse texts about a family birthday dinner. How do you switch so neither message ends up in the wrong tone? [Name], what would you add?",
+   "mystery": "The case of the lawyerly text. You sent Sarah a text that began 'Per our discussion, please find below the options for Saturday.' She replied, 'Are you OK? You sound like a lawyer.' In pairs, two minutes: find what slipped and when, rewrite the text in the right voice, and bring back one habit that stops it happening again."
   }
  },
  "4::Priority Collision Handling": {
   "p1": {
+   "icebreaker": "Game: 'Pick a side.' Two things happen at once. Move to the left of the room for the first, right for the second. 'Elias wants a client on the phone now' or 'the clerk says a filing was rejected.' 'A client's wire transfer failed' or 'Elias wants opposing counsel now.' Notice how fast or slow the room moved.",
+   "teaser": "There's one question on this slide that would have made both of those choices quick. It's not 'which is more important?'",
    "why": "When two truly important things arrive at once, ask what actually breaks if each one waits ten minutes.",
    "talk": "This is different from normal prioritizing, where one thing is obviously more urgent. A collision is when both matter and neither can simply be postponed. The priority tiers don't settle it, so you need a way to think it through quickly.",
    "walk": [
@@ -447,8 +818,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, where you can, do a little on both: a quick acknowledgment on one while you fully handle the other.",
     "Finally, if it's genuinely too close to call, ask. A 30-second check-in beats a wrong guess."
    ],
-   "ask": "Can you think of a time when simply working faster didn't solve a clash like this?",
-   "scenario": "At 2 p.m., Elias asks you to get a client on the phone immediately, and at the same moment the court clerk calls saying a filing was rejected and must be resubmitted by 3 p.m. What breaks if each one waits ten minutes? Which do you do first?"
+   "jargon": [
+    {
+     "term": "Rejected filing",
+     "hint": "the court sent a document back; it must be fixed and resubmitted"
+    },
+    {
+     "term": "Court clerk",
+     "hint": "the court staff member who processes filings"
+    },
+    {
+     "term": "Priority tiers",
+     "hint": "the levels we use to rank how urgent something is"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant got a call from the court clerk saying a filing had been rejected and had to be back by 3 p.m. At the same moment the attorney asked her to get a client on the line. She did the call first because the attorney was standing there. The resubmission went in at 3:04 and the attorney had to file a motion explaining why. 'If the client waits ten minutes, nothing breaks. If the filing does, we miss the deadline' would have settled it.",
+   "ask": "[Name], can you think of a time when simply working faster didn't solve a clash like this? [Name], what would you do differently now?"
   },
   "p2": {
    "why": "Some collisions aren't speed problems; they're real trade-offs.",
@@ -457,12 +842,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't assume speed fixes everything. Sometimes you have to choose.",
     "Finally, note how you resolved it and why. That becomes your playbook for the next one."
    ],
-   "ask": "In the same minute, Elias asks you to get opposing counsel on the phone right now, and a major client emails that their wire transfer failed and the closing is at noon. What happens first, and why?",
-   "scenario": "Two partners both need Elias for an urgent call at 4 p.m. about different client emergencies. You can't split him in two. How do you lay out the trade-off, and who decides?"
+   "contrast": {
+    "lazy": "Tries to do both at once: dials opposing counsel with one hand and half-reads the client's wire email, and makes a mess of both.",
+    "excellent": "'Elias, the client's wire failed and the closing is at noon, so I'm on that first with the bank and their finance team. I've emailed opposing counsel to hold 11:30 for you. Back to you in 15 minutes.'"
+   },
+   "outcome": "A failed wire on a closing day can mean the deal doesn't close, with penalties or a lost deal. A missed resubmission can mean a missed court deadline. Picking the one with the bigger cost of delay, and saying so, is what keeps a bad minute from becoming a bad result for the client.",
+   "ask": "[Name], in the same minute, Elias asks you to get opposing counsel on the phone right now, and a major client emails that their wire transfer failed and the closing is at noon. What happens first? [Name], why?",
+   "mystery": "The case of the 4 p.m. double emergency. Two partners both need Elias for an urgent call at 4 p.m. about different client emergencies. You can't split him in two. Teams of three, four minutes: find the clues for the cost of delay on each side, write how you'd lay out the trade-off, and tell me who decides and what you'd say to them."
   }
  },
  "4::Mid-Stage Task Injections": {
   "p1": {
+   "icebreaker": "Game: 'Where was I?' Everyone start writing the alphabet on your notepad. When I say 'Stop!', turn to your neighbour and tell them what you had for breakfast. Then carry on writing. Ready... Stop! Now, raise your hand if you had to look back to see which letter you were on.",
+   "teaser": "You had a marker: the last letter on the page. Most real work doesn't leave one by itself, and that's exactly where this slide's mistake hides.",
    "why": "Before you switch to a new request, leave yourself a clear marker of where you stopped.",
    "talk": "A task injection is when a new, unrelated request lands while you're halfway through something else. Unlike a collision, the first task can usually continue; it just gets interrupted. The danger is coming back and not remembering exactly where you were. That's where mistakes creep in.",
    "walk": [
@@ -470,8 +862,18 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, before you switch, leave a marker: a note, a highlighted line or a saved draft.",
     "Finally, if the new task takes over completely, tell whoever is waiting on the first one."
    ],
-   "ask": "How do you keep your place when you're interrupted in the middle of something?",
-   "scenario": "You're halfway through building a 40-line travel itinerary when Elias asks you to find a contract from 2021 right now. What do you do in the 20 seconds before you switch?"
+   "jargon": [
+    {
+     "term": "Task injection",
+     "hint": "a new unrelated request landing mid-task"
+    },
+    {
+     "term": "Safe stopping point",
+     "hint": "a place where you can pause without losing work"
+    }
+   ],
+   "story": "A common story in legal offices: an assistant was halfway through a long travel itinerary when the attorney asked for an old contract urgently. She found it, came back and carried on from what she thought was the right line. One connecting flight never got booked, and the attorney found out at the airport. Highlighting 'stopped here, flight 3 not booked' before switching would have taken five seconds.",
+   "ask": "[Name], how do you keep your place when you're interrupted in the middle of something? [Name], have you ever come back and got it wrong?"
   },
   "p2": {
    "why": "Your memory is where the details get dropped.",
@@ -480,12 +882,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, don't rely on memory for tasks in progress.",
     "Finally, keep a running list of 'paused here' items. It's a small habit that prevents big mistakes."
    ],
-   "ask": "You're halfway through a detailed client reply when an urgent, unrelated request arrives. Walk us through what you do so neither task gets dropped.",
-   "scenario": "Last week, you were interrupted mid-way through updating a client's contact details and forgot to finish. The client's new number never made it into the system. What habit fixes this?"
+   "contrast": {
+    "lazy": "Jumps straight to the new request and plans to 'remember where I was.' Comes back an hour later to a half-written client reply and sends it as it is.",
+    "excellent": "Saves the draft, types 'PAUSED: para 3, still need fee figure from billing' at the top, adds it to the paused list, then switches. Picks it up exactly there afterwards."
+   },
+   "outcome": "Half-finished tasks are where client details go missing: a phone number never saved, a reply never sent, a booking never made. In legal work a missed update can mean a notice going to the wrong number or a client feeling forgotten. A paused list keeps every thread you started.",
+   "ask": "[Name], you're halfway through a detailed client reply when an urgent, unrelated request arrives. Walk us through what you do so neither task gets dropped. [Name], where exactly would you leave your marker?",
+   "mystery": "The case of the missing phone number. Last week, you were interrupted mid-way through updating a client's contact details and forgot to finish. The client's new number never made it into the system. In pairs, two minutes: find the moment the marker should have gone in, and bring back the habit, and the exact note, that would have saved it."
   }
  },
  "4::Research as a Core EA Skill": {
   "p1": {
+   "icebreaker": "Game: 'Real or fake?' I'll read three vendor names. Shout 'Real!' or 'Fake!' 'Apex Legal Print Solutions.' 'Harlow Industries.' 'Meridian Trial Graphics LLC.' Now: hands up if you'd bet $6,000 on your answer.",
+   "teaser": "Nobody kept a hand up. On this slide there's one place to check that settles it every time, and it isn't the vendor's own website.",
    "why": "Research is the quiet habit underneath almost everything an EA does.",
    "talk": "It shows up in three everyday ways. Checking that a new vendor or contact is genuine before the executive spends time or money on them. Putting together a short note on who'll be in a meeting and what they care about. And checking a claim before we pass it on as fact, because if it turns out to be wrong, it's our credibility on the line, not the source's.",
    "walk": [
@@ -495,8 +904,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, always start with the original source: the company's own site, the actual filing, the original email.",
     "Finally, if you can't confirm something in time, say clearly that it's unconfirmed."
    ],
-   "ask": "If you'd never heard of a vendor, what's the first thing you'd check?",
-   "scenario": "Elias has a meeting tomorrow with a potential new client, the CEO of a logistics company. Put together a five-line briefing: what you'd look up, where, and what you'd include."
+   "jargon": [
+    {
+     "term": "Due diligence",
+     "hint": "checking someone or something is genuine before committing"
+    },
+    {
+     "term": "Primary source",
+     "hint": "the original document, not someone's summary of it"
+    },
+    {
+     "term": "Briefing note",
+     "hint": "a short summary of who and what before a meeting"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant booked a 'trial exhibits printer' found online and paid a deposit because their website looked professional. The company didn't exist at the address given, and the deposit was gone. The exhibits were printed in a rush by the firm's usual vendor at twice the price. A two-minute check of the business registry and one call to a known number would have stopped it.",
+   "ask": "[Name], if you'd never heard of a vendor, what's the first thing you'd check? [Name], what's the second?"
   },
   "p2": {
    "why": "Knowing who you're calling, what's true and who's legitimate is the job, not an extra.",
@@ -506,12 +929,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, know what's true before you forward it.",
     "Finally, know a vendor is real before you schedule them."
    ],
-   "ask": "You have 90 seconds: a vendor called 'Apex Legal Print Solutions' wants a $6,000 deposit for trial exhibits. Tell us out loud what you'd check first, and where.",
-   "scenario": "A partner forwards a news article claiming a client's company is being investigated, and asks you to 'send it to Elias.' The article is from an unfamiliar website. What do you check before forwarding it?"
+   "contrast": {
+    "lazy": "Forwards the news article to Elias with 'FYI' and books the vendor because they emailed first.",
+    "excellent": "'Elias, a partner sent this article about the client. The site isn't a known outlet and I can't find the story anywhere else, so treat it as unconfirmed. I've checked the court records and found no filing yet.'"
+   },
+   "outcome": "Unchecked information that reaches the executive can shape real decisions: a call to a client made on a false rumour, a fake vendor paid with firm money, a meeting walked into unprepared. Each one costs credibility or cash, and a rumour passed on as fact can damage a client relationship. Checking first protects both.",
+   "ask": "[Name], you have 90 seconds: a vendor called 'Apex Legal Print Solutions' wants a $6,000 deposit for trial exhibits. Tell us out loud what you'd check first, and where. [Name], what would make you stop the payment?",
+   "mystery": "The case of the unfamiliar website. A partner forwards a news article claiming a client's company is being investigated, and asks you to 'send it to Elias.' The article is from an unfamiliar website. Teams of three, four minutes: list the clues you'd check, name the sources you'd use, and bring back the exact message you'd send Elias, with how confirmed it is."
   }
  },
  "4::Research Method & the Real Failure Mode": {
   "p1": {
+   "icebreaker": "Game: 'How sure are you?' I'll read a claim. Show me one to five fingers for how sure you'd be after one source. 'Their website says they serve top law firms.' 'A court record shows they were sued last year.' 'A colleague says they're great.' 'Their LinkedIn says certified.' Now: who'd recommend them to Elias on that alone?",
+   "teaser": "One of those sources gave most of you four or five fingers, and it's the weakest of the lot. By the end of the slide you'll know which one and why.",
    "why": "Anything that drives a decision or a dollar amount needs a second, independent source.",
    "talk": "You don't have time to research everything deeply, and you don't need to. What you need is a quick, reliable method: start at the original source, double-check anything important, and know when 'good enough' really is enough.",
    "walk": [
@@ -521,8 +951,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, remember that what a company says about itself isn't proof.",
     "Finally, use the same habit before every call you make."
    ],
-   "ask": "When has a single source turned out to be wrong for you?",
-   "scenario": "A new court-reporting company offers a 40 percent discount on depositions. Their website lists impressive clients. What do you check, and from which independent sources, before recommending them?"
+   "jargon": [
+    {
+     "term": "Independent source",
+     "hint": "one that doesn't rely on the first source's information"
+    },
+    {
+     "term": "Co-counsel",
+     "hint": "another law firm working on the same case with us"
+    },
+    {
+     "term": "Court reporter",
+     "hint": "the person who makes the official transcript of a deposition"
+    }
+   ],
+   "story": "This happens in real offices: an assistant recommended a new court-reporting company because its website listed big-name clients and the price was 40 percent lower. The transcript from the first deposition arrived two weeks late and full of errors, and the attorney needed it for a motion. One call to a firm on that client list would have shown they'd never used the company.",
+   "ask": "[Name], when has a single source turned out to be wrong for you? [Name], what would a second source have shown?"
   },
   "p2": {
    "why": "The usual mistake isn't laziness; it's trusting one source that hasn't been checked.",
@@ -531,12 +975,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, a vendor's claims about themselves are marketing, not verification.",
     "Finally, this same discipline is what makes researching before a call work."
    ],
-   "ask": "A possible co-counsel's website says they've 'won over $50 million in verdicts,' and Elias wants to partner with them next week. How do you check that, and what do you tell him if you can't?",
-   "scenario": "You booked a translator for a deposition based on their LinkedIn profile, which said 'certified legal interpreter.' On the day, it turns out their certification had lapsed. What should your process have included?"
+   "contrast": {
+    "lazy": "'Their website says they've won over $50 million in verdicts, so they look solid.'",
+    "excellent": "'Their site claims $50 million in verdicts. I found two of the cases in court records, about $18 million together. I couldn't confirm the rest, so I'd treat the full figure as unverified until they send case references.'"
+   },
+   "outcome": "Partnering with the wrong co-counsel, or hiring an unqualified interpreter, can damage a case directly: a challenged deposition, a weak trial team, a fee split nobody planned for. A second independent source is cheap; fixing a bad choice in the middle of a case is not.",
+   "ask": "[Name], a possible co-counsel's website says they've 'won over $50 million in verdicts,' and Elias wants to partner with them next week. How do you check that? [Name], what do you tell him if you can't?",
+   "mystery": "The case of the lapsed interpreter. You booked a translator for a deposition based on their LinkedIn profile, which said 'certified legal interpreter.' On the day, it turns out their certification had lapsed. In pairs, three minutes: find where the process went wrong, name the independent source that would have caught it, and bring back a three-step check for next time."
   }
  },
  "4::Creating and Maintaining a Comprehensive Contact List": {
   "p1": {
+   "icebreaker": "Game: 'Stand in for me.' Imagine you're off sick tomorrow and a stand-in has your contact list. Stand up if they'd know who Elias's most important client's assistant is. Stay up if they'd know how that client likes to be contacted. Stay up if they'd know who must never be called directly.",
+   "teaser": "Very few of you are still standing. The field that keeps most people seated isn't a phone number at all, and it's the one that can cause a real problem.",
    "why": "A great contact list lets anyone covering for you find the right person, with the right background, in seconds.",
    "talk": "A contact list is much more than a phone book. A good one tells us how someone knows the executive, how they like to be reached and who their assistant is. It's organised into clear groups, so we can find the right person fast. And it's updated the moment anything changes, because a list that's a few months out of date is how calls go to the wrong number.",
    "walk": [
@@ -546,8 +997,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, build it so a stand-in could use it without asking you.",
     "Finally, treat it as part of how the office runs, not your private notebook."
    ],
-   "ask": "What does your contact list hold beyond a name and a number?",
-   "scenario": "Elias meets a new client's general counsel at a dinner and texts you: 'Add her, she prefers text, assistant is Mark.' Build the contact entry. What else would you want to know and record?"
+   "jargon": [
+    {
+     "term": "General counsel (GC)",
+     "hint": "a company's in-house head lawyer"
+    },
+    {
+     "term": "Preferred channel",
+     "hint": "how the person likes to be contacted: call, text or email"
+    },
+    {
+     "term": "Stand-in",
+     "hint": "whoever covers your work while you're away"
+    }
+   ],
+   "story": "A common story in legal offices: an assistant was on leave when a client's general counsel called urgently. The stand-in found the GC's number but no note that she preferred text and that her assistant handled all scheduling. He left three voicemails, she didn't pick up, and the meeting was set a day later than it should have been. Two lines of notes on the entry would have fixed it.",
+   "ask": "[Name], what does your contact list hold beyond a name and a number? [Name], what's one field you'd add after hearing this?"
   },
   "p2": {
    "why": "Flag the sensitive ones, like an opposing party nobody should contact directly.",
@@ -557,12 +1022,29 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, the context: how they're connected to the executive, when you last spoke and any sensitivities.",
     "Finally, the upkeep: a 'last checked' date and a quick quarterly clean-up."
    ],
-   "ask": "Build Elias's contact entry for his estate-planning client's accountant. Which fields would you fill in, and what note would you add if that accountant is also a witness in another matter?",
-   "scenario": "The opposing party in the Meridian matter is also a board member at a charity Elias supports. How do you record this in the contact list so nobody makes a mistake?"
+   "jargon": [
+    {
+     "term": "Opposing party",
+     "hint": "the person or company on the other side of a case"
+    },
+    {
+     "term": "Witness",
+     "hint": "someone who may give evidence in a case"
+    }
+   ],
+   "contrast": {
+    "lazy": "'Jane Doe, accountant, 555-0123.' Nothing else.",
+    "excellent": "'Jane Doe, CPA, Doe & Partners. Accountant for Elias's estate-planning client. Prefers email, mornings, EST. Last spoke 3 March. SENSITIVE: witness in the Harlow matter, all contact via Elias only. Last checked: April.'"
+   },
+   "outcome": "Contacting an opposing party or a witness directly can breach professional rules and hand the other side a complaint. A sensitivity flag on the entry is what stops a well-meaning colleague from making that call. Good notes protect the firm, the case and the client.",
+   "ask": "[Name], build Elias's contact entry for his estate-planning client's accountant. Which fields would you fill in? [Name], what note would you add if that accountant is also a witness in another matter?",
+   "mystery": "The case of the charity board member. The opposing party in the Meridian matter is also a board member at a charity Elias supports. Teams of three, four minutes: find every place this person could turn up (events, invitations, donation letters), and bring back the exact entry and flags you'd put in the contact list so nobody makes a mistake."
   }
  },
  "4::Contact List Failure Modes & Upkeep": {
   "p1": {
+   "icebreaker": "Game: 'Count your lists.' Hold up a finger for every place you keep contacts: your phone, a spreadsheet, email, a CRM, a notebook, sticky notes. Higher. Who's got three or more? Who's got just one?",
+   "teaser": "Most of you need more than one hand. And the biggest problem in a contact list isn't the person who's missing, it's something that looks perfectly fine.",
    "why": "The most common problem with contact lists isn't missing people; it's out-of-date details.",
    "talk": "An assistant who left a year ago, a phone number from two jobs back, a category that no longer fits. These look fine until someone relies on them in a hurry.",
    "walk": [
@@ -572,8 +1054,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, when you find a wrong entry, fix it right then. It takes seconds.",
     "Finally, if your contacts are scattered, bring them together deliberately."
    ],
-   "ask": "Where do your contacts live right now, and in how many places?",
-   "scenario": "During your quarterly check, you find 40 contacts nobody has touched in two years, 12 with bounced emails and 5 duplicates. What do you do with each group?"
+   "jargon": [
+    {
+     "term": "Stale entry",
+     "hint": "a contact whose details are out of date"
+    },
+    {
+     "term": "Bounced email",
+     "hint": "an email that came back undelivered"
+    },
+    {
+     "term": "CRM",
+     "hint": "a shared system for managing client contacts and history"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant needed to reach a client's assistant urgently about a hearing time change. The list still had the name of someone who'd left eight months earlier, and the email bounced. By the time she found the new person through the switchboard, the client had already set off for the old time. A quarterly ten-minute check would have flagged that bounce months before.",
+   "ask": "[Name], where do your contacts live right now, and in how many places? [Name], which of those would you trust in an emergency?"
   },
   "p2": {
    "why": "Three scattered lists aren't one list; they're three incomplete ones.",
@@ -582,12 +1078,19 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, keep everything in one system: a CRM, a shared contacts platform or at least one synced address book.",
     "Finally, a small, regular check stops the slow decay that makes a list unreliable."
    ],
-   "ask": "Tell us about a time you couldn't reach the right person quickly because the contact details were wrong or scattered. What would have prevented it?",
-   "scenario": "Elias's contacts live in his phone, your spreadsheet and the firm's CRM, and they don't match. A client's number was different in all three last week. What's your plan to fix this for good?"
+   "contrast": {
+    "lazy": "'The number's in my phone, or maybe the spreadsheet. Elias might have the new one.'",
+    "excellent": "'All contacts live in the firm CRM, synced to Elias's phone. Every quarter I spend ten minutes on bounces, duplicates and anything untouched for a year. Last check: 40 archived, 12 fixed, 5 merged.'"
+   },
+   "outcome": "When a hearing moves or a settlement offer has a deadline, the right person has to be reached fast. A wrong number at that moment can mean a missed appearance or an offer that expires unanswered. One trusted list is what makes those calls work first time.",
+   "ask": "[Name], tell us about a time you couldn't reach the right person quickly because the contact details were wrong or scattered. [Name], what would have prevented it?",
+   "mystery": "The case of the three numbers. Elias's contacts live in his phone, your spreadsheet and the firm's CRM, and they don't match. A client's number was different in all three last week. In pairs, four minutes: work out which copy should be the master, how you'd find the right number, and bring back a three-step plan to fix this for good."
   }
  },
  "4::Master Contact List Discipline": {
   "p1": {
+   "icebreaker": "Game: 'Pass the update.' Front row, I'm whispering a new phone number to the person on the end. Pass it along the row in a whisper. Last person, say it out loud. Now let's compare it with what I actually said.",
+   "teaser": "Even in one row, the number changed. Imagine it living in two separate copies for six months. There's one moment when that always goes wrong, and it's the worst possible one.",
    "why": "The whole team uses one master contact list, because private copies drift apart.",
    "talk": "Here's the danger. Two people each keep their own copy of a contact. One gets updated, the other doesn't. And the outdated copy is the one someone grabs in an emergency.",
    "walk": [
@@ -597,8 +1100,22 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "After that, update the master the moment you learn about a change.",
     "Finally, if you find a mismatch, fix the habit, not just that one entry."
    ],
-   "ask": "Does anyone on your team keep their own copy of key contacts?",
-   "scenario": "You find that the paralegal keeps her own spreadsheet of key contacts 'because it's quicker.' Half the numbers are out of date. How do you raise it, and what do you put in place?"
+   "jargon": [
+    {
+     "term": "Master list",
+     "hint": "the single official copy everyone uses"
+    },
+    {
+     "term": "Paralegal",
+     "hint": "a trained legal assistant who supports lawyers on cases"
+    },
+    {
+     "term": "CFO",
+     "hint": "Chief Financial Officer, a company's head of finance"
+    }
+   ],
+   "story": "This happens in real offices: a paralegal kept her own spreadsheet of key contacts because it was quicker than the firm system. When a client's CFO left, the master list was updated but her copy wasn't. She sent a confidential settlement update to the old CFO's personal email, now at a competitor. The firm had to report it and explain it to the client. One shared list would have made the update reach everyone at once.",
+   "ask": "[Name], does anyone on your team keep their own copy of key contacts? [Name], how would you raise it without sounding like you're telling them off?"
   },
   "p2": {
    "why": "The out-of-date copy is always the one that gets used in a crisis.",
@@ -607,8 +1124,13 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "First, apply the master-list habit to scheduling as well as calls.",
     "Finally, remember the real cost of two copies: the wrong number, at the worst moment."
    ],
-   "ask": "Opposing counsel's direct line changed last week. You updated your copy, but the paralegal's copy still has the old number, and she's setting up tomorrow's call with them. What went wrong, and what's the fix?",
-   "scenario": "A client's CFO left the company last month. You updated the master list, but a partner's assistant still emailed the old CFO about a confidential matter. What went wrong, and how do you stop it happening again?"
+   "contrast": {
+    "lazy": "Updates her own copy of opposing counsel's new direct line and assumes everyone else will 'pick it up somehow.'",
+    "excellent": "Updates the master list the moment the change comes in, notes 'updated 14 May, confirmed by their office,' and messages the paralegal: 'New direct line for opposing counsel is in the master. Please use that for tomorrow's call and delete your copy.'"
+   },
+   "outcome": "A confidential email to someone who has left the company is a data leak, and it can hand sensitive case information to the wrong side. A call to a dead number before a deadline can cost the client time they didn't have. One master list protects confidentiality and keeps urgent work moving.",
+   "ask": "[Name], opposing counsel's direct line changed last week. You updated your copy, but the paralegal's copy still has the old number, and she's setting up tomorrow's call with them. What went wrong? [Name], what's the fix?",
+   "mystery": "The case of the departed CFO. A client's CFO left the company last month. You updated the master list, but a partner's assistant still emailed the old CFO about a confidential matter. Teams of three, four minutes: find the clues for where the old address came from, list who needs to know now, and bring back the one rule you'd put in place so it can't happen again."
   }
  },
  "4::Client Relationship Management": {
