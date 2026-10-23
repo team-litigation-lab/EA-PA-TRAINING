@@ -4152,12 +4152,14 @@ if(document.querySelector(".topbar")) render();
   .lesson-stage:not(:fullscreen) .stage-body{flex:1 1 auto;min-height:0;}
   .lesson-stage:not(:fullscreen) #lessonSlideWrap{min-height:0 !important;max-height:none !important;height:100%;overflow:auto;}
   .lesson-stage:not(:fullscreen) .slide-nav{flex:0 0 auto;}
+  body:has(#lessonStage) main{padding-bottom:6px !important;}
+  body:has(#lessonStage) .footer-note{padding:4px 24px 6px;}
 }`;
   document.head.appendChild(s);
 
   // The room left under the stage's top edge, less a small gap so the last row isn't flush
   // with the bottom of the window.
-  const GAP = 16, LEAST = 360;
+  const GAP = 8, LEAST = 360;
   let pending = 0;
   function fit(){
     pending = 0;
@@ -4166,8 +4168,17 @@ if(document.querySelector(".topbar")) render();
     if(window.innerWidth < 1001 || window.innerHeight < 620 || document.fullscreenElement){
       stage.style.removeProperty("--ls-max"); return;
     }
-    const top = stage.getBoundingClientRect().top;
-    stage.style.setProperty("--ls-max", Math.max(LEAST, window.innerHeight - top - GAP) + "px");
+    // Whatever sits under the stage (main's bottom padding, the footer line) has to fit too,
+    // or the page scrolls by that much.
+    const main = stage.closest("main");
+    let below = main ? parseFloat(getComputedStyle(main).paddingBottom) || 0 : 0;
+    document.querySelectorAll(".footer-note").forEach(n=>{ below += n.getBoundingClientRect().height; });
+    const top = stage.getBoundingClientRect().top + window.scrollY;
+    const h = Math.max(LEAST, window.innerHeight - top - below - GAP);
+    stage.style.setProperty("--ls-max", h + "px");
+    // one correction for anything the sum missed
+    const over = document.documentElement.scrollHeight - window.innerHeight;
+    if(over > 0) stage.style.setProperty("--ls-max", Math.max(LEAST, h - over) + "px");
   }
   function soon(){ if(!pending) pending = requestAnimationFrame(fit); }
 
