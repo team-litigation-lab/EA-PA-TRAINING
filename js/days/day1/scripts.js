@@ -421,122 +421,222 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  },
  "1::Basic Communication Principles for Legal EAs": {
   "p1": {
+   "icebreaker": "Game: 'Who's reading?' I'll read one line. You shout 'Attorney!', 'Client!' or 'Court!' for who it was written for. 'Filed. Confirmation attached. Nothing needed from you.' 'We've asked for a little more time so we can prepare your case properly.' 'We respectfully request confirmation of receipt.' Loudest correct answer wins.",
+   "teaser": "All three lines said exactly the same thing. One of them, sent to the wrong reader, would cause real trouble. Keep guessing which one while we go.",
    "why": "In legal work, a message that can be read two ways is a risk, not just a style problem.",
    "talk": "Think about who reads what we write: a busy attorney, a nervous client, a court clerk. Each needs something different from us. The attorney wants the facts fast. The client wants to understand and feel reassured. The court wants it formal and by the book. If our wording is vague, any one of them can take it the wrong way, and in law that can cost money or a deadline.",
    "walk": [
-    "First, before we write a word, we decide who's reading it.",
-    "Next, we write it so there's only one way to understand it, and we cut any phrase that could be taken two ways.",
-    "Then, we set the tone for that reader: short and technical for the attorney, plain and calm for the client, formal for the court.",
-    "After that, we remember that confidentiality covers conversations too, even a casual chat in the hallway.",
-    "Finally, when we have to say 'not now', we use tried-and-tested phrases, so we sound professional instead of flustered."
+    "First, before you write a word, decide who's reading it.",
+    "Next, write it so there's only one way to understand it, and cut any phrase that could be taken two ways.",
+    "Then, set the tone for that reader: short and technical for the attorney, plain and calm for the client, formal for the court.",
+    "After that, remember that confidentiality covers conversations too, even a casual chat in the hallway.",
+    "Finally, when you have to say 'not now', use tried-and-tested phrases, so you sound professional instead of flustered."
    ],
-   "ask": "Who do you find hardest to write for: the attorney, the client or the court? Why?",
-   "scenario": "You need to tell three people that a hearing moved from Tuesday to Thursday: Elias, the client, and the court clerk (to confirm the new date). Draft the first line of each message. What changes between them, and what stays exactly the same?"
+   "jargon": [
+    {
+     "term": "Court clerk",
+     "hint": "the court official who handles filings and schedules"
+    },
+    {
+     "term": "Hearing",
+     "hint": "a scheduled session in front of a judge"
+    },
+    {
+     "term": "Confidentiality",
+     "hint": "the duty to keep client matters private"
+    }
+   ],
+   "story": "A common first-week story: an assistant told a client by email that a hearing had been 'pushed back a bit.' The client read that as weeks and booked a holiday. It had moved two days. He nearly missed it, and the attorney spent an afternoon on damage control. Writing 'moved from Tuesday 10 a.m. to Thursday 10 a.m.' would have left only one way to read it.",
+   "ask": "[Name], who do you find hardest to write for: the attorney, the client or the court? Why? [Name], is yours the same, or different?"
   },
   "p2": {
    "why": "The facts stay the same for every audience. What changes is how we say them.",
    "talk": "Imagine the same update going to three people: a motion was filed asking the court for more time. To the attorney, that's one line: filed, confirmation attached, nothing needed from you. To the client, it's reassurance: we've asked for more time so we can prepare your case properly. To the court clerk, it's a formal request to confirm receipt. None of those versions is more honest than the others; each one simply suits who's reading it.",
    "walk": [
-    "First, we shape every update for its reader.",
-    "Next, we keep matters private in how we talk about them, not just in the documents we send.",
-    "Then, when an EA has to hold someone off, a line like 'His schedule is fully committed; I'll follow up on your request' keeps it professional.",
+    "First, shape every update for its reader.",
+    "Next, keep matters private in how you talk about them, not just in the documents you send.",
+    "Then, when you have to hold someone off as an EA, a line like 'His schedule is fully committed; I'll follow up on your request' keeps it professional.",
     "Finally, a PA's version is warmer: 'He's not available right now. Can I pass on a message, or find a better time?'"
    ],
-   "ask": "Let's hear it. Three volunteers: read the attorney, client and court versions aloud, each in its own tone.",
-   "scenario": "In the lift, a colleague from another team asks, 'Did the Meridian thing settle? I heard it was big money.' The settlement is confidential. What do you say, in a way that doesn't sound rude or confirm anything?"
+   "contrast": {
+    "lazy": "One email, copied to everyone: 'FYI, the motion for extension went in, let me know if questions.' The client panics at 'motion', the clerk gets no clear request.",
+    "excellent": "Three versions of the same fact. Elias gets 'Filed, confirmation attached, nothing needed from you.' The client gets 'We've asked for more time so we can prepare properly.' The clerk gets a formal request to confirm receipt."
+   },
+   "outcome": "A vague line to a client becomes a panicked phone call; a vague line to a court can become a missed date or a rejected filing. And a careless word in the lift about a confidential settlement can breach its terms. Clear, reader-shaped messages protect deadlines, the client's trust and the deal itself.",
+   "ask": "[Name], read me the attorney version of 'the motion was filed', in the right tone. [Name], now give me the client version of the same fact.",
+   "mystery": "The case of the lift conversation. In the lift, a colleague from another team asks, 'Did the Meridian thing settle? I heard it was big money.' The settlement is confidential. In pairs, you have two minutes: find the two traps in that question, and bring back the exact sentence you'd say that doesn't sound rude and doesn't confirm anything."
   }
  },
  "1::Gatekeeping Is Not 'No'": {
   "p1": {
+   "icebreaker": "Game: 'Door open or door slammed?' Thumbs up if the line keeps the door open, thumbs down if it slams it. 'He's busy.' 'He's in a deposition until 4; I can book you 15 minutes at 4:30.' 'You should have called earlier.' 'Can I take the details so he has them the moment he's out?' Fast thumbs, please.",
+   "teaser": "Two of those lines said no. Only one of them made an enemy. There's a rule hiding in the difference, and it's the whole topic.",
    "why": "Good gatekeeping never slams the door. It says 'not right now, but here's what we can do.'",
    "talk": "When someone wants the boss's time and can't have it, how we say no decides whether they walk away respected or resentful. A flat no makes people go around you. A calm, confident 'not now, here's a better option' keeps the relationship and still protects the executive's time. And remember, when you speak for him, you carry his authority, so there's no need to sound apologetic.",
    "walk": [
-    "First, we start from 'not now' or 'here's another way', never a flat no with no explanation.",
-    "Next, we keep our voice calm and sure of itself, because we're speaking with the executive's authority.",
-    "Then, we never make the person feel wrong for asking or tell them they should have planned better. That wins us nothing.",
-    "After that, we always hand them something real: a specific time, a named colleague or a clear timeline.",
-    "Finally, if they push back, we listen, explain the real constraint honestly and appeal to what we both want, instead of repeating the same no louder."
+    "First, start from 'not now' or 'here's another way', never a flat no with no explanation.",
+    "Next, keep your voice calm and sure of itself, because you're speaking with the executive's authority.",
+    "Then, never make the person feel wrong for asking or tell them they should have planned better. That wins you nothing.",
+    "After that, always hand them something real: a specific time, a named colleague or a clear timeline.",
+    "Finally, if they push back, listen, explain the real constraint honestly and appeal to what you both want, instead of repeating the same no louder."
    ],
-   "ask": "What's the difference between a gatekeeper people respect and one people try to get around?",
-   "scenario": "A long-standing client calls, upset, demanding to speak to Elias right now about a bill. Elias is in a deposition until 4 p.m. Script your response: what do you say first, and what real next step do you offer?"
+   "jargon": [
+    {
+     "term": "Gatekeeping",
+     "hint": "deciding who gets the executive's time and attention"
+    },
+    {
+     "term": "Deposition",
+     "hint": "sworn questioning of a witness outside court, recorded for the case"
+    }
+   ],
+   "story": "This happens in real offices: an assistant told a long-standing client 'He's not available' three days in a row, with nothing else. On day four the client called the managing partner instead and complained that the firm was ignoring him. The matter was fine; the relationship took months to repair. A specific slot and a promise to call back on day one would have kept it with Elias.",
+   "ask": "[Name], what's the difference between a gatekeeper people respect and one people try to get around? [Name], which one have you met more often?"
   },
   "p2": {
    "why": "People remember how you made them feel when the answer was 'not now.'",
    "talk": "Two rules carry most of the weight. Never make the caller feel foolish for asking, and never leave them without a next step. Behind those rules sits a small toolkit for persuading without pulling rank. You listen properly first. You explain the situation in a way that makes sense to them. You point to a goal you both share, and you ask what they think instead of telling them what to do.",
    "walk": [
-    "First, we filter who gets through, while keeping our tone steady and confident.",
-    "Next, we never blame the person for their timing, and we always leave them with a real next step.",
-    "Finally, when we need to persuade, we listen, frame the situation, appeal to shared goals and ask for their view."
+    "First, filter who gets through, while keeping your tone steady and confident.",
+    "Next, never blame the person for their timing, and always leave them with a real next step.",
+    "Finally, when you need to persuade, listen, frame the situation, appeal to shared goals and ask for their view."
    ],
-   "ask": "Let's practise. I'll play a pushy caller who wants Elias right now. First, a volunteer caves; then another holds the line politely. What made the difference?",
-   "scenario": "A junior partner has asked for time with Elias three times this week and is getting frustrated. Elias has said he can't meet until next week. How do you respond so the partner feels heard and still leaves with a real next step?"
+   "contrast": {
+    "lazy": "'Sorry, he's in a deposition, you'll have to call back.' The caller hangs up angrier than before and with nothing to hold on to.",
+    "excellent": "'I can hear this matters. He's in a deposition until 4. I'll put a note in front of him at the break, and I've held 4:15 for a call. What's the best number?' Calm, specific, and the caller leaves with a time."
+   },
+   "outcome": "An upset client who feels shut out goes around you, to a partner, or to another firm. A frustrated colleague stops sharing what Elias needs to know. Keeping the relationship while protecting his time keeps clients loyal and information flowing, and both matter when a case gets hard.",
+   "ask": "[Name], I'm a pushy caller who wants Elias right now. Cave in for me. [Name], now hold the line politely. Room, what made the difference?",
+   "mystery": "The case of the third request. A junior partner has asked for time with Elias three times this week and is getting frustrated. Elias has said he can't meet until next week. In pairs, three minutes: find the clue in why the partner keeps asking, and bring back your exact reply, including the real next step you'll offer."
   }
  },
  "1::The Filtering Matrix": {
   "p1": {
+   "icebreaker": "Game: 'Show me the number.' Four questions, four fingers: one for money, two for legal risk, three for 'only the boss can decide', four for relationship. I'll read a request; hold up the finger that fires first. 'Court notice moving a hearing.' 'Invoice due Friday.' 'Partner wants Elias's view on a new hire.' 'Old client's assistant wants coffee.'",
+   "teaser": "One of those requests looked like the smallest on the list, yet it might deserve to go near the top. By the end you'll be able to say exactly why.",
    "why": "Not every request deserves the same speed, and four quick questions tell us which ones do.",
    "talk": "When requests pile up, it's tempting to answer them in the order they arrived. That's how the important one gets buried under five easy ones. Instead, we run each request through four questions. Does it affect money? Does it carry legal risk? Does it need the executive himself? Is there a relationship on the line? Those answers tell us whether to act now, hand it off, park it or offer an alternative.",
    "walk": [
-    "First, we ask all four questions in order: money, legal risk, the executive's authority and the relationship.",
+    "First, ask all four questions in order: money, legal risk, the executive's authority and the relationship.",
     "Next, if any single answer is high, it's urgent. One serious reason is enough.",
-    "Then, if everything scores low, we decide whether to hand it to someone else, schedule it for later or offer another option.",
-    "After that, we jot down how we sorted it, especially anything we parked, so our thinking can be checked later.",
-    "Finally, we come back to parked items exactly when we said we would, because a forgotten item is as bad as a mishandled one."
+    "Then, if everything scores low, decide whether to hand it to someone else, schedule it for later or offer another option.",
+    "After that, jot down how you sorted it, especially anything you parked, so your thinking can be checked later.",
+    "Finally, come back to parked items exactly when you said you would, because a forgotten item is as bad as a mishandled one."
    ],
-   "ask": "Quick check: if a request scores high on just one of the four questions, what should happen to it?",
-   "scenario": "Before 9 a.m., four items reach you: a vendor invoice due Friday, a court notice moving a hearing, a client's assistant asking for a coffee catch-up, and a partner wanting Elias's view on a new hire. Run each one through money, legal risk, authority and relationship. Which one goes to Elias first?"
+   "jargon": [
+    {
+     "term": "Filtering matrix",
+     "hint": "the four questions we run every request through"
+    },
+    {
+     "term": "Liability",
+     "hint": "legal responsibility for harm or loss"
+    },
+    {
+     "term": "Park",
+     "hint": "deliberately schedule an item for later, with a date"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant cleared her inbox top to bottom every morning, oldest first. A court notice moving a hearing forward sat under a stack of meeting requests until the afternoon. The attorney found out with one day to prepare instead of five. Asking 'is there legal risk?' on each item would have put that notice first in thirty seconds.",
+   "ask": "[Name], quick check: if a request scores high on just one of the four questions, what should happen to it? [Name], can you give me an example of that?"
   },
   "p2": {
    "why": "One high-stakes answer is enough to make something urgent.",
-   "talk": "Let's make those four questions practical. For money, ask whether we gain or lose something if it waits a day. For legal risk, ask whether there's a deadline, privileged information or liability involved; either of those usually means now. For authority, ask whether only the attorney can decide or sign; if not, maybe we or someone else can handle it. And the relationship question catches what the others miss: a small request from a long-time client can still deserve to go first.",
+   "talk": "Let's make those four questions practical. For money, ask whether we gain or lose something if it waits a day. For legal risk, ask whether there's a deadline, privileged information or liability involved; either of those usually means now. For authority, ask whether only the attorney can decide or sign; if not, maybe you or someone else can handle it. And the relationship question catches what the others miss: a small request from a long-time client can still deserve to go first.",
    "walk": [
-    "First, money or legal risk on their own usually means we act now.",
-    "Next, if the attorney doesn't personally need to decide, we look at handing it off or handling it ourselves within our limits.",
-    "Finally, sometimes who is asking matters more than what they're asking for."
+    "First, money or legal risk on their own usually means you act now.",
+    "Next, if the attorney doesn't personally need to decide, look at handing it off or handling it yourself within your limits.",
+    "Finally, remember that sometimes who is asking matters more than what they're asking for."
    ],
-   "ask": "Four requests land at once: a loyal client with a small billing question, a vendor wanting a signature today, opposing counsel proposing a deposition date and a colleague inviting Elias to speak at a lunch. Let's sort them together.",
-   "scenario": "A small request comes in from Elias's oldest client: 'Can he sign a birthday card for our CEO today?' It scores low on money, legal risk and authority. Why might it still go near the top of the list?"
+   "contrast": {
+    "lazy": "Works the inbox in arrival order and sends Elias everything with 'FYI' so he can decide.",
+    "excellent": "Runs each item through money, legal risk, authority and relationship, sends Elias only what needs him, with a note: 'Court moved the hearing to Monday, needs you today. Invoice handled. Coffee parked till Thursday.'"
+   },
+   "outcome": "The item that waited is often the one with the deadline. A buried court notice means less preparation time, a buried signature means a lost deal, and a neglected long-time client means a relationship that cools. Sorting by stakes keeps the case and the client on track.",
+   "ask": "[Name], four requests land at once: a loyal client with a small billing question, a vendor wanting a signature today, opposing counsel proposing a deposition date and a colleague inviting Elias to speak at a lunch. Sort them for me. [Name], would you change the order?",
+   "mystery": "The case of the birthday card. A small request comes in from Elias's oldest client: 'Can he sign a birthday card for our CEO today?' It scores low on money, legal risk and authority. In teams of three, two minutes: find the clue that lifts it up the list, and bring back where it goes in today's order and the one line you'd say to Elias about it."
   }
  },
  "1::Scripts That Redirect Without Alienating": {
   "p1": {
+   "icebreaker": "Game: 'Pick a corner.' Left side of the room means defer, right side means re-route, stay in the middle for 'plainly honest, no room.' I'll read a request, you lean or point to your side. 'Software vendor wants a demo with Elias.' 'Paralegal has a billing question.' 'Client wants a meeting this week, calendar is full.' Go.",
+   "teaser": "Most of you got the vendor right. But one of these has a trap: the redirect looks finished and isn't. We'll find it.",
    "why": "Having a few ready-made ways to redirect people means we never have to improvise a clumsy no.",
    "talk": "There are really three situations. Sometimes the request is fine, just badly timed, so we defer it. Sometimes it belongs to someone else, so we re-route it. And sometimes the honest answer is that there's simply no room, so we say that plainly and offer something else. We call that last one Drastic Contrast. Picking the right one is half the work.",
    "walk": [
-    "First, we choose the script: defer if the timing's wrong, re-route if it's someone else's job, or be plainly honest if there's truly no room.",
-    "Next, when we defer, we acknowledge the request properly and give a real timeline, not a vague 'soon'.",
-    "Then, when we re-route, we name the right person and make sure the handoff actually happens.",
-    "After that, when we're being plainly honest, we tell the truth about the constraint and immediately offer a specific alternative.",
-    "Finally, whichever we use, we try to get a small yes first, like confirming what they need. It makes the redirect go down easier."
+    "First, choose the script: defer if the timing's wrong, re-route if it's someone else's job, or be plainly honest if there's truly no room.",
+    "Next, when you defer, acknowledge the request properly and give a real timeline, not a vague 'soon'.",
+    "Then, when you re-route, name the right person and make sure the handoff actually happens.",
+    "After that, when you're being plainly honest, tell the truth about the constraint and immediately offer a specific alternative.",
+    "Finally, whichever you use, try to get a small yes first, like confirming what they need. It makes the redirect go down easier."
    ],
-   "ask": "When would you re-route a request instead of simply deferring it?",
-   "scenario": "Three people want Elias today: a vendor selling software, a paralegal with a billing question and a client who wants a meeting this week. Which script do you use for each (defer, re-route or Drastic Contrast), and what exactly do you say?"
+   "jargon": [
+    {
+     "term": "Defer",
+     "hint": "push it to a later, specific time"
+    },
+    {
+     "term": "Re-route",
+     "hint": "pass it to the person whose job it really is"
+    },
+    {
+     "term": "Drastic Contrast",
+     "hint": "our name for the honest 'there's no room, here's an alternative' script"
+    },
+    {
+     "term": "Paralegal",
+     "hint": "trained legal support staff who work on cases under an attorney"
+    }
+   ],
+   "story": "This happens in real offices: an assistant told a client, 'That's a billing question, finance will help you,' and forwarded the email. Finance thought it was an FYI and filed it. Ten days later the client wrote to the attorney directly, irritated, and the attorney had to apologise for his own team. A two-line handoff with a name and a 'can you confirm you've got this?' would have closed the loop.",
+   "ask": "[Name], when would you re-route a request instead of simply deferring it? [Name], give me one example from Elias's week."
   },
   "p2": {
    "why": "A redirect isn't finished until the request actually lands somewhere.",
    "talk": "Pointing someone to another team and walking away isn't re-routing; it's abandonment. We stay responsible until we know it's been picked up. And when we're blunt about a real constraint, we're honest, never misleading, and we follow straight away with a specific slot. There's some good psychology behind this too. People are more open once they've already said a small yes, and they accept a process more easily than a personal preference.",
    "walk": [
-    "First, when we re-route, we stay accountable for the outcome.",
-    "Next, when we give a hard answer, it comes with a real alternative time.",
-    "Finally, we lean on a small early agreement and on the firm's process, never 'because I said so.'"
+    "First, when you re-route, stay accountable for the outcome.",
+    "Next, when you give a hard answer, it comes with a real alternative time.",
+    "Finally, lean on a small early agreement and on the firm's process, never 'because I said so.'"
    ],
-   "ask": "Let's try all three. A senior partner wants 30 minutes with Elias this afternoon and his calendar is full. Three volunteers, three scripts, same request.",
-   "scenario": "You re-routed a client's billing question to the finance team a week ago. Today the client emails Elias directly, annoyed that nobody replied. What went wrong with your redirect, and what do you do now?"
+   "contrast": {
+    "lazy": "'That's not me, try finance.' Email forwarded, job considered done, nobody checks.",
+    "excellent": "'You need the invoice corrected, is that right? Priya in finance owns this. I've sent her the details and she'll reply by Thursday. I'll check in Wednesday to make sure it's moving.'"
+   },
+   "outcome": "A dropped handoff doesn't stay small. The client escalates to the attorney, the attorney looks like he doesn't run his own team, and the client starts to wonder what else is being dropped. Redirects that actually land protect the firm's reputation and the client's confidence through a long matter.",
+   "ask": "[Name], a senior partner wants 30 minutes with Elias this afternoon and his calendar is full. Give me the defer script. [Name], now give me Drastic Contrast for the same request.",
+   "mystery": "The case of the unanswered billing question. You re-routed a client's billing question to the finance team a week ago. Today the client emails Elias directly, annoyed that nobody replied. In pairs, three minutes: find the exact moment your redirect broke, and bring back two things: your reply to the client today and the one habit that stops it happening again."
   }
  },
  "1::Phone & Voicemail Etiquette": {
   "p1": {
+   "icebreaker": "Game: 'Usable or useless?' I'll read a phone message. Stand up if Elias could act on it without calling you back. Stay seated if not. 'John called.' 'Call the court.' 'Maria Lopez, Harlow Industries, 555-0142, Harlow contract, needs signature by Friday, best before 3.' 'Someone about the case, said it's urgent.'",
+   "teaser": "Only one of those was usable. But here's the twist: there's one thing you could say while taking that perfect message that would be a bigger problem than any useless note.",
    "why": "For a lot of clients, your voice on the phone is their first impression of the whole firm.",
    "talk": "Answering the phone well is a real skill. We answer with the firm's name and our own. A good message has everything the attorney needs to act without calling us back: who called, from where, their number, which matter, what they need, how urgent it is and when to reach them. And confidentiality applies on the phone too. We don't confirm that someone is a client until we know who we're talking to.",
    "walk": [
     "First, answer with the firm's name and your name.",
     "Next, take the full message and read the number back, and ask which matter and whether there's a deadline.",
-    "Then transfer warmly: tell the attorney who it is and why before connecting.",
+    "Then, transfer warmly: tell the attorney who it is and why before connecting.",
     "After that, when you leave a voicemail, say your number slowly at the start and the end, keep it short and leave out anything confidential.",
     "Finally, log important calls and return them within one business day."
    ],
-   "ask": "What's the most useless phone message you've ever been handed?",
-   "scenario": "Elias is in a meeting. A client calls, upset, saying he got a letter from the court and 'needs to talk to Elias right now.' Take the message: what do you ask, and what do you tell Elias?"
+   "jargon": [
+    {
+     "term": "Warm transfer",
+     "hint": "telling the person who's calling and why before you connect them"
+    },
+    {
+     "term": "Matter",
+     "hint": "a case or piece of legal work for a client"
+    },
+    {
+     "term": "Business day",
+     "hint": "a working day, not counting weekends or holidays"
+    }
+   ],
+   "story": "A common first-week story: a new assistant left a message on a client's home voicemail mentioning 'your divorce consultation on Thursday.' The client's spouse heard it first. The firm wasn't sued, but the client left, and the partner had a very uncomfortable call. 'This is Thorne & Partners, please call me back on this number' would have said enough.",
+   "ask": "[Name], what's the most useless phone message you've ever been handed? [Name], what one detail would have fixed it?"
   },
   "p2": {
    "why": "Small phone habits either protect the firm or quietly leak information.",
@@ -547,118 +647,224 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, never confirm a client relationship to an unknown caller.",
     "Finally, make every message complete."
    ],
-   "ask": "How would you politely decline to confirm whether someone is a client?",
-   "scenario": "A caller says, 'I'm a reporter. Is Harlow Industries one of your clients? I just need a yes or no.' What exactly do you say, and what do you do after the call?"
+   "contrast": {
+    "lazy": "'Yeah, Harlow's one of ours, but he's out. I'll tell him someone called.'",
+    "excellent": "'I'm not able to confirm who we work with. If you leave your name, outlet and number, I'll pass it to the right person.' Then the call is logged and Elias is told who, when and what was asked."
+   },
+   "outcome": "Confirming a client to the wrong caller can be a confidentiality breach on its own, and to a reporter it can become a headline before the client has decided what to say. A useless message means a missed call back and a missed deadline. Phone habits decide whether the firm controls the story or reads about it.",
+   "ask": "[Name], how would you politely decline to confirm whether someone is a client? Say it out loud. [Name], how would you make it sound warmer without giving anything away?",
+   "mystery": "The case of the yes-or-no reporter. A caller says, 'I'm a reporter. Is Harlow Industries one of your clients? I just need a yes or no.' In pairs, two minutes: spot the pressure tactic in that question, and bring back the exact words you say on the call plus the three things you do after you hang up."
   }
  },
  "1::Executive Presence in Action": {
   "p1": {
+   "icebreaker": "Game: 'Spot the leak.' I'll read three replies to a nosy caller. Clap once the moment you hear something that gives information away. 'I can't comment on that.' 'Oh, he's been so busy with that case, I really can't say.' 'That's private, but I'm happy to help with anything practical.' Who clapped on the second one, and where exactly?",
+   "teaser": "Two of those were safe, and they sounded nothing alike. Today you'll find out why both are right, and when using the wrong one is its own kind of leak.",
    "why": "Whether you're speaking as an EA or a PA, the instinct underneath is the same: protect first, sort it out second.",
    "talk": "Imagine someone calls asking for confidential information. As an EA, we're firm, brief and procedural: we can't release that, and we'll escalate it internally. As a PA, we're warm but just as protective: that's private, but we're happy to help with logistics. Both answers keep the door closed on what matters. They sound different because they're protecting different things, the business in one case and the person in the other.",
    "walk": [
-    "First, when something sensitive comes in, we decide in that moment whether we're answering as an EA or a PA.",
-    "Next, as an EA, we protect the business: short, firm, by the book.",
-    "Then, as a PA, we protect the person: kind and accommodating, but still closed on anything private.",
-    "After that, when someone keeps pushing, we hold the same line. The EA asks for it in writing; the PA takes a message and promises a follow-up.",
-    "Finally, in both roles, we protect before we try to resolve anything."
+    "First, when something sensitive comes in, decide in that moment whether you're answering as an EA or a PA.",
+    "Next, as an EA, protect the business: short, firm, by the book.",
+    "Then, as a PA, protect the person: kind and accommodating, but still closed on anything private.",
+    "After that, when someone keeps pushing, hold the same line. The EA asks for it in writing; the PA takes a message and promises a follow-up.",
+    "Finally, in both roles, protect before you try to resolve anything."
    ],
-   "ask": "A journalist calls asking whether Elias is handling a well-known client's divorce. Two volunteers, back to back: answer once as an EA and once as a PA.",
-   "scenario": "A caller says she's from a national newspaper and asks whether Thorne & Partners is representing a well-known CEO in a fraud case. Two minutes later, Sarah Thorne's friend calls asking whether Elias and Sarah are 'going through a rough patch.' Answer the first as an EA and the second as a PA."
+   "jargon": [
+    {
+     "term": "Executive presence",
+     "hint": "calm, confident behaviour that makes people trust you speak for the boss"
+    },
+    {
+     "term": "Escalate internally",
+     "hint": "pass it to the right person inside the firm"
+    },
+    {
+     "term": "Procedural",
+     "hint": "following the firm's set process, not personal judgment"
+    }
+   ],
+   "story": "A real pattern from the field: a friendly assistant took a call from someone who said she was 'a friend of the family' asking how the boss was 'holding up with everything.' Trying to be kind, the assistant said he was 'coping, it's been a hard few months.' The caller was a journalist. The quote appeared in a piece about the case. A warm 'That's private, but I'll pass on that you called' would have been kind and closed.",
+   "contrast": {
+    "lazy": "'Um, I don't think I'm supposed to say, but yes, he's working on something like that.' Flustered, half-confirming, and no record of the call.",
+    "excellent": "EA: 'We don't comment on client matters. Please send your request in writing and I'll pass it on.' PA: 'That's private, I'm afraid, but I'll let Sarah know you called.' Both calm, both closed, both logged."
+   },
+   "outcome": "A half-confirmation to a journalist can put a client's case in the news and hand the other side information for free. A careless word about the Thornes' private life damages the trust that the whole PA role rests on. Protecting first keeps the firm in control of what is said, and when.",
+   "ask": "[Name], a journalist calls asking whether Elias is handling a well-known client's divorce. Answer as an EA. [Name], same question, now answer as a PA.",
+   "mystery": "The case of the two calls. A caller says she's from a national newspaper and asks whether Thorne & Partners is representing a well-known CEO in a fraud case. Two minutes later, Sarah Thorne's friend calls asking whether Elias and Sarah are 'going through a rough patch.' In pairs, three minutes: decide which hat each call needs, find the hook in each question, and bring back your two exact answers plus what you write in the log."
   }
  },
  "1::Virtual Meetings & Transcription Accuracy": {
   "p1": {
+   "icebreaker": "Game: 'What did they really say?' Here are three lines from an AI transcript. Shout what the speaker actually said. 'Let's settle with Harlot Industries.' 'The deposition is moved to the fifth teen.' 'Meridian's council will call back.' Fastest correct shout gets the point.",
+   "teaser": "Those were the easy errors. There's a worse kind a transcript makes that no spell-check will ever catch, and we'll get to it on the next slide.",
    "why": "The record of a meeting can't depend on technology alone.",
    "talk": "We've all been in a meeting where the recording failed, or everyone walked out remembering a different decision. Afterwards, the assistant is the one people ask what was actually agreed. So we treat the meeting record as our job, not the software's. We check the tools beforehand, keep a person taking notes just in case, and turn whatever we capture into something short and useful.",
    "walk": [
-    "First, we test the recording before the meeting starts. Finding out it's broken halfway through is too late.",
-    "Next, we always have a person taking notes as a backup, whatever tool is running.",
-    "Then, during the meeting, we capture what was decided and who's doing what, and we leave out the side chatter and off-the-record comments.",
-    "After that, if an AI tool made a transcript, we read it and clean it up before anyone else sees it.",
-    "Finally, we give the executive what he actually needs: a short briefing memo, not forty pages of transcript."
+    "First, test the recording before the meeting starts. Finding out it's broken halfway through is too late.",
+    "Next, always have a person taking notes as a backup, whatever tool is running.",
+    "Then, during the meeting, capture what was decided and who's doing what, and leave out the side chatter and off-the-record comments.",
+    "After that, if an AI tool made a transcript, read it and clean it up before anyone else sees it.",
+    "Finally, give the executive what he actually needs: a short briefing memo, not forty pages of transcript."
    ],
-   "ask": "Has a meeting ever ended with nobody agreeing on what was decided? What would have saved it?",
-   "scenario": "Elias's 2 p.m. partners' call is on Zoom, and you're told the AI transcription will 'handle the notes.' Five minutes before, the recording button is greyed out. What do you do before the call starts, and what's your backup?"
+   "jargon": [
+    {
+     "term": "Transcript",
+     "hint": "a word-for-word written version of what was said"
+    },
+    {
+     "term": "Action item",
+     "hint": "a task someone agreed to do, with an owner"
+    },
+    {
+     "term": "Off the record",
+     "hint": "said on the understanding it won't be written down"
+    }
+   ],
+   "story": "This happens in real offices: a team relied on the meeting software to record a client call. The recording silently failed. Two days later, the attorney and the client remembered the agreed fee arrangement differently, and there was nothing to check. The firm honoured the client's version to keep the peace. A five-minute pre-call test and one person typing notes would have settled it.",
+   "ask": "[Name], has a meeting ever ended with nobody agreeing on what was decided? [Name], what would have saved it?"
   },
   "p2": {
    "why": "A raw transcript isn't a record. Our job is to turn it into one.",
    "talk": "It's worth knowing the difference between informal notes, which stay inside the team, and formal minutes, which are a structured record that gets sent around. AI tools like Zoom, Teams and Otter save a lot of typing, but they mishear names, miss context and happily record things that should never be written down. And if our minutes ever come back confusing, we don't quietly stop sending them. We apologise, fix them and tighten up the template.",
    "walk": [
-    "First, a human backup note-taker, every time.",
-    "Next, only decisions and action items go in the record, never side conversations.",
-    "Then, we review and clean every AI transcript before it's shared.",
-    "Finally, after big meetings, we send a short executive brief headed with the meeting topic, instead of the whole transcript."
+    "First, have a human backup note-taker, every time.",
+    "Next, put only decisions and action items in the record, never side conversations.",
+    "Then, review and clean every AI transcript before it's shared.",
+    "Finally, after big meetings, send a short executive brief headed with the meeting topic, instead of the whole transcript."
    ],
-   "ask": "Here's the situation: the partners' meeting ran long, the transcript is 40 pages, and two people remember the key decision differently. What do you send, to whom, and how do you settle what was decided?",
-   "scenario": "The AI transcript of a client call spells the client's company wrong, records a side comment about opposing counsel and lists an action item nobody agreed to. What do you fix before anything is shared, and what goes to Elias?"
+   "contrast": {
+    "lazy": "Forwards the raw 40-page AI transcript to everyone with 'Notes attached,' typos, side comments and all.",
+    "excellent": "Sends Elias a half-page brief headed 'Partners' call, 14 May: decisions and actions,' with names spelled right, owners and dates on each action, and the side chatter gone."
+   },
+   "outcome": "Meeting records get forwarded, and in a dispute they can be asked for. A transcript with a rude side comment about opposing counsel, or an action nobody agreed to, can embarrass the firm or be used against it. A clean, accurate record protects what was really decided when it counts.",
+   "ask": "[Name], the partners' meeting ran long, the transcript is 40 pages, and two people remember the key decision differently. What do you send, and to whom? [Name], how do you settle what was actually decided?",
+   "mystery": "The case of the misheard client. The AI transcript of a client call spells the client's company wrong, records a side comment about opposing counsel and lists an action item nobody agreed to. In teams of three, three minutes: find all three problems, decide what you fix before anything is shared, and bring back the first three lines of the brief that goes to Elias."
   }
  },
  "1::Professional Standards & Confidentiality": {
   "p1": {
+   "icebreaker": "Game: 'Business or private?' Right hand up for business-confidential, left hand up for personally private. 'The Meridian settlement figure.' 'Elias's mother's medical appointment.' 'The firm's billing rates.' 'The Thornes' holiday address.' 'A partner's HR review.' Watch your neighbour's hands.",
+   "teaser": "Every one of those was protected. But there's one place where all of them leak just as easily, and it isn't your inbox. Keep your eyes open for it.",
    "why": "Everything we see is protected, but business secrets and personal privacy are protected in slightly different ways.",
-   "talk": "On the business side, we're guarding things like contracts, financial numbers and ideas the firm owns, and there are real laws and HR rules behind that. On the personal side, we're guarding a family's privacy, and what holds that together is trust more than rules. Either way, the working assumption is simple: if we're not sure whether something is confidential, it is.",
+   "talk": "On the business side, we're guarding things like contracts, financial numbers and ideas the firm owns, and there are real laws and HR rules behind that. On the personal side, we're guarding a family's privacy, and what holds that together is trust more than rules. Either way, the working assumption is simple: if you're not sure whether something is confidential, it is.",
    "walk": [
-    "First, before we talk about any matter, we work out whether it's business-confidential or personally private.",
-    "Next, on the business side, we know the legal, HR and privacy rules ahead of time instead of waiting to be told something is sensitive.",
-    "Then, on the personal side, discretion is the default, because the family is trusting us, not just a policy.",
-    "After that, we treat every channel as risky. A chat in the lift can do as much damage as a misdirected email.",
-    "Finally, when in doubt, we protect it. Over-protecting costs almost nothing; a leak can cost everything."
+    "First, before you talk about any matter, work out whether it's business-confidential or personally private.",
+    "Next, on the business side, know the legal, HR and privacy rules ahead of time instead of waiting to be told something is sensitive.",
+    "Then, on the personal side, make discretion the default, because the family is trusting you, not just a policy.",
+    "After that, treat every channel as risky. A chat in the lift can do as much damage as a misdirected email.",
+    "Finally, when in doubt, protect it. Over-protecting costs almost nothing; a leak can cost everything."
    ],
-   "ask": "Without naming anyone, has a small slip ever turned into something bigger than you expected? Just a nod is fine.",
-   "scenario": "You're booking a medical appointment for Elias's mother and a board meeting for the firm on the same afternoon. Both calendars are open on your screen when a visitor sits down at your desk. Which information is business-confidential, which is personally private, and what do you do right now?"
+   "jargon": [
+    {
+     "term": "Business-confidential",
+     "hint": "the firm's and clients' protected information: contracts, numbers, strategy"
+    },
+    {
+     "term": "Personally private",
+     "hint": "the family's own life: health, home, relationships"
+    },
+    {
+     "term": "Breach",
+     "hint": "when protected information reaches someone it shouldn't"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant had a client's settlement letter open on her screen when a visiting contractor came to her desk for a signature. A week later, the figure was being repeated around the building where the contractor also worked. Nobody could prove the source, but the client heard about it and asked some hard questions. Locking the screen before anyone reaches your desk costs one keystroke.",
+   "ask": "[Name], without naming anyone, has a small slip ever turned into something bigger than you expected? Just a nod is fine. [Name], what would have stopped it?"
   },
   "p2": {
    "why": "There's no such thing as a small leak.",
    "talk": "People tend to think a real breach is a stolen file or a wrong attachment. But a throwaway comment to a friendly face in the lobby can do just as much harm, because once it's out, we can't pull it back. And on the personal side, the family is trusting us personally with things they'd never put in a contract. Protecting that trust is the job.",
    "walk": [
-    "First, personal privacy rests on trust, and we earn it by being discreet every single time.",
-    "Next, a casual comment carries the same risk as a misdirected email.",
-    "Finally, the safest habit is to never discuss a matter anywhere it doesn't belong."
+    "First, remember personal privacy rests on trust, and you earn it by being discreet every single time.",
+    "Next, treat a casual comment as carrying the same risk as a misdirected email.",
+    "Finally, make it a habit never to discuss a matter anywhere it doesn't belong."
    ],
-   "ask": "In the lobby, a friendly paralegal from another firm says, 'Is Elias on the Meridian matter? I heard it's getting messy.' What do you say, and what do you avoid saying?",
-   "scenario": "At a family barbecue, your cousin asks what it's like working for 'that famous lawyer' and whether he's as tough as people say. What's safe to say, and what's off limits, even among family?"
+   "contrast": {
+    "lazy": "'I can't really say, but let's just say it's been a long few weeks on Meridian.' Friendly, and it's already said too much.",
+    "excellent": "'I don't talk about our matters, but how's your week been?' Same smile, nothing confirmed, conversation moved on."
+   },
+   "outcome": "A hint in the lobby can tell the other side a case is under strain, which weakens our position when terms are being negotiated. A leak about the family can end the trust the PA role depends on. Discretion everywhere keeps both the case strategy and the relationship intact.",
+   "ask": "[Name], a friendly paralegal from another firm says in the lobby, 'Is Elias on the Meridian matter? I heard it's getting messy.' What do you say? [Name], what's the one thing you'd avoid saying?",
+   "mystery": "The case of the open screens. You're booking a medical appointment for Elias's mother and a board meeting for the firm on the same afternoon. Both calendars are open on your screen when a visitor sits down at your desk. In pairs, two minutes: find every piece of protected information in view, sort it into business or private, and bring back what you do in the next ten seconds. Bonus: what's safe to tell your cousin at a barbecue about 'that famous lawyer'?"
   }
  },
  "1::Boundaries & Authorization Protocols": {
   "p1": {
-   "why": "Knowing exactly how far our authority goes is what lets us act quickly without getting into trouble.",
-   "talk": "Every assistant has limits on money, access and commitments. Some are written down; many are just assumed. The assumed ones cause problems. When our limits are written down, we can act confidently inside them and we know exactly when to stop and ask. For example: an invoice under 500 dollars, we can approve; over that, we escalate first, every time.",
+   "icebreaker": "Game: 'Go or stop?' Your limit is 500 dollars. Stand for 'go, I can approve it,' sit for 'stop, escalate first.' A 120-dollar courier bill. A 499-dollar catering invoice. A 650-dollar software renewal. Two invoices of 300 each from the same vendor for the same event. Who stayed standing on that last one?",
+   "teaser": "That last one is a classic trap, and by the end of the slide you'll know why it's worth more than one quick look.",
+   "why": "Knowing exactly how far your authority goes is what lets you act quickly without getting into trouble.",
+   "talk": "Every assistant has limits on money, access and commitments. Some are written down; many are just assumed. The assumed ones cause problems. When our limits are written down, we can act confidently inside them and we know exactly when to stop and ask. For example: an invoice under 500 dollars, you can approve; over that, you escalate first, every time.",
    "walk": [
-    "First, before we act on anything involving money, access or a commitment, we check it against our written limits, not our memory.",
-    "Next, if it's within our limit, we handle it and make a note that we did.",
-    "Then, if it's over our limit, we escalate before we act. 'It'll probably be approved' isn't approval.",
-    "After that, we keep business and personal systems completely separate: different calendars, storage and devices. That separation is what stops the lines from blurring.",
-    "Finally, when something's unclear, we ask ourselves three things: is it within policy, is it legal, and would the executive trust us doing it? If any answer is no or unsure, we escalate."
+    "First, before you act on anything involving money, access or a commitment, check it against your written limits, not your memory.",
+    "Next, if it's within your limit, handle it and make a note that you did.",
+    "Then, if it's over your limit, escalate before you act. 'It'll probably be approved' isn't approval.",
+    "After that, keep business and personal systems completely separate: different calendars, storage and devices. That separation is what stops the lines from blurring.",
+    "Finally, when something's unclear, ask yourself three things: is it within policy, is it legal, and would the executive trust me doing it? If any answer is no or unsure, escalate."
    ],
-   "ask": "What's the real risk in going ahead with something because it will 'probably be approved anyway'?",
-   "scenario": "A vendor sends a $480 invoice and a $520 invoice for the same event on the same day. Your approval limit is $500 per invoice. What do you approve, what do you escalate, and what might be going on here?"
+   "jargon": [
+    {
+     "term": "Approval limit",
+     "hint": "the most you're allowed to sign off on alone"
+    },
+    {
+     "term": "Invoice splitting",
+     "hint": "breaking one bill into smaller ones to slip under a limit"
+    },
+    {
+     "term": "Sign-off",
+     "hint": "formal approval from the person with authority"
+    }
+   ],
+   "story": "This happens in real offices: an assistant approved a 'probably fine' 800-dollar catering upgrade because the event was that evening and the partner was unreachable. The partner had already agreed a fixed price with the client. The firm absorbed the cost, and the assistant's approval rights were reduced for six months. One text, 'Over my limit, OK to approve?', would have settled it in a minute.",
+   "ask": "[Name], what's the real risk in going ahead with something because it will 'probably be approved anyway'? [Name], who carries that risk if it goes wrong?"
   },
   "p2": {
    "why": "Clear limits make us faster, not slower.",
    "talk": "Let's make it concrete. An EA might be allowed to approve vendor bills under 500 dollars and send anything bigger up the line. A PA might book personal travel within a set budget and tell the executive if it goes over. Both of them also know where to stop completely: an EA doesn't sign a contract that needs the boss's approval, and a PA never gives a vendor access to the family's bank accounts without checking first.",
    "walk": [
-    "First, our limits are specific numbers and actions, not a general feeling.",
-    "Next, we keep business and personal systems physically apart.",
-    "Then, we stop and escalate before anything that needs the executive's own sign-off.",
-    "Finally, for grey areas, the quick check is policy, law and trust. If any of them is shaky, we escalate."
+    "First, know your limits as specific numbers and actions, not a general feeling.",
+    "Next, keep business and personal systems physically apart.",
+    "Then, stop and escalate before anything that needs the executive's own sign-off.",
+    "Finally, for grey areas, run the quick check: policy, law and trust. If any of them is shaky, escalate."
    ],
-   "ask": "Here's a real-life slip: you just approved a 600-dollar invoice by mistake, and your limit is 500. What do you do in the next ten minutes?",
-   "scenario": "Sarah Thorne asks you to book a family flight upgrade that goes $300 over the travel budget Elias set. She says, 'He won't mind.' What do you do, and how do you say it to her?"
+   "contrast": {
+    "lazy": "'She said he won't mind, so I booked it.' Over budget, no record, and Elias finds out from the credit card statement.",
+    "excellent": "'Happy to sort the upgrade. It's 300 over the budget Elias set, so I'll just confirm with him first. I'll have an answer for you by 3.' Then a one-line note to Elias with the cost and the choice."
+   },
+   "outcome": "An approval outside your limit can bind the firm to costs a client won't pay, or hide a vendor billing problem that grows. In a dispute, unclear authority can be argued about by the other side. Clear limits, followed every time, keep the money clean and the executive's trust in you high.",
+   "ask": "[Name], you just approved a 600-dollar invoice by mistake, and your limit is 500. What do you do in the next ten minutes? [Name], what do you say to Elias?",
+   "mystery": "The case of the twin invoices. A vendor sends a 480-dollar invoice and a 520-dollar invoice for the same event on the same day. Your approval limit is 500 dollars per invoice. In pairs, two minutes: decide what you approve and what you escalate, find the clue that something may be off, and bring back the exact note you'd send to Elias."
   }
  },
  "1::What an Assistant Can and Can't Do (Unauthorized Practice of Law)": {
   "p1": {
+   "icebreaker": "Game: 'Fact or advice?' I'll read something an assistant might say. Shout 'Fact!' if it's safe, 'Advice!' if it crosses the line. 'The court closes at 4:30.' 'I'd sign that if I were you.' 'Elias said, and I quote, please don't reply to them yet.' 'That letter doesn't look too serious.' 'Your hearing is on the 12th.'",
+   "teaser": "One of those sounded completely harmless, and it's the one that gets assistants into the most trouble. It comes from kindness, not arrogance.",
    "why": "Clients will ask you for legal advice, kindly and often, and saying yes even once can put the firm at risk.",
    "talk": "Only a licensed lawyer can give legal advice, set fees, take on a case, sign court papers or appear in court. Doing those without a license is called the unauthorized practice of law, and it's illegal. The lawyer is responsible for supervising us, so our slip becomes the firm's problem. The line is interpretation. Facts, scheduling and passing on the attorney's own words are fine. Telling someone what the law means for them, or what they should do, is advice.",
    "walk": [
-    "First, what we can do: schedule, gather documents, share public facts like a court's hours, and relay the attorney's advice word for word.",
-    "Next, what we can't do: say whether someone has a case, what a document means for them or which option to choose.",
-    "Then, when asked, we use a bridge line: 'That's a great question for Elias. I'll make sure he gets it today.'",
-    "After that, we quote the attorney exactly, or have them put it in writing.",
-    "Finally, when in doubt, we treat it as advice and route it."
+    "First, know what you can do: schedule, gather documents, share public facts like a court's hours, and relay the attorney's advice word for word.",
+    "Next, know what you can't do: say whether someone has a case, what a document means for them or which option to choose.",
+    "Then, when asked, use a bridge line: 'That's a great question for Elias. I'll make sure he gets it today.'",
+    "After that, quote the attorney exactly, or have them put it in writing.",
+    "Finally, when in doubt, treat it as advice and route it."
    ],
-   "ask": "Where do you think the line is hardest to see in day-to-day calls?",
-   "scenario": "A client emails a photo of a letter from the other side and asks, 'Is this bad? Do I need to do anything?' Elias won't see email for three hours. What do you reply now?"
+   "jargon": [
+    {
+     "term": "UPL (Unauthorized Practice of Law)",
+     "hint": "doing a lawyer's work without a license; illegal"
+    },
+    {
+     "term": "Legal advice",
+     "hint": "telling someone what the law means for them or what to do"
+    },
+    {
+     "term": "Bridge line",
+     "hint": "a ready phrase that hands the question to the attorney"
+    }
+   ],
+   "story": "A common first-week story: a kind assistant told a worried client, 'That letter's standard, they send those to everyone.' The client relaxed and didn't send it on. It had a 14-day response deadline. The attorney caught it on day 12. A bridge line and a same-day note to the attorney would have taken thirty seconds.",
+   "ask": "[Name], where do you think the line is hardest to see in day-to-day calls? [Name], give me a sentence that sits right on that line."
   },
   "p2": {
    "why": "Most UPL slips come from kindness, not arrogance, so the habits matter.",
@@ -666,158 +872,307 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "walk": [
     "First, redirect warmly.",
     "Next, write down the exact question.",
-    "Then, no reassurance based on your own experience.",
+    "Then, give no reassurance based on your own experience.",
     "Finally, collect information for forms; don't decide the answers."
    ],
-   "ask": "What's a warm way to say 'I can't answer that' without sounding like a brush-off?",
-   "scenario": "A client calls: 'The other side offered $40,000. Elias is in trial all week. Just between us, should I take it?' Write exactly what you say."
+   "contrast": {
+    "lazy": "'Honestly? Forty thousand sounds fair, most people take it.' Kind, confident, and legal advice.",
+    "excellent": "'I completely understand wanting an answer. That's a decision Elias needs to make with you. I'm sending him your exact question now and I'll get you a call time today, even from court.'"
+   },
+   "outcome": "An assistant's casual opinion can push a client into accepting or rejecting a settlement without proper advice. That can leave the client with a worse result and the firm with a complaint or claim against it. Routing every advice question protects the client's outcome and the firm's license.",
+   "ask": "[Name], what's a warm way to say 'I can't answer that' without sounding like a brush-off? [Name], say it again, warmer.",
+   "mystery": "The case of the 40,000-dollar question. A client calls: 'The other side offered 40,000 dollars. Elias is in trial all week. Just between us, should I take it?' Earlier that day the same client emailed a photo of a letter asking 'Is this bad?' In pairs, three minutes: find the two advice traps, and bring back the exact words you say on the phone and the note you send Elias."
   }
  },
  "1::NDAs & Non-Disclosure Discipline": {
   "p1": {
+   "icebreaker": "Game: 'Real or fake?' I'll say something people believe about NDAs. Thumbs up if it's real, thumbs down if it's fake. 'Once signed, an NDA covers everything forever.' 'An NDA can expire.' 'If they already work with us, they're covered.' 'An NDA can cover only certain kinds of information.' Count the thumbs.",
+   "teaser": "Most rooms get at least one of those wrong, and it's the one assistants use as a magic shield. Let's take the shield apart.",
    "why": "A non-disclosure agreement is a real legal promise, and we need to know what's actually in it before we rely on it.",
    "talk": "An NDA spells out what information is protected, who has to keep quiet, for how long, and what happens if they don't. The mistake assistants make is treating the phrase 'they signed an NDA' as a magic shield. Some NDAs have expired. Some only cover certain kinds of information. And sometimes nobody actually signed one at all. So before we share anything sensitive, we check.",
    "walk": [
-    "First, before sharing anything sensitive with a vendor, contractor or temp, we check there's an NDA on file for that exact person or company.",
-    "Next, if there is one, we check what it covers and whether it's still in date.",
-    "Then, if we can't confirm it covers this request, we pause and verify. We don't go ahead on 'it's probably fine'.",
-    "After that, we keep a simple list of who's signed, what it covers and when it ends, so this check takes two minutes, not an afternoon.",
-    "Finally, if someone we haven't cleared asks for sensitive information, we treat that as a flag to check, not a request to fulfil."
+    "First, before sharing anything sensitive with a vendor, contractor or temp, check there's an NDA on file for that exact person or company.",
+    "Next, if there is one, check what it covers and whether it's still in date.",
+    "Then, if you can't confirm it covers this request, pause and verify. Don't go ahead on 'it's probably fine'.",
+    "After that, keep a simple list of who's signed, what it covers and when it ends, so this check takes two minutes, not an afternoon.",
+    "Finally, if someone you haven't cleared asks for sensitive information, treat that as a flag to check, not a request to fulfil."
    ],
-   "ask": "If I asked you right now whether a particular vendor has a signed NDA, could you find out in under two minutes?",
-   "scenario": "A temp starts on Monday to help digitize client files. Your NDA tracker shows her agency signed an NDA two years ago, but it expired last month. The files include settlement agreements. What do you do before she opens any file?"
+   "jargon": [
+    {
+     "term": "NDA (Non-Disclosure Agreement)",
+     "hint": "a signed promise to keep certain information secret"
+    },
+    {
+     "term": "Scope",
+     "hint": "exactly what information the NDA covers"
+    },
+    {
+     "term": "Term",
+     "hint": "how long the NDA lasts"
+    },
+    {
+     "term": "NDA tracker",
+     "hint": "our list of who signed, what it covers and when it ends"
+    }
+   ],
+   "story": "This happens in real offices: a firm brought in a temp to scan old files. Everyone assumed the agency's NDA covered her. It had lapsed the month before. She was perfectly honest, but when a client asked for proof that everyone who'd seen their settlement was under an NDA, the firm couldn't give it. A two-minute check of the tracker on day one would have caught the gap.",
+   "ask": "[Name], if I asked you right now whether a particular vendor has a signed NDA, could you find out in under two minutes? [Name], where would you look first?"
   },
   "p2": {
    "why": "Our job isn't to write NDAs; it's to keep track of them.",
    "talk": "Lawyers draft the agreements. We make sure they actually protect the firm day to day, by knowing who's covered and noticing when someone asks for something they shouldn't have. A very common mistake is treating every NDA as covering everything, forever. They don't. And 'they already work with us' doesn't mean they're cleared for this particular information.",
    "walk": [
-    "First, we track who has an NDA on file, and we flag access requests from anyone who doesn't.",
-    "Next, we remember that NDAs expire and have limits on what they cover.",
-    "Finally, if we can't confirm coverage for a specific request, we pause and verify before sharing anything."
+    "First, track who has an NDA on file, and flag access requests from anyone who doesn't.",
+    "Next, remember that NDAs expire and have limits on what they cover.",
+    "Finally, if you can't confirm coverage for a specific request, pause and verify before sharing anything."
    ],
-   "ask": "A new IT contractor asks for the client list to 'set up the new CRM' and says legal already has their paperwork. You can't find an NDA in the tracker. What do you do?",
-   "scenario": "A long-time vendor asks for the Meridian board contact list to send them 'a courtesy update.' Their NDA covers IT services only. What do you tell them, and what do you check?"
+   "contrast": {
+    "lazy": "'Legal already has their paperwork, apparently.' Sends the client list to the IT contractor and moves on.",
+    "excellent": "'I can't find your NDA in our tracker, so I'll hold the list until legal confirms. I'll come back to you by end of day.' Then a note to legal asking for the signed copy and its scope."
+   },
+   "outcome": "Information shared without valid NDA cover can't be clawed back, and the firm may have no legal remedy if it spreads. A leaked client list or board contacts can cost the client in a negotiation and cost the firm the client. Two minutes of checking protects both.",
+   "ask": "[Name], a new IT contractor asks for the client list to 'set up the new CRM' and says legal already has their paperwork. You can't find an NDA in the tracker. What do you do? [Name], what do you say to the contractor?",
+   "mystery": "The case of the courtesy update. A long-time vendor asks for the Meridian board contact list to send them 'a courtesy update.' Their NDA covers IT services only. Meanwhile, a temp starts Monday on settlement files, under an agency NDA that expired last month. In teams of three, three minutes: find the gap in each case, and bring back what you tell each person and what you check before Monday."
   }
  },
  "1::Command Hierarchy": {
   "p1": {
+   "icebreaker": "Game: 'Line them up.' I need four volunteers. Each gets a card: Notice, Assess, Escalate, Inform. Without talking, put yourselves in the right order. Room, you have ten seconds to shout 'Swap!' if they're wrong.",
+   "teaser": "Most groups get the order right. The bit people get wrong is the last card: who should hear it first, and from whom. That's where careers are made or dented.",
    "why": "When something looks wrong, we don't fix it quietly on our own. We follow a clear order of steps.",
    "talk": "Picture spotting a problem before anyone else does, like a document that went out without the right review. The instinct is either to ignore it or to fix it ourselves. Both are risky. The better habit is four steps, always in the same order: notice it, size it up, raise it through the right channel, and make sure our executive hears it from us first.",
    "walk": [
-    "First, we notice. We catch the issue while it's still small.",
-    "Next, we assess. How big is it, how urgent is it, and who else does it touch?",
-    "Then, we escalate. We take it to the right person through the proper channel, not around them.",
-    "Finally, we inform. The executive should hear about it from us before he hears it from anyone else."
+    "First, notice. Catch the issue while it's still small.",
+    "Next, assess. How big is it, how urgent is it, and who else does it touch?",
+    "Then, escalate. Take it to the right person through the proper channel, not around them.",
+    "Finally, inform. The executive should hear about it from you before he hears it from anyone else."
    ],
-   "ask": "In your own words, what does 'escalating instead of deciding alone' actually look like in a normal week?",
-   "scenario": "You notice a partner's assistant has scheduled a client meeting in Elias's name, using his calendar, without asking him. It's the second time this month. Walk through notice, assess, escalate and inform. What do you do first?"
+   "jargon": [
+    {
+     "term": "Command hierarchy",
+     "hint": "the order of who reports to whom"
+    },
+    {
+     "term": "Proper channel",
+     "hint": "the agreed route for raising an issue, not a shortcut around someone"
+    },
+    {
+     "term": "Supervising partner",
+     "hint": "the senior lawyer responsible for checking the work on a matter"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant noticed a partner's assistant kept booking meetings into her boss's calendar without asking. She quietly deleted them each time. Eventually a client turned up for a meeting that had been 'deleted,' and her boss had no idea why. Raising it once, calmly, with dates, would have fixed it at the source.",
+   "ask": "[Name], in your own words, what does 'escalating instead of deciding alone' actually look like in a normal week? [Name], what's the hardest part of that for you?"
   },
   "p2": {
    "why": "The worst way for Elias to learn about a problem is from someone else.",
    "talk": "Raising a problem isn't passing the buck. It's how a well-run office protects everyone, including us. A classic red flag is a confidential document that skipped legal review and went straight to a client. That's exactly the kind of thing that needs escalating straight away, and the executive needs to hear it from us, calmly and with the facts, before the client calls him.",
    "walk": [
-    "First, we escalate potential problems rather than deciding alone.",
-    "Next, we watch for red flags like a confidential document skipping legal review.",
-    "Finally, we make sure critical news reaches the executive from us first."
+    "First, escalate potential problems rather than deciding alone.",
+    "Next, watch for red flags like a confidential document skipping legal review.",
+    "Finally, make sure critical news reaches the executive from you first."
    ],
-   "ask": "You notice a draft settlement letter was emailed to the client before the supervising partner reviewed it. Walk it through: notice, assess, escalate, inform. Who do you tell, in what order, and what do you say?",
-   "scenario": "At 4:30 p.m., you learn that a filing deadline for a Harlow matter document was missed at noon. Elias is in a meeting with the managing partner until 5:30. How do you make sure he hears it from you, and what do you say?"
+   "contrast": {
+    "lazy": "Spots the unreviewed settlement letter, hopes nobody notices, and says nothing until the client rings Elias.",
+    "excellent": "'Elias, quick one: the draft Meridian settlement letter went to the client at 11 before the supervising partner reviewed it. I've told the partner. Here's the version that went. Do you want to call the client, or shall I set it up?'"
+   },
+   "outcome": "An unreviewed document in a client's hands can commit the firm to terms nobody approved, and a missed filing deadline can lose a client their claim. The damage is always worse when the executive is surprised. Escalating fast, in the right order, gives him time to fix it before it shapes the result.",
+   "ask": "[Name], a draft settlement letter was emailed to the client before the supervising partner reviewed it. Who do you tell, in what order? [Name], give me the first sentence you say.",
+   "mystery": "The case of the noon deadline. At 4:30 p.m., you learn that a filing deadline for a Harlow matter document was missed at noon. Elias is in a meeting with the managing partner until 5:30. In pairs, three minutes: walk it through notice, assess, escalate and inform, find out who else needs to know, and bring back the exact note you get into Elias's hands before 5:30."
   }
  },
  "1::Command Hierarchy Across Different Tracks": {
   "p1": {
+   "icebreaker": "Game: 'Guess the world.' I'll say a job title. Shout 'Company!', 'Firm!' or 'Home!' Senior EA. Estate manager. Paralegal. Managing partner. Household staff. Admin assistant. Senior legal assistant. Ready, fast as you can.",
+   "teaser": "Easy when each job sits in one world. The tricky problems are the ones that live in two worlds at once, and there's one sitting on your next slide.",
    "why": "Who we report a problem to depends on which world it lives in: the office, the law firm or the household.",
    "talk": "Each setting has its own ladder. In a company, it runs from the CEO down through the senior EA and the EA to the admin assistant. In a law firm, it runs from the managing partner through the senior legal assistant and the legal EA to the paralegal, and that ladder is the strictest, because an unauthorised decision there can become a legal problem. At home, it runs from the head of the family through the estate manager and the PA to the household staff.",
    "walk": [
-    "First, before escalating anything, we work out which of the three worlds we're in.",
-    "Next, in a company, we go up through the business ladder, starting with our own executive.",
-    "Then, in a law firm, we follow the stricter legal ladder, and we treat any decision outside our authority as a genuine risk.",
-    "After that, at home, we go through the family's own ladder, from the household staff up to the family head.",
-    "Finally, if a problem sits in two worlds at once, like a household matter with legal risk, we raise it in both."
+    "First, before escalating anything, work out which of the three worlds you're in.",
+    "Next, in a company, go up through the business ladder, starting with your own executive.",
+    "Then, in a law firm, follow the stricter legal ladder, and treat any decision outside your authority as a genuine risk.",
+    "After that, at home, go through the family's own ladder, from the household staff up to the family head.",
+    "Finally, if a problem sits in two worlds at once, like a household matter with legal risk, raise it in both."
    ],
-   "ask": "Elias's housekeeper tells you a process server came to the house with papers for him. That's a household matter with legal risk. Which ladders do you use, and who hears first?",
-   "scenario": "The Thornes' nanny tells you a man came to the door asking questions about Elias's work and took photos of the house. It's a household matter, but it might involve a case. Who do you tell, in which order, and through which chains?"
+   "jargon": [
+    {
+     "term": "Managing partner",
+     "hint": "the lawyer who runs the firm day to day"
+    },
+    {
+     "term": "Estate manager",
+     "hint": "runs a household's staff, property and services"
+    },
+    {
+     "term": "Process server",
+     "hint": "the person who formally delivers court papers"
+    }
+   ],
+   "story": "This happens in real offices: a housekeeper accepted court papers at the door and put them on the hall table with the post. The PA heard about it two days later, in passing. By the time the attorney saw them, a week of his response time was gone. If the household knew that 'papers at the door' goes straight to the PA and the legal team, the same day, nothing would have been lost.",
+   "contrast": {
+    "lazy": "'The nanny mentioned a man at the door. I'll tell Elias when he's back next week.' One ladder, slow, no record.",
+    "excellent": "Calls Elias the same hour with the facts, tells the firm's senior legal assistant in case it's tied to a case, and asks the estate manager to brief the household on what to do if he returns. Writes down time, description and photos taken."
+   },
+   "outcome": "A household matter with legal risk handled on one ladder only can mean papers ignored, deadlines lost or evidence missed. A stranger photographing the house might be connected to a case, or to the family's safety. Raising it in both worlds, quickly, protects the case and the people.",
+   "ask": "[Name], Elias's housekeeper tells you a process server came to the house with papers for him. Which ladders do you use? [Name], who hears first, and why?",
+   "mystery": "The case of the man at the door. The Thornes' nanny tells you a man came to the door asking questions about Elias's work and took photos of the house. It's a household matter, but it might involve a case. In teams of three, three minutes: find the clues that make this a two-world problem, and bring back who you tell, in which order, through which ladders, and the three facts you write down first."
   }
  },
  "1::Serving as Liaison & Point of Contact": {
   "p1": {
+   "icebreaker": "Game: 'Whisper chain.' Row one, I'll whisper a message to the first person: 'Elias needs the revised Meridian terms signed by Thursday noon, not Friday.' Pass it along, one whisper each. Last person, stand up and say it out loud.",
+   "teaser": "Something always changes on the way down the row. The question for this topic is which bit changed, because that's exactly the bit that costs money in real life.",
    "why": "Gatekeeping decides who reaches the executive. Being a liaison is about connecting people who need each other.",
    "talk": "As a gatekeeper, we're protecting access. As a liaison, we're more like a bridge: a client needs something from Elias, a vendor needs something from staff, and it all flows through us. That only works if what comes out the other end is exactly what went in, and if people know we're the one to call. When a message gets garbled in the middle, that's usually where things went wrong.",
    "walk": [
-    "First, we make sure we really understand what each side needs before we pass anything on.",
-    "Next, we carry the message accurately both ways, putting it in words that make sense to the person receiving it.",
-    "Then, we make it clear we're the one point of contact for this matter, so nobody's guessing who to ask.",
-    "After that, we keep in mind which job we're doing at each moment: filtering access, or connecting two people.",
-    "Finally, after the handoff, we check back with both sides to make sure it landed as intended."
+    "First, make sure you really understand what each side needs before you pass anything on.",
+    "Next, carry the message accurately both ways, putting it in words that make sense to the person receiving it.",
+    "Then, make it clear you're the one point of contact for this matter, so nobody's guessing who to ask.",
+    "After that, keep in mind which job you're doing at each moment: filtering access, or connecting two people.",
+    "Finally, after the handoff, check back with both sides to make sure it landed as intended."
    ],
-   "ask": "Think of a time information got garbled passing through someone in the middle. What would have prevented it?",
-   "scenario": "The Meridian client's CFO and Elias's paralegal both keep emailing you different versions of the same deal document. Each thinks the other has the latest. How do you act as liaison so both sides end up with one correct version?"
+   "jargon": [
+    {
+     "term": "Liaison",
+     "hint": "the go-between who connects two sides and carries messages accurately"
+    },
+    {
+     "term": "Point of contact",
+     "hint": "the one named person everyone goes to on a matter"
+    },
+    {
+     "term": "CFO",
+     "hint": "Chief Financial Officer, in charge of a company's money"
+    }
+   ],
+   "story": "A real pattern from the field: on a deal, the client's finance team and the firm's paralegal each worked from a different draft for three days, both copied the assistant, and nobody said 'which one is final?' The wrong version reached signing. It was caught at the table, but the closing slipped a week. One email from the assistant naming the single current version would have kept both sides on the same page.",
+   "ask": "[Name], think of a time information got garbled passing through someone in the middle. [Name], what would have prevented it?"
   },
   "p2": {
    "why": "Most liaison failures aren't wrong answers. They're silence after the handoff.",
    "talk": "Being the one clear contact saves everyone a surprising amount of time and confusion. The liaison habit is a loop. First, we take in the request in the sender's own words, including the deadline and who else is involved. Then we translate it for whoever receives it: a partner needs the decision, a vendor needs the details and timing, a family member needs it in plain English. And we always close the loop by telling the sender it's done.",
    "walk": [
-    "First, we receive: we capture the request exactly, deadline included.",
-    "Next, we translate: we restate it in the language the receiver needs.",
-    "Finally, we close the loop: we confirm back to the sender once it's done."
+    "First, receive: capture the request exactly, deadline included.",
+    "Next, translate: restate it in the language the receiver needs.",
+    "Finally, close the loop: confirm back to the sender once it's done."
    ],
-   "ask": "Let's try it. A client's finance director needs Elias's sign-off on revised deal terms by Thursday, and the other side's paralegal needs the same document for a filing. Walk through the loop for both.",
-   "scenario": "You passed a vendor's question to Elias on Monday, and he answered on Tuesday. On Friday, the vendor calls asking why they never heard back. What part of the liaison loop was missed, and how do you fix it?"
+   "contrast": {
+    "lazy": "Passes the vendor's question to Elias, gets his answer, files it, and never tells the vendor.",
+    "excellent": "'Elias has answered: yes to the Tuesday install, no to weekend access. I've put it in writing below. Can you confirm you've got this?' Sent the same day, with a note in the tracker that the loop is closed."
+   },
+   "outcome": "An answer nobody passes on is the same as no answer. Vendors miss dates, clients think they're being ignored, and on a deal, two sides working from different versions can mean a delayed closing or terms nobody meant to agree. A closed loop keeps the matter moving and everyone working from the same facts.",
+   "ask": "[Name], a client's finance director needs Elias's sign-off on revised deal terms by Thursday, and the other side's paralegal needs the same document for a filing. Walk the loop for the client. [Name], now walk it for the paralegal.",
+   "mystery": "The case of the vendor who never heard back. You passed a vendor's question to Elias on Monday, and he answered on Tuesday. On Friday, the vendor calls asking why they never heard back. Meanwhile, the Meridian CFO and Elias's paralegal are emailing you different versions of the same deal document. In pairs, three minutes: find the missing step in each case, and bring back your fix for both, including the exact email that gets everyone onto one version."
   }
  },
  "1::The Liaison Skill in Practice": {
   "p1": {
+   "icebreaker": "Game: 'Softer, harsher or exact?' Elias's reply was: 'Not this year. Too much on.' I'll read three relays. One finger for softer, two for harsher, three for exact. 'He'd love to, maybe next month!' 'He said no, he hasn't got time for this.' 'Elias won't be able to take this on this year because of his current workload.' Fingers up.",
+   "teaser": "Only one relay was exact, and it wasn't the friendliest one. There's also a fourth way a liaison fails that has nothing to do with words. See if you can guess it before I tell you.",
    "why": "A good liaison carries the message exactly as it was sent, in both directions, and does it quickly.",
    "talk": "Here's where it gets subtle. When we pass a request up to the executive, it's tempting to soften it or add our own spin. When we pass his answer back, it's tempting to dress up a short reply so it sounds friendlier or fuller. Both change the message. And there's a quieter risk too: a liaison who's so careful that everything slows down has failed just as much as one who lets everything straight through.",
    "walk": [
-    "First, when we pass a request up, we keep it accurate: no softening, no exaggerating, no opinions added.",
-    "Next, when we pass the answer back, we keep it just as honest and don't turn a short reply into a long one.",
-    "Then, we quietly work out which world the request belongs to, office, legal or household, before we route it. That's often the real job.",
-    "After that, we watch our own speed, because a slow liaison becomes a bottleneck.",
-    "Finally, if we're not sure the message landed the way it was meant, we check back instead of assuming."
+    "First, when you pass a request up, keep it accurate: no softening, no exaggerating, no opinions added.",
+    "Next, when you pass the answer back, keep it just as honest and don't turn a short reply into a long one.",
+    "Then, quietly work out which world the request belongs to, office, legal or household, before you route it. That's often the real job.",
+    "After that, watch your own speed, because a slow liaison becomes a bottleneck.",
+    "Finally, if you're not sure the message landed the way it was meant, check back instead of assuming."
    ],
-   "ask": "Here's a tough one: Elias's reply to a partner's long request is one word: 'No.' How do you relay that accurately, without softening it into a maybe or making it sound harsher than he meant?",
-   "scenario": "A partner sends Elias a long, polite email asking him to co-author a conference paper. Elias's reply to you is: 'Not this year. Too much on.' Write the message you'd send back to the partner, accurate but professional."
+   "jargon": [
+    {
+     "term": "Relay",
+     "hint": "passing a message on from one person to another"
+    },
+    {
+     "term": "Bottleneck",
+     "hint": "the narrow point where everything gets stuck waiting"
+    },
+    {
+     "term": "Co-author",
+     "hint": "write something jointly with someone else"
+    }
+   ],
+   "story": "A common first-week story: an attorney replied 'No' to a junior lawyer's request to take a client to lunch. The assistant, wanting to be kind, relayed it as 'He's not sure, maybe later in the month.' The junior lawyer booked a date for later in the month. The attorney was annoyed, the junior lawyer was embarrassed, and both blamed the assistant. 'He's said no for now' would have been kind enough and true.",
+   "contrast": {
+    "lazy": "'He said he'd love to but it's tricky right now, maybe next year?' Softened into a maybe, and sent two days late.",
+    "excellent": "'Thank you for thinking of Elias. He won't be able to co-author this year given his current commitments.' Same day, true to his answer, professional in tone."
+   },
+   "outcome": "A softened no becomes a false yes, and people plan around it. A harsh relay damages a relationship Elias may need later, inside the firm or with a client. And a slow liaison lets offers, deadlines and goodwill expire. Accurate and fast keeps everyone acting on what Elias actually decided.",
+   "ask": "[Name], Elias's reply to a partner's long request is one word: 'No.' How do you relay that accurately? [Name], how do you keep it from sounding harsher than he meant?",
+   "mystery": "The case of the conference paper. A partner sends Elias a long, polite email asking him to co-author a conference paper. Elias's reply to you is: 'Not this year. Too much on.' In pairs, two minutes: find the words in your first draft that change his meaning, and bring back the exact message you'd send to the partner, accurate but professional. Best version gets read to the room."
   }
  },
  "1::Bulletproof Basics": {
   "p1": {
+   "icebreaker": "Game: 'Would you rather?' Stand up for A, stay seated for B. Would you rather: A, a perfectly sorted inbox, or B, a backup flight already on hold? Would you rather: A, a great agenda before the meeting, or B, every action item chased after it? Look around: the room is split, and that's the point.",
+   "teaser": "Trick question. You don't get to choose. Elias judges us on all three basics, and there's one he notices only when it's missing.",
    "why": "Three everyday basics decide whether an executive trusts us: the inbox, the travel backup plan and the full life of a meeting.",
    "talk": "None of this is glamorous, and that's the point. An executive judges us on whether the ordinary things always go right. The inbox gets sorted on the first read, so nothing sits waiting. Travel comes with a plan B already in place, so a cancelled flight is an inconvenience, not a crisis. And meetings don't end when everyone leaves the room; we set them up beforehand and chase the follow-ups afterwards.",
    "walk": [
-    "First, as each email arrives, we decide straight away whether it needs action, is just for information, or should go to someone else.",
-    "Next, where it makes sense, we draft the reply in the executive's own voice, so all he has to do is press send.",
-    "Then, when we book travel, we line up the backup too. If the 2 p.m. flight is cancelled, the 4 p.m. is already on hold.",
-    "After that, we set the meeting agenda before the meeting, which is how we go from taking notes to shaping the result.",
-    "Finally, after the meeting, we follow every action item through until it's actually done, not just written down."
+    "First, as each email arrives, decide straight away whether it needs action, is just for information, or should go to someone else.",
+    "Next, where it makes sense, draft the reply in the executive's own voice, so all he has to do is press send.",
+    "Then, when you book travel, line up the backup too. If the 2 p.m. flight is cancelled, the 4 p.m. is already on hold.",
+    "After that, set the meeting agenda before the meeting, which is how you go from taking notes to shaping the result.",
+    "Finally, after the meeting, follow every action item through until it's actually done, not just written down."
    ],
-   "ask": "Of these three, which do you already do well, and which is still more of an intention?",
-   "scenario": "Elias flies to D.C. at 2 p.m. for a 9 a.m. hearing tomorrow, and the airline just posted a two-hour delay warning. His inbox has 40 unread emails, and there's a 4 p.m. client call nobody has set an agenda for. Which basic do you deal with first, and what do you do on each one before 11 a.m.?"
+   "jargon": [
+    {
+     "term": "Triage",
+     "hint": "sorting items by what needs doing first"
+    },
+    {
+     "term": "Plan B / backup booking",
+     "hint": "an alternative already held in case the first falls through"
+    },
+    {
+     "term": "Agenda",
+     "hint": "the list of what a meeting will cover, in order"
+    }
+   ],
+   "story": "This happens in real offices: an attorney's flight to an out-of-town hearing was cancelled at 6 p.m. The assistant had booked the flight and nothing else. By the time she found a seat, the only one left landed at 8:40 for a 9 a.m. hearing. He made it, out of breath, with no time to meet the client first. A held seat on the earlier backup flight would have cost nothing.",
+   "ask": "[Name], of these three, which do you already do well, and which is still more of an intention? [Name], same question, and be honest."
   },
   "p2": {
    "why": "Doing the basics on a calm Friday is easy. Doing them the same way on a chaotic Tuesday is what earns trust.",
    "talk": "Anyone can keep a tidy inbox when the day is quiet. The difference shows when three things go wrong at once and we still sort every email, still line up the backup flight and still send the meeting follow-ups. That kind of consistency is what makes an executive stop double-checking our work. And the fix for a weak area is almost never a good intention. It's a small, specific habit we actually do every day.",
    "walk": [
-    "First, the aim is consistency under pressure, not perfection on quiet days.",
-    "Finally, we improve by picking one real habit, not a resolution."
+    "First, aim for consistency under pressure, not perfection on quiet days.",
+    "Finally, improve by picking one real habit, not a resolution."
    ],
-   "ask": "Pick the basic you're weakest on today. What's one real habit, not an intention, that would fix it this week?",
-   "scenario": "It's a chaotic Tuesday: two court changes, a sick colleague and a vendor mix-up. By 6 p.m. you realise you skipped the meeting follow-ups from this morning's partners' meeting. What habit would have stopped that from slipping, and what do you do right now?"
+   "contrast": {
+    "lazy": "'I'll try to be better at follow-ups.' A resolution that lasts until the next busy day.",
+    "excellent": "'Every day at 5 p.m., I open the day's meeting notes and send every follow-up before I log off. It's a 15-minute block in my calendar.' A habit that survives a chaotic Tuesday."
+   },
+   "outcome": "The basic that slips on a bad day is usually the one that matters. A missed follow-up becomes a missed deadline; a flight with no backup becomes a missed hearing; an unsorted inbox hides the court notice. Basics done the same way every day are what keep a case on schedule.",
+   "ask": "[Name], pick the basic you're weakest on today. What's one real habit, not an intention, that would fix it this week? [Name], is that a habit or a resolution?",
+   "mystery": "The case of the D.C. delay. Elias flies to D.C. at 2 p.m. for a 9 a.m. hearing tomorrow, and the airline just posted a two-hour delay warning. His inbox has 40 unread emails, and there's a 4 p.m. client call nobody has set an agenda for. Oh, and you've just realised this morning's partners' meeting follow-ups never went out. In teams of three, four minutes: decide which basic you deal with first, and bring back your plan for each one before 11 a.m."
   }
  },
  "1::The Three C's of Managing Up": {
   "p1": {
+   "icebreaker": "Game: 'Rate my update.' I'll read a message to Elias. Show me one to five fingers: one is useless, five is perfect. 'Meridian stuff mostly sorted, a couple of things pending, will explain tomorrow.' Now: 'Meridian: two items pending. I need your signature on the NDA by 3. The filing goes at 5, no action from you.' Fingers up.",
+   "teaser": "The first one feels fine when you write it at 7 p.m. There's one word in it that quietly costs you trust, and by the end you'll be able to spot it.",
    "why": "Every update we send gets judged on three things: is it clear, is it consistent, and can he rely on it?",
    "talk": "Managing up sounds like a fancy phrase, but it mostly comes down to how we communicate with the person we support. Clarity means he never has to guess what we're telling him or what we need. Consistency means we do things the same way every time, so he knows what to expect. And credibility means that when we say something, it's true. That one matters most.",
    "walk": [
-    "First, before sending an update, we check it's clear: does it say exactly what's happening and what we need?",
-    "Next, we check it's consistent: are we using our usual approach, not something improvised because today's busy?",
+    "First, before sending an update, check it's clear: does it say exactly what's happening and what you need?",
+    "Next, check it's consistent: are you using your usual approach, not something improvised because today's busy?",
     "Then, if speed and reliability pull against each other, reliability wins. A quick answer that's wrong is worse than a slightly slower one that's right.",
-    "After that, when we're under pressure and clarity starts slipping, we slow down and restate the main point before we hit send.",
-    "Finally, every so often we reread our own recent messages, because these habits fade quietly when we're busy."
+    "After that, when you're under pressure and clarity starts slipping, slow down and restate the main point before you hit send.",
+    "Finally, every so often reread your own recent messages, because these habits fade quietly when you're busy."
    ],
-   "ask": "When you're overwhelmed, which of the three slips first for you?",
-   "scenario": "At 7 p.m. you send Elias: 'Meridian stuff mostly sorted, a couple of things pending, will explain tomorrow.' He replies, 'What's pending and do I need to do anything?' Rewrite the original message so it passes clarity, consistency and credibility."
+   "jargon": [
+    {
+     "term": "Managing up",
+     "hint": "working well with the person you support, not just for them"
+    },
+    {
+     "term": "Daily brief",
+     "hint": "a short regular update in the same format every day"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant told her attorney a signed contract had 'definitely gone back' to the other side. It was sitting in her outbox, unsent, because the attachment was too big. The other side said the offer had lapsed. It was put right, but from then on he checked every 'done' she sent. 'I've sent it and I'll confirm receipt by noon' would have caught the bounce.",
+   "ask": "[Name], when you're overwhelmed, which of the three slips first for you? [Name], is yours the same one?"
   },
   "p2": {
    "why": "One wrong 'it's done' costs more trust than ten honest 'confirming by noon's.",
@@ -825,180 +1180,311 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "walk": [
     "First, clarity means the status and the ask come first, with the background after.",
     "Next, consistency means regular updates always look the same.",
-    "Finally, credibility means saying 'I'll confirm by' when we're not certain."
+    "Finally, credibility means saying 'I'll confirm by' when you're not certain."
    ],
-   "ask": "Try this one: Elias asks, 'Is the Meridian binder at the courthouse?' You think the courier picked it up, but you haven't confirmed. What's the reply that protects your credibility?",
-   "scenario": "Elias asks at 8 a.m. whether the signed Harlow engagement letter came back. You think the client said they'd send it last night, but it isn't in the inbox yet. Write the reply that protects your credibility."
+   "contrast": {
+    "lazy": "'Yes, the binder's at the courthouse.' Said because the courier probably picked it up.",
+    "excellent": "'The courier was booked for 10 a.m. I'm confirming delivery now and will message you by 10:30 either way.'"
+   },
+   "outcome": "If Elias walks into court believing the binder is there and it isn't, he's unprepared in front of a judge. If he tells a client the engagement letter is signed and it isn't, the firm may be working without cover. Honest status updates keep his decisions, and the case, built on facts.",
+   "ask": "[Name], Elias asks, 'Is the Meridian binder at the courthouse?' You think the courier picked it up, but you haven't confirmed. What's your reply? [Name], is that reply clear, consistent and credible?",
+   "mystery": "The case of the missing engagement letter. Elias asks at 8 a.m. whether the signed Harlow engagement letter came back. You think the client said they'd send it last night, but it isn't in the inbox yet. In pairs, two minutes: find the places it could be, decide what you actually know, and bring back the exact reply that passes all three C's."
   }
  },
  "1::Credibility Is Earned, Not Claimed": {
   "p1": {
+   "icebreaker": "Game: 'True or false?' Thumbs up for true, thumbs down for false. 'If you tell your boss you're reliable, he'll trust you more.' 'A small mistake costs a small amount of trust.' 'It's fine to hold minor news until Monday.' 'One good week fixes one bad week.' Count your downs.",
+   "teaser": "If you gave a thumbs down to all four, well done. One of them is the rule assistants break most, usually on a Friday afternoon. You'll see it in a moment.",
    "why": "We can't announce that we're credible. The executive gives us credibility, one reliable week at a time.",
    "talk": "Credibility comes from a few things done over and over. We're accurate, we follow through and we're on time. We never let the boss be surprised by something we already knew. We treat small decisions carefully, because some of them quietly carry money, legal or reputation risk. And we're discreet, especially around investors, legal matters, family life and deals.",
    "walk": [
-    "First, we build it through reliability: accurate, finished and on time, every time.",
-    "Next, we live by the no-surprises rule. If we know about something, he knows about it too, even if it seems minor.",
-    "Then, we treat small decisions as if they might matter, because we can't always tell which ones will.",
-    "After that, discretion is our default, especially around investors, legal matters, family and deals.",
-    "Finally, if we ever damage that trust, we rebuild it steadily over time. One good week doesn't undo a bad one."
+    "First, build it through reliability: accurate, finished and on time, every time.",
+    "Next, live by the no-surprises rule. If you know about something, he knows about it too, even if it seems minor.",
+    "Then, treat small decisions as if they might matter, because you can't always tell which ones will.",
+    "After that, make discretion your default, especially around investors, legal matters, family and deals.",
+    "Finally, if you ever damage that trust, rebuild it steadily over time. One good week doesn't undo a bad one."
    ],
-   "ask": "In practice, what does the no-surprises rule actually look like on a normal day?",
-   "scenario": "On Friday you noticed that a client's retainer check bounced, but you meant to mention it Monday. Over the weekend, the client emails Elias directly about 'the check problem.' What rule did you break, and how do you handle Monday morning?"
+   "jargon": [
+    {
+     "term": "Retainer",
+     "hint": "money a client pays upfront so the firm starts work"
+    },
+    {
+     "term": "No-surprises rule",
+     "hint": "if you know it, your executive knows it"
+    }
+   ],
+   "story": "A common first-week story: on a Friday, an assistant saw that a client's retainer payment had bounced and planned to mention it Monday. Over the weekend, the client emailed the attorney directly, embarrassed and apologetic. The attorney had no idea what he meant. A two-line message on Friday would have let him reply in control.",
+   "ask": "[Name], in practice, what does the no-surprises rule look like on a normal day? [Name], what's something small you'd still tell him the same day?"
   },
   "p2": {
    "why": "Lost credibility comes back slowly, roughly in proportion to how much was lost.",
    "talk": "Credibility is what lets us speak up to the executive with confidence. It comes only from doing the work well and showing good judgment, never from telling people how good we are. It also works a bit like a bank balance. Small mistakes take a small withdrawal; a big one can empty the account, and then it takes months of steady deposits to build it back.",
    "walk": [
-    "First, credibility is earned through consistent work, never self-promotion.",
-    "Next, rebuilding it takes a track record, not an apology.",
-    "Finally, the small, quiet decisions are often the ones that carry the most weight."
+    "First, earn credibility through consistent work, never self-promotion.",
+    "Next, remember that rebuilding it takes a track record, not an apology.",
+    "Finally, watch the small, quiet decisions, because they're often the ones that carry the most weight."
    ],
-   "ask": "Think of a real moment, from any job and kept anonymous, when a small decision turned out to carry real risk. What told you it mattered?",
-   "scenario": "Last month you sent a partner the wrong version of a contract, and now Elias double-checks everything you send. What does rebuilding his trust look like over the next few weeks, specifically?"
+   "contrast": {
+    "lazy": "'I'm really sorry about the contract, it won't happen again, you can trust me.' Then carries on exactly as before.",
+    "excellent": "Says sorry once, then builds a visible routine: version number in every file name, a 'final' check before sending, and a note to Elias: 'Sent v4, signed version, checked against your mark-up.' Week after week."
+   },
+   "outcome": "When the executive trusts us, he acts on what we tell him quickly, and that speed matters in deadlines and negotiations. When he doesn't, he double-checks everything, and his time, which is the client's money, goes on checking us. Credibility is what lets us protect the case instead of slowing it down.",
+   "ask": "[Name], think of a real moment, from any job and kept anonymous, when a small decision turned out to carry real risk. What told you it mattered? [Name], have you had one like that?",
+   "mystery": "The case of the wrong contract. Last month you sent a partner the wrong version of a contract, and now Elias double-checks everything you send. In pairs, three minutes: find the habits that let it happen, and bring back a specific four-week plan of deposits, what you'll do each week that Elias can actually see."
   }
  },
  "1::Client Profiling": {
   "p1": {
+   "icebreaker": "Game: 'Quick quiz.' Shout the answer, no notes. What's Elias's surname? His wife's name? The name of his firm? Which three cities does he travel between? One rule he never lets anyone break? Silence on that last one is allowed.",
+   "teaser": "The silence on the last question is exactly why this topic exists. By the end, you'll have a place where that answer lives, so nobody ever has to ask him.",
    "why": "A client profile is something we build once, so we never have to ask the same question twice.",
    "talk": "Think about how it feels when a new assistant asks you, for the third time, whether you like morning or afternoon meetings. It wears down trust fast. A profile avoids that. It's a short reference that captures who this person is, how they like to communicate and the rules they live by, so every interaction starts from what we already know.",
    "walk": [
-    "First, we start with the basics: their role, their organisation and how far their authority reaches.",
-    "Next, we note how they like to communicate. Blunt or detailed? Written or spoken?",
-    "Then, we write down their meeting rules, like breaks between meetings and times that are off-limits, because those are the rules new people break most.",
-    "After that, we capture travel preferences in enough detail to book without asking.",
-    "Finally, we note any quirks, in plain, respectful language."
+    "First, start with the basics: their role, their organisation and how far their authority reaches.",
+    "Next, note how they like to communicate. Blunt or detailed? Written or spoken?",
+    "Then, write down their meeting rules, like breaks between meetings and times that are off-limits, because those are the rules new people break most.",
+    "After that, capture travel preferences in enough detail to book without asking.",
+    "Finally, note any quirks, in plain, respectful language."
    ],
-   "ask": "Without looking, can you name Elias's firm, one family member and one of his standing rules?",
-   "scenario": "It's your first week supporting Elias. You have his name, title and email, and not much else. What five things do you most need to find out, and who (other than Elias himself) could you ask?"
+   "jargon": [
+    {
+     "term": "Client profile",
+     "hint": "a short reference card on how someone works and what they prefer"
+    },
+    {
+     "term": "Standing rule",
+     "hint": "a preference that always applies unless he says otherwise"
+    }
+   ],
+   "story": "This happens in real offices: a new assistant asked her attorney three times in a week whether he wanted window or aisle. On the third time he said, 'Does nobody write anything down?' The previous assistant had known for years; it just lived in her head. A one-page profile on day one would have answered it.",
+   "ask": "[Name], without looking, can you name Elias's firm, one family member and one of his standing rules? [Name], can you add one more fact?"
   },
   "p2": {
    "why": "This is the first topic that builds on itself. Everything later in the program assumes you know Elias.",
    "talk": "Let's meet him properly. Elias Thorne is CEO of Thorne & Partners, a large law firm specialising in corporate litigation, white-collar defence and international arbitration. He's blunt and direct, he travels constantly between D.C., London and Singapore, and he expects us to anticipate what he needs rather than wait to be told. Those few facts already tell us a lot about how to write to him and how to plan his week.",
    "walk": [
-    "First, the profile has five parts: role, communication style, meeting rules, travel preferences and quirks.",
-    "Next, for Elias, direct and brief communication is the rule.",
-    "Finally, heavy travel and 'anticipate, don't wait' shape almost everything we'll do for him."
+    "First, build the profile in five parts: role, communication style, meeting rules, travel preferences and quirks.",
+    "Next, for Elias, keep communication direct and brief.",
+    "Finally, remember heavy travel and 'anticipate, don't wait' shape almost everything you'll do for him."
    ],
-   "ask": "Using what you now know about Elias, what's one question you'd never need to ask him again?",
-   "scenario": "A new colleague books Elias an early-morning red-eye before a court day and schedules three back-to-back meetings after it. Which parts of his profile would have stopped both mistakes?"
+   "contrast": {
+    "lazy": "Asks Elias each time: 'Do you want a morning or afternoon flight? Aisle or window? Is 8 a.m. too early?'",
+    "excellent": "Checks the profile, books the aisle seat and the right flight, and sends one line: 'London booked: Tues 10 a.m., aisle, back in time for Thursday's hearing.'"
+   },
+   "outcome": "Every repeat question spends a little of Elias's attention, which is the most expensive thing in the firm. Getting his rules wrong, like a red-eye before a court day, can mean a tired attorney in front of a judge. A good profile protects his time and his performance where it counts.",
+   "ask": "[Name], using what you now know about Elias, what's one question you'd never need to ask him again? [Name], give me another.",
+   "mystery": "The case of the red-eye. A new colleague books Elias an early-morning red-eye before a court day and schedules three back-to-back meetings after it. In pairs, two minutes: find the two profile entries that would have prevented this, and bring back the five things you'd most need to find out in week one and who, other than Elias, you could ask."
   }
  },
  "1::Creating a Comprehensive Client Dossier": {
   "p1": {
+   "icebreaker": "Game: 'Which drawer?' Four drawers: one finger for firm and role, two for family and personal, three for standing instructions, four for quirks. 'Wife Sarah.' 'No calls before 7 a.m.' 'Hates being cc'd on long threads.' 'CEO of Thorne & Partners.' 'Daughter's school pickup Tuesdays.' Fingers up on each.",
+   "teaser": "You'll have disagreed on at least one. That's a clue: an entry people can't place is usually an entry that needs rewriting.",
    "why": "A dossier goes deeper than a profile. Someone who has never met Elias should be able to run his account from it.",
    "talk": "If the profile is a quick reference card, the dossier is the full handbook. It has four parts. The professional picture comes first: the firm, the industry, the culture and his authority. Then only the personal and family details that actually help us support him. Then his standing instructions, the rules that don't change. And finally his quirks, written kindly and factually. The test is simple: could a stranger run his day from it?",
    "walk": [
-    "First, we start with the firm and his role, so the reader understands the professional setting.",
-    "Next, we add family and personal details, but only what genuinely helps us support him.",
-    "Then, we write his standing instructions as clear rules that anyone could follow without interpreting.",
-    "After that, we describe his quirks in plain words, never judgment.",
-    "Finally, we test it by asking: could someone who's never met him run the account from this alone?"
+    "First, start with the firm and his role, so the reader understands the professional setting.",
+    "Next, add family and personal details, but only what genuinely helps you support him.",
+    "Then, write his standing instructions as clear rules that anyone could follow without interpreting.",
+    "After that, describe his quirks in plain words, never judgment.",
+    "Finally, test it by asking: could someone who's never met him run the account from this alone?"
    ],
-   "ask": "Which of the four sections would be hardest to fill in accurately without meeting him?",
-   "scenario": "You're writing Elias's dossier and have these notes: 'likes quiet restaurants,' 'wife Sarah,' 'no calls before 7 a.m.,' 'hates being cc'd on long threads,' and 'daughter's school pickup Tuesdays.' Put each one in the right section, and say which needs rewriting to be usable."
+   "jargon": [
+    {
+     "term": "Dossier",
+     "hint": "the full written handbook on a client"
+    },
+    {
+     "term": "Standing instructions",
+     "hint": "rules that always apply without being repeated"
+    },
+    {
+     "term": "Restricted section",
+     "hint": "the part of the file only named people can see"
+    }
+   ],
+   "story": "A real pattern from the field: an assistant went on sick leave suddenly, and a temp took over with a dossier that said 'Partner is particular about lunch.' The temp ordered a sandwich platter for a client meeting. The partner had a serious food allergy, which the regular assistant knew and the dossier didn't say. Nobody was hurt, but it was close. 'Severe nut allergy: check every menu' would have been enough.",
+   "ask": "[Name], which of the four sections would be hardest to fill in accurately without meeting him? [Name], how would you fill it anyway?"
   },
   "p2": {
    "why": "A vague entry is almost as useless as no entry at all.",
    "talk": "Here's the difference in practice. 'Likes comfortable flights' tells a new assistant nothing. 'Aisle seat, rows one to ten, never a red-eye before a court day' tells them exactly what to book. Good entries also say where the information came from and when, like 'confirmed by Elias, March', so the next person knows how far to trust it. And sensitive details, such as health, family or money, live in a restricted section that never gets copied into shared calendars or emails.",
    "walk": [
-    "First, we're specific, because specific entries can be acted on.",
-    "Next, every entry has a source and a date.",
-    "Finally, sensitive details are locked away and shared only with those who truly need them."
+    "First, be specific, because specific entries can be acted on.",
+    "Next, give every entry a source and a date.",
+    "Finally, lock sensitive details away and share them only with those who truly need them."
    ],
-   "ask": "You're handing Elias's account to a substitute for two weeks. Which three entries would they be most likely to get wrong, and how would you write each one so they can't?",
-   "scenario": "A substitute assistant covers for you and books Elias a window seat in row 22 for a London flight, because the dossier said 'prefers comfortable seats.' Rewrite that entry so it can't be misread."
+   "contrast": {
+    "lazy": "'Prefers comfortable seats.' 'Family stuff on Tuesdays.' 'Doesn't like long emails.'",
+    "excellent": "'Aisle seat, rows 1 to 10, never a red-eye before a court day (confirmed by Elias, March).' 'Tuesdays 3 p.m.: daughter's school pickup, no meetings after 2:30 (restricted).'"
+   },
+   "outcome": "A vague dossier fails exactly when you're not there to explain it: sick leave, holidays, a sudden handover. That's when a court-day red-eye gets booked or a private family detail ends up in a shared calendar. A specific, sourced dossier keeps Elias at his best and his family's privacy intact, whoever is covering.",
+   "ask": "[Name], you're handing Elias's account to a substitute for two weeks. Which three entries would they be most likely to get wrong? [Name], rewrite one of them so they can't.",
+   "mystery": "The case of seat 22A. A substitute assistant covers for you and books Elias a window seat in row 22 for a London flight, because the dossier said 'prefers comfortable seats.' In pairs, three minutes: find the vague word that caused it, and bring back the rewritten entry, plus where each of these belongs: 'likes quiet restaurants,' 'wife Sarah,' 'no calls before 7 a.m.,' 'hates being cc'd on long threads,' 'daughter's school pickup Tuesdays.'"
   }
  },
  "1::Dossier Excerpt — Elias Thorne": {
   "p1": {
+   "icebreaker": "Game: 'Guess the reason.' I'll read one of Elias's real rules. You shout why you think he has it. 'Fifteen-minute debrief after key sessions.' 'Strict Paleo diet.' 'Voice notes at 5:30 a.m., agenda by 8.' 'Aisle seats only.' Wildest sensible guess wins.",
+   "teaser": "You had good guesses, and some were different. That's the problem. If the room can't agree why a rule exists, the next assistant will decide it's optional. One of these is the rule most likely to be broken first.",
    "why": "Every fact in a dossier needs its reason attached, because a rule without a reason is the one that gets broken.",
    "talk": "Let's look at real entries for Elias. He needs a fifteen-minute debrief after key sessions. He follows a strict Paleo diet. He sends voice notes at 5:30 in the morning and expects an agenda by 8. He only flies in aisle seats. If we just list those, a new assistant might see the fifteen minutes as optional. If we explain that he needs that time to process a court session before his next call, they won't touch it.",
    "walk": [
-    "First, we put each fact under the right heading: firm and role, family, standing instructions or quirks.",
-    "Next, we write why it matters, not just what it is.",
-    "Then, we ask what would go wrong if someone got this entry wrong. That tells us how carefully to word it.",
-    "After that, we write for someone who's never met him, with no inside shorthand.",
-    "Finally, we compare our entries with the Elias examples to make sure ours are just as specific."
+    "First, put each fact under the right heading: firm and role, family, standing instructions or quirks.",
+    "Next, write why it matters, not just what it is.",
+    "Then, ask what would go wrong if someone got this entry wrong. That tells you how carefully to word it.",
+    "After that, write for someone who's never met him, with no inside shorthand.",
+    "Finally, compare your entries with the Elias examples to make sure yours are just as specific."
    ],
-   "ask": "Why does that fifteen-minute debrief matter enough to be a standing rule?",
-   "scenario": "A new paralegal books a client call for Elias straight after a court session, with no gap. His dossier lists the 15-minute debrief buffer as a rule, but with no explanation. How would you rewrite the entry so nobody breaks it again?"
+   "jargon": [
+    {
+     "term": "Debrief",
+     "hint": "a short review straight after an important session"
+    },
+    {
+     "term": "Buffer",
+     "hint": "protected time between commitments"
+    },
+    {
+     "term": "Paleo diet",
+     "hint": "an eating plan with no dairy, grains or processed food"
+    }
+   ],
+   "story": "This happens in real offices: an attorney's dossier said 'Buffer after court.' A new paralegal saw an empty fifteen minutes and booked a client call into it. The attorney took the call straight from a difficult hearing, distracted, and agreed to a deadline he couldn't meet. Adding 'he uses it to process the session before speaking to anyone' would have protected it.",
+   "ask": "[Name], why does that fifteen-minute debrief matter enough to be a standing rule? [Name], what would you write next to it in the dossier?"
   },
   "p2": {
    "why": "Anyone can paste facts under headings. A good dossier explains why each fact matters.",
    "talk": "Each of the four sections protects us from a different kind of mistake. Get the professional context wrong and we misjudge what's important. Miss a family sensitivity and we cause real hurt. Break a standing rule and we lose trust. Misread a quirk as something we can negotiate and we clash with him. Writing the reason next to each fact is what stops the next assistant from making those mistakes.",
    "walk": [
-    "First, each section prevents a different kind of failure.",
-    "Next, a fact without its reason is just trivia.",
-    "Finally, we write every entry for the person who inherits the account without warning."
+    "First, remember each section prevents a different kind of failure.",
+    "Next, treat a fact without its reason as just trivia.",
+    "Finally, write every entry for the person who inherits the account without warning."
    ],
-   "ask": "Let's build one section together from two raw facts: a fifteen-minute debrief after every key client or court session, and a strict Paleo diet with no dairy, with every client dinner checked in advance. What's the reason behind each?",
-   "scenario": "Elias sends his 5:30 a.m. voice notes and expects an agenda by 8. A dossier entry says only: 'Voice notes early.' What would a new assistant get wrong, and what should the entry say?"
+   "contrast": {
+    "lazy": "'Paleo. Debrief after court. Voice notes early.'",
+    "excellent": "'Strict Paleo, no dairy: check every client dinner menu in advance, because he won't eat and it shows. 15-minute debrief after every key client or court session: he processes the session before speaking to anyone, so never book into it.'"
+   },
+   "outcome": "A rule without a reason gets broken under pressure, and the moments of pressure are court days and client dinners. A distracted attorney straight out of a hearing makes worse decisions on the next call. Reasons in the dossier protect his thinking at the moments the case depends on it.",
+   "ask": "[Name], let's build one section from two raw facts: a fifteen-minute debrief after every key client or court session, and a strict Paleo diet with no dairy, with every client dinner checked in advance. What's the reason behind the first? [Name], and the second?",
+   "mystery": "The case of the early voice note. Elias sends his 5:30 a.m. voice notes and expects an agenda by 8. A dossier entry says only: 'Voice notes early.' In pairs, two minutes: work out what a new assistant would get wrong, find the missing reason, and bring back the full entry. Then rewrite the debrief entry so the paralegal who booked a call into it never does it again."
   }
  },
  "1::Setting Up Client Trackers": {
   "p1": {
+   "icebreaker": "Game: 'Three boxes.' Front row is the travel tracker, middle row is the inbox tracker, back row is the meetings tracker. I'll call out an item; the row it belongs to stands up. 'Aisle seat.' 'No back-to-back sessions.' 'One-line summary at the top of emails.' 'No connecting flights.' 'Partners' meeting Monday at 9.' Stand fast.",
+   "teaser": "Every row got to stand. But one of those items will be wrong in three weeks' time, and nobody in this room will notice unless we build in one small habit. Watch for it.",
    "why": "The dossier is the reference book. Trackers are the tools we use every day to put it into practice.",
    "talk": "A dossier tells us who Elias is. A tracker tells us what to do right now, and we update it as things happen. We start small, with just three: how he likes to travel, how he likes his emails, and how his meetings should be spaced. Starting with three we'll actually keep up beats ten we'll let go stale.",
    "walk": [
-    "First, we build the three basic trackers: travel, inbox and meeting rhythms.",
-    "Next, the travel tracker holds the details that change a booking: seat, connections and whether we rebook without asking.",
-    "Then, the inbox tracker records the exact format he expects, like one-line summaries with the details attached.",
-    "After that, the meetings tracker holds hard rules, such as no back-to-back sessions and the breaks he needs.",
-    "Finally, we update every tracker the moment we learn something new."
+    "First, build the three basic trackers: travel, inbox and meeting rhythms.",
+    "Next, put the details that change a booking in the travel tracker: seat, connections and whether you rebook without asking.",
+    "Then, record in the inbox tracker the exact format he expects, like one-line summaries with the details attached.",
+    "After that, keep the hard rules in the meetings tracker, such as no back-to-back sessions and the breaks he needs.",
+    "Finally, update every tracker the moment you learn something new."
    ],
-   "ask": "If you only had time to build one tracker for Elias, which would it be, and why?",
-   "scenario": "You've built Elias's dossier. Now choose what goes into each of the three trackers from this list: aisle seat, no back-to-back sessions, one-line summaries at the top of emails, no connecting flights, weekly partners' meeting on Monday at 9. Which tracker does each belong in?"
+   "jargon": [
+    {
+     "term": "Tracker",
+     "hint": "a working list you update as things happen"
+    },
+    {
+     "term": "Meeting rhythm",
+     "hint": "the regular pattern and spacing of someone's meetings"
+    }
+   ],
+   "story": "A common first-week story: a new assistant inherited a beautiful tracker spreadsheet with fifteen tabs. Half of them hadn't been touched in a year. She trusted the 'preferred car service' tab and booked a company that had closed. The attorney waited 40 minutes at the airport. Three trackers kept up to date would have beaten fifteen that weren't.",
+   "ask": "[Name], if you only had time to build one tracker for Elias, which would it be, and why? [Name], would you pick the same one?"
   },
   "p2": {
    "why": "An out-of-date tracker is worse than no tracker at all, because it makes us confident about the wrong thing.",
    "talk": "The trick is to give each tracker a moment when it always gets updated. The travel tracker after every trip. The inbox tracker whenever he reacts to an email's format. The meetings tracker whenever a regular meeting changes. We also put a 'last checked' date at the top, so a colleague knows how far to trust it. And we only add a new tracker when a need keeps coming up, not just in case.",
    "walk": [
-    "First, each tracker gets a clear moment when it's updated.",
-    "Next, each one shows the date it was last reviewed, and we check them monthly.",
-    "Finally, we add new trackers only when a real need repeats."
+    "First, give each tracker a clear moment when it's updated.",
+    "Next, show the date each one was last reviewed, and check them monthly.",
+    "Finally, add new trackers only when a real need repeats."
    ],
-   "ask": "Here's a test: Elias's London flight is delayed three hours. His travel tracker says aisle seat near the front, no connections, and rebook without being asked. What do you do before he even notices?",
-   "scenario": "Your travel tracker says Elias prefers a certain hotel in London. After his last trip, he told you the hotel is under renovation and was noisy. It's now three weeks later and you're booking his next London trip. What should have happened after the last trip?"
+   "contrast": {
+    "lazy": "'I'll update the tracker when I get a minute.' Three weeks later, the noisy hotel is booked again.",
+    "excellent": "Updates the travel tracker the evening he lands: 'London hotel under renovation, noisy, do not book until further notice (Elias, 12 May). Last checked: 12 May.'"
+   },
+   "outcome": "A stale tracker makes you confidently wrong, and the cost lands on Elias: a bad night before a hearing, a missed connection, an email format he's asked you to drop. A tired, distracted attorney performs worse when the case needs him sharp. Trackers that are updated on time keep his preparation intact.",
+   "ask": "[Name], Elias's London flight is delayed three hours. His travel tracker says aisle seat near the front, no connections, and rebook without being asked. What do you do before he even notices? [Name], what do you tell him, and when?",
+   "mystery": "The case of the noisy hotel. Your travel tracker says Elias prefers a certain hotel in London. After his last trip, he told you the hotel is under renovation and was noisy. It's now three weeks later and you're booking his next London trip. In pairs, two minutes: find the moment the tracker should have changed, and bring back the exact updated entry plus the update habit for each of the three trackers."
   }
  },
  "1::Why One Client, All Ten Days": {
   "p1": {
+   "icebreaker": "Game: 'Memory hands.' Hands up if you can tell me, without looking: Elias's seat preference. Keep it up if you also know his wife's name. Keep it up if you know when his voice notes arrive. Keep it up if you know how long his debrief is. Whoever's still up, stand and say all four.",
+   "teaser": "Count the hands now, then remember that number. On Day 5 we'll play this again, and there's one trick that decides whether the number goes up or down.",
    "why": "We use the same client for all ten days on purpose, because in a real job, what you learn keeps building.",
    "talk": "In most training, every exercise brings a brand-new person. Real life isn't like that. You work for the same executive for months, and everything you learn about him makes the next task easier. So what we learn about Elias today, his rules, his family, how he likes to communicate, will come back in the calendar work, the inbox work and the travel planning later on.",
    "walk": [
-    "First, we treat every fact about Elias as something we'll need again.",
-    "Next, when a later exercise leans on something from before, we try to remember it before looking it up. That recall is part of the training.",
-    "Then, if something later seems to contradict what we know about him, we raise it with the trainer instead of quietly working around it.",
-    "After that, we let the repetition help us, because seeing the same family and rules again and again is what makes them stick.",
-    "Finally, by the last day, we should be able to describe his rules, family and communication style from memory."
+    "First, treat every fact about Elias as something you'll need again.",
+    "Next, when a later exercise leans on something from before, try to remember it before looking it up. That recall is part of the training.",
+    "Then, if something later seems to contradict what you know about him, raise it with the trainer instead of quietly working around it.",
+    "After that, let the repetition help you, because seeing the same family and rules again and again is what makes them stick.",
+    "Finally, by the last day, you should be able to describe his rules, family and communication style from memory."
    ],
-   "ask": "What's one thing about Elias you're worried you'll forget by Day 5?",
-   "scenario": "On Day 3, an exercise asks you to plan Elias's week. Without checking the dossier, list three standing rules from Day 1 that the plan must follow. Which one would be easiest to forget?"
+   "jargon": [
+    {
+     "term": "Recall",
+     "hint": "remembering something before you look it up"
+    },
+    {
+     "term": "Placement",
+     "hint": "a real job with one employer over time"
+    }
+   ],
+   "story": "This happens in real offices: an assistant in her third month booked her attorney into a dinner at a steakhouse with a client, forgetting a dietary rule she'd been told in week one. She'd written it down but never looked again. The client noticed he barely ate. Nothing terrible happened, but it was the kind of slip that makes a boss wonder what else has been forgotten. Regular recall, not just a note, is what makes rules stick.",
+   "ask": "[Name], what's one thing about Elias you're worried you'll forget by Day 5? [Name], what's yours?"
   },
   "p2": {
    "why": "If something contradicts the dossier, flag it. Don't reinvent Elias.",
    "talk": "Think of an inconsistency as a small bug worth reporting. In a real job, catching that kind of mismatch is exactly what a sharp assistant does, like noticing that a booking contradicts a standing rule. That's also what makes this feel like a real job rather than a series of exercises: the same instructions, the same family and the same quirks, and you're expected to remember them.",
    "walk": [
-    "First, we flag contradictions to the trainer rather than making up a new version of Elias.",
-    "Finally, we treat these ten days like a real placement, where what we learned on day one still counts on day ten."
+    "First, flag contradictions to the trainer rather than making up a new version of Elias.",
+    "Finally, treat these ten days like a real placement, where what you learned on day one still counts on day ten."
    ],
-   "ask": "Let's write your answers on the board now, and we'll come back to this list on Day 5 to see what stuck.",
-   "scenario": "On Day 3, a travel scenario says Elias prefers window seats. Your Day 1 dossier says aisle seats only. What do you do, and why does it matter to raise it?"
+   "contrast": {
+    "lazy": "Sees 'window seat' in a Day 3 exercise, shrugs, and books the window, or quietly switches it to aisle without saying anything.",
+    "excellent": "'The Day 3 brief says window, but his Day 1 dossier says aisle only. Which is current? If he's changed his preference, I'll update the dossier.'"
+   },
+   "outcome": "In a real job, silently working around a contradiction means the wrong version spreads: into bookings, into the dossier, into the next assistant's habits. Flagging it once keeps the record true. When a client relationship or a court day depends on getting his rules right, a true record is what protects him.",
+   "ask": "[Name], let's write your answers on the board now, and we'll come back to this list on Day 5. What goes up first? [Name], what do you add?",
+   "mystery": "The case of the window seat. On Day 3, a travel scenario says Elias prefers window seats. Your Day 1 dossier says aisle seats only. In pairs, two minutes: decide which is the clue and which is the error, and bring back exactly what you'd say to the trainer, plus three standing rules from Day 1 that any plan for his week must follow."
   }
  },
  "1::The ACT Email Framework": {
   "p1": {
+   "icebreaker": "Game: 'Decode the voice note.' I'll read one of Elias's 5:30 a.m. messages. Shout how many separate tasks you hear. 'Need the Harlow numbers and move Thursday.' How many? Now: 'Move the Meridian call, get me something on the Singapore thing, and find out why the retainer invoice hasn't gone out.' How many?",
+   "teaser": "You heard the tasks. But hidden in that first message are two questions you'd have to ask, and one you shouldn't, because the answer's already in the dossier. Let's find out which.",
    "why": "When an executive sends a messy request, a clear reply turns it into something both of you can act on.",
    "talk": "Elias thinks fast and talks in fragments. A 5:30 a.m. voice note might have three different tasks tangled together. If we just reply 'Got it!', we find out three days later that we misunderstood. ACT fixes that. Acknowledge what we heard in our own words. Clarify only what's genuinely missing. Then give a Timeline: what happens, by when, and who's doing it.",
    "walk": [
-    "First, we acknowledge: we restate the request in our own words, so any misunderstanding shows up right away.",
-    "Next, we clarify: we ask only what we can't work out ourselves, and we check the dossier before asking.",
-    "Then, we give a timeline: what will happen, by when and who owns it.",
-    "After that, we keep it short, with the answer first, the way a busy executive reads.",
-    "Finally, we send it quickly, right after the request arrives, not as a summary hours later."
+    "First, acknowledge: restate the request in your own words, so any misunderstanding shows up right away.",
+    "Next, clarify: ask only what you can't work out yourself, and check the dossier before asking.",
+    "Then, give a timeline: what will happen, by when and who owns it.",
+    "After that, keep it short, with the answer first, the way a busy executive reads.",
+    "Finally, send it quickly, right after the request arrives, not as a summary hours later."
    ],
-   "ask": "Why isn't 'Got it, thanks!' a real acknowledgement?",
-   "scenario": "Elias sends a text: 'Need the Harlow numbers and move Thursday.' There are two Thursday meetings, and 'the Harlow numbers' could mean the settlement figures or the billing summary. Write your ACT reply: acknowledge, clarify and give a timeline."
+   "jargon": [
+    {
+     "term": "ACT",
+     "hint": "Acknowledge, Clarify, Timeline"
+    },
+    {
+     "term": "Settlement figures",
+     "hint": "the money amounts being discussed to end a dispute"
+    },
+    {
+     "term": "Billing summary",
+     "hint": "an overview of what's been charged to a client"
+    }
+   ],
+   "story": "A real pattern from the field: an attorney texted 'Send them the numbers.' His assistant replied 'Got it!' and sent the client the billing summary. He'd meant the settlement figures, for the other side's lawyer. The billing summary was harmless; the delay wasn't, because the other side's deadline passed that evening. 'Settlement figures to opposing counsel, or billing to the client?' would have taken ten seconds.",
+   "ask": "[Name], why isn't 'Got it, thanks!' a real acknowledgement? [Name], what would a real one sound like?"
   },
   "p2": {
    "why": "A timeline with no owner or date is where requests quietly die.",
@@ -1008,23 +1494,44 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, clarify only what's missing, after checking the dossier.",
     "Finally, close with what happens, when, and who owns it."
    ],
-   "ask": "Let's draft one. Elias's voice note says: 'Move the Meridian call, get me something on the Singapore thing, and find out why the retainer invoice hasn't gone out.' What's your ACT reply?",
-   "scenario": "A colleague's reply to Elias's request reads: 'Got it, will look into it!' Two days later nothing has happened and Elias is annoyed. Rewrite the reply using ACT, so the owner and deadline are clear."
+   "contrast": {
+    "lazy": "'Got it, will look into it!' No owner, no date, and two days later nothing has happened.",
+    "excellent": "'Three things: move the Meridian call, a Singapore update, and the retainer invoice. Quick check: is Singapore the arbitration hearing date? Meridian call moved by 10 today (me). Invoice reason by noon (me, with finance). Singapore note by 3 once you confirm.'"
+   },
+   "outcome": "A misread request wastes a day; a request with no owner can sit until a deadline passes. In litigation that might be a filing window, a settlement offer or a client's patience. ACT makes sure what Elias asked for is what actually happens, on time.",
+   "ask": "[Name], Elias's voice note says: 'Move the Meridian call, get me something on the Singapore thing, and find out why the retainer invoice hasn't gone out.' Give me the acknowledge line. [Name], now give me the timeline.",
+   "mystery": "The case of the two Thursdays. Elias sends a text: 'Need the Harlow numbers and move Thursday.' There are two Thursday meetings, and 'the Harlow numbers' could mean the settlement figures or the billing summary. In pairs, three minutes: find both gaps, check what the dossier could tell you first, and bring back your full ACT reply, short enough to read on a phone."
   }
  },
  "1::BLUF: Bottom Line Up Front": {
   "p1": {
+   "icebreaker": "Game: 'One line only.' I'll read you just the first line of three emails. Thumbs up if you know what's needed and by when, thumbs down if you don't. 'Hi Elias, hope your trip was good!' 'Decision needed by noon: approve the 8,000-dollar expert fee?' 'So yesterday I spoke to the courier, then the clerk...' Thumbs.",
+   "teaser": "Only one first line worked. Here's the uncomfortable bit: most of us were taught to write like the other two. One habit from school is about to be turned upside down.",
    "why": "If Elias reads only your first line, he should already know what you need and by when.",
    "talk": "BLUF stands for Bottom Line Up Front. We put the point, whether that's the decision, the answer or the action, in the very first sentence. Everything after it is extra detail he can stop reading at any time. It feels backwards at first, because most of us were taught to explain first and ask at the end. But busy people often only read the first line.",
    "walk": [
-    "First, before we write, we finish this sentence: 'The one thing Elias needs to know or decide is...'. That becomes our first line.",
-    "Next, we label the ask, with something like 'Decision needed', 'FYI, no action', or 'Approval by 3 p.m.'.",
-    "Then, we add only the details he needs to act: dates, amounts, names and options, in a few short lines.",
-    "After that, we move the background below a clear break or into an attachment.",
-    "Finally, we finish with the exact next step and deadline, then reread just the first line the way he would."
+    "First, before you write, finish this sentence: 'The one thing Elias needs to know or decide is...'. That becomes your first line.",
+    "Next, label the ask, with something like 'Decision needed', 'FYI, no action', or 'Approval by 3 p.m.'.",
+    "Then, add only the details he needs to act: dates, amounts, names and options, in a few short lines.",
+    "After that, move the background below a clear break or into an attachment.",
+    "Finally, finish with the exact next step and deadline, then reread just the first line the way he would."
    ],
-   "ask": "When you write an update, do you usually lead with the decision, or with the background?",
-   "scenario": "You need Elias to approve an $8,000 expert fee by noon, because the expert won't hold the date otherwise. You also want to tell him the expert came highly recommended and why. Write the first line and the three lines after it."
+   "jargon": [
+    {
+     "term": "BLUF",
+     "hint": "Bottom Line Up Front: the point goes in the first sentence"
+    },
+    {
+     "term": "Expert fee",
+     "hint": "payment to a specialist witness who gives an opinion in the case"
+    },
+    {
+     "term": "Refile",
+     "hint": "submit a court document again"
+    }
+   ],
+   "story": "This happens in real offices: an assistant sent her attorney a long, polite email explaining an expert's background, availability and fees, with the actual question, 'Can I confirm by noon?', at the bottom. He read the first two lines between meetings and assumed it was background. The expert gave the date to another firm. Putting the question in line one would have kept the expert.",
+   "ask": "[Name], when you write an update, do you usually lead with the decision, or with the background? [Name], and you?"
   },
   "p2": {
    "why": "BLUF isn't rude. It's respecting the reader's time.",
@@ -1034,34 +1541,60 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, keep the courtesy short: one line, not a paragraph.",
     "Finally, write in the order the reader needs, not the order things happened."
    ],
-   "ask": "Here's a rambling update: three paragraphs about a courier delay before the question 'Should we refile tomorrow?' You've got sixty seconds. Rewrite just the first sentence.",
-   "scenario": "An update to Elias begins: 'Hi Elias, hope your trip was good! So yesterday I spoke to the courier, then the clerk…' The question he needs to answer is in the fourth paragraph. Rewrite just the first line."
+   "contrast": {
+    "lazy": "'Hi Elias, hope your trip was good! So yesterday I spoke to the courier, then the clerk...' The question is in paragraph four.",
+    "excellent": "'Decision needed today: should we refile tomorrow? Courier lost the original; clerk will accept a refile by 10 a.m. Details below.'"
+   },
+   "outcome": "A question he never sees is a decision he never makes, and the deadline makes it for him. Experts book other cases, filing windows close, offers lapse. BLUF gets the decision made while it still changes the outcome.",
+   "ask": "[Name], here's a rambling update: three paragraphs about a courier delay before the question 'Should we refile tomorrow?' You've got sixty seconds. Rewrite just the first sentence. [Name], does it pass the preview test?",
+   "mystery": "The case of the 8,000-dollar expert. You need Elias to approve an 8,000-dollar expert fee by noon, because the expert won't hold the date otherwise. You also want to tell him the expert came highly recommended and why. In pairs, two minutes: find what the bottom line really is, and bring back the first line and the three lines after it. We'll read them on a phone-sized screen."
   }
  },
  "1::BLUF in Practice: Emails, Updates & Voice Notes": {
   "p1": {
+   "icebreaker": "Game: 'Would you open it?' I'll read a subject line. Stand up if Elias would open it right now, stay seated if it waits. 'Following up.' 'Decision by 3 p.m.: expert retainer, 6,200 dollars.' 'Quick question.' 'At risk: Meridian filing, courier delayed.' 'Re: Re: Fwd: Re: Thursday.'",
+   "teaser": "Two of those get opened. But this isn't only about email. There's one place you use BLUF that most people never think of, and you'll use it before lunch.",
    "why": "Bottom line first works everywhere: emails, chat messages, status updates, voice notes and phone calls.",
    "talk": "It isn't just an email trick. On a call, it sounds like 'Quick one: I need a yes or no on the retainer.' In a chat message, it's the first line. In a subject line, it's a label and the topic. A good rule of thumb: on a phone screen, the first eighty characters should tell the whole story.",
    "walk": [
-    "First, the subject or first line carries the bottom line, with a label like Decision, FYI, Action Taken or At Risk.",
-    "Next, we add one line on why it matters today, usually the deadline or the consequence.",
-    "Then, we give only the details needed to act, in short points.",
-    "After that, we close with the next step and who owns it, and we attach the background instead of pasting it in.",
-    "Finally, we check the preview: would the first line alone make sense on a phone?"
+    "First, put the bottom line in the subject or first line, with a label like Decision, FYI, Action Taken or At Risk.",
+    "Next, add one line on why it matters today, usually the deadline or the consequence.",
+    "Then, give only the details needed to act, in short points.",
+    "After that, close with the next step and who owns it, and attach the background instead of pasting it in.",
+    "Finally, check the preview: would the first line alone make sense on a phone?"
    ],
-   "ask": "What's a subject line you've seen recently that told you absolutely nothing?",
-   "scenario": "Elias sends a voice note asking whether the Meridian brief was filed. It was, at 3:40 p.m., and the confirmation is in your inbox. Reply by voice note in one sentence, bottom line first."
+   "jargon": [
+    {
+     "term": "Brief (legal)",
+     "hint": "a written argument filed with the court"
+    },
+    {
+     "term": "Status label",
+     "hint": "a tag like On track, At risk, FYI or Decision"
+    },
+    {
+     "term": "E-filing",
+     "hint": "submitting court documents online"
+    }
+   ],
+   "story": "A common first-week story: an attorney sent a voice note from an airport asking whether a brief was filed. His assistant sent back a two-minute voice note explaining the whole afternoon. He was boarding and stopped listening after twenty seconds, then spent the flight worrying. 'Yes, filed at 3:40, confirmation in your inbox' would have taken four seconds.",
+   "ask": "[Name], what's a subject line you've seen recently that told you absolutely nothing? [Name], how would you rewrite it?"
   },
   "p2": {
    "why": "Lead with where things stand, not with the story of how they got there.",
    "talk": "Compare two subject lines: 'Following up' versus 'Decision by 3 p.m.: expert retainer, 6,200 dollars.' Only one of them gets answered. Status updates work the same way. 'On track: filed today, confirmation attached.' Or 'At risk: courier delayed, new arrival 4 p.m., backup ready.' This also fits with ACT: when we acknowledge a request, the restated ask goes first.",
    "walk": [
-    "First, subject lines carry the bottom line too.",
-    "Next, status updates start with the status: on track, or at risk.",
-    "Finally, BLUF and ACT work together, with the restated request right at the top."
+    "First, make subject lines carry the bottom line too.",
+    "Next, start status updates with the status: on track, or at risk.",
+    "Finally, use BLUF and ACT together, with the restated request right at the top."
    ],
-   "ask": "Pair up. Take a real message you sent recently and rewrite its subject and first line with the bottom line first. Then compare before and after out loud.",
-   "scenario": "It's 2 p.m., and a filing due at 5 p.m. is at risk because the courier is delayed; your backup is e-filing. Write the subject line and first line of the status update to Elias."
+   "contrast": {
+    "lazy": "Subject: 'Update.' Body: 'So the courier called and there's been a bit of a delay, I'm looking into it...'",
+    "excellent": "Subject: 'At risk: filing due 5 p.m., courier delayed.' First line: 'Backup ready: I'll e-file at 4 if the courier isn't at court by 3:30. No action from you.'"
+   },
+   "outcome": "A filing at risk is exactly when the executive needs to know fast and decide nothing, or decide quickly. A buried status means he finds out at 5:01 that it's missed. Bottom line first, with the backup named, keeps the deadline met and the case intact.",
+   "ask": "[Name], pair up with [Name]. Take a real message you sent recently and rewrite its subject and first line with the bottom line first. Then read me before and after out loud.",
+   "mystery": "The case of the 5 p.m. filing. It's 2 p.m., and a filing due at 5 p.m. is at risk because the courier is delayed; your backup is e-filing. At 4 p.m., Elias also sends a voice note asking whether the Meridian brief was filed (it was, at 3:40). In pairs, three minutes: bring back the subject line and first line of the status update, and say your voice-note reply out loud in under ten seconds."
   }
  }
 });
