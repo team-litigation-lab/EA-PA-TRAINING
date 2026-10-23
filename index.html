@@ -1778,6 +1778,9 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .qns-stop{background:var(--danger-bg);border-color:var(--danger);} .qns-stop .qns-title{color:var(--danger);}
 
 .pn-on{background:#F3F5FA;border-radius:10px;padding:10px 14px;margin:8px 0;} .pn-on b, .pn-scen b{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:4px;} .pn-on p, .pn-scen p{margin:0;line-height:1.5;}
+.pn-beat{border-radius:10px;padding:9px 14px;margin:8px 0;background:#F3F5FA;} .pn-beat b{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:4px;} .pn-beat p{margin:0;line-height:1.5;font-size:13.5px;} .pn-beat ul{margin:0;padding-left:18px;} .pn-beat li{font-size:13px;line-height:1.45;margin-bottom:3px;} .pn-beat li span{font-weight:700;}
+.pn-ice{background:#EAF6EE;} .pn-tease{background:#F1ECFA;} .pn-story{background:#FFF8DD;} .pn-ask{background:#E8EEFB;} .pn-ask p{font-weight:600;color:var(--navy);}
+.pn-vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;} .pn-vs i{display:block;font-style:normal;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;} .pn-vs > div:first-child i{color:#B3412E;} .pn-vs > div:last-child i{color:#2E7D4F;}
 .pn-scen{background:#FFF4E6;border-left:4px solid var(--orange);border-radius:10px;padding:10px 14px;margin:10px 0 4px;}
 .pn-part{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin:12px 0 2px;}
 .script-block{margin-top:12px;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;background:#FFFCF8;padding:12px 14px;}
@@ -14379,7 +14382,8 @@ function scriptWalk(items){
 function slideScript(d, l, part){
   const key = (part===2 && !l.singleSlide) ? "p2" : "p1";
   const hand = ((window.SLIDE_SCRIPTS || {})[`${d.id}::${l.h}`] || {})[key];
-  if(hand) return {why: hand.why||"", talk: hand.talk||"", walk: hand.walk||[], ask: hand.ask||"", scenario: hand.scenario||"", hand: true};
+  if(hand) return {why: hand.why||"", talk: hand.talk||"", walk: hand.walk||[], ask: hand.ask||"", scenario: hand.mystery||hand.scenario||"", mystery: !!hand.mystery,
+    icebreaker: hand.icebreaker||"", teaser: hand.teaser||"", jargon: hand.jargon||[], contrast: hand.contrast||null, outcome: hand.outcome||"", story: hand.story||"", hand: true};
   const n = presenterNote(d, l, part), secs = slideScriptSections(d, l, part);
   let walk = [];
   if(secs[2]) walk = scriptWalk(secs[2].split("\n").slice(1));
@@ -14393,6 +14397,7 @@ function slideScript(d, l, part){
 function slideScriptForPage(s, l, part, pg){
   const P = pg && pg.pages > 1 && Array.isArray(pg.secsByPage) && pg.secsByPage.length===pg.pages ? pg.pages : 1;
   if(P===1) return Object.assign({}, s, {more: false, cont: false});
+  // the openers (icebreaker, teaser, jargon) go with the first page; the closers with the last
   const k = Math.max(0, Math.min(pg.page||0, P-1));
   const walkSecs = (part===2 && !l.singleSlide) ? [3,4] : [2];
   // a page with no numbered section on it (e.g. only a diagram) carries on from the page before
@@ -14404,7 +14409,10 @@ function slideScriptForPage(s, l, part, pg){
   let walk = [];
   let from = 0;
   if(pos >= 0){ from = Math.round(n*pos/wp.length); const to = Math.round(n*(pos+1)/wp.length); walk = s.walk.slice(from, to); }
-  return {why: k===0 ? s.why : "", talk: k===0 ? s.talk : "", walk, ask: k===P-1 ? s.ask : "", scenario: k===P-1 ? s.scenario : "",
+  const first = k===0, last = k===P-1;
+  return {why: first ? s.why : "", talk: first ? s.talk : "", walk, ask: last ? s.ask : "", scenario: last ? s.scenario : "", mystery: s.mystery,
+    icebreaker: first ? s.icebreaker : "", teaser: first ? s.teaser : "", jargon: first ? s.jargon : [],
+    contrast: last ? s.contrast : null, outcome: last ? s.outcome : "", story: last ? s.story : "",
     more: k < P-1, cont: from > 0, hand: s.hand, page: k, pages: P};
 }
 /* The script reads like speaker notes: one flowing paragraph the trainer can say out loud (the
@@ -14413,20 +14421,37 @@ function scriptProse(s){
   const body = [s.why, String(s.talk||"").replace(/\s*\n+\s*/g, " "), (s.walk||[]).join(" ")].filter(Boolean).join(" ");
   return [body, s.ask].filter(Boolean);
 }
-function renderPresenterNote(d, l, part, secs, allSecs, pg){
+/* The training beats around the script (js/days/dayN/scripts.js, all optional):
+   icebreaker — a quick game to open the topic · teaser — the curiosity gap before the reveal ·
+   jargon — [{term, hint}] terms the trainer explains in their own words · contrast — {lazy, excellent} ·
+   outcome — where this lands later (deadlines, the case, the settlement) · story — a war story from the field ·
+   ask — calls on a trainee by name ("[Name]") · mystery — the closing challenge for the room.
+   view (a lesson's five-step run): openers show on its first step only, the mystery on its last. */
+function renderPresenterNote(d, l, part, secs, allSecs, pg, view){
   const n = presenterNote(d, l, part);
   const s = slideScriptForPage(slideScript(d, l, part), l, part, pg);
-  const lastSlide = l.singleSlide || part===2;
   const where = (l.singleSlide ? "" : ` · slide ${part===2 ? 2 : 1} of 2`) + (s.pages > 1 ? ` · page ${s.page+1} of ${s.pages}` : "");
+  const opening = view==null || view===0, closing = view==null || view===LESSON_VIEWS.length-1;
   let paras = scriptProse(s);
   if(!paras.length) paras = ["Give the room a moment to read this page, then ask which point here matters most in their own work."];
+  const beat = (cls, label, body)=>body ? `<div class="pn-beat ${cls}"><b>${label}</b>${body}</div>` : "";
+  const p = t=>t ? `<p>${esc(t)}</p>` : "";
+  const ask = s.ask && paras.length > 1 ? paras.pop() : "";
+  const jargon = (s.jargon||[]).filter(j=>j && j.term);
   return `<div class="pn">
+    ${opening ? beat("pn-ice", "🎲 Icebreaker — open with this", p(s.icebreaker)) : ""}
+    ${opening ? beat("pn-tease", "🔒 Teaser — build the curiosity gap", p(s.teaser)) : ""}
     <div class="script-block"><div class="script-head"><span>🎙 Script — read aloud${where}</span></div>
-      ${paras.map((x,i)=>`<p class="script-say${i && s.ask && i===paras.length-1 ? " script-ask" : ""}">${esc(x)}</p>`).join("")}
+      ${paras.map(x=>`<p class="script-say">${esc(x)}</p>`).join("")}
       ${s.more ? `<p class="script-next">Continues on the next page →</p>` : ""}
     </div>
+    ${beat("pn-jargon", "🗝 Jargon to unpack — explain in your own words", jargon.length ? `<ul>${jargon.map(j=>`<li><span>${esc(j.term)}</span>${j.hint ? ` — ${esc(j.hint)}` : ""}</li>`).join("")}</ul>` : "")}
+    ${beat("pn-contrast", "⚖️ Bare minimum vs. excellence", s.contrast && (s.contrast.lazy || s.contrast.excellent) ? `<div class="pn-vs"><div><i>Bare minimum</i>${p(s.contrast.lazy)}</div><div><i>Excellence</i>${p(s.contrast.excellent)}</div></div>` : "")}
+    ${beat("pn-outcome", "🎯 Where this ends up — connect it to the outcome", p(s.outcome))}
+    ${beat("pn-story", "😂 War story — tell it, don't read it", p(s.story))}
+    ${beat("pn-ask", "🙋 Call on someone by name", p(ask))}
     ${n.cue && s.page ? "" : (n.cue ? `<div class="pn-on pn-cue"><b>Trainer note — not read aloud</b><p>${esc(n.cue)}</p></div>` : "")}
-    ${s.scenario ? `<div class="pn-scen"><b>🎬 Scenario — work through it with the room</b><p>${esc(s.scenario)}</p></div>` : ""}
+    ${s.scenario && (closing || !s.mystery) ? `<div class="pn-scen"><b>${s.mystery ? "🕵 Mystery — hand it to the room to solve" : "🎬 Scenario — work through it with the room"}</b><p>${esc(s.scenario)}</p></div>` : ""}
   </div>`;
 }
 function buildDayScriptLines(d){
@@ -14439,9 +14464,16 @@ function buildDayScriptLines(d){
       const n = presenterNote(d, l, p), s = slideScript(d, l, p);
       if(parts.length > 1) lines.push(`SLIDE ${p} OF 2`);
       const paras = scriptProse(s);
+      if(s.icebreaker) lines.push(`ICEBREAKER: ${s.icebreaker}`);
+      if(s.teaser) lines.push(`TEASER: ${s.teaser}`);
       if(paras[0]) lines.push(paras[0]);
+      (s.jargon||[]).forEach(j=>{ if(j && j.term) lines.push(`JARGON: ${j.term}${j.hint ? ` — ${j.hint}` : ""}`); });
+      if(s.contrast && s.contrast.lazy) lines.push(`BARE MINIMUM: ${s.contrast.lazy}`);
+      if(s.contrast && s.contrast.excellent) lines.push(`EXCELLENCE: ${s.contrast.excellent}`);
+      if(s.outcome) lines.push(`OUTCOME: ${s.outcome}`);
+      if(s.story) lines.push(`WAR STORY: ${s.story}`);
       if(paras[1]) lines.push(`ASK: ${paras[1]}`);
-      if(s.scenario) lines.push(`SCENARIO: ${s.scenario}`);
+      if(s.scenario) lines.push(`${s.mystery ? "MYSTERY" : "SCENARIO"}: ${s.scenario}`);
     });
     lines.push("---");
   });
@@ -18139,7 +18171,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 <script src="/js/days/day1/notes.js?v=4"></script>
-<script src="/js/days/day1/scripts.js?v=4"></script>
+<script src="/js/days/day1/scripts.js?v=5"></script>
 <script src="/js/days/day2/notes.js?v=6"></script>
 <script src="/js/days/day2/scripts.js?v=5"></script>
 <script src="/js/days/day3/notes.js?v=4"></script>
@@ -18158,7 +18190,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=3"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=lesson-onescreen-3"></script>
+<script src="/js/eapa-updates.js?v=lesson-onescreen-4"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>

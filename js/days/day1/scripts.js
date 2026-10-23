@@ -1,152 +1,289 @@
 /* Day 1 — hand-written spoken scripts, one per slide (see slideScript() in index.html).
    p1 = the topic's first slide, p2 = its second slide. Each follows four beats:
-   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through). */
+   why (the punchline) · talk (plain spoken explanation) · walk (the points in order: first, next, then, finally) · ask (an action or question) · scenario (a short situation for the room to work through).
+   Topics rewritten in the trainer's style add: icebreaker (a quick game to open) · teaser (the curiosity gap
+   before the reveal) · jargon ([{term, hint}] for the trainer to explain) · story (a war story from the field) ·
+   contrast ({lazy, excellent}) · outcome (where it lands: deadlines, the case, the settlement) ·
+   ask (calls on trainees by name, "[Name]") · mystery (the closing challenge, in place of scenario). */
 window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
  "1::EA vs. PA: Two Mindsets": {
   "p1": {
-   "why": "Before you touch any request, you need to know which hat you're wearing, because the same request gets handled two very different ways.",
-   "talk": "Here's the simplest way to think about it. As an EA, you're looking after the business: your boss's time, his decisions and the firm's results. As a PA, you're looking after the person: his family, his errands, the life that keeps him able to work. Both jobs matter. The trouble starts when we answer a business problem with errand energy, or treat a family matter like a board meeting.",
+   "icebreaker": "Game: 'Boss or Person?' I'll read out five quick tasks. If it protects the business, stand up. If it protects the person's life, stay seated. Ready? Board deck edits. Dry cleaning. Flowers for his wife. Rescheduling a client call. Booking a dentist appointment. Fastest one to stand up wrong buys the coffee.",
+   "teaser": "One of those five tasks fooled most of you, and by the end of this topic you'll know which one and why. Hold that thought.",
+   "why": "Before you touch any request, you need to know which hat you're wearing. The same request gets handled two very different ways.",
+   "talk": "Here's the simple version. As an EA, you look after the business: your boss's time, his decisions and the firm's results. As a PA, you look after the person: his family, his errands, the life that keeps him able to work. Both jobs matter. Trouble starts when we answer a business problem like an errand, or treat a family matter like a board meeting.",
    "walk": [
-    "First, when something lands, we ask one quiet question: am I protecting the business here, or the person?",
-    "Next, before we guess, we check what's already written down about this client. If the answer is in the dossier, we use it.",
-    "Then, if it's honestly unclear, we play it safe and treat it as business work until we can confirm. Handling something important like a small errand is the costlier mistake.",
-    "Once we've picked, we commit to it. Business work gets a careful, by-the-book response; personal work gets a warm, flexible one.",
-    "And finally, if we got it wrong, we say so, fix it and remember the example, because that's how this instinct gets sharper."
+    "First, when something lands, ask one quiet question: am I protecting the business here, or the person?",
+    "Next, check what's already written down about this client before you guess. If the answer is in the dossier, use it.",
+    "Then, if it's honestly unclear, treat it as business work until you can confirm. Treating something important like a small errand is the more expensive mistake.",
+    "Once you've picked, commit. Business work gets a careful, by-the-book reply; personal work gets a warm, flexible one.",
+    "And finally, if you got it wrong, say so, fix it and remember the example. That's how this instinct gets sharper."
    ],
-   "ask": "Think about your own experience. Have you ever answered something in the wrong mode? What happened?",
-   "scenario": "Monday, 8:10 a.m. Two requests arrive at once: Elias asks you to 'sort out the Singapore hotel,' and his wife Sarah asks you to 'sort out the Singapore hotel for the family.' It's the same trip, but one stay is for an arbitration and one is a family holiday afterwards. Which mindset does each request need, and how does that change what you book and who you check with?"
+   "jargon": [
+    {
+     "term": "EA (Executive Assistant)",
+     "hint": "supports the business side of one senior person"
+    },
+    {
+     "term": "PA (Personal Assistant)",
+     "hint": "supports the person's private life and logistics"
+    },
+    {
+     "term": "Dossier",
+     "hint": "the written profile we keep on the client: preferences, people, rules"
+    }
+   ],
+   "story": "An assistant once booked the boss's 'annual check-up' straight into the shared firm calendar, titled 'Colonoscopy, 9 a.m., fasting from 6.' Three partners, two associates and one very confused client saw it. Was it a business task or a personal one? Personal. Did it end up in a business system? Absolutely. That's what blending the two looks like.",
+   "ask": "[Name], think about your own work so far. Have you ever answered something in the wrong mode? What happened? Then, [Name], same question to you."
   },
   "p2": {
    "why": "Neither role outranks the other. The real mistake is blending them.",
-   "talk": "People sometimes assume EA work is the serious job and PA work is the easy one. It isn't. A PA who keeps a family's life running smoothly is doing skilled work too. What makes the EA job bigger is that we're managing someone's capacity: how many hours, how much attention and how much good judgment they have left in a day. Every meeting we allow and every email we let through spends some of that.",
+   "talk": "People sometimes assume EA work is the serious job and PA work is the easy one. It isn't. A PA who keeps a family's life running is doing skilled work too. What makes the EA side bigger is that we're managing someone's capacity: how many hours, how much attention and how much good judgment they have left in a day. Every meeting we allow and every email we let through spends some of that.",
    "walk": [
-    "First, EA work lives in things like the calendar, the inbox, board papers and anything touching legal, finance or HR.",
+    "First, EA work lives in the calendar, the inbox, board papers and anything touching legal, money or HR.",
     "Next, PA work lives in personal plans, travel, the household and family events.",
-    "Then, the trap for new assistants is treating them as one pile of tasks. That's the most common early mistake.",
+    "Then, the trap for new assistants is keeping them as one pile of tasks. That's the most common early mistake.",
     "Finally, when you're unsure, come back to the same question: am I protecting the business or the person?"
    ],
-   "ask": "Let's try it. Name three things in Elias's world that look like personal errands but are really business work once you think about his reputation or his legal exposure.",
-   "scenario": "A new assistant keeps one to-do list for Elias: 'Board deck edits, dry cleaning, Meridian call notes, flowers for Sarah, expense report.' By Wednesday the dry cleaning is done and the board deck isn't. What went wrong, and how would you sort that list?"
+   "contrast": {
+    "lazy": "One long to-do list, done in the order things arrived. The dry cleaning gets done because it's easy; the board deck waits.",
+    "excellent": "Two lists, sorted by stakes. Business items carry a deadline and an owner; personal items carry the person's preference. Nothing from one list ever leaks into the other."
+   },
+   "outcome": "Why does this matter in a law firm? Because the 'easy' item you did first was paid for with the hour the board deck or the filing needed. In litigation, a missed business task can mean a missed deadline, a weaker position at the table and, at the end, a smaller settlement for the client. It all starts with which list you picked up first.",
+   "ask": "[Name], name three things in Elias's world that look like personal errands but are really business work once you think about his reputation or legal exposure. [Name], do you agree with all three?",
+   "mystery": "The case of the missing deck. A new assistant's Wednesday list for Elias: 'Board deck edits, dry cleaning, Meridian call notes, flowers for Sarah, expense report.' By 5 p.m. the dry cleaning, flowers and expenses are done. The board deck and the Meridian notes are not, and the board meets at 8 a.m. Your job, in pairs: find the moment the day went wrong, re-sort the list, and tell me what you'd say to Elias at 5:01 p.m."
   }
  },
  "1::EA vs. PA: Side-by-Side Work Context": {
   "p1": {
+   "icebreaker": "Game: 'Who's calling?' I'll do two voices. You shout 'Office!' or 'Home!' as fast as you can. 'Hi, it's Partner Davies, has the Harlow filing gone?' 'Hi love, it's Sarah, can you check the school play time?' 'It's Dr. Lee's office about Mr. Thorne's results.' Careful with that last one.",
+   "teaser": "That last call was a trick. It sounds personal, but where you write it down can turn it into a business problem. We'll come back to it.",
    "why": "Both roles earn the same trust. What changes is the setting, and what it costs when we misread it.",
-   "talk": "Picture two phone calls. One comes from a firm partner about a filing, and the other from Elias's wife about a school event. You'd sound different on each, and you should. The office setting runs on structure, policy and formality. The personal setting runs on relationships and the person's own preferences. Reading which one you're in, before you respond, is what keeps you from sounding stiff with family or casual with a client.",
+   "talk": "Picture two phone calls. One is a firm partner about a filing; the other is Elias's wife about a school event. You'd sound different on each, and you should. The office runs on structure, policy and formality. Home runs on relationships and the person's own preferences. Reading which one you're in, before you reply, keeps you from sounding stiff with family or too casual with a client.",
    "walk": [
-    "First, before we reply to anything, we work out which setting we're in: the office, or the person's private life.",
-    "Next, we match our tone to it. The office wants structure and policy; the personal side wants flexibility and warmth.",
-    "Then, we remember that each side has its own secrets. Office secrets are contracts, money and HR matters; personal secrets are family, health and lifestyle. Protecting one doesn't cover the other.",
-    "After that, we stay inside our own role. As an EA we filter and prioritize on the executive's behalf; as a PA we handle day-to-day things directly.",
-    "And finally, when the two overlap, like a personal matter that carries real business risk, we say so out loud instead of slipping into whichever mode feels comfortable."
+    "First, before you reply to anything, work out which setting you're in: the office, or the person's private life.",
+    "Next, match your tone to it. The office wants structure; home wants warmth and flexibility.",
+    "Then, remember each side has its own secrets. Office secrets are contracts, money and HR; home secrets are family, health and lifestyle. Guarding one doesn't cover the other.",
+    "After that, stay inside your role. As an EA you filter and prioritize for the executive; as a PA you handle day-to-day things directly.",
+    "And finally, when the two overlap, like a family matter with real business risk, say so out loud instead of slipping into whichever mode feels comfortable."
    ],
-   "ask": "Which is harder to spot from the outside: how formal to be, or who actually gets to make the decision?",
-   "scenario": "Elias's daughter emails you from her personal account asking you to add her school play to 'Dad's calendar.' The only calendar you manage is his firm calendar, which three partners can see. Which setting are you in, and how do you handle it without exposing family details at work?"
+   "jargon": [
+    {
+     "term": "Confidentiality scope",
+     "hint": "what you must keep private, and from whom, in each setting"
+    },
+    {
+     "term": "Firm calendar vs. personal calendar",
+     "hint": "who else can see each one"
+    }
+   ],
+   "story": "A PA once added 'Divorce lawyer, 3 p.m.' to her boss's shared calendar, because he'd said 'put it in my calendar.' He meant his personal phone. His wife's brother worked in the same building and had calendar access. Nobody needed a lawyer for the meeting after that, because everyone already knew.",
+   "ask": "[Name], which is harder to spot from the outside: how formal to be, or who actually gets to make the decision? [Name], do you see it the same way?"
   },
   "p2": {
-   "why": "Most of the time, how a request reaches you already tells you which role you're in.",
-   "talk": "You don't have to guess. Look at how the message arrived and who's going to see the result. If it comes through firm email, the case system or has a matter number on it, it's almost certainly business. If it's a text about a dinner booking or a school pickup, it's personal. And if clients, partners or a court will see what you produce, even a tiny task gets full professional care.",
+   "why": "Most of the time, the way a request reaches you already tells you which role you're in.",
+   "talk": "You don't have to guess. Look at how the message arrived and who's going to see the result. Firm email, the case system or a matter number almost always means business. A text about a dinner booking or a school pickup is usually personal. And if clients, partners or a court will see what you produce, even a tiny task gets full professional care.",
    "walk": [
-    "First, look at the channel. Firm systems mean business work; personal texts usually mean personal work.",
-    "Next, look at the audience. If anyone outside the family will see it, we treat it formally and keep it confidential.",
-    "Finally, in small firms one person often does both jobs. If that's you, keep two separate task lists and two tones, so a family detail never ends up in a client email."
+    "First, look at the channel. Firm systems mean business; personal texts usually mean personal.",
+    "Next, look at the audience. If anyone outside the family will see it, treat it formally and keep it confidential.",
+    "Finally, in small firms one person often does both jobs. If that's you, keep two task lists and two tones, so a family detail never ends up in a client email."
    ],
-   "ask": "Here's one to solve together: Elias texts late at night, 'Book the usual table for Friday, and send the Meridian team the updated timeline.' Which half is which, and how do you handle each?",
-   "scenario": "A request arrives through the firm's case system, tagged with a matter number: 'Please book dinner for the Meridian team Thursday.' It looks like a personal errand. What do the channel and the audience tell you about how to treat it?"
+   "contrast": {
+    "lazy": "Treats every request the same way and puts everything in one calendar because 'it's easier.'",
+    "excellent": "Reads the channel and the audience first, keeps business and private records apart, and asks 'who else can see this?' before saving anything."
+   },
+   "outcome": "One private detail in the wrong system can become something the other side finds, a client hears about, or a partner has to explain. In a dispute, anything that embarrasses our side or leaks how we think weakens our hand when it's time to settle.",
+   "ask": "[Name], Elias texts late at night: 'Book the usual table for Friday, and send the Meridian team the updated timeline.' Which half is which? [Name], how do you handle each half?",
+   "mystery": "The case of the dinner with a matter number. A request arrives through the firm's case system, tagged to the Meridian matter: 'Please book dinner for the Meridian team Thursday.' It looks like an errand. Detectives: what do the channel and the matter number tell you? Who pays, who is invited, what must you check first, and where do you record it? Bring me your three clues."
   }
  },
  "1::EA vs. PA Decision Principles": {
   "p1": {
+   "icebreaker": "Game: 'Move it or protect it?' Thumbs up means move the meeting, thumbs down means protect it. Elias wants to move: a coffee with an old friend. A call with the other side's lawyer about settlement terms. His own dentist appointment. A team lunch. Look around: where did the room split?",
+   "teaser": "The room split on one of those, and there's a rule that settles it every single time. It isn't 'do what the boss says.' Let's find it.",
    "why": "The same kind of request can deserve two different answers, depending on which set of rules we're following.",
    "talk": "Take a request to move a meeting. On the business side, we ask whether the meeting matters to money, deadlines or legal risk, and we protect it if it does. On the personal side, we start from what the person prefers and try to make it work. Neither answer is wrong. What goes wrong is using the wrong set of rules without noticing.",
    "walk": [
-    "First, before deciding anything, we name which track we're on.",
-    "Next, on the business track, the important work goes first, we narrow things down before bothering the executive, and we know which calls are ours to make and which aren't.",
-    "Then, on the personal track, the person's wishes lead. We offer options instead of saying no, and we keep private matters private.",
-    "After that, if a decision doesn't fit either set of rules, we escalate. That's not the moment to trust our gut.",
-    "Finally, every so often we look back at our own calls. It's the quickest way to notice we've slipped into one habit for everything."
+    "First, before deciding anything, name which track you're on.",
+    "Next, on the business track, important work goes first, you narrow things down before bothering the executive, and you know which calls are yours to make.",
+    "Then, on the personal track, the person's wishes lead. Offer options instead of saying no, and keep private matters private.",
+    "After that, if a decision doesn't fit either set of rules, escalate. That's not the moment to trust your gut.",
+    "Finally, every so often look back at your own calls. It's the quickest way to notice you've slipped into one habit for everything."
    ],
-   "ask": "Be honest: which set of rules comes more naturally to you? What does that tell you about where you'll need to be careful?",
-   "scenario": "Elias asks you to cancel his 3 p.m. call with the Meridian general counsel so he can leave early for a family event. The call was set to finalize a settlement term. Which track are you on, what principles apply, and what do you bring back to him before cancelling anything?"
+   "jargon": [
+    {
+     "term": "Escalate",
+     "hint": "pass it up to the person who has the authority to decide"
+    },
+    {
+     "term": "Settlement terms",
+     "hint": "the details of the deal that ends a dispute without a trial"
+    }
+   ],
+   "story": "An assistant once cancelled a 'boring-looking' 4 p.m. call so the boss could make his son's football match. The call was with opposing counsel, who had a settlement offer that expired at 5. The son's team lost 6–0. So did the client, in a way. The boss still says it was the most expensive football match he never enjoyed.",
+   "ask": "[Name], be honest: which set of rules comes more naturally to you, business or personal? [Name], what does that tell you about where you'll need to be careful?"
   },
   "p2": {
-   "why": "On the personal side, our default is yes, just maybe a different yes.",
-   "talk": "When a family member asks for something we can't do exactly, we don't shut it down. We find another way. The business side works differently, and it has three habits worth remembering. Anything tied to money, deadlines or legal exposure beats convenience, even the boss's own convenience. We never forward a raw problem up; we bring options and a recommendation. And we jot down what was decided and why, so anyone can pick up the thread later.",
+   "why": "On the personal side, our default is yes, just maybe a different yes. On the business side, three habits carry the weight.",
+   "talk": "When family asks for something we can't do exactly, we don't shut it down. We find another way. The business side works differently, and it has three habits. Anything tied to money, deadlines or legal risk beats convenience, even the boss's own convenience. We never forward a raw problem up; we bring options and a recommendation. And we jot down what was decided and why, so anyone can pick up the thread later.",
    "walk": [
-    "First, the important work always comes before the convenient work.",
-    "Next, we do the thinking before we escalate, so the executive only has to choose.",
-    "Finally, we leave a one-line note of the decision and the reason behind it."
+    "First, important work always comes before convenient work.",
+    "Next, do the thinking before you escalate, so the executive only has to choose.",
+    "Finally, leave a one-line note of the decision and the reason behind it."
    ],
-   "ask": "Try this one: Elias wants to move a client call to attend his daughter's recital, but that client is mid-negotiation. Which rules apply, and what do you actually do?",
-   "scenario": "Sarah Thorne asks you to book a restaurant that's fully booked for her anniversary. As a PA, what do you offer instead of a flat no, and what do you write down afterwards?"
+   "contrast": {
+    "lazy": "'Elias, the Meridian GC can't do 3 p.m., what do you want to do?' The problem is just forwarded, and now he has to do your thinking.",
+    "excellent": "'Meridian GC can't do 3 p.m. Two options: 4:30 today or 9 a.m. tomorrow. I recommend 4:30 because the settlement draft is due tomorrow at noon. Shall I confirm?' He decides in five seconds."
+   },
+   "outcome": "Settlement windows open and close. If a key call slides because we treated it as movable, the other side may change its mind, its offer or its deadline. Options plus a recommendation keep the case moving toward the best outcome instead of drifting.",
+   "ask": "[Name], Elias wants to move a client call to attend his daughter's recital, but that client is mid-negotiation. Which rules apply? [Name], what do you actually say to him?",
+   "mystery": "The case of the fully-booked anniversary. Sarah Thorne asks you to book a restaurant for her anniversary on Saturday. It's fully booked. Your mission: come back with three 'different yes' options that don't involve the word 'no,' and tell me the one line you'd write in the file afterwards. Best three options win."
   }
  },
  "1::Typical Work Environment": {
   "p1": {
+   "icebreaker": "Quick show of hands: who has worked in a big corporate office? A law firm? A tiny start-up? A private home? Now the game: I'll name a tool, you shout where you'd find it. Clio. Slack. A paper diary on the kitchen counter. Outlook. A WhatsApp group called 'Family Admin.'",
+   "teaser": "Here's a secret: the tools barely matter. There's one thing that matters far more in your first week, and most new assistants skip it. You'll see it in a minute.",
    "why": "The job looks different depending on where you land, so learn the place before you assume anything.",
-   "talk": "An assistant at a big corporate office, a law firm, a remote startup or a private family home will do similar tasks with very different expectations. Something as simple as which email system they use can slow down your whole first week if you guess wrong. So the smart move in any new role is to spend the first days learning how this particular place works.",
+   "talk": "An assistant in a corporate office, a law firm, a remote start-up or a family home does similar tasks with very different expectations. Something as simple as which email system they use can slow down your whole first week if you guess wrong. So in any new role, spend the first days learning how this particular place works.",
    "walk": [
-    "First, we figure out what kind of setting we're really in, because the unwritten rules change with it.",
-    "Next, we check which tools this place actually uses, instead of assuming it's the same setup as our last job.",
-    "Then, we fit our response to the setting. When a vendor lets us down, an EA pushes back or escalates professionally, while a PA just gets the problem fixed directly.",
-    "After that, we treat clashing meetings the same way. An EA moves things by business priority; a PA checks what the person would prefer.",
-    "Finally, we watch for requests that quietly grow beyond our job. An EA points out when something crosses a contract line; a PA asks permission before going further."
+    "First, figure out what kind of setting you're really in, because the unwritten rules change with it.",
+    "Next, check which tools this place actually uses, instead of assuming it's like your last job.",
+    "Then, fit your response to the setting. When a vendor lets you down, an EA pushes back or escalates professionally; a PA just gets it fixed.",
+    "After that, treat clashing meetings the same way. An EA moves things by business priority; a PA checks what the person prefers.",
+    "Finally, watch for requests that quietly grow beyond your job. An EA points out when something crosses a contract line; a PA asks permission before going further."
    ],
-   "ask": "Has anyone worked somewhere with barely any systems at all? How did that change what your days looked like?",
-   "scenario": "You start a new placement on Monday. The job description says 'Outlook and Clio,' but on day one you find the team uses Google Workspace, and nobody can tell you where matter files live. What do you do in your first two days to learn how this place really works?"
+   "jargon": [
+    {
+     "term": "Clio",
+     "hint": "a practice-management system law firms use for matters, time and billing"
+    },
+    {
+     "term": "Matter files",
+     "hint": "everything the firm keeps on one case or deal"
+    },
+    {
+     "term": "Scope creep",
+     "hint": "a task that quietly grows bigger than what was agreed"
+    }
+   ],
+   "story": "A new assistant spent her whole first morning hunting for the 'shared drive' the job ad mentioned. At 1 p.m. the office manager pointed at a filing cabinet. 'That's the shared drive. The key's in the biscuit tin.' Lesson: ask how the place really works before you go looking for how you think it works.",
+   "ask": "[Name], have you ever worked somewhere with barely any systems at all? How did that change your days? [Name], what would you have done differently in week one?"
   },
   "p2": {
    "why": "Same problem, two different responses, and part of the skill is knowing which one is yours to give.",
-   "talk": "Wherever you work, you'll be expected to carry yourself professionally, think a step ahead and make sound calls under pressure, often outside normal hours. The tools will be familiar: an email and calendar system, a chat tool, a video tool, somewhere documents live and a task list. What really sets you apart is how you respond when things go wrong.",
+   "talk": "Wherever you work, you'll be expected to be professional, think a step ahead and make sound calls under pressure, often outside normal hours. The tools will feel familiar: email and calendar, a chat tool, a video tool, somewhere documents live and a task list. What really sets you apart is how you respond when things go wrong.",
    "walk": [
-    "First, when a vendor lets us down, the EA side negotiates or escalates; the PA side just gets the service back on track.",
+    "First, when a vendor lets you down, the EA side negotiates or escalates; the PA side just gets the service back on track.",
     "Next, when two meetings clash, the EA side weighs business priority; the PA side asks what the person wants.",
     "Finally, when a request starts to grow, the EA side points to the contract limit; the PA side asks for approval first."
    ],
-   "ask": "Here's a tricky one: a vendor misses a delivery that affects a client meeting and a family dinner on the same evening. How does your EA side handle it, and how does your PA side?",
-   "scenario": "A catering vendor sends the wrong order to a client lunch at the office, and the same vendor is booked for the Thornes' dinner party on Saturday. How does your EA side handle the lunch, and how does your PA side handle Saturday?"
+   "contrast": {
+    "lazy": "Assumes it's the same setup as the last job, waits to be shown everything, and learns where files live when something goes missing.",
+    "excellent": "Spends day one mapping the place: tools, where files live, who approves what, and the unwritten rules. By Friday they're the person others ask."
+   },
+   "outcome": "In a law firm, not knowing where the matter files live isn't an inconvenience; it's a document that can't be found the night before a deadline or a hearing. Knowing the place early is what lets you move fast when the case suddenly speeds up.",
+   "ask": "[Name], a vendor misses a delivery that affects a client meeting and a family dinner on the same evening. How does your EA side handle it? [Name], and your PA side?",
+   "mystery": "The case of the double-booked caterer. The caterer sends the wrong order to a client lunch at the office, and the same caterer is booked for the Thornes' dinner party on Saturday. Solve it in two moves: what does your EA side do about the lunch in the next 30 minutes, and what does your PA side do to protect Saturday? I want the exact first sentence of each call."
   }
  },
  "1::Who's Who in a Law Firm": {
   "p1": {
+   "icebreaker": "Game: 'Guess the title.' I'll describe the person, you shout the job. 'Owns part of the firm and the client relationship.' 'A lawyer doing a lot of the day-to-day legal work.' 'Does real legal work but isn't a lawyer.' 'Runs the judge's calendar and can make your week easy or hard.'",
+   "teaser": "One of those four people controls your diary more than the most senior person in the building. Keep an eye out for who it is.",
    "why": "Before you can route a single request well, you need to know who's who, inside the firm and outside it.",
-   "talk": "A law firm has a clear ladder. Partners own the firm and the client relationships. Associates are lawyers doing a lot of the day-to-day legal work. Of counsel are experienced lawyers with a looser tie to the firm. Paralegals do real legal work under a lawyer's supervision, and we, the assistants, keep everyone's time, communication and logistics running. Then there's the outside world: clients, opposing counsel, court clerks, judges' chambers, court reporters and experts.",
+   "talk": "A law firm has a clear ladder. Partners own the firm and the client relationships. Associates are lawyers doing much of the day-to-day legal work. Of counsel are experienced lawyers with a looser tie to the firm. Paralegals do real legal work under a lawyer's supervision, and we, the assistants, keep everyone's time, communication and logistics running. Then there's the outside world: clients, opposing counsel, court clerks, judges' chambers, court reporters and experts.",
    "walk": [
-    "First, in week one, we get the org chart and learn who works on what.",
-    "Next, for each of Elias's matters, we write down the team: partner, associate, paralegal and client contact.",
-    "Then we learn the outside names: opposing counsel, the judge and the vendors we book.",
-    "After that, before passing anything on, we ask who owns that decision. Legal judgment goes to a lawyer.",
-    "Finally, we address people properly: 'Judge Rivera' in writing, 'Your Honor' in court, and opposing counsel politely, in writing, with our attorney copied."
+    "First, in week one, get the org chart and learn who works on what.",
+    "Next, for each of Elias's matters, write down the team: partner, associate, paralegal and client contact.",
+    "Then learn the outside names: opposing counsel, the judge and the vendors you book.",
+    "After that, before passing anything on, ask who owns that decision. Legal judgment goes to a lawyer.",
+    "Finally, address people properly: 'Judge Rivera' in writing, 'Your Honor' in court, and opposing counsel politely, in writing, with your attorney copied."
    ],
-   "ask": "If a filing deadline suddenly moved, who would you call first on a matter you support?",
-   "scenario": "Your first morning, three emails arrive: one from a partner asking for 'the Meridian file,' one from a paralegal asking you to book a court reporter, and one from a court clerk about a hearing time. Who's who, and which one do you handle first?"
+   "jargon": [
+    {
+     "term": "Partner / Associate / Of counsel",
+     "hint": "the lawyer ladder, from owner to employee to senior adviser"
+    },
+    {
+     "term": "Paralegal",
+     "hint": "a trained legal professional who works under a lawyer"
+    },
+    {
+     "term": "Opposing counsel",
+     "hint": "the lawyer for the other side"
+    },
+    {
+     "term": "Chambers / court clerk",
+     "hint": "the judge's office and the staff who run the court's paperwork and calendar"
+    },
+    {
+     "term": "Court reporter",
+     "hint": "the person who types up everything said at a deposition or hearing"
+    }
+   ],
+   "story": "A new assistant once spent a week being very polite to a senior partner and very short with 'some lady from the court' who kept calling. The lady was the judge's clerk. The next hearing date she offered was 7:30 a.m. on a Monday, in a courthouse two hours away. Funny how that works.",
+   "ask": "[Name], if a filing deadline suddenly moved on a matter you support, who would you call first? [Name], who would you call second, and why?"
   },
   "p2": {
    "why": "The people who look least senior often have the most control over your day.",
-   "talk": "Court clerks and judges' staff run the calendar, so courtesy there pays off every single week. There's also one hard rule: we never contact the other side's client directly. If someone has a lawyer, everything goes through that lawyer, and only when our attorney says so. And watch two traps: thinking the most senior person decides everything, and treating paralegals as errand-runners. They're specialists, and we'll work side by side.",
+   "talk": "Court clerks and judges' staff run the calendar, so courtesy there pays off every week. There's also one hard rule: we never contact the other side's client directly. If someone has a lawyer, everything goes through that lawyer, and only when our attorney says so. And watch two traps: thinking the most senior person decides everything, and treating paralegals as errand-runners. They're specialists, and we work side by side.",
    "walk": [
     "First, treat clerks and chambers with real courtesy.",
     "Next, never contact a represented party directly.",
     "Then, don't assume the most senior person owns every decision.",
     "Finally, treat paralegals as colleagues, not helpers."
    ],
-   "ask": "Have you ever been helped out of a jam by someone 'junior'? What did they control?",
-   "scenario": "A voicemail says, 'This is Mark from Harlow's side, about the deposition.' Before you call back, what do you need to know about who Mark is, and who at the firm should handle it?"
+   "contrast": {
+    "lazy": "Polite upwards, short downwards. Learns names only when they need something. Calls the other side's client because 'it was quicker.'",
+    "excellent": "Knows every name on every matter, inside and out. Treats the clerk like a VIP. Sends anything for the other side through their lawyer, with our attorney's OK, every time."
+   },
+   "outcome": "Contacting a represented party directly can get our lawyer reported and damage the case. A good relationship with the clerk can win you the hearing date you need. Both of those land, eventually, on how strong our position is when the case settles.",
+   "ask": "[Name], have you ever been helped out of a jam by someone 'junior'? What did they control? [Name], how will you build that relationship here?",
+   "mystery": "The case of 'Mark from Harlow's side.' A voicemail: 'This is Mark from Harlow's side, about the deposition. Call me back.' Before you dial, solve it: is Mark a lawyer, a client, a witness or a vendor? Where would you look to find out, who at the firm should call him back, and what's the one thing you must not do? Three clues, then your answer."
   }
  },
  "1::The Life of a Legal Matter": {
   "p1": {
+   "icebreaker": "Game: 'Line it up.' I'm handing out cards: Intake, Pleadings, Discovery, Motions, Settlement or Trial, Closing. Six volunteers: get in the right order, no talking, 30 seconds. Everyone else: you're the judges.",
+   "teaser": "Most cases never reach the end of that line the way TV shows it. Where most of them actually finish is the stage that matters most to us, and it isn't trial.",
    "why": "If you know which stage a matter is in, you can see the next deadline coming before anyone asks.",
-   "talk": "Everything a law firm works on is called a matter, and most matters follow the same life. A lawsuit starts with intake and a conflict check, then an engagement letter and a retainer. Then comes investigation, then pleadings, which are the complaint and the answer. Then discovery, where both sides exchange documents and take depositions. Then motions, then settlement or trial, then judgment and maybe an appeal, and finally closing the file. Deals, like a contract or a company sale, run a shorter path: intake, engagement, drafting and negotiating, signing, then the follow-up.",
+   "talk": "Everything a law firm works on is called a matter, and most follow the same life. A lawsuit starts with intake and a conflict check, then an engagement letter and a retainer. Then investigation, then pleadings, which are the complaint and the answer. Then discovery, where both sides swap documents and take depositions. Then motions, then settlement or trial, then judgment and maybe an appeal, and finally closing the file. Deals, like a contract or a company sale, run a shorter path: intake, engagement, drafting and negotiating, signing, then follow-up.",
    "walk": [
-    "First, when a matter opens, we note whether it's litigation or a deal, and which stage it's in.",
-    "Next, at intake, we collect every party's name and every key date.",
-    "Then, during pleadings and discovery, we calendar each deadline the moment it's triggered.",
-    "After that, before any hearing, trial or signing, we build the checklist early.",
+    "First, when a matter opens, note whether it's a lawsuit or a deal, and which stage it's in.",
+    "Next, at intake, collect every party's name and every key date.",
+    "Then, during pleadings and discovery, put each deadline in the calendar the moment it's triggered.",
+    "After that, before any hearing, trial or signing, build the checklist early.",
     "Finally, at closing: the final bill, any trust money returned, a closing letter and the file archived."
    ],
-   "ask": "Which stage do you think creates the most deadlines for an assistant?",
-   "scenario": "Elias says a new matter for Meridian is 'in discovery.' A new colleague asks you what that means and what she should expect to handle this month. What do you tell her?"
+   "jargon": [
+    {
+     "term": "Matter",
+     "hint": "one case or one deal the firm works on"
+    },
+    {
+     "term": "Engagement letter / retainer",
+     "hint": "the signed agreement to work for the client, and the money paid up front"
+    },
+    {
+     "term": "Pleadings",
+     "hint": "the first formal documents: the complaint and the answer"
+    },
+    {
+     "term": "Discovery",
+     "hint": "the stage where both sides must share documents and evidence"
+    },
+    {
+     "term": "Deposition",
+     "hint": "sworn questioning of a witness, outside court, typed up word for word"
+    },
+    {
+     "term": "Motion",
+     "hint": "a formal request asking the judge to do something"
+    }
+   ],
+   "story": "An assistant once told a client their case was 'in discovery.' The client, delighted, told his whole golf club that his lawyers had 'discovered something big.' They hadn't. Discovery just means both sides swap paperwork. He was very disappointed. His golf club was not.",
+   "ask": "[Name], which stage do you think creates the most deadlines for an assistant? [Name], do you agree, or would you pick a different one?"
   },
   "p2": {
    "why": "The mistakes in a matter's life happen at the edges: the words we use and the very end.",
@@ -157,50 +294,112 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, treat closing as its own checklist.",
     "Finally, use filed, served and sent precisely."
    ],
-   "ask": "Why might a lawyer be alarmed if you said a document was 'filed' when it was only 'sent'?",
-   "scenario": "Harlow Industries has just been sued. Walk the matter through each stage: what's the first thing you do, what do you calendar next and what does closing the file involve?"
+   "contrast": {
+    "lazy": "'We're settling, so I've stopped tracking the discovery deadlines.' 'I sent it, so it's filed.'",
+    "excellent": "Every deadline stays live until a court order says otherwise. The words filed, served and sent are used exactly, and the tracker shows the stage today, not last month."
+   },
+   "outcome": "This is the big one. Most cases end in settlement, and the side that's fully ready for trial gets the better deal, because the other side knows it. Every deadline you kept and every document you had ready is quiet pressure at the negotiating table. A missed one is a gift to the other side.",
+   "ask": "[Name], why might a lawyer be alarmed if you said a document was 'filed' when it was only 'sent'? [Name], what could happen next if nobody noticed?",
+   "mystery": "The case of the brand-new lawsuit. Harlow Industries has just been sued. You have the complaint on your desk. Map the whole journey: what you do today, what goes in the calendar this week, what you watch for during discovery, and the four things that must happen before the file can truly close. Teams of two, five minutes, and the most complete map wins."
   }
  },
  "1::Legal Terms You'll Hear Every Day": {
   "p1": {
+   "icebreaker": "Game: 'Real or made up?' I'll say a legal term. Thumbs up if it's real, down if I invented it. Interrogatory. Subpoena. Affidavit. Flibbertigibbet motion. Stipulation. Pro se. Okay, one of those was fake. I hope.",
+   "teaser": "There's one pair of words on this slide that sound almost the same, and mixing them up has sent assistants running to a notary for no reason. Spot it as we go.",
    "why": "One misunderstood word can send the wrong document to the wrong place, so the vocabulary is part of the job.",
-   "talk": "Let's build the basic vocabulary. The plaintiff brings the case and the defendant answers it; someone without a lawyer is 'pro se'. A complaint starts a lawsuit, an answer responds, a motion asks the court to do something, and a brief argues why. An affidavit is a sworn statement signed in front of a notary, and a declaration is similar but signed under penalty of perjury, without a notary. Discovery is the exchange of information: interrogatories are written questions, a deposition is sworn testimony outside court, and a subpoena orders someone to show up or hand over documents. A stipulation is simply something both sides agree on.",
+   "talk": "Let's build the basic vocabulary. The plaintiff brings the case and the defendant answers it. A complaint starts a lawsuit, an answer responds, a motion asks the court to do something, and a brief argues why. Discovery is the swapping of information between the sides. There are a handful of words here I'll explain properly as we go, so don't worry if some are new.",
    "walk": [
-    "First, we keep a one-page glossary in our own words and add to it every week.",
-    "Next, when we hear a term we don't know, we write it down and look it up, or ask at a good moment.",
-    "Then we use each document's exact name when we save, file or send it.",
-    "After that, we learn the firm's own words, like matter number and retainer.",
-    "Finally, we notice which side the firm is on in each matter."
+    "First, keep a one-page glossary in your own words and add to it every week.",
+    "Next, when you hear a term you don't know, write it down and look it up, or ask at a good moment.",
+    "Then use each document's exact name when you save, file or send it.",
+    "After that, learn the firm's own words, like matter number and retainer.",
+    "Finally, notice which side the firm is on in each matter."
    ],
-   "ask": "Which legal term have you heard and never been quite sure about?",
-   "scenario": "A paralegal asks you to 'pull the answer and the first set of interrogatories for Harlow.' You find three files named 'response,' 'questions' and 'final.' What should the files have been called, and how do you find the right ones?"
+   "jargon": [
+    {
+     "term": "Plaintiff / Defendant",
+     "hint": "who brings the case / who answers it"
+    },
+    {
+     "term": "Pro se",
+     "hint": "someone representing themselves, without a lawyer"
+    },
+    {
+     "term": "Complaint / Answer / Motion / Brief",
+     "hint": "starts the case / responds / asks the judge / argues why"
+    },
+    {
+     "term": "Affidavit vs. Declaration",
+     "hint": "both sworn statements; only the affidavit needs a notary"
+    },
+    {
+     "term": "Interrogatories",
+     "hint": "written questions one side must answer under oath"
+    },
+    {
+     "term": "Subpoena",
+     "hint": "an order to show up or hand over documents"
+    },
+    {
+     "term": "Stipulation",
+     "hint": "something both sides formally agree on"
+    }
+   ],
+   "story": "A paralegal asked a new assistant to 'pull the answer for Harlow.' Twenty minutes later she came back with a printed Google search: 'How to answer a lawsuit.' Wrong answer, but full marks for effort. The answer was a document in the file all along.",
+   "ask": "[Name], which legal term have you heard and never been quite sure about? [Name], pick one from the slide you'd struggle to explain to a friend."
   },
   "p2": {
-   "why": "Knowing the words gives you confidence, but it doesn't give you permission to interpret them for clients.",
-   "talk": "We match the lawyer's precision: a deposition isn't a hearing, and a subpoena isn't a summons. With clients, we can define a word the way the attorney explained it, but the moment we say what it means for their case, that's legal advice, and it's not ours to give. Two traps: nodding along when we didn't understand, and using jargon with clients to sound expert. Plain language is more professional, not less.",
+   "why": "Knowing the words gives you confidence. It doesn't give you permission to interpret them for clients.",
+   "talk": "We match the lawyer's exact words: a deposition isn't a hearing, and a subpoena isn't a summons. With clients, we can define a word the way the attorney explained it, but the moment we say what it means for their case, that's legal advice, and it isn't ours to give. Two traps: nodding along when we didn't understand, and using jargon with clients to sound expert. Plain language is more professional, not less.",
    "walk": [
     "First, match the lawyer's exact words.",
     "Next, define terms for clients only as the attorney has explained them.",
     "Then, ask instead of nodding along.",
     "Finally, keep it plain with clients."
    ],
-   "ask": "A client asks, 'What does it mean that we've been subpoenaed?' What can you say, and what do you hand to the attorney?",
-   "scenario": "Elias leaves a voice note: 'Opposing counsel served interrogatories and noticed Harlow's CFO for deposition; calendar the responses and get a court reporter.' Translate it into a task list in plain English."
+   "contrast": {
+    "lazy": "Nods along, guesses later. Saves files as 'response,' 'questions' and 'final.' Explains a subpoena to a worried client in their own words.",
+    "excellent": "Asks the moment a word is unclear, names every file by its exact document type and date, and with clients says, 'I'll ask Elias to walk you through what that means for you.'"
+   },
+   "outcome": "If the wrong document goes out under the wrong name, or a client acts on something we 'explained,' the lawyer has to clean it up, sometimes in front of a judge. Precise words protect deadlines, and protecting deadlines protects the case's value when it's time to settle.",
+   "ask": "[Name], a client asks, 'What does it mean that we've been subpoenaed?' What can you say? [Name], what do you hand to the attorney?",
+   "mystery": "The case of the cryptic voice note. Elias, at speed: 'Opposing counsel served interrogatories and noticed Harlow's CFO for deposition; calendar the responses and get a court reporter.' Decode it. Write the plain-English task list, name the deadlines you need to find, and tell me the one question you'd ask Elias before you start. First team to crack it reads it out."
   }
  },
  "1::Client Intake & Conflict Checks": {
   "p1": {
+   "icebreaker": "Game: 'Can we take them?' I'm the firm. I already act for a big supermarket chain. Hands up if we can take each new caller: a bakery suing its landlord. A supplier suing the supermarket. The supermarket's former CEO in a divorce. A man whose dog bit a supermarket delivery driver.",
+   "teaser": "Two of those look harmless and aren't. The danger is usually hiding in the name you didn't think to check. Let's find out where.",
    "why": "Taking on the wrong client can force a firm off a case, so the first job with any new inquiry is the conflict check.",
-   "talk": "Before the firm agrees to represent anyone, it has to make sure that doing so won't clash with a current or former client. That's an ethics rule. The check searches everyone involved: the client, the other side, related companies, key people and even opposing counsel. Until it clears and an engagement letter is signed, the caller is a prospective client, so we take only what we need and we don't give advice. And intake is where deadlines first surface, so a date mentioned in passing matters.",
+   "talk": "Before the firm agrees to act for anyone, it has to make sure that won't clash with a current or former client. That's an ethics rule. The check searches everyone involved: the client, the other side, related companies, key people and even opposing counsel. Until it clears and an engagement letter is signed, the caller is only a prospective client, so we take only what we need and we don't give advice. And intake is where deadlines first appear, so a date mentioned in passing matters.",
    "walk": [
-    "First, we use the intake form every time: all parties, related businesses, opposing counsel, a short description and any dates.",
-    "Next, we search every name, including former names and parent companies.",
-    "Then any match goes to the attorney. We don't decide whether it's a real conflict.",
+    "First, use the intake form every time: all parties, related businesses, opposing counsel, a short description and any dates.",
+    "Next, search every name, including former names and parent companies.",
+    "Then any match goes to the attorney. You don't decide whether it's a real conflict.",
     "After that, any deadline mentioned goes to the attorney the same day.",
-    "Finally, once cleared, we prepare the engagement letter and open the matter only after it's signed."
+    "Finally, once cleared, prepare the engagement letter and open the matter only after it's signed."
    ],
-   "ask": "Why do you think the conflict often hides in the other party's name rather than the client's?",
-   "scenario": "A friendly caller wants Elias to represent her small bakery in a lease dispute. She's chatty and starts describing everything in detail before you've run any checks. How do you steer the call, and what do you collect?"
+   "jargon": [
+    {
+     "term": "Conflict check",
+     "hint": "making sure a new client doesn't clash with a current or past one"
+    },
+    {
+     "term": "Prospective client",
+     "hint": "someone asking for help who isn't a client yet"
+    },
+    {
+     "term": "Parent company / related entity",
+     "hint": "the bigger company that owns, or is linked to, the one named"
+    },
+    {
+     "term": "Limitation period",
+     "hint": "the deadline to bring a claim at all; miss it and the case is gone"
+    }
+   ],
+   "story": "A chatty caller once spent 40 minutes telling an assistant every detail of her lawsuit, including her secret strategy. The conflict check afterwards showed the firm already acted for the company she wanted to sue. The firm had to turn her away and then wall off the assistant from the existing client's matter. All because nobody said 'Before you tell me more, can I take a few names?'",
+   "ask": "[Name], why do you think the conflict often hides in the other party's name rather than the client's? [Name], can you think of an example?"
   },
   "p2": {
    "why": "The check protects the firm only if it's thorough and written down.",
@@ -211,8 +410,13 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Then, search every related name, not just the client.",
     "Finally, never promise representation. That's the attorney's call."
    ],
-   "ask": "What would you say to a caller who asks, 'So will you take my case?'",
-   "scenario": "A caller wants the firm to sue 'Northgate Logistics' over a warehouse contract and mentions the contract ended 'almost six years ago.' What do you search, what do you flag and what do you not say?"
+   "contrast": {
+    "lazy": "Searches the caller's name, sees nothing, tells them 'I'm sure we can help,' and lets them talk for half an hour.",
+    "excellent": "Takes names first, searches every party, parent company and former name, logs the result with the date, and tells the caller 'The attorney will confirm whether we can act for you.'"
+   },
+   "outcome": "Miss a conflict and the firm can be forced off the case halfway through, after the client has paid and shared everything. That throws away months of work and leverage just when a settlement might be close. And a missed limitation date at intake can mean there's no case left to settle at all.",
+   "ask": "[Name], a caller asks, 'So will you take my case?' What do you say? [Name], say it in a way that doesn't sound like a brush-off.",
+   "mystery": "The case of Northgate Logistics. A caller wants the firm to sue 'Northgate Logistics' over a warehouse contract and mentions it ended 'almost six years ago.' Something about that sentence should make you sit up. Investigators: list every name you'd search, find the hidden time bomb in what the caller said, and tell me who hears about it and how fast. Bonus point for the thing you must not say on the call."
   }
  },
  "1::Basic Communication Principles for Legal EAs": {

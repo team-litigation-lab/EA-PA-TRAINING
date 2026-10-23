@@ -823,7 +823,7 @@ function presenterCues(d, slide){
     // first, See It, On the Job and Do & Don't the second
     const l = d.lessons[slide.lessonIndex], part = slide.view < 2 ? 1 : 2;
     out.push(`<h3>${esc(l.h)} <small style="font-size:12px;color:var(--ink-soft);">${esc(LESSON_VIEWS[slide.view].label)} · ${slide.view+1} of ${LESSON_VIEWS.length}</small></h3>`);
-    out.push(renderPresenterNote(d, l, part, null, null, null));
+    out.push(renderPresenterNote(d, l, part, null, null, null, slide.view));
   }else if(slide.type==="agenda"){
     out.push(`<h3>Day ${d.id} agenda</h3><p>Walk the room through today's sections and the goal for the day. Each lesson runs the same five steps: Why It Matters, The Rules, See It, On the Job, Do &amp; Don't.</p>`);
   }else if(slide.type==="topic"){
