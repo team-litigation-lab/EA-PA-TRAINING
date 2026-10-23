@@ -14448,7 +14448,7 @@ function renderPresenterNote(d, l, part, secs, allSecs, pg, view){
     ${beat("pn-jargon", "🗝 Jargon to unpack — explain in your own words", jargon.length ? `<ul>${jargon.map(j=>`<li><span>${esc(j.term)}</span>${j.hint ? ` — ${esc(j.hint)}` : ""}</li>`).join("")}</ul>` : "")}
     ${beat("pn-contrast", "⚖️ Bare minimum vs. excellence", s.contrast && (s.contrast.lazy || s.contrast.excellent) ? `<div class="pn-vs"><div><i>Bare minimum</i>${p(s.contrast.lazy)}</div><div><i>Excellence</i>${p(s.contrast.excellent)}</div></div>` : "")}
     ${beat("pn-outcome", "🎯 Where this ends up — connect it to the outcome", p(s.outcome))}
-    ${beat("pn-story", "😂 War story — tell it, don't read it", p(s.story))}
+    ${beat("pn-story", "📌 From the field — tell it, don't read it", p(s.story))}
     ${beat("pn-ask", "🙋 Call on someone by name", p(ask))}
     ${n.cue && s.page ? "" : (n.cue ? `<div class="pn-on pn-cue"><b>Trainer note — not read aloud</b><p>${esc(n.cue)}</p></div>` : "")}
     ${s.scenario && (closing || !s.mystery) ? `<div class="pn-scen"><b>${s.mystery ? "🕵 Mystery — hand it to the room to solve" : "🎬 Scenario — work through it with the room"}</b><p>${esc(s.scenario)}</p></div>` : ""}
@@ -14471,7 +14471,7 @@ function buildDayScriptLines(d){
       if(s.contrast && s.contrast.lazy) lines.push(`BARE MINIMUM: ${s.contrast.lazy}`);
       if(s.contrast && s.contrast.excellent) lines.push(`EXCELLENCE: ${s.contrast.excellent}`);
       if(s.outcome) lines.push(`OUTCOME: ${s.outcome}`);
-      if(s.story) lines.push(`WAR STORY: ${s.story}`);
+      if(s.story) lines.push(`FROM THE FIELD: ${s.story}`);
       if(paras[1]) lines.push(`ASK: ${paras[1]}`);
       if(s.scenario) lines.push(`${s.mystery ? "MYSTERY" : "SCENARIO"}: ${s.scenario}`);
     });
@@ -18171,7 +18171,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 
 </script>
 <script src="/js/days/day1/notes.js?v=4"></script>
-<script src="/js/days/day1/scripts.js?v=5"></script>
+<script src="/js/days/day1/scripts.js?v=6"></script>
 <script src="/js/days/day2/notes.js?v=6"></script>
 <script src="/js/days/day2/scripts.js?v=5"></script>
 <script src="/js/days/day3/notes.js?v=4"></script>

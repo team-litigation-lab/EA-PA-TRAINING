@@ -33,7 +33,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
      "hint": "the written profile we keep on the client: preferences, people, rules"
     }
    ],
-   "story": "An assistant once booked the boss's 'annual check-up' straight into the shared firm calendar, titled 'Colonoscopy, 9 a.m., fasting from 6.' Three partners, two associates and one very confused client saw it. Was it a business task or a personal one? Personal. Did it end up in a business system? Absolutely. That's what blending the two looks like.",
+   "story": "A real pattern from the field: an assistant was asked to 'put the hospital appointment in the calendar.' She added it to the firm calendar, where the partners and the case team could see it, titled with the procedure. The boss found out when a colleague asked if he was all right. Nothing illegal, nobody fired, but trust took a knock. One quiet question, business or person, would have put it in his private calendar as 'Personal, 9–11 a.m.'",
    "ask": "[Name], think about your own work so far. Have you ever answered something in the wrong mode? What happened? Then, [Name], same question to you."
   },
   "p2": {
@@ -77,7 +77,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
      "hint": "who else can see each one"
     }
    ],
-   "story": "A PA once added 'Divorce lawyer, 3 p.m.' to her boss's shared calendar, because he'd said 'put it in my calendar.' He meant his personal phone. His wife's brother worked in the same building and had calendar access. Nobody needed a lawyer for the meeting after that, because everyone already knew.",
+   "story": "This happens more than you'd think: an assistant handling both roles replied to a client email and attached the wrong file. Instead of the signed engagement letter, the client received the boss's family holiday itinerary, hotel booking and passport scans included. The client was gracious about it. The firm still had to report it as a data incident. Two separate folders and two separate tones exist for exactly this reason.",
    "ask": "[Name], which is harder to spot from the outside: how formal to be, or who actually gets to make the decision? [Name], do you see it the same way?"
   },
   "p2": {
@@ -120,7 +120,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
      "hint": "the details of the deal that ends a dispute without a trial"
     }
    ],
-   "story": "An assistant once cancelled a 'boring-looking' 4 p.m. call so the boss could make his son's football match. The call was with opposing counsel, who had a settlement offer that expired at 5. The son's team lost 6–0. So did the client, in a way. The boss still says it was the most expensive football match he never enjoyed.",
+   "story": "Real scenario: an attorney asked his assistant to 'clear my afternoon' for a family emergency. She cancelled everything, including a call with the other side's lawyer about a settlement offer that expired that day. The other side didn't extend it. A better offer did come later, but the client waited three extra months for it. If she'd come back with 'Everything's cleared except the 4 p.m. settlement call. Can that move to a 10-minute call from the car?' it would have been a 10-second decision.",
    "ask": "[Name], be honest: which set of rules comes more naturally to you, business or personal? [Name], what does that tell you about where you'll need to be careful?"
   },
   "p2": {
@@ -167,7 +167,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
      "hint": "a task that quietly grows bigger than what was agreed"
     }
    ],
-   "story": "A new assistant spent her whole first morning hunting for the 'shared drive' the job ad mentioned. At 1 p.m. the office manager pointed at a filing cabinet. 'That's the shared drive. The key's in the biscuit tin.' Lesson: ask how the place really works before you go looking for how you think it works.",
+   "story": "A common first-week story: a new assistant joined a small firm and assumed, like her last job, that everything lived in the shared drive. A partner asked for 'last year's Harlow agreement' and she spent two hours searching folders. It was in the practice-management system, under the matter number, where every document at that firm lived. Ten minutes asking 'where do documents live here?' on day one would have saved the two hours and the awkward 'still looking.'",
    "ask": "[Name], have you ever worked somewhere with barely any systems at all? How did that change your days? [Name], what would you have done differently in week one?"
   },
   "p2": {
@@ -222,7 +222,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
      "hint": "the person who types up everything said at a deposition or hearing"
     }
    ],
-   "story": "A new assistant once spent a week being very polite to a senior partner and very short with 'some lady from the court' who kept calling. The lady was the judge's clerk. The next hearing date she offered was 7:30 a.m. on a Monday, in a courthouse two hours away. Funny how that works.",
+   "story": "A situation that happens in real firms: a new assistant was very attentive to the partners and a bit short with 'the person from the court' who kept phoning about scheduling. That person was the judge's clerk. When the firm later needed a hearing moved urgently, the clerk did everything by the book and nothing faster. The assistant who'd always been courteous to that office got the call returned the same day.",
    "ask": "[Name], if a filing deadline suddenly moved on a matter you support, who would you call first? [Name], who would you call second, and why?"
   },
   "p2": {
@@ -282,7 +282,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
      "hint": "a formal request asking the judge to do something"
     }
    ],
-   "story": "An assistant once told a client their case was 'in discovery.' The client, delighted, told his whole golf club that his lawyers had 'discovered something big.' They hadn't. Discovery just means both sides swap paperwork. He was very disappointed. His golf club was not.",
+   "story": "A real-life pattern: a case was 'basically settled,' so the team stopped watching the discovery deadlines. The settlement talks stalled, the deadline passed, and the other side asked the court for penalties. Our client went back to the table with less leverage than before, and the final number reflected it. Deadlines keep running until a court order says they don't.",
    "ask": "[Name], which stage do you think creates the most deadlines for an assistant? [Name], do you agree, or would you pick a different one?"
   },
   "p2": {
@@ -346,7 +346,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
      "hint": "something both sides formally agree on"
     }
    ],
-   "story": "A paralegal asked a new assistant to 'pull the answer for Harlow.' Twenty minutes later she came back with a printed Google search: 'How to answer a lawsuit.' Wrong answer, but full marks for effort. The answer was a document in the file all along.",
+   "story": "This happens in real offices: an attorney asked an assistant to 'get the affidavit signed today.' She emailed it to the client for an e-signature. But an affidavit has to be signed in front of a notary, so the signed copy couldn't be filed, and the filing slipped by a day while they arranged a notary appointment. Knowing the difference between an affidavit and a declaration is not trivia; it's a deadline.",
    "ask": "[Name], which legal term have you heard and never been quite sure about? [Name], pick one from the slide you'd struggle to explain to a friend."
   },
   "p2": {
@@ -398,7 +398,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
      "hint": "the deadline to bring a claim at all; miss it and the case is gone"
     }
    ],
-   "story": "A chatty caller once spent 40 minutes telling an assistant every detail of her lawsuit, including her secret strategy. The conflict check afterwards showed the firm already acted for the company she wanted to sue. The firm had to turn her away and then wall off the assistant from the existing client's matter. All because nobody said 'Before you tell me more, can I take a few names?'",
+   "story": "A real intake risk: a friendly caller described her whole dispute in detail, strategy included, before anyone took names. The conflict check afterwards showed the firm already acted for the company she wanted to sue. The firm had to decline her and put a screen around everyone who'd heard the call. Now the rule at that firm is simple: 'Before you tell me more, may I take the names of everyone involved?'",
    "ask": "[Name], why do you think the conflict often hides in the other party's name rather than the client's? [Name], can you think of an example?"
   },
   "p2": {
