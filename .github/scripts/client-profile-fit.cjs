@@ -1,6 +1,6 @@
 // The Client Profile fits on one screen: the dossier rail, the pane and the page
 // itself all end inside the window on a laptop and on a large screen, for every
-// one of the eleven sections — and the client header card's three lines each
+// one of the twelve sections — and the client header card's three lines each
 // clear WCAG AA against the card behind them.
 // Usage: node .github/scripts/client-profile-fit.cjs [baseUrl]
 //        (with .github/scripts/server.mjs running; needs `npm i playwright`)
