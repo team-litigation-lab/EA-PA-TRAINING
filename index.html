@@ -3042,7 +3042,7 @@ const PRACTICE_TOOLS = [
   {id:"forcemultiplier2", icon:"⚡", title:"The Force Multiplier Challenge", relates:"Day 2",
    desc:"Anticipate what a vague executive request really needs, write a prompt that actually runs and produces real output, handle a messy combined scenario, then clear a real inbox — building your own filing system and catching a hidden phishing attempt."},
   {id:"calendar", icon:"◫", title:"Calendar Conflict Resolver & Travel Planning", relates:"Day 3",
-   desc:"A full attorney's week with overlapping commitments to resolve and turn into a BLUF briefing, then plan the family's actual trip to Spain end-to-end — flights, hotel, ground transport, and stops."},
+   desc:"A full attorney's week with overlapping commitments to resolve and turn into a BLUF briefing, then plan the attorney's business trip to a Chicago arbitration end-to-end — flights, hotel, ground transport, and stops."},
   {id:"coldcalling4", icon:"☎", title:"Prioritize the Day, Cold-Calling & Outreach", relates:"Day 4",
    desc:"Prioritize a crowded day and push back on a deadline, log a full round of cold-calling outreach, draft a real lead-generation plan, take a live intake call, then run an email outreach sequence from research to follow-up."},
   {id:"insurance5", icon:"🛡", title:"Household Risk Assessment", relates:"Day 5",
@@ -3596,14 +3596,20 @@ const RISK_STRATEGY_SCENARIOS = [
    Thorne & Partners' multi-jurisdiction footprint (NYC, DC,
    London, Singapore) and an active trial-team recovery scenario.
    ============================================================ */
-const FIRM_LICENSES = [
-  {name:"NY Department of State — Corporate Registration", expires:"Sep 2026", status:"Renew Soon"},
-  {name:"Singapore Legal Services Regulatory Authority — Foreign Law Practice License", expires:"Oct 2026", status:"Renew Soon"},
-  {name:"D.C. Bar — Foreign Legal Consultant Registration", expires:"Nov 2026", status:"Renew Soon"},
-  {name:"UK Solicitors Regulation Authority — London Office License", expires:"Jan 2027", status:"Current"},
-  {name:"New York State Bar — Firm Registration", expires:"Mar 2027", status:"Current"},
-  {name:"International Arbitration Institute — Membership", expires:"Aug 2028", status:"Current"}
-]; // "Renew Soon" = expires within ~60 days of the training's reference date
+// "Renew Soon" = expires within ~60 days of today; "Current" = further out. Dates are counted from the day the lab
+// is opened, so the exercise never shows a license that has already lapsed.
+const FIRM_LICENSES = (()=>{
+  const now = new Date();
+  const m = n => new Date(now.getFullYear(), now.getMonth()+n, 1).toLocaleDateString("en-US",{month:"short", year:"numeric"});
+  return [
+    {name:"NY Department of State — Corporate Registration", expires:m(1), status:"Renew Soon"},
+    {name:"Singapore Legal Services Regulatory Authority — Foreign Law Practice License", expires:m(1), status:"Renew Soon"},
+    {name:"D.C. Bar — Foreign Legal Consultant Registration", expires:m(2), status:"Renew Soon"},
+    {name:"UK Solicitors Regulation Authority — London Office License", expires:m(4), status:"Current"},
+    {name:"New York State Bar — Firm Registration", expires:m(6), status:"Current"},
+    {name:"International Arbitration Institute — Membership", expires:m(21), status:"Current"}
+  ];
+})();
 
 const FIRM_KPIS = [
   {category:"Executive Productivity", kpi:"Calendar Accuracy Rate", target:"≥ 98%", actual:"99%", correctStatus:"On Target"},
@@ -4400,9 +4406,9 @@ function orientSlides(){
      <div class="or-3">${pill("📚","Learn",`${topics} short topics across 10 days`)}${pill("🧪","Practice",`${PRACTICE_TOOLS.length} hands-on Practice Labs & live calls`)}${pill("✅","Prove","A Knowledge Check each day — and a certificate at the end")}</div>
      <div class="or-note"><b>You'll need:</b> Chrome or Edge on a computer, a headset with a microphone for the live calls, and a stable connection. Your progress saves to your account automatically.</div>`},
    {k:"Roadmap", h:"Your 10-day roadmap", body:`<div class="or-days">${DAYS.map(dayTile).join("")}</div>
-     <p class="or-foot">Days open one at a time — each builds on the one before.</p>`},
+     <p class="or-foot">Every day is open — take them in order, as each builds on the one before.</p>`},
    {k:"A day", h:"How every day works", body:`
-     <div class="or-flow">${step(1,"🖥","Lesson slides","One topic at a time. Next / Previous at the bottom; your place is saved.")}<i>→</i>${step(2,"✔","Quick Checks","Short questions between topics. Pick, change your mind, then Check Answer.")}<i>→</i>${step(3,"🧪","Practice Lab","Do the real task. Graded with written feedback. Auto-saves as you type.")}<i>→</i>${step(4,"📝","Knowledge Check","Pass at 70% to mark the day complete ✓.")}<i>→</i>${step(5,"🔓","Next day opens","Finishing the Practice Lab unlocks tomorrow.")}</div>
+     <div class="or-flow">${step(1,"🖥","Lesson slides","One topic at a time. Next / Previous at the bottom; your place is saved.")}<i>→</i>${step(2,"✔","Quick Checks","Short questions between topics. Pick, change your mind, then Check Answer.")}<i>→</i>${step(3,"🧪","Practice Lab","Do the real task. Graded with written feedback. Auto-saves as you type.")}<i>→</i>${step(4,"📝","Knowledge Check","Pass at 70% to mark the day complete ✓.")}<i>→</i>${step(5,"➡","Next day","Every day is open. Move on once the day's Practice Lab is done.")}</div>
      <div class="or-note">Didn't pass the Knowledge Check? That's a <b>“not yet”</b>, not a “no” — you can still move on, and retake it any time. Your best score counts.</div>`},
    {k:"Dashboard", h:"Your dashboard at a glance", body:`
      <div class="or-bp">
@@ -4627,9 +4633,9 @@ function renderFacilitatorGuide(){
       <ol>
         <li><b>Approve new registrations</b> in Trainee Audit (registration is name + batch).</li>
         <li><b>Run the session</b> using the SOP plan and 🖥 Presenter view.</li>
-        <li><b>Review daily feedback:</b> when a trainee finishes a day's Knowledge Check or Practice Lab, a review is auto-drafted (setting: <b>💬 Daily reviews</b> at the top of Trainee Audit). Open <b>View Detail → Day-by-Day Feedback</b>, edit, and <b>Send</b> — or use <b>✨ Draft for all active days</b> and <b>📤 Send all drafts</b>. Trainees see it on the day card and in <b>🎯 Focus</b>.</li>
+        <li><b>Review daily feedback:</b> when a trainee finishes a day's Knowledge Check or Practice Lab, write their feedback in <b>View Detail → Day-by-Day Feedback → ✍ Write feedback</b>, then click <b>Send to trainee</b> (optional: turn on a suggested pre-filled draft under <b>💬 Trainer feedback</b> in Trainee Audit — it is never sent automatically). Trainees see it on the day card and in <b>🎯 Focus</b>.</li>
         <li><b>Set personal Focus items</b> in View Detail → <b>🎯 Trainer focus</b> (priority + day). They're pinned at the top of the trainee's Focus panel; you'll see when they're seen and marked done.</li>
-        <li><b>Check Rankings</b> and each trainee's competency picture; trainees see their own rank within their batch and a 7-skill Competency Profile.</li>
+        <li><b>Check Rankings</b> and each trainee's competency picture; trainees see their own rank within their batch and an 8-skill Competency Profile.</li>
         <li><b>Random tasks</b>: broadcast from Trainee Audit with a live window. Trainees handle them in <b>🎲 Tasks</b> (acknowledge → plan → resolve); each is graded on timeliness, prioritisation, applying the day's lesson, communication and risk. Missed tasks count as 0. Scores feed the Competency Profile (Real-Time Task Handling), Rankings and the Audit.</li>
         <li><b>Read trainee feedback</b> about the platform, lessons and facilitation in <b>Admin → Trainee Feedback</b> (star averages by area and day, comments, status, CSV export). Trainees send it from the 💬 Feedback button or right after each Knowledge Check, and can choose to be anonymous.</li>
       </ol>
@@ -18164,7 +18170,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/portal-link.js?v=3"></script>
 <script src="/js/graded-calls.js?v=1"></script>
 <!-- 🧭 Blueprints: the Trainer blueprint (blueprint-content.js) and the Trainee blueprint (Orientation, /blueprint.pdf) rebuilt after every deploy -->
-<script src="/js/blueprint-content.js?v=2"></script>
+<script src="/js/blueprint-content.js?v=3"></script>
 <script src="/js/lsh-blueprint-course.js?v=2"></script>
 <script src="/js/lsh-blueprint.js?v=2"></script>
 <script src="/js/lsh-card-frame.js?v=3"></script>
