@@ -319,7 +319,8 @@ const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemp
 function canRead(tok, key) {
   if (tok.role === "a") return true;
   // callsim:<id>: their graded calls from the Call Simulator (☎ LSH Ring Channel), kept by the Training Portal (read only: traineeWrite refuses it)
-  return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || key === `callsim:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
+  // simresults:<id>: their Portal simulator grades (the Executive Week calendar, the Backup Drive), kept by the Portal (read only too)
+  return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || key === `callsim:${tok.id}` || key === `simresults:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
 }
 async function traineeWrite(env, tok, key, value) {
   const id = tok.id;
@@ -644,6 +645,8 @@ export default {
           if (al && (!id || id === al)) linkedId = al;
         }
         if (linkedId) {
+          // (the block list, read fresh, holds for a linked record too: platform QA 2026-11-19, EA / PA finding 5)
+          if ((await blockedIds(env, true))[linkedId]) return json({ error: BLOCK_MSG, code: "access-offboarded" }, 403);
           const ex = await env.LSH_KV.get(`trainee:${linkedId}`);
           return json({ id: linkedId, token: await makeToken(env, "t", linkedId, 24 * 30), existing: ex ? JSON.parse(ex) : null });
         }
@@ -714,6 +717,10 @@ export default {
         // (unless an admin here rejected them), so this program never shows "Registration Pending Approval".
         const cur = out.existing;
         if (!cur || (cur.approved !== true && !cur.rejected)) {
+          // no trainee record under this id: an admin deleted it, or the Portal revoked the account. Progress left in R2 is theirs
+          // (the Portal can't reach R2), so it must never come back to whoever registers under this name and batch next.
+          // (platform QA 2026-11-19, EA / PA finding 3)
+          if (!cur) await dataDelete(env, `progress:${out.id}`);
           const rec = Object.assign({}, cur || { id: out.id, linkChecked: true, name: who.name, firstName: who.first, lastName: who.last, batch: who.batch, registeredAt: new Date().toISOString() }, { approved: true });
           await env.LSH_KV.put(`trainee:${out.id}`, JSON.stringify(rec));
           out.existing = rec;

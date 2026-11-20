@@ -142,6 +142,28 @@ async function ticketFor(payloadObj, secret) {
         if (fm.status !== 200 || fm.body.id !== 'maria-santos--b100926' || fullName !== 'Maria L. Santos') fail(`a ticket's full name should be kept as fullName with the same ID: ${JSON.stringify(fm.body && { id: fm.body.id, fullName })}`);
     }
 
+    // 7. (platform QA 2026-11-19, EA / PA findings 2, 3, 5) a trainee reads their own Portal simulator grades; a brand-new
+    //    record never inherits progress left from a deleted one; a blocked linked record gets no token
+    {
+        const e7 = makeEnv({ PORTAL_SSO_SECRET: SECRET }), s7 = e7.__store, soon = () => Date.now() + 60000;
+        s7.set('progress:mo-diaz--b111926', JSON.stringify({ 1: { done: true } }));   // left from a record the Portal deleted
+        const mo = await call(e7, '/api/auth/portal', { ticket: await ticketFor({ first: 'Mo', last: 'Diaz', b: 'B111926', exp: soon() }, SECRET) });
+        if (mo.status !== 200) fail(`a new trainee signs in: ${JSON.stringify(mo)}`);
+        if (s7.has('progress:mo-diaz--b111926')) fail("a brand-new record doesn't get a deleted record's progress back");
+        s7.set('simresults:mo-diaz--b111926', JSON.stringify({ best: { 'Google Calendar': { score: 88 } } }));
+        const sr = await call(e7, '/api/storage/get', { key: 'simresults:mo-diaz--b111926' }, { Authorization: 'Bearer ' + mo.body.token });
+        if (sr.status !== 200 || !/88/.test(JSON.stringify(sr.body))) fail(`a trainee reads their own Portal simulator grades: ${JSON.stringify(sr)}`);
+        const other = await call(e7, '/api/storage/get', { key: 'simresults:someone-else--b111926' }, { Authorization: 'Bearer ' + mo.body.token });
+        if (other.status === 200 && other.body && other.body.value) fail("and nobody else's");
+        const wr = await call(e7, '/api/storage/set', { key: 'simresults:mo-diaz--b111926', value: '{"best":{}}' }, { Authorization: 'Bearer ' + mo.body.token });
+        if (wr.status === 200) fail('and never writes them');
+        s7.set('trainee:kim-lo--b100126', JSON.stringify({ id: 'kim-lo--b100126', name: 'Kim Lo', batch: 'B100126', approved: true }));
+        s7.set('trainee-alias:kim-lo--b110226', 'kim-lo--b100126');
+        s7.set('access:blocked', JSON.stringify({ ids: { 'kim-lo--b100126': { why: 'offboarded' } } }));
+        const kim = await call(e7, '/api/auth/portal', { ticket: await ticketFor({ first: 'Kim', last: 'Lo', b: 'B110226', exp: soon() }, SECRET) });
+        if (kim.status !== 403 || kim.body.code !== 'access-offboarded' || kim.body.token) fail(`a blocked linked record gets no token: ${JSON.stringify(kim)}`);
+    }
+
     if (failures.length) { console.log(`\n${failures.length} failure(s):`); failures.forEach((f, i) => console.log(`${i + 1}. ${f}`)); process.exit(1); }
     console.log('Single sign-on: the Portal is the only way a trainee gets in, a typed name + batch is refused, a missing PORTAL_SSO_SECRET says so, and a trainer signed in on the Portal gets in with no second password, once per ticket.');
 })().catch(e => { console.error(e); process.exit(1); });
