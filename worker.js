@@ -139,7 +139,9 @@ function hasProgress(r) {
 async function linkSameName(env, who) {
   const { newId, legacyId } = candidateIds(who.name, who.batch);
   const alias = await env.LSH_KV.get(`trainee-alias:${newId}`);
-  if (alias && (await env.LSH_KV.get(`trainee:${alias}`))) return alias;
+  // (a link is to the same Portal account only, never to a namesake: data-safety review 2026-11-19)
+  if (alias) { let ar = null; try { ar = JSON.parse((await env.LSH_KV.get(`trainee:${alias}`)) || "null"); } catch (e) { ar = null; }
+    if (ar && (!ar.portalUid || !who.u || String(ar.portalUid) === String(who.u))) return alias; }
   const curRaw = await env.LSH_KV.get(`trainee:${newId}`), cur = curRaw ? JSON.parse(curRaw) : null;
   if (cur && (hasProgress(cur) || cur.linkChecked)) return "";
   if (!cur) {   // the old name-only record, when its batch matches, is already found by traineeSession
@@ -155,7 +157,7 @@ async function linkSameName(env, who) {
   for (const id of ids) {
     if (id === newId) continue;
     const raw = await env.LSH_KV.get(`trainee:${id}`), r = raw ? JSON.parse(raw) : null;
-    if (!r || r.rejected || !hasProgress(r)) continue;
+    if (!r || r.rejected || r.approved !== true || !hasProgress(r) || !who.u || String(r.portalUid || "") !== String(who.u)) continue;
     if (!best || new Date(r.lastActive || 0) > new Date(best.lastActive || 0)) best = r;
   }
   if (!best) {
@@ -230,7 +232,9 @@ async function readPortalTicket(env, ticket, why = {}) {
   // full: the whole name as registered on the Portal (a middle initial, a suffix), shown as the trainee's fullName; the
   // ID stays first + last name + batch, so a trainee never gets a second account from it
   const full = String(t.full || "").replace(/\s+/g, " ").trim().slice(0, 120);
-  return { name: `${first} ${last}`, first, last, batch, full };
+  // u: the trainee's Portal account id, kept on the record (portalUid): a Batch ID move follows it, never a name alone
+  const u = String(t.u == null ? "" : t.u).trim().slice(0, 80);
+  return { name: `${first} ${last}`, first, last, batch, full, u };
 }
 // Like readToken, but an expired token still counts for a while (same signature, same trainee), so a trainee
 // midway through the course isn't sent back to the portal in the middle of a lesson.
@@ -314,7 +318,10 @@ function keepProgress(existing, merged) {
 /* ---------- what a trainee may touch ---------- */
 const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
-const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemptsResetAt", "certTrainer", "aiReview", "flaggedInvalidInput", "assignedRoleplay", "registeredAt", "unlockedDays", "unlockedDaysAt"];
+// (name, firstName, lastName, batch, fullName, portalUid, batchFrom: who the record is, set from the Portal's ticket and by a trainer:
+// a trainee who could change them could pass for someone else. Security review 2026-11-19.)
+const FIRST_WRITE_FIELDS = ["name", "firstName", "lastName", "batch"];
+const PROTECTED_TRAINEE_FIELDS = ["name", "firstName", "lastName", "batch", "fullName", "portalUid", "batchFrom", "batchMovedAt", "approved", "rejected", "archived", "labAttemptsResetAt", "certTrainer", "aiReview", "flaggedInvalidInput", "assignedRoleplay", "registeredAt", "unlockedDays", "unlockedDaysAt"];
 
 function canRead(tok, key) {
   if (tok.role === "a") return true;
@@ -343,7 +350,8 @@ async function traineeWrite(env, tok, key, value) {
   if (key === `trainee:${id}`) {
     // Trainees keep their own record current, but can never change approval, attempts resets, etc.
     const merged = Object.assign({}, incoming);
-    PROTECTED_TRAINEE_FIELDS.forEach((f) => { if (existing && f in existing) merged[f] = existing[f]; else delete merged[f]; });
+    // (a brand-new record's own name and batch are taken from its first write; after that they are the Worker's)
+    PROTECTED_TRAINEE_FIELDS.forEach((f) => { if (existing && f in existing) merged[f] = existing[f]; else if (existing || !FIRST_WRITE_FIELDS.includes(f)) delete merged[f]; });
     if (!existing) { merged.approved = false; merged.registeredAt = new Date().toISOString(); }
     if (existing) keepProgress(existing, merged);
     merged.id = id;
@@ -720,15 +728,32 @@ export default {
           // no trainee record under this id: an admin deleted it, or the Portal revoked the account. Progress left in R2 is theirs
           // (the Portal can't reach R2), so it must never come back to whoever registers under this name and batch next.
           // (platform QA 2026-11-19, EA / PA finding 3)
-          if (!cur) await dataDelete(env, `progress:${out.id}`);
+          // (data-safety review 2026-11-19: a KV read that missed a record written elsewhere a moment ago must not cost a trainee their
+          // work, so the record is read a second time, and the progress is set aside for 30 days, where an admin can find it, rather
+          // than deleted outright; it is never restored on its own)
+          if (!cur && !(await env.LSH_KV.get(`trainee:${out.id}`))) {
+            const left = await dataGet(env, `progress:${out.id}`);
+            if (left) {
+              await env.LSH_KV.put(`orphan:progress:${out.id}`, typeof left === "string" ? left : JSON.stringify(left), { expirationTtl: 30 * 24 * 3600 });
+              await dataDelete(env, `progress:${out.id}`);
+            }
+          }
           const rec = Object.assign({}, cur || { id: out.id, linkChecked: true, name: who.name, firstName: who.first, lastName: who.last, batch: who.batch, registeredAt: new Date().toISOString() }, { approved: true });
           await env.LSH_KV.put(`trainee:${out.id}`, JSON.stringify(rec));
           out.existing = rec;
         }
         // the full name as registered on the Portal (with a middle name or initial), kept beside the record's name
-        if (out.existing && who.full && who.full !== who.name && out.existing.fullName !== who.full) {
-          out.existing = Object.assign({}, out.existing, { fullName: who.full });
-          await env.LSH_KV.put(`trainee:${out.id}`, JSON.stringify(out.existing));
+        // ... and the Portal account id (portalUid, set once) and the first and last name: who the record is, which the trainee
+        // can't change here (PROTECTED_TRAINEE_FIELDS). Security and data-safety reviews 2026-11-19.
+        if (out.existing) {
+          const add = {};
+          if (who.full && who.full !== who.name && out.existing.fullName !== who.full) add.fullName = who.full;
+          if (who.u && !out.existing.portalUid) add.portalUid = who.u;
+          if (!out.existing.firstName && !out.existing.lastName) { add.firstName = who.first; add.lastName = who.last; }
+          if (Object.keys(add).length) {
+            out.existing = Object.assign({}, out.existing, add);
+            await env.LSH_KV.put(`trainee:${out.id}`, JSON.stringify(out.existing));
+          }
         }
         return json(Object.assign(out, { name: who.name, first: who.first, last: who.last, batch: who.batch }, who.full ? { fullName: who.full } : {}));
       }
