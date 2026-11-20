@@ -39,6 +39,16 @@ Rest the mouse on **Next** (without clicking) and a small copy of the next slide
 
 It works on the lesson page, in full screen and on the Presenter view console's Next. It never appears in the slides window shared in Meet, so with Presenter view only the trainer sees it; when sharing the lesson tab itself, the room sees it too. Phones and touch screens don't get it. It's `js/eapa-next-preview.js`, loaded after the deck card: the preview is the next slide's own content drawn at the deck's size (960 × 540) and scaled down, inert, and removed before any slide is drawn.
 
+## 🎨 Slide colour, graphics and icons
+
+Every lesson slide on every day gets colour, pictures and icons from `js/eapa-deck-color.js` (loaded last; removing its `<script>` tag puts the slides back as they were):
+
+- **Topic dividers** show the topic's own illustration (the `image` picked for each topic in `build/slides/dN.json`, drawn from `js/eapa-deck-art.js`) beside the title, on a peach band, with a navy kicker pill and a navy / orange / green bar.
+- **Topic slides**: a small topic icon in the header, and each section has its own colour and icon — 💡 *Core Principles* (navy, the key line as a callout), 🧭 *Step-by-Step* (orange, tinted step cards), ✅ *Best Practices & Pitfalls* (green; Do this cards green, Watch out cards orange).
+- **Agenda**: each section's tile shows its first topic's illustration, with a colour edge.
+- **Quick Checks**: lettered A–D options, each with its own colour. **Practice Lab** and **Meet the client** slides get the same colours and an illustration.
+- **Contrast**: text on the slides meets WCAG AA (4.5:1, or 3:1 for large text). Small orange text uses the deep orange `#A34E14` (5.3:1 on white), never the brand orange `#DB8437` (2.9:1), and the orange boxes that carry white text use the deep orange too.
+
 ## Where each day's content lives
 
 Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three files:
@@ -241,7 +251,7 @@ A record with no batch is no longer a normal state: signing in requires a valid 
 
 ### 🖥 The Client Profile fits one screen
 
-The dossier is eleven sections — the *Read This First* note and the ten reference sections — and as a stacked grid it ran well past the fold. It is now a rail beside a single pane: the rail lists the sections, the pane shows the one that is open, and `cpFit()` sizes the pane to whatever the window has left under the hero and the header card. Long sections flow in two columns, and the pane's text steps down to a readable floor if a section still runs past the bottom, so the rule survives a trainer editing the dossier. Phones and narrow windows (900px and under) keep the stacked, scrolling layout. The client header card is a light card with dark ink: it previously set a navy gradient that the later glass rule overrode, which left white lettering on near-white. Checked at 1366×768, 1920×1080 and 1474×761 by `.github/scripts/client-profile-fit.cjs`, which also holds the card's three lines to AA.
+The dossier is twelve sections — the *Read This First* note and eleven reference sections, including *Non-Negotiables* (the rules that are never broken, gathered in one place) — and as a stacked grid it ran well past the fold. It is now a rail beside a single pane: the rail lists the sections, the pane shows the one that is open, and `cpFit()` sizes the pane to whatever the window has left under the hero and the header card. Long sections flow in two columns, and the pane's text steps down to a readable floor if a section still runs past the bottom, so the rule survives a trainer editing the dossier. Phones and narrow windows (900px and under) keep the stacked, scrolling layout. The client header card is a light card with dark ink: it previously set a navy gradient that the later glass rule overrode, which left white lettering on near-white. Checked at 1366×768, 1920×1080 and 1474×761 by `.github/scripts/client-profile-fit.cjs`, which also holds the card's three lines to AA.
 
 ### 🖥 The trainee dashboard fits one screen
 
