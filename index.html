@@ -1777,7 +1777,7 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .qns-warn{background:rgba(255,244,232,.62);border-color:var(--orange);} .qns-warn .qns-title{color:var(--orange-deep);}
 .qns-stop{background:var(--danger-bg);border-color:var(--danger);} .qns-stop .qns-title{color:var(--danger);}
 
-.pn-on{background:#F3F5FA;border-radius:10px;padding:10px 14px;margin:8px 0;} .pn-on b, .pn-scen b{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:4px;} .pn-on p, .pn-scen p{margin:0;line-height:1.5;}
+.pn-on{background:#F3F5FA;border-radius:10px;padding:10px 14px;margin:8px 0;} .pn-answer{background:#EAF4EE;border-left:4px solid #3F7D58;} .pn-answer ol{margin:6px 0 0;padding-left:20px;} .pn-answer li{font-size:13px;line-height:1.5;margin:0 0 5px;} .pn-on b, .pn-scen b{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:4px;} .pn-on p, .pn-scen p{margin:0;line-height:1.5;}
 .pn-scen{background:#FFF4E6;border-left:4px solid var(--orange);border-radius:10px;padding:10px 14px;margin:10px 0 4px;}
 .pn-part{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin:12px 0 2px;}
 .script-block{margin-top:12px;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;background:#FFFCF8;padding:12px 14px;}
@@ -14432,6 +14432,7 @@ function renderPresenterNote(d, l, part, secs, allSecs, pg){
       ${s.more ? `<p class="script-next">Continues on the next page →</p>` : ""}
     </div>
     ${n.cue && s.page ? "" : (n.cue ? `<div class="pn-on pn-cue"><b>Trainer note — not read aloud</b><p>${esc(n.cue)}</p></div>` : "")}
+    ${n.answer && s.ask ? `<div class="pn-on pn-answer"><b>💡 Model answer — for you, not read aloud</b><ol>${[].concat(n.answer).map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
     ${s.scenario ? `<div class="pn-scen"><b>🎬 Scenario — work through it with the room</b><p>${esc(s.scenario)}</p></div>` : ""}
   </div>`;
 }
@@ -14447,6 +14448,7 @@ function buildDayScriptLines(d){
       const paras = scriptProse(s);
       if(paras[0]) lines.push(paras[0]);
       if(paras[1]) lines.push(`ASK: ${paras[1]}`);
+      if(n.answer) [].concat(n.answer).forEach((x,k)=>lines.push(`${k ? "" : "MODEL ANSWER: "}${k+1}. ${x}`));
       if(s.scenario) lines.push(`SCENARIO: ${s.scenario}`);
     });
     lines.push("---");
@@ -18144,7 +18146,7 @@ window.addEventListener("unhandledrejection", (ev)=>{ const e = ev.reason; if(e 
 window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message && !/ResizeObserver|Script error/.test(ev.message)) showActionError(new Error(ev.message), ""); });
 
 </script>
-<script src="/js/days/day1/notes.js?v=4"></script>
+<script src="/js/days/day1/notes.js?v=5"></script>
 <script src="/js/days/day1/scripts.js?v=4"></script>
 <script src="/js/days/day2/notes.js?v=6"></script>
 <script src="/js/days/day2/scripts.js?v=5"></script>
