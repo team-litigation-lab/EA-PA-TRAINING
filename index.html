@@ -755,16 +755,18 @@ rect.svg-callout-badge{animation:none;}
    windows fall back to the stacked, scrolling layout below. */
 .cp-top h1{color:var(--navy);font-size:24px;margin:0 0 4px;font-family:'Fraunces';}
 .cp-top p{font-size:var(--font-body);color:#37394A;margin:0 0 14px;line-height:1.5;}
-.cp-shell{display:grid;grid-template-columns:248px minmax(0,1fr);gap:16px;align-items:stretch;}
-.cp-rail{display:flex;flex-direction:column;gap:3px;overflow:auto;padding-right:2px;}
+/* The sections are big tabs across the top (6 across), so all twelve show at once with no scrolling; the pane fills the rest. */
+.cp-shell{display:flex;flex-direction:column;gap:12px;}
+.cp-rail{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;overflow:visible;flex:none;}
 .cp-rail button{
-  text-align:left;background:#fff;border:1px solid var(--line);border-radius:9px;
-  padding:7px 11px;font-size:12.5px;font-weight:600;color:var(--navy);line-height:1.25;
+  display:flex;align-items:center;justify-content:center;text-align:center;min-height:50px;
+  background:#fff;border:1px solid var(--line);border-radius:10px;
+  padding:9px 12px;font-size:14px;font-weight:600;color:var(--navy);line-height:1.25;
   cursor:pointer;transition:background .12s ease,border-color .12s ease;
 }
 .cp-rail button:hover{background:#F2F4FA;}
 .cp-rail button.on{background:var(--navy);border-color:var(--navy);color:#fff;}
-.cp-pane{padding:18px 22px;overflow:auto;font-size:var(--font-body);}
+.cp-pane{flex:1;min-height:0;padding:18px 22px;overflow:auto;font-size:var(--font-body);}
 .cp-pane h3{margin:0 0 10px;font-size:16px;color:var(--navy);font-family:'Fraunces';}
 .cp-pane ul{margin:0;padding-left:18px;}
 .cp-pane li{font-size:1em;color:#37394A;margin-bottom:8px;line-height:1.5;}
@@ -776,6 +778,10 @@ rect.svg-callout-badge{animation:none;}
 .cp-intro b{color:var(--orange-deep);}
 .cp-pane ul.two-col{columns:2;column-gap:30px;}
 .cp-pane ul.two-col li{break-inside:avoid;}
+.cp-pane ul.three-col{columns:3;column-gap:28px;}
+.cp-pane ul.three-col li{break-inside:avoid;}
+@media (max-width:1100px){ .cp-pane ul.three-col{columns:2;} }
+@media (max-width:900px){ .cp-pane ul.two-col, .cp-pane ul.three-col{columns:1;} }
 /* Shorter laptops (1366x768, 1474x761, or a larger screen at 125% scaling): the
    rail goes two-up and the chrome above it gives back its padding, so twelve
    sections and the longest list both still end inside the window. */
@@ -789,21 +795,32 @@ rect.svg-callout-badge{animation:none;}
   .client-header-text h2{font-size:20px;}
   .client-header-text p{font-size:12.5px;margin-bottom:2px;}
   .client-tagline{font-size:12px;}
-  .cp-shell{grid-template-columns:330px minmax(0,1fr);}
-  .cp-rail{display:grid;grid-template-columns:1fr 1fr;gap:3px;align-content:start;}
-  .cp-rail button{padding:3px 8px;font-size:11.5px;line-height:1.22;}
+  .cp-shell{gap:8px;}
+  .cp-rail{gap:6px;}
+  .cp-rail button{min-height:36px;padding:5px 10px;font-size:13px;line-height:1.2;}
+  /* the tabs take a little height across the top, so the hero gives back its sentence ("Read This First" says it) */
+  .cp-onescreen .cp-top{padding-top:0 !important;padding-bottom:0 !important;margin-bottom:8px !important;}
+  .cp-onescreen .client-header-card{padding:5px 14px !important;margin-bottom:8px !important;}
+  .cp-onescreen .client-avatar-svg, .cp-onescreen .client-photo-img{width:48px !important;height:48px !important;}
+  .cp-onescreen .client-header-text h2{font-size:18px !important;margin:0 !important;}
+  .cp-onescreen .client-header-text p{margin:0 !important;}
+  .cp-onescreen .cp-top p{display:none !important;}
+  .cp-onescreen .cp-top h1{margin:0 !important;}
   .cp-pane{padding:11px 16px;}
   .cp-pane h3{font-size:15px;margin-bottom:8px;}
   .cp-pane{font-size:12.5px;}
   .cp-pane li{margin-bottom:5px;line-height:1.42;}
   .cp-intro h2{font-size:17px;margin-bottom:9px;}
   .cp-intro p{line-height:1.5;margin-bottom:8px;}
+  .cp-intro{columns:2;column-gap:28px;}
+  .cp-intro .cib-tag, .cp-intro h2{column-span:all;}
+  .cp-intro p{break-inside:avoid;}
 }
 /* Phones and narrow windows: stack the rail above the pane and scroll normally. */
 @media (max-width:900px){
   .cp-shell{display:block;height:auto !important;}
-  .cp-rail{flex-direction:row;flex-wrap:wrap;overflow:visible;margin-bottom:12px;}
-  .cp-rail button{flex:0 0 auto;}
+  .cp-rail{display:flex;flex-direction:row;flex-wrap:wrap;overflow:visible;margin-bottom:12px;}
+  .cp-rail button{flex:0 0 auto;min-height:0;}
   .cp-pane{overflow:visible;}
 }
 .profile-section h3{margin:0 0 10px;font-size:var(--font-body);color:var(--navy);font-family:'Fraunces';}
@@ -3635,16 +3652,18 @@ const CLIENT_PROFILE_DOC = [
     "Personal brand internally: \"The Legal Strategist\" — sharp intellect, evidence-driven, fiercely protective of trial prep and confidentiality"
   ]},
   {section:"Non-Negotiables", items:[
-    "Confidentiality is absolute: client matters, firm business and family details never go anywhere they could be seen by the wrong person, including the shared firm calendar.",
-    "The 15-minute debrief buffer after every key client or court session is never scheduled over.",
+    "Confidentiality is absolute: client matters, firm business and family details never go where the wrong person could see them, including the shared firm calendar.",
+    "Never schedule over the 15-minute debrief buffer after a key client or court session.",
     "No back-to-back depositions or court hearings, ever.",
-    "The Friday 4:00 PM \"closing the loop\" call never slips, however busy the week.",
-    "Direct flights only, aisle seat near the front of the cabin, whatever the cost difference.",
+    "The Friday 4:00 PM \"closing the loop\" call never slips.",
+    "Direct flights only, aisle seat near the front, whatever the cost.",
     "Any expense over $5,000 goes to Elias himself; never pre-approve or delegate it.",
-    "No reply to a journalist, public post or media inquiry without Priya Nair (Communications & PR) first.",
-    "Leo's peanut allergy is checked for every restaurant or catering booking he attends; client dinners are vetted in advance for Elias's strict Paleo diet.",
-    "Surface a conflict or gap the moment you spot it: silence reads as concealment.",
-    "Phone him only in a genuine emergency; and never raise the Hendricks arbitration."
+    "No reply to the media or a public post without Priya Nair (Communications & PR) first.",
+    "Check Leo's peanut allergy for every booking he attends; vet client dinners for Elias's strict Paleo diet.",
+    "Family vs. business: family comes first. A family event he has committed to (e.g. Maya's recital) is protected time: never delegate it or let it slide; move the lower-priority business item instead. Only court-set times and filing deadlines outrank it, and then Elias and Sarah hear early, with a plan.",
+    "A family emergency (health or safety) interrupts anything, even court or deposition prep. A non-emergency family matter doesn't: Sarah is the first call.",
+    "Raise a conflict or gap the moment you spot it: silence reads as concealment.",
+    "Phone him only in a genuine emergency; never raise the Hendricks arbitration."
   ]},
   {section:"Why This Role Is Demanding", items:[
     "Three EAs have rotated through this role in the last two years — not from misconduct, but from an inability to keep pace with his standards.",
@@ -4734,7 +4753,7 @@ function renderClientProfile(){
   const sec = CLIENT_PROFILE_DOC[idx-1];
   const pane = idx===0 ? `<div class="cp-intro">${intro}</div>` : `
         <h3>${esc(sec.section)}</h3>
-        <ul class="${sec.items.length>5?"two-col":""}">${sec.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`;
+        <ul class="${sec.items.length>7?"three-col":sec.items.length>3?"two-col":""}">${sec.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`;
 
   return `
     <div class="cp-top">
@@ -6596,7 +6615,8 @@ function navBackTarget(){
 function fillNavBack(){
   const slot = document.getElementById("navBackSlot"); if(!slot) return;
   const prev = ["login","pendingApproval","registrationDenied","dashboard"].includes(state.view) ? "" : navBackTarget();
-  const label = prev && routeLabel(prev);
+  // No "Back to Dashboard": the top bar's Dashboard button is always there.
+  const label = prev && prev !== "#/dashboard" && routeLabel(prev);
   slot.innerHTML = label ? `<div class="nav-back-row"><button type="button" class="nav-back" onclick="navBack()" title="Go back to the page you were on">← Back to ${esc(label)}</button></div>` : "";
 }
 function navBack(){ if(routeDepth()>0) history.back(); else goto("dashboard"); }
