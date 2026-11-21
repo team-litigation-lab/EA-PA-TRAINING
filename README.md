@@ -13,7 +13,7 @@ Trainees sign in once, on the LSH Training Portal, and open this program from th
 
 The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with its records in the `LSH_KV` KV namespace and trainees' saved progress in R2 (see "Where records are kept").
 
-**🏠 Main Portal (admins):** while an admin is signed in, the top bar has **🏠 Main Portal** and the Admin screen has **← Back to Main Portal** (next to Log out). Both open the LSH Training Portal's Training Directory (`https://cm-training-activity.pages.dev/programs.html`), where admins open each program. Trainees and the 👁 Trainee view don't show them. It's `js/portal-link.js`, the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them.
+**🏠 Main Portal (admins):** while an admin is signed in, the top bar has **🏠 Main Portal** and the Admin screen has **← Back to Main Portal** (next to Log out). Both open the LSH Training Portal's LSH Academy Index (`https://cm-training-activity.pages.dev/programs.html`), where admins open each program. Trainees and the 👁 Trainee view don't show them. It's `js/portal-link.js`, the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them.
 
 **🧭 The top bar, organized (every course):** buttons that do the same kind of thing share one menu, the way the Training Portal keeps everything else under ⚙ System Management. **📁 Case File** is one tab for the Case File (or Claim File), 📁 Documents and 🗂 Workspace, which share a row of tabs at the top of their pages; **📚 Guides ▾** holds Notes, Handouts and the Facilitator Guide (whichever the page has; the blueprints are on the Main Portal); **📋 My Sheets ▾** holds the Task Tracker and Monitoring Sheet; **⛶ View ▾** holds ⧉ Open in a new tab and ⛶ Full screen. A menu is made only when two or more of its buttons are on the bar. It's `js/lsh-topbar.js`, loaded last, the same file in every LSH course repo; change it in all of them.
 
@@ -103,7 +103,7 @@ The statuses, the per-batch summaries, the CSV downloads and the Google Sheet sy
 in the Training Portal's README.
 ## 📉 Staying under Cloudflare's daily request limit
 
-On Cloudflare's free plan, Workers and Pages Functions get **100,000 requests a day for the whole account**: this portal's Worker (everything under `/api/` and `/version`) and the other LSH sites on the same account (the Case Management System's Pages Functions, for one) share it. When it runs out, the Worker answers 429 ("Error 1027") until 00:00 UTC: pages still load, but sign-in, saving and the trainer's screens don't work. The Workers Paid plan ($5 a month) raises the limit to 10 million requests a month. Usage is under **Workers & Pages** in the Cloudflare dashboard. Static files (the page, `js/`, images) are free and don't count.
+On Cloudflare's free plan, Workers and Pages Functions get **100,000 requests a day for the whole account**: this portal's Worker (everything under `/api/` and `/version`) and the other LSH sites on the same account (LSH CaseWorks's Pages Functions, for one) share it. When it runs out, the Worker answers 429 ("Error 1027") until 00:00 UTC: pages still load, but sign-in, saving and the trainer's screens don't work. The Workers Paid plan ($5 a month) raises the limit to 10 million requests a month. Usage is under **Workers & Pages** in the Cloudflare dashboard. Static files (the page, `js/`, images) are free and don't count.
 
 So an open page asks the server sparingly (`POLL` in `index.html`), and not at all while its tab is in the background. When it's back, whatever came due runs then; a quick look at another tab (Google Meet) asks nothing:
 
@@ -171,9 +171,9 @@ node .github/scripts/splitscreen.cjs http://localhost:8787/
 `.github/workflows/backup.yml` runs every night (07:17 UTC ≈ 3 AM Eastern; also **Actions → Nightly backup → Run workflow**). `.github/scripts/backup.mjs` exports:
 
 - `kv-courses.json` — every key in the courses' KV namespace (`b121aa…`): EA/PA and CM progress, reviews, activities and their files (the CM course's keys start with `cm:`). EA/PA trainees' progress is kept in R2, with a copy in KV at most a day old (see "Where records are kept"), so it's in here as of the last day;
-- `d1-cms.sql`, `d1-portal-logins.sql`, `d1-portal-activities.sql` — the CMS and Training Portal databases (`wrangler d1 export`);
+- `d1-cms.sql`, `d1-portal-logins.sql`, `d1-portal-activities.sql` — the LSH CaseWorks and Training Portal databases (`wrangler d1 export`);
 
-into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes copies there older than 60 days, and also keeps a 14-day copy as a GitHub Actions artifact. A failed backup turns the run red (GitHub emails you). Not included: the CMS's R2 document storage.
+into `lsh-backup-<date>.tar.gz`, uploads it to a Google Drive folder, deletes copies there older than 60 days, and also keeps a 14-day copy as a GitHub Actions artifact. A failed backup turns the run red (GitHub emails you). Not included: LSH CaseWorks's R2 document storage.
 
 **Setup (once):**
 
@@ -213,7 +213,7 @@ The Case Management course's split screen, ported here as `js/eapa-toolframe.js`
 
 - **📖 Day N Lesson Notes** — the full text of every topic (`lessonNotesHtml`, exported from `js/eapa-updates.js`), so a trainee reads the long version while the slide stays on screen instead of behind an overlay.
 - **Day N handout** — the day's handout (`handoutHtml`), or the admin's own file when one is linked for that day on the Handouts page.
-- **📞 Call Simulator** and **🏠 Training Portal** — the Portal's pages sign the trainee in with the Portal's own cookie, which a frame doesn't send, so these open in their own window, the same rule the CM course follows for its Portal simulators.
+- **📞 Call Sim** and **🏠 Training Portal** — the Portal's pages sign the trainee in with the Portal's own cookie, which a frame doesn't send, so these open in their own window, the same rule the CM course follows for LSH Sims.
 
 The frame's bar has **⧉ Side by side** (on or off), **🖥 Second screen** (its own window — on another screen when the browser can say where one is, after the trainee allows it) and **✕ Close**. Drag the frame's left edge to resize it; the width and the on/off choice are remembered per browser (`eapa-tf-w`, `eapa-tf-split`). The frame starts under the top bar and moves with it, and the slide is scaled down to the room it has left (`deckRescale`, through a `resize` event), so it still fits on one screen beside the frame. Esc closes a full-width pane; side by side it stays, since the trainee is working in both. Under 900px wide there is no room for two columns: the button isn't offered and a pane opens full width.
 
@@ -223,7 +223,7 @@ The button is added to whatever lesson stage is on screen rather than to each da
 
 ## ◫ Day 3 Practice Lab: the Calendar Conflict Resolver
 
-Activity 1 is built like the Training Portal's **Google Calendar Simulator** (a Google Calendar look-alike; no real Google). The week sits in a calendar card with its own bar (the Calendar mark, *October 12 – 16, 2026*, Week, **+ Create**, Reset to original), a sidebar with **+ Create**, the October mini month with the practice week selected, and **My calendars** — one box per priority, which shows or hides those events (the check always grades every event, hidden or not). The week itself is Google's grid: day names over date circles with Thursday the 15th as today, the hour rail, hour lines, and events as Google event chips laid out in side-by-side lanes where they overlap, each one outlined in red while it still clashes.
+Activity 1 is built like the Training Portal's **Google Calendar Sim** (a Google Calendar look-alike; no real Google). The week sits in a calendar card with its own bar (the Calendar mark, *October 12 – 16, 2026*, Week, **+ Create**, Reset to original), a sidebar with **+ Create**, the October mini month with the practice week selected, and **My calendars** — one box per priority, which shows or hides those events (the check always grades every event, hidden or not). The week itself is Google's grid: day names over date circles with Thursday the 15th as today, the hour rail, hour lines, and events as Google event chips laid out in side-by-side lanes where they overlap, each one outlined in red while it still clashes.
 
 The brief above the calendar is two short columns (*Look past the obvious clashes* / *Decide every event*, `.cal-brief`), about 165px instead of the 400px the prose version took, and the hour is 60px tall (`CAL_PX_PER_HR`), so the week itself gets the height: event titles and times are readable without opening them. On a phone the two columns stack.
 
@@ -297,11 +297,11 @@ The prospect hangs up when the call is naturally over. The date fills itself in,
 
 Steps 1 and 2 are scored on the page and use no AI requests. The code is the last two blocks of `js/eapa-updates.js` (`OB_PROSPECTS`, `LG_SOURCES`, `LG_LEADS`).
 
-## 📞 The Call Simulator (☎ LSH Ring Channel) and graded calls
+## 📞 The Call Sim (☎ LSH Voice) and graded calls
 
-The Call Simulator is **☎ LSH Ring Channel's** — the training phone itself (the lshringchannel repo). The **📞 Call Simulator (☎ LSH Ring Channel)** card in the Live Roleplay hub and in the Intake Call Simulator section opens it signed in through the Training Portal (`/api/launch?tool=ringchannel&to=calls&program=EA`, plus `&line=` for the card's line), in its own tab: the phone rings, the trainee answers with a headset and works the call with the phone's own keys (mute, hold, transfer) and 🔎 Case lookup, and the call is graded on that line's Mock Calls Metrics. A graded call (a caller unknown until the debrief) is reported to the Portal's `/api/call-results`, so it still counts in this course.
+The Call Sim is **☎ LSH Voice's** — the training phone itself (the lshringchannel repo). The **📞 Call Sim (☎ LSH Voice)** card in the Live Roleplay hub and in the Intake Call Simulator section opens it signed in through the Training Portal (`/api/launch?tool=ringchannel&to=calls&program=EA`, plus `&line=` for the card's line), in its own tab: the phone rings, the trainee answers with a headset and works the call with the phone's own keys (mute, hold, transfer) and 🔎 Case lookup, and the call is graded on that line's Mock Calls Metrics. A graded call (a caller unknown until the debrief) is reported to the Portal's `/api/call-results`, so it still counts in this course.
 
-**Note on the call packs:** Ring Channel's scenario library is the Foundational pack on three lines (Reception and Calendar Management on the Main Line, Intake on the Intake Line), so a card naming an EA / PA line it doesn't have (Executive Calls, Gatekeeping & Stakeholders, Legal Operations, Lifestyle & Estate, Revenue & Outreach) lands the trainee on the phone's line picker until those calls are added on Ring Channel itself — a trainer writes them in its **📚 Scenarios**, or they are ported into its `src/scenarios.js`.
+**Note on the call packs:** LSH Voice's scenario library is the Foundational pack on three lines (Reception and Calendar Management on the Main Line, Intake on the Intake Line), so a card naming an EA / PA line it doesn't have (Executive Calls, Gatekeeping & Stakeholders, Legal Operations, Lifestyle & Estate, Revenue & Outreach) lands the trainee on the phone's line picker until those calls are added on LSH Voice itself — a trainer writes them in its **📚 Scenarios**, or they are ported into its `src/scenarios.js`.
 
 A graded call counts here. The Training Portal (its `/api/call-results`) keeps the trainee's graded calls in `callsim:<trainee id>` (no key prefix; a trainee on an older id is found through `trainee-alias:`), by line, and the Worker lets the trainee read it but never write it. The dashboard band's **Graded calls** card (`js/graded-calls.js`) shows the best graded call on each line, averaged, with the lines and calls taken; each line's best is in its tooltip. It's read once a page load and again when the trainee comes back to the tab (at most every two minutes).
 
@@ -321,7 +321,7 @@ Every AI review in the Practice Labs (written labs, roleplay calls, intake calls
 
 ## AI relay for the Training Portal
 
-`worker.js` → `/api/ai-relay` lets the LSH Training Portal's simulators (Call Simulator, Calendaring, Email Replies) send their Gemini calls from this Worker's US placement, since Gemini refuses some regions the Portal's Pages Functions run in (e.g. Hong Kong). It takes the same body as `/api/claude` (plus `json` and `temperature`) and uses this Worker's key pool. It only answers requests carrying `X-Relay-Key` equal to the secret **`AI_RELAY_SECRET`**; set the same value on the Portal's Pages project (see Training-Portal `SIMULATORS.md`). Without the secret the endpoint returns 403.
+`worker.js` → `/api/ai-relay` lets the LSH Training Portal's LSH Sims (Call Sim, Calendaring, Email Replies) send their Gemini calls from this Worker's US placement, since Gemini refuses some regions the Portal's Pages Functions run in (e.g. Hong Kong). It takes the same body as `/api/claude` (plus `json` and `temperature`) and uses this Worker's key pool. It only answers requests carrying `X-Relay-Key` equal to the secret **`AI_RELAY_SECRET`**; set the same value on the Portal's Pages project (see Training-Portal `SIMULATORS.md`). Without the secret the endpoint returns 403.
 
 **Gemini region refusals.** Gemini answers 400 *User location is not supported* for some regions. The Worker is placed in the US (`wrangler.json`), but placement is best-effort, so a refused call is sent again from **`GeminiRelay`**, a Durable Object pinned to western North America (`locationHint: "wnam"`, binding `GEMINI_RELAY`), and that Worker instance keeps using it. The relay only forwards to `generativelanguage.googleapis.com`. A Durable Object can't be created by a branch preview build, so a PR that changes its class shows a red *Workers Builds* preview; the `main` deploy applies it.
 
