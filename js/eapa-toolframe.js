@@ -19,8 +19,8 @@
      📖 Day N Lesson Notes   — the full text of every topic (lessonNotesHtml)
      📄 Day N handout        — the day's handout (handoutHtml), or the admin's
                                own file when a link is saved for that day
-     📞 Call Simulator       — ☎ LSH Ring Channel, through the Portal's sign-in
-     🏠 Training Portal      — the Training Directory
+     📞 Call Sim             — ☎ LSH Voice, through the Portal's sign-in
+     🏠 Training Portal      — 🎓 LSH Academy Index
    The Portal's pages carry the Portal's sign-in cookie, which a frame does
    not send, so those two open in their own window / a new tab — the same rule
    the CM course follows for its Portal simulators.
@@ -40,9 +40,9 @@ var PORTAL = "https://cm-training-activity.pages.dev";
 /* The Portal's own pages: they sign the trainee in with the Portal's cookie, which a frame
    does not send, so they open in their own window or a new tab, never in the frame. */
 var TOOLS = [
-  {id:"calls",  icon:"📞", short:"Call Simulator", name:"Call Simulator (☎ LSH Ring Channel)",
+  {id:"calls",  icon:"📞", short:"Call Sim", name:"Call Sim (☎ LSH Voice)",
    url: PORTAL + "/api/launch?tool=ringchannel&to=calls&program=EA", ownWindow:true},
-  {id:"portal", icon:"🏠", short:"Training Portal", name:"LSH Training Portal · Training Directory",
+  {id:"portal", icon:"🏠", short:"Training Portal", name:"LSH Training Portal · 🎓 LSH Academy Index",
    url: PORTAL + "/programs.html", ownWindow:true}
 ];
 function tool(id){ for(var i=0;i<TOOLS.length;i++) if(TOOLS[i].id===id) return TOOLS[i]; return null; }
@@ -212,7 +212,7 @@ window.openPaneHTML = function(key, html, name, icon, mode){
   show(key, mode);
 };
 
-/* a Portal tool: ☎ LSH Ring Channel and the Training Directory sign the trainee in with the
+/* a Portal tool: ☎ LSH Voice and 🎓 LSH Academy Index sign the trainee in with the
    Portal's own cookie, which a frame doesn't send, so they open in their own window / a new tab. */
 window.openTool = function(id, mode){
   var t = tool(id); if(!t) return;
