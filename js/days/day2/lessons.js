@@ -14,117 +14,12 @@
 const DAY2 = {
   "id": 2,
   "title": "Force Multiplier, Leveraging AI & Email Management",
-  "theme": "Managing Up in Practice · Communication & Executive Presence · The Force Multiplier Mindset · Cognitive Load & Systems · The Legal EA Force Multiplier · Leveraging AI with Precision · Email Management",
-  "objective": "Put Day 1's Three C's into practice to manage up effectively, shift from task-completer to force multiplier, use AI tools with precision and good judgment, and run the executive's inbox as a control system.",
+  "theme": "Executive Exposure & Board Communication · The Force Multiplier Mindset · Cognitive Load & Systems · The Legal EA Force Multiplier · Leveraging AI with Precision · Email Management",
+  "objective": "Manage the executive's exposure and prepare board and investor communications to a higher standard, shift from task-completer to force multiplier, use AI tools with precision and good judgment, and run the executive's inbox as a control system.",
   "lessons": [
     {
-      "h": "Reframing Reactive Language",
-      "section": "Managing Up Foundations",
-      "svgDiagram": "<svg viewBox=\"0 0 560 160\" xmlns=\"http://www.w3.org/2000/svg\"><style>.rl{font:700 11px Arial,sans-serif;fill:#fff;}.rt{font:400 10.5px Arial,sans-serif;fill:rgba(255,255,255,.9);font-style:italic;}</style><g transform=\"translate(20,20)\"><rect width=\"230\" height=\"110\" rx=\"10\" fill=\"#B54A3F\"/><text x=\"115\" y=\"28\" text-anchor=\"middle\" class=\"rl\">REACTIVE</text><text x=\"115\" y=\"60\" text-anchor=\"middle\" class=\"rt\">\"I couldn't reach</text><text x=\"115\" y=\"76\" text-anchor=\"middle\" class=\"rt\">them.\"</text><text x=\"115\" y=\"98\" text-anchor=\"middle\" style=\"font:400 9px Arial,sans-serif;fill:rgba(255,255,255,.7);\">reports a problem</text></g><path d=\"M258 75 L308 75\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" marker-end=\"url(#ahrl)\"/><g transform=\"translate(310,20)\"><rect width=\"230\" height=\"110\" rx=\"10\" fill=\"#3F7D58\"/><text x=\"115\" y=\"28\" text-anchor=\"middle\" class=\"rl\">FORWARD-LOOKING</text><text x=\"115\" y=\"56\" text-anchor=\"middle\" class=\"rt\">\"...so I'm trying their</text><text x=\"115\" y=\"72\" text-anchor=\"middle\" class=\"rt\">office line, will follow</text><text x=\"115\" y=\"88\" text-anchor=\"middle\" class=\"rt\">up by 3 PM.\"</text><circle cx=\"115\" cy=\"100\" r=\"5\" fill=\"#fff\" class=\"svg-pulse-dot\"/></g><defs><marker id=\"ahrl\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#DB8437\"/></marker></defs></svg>",
-      "b": [
-        "Reframe reactive language into forward-looking language.",
-        "Discussion prompt: think of a message you sent recently that could have used more Clarity. Rewrite the opening line right now, out loud, the way the Three C's would want it."
-      ],
-      "howTo": [
-        "Identify the reactive phrase in your draft — language that reports a problem without offering any forward motion (\"I couldn't reach them\").",
-        "Rewrite it to lead with the forward-looking version instead — what you're doing next, not just what didn't work (\"I couldn't reach them, so I'm trying their office line and will follow up by 3 PM\").",
-        "Check the new version against the Three C's directly — does it still say exactly what's happening and what you need, using the same standard structure you'd use any other time?",
-        "Read it back before sending, specifically checking whether it sounds like a status report or an ask for rescue — the former builds credibility, the latter erodes it.",
-        "Practice this rewrite on a real message from this week, not a hypothetical one — the skill only sticks when it's applied to something you'd actually send."
-      ],
-      "trainerCue": "Actually do the discussion prompt as a group — go around the room and have 2-3 people rewrite a real opening line live. This is more useful in practice than reading the concept alone."
-    },
-    {
-      "h": "Language Signals Level",
-      "section": "Managing Up Foundations",
-      "fourPart": {
-        "corePrinciples": [
-          "The words you use when relaying information reveal — and reinforce — which identity you're operating from. Language isn't cosmetic here; it's diagnostic.",
-          "The helper reports facts and waits. The force multiplier reports facts already framed with a recommendation or next step attached."
-        ],
-        "howTo": [
-          "Helper: \"They want to meet.\" Force multiplier: \"They're requesting a meeting. Based on our objectives, we can (1) decline, (2) delegate, or (3) meet with conditions. I recommend delegation.\"",
-          "Helper: \"Should I respond?\" Force multiplier: \"I've drafted a response that maintains our position without conceding liability. Please review.\"",
-          "Practice converting your own recent messages from the helper pattern to the force-multiplier pattern — the shift is almost always adding structure and a recommendation, not adding length."
-        ],
-        "bestPractices": [
-          "This isn't about sounding more impressive — it's about actually doing more of the thinking before the message goes out, which is what the language change reflects.",
-          "Pitfall: adopting the confident language pattern without actually doing the underlying analysis — the phrasing should follow real judgment, not substitute for it."
-        ],
-        "discussionCase": "Take a message you sent this week that used the 'helper' pattern. Rewrite it in the force-multiplier pattern — what additional thinking did that rewrite actually require you to do?"
-      }
-    },
-    {
-      "h": "Communication Mastery",
-      "section": "Communication & Executive Presence",
-      "layout": "QUADRANT",
-      "quadrants": [
-        {
-          "label": "Clarity Over Cleverness",
-          "desc": "Say the actual point in the first sentence — don't make the reader work to find it"
-        },
-        {
-          "label": "Match the Medium",
-          "desc": "A quick confirmation is a text or a one-line email; a sensitive decision deserves a call or a real conversation"
-        },
-        {
-          "label": "Active Listening",
-          "desc": "Repeat back what you heard before acting on it — assumptions are where most miscommunication actually happens"
-        },
-        {
-          "label": "Read the Room, Then Adjust",
-          "desc": "The same update lands differently with a stressed executive than a calm one — tone should flex, facts shouldn't"
-        }
-      ],
-      "b": [
-        "Communication mastery isn't about sounding polished — it's about the message landing correctly the first time, without a follow-up to clarify what you actually meant.",
-        "Most breakdowns in EA/executive communication trace back to one of two things: the message was too vague to act on, or it used the wrong channel for how urgent or sensitive it actually was.",
-        "Discussion prompt: think of a time a message you sent was misread — was it a clarity problem, a channel problem, or a tone problem?"
-      ],
-      "howTo": [
-        "Before sending, check for Clarity Over Cleverness — is the actual point stated in the first sentence, or does the reader have to work to find it?",
-        "Match the Medium to the message — a quick confirmation belongs in a text or one-line email; a sensitive decision deserves a call or a real conversation, not a written message alone.",
-        "Practice Active Listening before acting on anything you were told — repeat it back in your own words first, since most miscommunication traces back to an unchecked assumption.",
-        "Read the Room before delivering the message, and adjust tone accordingly — the same facts land differently with a stressed executive than a calm one, even though the facts themselves shouldn't change.",
-        "If a message gets misread, diagnose which failure it actually was — a clarity problem, a channel problem, or a tone problem — since the fix is different for each."
-      ],
-      "trainerCue": "Ask for a real example from the room of a message that got misread — diagnosing WHY it failed (clarity vs. channel vs. tone) is more useful than a hypothetical."
-    },
-    {
-      "h": "Executive Presence",
-      "section": "Communication & Executive Presence",
-      "layout": "THREEBOX",
-      "boxes": [
-        {
-          "label": "Composed Under Pressure",
-          "desc": "Your calm in a crisis is often the only calm in the room — it's contagious, and so is panic"
-        },
-        {
-          "label": "Decisive in Ambiguity",
-          "desc": "When no one has told you exactly what to do, make the reasonable call and own it, rather than freezing until someone rescues you"
-        },
-        {
-          "label": "Credible in Small Moments",
-          "desc": "Presence is built in routine interactions — a clear email, a well-run handoff — long before it's tested in a real crisis"
-        }
-      ],
-      "b": [
-        "Executive presence for an EA isn't about imitating the executive — it's about being someone whose judgment other people trust in the room, on a call, or in a hallway conversation.",
-        "The fastest way to lose presence is visible panic or visible uncertainty about basic facts — the fastest way to build it is calm, specific, accurate communication under pressure.",
-        "This is closely tied to Managing Up: an EA with genuine presence makes the executive's life easier simply by being someone others don't need to double-check."
-      ],
-      "howTo": [
-        "Stay composed under pressure deliberately — recognize that your calm (or panic) in a crisis is contagious to everyone else in the room.",
-        "When no one has told you exactly what to do, make the reasonable call yourself and own it, rather than freezing until someone else steps in.",
-        "Build credibility in small, routine moments first — a clear email, a well-run handoff — since presence is established long before it's ever tested in a real crisis.",
-        "When delivering difficult news, keep your delivery calm, specific, and accurate rather than either minimizing it or delivering it with visible anxiety.",
-        "Connect this directly to Managing Up — an EA with genuine presence makes the executive's life easier simply by being someone others don't feel the need to double-check."
-      ],
-      "trainerCue": "If time allows, have two trainees role-play a 30-second 'deliver bad news calmly' exchange — presence is far easier to feel live than to describe in the abstract."
-    },
-    {
       "h": "Managing Constant Executive Exposure",
-      "section": "Communication & Executive Presence",
+      "section": "Executive Exposure & Board Communication",
       "fourPart": {
         "corePrinciples": [
           "High-level executives operate under constant exposure: legal risk, compliance risk, public perception risk, stakeholder scrutiny, and brand vulnerability — all simultaneously, all the time.",
@@ -146,7 +41,7 @@ const DAY2 = {
     },
     {
       "h": "Stakeholder & Board Update Communications",
-      "section": "Communication & Executive Presence",
+      "section": "Executive Exposure & Board Communication",
       "fourPart": {
         "corePrinciples": [
           "Board updates are a distinct communication genre from ordinary executive correspondence — they're read by people with formal governance authority, often reviewed after the fact, and held to a higher standard of precision.",
@@ -166,7 +61,7 @@ const DAY2 = {
     },
     {
       "h": "Investor Briefing Preparation",
-      "section": "Communication & Executive Presence",
+      "section": "Executive Exposure & Board Communication",
       "fourPart": {
         "corePrinciples": [
           "Investor briefings carry a different kind of scrutiny than internal updates — investors are evaluating both the substance of what's reported and, implicitly, the competence of whoever prepared it.",
@@ -855,7 +750,7 @@ const DAY2 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 27,
+      "afterIndex": 23,
       "q": "True or False: an LLM looks up facts in a database before answering.",
       "opts": [
         "True",
@@ -865,7 +760,7 @@ const DAY2 = {
       "r": "It generates a statistically likely response; anything true in that response is true because the pattern happened to match reality, not because it was looked up."
     },
     {
-      "afterIndex": 28,
+      "afterIndex": 24,
       "q": "You paste a 40-page contract and ask for a summary of section 12. The AI's answer mixes up details from section 3. What most likely happened?",
       "opts": [
         "Context window strain — it lost precision across a long document",
@@ -877,7 +772,7 @@ const DAY2 = {
       "r": "When a document is long, precision degrades across it — paste just the relevant section when precision matters."
     },
     {
-      "afterIndex": 35,
+      "afterIndex": 31,
       "q": "A media inquiry with a deadline tomorrow just landed. Under the Priority Matrix, this is:",
       "opts": [
         "Something to batch with the newsletter",
@@ -889,7 +784,7 @@ const DAY2 = {
       "r": "Media inquiries with a hard deadline sit squarely in Tier 1 — immediate escalation."
     },
     {
-      "afterIndex": 34,
+      "afterIndex": 30,
       "q": "What best distinguishes high-performing email management from average?",
       "opts": [
         "Forwarding every email so nothing is missed",
@@ -1210,14 +1105,6 @@ const DAY2 = {
 };
 
 const DAY2_EXTRA_LEARNING = {
-  "2::Reframing Reactive Language": {
-    "t": "A Reframing Toolkit",
-    "p": [
-      "Swap reports for actions: 'I couldn't reach the client' → 'The client hasn't responded; I've emailed and will call again at 2 PM.'",
-      "Swap blame for plans: 'The vendor messed up the order' → 'The order arrived incomplete; replacement is confirmed for Thursday.'",
-      "Swap open questions for decisions: 'What should I do about the conflict?' → 'Two options: move the call or send a delegate. I recommend moving the call.'"
-    ]
-  },
   "2::Email Is a Control System, Not Cleanup": {
     "t": "The Three Access Levels",
     "p": [
@@ -1259,5 +1146,117 @@ const DAY2_EXTRA_LEARNING = {
     ]
   }
 };
+
+/* Topics taken out of Day 2 on 2026-11-21 because Day 1 already teaches them (Communication & Gatekeeping,
+   Managing Up Basics). Shown nowhere: only migrateDayOrder() in index.html reads them, so a trainee's saved
+   place and Quick Check answers still move to the right slide in today's order. */
+const DAY2_RETIRED_LESSONS = [
+    {
+      "h": "Reframing Reactive Language",
+      "section": "Managing Up Foundations",
+      "svgDiagram": "<svg viewBox=\"0 0 560 160\" xmlns=\"http://www.w3.org/2000/svg\"><style>.rl{font:700 11px Arial,sans-serif;fill:#fff;}.rt{font:400 10.5px Arial,sans-serif;fill:rgba(255,255,255,.9);font-style:italic;}</style><g transform=\"translate(20,20)\"><rect width=\"230\" height=\"110\" rx=\"10\" fill=\"#B54A3F\"/><text x=\"115\" y=\"28\" text-anchor=\"middle\" class=\"rl\">REACTIVE</text><text x=\"115\" y=\"60\" text-anchor=\"middle\" class=\"rt\">\"I couldn't reach</text><text x=\"115\" y=\"76\" text-anchor=\"middle\" class=\"rt\">them.\"</text><text x=\"115\" y=\"98\" text-anchor=\"middle\" style=\"font:400 9px Arial,sans-serif;fill:rgba(255,255,255,.7);\">reports a problem</text></g><path d=\"M258 75 L308 75\" stroke=\"#DB8437\" stroke-width=\"3\" class=\"svg-flow-arrow\" marker-end=\"url(#ahrl)\"/><g transform=\"translate(310,20)\"><rect width=\"230\" height=\"110\" rx=\"10\" fill=\"#3F7D58\"/><text x=\"115\" y=\"28\" text-anchor=\"middle\" class=\"rl\">FORWARD-LOOKING</text><text x=\"115\" y=\"56\" text-anchor=\"middle\" class=\"rt\">\"...so I'm trying their</text><text x=\"115\" y=\"72\" text-anchor=\"middle\" class=\"rt\">office line, will follow</text><text x=\"115\" y=\"88\" text-anchor=\"middle\" class=\"rt\">up by 3 PM.\"</text><circle cx=\"115\" cy=\"100\" r=\"5\" fill=\"#fff\" class=\"svg-pulse-dot\"/></g><defs><marker id=\"ahrl\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#DB8437\"/></marker></defs></svg>",
+      "b": [
+        "Reframe reactive language into forward-looking language.",
+        "Discussion prompt: think of a message you sent recently that could have used more Clarity. Rewrite the opening line right now, out loud, the way the Three C's would want it."
+      ],
+      "howTo": [
+        "Identify the reactive phrase in your draft — language that reports a problem without offering any forward motion (\"I couldn't reach them\").",
+        "Rewrite it to lead with the forward-looking version instead — what you're doing next, not just what didn't work (\"I couldn't reach them, so I'm trying their office line and will follow up by 3 PM\").",
+        "Check the new version against the Three C's directly — does it still say exactly what's happening and what you need, using the same standard structure you'd use any other time?",
+        "Read it back before sending, specifically checking whether it sounds like a status report or an ask for rescue — the former builds credibility, the latter erodes it.",
+        "Practice this rewrite on a real message from this week, not a hypothetical one — the skill only sticks when it's applied to something you'd actually send."
+      ],
+      "trainerCue": "Actually do the discussion prompt as a group — go around the room and have 2-3 people rewrite a real opening line live. This is more useful in practice than reading the concept alone."
+    },
+    {
+      "h": "Language Signals Level",
+      "section": "Managing Up Foundations",
+      "fourPart": {
+        "corePrinciples": [
+          "The words you use when relaying information reveal — and reinforce — which identity you're operating from. Language isn't cosmetic here; it's diagnostic.",
+          "The helper reports facts and waits. The force multiplier reports facts already framed with a recommendation or next step attached."
+        ],
+        "howTo": [
+          "Helper: \"They want to meet.\" Force multiplier: \"They're requesting a meeting. Based on our objectives, we can (1) decline, (2) delegate, or (3) meet with conditions. I recommend delegation.\"",
+          "Helper: \"Should I respond?\" Force multiplier: \"I've drafted a response that maintains our position without conceding liability. Please review.\"",
+          "Practice converting your own recent messages from the helper pattern to the force-multiplier pattern — the shift is almost always adding structure and a recommendation, not adding length."
+        ],
+        "bestPractices": [
+          "This isn't about sounding more impressive — it's about actually doing more of the thinking before the message goes out, which is what the language change reflects.",
+          "Pitfall: adopting the confident language pattern without actually doing the underlying analysis — the phrasing should follow real judgment, not substitute for it."
+        ],
+        "discussionCase": "Take a message you sent this week that used the 'helper' pattern. Rewrite it in the force-multiplier pattern — what additional thinking did that rewrite actually require you to do?"
+      }
+    },
+    {
+      "h": "Communication Mastery",
+      "section": "Communication & Executive Presence",
+      "layout": "QUADRANT",
+      "quadrants": [
+        {
+          "label": "Clarity Over Cleverness",
+          "desc": "Say the actual point in the first sentence — don't make the reader work to find it"
+        },
+        {
+          "label": "Match the Medium",
+          "desc": "A quick confirmation is a text or a one-line email; a sensitive decision deserves a call or a real conversation"
+        },
+        {
+          "label": "Active Listening",
+          "desc": "Repeat back what you heard before acting on it — assumptions are where most miscommunication actually happens"
+        },
+        {
+          "label": "Read the Room, Then Adjust",
+          "desc": "The same update lands differently with a stressed executive than a calm one — tone should flex, facts shouldn't"
+        }
+      ],
+      "b": [
+        "Communication mastery isn't about sounding polished — it's about the message landing correctly the first time, without a follow-up to clarify what you actually meant.",
+        "Most breakdowns in EA/executive communication trace back to one of two things: the message was too vague to act on, or it used the wrong channel for how urgent or sensitive it actually was.",
+        "Discussion prompt: think of a time a message you sent was misread — was it a clarity problem, a channel problem, or a tone problem?"
+      ],
+      "howTo": [
+        "Before sending, check for Clarity Over Cleverness — is the actual point stated in the first sentence, or does the reader have to work to find it?",
+        "Match the Medium to the message — a quick confirmation belongs in a text or one-line email; a sensitive decision deserves a call or a real conversation, not a written message alone.",
+        "Practice Active Listening before acting on anything you were told — repeat it back in your own words first, since most miscommunication traces back to an unchecked assumption.",
+        "Read the Room before delivering the message, and adjust tone accordingly — the same facts land differently with a stressed executive than a calm one, even though the facts themselves shouldn't change.",
+        "If a message gets misread, diagnose which failure it actually was — a clarity problem, a channel problem, or a tone problem — since the fix is different for each."
+      ],
+      "trainerCue": "Ask for a real example from the room of a message that got misread — diagnosing WHY it failed (clarity vs. channel vs. tone) is more useful than a hypothetical."
+    },
+    {
+      "h": "Executive Presence",
+      "section": "Communication & Executive Presence",
+      "layout": "THREEBOX",
+      "boxes": [
+        {
+          "label": "Composed Under Pressure",
+          "desc": "Your calm in a crisis is often the only calm in the room — it's contagious, and so is panic"
+        },
+        {
+          "label": "Decisive in Ambiguity",
+          "desc": "When no one has told you exactly what to do, make the reasonable call and own it, rather than freezing until someone rescues you"
+        },
+        {
+          "label": "Credible in Small Moments",
+          "desc": "Presence is built in routine interactions — a clear email, a well-run handoff — long before it's tested in a real crisis"
+        }
+      ],
+      "b": [
+        "Executive presence for an EA isn't about imitating the executive — it's about being someone whose judgment other people trust in the room, on a call, or in a hallway conversation.",
+        "The fastest way to lose presence is visible panic or visible uncertainty about basic facts — the fastest way to build it is calm, specific, accurate communication under pressure.",
+        "This is closely tied to Managing Up: an EA with genuine presence makes the executive's life easier simply by being someone others don't need to double-check."
+      ],
+      "howTo": [
+        "Stay composed under pressure deliberately — recognize that your calm (or panic) in a crisis is contagious to everyone else in the room.",
+        "When no one has told you exactly what to do, make the reasonable call yourself and own it, rather than freezing until someone else steps in.",
+        "Build credibility in small, routine moments first — a clear email, a well-run handoff — since presence is established long before it's ever tested in a real crisis.",
+        "When delivering difficult news, keep your delivery calm, specific, and accurate rather than either minimizing it or delivering it with visible anxiety.",
+        "Connect this directly to Managing Up — an EA with genuine presence makes the executive's life easier simply by being someone others don't feel the need to double-check."
+      ],
+      "trainerCue": "If time allows, have two trainees role-play a 30-second 'deliver bad news calmly' exchange — presence is far easier to feel live than to describe in the abstract."
+    }
+];
+(window.EA_RETIRED_LESSONS = window.EA_RETIRED_LESSONS || []).push(...DAY2_RETIRED_LESSONS);
 
 (window.EA_DAY_FILES = window.EA_DAY_FILES || {})[2] = { day: DAY2, extraLearning: DAY2_EXTRA_LEARNING };
