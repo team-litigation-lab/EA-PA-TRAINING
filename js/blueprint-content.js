@@ -5,11 +5,11 @@
    A slide is { icon, title, points: [...], where, tip }. Change the wording here; the page and the PDF
    are made from it each time, stamped with the deployed build. README → Handouts, Orientation and the Blueprint. */
 window.LSH_BLUEPRINT = {
-  product: 'EA / PA Upskill Program',
-  site: 'LSH EA / PA Upskill Program',
+  product: 'EA PA Track',
+  site: 'LSH EA PA Track',
   file: 'LSH_EA-PA',
   trainee: {
-    sub: 'Your guide to the portal: the 10-day EA / PA Upskill Program, day by day',
+    sub: 'Your guide to the portal: the 10-day EA PA Track, day by day',
     slides: [
       { icon: '👋', title: 'Welcome to the program', points: [
           'Ten days to work like a strategic, trusted Executive & Personal Assistant to an attorney — built around one realistic client, from Day 1 to Day 10.',
@@ -21,9 +21,9 @@ window.LSH_BLUEPRINT = {
         tip: 'Your progress saves to your account automatically, so you can pick up on any computer.' },
       { icon: '🗺', title: 'Your 10-day roadmap', points: [
           'Ten days, each with its topics and its Practice Lab, listed on your dashboard.',
-          'Days open one at a time — each builds on the one before.',
-          'Finishing a day\'s Practice Lab unlocks tomorrow.',
-          'Every day you have finished stays open: press Review to go back to it any time.'],
+          'Every day is open — take them in order, as each builds on the one before.',
+          'Finish each day\'s Practice Lab before moving on to the next day.',
+          'Any day stays open: press Review to go back to it any time.'],
         where: 'Your dashboard — the day cards, in order.',
         tip: 'Read the Client Profile before Day 1: the client\'s preferences are graded from the first task.' },
       { icon: '🖥', title: 'How every day works', points: [

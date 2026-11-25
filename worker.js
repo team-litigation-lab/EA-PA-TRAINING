@@ -325,7 +325,7 @@ const PROTECTED_TRAINEE_FIELDS = ["name", "firstName", "lastName", "batch", "ful
 
 function canRead(tok, key) {
   if (tok.role === "a") return true;
-  // callsim:<id>: their graded calls from the Call Simulator (☎ LSH Ring Channel), kept by the Training Portal (read only: traineeWrite refuses it)
+  // callsim:<id>: their graded calls from the Call Sim (☎ LSH Voice), kept by the Training Portal (read only: traineeWrite refuses it)
   // simresults:<id>: their Portal simulator grades (the Executive Week calendar, the Backup Drive), kept by the Portal (read only too)
   return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || key === `callsim:${tok.id}` || key === `simresults:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
 }
@@ -781,7 +781,7 @@ export default {
       /* ---------- AI proxy (signed-in users only, so strangers can't spend your credits) ---------- */
       // (the path keeps its old name so pages already open in browsers keep working)
       if (path === "/api/ai-relay") {
-        // The LSH Training Portal's simulators (Call Simulator, Calendaring, Email Replies) run on
+        // The LSH Training Portal's simulators (Call Sim, Calendaring, Email Replies) run on
         // Cloudflare Pages, next to the trainee — and Gemini refuses some regions ("User location is
         // not supported", e.g. Hong Kong). The Portal sends those AI calls here instead, so they run
         // from this Worker's US placement with its key pool. Only with the shared AI_RELAY_SECRET.

@@ -5,6 +5,8 @@
    plus the scenario for the room on p2. A single-slide topic shows p1 with p2's wrap and scenario.
    s1…s4 = section scripts for ① Core Principles, ② Step-by-Step, ③ Best Practices, ④ Go Deeper:
    when a slide is split over pages, Presenter view shows only the sections on the current page.
+   answer = optional model answer to the slide's question (a list): Presenter view shows it under the
+   question, marked "not read aloud", and the Speaker Notes PDF includes it.
    steps = the full Step-by-Step script (numbered lines, read aloud); Presenter view shows it whenever
    the Step-by-Step section is on screen, and the Speaker Notes PDF includes it.
    Nothing here is generated at run time. */
@@ -19,7 +21,14 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "on": "This slide lists the best practices for each role: what EA work and PA work actually cover, and that an EA manages the executive's capacity, not just logistics. The pitfall to stress is conflating the two mindsets, the most common onboarding mistake, and the Mindset check box gives the one question that settles it.",
     "say": "Neither mindset is better than the other. The mistake is mixing them up.",
     "wrap": "When a request lands, ask one question: is this protecting the business or the person? That answer tells you how to handle it.",
-    "scenario": "Name three tasks in Elias's world that look like PA work on the surface but are actually EA work once you weigh the stakes — think about his calendar, his reputation and his legal exposure."
+    "scenario": "Name three tasks in Elias's world that look like PA work on the surface but are actually EA work once you weigh the stakes — think about his calendar, his reputation and his legal exposure.",
+    "answer": [
+      "The backup navy suit and the dry cleaning: his standing instructions say to pack a backup navy suit for any trip over two nights, and those trips are arbitrations in Singapore and London. Turning up without it affects how he appears to the tribunal and the client, so it's trial prep, not laundry.",
+      "Client dinners and gifts: a dinner is client relations (the venue checked for his Paleo diet; spend near his $5,000 personal-review limit). Gifts carry legal exposure: anything to someone tied to a court or tribunal, or lavish gifts to clients, raises ethics questions and must be recorded as a business expense.",
+      "Bar registrations, memberships and CLE credits: renewing them feels like personal paperwork, but a lapse means he can't practise. That's a regulatory and reputational problem for the firm (Day 9's crisis roleplay is built on exactly this).",
+      "Also accept: family items on the firm calendar three partners can see (confidentiality); a personal social-media post after a win (client information, Day 10); personal spend on a firm card (expense and trust-account controls, Robert Hale).",
+      "Debrief: the test is whether a mistake costs him only personally, or costs his reputation, a client or his licence. If it's the second, handle it in EA mode: document it, check the policy, loop in the owner (e.g. Priya Nair for anything public)."
+    ]
   },
   "s1": {
     "on": "This section defines the EA as a strategic partner: every action is judged by whether it lifts the executive's efficiency and the business's performance.",
