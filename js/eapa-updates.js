@@ -298,7 +298,7 @@ function renderTopbar(){
     <div class="topbar-inner">
       <div class="brand" onclick="goto('dashboard')">
         ${brandMark()}
-        <div class="brand-text"><b>EA/PA UPSKILL PROGRAM</b></div>
+        <div class="brand-text"><b>EA PA TRACK</b></div>
       </div>
       <button type="button" class="mobile-menu-btn" aria-label="Menu" aria-expanded="${state.mobileNavOpen?'true':'false'}" onclick="toggleMobileNav()">${state.mobileNavOpen?'✕':'☰'}<span>Menu</span></button>
       <div class="topbar-right">
@@ -956,7 +956,7 @@ if(PV_IS_AUDIENCE){
   window.updateIsSafe = function(){ return false; };      // never reload itself for an update mid-class (the console offers Update now)
   const app = document.getElementById("app"); if(app) app.innerHTML = "";
   const root = document.createElement("div"); root.id = "audienceRoot";
-  root.innerHTML = `<div class="aud-wait"><b>LSH EA/PA Upskill Program</b>Waiting for the presenter…</div>`;
+  root.innerHTML = `<div class="aud-wait"><b>LSH EA PA Track</b>Waiting for the presenter…</div>`;
   document.body.appendChild(root);
   // arrow keys pressed in the slides window (or while the live copy holds focus) drive the presentation
   document.addEventListener("keydown", (e)=>{
@@ -2332,7 +2332,7 @@ function sopRunOfShow(dRaw){
 function sopProgramFlow(){
   const days = DAYS.map(d=>{ const lab = relatedTools(d.id)[0]; return `<tr><td><b>Day ${d.id}</b></td><td>${esc(d.title)}</td><td>${d.lessons.length}</td><td>${lab?esc(lab.title):"—"}</td><td><button class="btn btn-ghost btn-sm" onclick="setSopDay(${d.id})">Run of show →</button></td></tr>`; }).join("");
   return `
-    <section class="card sopf"><div class="sopx-kicker">Trainer reference · The whole program</div><h2 style="font-family:'Fraunces',Georgia,serif;color:var(--navy);font-size:26px;margin:4px 0 8px;">How to facilitate the LSH EA / PA Upskill Program</h2>
+    <section class="card sopf"><div class="sopx-kicker">Trainer reference · The whole program</div><h2 style="font-family:'Fraunces',Georgia,serif;color:var(--navy);font-size:26px;margin:4px 0 8px;">How to facilitate the LSH EA PA Track</h2>
       <p style="font-size:14.5px;line-height:1.6;margin:0;max-width:85ch;">Ten live sessions, one realistic client (Elias Thorne), one rhythm every day: <b>teach → check → practise → debrief → assess → follow up</b>. This page is the big picture; open any day for its minute-by-minute run of show.</p></section>
     <div class="sopf-grid">
       <section class="card sopf-card"><h3>1 · Before the program</h3><ol>
@@ -2955,7 +2955,7 @@ window.fitTopicsModal = fitTopicsModal;
       y += 6;
     });
     const pages = doc.getNumberOfPages();
-    for(let p = 1; p <= pages; p++){ doc.setPage(p); doc.setFontSize(8); doc.setTextColor(110,116,140); doc.text(`LSH EA / PA Upskill Program · Day ${day} Lesson Notes · page ${p} of ${pages}`, X, H - 28); }
+    for(let p = 1; p <= pages; p++){ doc.setPage(p); doc.setFontSize(8); doc.setTextColor(110,116,140); doc.text(`LSH EA PA Track · Day ${day} Lesson Notes · page ${p} of ${pages}`, X, H - 28); }
     doc.save(`LSH_Day${day}_Lesson_Notes.pdf`);
     toast("Lesson Notes downloaded.");
   }
