@@ -835,6 +835,9 @@ function presenterCues(d, slide){
   }else if(slide.type==="block"){
     const b = dayBlock(d, slide.lessonIndex), first = b.lessons[0].num, last = b.lessons[b.lessons.length-1].num;
     out.push(`<h3>Part ${b.n} of ${b.of}: ${esc(b.title)}</h3><p>Topics ${first}–${last}${b.sections.length > 1 ? `, in ${b.sections.length} sections` : ""}. Tell the room what this part of the day covers and why it matters, then move on to Topic ${first}.</p>`);
+  }else if(slide.type==="divider" && slide.section && typeof daySection === "function"){
+    const x = daySection(d, slide.lessonIndex), f = x.items[0]+1, t = x.items[x.items.length-1]+1;
+    out.push(`<h3>Section ${x.n} of ${x.of}: ${esc(x.name)}</h3><p>${f===t ? `Topic ${f}` : `Topics ${f}–${t}`}. Say what this section covers and why it matters to Elias, then move on to its first topic. Each topic is one slide; its best practices and pitfalls are in the trainee's 📖 Lesson Notes.</p>`);
   }else if(slide.type==="divider"){
     const l = d.lessons[slide.lessonIndex];
     out.push(`<h3>Topic ${slide.lessonIndex+1} of ${d.lessons.length}: ${esc(l.h)}</h3><p>${l.section ? `Section: ${esc(l.section)}. ` : ""}Name the topic, then move on to its first slide.</p>`);

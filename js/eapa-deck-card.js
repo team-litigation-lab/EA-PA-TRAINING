@@ -14,6 +14,7 @@
 
   // the Topic Bar: "Topic 3" on a topic's slides, otherwise what kind of slide it is
   function topicLabel(d, s){
+    if(s.type === "divider" && s.section && typeof daySection === "function"){ const x = daySection(d, s.lessonIndex); return "Section " + x.n + " of " + x.of; }
     if(s.lessonIndex != null && s.type !== "block") return "Topic " + (s.lessonIndex + 1) + " of " + d.lessons.length;
     return ({agenda:"Day " + d.id + " Agenda", taskOverview:"Task Overview", meetClient:"Live Q&A", block:"Day " + d.id,
       video:"Video Recap", practiceLab:"Practice Lab", discussion:"Checkpoint"})[s.type] || ("Day " + d.id);

@@ -78,13 +78,21 @@ const BASE = process.argv[2] || 'http://localhost:8787/';
 
     // the strip's Part buttons jump between the topic's parts
     await page.evaluate(() => { goto('day', 1); state.dayViewMode = 'slides'; render(); }); await page.waitForTimeout(300);
-    const first = await page.evaluate(() => buildDaySlides(DAYS[0]).findIndex(s => s.type === 'topic' && s.part === 1 && !DAYS[0].lessons[s.lessonIndex].singleSlide));
+    // One slide per topic (ONE_SLIDE_TOPICS): a topic is one slide and its strip has no Part buttons;
+    // with two parts per topic, the strip's "Part 2" jumps to the topic's second part.
+    const one = await page.evaluate(() => typeof ONE_SLIDE_TOPICS !== 'undefined' && ONE_SLIDE_TOPICS);
+    const first = await page.evaluate(one => buildDaySlides(DAYS[0]).findIndex(s => s.type === 'topic' && s.part === 1 && (one || !DAYS[0].lessons[s.lessonIndex].singleSlide)), one);
     check(first >= 0, 'a day has topic slides');
     await page.evaluate(i => goToSlide(i), first); await page.waitForTimeout(250);
     check(await page.locator('#lessonSlideWrap .xd-head .xd-title').count() === 1, "the topic's title is on the deck strip");
-    await page.locator('.xd-head-steps button', { hasText: 'Part 2' }).click(); await page.waitForTimeout(250);
-    const second = await page.evaluate(() => state.lessonSlide);
-    check(await page.evaluate(i => { const s = buildDaySlides(DAYS[0])[i]; return s && s.type === 'topic' && s.part === 2; }, second), "the strip's \"Part 2\" jumps to the topic's second part");
+    if (one) {
+        check(await page.locator('.xd-head-steps button', { hasText: 'Part 2' }).count() === 0, 'one slide per topic: no "Part 2" on the strip');
+        check(await page.evaluate(() => DAYS.every(d => buildDaySlides(d).filter(s => s.type === 'divider').length === new Set(d.lessons.map(l => l.section || '')).size)), 'one slide per topic: one title slide per section');
+    } else {
+        await page.locator('.xd-head-steps button', { hasText: 'Part 2' }).click(); await page.waitForTimeout(250);
+        const second = await page.evaluate(() => state.lessonSlide);
+        check(await page.evaluate(i => { const s = buildDaySlides(DAYS[0])[i]; return s && s.type === 'topic' && s.part === 2; }, second), "the strip's \"Part 2\" jumps to the topic's second part");
+    }
     // the lesson's own text is the slide, and the card's own DAY/TOPIC line is not repeated under the strip
     check(await page.locator('#lessonSlideWrap .lesson-card').count() >= 1, 'the slide carries the topic as written');
     check(!(await page.evaluate(() => { const t = document.querySelector('#lessonSlideWrap .topic-separator'); return !!t && getComputedStyle(t).display !== 'none'; })), "the card's own DAY · TOPIC line gives way to the strip");
