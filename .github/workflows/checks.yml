@@ -86,6 +86,10 @@ jobs:
         env:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules
         run: node .github/scripts/graded-calls.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
+      - name: 🏅 Admin Scorecard (one page per batch, every admin button in its header and on each row, the standard table look)
+        env:
+          NODE_PATH: ${{ runner.temp }}/pw/node_modules
+        run: node .github/scripts/admin-scorecard.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
       - name: Every slide fits on one screen (laptop and large screen, every page of every day)
         env:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules
