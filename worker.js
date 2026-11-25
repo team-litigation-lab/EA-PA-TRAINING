@@ -139,7 +139,9 @@ function hasProgress(r) {
 async function linkSameName(env, who) {
   const { newId, legacyId } = candidateIds(who.name, who.batch);
   const alias = await env.LSH_KV.get(`trainee-alias:${newId}`);
-  if (alias && (await env.LSH_KV.get(`trainee:${alias}`))) return alias;
+  // (a link is to the same Portal account only, never to a namesake: data-safety review 2026-11-19)
+  if (alias) { let ar = null; try { ar = JSON.parse((await env.LSH_KV.get(`trainee:${alias}`)) || "null"); } catch (e) { ar = null; }
+    if (ar && (!ar.portalUid || !who.u || String(ar.portalUid) === String(who.u))) return alias; }
   const curRaw = await env.LSH_KV.get(`trainee:${newId}`), cur = curRaw ? JSON.parse(curRaw) : null;
   if (cur && (hasProgress(cur) || cur.linkChecked)) return "";
   if (!cur) {   // the old name-only record, when its batch matches, is already found by traineeSession
@@ -155,7 +157,7 @@ async function linkSameName(env, who) {
   for (const id of ids) {
     if (id === newId) continue;
     const raw = await env.LSH_KV.get(`trainee:${id}`), r = raw ? JSON.parse(raw) : null;
-    if (!r || r.rejected || !hasProgress(r)) continue;
+    if (!r || r.rejected || r.approved !== true || !hasProgress(r) || !who.u || String(r.portalUid || "") !== String(who.u)) continue;
     if (!best || new Date(r.lastActive || 0) > new Date(best.lastActive || 0)) best = r;
   }
   if (!best) {
@@ -201,6 +203,18 @@ async function useTicketOnce(kv, ticket) {
   await kv.put(key, "1", { expirationTtl: 600 });
   return true;
 }
+/* 🎯 A Portal ticket names the program it was made for (p: the topic key, functions/api/launch.js makeTicket). This
+   program refuses a ticket whose p is another program, a tool, or a course's tool link (p "tool"): why.r "audience", so
+   Program Access on the Portal stays the one gate. A ticket with no p is still taken, so nobody is locked out whichever
+   side deploys first: tickets are signed by the Portal and the courses only and live 5 minutes, and once the Portal and
+   the courses' tool tickets carry p, no ticket without one is made any more. */
+const PORTAL_TOPIC = "EA  PA TRAINING-OUTSOURCED MANP";
+// SSO_REQUIRE_AUDIENCE=1 refuses a ticket with no p too: set it on every program once the Portal and every program (whose
+// tool tickets now carry p) are deployed, so no ticket without an audience is taken any more.
+function ticketAudienceOk(env, t) {
+  if (t && t.p != null) return String(t.p) === PORTAL_TOPIC;
+  return String((env && env.SSO_REQUIRE_AUDIENCE) || "").trim() !== "1";
+}
 async function readPortalTicket(env, ticket, why = {}) {
   if (!portalSecret(env)) { why.r = "format"; return null; }
   const parts = String(ticket || "").split(".");
@@ -210,11 +224,17 @@ async function readPortalTicket(env, ticket, why = {}) {
   let t; try { t = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(parts[0].replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0)))); } catch (e) { why.r = "format"; return null; }
   const exp = Number(t && t.exp);
   if (!exp || Date.now() > exp || exp - Date.now() > PORTAL_TICKET_MAX_MS) { why.r = "expired"; return null; }
+  if (!ticketAudienceOk(env, t)) { why.r = "audience"; return null; }
   if (t.r === "s") return { system: true };   // the Portal's own server-side tools (sign-in check, registration import): never given to a person
   if (t.r === "a") return { admin: true, name: String(t.n || "").trim().slice(0, 60) };   // an administrator signed in on the Portal (their own admin account)
   const first = String(t.first || "").trim(), last = String(t.last || "").trim(), batch = String(t.b || "").trim();
   if (!first || !last || !batch) return null;
-  return { name: `${first} ${last}`, first, last, batch };
+  // full: the whole name as registered on the Portal (a middle initial, a suffix), shown as the trainee's fullName; the
+  // ID stays first + last name + batch, so a trainee never gets a second account from it
+  const full = String(t.full || "").replace(/\s+/g, " ").trim().slice(0, 120);
+  // u: the trainee's Portal account id, kept on the record (portalUid): a Batch ID move follows it, never a name alone
+  const u = String(t.u == null ? "" : t.u).trim().slice(0, 80);
+  return { name: `${first} ${last}`, first, last, batch, full, u };
 }
 // Like readToken, but an expired token still counts for a while (same signature, same trainee), so a trainee
 // midway through the course isn't sent back to the portal in the middle of a lesson.
@@ -298,12 +318,16 @@ function keepProgress(existing, merged) {
 /* ---------- what a trainee may touch ---------- */
 const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
-const PROTECTED_TRAINEE_FIELDS = ["approved", "rejected", "archived", "labAttemptsResetAt", "certTrainer", "aiReview", "flaggedInvalidInput", "assignedRoleplay", "registeredAt", "unlockedDays", "unlockedDaysAt"];
+// (name, firstName, lastName, batch, fullName, portalUid, batchFrom: who the record is, set from the Portal's ticket and by a trainer:
+// a trainee who could change them could pass for someone else. Security review 2026-11-19.)
+const FIRST_WRITE_FIELDS = ["name", "firstName", "lastName", "batch"];
+const PROTECTED_TRAINEE_FIELDS = ["name", "firstName", "lastName", "batch", "fullName", "portalUid", "batchFrom", "batchMovedAt", "approved", "rejected", "archived", "labAttemptsResetAt", "certTrainer", "aiReview", "flaggedInvalidInput", "assignedRoleplay", "registeredAt", "unlockedDays", "unlockedDaysAt"];
 
 function canRead(tok, key) {
   if (tok.role === "a") return true;
   // callsim:<id>: their graded calls from the Call Sim (☎ LSH Voice), kept by the Training Portal (read only: traineeWrite refuses it)
-  return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || key === `callsim:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
+  // simresults:<id>: their Portal simulator grades (the Executive Week calendar, the Backup Drive), kept by the Portal (read only too)
+  return OWN(tok.id).includes(key) || key === `progress-restore:${tok.id}` || key === `callsim:${tok.id}` || key === `simresults:${tok.id}` || PUBLIC_READ.some((re) => re.test(key));
 }
 async function traineeWrite(env, tok, key, value) {
   const id = tok.id;
@@ -326,7 +350,8 @@ async function traineeWrite(env, tok, key, value) {
   if (key === `trainee:${id}`) {
     // Trainees keep their own record current, but can never change approval, attempts resets, etc.
     const merged = Object.assign({}, incoming);
-    PROTECTED_TRAINEE_FIELDS.forEach((f) => { if (existing && f in existing) merged[f] = existing[f]; else delete merged[f]; });
+    // (a brand-new record's own name and batch are taken from its first write; after that they are the Worker's)
+    PROTECTED_TRAINEE_FIELDS.forEach((f) => { if (existing && f in existing) merged[f] = existing[f]; else if (existing || !FIRST_WRITE_FIELDS.includes(f)) delete merged[f]; });
     if (!existing) { merged.approved = false; merged.registeredAt = new Date().toISOString(); }
     if (existing) keepProgress(existing, merged);
     merged.id = id;
@@ -628,6 +653,8 @@ export default {
           if (al && (!id || id === al)) linkedId = al;
         }
         if (linkedId) {
+          // (the block list, read fresh, holds for a linked record too: platform QA 2026-11-19, EA / PA finding 5)
+          if ((await blockedIds(env, true))[linkedId]) return json({ error: BLOCK_MSG, code: "access-offboarded" }, 403);
           const ex = await env.LSH_KV.get(`trainee:${linkedId}`);
           return json({ id: linkedId, token: await makeToken(env, "t", linkedId, 24 * 30), existing: ex ? JSON.parse(ex) : null });
         }
@@ -680,13 +707,15 @@ export default {
         const who = await readPortalTicket(env, ticket, why);
         if (!who) return json({ error: why.r === "signature"
           ? "The LSH Training Portal couldn't be verified (code: bad-signature). Please tell your administrator: the Portal and this program need the same sign-in secret."
+          : why.r === "audience" ? "This sign-in link was made for another program or tool. Open this program from the LSH Training Portal's Training Directory."
           : "This sign-in link has expired. Open the program again from the LSH Training Portal.", code: why.r || "format" }, 401);
+        // Every Portal ticket works once (a trainee's, a trainer's and the Sign-in check's), so a copy of the link (browser
+        // history, a forwarded URL) can't sign anyone in again inside its 5 minutes.
+        if (!(await useTicketOnce(env.LSH_KV, ticket))) return json({ error: "This sign-in link was already used. Open the program again from the LSH Training Portal.", code: "used" }, 401);
         if (who.system) return json({ admin: true, token: await makeToken(env, "a", "admin", 12) });
         if (who.admin) {
           // Single sign-on for trainers too: an administrator signed in on the Main Portal opens every program as a
-          // trainer, with no second password here. Their ticket works once, so a copy of the link (browser history,
-          // a forwarded URL) can't sign anyone in again inside its 5 minutes.
-          if (!(await useTicketOnce(env.LSH_KV, ticket))) return json({ error: "This sign-in link was already used. Open the program again from the LSH Training Portal.", code: "used" }, 401);
+          // trainer, with no second password here (the ticket was taken once, above).
           return json({ admin: true, name: who.name, token: await makeToken(env, "a", "admin", 12) });
         }
         const res = await traineeSession(who.name, who.batch, "", await linkSameName(env, who));
@@ -696,11 +725,37 @@ export default {
         // (unless an admin here rejected them), so this program never shows "Registration Pending Approval".
         const cur = out.existing;
         if (!cur || (cur.approved !== true && !cur.rejected)) {
+          // no trainee record under this id: an admin deleted it, or the Portal revoked the account. Progress left in R2 is theirs
+          // (the Portal can't reach R2), so it must never come back to whoever registers under this name and batch next.
+          // (platform QA 2026-11-19, EA / PA finding 3)
+          // (data-safety review 2026-11-19: a KV read that missed a record written elsewhere a moment ago must not cost a trainee their
+          // work, so the record is read a second time, and the progress is set aside for 30 days, where an admin can find it, rather
+          // than deleted outright; it is never restored on its own)
+          if (!cur && !(await env.LSH_KV.get(`trainee:${out.id}`))) {
+            const left = await dataGet(env, `progress:${out.id}`);
+            if (left) {
+              await env.LSH_KV.put(`orphan:progress:${out.id}`, typeof left === "string" ? left : JSON.stringify(left), { expirationTtl: 30 * 24 * 3600 });
+              await dataDelete(env, `progress:${out.id}`);
+            }
+          }
           const rec = Object.assign({}, cur || { id: out.id, linkChecked: true, name: who.name, firstName: who.first, lastName: who.last, batch: who.batch, registeredAt: new Date().toISOString() }, { approved: true });
           await env.LSH_KV.put(`trainee:${out.id}`, JSON.stringify(rec));
           out.existing = rec;
         }
-        return json(Object.assign(out, { name: who.name, first: who.first, last: who.last, batch: who.batch }));
+        // the full name as registered on the Portal (with a middle name or initial), kept beside the record's name
+        // ... and the Portal account id (portalUid, set once) and the first and last name: who the record is, which the trainee
+        // can't change here (PROTECTED_TRAINEE_FIELDS). Security and data-safety reviews 2026-11-19.
+        if (out.existing) {
+          const add = {};
+          if (who.full && who.full !== who.name && out.existing.fullName !== who.full) add.fullName = who.full;
+          if (who.u && !out.existing.portalUid) add.portalUid = who.u;
+          if (!out.existing.firstName && !out.existing.lastName) { add.firstName = who.first; add.lastName = who.last; }
+          if (Object.keys(add).length) {
+            out.existing = Object.assign({}, out.existing, add);
+            await env.LSH_KV.put(`trainee:${out.id}`, JSON.stringify(out.existing));
+          }
+        }
+        return json(Object.assign(out, { name: who.name, first: who.first, last: who.last, batch: who.batch }, who.full ? { fullName: who.full } : {}));
       }
 
       const tok = secure ? await readToken(env, request) : { role: "a", id: "open-mode" };

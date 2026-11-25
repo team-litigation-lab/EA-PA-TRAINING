@@ -18,8 +18,10 @@ const fail = (m) => failures.push(m);
 const SECRET = 'portal-secret-shared-with-the-portal';
 
 const b64url = (s) => Buffer.from(s, 'utf8').toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+// A Portal ticket names the program it is for (p, its topic key: the Portal's makeTicket); p: undefined leaves it out.
+const PORTAL_TOPIC = 'EA  PA TRAINING-OUTSOURCED MANP';
 async function ticketFor(payloadObj, secret) {
-    const payload = b64url(JSON.stringify(payloadObj));
+    const payload = b64url(JSON.stringify(Object.assign({ p: PORTAL_TOPIC }, payloadObj)));
     const key = await crypto.subtle.importKey('raw', new TextEncoder().encode('portal-sso:' + secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
     const sig = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(payload));
     const b = String.fromCharCode(...new Uint8Array(sig));
@@ -97,6 +99,70 @@ async function ticketFor(payloadObj, secret) {
     }
     const again = await call(env, '/api/auth/portal', { ticket: aTicket });
     if (again.status !== 401 || !again.body || again.body.code !== 'used') fail(`an administrator's ticket should work only once, got ${JSON.stringify(again)}`);
+
+    // 6. 🎯 a Portal ticket names the program it is for (p, this program's topic key) and works once, whoever it is for
+    //    (platform QA 2026-11-19, finding 1): a ticket made for another program or a tool is refused, so Program Access on
+    //    the Portal stays the one gate (one with no p is still taken: the rollout); and the trainee's full registered name (finding 8) is kept, the ID unchanged.
+    {
+        const soon = () => Date.now() + 60000;
+        const e6 = makeEnv({ PORTAL_SSO_SECRET: SECRET });
+        for (const [label, p] of [["another program's", 'SOME OTHER PROGRAM'], ["the Knowledge Base's", 'kb'], ["a course's tool link", 'tool'], ['a blank-audience', '']]) {
+            for (const [kind, t] of [['trainee', { first: 'Pat', last: 'Lane', b: 'B100926' }], ['admin', { r: 'a', n: 'Coach Ana' }], ['system', { r: 's' }]]) {
+                const res = await call(e6, '/api/auth/portal', { ticket: await ticketFor(Object.assign({}, t, { p, exp: soon() }), SECRET) });
+                if (res.status !== 401 || !res.body || res.body.code !== 'audience' || res.body.token) fail(`${label} ${kind} ticket must be refused (401 audience), got ${JSON.stringify(res)}`);
+            }
+        }
+        if ([...e6.__store.keys()].some((k) => /pat-lane/.test(k) && !/^(\w+:)?sso-used:/.test(k))) fail('a refused ticket must not create or approve a trainee record');
+        // a ticket with no p (made before the Portal named the program) is still taken, so nobody is locked out mid-rollout
+        const np = await call(e6, '/api/auth/portal', { ticket: await ticketFor({ first: 'Pat', last: 'Lane', b: 'B100926', p: undefined, exp: soon() }, SECRET) });
+        if (np.status !== 200 || !np.body || !np.body.token) fail(`a ticket with no p should still sign in: ${JSON.stringify(np)}`);
+        const ap = await call(e6, '/api/auth/portal', { ticket: await ticketFor({ r: 'a', n: 'Coach Ana', p: undefined, exp: soon() }, SECRET) });
+        if (ap.status !== 200 || !ap.body || !ap.body.admin) fail(`a trainer's ticket with no p should still sign in: ${JSON.stringify(ap)}`);
+        // SSO_REQUIRE_AUDIENCE=1 (once everything is deployed): a ticket with no p is refused too; this program's own still opens
+        {
+            const eR = makeEnv({ PORTAL_SSO_SECRET: SECRET, SSO_REQUIRE_AUDIENCE: '1' });
+            const noP = await call(eR, '/api/auth/portal', { ticket: await ticketFor({ first: 'Pat', last: 'Lane', b: 'B100926', p: undefined, exp: soon() }, SECRET) });
+            if (noP.status !== 401 || !noP.body || noP.body.code !== 'audience' || noP.body.token) fail(`with SSO_REQUIRE_AUDIENCE=1 a ticket with no p is refused: ${JSON.stringify(noP)}`);
+            const own = await call(eR, '/api/auth/portal', { ticket: await ticketFor({ first: 'Pat', last: 'Lane', b: 'B100926', exp: soon() }, SECRET) });
+            if (own.status !== 200 || !own.body || !own.body.token) fail(`with SSO_REQUIRE_AUDIENCE=1 this program's own ticket still opens: ${JSON.stringify(own)}`);
+        }
+        // a trainee's own ticket works once, like a trainer's
+        const tt = await ticketFor({ first: 'Pat', last: 'Lane', b: 'B100926', p: PORTAL_TOPIC, exp: soon() }, SECRET);
+        const first = await call(e6, '/api/auth/portal', { ticket: tt });
+        if (first.status !== 200 || !first.body || !first.body.token) fail(`this program's own trainee ticket should sign in: ${JSON.stringify(first)}`);
+        const second = await call(e6, '/api/auth/portal', { ticket: tt });
+        if (second.status !== 401 || !second.body || second.body.code !== 'used' || second.body.token) fail(`a trainee's ticket should work only once, got ${JSON.stringify(second)}`);
+        // the Sign-in check's system ticket works once too
+        const st = await ticketFor({ r: 's', exp: soon() }, SECRET);
+        const s1 = await call(e6, '/api/auth/portal', { ticket: st }), s2 = await call(e6, '/api/auth/portal', { ticket: st });
+        if (s1.status !== 200 || s2.status !== 401) fail(`the Sign-in check's ticket should work once: ${s1.status} then ${s2.status}`);
+        // the full registered name is kept as fullName, the ID stays first + last + batch
+        const fm = await call(e6, '/api/auth/portal', { ticket: await ticketFor({ first: 'Maria', last: 'Santos', b: 'B100926', full: 'Maria L. Santos', exp: soon() }, SECRET) });
+        const fullName = fm.body && (fm.body.fullName || (fm.body.existing && fm.body.existing.fullName));
+        if (fm.status !== 200 || fm.body.id !== 'maria-santos--b100926' || fullName !== 'Maria L. Santos') fail(`a ticket's full name should be kept as fullName with the same ID: ${JSON.stringify(fm.body && { id: fm.body.id, fullName })}`);
+    }
+
+    // 7. (platform QA 2026-11-19, EA / PA findings 2, 3, 5) a trainee reads their own Portal simulator grades; a brand-new
+    //    record never inherits progress left from a deleted one; a blocked linked record gets no token
+    {
+        const e7 = makeEnv({ PORTAL_SSO_SECRET: SECRET }), s7 = e7.__store, soon = () => Date.now() + 60000;
+        s7.set('progress:mo-diaz--b111926', JSON.stringify({ 1: { done: true } }));   // left from a record the Portal deleted
+        const mo = await call(e7, '/api/auth/portal', { ticket: await ticketFor({ first: 'Mo', last: 'Diaz', b: 'B111926', exp: soon() }, SECRET) });
+        if (mo.status !== 200) fail(`a new trainee signs in: ${JSON.stringify(mo)}`);
+        if (s7.has('progress:mo-diaz--b111926')) fail("a brand-new record doesn't get a deleted record's progress back");
+        s7.set('simresults:mo-diaz--b111926', JSON.stringify({ best: { 'Google Calendar': { score: 88 } } }));
+        const sr = await call(e7, '/api/storage/get', { key: 'simresults:mo-diaz--b111926' }, { Authorization: 'Bearer ' + mo.body.token });
+        if (sr.status !== 200 || !/88/.test(JSON.stringify(sr.body))) fail(`a trainee reads their own Portal simulator grades: ${JSON.stringify(sr)}`);
+        const other = await call(e7, '/api/storage/get', { key: 'simresults:someone-else--b111926' }, { Authorization: 'Bearer ' + mo.body.token });
+        if (other.status === 200 && other.body && other.body.value) fail("and nobody else's");
+        const wr = await call(e7, '/api/storage/set', { key: 'simresults:mo-diaz--b111926', value: '{"best":{}}' }, { Authorization: 'Bearer ' + mo.body.token });
+        if (wr.status === 200) fail('and never writes them');
+        s7.set('trainee:kim-lo--b100126', JSON.stringify({ id: 'kim-lo--b100126', name: 'Kim Lo', batch: 'B100126', approved: true }));
+        s7.set('trainee-alias:kim-lo--b110226', 'kim-lo--b100126');
+        s7.set('access:blocked', JSON.stringify({ ids: { 'kim-lo--b100126': { why: 'offboarded' } } }));
+        const kim = await call(e7, '/api/auth/portal', { ticket: await ticketFor({ first: 'Kim', last: 'Lo', b: 'B110226', exp: soon() }, SECRET) });
+        if (kim.status !== 403 || kim.body.code !== 'access-offboarded' || kim.body.token) fail(`a blocked linked record gets no token: ${JSON.stringify(kim)}`);
+    }
 
     if (failures.length) { console.log(`\n${failures.length} failure(s):`); failures.forEach((f, i) => console.log(`${i + 1}. ${f}`)); process.exit(1); }
     console.log('Single sign-on: the Portal is the only way a trainee gets in, a typed name + batch is refused, a missing PORTAL_SSO_SECRET says so, and a trainer signed in on the Portal gets in with no second password, once per ticket.');

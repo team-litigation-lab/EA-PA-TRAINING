@@ -57,6 +57,12 @@ async function workerChecks() {
     const two = await stat();
     if (!two || !/80%/.test(two.text) || !/2 lines/i.test(two.text) || !/3 calls/i.test(two.text)) fail(`the dashboard band's graded calls: ${JSON.stringify(two)} (expected 80%, 2 lines, 3 calls)`);
     if (two && (!/Intake Calls: best 90% \(1 call\)/.test(two.tip) || !/Client Communication: best 70% \(2 calls\)/.test(two.tip))) fail(`the card's tooltip doesn't list each line's best: ${two.tip}`);
+    // 📊 and the Portal's simulator grades (simresults:<id>, platform QA 2026-11-19 EA / PA finding 2): the Simulators card beside it
+    await put('simresults:' + id, { traineeId: id, results: [], best: { 'Google Calendar Simulator · Final evaluation': { score: 88, count: 1 }, 'Backup Drive': { score: 72, count: 2 } } });
+    await page.reload({ waitUntil: 'load' }); await page.waitForTimeout(2500);
+    await page.evaluate(() => { if (state.view !== 'dashboard' && typeof goto === 'function') goto('dashboard'); }); await page.waitForTimeout(1500);
+    const sim = await page.evaluate(() => { const c = document.querySelector('.sim-results-stat'); return c ? { text: c.innerText, tip: c.getAttribute('title') || '' } : null; });
+    if (!sim || !/80%/.test(sim.text) || !/2 graded/i.test(sim.text) || !/Backup Drive: best 72%/.test(sim.tip)) fail(`the dashboard band's Simulators card: ${JSON.stringify(sim)} (expected 80%, 2 graded)`);
     await browser.close();
     if (failures.length) { console.log(`${failures.length} failure(s):`); failures.forEach((f, i) => console.log(`${i + 1}. ${f}`)); process.exit(1); }
     console.log('Graded calls test passed (a trainee reads only their own graded calls and can\'t write them; the dashboard band\'s Graded calls card).');
