@@ -835,6 +835,9 @@ function presenterCues(d, slide){
   }else if(slide.type==="block"){
     const b = dayBlock(d, slide.lessonIndex), first = b.lessons[0].num, last = b.lessons[b.lessons.length-1].num;
     out.push(`<h3>Part ${b.n} of ${b.of}: ${esc(b.title)}</h3><p>Topics ${first}–${last}${b.sections.length > 1 ? `, in ${b.sections.length} sections` : ""}. Tell the room what this part of the day covers and why it matters, then move on to Topic ${first}.</p>`);
+  }else if(slide.type==="divider" && slide.section && typeof daySection === "function"){
+    const x = daySection(d, slide.lessonIndex), f = x.items[0]+1, t = x.items[x.items.length-1]+1;
+    out.push(`<h3>Section ${x.n} of ${x.of}: ${esc(x.name)}</h3><p>${f===t ? `Topic ${f}` : `Topics ${f}–${t}`}. Say what this section covers and why it matters to Elias, then move on to its first topic. Each topic is one slide; its best practices and pitfalls are in the trainee's 📖 Lesson Notes.</p>`);
   }else if(slide.type==="divider"){
     const l = d.lessons[slide.lessonIndex];
     out.push(`<h3>Topic ${slide.lessonIndex+1} of ${d.lessons.length}: ${esc(l.h)}</h3><p>${l.section ? `Section: ${esc(l.section)}. ` : ""}Name the topic, then move on to its first slide.</p>`);
@@ -2881,7 +2884,7 @@ window.fitTopicsModal = fitTopicsModal;
       const key = d.id + "::" + l.h, extra = LESSON_EXTRA_LEARNING[key];   // Go Deeper lives in the Lesson Notes
       if(extra) delete LESSON_EXTRA_LEARNING[key];
       let html; try{ html = __card.call(this, s, i, d, u, part); } finally { if(extra) LESSON_EXTRA_LEARNING[key] = extra; }
-      return html + `<div class="ln-more"><button type="button" onclick="openLessonNotes(${d.id}, ${esc(JSON.stringify(l.h))})">📖 Full notes for this topic</button><span>Day ${d.id} Lesson Notes · Handouts</span></div>`;
+      return html;   // 📖 Full notes is on the bar under the slide (index.html, renderDaySlideshow), not on the slide
     };
     renderLessonCard.__brief = true;
   }
@@ -2981,9 +2984,6 @@ window.fitTopicsModal = fitTopicsModal;
   }
 
   const st = document.createElement("style"); st.id = "lesson-notes"; st.textContent = `
-.ln-more{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 0;font-size:12px;color:var(--ink-soft);}
-.ln-more button{border:1px solid #E3E6EE;background:#fff;color:var(--navy);font-weight:700;font-size:12.5px;border-radius:999px;padding:5px 14px;cursor:pointer;}
-.ln-more button:hover{background:#F3F4F8;}
 .ln-h{color:var(--navy);font-size:17px;margin:18px 0 10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
 .ln-h span{font-size:13px;font-weight:500;color:var(--ink-soft);}
 .ln-grid{margin-bottom:6px;}
@@ -2996,7 +2996,6 @@ window.fitTopicsModal = fitTopicsModal;
 .ln-part{margin:6px 0;} .ln-part b{display:block;font-size:12px;color:#5B6178;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;}
 .ln-part ul,.ln-part ol{margin:2px 0 6px 20px;padding:0;} .ln-part li{font-size:13.5px;line-height:1.5;margin:3px 0;color:#2A2E40;}
 .ln-callout{font-size:13px;color:#5B6178;font-style:italic;margin:4px 0 8px;}
-@media(max-width:760px){ .ln-more span{display:none;} }
 `; document.head.appendChild(st);
   if(typeof render === "function" && typeof state !== "undefined" && (state.view === "day" || state.view === "handouts")){ try{ render(); }catch(e){} }
 })();
