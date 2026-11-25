@@ -168,14 +168,14 @@ function weeklyHtml(rows, myRec, pool, you){
     <thead><tr><th>Week</th><th>Days passed</th><th>✍️ Knowledge Checks</th><th>✅ Quick Checks</th><th>🛠 Practice Lab</th><th>🎲 Random tasks</th><th>Week score</th><th>Place in batch</th><th class="sc-remark-h">How the week went</th></tr></thead>
     <tbody>${body}</tbody></table></div>`;
 }
-function rankingHtml(pool, meRec, note){
+function rankingHtml(pool, meRec, note, you){
   if(!pool || !pool.length) return `<p class="sc-empty">${e(note || "The ranking appears once your batch has approved trainees.")}</p>`;
   const rk = ranked(pool, DAYS.map(d=>d.id));
   const wk = WEEKS.map(w=>{ const m = new Map(); ranked(pool, w.days).forEach((x,i)=>m.set(x.r, {i, s:x})); return m; });
   const medals = ["🥇","🥈","🥉"];
   const body = rk.map((x,i)=>{
     const me = meRec && (x.r === meRec || (meRec.id && x.r.id === meRec.id));
-    const nm = me ? "You" : short(x.r.name);
+    const nm = me ? (you ? "You" : short(x.r.name) + " (this trainee)") : short(x.r.name);
     const dp = x.r.dayProgress || {};
     return `<tr class="${me ? "sc-me" : ""}">
       <td class="sc-num sc-rk">${medals[i] || "#" + (i+1)}</td>
@@ -215,7 +215,7 @@ function sections(o){
     <p class="sc-summary">${e(summaryLine(o.rows, o.pool, o.meRec, o.you))}</p>
     <section class="sc-sec"><h3>🏅 Score Card</h3><p class="sc-note">Every score, day by day, with the trainer's feedback beside it. Green 85%+ · amber 70–84% · orange below 70%. Hover a score to see how it was worked out.</p>${scoreCardHtml(o.rows, o.fb, o.mode, o.you)}</section>
     <section class="sc-sec"><h3>📊 Weekly Progress</h3><p class="sc-note">Week 1 is Days 1–5, Week 2 is Days 6–10. The week score uses the same formula as the ranking.</p>${weeklyHtml(o.rows, o.meRec, o.pool, o.you)}</section>
-    <section class="sc-sec"><h3>🏆 Ranking${o.batch ? ` · Batch ${e(o.batch)}` : ""}</h3><p class="sc-note">Score = 35% days completed · 25% Knowledge Checks · 25% Practice Lab · 15% random tasks (40/30/30 until a task is graded).${o.you ? " Other trainees show as first name and last initial." : ""}</p>${rankingHtml(o.pool, o.meRec, o.rankNote)}</section>`;
+    <section class="sc-sec"><h3>🏆 Ranking${o.batch ? ` · Batch ${e(o.batch)}` : ""}</h3><p class="sc-note">Score = 35% days completed · 25% Knowledge Checks · 25% Practice Lab · 15% random tasks (40/30/30 until a task is graded).${o.you ? " Other trainees show as first name and last initial." : ""}</p>${rankingHtml(o.pool, o.meRec, o.rankNote, o.you)}</section>`;
 }
 
 /* ---------- trainee page ---------- */
