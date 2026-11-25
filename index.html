@@ -2432,10 +2432,10 @@ em.warn{font-style:normal;color:var(--danger);}
 .audit-table .at-act{width:1%;}
 .audit-table .at-btns{display:flex;flex-direction:column;gap:5px;min-width:108px;}
 .audit-table .at-btns .btn{justify-content:center;white-space:nowrap;padding:5px 8px;font-size:11.5px;width:100%;}
-.audit-table .at-more{position:relative;}
+.audit-table .at-more{position:static;}
+.audit-table .at-more[open] > summary{background:var(--navy);color:#fff;border-color:var(--navy);}
 .audit-table .at-more summary{list-style:none;cursor:pointer;} .audit-table .at-more summary::-webkit-details-marker{display:none;}
-.audit-table .at-more summary.at-more-flag{border-color:var(--danger);color:var(--danger);}
-.audit-table .at-menu{position:absolute;right:0;top:calc(100% + 4px);z-index:20;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 28px -10px rgba(22,24,41,.35);padding:6px;display:flex;flex-direction:column;gap:4px;min-width:200px;}
+.audit-table .at-menu{display:flex;flex-direction:column;gap:4px;margin-top:5px;padding:6px;background:#F6F7FB;border:1px solid var(--line);border-radius:10px;}
 .audit-table .at-menu .btn{justify-content:flex-start;}
 .audit-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:10px 14px;border-top:1px solid #E3E6EF;font-size:11px;color:var(--ink-soft);font-weight:600;}
 .audit-legend .ad-cell{margin-left:6px;}
@@ -13513,11 +13513,19 @@ function auditDayCell(d){
   const tip = `Day ${d.id}: ${d.reached}/${d.n} slides · ${d.score!==null ? `Knowledge Check ${d.score}%${d.passed?" ✓":" (below 70%)"}` : "Knowledge Check not taken"} · Practice Lab ${d.labDone?"done":"not done"}`;
   return `<span class="ad-cell ${cls}" title="${esc(tip)}">${d.id}${d.labDone?`<i></i>`:""}</span>`;
 }
+/* "More ▾": one open at a time, and it stays open through the audit's 30-second refresh */
+function auditMenuToggle(el, id){
+  if(el.open){ state.auditMenuOpen = id; document.querySelectorAll(".audit-table details.at-more[open]").forEach(d=>{ if(d !== el) d.open = false; }); }
+  else if(state.auditMenuOpen === id) state.auditMenuOpen = null;
+}
+window.auditMenuToggle = auditMenuToggle;
 function renderAdminRow(rec, day, practice){
   const expanded = state.adminExpandedId===rec.id;
   const a = auditSummary(rec);
   const wait = `<span class="at-wait">loading…</span>`;
   const asked = rec.labResetRequestedAt && (!rec.labAttemptsResetAt || rec.labResetRequestedAt > rec.labAttemptsResetAt);
+  // a trainee who asked for more attempts gets Reset Attempts on the row itself, not under More
+  const resetBtn = `<button class="btn btn-sm ${asked ? "btn-primary at-reset-asked" : "btn-ghost"}" title="Give this trainee a fresh ${LAB_ATTEMPT_CAP} Practice Lab repeat attempts on every day" onclick="resetTraineeLabAttempts('${rec.id}')">↺ Reset Attempts${rec.labAttemptsGlobal ? ` (${rec.labAttemptsGlobal} used)` : ""}</button>`;
   return `
     <tr class="audit-row ${expanded?"expanded":""}">
       <td class="at-name">
@@ -13541,9 +13549,10 @@ function renderAdminRow(rec, day, practice){
         <div class="at-btns">
           <button class="btn btn-sm btn-ghost" onclick="toggleAdminDetail('${rec.id}')">${expanded?"Hide":"View"} Detail</button>
           <button class="btn btn-sm btn-primary" onclick="openFeedbackFor('${rec.id}')" title="Write and send feedback to this trainee">✍ Feedback</button>
-          <details class="at-more"><summary class="btn btn-sm btn-ghost${asked ? " at-more-flag" : ""}">More ▾</summary><div class="at-menu">
+          ${asked ? resetBtn : ""}
+          <details class="at-more" ${state.auditMenuOpen===rec.id ? "open" : ""} ontoggle="auditMenuToggle(this, '${rec.id}')"><summary class="btn btn-sm btn-ghost">More ▾</summary><div class="at-menu">
           <button class="btn btn-sm btn-ghost" onclick="adminOpenCertificate('${rec.id}')" title="Preview / download this trainee's Certificate of Completion">🎓 Certificate</button>
-          <button class="btn btn-sm ${asked ? "btn-primary" : "btn-ghost"}" title="Give this trainee a fresh ${LAB_ATTEMPT_CAP} Practice Lab repeat attempts on every day" onclick="resetTraineeLabAttempts('${rec.id}')">↺ Reset Attempts${rec.labAttemptsGlobal ? ` (${rec.labAttemptsGlobal} used)` : ""}</button>
+          ${asked ? "" : resetBtn}
           <button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee('${rec.id}', '${esc(rec.name||"this trainee").replace(/'/g,"\\'")}')">Revoke</button>
           </div></details>
         </div>
