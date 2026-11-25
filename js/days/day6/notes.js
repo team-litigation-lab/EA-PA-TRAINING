@@ -688,5 +688,156 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "on": "This section warns against silent document edits, and suggests involving the people who'll use it.",
     "say": "Involve the users."
   }
+},
+"6::Attorney-Client Privilege: What EAs Need to Know": {
+  "p1": {
+    "on": "This slide explains that attorney-client privilege protects confidential communications between lawyer and client for seeking or giving legal advice. The steps: treat such communications as privileged by default, check recipients before sending because the wrong person can waive privilege, don't discuss cases where you can be overheard, recognize you sit inside the privileged relationship, and ask the attorney when unsure.",
+    "say": "One wrong recipient can waive privilege.",
+    "ask": "How could privilege be waived by accident?"
+  },
+  "p2": {
+    "on": "This slide warns that disclosure to the wrong person, including an outsider on an email chain, can waive privilege. As an EA you sit inside the privileged relationship, so the same confidentiality applies to you. When unsure, ask the attorney: an accidental disclosure can't be undone.",
+    "say": "An accidental disclosure can't be undone.",
+    "wrap": "Treat it as privileged, check every recipient and ask when unsure.",
+    "scenario": "Elias asks you to forward his advice email to the client, and the client asks you to cc their business partner, who isn't a party to the matter. What do you do?"
+  },
+  "s1": {
+    "on": "This section defines privilege (confidential lawyer–client communications for legal advice) and warns it can be lost through carelessness.",
+    "say": "Strict, and easy to lose."
+  },
+  "s2": {
+    "on": "These steps protect it: treat such communications as privileged, check recipients, avoid being overheard, accept that you're inside the relationship, and ask when unsure.",
+    "say": "Check the recipient list."
+  },
+  "s3": {
+    "on": "This section warns that disclosure to the wrong person can waive privilege, the obligation extends to the EA, and says to ask the attorney when in doubt.",
+    "say": "A disclosure can't be undone.",
+    "ask": "Who shouldn't be on a privileged email?"
+  }
+},
+"6::Work-Product Confidentiality": {
+  "p1": {
+    "on": "This slide explains that attorney work product (strategy memos, draft arguments, internal case analysis) has its own protection separate from privilege, and it can be lost through careless handling even when no client communication is involved. The steps: handle work product with the same care as privileged material, never share it outside the matter team without confirmation, and label and store it clearly.",
+    "say": "Work product has its own protection, and it can be lost through carelessness.",
+    "ask": "What counts as work product in a case file?"
+  },
+  "p2": {
+    "on": "This slide warns against assuming something is safe to share because it isn't a client communication. When unsure whether a document is protected work product, treat it as protected: the cost of caution is small.",
+    "say": "Not a client communication doesn't mean shareable.",
+    "wrap": "Handle it like privileged material, label it and keep it within the team.",
+    "scenario": "A colleague on an unrelated matter asks to see a strategy memo from a case you support, saying it would help with a similar issue. What do you do?"
+  },
+  "s1": {
+    "on": "This section explains work product (strategy memos, drafts, internal analysis) is protected separately from privilege and can be waived by careless handling.",
+    "say": "Separate protection, same care."
+  },
+  "s2": {
+    "on": "These steps protect it: handle it like privileged material, keep it internal unless cleared, and label it in the DMS.",
+    "say": "Default: it stays internal."
+  },
+  "s3": {
+    "on": "This section warns that 'not a client communication' doesn't mean shareable, and says when in doubt treat it as protected.",
+    "say": "When in doubt, protected."
+  }
+},
+"6::Investor Disclosure Confidentiality": {
+  "p1": {
+    "on": "This slide says information shared with investors often carries its own confidentiality obligations: some is appropriate for investors but not for general internal or public audiences. The steps: confirm what's cleared for investor disclosure before including it, keep investor materials in access-controlled storage, and escalate requests beyond prepared materials rather than answering directly.",
+    "say": "Confirm it's cleared before it goes to an investor.",
+    "ask": "Who decides what an investor can be told?"
+  },
+  "p2": {
+    "on": "This slide warns against treating investors as entitled to any information that seems relevant without confirming disclosure boundaries. It connects to investor briefing preparation: confidentiality and disclosure prep work together.",
+    "say": "Interest isn't entitlement.",
+    "wrap": "Confirm clearance, restrict access and escalate new requests.",
+    "scenario": "An investor emails asking for details about an ongoing matter that hasn't been publicly disclosed. What do you do before responding?"
+  },
+  "s1": {
+    "on": "This section says investor information has its own boundaries (some shareable with investors only, some not at all) and ties to classification.",
+    "say": "Investors don't get everything."
+  },
+  "s2": {
+    "on": "These steps manage it: confirm what's cleared, keep materials access-controlled, and escalate requests beyond what's prepared.",
+    "say": "Escalate anything not cleared."
+  },
+  "s3": {
+    "on": "This section warns against assuming investors are entitled to everything, and links this to investor briefing prep.",
+    "say": "Confirm the boundaries first."
+  }
+},
+"6::HIPAA in a Legal Context": {
+  "p1": {
+    "on": "This slide explains that HIPAA protects individually identifiable health information and applies whenever a legal matter involves medical records. The steps: recognize matters that touch medical records (personal injury, workers' comp, disability), apply HIPAA even outside health practice areas, share medical records only with those who need them, classify them at the highest sensitivity, and ask the attorney when unsure.",
+    "say": "Medical records in a case file are always top-tier sensitive.",
+    "ask": "Has anyone handled a case file with medical records in it?"
+  },
+  "p2": {
+    "on": "This slide says HIPAA can apply the moment a case file includes any medical information; the firm doesn't need to be in healthcare. Practical handling matters as much as the theory, and health information connects to the top level of the classification framework.",
+    "say": "The firm doesn't need to be in healthcare for HIPAA to matter.",
+    "wrap": "Recognize it, restrict it and ask when unsure.",
+    "scenario": "A personal-injury client emails you their full hospital records and asks you to forward them to their chiropractor and their employer. What do you do?"
+  },
+  "s1": {
+    "on": "This section says HIPAA protects identifiable health information and applies whenever a matter touches medical records.",
+    "say": "Medical records mean HIPAA."
+  },
+  "s2": {
+    "on": "These steps apply it: spot medical content, apply it outside health practices too, share only on need, default to the highest tier, and ask the attorney.",
+    "say": "Highest sensitivity by default."
+  },
+  "s3": {
+    "on": "This section says HIPAA can apply without being a healthcare provider, handling matters as much as theory, and it links to classification.",
+    "say": "Discretion in practice."
+  }
+},
+"6::GDPR & Data Privacy Regulations": {
+  "p1": {
+    "on": "This slide explains that GDPR governs personal data of individuals in the EU and can apply to a US firm handling such data. The steps: recognize GDPR may apply regardless of where the firm is based, account for data rights (access and deletion requests) in records, check at intake whether a matter involves non-US personal data, note similar US state laws like California's CCPA, and flag possible obligations to the attorney early.",
+    "say": "GDPR follows the data, not the firm's location.",
+    "ask": "Does your firm handle data from anyone outside the US?"
+  },
+  "p2": {
+    "on": "This slide says GDPR gives people rights over their data, including knowing what's held and often having it deleted. US state laws like the CCPA work similarly in spirit. The practical takeaway is recognizing when a matter might trigger these rules, not memorizing them.",
+    "say": "Recognize the trigger. The attorney handles the specifics.",
+    "wrap": "Check at intake, respect data rights and flag early.",
+    "scenario": "A new client is a German company with employees in Berlin and Chicago, and the matter involves employee records from both offices. What do you flag to Elias at intake?"
+  },
+  "s1": {
+    "on": "This section explains GDPR governs EU individuals' personal data and can apply to firms outside the EU.",
+    "say": "It follows the data, not the office."
+  },
+  "s2": {
+    "on": "These steps apply it: recognize reach, account for data rights, check at intake for non-US data, remember state laws like the CCPA, and flag early.",
+    "say": "Check at intake."
+  },
+  "s3": {
+    "on": "This section covers rights to know and delete, US state laws like the CCPA, and the takeaway: recognize and flag, don't memorize.",
+    "say": "Recognize and flag."
+  }
+},
+"6::Other Relevant Compliance Frameworks": {
+  "p1": {
+    "on": "This slide says to recognize the pattern rather than memorize every framework: health, financial, minors' and non-US data get extra care by default. It names Sarbanes-Oxley for public-company financial records, GLBA for financial data and FERPA for education records, and notes that state bar ethics rules add confidentiality duties beyond privilege. The diagram maps these, and the steps say to ask the attorney about unfamiliar areas.",
+    "say": "Certain categories get extra care before you know the exact law.",
+    "ask": "Which regulations apply to your firm's practice areas?"
+  },
+  "p2": {
+    "on": "This slide says legal work touches a wide range of frameworks depending on client and matter, and no training covers them all. The transferable skill is pattern recognition, and asking the attorney about specific obligations is always right.",
+    "say": "Pattern recognition is the skill. Asking is always right.",
+    "wrap": "Recognize sensitive categories, handle them carefully and ask about specifics.",
+    "scenario": "A new matter involves a public company's internal financial controls and a student's school records. Which frameworks might apply, and what do you ask Elias?"
+  },
+  "s1": {
+    "on": "This section lists three groups: financial and corporate (SOX), sector privacy (GLBA, FERPA), and state bar ethics rules.",
+    "say": "SOX, GLBA, FERPA, bar rules."
+  },
+  "s2": {
+    "on": "These steps apply the pattern: recognize high-risk categories, handle them carefully by default, ask about unfamiliar areas, know the main frameworks, and remember bar rules apply regardless.",
+    "say": "Pattern recognition over memorization."
+  },
+  "s3": {
+    "on": "This section says no training covers every framework; the skill is spotting high-risk categories, and asking the attorney is always right.",
+    "say": "Ask; it's never wrong."
+  }
 }
 });

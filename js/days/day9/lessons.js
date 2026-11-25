@@ -14,8 +14,8 @@
 const DAY9 = {
   "id": 9,
   "title": "Events, Meetings, CLE & Reputation",
-  "theme": "Event Management, Invites & Intake Forms · CLE for Firm Events · Meetings & Video Conferencing · CLE & Compliance Tracking · Reputation & Brand",
-  "objective": "Run events end-to-end — invites, intake forms and CLE included — keep meetings and compliance tracking on schedule, and protect the organization's reputation.",
+  "theme": "Event Management, Invites & Intake Forms · CLE for Firm Events · Meetings & Video Conferencing · CLE & Compliance Tracking · Stress & Wellbeing · Reputation & Brand",
+  "objective": "Run events end-to-end — invites, intake forms and CLE included — keep meetings and compliance tracking on schedule, manage stress in a high-pressure role, and protect the organization's reputation.",
   "lessons": [
     {
       "h": "Running an Event End-to-End",
@@ -516,6 +516,100 @@ const DAY9 = {
       }
     },
     {
+      "h": "Recognizing Stress & Burnout in High-Pressure Roles",
+      "section": "Stress & Wellbeing",
+      "fourPart": {
+        "corePrinciples": [
+          "Stress is the body's normal response to pressure; short bursts can sharpen focus. Burnout is different — the World Health Organization describes it as an occupational phenomenon from chronic, unmanaged workplace stress, marked by exhaustion, cynicism or detachment, and reduced effectiveness.",
+          "EA/PA roles carry specific stressors: constant interruptions, being 'always on' for an executive, carrying other people's deadlines, and handling confidential or emotionally heavy matters.",
+          "Early signs are easier to fix than late ones: irritability, dreading the inbox, sleep changes, more small mistakes, and withdrawing from colleagues."
+        ],
+        "howTo": [
+          "Do a weekly two-minute check-in with yourself: energy (1–10), sleep, error rate, and whether anything is consistently dreaded.",
+          "Name the specific stressor rather than 'work is stressful' — e.g., after-hours texts, unclear priorities, or back-to-back travel changes. Specific problems have specific fixes.",
+          "Track patterns for two weeks (a line in your notes each day) before deciding what to change; patterns show what's chronic versus a one-off bad day.",
+          "If signs persist for weeks or affect sleep, health, or relationships, talk to your manager and consider professional support such as an Employee Assistance Program (EAP) or a healthcare provider."
+        ],
+        "bestPractices": [
+          "Pitfall: treating exhaustion as proof of dedication — sustained overload leads to errors, and in legal support errors can be costly.",
+          "Don't wait for a crisis to raise workload concerns; small adjustments are easier to agree early.",
+          "Watch for signs in colleagues too, and respond with a private, kind check-in rather than advice in front of others."
+        ],
+        "discussionCase": "You notice you've double-booked Elias twice this week, you're snapping at vendors, and you check email at 11 PM every night 'just in case.' What's happening, and what are your first three steps?"
+      },
+      "trainerCue": "Normalize the topic first — share (or invite) a real example of a high-pressure week — then ask the room which early warning sign they'd notice first in themselves."
+    },
+    {
+      "h": "Stress Management Techniques That Work at a Desk",
+      "section": "Stress & Wellbeing",
+      "fourPart": {
+        "corePrinciples": [
+          "Effective stress tools are the ones you can use in two minutes between tasks — breathing, a short walk, a reset of your task list — not only long weekend routines.",
+          "Controlled breathing (for example, a slow exhale longer than the inhale) can calm the body's stress response quickly, which is why it's used before high-stakes calls.",
+          "Structure reduces stress: a clear plan for the day, batching similar tasks, and protected focus time cut the mental load of constantly re-deciding what to do next."
+        ],
+        "howTo": [
+          "Before a tense call or meeting: three to five slow breaths (inhale about 4 counts, exhale about 6), feet on the floor, shoulders down.",
+          "When overwhelmed: 'brain dump' every open item onto paper, then pick the single next action — clarity on one step lowers the sense of chaos.",
+          "Build micro-breaks into the day: stand, stretch, or walk for 3–5 minutes every 60–90 minutes, and step away from the screen for lunch when possible.",
+          "End the day with a shutdown ritual: review tomorrow's calendar, write the top three priorities, and close the inbox — this helps separate work from rest."
+        ],
+        "bestPractices": [
+          "Pitfall: relying only on caffeine and willpower — they mask fatigue without reducing the load.",
+          "Protect sleep as a work skill; tired assistants make more scheduling and detail errors.",
+          "Keep a short 'calm kit' list of what works for you personally, so you don't have to think of it in the moment."
+        ],
+        "discussionCase": "Elias has just called in a hurry: a court date moved, three meetings must shift, and a family event overlaps. Walk through the first five minutes — what do you do to stay clear-headed before touching the calendar?"
+      },
+      "trainerCue": "Lead the room through one 60-second breathing reset together, then ask how they could fit it into a real workday."
+    },
+    {
+      "h": "Setting Boundaries & Managing Executive Pressure",
+      "section": "Stress & Wellbeing",
+      "fourPart": {
+        "corePrinciples": [
+          "Boundaries are agreements about availability, response times, and scope — they protect the quality of your work, not just your time.",
+          "Unclear expectations create most of the stress: if 'urgent' isn't defined, everything feels urgent. Agreeing definitions with the executive reduces constant alert.",
+          "Pressure from an executive is often about their own stress; responding calmly with facts and options de-escalates better than matching their urgency."
+        ],
+        "howTo": [
+          "Agree availability rules in writing: working hours, what counts as a true after-hours emergency, and the channel for it (e.g., a phone call, not email).",
+          "When a new request collides with existing priorities, ask 'Which of these should move?' instead of silently absorbing both.",
+          "Use a calm script under pressure: acknowledge ('I understand this is urgent'), state facts ('The filing is due at 3'), offer options ('I can move the vendor call or ask Maria to cover it')."
+        ],
+        "bestPractices": [
+          "Pitfall: answering every late-night message instantly — it trains the expectation that you're always available.",
+          "Never let a boundary become an excuse to miss a genuine legal deadline; build the emergency path into the agreement instead.",
+          "Revisit the agreement when roles change, workload rises, or new family responsibilities appear on either side."
+        ],
+        "discussionCase": "Elias texts at 10:40 PM asking you to 'quickly' rebook tomorrow's 8 AM client meeting. Your agreed after-hours rule covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?"
+      },
+      "trainerCue": "Have pairs role-play the 'which of these should move?' conversation — one plays a pressured executive, one plays the EA — then swap."
+    },
+    {
+      "h": "Recovery, Workload Conversations & Support Resources",
+      "section": "Stress & Wellbeing",
+      "fourPart": {
+        "corePrinciples": [
+          "Recovery is part of performance: regular breaks, real time off, and sleep restore the focus that detail-heavy legal work depends on.",
+          "Workload problems are business problems — raising them early with data (hours, volume, error risks) is professional, not a complaint.",
+          "Support exists: many employers offer confidential Employee Assistance Programs (EAPs), and healthcare providers can help when stress affects health. In the US, the 988 Suicide & Crisis Lifeline is available for anyone in crisis."
+        ],
+        "howTo": [
+          "Prepare a workload conversation: list recurring tasks, hours spent, what's slipping, and two or three concrete options (delegate, pause, add support, change deadlines).",
+          "Plan real time off with a coverage handover — delegate access, an out-of-office message, and a one-page status note — so you can actually disconnect.",
+          "Know where support is before you need it: your employer's EAP details, your manager or HR contact, and your own trusted people."
+        ],
+        "bestPractices": [
+          "Pitfall: waiting until you're exhausted to raise workload — by then the conversation feels like a crisis instead of a plan.",
+          "Keep personal health details private unless you choose to share them; you can ask for workload changes without disclosing a diagnosis.",
+          "Support colleagues by covering for them properly during time off, so the whole team can recover."
+        ],
+        "discussionCase": "You've been working 55-hour weeks for two months and your error rate is rising. Draft the opening two sentences of a workload conversation with Elias, and list the options you'd bring."
+      },
+      "trainerCue": "Share where your organization's EAP or support information lives, then have the room draft the first two sentences of a workload conversation."
+    },
+    {
       "h": "Protecting the Brand Online",
       "section": "Reputation & Brand",
       "b": [
@@ -587,7 +681,7 @@ const DAY9 = {
       "r": "Attendance Tracking is where completion evidence — certificates, webinar reports — gets filed for audits."
     },
     {
-      "afterIndex": 22,
+      "afterIndex": 26,
       "q": "A client posts an inaccurate negative review. Best response?",
       "opts": [
         "Argue publicly to prove the client wrong",
@@ -874,6 +968,39 @@ const DAY9 = {
       ],
       "a": 2,
       "r": "Until a state approves the course, the accurate wording is that credit has been applied for. Promising credit is misleading, and staying silent loses attendees who need CLE."
+    },
+    {
+      "q": "Which is an early warning sign of burnout?",
+      "opts": [
+        "Working longer hours to stay on top of a busy week",
+        "Answering emails late at night and early in the morning to keep up",
+        "Needing a coffee to get going in the morning",
+        "More small mistakes, dreading the inbox, and pulling away from colleagues"
+      ],
+      "a": 3,
+      "r": "Early signs like rising errors, dread, and withdrawal are easier to address than late-stage exhaustion."
+    },
+    {
+      "q": "Elias asks for a new urgent task while you're already at capacity. What's the best response?",
+      "opts": [
+        "Explain that you're at capacity and can't take it on",
+        "Take it on and work late so nothing slips",
+        "Ask which existing priority should move, with options",
+        "Start it tomorrow morning, once today's list is done"
+      ],
+      "a": 2,
+      "r": "'Which of these should move?' keeps priorities explicit and prevents silent overload."
+    },
+    {
+      "q": "What should a workload conversation include?",
+      "opts": [
+        "Data (tasks, hours, what's slipping) plus concrete options",
+        "A request for more pay to reflect the extra hours",
+        "A list of the tasks you'd like to stop doing",
+        "An honest description of how stressed you've been feeling"
+      ],
+      "a": 0,
+      "r": "Facts and options turn a complaint into a business decision; health details stay private unless you choose to share."
     }
   ],
   "discussionQuestion": "How would you handle a negative public review or comment about your organization? Draft a one-sentence opening line for your response and share why you chose that tone."
