@@ -1,4 +1,4 @@
-# LSH EA / PA Training
+# LSH EA PA Track
 
 ## 🔐 Sign in on the Main Portal only
 
