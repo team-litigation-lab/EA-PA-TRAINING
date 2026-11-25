@@ -40,6 +40,10 @@ Rest the mouse on **Next** (without clicking) and a small copy of the next slide
 
 It works on the lesson page, in full screen and on the Presenter view console's Next. It never appears in the slides window shared in Meet, so with Presenter view only the trainer sees it; when sharing the lesson tab itself, the room sees it too. Phones and touch screens don't get it. It's `js/eapa-next-preview.js`, loaded after the deck card: the preview is the next slide's own content drawn at the deck's size (960 × 540) and scaled down, inert, and removed before any slide is drawn.
 
+## 🖥 Practice Lab activities in app windows
+
+The calendar, the Gmail-style inbox, the Excel-style trackers, the calls and the roleplay chats already look like the tools an EA uses. Every other lab activity now sits in the window of the app the task happens in (`js/eapa-lab-apps.js`, loaded last; remove its `<script>` tag to go back): Day 1's dossier on a page in **Docs**, the ACT email in **Mail**, gatekeeping at the **Front Desk**; Day 4's *Prioritize the Day* as a **Tasks** list (and the reply to the partner in Mail); Day 9's invitation in Mail with the registration questions in **Forms**; the trust ledger and bills in **Ledger**, the access audit in an **Admin Console**, the license sweep in a **State Business Portal**, KPI and CLE tables in **Insights**, prompts in an **AI Assistant**, call logs and leads in a **CRM**, reviews in **Reviews**, social metrics in **Social Studio**. App names are generic. Only the frame is new: each activity's fields, buttons and results move into the window as they are (same ids, handlers and grading), its intro and any briefing card stay above it, and 📝 My Notes stays outside. The mapping is `PARTS` (`"<tool id>:<activity label>"` → app, window title).
+
 ## 🎨 Slide colour, graphics and icons
 
 Every lesson slide on every day gets colour, pictures and icons from `js/eapa-deck-color.js` (loaded last; removing its `<script>` tag puts the slides back as they were):

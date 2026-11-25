@@ -630,5 +630,103 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "ask": "A journalist needs Elias's bio and headshot in two hours. The bio on file is over a year old and lists a role he no longer holds. What do you do, given the deadline?",
    "scenario": "You send Elias's media kit to a journalist, and the headshot is five years old and the bio lists his former firm. What goes wrong for Elias, and what do you set up to catch this in future?"
   }
+ },
+ "9::Recognizing Stress & Burnout in High-Pressure Roles": {
+  "p1": {
+   "why": "Burnout is much easier to fix when you catch it early.",
+   "talk": "A bit of pressure can actually help you focus. Burnout is different: it's what happens when stress keeps going for weeks with no relief, until you feel exhausted, detached and less effective. This job has its own pressures, like always being on call and carrying other people's deadlines. It builds in stages, from healthy pressure, to strain, to chronic stress and finally to burnout, and the earlier stages are where it's easiest to turn around.",
+   "walk": [
+    "First, once a week, take two minutes to check in with yourself: energy, sleep, mistakes, and anything you keep dreading.",
+    "Next, name the exact thing causing the stress, like late-night texts or unclear priorities. A specific problem has a specific fix.",
+    "Then, watch the pattern for a couple of weeks before deciding what to change.",
+    "Finally, if it lasts for weeks or affects your sleep, health or relationships, talk to your manager and consider support, like an employee assistance program or your doctor."
+   ],
+   "ask": "Which early warning sign would you notice first in yourself?",
+   "scenario": "For three weeks, a colleague has been missing small details, skipping lunch and answering emails at midnight. She says she's 'fine, just busy.' What signs do you notice, and what's a kind way to check in?"
+  },
+  "p2": {
+   "why": "Being exhausted doesn't prove you're dedicated; it puts the work at risk.",
+   "talk": "In legal support, a tired mistake can be an expensive one. So looking after yourself is part of doing the job well. And the same goes for the people around you.",
+   "walk": [
+    "First, don't treat exhaustion as a badge of honor.",
+    "Next, raise workload concerns early, while small changes can still fix it.",
+    "Finally, if a colleague seems to be struggling, check in quietly and kindly, one to one."
+   ],
+   "ask": "You've double-booked Elias twice this week, you're snapping at vendors and you check email at 11 every night 'just in case'. What's going on, and what are your first three steps?",
+   "scenario": "You're proud of being the one who never switches off. But you've made two scheduling errors this week and you're dreading Monday. What's the first thing you'd do about it?"
+  }
+ },
+ "9::Stress Management Techniques That Work at a Desk": {
+  "p1": {
+   "why": "Stress doesn't wait for the weekend, so the tools that help most are the ones that fit into two minutes at your desk.",
+   "talk": "Think about when stress actually hits: mid-afternoon, three things due and the phone ringing. A weekend away doesn't help you in that moment. Something small that you can do right where you're sitting does. Slow breathing is the quickest. When you breathe out more slowly than you breathe in, your body gets the message to calm down. And a lot of stress isn't the work itself; it's constantly asking yourself what to do next. A simple plan takes that question away.",
+   "walk": [
+    "First, before a call you're nervous about, take a few slow breaths: count four in and six out. It takes thirty seconds and nobody notices.",
+    "Next, when your head is spinning, get everything out of your head and onto paper, then choose just one next step. One step is manageable; twenty isn't.",
+    "Then, build small breaks into the day: stand up, stretch or walk for a few minutes every hour or so. Your focus comes back sharper.",
+    "Finally, end the day on purpose: look at tomorrow, write down your top three and close the inbox. That's how you actually switch off."
+   ],
+   "ask": "Let's try one together right now: one minute, four counts in, six counts out.",
+   "scenario": "In 30 minutes, you have to call a vendor who has let the firm down badly, and you're already tense. Which desk technique do you use in the next two minutes, and how?"
+  },
+  "p2": {
+   "why": "Coffee hides tiredness; it doesn't take any of the load off.",
+   "talk": "The desk tools help in the moment. What keeps them working over months is the boring stuff around them. A lot of us run on coffee and willpower, and that works, until it doesn't. Coffee hides tiredness; it doesn't fix it. Sleep matters in this job more than people admit, because a tired assistant makes more scheduling and detail mistakes. And it helps to know, in advance, what actually calms you down.",
+   "walk": [
+    "First, don't lean only on caffeine and willpower. They mask the problem.",
+    "Next, treat sleep as part of the job. Tired people make more scheduling and detail mistakes.",
+    "Finally, keep a short personal list of what calms you down, so you don't have to think of it in the moment."
+   ],
+   "ask": "Elias calls in a rush: a court date moved, three meetings have to shift and a family event now overlaps. What do you do in the first five minutes to keep a clear head before you touch the calendar?",
+   "scenario": "You've had four late nights this week and you're running on coffee. Tomorrow is a big trial day for Elias. What do you do tonight to be at your best tomorrow?"
+  }
+ },
+ "9::Setting Boundaries & Managing Executive Pressure": {
+  "p1": {
+   "why": "When an executive is stressed, match their problem with calm facts and options, not with more stress.",
+   "talk": "Boundaries are simply agreements: when you're available, how fast you'll reply and what counts as an emergency. Without them, everything feels urgent. And when an executive pushes hard, it's usually their own pressure talking. Staying calm and offering choices brings the temperature down.",
+   "walk": [
+    "First, agree the basics in writing: your working hours, what's a real after-hours emergency and how they should reach you for one.",
+    "Next, when a new request crashes into existing work, ask, 'Which of these should move?' instead of silently taking on both.",
+    "Finally, under pressure, use a simple pattern: 'I understand this is urgent. The filing is due at three. I can move the vendor call, or ask Maria to cover it.'"
+   ],
+   "ask": "What would count as a real after-hours emergency in your role?",
+   "scenario": "Elias bursts in: 'I need the Meridian binder rebuilt, my flight changed, and I need a dinner booked for eight tonight.' You're already mid-way through urgent filing prep. Respond using the pattern: acknowledge, lay out the conflict and ask which comes first."
+  },
+  "p2": {
+   "why": "A boundary should never become the reason a real legal deadline is missed, so build the emergency route into it.",
+   "talk": "Boundaries aren't walls. A good one protects your evenings and still leaves a clear route for real emergencies, like a court deadline or a family crisis. What wears boundaries down is answering every late message instantly, because it teaches people you're always available. So we agree what counts as an emergency, stick to it, and revisit the agreement when things change.",
+   "walk": [
+    "First, avoid answering every late-night message instantly. It teaches people you're always available.",
+    "Next, agree what the emergency route is, so true emergencies still get through.",
+    "Finally, revisit the agreement when workloads, roles or family situations change."
+   ],
+   "ask": "Elias texts at 10:40 PM asking you to quickly rebook his 8 AM client meeting. Your agreement covers court and family emergencies only. What do you do tonight, and what do you say tomorrow?",
+   "scenario": "Your agreement with Elias says after-hours contact is for court deadlines and family emergencies. At 9:30 p.m. he texts: 'Can you check if the partner lunch is still on Friday?' What do you do tonight, and how do you raise it tomorrow?"
+  }
+ },
+ "9::Recovery, Workload Conversations & Support Resources": {
+  "p1": {
+   "why": "Raising your workload early, with facts and options, is professional, not complaining.",
+   "talk": "Rest isn't the opposite of good work; it's what makes good work possible. If the workload is too much, that's a business problem, and it's easier to fix early. And help exists: many employers have confidential support programs, and in the US, anyone in crisis can call or text 988.",
+   "walk": [
+    "First, before the conversation, write down your regular tasks, the hours they take, what's slipping and two or three possible fixes.",
+    "Next, when you take time off, hand over properly: access for your cover, an out-of-office message and a one-page status note, so you can actually switch off.",
+    "Finally, find out where support is before you need it: your employer's program, your manager or HR, and the people you trust."
+   ],
+   "ask": "Do you know where your employer's support information is?",
+   "scenario": "You're going on a week's vacation. Plan the handover: what access does your cover need, what goes in the out-of-office, and what must never wait for you to get back?"
+  },
+  "p2": {
+   "why": "You can ask for a lighter workload without sharing anything personal.",
+   "talk": "Your health details belong to you. What you bring to the conversation is the workload and the options.",
+   "walk": [
+    "First, don't wait until you're exhausted. By then it feels like a crisis instead of a plan.",
+    "Next, keep personal health details private unless you choose to share them.",
+    "Finally, cover properly for colleagues when they're away, so everyone gets to recover."
+   ],
+   "ask": "You've worked 55-hour weeks for two months and you're starting to make mistakes. Draft the first two sentences of the conversation with Elias, and list the options you'd bring.",
+   "scenario": "For two months you've been working 55-hour weeks. You want to raise it with Elias without sharing personal health details. What facts and options do you bring?"
+  }
  }
 });

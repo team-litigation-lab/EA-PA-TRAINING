@@ -14,8 +14,8 @@
 const DAY6 = {
   "id": 6,
   "title": "Business Formation, Compliance, Projects & SOPs",
-  "theme": "Business Structure, Formation & Federal/State Setup · Compliance & Good Standing · Project Leadership · Process Improvement (Lean Six Sigma, KPI Dashboards) · SOPs",
-  "objective": "Guide business formation and compliance decisions, lead projects when timelines slip, improve processes with a real KPI dashboard, and write SOPs that hold up.",
+  "theme": "Business Structure, Formation & Federal/State Setup · Compliance & Good Standing · Privilege, Privacy & Compliance · Project Leadership · Process Improvement (Lean Six Sigma, KPI Dashboards) · SOPs",
+  "objective": "Guide business formation and compliance decisions, protect privilege and privacy, lead projects when timelines slip, improve processes with a real KPI dashboard, and write SOPs that hold up.",
   "lessons": [
     {
       "h": "Choosing a Business Structure",
@@ -250,6 +250,132 @@ const DAY6 = {
         ],
         "discussionCase": "The firm is in early conversations about a potential investor, and their due diligence checklist asks for two years of board meeting minutes. The firm has never formally documented its meetings. What's the actual scope of the problem, and how would you start closing the gap?"
       }
+    },
+    {
+      "h": "Attorney-Client Privilege: What EAs Need to Know",
+      "section": "Privilege, Privacy & Compliance",
+      "b": [
+        "Attorney-client privilege protects confidential communications between a lawyer and their client made for the purpose of seeking or giving legal advice — it's one of the oldest and most strictly guarded protections in the legal system, and it can be lost through carelessness.",
+        "Privilege can be waived by disclosure to the wrong person — including, in some circumstances, by including someone outside the privileged relationship on an email thread or by discussing case details somewhere they could be overheard.",
+        "As an EA, you often sit inside the privileged relationship by necessity (managing a lawyer's communications and calendar), which means the same confidentiality obligation extends to you — this isn't a courtesy, it's a real legal protection you're responsible for helping preserve.",
+        "When in doubt about whether something is privileged or who's allowed to see it, the safe default is to ask the attorney directly rather than assume — an accidental disclosure can't be undone once it happens."
+      ],
+      "howTo": [
+        "Treat any communication between a lawyer and client made for legal advice purposes as privileged, and handle it with that protection in mind by default.",
+        "Check the recipient list on any privileged communication before sending, since including the wrong person can waive the privilege.",
+        "Avoid discussing case details anywhere they could be overheard, applying the same discretion that protects any other confidential information.",
+        "Recognize that you sit inside the privileged relationship by necessity as an EA, and that the same confidentiality obligation extends to you directly.",
+        "Ask the attorney directly when genuinely uncertain whether something is privileged or who's allowed to see it — an accidental disclosure can't be undone."
+      ],
+      "trainerCue": "Ask the room for a real or hypothetical example of how privilege could be accidentally waived through something as simple as a misdirected email or a conversation in a public space — making it concrete is what makes the risk land."
+    },
+    {
+      "h": "Work-Product Confidentiality",
+      "section": "Privilege, Privacy & Compliance",
+      "fourPart": {
+        "corePrinciples": [
+          "Attorney work product — legal strategy memos, draft arguments, internal case analysis — carries its own protection distinct from attorney-client privilege, covering the attorney's own thought process and preparation, not just client communications.",
+          "This distinction matters practically: work product can lose its protection if handled carelessly, even when no privileged client communication is involved at all."
+        ],
+        "howTo": [
+          "Treat draft strategy documents, internal case analysis, and attorney work notes with the same handling discipline as privileged material, even when technically they're a separate legal category.",
+          "Never forward or share work-product documents outside the matter team without explicit confirmation it's appropriate — the default assumption should be that it stays internal.",
+          "Label and store work-product documents clearly as such in the document management system, so their sensitivity is obvious to anyone who encounters them later."
+        ],
+        "bestPractices": [
+          "Pitfall: assuming that because something isn't a client communication, it's automatically safe to share more broadly. Work product has its own protection that careless handling can genuinely waive.",
+          "When in doubt about whether a document counts as protected work product, treat it as protected — the cost of over-caution here is small compared to the cost of a genuine breach."
+        ],
+        "discussionCase": "A colleague on an unrelated matter asks to see a strategy memo from a case you're supporting, saying it would help them think through a similar issue. What do you actually do?"
+      }
+    },
+    {
+      "h": "Investor Disclosure Confidentiality",
+      "section": "Privilege, Privacy & Compliance",
+      "fourPart": {
+        "corePrinciples": [
+          "Information shared with investors often carries its own confidentiality obligations — some information is appropriate to disclose to investors specifically but not more broadly, and some isn't appropriate to share even with investors without proper authorization.",
+          "This connects directly to the confidentiality classifications covered earlier in this program — investor-facing information often falls into the same highly-restricted category as other sensitive business data."
+        ],
+        "howTo": [
+          "Confirm what's actually been cleared for investor disclosure before including it in any investor-facing communication — don't assume something is shareable just because it seems relevant or helpful context.",
+          "Keep investor communications and materials in access-controlled storage, distinct from general internal documents, given their sensitivity.",
+          "When an investor asks for information beyond what's already been prepared or cleared, escalate the request rather than answering directly — this isn't a judgment call to make solo."
+        ],
+        "bestPractices": [
+          "Pitfall: treating an investor as automatically entitled to any information that seems relevant to their interest, without confirming disclosure boundaries first.",
+          "This connects directly to the investor briefing preparation principles covered elsewhere in this program — confidentiality discipline and disclosure preparation are two sides of the same responsibility."
+        ],
+        "discussionCase": "An investor emails asking for details about an ongoing matter that hasn't been publicly disclosed. What do you do before responding?"
+      }
+    },
+    {
+      "h": "HIPAA in a Legal Context",
+      "section": "Privilege, Privacy & Compliance",
+      "b": [
+        "HIPAA (the Health Insurance Portability and Accountability Act) protects individually identifiable health information, and it applies directly whenever a legal matter touches medical records — personal injury cases, workers' compensation, disability claims, and similar matters.",
+        "Even outside of health-specific practice areas, HIPAA can apply the moment a case file includes any medical information — a firm doesn't need to be a healthcare provider itself for HIPAA obligations to be relevant to how that information is handled.",
+        "Practical handling matters as much as the legal theory: medical records within a case file need the same discretion as any other highly sensitive document — not shared beyond who genuinely needs them, and not left visible or accessible to anyone without a real reason to see them.",
+        "This connects directly to the Classifying Information by Sensitivity Level topic earlier in this day — health information involved in a legal matter should default to the highest sensitivity tier."
+      ],
+      "howTo": [
+        "Recognize when a legal matter touches medical records — personal injury, workers' compensation, disability claims — and treat that content as HIPAA-relevant.",
+        "Apply this even outside health-specific practice areas — HIPAA can be relevant the moment a case file includes any medical information at all.",
+        "Handle medical records within a case file with the same discretion as any other highly sensitive document — shared only with those who genuinely need it.",
+        "Default health information involved in a legal matter to the highest sensitivity tier, connecting directly to the classification framework covered earlier in this day.",
+        "Ask the attorney if you're unsure whether specific medical content in a file triggers additional handling requirements."
+      ],
+      "trainerCue": "Ask whether anyone in the room has handled a case file that included medical records — walk through, concretely, what extra care that actually required in practice."
+    },
+    {
+      "h": "GDPR & Data Privacy Regulations",
+      "section": "Privilege, Privacy & Compliance",
+      "b": [
+        "The GDPR (General Data Protection Regulation) governs how personal data of individuals in the EU is collected, stored, and processed — and it can apply to a firm even if the firm itself isn't based in the EU, if it handles data belonging to EU individuals.",
+        "GDPR gives individuals real rights over their own data, including the right to know what's held about them and, in many cases, the right to have it deleted — this has practical implications for how long records are retained and how they're organized.",
+        "The U.S. has its own growing patchwork of state-level privacy laws (California's CCPA is the most well-known) that function similarly in spirit, even though the specific requirements differ — 'we're not in the EU' doesn't mean data privacy law doesn't apply.",
+        "As an EA, the practical takeaway isn't memorizing every regulation's specifics — it's recognizing when a matter involves personal data that might trigger these obligations, and flagging that early rather than assuming it's someone else's concern."
+      ],
+      "howTo": [
+        "Recognize that GDPR can apply to a firm even if it isn't based in the EU, if it handles data belonging to EU individuals.",
+        "Account for individual data rights (knowing what's held, potential deletion requests) when organizing and retaining records that might be subject to GDPR.",
+        "Check whether a matter involves personal data from outside the U.S. as part of routine intake, not as an afterthought.",
+        "Recognize that U.S. state-level privacy laws (like California's CCPA) function similarly even when GDPR itself doesn't apply.",
+        "Flag any matter that might trigger these obligations early to the attorney, rather than assuming data privacy law is someone else's concern."
+      ],
+      "trainerCue": "Ask the room whether their firm handles any client or case data belonging to individuals outside the U.S. — if so, GDPR may already be more relevant to their daily work than they realize."
+    },
+    {
+      "h": "Other Relevant Compliance Frameworks",
+      "section": "Privilege, Privacy & Compliance",
+      "layout": "THREEBOX",
+      "boxes": [
+        {
+          "label": "Financial & Corporate",
+          "desc": "Sarbanes-Oxley (SOX) for public-company financial records; industry-specific rules for regulated clients"
+        },
+        {
+          "label": "Sector-Specific Privacy",
+          "desc": "GLBA for financial data, FERPA for education records — relevant when a matter touches those industries"
+        },
+        {
+          "label": "State Bar & Ethics Rules",
+          "desc": "Each state's own rules of professional conduct govern confidentiality obligations beyond privilege alone"
+        }
+      ],
+      "b": [
+        "Legal and administrative work touches an unusually wide range of regulatory frameworks depending on the client and matter — no single training can cover every one exhaustively, and that's not actually the goal.",
+        "The real, transferable skill is pattern recognition: knowing that certain categories of information (health, financial, data belonging to minors, data belonging to individuals in another country) tend to carry extra regulatory weight, and treating them with extra care by default rather than needing to identify the exact statute first.",
+        "When a matter involves an unfamiliar regulatory area, asking the attorney directly whether there are specific compliance obligations to be aware of is always the right move — better to ask a question that turns out to be unnecessary than to miss one that mattered."
+      ],
+      "howTo": [
+        "Recognize the pattern rather than memorizing every framework — certain categories of information (health, financial, data belonging to minors, data from other countries) tend to carry extra regulatory weight.",
+        "Treat those categories with extra care by default, without needing to identify the exact applicable statute first.",
+        "Ask the attorney directly whenever a matter touches an unfamiliar regulatory area, rather than guessing at the requirement.",
+        "Recognize Sarbanes-Oxley relevance for public-company financial records, GLBA for financial data, and FERPA for education records where a matter touches those industries.",
+        "Remember that state bar and ethics rules impose confidentiality obligations beyond attorney-client privilege alone, and apply regardless of which other framework is in play."
+      ],
+      "trainerCue": "Close this cluster of topics by asking the room to name any other regulation relevant to their own firm's specific practice areas that wasn't covered here — this list is deliberately not exhaustive, and naming the gaps is part of the lesson."
     },
     {
       "h": "Leading a Project Under Pressure",
@@ -633,7 +759,7 @@ const DAY6 = {
   ],
   "quickChecks": [
     {
-      "afterIndex": 11,
+      "afterIndex": 17,
       "q": "A project is behind schedule due to missed deadlines from several team members. Best first response?",
       "opts": [
         "Take over the late tasks yourself so the schedule recovers",
@@ -645,7 +771,7 @@ const DAY6 = {
       "r": "You can't fix a delay effectively until you know why it happened."
     },
     {
-      "afterIndex": 21,
+      "afterIndex": 27,
       "q": "On the KPI dashboard, which category does 'Filing Deadline Adherence (100%)' belong to?",
       "opts": [
         "Legal Compliance",
