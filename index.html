@@ -753,8 +753,6 @@ rect.svg-callout-badge{animation:none;}
    The rail lists the orientation note and the ten dossier sections; the pane
    shows one at a time and is sized to the window by cpFit(). Phones and narrow
    windows fall back to the stacked, scrolling layout below. */
-.cp-top h1{color:var(--navy);font-size:24px;margin:0 0 4px;font-family:'Fraunces';}
-.cp-top p{font-size:var(--font-body);color:#37394A;margin:0 0 14px;line-height:1.5;}
 /* The sections are big tabs across the top (6 across), so all twelve show at once with no scrolling; the pane fills the rest. */
 .cp-shell{display:flex;flex-direction:column;gap:12px;}
 .cp-rail{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;overflow:visible;flex:none;}
@@ -766,8 +764,8 @@ rect.svg-callout-badge{animation:none;}
 }
 .cp-rail button:hover{background:#F2F4FA;}
 .cp-rail button.on{background:var(--navy);border-color:var(--navy);color:#fff;}
-.cp-pane{flex:1;min-height:0;padding:18px 22px;overflow:auto;font-size:var(--font-body);}
-.cp-pane h3{margin:0 0 10px;font-size:16px;color:var(--navy);font-family:'Fraunces';}
+.cp-pane{flex:1;min-height:0;padding:20px 24px;overflow:auto;font-size:16px;}
+.cp-pane h3{margin:0 0 12px;font-size:18px;color:var(--navy);font-family:'Fraunces';}
 .cp-pane ul{margin:0;padding-left:18px;}
 .cp-pane li{font-size:1em;color:#37394A;margin-bottom:8px;line-height:1.5;}
 .cp-pane li:last-child{margin-bottom:0;}
@@ -788,8 +786,6 @@ rect.svg-callout-badge{animation:none;}
 @media (min-width:901px) and (max-height:900px){
   .cp-onescreen .page-hero{padding-top:10px !important;padding-bottom:8px !important;}
   .cp-onescreen .page-hero .eyebrow{display:none;}
-  .cp-top h1{font-size:20px;margin-bottom:2px;}
-  .cp-top p{font-size:12px;margin-bottom:6px;}
   .client-header-card{padding:7px 14px;margin-bottom:8px;gap:13px;}
   .client-avatar-svg,.client-photo-img{width:58px;height:58px;}
   .client-header-text h2{font-size:20px;}
@@ -799,16 +795,14 @@ rect.svg-callout-badge{animation:none;}
   .cp-rail{gap:6px;}
   .cp-rail button{min-height:36px;padding:5px 10px;font-size:13px;line-height:1.2;}
   /* the tabs take a little height across the top, so the hero gives back its sentence ("Read This First" says it) */
-  .cp-onescreen .cp-top{padding-top:0 !important;padding-bottom:0 !important;margin-bottom:8px !important;}
-  .cp-onescreen .client-header-card{padding:5px 14px !important;margin-bottom:8px !important;}
-  .cp-onescreen .client-avatar-svg, .cp-onescreen .client-photo-img{width:48px !important;height:48px !important;}
-  .cp-onescreen .client-header-text h2{font-size:18px !important;margin:0 !important;}
-  .cp-onescreen .client-header-text p{margin:0 !important;}
-  .cp-onescreen .cp-top p{display:none !important;}
-  .cp-onescreen .cp-top h1{margin:0 !important;}
+  .cp-onescreen .client-header-card{padding:10px 18px !important;margin-bottom:10px !important;}
+  .cp-onescreen .client-avatar-svg, .cp-onescreen .client-photo-img{width:64px !important;height:64px !important;}
+  .cp-onescreen .client-header-text h2{font-size:23px !important;margin:0 0 2px !important;}
+  .cp-onescreen .client-header-text p{margin:0 0 2px !important;font-size:14px !important;}
+  .cp-onescreen .client-tagline{font-size:13px !important;}
   .cp-pane{padding:11px 16px;}
   .cp-pane h3{font-size:15px;margin-bottom:8px;}
-  .cp-pane{font-size:12.5px;}
+  .cp-pane{font-size:14.5px;}
   .cp-pane li{margin-bottom:5px;line-height:1.42;}
   .cp-intro h2{font-size:17px;margin-bottom:9px;}
   .cp-intro p{line-height:1.5;margin-bottom:8px;}
@@ -1763,9 +1757,6 @@ main.has-presenter{padding-right:calc(clamp(170px,16vw,250px) + 16px);}
   /* admin */
   .admin-tabs{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
   .admin-tab-btn{white-space:nowrap;flex:0 0 auto;}
-  .admin-row-grid{grid-template-columns:1fr 1fr !important;}
-  .admin-row-grid > div:first-child, .admin-row-grid > div:last-child{grid-column:1/-1;}
-  .admin-row-grid > div:last-child{flex-wrap:wrap;}
   .admin-rank-grid{grid-template-columns:40px minmax(0,1fr) 60px !important;}
   .admin-rank-grid > div:nth-child(n+4){display:none;}
   main select{max-width:100%;}
@@ -2090,6 +2081,10 @@ img[alt="Legal Support Help"]{border-radius:8px;}
 .ho-line{font-family:'IBM Plex Mono',monospace;font-size:12.5px;margin:4px 0;}
 .ho-table td{height:22px;}
 main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button */
+/* Client Profile: no page header; the dossier runs further down, to a compact footer at the very bottom
+   (48px still clears the 💬 Feedback button in the corner). */
+body.cp-onescreen main:not(.main-dash){padding-bottom:48px;padding-top:14px;}
+body.cp-onescreen .footer-note{padding:6px 24px 8px;}
 .won-chip.pending{border-style:solid;color:var(--orange-deep);}
 
 
@@ -2211,22 +2206,14 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
 .cue-item > summary{display:flex;align-items:center;gap:8px;}
 .script-slides{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--orange-deep);font-weight:700;margin-left:6px;}
 
-.audit-strip{display:grid;grid-template-columns:1.2fr 1.1fr 2fr 1.1fr 1fr 1.1fr 1.8fr;gap:14px;padding:4px 18px 14px;align-items:start;}
-.audit-strip.loading{display:block;font-size:12px;color:var(--ink-soft);}
-.as-block b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:3px;}
-.as-block span{font-size:12.5px;color:var(--ink);font-weight:700;line-height:1.45;}
-.as-now span{color:var(--navy);}
 .as-bar{height:5px;border-radius:4px;background:#E7E9F2;margin-top:5px;overflow:hidden;} .as-bar div{height:100%;background:var(--orange);border-radius:4px;}
 .ad-cells{display:flex;gap:2px;flex-wrap:nowrap;}
 .ad-cell{position:relative;width:20px;height:20px;flex:0 0 20px;border-radius:6px;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:default;}
 .ad-cell.ok{background:#3F7D58;color:#fff;} .ad-cell.low{background:#E8B54A;color:#3A2A05;} .ad-cell.wip{background:#FFF1E2;color:var(--orange-deep);border:1px solid var(--orange);} .ad-cell.none{background:#F1F2F7;color:#A7AAB8;}
 .ad-cell i{position:absolute;right:-2px;bottom:-2px;width:8px;height:8px;border-radius:50%;background:var(--navy);border:1.5px solid #fff;}
-.as-review span{display:flex;flex-wrap:wrap;gap:4px;}
 .rv{font-style:normal;font-size:11px;font-weight:800;border-radius:12px;padding:2px 8px;}
 .rv.sent{background:var(--success-bg);color:var(--success);} .rv.draft{background:#FFF1E2;color:var(--orange-deep);} .rv.todo{background:var(--danger-bg);color:var(--danger);} .rv.done{background:#EEF0F6;color:var(--ink-soft);} .rv.focus{background:#EEF0F8;color:var(--navy);}
 em.warn{font-style:normal;color:var(--danger);}
-@media(max-width:1200px){.audit-strip{grid-template-columns:repeat(3,minmax(0,1fr));}}
-@media(max-width:760px){.audit-strip{grid-template-columns:1fr 1fr;}}
 @media(max-width:760px){.cert-settings-grid{grid-template-columns:1fr !important;} .cert-settings-grid input{min-width:0;width:100%;box-sizing:border-box;}}
 
 .tool-card.locked{opacity:.62;cursor:not-allowed;filter:grayscale(.35);}
@@ -2418,16 +2405,45 @@ em.warn{font-style:normal;color:var(--danger);}
 @media(max-width:900px){.fbc-row3{grid-template-columns:1fr;}}
 
 /* Trainee Audit: table-style gridlines */
+/* Trainee Audit table (scorecard style) */
+.audit-table-card{padding:0;overflow:hidden;}
+.audit-table-wrap{overflow-x:auto;overflow-y:visible;}
+.audit-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:980px;}
+.audit-table thead th{background:var(--navy);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;text-align:left;padding:11px 9px;white-space:nowrap;position:sticky;top:0;}
+.audit-table thead th + th{border-left:1px solid rgba(255,255,255,.14);}
+.audit-table td{padding:10px 9px;vertical-align:top;border-top:1px solid #E3E6EF;color:var(--ink);line-height:1.4;}
+.audit-table td + td{border-left:1px solid #EEF0F5;}
+.audit-table b{font-weight:800;}
+.audit-table small{display:block;font-size:11px;color:var(--ink-soft);font-weight:600;margin-top:2px;}
+.audit-table em.warn{display:block;font-style:normal;font-size:11px;font-weight:700;color:var(--danger);margin-top:2px;}
+.audit-table .at-name{min-width:150px;max-width:190px;}
+.audit-table .at-name .admin-id{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.audit-table .admin-name{color:var(--navy);font-size:13.5px;}
+.audit-table .admin-id{font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';margin-top:2px;}
+.audit-table .at-tag{font-size:10px;color:var(--ink-soft);} .audit-table .at-tag.warn{color:var(--danger);font-weight:700;}
+.audit-table .at-asked{display:inline-block;margin-top:6px;background:var(--danger-bg);color:var(--danger);font-weight:800;}
+.audit-table .at-now{min-width:96px;font-weight:700;}
+.audit-table .at-lessons{min-width:92px;} .audit-table .at-lessons b{font-size:15px;color:var(--navy);}
+.audit-table .at-days .ad-cells{margin-bottom:3px;gap:1px;}
+.audit-table .at-days .ad-cell{width:19px;height:19px;flex-basis:19px;}
+.audit-table .at-num b{font-size:14px;color:var(--navy);}
+.audit-table .at-review{min-width:128px;} .audit-table .at-review .rv{display:inline-block;margin:0 3px 4px 0;}
+.audit-table .at-wait{font-size:11px;color:var(--ink-soft);font-style:italic;}
+.audit-table .at-act{width:1%;}
+.audit-table .at-btns{display:flex;flex-direction:column;gap:5px;min-width:108px;}
+.audit-table .at-btns .btn{justify-content:center;white-space:nowrap;padding:5px 8px;font-size:11.5px;width:100%;}
+.audit-table .at-more{position:relative;}
+.audit-table .at-more summary{list-style:none;cursor:pointer;} .audit-table .at-more summary::-webkit-details-marker{display:none;}
+.audit-table .at-more summary.at-more-flag{border-color:var(--danger);color:var(--danger);}
+.audit-table .at-menu{position:absolute;right:0;top:calc(100% + 4px);z-index:20;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 28px -10px rgba(22,24,41,.35);padding:6px;display:flex;flex-direction:column;gap:4px;min-width:200px;}
+.audit-table .at-menu .btn{justify-content:flex-start;}
+.audit-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:10px 14px;border-top:1px solid #E3E6EF;font-size:11px;color:var(--ink-soft);font-weight:600;}
+.audit-legend .ad-cell{margin-left:6px;}
+.audit-detail-row > td{background:#FFFDF8;padding:0 !important;border-left:none !important;}
 .audit-row{border-bottom:1px solid #D9DCE8;}
 .audit-row:nth-child(even){background:#F8F9FC;}
 .audit-row:hover{background:#FFF8EF;}
 .audit-row.expanded{background:#FFFDF8;box-shadow:inset 4px 0 0 var(--orange);}
-.audit-row .admin-row-grid > div:not(:first-child):not(:last-child){border-left:1px solid #E3E6EF;padding-left:12px;align-self:stretch;display:flex;align-items:center;}
-.audit-strip{border-top:1px dashed #D9DCE8;margin:0 18px;padding:10px 0 14px !important;}
-.audit-strip .as-block{padding:0 12px;}
-.audit-strip .as-block:first-child{padding-left:0;}
-.audit-strip .as-block + .as-block{border-left:1px solid #E3E6EF;}
-@media(max-width:1200px){.audit-strip .as-block{border-left:none !important;padding:6px 0;} .audit-strip .as-block + .as-block{border-top:1px solid #EEF0F5;}}
 
 .tk-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 16px;}
 .tk-stats > div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;} .tk-stats b{display:block;font-family:'Fraunces',serif;font-size:26px;color:var(--navy);} .tk-stats span{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);font-weight:700;}
@@ -4758,11 +4774,6 @@ function renderClientProfile(){
         <ul class="${sec.items.length>7?"three-col":sec.items.length>3?"two-col":""}">${sec.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`;
 
   return `
-    <div class="cp-top">
-      <h1>Client Profile</h1>
-      <p>Everything about Elias Thorne, your client for all 10 days \u2014 read this before Day 1 and come back whenever you need a fact, a preference or a quirk.</p>
-    </div>
-
     <div class="card client-header-card">
       ${clientAvatarSvg()}
       <div class="client-header-text">
@@ -13381,8 +13392,14 @@ function renderAdminRows(onlyBatch){
     return `<div class="empty-note">No trainees found${search?" matching that search":onlyBatch?" in this batch yet":" yet — once someone sets their name in the app, they'll show up here."}.</div>`;
   }
   return `
-    <div class="card" style="padding:0;overflow:hidden;">
-      ${rows.map(({rec,day,practice})=>renderAdminRow(rec,day,practice)).join("")}
+    <div class="card audit-table-card">
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead><tr><th>Trainee</th><th>Now</th><th>Lessons</th><th>Days</th><th>Knowledge Checks</th><th>Practice Labs</th><th>Random Tasks</th><th>Review</th><th class="at-act">Actions</th></tr></thead>
+          <tbody>${rows.map(({rec,day,practice})=>renderAdminRow(rec,day,practice)).join("")}</tbody>
+        </table>
+      </div>
+      <div class="audit-legend"><span class="ad-cell ok">1</span> Knowledge Check passed <span class="ad-cell low">1</span> below 70% <span class="ad-cell wip">1</span> in progress <span class="ad-cell none">1</span> not started <span class="ad-cell none">1<i></i></span> Practice Lab done</div>
     </div>`;
 }
 
@@ -13435,52 +13452,51 @@ function auditSummary(rec){
       return {tasksTotal:tl.length, tasksDone:res.length, tasksMissed:miss.length, tasksOpen:tl.length-res.length-miss.length, tasksAvg: res.length ? Math.round(res.reduce((x,e)=>x+(e.score||0),0)/res.length) : null}; })(),
     lastSave: x && x.savedAt};
 }
-function renderAuditStrip(rec){
-  const a = auditSummary(rec);
-  if(!a.loaded) return `<div class="audit-strip loading">Loading exact progress…</div>`;
-  const cell = (d)=>{
-    const cls = d.passed ? "ok" : (d.score!==null ? "low" : (d.reached>0 ? "wip" : "none"));
-    const tip = `Day ${d.id}: ${d.reached}/${d.n} slides · ${d.score!==null ? `Knowledge Check ${d.score}%${d.passed?" ✓":" (below 70%)"}` : "Knowledge Check not taken"} · Practice Lab ${d.labDone?"done":"not done"}`;
-    return `<span class="ad-cell ${cls}" title="${esc(tip)}">${d.id}${d.labDone?`<i></i>`:""}</span>`;
-  };
-  return `<div class="audit-strip">
-    <div class="as-block as-now"><b>📍 Now</b><span>${esc(a.where)}</span></div>
-    <div class="as-block"><b>Lessons</b><span>${a.seen} / ${a.total} slides · ${a.pct}%</span><div class="as-bar"><div style="width:${a.pct}%"></div></div></div>
-    <div class="as-block as-days"><b>Days</b><div class="ad-cells">${a.days.map(cell).join("")}</div></div>
-    <div class="as-block"><b>Knowledge Checks</b><span>${a.kcPassed} passed${a.kcBelow.length?` · <em class="warn">below 70%: Day ${a.kcBelow.join(", ")}</em>`:""}</span></div>
-    <div class="as-block"><b>Practice Labs</b><span>${a.labsDone} / ${DAYS.length} done${a.labAvg!==null?` · avg ${a.labAvg}%`:""}</span></div>
-    <div class="as-block"><b>Random tasks</b><span>${a.tasksTotal ? `${a.tasksDone}/${a.tasksTotal} resolved${a.tasksAvg!==null?` · avg ${a.tasksAvg}%`:""}${a.tasksMissed?` · <em class="warn">${a.tasksMissed} missed</em>`:""}${a.tasksOpen?` · ${a.tasksOpen} open`:""}` : "none yet"}</span></div>
-    <div class="as-block as-review"><b>Review</b><span>
-      <em class="rv sent">${a.sent} sent${a.sent?` (${a.read} read)`:""}</em>
-      ${a.drafts?`<em class="rv draft">${a.drafts} draft</em>`:""}
-      ${a.toWrite.length?`<em class="rv todo" title="Days with work but no feedback yet">to write: Day ${a.toWrite.join(", ")}</em>`:(a.seen||a.kcPassed||a.labsDone ? `<em class="rv done">all worked days covered</em>` : `<em class="rv done">no work yet</em>`)}
-      <em class="rv focus">Focus: ${a.focusOpen} open · ${a.focusDone} done</em></span></div>
-  </div>`;
+/* Trainee Audit as a scorecard table: one row per trainee, one column per measure (as the
+   Foundational course's scorecards), with View Detail opening a full-width row under it. */
+const AUDIT_COLS = 9;
+function auditDayCell(d){
+  const cls = d.passed ? "ok" : (d.score!==null ? "low" : (d.reached>0 ? "wip" : "none"));
+  const tip = `Day ${d.id}: ${d.reached}/${d.n} slides · ${d.score!==null ? `Knowledge Check ${d.score}%${d.passed?" ✓":" (below 70%)"}` : "Knowledge Check not taken"} · Practice Lab ${d.labDone?"done":"not done"}`;
+  return `<span class="ad-cell ${cls}" title="${esc(tip)}">${d.id}${d.labDone?`<i></i>`:""}</span>`;
 }
 function renderAdminRow(rec, day, practice){
   const expanded = state.adminExpandedId===rec.id;
+  const a = auditSummary(rec);
+  const wait = `<span class="at-wait">loading…</span>`;
+  const asked = rec.labResetRequestedAt && (!rec.labAttemptsResetAt || rec.labResetRequestedAt > rec.labAttemptsResetAt);
   return `
-    <div class="audit-row ${expanded?"expanded":""}">
-      <div class="admin-row-grid" style="display:grid;grid-template-columns:minmax(0,1fr) 110px 110px 110px 140px auto;gap:12px;align-items:center;padding:14px 18px;">
-        <div style="min-width:0;overflow:hidden;">
-          <b class="admin-name" title="${esc(String(rec.name||"Unnamed").slice(0,200))}" style="color:var(--navy);font-size:13.5px;">${esc(String(rec.name||"Unnamed").slice(0,60))}${String(rec.name||"").length>60?"…":""}</b>${rec.archived?' <span style="font-size:10px;color:var(--ink-soft);">(archived)</span>':''}${rec.flaggedInvalidInput?' <span style="font-size:10px;color:var(--danger);font-weight:700;">⚠ invalid input removed</span>':''}
-          <div class="admin-id" style="font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono';">${esc(String(rec.id).slice(0,48))}${rec.batch?` · ${esc(cleanBatch(rec.batch))}`:''}</div>
-        </div>
-        <div style="font-size:13px;">${day.done} / ${day.total} days</div>
-        <div style="font-size:13px;">${day.avg}% avg</div>
-        <div style="font-size:13px;">${practice.runs} runs</div>
-        <div style="font-size:11.5px;color:var(--ink-soft);">${rec.lastActive?fmtDate(rec.lastActive):"—"}</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:520px;">
+    <tr class="audit-row ${expanded?"expanded":""}">
+      <td class="at-name">
+        <b class="admin-name" title="${esc(String(rec.name||"Unnamed").slice(0,200))}">${esc(String(rec.name||"Unnamed").slice(0,60))}${String(rec.name||"").length>60?"…":""}</b>${rec.archived?' <span class="at-tag">(archived)</span>':''}${rec.flaggedInvalidInput?' <span class="at-tag warn">⚠ invalid input removed</span>':''}
+        <div class="admin-id">${esc(String(rec.id).slice(0,48))}${rec.batch?` · ${esc(cleanBatch(rec.batch))}`:''}</div>
+        <small>Last active: ${rec.lastActive?fmtDate(rec.lastActive):"—"}</small>
+        ${asked ? `<span class="pill at-asked" title="Asked ${fmtDate(rec.labResetRequestedAt)}${rec.labResetRequestedDay ? " (Day " + rec.labResetRequestedDay + ")" : ""}">🙋 Asked for more attempts</span>` : ""}
+      </td>
+      <td class="at-now">${a.loaded ? esc(a.where) : wait}</td>
+      <td class="at-lessons">${a.loaded ? `<b>${a.pct}%</b><small>${a.seen} / ${a.total} slides</small><div class="as-bar"><div style="width:${a.pct}%"></div></div>` : wait}</td>
+      <td class="at-days">${a.loaded ? `<div class="ad-cells">${a.days.map(auditDayCell).join("")}</div>` : ""}<small>${day.done} / ${day.total} days done</small></td>
+      <td class="at-num"><b>${a.loaded ? a.kcPassed : day.done} / ${DAYS.length}</b><small>passed · ${day.avg}% avg</small>${a.loaded && a.kcBelow.length ? `<em class="warn">below 70%: Day ${a.kcBelow.join(", ")}</em>` : ""}</td>
+      <td class="at-num">${a.loaded ? `<b>${a.labsDone} / ${DAYS.length}</b><small>done${a.labAvg!==null?` · avg ${a.labAvg}%`:""} · ${practice.runs} runs</small>` : `<b>${practice.runs}</b><small>runs</small>`}</td>
+      <td class="at-num">${!a.loaded ? wait : a.tasksTotal ? `<b>${a.tasksDone} / ${a.tasksTotal}</b><small>resolved${a.tasksAvg!==null?` · avg ${a.tasksAvg}%`:""}${a.tasksOpen?` · ${a.tasksOpen} open`:""}</small>${a.tasksMissed?`<em class="warn">${a.tasksMissed} missed</em>`:""}` : `<small>none yet</small>`}</td>
+      <td class="at-review">${!a.loaded ? wait : `
+        <em class="rv sent">${a.sent} sent${a.sent?` (${a.read} read)`:""}</em>
+        ${a.drafts?`<em class="rv draft">${a.drafts} draft</em>`:""}
+        ${a.toWrite.length?`<em class="rv todo" title="Days with work but no feedback yet">to write: Day ${a.toWrite.join(", ")}</em>`:(a.seen||a.kcPassed||a.labsDone ? `<em class="rv done">all worked days covered</em>` : `<em class="rv done">no work yet</em>`)}
+        <em class="rv focus">Focus: ${a.focusOpen} open · ${a.focusDone} done</em>`}</td>
+      <td class="at-act">
+        <div class="at-btns">
           <button class="btn btn-sm btn-ghost" onclick="toggleAdminDetail('${rec.id}')">${expanded?"Hide":"View"} Detail</button>
           <button class="btn btn-sm btn-primary" onclick="openFeedbackFor('${rec.id}')" title="Write and send feedback to this trainee">✍ Feedback</button>
+          <details class="at-more"><summary class="btn btn-sm btn-ghost${asked ? " at-more-flag" : ""}">More ▾</summary><div class="at-menu">
           <button class="btn btn-sm btn-ghost" onclick="adminOpenCertificate('${rec.id}')" title="Preview / download this trainee's Certificate of Completion">🎓 Certificate</button>
-          ${rec.labResetRequestedAt && (!rec.labAttemptsResetAt || rec.labResetRequestedAt > rec.labAttemptsResetAt) ? `<span class="pill" style="background:var(--danger-bg);color:var(--danger);font-weight:800;" title="Asked ${fmtDate(rec.labResetRequestedAt)}${rec.labResetRequestedDay ? " (Day " + rec.labResetRequestedDay + ")" : ""}">🙋 Asked for more attempts</span>` : ""}<button class="btn btn-sm ${rec.labResetRequestedAt && (!rec.labAttemptsResetAt || rec.labResetRequestedAt > rec.labAttemptsResetAt) ? "btn-primary" : "btn-ghost"}" title="Give this trainee a fresh ${LAB_ATTEMPT_CAP} Practice Lab repeat attempts on every day" onclick="resetTraineeLabAttempts('${rec.id}')">↺ Reset Attempts${rec.labAttemptsGlobal ? ` (${rec.labAttemptsGlobal} used)` : ""}</button>
+          <button class="btn btn-sm ${asked ? "btn-primary" : "btn-ghost"}" title="Give this trainee a fresh ${LAB_ATTEMPT_CAP} Practice Lab repeat attempts on every day" onclick="resetTraineeLabAttempts('${rec.id}')">↺ Reset Attempts${rec.labAttemptsGlobal ? ` (${rec.labAttemptsGlobal} used)` : ""}</button>
           <button class="btn btn-sm btn-ghost" style="color:var(--danger);" onclick="confirmRevokeTrainee('${rec.id}', '${esc(rec.name||"this trainee").replace(/'/g,"\\'")}')">Revoke</button>
+          </div></details>
         </div>
-      </div>
-      ${renderAuditStrip(rec)}
-      ${expanded?renderAdminDetail(rec):""}
-    </div>`;
+      </td>
+    </tr>
+    ${expanded?`<tr class="audit-detail-row"><td colspan="${AUDIT_COLS}">${renderAdminDetail(rec)}</td></tr>`:""}`;
 }
 
 /* Admin: open days for a trainee who missed a session. "Unlock up to Day N" opens Days 2..N
