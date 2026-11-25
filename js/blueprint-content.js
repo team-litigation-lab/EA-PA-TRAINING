@@ -5,11 +5,11 @@
    A slide is { icon, title, points: [...], where, tip }. Change the wording here; the page and the PDF
    are made from it each time, stamped with the deployed build. README → Handouts, Orientation and the Blueprint. */
 window.LSH_BLUEPRINT = {
-  product: 'EA / PA Upskill Program',
-  site: 'LSH EA / PA Upskill Program',
+  product: 'EA PA Track',
+  site: 'LSH EA PA Track',
   file: 'LSH_EA-PA',
   trainee: {
-    sub: 'Your guide to the portal: the 10-day EA / PA Upskill Program, day by day',
+    sub: 'Your guide to the portal: the 10-day EA PA Track, day by day',
     slides: [
       { icon: '👋', title: 'Welcome to the program', points: [
           'Ten days to work like a strategic, trusted Executive & Personal Assistant to an attorney — built around one realistic client, from Day 1 to Day 10.',
