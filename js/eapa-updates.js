@@ -1318,7 +1318,7 @@ async function eoEvaluate(){
 }
 Object.assign(window, {eoChoose, eoReset, eoSend, eoDraft, eoFinish, eoEvaluate});
 
-/* Day 4 Practice Lab, Part A: Prioritize the Day (the Time Management & Productivity block).
+/* Day 4 Practice Lab, Part A: Prioritize the Day (Day 3's Time Management & Productivity lessons, put to work).
    Step 1 sorts eight real tasks with the day's tools (two-minute rule, time blocking, batching,
    delegating, pushing back); step 2 is the written push-back on an unrealistic deadline, AI-graded. */
 const TM_ACTIONS = ["Do it now (under 2 minutes)","Block time for it today","Batch it with similar tasks","Delegate it","Push back and renegotiate the deadline"];
@@ -1335,7 +1335,7 @@ const TM_TASKS = [
 function renderTimeMgmtSection(){
   return `
     <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">A. Prioritize the Day</h3>
-    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">It's Monday, 8:30 AM. Here's what's on your list for Elias's office. For each task, choose how you'll handle it, using the tools from today's Time Management &amp; Productivity lessons.</p>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">It's Monday, 8:30 AM. Here's what's on your list for Elias's office. For each task, choose how you'll handle it, using the tools from Day 3's Time Management &amp; Productivity lessons.</p>
     <div class="card" style="padding:14px 16px;overflow-x:auto;">
       <table class="log-table">
         <thead><tr><th>#</th><th>Task</th><th>How you'll handle it</th></tr></thead>
@@ -1380,7 +1380,7 @@ async function checkTmPushback(btn){
     const report = await runRubricEvaluation("Renegotiating an Unrealistic Deadline (reply to a partner)",
       "At 8:45 AM a partner asks the assistant for a summary of a 40-page contract 'by 10 today.' The assistant's morning is already committed to Elias Thorne's exhibit index for Friday's hearing and a filing due at 10:30.",
       text,
-      "Evaluate against the Day 4 time management lessons (Saying No Without Damaging Relationships; Setting Realistic Deadlines). A strong reply: acknowledges the request and its importance; states the conflict briefly and factually without oversharing confidential matter details; offers a specific realistic alternative (for example a time this afternoon, or the key sections by a set time) and asks which works; and, where two senior people's priorities truly collide, offers to check with Elias rather than silently choosing. It is short, polite and leads with the answer. Deduct for silently accepting a deadline that can't be met, a flat refusal with no alternative, blaming, or vague promises ('I'll try').");
+      "Evaluate against the time management lessons (Day 3: Saying No Without Damaging Relationships; Setting Realistic Deadlines). A strong reply: acknowledges the request and its importance; states the conflict briefly and factually without oversharing confidential matter details; offers a specific realistic alternative (for example a time this afternoon, or the key sections by a set time) and asks which works; and, where two senior people's priorities truly collide, offers to check with Elias rather than silently choosing. It is short, polite and leads with the answer. Deduct for silently accepting a deadline that can't be met, a flat refusal with no alternative, blaming, or vague promises ('I'll try').");
     toolState.tm = toolState.tm || {}; toolState.tm.pushbackReport = report;
     el.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Reply</b>` + renderEvaluationReport(report, 4);
     await bumpPracticeProgress("coldcalling4", report.totalScore);
