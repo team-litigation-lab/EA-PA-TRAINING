@@ -2884,7 +2884,7 @@ window.fitTopicsModal = fitTopicsModal;
       const key = d.id + "::" + l.h, extra = LESSON_EXTRA_LEARNING[key];   // Go Deeper lives in the Lesson Notes
       if(extra) delete LESSON_EXTRA_LEARNING[key];
       let html; try{ html = __card.call(this, s, i, d, u, part); } finally { if(extra) LESSON_EXTRA_LEARNING[key] = extra; }
-      return html + `<div class="ln-more"><button type="button" onclick="openLessonNotes(${d.id}, ${esc(JSON.stringify(l.h))})">📖 Full notes for this topic</button><span>Day ${d.id} Lesson Notes · Handouts</span></div>`;
+      return html;   // 📖 Full notes is on the bar under the slide (index.html, renderDaySlideshow), not on the slide
     };
     renderLessonCard.__brief = true;
   }
@@ -2984,9 +2984,6 @@ window.fitTopicsModal = fitTopicsModal;
   }
 
   const st = document.createElement("style"); st.id = "lesson-notes"; st.textContent = `
-.ln-more{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 0;font-size:12px;color:var(--ink-soft);}
-.ln-more button{border:1px solid #E3E6EE;background:#fff;color:var(--navy);font-weight:700;font-size:12.5px;border-radius:999px;padding:5px 14px;cursor:pointer;}
-.ln-more button:hover{background:#F3F4F8;}
 .ln-h{color:var(--navy);font-size:17px;margin:18px 0 10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
 .ln-h span{font-size:13px;font-weight:500;color:var(--ink-soft);}
 .ln-grid{margin-bottom:6px;}
@@ -2999,7 +2996,6 @@ window.fitTopicsModal = fitTopicsModal;
 .ln-part{margin:6px 0;} .ln-part b{display:block;font-size:12px;color:#5B6178;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;}
 .ln-part ul,.ln-part ol{margin:2px 0 6px 20px;padding:0;} .ln-part li{font-size:13.5px;line-height:1.5;margin:3px 0;color:#2A2E40;}
 .ln-callout{font-size:13px;color:#5B6178;font-style:italic;margin:4px 0 8px;}
-@media(max-width:760px){ .ln-more span{display:none;} }
 `; document.head.appendChild(st);
   if(typeof render === "function" && typeof state !== "undefined" && (state.view === "day" || state.view === "handouts")){ try{ render(); }catch(e){} }
 })();
