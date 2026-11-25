@@ -40,7 +40,9 @@ const CARD = [238, 241, 246];   // the light end of the header card's gradient
                     bottom: Math.round(shell.getBoundingClientRect().bottom), vh: innerHeight,
                     name: cs(document.querySelector('.client-header-text h2')).color,
                     role: cs(document.querySelector('.client-header-text p')).color,
-                    tag: cs(document.querySelector('.client-tagline')).color
+                    tag: cs(document.querySelector('.client-tagline')).color,
+                    // the card's background: its gradient's colour stops, or its plain colour
+                    cardBg: (() => { const c = cs(document.querySelector('.client-header-card')); const stops = (c.backgroundImage.match(/rgba?\([^)]+\)/g) || []); return stops.length ? stops : [c.backgroundColor]; })()
                 };
             });
             if (r.doc > 1) fail(`${W}x${H} "${r.label}": the page scrolls ${r.doc}px`);
@@ -48,7 +50,8 @@ const CARD = [238, 241, 246];   // the light end of the header card's gradient
             if (r.rail > 1) fail(`${W}x${H} "${r.label}": the rail scrolls ${r.rail}px`);
             if (r.bottom > r.vh) fail(`${W}x${H} "${r.label}": the dossier ends ${r.bottom - r.vh}px below the fold`);
             if (i === 0) for (const [k, v] of Object.entries({ name: r.name, role: r.role, tagline: r.tag })) {
-                const cr = ratio(parse(v), CARD);
+                // every colour the card's background passes through, the worst one counts
+                const cr = Math.min(...(r.cardBg.length ? r.cardBg.map(parse) : [CARD]).map(bg => ratio(parse(v), bg)));
                 if (cr < 4.5) fail(`${W}x${H}: the client ${k} is ${cr.toFixed(2)}:1 on the card (AA needs 4.5:1)`);
             }
         }

@@ -2084,6 +2084,12 @@ main:not(.main-dash){padding-bottom:84px;} /* room for the 💬 Feedback button 
 /* Client Profile: no page header; the dossier runs further down, to a compact footer at the very bottom
    (48px still clears the 💬 Feedback button in the corner). */
 body.cp-onescreen main:not(.main-dash){padding-bottom:48px;padding-top:14px;}
+/* desktop: the profile uses the whole window, edge to edge and down to the footer; the 💬 Feedback
+   button sits small in the footer strip so it never covers the dossier */
+@media (min-width:901px){
+  body.cp-onescreen main:not(.main-dash){max-width:none;padding:14px 24px 8px;}
+  body.cp-onescreen .tfb-fab{bottom:4px;padding:5px 12px;font-size:12px;}
+}
 body.cp-onescreen .footer-note{padding:6px 24px 8px;}
 .won-chip.pending{border-style:solid;color:var(--orange-deep);}
 
@@ -2774,7 +2780,11 @@ body::before{opacity:.40;}
 }
 /* The client header card is a light card with dark ink by design — keep the glass
    rule from repainting it translucent, which is what put white text on near-white. */
-.card.client-header-card{background:linear-gradient(135deg,#F8FAFC 0%,#EEF1F6 100%);backdrop-filter:none;-webkit-backdrop-filter:none;}
+/* the client's name card in the site's standard navy, like every page's header band */
+.card.client-header-card{background:var(--g-navy) !important;border-color:var(--navy) !important;backdrop-filter:none;-webkit-backdrop-filter:none;}
+.card.client-header-card .client-header-text h2{color:#fff !important;}
+.card.client-header-card .client-header-text p{color:#DCE0EE !important;}
+.card.client-header-card .client-tagline{color:#F0C08A !important;}
 .empty-note{background:rgba(246,247,251,.72);backdrop-filter:var(--surface-blur);-webkit-backdrop-filter:var(--surface-blur);}
 .tk-admin-note{background:rgba(255,255,255,.72);backdrop-filter:var(--surface-blur);-webkit-backdrop-filter:var(--surface-blur);}
 /* The admin tab strip sits straight on the glass over the darkest part of the
@@ -3731,6 +3741,14 @@ const CLIENT_PROFILE_DOC = [
   {section:"Travel Preferences", items:[
     "Aisle seat, near the front of the cabin, every time.",
     "Zero connecting flights — direct only, regardless of cost difference.",
+    "Frequent traveler pass: Global Entry (TSA PreCheck included). His Known Traveler Number is kept in his secure travel profile; add it to every domestic and international booking so PreCheck prints on the boarding pass. Never send it by email or text.",
+    "Airline and hotel loyalty numbers are in the same travel profile; use his programs when the fare and schedule are equal, never at the cost of a direct flight.",
+    "No redeye the night before a court appearance or a major client meeting; he lands the evening before.",
+    "Passport valid at least six months past the return date on every international trip; check it before booking, not at the airport.",
+    "Hotels: quiet room on a high floor, away from the elevators; walking distance to the court or the client when he is appearing; refundable rates for court travel; late checkout requested on departure day.",
+    "Ground transport: a car service, not a rideshare, to and from the airport, with the driver's name and number in the itinerary.",
+    "In-flight meals: pre-order a Paleo meal wherever the airline offers one; otherwise pack approved snacks (no dairy, grains or processed sugar).",
+    "Itinerary: one page in his inbox the evening before departure, with confirmation numbers, addresses, the driver and the backup flight.",
     "Monitor delays proactively; have a rebooking ready before he has to ask.",
     "Based in New York City (Eastern time); recurring travel to Washington D.C., London, and Singapore."
   ]},
