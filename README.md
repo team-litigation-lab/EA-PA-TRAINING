@@ -303,6 +303,16 @@ The Call Sim is **☎ LSH Voice's** — the training phone itself (the lshringch
 
 **Note on the call packs:** LSH Voice's scenario library is the Foundational pack on three lines (Reception and Calendar Management on the Main Line, Intake on the Intake Line), so a card naming an EA / PA line it doesn't have (Executive Calls, Gatekeeping & Stakeholders, Legal Operations, Lifestyle & Estate, Revenue & Outreach) lands the trainee on the phone's line picker until those calls are added on LSH Voice itself — a trainer writes them in its **📚 Scenarios**, or they are ported into its `src/scenarios.js`.
 
+## 🏅 My Scorecard (`js/eapa-scorecard.js`)
+
+Trainees open **🏅 Scorecard** in the top bar (or the button under the dashboard band, or **Full ranking →** on the Ranking card). It is one page with three tables, laid out like the Foundational Training's Score Card and Weekly Progress Report:
+
+- **🏅 Score Card**: a row per day: Knowledge Check, Quick Checks, Practice Lab, Random task, the Day average, then **Remarks / Trainer feedback**. A day the trainer has sent feedback on shows its rating and summary (the full feedback is a click away). Until then, the day shows a plain-language note written from its scores, marked as an auto note.
+- **📊 Weekly Progress**: Week 1 (Days 1–5) and Week 2 (Days 6–10): days passed, each score's average, the week score, the place in the batch that week, and a sentence on how the week went.
+- **🏆 Ranking**: the batch, on the same score as the dashboard's Ranking card (35% days completed · 25% Knowledge Checks · 25% Practice Lab · 15% random tasks), with Week 1 and Week 2 beside the overall. Other trainees show as first name and last initial.
+
+Trainers see the same tables for each trainee in **Admin → Trainee Audit → View Detail → 🏅 Scorecard**, with each day's feedback status (Sent / Draft / Not reviewed). **👁 Trainee view** shows the page too, from that browser's own progress.
+
 A graded call counts here. The Training Portal (its `/api/call-results`) keeps the trainee's graded calls in `callsim:<trainee id>` (no key prefix; a trainee on an older id is found through `trainee-alias:`), by line, and the Worker lets the trainee read it but never write it. The dashboard band's **Graded calls** card (`js/graded-calls.js`) shows the best graded call on each line, averaged, with the lines and calls taken; each line's best is in its tooltip. It's read once a page load and again when the trainee comes back to the tab (at most every two minutes).
 
 ## 🔄 New versions (auto-update)
