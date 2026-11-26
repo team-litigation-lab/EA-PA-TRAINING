@@ -62,6 +62,7 @@
     const layoutTop = el => { let t = 0; for(; el; el = el.offsetParent) t += el.offsetTop; return t; };   // offsetTop ignores transforms
     deckRescale = function(){
       const fit = document.querySelector("#lessonStage .deck-fit"), stage = fit && fit.closest(".lesson-stage");
+      if(typeof lessonControlsWidth === "function") lessonControlsWidth();
       if(!fit || !fit.closest(".ea-deck-card") || window.innerWidth <= 760 || fit.closest("#audienceRoot") || document.fullscreenElement === stage) return __rescale.apply(this, arguments);
       // down to the bottom of what's under the slide (Previous / Next), not of the stage: the one-screen rule caps the
       // stage's height, and that cap moves with the animation too
@@ -140,7 +141,7 @@ ${S} .slide-done-note{color:var(--navy);background:#FFF1E2;border:0;}
 /* the presenter: in the side column on a desktop; beside the slide in full screen and the Presenter slides window */
 .ea-side-presenter{display:none;}
 @media(min-width:1000px){
-  body:not(.ft-fit) main:has(> #lessonStage .ea-deck-card) > .ea-side-presenter{display:block;width:min(180px, calc((100vh - 470px) * .56));height:auto;margin:6px auto 0 !important;transform:scaleX(-1);
+  body:not(.ft-fit) main:has(> #lessonStage .ea-deck-card) > .ea-side-presenter{display:none !important;width:min(180px, calc((100vh - 470px) * .56));height:auto;margin:6px auto 0 !important;transform:scaleX(-1);
     pointer-events:none;user-select:none;filter:drop-shadow(0 10px 14px rgba(20,24,48,.25));}
 }
 .lesson-stage:fullscreen > .ea-deck-card .stage-body, #audienceRoot .ea-deck-card .stage-body{display:grid !important;}
