@@ -1503,7 +1503,7 @@ rect.svg-callout-badge{animation:none;}
 .wd-page blockquote{margin:.4em 0 .7em;padding:.3em 0 .3em 14px;border-left:3px solid var(--orange);color:#3A3F55;font-style:italic;}
 .wd-page a{color:#2457C5;}
 .wd-status{display:flex;justify-content:space-between;gap:10px;padding:5px 12px;background:#F8F9FC;border-top:1px solid var(--line);font:500 11.5px var(--font-ui);color:var(--ink-soft);}
-@media (max-width:640px){ .wd-page{padding:22px 18px;} .wd-canvas{padding:10px 8px;} .wd-grp{padding:0 3px;} .wd-status span:last-child{display:none;} }
+@media (max-width:640px){ .wd-page{padding:22px 18px;} .wd-canvas{padding:10px 8px;} .wd-grp{padding:0 3px;flex-wrap:wrap;max-width:100%;} .wd-sel{max-width:100%;} .wd-status span:last-child{display:none;} }
 .note-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;}
 .note-saved{font-size:var(--font-sub);color:var(--ink-soft);}
 .ai-feedback{margin-top:12px;}
@@ -1752,6 +1752,7 @@ main.has-presenter{padding-right:calc(clamp(170px,16vw,250px) + 16px);}
   .vc-btn{padding:9px 12px;}
   .vc-btn.vc-hang{margin-left:0;flex:1 1 100%;justify-content:center;}
   table{display:block;overflow-x:auto;max-width:100%;}
+  .mini-table{min-width:0;}   /* its 420px floor pushed the table past the lab window, which clips it; the table scrolls inside itself instead */
   /* pop-ups & messages */
   .toast{top:64px;right:10px;left:10px;max-width:none;}
   .topics-overlay{padding:10px;}
@@ -1761,6 +1762,20 @@ main.has-presenter{padding-right:calc(clamp(170px,16vw,250px) + 16px);}
   .admin-tab-btn{white-space:nowrap;flex:0 0 auto;}
   main select{max-width:100%;}
   .cues-day-tabs{flex-wrap:nowrap;overflow-x:auto;}
+}
+/* Phones: the safety net under the rules above. Every rule is wrapped in :where() (no
+   specificity), so any page's own rule still wins; these only catch what those miss.
+   <main> clips anything wider than the screen, so without them a too-wide picture, frame or
+   long unbroken word (an email address, a link, a case number) is cut off, not scrolled to. */
+@media(max-width:760px){
+  :where(body){overflow-wrap:break-word;}
+  :where(img, video, iframe, embed, object){max-width:100%;}
+  :where(img, video){height:auto;}
+  :where(pre){white-space:pre-wrap;}
+  :where(input, select, textarea){max-width:100%;}
+  /* <main> breaks words anywhere, which lets a table squeeze a column to one letter a line on a
+     phone; in a table a word stays whole, and the table scrolls sideways inside itself instead. */
+  :where(td, th){overflow-wrap:break-word;}
 }
 
 .tap-selected{outline:3px solid var(--orange) !important;outline-offset:2px;box-shadow:0 0 0 6px rgba(219,132,55,.18) !important;}
@@ -2521,7 +2536,7 @@ em.warn{font-style:normal;color:var(--danger);}
 .section-divider .bd-list{margin-top:16px;}
 .section-divider .bd-list.sd-many{grid-template-columns:repeat(3,minmax(0,1fr));max-width:900px;gap:4px 22px;}
 .section-divider .bd-list.sd-many li{font-size:13px;line-height:1.3;}
-@media(max-width:760px){.block-divider .bd-list{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;}}
+@media(max-width:760px){.block-divider .bd-list, .section-divider .bd-list.sd-many{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;}}
 .topic-divider::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--orange),#F0C08A);}
 .topic-divider .td-kicker{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F0C08A;}
 .topic-divider .td-num{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin:18px 0 10px;}
@@ -2710,6 +2725,7 @@ em.warn{font-style:normal;color:var(--danger);}
 .trip-row b{display:block;font-size:13px;color:var(--navy);}
 .trip-row > div > span{display:block;font-size:11.8px;color:var(--ink-soft);}
 .trip-row input[type=time]{padding:7px 9px;border-radius:8px;border:1px solid var(--line);font-size:13px;font-family:inherit;}
+@media(max-width:760px){.trip-row{flex-wrap:wrap;} .trip-row > div{flex:1 1 160px;min-width:0;}}   /* phones: the time box drops under its label instead of squeezing it to a word a line */
 .trip-fixed{font-size:13px;font-weight:700;color:var(--danger);white-space:nowrap;}
 .trip-check{display:flex;gap:9px;align-items:flex-start;padding:6px 0;}
 .trip-check > span{font-weight:700;line-height:1.5;}
@@ -18199,7 +18215,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=4"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=wide-7"></script>
+<script src="/js/eapa-updates.js?v=wide-8"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>
@@ -18219,7 +18235,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- 👁 Up next: hover Next (or 👁 Peek next / N) for a preview of the next slide -->
 <script src="/js/eapa-next-preview.js?v=2"></script>
 <!-- 🎨 Deck colour, graphics and icons on every slide (topic illustrations, section colours, AA contrast) -->
-<script src="/js/eapa-deck-color.js?v=6"></script>
+<script src="/js/eapa-deck-color.js?v=7"></script>
 <!-- 🖥 Practice Lab activities in realistic app windows (docs, mail, tasks, ledger, admin console, portal, dashboards, AI assistant, CRM, forms, reviews, social) -->
 <script src="/js/eapa-lab-apps.js?v=5"></script>
 <script src="/js/eapa-sim-scenarios.js?v=2"></script>

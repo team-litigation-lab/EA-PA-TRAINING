@@ -1528,6 +1528,8 @@ window.initColdCalling4 = function(body){
 .gm-progress{height:4px;background:#e8eaed;} .gm-progress i{display:block;height:100%;background:#0b57d0;transition:width .3s;}
 .gm-res-row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:8px 0;font-size:13px;flex-wrap:wrap;} .gm-res-row b{color:var(--navy);}
 @media(max-width:860px){.gm-body{grid-template-columns:1fr;} .gm-nav{display:flex;gap:4px;overflow-x:auto;padding:4px 8px;} .gm-nav .gm-compose{display:none;} .gm-folder{width:auto;white-space:nowrap;border-radius:16px;} .gm-folder small{display:none;} .gm-main{margin:0 8px 8px;} .gm-from{width:110px;} .gm-logo{min-width:0;} .gm-logo span{display:none;} .gm-read h2, .gm-msg, .gm-replybar{margin-left:20px;}}
+/* phones: the search box, the toolbar and the "1–25 of 25" count fit the screen instead of running under the mailbox's edge */
+@media(max-width:760px){.gm-top{gap:8px;padding:8px 10px;} .gm-search{min-width:0;padding:8px 12px;} .gm-search input{min-width:0;width:100%;} .gm-bar{flex-wrap:wrap;} .gm-count{white-space:nowrap;padding-right:6px;} .gm-from{width:96px;} .gm-time{width:auto;}}
 `; document.head.appendChild(s); })();
 
 (function(){ const s = document.createElement("style"); s.id = "eapa-gmail-2"; s.textContent = `
