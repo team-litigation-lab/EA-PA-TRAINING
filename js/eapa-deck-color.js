@@ -226,7 +226,8 @@ body .dash-main .module-card.mc-clean .module-topics-btn span{color:#A34E14 !imp
    navy-to-gold too, so the card reads as one navy-and-gold grid */
 body .dash-main .module-card.mc-clean .module-head,
 body .dash-main .module-card.mc-clean:nth-child(3n+2) .module-head,
-body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{border-bottom:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
+body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{border-image:none !important;border-top:4px solid #1E2340 !important;border-bottom:0 !important;
+  background:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) bottom / 100% 2px no-repeat, #fff !important;}
 body .dash-main .module-card.mc-clean .mc-grid{border-top:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
 body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){border-top:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
 body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn):not(:last-child){border-right:2px solid #B8892B !important;}
