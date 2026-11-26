@@ -153,6 +153,11 @@
 #lessonSlideWrap .card.ec-lab *{text-align:left !important;}
 .ec-lab-art{position:absolute;left:24px;top:50%;transform:translateY(-50%);width:200px;display:block;}
 .ec-lab-art svg{width:100%;height:auto;display:block;}
+/* phones: the 250px art column left the text a few pixels wide (one letter a line), so the art sits above it */
+@media (max-width:760px){
+  #lessonSlideWrap .card.ec-lab{padding:18px 18px 20px !important;min-height:0;}
+  .ec-lab-art{position:static;transform:none;width:140px;margin:0 0 12px;}
+}
 
 /* Meet the client */
 #lessonSlideWrap .meet-client-card{background:linear-gradient(180deg,#F3F5FB 0%,#fff 60%) !important;border-top:5px solid #DB8437 !important;border-radius:14px !important;}
