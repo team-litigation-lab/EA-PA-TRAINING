@@ -194,6 +194,25 @@
 #lessonSlideWrap .ec-sec-steps ol > li::before{background:#DB8437 !important;color:#1B1E2E !important;}
 #lessonSlideWrap .ec-sec-steps ol > li:nth-child(even)::before{background:#262B45 !important;color:#fff !important;}
 
+/* dashboard day cards: contrast. The cards were frosted glass over the photo (grey on grey); now a navy
+   head (peach DAY N, white title), a white body, a solid navy Start and a tinted Topics / Finish row.
+   The orange top stripe on every third card stays. Overrides js/lsh-card-frame.js (shared by every course). */
+body .dash-main .module-card.mc-clean{background:#fff !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;}
+body .dash-main .module-card.mc-clean .module-head,
+body .dash-main .module-card.mc-clean:nth-child(3n+2) .module-head,
+body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{background:var(--g-navy,linear-gradient(135deg,#161829,#262B45 55%,#3C4268)) !important;border-bottom:none !important;}
+body .dash-main .module-card.mc-clean .mh-day{color:#F0C08A !important;}
+body .dash-main .module-card.mc-clean .mh-title{color:#fff !important;}
+body .dash-main .module-card.mc-clean .module-body{background:#fff;}
+body .dash-main .module-card.mc-clean .mc-grid{border-top:none !important;}
+body .dash-main .module-card.mc-clean .mc-grid > .module-start-btn{background:#262B45 !important;color:#fff !important;letter-spacing:.02em;}
+body .dash-main .module-card.mc-clean .mc-grid > .module-start-btn:not(:disabled):hover,
+body .dash-main .module-card.mc-clean:hover .mc-grid > .module-start-btn:not(:disabled){background:#DB8437 !important;color:#1B1E2E !important;}
+body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){background:#EEF1FA !important;color:#262B45 !important;font-weight:700 !important;border-top:1px solid #DCE0EE !important;}
+body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn):not(:last-child){border-right:1px solid #DCE0EE !important;}
+body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:disabled):hover{background:#DCE3F5 !important;}
+body .dash-main .module-card.mc-clean .module-topics-btn span{color:#A34E14 !important;}
+
 /* Do this / Watch out cards */
 #lessonSlideWrap .vis-card.good{background:#EAF4EE !important;border-color:#BFDCCB !important;border-left:5px solid #3F7D58 !important;}
 #lessonSlideWrap .vis-card.bad{background:#FFF1E4 !important;border-color:#F3D2B3 !important;border-left:5px solid #DB8437 !important;}
