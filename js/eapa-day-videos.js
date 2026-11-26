@@ -255,9 +255,9 @@ window.EAPA_DAY_VIDEOS = {
  },
  "2": {
   "title": "Day 2 — Force Multiplier, Leveraging AI & Email Management",
-  "src": "/videos/day2-narrated.mp4?v=tp393s",
-  "captions": "/videos/day2-narrated.vtt?v=tp393s",
-  "duration": 2140,
+  "src": "/videos/day2-narrated.mp4?v=tp3jod",
+  "captions": "/videos/day2-narrated.vtt?v=tp3jod",
+  "duration": 2141,
   "chapters": [
    {
     "slide": 1,
@@ -437,47 +437,47 @@ window.EAPA_DAY_VIDEOS = {
    {
     "slide": 36,
     "title": "Email Management",
-    "t": 1731.7
+    "t": 1732.9
    },
    {
     "slide": 37,
     "title": "Email Is a Control System, Not Cleanup",
-    "t": 1743.7
+    "t": 1744.8
    },
    {
     "slide": 38,
     "title": "What High-Performing Inbox Triage Looks Like",
-    "t": 1807.4
+    "t": 1808.5
    },
    {
     "slide": 39,
     "title": "The Daily Routine",
-    "t": 1876.4
+    "t": 1877.5
    },
    {
     "slide": 40,
     "title": "The Morning Briefing, In Practice",
-    "t": 1922
+    "t": 1923.2
    },
    {
     "slide": 41,
     "title": "Quick Check",
-    "t": 1972.5
+    "t": 1973.6
    },
    {
     "slide": 42,
     "title": "The Priority Matrix",
-    "t": 2003.9
+    "t": 2005
    },
    {
     "slide": 43,
     "title": "Quick Check",
-    "t": 2091.1
+    "t": 2092.2
    },
    {
     "slide": 44,
     "title": "Practice Lab",
-    "t": 2118.4
+    "t": 2119.6
    }
   ]
  },

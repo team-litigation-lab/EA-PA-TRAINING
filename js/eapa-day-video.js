@@ -1,7 +1,10 @@
 /* 🎬 A day's narrated video (the Case Management course's ▶ Video, the same viewer): the day's lesson deck as the room
    sees it, each slide spoken by a natural voice from the trainer's speaker notes, compressed (build/video makes it;
    js/eapa-day-videos.js lists them as EAPA_DAY_VIDEOS).
-   • The day card shows ▶ Video once the day is open to the trainee (dayUnlocked), 🔒 Video until then. A trainer always sees ▶.
+   • The day card shows ▶ Video once a trainer unlocks that day's video, 🔒 Video until then; a trainer always sees ▶.
+     settings:openvideos = {all: [dayIds], batches: {"<batch>": [dayIds]}}: everyone reads it (worker.js PUBLIC_READ), only a
+     trainer writes it, in Admin → 🛡 Admin Master Control → 🎬 Videos, for one batch or for every batch (as in Case Management).
+     The trainee's page reads it on the dashboard, at most every two minutes.
    • The viewer: the video with its captions in a strip under the picture (CC turns them off), a Slide picker to jump to any
      slide, ⏪ / ⏩ 10 s, a speed choice (0.75× to 2×) and ⛶ Full screen. It opens where the viewer left off (kept on this
      device, per day). Remove this file's <script> tag to take the videos off. */
@@ -12,7 +15,32 @@ if(!Object.keys(VIDEOS).length) return;
 const E = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"})[c]);
 const mmss = t => { t = Math.max(0, Math.floor(t)); return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0"); };
 const say = m => { if(typeof toast === "function") toast(m); };
-const unlocked = id => !!(state.isAdmin || state.adminPreview || (typeof dayUnlocked === "function" && dayUnlocked(id)));
+const KEY = "settings:openvideos";
+const trainer = () => !!state.isAdmin && !state.adminPreview;
+const ids = () => Object.keys(VIDEOS).map(Number).sort((a, b) => a - b);
+const nums = a => [...new Set((Array.isArray(a) ? a : []).map(Number).filter(n => VIDEOS[n]))].sort((x, y) => x - y);
+const bkey = b => (typeof cleanBatch === "function" ? cleanBatch(b) : String(b || "").trim().toUpperCase()) || "";
+const shape = x => { const o = {all: [], batches: {}}; if(!x || typeof x !== "object") return o;
+  o.all = nums(x.all); Object.keys(x.batches || {}).forEach(k => { const c = bkey(k) || k, v = nums([].concat(o.batches[c] || [], x.batches[k] || [])); if(v.length) o.batches[c] = v; }); return o; };
+state.eaOpenVideos = null;
+let loading = null, loadedAt = 0;
+const redraw = () => { if(state.view === "dashboard" && !(typeof isTyping === "function" && isTyping()) && !document.querySelector(".overlay")) render(); };
+function load(force){
+  if(loading || (!force && Date.now() - loadedAt < 120000)) return loading;
+  loadedAt = Date.now();
+  return loading = Promise.resolve(typeof sharedGet === "function" ? sharedGet(KEY) : null).then(v => {
+    loading = null;
+    if(v == null && state.eaOpenVideos) return;   // a server blip never locks a video again
+    const next = shape(v), ch = JSON.stringify(next) !== JSON.stringify(state.eaOpenVideos);
+    state.eaOpenVideos = next; if(ch && !trainer()) redraw();
+  }).catch(() => { loading = null; });
+}
+function unlocked(id){
+  if(state.isAdmin) return true;
+  load(false);
+  const o = state.eaOpenVideos; if(!o) return false;
+  return [].concat(o.all, o.batches[bkey(state.traineeBatch)] || []).includes(Number(id));
+}
 
 /* ---------- the day card: ▶ Video, or 🔒 Video until the day opens ---------- */
 if(typeof moduleCard === "function"){
@@ -22,7 +50,7 @@ if(typeof moduleCard === "function"){
     if(!d || !VIDEOS[d.id]) return html;
     const btn = unlocked(d.id)
       ? `<button type="button" class="btn btn-ghost btn-sm module-finish-btn ea-dv-btn" onclick="event.stopPropagation(); eapaDayVideo.open(${d.id})" title="Video Presentation: the day&#39;s slides, narrated">▶ Video</button>`
-      : `<button type="button" class="btn btn-ghost btn-sm module-finish-btn ea-dv-btn ea-dv-locked" aria-disabled="true" onclick="event.stopPropagation(); eapaDayVideo.why(${d.id})" title="Opens with the day">🔒 Video</button>`;
+      : `<button type="button" class="btn btn-ghost btn-sm module-finish-btn ea-dv-btn ea-dv-locked" aria-disabled="true" onclick="event.stopPropagation(); eapaDayVideo.why(${d.id})" title="Opens when your trainer unlocks this video">🔒 Video</button>`;
     // a row of its own across the bottom of the card's button grid (js/eapa-updates.js "Day cards: … one full-width grid")
     const t = document.createElement("template"); t.innerHTML = html.trim();
     const card = t.content.firstElementChild; if(!card) return html;
@@ -178,8 +206,70 @@ function skip(sec){
 }
 window.addEventListener("pagehide", () => keepPlace(true));
 document.addEventListener("visibilitychange", () => { if(document.visibilityState === "hidden") keepPlace(true); });
-const why = id => say(`🔒 The Day ${id} video opens with Day ${id}.`);
-window.eapaDayVideo = {open, close, seek, skip, setRate, setCc, startOver, fullscreen, why, prefs: () => prefs, videos: VIDEOS};
+const why = id => { load(true); say(`🔒 Your trainer unlocks the Day ${id} video for your batch. It opens here soon after.`); };
+
+/* ---------- Admin → 🛡 Admin Master Control → 🎬 Videos ---------- */
+state.eaVidBatch = state.eaVidBatch || "__all__";
+const batchesAll = () => { try{ return typeof bfKeys === "function" ? bfKeys() : [...new Set((state.adminData || []).map(batchKey))].sort(); }catch(e){ return []; } };
+function adminPage(){
+  if(state.eaOpenVideos === null){ load(true).then(() => { if(state.view === "admin" && state.adminTab === "videos") render(); }); }
+  // the batch list comes from the trainee ledger: read it once if this is the first admin page opened
+  if(!state.adminData && !state.adminLoading && !state.eaVidLedger && typeof loadAdminLedger === "function"){
+    state.eaVidLedger = true; Promise.resolve(loadAdminLedger()).then(() => { if(state.view === "admin" && state.adminTab === "videos") render(); }).catch(() => {});
+  }
+  const o = state.eaOpenVideos;
+  const noB = typeof NO_BATCH !== "undefined" ? NO_BATCH : "__none__";
+  const bs = batchesAll().filter(k => k !== noB);
+  const sel = state.eaVidBatch === "__all__" || bs.includes(state.eaVidBatch) ? state.eaVidBatch : "__all__";
+  const forAll = sel === "__all__";
+  const on = id => !!o && (forAll ? o.all : (o.batches[sel] || [])).includes(id);
+  const via = id => !forAll && !!o && o.all.includes(id);
+  const cards = ids().map(id => { const v = VIDEOS[id], a = via(id), c = a || on(id);
+    return `<label class="ea-dv-day ${c ? "on" : ""} ${a ? "via" : ""}"><input type="checkbox" ${c ? "checked" : ""} ${a || !o ? "disabled" : ""} onchange="eapaDayVideo.toggle(${id}, this.checked)">
+      <span><b>Day ${id} · ${E(mmss(v.duration || 0))}</b>${E(String(v.title || "").replace(/^Day \d+ — /, ""))}${a ? "<small>Unlocked for every batch</small>" : ""}</span></label>`; }).join("");
+  return `<div class="card ea-dv-admin"><h3 style="margin:0 0 6px;">🎬 Unlock Videos</h3>
+    <p class="ea-dv-help">Each day's narrated Video Presentation shows on the trainee's day card as <b>🔒 Video</b> until you unlock it here, then <b>▶ Video</b> (within two minutes). Trainers always see every video.</p>
+    <div class="ea-dv-bar"><label>For <select onchange="eapaDayVideo.pickBatch(this.value)"><option value="__all__" ${forAll ? "selected" : ""}>Every batch</option>${bs.map(k => `<option value="${E(k)}" ${k === sel ? "selected" : ""}>Batch ${E(k)}</option>`).join("")}</select></label>
+      <button type="button" class="btn btn-ghost btn-sm" ${o ? "" : "disabled"} onclick="eapaDayVideo.setAll(true)">Unlock all</button>
+      <button type="button" class="btn btn-ghost btn-sm" ${o ? "" : "disabled"} onclick="eapaDayVideo.setAll(false)">Lock all</button>
+      <button type="button" class="btn btn-ghost btn-sm" onclick="eapaDayVideo.preview()">▶ Preview a video</button></div>
+    ${o ? `<div class="ea-dv-days">${cards}</div>` : `<p class="ea-dv-help">Reading which videos are unlocked…</p>`}</div>`;
+}
+async function saveOpen(next){
+  const prev = state.eaOpenVideos; state.eaOpenVideos = shape(next); render();
+  try{ await sharedSet(KEY, state.eaOpenVideos); say("🎬 Saved — trainees see it within two minutes."); }
+  catch(e){ state.eaOpenVideos = prev; render(); say("Couldn't save — check your connection and try again."); }
+}
+function toggle(id, yes){
+  const o = shape(state.eaOpenVideos), sel = state.eaVidBatch;
+  const list = sel === "__all__" ? o.all : (o.batches[sel] = o.batches[sel] || []);
+  const i = list.indexOf(id); if(yes && i < 0) list.push(id); if(!yes && i >= 0) list.splice(i, 1);
+  saveOpen(o);
+}
+function setAll(yes){
+  const o = shape(state.eaOpenVideos), sel = state.eaVidBatch;
+  if(sel === "__all__") o.all = yes ? ids() : []; else o.batches[sel] = yes ? ids() : [];
+  saveOpen(o);
+}
+function pickBatch(k){ state.eaVidBatch = k; render(); }
+function preview(){ const id = ids()[0]; if(id) open(id); }
+if(typeof renderAdmin === "function"){
+  const __admin = renderAdmin;
+  renderAdmin = window.renderAdmin = function(){
+    if(!state.isAdmin) return __admin.apply(this, arguments);
+    const mine = state.adminTab === "videos";
+    if(mine) state.adminTab = "audit";
+    let out = __admin.apply(this, arguments);
+    if(mine) state.adminTab = "videos";
+    // the 🎬 Videos tab on the Admin Master Control strip (not on the Scorecard page, which has no strip)
+    const m = /<div class="admin-tabs[^"]*"[^>]*>[\s\S]*?<\/div>/.exec(out);
+    if(!m) return out;
+    const base = mine ? m[0].replace(/admin-tab-btn active/g, "admin-tab-btn") : m[0];
+    const strip = base.replace(/<\/div>$/, `<button class="admin-tab-btn ${mine ? "active" : ""}" onclick="setAdminTab('videos')">🎬 Videos</button></div>`);
+    return out.slice(0, m.index) + strip + (mine ? adminPage() : out.slice(m.index + m[0].length));
+  };
+}
+window.eapaDayVideo = {open, close, seek, skip, setRate, setCc, startOver, fullscreen, why, toggle, setAll, pickBatch, preview, prefs: () => prefs, videos: VIDEOS};
 
 const css = document.createElement("style");
 css.textContent = `
@@ -215,6 +305,17 @@ button.ea-dv-ctl:hover,button.ea-dv-ctl:focus-visible{background:#DB8437;}
 .ea-dv-box:-webkit-full-screen{width:100%;height:100%;max-height:none;border-radius:0;}
 .ea-dv-isfs .ea-dv-stage video{max-height:calc(100vh - 70px - 76px);}
 .ea-dv-isfs.ea-dv-nocc .ea-dv-stage video{max-height:calc(100vh - 70px);}
+.ea-dv-admin{padding:20px 22px;}
+.ea-dv-help{color:var(--ink-soft);font-size:14px;line-height:1.5;margin:0 0 12px;}
+.ea-dv-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 14px;}
+.ea-dv-bar select{font:600 14px/1 inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;margin-left:6px;}
+.ea-dv-days{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;}
+.ea-dv-day{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:12px;padding:14px;font-size:14px;line-height:1.4;color:#262B45;background:#fff;cursor:pointer;min-height:64px;}
+.ea-dv-day input[type=checkbox]{width:18px;height:18px;margin-top:2px;flex:0 0 auto;accent-color:#DB8437;}
+.ea-dv-day.on{border-color:var(--orange);background:#FFF6EC;}
+.ea-dv-day.via{cursor:default;}
+.ea-dv-day b{display:block;color:var(--navy);font-weight:800;font-size:15px;}
+.ea-dv-day small{display:block;margin-top:4px;font-size:13px;font-weight:700;color:#A34E14;}
 @media (max-width:1100px){ .ea-dv-head{flex-wrap:wrap;} .ea-dv-head h2{flex-basis:100%;order:-1;white-space:normal;}
   .ea-dv-stage video{max-height:calc(100vh - 160px - 76px);} .ea-dv-nocc .ea-dv-stage video{max-height:calc(100vh - 160px);} }
 @media (max-width:760px){ .ea-dv.overlay{padding:0;} .ea-dv-box{border-radius:0;height:100%;} .ea-dv-head{gap:8px;padding:10px 12px;}

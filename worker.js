@@ -316,7 +316,7 @@ function keepProgress(existing, merged) {
 }
 
 /* ---------- what a trainee may touch ---------- */
-const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
+const PUBLIC_READ = [/^blueprint:meta$/, /^settings:(feedback|certificate|openvideos)$/, /^surprise-task-day\d+$/, /^extralessons:day\d+$/, /^lessonx:day\d+$/, /^extraquiz:day\d+$/, /^handouts:links$/];
 const OWN = (id) => [`trainee:${id}`, `progress:${id}`, `feedback:${id}`, `focus:${id}`];
 // (name, firstName, lastName, batch, fullName, portalUid, batchFrom: who the record is, set from the Portal's ticket and by a trainer:
 // a trainee who could change them could pass for someone else. Security review 2026-11-19.)

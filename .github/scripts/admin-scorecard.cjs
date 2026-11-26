@@ -83,7 +83,7 @@ const failures = []; const fail = (m) => failures.push(m);
     await page.evaluate(() => EAPAShell.go('audit'));
     await page.waitForSelector('.eash-tabs');
     const tabs = await page.$$eval('.eash-tabs .admin-tab-btn', b => b.map(x => x.innerText.trim()));
-    if (tabs.join('|') !== '⚙ Settings & Reports|📁 Batch Folders|📋 SOP Reference|✏️ Content Studio') fail(`🛡 Admin Master Control's tabs: ${tabs}`);
+    if (tabs.join('|') !== '⚙ Settings & Reports|📁 Batch Folders|📋 SOP Reference|✏️ Content Studio|🎬 Videos') fail(`🛡 Admin Master Control's tabs: ${tabs}`);
     await page.evaluate(() => EAPAShell.go('batches'));
     if (await page.$('.eash-banner')) fail('📁 Batch Folders opened the Scorecard');
     if (!(await page.$('.batch-folder'))) fail('📁 Batch Folders doesn\'t show the batch folders');
