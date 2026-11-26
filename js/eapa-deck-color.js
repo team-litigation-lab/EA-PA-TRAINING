@@ -222,14 +222,25 @@ body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-
 body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:disabled):hover{background:#F3F5FB !important;}
 body .dash-main .module-card.mc-clean .module-topics-btn span{color:#A34E14 !important;}
 
-/* the lines inside each day card (under the title, above Start, above Topics / Finish and between them):
-   navy-to-gold too, so the card reads as one navy-and-gold grid */
+/* the inside of each day card, coloured as the LSH Academy Index's cards (Training-Portal programs.html .topic-card):
+   a white face, the DAY N eyebrow in the Index's deep orange (#9a3412), the title framed in navy on a pale navy wash,
+   Start as the Index's navy action with its soft-orange label, Topics / Video in the Index's light slate,
+   and plain light gridlines between the rows. The navy-to-gold frame round the card is js/lsh-academy-frame.js. */
 body .dash-main .module-card.mc-clean .module-head,
 body .dash-main .module-card.mc-clean:nth-child(3n+2) .module-head,
-body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{border-bottom:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
-body .dash-main .module-card.mc-clean .mc-grid{border-top:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
-body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){border-top:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
-body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn):not(:last-child){border-right:2px solid #B8892B !important;}
+body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{background:#fff !important;border:0 !important;border-image:none !important;border-bottom:1px solid #E6E9F1 !important;gap:3px;}
+body .dash-main .module-card.mc-clean .mh-day{color:#9a3412 !important;}
+body .dash-main .module-card.mc-clean .mh-title{color:#0f2148 !important;border:2px solid #0f2148;border-radius:10px;padding:4px 10px;
+  background:color-mix(in srgb,#0f2148 9%,#fff);}
+body .dash-main .module-card.mc-clean .mc-grid,
+body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){border-image:none !important;border-top:1px solid #E6E9F1 !important;}
+body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn):not(:last-child){border-right:1px solid #E6E9F1 !important;}
+body .dash-main .module-card.mc-clean .mc-grid > .module-start-btn{background:#0f2148 !important;color:#fdba74 !important;font-weight:800 !important;text-transform:uppercase;letter-spacing:.06em;}
+body .dash-main .module-card.mc-clean .mc-grid > .module-start-btn:not(:disabled):hover,
+body .dash-main .module-card.mc-clean:hover .mc-grid > .module-start-btn:not(:disabled){background:#1d3f86 !important;color:#fdba74 !important;}
+body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){background:#f1f5f9 !important;color:#334155 !important;}
+body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:disabled):hover{background:#e2e8f0 !important;color:#0f2148 !important;}
+body .dash-main .module-card.mc-clean .module-topics-btn span{color:#9a3412 !important;}
 
 /* the dashboard uses the window's full width, and the cards' titles grow with it */
 @media (min-width:1200px){

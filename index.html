@@ -5946,20 +5946,6 @@ function renderDashboard(){
         </div>
       </div>
 
-      <div class="step-timeline">
-        ${DAYS.map((d,i)=>{
-          const prog = state.progress[d.id];
-          const unlocked = dayUnlocked(d.id);
-          const isCurrent = d.id===nextDayId() && !(prog&&prog.done);
-          const status = (prog&&prog.done ? "st-done" : (unlocked?"st-open":"st-locked")) + (isCurrent?" st-current":"");
-          const nextDone = i<DAYS.length-1 && state.progress[DAYS[i+1].id] && state.progress[DAYS[i+1].id].done;
-          const dashFilled = prog&&prog.done && nextDone;
-          return `<div class="step-node">
-            <div class="step-circle ${status}" onclick="${unlocked?`scrollToModule(${d.id})`:''}" title="Day ${d.id} — ${esc(d.title)}">${prog&&prog.done?'✓':d.id}</div>
-            ${i<DAYS.length-1?`<div class="step-dash ${dashFilled?'filled':''}"></div>`:''}
-          </div>`;
-        }).join("")}
-      </div>
 
   </div>
   <div class="dash-layout">
@@ -18233,7 +18219,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- 👁 Up next: hover Next (or 👁 Peek next / N) for a preview of the next slide -->
 <script src="/js/eapa-next-preview.js?v=2"></script>
 <!-- 🎨 Deck colour, graphics and icons on every slide (topic illustrations, section colours, AA contrast) -->
-<script src="/js/eapa-deck-color.js?v=7"></script>
+<script src="/js/eapa-deck-color.js?v=8"></script>
 <!-- ✨ The elite deck: the Portal's blue-gold frame, mono tags, sans-serif headings and navy primary buttons on the lesson deck (design only) -->
 <script src="/js/eapa-deck-elite.js?v=1"></script>
 <!-- 🖥 Practice Lab activities in realistic app windows (docs, mail, tasks, ledger, admin console, portal, dashboards, AI assistant, CRM, forms, reviews, social) -->
