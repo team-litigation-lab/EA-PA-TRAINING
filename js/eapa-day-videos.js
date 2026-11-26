@@ -1605,5 +1605,218 @@ window.EAPA_DAY_VIDEOS = {
     "t": 2210.4
    }
   ]
+ },
+ "8": {
+  "title": "Day 8 — Access, Data Security & Crisis Management",
+  "src": "/videos/day8-narrated.mp4?v=tp3bzw",
+  "captions": "/videos/day8-narrated.vtt?v=tp3bzw",
+  "duration": 1806,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 8 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Access & Credentials",
+    "t": 34.5
+   },
+   {
+    "slide": 3,
+    "title": "Credential Management",
+    "t": 46.1
+   },
+   {
+    "slide": 4,
+    "title": "Quick Check",
+    "t": 100.8
+   },
+   {
+    "slide": 5,
+    "title": "Least-Privilege Access",
+    "t": 122.2
+   },
+   {
+    "slide": 6,
+    "title": "Multi-Factor Authentication Basics",
+    "t": 185.9
+   },
+   {
+    "slide": 7,
+    "title": "Password Manager Best Practices",
+    "t": 244.1
+   },
+   {
+    "slide": 8,
+    "title": "Shared Account Risks",
+    "t": 308.6
+   },
+   {
+    "slide": 9,
+    "title": "Offboarding Access Removal Checklist",
+    "t": 364.4
+   },
+   {
+    "slide": 10,
+    "title": "Data & Device Security",
+    "t": 414.3
+   },
+   {
+    "slide": 11,
+    "title": "The Golden Rules of Admin Data Security",
+    "t": 427.9
+   },
+   {
+    "slide": 12,
+    "title": "Classifying Information by Sensitivity Level",
+    "t": 488
+   },
+   {
+    "slide": 13,
+    "title": "Secure File Sharing Methods",
+    "t": 550.9
+   },
+   {
+    "slide": 14,
+    "title": "Email Encryption Basics",
+    "t": 600
+   },
+   {
+    "slide": 15,
+    "title": "Metadata Risks in Shared Documents",
+    "t": 644.4
+   },
+   {
+    "slide": 16,
+    "title": "Redaction Done Right",
+    "t": 700.3
+   },
+   {
+    "slide": 17,
+    "title": "Device Security Fundamentals",
+    "t": 777.8
+   },
+   {
+    "slide": 18,
+    "title": "Physical Security Basics",
+    "t": 822.5
+   },
+   {
+    "slide": 19,
+    "title": "Clean Desk Policy",
+    "t": 868.2
+   },
+   {
+    "slide": 20,
+    "title": "Secure Disposal of Sensitive Documents",
+    "t": 913.3
+   },
+   {
+    "slide": 21,
+    "title": "Litigation Holds: When Nothing Can Be Deleted",
+    "t": 957.8
+   },
+   {
+    "slide": 22,
+    "title": "Fixing a Broken Workflow",
+    "t": 1038.5
+   },
+   {
+    "slide": 23,
+    "title": "Threat Recognition",
+    "t": 1086.8
+   },
+   {
+    "slide": 24,
+    "title": "Social Engineering Red Flags",
+    "t": 1099.1
+   },
+   {
+    "slide": 25,
+    "title": "Phishing Recognition Beyond Email",
+    "t": 1159.6
+   },
+   {
+    "slide": 26,
+    "title": "Recognizing Insider Threat Warning Signs",
+    "t": 1217
+   },
+   {
+    "slide": 27,
+    "title": "Responding to a Suspicious Data Request",
+    "t": 1262.6
+   },
+   {
+    "slide": 28,
+    "title": "Incident Response",
+    "t": 1298.7
+   },
+   {
+    "slide": 29,
+    "title": "The First 10 Minutes of a Security Incident",
+    "t": 1311.1
+   },
+   {
+    "slide": 30,
+    "title": "Containing a Confidentiality Leak",
+    "t": 1350.2
+   },
+   {
+    "slide": 31,
+    "title": "Quick Check",
+    "t": 1383.6
+   },
+   {
+    "slide": 32,
+    "title": "Who to Notify and When",
+    "t": 1409.4
+   },
+   {
+    "slide": 33,
+    "title": "Documenting an Incident as It Unfolds",
+    "t": 1452.8
+   },
+   {
+    "slide": 34,
+    "title": "Post-Incident Review",
+    "t": 1498.2
+   },
+   {
+    "slide": 35,
+    "title": "Crisis Management",
+    "t": 1542.3
+   },
+   {
+    "slide": 36,
+    "title": "Crisis Communication Principles",
+    "t": 1552.9
+   },
+   {
+    "slide": 37,
+    "title": "Maintaining Calm Under Pressure",
+    "t": 1600.6
+   },
+   {
+    "slide": 38,
+    "title": "Chain of Command During a Crisis",
+    "t": 1650.6
+   },
+   {
+    "slide": 39,
+    "title": "Business Continuity Basics",
+    "t": 1696.1
+   },
+   {
+    "slide": 40,
+    "title": "Crisis PR & Media Containment",
+    "t": 1739.2
+   },
+   {
+    "slide": 41,
+    "title": "Practice Lab",
+    "t": 1780.5
+   }
+  ]
  }
 };
