@@ -96,8 +96,8 @@
   ${TOP} .btn:not(.on):not(.btn-navy):not(.btn-primary):hover{background:rgba(255,255,255,.16) !important;border-color:rgba(226,184,90,.6) !important;}
   ${TOP} .btn-navy{background:rgba(6,8,20,.55) !important;color:#fff !important;border:1px solid rgba(226,184,90,.55) !important;border-radius:999px !important;}
   ${TOP} .btn-navy:hover{background:rgba(6,8,20,.8) !important;}
-  ${TOP} .btn-primary, ${TOP} .btn.on{background:linear-gradient(180deg,#E9A262 0%,#DB8437 100%) !important;color:#1E2340 !important;border:1px solid rgba(255,255,255,.25) !important;
-    border-radius:999px !important;font-weight:800 !important;box-shadow:0 8px 16px -10px rgba(219,132,55,.8);}
+  ${TOP} .btn-primary, ${TOP} .btn.on{background:var(--gold) !important;color:var(--gold-ink) !important;border:1px solid rgba(255,255,255,.25) !important;
+    border-radius:999px !important;font-weight:800 !important;box-shadow:0 8px 16px -10px var(--gold-glow);}
 }
 
 /* ---- Previous / Next: a white bar, pill buttons, a mono counter, Next as the dark-navy primary ---- */

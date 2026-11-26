@@ -121,7 +121,7 @@ ${S}:not(:fullscreen) > .ea-deck-card{flex:0 0 auto;}
 .ea-deck-card #lessonSlideWrap .xd-head .xd-kick{color:var(--orange-deep,#B5651F);}
 .ea-deck-card #lessonSlideWrap .xd-head .xd-title{color:var(--navy,#262B45);}
 .ea-deck-card #lessonSlideWrap .xd-head-steps button{border-color:#C9CEDB;background:#fff;color:#4A5070;}
-.ea-deck-card #lessonSlideWrap .xd-head-steps li.on button{background:#DB8437;border-color:#DB8437;color:#fff;}
+.ea-deck-card #lessonSlideWrap .xd-head-steps li.on button{background:var(--gold);border-color:#e0a43a;color:var(--gold-ink);}
 .ea-deck-card #lessonSlideWrap .xd-head-steps button:hover{background:#F3F4F8;}
 /* two cards only, the navy card and the white sheet: a title slide (a topic or part divider) is no third card,
    its words sit straight on the sheet */
