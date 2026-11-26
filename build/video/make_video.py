@@ -211,7 +211,7 @@ def main():
     if a.web:
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(out / f"{name}.mp4"), "-map", "0:v", "-map", "0:a",
                         "-map_chapters", "0", "-vf", "scale=1280:720", "-c:v", "libx264", "-preset", "slow", "-crf", "30",
-                        "-tune", "stillimage", "-g", "300", "-r", str(fps), "-c:a", "aac", "-b:a", "48k", "-ac", "1",
+                        "-tune", "stillimage", "-g", "300", "-r", str(fps), "-c:a", "aac", "-b:a", "32k", "-ac", "1",
                         "-movflags", "+faststart", str(out / f"{name}-web.mp4")], check=True)
     print(f"Done: {out / (name + '.mp4')}  ({t/60:.1f} min, {len(frames)} frames, {len(marks)} slides)")
 
