@@ -18,7 +18,7 @@
    "image": "003.png",
    "slide": 3,
    "title": "The EA/PA's Role in Finance",
-   "text": "When you handle an invoice or an expense, you're a real link in the firm's money chain, not just filing paperwork.\n\nA mistake you make, like two digits swapped, doesn't stay on your desk. It flows into the books, the client's bill and the firm's reports.\n\nFirst, check the numbers before you pass anything on. Then, track financial tasks with dates, like any other recurring work."
+   "text": "When you handle an invoice or an expense, you're a real link in the firm's money chain, not just filing paperwork.\n\nA mistake, like two digits swapped, doesn't stay on your desk. It flows into the books, the client's bill and the firm's reports.\n\nFirst, check the numbers before you pass anything on. Then, track financial tasks with dates, like any other recurring work."
   },
   {
    "image": "004.png",
@@ -60,7 +60,7 @@
    "image": "010.png",
    "slide": 7,
    "title": "Financial KPIs for EAs/PAs",
-   "text": "Three numbers tell you whether the financial side is healthy.\n\nEvery day an invoice sits unsent is money the firm has already earned and isn't collecting. And clients question old charges more than fresh ones.\n\nFirst, track how long invoices take to go out, against a 24 to 72 hour target. Next, track reconciliation accuracy, aiming for 98 to 100 percent. Then, set an alert when a client's retainer drops below a quarter."
+   "text": "Three numbers tell you whether the financial side is healthy.\n\nStart with speed. Every day an invoice sits unsent is money the firm has already earned and isn't collecting. And clients question old charges more than fresh ones.\n\nFirst, track how long invoices take to go out, against a 24 to 72 hour target. Next, track reconciliation accuracy, aiming for 98 to 100 percent. Then, set an alert when a client's retainer drops below a quarter."
   },
   {
    "image": "011.png",
@@ -78,7 +78,7 @@
    "image": "013.png",
    "slide": 9,
    "title": "Bookkeeping Basics & Compliance",
-   "text": "The golden rule of bookkeeping: never approve your own transaction.\n\nFirst, label each transaction as income, expense or receivable when you record it. Next, keep a clear trail: who entered it, when and from what document. Then, separate duties. Never approve something you entered, even to save time. That separation is what makes the books trustworthy."
+   "text": "The golden rule of bookkeeping: never approve your own transaction.\n\nFirst, label each transaction as income, expense or receivable when you record it. Next, keep a clear trail: who entered it, when and from what document. Then, separate duties, even when it would save time. That separation is what makes the books trustworthy."
   },
   {
    "image": "014.png",
@@ -150,19 +150,19 @@
    "image": "025.png",
    "slide": 14,
    "title": "Client Trust Accounts (IOLTA) — Core Rules & Commingling Risk",
-   "text": "Money in a client trust account belongs to the client until it's earned; it is never the firm's money to borrow.\n\nLaw firms hold client money, like retainers and settlements, in a special trust account. Mixing it with the firm's own funds, even briefly or by accident, is called commingling. It's one of the most serious ethics violations a lawyer can commit, and it can end careers."
+   "text": "Money in a client trust account belongs to the client until it's earned; it is never the firm's money to borrow.\n\nClient money, like retainers and settlements, sits in a special trust account. Mixing it with the firm's own funds, even briefly or by accident, is called commingling. It's one of the most serious ethics violations a lawyer can commit, and it can end careers."
   },
   {
    "image": "026.png",
    "slide": 14,
    "title": "Client Trust Accounts (IOLTA) — Core Rules & Commingling Risk",
-   "text": "First, keep trust money and the firm's operating money in completely separate accounts. Next, only move money out of trust for a specific, documented reason, like an approved invoice or a signed disbursement. Finally, keep a running ledger for each client, showing exactly what's held for them.\n\nPicture this. A client's $5,000 settlement check is deposited into trust today. Elias asks you to pay the $400 expert fee from it right away because 'the money's there.' What has to happen before any money leaves trust?"
+   "text": "First, keep trust money and the firm's operating money in completely separate accounts. Next, only move money out of trust for a specific, documented reason, like an approved invoice or a signed disbursement. Finally, keep a running ledger for each client, showing exactly what's held for them.\n\nPicture this. A client's $5,000 settlement check is deposited into trust today. Elias wants the $400 expert fee paid from it right away, because 'the money's there.' What has to happen before any money leaves trust?"
   },
   {
    "image": "027.png",
    "slide": 15,
    "title": "Trust Account Reconciliation Discipline",
-   "text": "For a trust account, three numbers must always match exactly: the bank statement, the trust ledger and the total of every client's individual balance.\n\nCheck them on a fixed schedule, at least monthly, and right after anything unusual. A difference is never 'probably fine'; it gets traced to the exact transaction. And document every reconciliation, even the clean ones.\n\nTake a second with this one. Your trust reconciliation is off by $1. It's 5:30 p.m. on the last day of the month, and everyone wants to leave. What do you do with that dollar?"
+   "text": "For a trust account, three numbers must always match exactly: the bank statement, the trust ledger and the total of every client's individual balance.\n\nCheck at least monthly, and right after anything unusual. A difference is never 'probably fine'; it gets traced to the exact transaction. And document every reconciliation, even the clean ones.\n\nTake a second with this one. Your trust reconciliation is off by $1. It's 5:30 p.m. on the last day of the month, and everyone wants to leave. What do you do with that dollar?"
   },
   {
    "image": "028.png",
@@ -186,7 +186,7 @@
    "image": "031.png",
    "slide": 18,
    "title": "Contract-Aware Billing",
-   "text": "Know the contract's limits before you start billing, and warn people before you hit them.\n\nEvery client agreement can have its own rules: payment terms, late fees and sometimes a cap on hours. If you only discover the cap when the final bill goes out, it's too late.\n\nFirst, track hours against the cap as you go. Then, flag it well before the cap is reached."
+   "text": "Know the contract's limits before you start billing.\n\nEvery client agreement can have its own rules: payment terms, late fees and sometimes a cap on hours. If you only discover the cap when the final bill goes out, it's too late.\n\nFirst, track hours against the cap as you go. Then, flag it well before you reach it."
   },
   {
    "image": "032.png",
@@ -204,7 +204,7 @@
    "image": "034.png",
    "slide": 19,
    "title": "Pre-Bill Review: Checking an Invoice Before It Goes Out",
-   "text": "First, we run the pre-bill at the same point every month, once the period's time is in. Next, we check the header: client, billing contact, matter, dates and any reference number the client needs. Then we check every time entry: matter, person, rate and a clear description. After that, costs: a receipt for each, no duplicates and markups only if allowed. Finally, the math, the retainer to apply and the terms, and we send the attorney our flags at the top.\n\nPicture this. The Harlow pre-bill shows 42 hours in June. One entry is billed at last year's rate, two paralegal entries say only 'file review,' and a $620 court reporter cost appears twice. What goes in your note to Elias, and in what order?"
+   "text": "First, we run the pre-bill at the same point every month. Next, we check the header: client, billing contact, matter, dates and any reference number. Then we check every time entry: matter, person, rate and a clear description. After that, costs: a receipt for each, no duplicates and markups only if allowed. Finally, the math, the retainer to apply and the terms, and we send the attorney our flags at the top.\n\nPicture this. The Harlow pre-bill shows 42 hours in June. One entry is at last year's rate, two say only 'file review,' and a $620 court reporter cost appears twice. What goes in your note to Elias, and in what order?"
   },
   {
    "image": "035.png",
@@ -216,7 +216,7 @@
    "image": "036.png",
    "slide": 20,
    "title": "Invoice Management: Tracking, Follow-Up & Collections",
-   "text": "First, number invoices in one sequence and never reuse a number. A cancelled invoice is voided. Next, send each invoice to the right billing contact in the format the client asks for. Then, follow a set reminder schedule: before the due date, on it, then 7, 14 and 30 days overdue. After that, review the aging report every week and send Elias anything over 60 days. Finally, record payments the day they arrive, so nobody gets chased after paying.\n\nTry this one. Meridian owes $18,400: $6,000 is 45 days overdue and $12,400 is 95 days overdue. No one has followed up. What do you send today, and what do you ask Elias?"
+   "text": "First, number invoices in one sequence and never reuse a number. A cancelled invoice is voided. Next, send each invoice to the right billing contact in the format the client asks for. Then, follow a set reminder schedule: before the due date, on it, then 7, 14 and 30 days late. After that, review the aging report every week and send Elias anything over 60 days. Finally, record payments the day they arrive, so nobody gets chased after paying.\n\nTry this one. Meridian owes $18,400: $6,000 is 45 days overdue and $12,400 is 95 days overdue. No one has followed up. What do you send today, and what do you ask Elias?"
   },
   {
    "image": "037.png",
@@ -258,7 +258,7 @@
    "image": "043.png",
    "slide": 23,
    "title": "Invoice & Payment Reconciliation",
-   "text": "If payments aren't matched to the right invoices, clients get chased for bills they've already paid, and that damages trust fast.\n\nReal payments are messy: one wire can cover three invoices, a client can pay half, or a bank fee can make it arrive a little short. And at the end of each month, the total of all open invoices should match the receivables number in the books. If it doesn't, something was applied to the wrong place."
+   "text": "If payments aren't matched to the right invoices, clients get chased for bills they've already paid.\n\nReal payments are messy: one wire can cover three invoices, a client can pay half, or a bank fee can make it arrive a little short. And at the end of each month, the total of all open invoices should match the receivables number in the books. If it doesn't, something was applied to the wrong place."
   },
   {
    "image": "044.png",
@@ -288,7 +288,7 @@
    "image": "048.png",
    "slide": 26,
    "title": "Real-Time Time Tracking for Billable Work",
-   "text": "Billable time becomes the client's invoice, so record it now, not from memory later. The longer you wait, the less accurate it gets.\n\nFirst, log time as you work, or straight afterwards. Next, write enough detail to support the invoice line: what was done, for which matter. Finally, compare logged time with the billing calendar regularly, before invoices go out.\n\nHere's one to think through. A client questions a 3.5-hour entry that says 'research.' The associate can't remember what the research was about. How would a better time entry have prevented this?"
+   "text": "Billable time becomes the client's invoice, so record it now, as you work or straight afterwards, not from memory later. The longer you wait, the less accurate it gets.\n\nFirst, write enough detail to support the invoice line: what was done, for which matter. Finally, compare logged time with the billing calendar regularly, before invoices go out.\n\nHere's one to think through. A client questions a 3.5-hour entry that says 'research.' The associate can't remember what the research was about. How would a better time entry have prevented this?"
   },
   {
    "image": "049.png",
@@ -306,7 +306,7 @@
    "image": "051.png",
    "slide": 27,
    "title": "Billable vs. Non-Billable Hours",
-   "text": "After that, we prepare a pre-bill, so the attorney can decide any write-downs or write-offs. Finally, approved no-charge work can show on the invoice as 'no charge.'\n\nTry this one. An associate's entry reads: '3.5, Harlow: call with client, research, drafted letter, scheduled meeting, copied exhibits.' Harlow's guidelines reject block billing and clerical time. How do you help fix the entry before the pre-bill goes to Elias?"
+   "text": "After that, we prepare a pre-bill, so the attorney can decide any write-downs or write-offs. Finally, approved no-charge work can show on the invoice as 'no charge.'\n\nTry this one. An associate's entry reads: '3.5, Harlow: call with client, research, drafted letter, scheduled meeting, copied exhibits.' Harlow's guidelines reject block billing and clerical time. How do you help fix it before the pre-bill?"
   },
   {
    "image": "052.png",
@@ -336,7 +336,7 @@
    "image": "056.png",
    "slide": 29,
    "title": "QuickBooks: Billable Time, Expenses & Invoicing",
-   "text": "After that, we create the invoice and add the waiting time and costs, checking dates, descriptions and rates. Finally, we run the unbilled time and expenses report to catch anything left behind.\n\nNow a scenario. At month-end, that report shows 6.2 hours for Harlow with no matter selected, and a $435 court reporter bill for Meridian that wasn't marked billable. What do you fix, and in what order, before invoices go out?"
+   "text": "After that, we add the waiting time and costs to the invoice, checking dates, descriptions and rates. Finally, we run the unbilled time and expenses report to catch anything left behind.\n\nNow a scenario. At month-end, that report shows 6.2 hours for Harlow with no matter selected, and a $435 court reporter bill for Meridian that wasn't marked billable. What do you fix, and in what order, before invoices go out?"
   },
   {
    "image": "057.png",
@@ -354,7 +354,7 @@
    "image": "059.png",
    "slide": 30,
    "title": "QuickBooks Common Mistakes & Tips",
-   "text": "After that, remember that the online version saves automatically. A mistake needs a proper correction, not an undo. Finally, review recent entries now and then for repeated category mistakes.\n\nTake a second with this one. Your bank reconciliation is off by exactly $450, and you notice a $450 deposit entered twice. What does that tell you about where to look first next time something is off by a round amount?"
+   "text": "After that, remember that the online version saves automatically. A mistake needs a proper correction, not an undo. Finally, review recent entries now and then for repeated category mistakes.\n\nTake a second with this one. Your bank reconciliation is off by exactly $450, and you notice a $450 deposit entered twice. Where will you look first next time something is off by a round amount?"
   },
   {
    "image": "060.png",
@@ -372,7 +372,7 @@
    "image": "062.png",
    "slide": 31,
    "title": "QuickBooks: Bank Feeds, Rules & Month-End Close",
-   "text": "After that, at month-end, clear the feed, reconcile every account, clear uncategorized items and run the reports. Finally, once the accountant confirms, set the closing date with a password.\n\nPicture this. The feed shows a $1,200 payment to the firm's credit card company, and QuickBooks suggests 'Office expenses.' What is it really, how should it be recorded and what would go wrong if you accepted the suggestion?"
+   "text": "After that, at month-end, clear the feed, reconcile every account, clear uncategorized items and run the reports. Finally, once the accountant confirms, set the closing date with a password.\n\nPicture this. The feed shows a $1,200 payment to the firm's credit card company, and QuickBooks suggests 'Office expenses.' What is it really, how should it be recorded and what goes wrong if you accept the suggestion?"
   },
   {
    "image": "063.png",
@@ -402,7 +402,7 @@
    "image": "067.png",
    "slide": 34,
    "title": "Credit Card Help: Disputes, Fraud & Lost Cards",
-   "text": "When a card problem hits, the assistant is usually the first to know, and how fast you act decides how much it costs.\n\nA billing error, or a charge we don't recognize, can be disputed with the card issuer. For US credit cards, billing-error disputes should go in writing within 60 days of the statement that first showed the charge. A lost or stolen card, or suspected fraud, gets reported straight away. The issuer usually blocks it and sends a new card."
+   "text": "When a card problem hits, the assistant is usually the first to know, and how fast you act decides how much it costs.\n\nA billing error, or a charge we don't recognize, can be disputed with the issuer. For US credit cards, billing-error disputes should go in writing within 60 days of the statement that first showed the charge. A lost or stolen card, or suspected fraud, gets reported straight away. The issuer usually blocks it and sends a new card."
   },
   {
    "image": "068.png",
@@ -420,7 +420,7 @@
    "image": "070.png",
    "slide": 35,
    "title": "Reconciling a Credit Card Statement",
-   "text": "A card statement nobody reconciles hides lost client costs, personal charges and fraud.\n\nCharges for a client matter, like deposition travel or a filing fee, are coded to the matter and marked billable so the firm gets the money back. Personal charges on a business card, even accidental ones, get flagged and repaid, never hidden in a business category."
+   "text": "A card statement nobody reconciles hides lost client costs, personal charges and fraud.\n\nCharges for a client matter, like deposition travel or a filing fee, are coded to the matter and marked billable so the firm gets the money back. Personal charges, even accidental ones, get flagged and repaid, never hidden in a business category."
   },
   {
    "image": "071.png",
@@ -468,7 +468,7 @@
    "image": "078.png",
    "slide": 40,
    "title": "Tax Season Support & Working with Accountants",
-   "text": "After that, connect it to reconciliation: good records make reconciling fast. Finally, build a small daily or weekly filing habit instead of one giant push a year.\n\nTry this one. The accountant asks for all of last year's business travel receipts by Wednesday. Half are in a shared folder, labeled by date and trip, and half are photos in Elias's phone. What do you do now, and what habit do you start for this year?"
+   "text": "After that, connect it to reconciliation: good records make reconciling fast. Finally, build a small daily or weekly filing habit instead of one giant push a year.\n\nTry this one. The accountant asks for all of last year's business travel receipts by Wednesday. Half are filed by date and trip; half are photos in Elias's phone. What do you do now, and what habit do you start for this year?"
   },
   {
    "image": "079.png",
@@ -492,13 +492,13 @@
    "image": "082.png",
    "slide": 43,
    "title": "Financial Record Retention Requirements",
-   "text": "First, know the retention period for each type of record, rather than one rule for everything. Next, store records somewhere durable and searchable. Finally, build the retention date into the filing, so reviews happen on schedule.\n\nPicture this. A partner wants to clear out the old storage room: 'Anything more than five years old can go.' The boxes include trust records and closed litigation files. What do you check before a single box leaves?"
+   "text": "First, know the retention period for each type of record, not one rule for everything. Next, store records somewhere durable and searchable. Finally, build the retention date into the filing, so reviews happen on schedule.\n\nPicture this. A partner wants to clear out the old storage room: 'Anything more than five years old can go.' The boxes include trust records and closed litigation files. What do you check before a single box leaves?"
   },
   {
    "image": "083.png",
    "slide": 44,
    "title": "Fraud Red Flags in Financial Documents",
-   "text": "Most fraud doesn't look dramatic; it looks like a small, believable detail that's slightly off.\n\nOne odd detail is usually just a mistake. A pattern of odd details signals real trouble. And because you see the most detail day to day, you're often the first line of defense.\n\nFirst, watch for the classic signs: an unfamiliar vendor, suspiciously round amounts, duplicate invoice numbers or sudden new bank details. Next, confirm any change in payment details through a separate channel you already trust, never the contact details in the request itself. Finally, raise a real concern promptly, rather than trying to solve it alone.\n\nHere's one to think through. Last month, you flagged an invoice that turned out to be genuine, and you felt embarrassed. This month, an email from 'Elias' asks you to buy $1,500 in gift cards for a client, quickly and quietly. What do you do?"
+   "text": "Most fraud doesn't look dramatic; it looks like a small, believable detail that's slightly off.\n\nOne odd detail is usually just a mistake. A pattern of odd details signals real trouble. And you see the most detail day to day, so you're often the first line of defense.\n\nFirst, watch for the classic signs: an unfamiliar vendor, suspiciously round amounts, duplicate invoice numbers or sudden new bank details. Next, confirm any change in payment details through a separate channel you already trust, never the contact details in the request itself. Finally, raise a real concern promptly, rather than trying to solve it alone.\n\nHere's one to think through. Last month, you flagged an invoice that turned out to be genuine, and you felt embarrassed. This month, an email from 'Elias' asks you to buy $1,500 in gift cards for a client, quickly and quietly. What do you do?"
   },
   {
    "image": "084.png",
