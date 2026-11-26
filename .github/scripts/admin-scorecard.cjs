@@ -24,7 +24,7 @@ const failures = []; const fail = (m) => failures.push(m);
     await page.waitForSelector('.eash-banner', { timeout: 20000 });
     await page.waitForFunction(() => document.querySelectorAll('.audit-table tbody tr').length >= 2, null, { timeout: 20000 });
     const pills = await page.$$eval('.eash-pill', b => b.map(x => x.innerText.trim()));
-    if (pills.join('|') !== '🏅 Scorecard|🛡 Admin Master Control') fail(`the section pills: ${pills}`);
+    if (pills.join('|') !== '🏅 Scorecard|🏆 Rankings & Progress Report|🛡 Admin Master Control') fail(`the section pills: ${pills}`);
     const banner = await page.$eval('.eash-banner', b => b.innerText);
     if (!/Batch B123126/.test(banner)) fail(`the Scorecard doesn't open on the newest batch: ${banner.slice(0, 120)}`);
     for (const b of ['Refresh', 'Records (CSV)', 'Full backup (JSON)', 'Cohort Report', 'Archive This Batch', '1 asked for more attempts'])
@@ -40,9 +40,21 @@ const failures = []; const fail = (m) => failures.push(m);
     const vis = await page.$$eval('.audit-table .at-btns button', b => b.filter(x => /Reset Attempts/.test(x.innerText)).every(x => x.offsetParent !== null));
     if (!vis) fail('↺ Reset Attempts isn\'t visible on every row');
     const parts = await page.$$eval('.eash-part .eash-h', h => h.map(x => x.innerText));
-    if (parts.join('|') !== '👥 Trainees|🏆 Rankings|💬 Trainee Feedback|📈 Activities') fail(`the Scorecard's parts: ${parts}`);
+    if (parts.join('|') !== '👥 Trainees|💬 Trainee Feedback|📈 Activities') fail(`the Scorecard's parts: ${parts}`);
     const th = await page.$eval('.audit-table thead th', t => { const s = getComputedStyle(t); return s.backgroundColor + ' ' + s.borderBottomColor; });
     if (!/rgb\(38, 43, 69\).*rgb\(219, 132, 55\)/.test(th)) fail(`the table header isn't the standard navy with the orange rule: ${th}`);
+    // 🏆 Rankings & Progress Report: its own button and page — the Rankings, then the report in the CM format, a general summary
+    await page.evaluate(() => setAdminTab('rankings'));
+    await page.waitForSelector('#eash-progress .eash-rep', { timeout: 20000 });
+    const rep = await page.evaluate(() => ({ on: [...document.querySelectorAll('.eash-pill.on')].map(b => b.innerText.trim()), parts: [...document.querySelectorAll('.eash-part .eash-h')].map(h => h.innerText),
+      head: [...document.querySelectorAll('.eash-rep thead th')].map(t => t.innerText.trim()), rows: [...document.querySelectorAll('.eash-rep tbody tr')].map(r => [...r.children].map(c => c.innerText.trim())) }));
+    if (rep.on.join() !== '🏆 Rankings & Progress Report') fail(`the old Rankings tab doesn't open 🏆 Rankings & Progress Report: ${rep.on}`);
+    if (rep.parts.join('|') !== '🏆 Rankings|📊 Progress Report') fail(`the Rankings & Progress Report's parts: ${rep.parts}`);
+    if (rep.head.join('|') !== "Rank|Trainee's Name|Batch Score|Strength|Challenges|General Attribute Rating|Progress") fail(`the Progress Report's columns: ${rep.head.join(' | ')}`);
+    if (!rep.rows.length || !rep.rows.some(r => /Ana Cruz/.test(r[1]))) fail(`the Progress Report doesn't list the batch: ${JSON.stringify(rep.rows)}`);
+    for (const r of rep.rows) { if (/\bDay \d|\d+%|"/.test(r[3] + ' ' + r[4])) fail(`${r[1]}'s Strength and Challenges should be a general summary, with no day, score or quote: ${r[3]} ${r[4]}`);
+      if (!/Knowledge & Understanding/.test(r[5]) || !/(★|N\/A)/.test(r[5])) fail(`${r[1]}'s General Attribute Rating: ${r[5]}`); }
+    if (await page.$('.eash-banner') && !/Rankings & Progress Report · Batch B123126/.test(await page.$eval('.eash-banner', b => b.innerText))) fail('the Rankings & Progress Report isn\'t on the Scorecard\'s batch');
     // the old tabs open the Scorecard; 🛡 Admin Master Control has the rest
     await page.evaluate(() => setAdminTab('tfeedback'));
     if (!(await page.$('.eash-banner'))) fail('the old Trainee Feedback tab doesn\'t open the Scorecard');
@@ -61,5 +73,5 @@ const failures = []; const fail = (m) => failures.push(m);
   } catch (e) { fail(`threw: ${e && e.stack || e}`); }
   await browser.close();
   if (failures.length) { console.log(`\n${failures.length} failure(s):`); failures.forEach((f, i) => console.log(`${i + 1}. ${f}`)); process.exit(1); }
-  console.log('Admin Scorecard test passed (two section pills; the Scorecard opens on the newest batch with every admin button in its header and every row button in view, ↺ Reset Attempts included; Trainees, Rankings, Trainee Feedback and Activities on one page; the standard table header; the old tabs open it; Admin Master Control keeps the rest; another batch from the header).');
+  console.log('Admin Scorecard test passed (three section pills; the Scorecard opens on the newest batch with every admin button in its header and every row button in view, ↺ Reset Attempts included; Trainees, Trainee Feedback and Activities on one page; 🏆 Rankings & Progress Report on its own page, the report in the CM format with a general summary; the standard table header; the old tabs open it; Admin Master Control keeps the rest; another batch from the header).');
 })();
