@@ -2016,5 +2016,203 @@ window.EAPA_DAY_VIDEOS = {
     "t": 1837.9
    }
   ]
+ },
+ "10": {
+  "title": "Day 10 — Digital Presence & Social Media Management",
+  "src": "/videos/day10-narrated.mp4?v=tp3cv8",
+  "captions": "/videos/day10-narrated.vtt?v=tp3cv8",
+  "duration": 1689,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 10 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Social Media Roles",
+    "t": 33.9
+   },
+   {
+    "slide": 3,
+    "title": "Social Media Management vs. Marketing",
+    "t": 48.1
+   },
+   {
+    "slide": 4,
+    "title": "EA vs. PA Roles in Social Media",
+    "t": 110.8
+   },
+   {
+    "slide": 5,
+    "title": "Personal vs. Firm Brand Account Separation",
+    "t": 175.4
+   },
+   {
+    "slide": 6,
+    "title": "Brand Voice & Style",
+    "t": 223.5
+   },
+   {
+    "slide": 7,
+    "title": "The Executive Personal Brand Style Guide",
+    "t": 235.9
+   },
+   {
+    "slide": 8,
+    "title": "Content Pillars & Finding the Brand Voice",
+    "t": 310.7
+   },
+   {
+    "slide": 9,
+    "title": "Defining and Maintaining Brand Voice, Tone & Messaging",
+    "t": 370
+   },
+   {
+    "slide": 10,
+    "title": "Making a Voice Guide Actually Stick",
+    "t": 432.6
+   },
+   {
+    "slide": 11,
+    "title": "Visual Brand Assets — Sample Color Palette",
+    "t": 484.5
+   },
+   {
+    "slide": 12,
+    "title": "Brand Consistency: Palette, Typography & Imagery",
+    "t": 537.1
+   },
+   {
+    "slide": 13,
+    "title": "Platforms & Publishing",
+    "t": 588
+   },
+   {
+    "slide": 14,
+    "title": "Platform Proficiencies — Tool-Specific Best Practices",
+    "t": 601.6
+   },
+   {
+    "slide": 15,
+    "title": "Platform Details & the One Rule That Applies to All Three",
+    "t": 665.6
+   },
+   {
+    "slide": 16,
+    "title": "The Content Calendar & Publishing Workflow",
+    "t": 709.2
+   },
+   {
+    "slide": 17,
+    "title": "Video Content Basics for Executive Presence",
+    "t": 753.2
+   },
+   {
+    "slide": 18,
+    "title": "Accessibility in Digital Content",
+    "t": 796.7
+   },
+   {
+    "slide": 19,
+    "title": "Content, SEO & Copy",
+    "t": 842
+   },
+   {
+    "slide": 20,
+    "title": "Audience Psychology & Pain Points",
+    "t": 856.5
+   },
+   {
+    "slide": 21,
+    "title": "SEO, GEO & Funneling for Executives",
+    "t": 912.2
+   },
+   {
+    "slide": 22,
+    "title": "GEO Tactics & Consistency",
+    "t": 981.5
+   },
+   {
+    "slide": 23,
+    "title": "Copywriting vs. Blog Writing",
+    "t": 1037.1
+   },
+   {
+    "slide": 24,
+    "title": "Metrics & Monitoring",
+    "t": 1101.1
+   },
+   {
+    "slide": 25,
+    "title": "Reading the Numbers — Engagement Rate",
+    "t": 1112.9
+   },
+   {
+    "slide": 26,
+    "title": "Quick Check",
+    "t": 1169.4
+   },
+   {
+    "slide": 27,
+    "title": "Engagement Rate Benchmarks & Interpretation",
+    "t": 1199.9
+   },
+   {
+    "slide": 28,
+    "title": "Basic Campaign Math",
+    "t": 1254.4
+   },
+   {
+    "slide": 29,
+    "title": "Quick Check",
+    "t": 1311.5
+   },
+   {
+    "slide": 30,
+    "title": "Social Listening & Monitoring",
+    "t": 1335.4
+   },
+   {
+    "slide": 31,
+    "title": "Risk & Compliance",
+    "t": 1378.8
+   },
+   {
+    "slide": 32,
+    "title": "Crisis Response on Social Media",
+    "t": 1391.8
+   },
+   {
+    "slide": 33,
+    "title": "Copyright, Image Rights & Permissions",
+    "t": 1439.1
+   },
+   {
+    "slide": 34,
+    "title": "Endorsement & Disclosure Rules",
+    "t": 1516.1
+   },
+   {
+    "slide": 35,
+    "title": "Legal Advertising & UPL Rules",
+    "t": 1571
+   },
+   {
+    "slide": 36,
+    "title": "Capstone",
+    "t": 1623.1
+   },
+   {
+    "slide": 37,
+    "title": "Final Timed Evaluation & Capstone Checklist",
+    "t": 1633
+   },
+   {
+    "slide": 38,
+    "title": "Practice Lab",
+    "t": 1671.7
+   }
+  ]
  }
 };
