@@ -1372,5 +1372,238 @@ window.EAPA_DAY_VIDEOS = {
     "t": 1850.6
    }
   ]
+ },
+ "7": {
+  "title": "Day 7 — Finance: Invoicing, Billing & QuickBooks",
+  "src": "/videos/day7-narrated.mp4?v=tp3bkg",
+  "captions": "/videos/day7-narrated.vtt?v=tp3bkg",
+  "duration": 2229,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 7 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Finance Foundations",
+    "t": 41.1
+   },
+   {
+    "slide": 3,
+    "title": "The EA/PA's Role in Finance",
+    "t": 52.4
+   },
+   {
+    "slide": 4,
+    "title": "What an SOP Actually Needs",
+    "t": 99
+   },
+   {
+    "slide": 5,
+    "title": "Quick Check",
+    "t": 141.5
+   },
+   {
+    "slide": 6,
+    "title": "The Financial Calendar",
+    "t": 159.6
+   },
+   {
+    "slide": 7,
+    "title": "Financial KPIs for EAs/PAs",
+    "t": 214.6
+   },
+   {
+    "slide": 8,
+    "title": "Quick Check",
+    "t": 273.7
+   },
+   {
+    "slide": 9,
+    "title": "Bookkeeping Basics & Compliance",
+    "t": 295.5
+   },
+   {
+    "slide": 10,
+    "title": "Reading Basic Financial Statements",
+    "t": 341.8
+   },
+   {
+    "slide": 11,
+    "title": "Reconciliation & Trust Accounts",
+    "t": 409.8
+   },
+   {
+    "slide": 12,
+    "title": "SOA Reconciliation",
+    "t": 423
+   },
+   {
+    "slide": 13,
+    "title": "Reconciliation Discrepancy Detection",
+    "t": 490.1
+   },
+   {
+    "slide": 14,
+    "title": "Client Trust Accounts (IOLTA) — Core Rules & Commingling Risk",
+    "t": 549.4
+   },
+   {
+    "slide": 15,
+    "title": "Trust Account Reconciliation Discipline",
+    "t": 611.6
+   },
+   {
+    "slide": 16,
+    "title": "Invoice Management",
+    "t": 648.4
+   },
+   {
+    "slide": 17,
+    "title": "Billing & Invoicing",
+    "t": 658.9
+   },
+   {
+    "slide": 18,
+    "title": "Contract-Aware Billing",
+    "t": 709.4
+   },
+   {
+    "slide": 19,
+    "title": "Pre-Bill Review: Checking an Invoice Before It Goes Out",
+    "t": 756.2
+   },
+   {
+    "slide": 20,
+    "title": "Invoice Management: Tracking, Follow-Up & Collections",
+    "t": 821
+   },
+   {
+    "slide": 21,
+    "title": "E-Billing Portals, LEDES & Client Billing Guidelines",
+    "t": 896.9
+   },
+   {
+    "slide": 22,
+    "title": "Retainer Invoices & Applying Trust Funds",
+    "t": 976.3
+   },
+   {
+    "slide": 23,
+    "title": "Invoice & Payment Reconciliation",
+    "t": 1054.7
+   },
+   {
+    "slide": 24,
+    "title": "Handling a Billing Dispute",
+    "t": 1132.2
+   },
+   {
+    "slide": 25,
+    "title": "Time Tracking & QuickBooks",
+    "t": 1171.7
+   },
+   {
+    "slide": 26,
+    "title": "Real-Time Time Tracking for Billable Work",
+    "t": 1184.2
+   },
+   {
+    "slide": 27,
+    "title": "Billable vs. Non-Billable Hours",
+    "t": 1221.7
+   },
+   {
+    "slide": 28,
+    "title": "QuickBooks How-Tos — Step by Step",
+    "t": 1300.8
+   },
+   {
+    "slide": 29,
+    "title": "QuickBooks: Billable Time, Expenses & Invoicing",
+    "t": 1354.3
+   },
+   {
+    "slide": 30,
+    "title": "QuickBooks Common Mistakes & Tips",
+    "t": 1431.1
+   },
+   {
+    "slide": 31,
+    "title": "QuickBooks: Bank Feeds, Rules & Month-End Close",
+    "t": 1502.1
+   },
+   {
+    "slide": 32,
+    "title": "Expenses, Payments & Payroll",
+    "t": 1576.1
+   },
+   {
+    "slide": 33,
+    "title": "Credit Cards & Card Applications",
+    "t": 1587
+   },
+   {
+    "slide": 34,
+    "title": "Credit Card Help: Disputes, Fraud & Lost Cards",
+    "t": 1646.6
+   },
+   {
+    "slide": 35,
+    "title": "Reconciling a Credit Card Statement",
+    "t": 1724.7
+   },
+   {
+    "slide": 36,
+    "title": "Expense Report Auditing & Approval Workflows",
+    "t": 1800.2
+   },
+   {
+    "slide": 37,
+    "title": "Vendor Payment Terms & Cash Flow Timing",
+    "t": 1847.4
+   },
+   {
+    "slide": 38,
+    "title": "Payroll Basics for EA/PA Support Roles",
+    "t": 1895.4
+   },
+   {
+    "slide": 39,
+    "title": "Tax, Records & Fraud",
+    "t": 1939.5
+   },
+   {
+    "slide": 40,
+    "title": "Tax Season Support & Working with Accountants",
+    "t": 1951.2
+   },
+   {
+    "slide": 41,
+    "title": "Quarterly Tax Schedules",
+    "t": 2006.4
+   },
+   {
+    "slide": 42,
+    "title": "W-9/1099 Audits & Filing Deadlines",
+    "t": 2050.8
+   },
+   {
+    "slide": 43,
+    "title": "Financial Record Retention Requirements",
+    "t": 2098.1
+   },
+   {
+    "slide": 44,
+    "title": "Fraud Red Flags in Financial Documents",
+    "t": 2150.5
+   },
+   {
+    "slide": 45,
+    "title": "Practice Lab",
+    "t": 2210.4
+   }
+  ]
  }
 };
