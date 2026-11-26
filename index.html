@@ -764,13 +764,13 @@ rect.svg-callout-badge{animation:none;}
 }
 .cp-rail button:hover{background:#F2F4FA;}
 .cp-rail button.on{background:var(--navy);border-color:var(--navy);color:#fff;}
-.cp-pane{flex:1;min-height:0;padding:20px 24px;overflow:auto;font-size:16px;}
-.cp-pane h3{margin:0 0 12px;font-size:18px;color:var(--navy);font-family:'Fraunces';}
+.cp-pane{flex:1;min-height:0;padding:22px 28px;overflow:auto;font-size:19px;}
+.cp-pane h3{margin:0 0 14px;font-size:1.2em;color:var(--navy);font-family:'Fraunces';}
 .cp-pane ul{margin:0;padding-left:18px;}
 .cp-pane li{font-size:1em;color:#37394A;margin-bottom:8px;line-height:1.5;}
 .cp-pane li:last-child{margin-bottom:0;}
 .cp-intro .cib-tag{font-family:'IBM Plex Mono';font-size:var(--font-sub);font-weight:700;color:var(--orange-deep);letter-spacing:.05em;margin-bottom:10px;}
-.cp-intro h2{font-family:'Fraunces';font-size:19px;color:var(--navy);margin:0 0 12px;}
+.cp-intro h2{font-family:'Fraunces';font-size:1.25em;color:var(--navy);margin:0 0 12px;}
 .cp-intro p{font-size:1em;color:#3A2F22;line-height:1.6;margin:0 0 10px;}
 .cp-intro p:last-child{margin-bottom:0;}
 .cp-intro b{color:var(--orange-deep);}
@@ -801,10 +801,10 @@ rect.svg-callout-badge{animation:none;}
   .cp-onescreen .client-header-text p{margin:0 0 2px !important;font-size:14px !important;}
   .cp-onescreen .client-tagline{font-size:13px !important;}
   .cp-pane{padding:11px 16px;}
-  .cp-pane h3{font-size:15px;margin-bottom:8px;}
-  .cp-pane{font-size:14.5px;}
+  .cp-pane h3{font-size:1.15em;margin-bottom:10px;}
+  .cp-pane{font-size:18.5px;}
   .cp-pane li{margin-bottom:5px;line-height:1.42;}
-  .cp-intro h2{font-size:17px;margin-bottom:9px;}
+  .cp-intro h2{font-size:1.2em;margin-bottom:9px;}
   .cp-intro p{line-height:1.5;margin-bottom:8px;}
   .cp-intro{columns:2;column-gap:28px;}
   .cp-intro .cib-tag, .cp-intro h2{column-span:all;}
@@ -4788,7 +4788,7 @@ function cpFit(){
   if(!pane) return;
   pane.style.fontSize = "";
   const base = parseFloat(getComputedStyle(pane).fontSize) || 14;
-  for(let f = 1; f >= 0.82 && pane.scrollHeight - pane.clientHeight > 1; f -= 0.02){
+  for(let f = 1; f >= 0.7 && pane.scrollHeight - pane.clientHeight > 1; f -= 0.02){
     pane.style.fontSize = (base * f).toFixed(2) + "px";
   }
 }
@@ -18321,6 +18321,6 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- 🎨 Deck colour, graphics and icons on every slide (topic illustrations, section colours, AA contrast) -->
 <script src="/js/eapa-deck-color.js?v=4"></script>
 <!-- 🖥 Practice Lab activities in realistic app windows (docs, mail, tasks, ledger, admin console, portal, dashboards, AI assistant, CRM, forms, reviews, social) -->
-<script src="/js/eapa-lab-apps.js?v=3"></script>
+<script src="/js/eapa-lab-apps.js?v=5"></script>
 </body>
 </html>
