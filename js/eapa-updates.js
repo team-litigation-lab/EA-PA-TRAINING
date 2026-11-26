@@ -217,7 +217,7 @@ ol.sopx-s-list li{padding-left:58px;} ol.sopx-s-list li::before{content:counter(
 .pv-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:16px;align-items:start;}
 .pv-label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F0C08A;margin:0 0 8px;}
 .pv-mirror{position:relative;width:100%;aspect-ratio:16/9;background:#141833;border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px rgba(240,192,138,.45);}
-.pv-frame{position:absolute;top:0;left:0;width:1280px;height:720px;border:0;transform-origin:0 0;pointer-events:none;background:#1F2440;}
+.pv-frame{position:absolute;top:0;left:0;width:1280px;height:720px;max-width:none !important;max-height:none !important;border:0;transform-origin:0 0;pointer-events:none;background:#1F2440;}
 .pv-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;} .pv-nav .btn-ghost{background:#fff;}
 .pv-nav select{font:inherit;font-size:13px;border-radius:8px;border:none;padding:7px 8px;max-width:52%;color:var(--navy);}
 .pv-next{margin-top:10px;font-size:13px;color:#C9CDE3;} .pv-next b{color:#fff;}
@@ -229,7 +229,9 @@ ol.sopx-s-list li{padding-left:58px;} ol.sopx-s-list li::before{content:counter(
 .pv-cues .pv-empty{color:var(--ink-soft);font-size:14px;}
 .pv-ans{background:#EAF6EF;border-left:4px solid #3F7D58;border-radius:8px;padding:8px 12px;margin:6px 0 10px;}
 .pv-tip{margin:12px 0 0;font-size:12.5px;color:#C9CDE3;} .pv-tip b{color:#fff;}
-@media(max-width:1000px){.pv-grid{grid-template-columns:1fr;} .pv-cues{position:static;max-height:none;}}
+@media(max-width:1000px){.pv-grid{grid-template-columns:minmax(0,1fr);} .pv-cues{position:static;max-height:none;}}
+.pv-grid > *{min-width:0;}
+.pv-nav{flex-wrap:wrap;} .pv-nav select{flex:1 1 180px;min-width:0;}
 /* ---- Audience window (shared in Google Meet) ---- */
 body.audience-mode{overflow:hidden;background:#1F2440;}
 body.audience-mode > *:not(#audienceRoot):not(.aud-hint){display:none !important;}
@@ -247,6 +249,10 @@ body.audience-mode > *:not(#audienceRoot):not(.aud-hint){display:none !important
 .aud-wait b{font-family:'Fraunces',Georgia,serif;font-size:30px;color:#F0C08A;}
 .aud-hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:rgba(0,0,0,.72);color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;z-index:5;transition:opacity .6s;}
 .aud-hint.gone{opacity:0;pointer-events:none;}
+/* the shared window: the slides at their fixed size, scaled to the window and centred (navy bars round them) */
+#audienceRoot.aud-shell{z-index:2147483000;background:#1F2440;overflow:hidden;}
+.aud-hint{z-index:2147483001 !important;}
+.aud-stage{position:absolute !important;top:0;left:0;width:1280px !important;height:720px !important;max-width:none !important;max-height:none !important;border:0;margin:0;transform-origin:0 0;pointer-events:none;background:#1F2440;}
 
 `; document.head.appendChild(s); })();
 
@@ -778,11 +784,15 @@ window.afterRender = function(){ if(document.getElementById("sopSlide")) fitSopS
    (a small copy of the slides window, rendered at its exact size), the trainer
    cues / discussion script for the current slide, what's next, a timer and the
    controls. The windows talk over a BroadcastChannel.
-     ?audience=1       the slides window you share
-     ?audience=mirror  the small live copy inside the presenter console */
+     ?audience=1       the slides window you share: a frame that holds ?audience=stage and scales it to the window
+     ?audience=stage   the slides themselves, always laid out at 1280 × 720 (PV_STAGE_W × PV_STAGE_H)
+     ?audience=mirror  the small live copy inside the presenter console
+   The slides are laid out at one fixed size and only scaled, so resizing the shared window (or the console)
+   never moves, wraps or overlaps anything on the slide: the tablet / phone layouts never apply there. */
 const PV_CHANNEL = "lsh-present-v1";
 const PV_MODE = new URLSearchParams(location.search).get("audience") || "";
-const PV_IS_AUDIENCE = PV_MODE === "1" || PV_MODE === "mirror";
+const PV_IS_AUDIENCE = PV_MODE === "1" || PV_MODE === "stage" || PV_MODE === "mirror";
+const PV_STAGE_W = 1280, PV_STAGE_H = 720;
 const PV = {ch:null, win:null, size:null, startedAt:0, tick:null};
 function pvChannel(){ if(!PV.ch && "BroadcastChannel" in window) PV.ch = new BroadcastChannel(PV_CHANNEL); return PV.ch; }
 
@@ -973,13 +983,42 @@ if(pvChannel() && !PV_IS_AUDIENCE){
 
 /* ----- the slides window (and its live copy) ----- */
 if(PV_IS_AUDIENCE){
-  const isMain = PV_MODE === "1";
-  if(isMain) document.title = "LSH Slides — share this window";
+  const isShell = PV_MODE === "1", isMain = PV_MODE === "stage";
+  if(isShell) document.title = "LSH Slides — share this window";
   document.body.classList.add("audience-mode");
   window.render = function(){};                          // the normal portal never draws here
   window.autoPublishBlueprint = async function(){};       // leave background jobs to the trainer's own tab
   window.updateIsSafe = function(){ return false; };      // never reload itself for an update mid-class (the console offers Update now)
   const app = document.getElementById("app"); if(app) app.innerHTML = "";
+  if(isShell) pvAudienceShell(); else pvAudienceSlides(isMain);
+}
+// The shared window: the slides page in a frame of fixed size, scaled to fit the window and centred.
+// A new window size (or full screen) only changes the scale: nothing on the slide is laid out again.
+function pvAudienceShell(){
+  const root = document.createElement("div"); root.id = "audienceRoot"; root.className = "aud-shell";
+  const f = document.createElement("iframe"); f.className = "aud-stage"; f.id = "audStage"; f.tabIndex = -1;
+  f.title = "Slides"; f.width = PV_STAGE_W; f.height = PV_STAGE_H;
+  f.style.width = PV_STAGE_W+"px"; f.style.height = PV_STAGE_H+"px";
+  f.src = `/?audience=stage&day=${encodeURIComponent(new URLSearchParams(location.search).get("day")||"")}`;
+  root.appendChild(f); document.body.appendChild(root);
+  const fit = ()=>{
+    const W = window.innerWidth, H = window.innerHeight, k = Math.min(W / PV_STAGE_W, H / PV_STAGE_H);
+    f.style.transform = `translate(${Math.round((W - PV_STAGE_W*k)/2)}px, ${Math.round((H - PV_STAGE_H*k)/2)}px) scale(${k})`;
+  };
+  fit();
+  window.addEventListener("resize", fit);
+  document.addEventListener("fullscreenchange", fit);
+  // arrow keys pressed in the slides window drive the presentation
+  document.addEventListener("keydown", (e)=>{
+    const dir = ["ArrowRight","PageDown"," "].includes(e.key) ? 1 : (["ArrowLeft","PageUp"].includes(e.key) ? -1 : 0);
+    if(dir && pvChannel()){ e.preventDefault(); PV.ch.postMessage({type:"key", dir}); }
+  });
+  const hint = document.createElement("div"); hint.className = "aud-hint"; hint.textContent = "Share this window in Google Meet · double-click for full screen";
+  document.body.appendChild(hint); setTimeout(()=>hint.classList.add("gone"), 7000);
+  document.addEventListener("dblclick", ()=>{ if(document.fullscreenElement) document.exitFullscreen(); else if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{}); });
+}
+// The slides themselves (in the shared window's frame, and the console's live copy).
+function pvAudienceSlides(isMain){
   const root = document.createElement("div"); root.id = "audienceRoot";
   root.innerHTML = `<div class="aud-wait"><b>LSH EA PA Track</b>Waiting for the presenter…</div>`;
   document.body.appendChild(root);
@@ -988,11 +1027,6 @@ if(PV_IS_AUDIENCE){
     const dir = ["ArrowRight","PageDown"," "].includes(e.key) ? 1 : (["ArrowLeft","PageUp"].includes(e.key) ? -1 : 0);
     if(dir && pvChannel()){ e.preventDefault(); PV.ch.postMessage({type:"key", dir}); }
   });
-  if(isMain){
-    const hint = document.createElement("div"); hint.className = "aud-hint"; hint.textContent = "Share this window in Google Meet · double-click for full screen";
-    document.body.appendChild(hint); setTimeout(()=>hint.classList.add("gone"), 7000);
-    document.addEventListener("dblclick", ()=>{ if(document.fullscreenElement) document.exitFullscreen(); else if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{}); });
-  }
   let last = null;
   // tell the console what is on screen: the page, and which numbered sections (① Core Principles …
   // ④ Go Deeper) are on this page and on every page, so the presenter's script follows the page

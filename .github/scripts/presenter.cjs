@@ -3,7 +3,8 @@
 //   - Next: the slide is drawn once, with no entrance animation (no blank first frames);
 //   - the console re-drawing (its live copy reconnects): the slides window is NOT drawn again;
 //   - a long slide's next page: shown in place, not drawn again;
-//   - the slides window resized: the deck is only scaled to the new size, not drawn or laid out again;
+//   - the slides window resized, even narrow: the slides keep their one 1280 x 720 layout and are only scaled
+//     (not drawn or laid out again, and the tablet / phone layouts never apply);
 //   - the slides window never reloads itself for an update.
 // Usage: node .github/scripts/presenter.cjs [baseUrl] [day]   (with .github/scripts/server.mjs running; needs `npm i playwright`;
 //        day: a day with several ordinary slides, default 1)
@@ -31,9 +32,12 @@ const DAY = Number(process.argv[3] || 1);
     await sleep(400);
     const popup = ctx.waitForEvent('page');
     await page.evaluate(() => presenterStart());
-    const aud = await popup; await aud.waitForLoadState('load');
-    aud.on('pageerror', e => fail(`slides window page error: ${e.message}`));
+    const win = await popup; await win.waitForLoadState('load');
+    win.on('pageerror', e => fail(`slides window page error: ${e.message}`));
     await sleep(2500);
+    // the shared window is a frame that scales the slides page (?audience=stage) to fit; the slides are in there
+    const aud = win.frames().find(f => /audience=stage/.test(f.url()));
+    if (!aud) { console.log('the slides window has no ?audience=stage frame'); process.exit(1); }
     // count every time the slides window's content is replaced, and the messages it hears
     await aud.evaluate(() => {
         window.__pv = { draws: 0, msgs: [] };
@@ -91,19 +95,23 @@ const DAY = Number(process.argv[3] || 1);
     // the slides window resized (e.g. full screen): the deck keeps its one size and is only scaled
     const deck = () => aud.evaluate(() => { const w = document.getElementById('lessonSlideWrap'), f = document.querySelector('.deck-fit');
         return { w: w.offsetWidth, h: w.offsetHeight, scale: f ? getComputedStyle(f).getPropertyValue('--deck-scale') : '', pages: state.slidePages || 1 }; });
-    const before = await deck();
-    await aud.setViewportSize({ width: 1100, height: 700 }); await sleep(800);
-    r = await take();
-    const after = await deck();
-    if (r.draws !== 0) fail(`resizing the slides window drew it ${r.draws} times (expected 0: the deck is only scaled)`);
-    if (after.w !== before.w || after.h !== before.h) fail(`resizing the slides window changed the slide's own size (${before.w}x${before.h} -> ${after.w}x${after.h})`);
-    if (after.scale === before.scale) fail(`resizing the slides window didn't rescale the deck (still ${after.scale})`);
-    if (after.pages !== before.pages) fail(`resizing the slides window split the slide into different pages (${before.pages} -> ${after.pages})`);
-    anim = await animations();
-    if (anim.length) fail(`after a resize the slide animates in (${anim.join(', ')})`);
+    const zoom = () => win.evaluate(() => getComputedStyle(document.getElementById('audStage')).transform);
+    const before = await deck(), z0 = await zoom();
+    for (const [w, h] of [[1100, 700], [760, 600], [520, 800], [1900, 500]]) {
+        await win.setViewportSize({ width: w, height: h }); await sleep(800);
+        r = await take();
+        const after = await deck(), z = await zoom();
+        if (r.draws !== 0) fail(`resizing the slides window to ${w}x${h} drew it ${r.draws} times (expected 0: the slides are only scaled)`);
+        if (JSON.stringify(after) !== JSON.stringify(before)) fail(`resizing the slides window to ${w}x${h} laid the slide out again (${JSON.stringify(before)} -> ${JSON.stringify(after)})`);
+        if (z === z0) fail(`resizing the slides window to ${w}x${h} didn't rescale the slides (still ${z})`);
+        const box = await win.evaluate(() => { const r = document.getElementById('audStage').getBoundingClientRect(); return { l: r.left, t: r.top, r: r.right, b: r.bottom, W: innerWidth, H: innerHeight }; });
+        if (box.l < -1 || box.t < -1 || box.r > box.W + 1 || box.b > box.H + 1) fail(`at ${w}x${h} the slides run outside the window: ${JSON.stringify(box)}`);
+        anim = await animations();
+        if (anim.length) fail(`after a resize the slide animates in (${anim.join(', ')})`);
+    }
 
     // a new version of the course never reloads the shared window mid-class
-    if (await aud.evaluate(() => updateIsSafe())) fail('the slides window would reload itself for an update in the middle of a presentation');
+    if (await aud.evaluate(() => updateIsSafe()) || await win.evaluate(() => updateIsSafe())) fail('the slides window would reload itself for an update in the middle of a presentation');
 
     await browser.close();
     if (failures.length) { console.log(`\n${failures.length} failure(s):`); failures.forEach((f, i) => console.log(`${i + 1}. ${f}`)); process.exit(1); }
