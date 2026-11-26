@@ -252,5 +252,233 @@ window.EAPA_DAY_VIDEOS = {
     "t": 2589
    }
   ]
+ },
+ "2": {
+  "title": "Day 2 — Force Multiplier, Leveraging AI & Email Management",
+  "src": "/videos/day2-narrated.mp4?v=tp393s",
+  "captions": "/videos/day2-narrated.vtt?v=tp393s",
+  "duration": 2140,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 2 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Executive Exposure & Board Communication",
+    "t": 38.4
+   },
+   {
+    "slide": 3,
+    "title": "Managing Constant Executive Exposure",
+    "t": 51.6
+   },
+   {
+    "slide": 4,
+    "title": "Stakeholder & Board Update Communications",
+    "t": 125
+   },
+   {
+    "slide": 5,
+    "title": "Investor Briefing Preparation",
+    "t": 185.5
+   },
+   {
+    "slide": 6,
+    "title": "The Force Multiplier Mindset",
+    "t": 238.2
+   },
+   {
+    "slide": 7,
+    "title": "From Helper to Force Multiplier",
+    "t": 251
+   },
+   {
+    "slide": 8,
+    "title": "The Helper Identity vs. the Force Multiplier Identity",
+    "t": 317.2
+   },
+   {
+    "slide": 9,
+    "title": "Why the Force Multiplier Evolution Is Non-Negotiable",
+    "t": 365.7
+   },
+   {
+    "slide": 10,
+    "title": "Force Multiplier in the Wild",
+    "t": 420.1
+   },
+   {
+    "slide": 11,
+    "title": "What Force Multiplier Autonomy Is — and Isn't",
+    "t": 472.1
+   },
+   {
+    "slide": 12,
+    "title": "Measuring the Force Multiplier Transformation",
+    "t": 518.7
+   },
+   {
+    "slide": 13,
+    "title": "Cognitive Load & Systems",
+    "t": 565.2
+   },
+   {
+    "slide": 14,
+    "title": "Reducing Cognitive Load for Executives",
+    "t": 579.8
+   },
+   {
+    "slide": 15,
+    "title": "\"If It Happens Twice, It Deserves a System\"",
+    "t": 633.5
+   },
+   {
+    "slide": 16,
+    "title": "Operational Excellence & Institutional Accountability",
+    "t": 677.2
+   },
+   {
+    "slide": 17,
+    "title": "File Naming, Folders & Version Control",
+    "t": 719.7
+   },
+   {
+    "slide": 18,
+    "title": "The Legal EA Force Multiplier",
+    "t": 794.7
+   },
+   {
+    "slide": 19,
+    "title": "Authority & Boundary Management — EA vs. Legal EA",
+    "t": 808.7
+   },
+   {
+    "slide": 20,
+    "title": "Proactive Risk Mitigation & Strategic Support — EA vs. Legal EA",
+    "t": 866
+   },
+   {
+    "slide": 21,
+    "title": "The Legal VA's Force Multiplier Evolution",
+    "t": 933.9
+   },
+   {
+    "slide": 22,
+    "title": "Cognitive Relief for Attorneys",
+    "t": 992.4
+   },
+   {
+    "slide": 23,
+    "title": "Strategic Filtration for Legal Work",
+    "t": 1034.9
+   },
+   {
+    "slide": 24,
+    "title": "Operational Architecture for Legal Work",
+    "t": 1091.7
+   },
+   {
+    "slide": 25,
+    "title": "Decision Compression",
+    "t": 1141
+   },
+   {
+    "slide": 26,
+    "title": "Risk Buffering for Legal Work",
+    "t": 1194.3
+   },
+   {
+    "slide": 27,
+    "title": "Leveraging AI with Precision",
+    "t": 1236.8
+   },
+   {
+    "slide": 28,
+    "title": "Before You Begin: AI Use in the Legal Industry",
+    "t": 1251.4
+   },
+   {
+    "slide": 29,
+    "title": "The Digital Edge",
+    "t": 1326.1
+   },
+   {
+    "slide": 30,
+    "title": "What Is a Large Language Model?",
+    "t": 1390.3
+   },
+   {
+    "slide": 31,
+    "title": "Quick Check",
+    "t": 1461.4
+   },
+   {
+    "slide": 32,
+    "title": "Core AI Terms an EA/PA Needs",
+    "t": 1482.4
+   },
+   {
+    "slide": 33,
+    "title": "Quick Check",
+    "t": 1543.1
+   },
+   {
+    "slide": 34,
+    "title": "Your AI Toolkit — Three Modes, Different Jobs",
+    "t": 1580.4
+   },
+   {
+    "slide": 35,
+    "title": "Claude, ChatGPT, and Gemini — Practical Differences",
+    "t": 1652.6
+   },
+   {
+    "slide": 36,
+    "title": "Email Management",
+    "t": 1731.7
+   },
+   {
+    "slide": 37,
+    "title": "Email Is a Control System, Not Cleanup",
+    "t": 1743.7
+   },
+   {
+    "slide": 38,
+    "title": "What High-Performing Inbox Triage Looks Like",
+    "t": 1807.4
+   },
+   {
+    "slide": 39,
+    "title": "The Daily Routine",
+    "t": 1876.4
+   },
+   {
+    "slide": 40,
+    "title": "The Morning Briefing, In Practice",
+    "t": 1922
+   },
+   {
+    "slide": 41,
+    "title": "Quick Check",
+    "t": 1972.5
+   },
+   {
+    "slide": 42,
+    "title": "The Priority Matrix",
+    "t": 2003.9
+   },
+   {
+    "slide": 43,
+    "title": "Quick Check",
+    "t": 2091.1
+   },
+   {
+    "slide": 44,
+    "title": "Practice Lab",
+    "t": 2118.4
+   }
+  ]
  }
 };
