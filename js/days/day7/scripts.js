@@ -181,7 +181,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Finally, write up the reconciliation, so next month starts from an agreed number."
    ],
    "ask": "Opening balance $3,200, invoices $4,800, payments $6,000 and a $150 late fee. What's the closing balance? The client says they owe $1,850. Where do you look first?",
-   "scenario": "You find the $1,200 difference: a credit note the firm issued in June that Harlow never received. The numbers now agree. What do you send them, and what do you note so next month starts clean?"
+   "scenario": "Harlow's accounts team says they owe $1,200 less than your statement of account. You find the difference: a credit note the firm issued in June that Harlow never received. The numbers now agree. What do you send them, and what do you note so next month starts clean?"
   }
  },
  "7::Reconciliation Discrepancy Detection": {

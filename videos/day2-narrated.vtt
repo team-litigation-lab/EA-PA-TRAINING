@@ -1395,390 +1395,390 @@ Gemini lives inside Gmail, Docs and Calendar, so it works with live information,
 00:28:03.475 --> 00:28:06.600
 which means our security habits matter even more.
 
-00:28:08.500 --> 00:28:11.588
+00:28:08.500 --> 00:28:11.675
 Whichever tool you use, the same checks apply.
 
-00:28:11.588 --> 00:28:15.313
-Then pick for the job: for quick drafting and trying versions,
+00:28:11.675 --> 00:28:14.425
+And when you're automating inside Google Workspace,
 
-00:28:15.313 --> 00:28:18.400
-ChatGPT is often the practical choice.
+00:28:14.425 --> 00:28:19.300
+start simple, like Gmail filters, before reaching for anything advanced.
 
-00:28:20.325 --> 00:28:24.088
+00:28:21.225 --> 00:28:23.250
+Then pick the tool for the job.
+
+00:28:23.250 --> 00:28:28.650
+For quick drafting and trying versions, ChatGPT is often the practical choice.
+
+00:28:28.650 --> 00:28:32.388
 For anything working on live email, documents or calendars,
 
-00:28:24.088 --> 00:28:27.200
+00:28:32.388 --> 00:28:35.575
 Gemini fits, with stricter security habits.
 
-00:28:27.200 --> 00:28:30.300
-And when automating inside Google, start simple,
-
-00:28:30.300 --> 00:28:34.375
-like Gmail filters, before reaching for anything advanced.
-
-00:28:35.150 --> 00:28:37.363
+00:28:36.325 --> 00:28:38.538
 Here's a situation to think about.
 
-00:28:37.363 --> 00:28:42.275
+00:28:38.538 --> 00:28:43.450
 A colleague built a complex script that automatically files client emails into Drive
 
-00:28:42.275 --> 00:28:43.350
+00:28:43.450 --> 00:28:44.525
 folders.
 
-00:28:43.350 --> 00:28:46.212
+00:28:44.525 --> 00:28:47.388
 She's leaving, and nobody else understands it.
 
-00:28:46.212 --> 00:28:50.750
+00:28:47.388 --> 00:28:51.925
 What simpler automation could replace it, and why is simpler better here?
 
-00:28:52.675 --> 00:28:55.725
+00:28:53.850 --> 00:28:56.900
 Section 6 of 6: Email Management.
 
-00:28:55.725 --> 00:28:59.750
+00:28:56.900 --> 00:29:00.925
 We'll treat email as a control system, then look at inbox triage,
 
-00:28:59.750 --> 00:29:02.700
+00:29:00.925 --> 00:29:03.875
 the daily routine and the priority matrix.
 
-00:29:04.600 --> 00:29:09.050
+00:29:05.775 --> 00:29:10.225
 Before we act on any email for the executive, we need to know exactly what we're
 
-00:29:09.050 --> 00:29:10.400
+00:29:10.225 --> 00:29:11.575
 allowed to do.
 
-00:29:11.200 --> 00:29:13.150
+00:29:12.375 --> 00:29:14.325
 There are three levels of access.
 
-00:29:13.150 --> 00:29:17.675
+00:29:14.325 --> 00:29:18.850
 With full access, we can read, reply, file and send in his name.
 
-00:29:17.675 --> 00:29:22.425
+00:29:18.850 --> 00:29:23.600
 With draft and review, we prepare replies, and he approves them before they go.
 
-00:29:22.425 --> 00:29:26.450
+00:29:23.600 --> 00:29:27.625
 With triage only, we sort and flag, and he replies himself.
 
-00:29:26.450 --> 00:29:29.625
+00:29:27.625 --> 00:29:30.800
 Using a higher level than we've been given isn't helpful.
 
-00:29:29.625 --> 00:29:31.425
+00:29:30.800 --> 00:29:32.600
 It's crossing a line.
 
-00:29:33.375 --> 00:29:37.675
+00:29:34.550 --> 00:29:38.850
 First, confirm your level, and don't assume it's the same as your last job.
 
-00:29:37.675 --> 00:29:42.575
+00:29:38.850 --> 00:29:43.750
 Then, on draft and review, wait for his OK, even if you're sure it's right.
 
-00:29:44.500 --> 00:29:49.050
+00:29:45.675 --> 00:29:50.225
 After that, on triage only, resist drafting replies he didn't ask for.
 
-00:29:49.050 --> 00:29:52.900
+00:29:50.225 --> 00:29:54.075
 Finally, if your level isn't clear, ask rather than guess.
 
-00:29:53.675 --> 00:29:54.675
+00:29:54.850 --> 00:29:55.850
 Think about this.
 
-00:29:54.675 --> 00:29:56.613
+00:29:55.850 --> 00:29:57.788
 You're on draft and review.
 
-00:29:56.613 --> 00:30:01.625
+00:29:57.788 --> 00:30:02.800
 A client emails at 6 p.m. asking to confirm tomorrow's 9 a.m. meeting,
 
-00:30:01.625 --> 00:30:03.538
+00:30:02.800 --> 00:30:04.713
 and Elias is on a flight.
 
-00:30:03.538 --> 00:30:06.400
+00:30:04.713 --> 00:30:07.575
 What can you do now, and what has to wait for him?
 
-00:30:08.325 --> 00:30:13.025
+00:30:09.500 --> 00:30:14.200
 Top assistants handle eighty to ninety percent of routine emails themselves,
 
-00:30:13.025 --> 00:30:15.050
+00:30:14.200 --> 00:30:16.225
 without sending them up the line.
 
-00:30:15.825 --> 00:30:19.038
+00:30:17.000 --> 00:30:20.213
 That can sound scary, but think about a typical inbox:
 
-00:30:19.038 --> 00:30:23.150
+00:30:20.213 --> 00:30:24.325
 confirmations, scheduling, simple questions, updates.
 
-00:30:23.150 --> 00:30:26.113
+00:30:24.325 --> 00:30:27.288
 Most of it doesn't need the executive personally.
 
-00:30:26.113 --> 00:30:30.363
+00:30:27.288 --> 00:30:31.538
 The first step is honest: find out how much we handle ourselves today.
 
-00:30:30.363 --> 00:30:33.600
+00:30:31.538 --> 00:30:34.775
 Then we close the gap one kind of email at a time.
 
-00:30:35.550 --> 00:30:39.775
+00:30:36.725 --> 00:30:40.950
 First, spot the routine emails you're still escalating out of habit.
 
-00:30:39.775 --> 00:30:41.738
+00:30:40.950 --> 00:30:42.913
 Those are the quickest wins.
 
-00:30:41.738 --> 00:30:45.538
+00:30:42.913 --> 00:30:46.713
 Then build the judgment to handle them, checking your calls against what he'd
 
-00:30:45.538 --> 00:30:47.150
+00:30:46.713 --> 00:30:48.325
 actually have wanted.
 
-00:30:49.100 --> 00:30:52.650
+00:30:50.275 --> 00:30:53.825
 After that, as you handle more, guard the two big risks:
 
-00:30:52.650 --> 00:30:56.800
+00:30:53.825 --> 00:30:57.975
 never miss a critical deadline, and never breach confidentiality.
 
-00:30:56.800 --> 00:31:00.438
+00:30:57.975 --> 00:31:01.613
 Finally, keep the inbox at or near zero every day,
 
-00:31:00.438 --> 00:31:02.875
+00:31:01.613 --> 00:31:04.050
 as visible proof the system's working.
 
-00:31:03.625 --> 00:31:05.800
+00:31:04.800 --> 00:31:06.975
 Here's a situation to work through.
 
-00:31:05.800 --> 00:31:10.375
+00:31:06.975 --> 00:31:11.550
 It's going well, and then you notice an email with a filing deadline buried in a
 
-00:31:10.375 --> 00:31:12.763
+00:31:11.550 --> 00:31:13.938
 thread you archived as routine.
 
-00:31:12.763 --> 00:31:15.400
+00:31:13.938 --> 00:31:16.575
 What changes in your triage from now on?
 
-00:31:17.325 --> 00:31:21.913
+00:31:18.500 --> 00:31:23.088
 A simple routine at the start, middle and end of the day means nothing important
 
-00:31:21.913 --> 00:31:26.475
+00:31:23.088 --> 00:31:27.650
 slips through the cracks, and the executive starts every day informed instead of
 
-00:31:26.475 --> 00:31:27.650
+00:31:27.650 --> 00:31:28.825
 surprised.
 
-00:31:28.450 --> 00:31:32.988
+00:31:29.625 --> 00:31:34.163
 First, the morning scan: 15 to 30 minutes to spot anything urgent,
 
-00:31:32.988 --> 00:31:35.750
+00:31:34.163 --> 00:31:36.925
 clear the junk and prepare a short briefing.
 
-00:31:35.750 --> 00:31:40.450
+00:31:36.925 --> 00:31:41.625
 Next, the midday review: draft replies, chase anything waiting and confirm the
 
-00:31:40.450 --> 00:31:42.100
+00:31:41.625 --> 00:31:43.275
 afternoon's meetings.
 
-00:31:42.100 --> 00:31:47.475
+00:31:43.275 --> 00:31:48.650
 Finally, the end-of-day review: nothing urgent left hanging, and tomorrow set up.
 
-00:31:48.275 --> 00:31:50.238
+00:31:49.450 --> 00:31:51.413
 Now build it around Elias.
 
-00:31:50.238 --> 00:31:55.475
+00:31:51.413 --> 00:31:56.650
 He's in court by 9 a.m. three days a week and checks messages at 12:30 during the
 
-00:31:55.475 --> 00:31:56.675
+00:31:56.650 --> 00:31:57.850
 lunch break.
 
-00:31:56.675 --> 00:32:01.025
+00:31:57.850 --> 00:32:02.200
 When do your check-ins happen on those days, and what's ready for him at each one?
 
-00:32:02.950 --> 00:32:07.050
+00:32:04.125 --> 00:32:08.225
 The morning briefing replaces the inbox; if it's as long as the inbox,
 
-00:32:07.050 --> 00:32:08.338
+00:32:08.225 --> 00:32:09.513
 it isn't working.
 
-00:32:08.338 --> 00:32:10.700
+00:32:09.513 --> 00:32:11.875
 Picture Elias with his first coffee.
 
-00:32:10.700 --> 00:32:12.625
+00:32:11.875 --> 00:32:13.800
 He doesn't want 30 emails.
 
-00:32:12.625 --> 00:32:15.238
+00:32:13.800 --> 00:32:16.413
 He wants to know what needs him today, in a minute.
 
-00:32:15.238 --> 00:32:17.250
+00:32:16.413 --> 00:32:18.425
 The inbox, digested.
 
-00:32:18.050 --> 00:32:21.800
+00:32:19.225 --> 00:32:22.975
 First, read the whole inbox yourself, but never just forward it.
 
-00:32:21.800 --> 00:32:26.825
+00:32:22.975 --> 00:32:28.000
 Next, boil each item down to one line: what it is and where it stands.
 
-00:32:26.825 --> 00:32:31.575
+00:32:28.000 --> 00:32:32.750
 Then, put the most urgent first, like an approval that expires today.
 
-00:32:33.500 --> 00:32:36.075
+00:32:34.675 --> 00:32:37.250
 After that, keep it to a handful of lines.
 
-00:32:36.075 --> 00:32:39.325
+00:32:37.250 --> 00:32:40.500
 Finally, send it at the same time every morning.
 
-00:32:40.075 --> 00:32:41.712
+00:32:41.250 --> 00:32:42.888
 Here's one to work through.
 
-00:32:41.712 --> 00:32:46.350
+00:32:42.888 --> 00:32:47.525
 Elias says he stopped reading your briefings because they're 'as long as my inbox.'
 
-00:32:46.350 --> 00:32:49.812
+00:32:47.525 --> 00:32:50.988
 Rewrite yesterday's briefing in three parts: needs you,
 
-00:32:49.812 --> 00:32:51.500
+00:32:50.988 --> 00:32:52.675
 handled and heads-up.
 
-00:32:53.400 --> 00:32:54.125
+00:32:54.575 --> 00:32:55.300
 Quick check.
 
-00:32:54.125 --> 00:32:57.925
+00:32:55.300 --> 00:32:59.100
 What best distinguishes high-performing email management from average?
 
-00:32:57.925 --> 00:33:01.475
+00:32:59.100 --> 00:33:02.650
 Is it A, forwarding every email so nothing is missed?
 
-00:33:01.475 --> 00:33:04.462
+00:33:02.650 --> 00:33:05.638
 B, deleting anything that looks unimportant?
 
-00:33:04.462 --> 00:33:07.550
+00:33:05.638 --> 00:33:08.725
 C, replying to everything within 5 minutes?
 
-00:33:07.550 --> 00:33:12.125
+00:33:08.725 --> 00:33:13.300
 Or D, handling 80 to 90 percent of operational emails independently,
 
-00:33:12.125 --> 00:33:14.012
+00:33:13.300 --> 00:33:15.188
 with zero missed deadlines?
 
-00:33:14.012 --> 00:33:15.300
+00:33:15.188 --> 00:33:16.475
 Take a second.
 
-00:33:16.050 --> 00:33:16.550
+00:33:17.225 --> 00:33:17.725
 It's D.
 
-00:33:16.438 --> 00:33:20.350
+00:33:17.613 --> 00:33:21.525
 It's about independent, reliable handling of the bulk of email,
 
-00:33:20.350 --> 00:33:22.900
+00:33:21.525 --> 00:33:24.075
 not speed or forwarding volume.
 
-00:33:24.825 --> 00:33:29.100
+00:33:26.000 --> 00:33:30.275
 Deciding how urgent something is comes first, because that decides how fast you
 
-00:33:29.100 --> 00:33:30.250
+00:33:30.275 --> 00:33:31.425
 respond.
 
-00:33:31.025 --> 00:33:33.625
+00:33:32.200 --> 00:33:34.800
 Everything falls into one of two top groups.
 
-00:33:33.625 --> 00:33:36.975
+00:33:34.800 --> 00:33:38.150
 The first can't wait: legal deadlines, major clients,
 
-00:33:36.975 --> 00:33:40.200
+00:33:38.150 --> 00:33:41.375
 the press, money approvals and genuine crises.
 
-00:33:40.200 --> 00:33:42.712
+00:33:41.375 --> 00:33:43.888
 Those go to the executive right away.
 
-00:33:42.712 --> 00:33:46.150
+00:33:43.888 --> 00:33:47.325
 The second is important, but not worth interrupting him for:
 
-00:33:46.150 --> 00:33:49.950
+00:33:47.325 --> 00:33:51.125
 new business, partnerships, board matters and vendor deals.
 
-00:33:49.950 --> 00:33:53.950
+00:33:51.125 --> 00:33:55.125
 For those, we have a drafted response ready within a few hours.
 
-00:33:55.900 --> 00:33:58.825
+00:33:57.075 --> 00:34:00.000
 First, decide the tier before you do anything else.
 
-00:33:58.825 --> 00:34:03.475
+00:34:00.000 --> 00:34:04.650
 Next, Tier 1 goes to the executive straight away, no exceptions.
 
-00:34:03.475 --> 00:34:07.500
+00:34:04.650 --> 00:34:08.675
 Then, Tier 2 gets a response within two to four hours.
 
-00:34:09.425 --> 00:34:13.538
+00:34:10.600 --> 00:34:14.713
 After that, if you can't tell the tier, treat it as Tier 1 until you know.
 
-00:34:13.538 --> 00:34:16.750
+00:34:14.713 --> 00:34:17.925
 Over-escalating costs less than missing something.
 
-00:34:16.750 --> 00:34:21.550
+00:34:17.925 --> 00:34:22.725
 Finally, look back at your calls now and then, and learn from the wrong ones.
 
-00:34:22.325 --> 00:34:23.538
+00:34:23.500 --> 00:34:24.713
 Speed round.
 
-00:34:23.538 --> 00:34:26.513
+00:34:24.713 --> 00:34:27.688
 Call the tier for each: a court clerk's notice.
 
-00:34:26.513 --> 00:34:28.100
+00:34:27.688 --> 00:34:29.275
 A partnership inquiry.
 
-00:34:28.100 --> 00:34:30.212
+00:34:29.275 --> 00:34:31.388
 The bar association newsletter.
 
-00:34:30.212 --> 00:34:32.413
+00:34:31.388 --> 00:34:33.588
 A reporter asking for comment.
 
-00:34:32.413 --> 00:34:35.700
+00:34:33.588 --> 00:34:36.875
 A vendor saying an invoice is 60 days overdue.
 
-00:34:36.500 --> 00:34:37.600
+00:34:37.675 --> 00:34:38.775
 And one more.
 
-00:34:37.600 --> 00:34:41.938
+00:34:38.775 --> 00:34:43.113
 The monthly email from the cleaning company normally goes in Tier 3.
 
-00:34:41.938 --> 00:34:46.525
+00:34:43.113 --> 00:34:47.700
 This month it says they found an unlocked filing cabinet full of client files after
 
-00:34:46.525 --> 00:34:47.538
+00:34:47.700 --> 00:34:48.713
 hours.
 
-00:34:47.538 --> 00:34:50.075
+00:34:48.713 --> 00:34:51.250
 What tier is it now, and what do you do?
 
-00:34:52.000 --> 00:34:52.725
+00:34:53.175 --> 00:34:53.900
 Quick check.
 
-00:34:52.725 --> 00:34:56.138
+00:34:53.900 --> 00:34:57.313
 A media inquiry with a deadline tomorrow just landed.
 
-00:34:56.138 --> 00:35:00.400
+00:34:57.313 --> 00:35:01.575
 Under the Priority Matrix, is it A, something to batch with the newsletter?
 
-00:35:00.400 --> 00:35:02.163
+00:35:01.575 --> 00:35:03.338
 B, not worth flagging?
 
-00:35:02.163 --> 00:35:05.550
+00:35:03.338 --> 00:35:06.725
 C, Tier 1, notify the executive immediately?
 
-00:35:05.550 --> 00:35:09.413
+00:35:06.725 --> 00:35:10.588
 Or D, Tier 2, draft a response in two to four hours?
 
-00:35:09.413 --> 00:35:10.700
+00:35:10.588 --> 00:35:11.875
 Take a second.
 
-00:35:11.450 --> 00:35:11.950
+00:35:12.625 --> 00:35:13.125
 It's C.
 
-00:35:11.775 --> 00:35:17.450
+00:35:12.950 --> 00:35:18.625
 Media inquiries with a hard deadline sit squarely in Tier 1: immediate escalation.
 
-00:35:19.425 --> 00:35:20.912
+00:35:20.600 --> 00:35:22.088
 Now it's your turn.
 
-00:35:20.912 --> 00:35:25.588
+00:35:22.088 --> 00:35:26.763
 In the Force Multiplier Challenge, you'll anticipate what a vague executive request
 
-00:35:25.588 --> 00:35:30.362
+00:35:26.763 --> 00:35:31.538
 really needs, write a prompt that actually runs and produces real output,
 
-00:35:30.362 --> 00:35:34.488
+00:35:31.538 --> 00:35:35.663
 handle a messy combined scenario, then clear a real inbox,
 
-00:35:34.488 --> 00:35:38.800
+00:35:35.663 --> 00:35:39.975
 building your own filing system and catching a hidden phishing attempt.
 

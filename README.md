@@ -32,7 +32,7 @@ The server also stops it happening: a trainee's own save can't drop finished day
 
 ## 🎬 Narrated day videos
 
-Every day card on the dashboard has **▶ Video**: the day's lesson deck as the room sees it, narrated slide by slide in a natural American English voice from the trainer's speaker notes (compressed where they repeat), with captions, a slide picker, speed and full screen (🔒 until the day opens; trainers always see it). Ten videos, 27–45 minutes each, in `videos/`. How they're made and rebuilt: `build/video/README.md`.
+Every day card on the dashboard has **▶ Video**: the day's lesson deck as the room sees it, narrated slide by slide in a natural American English voice from the trainer's speaker notes (compressed where they repeat), with captions, a slide picker, speed and full screen. Trainees see 🔒 Video until a trainer unlocks it in Admin → 🛡 Admin Master Control → 🎬 Videos, for every batch or one batch (`settings:openvideos`); trainers always see it. Ten videos, 27–45 minutes each, in `videos/`. How they're made and rebuilt: `build/video/README.md`.
 
 ## 🃏 The lesson deck card
 

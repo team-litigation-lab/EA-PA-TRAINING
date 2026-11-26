@@ -620,9 +620,9 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "walk": [
     "First, whichever tool we use, we apply the same checks for invented facts, length limits and what we paste.",
     "Next, for long documents where tone matters, Claude is often the better fit.",
-    "Then, for quick drafting and trying different versions, ChatGPT is often the practical choice.",
-    "After that, for anything that works on live email, documents or calendars, Gemini fits, with stricter security habits.",
-    "Finally, when automating inside Google, we start with simple things like Gmail filters before reaching for anything advanced."
+    "Then, when automating inside Google, we start with simple things like Gmail filters before reaching for anything advanced.",
+    "After that, for quick drafting and trying different versions, ChatGPT is often the practical choice.",
+    "Finally, for anything that works on live email, documents or calendars, Gemini fits, with stricter security habits."
    ],
    "ask": "Which of these tools have you used, and for what kind of task?",
    "scenario": "You need to review a 90-page settlement agreement for tone, draft five quick scheduling replies, and find every calendar clash in Elias's Google Calendar next month. Which tool fits each task, and what check applies to all three?"

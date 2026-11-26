@@ -294,13 +294,13 @@
    "image": "049.png",
    "slide": 35,
    "title": "Claude, ChatGPT, and Gemini — Practical Differences",
-   "text": "Whichever tool you use, the same checks apply. Then pick for the job: for quick drafting and trying versions, ChatGPT is often the practical choice."
+   "text": "Whichever tool you use, the same checks apply. And when you're automating inside Google Workspace, start simple, like Gmail filters, before reaching for anything advanced."
   },
   {
    "image": "050.png",
    "slide": 35,
    "title": "Claude, ChatGPT, and Gemini — Practical Differences",
-   "text": "For anything working on live email, documents or calendars, Gemini fits, with stricter security habits. And when automating inside Google, start simple, like Gmail filters, before reaching for anything advanced.\n\nHere's a situation to think about. A colleague built a complex script that automatically files client emails into Drive folders. She's leaving, and nobody else understands it. What simpler automation could replace it, and why is simpler better here?"
+   "text": "Then pick the tool for the job. For quick drafting and trying versions, ChatGPT is often the practical choice. For anything working on live email, documents or calendars, Gemini fits, with stricter security habits.\n\nHere's a situation to think about. A colleague built a complex script that automatically files client emails into Drive folders. She's leaving, and nobody else understands it. What simpler automation could replace it, and why is simpler better here?"
   },
   {
    "image": "051.png",
