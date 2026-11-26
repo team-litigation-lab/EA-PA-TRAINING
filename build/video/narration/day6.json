@@ -1,0 +1,414 @@
+{
+ "day": 6,
+ "title": "Day 6 — Business Formation, Compliance, Projects & SOPs",
+ "frames": [
+  {
+   "image": "001.png",
+   "slide": 1,
+   "title": "Day 6 Agenda",
+   "text": "Welcome to Day 6: Business Formation, Compliance, Projects and SOPs.\n\nWe'll start with business structure and formation, then compliance and good standing. After that come privilege, privacy and compliance, and project leadership. The biggest block today is process improvement, and we'll finish with SOPs.\n\nBy the end of today, you'll be able to guide business formation and compliance decisions, protect privilege and privacy, lead projects when timelines slip, improve processes with a real KPI dashboard, and write SOPs that hold up."
+  },
+  {
+   "image": "002.png",
+   "slide": 2,
+   "title": "Business Structure & Formation",
+   "text": "Section 1 of 6: Business Structure and Formation. We'll cover choosing a business structure, forming the entity step by step, and registering in more than one state."
+  },
+  {
+   "image": "003.png",
+   "slide": 3,
+   "title": "Choosing a Business Structure",
+   "text": "The type of business entity someone picks decides how exposed they are personally, how they're taxed and how much paperwork follows.\n\nYou won't be the one choosing the structure; the attorney and accountant will. But you'll gather what they need to choose well. A sole proprietor is simplest but personally liable for everything. An LLC separates the person from the business. A corporation is more formal and suits outside investors.\n\nFirst, ask what the business is trying to achieve: protection from liability, a certain tax treatment, growth. Next, list every state it will actually operate in, not just where the office is. Then, compare the options against those goals: liability, tax and ongoing paperwork."
+  },
+  {
+   "image": "004.png",
+   "slide": 3,
+   "title": "Choosing a Business Structure",
+   "text": "After that, think about the next two years. A structure that fits today might not fit after expansion. Finally, write down why the choice was made, not just what was chosen.\n\nTake a second with this one. Elias wants a separate entity for his speaking and consulting work, which may expand to two more states next year. What do you gather before the attorney and accountant recommend a structure?\n\nAnd here's a situation to work through. A client set up as a sole proprietor three years ago and is now being sued over a contract. His house and savings are exposed. What would an LLC have changed, and what would the attorney want from you now?"
+  },
+  {
+   "image": "005.png",
+   "slide": 4,
+   "title": "Entity Formation Step-by-Step",
+   "text": "People think forming a business is one filing. It's actually a sequence of steps, in order: choose the structure, check the name, file with the state, get a tax ID number and write the internal rules. Skip one early, and later something urgent, like opening a bank account, suddenly can't happen."
+  },
+  {
+   "image": "006.png",
+   "slide": 4,
+   "title": "Entity Formation Step-by-Step",
+   "text": "First, check the name is available and not confusingly close to another company's. Next, file the formation documents with the state, and confirm they were approved, not just received. Then, apply for the federal tax ID, the EIN. The bank needs it before opening an account. Finally, complete the internal rulebook, the operating agreement or bylaws, even though the state never sees it.\n\nHere's a situation to work through. The state approved the new company two weeks ago. The bank says it can't open an account, the operating agreement is still a draft and nobody knows who the registered agent is. Put the missing steps in order."
+  },
+  {
+   "image": "007.png",
+   "slide": 5,
+   "title": "Federal/State/Financial Infrastructure",
+   "text": "Forming the company makes it legal. Making it work needs three more layers: federal, with the IRS; state, with tax and labor agencies; and banking. And keeping business and personal money completely separate from day one is what protects the owner."
+  },
+  {
+   "image": "008.png",
+   "slide": 5,
+   "title": "Federal/State/Financial Infrastructure",
+   "text": "First, get the federal tax ID straight after formation. It's free from the IRS and needed for almost everything else. Next, register with the state tax agency, and the labor agency if there'll be employees. Then, open a separate business bank account."
+  },
+  {
+   "image": "009.png",
+   "slide": 5,
+   "title": "Federal/State/Financial Infrastructure",
+   "text": "After that, set up simple bookkeeping before the first transaction. Finally, if there'll be employees, register for payroll taxes before the first paycheck.\n\nHere's a situation to work through. Elias paid the new company's first vendor invoice from his personal account, 'just this once,' because the business bank account wasn't open yet. What's the risk, and how do you fix the record?"
+  },
+  {
+   "image": "010.png",
+   "slide": 6,
+   "title": "Operating Agreements & Corporate Bylaws Basics",
+   "text": "Without an internal rulebook, a company falls back on the state's generic rules, which are rarely what the owners wanted.\n\nAn operating agreement for an LLC, or bylaws for a corporation, sets out how decisions get made, what happens when an owner leaves and how disputes are settled. It isn't filed with the state, but it's the first thing a lender, investor or court asks to see."
+  },
+  {
+   "image": "011.png",
+   "slide": 6,
+   "title": "Operating Agreements & Corporate Bylaws Basics",
+   "text": "First, make sure it covers ownership shares, voting and how big decisions are approved. Next, get it properly signed by every owner, not just drafted. Finally, keep the signed original safe, with the other formation records.\n\nTake a second with this one. A lender asks for the operating agreement, and the one on file doesn't reflect a partner who left last year. What do you do before sending anything?\n\nHere's a related situation. A partner emails the other owners: 'I'm stepping back to 20 percent, OK?' Everyone replies 'OK.' The operating agreement still says 50-50. Is the change done? What has to happen?"
+  },
+  {
+   "image": "012.png",
+   "slide": 7,
+   "title": "Multi-State Registration & Foreign Qualification",
+   "text": "A company is only automatically allowed to do business in the state where it was formed. Anywhere else, it needs a separate registration called foreign qualification. And 'doing business' isn't just having an office. Hiring just one employee, a lease or a regular presence can all count. Operating without it can mean the company can't enforce its contracts there.\n\nFirst, list every state where the company has employees, property or a regular presence. Next, file the registration, called a certificate of authority, in each one. Then, appoint a registered agent in every one of those states. Finally, track each state's own annual reports and fees from then on.\n\nThink about this one. The firm just hired a remote employee in a state where it has never operated. What needs to happen before their start date, and who do you involve?\n\nAnd here's a situation to work through. The firm registered in three new states last year, but nobody is tracking their annual reports. One is due next month. What do you set up today?"
+  },
+  {
+   "image": "013.png",
+   "slide": 8,
+   "title": "Compliance & Good Standing",
+   "text": "Section 2 of 6: Compliance and Good Standing. We'll look at staying in good standing, annual report and franchise tax deadlines, and keeping the company's records and minute books."
+  },
+  {
+   "image": "014.png",
+   "slide": 9,
+   "title": "Staying in Good Standing",
+   "text": "Staying in good standing is never finished. Good standing means the state considers the company up to date. Lose it, and the company can be blocked from signing contracts, from some bank actions and even from suing in that state. It slips through missed renewals, not dramatic events.\n\nFirst, put every filing and renewal date on a recurring calendar. Next, set reminders well before each deadline, so there's time to fix problems. Then, if something has lapsed, tell the owner immediately and start fixing it the same day."
+  },
+  {
+   "image": "015.png",
+   "slide": 9,
+   "title": "Staying in Good Standing",
+   "text": "After that, check whether the requirements have changed since last time. Finally, keep a simple status record for each company, so a lapse gets caught in routine review.\n\nTake a second with this one. You discover the firm's city business license expired ten days ago. Who do you tell, what do you do today, and what do you change so it can't happen again?\n\nHere's another to work through. One of Elias's companies lost good standing in Nevada eight months ago because an annual report wasn't filed. Now it wants to sue a supplier there. What's the problem, and what's the fix?"
+  },
+  {
+   "image": "016.png",
+   "slide": 10,
+   "title": "Annual Report & Franchise Tax Deadlines Across Jurisdictions",
+   "text": "Every state sets its own deadline for annual reports and franchise taxes. There's no single national date. And missing one can cost good standing in that state. Some states have grace periods; many don't. So treat every deadline as firm.\n\nFirst, build one master calendar with every state, its deadline and how to file. Next, set reminders well ahead, not on the day itself. Finally, check the filing was accepted, not just sent. Submitted isn't the same as accepted.\n\nThink about this. Checking the compliance calendar, you find Delaware's annual report was filed on time, but Texas's deadline passed three weeks ago with no record of filing. What's your first move?\n\nAnd here's a situation to work through. You submitted the California annual report online on the due date and assumed it went through. Two months later, the state says it was rejected for a missing signature. What should you have done, and what now?"
+  },
+  {
+   "image": "017.png",
+   "slide": 11,
+   "title": "Business Licensing & Permits",
+   "text": "Being properly formed as a company doesn't mean being licensed to operate. Formation and licensing are two separate systems. And licenses stack up: federal, state, county and city can each have their own requirement, depending on the business and location. Operating without one can bring fines, closure or even invalid contracts.\n\nFirst, find every license and permit this business and location need. A general business license is often only the start. Next, track each license's renewal on its own schedule. Finally, make sure personal professional licenses, like a lawyer's bar license, stay current separately.\n\nTake a second with this one. The firm is opening a satellite office in a new city. What licensing and permit questions need answering before it opens, and who do you ask?\n\nHere's a situation to work through. A partner's state bar license is up for renewal, and he's short on continuing-education hours. It's two weeks to the deadline. Whose job is it to track this, and what do you do?"
+  },
+  {
+   "image": "018.png",
+   "slide": 12,
+   "title": "Registered Agent Responsibilities & Service of Process",
+   "text": "'We never received it' is not a defense when the company gets sued.\n\nA registered agent is the official contact who receives legal papers, like lawsuits, for the company. If their details are out of date and a lawsuit goes unanswered, the company can lose by default. Every state where the company is registered needs one.\n\nFirst, make sure the agent's address is current and someone is actually watching it. Next, when legal papers arrive, send them to the right person immediately. They usually come with a deadline. Finally, update the state promptly whenever the agent changes.\n\nHere's a situation to work through. The registered agent service emails a scanned lawsuit on a Friday at 5 p.m. The attorney who handles it is on holiday until Wednesday. What do you do before you leave the office?"
+  },
+  {
+   "image": "019.png",
+   "slide": 13,
+   "title": "Signatures, Notarization & Document Execution",
+   "text": "A contract with the wrong signer or a missing notary stamp can be worth nothing, however good the terms are.\n\n'Executing' a document just means signing it so it takes effect. Electronic signatures, like DocuSign, are valid for most business documents, but some documents have special rules, so the attorney tells us which method to use. A notary checks the signer's identity and that they're signing willingly. The signer appears in person, or by video where the state allows it, with photo ID. And a company signs through a person with authority, which is why a signature block reads 'Thorne Advisory LLC, By: Elias Thorne, Managing Member'."
+  },
+  {
+   "image": "020.png",
+   "slide": 13,
+   "title": "Signatures, Notarization & Document Execution",
+   "text": "First, before any signing, we confirm with the attorney who signs, in what role, by which method, and whether a notary or witnesses are needed. Next, we prepare the execution version: correct names and titles, date lines and a tab at every place to sign or initial. Then, for a notary, we book it and remind the signer to bring photo ID and not to sign early."
+  },
+  {
+   "image": "021.png",
+   "slide": 13,
+   "title": "Signatures, Notarization & Document Execution",
+   "text": "After that, we check every page: signatures, initials, dates, stamps and attachments. Finally, we save the executed copy as read-only, send it to every party and calendar what it requires.\n\nA quick question to think about: what's in an e-signature completion certificate, and why keep it?\n\nAnd here's a situation to work through. Elias must sign a real estate document that needs notarization, and he's traveling for three days. The deadline is Friday. What are your options, and what do you confirm with the attorney first?"
+  },
+  {
+   "image": "022.png",
+   "slide": 14,
+   "title": "Corporate Recordkeeping & Minute Books",
+   "text": "Write down big company decisions when they happen, not when someone asks for proof.\n\nA minute book is the company's official history: formation papers, ownership records, meeting minutes and resolutions. Buyers, lenders and courts ask for it. Gaps don't just look messy; in a dispute, they can make it hard to prove a decision was properly approved.\n\nFirst, record every major decision, like an ownership change, a big contract or a new officer, in writing. Next, keep the book up to date as things happen, not rebuilt later. Finally, store it as carefully as the formation documents.\n\nHere's a situation to work through. A buyer interested in one of Elias's companies asks for five years of minutes. You find notes for only two meetings. What do you tell Elias, and how do you start putting it right?"
+  },
+  {
+   "image": "023.png",
+   "slide": 15,
+   "title": "Privilege, Privacy & Compliance",
+   "text": "Section 3 of 6: Privilege, Privacy and Compliance. We'll cover attorney-client privilege, work-product confidentiality, and privacy rules like HIPAA and GDPR."
+  },
+  {
+   "image": "024.png",
+   "slide": 16,
+   "title": "Attorney-Client Privilege: What EAs Need to Know",
+   "text": "One wrong recipient on an email can destroy attorney-client privilege.\n\nPrivilege protects private conversations between a lawyer and client about legal advice. It's one of the oldest protections in law, and it can be lost through carelessness. As an EA, you're inside that circle, so the duty applies to you too."
+  },
+  {
+   "image": "025.png",
+   "slide": 16,
+   "title": "Attorney-Client Privilege: What EAs Need to Know",
+   "text": "First, treat any lawyer-client communication about legal advice as privileged. Next, check the recipient list before sending anything privileged. Then, don't discuss case details anywhere you could be overheard."
+  },
+  {
+   "image": "026.png",
+   "slide": 16,
+   "title": "Attorney-Client Privilege: What EAs Need to Know",
+   "text": "Finally, if you're unsure, ask the attorney. A disclosure can't be undone.\n\nHere's a situation to work through. A client wants Elias's advice email forwarded to her accountant, 'because he needs to know.' Forwarding it might waive privilege. What do you do before sending anything?"
+  },
+  {
+   "image": "027.png",
+   "slide": 17,
+   "title": "Work-Product Confidentiality",
+   "text": "An attorney's working documents have their own protection. Work product means the attorney's own preparation: strategy memos, draft arguments and case analysis. It's protected separately from client communications, and it can lose that protection if it's shared carelessly.\n\nFirst, handle strategy drafts and case analysis as carefully as privileged material. Next, never share them outside the matter team without clear permission. Finally, label and store them clearly as work product.\n\nHere's a situation to work through. A friend at another firm asks you for 'a template' and suggests you send the Harlow strategy memo with the names removed. What do you say?"
+  },
+  {
+   "image": "028.png",
+   "slide": 18,
+   "title": "Investor Disclosure Confidentiality",
+   "text": "Investors can be told some things but not others, and some information needs approval before it's shared at all. Investor material also tends to live in the most restricted folders the firm has. So preparing an investor briefing and protecting confidentiality are really two parts of the same job.\n\nFirst, confirm what's been cleared before including it in anything investor-facing. Next, keep investor materials in access-controlled storage. Finally, when an investor asks for something new, escalate rather than answering yourself.\n\nTake a second with this one. An investor phones you directly after a board meeting and asks, 'just between us,' how the lawsuit is going. What do you say?"
+  },
+  {
+   "image": "029.png",
+   "slide": 19,
+   "title": "HIPAA in a Legal Context",
+   "text": "Medical records in a case file are always the most sensitive thing in it.\n\nHIPAA is the US law protecting personal health information. It matters whenever a legal case touches medical records: personal injury, workers' compensation and disability claims. The firm doesn't have to be a healthcare provider for it to apply."
+  },
+  {
+   "image": "030.png",
+   "slide": 19,
+   "title": "HIPAA in a Legal Context",
+   "text": "First, recognize when a matter involves medical records. Next, apply that care even outside health-related practice areas. Then, share medical records only with people who genuinely need them."
+  },
+  {
+   "image": "031.png",
+   "slide": 19,
+   "title": "HIPAA in a Legal Context",
+   "text": "Finally, ask the attorney if you're unsure what extra handling is needed.\n\nThink about this one. A personal-injury client emails you their full hospital records and asks you to forward them to their chiropractor and their employer. What do you do?\n\nAnd here's a situation to work through. A colleague leaves a personal-injury client's hospital records open on her screen while a courier waits at her desk. What should happen, and what's the habit?"
+  },
+  {
+   "image": "032.png",
+   "slide": 20,
+   "title": "GDPR & Data Privacy Regulations",
+   "text": "Europe's privacy law follows the data, not the firm's location.\n\nGDPR governs how the personal data of people in the EU is handled, and it can apply to a US firm that holds that data. It gives people real rights, like knowing what's held about them and sometimes having it deleted. And the US has its own growing set of state privacy laws, like California's, that work in a similar spirit.\n\nFirst, organize records with people's data rights in mind. Then, check at intake whether a matter involves personal data from outside the US."
+  },
+  {
+   "image": "033.png",
+   "slide": 20,
+   "title": "GDPR & Data Privacy Regulations",
+   "text": "Finally, flag possible privacy obligations to the attorney early.\n\nHere's a situation to work through. At intake, a new client mentions its customer database includes people in Ireland and Spain. What do you flag for the attorney right away, and why at intake?"
+  },
+  {
+   "image": "034.png",
+   "slide": 21,
+   "title": "Other Relevant Compliance Frameworks",
+   "text": "There are other rules too: for public companies' finances, for financial privacy, for student records, and each state's professional rules for lawyers. We don't need to memorize them. What we need is an instinct: health, financial, children's and foreign data are special, and deserve extra care before we even know exactly which law applies."
+  },
+  {
+   "image": "035.png",
+   "slide": 21,
+   "title": "Other Relevant Compliance Frameworks",
+   "text": "So learn the pattern rather than every law. First, handle those sensitive categories with extra care by default. Then, ask the attorney whenever a matter touches an unfamiliar regulated area."
+  },
+  {
+   "image": "036.png",
+   "slide": 21,
+   "title": "Other Relevant Compliance Frameworks",
+   "text": "Finally, remember that lawyers' ethics rules on confidentiality always apply.\n\nTake a second with this one. A new matter involves a public company's internal financial controls and a student's school records. Which frameworks might apply, and what do you ask Elias?\n\nAnd here's a situation to work through. A client matter involves credit card numbers from its online store. You don't know which rule applies. What do you do with the files in the meantime, and who do you ask?"
+  },
+  {
+   "image": "037.png",
+   "slide": 22,
+   "title": "Project Leadership",
+   "text": "Section 4 of 6: Project Leadership. We'll look at leading a project under pressure, handling scope creep, and keeping stakeholders informed during delays."
+  },
+  {
+   "image": "038.png",
+   "slide": 23,
+   "title": "Leading a Project Under Pressure",
+   "text": "When a project slips, look for what's broken, not who's to blame.\n\nPublic blame doesn't fix delays; it hides the real problem. Leading a project as an EA means finding the cause, keeping people informed on a schedule and guiding people you don't formally manage."
+  },
+  {
+   "image": "039.png",
+   "slide": 23,
+   "title": "Leading a Project Under Pressure",
+   "text": "First, find the actual cause of the delay before you reassign anything. Next, give stakeholders scheduled updates, even when there's no good news. Then, turn the executive's big-picture goal into concrete next steps. After that, lead people you don't manage through clear asks and reliable follow-through. Finally, support decisions with short summaries, risks and options with a recommendation.\n\nPause the video and try this one. Three stakeholders are asking different questions about the delayed file migration: a partner, the IT vendor and Elias. Write one short update that answers all three."
+  },
+  {
+   "image": "040.png",
+   "slide": 24,
+   "title": "Quick Check",
+   "text": "Quick check. A project is behind schedule due to missed deadlines from several team members. What's the best first response? Is it A, take over the late tasks yourself so the schedule recovers? B, identify the root cause of the delays before reassigning anything? C, share a list of who missed which deadline, so the team sees who's responsible? Or D, push the final deadline back to give everyone more breathing room?\n\nTake a second.\n\nThe answer is B: identify the root cause before reassigning anything. You can't fix a delay effectively until you know why it happened."
+  },
+  {
+   "image": "041.png",
+   "slide": 25,
+   "title": "Seasonal Project Coordination",
+   "text": "Some big jobs come round every year. Year-end billing, trial season, annual renewals and conference season aren't one-off projects; they repeat. So they need a system, not a fresh plan each year: build the playbook once and start earlier each time."
+  },
+  {
+   "image": "042.png",
+   "slide": 25,
+   "title": "Seasonal Project Coordination",
+   "text": "First, recognize the pattern: these tasks come back on a predictable calendar. Next, write the playbook the first time through: the checklist, timeline and owner for each task. Then, start before it's urgent. The most common mistake is starting at the same moment every year, even after it ran late last time. Finally, after each cycle, note what went wrong and update the playbook.\n\nPause the video and sketch this one. Year-end billing at Thorne and Partners ran late last December because partner approvals were slow. What starts when, and who owns each part?"
+  },
+  {
+   "image": "043.png",
+   "slide": 26,
+   "title": "Project Scope Creep & Change Management",
+   "text": "Projects rarely blow up in one go; they grow one small, reasonable request at a time. That's scope creep. Each addition seems fine alone, but together they cost time and money. A written scope isn't there to refuse everything. It's there so each addition becomes a conscious choice with a visible cost.\n\nFirst, write down the original scope clearly enough to compare new requests against it. Next, when a new request comes in, call it a scope change and say what it costs in time, budget or people. Finally, log every approved change with what was added and why.\n\nHere's a situation to work through. A partner asks you to 'just add' a small survey to the seminar invite. It's the fifth small addition this month. How do you say yes while making the cost visible?"
+  },
+  {
+   "image": "044.png",
+   "slide": 27,
+   "title": "Stakeholder Communication During Project Delays",
+   "text": "People can handle bad news about a timeline; what they can't handle is being the last to know. A delay you announce early is a manageable problem. A delay the stakeholder discovers on their own becomes a trust problem too. The aim isn't to make it sound better than it is; it's to give an honest picture and a real plan.\n\nFirst, flag the delay as soon as it's likely, not only when it's certain. Next, lead with the bottom line: what's late and by how much. Then explain why. Finally, always include a new timeline or next step.\n\nPause the video and try this one. A client-facing project is running three weeks late. The last update to the client was a month ago. Write the update you send today, bottom line first."
+  },
+  {
+   "image": "045.png",
+   "slide": 28,
+   "title": "Process Improvement",
+   "text": "Section 5 of 6: Process Improvement. We'll cover Lean Six Sigma and DMAIC, root cause analysis, and the KPI dashboard template."
+  },
+  {
+   "image": "046.png",
+   "slide": 29,
+   "title": "Frameworks Worth Knowing",
+   "text": "You don't need a certificate; you just need to know which tool fixes which problem.\n\nThere are three well-known approaches worth recognizing. Lean is about cutting waste and keeping only the steps that add value. Six Sigma is about reducing mistakes by measuring what's going wrong. And the standard project management approach gives big projects a clear structure from start to finish."
+  },
+  {
+   "image": "047.png",
+   "slide": 29,
+   "title": "Frameworks Worth Knowing",
+   "text": "First, if a process has too many pointless steps, think Lean. Next, if it keeps producing errors, think Six Sigma. Then, if you're running a big project end to end, borrow the standard project structure."
+  },
+  {
+   "image": "048.png",
+   "slide": 29,
+   "title": "Frameworks Worth Knowing",
+   "text": "Finally, match the framework to what's actually broken, rather than using all three.\n\nHere's a quick sort. A filing process with four unnecessary approval steps, invoices with repeated number errors, and a six-month office move. Which framework fits each?\n\nAnd a situation to work through. A partner wants 'an Agile approach' for the office move, with plans made in two-week cycles. Is that the right fit? What would you suggest instead, and why?"
+  },
+  {
+   "image": "049.png",
+   "slide": 30,
+   "title": "Lean Six Sigma in Practice — A Real Methodology, Not Just a Buzzword",
+   "text": "Five steps turn 'this keeps going wrong' into a fix that actually sticks.\n\nThe method is called DMAIC, and it's a sequence. The example running through it is invoices going out late every month."
+  },
+  {
+   "image": "050.png",
+   "slide": 30,
+   "title": "Lean Six Sigma in Practice — A Real Methodology, Not Just a Buzzword",
+   "text": "First, define: name the problem in one sentence and who it affects, like 'invoices go out four to six days late each month.' Next, measure: get real numbers, not impressions. Then, analyze: find the real cause. Is it a missing approval, one bottleneck person or a broken handoff?"
+  },
+  {
+   "image": "051.png",
+   "slide": 30,
+   "title": "Lean Six Sigma in Practice — A Real Methodology, Not Just a Buzzword",
+   "text": "After that, improve: change the actual process, by removing a step or automating a check. Finally, control: build something, like a checklist or reminder, so the fix doesn't fade.\n\nPause the video and name a recurring problem from your own work. What would each of the five steps look like?\n\nThen try this situation. A new client-intake form has 40 fields, half of them never used, and the intake team keeps making data-entry errors. Which part is a Lean problem, and which is a Six Sigma problem?"
+  },
+  {
+   "image": "052.png",
+   "slide": 31,
+   "title": "DMAIC — Three Worked EA Examples",
+   "text": "When a process keeps failing, fix the process, not the reminder.\n\nTake a contract that sits for three days because one partner has to sign it and they're often out. Reminding them harder doesn't fix it. Building a backup signer into the process does. That's the thinking behind these examples.\n\nNext, for a searching problem, like a document spread across four folders, agree one filing place for good. Then, run a small DMAIC on a real frustration: define, measure for a couple of weeks, find the cause, change that step and check it holds."
+  },
+  {
+   "image": "053.png",
+   "slide": 31,
+   "title": "DMAIC — Three Worked EA Examples",
+   "text": "After that, for a form that keeps coming back incomplete, find the one confusing field instead of rewriting everything. Finally, once the fix works, make it the new standard, so nobody slips back.\n\nWalk the intake-form example step by step, then apply the same steps to a process from your own work.\n\nAnd here's a situation to think about. You fixed the confusing field on the intake form, and errors dropped from 30 percent to 5 percent. Three months later, someone brings back the old form. What control step would have prevented that?"
+  },
+  {
+   "image": "054.png",
+   "slide": 32,
+   "title": "Lean's 8 Wastes & Kaizen",
+   "text": "Once you learn to spot waste, you start seeing it everywhere, and small fixes add up.\n\nLean names eight kinds of waste, remembered as DOWNTIME: defects, overproduction, waiting, unused talent, transport, inventory, motion and extra processing. You don't need the acronym. What matters is the instinct to say 'this step is pointless' when you see it.\n\nFirst, watch especially for waiting, like approvals stuck in an inbox, and extra processing, like typing the same data into three systems. Then, practice Kaizen: fix small annoyances as soon as you notice them."
+  },
+  {
+   "image": "055.png",
+   "slide": 32,
+   "title": "Lean's 8 Wastes & Kaizen",
+   "text": "After that, don't skip the control step, or the old problem creeps back. Finally, treat this as a way of thinking, not a qualification.\n\nTake a second with this one. Every week, you retype the same meeting details into Elias's calendar, the room booking system and a confirmation email. Which waste is that, and what's the smallest Kaizen fix you could make this week?"
+  },
+  {
+   "image": "056.png",
+   "slide": 33,
+   "title": "Root Cause Analysis Basics",
+   "text": "Keep asking why until the answer is something you can actually fix.\n\nRoot cause analysis means not stopping at the first, obvious explanation. The simplest version is the five whys: keep asking why until the answer stops being a symptom and becomes a cause. Fix a symptom, and the problem just comes back in a new form.\n\nFirst, state the problem precisely and factually. Next, ask why, then ask why again about that answer, and keep going. Finally, check: if we'd fixed this cause earlier, would the problem have been prevented? If not, keep digging.\n\nHere's a situation to work through. A court filing was late, and the team concludes 'human error, the assistant forgot.' As the person reviewing it, what questions would you ask to find the real cause?"
+  },
+  {
+   "image": "057.png",
+   "slide": 34,
+   "title": "Operational Optimization",
+   "text": "Automate the task, give it an owner, then standardize it, in that order.\n\nThe order matters. If you write up a process before automating it, you'll just have to rewrite it. And if nobody owns it after automation, it quietly becomes nobody's job.\n\nFirst, find a repetitive task you still do fully by hand. Next, automate it. Then, decide who owns it from now on."
+  },
+  {
+   "image": "058.png",
+   "slide": 34,
+   "title": "Operational Optimization",
+   "text": "After that, write it up as the standard, once the automation and owner are settled. Finally, track just a few real measures on a regular schedule.\n\nTake a second with this one. Every Monday you build a matter status report by hand from five spreadsheets. Apply automate, own and standardize, and name the one measure you'd track.\n\nAnd here's a bigger one. Elias wants to know whether the office is running well. Pick four measures you'd track, with a target and an owner for each."
+  },
+  {
+   "image": "059.png",
+   "slide": 35,
+   "title": "The KPI Dashboard Template",
+   "text": "A dashboard doesn't need many numbers, just the right ones, across four areas: how productive the executive is, how well clients are served, how smoothly operations run and whether legal compliance is on track. Each number has a clear target. But the real value isn't the dashboard itself. It's looking at it regularly and doing something about what it shows."
+  },
+  {
+   "image": "060.png",
+   "slide": 35,
+   "title": "The KPI Dashboard Template",
+   "text": "First, give each measure a specific target, like calendar accuracy of at least 98 percent. Next, review the dashboard on a fixed schedule. Then, treat procedures as living documents that get reviewed and updated. Finally, when a measure keeps missing its target, update the procedure behind it.\n\nHere's a situation to work through. The dashboard shows invoices going out eight days after month-end, against a three-day target, for four months running. Before blaming anyone, what do you look at?"
+  },
+  {
+   "image": "061.png",
+   "slide": 36,
+   "title": "Quick Check",
+   "text": "Quick check. On the KPI dashboard, which category does 'Filing Deadline Adherence, 100 percent' belong to? Is it A, Legal Compliance? B, Executive Productivity? C, Client Service? Or D, Operational Efficiency?\n\nTake a second.\n\nThe answer is A, Legal Compliance. Filing deadlines are a compliance metric, critical for legal-adjacent EA and PA work."
+  },
+  {
+   "image": "062.png",
+   "slide": 37,
+   "title": "SOPs",
+   "text": "Section 6 of 6: SOPs. We'll cover how an SOP is built and triggered, pairing screen recordings with text, and keeping procedures current."
+  },
+  {
+   "image": "063.png",
+   "slide": 38,
+   "title": "SOP Architecture & Trigger Mapping",
+   "text": "A procedure nobody knows when to use won't get used.\n\nA standard operating procedure, or SOP, is a step-by-step guide that makes a task consistent, safer and faster. Good SOPs share the same parts: a title and ID, a purpose, a scope, definitions, the steps, who does what, linked forms, risk notes and a revision history. And crucially, a trigger.\n\nFirst, identify the task that needs standardizing, and write down why. Next, define the scope: which people, departments and task types it covers. Then, write the steps as a numbered list, a flowchart or a checklist, never as a paragraph. Finally, name the trigger: the exact event that tells someone to use it, like 'whenever a new filing deadline arrives.'\n\nTake a second with this one. You're writing a procedure for last-minute court filing deadlines. What's the trigger, and what must the first three steps cover to be useful in the moment?\n\nAnd here's a situation to work through. An existing procedure for courier deliveries has no owner, no version number and no trigger. It was last updated two years ago. What do you add, and who do you ask?"
+  },
+  {
+   "image": "064.png",
+   "slide": 39,
+   "title": "Hybrid Screen-Recording Workflow (Loom + Text)",
+   "text": "A short video shows the task; a written summary makes it searchable.\n\nSome processes are much easier to show than describe, especially clicking through software. A short screen recording captures exactly what to do. But on its own, a video is hard to search, skim or update. Pairing it with a short written version gives you the best of both."
+  },
+  {
+   "image": "065.png",
+   "slide": 39,
+   "title": "Hybrid Screen-Recording Workflow (Loom + Text)",
+   "text": "First, record a short screen video, ideally under five minutes, and talk through what you're doing and why. Next, straight afterwards, write the steps as a numbered list. Then, store both together, with the video link at the top and the steps below. Finally, keep each recording to one process, not several.\n\nThink about this one. You need to document a multi-screen expense process with confusing approval routing. Video plus text, or text alone? What decides it?\n\nAnd here's a situation to work through. The firm updated its billing software last month. A temp followed an old screen recording and submitted invoices the wrong way. What should have happened when the software changed?"
+  },
+  {
+   "image": "066.png",
+   "slide": 40,
+   "title": "Maintenance, Auditing & Version Control",
+   "text": "A procedure is never really finished. It gets written, reviewed, approved, monitored and revised. Version control means everyone can tell which version they have and what changed. Without it, an old copy can keep circulating and nobody notices.\n\nFirst, schedule regular reviews, quarterly or twice a year. Next, every time it changes, give it a new version number and log the date, who changed it and what changed. Then, update it outside the schedule when something triggers it: a new law, a better method, an error, new software or confused staff. Finally, measure whether it's followed, with real numbers like error rates.\n\nHere's a situation to work through. Two assistants are following two different versions of the new-client procedure, both labelled 'v1.' How did that happen, and how do you fix it?"
+  },
+  {
+   "image": "067.png",
+   "slide": 41,
+   "title": "Change Management for New SOPs",
+   "text": "Writing a new procedure is only half the job; the other half is getting people to use it. A brilliant procedure nobody adopts is the same as no procedure. People resist change most when they don't understand why it's happening, or weren't asked. So a rollout needs its own plan.\n\nFirst, explain why the change is happening: what problem it solves. Next, introduce it properly, with a walkthrough or a short training moment. Finally, check afterwards that it's actually being followed.\n\nHere's a situation to work through. You updated the shared travel-booking procedure on Monday without telling anyone. On Wednesday, three bookings were done the old way. What would you do differently?"
+  },
+  {
+   "image": "068.png",
+   "slide": 42,
+   "title": "Practice Lab",
+   "text": "Time to practice what you've just learned. In the Business Compliance and Project Recovery lab, you'll check the firm's multi-jurisdiction licenses and KPI dashboard for what's off-target, then draft a recovery plan for a trial team that's fallen behind. It's your turn now."
+  }
+ ]
+}
