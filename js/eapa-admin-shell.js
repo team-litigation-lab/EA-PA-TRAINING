@@ -100,7 +100,7 @@ function scorecardHtml(){
   return `<div class="eash-page">${banner}${tabs}${html}</div>`;
 }
 
-/* 🏆 RANKINGS & PROGRESS REPORT: the batch (the Scorecard's), its 🏆 Rankings (renderAdminRankings) and a 📊 Weekly
+/* 🏆 RANKINGS & PROGRESS REPORT: the batch (the Scorecard's), and its 📊 Weekly
    Progress Report — each trainee's Week 1 and Week 2 (days passed, the week's score, their place) and the Overall, ranked
    on the same score as the trainee's own 🏅 Scorecard (js/eapa-scorecard.js eapaScores) */
 function progressRows(k){
