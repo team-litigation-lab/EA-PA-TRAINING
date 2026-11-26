@@ -61,9 +61,20 @@ const failures = []; const fail = (m) => failures.push(m);
     const vis = await page.$$eval('.audit-table .at-btns button', b => b.filter(x => /Reset Attempts/.test(x.innerText)).every(x => x.offsetParent !== null));
     if (!vis) fail('↺ Reset Attempts isn\'t visible on every row');
     const partsOf = async (id) => { await page.evaluate(i => EAPAShell.sub(i), id); return (await page.$$eval('.eash-part .eash-h', h => h.map(x => x.innerText))).join('|'); };
-    if ((await partsOf('ranks')) !== '🏆 Rankings|📈 Progress Report — Activities') fail('the Rankings & Progress Report sub-tab');
+    if ((await partsOf('ranks')) !== '🏆 Rankings|📊 Progress Report') fail('the Rankings & Progress Report sub-tab');
+    // 📊 the Progress Report in the Case Management format: a general summary, no detail of a piece of work
+    const rep = await page.evaluate(() => ({ head: [...document.querySelectorAll('.eash-rep thead th')].map(t => t.innerText.trim()), rows: [...document.querySelectorAll('.eash-rep tbody tr')].map(r => [...r.children].map(c => c.innerText.trim())) }));
+    if (rep.head.join('|') !== "Rank|Trainee's Name|Batch Score|Strength|Challenges|General Attribute Rating|Progress") fail(`the Progress Report's columns: ${rep.head.join(' | ')}`);
+    if (!rep.rows.some(r => /Ana Cruz/.test(r[1]))) fail(`the Progress Report doesn't list the batch: ${JSON.stringify(rep.rows)}`);
+    for (const r of rep.rows) { if (/\bDay \d|\d+%|"/.test(r[3] + ' ' + r[4])) fail(`${r[1]}'s Strength and Challenges should be a general summary, with no day, score or quote: ${r[3]} ${r[4]}`);
+      if (!/Knowledge & Understanding/.test(r[5]) || !/(★|N\/A)/.test(r[5])) fail(`${r[1]}'s General Attribute Rating: ${r[5]}`); }
+    if (!/Progress Report \(CSV\)/.test(await page.$eval('.eash-banner', b => b.innerText))) fail('the Scorecard header has no ⬇ Progress Report (CSV)');
     if ((await partsOf('fb')) !== '💬 Trainee Feedback') fail('the Trainee Feedback sub-tab');
-    if ((await partsOf('people')) !== '👥 Trainees & Actions') fail('the Trainees & Actions sub-tab');
+    if ((await partsOf('people')) !== '👥 Trainees & Actions|📈 Activities') fail('the Trainees & Actions sub-tab');
+    // (the old Rankings tab opens the Rankings & Progress Report sub-tab)
+    await page.evaluate(() => setAdminTab('rankings'));
+    if (!(await page.$('.eash-sub-b.on')) || !/Rankings & Progress Report/.test(await page.$eval('.eash-sub-b.on', b => b.innerText))) fail('the old Rankings tab doesn\'t open 🏆 Rankings & Progress Report');
+    await page.evaluate(() => EAPAShell.sub('people'));
     const th = await page.$eval('.audit-table thead th', t => { const s = getComputedStyle(t); return s.backgroundColor + ' ' + s.borderBottomColor; });
     if (!/rgb\(38, 43, 69\).*rgb\(219, 132, 55\)/.test(th)) fail(`the table header isn't the standard navy with the orange rule: ${th}`);
     // the old tabs open the Scorecard; 🛡 Admin Master Control has the rest
