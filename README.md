@@ -66,6 +66,15 @@ Every lesson slide on every day gets colour, pictures and icons from `js/eapa-de
 - **Quick Checks**: lettered A–D options, each with its own colour. **Practice Lab** and **Meet the client** slides get the same colours and an illustration.
 - **Contrast**: text on the slides meets WCAG AA (4.5:1, or 3:1 for large text). Small orange text uses the deep orange `#A34E14` (5.3:1 on white), never the brand orange `#DB8437` (2.9:1), and the orange boxes that carry white text use the deep orange too.
 
+## ✨ The elite deck look
+
+The lesson deck wears the Training Portal's new look (LSH Academy Index, LSH Elev8, LSH Atlas), from `js/eapa-deck-elite.js` (loaded after the deck colour file; it adds CSS only, so removing its `<script>` tag puts the deck back as it was). Design only: no slide's words, order, pictures, questions, scores or saved places change, and every slide splits into the same pages.
+
+- **The card** has the LSH blue-gold frame (a 4px rounded outline, navy along the top fading to gold at the bottom) round a deep-navy face; the old line ornaments are gone.
+- **The Topic Bar** is an uppercase mono tag with an orange marker; the **progress dots** sit in a slim pill (seen steps gold, the current one orange-to-gold); the **ribbon** is the title over a short orange-to-gold rule.
+- **The white sheet** has soft elevation and a navy-to-orange hairline along its top; its headings use Inter instead of the serif, at the same sizes; step cards, agenda tiles and title slides get soft shadows.
+- **Controls**: glass pills on the card (Presenter view the one warm button); under the slide, pill buttons, a mono step counter and **Next** as the dark-navy primary button with an orange underline. Text stays at WCAG AA; transitions and slide-in stop under `prefers-reduced-motion`.
+
 ## Where each day's content lives
 
 Each day has its own folder, `js/days/day1/` … `js/days/day10/`, with three files:
