@@ -131,7 +131,7 @@ if(typeof renderAdminRows === "function" && !renderAdminRows.__eash){
 }
 
 window.EAPAShell = {
-  go(tab){ if(tab === "batches" && state.batchFolder === state.scFolder) state.batchFolder = null; state.adminTab = tab; render(); },
+  go(tab){ if(tab === "batches") state.batchFolder = null;   /* (📁 Batch Folders always opens on the list of folders) */ state.adminTab = tab; render(); },
   batch(k){ state.scBatch = k; state.adminSearch = ""; render(); },
   sub(id){ state.scSub = id; render(); },
   jump(id){ const el = document.getElementById("eash-" + id); if(el) el.scrollIntoView({behavior: "smooth", block: "start"}); },
