@@ -18,7 +18,7 @@
    "image": "003.png",
    "slide": 3,
    "title": "Data Entry That Holds Up",
-   "text": "Clean data isn't about being tidy. When data is messy, the problems show up later and somewhere else: a client gets the same email twice, a report adds up wrong. The fix is a simple routine, done in the same order every time, and the order matters.\n\nFirst, remove duplicates. If you tidy the data first, you just end up with tidy duplicates. Next, make the formatting consistent, so 'St.' and 'Street', or 'CA' and 'California', read the same."
+   "text": "Clean data isn't about being tidy. When data is messy, the problems show up later: a client gets the same email twice, a report adds up wrong. The fix is a simple routine, done in the same order every time, and the order matters.\n\nFirst, remove duplicates. If you tidy the data first, you just end up with tidy duplicates. Next, make the formatting consistent, so 'St.' and 'Street', or 'CA' and 'California', read the same."
   },
   {
    "image": "004.png",
@@ -30,13 +30,13 @@
    "image": "005.png",
    "slide": 4,
    "title": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
-   "text": "A few spreadsheet skills can turn an afternoon of copying and counting into five minutes. Most of our trackers are spreadsheets. A good one has one header row, one row per record and one column per piece of information, with no merged cells and no blank rows in the middle.\n\nThen five tools do most of the work: sort, filter, remove duplicates, lookups and pivot tables, plus two small formulas, COUNTIF and SUMIF, for 'how many' and 'how much'."
+   "text": "A few spreadsheet skills can turn an afternoon of copying and counting into five minutes. A good one has one header row, one row per record and one column per piece of information, with no merged cells and no blank rows in the middle.\n\nThen five tools do most of the work: sort, filter, remove duplicates, lookups and pivot tables, plus two small formulas, COUNTIF and SUMIF, for 'how many' and 'how much'."
   },
   {
    "image": "006.png",
    "slide": 4,
    "title": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
-   "text": "First, freeze the header row and turn the data into a table, so sorting and filtering include every column. Next, use drop-down lists for columns like Status, so everyone types the same thing. Then use a lookup, like XLOOKUP, to pull information across from another sheet."
+   "text": "First, freeze the header row and turn the data into a table. Next, use drop-down lists for columns like Status, so everyone types the same thing. Then use a lookup, like XLOOKUP, to pull information from another sheet."
   },
   {
    "image": "007.png",
@@ -78,7 +78,7 @@
    "image": "013.png",
    "slide": 7,
    "title": "Research Method & the Real Failure Mode",
-   "text": "After that, remember that what a company says about itself isn't proof. Finally, use the same habit before every call you make.\n\nHere's a situation. You booked a translator for a deposition based on their LinkedIn profile, which said 'certified legal interpreter.' On the day, it turns out their certification had lapsed. What should your process have included?"
+   "text": "After that, remember that what a company says about itself isn't proof. Finally, use the same habit before every call you make.\n\nHere's a situation. You booked a translator for a deposition because their LinkedIn profile said 'certified legal interpreter.' On the day, their certification had lapsed. What should your process have included?"
   },
   {
    "image": "014.png",
@@ -120,7 +120,7 @@
    "image": "020.png",
    "slide": 11,
    "title": "Master Contact List Discipline",
-   "text": "After that, update the master the moment you learn about a change. Finally, if you find a mismatch, fix the habit, not just that one entry.\n\nThink this one through. A client's CFO left the company last month. You updated the master list, but a partner's assistant still emailed the old CFO about a confidential matter. What went wrong, and how do you stop it happening again?"
+   "text": "After that, update the master the moment you learn about a change. Finally, if you find a mismatch, fix the habit, not just that one entry.\n\nThink this one through. A client's CFO left last month. You updated the master list, but a partner's assistant still emailed the old CFO about a confidential matter. What went wrong, and how do you stop it happening again?"
   },
   {
    "image": "021.png",
@@ -198,13 +198,13 @@
    "image": "033.png",
    "slide": 20,
    "title": "Manual Lead Generation Methods",
-   "text": "First, start with the warmest source: past clients and referral partners, with a short referral ask for the attorney to send. Next, after any event, log every contact the same day, with where you met and the next step. Then research directories against a clear target, and record the source and date for each lead."
+   "text": "First, start with the warmest source: past clients and referral partners, with a short referral ask for the attorney to send. Next, log every event contact the same day, with where you met and the next step. Then research directories against a clear target, recording the source and date."
   },
   {
    "image": "034.png",
    "slide": 20,
    "title": "Manual Lead Generation Methods",
-   "text": "After that, follow up on real signals, like webinar attendees and people who asked questions. Finally, every quarter, review dormant contacts in the CRM for a check-in.\n\nHere's a situation to work through. Thorne & Partners is launching a Data Privacy and Cybersecurity practice. Elias asks you to find 20 companies worth approaching by Friday, using only manual methods. Where do you start, what do you record for each, and what needs his approval first?"
+   "text": "After that, follow up on real signals, like webinar attendees and people who asked questions. Finally, every quarter, review dormant contacts in the CRM for a check-in.\n\nHere's a situation to work through. Elias asks you to find 20 companies for the firm's new Data Privacy and Cybersecurity practice by Friday, using only manual methods. Where do you start, what do you record, and what needs his approval first?"
   },
   {
    "image": "035.png",
@@ -216,7 +216,7 @@
    "image": "036.png",
    "slide": 21,
    "title": "Automated Lead Generation Tools & Workflows",
-   "text": "First, map the flow on paper: where the lead comes from, what's recorded, who's told, and what happens next. Next, send every form and alert into the CRM, with the source filled in automatically. Then set duplicate checks on email and company name."
+   "text": "First, map the flow on paper: where the lead comes from, what's recorded, who's told, and what happens next. Next, send every form and alert into the CRM, with the source filled in automatically, and set duplicate checks on email and company name."
   },
   {
    "image": "037.png",
@@ -270,7 +270,7 @@
    "image": "045.png",
    "slide": 25,
    "title": "Appointment Setting (BANT/MEDDPICC)",
-   "text": "Use BANT first. If two or more of the four are clearly missing, the meeting probably isn't ready. Only book people who are genuinely interested, and let them pick a time with a booking tool. Then confirm the agenda, length and attendees, and send a reminder a day or two before.\n\nTake a second with this one. A prospect replies eagerly and wants a call right away, but you don't know if they have the budget or authority. Do you book it, check first or something in between? Think about what you'd write back."
+   "text": "Use BANT first. If two or more of the four are clearly missing, the meeting probably isn't ready. Let genuinely interested people pick a time with a booking tool, then confirm the agenda, length and attendees, and send a reminder a day or two before.\n\nTake a second with this one. A prospect replies eagerly and wants a call right away, but you don't know if they have the budget or authority. Do you book it, check first or something in between?"
   },
   {
    "image": "046.png",
@@ -300,7 +300,7 @@
    "image": "050.png",
    "slide": 30,
    "title": "Email Marketing vs. Cold Outreach",
-   "text": "Did they ask to hear from us? That one question tells you whether it's marketing or outreach. Email marketing is one message to many people who already know the firm: clients, referral partners, subscribers. Cold outreach is one-to-one, to people who don't know the firm yet. They follow different rules, and mixing them up is the most common mistake."
+   "text": "Did they ask to hear from us? That one question tells you whether it's marketing or outreach. Email marketing is one message to many people who already know the firm. Cold outreach is one-to-one, to people who don't know the firm yet. They follow different rules, and mixing them up is the most common mistake."
   },
   {
    "image": "051.png",
@@ -318,7 +318,7 @@
    "image": "053.png",
    "slide": 31,
    "title": "Outreach Compliance Basics",
-   "text": "Outreach is regulated, so check the rules before the campaign, not after a complaint. Email, phone and text outreach each have their own laws, and breaking them costs the firm real money. Because the details change and vary by place, you confirm with the firm's policy rather than going from memory.\n\nFirst, include a working opt-out, and honor it immediately. Next, keep a record of why each person on the list can be contacted.\n\nHere's a situation. A prospect replied 'stop' to one email campaign. Two weeks later, they get a different campaign from the same firm. What went wrong, and what does a proper opt-out look like?"
+   "text": "Outreach is regulated, so check the rules before the campaign, not after a complaint. Email, phone and text outreach each have their own laws. Because the details change and vary by place, you confirm with the firm's policy rather than going from memory.\n\nFirst, include a working opt-out, and honor it immediately. Next, keep a record of why each person on the list can be contacted.\n\nHere's a situation. A prospect replied 'stop' to one email campaign. Two weeks later, they get a different campaign from the same firm. What went wrong, and what does a proper opt-out look like?"
   },
   {
    "image": "054.png",
@@ -336,7 +336,7 @@
    "image": "056.png",
    "slide": 33,
    "title": "Writing Outreach Emails That Get Replies",
-   "text": "Short, specific and one clear ask: that's an outreach email that gets answered. The best ones are about 50 to 125 words. The subject line's only job is to get it opened honestly. And personalizing means showing why you're writing to this person, like an article they wrote, not just inserting their first name.\n\nFirst, open with why you're writing to them in particular. Next, explain the value in a sentence or two, in terms of their problem."
+   "text": "Short, specific and one clear ask: that's an outreach email that gets answered. The subject line's only job is to get it opened honestly. And personalizing means showing why you're writing to this person, like an article they wrote, not just inserting their first name.\n\nFirst, open with why you're writing to them in particular. Next, explain the value in a sentence or two, in terms of their problem."
   },
   {
    "image": "057.png",
@@ -354,7 +354,7 @@
    "image": "059.png",
    "slide": 35,
    "title": "Email Deliverability Basics",
-   "text": "If the firm's email reputation gets damaged, even ordinary client emails can land in spam. Deliverability is simply whether an email reaches the inbox. Three technical records, called SPF, DKIM and DMARC, prove to inbox providers that emails really come from the firm, and big providers like Gmail require them for bulk senders.\n\nFirst, ask IT to confirm those three records are set up before the first campaign. Next, include a one-click unsubscribe in every marketing email, and honor it promptly."
+   "text": "If the firm's email reputation gets damaged, even ordinary client emails can land in spam. Deliverability is simply whether an email reaches the inbox. Three technical records, called SPF, DKIM and DMARC, prove to inbox providers that emails really come from the firm.\n\nFirst, ask IT to confirm those three records are set up before the first campaign. Next, include a one-click unsubscribe in every marketing email, and honor it promptly."
   },
   {
    "image": "060.png",
@@ -396,7 +396,7 @@
    "image": "066.png",
    "slide": 37,
    "title": "Law Firm Email Newsletters",
-   "text": "Then, get the attorney to sign off every issue, including any disclaimer. Finally, send a test, check the links on phone and computer, then schedule it for a consistent day and time.\n\nHere's a situation to work through. Elias wants this month's newsletter to celebrate a big settlement, with the client's company in the headline. What do you need before it can go out, and what would you suggest if consent isn't available?"
+   "text": "Then, get the attorney to sign off every issue, including any disclaimer. Finally, send a test, check the links on phone and computer, then schedule it for a consistent day and time.\n\nHere's a situation to work through. Elias wants this month's newsletter to celebrate a big settlement, naming the client's company in the headline. What do you need before it can go out?"
   },
   {
    "image": "067.png",
@@ -420,7 +420,7 @@
    "image": "070.png",
    "slide": 39,
    "title": "Email Outreach End-to-End: Research, Write, Follow Up",
-   "text": "First, research: confirm their current role, find one recent, specific trigger, like an expansion or a new hire, and log the source. Next, write a specific subject line of three to seven words, with no tricks. Then, keep the body to 50 to 125 words: their situation, one line on how Elias can help and one small ask."
+   "text": "First, research: confirm their current role, find one recent, specific trigger, like an expansion or a new hire, and log the source. Next, write a subject line of three to seven specific words, with no tricks. Then, keep the body to 50 to 125 words: their situation, one line on how Elias can help and one small ask."
   },
   {
    "image": "071.png",
