@@ -1,0 +1,444 @@
+{
+ "day": 4,
+ "title": "Day 4 — Data, Research, Sales & Outreach",
+ "frames": [
+  {
+   "image": "001.png",
+   "slide": 1,
+   "title": "Day 4 Agenda",
+   "text": "Welcome to Day 4: Data, Research, Sales and Outreach. We start with data entry and spreadsheets, then move into research, and then contact lists, CRM and data hygiene. After that comes sales and lead generation, and we finish with email outreach and marketing.\n\nBy the end of today, you'll be able to clean data before it becomes a report, research and keep contact lists and CRM records accurate, and open cold outreach by phone and email the right way."
+  },
+  {
+   "image": "002.png",
+   "slide": 2,
+   "title": "Data Entry & Spreadsheets",
+   "text": "Section 1 of 5: Data Entry and Spreadsheets. We'll cover data entry that holds up, and the spreadsheet essentials: sort, filter, lookups and pivot tables."
+  },
+  {
+   "image": "003.png",
+   "slide": 3,
+   "title": "Data Entry That Holds Up",
+   "text": "Clean data isn't about being tidy. When data is messy, the problems show up later and somewhere else: a client gets the same email twice, a report adds up wrong. The fix is a simple routine, done in the same order every time, and the order matters.\n\nFirst, remove duplicates. If you tidy the data first, you just end up with tidy duplicates. Next, make the formatting consistent, so 'St.' and 'Street', or 'CA' and 'California', read the same."
+  },
+  {
+   "image": "004.png",
+   "slide": 3,
+   "title": "Data Entry That Holds Up",
+   "text": "Then, check the entries against the original documents, especially numbers, dates and names. Finally, sort it in the order the next person will need it.\n\nHere's a situation to work through. You sent a contact list to the marketing team without cleaning it. The next week, two clients got the newsletter three times and complained. What should the handover have looked like?"
+  },
+  {
+   "image": "005.png",
+   "slide": 4,
+   "title": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
+   "text": "A few spreadsheet skills can turn an afternoon of copying and counting into five minutes. Most of our trackers are spreadsheets. A good one has one header row, one row per record and one column per piece of information, with no merged cells and no blank rows in the middle.\n\nThen five tools do most of the work: sort, filter, remove duplicates, lookups and pivot tables, plus two small formulas, COUNTIF and SUMIF, for 'how many' and 'how much'."
+  },
+  {
+   "image": "006.png",
+   "slide": 4,
+   "title": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
+   "text": "First, freeze the header row and turn the data into a table, so sorting and filtering include every column. Next, use drop-down lists for columns like Status, so everyone types the same thing. Then use a lookup, like XLOOKUP, to pull information across from another sheet."
+  },
+  {
+   "image": "007.png",
+   "slide": 4,
+   "title": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
+   "text": "After that, build a pivot table for summaries, like totals by matter and month. Finally, before sharing, check totals against the source.\n\nPicture this. Elias wants to know, by tomorrow, how much each matter spent on travel last quarter. You have 400 expense rows. Which tools do you use, and in what order?"
+  },
+  {
+   "image": "008.png",
+   "slide": 5,
+   "title": "Research",
+   "text": "Section 2 of 5: Research. We'll look at research as a core EA skill, then a quick research method and the real failure mode."
+  },
+  {
+   "image": "009.png",
+   "slide": 6,
+   "title": "Research as a Core EA Skill",
+   "text": "Research is the quiet habit underneath almost everything an EA does. It shows up in three everyday ways. Checking that a new vendor or contact is genuine before the executive spends time or money on them. A short note on who'll be in a meeting and what they care about. And checking a claim before we pass it on as fact, because if it's wrong, it's our credibility on the line, not the source's."
+  },
+  {
+   "image": "010.png",
+   "slide": 6,
+   "title": "Research as a Core EA Skill",
+   "text": "So, check that someone new is genuine from more than their own description. Prepare that short note before every meeting. And check anything before you forward it as fact."
+  },
+  {
+   "image": "011.png",
+   "slide": 6,
+   "title": "Research as a Core EA Skill",
+   "text": "Always start with the original source: the company's own site, the actual filing, the original email. And if you can't confirm something in time, say clearly that it's unconfirmed.\n\nThink this one through. A partner forwards a news article claiming a client's company is being investigated, and asks you to 'send it to Elias.' The article is from an unfamiliar website. What do you check before forwarding it?"
+  },
+  {
+   "image": "012.png",
+   "slide": 7,
+   "title": "Research Method & the Real Failure Mode",
+   "text": "You don't have time to research everything deeply, and you don't need to. What you need is a quick, reliable method.\n\nFirst, start at the original source before reading anyone's summary. Next, for anything that affects money or a decision, confirm it with a second, independent source. Then, match your effort to the stakes. A lunch booking isn't a co-counsel agreement."
+  },
+  {
+   "image": "013.png",
+   "slide": 7,
+   "title": "Research Method & the Real Failure Mode",
+   "text": "After that, remember that what a company says about itself isn't proof. Finally, use the same habit before every call you make.\n\nHere's a situation. You booked a translator for a deposition based on their LinkedIn profile, which said 'certified legal interpreter.' On the day, it turns out their certification had lapsed. What should your process have included?"
+  },
+  {
+   "image": "014.png",
+   "slide": 8,
+   "title": "Contact Lists, CRM & Data Hygiene",
+   "text": "Section 3 of 5: Contact Lists, CRM and Data Hygiene. We'll build and maintain a contact list, look at client relationship management and CRM software, and finish with data hygiene and deduplication."
+  },
+  {
+   "image": "015.png",
+   "slide": 9,
+   "title": "Creating and Maintaining a Comprehensive Contact List",
+   "text": "A great contact list lets anyone covering for you find the right person in seconds. A good one tells us how someone knows the executive, how they like to be reached and who their assistant is. It's organized into clear groups. And it's updated the moment anything changes, because a list that's a few months out of date is how calls go to the wrong number."
+  },
+  {
+   "image": "016.png",
+   "slide": 9,
+   "title": "Creating and Maintaining a Comprehensive Contact List",
+   "text": "First, record more than the basics, including any standing notes. Next, put every contact in a group on purpose: business, personal, vendor, medical or legal. Then, build it so a stand-in could use it without asking you. Finally, treat it as part of how the office runs, not your private notebook.\n\nHere's a situation to work through. The opposing party in the Meridian matter is also a board member at a charity Elias supports. How do you record this so nobody makes a mistake?"
+  },
+  {
+   "image": "017.png",
+   "slide": 10,
+   "title": "Contact List Failure Modes & Upkeep",
+   "text": "The most common problem with contact lists isn't missing people; it's out-of-date details. An assistant who left a year ago, a phone number from two jobs back. These look fine until someone relies on them in a hurry.\n\nFirst, keep the list in one system, not spread across a phone, a spreadsheet and email signatures. Next, do a quick check every quarter: ten minutes to remove duplicates and spot anything old."
+  },
+  {
+   "image": "018.png",
+   "slide": 10,
+   "title": "Contact List Failure Modes & Upkeep",
+   "text": "After that, when you find a wrong entry, fix it right then. It takes seconds. Finally, if your contacts are scattered, bring them together deliberately.\n\nPicture this. Elias's contacts live in his phone, your spreadsheet and the firm's CRM, and a client's number was different in all three last week. What's your plan to fix this for good?"
+  },
+  {
+   "image": "019.png",
+   "slide": 11,
+   "title": "Master Contact List Discipline",
+   "text": "The whole team uses one master contact list, because private copies drift apart. Two people each keep their own copy of a contact. One gets updated, the other doesn't. And the outdated copy is the one someone grabs in an emergency.\n\nFirst, use the master list for scheduling too, so you know exactly who to include for each type of meeting. Next, check now and then that nobody has started a private copy."
+  },
+  {
+   "image": "020.png",
+   "slide": 11,
+   "title": "Master Contact List Discipline",
+   "text": "After that, update the master the moment you learn about a change. Finally, if you find a mismatch, fix the habit, not just that one entry.\n\nThink this one through. A client's CFO left the company last month. You updated the master list, but a partner's assistant still emailed the old CFO about a confidential matter. What went wrong, and how do you stop it happening again?"
+  },
+  {
+   "image": "021.png",
+   "slide": 12,
+   "title": "Client Relationship Management",
+   "text": "Winning a client is the start; the relationship lives or dies on the follow-through. Client relationship management is what happens after the yes: remembering what was said, keeping promises and getting in touch at the right moments. A CRM helps, but the real value is the habit of recording every conversation."
+  },
+  {
+   "image": "022.png",
+   "slide": 12,
+   "title": "Client Relationship Management",
+   "text": "First, log every real conversation right after it happens: what was discussed, what was promised and what's next. Next, group contacts by where they are: new, active, quiet or past. Then, set specific reminders tied to promises, not vague 'touch base' tasks. Finally, before any call or email, look at their history first.\n\nHere's a situation. After a big win, Elias promised a client he'd 'check in after the holidays.' It's now March. What do you do, and how would a CRM task have prevented this?"
+  },
+  {
+   "image": "023.png",
+   "slide": 13,
+   "title": "CRM Software Fundamentals",
+   "text": "Every CRM is built on three things: people, deals and activities. The software doesn't create discipline; you do. A CRM is only as good as what gets put into it, and if the real status of a deal lives in someone's head, it's already stopped doing its job.\n\nFirst, match a new CRM's deal stages to how the firm actually wins work. Next, if the standard fields don't cover something, add a proper field instead of burying it in notes. Finally, use the CRM's own reminders instead of a separate to-do list.\n\nHere's a situation to work through. A colleague moved five deals to 'Negotiation' because the clients 'seemed interested' on calls. Elias's forecast now looks far too high. What rule would you suggest for moving a deal forward?"
+  },
+  {
+   "image": "024.png",
+   "slide": 14,
+   "title": "Data Hygiene & Deduplication",
+   "text": "Duplicate records aren't just untidy; they split a person's history so nobody sees the whole picture. And data goes stale on its own, because people change jobs and email addresses all the time.\n\nFirst, before adding a new contact, search by name, company and email domain, not just the exact name. Next, when you merge two records, keep the history from both. Finally, regularly remove or flag contacts whose emails bounce or who have unsubscribed.\n\nTake a second with this one. You find three records that look like the same person at the same company, each with different history. How do you confirm they're the same person before merging?"
+  },
+  {
+   "image": "025.png",
+   "slide": 15,
+   "title": "Sales & Lead Generation",
+   "text": "Section 4 of 5: Sales and Lead Generation. We'll cover the sales mindset, how to find and verify leads, and appointment setting."
+  },
+  {
+   "image": "026.png",
+   "slide": 16,
+   "title": "Sales Mindset",
+   "text": "Selling isn't talking someone into something; it's finding a real problem you can help solve. A message built around what the firm offers falls flat. A message built around what the other person needs gets read.\n\nAnd most outreach gets a no. That's normal. A no is information, not a verdict on you."
+  },
+  {
+   "image": "027.png",
+   "slide": 16,
+   "title": "Sales Mindset",
+   "text": "First, be genuinely curious about their situation. The best messages read like they were written for one person. Next, keep an honest record of what you send and what comes back, including the rejections. Finally, keep the result separate from your feelings.\n\nPicture this. After 20 cold emails and no replies, a colleague's messages have become short and slightly bitter. What would you say to her, and what would you look at in her emails?"
+  },
+  {
+   "image": "028.png",
+   "slide": 17,
+   "title": "Cold Calling, Appointment Setting & Lead Generation",
+   "text": "A specific, current detail about the person you're calling beats any script. When someone hears their own situation in the first sentence, they keep listening. A generic pitch sounds like every other call they ignore. That's why research comes before the call.\n\nFirst, open with a short reason this is relevant to them. Next, keep your goal realistic: not a sale, but a warmer second conversation."
+  },
+  {
+   "image": "029.png",
+   "slide": 17,
+   "title": "Cold Calling, Appointment Setting & Lead Generation",
+   "text": "Then, treat call lists with the same care as confidential email. Finally, record the outcome of every call straight away.\n\nTry this one out loud. You're calling the office manager of a 12-doctor medical practice about Elias's employment-law work. They just opened a second location. Pause the video and deliver the first 20 seconds of the call."
+  },
+  {
+   "image": "030.png",
+   "slide": 18,
+   "title": "How to Generate Leads for Business",
+   "text": "Before you can call a lead, you have to find one, and that's a four-step process.\n\nFirst, identify sources: referrals, past clients, networking, directories and content that draws people in. Next, qualify: does this lead fit, need the service, have authority and have a timeline? Then, make first contact: specific, researched and short. Finally, track it and follow up. A lead nobody logged is a lead that's lost.\n\nThink this one through. At the end of the quarter, the firm has 30 new clients but no idea where they came from. What should have been recorded, and how would that help next quarter?"
+  },
+  {
+   "image": "031.png",
+   "slide": 19,
+   "title": "Lead Generation & Data Sourcing",
+   "text": "A brilliant message sent to the wrong person is wasted. Data sourcing is the research behind lead generation: who the prospect really is, what they do and why they might be a fit.\n\nFirst, use LinkedIn and company websites to confirm someone's current role and what's happening at their company. Next, confirm contact details at the original source, not from a single third-party list. Then, focus on leads that actually fit, rather than collecting everyone and sorting later.\n\nHere's a situation. Your manager wants 200 leads by Friday. You can find 60 well-researched ones, or pad the list with names from an old conference list. What do you do, and how do you explain it?"
+  },
+  {
+   "image": "032.png",
+   "slide": 20,
+   "title": "Manual Lead Generation Methods",
+   "text": "The leads most likely to become clients are usually the ones someone found by hand, through a person who already trusts the firm. Manual lead generation means referrals, events, directories, people who came to Elias's webinar, and old contacts in the CRM. It's slower than a tool, but these leads arrive with context and trust.\n\nOne rule sits over all of it: bar rules limit how a firm may approach people who might need legal help, so the attorney approves who we contact and how."
+  },
+  {
+   "image": "033.png",
+   "slide": 20,
+   "title": "Manual Lead Generation Methods",
+   "text": "First, start with the warmest source: past clients and referral partners, with a short referral ask for the attorney to send. Next, after any event, log every contact the same day, with where you met and the next step. Then research directories against a clear target, and record the source and date for each lead."
+  },
+  {
+   "image": "034.png",
+   "slide": 20,
+   "title": "Manual Lead Generation Methods",
+   "text": "After that, follow up on real signals, like webinar attendees and people who asked questions. Finally, every quarter, review dormant contacts in the CRM for a check-in.\n\nHere's a situation to work through. Thorne & Partners is launching a Data Privacy and Cybersecurity practice. Elias asks you to find 20 companies worth approaching by Friday, using only manual methods. Where do you start, what do you record for each, and what needs his approval first?"
+  },
+  {
+   "image": "035.png",
+   "slide": 21,
+   "title": "Automated Lead Generation Tools & Workflows",
+   "text": "Tools can catch leads around the clock, but only if someone designs where those leads go. A website or webinar form creates a record in the CRM. A saved search in LinkedIn Sales Navigator tells us when a prospect changes jobs. Enrichment tools fill in company size and role, and tools like Zapier or Make pass the lead from one system to the next.\n\nWhat automation doesn't do is decide: every lead still gets verified, and nothing goes to a prospect until a person approves it."
+  },
+  {
+   "image": "036.png",
+   "slide": 21,
+   "title": "Automated Lead Generation Tools & Workflows",
+   "text": "First, map the flow on paper: where the lead comes from, what's recorded, who's told, and what happens next. Next, send every form and alert into the CRM, with the source filled in automatically. Then set duplicate checks on email and company name."
+  },
+  {
+   "image": "037.png",
+   "slide": 21,
+   "title": "Automated Lead Generation Tools & Workflows",
+   "text": "After that, make each new lead create a task for a person to verify it. Finally, review what the automation caught every week for the first month.\n\nPicture this. The webinar form now creates 40 new CRM records a week, and the partners complain that most are students and vendors. Without turning the form off, how would you change the workflow so only real leads reach them?"
+  },
+  {
+   "image": "038.png",
+   "slide": 22,
+   "title": "Verifying a Working Lead",
+   "text": "A name on a list isn't a lead until you know it's real, reachable and allowed. A working lead is a real person, in the role we think, at an active business that fits what the firm does, and the firm is allowed to contact them. We check before any outreach and before we count the lead in a report. It takes a few minutes, and it protects the firm's credibility."
+  },
+  {
+   "image": "039.png",
+   "slide": 22,
+   "title": "Verifying a Working Lead",
+   "text": "First, the person: are they real and still in that role? Check the company's site or a recent LinkedIn profile. Next, the company: is it active in the state registry, with a live website, and does it fit? Then the contact details: the company's own email domain, spelled right, and a phone number that reaches them."
+  },
+  {
+   "image": "040.png",
+   "slide": 22,
+   "title": "Verifying a Working Lead",
+   "text": "After that, clearance: no duplicate in the CRM, not on a do-not-contact list, and a conflict check requested. Finally, record the result: Verified, Needs check or Not workable, with the reason and the date.\n\nThink this one through. Your list has Dana Reyes, Chief Privacy Officer at Brightline Logistics. LinkedIn shows Dana left in March, and the state registry shows Brightline merged into another company. What do you record, and is there still a lead here?"
+  },
+  {
+   "image": "041.png",
+   "slide": 23,
+   "title": "Quick Check",
+   "text": "Quick check. A new lead's email address uses the domain acme-c0rp, with a zero, but the company's website is acme-corp.com. What's the right move? Is it A, send the email anyway, it will probably arrive? B, check the address on the company's own site, then correct it or mark the lead Needs check? C, delete the lead from the CRM? Or D, have Elias call the company's main number instead? Take a second.\n\nIt's B. A misspelled domain, a zero for an o, is a classic verification failure. Confirm the address on the company's own site and correct it, or mark the lead Needs check. Never send to a guessed address."
+  },
+  {
+   "image": "042.png",
+   "slide": 24,
+   "title": "Lead Quality, Qualifying & Tracking",
+   "text": "Referrals are the best leads you'll get, so ask for them instead of waiting. A referral arrives with trust already built in, because someone the prospect respects vouched for the firm. A cold list never has that.\n\nFirst, qualify every lead early: fit, need, authority and timeline. Next, log every lead the moment it appears."
+  },
+  {
+   "image": "043.png",
+   "slide": 24,
+   "title": "Lead Quality, Qualifying & Tracking",
+   "text": "Then, follow through. The difference between good and bad lead generation is almost always the follow-up, not the first contact. Finally, feed every qualified lead into the contact list, so it doesn't disappear.\n\nHere's a situation. You spent two hours preparing a proposal for a prospect, then learned they have no budget until next year and aren't the decision-maker. What should you have checked first?"
+  },
+  {
+   "image": "044.png",
+   "slide": 25,
+   "title": "Appointment Setting (BANT/MEDDPICC)",
+   "text": "Check that a meeting is worth having before you put it on the executive's calendar. Appointment setting isn't about filling slots; it's about productive conversations. BANT is the quick check: budget, authority, need and timeline. MEDDPICC is the thorough version for bigger, more complex deals, covering things like who really pays, how they decide and who the competition is."
+  },
+  {
+   "image": "045.png",
+   "slide": 25,
+   "title": "Appointment Setting (BANT/MEDDPICC)",
+   "text": "Use BANT first. If two or more of the four are clearly missing, the meeting probably isn't ready. Only book people who are genuinely interested, and let them pick a time with a booking tool. Then confirm the agenda, length and attendees, and send a reminder a day or two before.\n\nTake a second with this one. A prospect replies eagerly and wants a call right away, but you don't know if they have the budget or authority. Do you book it, check first or something in between? Think about what you'd write back."
+  },
+  {
+   "image": "046.png",
+   "slide": 26,
+   "title": "Cold Outbound Execution",
+   "text": "A specific opening, a small ask and a logged result: that's cold outreach done well. Quality matters more than quantity: one strong, relevant message beats ten generic ones.\n\nFirst, open with something real about the person, so it doesn't feel mass-produced. Next, keep the ask small and concrete. Fifteen minutes next Tuesday gets more yeses than 'let's connect sometime.' Then, prepare for the conversation, not just the first line.\n\nHere's a situation to work through. On a call, a prospect interrupts your script to ask about a specific problem with a contractor. Do you go back to the script or follow the conversation? What do you log afterwards?"
+  },
+  {
+   "image": "047.png",
+   "slide": 27,
+   "title": "Handling Sales Objections Beyond the Script",
+   "text": "Understand what an objection really means before you answer it. Real conversations rarely match the script. Most objections are one of three things in disguise: they don't know enough, they don't trust us yet, or the timing is wrong. And pushing past a genuine no ruins the chance of a future yes.\n\nFirst, ask one clarifying question before you respond. Next, acknowledge the concern specifically, so they know you listened. Finally, if the issue is timing, agree a specific date to follow up.\n\nTake a second with this one. A prospect says, 'We already have a vendor for this.' That could mean they're happy, locked into a contract or just ending the call politely. What's your next question?"
+  },
+  {
+   "image": "048.png",
+   "slide": 28,
+   "title": "Pipeline Reporting & Forecasting Basics",
+   "text": "A forecast is only as honest as the deal stages behind it. Forecasting isn't guessing the future. It's putting an honest probability on what's in the pipeline today. If deals sit in the wrong stages, the forecast will be wrong, and usually too optimistic.\n\nFirst, give each stage a realistic chance of closing, based on what has actually happened before. Next, report 'committed' and 'best case' separately. Finally, flag any deal that has sat in one stage far longer than normal.\n\nPicture this. One $250,000 deal makes up most of the quarter's forecast, and the client hasn't replied in three weeks. How do you show that risk in your weekly report?"
+  },
+  {
+   "image": "049.png",
+   "slide": 29,
+   "title": "Email Outreach & Marketing",
+   "text": "Section 5 of 5: Email Outreach and Marketing. We'll cover the difference between email marketing and cold outreach, writing emails that get replies, and law firm newsletters."
+  },
+  {
+   "image": "050.png",
+   "slide": 30,
+   "title": "Email Marketing vs. Cold Outreach",
+   "text": "Did they ask to hear from us? That one question tells you whether it's marketing or outreach. Email marketing is one message to many people who already know the firm: clients, referral partners, subscribers. Cold outreach is one-to-one, to people who don't know the firm yet. They follow different rules, and mixing them up is the most common mistake."
+  },
+  {
+   "image": "051.png",
+   "slide": 30,
+   "title": "Email Marketing vs. Cold Outreach",
+   "text": "So, ask that question before any send. Then send marketing through the email platform, and outreach from the attorney's own mailbox in small batches."
+  },
+  {
+   "image": "052.png",
+   "slide": 30,
+   "title": "Email Marketing vs. Cold Outreach",
+   "text": "Keep the two lists separate, and note how each person joined. And get the attorney to approve every template and script, because law firm emails can count as advertising.\n\nThink this one through. A partner sends the firm's newsletter to 900 contacts from his own Outlook. The next day, his normal client emails start bouncing. What went wrong, and how do you fix it going forward?"
+  },
+  {
+   "image": "053.png",
+   "slide": 31,
+   "title": "Outreach Compliance Basics",
+   "text": "Outreach is regulated, so check the rules before the campaign, not after a complaint. Email, phone and text outreach each have their own laws, and breaking them costs the firm real money. Because the details change and vary by place, you confirm with the firm's policy rather than going from memory.\n\nFirst, include a working opt-out, and honor it immediately. Next, keep a record of why each person on the list can be contacted.\n\nHere's a situation. A prospect replied 'stop' to one email campaign. Two weeks later, they get a different campaign from the same firm. What went wrong, and what does a proper opt-out look like?"
+  },
+  {
+   "image": "054.png",
+   "slide": 32,
+   "title": "Building & Segmenting an Email List",
+   "text": "A small list of people who want to hear from the firm beats a big list of people who don't. List quality decides who opens, who replies and whether emails reach inboxes at all. And different groups rarely want the same message.\n\nFirst, collect contacts only in legitimate ways: sign-up forms, events, client intake and people who ask. Next, tag each contact when they join: source, date, interest and relationship."
+  },
+  {
+   "image": "055.png",
+   "slide": 32,
+   "title": "Building & Segmenting an Email List",
+   "text": "Then, start with three groups: clients, referral partners and prospects. Finally, clean the list every quarter: remove bounces, merge duplicates and suppress anyone who unsubscribed or never opens.\n\nHere's a situation to work through. A partner wants the next newsletter sent 'to everyone': 1,800 contacts, including corporate clients and opposing counsel from past cases. How do you split it up, and who shouldn't get it at all?"
+  },
+  {
+   "image": "056.png",
+   "slide": 33,
+   "title": "Writing Outreach Emails That Get Replies",
+   "text": "Short, specific and one clear ask: that's an outreach email that gets answered. The best ones are about 50 to 125 words. The subject line's only job is to get it opened honestly. And personalizing means showing why you're writing to this person, like an article they wrote, not just inserting their first name.\n\nFirst, open with why you're writing to them in particular. Next, explain the value in a sentence or two, in terms of their problem."
+  },
+  {
+   "image": "057.png",
+   "slide": 33,
+   "title": "Writing Outreach Emails That Get Replies",
+   "text": "Then, make one easy ask, like a 15-minute call next week. Finally, sign off with the attorney's details and an easy opt-out, and proofread names and links.\n\nNow pause the video and rewrite this opener, for a founder whose startup just raised a funding round: 'Dear Sir or Madam, Thorne & Partners is a leading full-service law firm founded in 1998 with over 40 attorneys...'"
+  },
+  {
+   "image": "058.png",
+   "slide": 34,
+   "title": "Email Outreach Sequencing & Follow-Up Cadence",
+   "text": "Every follow-up needs a new reason to reply. Most replies come from follow-ups, not the first email, but 'just following up' gives nobody a reason to answer. And too many, too often, damages the relationship you're trying to build.\n\nFirst, space follow-ups a few working days apart, not daily. Next, change the angle each time: first the offer, then a relevant example, then a genuine, low-pressure question. Finally, end with a clear closing message, like 'I'll leave this here unless I hear from you.'\n\nPicture this. A colleague's sequence sends the same email four times, two days apart. One prospect replied angrily. What would you change?"
+  },
+  {
+   "image": "059.png",
+   "slide": 35,
+   "title": "Email Deliverability Basics",
+   "text": "If the firm's email reputation gets damaged, even ordinary client emails can land in spam. Deliverability is simply whether an email reaches the inbox. Three technical records, called SPF, DKIM and DMARC, prove to inbox providers that emails really come from the firm, and big providers like Gmail require them for bulk senders.\n\nFirst, ask IT to confirm those three records are set up before the first campaign. Next, include a one-click unsubscribe in every marketing email, and honor it promptly."
+  },
+  {
+   "image": "060.png",
+   "slide": 35,
+   "title": "Email Deliverability Basics",
+   "text": "Then, check the report after each send: keep bounces low and spam complaints very low. Finally, when a new domain starts sending, build up volume gradually.\n\nThink this one through. After last month's newsletter, the bounce rate was 18 percent and several clients found firm emails in spam. What caused it, and what do you do before the next send?"
+  },
+  {
+   "image": "061.png",
+   "slide": 36,
+   "title": "Email Metrics & A/B Testing",
+   "text": "Decide what success looks like before you send, not after you see the numbers. Not all email numbers are trustworthy. Opens are inflated these days by privacy features on phones. Clicks, replies and booked consultations tell you much more. And when you test two versions, change only one thing."
+  },
+  {
+   "image": "062.png",
+   "slide": 36,
+   "title": "Email Metrics & A/B Testing",
+   "text": "First, pick the goal, like replies or consultations. Next, to test, send each version to a small random group, then send the winner to everyone else."
+  },
+  {
+   "image": "063.png",
+   "slide": 36,
+   "title": "Email Metrics & A/B Testing",
+   "text": "Then, keep a simple log of every campaign's results. Finally, review the trends monthly with the attorney, against the firm's own history.\n\nHere's a situation. Version A got 45 percent opens and no consultations. Version B got 28 percent opens and three consultation requests. A colleague says A won. What do you say?"
+  },
+  {
+   "image": "064.png",
+   "slide": 37,
+   "title": "Law Firm Email Newsletters",
+   "text": "A newsletter keeps the firm in people's minds between cases, and most small firms win work from people who already know them. Steady monthly or quarterly beats weekly bursts followed by silence. And because it comes from attorneys, it may need an advertising label, and it must never read as legal advice for someone's specific situation."
+  },
+  {
+   "image": "065.png",
+   "slide": 37,
+   "title": "Law Firm Email Newsletters",
+   "text": "First, agree the schedule and two or three regular sections with the attorney, like a legal update, a practical tip and firm news. Next, build it in the email platform using an approved template, mobile-friendly and with image descriptions."
+  },
+  {
+   "image": "066.png",
+   "slide": 37,
+   "title": "Law Firm Email Newsletters",
+   "text": "Then, get the attorney to sign off every issue, including any disclaimer. Finally, send a test, check the links on phone and computer, then schedule it for a consistent day and time.\n\nHere's a situation to work through. Elias wants this month's newsletter to celebrate a big settlement, with the client's company in the headline. What do you need before it can go out, and what would you suggest if consent isn't available?"
+  },
+  {
+   "image": "067.png",
+   "slide": 38,
+   "title": "Email Marketing Tools & Approval Workflow",
+   "text": "A written approval process is what stops one quick send from reaching thousands of people with a mistake. There are plenty of tools: Mailchimp or Constant Contact for newsletters, HubSpot or a CRM when we want everything tracked together, and Outlook or Gmail templates for one-to-one emails. But the tool matters much less than the process: who writes it, who reviews it, who checks it's compliant and who presses send.\n\nFirst, set up an approved template with the firm's branding, address, unsubscribe link and any disclaimer. Next, follow the same flow every time: you draft, the attorney reviews, you check compliance, then schedule and report."
+  },
+  {
+   "image": "068.png",
+   "slide": 38,
+   "title": "Email Marketing Tools & Approval Workflow",
+   "text": "Then, schedule sends for business hours in the recipient's time zone. Finally, save every version and approval, so any send can be checked later.\n\nPicture this. A staff member accidentally sent a draft newsletter, with typos and a placeholder saying 'INSERT CLIENT NAME,' to 1,500 contacts. What do you do in the first hour, and what control would have prevented it?"
+  },
+  {
+   "image": "069.png",
+   "slide": 39,
+   "title": "Email Outreach End-to-End: Research, Write, Follow Up",
+   "text": "An outreach email gets about three seconds on a phone screen, so the subject line and first sentence decide everything. One specific, true fact about the person does more than any clever wording. Each email has one job, usually a small, easy yes. And since most replies come from follow-ups, you plan the sequence before the first email goes out."
+  },
+  {
+   "image": "070.png",
+   "slide": 39,
+   "title": "Email Outreach End-to-End: Research, Write, Follow Up",
+   "text": "First, research: confirm their current role, find one recent, specific trigger, like an expansion or a new hire, and log the source. Next, write a specific subject line of three to seven words, with no tricks. Then, keep the body to 50 to 125 words: their situation, one line on how Elias can help and one small ask."
+  },
+  {
+   "image": "071.png",
+   "slide": 39,
+   "title": "Email Outreach End-to-End: Research, Write, Follow Up",
+   "text": "After that, sign off for Elias with a simple opt-out. Then, plan the follow-ups: a new angle around day three or four, and a polite close-out around day eight to ten. Finally, stop as soon as they reply or opt out, log the outcome and pass any interest to Elias in one line.\n\nHere's one to try. You've sent two emails to a prospect with no reply. Pause the video and write the third, a short, gracious close-out."
+  },
+  {
+   "image": "072.png",
+   "slide": 40,
+   "title": "Quick Check",
+   "text": "Quick check. Your first outreach email got no reply after four days. What's the strongest follow-up? Is it A, 'Just bumping this to the top of your inbox'? B, a short note with a new, relevant angle and the same small ask? C, a longer email re-explaining every service the firm offers? Or D, wait a month, then resend the original email? Take a second.\n\nIt's B. A follow-up should add something new and keep the ask small. A bare bump adds nothing, a longer pitch adds friction, and waiting a month loses the trigger that made the timing relevant."
+  },
+  {
+   "image": "073.png",
+   "slide": 41,
+   "title": "Practice Lab",
+   "text": "Now it's your turn. In today's Practice Lab, you'll sort a real Monday's tasks and push back on an impossible deadline, make five simulated calls to prospective clients and log each one, build a lead list for a new practice, handle a live intake call and run an email outreach sequence. Open the tool and give it a go."
+  }
+ ]
+}
