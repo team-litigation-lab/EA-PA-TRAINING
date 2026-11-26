@@ -82,12 +82,17 @@ function scorecardHtml(){
   const ranks = typeof renderAdminRankings === "function" ? bare(renderAdminRankings(k)) : "";
   const fb = typeof renderAdminTraineeFeedback === "function" ? bare(renderAdminTraineeFeedback()) : "";
   const part = (id, title, note, html) => `<section class="eash-part" id="eash-${id}"><h3 class="eash-h">${title}</h3>${note ? `<p class="eash-note">${note}</p>` : ""}${html}</section>`;
-  return `<div class="eash-page">${banner}
-    <nav class="eash-jump"><a href="#eash-people" onclick="EAPAShell.jump('people');return false;">👥 Trainees</a><a href="#eash-ranks" onclick="EAPAShell.jump('ranks');return false;">🏆 Rankings</a><a href="#eash-fb" onclick="EAPAShell.jump('fb');return false;">💬 Trainee Feedback</a><a href="#eash-acts" onclick="EAPAShell.jump('acts');return false;">📈 Activities</a></nav>
-    ${part("people", "👥 Trainees", "Every trainee in the batch: where they are, their scores, the feedback to write, and every action — ✍ Feedback, 🎓 Certificate, ↺ Reset Attempts, ♻ Restore, Revoke — on their row.", people)}
-    ${part("ranks", "🏆 Rankings", "", ranks)}
-    ${part("fb", "💬 Trainee Feedback", "What trainees think of the platform, lessons, facilitator, Practice Lab and assessments.", fb)}
-    ${part("acts", "📈 Activities", "", acts)}</div>`;
+  // sub-tabs, the Case Management way: 🏅 Scorecards (the scores table and each trainee's card) first
+  const SUBS = [["cards", "🏅 Scorecards"], ["ranks", "🏆 Rankings & Progress Report"], ["people", "👥 Trainees & Actions"], ["fb", "💬 Trainee Feedback"]];
+  if(!window.EAPACM && state.scSub === "cards") state.scSub = "people";
+  const sub = SUBS.some(x => x[0] === state.scSub) && (state.scSub !== "cards" || window.EAPACM) ? state.scSub : (window.EAPACM ? "cards" : "people");
+  const tabs = `<nav class="eash-subs" role="tablist">${SUBS.filter(x => x[0] !== "cards" || window.EAPACM).map(([id, l]) => `<button type="button" role="tab" class="eash-sub-b ${sub === id ? "on" : ""}" onclick="EAPAShell.sub('${id}')">${l}</button>`).join("")}</nav>`;
+  let html;
+  if(sub === "cards") html = part("cards", "🏅 Scorecards", "Every trainee's scores, day by day. Click a trainee for their scorecard: what to focus on, and each activity's score and feedback.", EAPACM.section(k));
+  else if(sub === "ranks") html = part("ranks", "🏆 Rankings", "", ranks) + part("acts", "📈 Progress Report — Activities", "", acts);
+  else if(sub === "fb") html = part("fb", "💬 Trainee Feedback", "What trainees think of the platform, lessons, facilitator, Practice Lab and assessments.", fb);
+  else html = part("people", "👥 Trainees & Actions", "Every trainee in the batch: where they are, their scores, the feedback to write, and every action — ✍ Feedback, 🎓 Certificate, ↺ Reset Attempts, ♻ Restore, Revoke — on their row.", people);
+  return `<div class="eash-page">${banner}${tabs}${html}</div>`;
 }
 
 const __admin = renderAdmin;
@@ -128,8 +133,10 @@ if(typeof renderAdminRows === "function" && !renderAdminRows.__eash){
 window.EAPAShell = {
   go(tab){ if(tab === "batches" && state.batchFolder === state.scFolder) state.batchFolder = null; state.adminTab = tab; render(); },
   batch(k){ state.scBatch = k; state.adminSearch = ""; render(); },
+  sub(id){ state.scSub = id; render(); },
   jump(id){ const el = document.getElementById("eash-" + id); if(el) el.scrollIntoView({behavior: "smooth", block: "start"}); },
   asked(){ const row = [...document.querySelectorAll(".audit-table .at-asked")][0]; const tr = row && row.closest("tr");
+    if(!tr && state.scSub !== "people"){ state.scSub = "people"; render(); return setTimeout(() => EAPAShell.asked(), 60); }
     if(tr){ tr.scrollIntoView({behavior: "smooth", block: "center"}); tr.classList.add("eash-flash"); setTimeout(() => tr.classList.remove("eash-flash"), 2200); } else EAPAShell.jump("people"); }
 };
 
@@ -151,6 +158,10 @@ const st = document.createElement("style"); st.id = "eapa-admin-shell"; st.textC
 .eash-banner .btn.eash-b:hover{background:#343A5C;}
 .eash-banner .btn.eash-danger{color:#FFD2CC;}
 .eash-banner .btn.eash-o{background:#DB8437;border:1px solid #DB8437;color:#241304;font-weight:800;}
+.eash-subs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:2px solid #DCE0EA;}
+.eash-sub-b{font:800 15px 'Inter',system-ui,sans-serif;color:#3B4160;background:transparent;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 16px;cursor:pointer;}
+.eash-sub-b:hover{color:#1E2340;}
+.eash-sub-b.on{color:#1E2340;border-bottom-color:#DB8437;}
 .eash-jump{display:flex;flex-wrap:wrap;gap:8px;}
 .eash-jump a{font:800 14px 'Inter',system-ui,sans-serif;color:#1E2340;background:#fff;border:1px solid #DCE0EA;border-radius:999px;padding:6px 14px;text-decoration:none;}
 .eash-jump a:hover{border-color:#DB8437;}
