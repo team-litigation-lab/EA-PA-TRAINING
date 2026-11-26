@@ -30,6 +30,10 @@ The window shows when each record was last saved from the trainee's page; if ano
 
 The server also stops it happening: a trainee's own save can't drop finished days, practice tools or submissions from their record (only an admin can).
 
+## 🔠 Slide type, the Case Management / Foundational way
+
+The lesson deck's type is set the way the Case Management and Foundational Training decks set it (`js/eapa-deck-type.js`, loaded last): body text (steps, principles, list items, card text, Quick Check options) in Inter 500 at 18px, bold at 700, which shows at 16px on a 1366 × 768 laptop (the deck is laid out at 960 × 540 and scaled, 0.89 there); the topic's key line in Fraunces 600 at 22px; headings and card labels in Poppins 800 at 19–24px; kickers, section labels and the page badge at 13–15px (they were 10–12px). Diagrams the deck can't split over pages (a process row, a side-by-side compare, a long section list) take 16px, and one still taller than its page is drawn smaller, that block alone, to 80% at the least (as the Case Management decks' zoomToFit). A slide that doesn't fit continues on the next page, so the ten days run 983 pages instead of 826; every agenda stays one page. Phones keep their own sizes. Remove the `<script>` tag to go back.
+
 ## 🎬 Narrated day videos
 
 Every day card on the dashboard has **▶ Video**: the day's lesson deck as the room sees it, narrated slide by slide in a natural American English voice from the trainer's speaker notes (compressed where they repeat), with captions, a slide picker, speed and full screen. Trainees see 🔒 Video until a trainer unlocks it in Admin → 🛡 Admin Master Control → 🎬 Videos, for every batch or one batch (`settings:openvideos`); trainers always see it. Ten videos, 27–45 minutes each, in `videos/`. How they're made and rebuilt: `build/video/README.md`.
