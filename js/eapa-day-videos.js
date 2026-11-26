@@ -961,5 +961,198 @@ window.EAPA_DAY_VIDEOS = {
     "t": 1899.1
    }
   ]
+ },
+ "5": {
+  "title": "Day 5 — Household Operations, Vendors & Risk Management",
+  "src": "/videos/day5-narrated.mp4?v=tp3aky",
+  "captions": "/videos/day5-narrated.vtt?v=tp3aky",
+  "duration": 1619,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 5 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Running the Household",
+    "t": 35.7
+   },
+   {
+    "slide": 3,
+    "title": "Running a Household Like a Business",
+    "t": 47.2
+   },
+   {
+    "slide": 4,
+    "title": "Recurring Household Admin: Utilities, Purchasing & Subscriptions",
+    "t": 105.3
+   },
+   {
+    "slide": 5,
+    "title": "Household Staff Management",
+    "t": 169.9
+   },
+   {
+    "slide": 6,
+    "title": "Home Maintenance & Repair Coordination",
+    "t": 229
+   },
+   {
+    "slide": 7,
+    "title": "Lifestyle & Personal Support",
+    "t": 292.3
+   },
+   {
+    "slide": 8,
+    "title": "The Home Binder",
+    "t": 339.1
+   },
+   {
+    "slide": 9,
+    "title": "Creating a Home Binder for a Busy Executive",
+    "t": 348.9
+   },
+   {
+    "slide": 10,
+    "title": "Home Binder: Format, Security & Maintenance",
+    "t": 416.2
+   },
+   {
+    "slide": 11,
+    "title": "Digital Home Binder Tools & Platforms",
+    "t": 469
+   },
+   {
+    "slide": 12,
+    "title": "Vendors & Procurement",
+    "t": 512.7
+   },
+   {
+    "slide": 13,
+    "title": "Procurement and Vendor/Supplier Management",
+    "t": 524.6
+   },
+   {
+    "slide": 14,
+    "title": "Vendor Relationships Beyond the Signature",
+    "t": 565.4
+   },
+   {
+    "slide": 15,
+    "title": "Negotiating Vendor Contracts & Terms",
+    "t": 609.5
+   },
+   {
+    "slide": 16,
+    "title": "Reading a Contract: The Clauses to Recognize",
+    "t": 665.2
+   },
+   {
+    "slide": 17,
+    "title": "When a Vendor Falls Through",
+    "t": 747.2
+   },
+   {
+    "slide": 18,
+    "title": "Vendor NDA Management",
+    "t": 795.7
+   },
+   {
+    "slide": 19,
+    "title": "Risk Management",
+    "t": 834.1
+   },
+   {
+    "slide": 20,
+    "title": "The PA Risk Management Framework",
+    "t": 848.3
+   },
+   {
+    "slide": 21,
+    "title": "The Four Core Risk Strategies",
+    "t": 916.8
+   },
+   {
+    "slide": 22,
+    "title": "Quick Check",
+    "t": 967.5
+   },
+   {
+    "slide": 23,
+    "title": "Insurance & Risk at a Glance",
+    "t": 991.7
+   },
+   {
+    "slide": 24,
+    "title": "Quick Check",
+    "t": 1053.2
+   },
+   {
+    "slide": 25,
+    "title": "EA/PA Risk Framework: Information Security",
+    "t": 1082.7
+   },
+   {
+    "slide": 26,
+    "title": "EA/PA Risk Framework: Operational Continuity",
+    "t": 1132.4
+   },
+   {
+    "slide": 27,
+    "title": "EA/PA Risk Framework: Reputational Risks",
+    "t": 1188.4
+   },
+   {
+    "slide": 28,
+    "title": "EA/PA Risk Framework: Physical & Travel Safety",
+    "t": 1235.9
+   },
+   {
+    "slide": 29,
+    "title": "EA/PA Risk Framework: Financial Controls",
+    "t": 1294.6
+   },
+   {
+    "slide": 30,
+    "title": "Private Expense Audit",
+    "t": 1342.3
+   },
+   {
+    "slide": 31,
+    "title": "Travel Risk",
+    "t": 1385.1
+   },
+   {
+    "slide": 32,
+    "title": "Travel Risk Management",
+    "t": 1395.9
+   },
+   {
+    "slide": 33,
+    "title": "Handling a Travel Claim",
+    "t": 1436
+   },
+   {
+    "slide": 34,
+    "title": "International Travel Risk & Duty of Care",
+    "t": 1488.7
+   },
+   {
+    "slide": 35,
+    "title": "Mid-Point Review",
+    "t": 1549.6
+   },
+   {
+    "slide": 36,
+    "title": "Mid-Point 1-on-1 Performance Review",
+    "t": 1558.3
+   },
+   {
+    "slide": 37,
+    "title": "Practice Lab",
+    "t": 1598.5
+   }
+  ]
  }
 };
