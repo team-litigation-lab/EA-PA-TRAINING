@@ -1,0 +1,426 @@
+{
+ "day": 10,
+ "title": "Day 10 — Digital Presence & Social Media Management",
+ "frames": [
+  {
+   "image": "001.png",
+   "slide": 1,
+   "title": "Day 10 Agenda",
+   "text": "Welcome to Day 10, the last day of the course: Digital Presence and Social Media Management.\n\nWe'll start with social media roles, then brand voice and style, and platforms and publishing. After that, we'll cover content, SEO and copy, then metrics and monitoring, and risk and compliance, and we'll close with the capstone.\n\nBy the end of today, you'll be able to read social performance numbers correctly, write for the platform, and understand the basic math behind a campaign's ROI."
+  },
+  {
+   "image": "002.png",
+   "slide": 2,
+   "title": "Social Media Roles",
+   "text": "Section 1 of 7: Social Media Roles. We'll separate social media management from marketing, look at the EA and PA roles in social media, and keep personal and firm accounts apart."
+  },
+  {
+   "image": "003.png",
+   "slide": 3,
+   "title": "Social Media Management vs. Marketing",
+   "text": "Managing social media keeps an account alive; marketing brings new people in. People use the two words as if they mean the same thing, but they don't.\n\nManaging is about showing up consistently: regular posts, quick replies and a profile that's up to date. It never really stops. Marketing is about growth: a campaign with a goal, like clicks or sign-ups, and a start and end date. Mix them up, and you judge good work by the wrong numbers."
+  },
+  {
+   "image": "004.png",
+   "slide": 3,
+   "title": "Social Media Management vs. Marketing",
+   "text": "First, before taking on any social media task, decide whether it's management or marketing. Then, use the right measure for each. Judge marketing by likes, and good work looks like failure. Finally, if a task covers both, split it into ongoing management and a separate campaign.\n\nHere's a situation to work through. At the quarterly review, Elias asks why his LinkedIn 'isn't bringing in clients' when you've posted every week. What were you measuring, and what should you measure for his question?"
+  },
+  {
+   "image": "005.png",
+   "slide": 4,
+   "title": "EA vs. PA Roles in Social Media",
+   "text": "On social media, the EA protects the brand and the PA produces the content. The two roles naturally divide.\n\nThe EA side is strategy and protection: planning what goes out on professional platforms, and spotting a PR problem early. The PA side is creation."
+  },
+  {
+   "image": "006.png",
+   "slide": 4,
+   "title": "EA vs. PA Roles in Social Media",
+   "text": "As the EA, first, run the content calendar and time posts well. Next, filter messages and comments for real opportunities or urgent issues. Then, check every post against the executive's image and company policy before it goes live."
+  },
+  {
+   "image": "007.png",
+   "slide": 4,
+   "title": "EA vs. PA Roles in Social Media",
+   "text": "After that, as the PA, create the content: capture real moments and edit them with tools like Canva. Finally, keep profiles and links current and reply to personal comments.\n\nTake a second with this one. A local newspaper criticizes the firm, and on the same day, Elias wins an award. Who handles each, the EA or the PA, and what goes out first?"
+  },
+  {
+   "image": "008.png",
+   "slide": 5,
+   "title": "Personal vs. Firm Brand Account Separation",
+   "text": "Decide who owns each social media account before anyone leaves the firm, not after. Who controls the login matters. If an executive leaves and nobody agreed whether the account belonged to them or the firm, you've got a real dispute.\n\nFirst, write down which accounts are personal and which belong to the firm. Next, set up access to match: a firm account should have firm-controlled access. Finally, give each its own voice. Personal ones can show more personality; firm ones stay closer to the firm's voice.\n\nThink about this one. A junior associate posts an office photo on his personal account, and a draft contract is visible on his screen. It's his account. Is it the firm's business? What happens next?"
+  },
+  {
+   "image": "009.png",
+   "slide": 6,
+   "title": "Brand Voice & Style",
+   "text": "Section 2 of 7: Brand Voice and Style. We'll build an executive's personal brand style guide, pin down the brand voice, and keep the visual brand consistent."
+  },
+  {
+   "image": "010.png",
+   "slide": 7,
+   "title": "The Executive Personal Brand Style Guide",
+   "text": "An executive's online voice has to be written down, or every new writer will guess it differently.\n\nA style guide writes down five things. The first is the north star: the main goal, and the three subjects the executive is the expert on."
+  },
+  {
+   "image": "011.png",
+   "slide": 7,
+   "title": "The Executive Personal Brand Style Guide",
+   "text": "Then, the voice: first person or third, emojis or not. And the 'never' list: topics and words that are off limits."
+  },
+  {
+   "image": "012.png",
+   "slide": 7,
+   "title": "The Executive Personal Brand Style Guide",
+   "text": "Next, how to engage: who gets a reply, and what to do about trolls. And the look: mostly natural photos, with a few polished ones."
+  },
+  {
+   "image": "013.png",
+   "slide": 7,
+   "title": "The Executive Personal Brand Style Guide",
+   "text": "To build one, first, define the north star. Next, write down the voice and tone rules. Then, make the 'never' list specific: topics, buzzwords and formatting rules."
+  },
+  {
+   "image": "014.png",
+   "slide": 7,
+   "title": "The Executive Personal Brand Style Guide",
+   "text": "After that, set the engagement rules, including what needs approval. Finally, agree the visual standard, so photos look consistent whoever picks them.\n\nHere's a situation to work through. A new contractor writes a post for Elias criticizing a judge's recent ruling. It's clever and would get attention, and nothing in the guide says it's banned. What should the guide have said?"
+  },
+  {
+   "image": "015.png",
+   "slide": 8,
+   "title": "Content Pillars & Finding the Brand Voice",
+   "text": "A useful way to pin down a voice is to place it on four scales: funny or serious, formal or casual, calm or enthusiastic, and rebellious or respectful.\n\nOnce we've chosen a point on each, that's where the voice stays, whoever is writing. If it drifts, the audience notices, even if they can't say why."
+  },
+  {
+   "image": "016.png",
+   "slide": 8,
+   "title": "Content Pillars & Finding the Brand Voice",
+   "text": "First, apply 'this, not that' boundaries: confident, not sarcastic; witty, not arrogant; accessible, not simplistic; bold, not aggressive. Next, check new posts against your positions on the scales, not just gut feel. Then, if the voice wobbles, work out which scale it's drifting on. Because a voice that changes every few days makes people unfollow.\n\nTake a second with this one. A post in Elias's voice gets strong engagement, but a partner calls it 'too casual for a lawyer.' How do you decide whether it's on-voice, and what do you check it against?"
+  },
+  {
+   "image": "017.png",
+   "slide": 9,
+   "title": "Defining and Maintaining Brand Voice, Tone & Messaging",
+   "text": "Let's compare Elias's real voice with a generic one. His gets straight to the point, backs up claims with specifics and doesn't jump on every trend.\n\nThe generic version hedges with 'we believe', leans on buzzwords like 'innovative' and chases whatever format is trending this week. Side by side, it's obvious which one sounds worth listening to."
+  },
+  {
+   "image": "018.png",
+   "slide": 9,
+   "title": "Defining and Maintaining Brand Voice, Tone & Messaging",
+   "text": "So, first, lead with the actual point, not a warm-up. Next, back every claim with a specific detail, not an adjective like 'amazing'. Then, don't chase trends just to stay visible."
+  },
+  {
+   "image": "019.png",
+   "slide": 9,
+   "title": "Defining and Maintaining Brand Voice, Tone & Messaging",
+   "text": "After that, find hedging phrases in drafts and rewrite them as direct statements. Finally, compare any draft with a real example of his voice before publishing.\n\nHere's a situation to work through. The firm lost a big case in the news this week, and Elias's next scheduled post is a celebratory team photo. Same voice, but what tone now? Do you still post it?"
+  },
+  {
+   "image": "020.png",
+   "slide": 10,
+   "title": "Making a Voice Guide Actually Stick",
+   "text": "A style guide stops being followed within a month unless someone is named to check drafts against it.\n\nAnd adjectives like 'confident' mean nothing to a new writer. Real example sentences, showing what confident looks like and what it doesn't, are what actually teach the voice."
+  },
+  {
+   "image": "021.png",
+   "slide": 10,
+   "title": "Making a Voice Guide Actually Stick",
+   "text": "First, fill the guide with 'this, not that' example sentences. Next, add messaging rules: the claims and descriptions that must always stay the same. Then, check new writers' first few drafts closely. Finally, update the guide when a good new pattern appears.\n\nHere's a situation to work through. The firm's description changes from post to post: 'boutique litigation firm,' 'full-service firm,' 'employment specialists.' What messaging rule fixes this, and who decides the wording?"
+  },
+  {
+   "image": "022.png",
+   "slide": 11,
+   "title": "Visual Brand Assets — Sample Color Palette",
+   "text": "A strong palette usually has just four colors, each with one job.\n\nA main color that carries the brand, like a deep navy for authority. An accent, like a warm gold, used sparingly to draw the eye. A text color, like charcoal. And a calm background, like warm ivory, that never competes with the rest."
+  },
+  {
+   "image": "023.png",
+   "slide": 11,
+   "title": "Visual Brand Assets — Sample Color Palette",
+   "text": "First, hold it to those four roles, and keep the accent for highlights and calls to action. Then, apply the palette to everything, not just the pieces one person designs."
+  },
+  {
+   "image": "024.png",
+   "slide": 11,
+   "title": "Visual Brand Assets — Sample Color Palette",
+   "text": "Finally, when you look at any brand, check it against these four roles.\n\nHere's a situation to work through. The firm's logo is slightly different blues on the website, the business cards and the email signature. What's missing, and how do you fix it everywhere?"
+  },
+  {
+   "image": "025.png",
+   "slide": 12,
+   "title": "Brand Consistency: Palette, Typography & Imagery",
+   "text": "Restraint is what makes a brand look deliberate instead of random. The same rule applies to colors, fonts and images: choose a few, decide the rules in advance and stick to them.\n\nFirst, keep the four-color discipline and resist a 'just in case' fifth color. Next, pick one heading font and one body font, and use them everywhere. Then, set clear image rules, like no cheesy stock photos."
+  },
+  {
+   "image": "026.png",
+   "slide": 12,
+   "title": "Brand Consistency: Palette, Typography & Imagery",
+   "text": "After that, review recent content now and then for drift. Mixing fonts and colors across posts is one of the fastest ways to make a brand look unmanaged.\n\nTake a second with this one. Three recent posts for the firm used three different fonts and a stock photo of a gavel. What three rules would you add to stop it happening again?"
+  },
+  {
+   "image": "027.png",
+   "slide": 13,
+   "title": "Platforms & Publishing",
+   "text": "Section 3 of 7: Platforms and Publishing. We'll cover platform-specific best practices, the content calendar and publishing workflow, and video and accessibility basics."
+  },
+  {
+   "image": "028.png",
+   "slide": 14,
+   "title": "Platform Proficiencies — Tool-Specific Best Practices",
+   "text": "Being 'good at social media' is really several separate skills.\n\nEach social platform has its own format, so pasting the same text everywhere rarely works. Website tools, like WordPress or Squarespace, need enough confidence to update a page without breaking it. And newsletter tools, like Mailchimp, need us to split lists sensibly and read the results."
+  },
+  {
+   "image": "029.png",
+   "slide": 14,
+   "title": "Platform Proficiencies — Tool-Specific Best Practices",
+   "text": "So, first, adapt content to each platform. Next, learn the firm's website tool well enough to make simple updates safely. Then, learn the newsletter tool's basics: segments, send times and reports."
+  },
+  {
+   "image": "030.png",
+   "slide": 14,
+   "title": "Platform Proficiencies — Tool-Specific Best Practices",
+   "text": "After that, don't assume skill on one platform carries over to another. Finally, walk through any new tool's publishing steps before using it live.\n\nTake a second with this one. The firm's newsletter goes to 1,800 people, but only 9 percent open it. What would you look at in the newsletter tool, and what's one change you'd test first?"
+  },
+  {
+   "image": "031.png",
+   "slide": 15,
+   "title": "Platform Details & the One Rule That Applies to All Three",
+   "text": "Each platform rewards something different. LinkedIn rewards a clear point in the first two lines. Instagram rewards strong visuals, with the caption in a supporting role. X rewards short and timely.\n\nBut one rule applies everywhere: test in draft or preview first. A typo in a draft is invisible; a typo sent to a real list isn't."
+  },
+  {
+   "image": "032.png",
+   "slide": 15,
+   "title": "Platform Details & the One Rule That Applies to All Three",
+   "text": "On the website, make routine updates through the visual editor.\n\nHere's a situation to work through. You're sending the monthly client newsletter, and the preview shows an old event date in the footer. The send is scheduled for 10 minutes' time. What do you do, in order?"
+  },
+  {
+   "image": "033.png",
+   "slide": 16,
+   "title": "The Content Calendar & Publishing Workflow",
+   "text": "Posting every day on the fly is exhausting, and it shows. A calmer way is to plan a month at a time, with each week given one job.\n\nFirst, week one is ideas: brainstorm 12 to 15 from the content pillars. Next, week two is creation: film and design everything in one or two focused days. Then, week three is polish: draft a few caption versions and pick the best fit for the voice. Finally, week four is scheduling: load everything into the publishing tool.\n\nHere's a situation to work through. Elias is in trial for two weeks and can't review anything, and ten posts on the calendar need his sign-off. What should have happened a week earlier, and what do you do now?"
+  },
+  {
+   "image": "034.png",
+   "slide": 17,
+   "title": "Video Content Basics for Executive Presence",
+   "text": "Video shows an executive's real presence, including tone, pace and body language. That's a big opportunity and a real risk. And a short video with one clear point beats a polished one that rambles.\n\nFirst, before recording, agree the single point the video needs to make. Next, check the background and the sound. Anything visible in the frame is public. Finally, keep social videos short, about 60 to 90 seconds.\n\nHere's a situation to work through. A video goes live, and a viewer comments that Elias's phone screen, visible for two seconds, shows a client's text message. What do you do immediately, and who do you tell?"
+  },
+  {
+   "image": "035.png",
+   "slide": 18,
+   "title": "Accessibility in Digital Content",
+   "text": "Alt text on images, captions on videos and readable color contrast aren't nice extras. They decide whether a real share of your audience can use the content at all. They cost almost nothing built in from the start, and a lot when you go back and fix a year of posts.\n\nFirst, write alt text for every image: what's actually shown and why it matters. Next, caption every video, and don't rely on automatic captions without checking. Finally, check color contrast on graphics and text over images.\n\nTake a second with this one. Elias's automatic captions turn 'arbitration' into 'our bitter nation,' and the video's already had 300 views. What do you do, and what step goes into the approval process?"
+  },
+  {
+   "image": "036.png",
+   "slide": 19,
+   "title": "Content, SEO & Copy",
+   "text": "Section 4 of 7: Content, SEO and Copy. We'll look at audience psychology and pain points, SEO, GEO and funneling, and the difference between copywriting and blog writing."
+  },
+  {
+   "image": "037.png",
+   "slide": 20,
+   "title": "Audience Psychology & Pain Points",
+   "text": "Good content names a real worry your audience has and answers it honestly.\n\nThere are four to know. Money worries, like hidden fees. Information overload. Burnout. And trust worries, the fear that what you're seeing is staged."
+  },
+  {
+   "image": "038.png",
+   "slide": 20,
+   "title": "Audience Psychology & Pain Points",
+   "text": "First, for money worries, be openly transparent. Next, for information overload, be the one who answers a single question quickly. Then, for burnout, talk about sustainable progress, not hustle."
+  },
+  {
+   "image": "039.png",
+   "slide": 20,
+   "title": "Audience Psychology & Pain Points",
+   "text": "After that, for trust worries, show the real process behind the scenes, not staged content. Finally, use persuasion techniques ethically and sparingly.\n\nHere's a situation to work through. A partner wants a post that says 'Hundreds of businesses trust us, so should you!' with a stock photo. What makes this weak, and what real proof could you use instead?"
+  },
+  {
+   "image": "040.png",
+   "slide": 21,
+   "title": "SEO, GEO & Funneling for Executives",
+   "text": "There are three ways people find an executive online. Search engines, where SEO helps them show up. And AI tools, where GEO helps them get recommended when someone asks a relevant question."
+  },
+  {
+   "image": "041.png",
+   "slide": 21,
+   "title": "SEO, GEO & Funneling for Executives",
+   "text": "The third is the funnel, which moves someone from first hearing about them, to being interested, to actually getting in touch. A simple monthly scorecard shows whether it's all working."
+  },
+  {
+   "image": "042.png",
+   "slide": 21,
+   "title": "SEO, GEO & Funneling for Executives",
+   "text": "First, for search, use the natural phrases the audience actually types, and earn links from podcasts and guest articles. Next, for AI tools, structure content so they can quote it. Then, for the funnel, match content to the stage: social posts for awareness, newsletters for interest and a booking link for action."
+  },
+  {
+   "image": "043.png",
+   "slide": 21,
+   "title": "SEO, GEO & Funneling for Executives",
+   "text": "After that, track the monthly scorecard. Finally, search the executive's name privately every month.\n\nHere's a situation to work through. Elias's LinkedIn posts reach lots of people, but nobody books a consultation. Which stage of the funnel is missing, and what would you add?"
+  },
+  {
+   "image": "044.png",
+   "slide": 22,
+   "title": "GEO Tactics & Consistency",
+   "text": "To be recommended by AI tools, the executive's bio needs to read exactly the same everywhere. AI assistants favor clear, well-structured, factual content from sources that agree with each other. Even small differences between bios lower that trust.\n\nFirst, add structured data where the platform allows it, so machines can read the content. Next, write clear question-and-answer content for common questions. Then, keep bio wording identical on LinkedIn, the website and speaker pages."
+  },
+  {
+   "image": "045.png",
+   "slide": 22,
+   "title": "GEO Tactics & Consistency",
+   "text": "After that, check those bios regularly for drift, and make sure every new profile uses the same wording.\n\nHere's a situation to work through. An AI assistant describes Elias as a 'criminal defense lawyer.' He's never practiced criminal law. What do you do about it, and which sources would you check?"
+  },
+  {
+   "image": "046.png",
+   "slide": 23,
+   "title": "Copywriting vs. Blog Writing",
+   "text": "Copywriting closes the sale; blog writing educates and builds trust.\n\nCopy is short and built to get someone to act: grab attention, spark interest, build desire, then ask for action. A blog is longer and built to teach and to be found in search: a hook in the headline, a direct answer early on, and sections that are easy to skim."
+  },
+  {
+   "image": "047.png",
+   "slide": 23,
+   "title": "Copywriting vs. Blog Writing",
+   "text": "First, for copy, know the exact action you want. Next, write calls to action with strong verbs and real urgency, not 'click here'. Then, for blogs, open with the hook and the direct answer, and use clear headings."
+  },
+  {
+   "image": "048.png",
+   "slide": 23,
+   "title": "Copywriting vs. Blog Writing",
+   "text": "After that, add something first-hand, like a real example or unique data point. Finally, choose the format that fits the goal.\n\nHere's a situation to work through. Your blog post on 'how to prepare for a deposition' says exactly what the top five search results already say. What could you add from Elias's real experience to make it worth reading?"
+  },
+  {
+   "image": "049.png",
+   "slide": 24,
+   "title": "Metrics & Monitoring",
+   "text": "Section 5 of 7: Metrics and Monitoring. We'll read engagement rate and its benchmarks, work the basic campaign math, and set up social listening."
+  },
+  {
+   "image": "050.png",
+   "slide": 25,
+   "title": "Reading the Numbers — Engagement Rate",
+   "text": "Engagement rate tells you how much people actually cared, not just how many saw it.\n\nLikes on their own can be misleading, because a big account will always get more than a small one. Engagement rate lets us compare a small account fairly with a big one, or this month's post with last month's."
+  },
+  {
+   "image": "051.png",
+   "slide": 25,
+   "title": "Reading the Numbers — Engagement Rate",
+   "text": "Here's how. First, add up the likes, comments and shares. Next, divide by the number of followers and multiply by 100. Then, compare posts by rate, not by raw likes."
+  },
+  {
+   "image": "052.png",
+   "slide": 25,
+   "title": "Reading the Numbers — Engagement Rate",
+   "text": "After that, recalculate regularly. Finally, check your number against the platform's own figures.\n\nTake a second with this one. A post got 85 likes, 22 comments and 6 shares, and the account has 2,500 followers. What's the engagement rate, and is it good if the usual rate is 3 percent?"
+  },
+  {
+   "image": "053.png",
+   "slide": 26,
+   "title": "Quick Check",
+   "text": "Quick check. A post gets 200 likes, 20 comments and 30 shares on an account with 5,000 followers. What's the engagement rate? Is it A, 50 percent, B, 5 percent, C, 2 percent, or D, 10 percent?\n\nTake a second.\n\nThe answer is B, 5 percent. Two hundred plus twenty plus thirty is 250. Divide by 5,000 and multiply by 100, and you get 5 percent."
+  },
+  {
+   "image": "054.png",
+   "slide": 27,
+   "title": "Engagement Rate Benchmarks & Interpretation",
+   "text": "A small account with a high engagement rate can outperform a big one with a low rate.\n\nFirst, compare engagement rates, not follower or like counts. Next, on LinkedIn, 2 to 5 percent is healthy, and above 7 percent means a post is really taking off in its niche. Then, read reach and engagement together. High reach with low engagement means the hook or the audience is off."
+  },
+  {
+   "image": "055.png",
+   "slide": 27,
+   "title": "Engagement Rate Benchmarks & Interpretation",
+   "text": "After that, treat low reach with high engagement as a good sign: a small, loyal audience. Finally, revisit the benchmarks, because platforms keep changing.\n\nTake a second with this one. Elias's post reached 15,000 people at 0.4 percent engagement. A smaller post reached 900 people at 8 percent. Which one tells you more about his audience, and what would you do next?"
+  },
+  {
+   "image": "056.png",
+   "slide": 28,
+   "title": "Basic Campaign Math",
+   "text": "Before calling a campaign a success, work out what each lead cost and what it earned back.\n\nTwo simple sums tell us whether a campaign worked: cost per lead and return on investment. Why both? Because a huge number of leads can hide a campaign that actually lost money."
+  },
+  {
+   "image": "057.png",
+   "slide": 28,
+   "title": "Basic Campaign Math",
+   "text": "First, work out cost per lead: total spend divided by the number of leads. Next, work out return on investment: revenue minus spend, divided by spend, times 100. Then, look at both together."
+  },
+  {
+   "image": "058.png",
+   "slide": 28,
+   "title": "Basic Campaign Math",
+   "text": "After that, compare them with the campaign's goals, and track them across campaigns over time.\n\nHere's a situation to work through. A $3,000 campaign's 150 leads turned into 2 clients worth $1,000 each. What's the cost per lead and the return? What would you tell Elias about running it again?"
+  },
+  {
+   "image": "059.png",
+   "slide": 29,
+   "title": "Quick Check",
+   "text": "Quick check. A campaign spends $300 and generates 30 leads. What's the cost per lead? Is it A, $10, B, $30, C, $300, or D, $3?\n\nTake a second.\n\nThe answer is A, $10. $300 divided by 30 leads is $10 per lead."
+  },
+  {
+   "image": "060.png",
+   "slide": 30,
+   "title": "Social Listening & Monitoring",
+   "text": "Most of what people say about the firm online never tags the firm. Social listening means actively tracking those conversations across platforms, not just reading your own notifications. Catch something early, and you have far more options.\n\nFirst, set up alerts or regular checks for the executive's and firm's names on the platforms that matter. Next, separate routine mentions from ones that need attention. Most need nothing. Finally, log recurring themes, not just single mentions.\n\nHere's a situation to work through. Over three weeks, five different people post complaints about slow replies from the firm. None are dramatic. What do you do with the pattern, and who do you tell?"
+  },
+  {
+   "image": "061.png",
+   "slide": 31,
+   "title": "Risk & Compliance",
+   "text": "Section 6 of 7: Risk and Compliance. We'll cover crisis response on social media, copyright and image rights, and the disclosure and legal advertising rules."
+  },
+  {
+   "image": "062.png",
+   "slide": 32,
+   "title": "Crisis Response on Social Media",
+   "text": "A pile-on moves fast; you often have hours, not days. The instinct to delete or ignore is usually wrong, because a calm, visible response reads better than silence. But not every negative comment deserves a public reply.\n\nFirst, assess before reacting: a real complaint, a misunderstanding or bad faith? Next, reply publicly with a short, calm acknowledgment, and move the details to a private channel. Finally, bring in the executive or the right decision-maker for anything beyond routine.\n\nHere's a situation to work through. Your colleague has already replied to a complaint with 'This is completely false and you know it.' It's getting shared. What happens next, and who do you bring in?"
+  },
+  {
+   "image": "063.png",
+   "slide": 33,
+   "title": "Copyright, Image Rights & Permissions",
+   "text": "One borrowed photo can bring a legal claim, and for a law firm that's an especially bad look.\n\nAlmost everything online is protected by copyright, and being able to download it doesn't mean the firm can post it. We use content the firm owns, content with a license that covers our use, or content we have written permission for. People in photos need to agree to appear in promotion. And for clients, that has to be in writing, because even showing that someone is a client can breach confidentiality."
+  },
+  {
+   "image": "064.png",
+   "slide": 33,
+   "title": "Copyright, Image Rights & Permissions",
+   "text": "First, we source images from the firm's library, licensed stock or our own photographer, and check the license terms. Next, we keep a record for each image: source, license, date and any required credit. Then we get signed photo releases from staff and guests."
+  },
+  {
+   "image": "065.png",
+   "slide": 33,
+   "title": "Copyright, Image Rights & Permissions",
+   "text": "After that, we use licensed music for videos. Finally, we share others' posts with the share button or with permission, never by re-uploading.\n\nHere's a situation to work through. A partner wants to post a great photo from last night's charity dinner: Elias with two clients and a local news anchor, taken by a guest who emailed it over. What do you need before it goes up?"
+  },
+  {
+   "image": "066.png",
+   "slide": 34,
+   "title": "Endorsement & Disclosure Rules",
+   "text": "When a partner, employee or influencer promotes the firm because of a relationship or a perk, disclosure rules can apply, like the US FTC's endorsement guidelines. People should be able to tell when a post exists because of a deal, not just genuine enthusiasm. And because the details change, confirm with firm policy or counsel.\n\nFirst, before agreeing any paid or reciprocal arrangement, confirm what disclosure is needed and where it has to appear. Next, keep records of every such relationship. Finally, when partners post about the firm, check the disclosure is really there and easy to see.\n\nHere's a situation to work through. A partner's friend posts 'Best lawyers in town!' about the firm. You later learn the partner asked him to, in exchange for a dinner. Is that a problem? What do you do?"
+  },
+  {
+   "image": "067.png",
+   "slide": 35,
+   "title": "Legal Advertising & UPL Rules",
+   "text": "A law firm's social media is regulated advertising, not ordinary marketing. Most places have professional rules for how lawyers advertise, including online. And general education is fine, but a post that reads as advice for someone's specific situation crosses into practicing law.\n\nFirst, anything on a legal topic that reads as advice for a specific person needs attorney review. Next, know the firm's local advertising rules, including any required disclaimers. Finally, when in doubt, escalate instead of publishing.\n\nHere's a situation to work through. A happy client offers a video testimonial saying 'Elias won me $500,000 and he'll win for you too.' Can the firm post it as is? What do you check first?"
+  },
+  {
+   "image": "068.png",
+   "slide": 36,
+   "title": "Capstone",
+   "text": "Section 7 of 7: Capstone. This is the final timed evaluation and the capstone checklist that close the course."
+  },
+  {
+   "image": "069.png",
+   "slide": 37,
+   "title": "Final Timed Evaluation & Capstone Checklist",
+   "text": "This closes all ten days. The capstone isn't about getting through it; it's an honest look at what's solid and what still needs work. Just like the Day 5 review, the aim is a clear, specific picture of where you stand.\n\nFirst, look at your actual results across all ten days: knowledge checks, practice labs and roleplays. Next, name the specific days or tools that still feel shaky. Finally, take the final evaluation with the same calm you've practiced all program.\n\nAnd one last thing to think about. You start with Elias next Monday. Pause the video and write your 30-day practice plan: the two skills you'll keep working on and how you'll know you've improved."
+  },
+  {
+   "image": "070.png",
+   "slide": 38,
+   "title": "Practice Lab",
+   "text": "Now it's your turn. In today's Practice Lab, the Social Media Metrics Lab, you'll calculate real engagement rates to find the top-performing post, match tone to platform, and work the campaign math on cost-per-lead and ROI."
+  }
+ ]
+}

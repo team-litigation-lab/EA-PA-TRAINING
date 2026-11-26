@@ -1,0 +1,462 @@
+{
+ "day": 8,
+ "title": "Day 8 — Access, Data Security & Crisis Management",
+ "frames": [
+  {
+   "image": "001.png",
+   "slide": 1,
+   "title": "Day 8 Agenda",
+   "text": "Welcome to Day 8: Access, Data Security and Crisis Management.\n\nWe'll start with access and credentials, then spend the biggest block of the day on data and device security. After that comes threat recognition, then incident response, and we'll finish with crisis management.\n\nBy the end of today, you'll be able to manage account access responsibly, keep data and devices secure, fix workflows before they cause a leak, recognize threats, and respond correctly to an incident or crisis."
+  },
+  {
+   "image": "002.png",
+   "slide": 2,
+   "title": "Access & Credentials",
+   "text": "Section 1 of 5: Access and Credentials. We'll cover credential management, multi-factor authentication and what to remove when someone leaves."
+  },
+  {
+   "image": "003.png",
+   "slide": 3,
+   "title": "Credential Management",
+   "text": "Give everyone the smallest level of access that lets them do their job.\n\nMost systems have three kinds of access. Admin can change everything, including who gets in. Editor can work on content but can't change permissions. Viewer can only look. The more people with admin rights, the more ways things can go wrong.\n\nFirst, give each person the lowest role their job needs. Then, review who has which role regularly, because people's jobs change."
+  },
+  {
+   "image": "004.png",
+   "slide": 3,
+   "title": "Credential Management",
+   "text": "After that, when giving new access, start narrow and widen it only if there's a real need. Finally, write down who has which role and why.\n\nHere's a situation. A paralegal moved from the Meridian team to billing three months ago. She can still edit every Meridian folder and approve time entries. What do you flag, and to whom?"
+  },
+  {
+   "image": "005.png",
+   "slide": 4,
+   "title": "Quick Check",
+   "text": "Quick check. Someone only needs to check on project status without making changes. Which role fits? Is it Viewer, no access at all, Admin, or Editor? Take a second.\n\nThe answer is Viewer. It gives visibility without the ability to alter anything: least privilege for a status-check need."
+  },
+  {
+   "image": "006.png",
+   "slide": 5,
+   "title": "Least-Privilege Access",
+   "text": "Too much access is how systems get broken by people who meant no harm.\n\nLeast privilege means everyone gets exactly what their role needs and nothing more. It isn't about distrust. It's that someone with admin rights they don't need can accidentally change something important."
+  },
+  {
+   "image": "007.png",
+   "slide": 5,
+   "title": "Least-Privilege Access",
+   "text": "First, give access based on what the role actually needs, not what might be handy someday. Next, when someone has more access than they need, flag it, even if nothing has gone wrong yet. Then, if too much access causes a problem, fix the role. Don't blame the person."
+  },
+  {
+   "image": "008.png",
+   "slide": 5,
+   "title": "Least-Privilege Access",
+   "text": "After that, review who has high-level access regularly, because it quietly builds up. Finally, remove temporary access when the project ends.\n\nTry this one. An intern had editor access to the firm's billing system to help with filing. She accidentally changed two clients' hourly rates. Elias wants to know who to blame. How do you frame your answer?"
+  },
+  {
+   "image": "009.png",
+   "slide": 6,
+   "title": "Multi-Factor Authentication Basics",
+   "text": "A password alone is one lock on the door. Multi-factor authentication adds a second one a thief can't copy: something you know, your password, plus something you have, like a code on your phone.\n\nFirst, turn it on for every account that touches anything sensitive. Next, protect email first, because email can reset the passwords for almost everything else. Then, check older accounts set up before two-step login was required. They're the usual gap."
+  },
+  {
+   "image": "010.png",
+   "slide": 6,
+   "title": "Multi-Factor Authentication Basics",
+   "text": "After that, use an authenticator app or a security key rather than text-message codes where you can. Finally, check your own accounts rather than assuming they're covered.\n\nHere's a situation to think about. While checking accounts, you find the firm's old postage-meter login and a travel booking account from 2019, both without two-step login, both still active. What do you do with each?"
+  },
+  {
+   "image": "011.png",
+   "slide": 7,
+   "title": "Password Manager Best Practices",
+   "text": "Use a different password for every account, and let a password manager remember them for you.\n\nIf you use the same password in several places, one breach anywhere becomes a breach everywhere. A password manager makes unique passwords easy, because you only have to remember one master password."
+  },
+  {
+   "image": "012.png",
+   "slide": 7,
+   "title": "Password Manager Best Practices",
+   "text": "First, let the password manager create a unique password for every account. Next, make the master password the strongest, best-protected password you have. Then, share logins through the manager's sharing feature, never by email or chat."
+  },
+  {
+   "image": "013.png",
+   "slide": 7,
+   "title": "Password Manager Best Practices",
+   "text": "After that, move any passwords sitting in documents or notes into the manager. Finally, change a password immediately if there's any sign the account has been compromised.\n\nPicture this. You find a spreadsheet called 'logins' on the shared drive with 40 passwords in plain text, including the bank portal. The office manager made it 'so nobody gets locked out.' What do you do, step by step?"
+  },
+  {
+   "image": "014.png",
+   "slide": 8,
+   "title": "Shared Account Risks",
+   "text": "When several people share one login, nobody can tell who did what.\n\nThat doesn't matter until something goes wrong. Then you need to know who made the change or placed the order, and a shared account can't tell you.\n\nFirst, prefer individual accounts with the right permissions. Next, if an account must be shared, keep a log of who used it for what. Then, when someone with access leaves, change the password and share the new one securely."
+  },
+  {
+   "image": "015.png",
+   "slide": 8,
+   "title": "Shared Account Risks",
+   "text": "After that, ask whether the shared account could be replaced with individual ones. It usually can. Finally, treat any shared account as a risk to manage, not a settled convenience.\n\nHere's a situation. The firm's social media account is shared by three staff. One of them leaves on bad terms today. What needs to happen before 5 p.m., and who needs the new password?"
+  },
+  {
+   "image": "016.png",
+   "slide": 9,
+   "title": "Offboarding Access Removal Checklist",
+   "text": "When someone leaves, every system they could get into needs to be closed off.\n\nIt's easy to remember email and forget the smaller things: the courier account, the shared calendar, the door code. That's why a written checklist beats memory.\n\nFirst, keep a written list of every system, account and shared login someone might have. Then, remove access on the actual leaving date, not 'later'."
+  },
+  {
+   "image": "017.png",
+   "slide": 9,
+   "title": "Offboarding Access Removal Checklist",
+   "text": "After that, change any shared passwords they knew. Finally, add each new system to the list as soon as the firm starts using it.\n\nTry this one. A part-time bookkeeper finishes her contract at the end of the month. She has the bank portal, QuickBooks, the office alarm code and a key. Put these in order for her last day."
+  },
+  {
+   "image": "018.png",
+   "slide": 10,
+   "title": "Data & Device Security",
+   "text": "Section 2 of 5: Data and Device Security. We'll cover how to classify and share information safely, redaction done right, and litigation holds, when nothing can be deleted."
+  },
+  {
+   "image": "019.png",
+   "slide": 11,
+   "title": "The Golden Rules of Admin Data Security",
+   "text": "An AI tool is a third party, so treat it like a stranger when it comes to private information.\n\nThe first rule is a setting. Many AI tools can use what we type to train future versions, so before any real work goes in, we switch that off. After that, it's judgment. The firm's duty of confidentiality applies to AI tools exactly as it applies to a conversation in the hallway.\n\nSo never put in financial data, health information, social security numbers or passwords. And replace real names and details with placeholders, like 'Company X'."
+  },
+  {
+   "image": "020.png",
+   "slide": 11,
+   "title": "The Golden Rules of Admin Data Security",
+   "text": "Finally, if you're not sure, treat it as unsafe and find another way.\n\nPause the video and clean this one up: a termination email naming the employee, their salary, their medical leave and the client they worked for. What do you remove or replace before asking an AI tool to improve the wording?"
+  },
+  {
+   "image": "021.png",
+   "slide": 12,
+   "title": "Classifying Information by Sensitivity Level",
+   "text": "Not everything needs the same protection.\n\nThink of information in three levels. Public: fine for anyone to see, like a press release. Internal: not secret, but not meant for outsiders, like staff memos. And confidential or privileged: things that would cause real legal or reputational harm if they leaked, like case details, client messages and finances."
+  },
+  {
+   "image": "022.png",
+   "slide": 12,
+   "title": "Classifying Information by Sensitivity Level",
+   "text": "First, before sharing anything, decide which level it is. Next, treat public information as shareable, once you've confirmed it's really meant for outsiders. Then, keep internal information inside the firm."
+  },
+  {
+   "image": "023.png",
+   "slide": 12,
+   "title": "Classifying Information by Sensitivity Level",
+   "text": "After that, handle confidential and privileged information with real care every time. Finally, when unsure, go one level higher.\n\nTry classifying these: the firm's office address, Elias's travel itinerary, a draft motion in the Harlow matter, the holiday party date and a client's settlement amount."
+  },
+  {
+   "image": "024.png",
+   "slide": 13,
+   "title": "Secure File Sharing Methods",
+   "text": "Share sensitive files through a controlled link, not as an email attachment.\n\nOnce you attach a file to an email, you lose control of it. It can be forwarded anywhere, forever. A secure sharing link lets you choose who can open it, set an expiry date and switch it off later.\n\nIf you password-protect a file, send the password by a different route, never in the same email."
+  },
+  {
+   "image": "025.png",
+   "slide": 13,
+   "title": "Secure File Sharing Methods",
+   "text": "After that, switch off the link when it's no longer needed. Finally, only share with people who genuinely need the file.\n\nHere's a situation to think about. Opposing counsel needs two gigabytes of Meridian exhibits by tomorrow, and a colleague suggests a free file-transfer site. What do you use instead, and what settings do you choose?"
+  },
+  {
+   "image": "026.png",
+   "slide": 14,
+   "title": "Email Encryption Basics",
+   "text": "Ordinary email isn't built for secrets, so privileged content deserves the encrypted option. Encryption protects the message on the way and while it's stored. And many firms already have one that nobody uses, simply because people don't know it's there.\n\nSo decide whether the message contains genuinely sensitive or privileged content."
+  },
+  {
+   "image": "027.png",
+   "slide": 14,
+   "title": "Email Encryption Basics",
+   "text": "After that, remember that encryption is an extra layer, not a replacement for judgment. Finally, when unsure, encrypt.\n\nPicture this. You sent an encrypted email with a client's medical records, but you typed the wrong client's address. Did encryption protect you? What do you do now?"
+  },
+  {
+   "image": "028.png",
+   "slide": 15,
+   "title": "Metadata Risks in Shared Documents",
+   "text": "A document can look clean on screen and still carry a hidden layer: tracked changes, comments, author names and earlier versions. Sent to the wrong party, that hidden layer can reveal exactly what you didn't mean to share, like an internal note about how far the client will go.\n\nFirst, before sending a document outside the firm, check for hidden history. Next, clean it properly: remove tracked changes, comments and hidden text."
+  },
+  {
+   "image": "029.png",
+   "slide": 15,
+   "title": "Metadata Risks in Shared Documents",
+   "text": "After that, make 'save a clean version' a standard step before external sharing. Finally, check the clean version really is clean before you send it.\n\nHere's a situation. You send opposing counsel a 'final' settlement letter. Their reply quotes a tracked-changes comment from Elias saying 'we could go to $400,000 if pushed.' What went wrong, and what's the fix for next time?"
+  },
+  {
+   "image": "030.png",
+   "slide": 16,
+   "title": "Redaction Done Right",
+   "text": "Redaction means permanently removing information before a document is shared or filed. A black box drawn on top, or black highlighting, only covers the words. They're still underneath, and anyone can copy them out. Real redaction uses a tool that deletes the text, like the Redact feature in Adobe Acrobat.\n\nSome redactions are required: in federal court filings, you show only the last four digits of Social Security and account numbers, only the year of a birth date, and only a child's initials. The attorney decides what else comes out."
+  },
+  {
+   "image": "031.png",
+   "slide": 16,
+   "title": "Redaction Done Right",
+   "text": "First, we work on a copy and keep the original safely stored. Next, we mark each redaction with the proper tool, then apply it. That's a separate step. Then we remove hidden information: metadata, comments and old versions. After that, we test: search for a redacted word and try copying the black area. Nothing should come through. Finally, we save it as a new file marked REDACTED and have the attorney check it.\n\nTry this one. You need to file a client's bank statement as an exhibit. It shows the full account number, the client's date of birth and their child's full name. What do you redact, how do you do it and how do you prove it worked?"
+  },
+  {
+   "image": "032.png",
+   "slide": 17,
+   "title": "Device Security Fundamentals",
+   "text": "An unlocked device, even for a minute, is an open door.\n\nDevice security is mostly habits. Lock the screen before you step away. And make sure devices are encrypted, so a lost laptop is only a lost piece of hardware, not a data breach.\n\nFirst, treat personal devices with work email as work devices."
+  },
+  {
+   "image": "033.png",
+   "slide": 17,
+   "title": "Device Security Fundamentals",
+   "text": "Next, install security updates promptly. Finally, set up remote wipe where you can.\n\nHere's a situation to think about. A partner's personal tablet, with firm email on it, is stolen from his car. He doesn't know if it was encrypted. Who needs to know, and what actions happen in the first hour?"
+  },
+  {
+   "image": "034.png",
+   "slide": 18,
+   "title": "Physical Security Basics",
+   "text": "Someone walking up to an unlocked laptop has as much access as a hacker.\n\nAll the digital security in the world doesn't help if a laptop is left open in a café or a filing cabinet is left unlocked overnight. Physical access is still access.\n\nFirst, report a lost badge, key or access card straight away."
+  },
+  {
+   "image": "035.png",
+   "slide": 18,
+   "title": "Physical Security Basics",
+   "text": "Next, keep visitors and vendors to a clear, limited area. Finally, check your own desk now and then for anything sensitive on show.\n\nTake a second with this one. You realize your office badge wasn't in your bag this morning, and you last had it at a coffee shop. It's probably just misplaced. What do you do, and when?"
+  },
+  {
+   "image": "036.png",
+   "slide": 19,
+   "title": "Clean Desk Policy",
+   "text": "A document left on a desk or in the printer tray is a leak waiting to happen.\n\nA clean desk policy closes an easy-to-miss gap: sensitive papers left out between tasks, pages sitting in the printer and screens left unlocked. So put sensitive documents away, check the printer tray, and lock your screen every time you step away."
+  },
+  {
+   "image": "037.png",
+   "slide": 19,
+   "title": "Clean Desk Policy",
+   "text": "After that, apply the same habits at home if you work remotely. Finally, do a quick check of your desk at the end of each day.\n\nPicture this. You print a confidential memo on the shared printer, get pulled into a call and forget it. An hour later, it's gone. What do you do, and what could you change about how you print?"
+  },
+  {
+   "image": "038.png",
+   "slide": 20,
+   "title": "Secure Disposal of Sensitive Documents",
+   "text": "The recycling bin isn't disposal; shredding is.\n\nA sensitive document in the trash can still be read by anyone who finds it. And deleting a file on a computer doesn't always remove it for good. Real disposal means shredding paper and securely deleting files, and making it a regular habit, daily or weekly."
+  },
+  {
+   "image": "039.png",
+   "slide": 20,
+   "title": "Secure Disposal of Sensitive Documents",
+   "text": "Make sure a shredder or secure bin is actually within reach. And apply the same care to drafts and working copies.\n\nHere's a situation. The office puts all paper, including draft contracts, in a blue recycling bin collected by an outside company every week. Is that disposal? What would you propose?"
+  },
+  {
+   "image": "040.png",
+   "slide": 21,
+   "title": "Litigation Holds: When Nothing Can Be Deleted",
+   "text": "When a lawsuit is reasonably expected, not only once it's filed, everyone involved has to keep every relevant record. The written instruction to do that is a litigation hold, or legal hold. It covers everything: emails, texts, chats, drafts, calendars, voicemails and paper.\n\nLosing held information, even through an automatic delete setting, is called spoliation, and courts can punish it with fines or by telling the jury to assume the lost evidence was bad for that side."
+  },
+  {
+   "image": "041.png",
+   "slide": 21,
+   "title": "Litigation Holds: When Nothing Can Be Deleted",
+   "text": "First, when the attorney issues a hold notice, we send it to everyone named and track their written confirmations. Next, we ask IT to pause automatic deletion for the people and systems covered. Then we stop routine shredding for anything covered, and label those files."
+  },
+  {
+   "image": "042.png",
+   "slide": 21,
+   "title": "Litigation Holds: When Nothing Can Be Deleted",
+   "text": "After that, we keep a log: start date, recipients, what's preserved and reminders. Finally, the hold stays until the attorney releases it in writing.\n\nTry this one. Harlow Industries receives a letter threatening a lawsuit. The same week, the office manager starts the annual shred of old files, and a departing employee's laptop is due to be wiped on Friday. What do you do, and who do you tell?"
+  },
+  {
+   "image": "043.png",
+   "slide": 22,
+   "title": "Fixing a Broken Workflow",
+   "text": "When a task lives across email, a spreadsheet and someone's notes, work gets duplicated, even by careful people. If nobody can tell you where something stands without checking three places, the workflow is broken.\n\nFirst, find a workflow that's split across disconnected tools. Next, bring it into one tracked system. Then, name which steps stay manual, so each one is a choice."
+  },
+  {
+   "image": "044.png",
+   "slide": 22,
+   "title": "Fixing a Broken Workflow",
+   "text": "After that, test the new version on a real task. Finally, check back later that it actually stopped the duplicate work.\n\nPause the video and try a redesign. Client document requests arrive by email, get logged in a spreadsheet and are tracked in someone's notes. What's the one system, and which steps stay manual?"
+  },
+  {
+   "image": "045.png",
+   "slide": 23,
+   "title": "Threat Recognition",
+   "text": "Section 3 of 5: Threat Recognition. We'll look at social engineering red flags, phishing beyond email, and how to respond to a suspicious data request."
+  },
+  {
+   "image": "046.png",
+   "slide": 24,
+   "title": "Social Engineering Red Flags",
+   "text": "Social engineering means tricking a person, rather than a computer, into handing over access or information. It usually shows up with three signs. Pressure: 'I need this right now, there's no time to check.' Borrowed authority: someone claiming to be the boss, IT or a trusted vendor. And requests that are just slightly out of the ordinary, like a new way to pay."
+  },
+  {
+   "image": "047.png",
+   "slide": 24,
+   "title": "Social Engineering Red Flags",
+   "text": "First, treat sudden urgency as a warning sign, not a reason to skip checks. Next, verify anyone claiming authority through a separate channel you already trust."
+  },
+  {
+   "image": "048.png",
+   "slide": 24,
+   "title": "Social Engineering Red Flags",
+   "text": "After that, use the same checking habit for any odd request. Finally, report attempts, even ones you didn't fall for.\n\nTake a second with this one. A caller says they're Elias's new banker and needs you to confirm his date of birth and the last four digits of his social security number 'to finish setting up his account today.' What are the red flags, and what do you say?"
+  },
+  {
+   "image": "049.png",
+   "slide": 25,
+   "title": "Phishing Recognition Beyond Email",
+   "text": "Phishing doesn't only come by email; it comes by text, phone and even calendar invites.\n\nThe tricks are the same whatever the channel. And attackers often switch to a less expected channel precisely because people have learned to be careful with email."
+  },
+  {
+   "image": "050.png",
+   "slide": 25,
+   "title": "Phishing Recognition Beyond Email",
+   "text": "First, look for the usual signs: a generic greeting, a slightly wrong sender or an unexpected link. Then, check suspicious messages through a number or address you already know, not one in the message."
+  },
+  {
+   "image": "051.png",
+   "slide": 25,
+   "title": "Phishing Recognition Beyond Email",
+   "text": "After that, treat an unexpected request through an unusual channel as more suspicious, not less. Finally, report it, so others are warned.\n\nHere's a situation to think about. A voicemail says it's the firm's bank fraud department and asks you to call back on the number given to confirm a payment. What's the right callback number, and why?"
+  },
+  {
+   "image": "052.png",
+   "slide": 26,
+   "title": "Recognizing Insider Threat Warning Signs",
+   "text": "Watch the pattern, not the person.\n\nNot every risk comes from outside. Sometimes access gets used in ways that don't fit someone's role. Usually it's not sabotage; it's a well-meaning shortcut around a security rule. Either way, it's worth noticing, and the process still needs fixing.\n\nSo look at it as a role-fit question, not a personal accusation."
+  },
+  {
+   "image": "053.png",
+   "slide": 26,
+   "title": "Recognizing Insider Threat Warning Signs",
+   "text": "Then, report it to the right person, rather than confronting the colleague or ignoring it.\n\nPicture this. A trusted long-time colleague emails client documents to his personal email 'so I can work over the weekend.' He's done it for years. Is this a problem? Who do you tell, and how?"
+  },
+  {
+   "image": "054.png",
+   "slide": 27,
+   "title": "Responding to a Suspicious Data Request",
+   "text": "When a request for data feels off, verify first, always. We follow three steps, and the order is important.\n\nFirst, verify: confirm who the sender really is before doing anything. Next, escalate: send it through the right internal channel. Finally, close the gap: fix whatever let the request reach you in the first place.\n\nHere's a situation. An email from 'Elias' arrives from his personal-looking Gmail at 7 p.m.: 'Send me the full Meridian client list now. I'm at dinner, can't call.' What do you do?"
+  },
+  {
+   "image": "055.png",
+   "slide": 28,
+   "title": "Incident Response",
+   "text": "Section 4 of 5: Incident Response. We'll cover the first 10 minutes of a security incident, containing a confidentiality leak, and who to notify and when."
+  },
+  {
+   "image": "056.png",
+   "slide": 29,
+   "title": "The First 10 Minutes of a Security Incident",
+   "text": "In a security incident, stop the damage first, then work out what happened.\n\nFirst, contain: stop further exposure by disconnecting, revoking access or pausing whatever is leaking. Next, assess: work out as precisely as you can what was exposed and to whom. Then, notify: tell whoever needs to know immediately. Don't wait for the full picture. Finally, document: write down what happened and when, as it happens.\n\nThink through your first ten minutes. You discover the firm's shared client folder has been open to anyone with the link for an unknown amount of time. What do you do?"
+  },
+  {
+   "image": "057.png",
+   "slide": 30,
+   "title": "Containing a Confidentiality Leak",
+   "text": "When confidential information leaks, stopping the spread comes before everything else.\n\nFirst, contain: stop it spreading immediately. Next, notify: tell the right roles, the ones that need to know, not just whoever's nearby. Finally, prevent: once it's contained, put a rule in place so the same leak can't happen again.\n\nTake a second with this one. You realize you emailed a settlement draft for the Harlow matter to the wrong 'Mark,' who works at another firm. What does your first hour look like?"
+  },
+  {
+   "image": "058.png",
+   "slide": 31,
+   "title": "Quick Check",
+   "text": "Quick check. Confidential documents were sent to the wrong recipient. What comes first? Is it blaming whoever sent it, waiting to see if anyone notices, drafting a new policy for next quarter, or containing the leak immediately? Take a second.\n\nIt's containing the leak immediately. Containment always comes before policy work: stop the damage, then fix the process."
+  },
+  {
+   "image": "059.png",
+   "slide": 32,
+   "title": "Who to Notify and When",
+   "text": "Know who you'd call before you ever need to call them.\n\nDifferent incidents go to different people, on different timelines, and some carry legal obligations. Working that out in the middle of a crisis wastes precious time."
+  },
+  {
+   "image": "060.png",
+   "slide": 32,
+   "title": "Who to Notify and When",
+   "text": "First, know in advance which kind of incident goes to whom: IT, a partner or outside counsel. Finally, when you're unsure who to tell, escalate to someone senior rather than deciding it doesn't matter.\n\nPause the video for this one. Nobody at the firm can say who to call if the case management system is hacked on a Sunday. Draft the one-page contact list: which incidents go to whom, with backups."
+  },
+  {
+   "image": "061.png",
+   "slide": 33,
+   "title": "Documenting an Incident as It Unfolds",
+   "text": "Write down what's happening while it's happening, because memory blurs fast.\n\nA record made at the time, of what happened, when, who was told and what was done, is far more accurate than one written days later."
+  },
+  {
+   "image": "062.png",
+   "slide": 33,
+   "title": "Documenting an Incident as It Unfolds",
+   "text": "First, use short, factual, time-stamped notes, in real time. Don't wait to write a polished summary."
+  },
+  {
+   "image": "063.png",
+   "slide": 33,
+   "title": "Documenting an Incident as It Unfolds",
+   "text": "After that, stick to facts, not blame. Finally, keep the record afterwards, for the review and any legal needs.\n\nTry this one. A week after a phishing incident, the insurer asks for a timeline. Your notes say 'Tuesday afternoon: IT called, reset passwords.' What's missing, and what would a useful note look like?"
+  },
+  {
+   "image": "064.png",
+   "slide": 34,
+   "title": "Post-Incident Review",
+   "text": "Every incident should end with one concrete change, so it doesn't happen again.\n\nA short review of what happened, what worked and what should change is what stops the same failure coming back in a new form.\n\nFirst, focus on the process and the gap, not on blaming someone. Then, use the notes you took during the incident as the facts."
+  },
+  {
+   "image": "065.png",
+   "slide": 34,
+   "title": "Post-Incident Review",
+   "text": "After that, agree one concrete change. Finally, record the lesson somewhere real, like Day 6's playbook habit.\n\nHere's a situation to think about. At the review, a partner says, 'The fix is simple: fire whoever did it.' How do you move the conversation from the person to the process?"
+  },
+  {
+   "image": "066.png",
+   "slide": 35,
+   "title": "Crisis Management",
+   "text": "Section 5 of 5: Crisis Management. We'll close with crisis communication, keeping calm under pressure, and handling the media."
+  },
+  {
+   "image": "067.png",
+   "slide": 36,
+   "title": "Crisis Communication Principles",
+   "text": "In a crisis, people need calm, factual and frequent updates, even when there isn't much to say yet.\n\nA short, honest update that says what we know and when you'll hear more calms things down.\n\nFirst, share only what's confirmed, and say so. Then, use ACT from Day 1: acknowledge what's happening, clarify what's unknown and give a time for the next update."
+  },
+  {
+   "image": "068.png",
+   "slide": 36,
+   "title": "Crisis Communication Principles",
+   "text": "After that, don't fill the silence with confident guesses. Finally, make sure each update actually reaches everyone who needs it.\n\nPause the video and try this. The firm's email is down across the office on a filing day, and IT doesn't know why yet. Write the first update to the attorneys using ACT."
+  },
+  {
+   "image": "069.png",
+   "slide": 37,
+   "title": "Maintaining Calm Under Pressure",
+   "text": "Your calm in a crisis is often the only calm in the room, and it spreads. So does panic. Visible panic from the assistant can make a bad situation worse. Staying calm is a skill you can practice, not a personality trait.\n\nFirst, pause for a few seconds before you respond. Then, remember that calm isn't the same as doing nothing. It's thinking clearly and acting on purpose."
+  },
+  {
+   "image": "070.png",
+   "slide": 37,
+   "title": "Maintaining Calm Under Pressure",
+   "text": "After that, practice a technique, like a pause, a breath count or a mental checklist, before you need it. Finally, after a stressful moment, reflect on what helped.\n\nPicture this. Elias bursts in: the judge moved the hearing to this afternoon, and the exhibit binders aren't printed. What do you say and do in your first 30 seconds?"
+  },
+  {
+   "image": "071.png",
+   "slide": 38,
+   "title": "Chain of Command During a Crisis",
+   "text": "A crisis is the worst time to work out who's allowed to decide what. Knowing the chain of command in advance, and who steps in if each person can't be reached, is what stops people freezing when speed matters most.\n\nFirst, use the same hierarchy from Day 1, rather than improvising."
+  },
+  {
+   "image": "072.png",
+   "slide": 38,
+   "title": "Chain of Command During a Crisis",
+   "text": "Next, escalate through the chain even under pressure. Don't skip steps. Finally, check your backup contacts now and then, because roles change.\n\nPicture this. A client's wire transfer is flagged as possibly fraudulent at 4:45 p.m. Elias is on a flight and the managing partner isn't answering. Who's next in the chain, and what do you do?"
+  },
+  {
+   "image": "073.png",
+   "slide": 39,
+   "title": "Business Continuity Basics",
+   "text": "Continuity planning answers one question ahead of time: if something vital disappeared tomorrow, how would we keep working?\n\nThe plan doesn't need to be fancy; a simple list of what matters, who to call and what the backup is covers most of it. It's the same plan-ahead thinking as backup vendors and the Home Binder."
+  },
+  {
+   "image": "074.png",
+   "slide": 39,
+   "title": "Business Continuity Basics",
+   "text": "First, find your own single points of failure. Finally, review the plan every so often, because the work changes.\n\nThink about this. The firm's case management system goes down for a whole day during trial week. What does the continuity plan need to say, and what should already be printed or backed up?"
+  },
+  {
+   "image": "075.png",
+   "slide": 40,
+   "title": "Crisis PR & Media Containment",
+   "text": "Media situations move faster than any other crisis. The window to shape the first response is often minutes, and the press won't wait for a slow chain.\n\nFirst, confirm who's authorized to speak publicly. Next, if it isn't you, give a safe, consistent holding statement rather than no answer or an improvised one. Finally, alert communications, legal and the executive immediately, all at once.\n\nTake a second with this one. A journalist calls you directly, bypassing the firm's usual channels, asking for comment on a sensitive matter. What do you say, and who do you contact the moment you hang up?"
+  },
+  {
+   "image": "076.png",
+   "slide": 41,
+   "title": "Practice Lab",
+   "text": "Now it's your turn. In today's lab, the Access, Incident and Firm Crisis Simulator, you'll audit who actually has too much system access, verify a caller before disclosing anything sensitive, and contain a confidentiality leak. Then you'll face a firm-level crisis: size the risk, recommend a course with its trade-offs in BLUF, and handle the client through the hard reply."
+  }
+ ]
+}
