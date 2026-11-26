@@ -1,0 +1,1451 @@
+WEBVTT
+
+00:00:01.000 --> 00:00:05.600
+Welcome to Day 8: Access, Data Security and Crisis Management.
+
+00:00:06.350 --> 00:00:10.675
+We'll start with access and credentials, then spend the biggest block of the day on
+
+00:00:10.675 --> 00:00:12.950
+data and device security.
+
+00:00:12.950 --> 00:00:16.800
+After that comes threat recognition, then incident response,
+
+00:00:16.800 --> 00:00:19.300
+and we'll finish with crisis management.
+
+00:00:20.050 --> 00:00:24.288
+By the end of today, you'll be able to manage account access responsibly,
+
+00:00:24.288 --> 00:00:29.013
+keep data and devices secure, fix workflows before they cause a leak,
+
+00:00:29.013 --> 00:00:33.550
+recognize threats, and respond correctly to an incident or crisis.
+
+00:00:35.475 --> 00:00:38.950
+Section 1 of 5: Access and Credentials.
+
+00:00:38.950 --> 00:00:43.688
+We'll cover credential management, multi-factor authentication and what to remove
+
+00:00:43.688 --> 00:00:45.150
+when someone leaves.
+
+00:00:47.075 --> 00:00:51.625
+Give everyone the smallest level of access that lets them do their job.
+
+00:00:52.475 --> 00:00:55.138
+Most systems have three kinds of access.
+
+00:00:55.138 --> 00:00:58.438
+Admin can change everything, including who gets in.
+
+00:00:58.438 --> 00:01:01.950
+Editor can work on content but can't change permissions.
+
+00:01:01.950 --> 00:01:03.475
+Viewer can only look.
+
+00:01:03.475 --> 00:01:07.575
+The more people with admin rights, the more ways things can go wrong.
+
+00:01:08.375 --> 00:01:11.638
+First, give each person the lowest role their job needs.
+
+00:01:11.638 --> 00:01:16.550
+Then, review who has which role regularly, because people's jobs change.
+
+00:01:18.500 --> 00:01:22.625
+After that, when giving new access, start narrow and widen it only if there's a real
+
+00:01:22.625 --> 00:01:23.475
+need.
+
+00:01:23.475 --> 00:01:26.975
+Finally, write down who has which role and why.
+
+00:01:27.750 --> 00:01:29.388
+Here's a situation.
+
+00:01:29.388 --> 00:01:33.663
+A paralegal moved from the Meridian team to billing three months ago.
+
+00:01:33.663 --> 00:01:37.650
+She can still edit every Meridian folder and approve time entries.
+
+00:01:37.650 --> 00:01:39.850
+What do you flag, and to whom?
+
+00:01:41.750 --> 00:01:42.462
+Quick check.
+
+00:01:42.462 --> 00:01:46.438
+Someone only needs to check on project status without making changes.
+
+00:01:46.438 --> 00:01:47.800
+Which role fits?
+
+00:01:47.800 --> 00:01:51.513
+Is it Viewer, no access at all, Admin, or Editor?
+
+00:01:51.513 --> 00:01:52.800
+Take a second.
+
+00:01:53.550 --> 00:01:55.200
+The answer is Viewer.
+
+00:01:55.200 --> 00:01:58.663
+It gives visibility without the ability to alter anything:
+
+00:01:58.663 --> 00:02:01.225
+least privilege for a status-check need.
+
+00:02:03.150 --> 00:02:07.700
+Too much access is how systems get broken by people who meant no harm.
+
+00:02:08.525 --> 00:02:13.725
+Least privilege means everyone gets exactly what their role needs and nothing more.
+
+00:02:13.725 --> 00:02:15.600
+It isn't about distrust.
+
+00:02:15.600 --> 00:02:19.725
+It's that someone with admin rights they don't need can accidentally change
+
+00:02:19.725 --> 00:02:21.250
+something important.
+
+00:02:23.200 --> 00:02:26.425
+First, give access based on what the role actually needs,
+
+00:02:26.425 --> 00:02:28.475
+not what might be handy someday.
+
+00:02:28.475 --> 00:02:31.212
+Next, when someone has more access than they need,
+
+00:02:31.212 --> 00:02:34.400
+flag it, even if nothing has gone wrong yet.
+
+00:02:34.400 --> 00:02:38.200
+Then, if too much access causes a problem, fix the role.
+
+00:02:38.200 --> 00:02:39.975
+Don't blame the person.
+
+00:02:41.900 --> 00:02:45.350
+After that, review who has high-level access regularly,
+
+00:02:45.350 --> 00:02:47.300
+because it quietly builds up.
+
+00:02:47.300 --> 00:02:51.200
+Finally, remove temporary access when the project ends.
+
+00:02:51.950 --> 00:02:53.125
+Try this one.
+
+00:02:53.125 --> 00:02:57.763
+An intern had editor access to the firm's billing system to help with filing.
+
+00:02:57.763 --> 00:03:01.088
+She accidentally changed two clients' hourly rates.
+
+00:03:01.088 --> 00:03:03.163
+Elias wants to know who to blame.
+
+00:03:03.163 --> 00:03:04.900
+How do you frame your answer?
+
+00:03:06.800 --> 00:03:09.588
+A password alone is one lock on the door.
+
+00:03:09.588 --> 00:03:14.000
+Multi-factor authentication adds a second one a thief can't copy:
+
+00:03:14.000 --> 00:03:17.200
+something you know, your password, plus something you have,
+
+00:03:17.200 --> 00:03:19.050
+like a code on your phone.
+
+00:03:19.850 --> 00:03:23.800
+First, turn it on for every account that touches anything sensitive.
+
+00:03:23.800 --> 00:03:28.425
+Next, protect email first, because email can reset the passwords for almost
+
+00:03:28.425 --> 00:03:29.850
+everything else.
+
+00:03:29.850 --> 00:03:34.638
+Then, check older accounts set up before two-step login was required.
+
+00:03:34.638 --> 00:03:36.150
+They're the usual gap.
+
+00:03:38.100 --> 00:03:42.788
+After that, use an authenticator app or a security key rather than text-message
+
+00:03:42.788 --> 00:03:44.400
+codes where you can.
+
+00:03:44.400 --> 00:03:48.500
+Finally, check your own accounts rather than assuming they're covered.
+
+00:03:49.275 --> 00:03:51.500
+Here's a situation to think about.
+
+00:03:51.500 --> 00:03:56.225
+While checking accounts, you find the firm's old postage-meter login and a travel
+
+00:03:56.225 --> 00:04:00.125
+booking account from 2019, both without two-step login,
+
+00:04:00.125 --> 00:04:01.650
+both still active.
+
+00:04:01.650 --> 00:04:03.150
+What do you do with each?
+
+00:04:05.125 --> 00:04:09.475
+Use a different password for every account, and let a password manager remember them
+
+00:04:09.475 --> 00:04:10.475
+for you.
+
+00:04:11.225 --> 00:04:14.113
+If you use the same password in several places,
+
+00:04:14.113 --> 00:04:17.238
+one breach anywhere becomes a breach everywhere.
+
+00:04:17.238 --> 00:04:20.500
+A password manager makes unique passwords easy,
+
+00:04:20.500 --> 00:04:23.850
+because you only have to remember one master password.
+
+00:04:25.800 --> 00:04:30.225
+First, let the password manager create a unique password for every account.
+
+00:04:30.225 --> 00:04:35.088
+Next, make the master password the strongest, best-protected password you have.
+
+00:04:35.088 --> 00:04:40.875
+Then, share logins through the manager's sharing feature, never by email or chat.
+
+00:04:42.800 --> 00:04:47.600
+After that, move any passwords sitting in documents or notes into the manager.
+
+00:04:47.600 --> 00:04:51.975
+Finally, change a password immediately if there's any sign the account has been
+
+00:04:51.975 --> 00:04:53.275
+compromised.
+
+00:04:54.025 --> 00:04:55.162
+Picture this.
+
+00:04:55.162 --> 00:04:59.650
+You find a spreadsheet called 'logins' on the shared drive with 40 passwords in
+
+00:04:59.650 --> 00:05:02.350
+plain text, including the bank portal.
+
+00:05:02.350 --> 00:05:06.325
+The office manager made it 'so nobody gets locked out.' What do you do,
+
+00:05:06.325 --> 00:05:07.700
+step by step?
+
+00:05:09.600 --> 00:05:13.650
+When several people share one login, nobody can tell who did what.
+
+00:05:14.400 --> 00:05:16.987
+That doesn't matter until something goes wrong.
+
+00:05:16.987 --> 00:05:20.125
+Then you need to know who made the change or placed the order,
+
+00:05:20.125 --> 00:05:22.375
+and a shared account can't tell you.
+
+00:05:23.200 --> 00:05:26.675
+First, prefer individual accounts with the right permissions.
+
+00:05:26.675 --> 00:05:31.200
+Next, if an account must be shared, keep a log of who used it for what.
+
+00:05:31.200 --> 00:05:35.900
+Then, when someone with access leaves, change the password and share the new one
+
+00:05:35.900 --> 00:05:37.100
+securely.
+
+00:05:39.025 --> 00:05:43.550
+After that, ask whether the shared account could be replaced with individual ones.
+
+00:05:43.550 --> 00:05:45.050
+It usually can.
+
+00:05:45.050 --> 00:05:50.475
+Finally, treat any shared account as a risk to manage, not a settled convenience.
+
+00:05:51.250 --> 00:05:52.825
+Here's a situation.
+
+00:05:52.825 --> 00:05:56.537
+The firm's social media account is shared by three staff.
+
+00:05:56.537 --> 00:05:59.000
+One of them leaves on bad terms today.
+
+00:05:59.000 --> 00:06:03.425
+What needs to happen before 5 p.m., and who needs the new password?
+
+00:06:05.325 --> 00:06:09.950
+When someone leaves, every system they could get into needs to be closed off.
+
+00:06:10.700 --> 00:06:14.175
+It's easy to remember email and forget the smaller things:
+
+00:06:14.175 --> 00:06:17.687
+the courier account, the shared calendar, the door code.
+
+00:06:17.687 --> 00:06:20.425
+That's why a written checklist beats memory.
+
+00:06:21.225 --> 00:06:25.525
+First, keep a written list of every system, account and shared login someone might
+
+00:06:25.525 --> 00:06:26.425
+have.
+
+00:06:26.425 --> 00:06:30.750
+Then, remove access on the actual leaving date, not 'later'.
+
+00:06:32.750 --> 00:06:35.975
+After that, change any shared passwords they knew.
+
+00:06:35.975 --> 00:06:40.675
+Finally, add each new system to the list as soon as the firm starts using it.
+
+00:06:41.450 --> 00:06:42.662
+Try this one.
+
+00:06:42.662 --> 00:06:46.387
+A part-time bookkeeper finishes her contract at the end of the month.
+
+00:06:46.387 --> 00:06:51.012
+She has the bank portal, QuickBooks, the office alarm code and a key.
+
+00:06:51.012 --> 00:06:53.400
+Put these in order for her last day.
+
+00:06:55.350 --> 00:06:59.150
+Section 2 of 5: Data and Device Security.
+
+00:06:59.150 --> 00:07:02.450
+We'll cover how to classify and share information safely,
+
+00:07:02.450 --> 00:07:06.950
+redaction done right, and litigation holds, when nothing can be deleted.
+
+00:07:08.900 --> 00:07:13.637
+An AI tool is a third party, so treat it like a stranger when it comes to private
+
+00:07:13.637 --> 00:07:14.875
+information.
+
+00:07:15.625 --> 00:07:17.600
+The first rule is a setting.
+
+00:07:17.600 --> 00:07:21.400
+Many AI tools can use what we type to train future versions,
+
+00:07:21.400 --> 00:07:24.887
+so before any real work goes in, we switch that off.
+
+00:07:24.887 --> 00:07:27.012
+After that, it's judgment.
+
+00:07:27.012 --> 00:07:32.375
+The firm's duty of confidentiality applies to AI tools exactly as it applies to a
+
+00:07:32.375 --> 00:07:34.350
+conversation in the hallway.
+
+00:07:35.125 --> 00:07:38.437
+So never put in financial data, health information,
+
+00:07:38.437 --> 00:07:41.225
+social security numbers or passwords.
+
+00:07:41.225 --> 00:07:45.975
+And replace real names and details with placeholders, like 'Company X'.
+
+00:07:47.950 --> 00:07:52.225
+Finally, if you're not sure, treat it as unsafe and find another way.
+
+00:07:52.975 --> 00:07:58.050
+Pause the video and clean this one up: a termination email naming the employee,
+
+00:07:58.050 --> 00:08:02.000
+their salary, their medical leave and the client they worked for.
+
+00:08:02.000 --> 00:08:07.050
+What do you remove or replace before asking an AI tool to improve the wording?
+
+00:08:09.000 --> 00:08:11.550
+Not everything needs the same protection.
+
+00:08:12.325 --> 00:08:14.537
+Think of information in three levels.
+
+00:08:14.537 --> 00:08:18.162
+Public: fine for anyone to see, like a press release.
+
+00:08:18.162 --> 00:08:22.775
+Internal: not secret, but not meant for outsiders, like staff memos.
+
+00:08:22.775 --> 00:08:27.625
+And confidential or privileged: things that would cause real legal or reputational
+
+00:08:27.625 --> 00:08:32.450
+harm if they leaked, like case details, client messages and finances.
+
+00:08:34.400 --> 00:08:38.175
+First, before sharing anything, decide which level it is.
+
+00:08:38.175 --> 00:08:42.825
+Next, treat public information as shareable, once you've confirmed it's really meant
+
+00:08:42.825 --> 00:08:44.200
+for outsiders.
+
+00:08:44.200 --> 00:08:47.675
+Then, keep internal information inside the firm.
+
+00:08:49.600 --> 00:08:53.950
+After that, handle confidential and privileged information with real care every
+
+00:08:53.950 --> 00:08:54.900
+time.
+
+00:08:54.900 --> 00:08:58.250
+Finally, when unsure, go one level higher.
+
+00:08:59.025 --> 00:09:02.637
+Try classifying these: the firm's office address,
+
+00:09:02.637 --> 00:09:06.575
+Elias's travel itinerary, a draft motion in the Harlow matter,
+
+00:09:06.575 --> 00:09:09.925
+the holiday party date and a client's settlement amount.
+
+00:09:11.900 --> 00:09:16.650
+Share sensitive files through a controlled link, not as an email attachment.
+
+00:09:17.425 --> 00:09:20.825
+Once you attach a file to an email, you lose control of it.
+
+00:09:20.825 --> 00:09:23.287
+It can be forwarded anywhere, forever.
+
+00:09:23.287 --> 00:09:26.237
+A secure sharing link lets you choose who can open it,
+
+00:09:26.237 --> 00:09:29.125
+set an expiry date and switch it off later.
+
+00:09:29.875 --> 00:09:33.862
+If you password-protect a file, send the password by a different route,
+
+00:09:33.862 --> 00:09:35.775
+never in the same email.
+
+00:09:37.700 --> 00:09:40.875
+After that, switch off the link when it's no longer needed.
+
+00:09:40.875 --> 00:09:44.800
+Finally, only share with people who genuinely need the file.
+
+00:09:45.575 --> 00:09:47.787
+Here's a situation to think about.
+
+00:09:47.787 --> 00:09:52.175
+Opposing counsel needs two gigabytes of Meridian exhibits by tomorrow,
+
+00:09:52.175 --> 00:09:55.625
+and a colleague suggests a free file-transfer site.
+
+00:09:55.625 --> 00:09:59.100
+What do you use instead, and what settings do you choose?
+
+00:10:01.025 --> 00:10:06.175
+Ordinary email isn't built for secrets, so privileged content deserves the encrypted
+
+00:10:06.175 --> 00:10:07.262
+option.
+
+00:10:07.262 --> 00:10:11.225
+Encryption protects the message on the way and while it's stored.
+
+00:10:11.225 --> 00:10:14.338
+And many firms already have one that nobody uses,
+
+00:10:14.338 --> 00:10:17.000
+simply because people don't know it's there.
+
+00:10:17.800 --> 00:10:23.150
+So decide whether the message contains genuinely sensitive or privileged content.
+
+00:10:25.075 --> 00:10:28.175
+After that, remember that encryption is an extra layer,
+
+00:10:28.175 --> 00:10:30.150
+not a replacement for judgment.
+
+00:10:30.150 --> 00:10:32.825
+Finally, when unsure, encrypt.
+
+00:10:33.575 --> 00:10:34.675
+Picture this.
+
+00:10:34.675 --> 00:10:38.100
+You sent an encrypted email with a client's medical records,
+
+00:10:38.100 --> 00:10:40.550
+but you typed the wrong client's address.
+
+00:10:40.550 --> 00:10:42.125
+Did encryption protect you?
+
+00:10:42.125 --> 00:10:43.425
+What do you do now?
+
+00:10:45.350 --> 00:10:49.137
+A document can look clean on screen and still carry a hidden layer:
+
+00:10:49.137 --> 00:10:53.837
+tracked changes, comments, author names and earlier versions.
+
+00:10:53.837 --> 00:10:58.050
+Sent to the wrong party, that hidden layer can reveal exactly what you didn't mean
+
+00:10:58.050 --> 00:11:02.350
+to share, like an internal note about how far the client will go.
+
+00:11:03.175 --> 00:11:07.450
+First, before sending a document outside the firm, check for hidden history.
+
+00:11:07.450 --> 00:11:12.650
+Next, clean it properly: remove tracked changes, comments and hidden text.
+
+00:11:14.575 --> 00:11:19.550
+After that, make 'save a clean version' a standard step before external sharing.
+
+00:11:19.550 --> 00:11:23.875
+Finally, check the clean version really is clean before you send it.
+
+00:11:24.650 --> 00:11:26.150
+Here's a situation.
+
+00:11:26.150 --> 00:11:29.675
+You send opposing counsel a 'final' settlement letter.
+
+00:11:29.675 --> 00:11:33.725
+Their reply quotes a tracked-changes comment from Elias saying 'we could go to
+
+00:11:33.725 --> 00:11:39.400
+$400,000 if pushed.' What went wrong, and what's the fix for next time?
+
+00:11:41.325 --> 00:11:45.812
+Redaction means permanently removing information before a document is shared or
+
+00:11:45.812 --> 00:11:46.837
+filed.
+
+00:11:46.837 --> 00:11:51.762
+A black box drawn on top, or black highlighting, only covers the words.
+
+00:11:51.762 --> 00:11:55.000
+They're still underneath, and anyone can copy them out.
+
+00:11:55.000 --> 00:11:58.000
+Real redaction uses a tool that deletes the text,
+
+00:11:58.000 --> 00:12:00.950
+like the Redact feature in Adobe Acrobat.
+
+00:12:01.750 --> 00:12:05.475
+Some redactions are required: in federal court filings,
+
+00:12:05.475 --> 00:12:09.825
+you show only the last four digits of Social Security and account numbers,
+
+00:12:09.825 --> 00:12:13.637
+only the year of a birth date, and only a child's initials.
+
+00:12:13.637 --> 00:12:16.200
+The attorney decides what else comes out.
+
+00:12:18.150 --> 00:12:21.650
+First, we work on a copy and keep the original safely stored.
+
+00:12:21.650 --> 00:12:25.187
+Next, we mark each redaction with the proper tool, then apply it.
+
+00:12:25.187 --> 00:12:26.737
+That's a separate step.
+
+00:12:26.737 --> 00:12:31.462
+Then we remove hidden information: metadata, comments and old versions.
+
+00:12:31.462 --> 00:12:36.475
+After that, we test: search for a redacted word and try copying the black area.
+
+00:12:36.475 --> 00:12:37.925
+Nothing should come through.
+
+00:12:37.925 --> 00:12:42.900
+Finally, we save it as a new file marked REDACTED and have the attorney check it.
+
+00:12:43.675 --> 00:12:44.850
+Try this one.
+
+00:12:44.850 --> 00:12:48.175
+You need to file a client's bank statement as an exhibit.
+
+00:12:48.175 --> 00:12:52.375
+It shows the full account number, the client's date of birth and their child's full
+
+00:12:52.375 --> 00:12:53.225
+name.
+
+00:12:53.225 --> 00:12:56.825
+What do you redact, how do you do it and how do you prove it worked?
+
+00:12:58.750 --> 00:13:02.350
+An unlocked device, even for a minute, is an open door.
+
+00:13:03.150 --> 00:13:05.712
+Device security is mostly habits.
+
+00:13:05.712 --> 00:13:08.100
+Lock the screen before you step away.
+
+00:13:08.100 --> 00:13:12.900
+And make sure devices are encrypted, so a lost laptop is only a lost piece of
+
+00:13:12.900 --> 00:13:15.175
+hardware, not a data breach.
+
+00:13:15.975 --> 00:13:20.275
+First, treat personal devices with work email as work devices.
+
+00:13:22.250 --> 00:13:25.175
+Next, install security updates promptly.
+
+00:13:25.175 --> 00:13:28.075
+Finally, set up remote wipe where you can.
+
+00:13:28.850 --> 00:13:31.037
+Here's a situation to think about.
+
+00:13:31.037 --> 00:13:36.125
+A partner's personal tablet, with firm email on it, is stolen from his car.
+
+00:13:36.125 --> 00:13:38.150
+He doesn't know if it was encrypted.
+
+00:13:38.150 --> 00:13:41.575
+Who needs to know, and what actions happen in the first hour?
+
+00:13:43.525 --> 00:13:48.275
+Someone walking up to an unlocked laptop has as much access as a hacker.
+
+00:13:49.075 --> 00:13:53.487
+All the digital security in the world doesn't help if a laptop is left open in a
+
+00:13:53.487 --> 00:13:57.800
+café or a filing cabinet is left unlocked overnight.
+
+00:13:57.800 --> 00:14:00.400
+Physical access is still access.
+
+00:14:01.200 --> 00:14:05.275
+First, report a lost badge, key or access card straight away.
+
+00:14:07.275 --> 00:14:11.100
+Next, keep visitors and vendors to a clear, limited area.
+
+00:14:11.100 --> 00:14:15.825
+Finally, check your own desk now and then for anything sensitive on show.
+
+00:14:16.575 --> 00:14:18.137
+Take a second with this one.
+
+00:14:18.137 --> 00:14:21.400
+You realize your office badge wasn't in your bag this morning,
+
+00:14:21.400 --> 00:14:23.725
+and you last had it at a coffee shop.
+
+00:14:23.725 --> 00:14:25.625
+It's probably just misplaced.
+
+00:14:25.625 --> 00:14:27.275
+What do you do, and when?
+
+00:14:29.200 --> 00:14:33.900
+A document left on a desk or in the printer tray is a leak waiting to happen.
+
+00:14:34.675 --> 00:14:38.075
+A clean desk policy closes an easy-to-miss gap:
+
+00:14:38.075 --> 00:14:42.750
+sensitive papers left out between tasks, pages sitting in the printer and screens
+
+00:14:42.750 --> 00:14:44.200
+left unlocked.
+
+00:14:44.200 --> 00:14:47.762
+So put sensitive documents away, check the printer tray,
+
+00:14:47.762 --> 00:14:50.700
+and lock your screen every time you step away.
+
+00:14:52.625 --> 00:14:56.425
+After that, apply the same habits at home if you work remotely.
+
+00:14:56.425 --> 00:15:00.175
+Finally, do a quick check of your desk at the end of each day.
+
+00:15:00.925 --> 00:15:02.012
+Picture this.
+
+00:15:02.012 --> 00:15:04.825
+You print a confidential memo on the shared printer,
+
+00:15:04.825 --> 00:15:07.212
+get pulled into a call and forget it.
+
+00:15:07.212 --> 00:15:09.150
+An hour later, it's gone.
+
+00:15:09.150 --> 00:15:12.375
+What do you do, and what could you change about how you print?
+
+00:15:14.325 --> 00:15:17.625
+The recycling bin isn't disposal; shredding is.
+
+00:15:18.400 --> 00:15:22.825
+A sensitive document in the trash can still be read by anyone who finds it.
+
+00:15:22.825 --> 00:15:27.100
+And deleting a file on a computer doesn't always remove it for good.
+
+00:15:27.100 --> 00:15:31.400
+Real disposal means shredding paper and securely deleting files,
+
+00:15:31.400 --> 00:15:34.900
+and making it a regular habit, daily or weekly.
+
+00:15:36.825 --> 00:15:40.475
+Make sure a shredder or secure bin is actually within reach.
+
+00:15:40.475 --> 00:15:43.825
+And apply the same care to drafts and working copies.
+
+00:15:44.600 --> 00:15:46.175
+Here's a situation.
+
+00:15:46.175 --> 00:15:49.625
+The office puts all paper, including draft contracts,
+
+00:15:49.625 --> 00:15:54.050
+in a blue recycling bin collected by an outside company every week.
+
+00:15:54.050 --> 00:15:55.400
+Is that disposal?
+
+00:15:55.400 --> 00:15:56.900
+What would you propose?
+
+00:15:58.800 --> 00:16:02.725
+When a lawsuit is reasonably expected, not only once it's filed,
+
+00:16:02.725 --> 00:16:06.037
+everyone involved has to keep every relevant record.
+
+00:16:06.037 --> 00:16:10.425
+The written instruction to do that is a litigation hold, or legal hold.
+
+00:16:10.425 --> 00:16:16.950
+It covers everything: emails, texts, chats, drafts, calendars, voicemails and paper.
+
+00:16:17.775 --> 00:16:21.850
+Losing held information, even through an automatic delete setting,
+
+00:16:21.850 --> 00:16:27.025
+is called spoliation, and courts can punish it with fines or by telling the jury to
+
+00:16:27.025 --> 00:16:30.625
+assume the lost evidence was bad for that side.
+
+00:16:32.600 --> 00:16:37.137
+First, when the attorney issues a hold notice, we send it to everyone named and
+
+00:16:37.137 --> 00:16:39.400
+track their written confirmations.
+
+00:16:39.400 --> 00:16:44.962
+Next, we ask IT to pause automatic deletion for the people and systems covered.
+
+00:16:44.962 --> 00:16:49.750
+Then we stop routine shredding for anything covered, and label those files.
+
+00:16:51.675 --> 00:16:57.125
+After that, we keep a log: start date, recipients, what's preserved and reminders.
+
+00:16:57.125 --> 00:17:01.350
+Finally, the hold stays until the attorney releases it in writing.
+
+00:17:02.100 --> 00:17:03.287
+Try this one.
+
+00:17:03.287 --> 00:17:06.812
+Harlow Industries receives a letter threatening a lawsuit.
+
+00:17:06.812 --> 00:17:11.225
+The same week, the office manager starts the annual shred of old files,
+
+00:17:11.225 --> 00:17:15.225
+and a departing employee's laptop is due to be wiped on Friday.
+
+00:17:15.225 --> 00:17:17.525
+What do you do, and who do you tell?
+
+00:17:19.425 --> 00:17:23.488
+When a task lives across email, a spreadsheet and someone's notes,
+
+00:17:23.488 --> 00:17:26.900
+work gets duplicated, even by careful people.
+
+00:17:26.900 --> 00:17:30.750
+If nobody can tell you where something stands without checking three places,
+
+00:17:30.750 --> 00:17:32.650
+the workflow is broken.
+
+00:17:33.450 --> 00:17:37.300
+First, find a workflow that's split across disconnected tools.
+
+00:17:37.300 --> 00:17:39.862
+Next, bring it into one tracked system.
+
+00:17:39.862 --> 00:17:43.825
+Then, name which steps stay manual, so each one is a choice.
+
+00:17:45.750 --> 00:17:48.850
+After that, test the new version on a real task.
+
+00:17:48.850 --> 00:17:52.900
+Finally, check back later that it actually stopped the duplicate work.
+
+00:17:53.650 --> 00:17:56.400
+Pause the video and try a redesign.
+
+00:17:56.400 --> 00:18:00.837
+Client document requests arrive by email, get logged in a spreadsheet and are
+
+00:18:00.837 --> 00:18:02.662
+tracked in someone's notes.
+
+00:18:02.662 --> 00:18:05.875
+What's the one system, and which steps stay manual?
+
+00:18:07.800 --> 00:18:10.975
+Section 3 of 5: Threat Recognition.
+
+00:18:10.975 --> 00:18:15.175
+We'll look at social engineering red flags, phishing beyond email,
+
+00:18:15.175 --> 00:18:18.200
+and how to respond to a suspicious data request.
+
+00:18:20.175 --> 00:18:23.637
+Social engineering means tricking a person, rather than a computer,
+
+00:18:23.637 --> 00:18:26.375
+into handing over access or information.
+
+00:18:26.375 --> 00:18:28.662
+It usually shows up with three signs.
+
+00:18:28.662 --> 00:18:33.687
+Pressure: 'I need this right now, there's no time to check.' Borrowed authority:
+
+00:18:33.687 --> 00:18:37.125
+someone claiming to be the boss, IT or a trusted vendor.
+
+00:18:37.125 --> 00:18:41.450
+And requests that are just slightly out of the ordinary, like a new way to pay.
+
+00:18:43.400 --> 00:18:48.475
+First, treat sudden urgency as a warning sign, not a reason to skip checks.
+
+00:18:48.475 --> 00:18:53.725
+Next, verify anyone claiming authority through a separate channel you already trust.
+
+00:18:55.650 --> 00:18:59.300
+After that, use the same checking habit for any odd request.
+
+00:18:59.300 --> 00:19:03.125
+Finally, report attempts, even ones you didn't fall for.
+
+00:19:03.875 --> 00:19:05.638
+Take a second with this one.
+
+00:19:05.638 --> 00:19:10.500
+A caller says they're Elias's new banker and needs you to confirm his date of birth
+
+00:19:10.500 --> 00:19:14.650
+and the last four digits of his social security number 'to finish setting up his
+
+00:19:14.650 --> 00:19:18.650
+account today.' What are the red flags, and what do you say?
+
+00:19:20.575 --> 00:19:24.062
+Phishing doesn't only come by email; it comes by text,
+
+00:19:24.062 --> 00:19:26.525
+phone and even calendar invites.
+
+00:19:27.275 --> 00:19:29.800
+The tricks are the same whatever the channel.
+
+00:19:29.800 --> 00:19:34.850
+And attackers often switch to a less expected channel precisely because people have
+
+00:19:34.850 --> 00:19:37.050
+learned to be careful with email.
+
+00:19:39.000 --> 00:19:42.400
+First, look for the usual signs: a generic greeting,
+
+00:19:42.400 --> 00:19:45.675
+a slightly wrong sender or an unexpected link.
+
+00:19:45.675 --> 00:19:50.238
+Then, check suspicious messages through a number or address you already know,
+
+00:19:50.238 --> 00:19:51.850
+not one in the message.
+
+00:19:53.775 --> 00:19:57.775
+After that, treat an unexpected request through an unusual channel as more
+
+00:19:57.775 --> 00:19:59.850
+suspicious, not less.
+
+00:19:59.850 --> 00:20:03.050
+Finally, report it, so others are warned.
+
+00:20:03.825 --> 00:20:06.062
+Here's a situation to think about.
+
+00:20:06.062 --> 00:20:10.587
+A voicemail says it's the firm's bank fraud department and asks you to call back on
+
+00:20:10.587 --> 00:20:13.087
+the number given to confirm a payment.
+
+00:20:13.087 --> 00:20:16.025
+What's the right callback number, and why?
+
+00:20:17.950 --> 00:20:20.100
+Watch the pattern, not the person.
+
+00:20:20.900 --> 00:20:23.188
+Not every risk comes from outside.
+
+00:20:23.188 --> 00:20:27.175
+Sometimes access gets used in ways that don't fit someone's role.
+
+00:20:27.175 --> 00:20:32.188
+Usually it's not sabotage; it's a well-meaning shortcut around a security rule.
+
+00:20:32.188 --> 00:20:36.675
+Either way, it's worth noticing, and the process still needs fixing.
+
+00:20:37.475 --> 00:20:41.725
+So look at it as a role-fit question, not a personal accusation.
+
+00:20:43.675 --> 00:20:47.725
+Then, report it to the right person, rather than confronting the colleague or
+
+00:20:47.725 --> 00:20:48.950
+ignoring it.
+
+00:20:49.700 --> 00:20:50.837
+Picture this.
+
+00:20:50.837 --> 00:20:55.675
+A trusted long-time colleague emails client documents to his personal email 'so I
+
+00:20:55.675 --> 00:20:58.850
+can work over the weekend.' He's done it for years.
+
+00:20:58.850 --> 00:20:59.975
+Is this a problem?
+
+00:20:59.975 --> 00:21:01.625
+Who do you tell, and how?
+
+00:21:03.550 --> 00:21:07.225
+When a request for data feels off, verify first, always.
+
+00:21:07.225 --> 00:21:10.400
+We follow three steps, and the order is important.
+
+00:21:11.200 --> 00:21:16.050
+First, verify: confirm who the sender really is before doing anything.
+
+00:21:16.050 --> 00:21:19.925
+Next, escalate: send it through the right internal channel.
+
+00:21:19.925 --> 00:21:24.950
+Finally, close the gap: fix whatever let the request reach you in the first place.
+
+00:21:25.725 --> 00:21:27.312
+Here's a situation.
+
+00:21:27.312 --> 00:21:32.325
+An email from 'Elias' arrives from his personal-looking Gmail at 7 p.m.:
+
+00:21:32.325 --> 00:21:34.862
+'Send me the full Meridian client list now.
+
+00:21:34.862 --> 00:21:37.725
+I'm at dinner, can't call.' What do you do?
+
+00:21:39.675 --> 00:21:42.900
+Section 4 of 5: Incident Response.
+
+00:21:42.900 --> 00:21:45.850
+We'll cover the first 10 minutes of a security incident,
+
+00:21:45.850 --> 00:21:50.200
+containing a confidentiality leak, and who to notify and when.
+
+00:21:52.150 --> 00:21:56.775
+In a security incident, stop the damage first, then work out what happened.
+
+00:21:57.575 --> 00:22:01.075
+First, contain: stop further exposure by disconnecting,
+
+00:22:01.075 --> 00:22:04.325
+revoking access or pausing whatever is leaking.
+
+00:22:04.325 --> 00:22:09.337
+Next, assess: work out as precisely as you can what was exposed and to whom.
+
+00:22:09.337 --> 00:22:12.762
+Then, notify: tell whoever needs to know immediately.
+
+00:22:12.762 --> 00:22:14.700
+Don't wait for the full picture.
+
+00:22:14.700 --> 00:22:19.100
+Finally, document: write down what happened and when, as it happens.
+
+00:22:19.875 --> 00:22:21.962
+Think through your first ten minutes.
+
+00:22:21.962 --> 00:22:26.137
+You discover the firm's shared client folder has been open to anyone with the link
+
+00:22:26.137 --> 00:22:28.150
+for an unknown amount of time.
+
+00:22:28.150 --> 00:22:29.250
+What do you do?
+
+00:22:31.175 --> 00:22:35.350
+When confidential information leaks, stopping the spread comes before everything
+
+00:22:35.350 --> 00:22:36.225
+else.
+
+00:22:37.025 --> 00:22:40.275
+First, contain: stop it spreading immediately.
+
+00:22:40.275 --> 00:22:44.050
+Next, notify: tell the right roles, the ones that need to know,
+
+00:22:44.050 --> 00:22:45.862
+not just whoever's nearby.
+
+00:22:45.862 --> 00:22:50.500
+Finally, prevent: once it's contained, put a rule in place so the same leak can't
+
+00:22:50.500 --> 00:22:51.725
+happen again.
+
+00:22:52.475 --> 00:22:54.212
+Take a second with this one.
+
+00:22:54.212 --> 00:22:58.225
+You realize you emailed a settlement draft for the Harlow matter to the wrong
+
+00:22:58.225 --> 00:23:00.600
+'Mark,' who works at another firm.
+
+00:23:00.600 --> 00:23:02.675
+What does your first hour look like?
+
+00:23:04.575 --> 00:23:05.388
+Quick check.
+
+00:23:05.388 --> 00:23:08.762
+Confidential documents were sent to the wrong recipient.
+
+00:23:08.762 --> 00:23:10.050
+What comes first?
+
+00:23:10.050 --> 00:23:13.988
+Is it blaming whoever sent it, waiting to see if anyone notices,
+
+00:23:13.988 --> 00:23:18.488
+drafting a new policy for next quarter, or containing the leak immediately?
+
+00:23:18.488 --> 00:23:19.800
+Take a second.
+
+00:23:20.550 --> 00:23:22.812
+It's containing the leak immediately.
+
+00:23:22.812 --> 00:23:28.475
+Containment always comes before policy work: stop the damage, then fix the process.
+
+00:23:30.450 --> 00:23:33.300
+Know who you'd call before you ever need to call them.
+
+00:23:34.100 --> 00:23:37.725
+Different incidents go to different people, on different timelines,
+
+00:23:37.725 --> 00:23:40.212
+and some carry legal obligations.
+
+00:23:40.212 --> 00:23:44.100
+Working that out in the middle of a crisis wastes precious time.
+
+00:23:46.050 --> 00:23:49.375
+First, know in advance which kind of incident goes to whom:
+
+00:23:49.375 --> 00:23:52.575
+IT, a partner or outside counsel.
+
+00:23:52.575 --> 00:23:56.750
+Finally, when you're unsure who to tell, escalate to someone senior rather than
+
+00:23:56.750 --> 00:23:58.625
+deciding it doesn't matter.
+
+00:23:59.375 --> 00:24:01.275
+Pause the video for this one.
+
+00:24:01.275 --> 00:24:05.538
+Nobody at the firm can say who to call if the case management system is hacked on a
+
+00:24:05.538 --> 00:24:06.650
+Sunday.
+
+00:24:06.650 --> 00:24:11.825
+Draft the one-page contact list: which incidents go to whom, with backups.
+
+00:24:13.750 --> 00:24:18.050
+Write down what's happening while it's happening, because memory blurs fast.
+
+00:24:18.850 --> 00:24:21.875
+A record made at the time, of what happened, when,
+
+00:24:21.875 --> 00:24:26.875
+who was told and what was done, is far more accurate than one written days later.
+
+00:24:28.850 --> 00:24:32.762
+First, use short, factual, time-stamped notes, in real time.
+
+00:24:32.762 --> 00:24:34.975
+Don't wait to write a polished summary.
+
+00:24:36.900 --> 00:24:39.575
+After that, stick to facts, not blame.
+
+00:24:39.575 --> 00:24:44.075
+Finally, keep the record afterwards, for the review and any legal needs.
+
+00:24:44.850 --> 00:24:46.062
+Try this one.
+
+00:24:46.062 --> 00:24:49.850
+A week after a phishing incident, the insurer asks for a timeline.
+
+00:24:49.850 --> 00:24:55.100
+Your notes say 'Tuesday afternoon: IT called, reset passwords.' What's missing,
+
+00:24:55.100 --> 00:24:57.225
+and what would a useful note look like?
+
+00:24:59.150 --> 00:25:03.950
+Every incident should end with one concrete change, so it doesn't happen again.
+
+00:25:04.725 --> 00:25:09.000
+A short review of what happened, what worked and what should change is what stops
+
+00:25:09.000 --> 00:25:11.800
+the same failure coming back in a new form.
+
+00:25:12.600 --> 00:25:16.675
+First, focus on the process and the gap, not on blaming someone.
+
+00:25:16.675 --> 00:25:20.650
+Then, use the notes you took during the incident as the facts.
+
+00:25:22.575 --> 00:25:25.200
+After that, agree one concrete change.
+
+00:25:25.200 --> 00:25:30.000
+Finally, record the lesson somewhere real, like Day 6's playbook habit.
+
+00:25:30.775 --> 00:25:32.900
+Here's a situation to think about.
+
+00:25:32.900 --> 00:25:36.300
+At the review, a partner says, 'The fix is simple:
+
+00:25:36.300 --> 00:25:40.275
+fire whoever did it.' How do you move the conversation from the person to the
+
+00:25:40.275 --> 00:25:41.400
+process?
+
+00:25:43.350 --> 00:25:46.475
+Section 5 of 5: Crisis Management.
+
+00:25:46.475 --> 00:25:50.250
+We'll close with crisis communication, keeping calm under pressure,
+
+00:25:50.250 --> 00:25:51.975
+and handling the media.
+
+00:25:53.900 --> 00:25:58.087
+In a crisis, people need calm, factual and frequent updates,
+
+00:25:58.087 --> 00:26:00.325
+even when there isn't much to say yet.
+
+00:26:01.100 --> 00:26:05.375
+A short, honest update that says what we know and when you'll hear more calms things
+
+00:26:05.375 --> 00:26:06.300
+down.
+
+00:26:07.100 --> 00:26:10.250
+First, share only what's confirmed, and say so.
+
+00:26:10.250 --> 00:26:14.362
+Then, use ACT from Day 1: acknowledge what's happening,
+
+00:26:14.362 --> 00:26:18.000
+clarify what's unknown and give a time for the next update.
+
+00:26:19.925 --> 00:26:23.400
+After that, don't fill the silence with confident guesses.
+
+00:26:23.400 --> 00:26:27.775
+Finally, make sure each update actually reaches everyone who needs it.
+
+00:26:28.525 --> 00:26:30.700
+Pause the video and try this.
+
+00:26:30.700 --> 00:26:34.275
+The firm's email is down across the office on a filing day,
+
+00:26:34.275 --> 00:26:36.163
+and IT doesn't know why yet.
+
+00:26:36.163 --> 00:26:39.725
+Write the first update to the attorneys using ACT.
+
+00:26:41.575 --> 00:26:45.950
+Your calm in a crisis is often the only calm in the room, and it spreads.
+
+00:26:45.950 --> 00:26:47.325
+So does panic.
+
+00:26:47.325 --> 00:26:51.350
+Visible panic from the assistant can make a bad situation worse.
+
+00:26:51.350 --> 00:26:55.800
+Staying calm is a skill you can practice, not a personality trait.
+
+00:26:56.600 --> 00:26:59.750
+First, pause for a few seconds before you respond.
+
+00:26:59.750 --> 00:27:03.450
+Then, remember that calm isn't the same as doing nothing.
+
+00:27:03.450 --> 00:27:06.350
+It's thinking clearly and acting on purpose.
+
+00:27:08.275 --> 00:27:11.000
+After that, practice a technique, like a pause,
+
+00:27:11.000 --> 00:27:14.475
+a breath count or a mental checklist, before you need it.
+
+00:27:14.475 --> 00:27:18.200
+Finally, after a stressful moment, reflect on what helped.
+
+00:27:18.950 --> 00:27:20.113
+Picture this.
+
+00:27:20.113 --> 00:27:24.300
+Elias bursts in: the judge moved the hearing to this afternoon,
+
+00:27:24.300 --> 00:27:26.650
+and the exhibit binders aren't printed.
+
+00:27:26.650 --> 00:27:29.625
+What do you say and do in your first 30 seconds?
+
+00:27:31.525 --> 00:27:35.675
+A crisis is the worst time to work out who's allowed to decide what.
+
+00:27:35.675 --> 00:27:40.013
+Knowing the chain of command in advance, and who steps in if each person can't be
+
+00:27:40.013 --> 00:27:44.375
+reached, is what stops people freezing when speed matters most.
+
+00:27:45.175 --> 00:27:49.700
+First, use the same hierarchy from Day 1, rather than improvising.
+
+00:27:51.675 --> 00:27:54.563
+Next, escalate through the chain even under pressure.
+
+00:27:54.563 --> 00:27:55.975
+Don't skip steps.
+
+00:27:55.975 --> 00:28:00.700
+Finally, check your backup contacts now and then, because roles change.
+
+00:28:01.475 --> 00:28:02.663
+Picture this.
+
+00:28:02.663 --> 00:28:09.338
+A client's wire transfer is flagged as possibly fraudulent at 4:45 p.m. Elias is on
+
+00:28:09.338 --> 00:28:11.475
+a flight and the managing partner isn't answering.
+
+00:28:11.475 --> 00:28:15.075
+Who's next in the chain, and what do you do?
+
+00:28:17.000 --> 00:28:20.538
+Continuity planning answers one question ahead of time:
+
+00:28:20.538 --> 00:28:24.500
+if something vital disappeared tomorrow, how would we keep working?
+
+00:28:25.250 --> 00:28:29.275
+The plan doesn't need to be fancy; a simple list of what matters,
+
+00:28:29.275 --> 00:28:32.600
+who to call and what the backup is covers most of it.
+
+00:28:32.600 --> 00:28:36.900
+It's the same plan-ahead thinking as backup vendors and the Home Binder.
+
+00:28:38.850 --> 00:28:41.775
+First, find your own single points of failure.
+
+00:28:41.775 --> 00:28:46.125
+Finally, review the plan every so often, because the work changes.
+
+00:28:46.900 --> 00:28:48.150
+Think about this.
+
+00:28:48.150 --> 00:28:53.225
+The firm's case management system goes down for a whole day during trial week.
+
+00:28:53.225 --> 00:28:57.175
+What does the continuity plan need to say, and what should already be printed or
+
+00:28:57.175 --> 00:28:58.250
+backed up?
+
+00:29:00.175 --> 00:29:03.863
+Media situations move faster than any other crisis.
+
+00:29:03.863 --> 00:29:07.125
+The window to shape the first response is often minutes,
+
+00:29:07.125 --> 00:29:09.675
+and the press won't wait for a slow chain.
+
+00:29:10.475 --> 00:29:13.800
+First, confirm who's authorized to speak publicly.
+
+00:29:13.800 --> 00:29:18.438
+Next, if it isn't you, give a safe, consistent holding statement rather than no
+
+00:29:18.438 --> 00:29:20.800
+answer or an improvised one.
+
+00:29:20.800 --> 00:29:26.700
+Finally, alert communications, legal and the executive immediately, all at once.
+
+00:29:27.450 --> 00:29:29.138
+Take a second with this one.
+
+00:29:29.138 --> 00:29:33.363
+A journalist calls you directly, bypassing the firm's usual channels,
+
+00:29:33.363 --> 00:29:36.163
+asking for comment on a sensitive matter.
+
+00:29:36.163 --> 00:29:39.550
+What do you say, and who do you contact the moment you hang up?
+
+00:29:41.525 --> 00:29:42.888
+Now it's your turn.
+
+00:29:42.888 --> 00:29:46.975
+In today's lab, the Access, Incident and Firm Crisis Simulator,
+
+00:29:46.975 --> 00:29:50.038
+you'll audit who actually has too much system access,
+
+00:29:50.038 --> 00:29:53.200
+verify a caller before disclosing anything sensitive,
+
+00:29:53.200 --> 00:29:55.925
+and contain a confidentiality leak.
+
+00:29:55.925 --> 00:29:59.475
+Then you'll face a firm-level crisis: size the risk,
+
+00:29:59.475 --> 00:30:01.800
+recommend a course with its trade-offs in BLUF,
+
+00:30:01.800 --> 00:30:04.475
+and handle the client through the hard reply.
+
