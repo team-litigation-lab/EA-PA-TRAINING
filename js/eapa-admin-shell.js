@@ -84,14 +84,14 @@ function scorecardHtml(){
   state.batchSub = "activities"; const acts = members.length ? renderBatchFolderBody() : `<div class="empty-note">No activity yet.</div>`;
   state.batchSub = sub0 === "activities" || sub0 === "rankings" || sub0 === "feedback" ? "registry" : (sub0 || "registry");
   const fb = typeof renderAdminTraineeFeedback === "function" ? bare(renderAdminTraineeFeedback()) : "";
-  const part = (id, title, note, html) => `<section class="eash-part" id="eash-${id}"><h3 class="eash-h">${title}</h3>${note ? `<p class="eash-note">${note}</p>` : ""}${html}</section>`;
+  const part = (id, title, note, html) => `<section class="eash-part" id="eash-${id}">${title ? `<h3 class="eash-h">${title}</h3>` : ""}${note ? `<p class="eash-note">${note}</p>` : ""}${html}</section>`;
   // sub-tabs, the Case Management way: 🏅 Scorecards (the scores table and each trainee's card) first
   const SUBS = [["cards", "🏅 Scorecards"], ["ranks", "🏆 Rankings & Progress Report"], ["people", "👥 Trainees & Actions"], ["fb", "💬 Trainee Feedback"]];
   if(!window.EAPACM && state.scSub === "cards") state.scSub = "people";
   const sub = SUBS.some(x => x[0] === state.scSub) && (state.scSub !== "cards" || window.EAPACM) ? state.scSub : (window.EAPACM ? "cards" : "people");
   const tabs = `<nav class="eash-subs" role="tablist">${SUBS.filter(x => x[0] !== "cards" || window.EAPACM).map(([id, l]) => `<button type="button" role="tab" class="eash-sub-b ${sub === id ? "on" : ""}" onclick="EAPAShell.sub('${id}')">${l}</button>`).join("")}</nav>`;
   let html;
-  if(sub === "cards") html = part("cards", "🏅 Scorecards", "Every trainee's scores, day by day. Click a trainee for their scorecard: what to focus on, and each activity's score and feedback.", EAPACM.section(k));
+  if(sub === "cards") html = part("cards", "", "", EAPACM.section(k));
   else if(sub === "ranks") html = part("progress", "📊 Progress Report", "Each trainee ranked in the batch, with a general summary of their strengths and challenges.", progressHtml(k));
   else if(sub === "fb") html = part("fb", "💬 Trainee Feedback", "What trainees think of the platform, lessons, facilitator, Practice Lab and assessments.", fb);
   else html = part("people", "👥 Trainees & Actions", "Every trainee in the batch: where they are, their scores, the feedback to write, and every action — ✍ Feedback, 🎓 Certificate, ↺ Reset Attempts, ♻ Restore, Revoke — on their row.", people) + part("acts", "📈 Activities", "Where each trainee is, and when they were last active.", acts);
