@@ -3031,7 +3031,7 @@ body::before{opacity:.40;}
   .xd-agenda{padding:18px 16px;}
 }
 </style>
-<script src="/js/portal-gate.js?v=2026.10.21-dashboard"></script>
+<script src="/js/portal-gate.js?v=2026.11.26-resume"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -5978,12 +5978,6 @@ function renderDashboard(){
       </div></aside>
           ${renderCompetencyStrip()}
           <div class="hero-actions bottom-actions">${[
-            (()=>{ // always on the dashboard: back to the saved place, or on to the next day when nothing is saved yet
-              const saved = resumeLabel();
-              const nd = DAYS.find(x=>x.id===nextDayId()) || DAYS[0];
-              const label = saved || (nd ? `Day ${nd.id} · ${nd.title}` : "");
-              const go = saved ? "resumeWhereLeftOff()" : (nd ? `goto('day',${nd.id})` : "");
-              return label ? `<button class="btn btn-primary resume-btn" onclick="${go}">▶ Resume where you left off <span>${esc(label)}</span></button>` : ""; })(),
             (()=>{ if(!state.traineeId) return ""; const c = certData();
               return c.eligible
                 ? `<button class="btn cert-hero-btn" onclick="downloadCertificatePdf(null)">🎓 Download my Certificate</button><button class="btn btn-ghost cert-hero-view" onclick="openCertificate()">View</button>`
@@ -18215,7 +18209,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=4"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=wide-8"></script>
+<script src="/js/eapa-updates.js?v=wide-9"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>

@@ -87,18 +87,8 @@ window.portalGate = {
     if(wantAdmin && state.traineeId && !state.adminToken){ try{ await logout(); }catch(e){} }
     if(!ticket){ uncover(150); return; }
     var t = ticket; ticket = "";
-    // Arriving from the Portal lands on the dashboard (it has its own "Resume where you left off" button) instead of
-    // jumping straight into the last slide: the engine's automatic resume is skipped once, then restored for that button.
-    var resumeOrig = window.resumeWhereLeftOff;
-    if(typeof resumeOrig === "function"){
-      window.resumeWhereLeftOff = function(){
-        window.resumeWhereLeftOff = resumeOrig;
-        state.resumePending = false;
-        if(state.view === "login" || state.view === "pendingApproval") return;
-        state.view = "dashboard";
-        render();
-      };
-    }
+    // Arriving from the Portal goes straight back to where the trainee left off (the engine's automatic resume, the
+    // same as a refresh): there is no "Resume where you left off" button on the dashboard any more.
     try{
       var r = await fetch("/api/auth/portal", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ticket:t})});
       var j = await r.json().catch(function(){ return {}; });
