@@ -3013,7 +3013,7 @@ window.fitTopicsModal = fitTopicsModal;
     const DASH = `
      <div class="or-dash2">
        <div class="or-box or-hero"><span class="or-num">1</span><b>Banner &amp; progress track</b><em>Days 1–10 · ✓ = passed · click a circle to jump to that day</em></div>
-       <div class="or-box or-cards"><span class="or-num">2</span><b>Day cards fill the screen</b><em>Start a day · ☰ Topics lists its topics · ✓ Finish Training · 💬 trainer feedback appears on the card</em>
+       <div class="or-box or-cards"><span class="or-num">2</span><b>Day cards fill the screen</b><em>Start a day · ☰ Topics lists its topics · ▶ Video plays it · 💬 trainer feedback appears on the card · the day completes itself: Knowledge Check passed + Practice Lab done</em>
          <div class="or-d2-row">${[1,2,3,4,5].map(n=>card(n, n%3===2 ? "or" : "")).join("")}</div></div>
        <div class="or-box or-band"><span class="or-num">3</span><b>Scores band, under the lessons</b><em>Program complete · best competency score · quiz average · days done · 💬 your feedback · ranking</em></div>
        <div class="or-box"><span class="or-num">4</span><b>Resume &amp; certificate</b><em>▶ Resume where you left off · download your certificate when earned</em></div>
@@ -3772,7 +3772,7 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
 })();
 
 /* ===== Day cards: the buttons as one full-width grid with lines =====
-   Start fills the top row edge to edge; Topics and Finish Training split the row under it (a completed
+   Start fills the top row edge to edge; Topics and ▶ Video split the row under it (a completed
    day: Review Score and Retake, then Topics across the bottom). Thin lines separate the cells, like a table, instead of
    separate rounded buttons with gaps. */
 (function(){
