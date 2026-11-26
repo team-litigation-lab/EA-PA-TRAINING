@@ -325,7 +325,9 @@ if(typeof renderTopbar === "function"){
     const html = __top.apply(this, arguments);
     if(!isTrainee() && !isPreview()) return html;
     const btn = `<button class="${state.view === "scorecard" ? "active" : ""}" onclick="goto('scorecard')" title="My Scorecard — scores, weekly progress, ranking and trainer feedback">🏅<span class="sc-nav-word"> Scorecard</span></button>`;
-    return html.replace(/(<button class="[^"]*" onclick="goto\('dashboard'\)">Dashboard<\/button>)/, "$1" + btn);
+    // where the Foundational Training and Case Management put it: after the program's pages, just before 🎯 Focus (a trainee) or 👁 Switch View
+    const at = ['<button type="button" class="nav-focus"', '<button type="button" class="nav-viewswitch"'].map(k => html.indexOf(k)).find(i => i >= 0);
+    return at == null ? html.replace(/(<button class="[^"]*" onclick="goto\('dashboard'\)">(?:📚 )?Dashboard<\/button>)/, "$1" + btn) : html.slice(0, at) + btn + html.slice(at);
   };
 }
 const __dash = renderDashboard;

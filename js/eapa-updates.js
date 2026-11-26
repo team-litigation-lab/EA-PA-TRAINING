@@ -293,7 +293,7 @@ function narratorAfterRender(pageOnly){
   if(key!==__lastNarrKey){ __lastNarrKey = key; Narrator.afterSlideChange(); } else Narrator.paint();
 }
 function renderTopbar(){
-  let views = [["dashboard","Dashboard"],["tasks","🎲 Tasks"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
+  let views = [["dashboard","📚 Dashboard"],["tasks","🎲 Tasks"],["clientprofile","📁 Client Profile"],["practice","🛠 Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","🗒 Notes"],["handouts","Handouts"]];
   if(state.isAdmin){
     // Admin is a trainer monitoring dashboard, not a trainee workspace — hide
     // the trainee-facing-only views that have no role here.
@@ -314,10 +314,11 @@ function renderTopbar(){
         <div class="nav">
           ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}${id==="tasks" && openTasksCount() ? `<span class="nav-badge">${openTasksCount()}</span>` : ""}</button>`).join("")}
           ${(state.traineeId && !state.isAdmin) ? `<button type="button" class="nav-focus" onclick="openFocusPanel()" title="My Focus — trainer feedback and what to work on next">🎯 Focus${focusNewCount()?`<span class="nav-badge">${focusNewCount()}</span>`:""}</button>` : ""}
+          ${/* the Foundational Training's order (js/lsh-program.js there): … 👁 Switch View · 🛡 Admin · 🎓 LSH Academy Index (js/portal-link.js) */""}
           ${state.adminPreview
-            ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('admin')" title="Return to the admin (trainer) view">🛡 Back to Admin view</button>`
-            : ((state.portalOnly && !state.isAdmin) ? "" : `<button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>`)}
-          ${state.isAdmin ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('trainee')" title="See the portal exactly as a trainee does — no trainer tools or admin pages">👁 Trainee view</button>` : ""}
+            ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('admin')" title="Switch back to the trainer (admin) view">👁 Switch View</button>`
+            : (state.isAdmin ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('trainee')" title="See the portal exactly as a trainee does — no trainer tools or admin pages">👁 Switch View</button>` : "")}
+          ${state.adminPreview || (state.traineeId && !state.isAdmin) || (state.portalOnly && !state.isAdmin) ? "" : `<button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>`}
         </div>
       </div>
     </div>
@@ -552,7 +553,7 @@ function setAdminViewMode(mode){
     try{ sessionStorage.setItem("lsh_admin_preview","1"); }catch(e){}
     const back = ["admin","orientation","facilitatorguide"].includes(state.view) ? "dashboard" : state.view;
     if(state.view==="day") render(); else goto(back);
-    toast("👁 Trainee view — this is what trainees see. Use “Back to Admin view” to return.");
+    toast("👁 Trainee view — this is what trainees see. Use 👁 Switch View to return.");
   }else{
     if(!state.adminPreview) return;
     state.adminPreview = false; state.isAdmin = true;
@@ -3033,7 +3034,7 @@ window.fitTopicsModal = fitTopicsModal;
     const DASH = `
      <div class="or-dash2">
        <div class="or-box or-hero"><span class="or-num">1</span><b>Banner &amp; progress track</b><em>Days 1–10 · ✓ = passed · click a circle to jump to that day</em></div>
-       <div class="or-box or-cards"><span class="or-num">2</span><b>Day cards fill the screen</b><em>Start a day · ☰ Topics lists its topics · ✓ Finish Training · 💬 trainer feedback appears on the card</em>
+       <div class="or-box or-cards"><span class="or-num">2</span><b>Day cards fill the screen</b><em>Start a day · ☰ Topics lists its topics · ▶ Video plays it · 💬 trainer feedback appears on the card · the day completes itself: Knowledge Check passed + Practice Lab done</em>
          <div class="or-d2-row">${[1,2,3,4,5].map(n=>card(n, n%3===2 ? "or" : "")).join("")}</div></div>
        <div class="or-box or-band"><span class="or-num">3</span><b>Scores band, under the lessons</b><em>Program complete · best competency score · quiz average · days done · 💬 your feedback · ranking</em></div>
        <div class="or-box"><span class="or-num">4</span><b>Resume &amp; certificate</b><em>▶ Resume where you left off · download your certificate when earned</em></div>
@@ -3792,7 +3793,7 @@ html.same-screen main, html.same-screen .lesson-slide, html.same-screen .slide-i
 })();
 
 /* ===== Day cards: the buttons as one full-width grid with lines =====
-   Start fills the top row edge to edge; Topics and Finish Training split the row under it (a completed
+   Start fills the top row edge to edge; Topics and ▶ Video split the row under it (a completed
    day: Review Score and Retake, then Topics across the bottom). Thin lines separate the cells, like a table, instead of
    separate rounded buttons with gaps. */
 (function(){
