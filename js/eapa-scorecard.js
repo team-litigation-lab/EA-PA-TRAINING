@@ -334,7 +334,7 @@ if(typeof renderRankingCard === "function"){
 const css = document.createElement("style");
 css.id = "eapa-scorecard-css";
 css.textContent = `
-.sc-page{max-width:1240px;margin:0 auto;padding:6px 4px 28px;}
+.sc-page{max-width:none;margin:0 auto;padding:6px 4px 28px;}
 .sc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:0 0 14px;}
 .sc-head h1{color:var(--navy);font-size:26px;margin:4px 0 2px;}
 .sc-head p{margin:0;color:var(--ink-soft);font-size:14px;}
@@ -361,7 +361,7 @@ css.textContent = `
 .sc-avg{background:rgba(31,37,71,.04);}
 .sc-hi{color:#1E7A46;} .sc-mid{color:#9A6A00;} .sc-lo{color:#C0461C;}
 .sc-idle td,.sc-idle th{opacity:.62;}
-.sc-remark{min-width:280px;max-width:460px;font-size:12.8px;line-height:1.5;color:#2A2D40;}
+.sc-remark{min-width:280px;max-width:none;font-size:12.8px;line-height:1.5;color:#2A2D40;}
 .sc-fb{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
 .sc-auto{color:#3C4060;}
 .sc-autotag{font-size:10.5px;color:var(--ink-soft);margin-top:3px;font-style:italic;}

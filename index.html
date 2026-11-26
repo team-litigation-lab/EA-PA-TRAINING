@@ -257,6 +257,8 @@ button{font-family:inherit;cursor:pointer;}
 
 
 main{flex:1;max-width:1400px;margin:0 auto;padding:36px 20px 80px;width:100%;animation:pageIn .35s ease both;}
+/* every page uses the window's full width on a wide screen, as the dashboard does */
+@media (min-width:1100px){ main{max-width:none;padding-left:24px;padding-right:24px;} }
 @keyframes pageIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
 .footer-note{
