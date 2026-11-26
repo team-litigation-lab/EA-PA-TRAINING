@@ -270,6 +270,39 @@ function banner(){
     <button type="button" class="btn btn-primary" onclick="EAPASim.open(${day})">▶ Start the simulation</button>`;
   body.parentNode.insertBefore(b, body);
 }
+/* ---------- and a slide of its own in the day's deck, after the day's Practice Lab activities ---------- */
+if(typeof buildDaySlides === "function" && !buildDaySlides.__sim){
+  const __build = buildDaySlides;
+  buildDaySlides = window.buildDaySlides = function(d){
+    const slides = __build.apply(this, arguments);
+    if(!d || !scenarios()[d.id] || slides.some(s => s && s.type === "liveSim")) return slides;
+    // after the Practice Lab (js/eapa-deck-lab.js turns that slide into one per activity, this one stays after them)
+    let at = -1; slides.forEach((s, i) => { if(s && s.type === "practiceLab") at = i; });
+    if(at < 0) return slides;
+    slides.splice(at + 1, 0, {type: "liveSim", day: d.id});
+    return slides;
+  };
+  buildDaySlides.__sim = true;
+}
+if(typeof renderDaySlideContent === "function"){
+  const __content = renderDaySlideContent;
+  renderDaySlideContent = window.renderDaySlideContent = function(d, slide){
+    if(!slide || slide.type !== "liveSim") return __content.apply(this, arguments);
+    const sc = scenarios()[d.id]; if(!sc) return "";
+    const last = (state.workLog || []).filter(e => e && /Live Simulation/.test(e.label || "") && e.dayId === d.id).pop();
+    return `<div class="topic-separator">DAY ${d.id} &middot; PRACTICE LAB &middot; LIVE SIMULATION</div>
+      <div class="card sim-slide"><div class="sim-slide-ic">▶</div><div class="sim-slide-t">
+        <h3>${E(sc.title)}</h3><p>${E(sc.setting)}</p>
+        <p class="sim-slide-how">${sc.events.length} live events (${[...new Set(sc.events.map(e => (CH[e.ch] || CH.email)[1]))].join(", ")}) arrive while you work, each on a timer, with a debrief at the end.</p>
+        <div class="sim-slide-state ${last ? "ok" : ""}">${last ? `✓ Last run ${last.score}%` : "Not run yet"}</div>
+        <button type="button" class="btn btn-navy" onclick="EAPASim.open(${d.id})">▶ ${last ? "Run it again" : "Start the simulation"}</button></div></div>`;
+  };
+}
+if(typeof daySlideTitle === "function"){
+  const __title = daySlideTitle;
+  daySlideTitle = window.daySlideTitle = function(d, slide){ return slide && slide.type === "liveSim" ? "Practice Lab · Live Simulation" : __title.apply(this, arguments); };
+}
+
 const __after = window.afterRender;
 window.afterRender = function(){ const r = __after ? __after.apply(this, arguments) : undefined; try{ banner(); setTimeout(banner, 0); }catch(e){} return r; };
 document.addEventListener("keydown", e => { if(e.key === "Escape" && S && S.phase !== "run") close(true); });
@@ -345,6 +378,11 @@ body.sim-open{overflow:hidden;}
 .sim-pill{font:800 13px 'Inter',sans-serif;border-radius:999px;padding:3px 9px;}
 .sim-db-ev dl{margin:0;font-size:14px;line-height:1.5;} .sim-db-ev dt{font:800 11.5px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#A34E14;margin-top:6px;} .sim-db-ev dd{margin:1px 0 0;}
 .sim-kp{display:inline-block;font-size:12.5px;font-weight:700;border-radius:999px;padding:2px 8px;margin:2px 2px 0 0;} .sim-kp.y{background:#DDF2E3;color:#14532D;} .sim-kp.n{background:#FDE7E3;color:#8A1C10;}
+.sim-slide{display:flex;gap:22px;align-items:flex-start;padding:22px 26px !important;}
+.sim-slide-ic{width:64px;height:64px;border-radius:50%;background:#DB8437;color:#241304;display:flex;align-items:center;justify-content:center;font-size:28px;flex:0 0 auto;}
+.sim-slide-t h3{margin:0 0 6px;font:700 28px 'Fraunces',Georgia,serif;color:#1E2340;} .sim-slide-t p{margin:0 0 10px;font-size:17px;line-height:1.5;color:#2E3450;}
+.sim-slide-how{font-size:15px !important;color:#3B4160 !important;}
+.sim-slide-state{display:inline-block;margin:0 10px 0 0;font:800 14px 'Inter',sans-serif;border-radius:999px;padding:5px 12px;background:#EEF1FA;color:#262B45;} .sim-slide-state.ok{background:#DDF2E3;color:#14532D;}
 .sim-launch{display:flex;align-items:center;gap:16px;margin:0 0 16px;padding:14px 18px;border-radius:14px;background:linear-gradient(135deg,#1E2340,#3A4170);color:#fff;border:1px solid rgba(255,255,255,.12);box-shadow:0 14px 30px -20px rgba(20,24,48,.6);}
 .sim-launch-ic{width:46px;height:46px;border-radius:50%;background:#DB8437;color:#241304;display:flex;align-items:center;justify-content:center;font-size:20px;flex:0 0 auto;}
 .sim-launch-t{flex:1;min-width:0;} .sim-launch-t .sim-k{color:#F2B77E;margin:0 0 2px;} .sim-launch-t b{display:block;font:700 19px 'Fraunces',Georgia,serif;} .sim-launch-t span{font-size:13.5px;color:#D7DAEA;}
