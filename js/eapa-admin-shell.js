@@ -83,7 +83,6 @@ function scorecardHtml(){
   state.batchSub = "registry"; const people = renderBatchFolderBody();
   state.batchSub = "activities"; const acts = members.length ? renderBatchFolderBody() : `<div class="empty-note">No activity yet.</div>`;
   state.batchSub = sub0 === "activities" || sub0 === "rankings" || sub0 === "feedback" ? "registry" : (sub0 || "registry");
-  const ranks = typeof renderAdminRankings === "function" ? bare(renderAdminRankings(k)) : "";
   const fb = typeof renderAdminTraineeFeedback === "function" ? bare(renderAdminTraineeFeedback()) : "";
   const part = (id, title, note, html) => `<section class="eash-part" id="eash-${id}"><h3 class="eash-h">${title}</h3>${note ? `<p class="eash-note">${note}</p>` : ""}${html}</section>`;
   // sub-tabs, the Case Management way: 🏅 Scorecards (the scores table and each trainee's card) first
@@ -93,7 +92,7 @@ function scorecardHtml(){
   const tabs = `<nav class="eash-subs" role="tablist">${SUBS.filter(x => x[0] !== "cards" || window.EAPACM).map(([id, l]) => `<button type="button" role="tab" class="eash-sub-b ${sub === id ? "on" : ""}" onclick="EAPAShell.sub('${id}')">${l}</button>`).join("")}</nav>`;
   let html;
   if(sub === "cards") html = part("cards", "🏅 Scorecards", "Every trainee's scores, day by day. Click a trainee for their scorecard: what to focus on, and each activity's score and feedback.", EAPACM.section(k));
-  else if(sub === "ranks") html = part("ranks", "🏆 Rankings", "", ranks) + part("progress", "📊 Progress Report", "Each trainee ranked in the batch, with a general summary of their strengths and challenges.", progressHtml(k));
+  else if(sub === "ranks") html = part("progress", "📊 Progress Report", "Each trainee ranked in the batch, with a general summary of their strengths and challenges.", progressHtml(k));
   else if(sub === "fb") html = part("fb", "💬 Trainee Feedback", "What trainees think of the platform, lessons, facilitator, Practice Lab and assessments.", fb);
   else html = part("people", "👥 Trainees & Actions", "Every trainee in the batch: where they are, their scores, the feedback to write, and every action — ✍ Feedback, 🎓 Certificate, ↺ Reset Attempts, ♻ Restore, Revoke — on their row.", people) + part("acts", "📈 Activities", "Where each trainee is, and when they were last active.", acts);
   return `<div class="eash-page">${banner}${tabs}${html}</div>`;
@@ -228,6 +227,8 @@ const st = document.createElement("style"); st.id = "eapa-admin-shell"; st.textC
 .eash-sub-b{font:800 15px 'Inter',system-ui,sans-serif;color:#3B4160;background:transparent;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 16px;cursor:pointer;}
 .eash-sub-b:hover{color:#1E2340;}
 .eash-sub-b.on{color:#1E2340;border-bottom-color:#DB8437;}
+/* the Scorecard page takes the window's full width */
+@media (min-width:1100px){ body:has(.eash-page) main:not(.main-dash){max-width:none;padding-left:24px;padding-right:24px;} }
 /* 📊 the Weekly Progress Report table: the standard look */
 .eash-tw{overflow-x:auto;border:1px solid #DCE0EA;border-radius:10px;}
 .eash-t{width:100%;min-width:980px;border-collapse:collapse;font:600 14px/1.35 'Inter',system-ui,sans-serif;color:#141A2E;background:#fff;}

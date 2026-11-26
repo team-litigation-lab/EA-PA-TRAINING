@@ -61,7 +61,7 @@ const failures = []; const fail = (m) => failures.push(m);
     const vis = await page.$$eval('.audit-table .at-btns button', b => b.filter(x => /Reset Attempts/.test(x.innerText)).every(x => x.offsetParent !== null));
     if (!vis) fail('↺ Reset Attempts isn\'t visible on every row');
     const partsOf = async (id) => { await page.evaluate(i => EAPAShell.sub(i), id); return (await page.$$eval('.eash-part .eash-h', h => h.map(x => x.innerText))).join('|'); };
-    if ((await partsOf('ranks')) !== '🏆 Rankings|📊 Progress Report') fail('the Rankings & Progress Report sub-tab');
+    if ((await partsOf('ranks')) !== '📊 Progress Report') fail('the Rankings & Progress Report sub-tab');
     // 📊 the Progress Report in the Case Management format: a general summary, no detail of a piece of work
     const rep = await page.evaluate(() => ({ head: [...document.querySelectorAll('.eash-rep thead th')].map(t => t.innerText.trim()), rows: [...document.querySelectorAll('.eash-rep tbody tr')].map(r => [...r.children].map(c => c.innerText.trim())) }));
     if (rep.head.join('|') !== "Rank|Trainee's Name|Batch Score|Strength|Challenges|General Attribute Rating|Progress") fail(`the Progress Report's columns: ${rep.head.join(' | ')}`);
