@@ -480,5 +480,273 @@ window.EAPA_DAY_VIDEOS = {
     "t": 2118.4
    }
   ]
+ },
+ "3": {
+  "title": "Day 3 — Time Management, Calendar & Travel",
+  "src": "/videos/day3-narrated.mp4?v=tp39pz",
+  "captions": "/videos/day3-narrated.vtt?v=tp39pz",
+  "duration": 2699,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 3 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Time Management & Productivity",
+    "t": 29
+   },
+   {
+    "slide": 3,
+    "title": "Prioritization Frameworks",
+    "t": 41
+   },
+   {
+    "slide": 4,
+    "title": "Quick Check",
+    "t": 112.1
+   },
+   {
+    "slide": 5,
+    "title": "Priority Collision Handling",
+    "t": 139.9
+   },
+   {
+    "slide": 6,
+    "title": "Time Management",
+    "t": 188.8
+   },
+   {
+    "slide": 7,
+    "title": "Strategic Time Engineering",
+    "t": 244.2
+   },
+   {
+    "slide": 8,
+    "title": "When Time Management Fails Despite a Clean Calendar",
+    "t": 298.9
+   },
+   {
+    "slide": 9,
+    "title": "Energy Management vs. Time Management",
+    "t": 361.8
+   },
+   {
+    "slide": 10,
+    "title": "Time Management Requires Energy Management",
+    "t": 434.6
+   },
+   {
+    "slide": 11,
+    "title": "Handling Interruptions Without Losing the Day",
+    "t": 487.9
+   },
+   {
+    "slide": 12,
+    "title": "Mid-Stage Task Injections",
+    "t": 543.4
+   },
+   {
+    "slide": 13,
+    "title": "The Two-Minute Rule",
+    "t": 591
+   },
+   {
+    "slide": 14,
+    "title": "Batch Processing Similar Tasks",
+    "t": 649.2
+   },
+   {
+    "slide": 15,
+    "title": "The Cost of Context-Switching",
+    "t": 710.9
+   },
+   {
+    "slide": 16,
+    "title": "Dual-Role Context Switching",
+    "t": 774.2
+   },
+   {
+    "slide": 17,
+    "title": "Weekly Planning Rituals",
+    "t": 823.2
+   },
+   {
+    "slide": 18,
+    "title": "Saying No Without Damaging Relationships",
+    "t": 877
+   },
+   {
+    "slide": 19,
+    "title": "Setting Realistic Deadlines",
+    "t": 929.8
+   },
+   {
+    "slide": 20,
+    "title": "Time Tracking Done Right",
+    "t": 981.9
+   },
+   {
+    "slide": 21,
+    "title": "The Weekly Time Audit",
+    "t": 1037.3
+   },
+   {
+    "slide": 22,
+    "title": "Calendar Management",
+    "t": 1092.4
+   },
+   {
+    "slide": 23,
+    "title": "Calendar Management That Holds",
+    "t": 1105
+   },
+   {
+    "slide": 24,
+    "title": "Calendar Conflict & Prioritization Discipline",
+    "t": 1170.3
+   },
+   {
+    "slide": 25,
+    "title": "Calendar Blocking for Deep Work",
+    "t": 1228.8
+   },
+   {
+    "slide": 26,
+    "title": "Buffer Time Between Meetings",
+    "t": 1288.3
+   },
+   {
+    "slide": 27,
+    "title": "Recurring Meeting Hygiene",
+    "t": 1341.2
+   },
+   {
+    "slide": 28,
+    "title": "Time Zone Management for Distributed Teams",
+    "t": 1394
+   },
+   {
+    "slide": 29,
+    "title": "Handling Last-Minute Calendar Changes",
+    "t": 1452.3
+   },
+   {
+    "slide": 30,
+    "title": "Multi-Calendar Coordination",
+    "t": 1507.1
+   },
+   {
+    "slide": 31,
+    "title": "Legal Calendaring",
+    "t": 1568.4
+   },
+   {
+    "slide": 32,
+    "title": "Court Docketing Workflows",
+    "t": 1580.8
+   },
+   {
+    "slide": 33,
+    "title": "Counting Legal Deadlines: Calendar Days vs. Court Days",
+    "t": 1632.7
+   },
+   {
+    "slide": 34,
+    "title": "Quick Check",
+    "t": 1716
+   },
+   {
+    "slide": 35,
+    "title": "E-Filing & Service Basics",
+    "t": 1748.1
+   },
+   {
+    "slide": 36,
+    "title": "Statute-of-Limitations Rules",
+    "t": 1833.8
+   },
+   {
+    "slide": 37,
+    "title": "Deposition Scheduling",
+    "t": 1890.5
+   },
+   {
+    "slide": 38,
+    "title": "Exhibits, Binders & Bates Numbering",
+    "t": 1941.7
+   },
+   {
+    "slide": 39,
+    "title": "War Room Trial Support",
+    "t": 2026.8
+   },
+   {
+    "slide": 40,
+    "title": "Travel Management",
+    "t": 2077.8
+   },
+   {
+    "slide": 41,
+    "title": "Executive Travel Logistics — Domestic & International Itineraries",
+    "t": 2090.8
+   },
+   {
+    "slide": 42,
+    "title": "Visa & Documentation Requirements",
+    "t": 2141.6
+   },
+   {
+    "slide": 43,
+    "title": "International Travel Considerations",
+    "t": 2194.2
+   },
+   {
+    "slide": 44,
+    "title": "Managing Multi-City, Multi-Leg Itineraries",
+    "t": 2252.4
+   },
+   {
+    "slide": 45,
+    "title": "Ground Transportation Coordination",
+    "t": 2308
+   },
+   {
+    "slide": 46,
+    "title": "Loyalty Programs & Travel Preferences",
+    "t": 2358
+   },
+   {
+    "slide": 47,
+    "title": "Travel Risk Contingency Planning",
+    "t": 2411.2
+   },
+   {
+    "slide": 48,
+    "title": "Emergency Flight Contingencies",
+    "t": 2466.5
+   },
+   {
+    "slide": 49,
+    "title": "Expense Tracking While Traveling",
+    "t": 2514.7
+   },
+   {
+    "slide": 50,
+    "title": "Building a Real Travel Checklist",
+    "t": 2567.3
+   },
+   {
+    "slide": 51,
+    "title": "Post-Trip Debrief & Follow-Up",
+    "t": 2619.1
+   },
+   {
+    "slide": 52,
+    "title": "Practice Lab",
+    "t": 2675.5
+   }
+  ]
  }
 };
