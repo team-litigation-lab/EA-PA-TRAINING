@@ -43,7 +43,7 @@ window.LSH_BLUEPRINT = {
         tip: 'Keep the portal open on the day your trainer is presenting, so you can follow and re-read at your own pace.' },
       { icon: '📚', title: 'Your dashboard at a glance', points: [
           'Banner and progress track: Days 1–10, ✓ = passed, and a click on a circle jumps to that day.',
-          'Day cards fill the screen: Start a day, ☰ Topics lists its topics, ✓ Finish Training, and 💬 trainer feedback appears on the card.',
+          'Day cards fill the screen: Start a day, ☰ Topics lists its topics, ▶ Video plays it, and 💬 trainer feedback appears on the card. A day completes itself once its Knowledge Check is passed and its Practice Lab is done (the Practice Lab is at the end of the deck).',
           'Scores band under the lessons: program complete, best competency score, quiz average, days done, 💬 your feedback and your ranking.',
           '▶ Resume takes you back to where you left off, and the certificate downloads from here when it is earned.'],
         where: 'Your dashboard — every sign-in lands on it.',
