@@ -257,6 +257,8 @@ button{font-family:inherit;cursor:pointer;}
 
 
 main{flex:1;max-width:1400px;margin:0 auto;padding:36px 20px 80px;width:100%;animation:pageIn .35s ease both;}
+/* every page uses the window's full width on a wide screen, as the dashboard does */
+@media (min-width:1100px){ main{max-width:none;padding-left:24px;padding-right:24px;} }
 @keyframes pageIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
 .footer-note{
@@ -2054,6 +2056,13 @@ img[alt="Legal Support Help"]{border-radius:8px;}
 .bf-audit-controls input[type=text]{padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;min-width:200px;}
 .bf-audit-controls select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;}
 .bf-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 16px;}
+.bf-files-note{font-size:14px;font-weight:600;color:#3B4160;margin:8px 0 12px;max-width:95ch;}
+.bf-files-note a{color:#A34E14;font-weight:800;}
+.bf-files{padding:0 !important;overflow:hidden;background:#fff !important;backdrop-filter:none !important;}
+.bf-files-t{width:100%;border-collapse:collapse;font-size:14px;color:#141A2E;}
+.bf-files-t th{background:#262B45;color:#fff;font-size:12.5px;text-align:left;padding:10px 12px;border-bottom:2px solid #DB8437;}
+.bf-files-t td{padding:10px 12px;border-top:1px solid #E4E7EF;font-weight:600;}
+.bf-files-t code{font-size:12.5px;color:#3B4160;}
 .bf-tabs button{font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;}
 .bf-tabs button.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 .bf-tabs em{font-style:normal;font-weight:600;opacity:.7;margin-left:2px;}
@@ -6670,10 +6679,22 @@ function navBackTarget(){
 // Filled in after the page's history entry is recorded (afterRender), so it names the right page.
 function fillNavBack(){
   const slot = document.getElementById("navBackSlot"); if(!slot) return;
-  const prev = ["login","pendingApproval","registrationDenied","dashboard"].includes(state.view) ? "" : navBackTarget();
+  // (in a lesson the way back is on the bar under the slide, dayFootLinks; the Knowledge Check keeps it here)
+  const prev = ["login","pendingApproval","registrationDenied","dashboard"].includes(state.view) || (state.view==="day" && state.dayViewMode!=="knowledgeCheck") ? "" : navBackTarget();
   // No "Back to Dashboard": the top bar's Dashboard button is always there.
   const label = prev && prev !== "#/dashboard" && routeLabel(prev);
+  // (the lesson bar's links are drawn before the route updates: redrawn here with the page they go back to)
+  document.querySelectorAll(".dfl-slot").forEach(n=>{ n.innerHTML = dayFootLinksInner(!!n.dataset.roadmap); });
   slot.innerHTML = label ? `<div class="nav-back-row"><button type="button" class="nav-back" onclick="navBack()" title="Go back to the page you were on">← Back to ${esc(label)}</button></div>` : "";
+}
+// "← Back to …" and "⌂ Roadmap" for the bar under a lesson's slide (and the day's "Before you start" page)
+function dayFootLinks(roadmap){
+  return `<span class="dfl-slot" data-roadmap="${roadmap ? 1 : ""}" style="display:contents;">${dayFootLinksInner(roadmap)}</span>`;
+}
+function dayFootLinksInner(roadmap){
+  const prev = navBackTarget(), label = prev && prev !== "#/dashboard" && routeLabel(prev);
+  return (label ? `<button type="button" class="btn btn-ghost btn-sm dfl" onclick="navBack()" title="Go back to the page you were on">← ${esc(label)}</button>` : "")
+    + (roadmap ? `<button type="button" class="btn btn-ghost btn-sm dfl" onclick="goto('dashboard')" title="Back to the roadmap">⌂ Roadmap</button>` : "");
 }
 function navBack(){ if(routeDepth()>0) history.back(); else goto("dashboard"); }
 window.navBack = navBack;
@@ -6785,7 +6806,7 @@ const PAGE_EYEBROWS = {clientprofile:"Your Client", practice:"Practice Lab", not
 function applyPageHero(){
   if(["dashboard","day","login","pendingApproval","registrationDenied","orientation","tool"].includes(state.view)) return;
   const main = document.querySelector("#app > main"); if(!main) return;
-  const h1 = main.querySelector(":scope > h1, :scope > div > h1:first-child"); if(!h1 || h1.closest(".page-hero")) return;
+  const h1 = main.querySelector(":scope > h1, :scope > div > h1:first-child"); if(!h1 || h1.closest(".page-hero") || h1.classList.contains("no-hero")) return;
   const parent = h1.parentElement;
   let eyebrow = h1.previousElementSibling && h1.previousElementSibling.classList.contains("eyebrow") ? h1.previousElementSibling : null;
   let sub = h1.nextElementSibling && h1.nextElementSibling.tagName==="P" && !h1.nextElementSibling.className ? h1.nextElementSibling : null;
@@ -7435,10 +7456,8 @@ function renderDay(id){
     `;
   }
 
-  return `
-    ${compactHead}
-    ${renderDaySlideshow(d)}
-  `;
+  // (the lesson's way back and the roadmap link sit on the bar under the slide: dayFootLinks)
+  return renderDaySlideshow(d);
 }
 function backToSlidesFromKnowledgeCheck(){
   state.dayViewMode = "slides";
@@ -7792,7 +7811,7 @@ function renderDayIntro(d){
         ${warm.length ? `<div class="di-warm"><b>🧠 Warm-up — what do you already know?</b> <span>Not graded. Just notice what you're unsure about.</span>
           ${warm.map((q,k)=>warmupQuestionHtml(d.id,q,k)).join("")}</div>` : ""}
       </div></div>
-      <div class="slide-nav"><button class="btn btn-ghost" onclick="goto('dashboard')">← Dashboard</button><span class="slide-counter">Objectives</span><button class="btn btn-primary" onclick="startDayFromIntro(${d.id})">Start Day ${d.id} →</button></div>
+      <div class="slide-nav"><span style="display:flex;gap:8px;align-items:center;">${dayFootLinks(false)}<button class="btn btn-ghost btn-sm" onclick="goto('dashboard')">⌂ Roadmap</button></span><span class="slide-counter">Objectives</span><button class="btn btn-primary" onclick="startDayFromIntro(${d.id})">Start Day ${d.id} →</button></div>
     </div>`;
 }
 /* Warm-up: the trainee picks an answer first; only then do we show whether it was right
@@ -7848,8 +7867,9 @@ function renderDaySlideshow(d){
         <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevSlide()">&larr; Previous</button>
         ${state.isAdmin && idx>0 ? `<button class="btn btn-ghost btn-sm" onclick="goToSlide(0)" title="Admin: go back to the first slide of Day ${d.id}">⏮ Slide 1</button>` : ""}
         ${slide.type==="topic" && typeof openLessonNotes==="function" ? `<button class="btn btn-ghost btn-sm ln-foot" onclick="openLessonNotes(${d.id}, ${esc(JSON.stringify(d.lessons[slide.lessonIndex].h))})" title="The full text of this topic in Day ${d.id}'s Lesson Notes (Handouts), with its best practices and pitfalls">📖 Full notes</button>` : ""}
+        ${dayFootLinks(true)}
       </span>
-      <span class="slide-nav-mid"><span class="slide-counter">Step ${idx+1} of ${total}</span>${isLast ? `<span class="slide-done-note" title="That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.">🎉 That's everything for Day ${d.id}: the Knowledge Check is the last step</span>` : ""}</span>
+      <span class="slide-nav-mid"><span class="slide-counter">Day ${d.id} · Step ${idx+1} of ${total}</span>${isLast ? `<span class="slide-done-note" title="That's everything for Day ${d.id} — the Knowledge Check is the last step to mark this day complete.">🎉 That's everything for Day ${d.id}: the Knowledge Check is the last step</span>` : ""}</span>
       ${isLast
         ? `<button class="btn btn-primary" onclick="goToKnowledgeCheckWithInterstitial()">Continue to Knowledge Check &rarr;</button>`
         : `<button class="btn btn-primary" onclick="nextSlide()">Next &rarr;</button>`}
@@ -13246,23 +13266,27 @@ function renderAdminBatchFolders(){
       <span class="bf-meta">${done}% avg completion · ${state.tfbAdmin&&!state.tfbAdmin.loading ? `${fb} feedback` : "feedback…"}</span>
     </button>`; }).join("")}</div>`;
 }
+/* A batch folder is file management only: the batch's records, its downloads and Archive / Restore.
+   Scores, rankings, feedback and activity live on 🏅 Scorecard (pick the batch there, archived ones included);
+   an archived batch keeps every score with it, so the Scorecard and the downloads still show them. */
 function renderBatchFolder(k){
-  const sub = state.batchSub || "registry";
   const members = batchMembers(k);
-  const tabs = [["registry","🗂 Trainee Audit"],["rankings","🏆 Rankings"],["feedback","💬 Feedback"],["activities","📈 Activities"]];
+  const all = (state.adminData||[]).filter(r=>batchKey(r)===k);
+  const rows = members.slice().sort((a,b)=>(cleanName(a.name)||"").localeCompare(cleanName(b.name)||""));
   return `
-    <div class="bf-crumb"><button type="button" class="btn btn-ghost btn-sm" onclick="closeBatchFolder()">← All batch folders</button></div>
-    <p class="eyebrow">Batch Folder</p>
-    <div style="display:flex;gap:10px 16px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;">
-      <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">📁 ${esc(folderLabel(k))}</h1>
+    <div style="display:flex;gap:10px 16px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:4px;">
+      <h1 class="no-hero" style="color:var(--navy);font-size:26px;margin:6px 0 4px;">📁 ${esc(folderLabel(k))}</h1>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;align-items:center;">
         <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-soft);cursor:pointer;"><input type="checkbox" ${state.batchShowArchived?"checked":""} onchange="state.batchShowArchived=this.checked;render()"> Include archived</label>
-        <button class="btn btn-ghost btn-sm" onclick="refreshAdminData();loadTraineeFeedbackAdmin()">🔄 Refresh</button>
         ${k!==NO_BATCH && members.some(r=>!r.archived) ? `<button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="confirmArchiveBatch('${esc(k)}')">📦 Archive This Batch</button>` : ""}
       </div>
     </div>
-    <div class="bf-tabs">${tabs.map(([id,l])=>`<button type="button" class="${sub===id?"active":""}" onclick="setBatchSub('${id}')">${l}${id==="registry"?` <em>${members.length}</em>`:id==="feedback"&&state.tfbAdmin&&!state.tfbAdmin.loading?` <em>${batchFeedback(k).length}</em>`:""}</button>`).join("")}</div>
-    <div id="batchFolderBody">${renderBatchFolderBody()}</div>`;
+    <p class="bf-files-note">${all.length} record${all.length===1?"":"s"} in this batch${all.length>members.length?` (${all.length-members.length} archived hidden)`:""}. Every trainee's scores, feedback and activity stay with their record — archived or not. To see them, open
+      <a href="#" onclick="state.scBatch='${esc(k)}';state.scSub='cards';EAPAShell.go('scorecard');return false;">🏅 Scorecard</a> and pick this batch.</p>
+    <div class="card bf-files">${rows.length ? `<table class="bf-files-t"><thead><tr><th>Trainee</th><th>Trainee ID</th><th>Registered</th><th>Last active</th><th>Status</th></tr></thead><tbody>
+      ${rows.map(r=>`<tr><td><b>${esc(cleanName(r.name)||"Unnamed")}</b></td><td><code>${esc(r.id)}</code></td><td>${r.registeredAt?esc(fmtDate(r.registeredAt)):"—"}</td><td>${r.lastActive?esc(fmtDate(r.lastActive)):"—"}</td>
+        <td>${r.archived?`<span class="studio-badge">archived${r.archivedAt?` · ${esc(fmtDate(r.archivedAt))}`:""}</span>`:r.approved===true?"Active":r.approved===false?"Revoked":"Awaiting approval"}</td></tr>`).join("")}
+    </tbody></table>` : `<div class="empty-note">No trainees in ${esc(folderLabel(k))}${state.batchShowArchived?"":" (archived trainees are hidden)"}.</div>`}</div>`;
 }
 function renderBatchFolderBody(){
   const k = state.batchFolder; if(!k) return "";
@@ -18300,16 +18324,16 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=4"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=one-slide-1"></script>
+<script src="/js/eapa-updates.js?v=bf-2"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>
 <script src="/js/graded-calls.js?v=1"></script>
 <script src="/js/checkin.js?v=1"></script>
 <script src="/js/sim-results.js?v=1"></script>
-<script src="/js/eapa-scorecard.js?v=4"></script>
-<script src="/js/eapa-cm-scorecard.js?v=1"></script>
-<script src="/js/eapa-admin-shell.js?v=3"></script>
+<script src="/js/eapa-scorecard.js?v=5"></script>
+<script src="/js/eapa-cm-scorecard.js?v=2"></script>
+<script src="/js/eapa-admin-shell.js?v=4"></script>
 <!-- 🧭 Blueprints: the Trainer blueprint (blueprint-content.js) and the Trainee blueprint (Orientation, /blueprint.pdf) rebuilt after every deploy -->
 <script src="/js/blueprint-content.js?v=3"></script>
 <script src="/js/lsh-blueprint-course.js?v=2"></script>
@@ -18320,7 +18344,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- 👁 Up next: hover Next (or 👁 Peek next / N) for a preview of the next slide -->
 <script src="/js/eapa-next-preview.js?v=1"></script>
 <!-- 🎨 Deck colour, graphics and icons on every slide (topic illustrations, section colours, AA contrast) -->
-<script src="/js/eapa-deck-color.js?v=4"></script>
+<script src="/js/eapa-deck-color.js?v=5"></script>
 <!-- 🖥 Practice Lab activities in realistic app windows (docs, mail, tasks, ledger, admin console, portal, dashboards, AI assistant, CRM, forms, reviews, social) -->
 <script src="/js/eapa-lab-apps.js?v=5"></script>
 </body>

@@ -92,7 +92,7 @@ window.EAPA_UPDATE_PACK = "z";
   .dash-main .module-card.mc-clean .mh-day{font-size:11px;}
   .dash-main .module-card.mc-clean .mh-title{font-size:14px;line-height:1.25;}
   .dash-main .module-card.mc-clean .module-body{flex:1 1 0;min-height:0;overflow:hidden;container-type:size;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:8px 16px 6px;}
-  .dash-main .module-card.mc-clean .module-icon{font-size:30px;line-height:1;margin:0;}
+  .dash-main .module-card.mc-clean .module-icon{font-size:clamp(30px,60cqh,48px);line-height:1;margin:0;}
   .dash-main .module-card.mc-clean .module-start-btn{margin:0 14px 8px;width:calc(100% - 28px);padding:10px;font-size:15px;}
   .dash-main .module-card.mc-clean .module-finish-btn{margin:0 14px 8px;width:calc(100% - 28px);padding:6px;font-size:12.5px;}
   .dash-main .module-card.mc-clean > :last-child{margin-bottom:10px;}
@@ -2602,13 +2602,13 @@ window.renderBatchFolder = function(k){
   const kq = esc(k).replace(/'/g, "&#39;");
   const dl = `<button class="btn btn-ghost btn-sm" onclick="bfExportCsv('${kq}')" title="Spreadsheet of every trainee's progress and scores">⬇ Records (CSV)</button>
         <button class="btn btn-ghost btn-sm" onclick="bfExportJson('${kq}')" title="Complete backup of this batch's records and feedback">⬇ Full backup (JSON)</button>`;
-  html = html.replace(/(<button class="btn btn-ghost btn-sm" onclick="refreshAdminData\(\);loadTraineeFeedbackAdmin\(\)">)/, dl + "\n        $1");
+  html = html.replace(/( Include archived<\/label>)/, "$1\n        " + dl);
   if(bfIsArchived(k)){
     const at = bfArchivedAt(k), n = bfAll(k).length;
     const banner = `<div class="bf-archived-banner"><span style="font-size:22px;">🗄</span>
       <div class="grow"><b>Archived batch</b>${at ? ` · archived ${esc(fmtDate(at))}` : ""}. All ${n} trainee record${n===1?"":"s"} are kept below: registry, rankings, feedback and activity, as they were.</div>
       <button class="btn btn-primary btn-sm" onclick="confirmUnarchiveBatch('${kq}')">↩ Restore batch</button></div>`;
-    html = html.replace(/(<div class="bf-tabs">)/, banner + "\n    $1")
+    html = html.replace(/(<p class="bf-files-note">)/, banner + "\n    $1")
                .replace(/<label style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:var\(--ink-soft\);cursor:pointer;"><input type="checkbox"[^>]*> Include archived<\/label>/, "");
   }
   return html;
@@ -2671,8 +2671,7 @@ Object.assign(window, {bfSearch, bfRedraw, bfExportCsv, bfExportJson});
     const html = __card(d), t = document.createElement("template"); t.innerHTML = html.trim();
     const card = t.content.firstElementChild; if(!card) return html;
     card.querySelectorAll(".module-topic-list, .module-more").forEach(n=>n.remove());
-    const body = card.querySelector(".module-body");   // the day's icon and what it covers fill the card
-    if(body && d.theme) body.insertAdjacentHTML("beforeend", `<div class="module-theme">${esc(d.theme)}</div>`);
+    // (the day's icon fills the card; what it covers is under ☰ Topics, not repeated on the card)
     const n = (d.lessons||[]).length, start = card.querySelector(".module-start-btn");
     if(n && start) start.insertAdjacentHTML("afterend", `<button type="button" class="btn btn-ghost btn-sm module-finish-btn module-topics-btn" onclick="event.stopPropagation(); showDayTopics(${d.id})">☰ Topics <span>· ${n}</span></button>`);
     // Topics and Finish sit side by side under Start, as two quiet buttons

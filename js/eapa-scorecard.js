@@ -151,6 +151,8 @@ function weeklyHtml(rows, myRec, pool, you){
     const wr = rows.filter(r=>w.days.includes(r.dayId));
     const s = scoreOver(myRec, w.days);
     let place = "—";
+    // the batch's week: the average week score of everyone in the batch who has started that week
+    const bs = (pool || []).map(r=>scoreOver(r, w.days)).filter(x=>x.any), bAvg = bs.length ? Math.round(avg(bs.map(x=>x.score))) : null;
     if(pool && pool.length && s.any){ const rk = ranked(pool, w.days); const i = rk.findIndex(x=>x.r === myRec || (myRec.id && x.r.id === myRec.id)); if(i >= 0) place = `#${i+1} <small>of ${rk.length}</small>`; }
     return `<tr>
       <th scope="row" class="sc-day"><b>${w.label}</b><span>Days ${w.days[0]}–${w.days[w.days.length-1]}</span></th>
@@ -159,13 +161,14 @@ function weeklyHtml(rows, myRec, pool, you){
       ${cell(avg(wr.map(r=>r.qc)), "Average of the week's Quick Checks")}
       ${cell(s.pr, "Average best score on the week's Practice Labs")}
       ${cell(s.tk, "Average of the week's random tasks")}
-      <td class="sc-num sc-avg ${s.any ? tone(s.score) : ""}" title="35% days completed · 25% Knowledge Checks · 25% Practice Lab · 15% random tasks (40/30/30 until a task is graded)">${s.any ? s.score : "—"}</td>
+      <td class="sc-num sc-avg ${s.any ? tone(s.score) : ""}" title="35% days completed · 25% Knowledge Checks · 25% Practice Lab · 15% random tasks (40/30/30 until a task is graded)">${s.any ? s.score : "—"}${s.any ? `<small>${s.score >= 70 ? "✓ passing" : "below 70"}</small>` : ""}</td>
+      <td class="sc-num ${num(bAvg) ? tone(bAvg) : ""}" title="${e(bs.length ? `Average week score of the ${bs.length} trainee${bs.length === 1 ? "" : "s"} in the batch who have started this week` : "No one in the batch has started this week yet")}">${num(bAvg) ? `${bAvg}<small>${bs.length} trainee${bs.length === 1 ? "" : "s"}</small>` : "—"}</td>
       <td class="sc-num">${place}</td>
       <td class="sc-remark"><div class="sc-fb">${e(weekRemark(w, wr, you))}</div></td>
     </tr>`;
   }).join("");
   return `<div class="sc-wrap"><table class="sc-table">
-    <thead><tr><th>Week</th><th>Days passed</th><th>✍️ Knowledge Checks</th><th>✅ Quick Checks</th><th>🛠 Practice Lab</th><th>🎲 Random tasks</th><th>Week score</th><th>Place in batch</th><th class="sc-remark-h">How the week went</th></tr></thead>
+    <thead><tr><th>Week</th><th>Days passed</th><th>✍️ Knowledge Checks</th><th>✅ Quick Checks</th><th>🛠 Practice Lab</th><th>🎲 Random tasks</th><th>Week score</th><th>Batch average</th><th>Place in batch</th><th class="sc-remark-h">How the week went</th></tr></thead>
     <tbody>${body}</tbody></table></div>`;
 }
 function rankingHtml(pool, meRec, note, you){
@@ -209,12 +212,24 @@ function tiles(rows, pool, meRec){
   const t = (n, l)=>`<div class="sc-tile"><div class="sc-tile-n">${n}</div><div class="sc-tile-l">${l}</div></div>`;
   return `<div class="sc-tiles">${t(pct(all), "Overall average")}${t(`${rows.filter(r=>r.passed).length}/${rows.length}`, "Days passed")}${t(rank + `<small>${of}</small>`, "Batch ranking")}${w.map((s,i)=>t(s.any ? s.score : "—", `Week ${i+1} score`)).join("")}</div>`;
 }
+// the pass mark, stated once at the top of a trainee's scorecard, with where they stand against it
+function passBand(rows){
+  const all = avg(rows.map(r=>r.average)), below = rows.filter(r=>num(r.average) && r.average < 70).length;
+  const st = !num(all) ? ["sc-pb-none", "Nothing scored yet"] : all >= 70 ? ["sc-pb-ok", `✓ Passing · overall ${Math.round(all)}%`] : ["sc-pb-lo", `Below the pass mark · overall ${Math.round(all)}%`];
+  return `<div class="sc-passband"><span class="sc-pb-mark">🎯 Passing score <b>70%</b></span>
+    <span class="sc-pb-txt">Each Knowledge Check, Practice Lab, Quick Check set, random task, day and week passes at 70%. Green 85%+ · amber 70–84% · orange below 70%.${below ? ` ${below} day${below === 1 ? " is" : "s are"} below it — see 🎯 Focus on.` : ""}</span>
+    <span class="sc-pb-st ${st[0]}">${st[1]}</span></div>`;
+}
 function sections(o){
   // o: {rows, fb, mode, you, meRec, pool, rankNote}
+  // a trainee sees their own scorecard the way the admin sees it (js/eapa-cm-scorecard.js): 🎯 Focus on and 📅 Day scores,
+  // each activity's score and feedback, the trainer feedback sent to them; then the weekly progress with the batch's, and the ranking
+  const mine = o.you && o.mode === "trainee" && window.EAPACM && EAPACM.mine;
   return `${tiles(o.rows, o.pool, o.meRec)}
+    ${o.you ? passBand(o.rows) : ""}
     <p class="sc-summary">${e(summaryLine(o.rows, o.pool, o.meRec, o.you))}</p>
-    <section class="sc-sec"><h3>🏅 Score Card</h3><p class="sc-note">Every score, day by day, with the trainer's feedback beside it. Green 85%+ · amber 70–84% · orange below 70%. Hover a score to see how it was worked out.</p>${scoreCardHtml(o.rows, o.fb, o.mode, o.you)}</section>
-    <section class="sc-sec"><h3>📊 Weekly Progress</h3><p class="sc-note">Week 1 is Days 1–5, Week 2 is Days 6–10. The week score uses the same formula as the ranking.</p>${weeklyHtml(o.rows, o.meRec, o.pool, o.you)}</section>
+    ${mine ? `<section class="sc-sec sc-mine">${EAPACM.mine()}</section>` : `<section class="sc-sec"><h3>🏅 Score Card</h3><p class="sc-note">Every score, day by day, with the trainer's feedback beside it. Green 85%+ · amber 70–84% · orange below 70%. Hover a score to see how it was worked out.</p>${scoreCardHtml(o.rows, o.fb, o.mode, o.you)}</section>`}
+    <section class="sc-sec"><h3>📊 Weekly Progress</h3><p class="sc-note">Week 1 is Days 1–5, Week 2 is Days 6–10. The week score uses the same formula as the ranking; the batch average is everyone in the batch who has started that week.</p>${weeklyHtml(o.rows, o.meRec, o.pool, o.you)}</section>
     <section class="sc-sec"><h3>🏆 Ranking${o.batch ? ` · Batch ${e(o.batch)}` : ""}</h3><p class="sc-note">Score = 35% days completed · 25% Knowledge Checks · 25% Practice Lab · 15% random tasks (40/30/30 until a task is graded).${o.you ? " Other trainees show as first name and last initial." : ""}</p>${rankingHtml(o.pool, o.meRec, o.rankNote, o.you)}</section>`;
 }
 
@@ -334,7 +349,13 @@ if(typeof renderRankingCard === "function"){
 const css = document.createElement("style");
 css.id = "eapa-scorecard-css";
 css.textContent = `
-.sc-page{max-width:1240px;margin:0 auto;padding:6px 4px 28px;}
+.sc-passband{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:12px 0 4px;padding:10px 14px;background:#fff;border:1px solid #DCE0EA;border-left:5px solid #DB8437;border-radius:10px;}
+.sc-pb-mark{font:800 15px 'Inter',system-ui,sans-serif;color:#1E2340;white-space:nowrap;} .sc-pb-mark b{color:#A34E14;font-size:17px;}
+.sc-pb-txt{flex:1 1 320px;font-size:13.5px;font-weight:600;color:#3B4160;}
+.sc-pb-st{font:800 14px 'Inter',system-ui,sans-serif;border-radius:999px;padding:6px 14px;white-space:nowrap;}
+.sc-pb-ok{background:#DDF2E3;color:#0F4A28;} .sc-pb-lo{background:#FDE7E3;color:#8A1C10;} .sc-pb-none{background:#F1F3F8;color:#3B4160;}
+.sc-mine{padding:0 !important;border:0 !important;background:transparent !important;box-shadow:none !important;} .sc-mine .eacm-card{margin-top:0;}
+.sc-page{max-width:none;margin:0 auto;padding:6px 4px 28px;}
 .sc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:0 0 14px;}
 .sc-head h1{color:var(--navy);font-size:26px;margin:4px 0 2px;}
 .sc-head p{margin:0;color:var(--ink-soft);font-size:14px;}
@@ -361,7 +382,7 @@ css.textContent = `
 .sc-avg{background:rgba(31,37,71,.04);}
 .sc-hi{color:#1E7A46;} .sc-mid{color:#9A6A00;} .sc-lo{color:#C0461C;}
 .sc-idle td,.sc-idle th{opacity:.62;}
-.sc-remark{min-width:280px;max-width:460px;font-size:12.8px;line-height:1.5;color:#2A2D40;}
+.sc-remark{min-width:280px;max-width:none;font-size:12.8px;line-height:1.5;color:#2A2D40;}
 .sc-fb{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
 .sc-auto{color:#3C4060;}
 .sc-autotag{font-size:10.5px;color:var(--ink-soft);margin-top:3px;font-style:italic;}
@@ -374,7 +395,7 @@ css.textContent = `
 .sc-admin{margin-top:16px;} .sc-admin .sc-sec{box-shadow:none;} .sc-admin .sc-tile-n{font-size:20px;}
 .sc-dash-btn{background:#fff;color:var(--navy);border:1px solid var(--line);font-weight:800;} .sc-dash-btn span{font-weight:500;color:var(--ink-soft);font-size:12px;margin-left:6px;}
 .rank-card .sc-rank-link{margin-top:8px;color:#fff;border-color:rgba(255,255,255,.3);background:transparent;}
-@media(min-width:761px) and (max-width:1440px){.topbar .nav .sc-nav-word{display:none;}}
+/* (the 🏅 Scorecard button keeps its word on a laptop too: trainees look for it by name) */
 @media(max-width:760px){.sc-tiles{grid-template-columns:1fr 1fr;} .sc-head h1{font-size:21px;} .sc-sec{padding:12px;} .sc-dash-btn span{display:block;margin:2px 0 0;}}
 `;
 document.head.appendChild(css);

@@ -199,6 +199,9 @@
    soft blue-grey Start with bold navy text (solid navy on hover) and a white Topics / Finish row with
    dark text. Overrides js/lsh-card-frame.js (shared by every course). */
 body .dash-main .module-card.mc-clean{background:#fff !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;}
+/* the frame round each card: a navy-to-gold gradient (white card inside, gradient only in the border) */
+body .dash-main .module-card.mc-clean{border-color:transparent !important;
+  background:linear-gradient(#fff,#fff) padding-box, linear-gradient(135deg,#1E2340 0%,#3A4170 45%,#B8892B 80%,#E2B85A 100%) border-box !important;}
 body .dash-main .module-card.mc-clean .module-head,
 body .dash-main .module-card.mc-clean:nth-child(3n+2) .module-head,
 body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{background:#fff !important;border-bottom:1px solid #E6E9F1 !important;}
@@ -213,6 +216,12 @@ body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){b
 body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn):not(:last-child){border-right:1px solid #E6E9F1 !important;}
 body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:disabled):hover{background:#F3F5FB !important;}
 body .dash-main .module-card.mc-clean .module-topics-btn span{color:#A34E14 !important;}
+
+/* the dashboard uses the window's full width, and the cards' titles grow with it */
+@media (min-width:1200px){
+  main.main-dash{max-width:none !important;padding-left:24px !important;padding-right:24px !important;}
+  body .dash-main .module-card.mc-clean .mh-title{font-size:clamp(14px,1.02vw,19px) !important;line-height:1.22 !important;}
+}
 
 /* Do this / Watch out cards */
 #lessonSlideWrap .vis-card.good{background:#EAF4EE !important;border-color:#BFDCCB !important;border-left:5px solid #3F7D58 !important;}
