@@ -5946,20 +5946,6 @@ function renderDashboard(){
         </div>
       </div>
 
-      <div class="step-timeline">
-        ${DAYS.map((d,i)=>{
-          const prog = state.progress[d.id];
-          const unlocked = dayUnlocked(d.id);
-          const isCurrent = d.id===nextDayId() && !(prog&&prog.done);
-          const status = (prog&&prog.done ? "st-done" : (unlocked?"st-open":"st-locked")) + (isCurrent?" st-current":"");
-          const nextDone = i<DAYS.length-1 && state.progress[DAYS[i+1].id] && state.progress[DAYS[i+1].id].done;
-          const dashFilled = prog&&prog.done && nextDone;
-          return `<div class="step-node">
-            <div class="step-circle ${status}" onclick="${unlocked?`scrollToModule(${d.id})`:''}" title="Day ${d.id} — ${esc(d.title)}">${prog&&prog.done?'✓':d.id}</div>
-            ${i<DAYS.length-1?`<div class="step-dash ${dashFilled?'filled':''}"></div>`:''}
-          </div>`;
-        }).join("")}
-      </div>
 
   </div>
   <div class="dash-layout">
