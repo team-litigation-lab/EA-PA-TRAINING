@@ -246,7 +246,7 @@
    "image": "041.png",
    "slide": 23,
    "title": "Quick Check",
-   "text": "Quick check. A new lead's email address uses the domain acme-c0rp, with a zero, but the company's website is acme-corp.com. What's the right move? Is it A, send the email anyway, it will probably arrive? B, check the address on the company's own site, then correct it or mark the lead Needs check? C, delete the lead from the CRM? Or D, have Elias call the company's main number instead? Take a second.\n\nIt's B. A misspelled domain, a zero for an o, is a classic verification failure. Confirm the address on the company's own site and correct it, or mark the lead Needs check. Never send to a guessed address."
+   "text": "Quick check. A new lead's email address is at acme corp, spelled with a zero instead of the letter O, but the company's website is acme corp dot com, spelled the normal way. What's the right move? Is it A, send the email anyway, it will probably arrive? B, check the address on the company's own site, then correct it or mark the lead Needs check? C, delete the lead from the CRM? Or D, have Elias call the company's main number instead? Take a second.\n\nIt's B. A misspelled domain, a zero for an o, is a classic verification failure. Confirm the address on the company's own site and correct it, or mark the lead Needs check. Never send to a guessed address."
   },
   {
    "image": "042.png",
