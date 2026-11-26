@@ -63,11 +63,13 @@ function scorecardHtml(){
   const asked = members.filter(askedOf);
   const kq = Q(k);
   const opts = keysAll().map(x => `<option value="${E(x)}" ${x === k ? "selected" : ""}>${E(folderLabel(x))}${isArch(x) ? " (archived)" : ""}</option>`).join("");
+  const cardsSub = !!window.EAPACM && (!state.scSub || state.scSub === "cards");
   const banner = `<div class="eash-banner">
       <div class="eash-banner-t"><p class="eash-k">${KICKER}</p><h2>🏅 Scorecard · ${E(folderLabel(k))}</h2>
         <p class="eash-sub">${members.length} trainee${members.length === 1 ? "" : "s"}${all.length > members.length ? ` · ${all.length - members.length} archived hidden` : ""}${arch ? " · 🗄 archived batch" : ""}</p></div>
       <div class="eash-acts">
         <label class="eash-f">Batch <select onchange="EAPAShell.batch(this.value)">${opts}</select></label>
+        ${cardsSub && window.EAPACM && EAPACM.picker ? EAPACM.picker(k) : ""}
         ${arch ? "" : `<label class="eash-chk"><input type="checkbox" ${state.batchShowArchived ? "checked" : ""} onchange="state.batchShowArchived=this.checked;render()"> Include archived</label>`}
         <button class="btn btn-sm eash-b" onclick="refreshAdminData();if(typeof loadTraineeFeedbackAdmin==='function')loadTraineeFeedbackAdmin()">🔄 Refresh</button>
         ${typeof bfExportCsv === "function" ? `<button class="btn btn-sm eash-b" onclick="bfExportCsv('${kq}')" title="Spreadsheet of every trainee's progress and scores">⬇ Records (CSV)</button>` : ""}

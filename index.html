@@ -13727,6 +13727,43 @@ function logWork(entry){
   }
 })();
 
+/* Every graded Practice Lab run leaves its notes in the work log, as the AI-graded ones do above, so the
+   scorecards (admin and trainee) can say what went well and what to do better. The scored-in-the-page labs
+   (multiple choice, calculations, matching) save only a score: here their run is logged with what was right
+   (✅ … the explanation) as strengths and what was missed (❌ … the explanation) as gaps, read from the
+   feedback the lab has just shown. A run the AI grader already logged is not logged twice. */
+(function logScoredLabs(){
+  if(typeof bumpPracticeProgress !== "function") return;
+  const orig = bumpPracticeProgress;
+  const clean = t => String(t||"").replace(/\s+/g," ").trim();
+  bumpPracticeProgress = async function(toolId, score){
+    const out = await orig.apply(this, arguments);
+    try{
+      if(!state.traineeId || typeof score !== "number") return out;
+      const now = Date.now();
+      const recent = (state.workLog||[]).some(e=>e.kind==="lab" && (e.toolId===toolId || e.toolId===state.toolId) && e.at && now - new Date(e.at).getTime() < 20000);
+      if(recent) return out;
+      const tool = (typeof PRACTICE_TOOLS!=="undefined" ? PRACTICE_TOOLS : []).find(t=>t.id===toolId);
+      const day = (DAYS.find(d=>relatedTools(d.id).some(t=>t.id===toolId)) || {}).id || (typeof nextDayId==="function" ? nextDayId() : 1);
+      const strengths = [], gaps = [];
+      document.querySelectorAll("main .show, main [id^='callFb'], main .fb, main .feedback").forEach(n=>{
+        const t = clean(n.textContent); if(!t || t.length > 400) return;
+        if(/^✅/.test(t)) strengths.push(t.replace(/^✅\s*(Correct\s*[—-]\s*)?/,""));
+        else if(/^❌/.test(t)) gaps.push(t.replace(/^❌\s*(Not quite\s*[—-]\s*)?/,""));
+      });
+      const uniq = a => [...new Set(a)];
+      const S = uniq(strengths), G = uniq(gaps);
+      if(!S.length && score >= 70) S.push(score >= 85 ? "Handled almost every item correctly." : "Got most of the items right.");
+      if(!G.length && score < 100) G.push(score < 70 ? "Several items were missed — below the 70% pass mark." : "A few items were missed.");
+      logWork({kind:"lab", dayId:day, toolId, label: tool ? String(tool.title).replace(/\s*\(.*$/,"") : toolId, score,
+        tier: score >= 85 ? "Proficient" : score >= 70 ? "Developing" : "Requires Remediation",
+        strengths: S.slice(0,3), gaps: G.slice(0,3),
+        growth: score >= 100 ? ["Keep the same approach on the next lab."] : ["Read the explanation under each item you missed, then run the lab again."]});
+    }catch(e){}
+    return out;
+  };
+})();
+
 /* ---------- admin side ---------- */
 state.traineeWork = state.traineeWork || {};
 async function loadTraineeWork(id, force){
@@ -18332,8 +18369,8 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/checkin.js?v=1"></script>
 <script src="/js/sim-results.js?v=1"></script>
 <script src="/js/eapa-scorecard.js?v=5"></script>
-<script src="/js/eapa-cm-scorecard.js?v=2"></script>
-<script src="/js/eapa-admin-shell.js?v=5"></script>
+<script src="/js/eapa-cm-scorecard.js?v=7"></script>
+<script src="/js/eapa-admin-shell.js?v=7"></script>
 <!-- 🧭 Blueprints: the Trainer blueprint (blueprint-content.js) and the Trainee blueprint (Orientation, /blueprint.pdf) rebuilt after every deploy -->
 <script src="/js/blueprint-content.js?v=3"></script>
 <script src="/js/lsh-blueprint-course.js?v=2"></script>
