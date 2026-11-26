@@ -90,6 +90,10 @@ jobs:
         env:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules
         run: node .github/scripts/admin-scorecard.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
+      - name: 📋 Compliance and Platform Utilization Monitoring (View Detail, before the trainee's Scorecard)
+        env:
+          NODE_PATH: ${{ runner.temp }}/pw/node_modules
+        run: node .github/scripts/compliance-monitor.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
       - name: Live Simulation (every day's lab; scored, debriefed and logged to the scorecard)
         env:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules
