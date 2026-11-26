@@ -1154,5 +1154,223 @@ window.EAPA_DAY_VIDEOS = {
     "t": 1598.5
    }
   ]
+ },
+ "6": {
+  "title": "Day 6 — Business Formation, Compliance, Projects & SOPs",
+  "src": "/videos/day6-narrated.mp4?v=tp3b1a",
+  "captions": "/videos/day6-narrated.vtt?v=tp3b1a",
+  "duration": 1870,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 6 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Business Structure & Formation",
+    "t": 39.5
+   },
+   {
+    "slide": 3,
+    "title": "Choosing a Business Structure",
+    "t": 51.8
+   },
+   {
+    "slide": 4,
+    "title": "Entity Formation Step-by-Step",
+    "t": 122
+   },
+   {
+    "slide": 5,
+    "title": "Federal/State/Financial Infrastructure",
+    "t": 178.1
+   },
+   {
+    "slide": 6,
+    "title": "Operating Agreements & Corporate Bylaws Basics",
+    "t": 240.2
+   },
+   {
+    "slide": 7,
+    "title": "Multi-State Registration & Foreign Qualification",
+    "t": 295.4
+   },
+   {
+    "slide": 8,
+    "title": "Compliance & Good Standing",
+    "t": 347.9
+   },
+   {
+    "slide": 9,
+    "title": "Staying in Good Standing",
+    "t": 361.6
+   },
+   {
+    "slide": 10,
+    "title": "Annual Report & Franchise Tax Deadlines Across Jurisdictions",
+    "t": 418.5
+   },
+   {
+    "slide": 11,
+    "title": "Business Licensing & Permits",
+    "t": 458.9
+   },
+   {
+    "slide": 12,
+    "title": "Registered Agent Responsibilities & Service of Process",
+    "t": 504.1
+   },
+   {
+    "slide": 13,
+    "title": "Signatures, Notarization & Document Execution",
+    "t": 551.7
+   },
+   {
+    "slide": 14,
+    "title": "Corporate Recordkeeping & Minute Books",
+    "t": 640
+   },
+   {
+    "slide": 15,
+    "title": "Privilege, Privacy & Compliance",
+    "t": 685.7
+   },
+   {
+    "slide": 16,
+    "title": "Attorney-Client Privilege: What EAs Need to Know",
+    "t": 699
+   },
+   {
+    "slide": 17,
+    "title": "Work-Product Confidentiality",
+    "t": 751.5
+   },
+   {
+    "slide": 18,
+    "title": "Investor Disclosure Confidentiality",
+    "t": 789.4
+   },
+   {
+    "slide": 19,
+    "title": "HIPAA in a Legal Context",
+    "t": 828.6
+   },
+   {
+    "slide": 20,
+    "title": "GDPR & Data Privacy Regulations",
+    "t": 883.1
+   },
+   {
+    "slide": 21,
+    "title": "Other Relevant Compliance Frameworks",
+    "t": 934.8
+   },
+   {
+    "slide": 22,
+    "title": "Project Leadership",
+    "t": 988.2
+   },
+   {
+    "slide": 23,
+    "title": "Leading a Project Under Pressure",
+    "t": 999.9
+   },
+   {
+    "slide": 24,
+    "title": "Quick Check",
+    "t": 1055.2
+   },
+   {
+    "slide": 25,
+    "title": "Seasonal Project Coordination",
+    "t": 1093.8
+   },
+   {
+    "slide": 26,
+    "title": "Project Scope Creep & Change Management",
+    "t": 1143
+   },
+   {
+    "slide": 27,
+    "title": "Stakeholder Communication During Project Delays",
+    "t": 1184.7
+   },
+   {
+    "slide": 28,
+    "title": "Process Improvement",
+    "t": 1225.7
+   },
+   {
+    "slide": 29,
+    "title": "Frameworks Worth Knowing",
+    "t": 1237.1
+   },
+   {
+    "slide": 30,
+    "title": "Lean Six Sigma in Practice — A Real Methodology, Not Just a Buzzword",
+    "t": 1293.6
+   },
+   {
+    "slide": 31,
+    "title": "DMAIC — Three Worked EA Examples",
+    "t": 1355.7
+   },
+   {
+    "slide": 32,
+    "title": "Lean's 8 Wastes & Kaizen",
+    "t": 1415.2
+   },
+   {
+    "slide": 33,
+    "title": "Root Cause Analysis Basics",
+    "t": 1473.4
+   },
+   {
+    "slide": 34,
+    "title": "Operational Optimization",
+    "t": 1517.1
+   },
+   {
+    "slide": 35,
+    "title": "The KPI Dashboard Template",
+    "t": 1560.1
+   },
+   {
+    "slide": 36,
+    "title": "Quick Check",
+    "t": 1609.7
+   },
+   {
+    "slide": 37,
+    "title": "SOPs",
+    "t": 1638.4
+   },
+   {
+    "slide": 38,
+    "title": "SOP Architecture & Trigger Mapping",
+    "t": 1650.4
+   },
+   {
+    "slide": 39,
+    "title": "Hybrid Screen-Recording Workflow (Loom + Text)",
+    "t": 1709.9
+   },
+   {
+    "slide": 40,
+    "title": "Maintenance, Auditing & Version Control",
+    "t": 1761.4
+   },
+   {
+    "slide": 41,
+    "title": "Change Management for New SOPs",
+    "t": 1811.8
+   },
+   {
+    "slide": 42,
+    "title": "Practice Lab",
+    "t": 1850.6
+   }
+  ]
  }
 };
