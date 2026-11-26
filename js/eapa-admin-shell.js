@@ -224,7 +224,8 @@ const st = document.createElement("style"); st.id = "eapa-admin-shell"; st.textC
 .eash-banner .btn.eash-b{background:#262B45;border:1px solid #5A6080;color:#fff;font-weight:800;}
 .eash-banner .btn.eash-b:hover{background:#343A5C;}
 .eash-banner .btn.eash-danger{color:#FFD2CC;}
-.eash-banner .btn.eash-o{background:#DB8437;border:1px solid #DB8437;color:#241304;font-weight:800;}
+.eash-banner .btn.eash-o{background:var(--gold);border:1px solid #e0a43a;color:var(--gold-ink);font-weight:800;}
+.eash-banner .btn.eash-o:hover{background:var(--gold-hover);}
 .eash-subs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:2px solid #DCE0EA;}
 .eash-sub-b{font:800 15px 'Inter',system-ui,sans-serif;color:#3B4160;background:transparent;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 16px;cursor:pointer;}
 .eash-sub-b:hover{color:#1E2340;}

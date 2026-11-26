@@ -134,7 +134,7 @@ window.EAPA_UPDATE_PACK = "z";
   body:not(.ft-fit) main:has(> #lessonStage) .ea-deck-head .ea-topic-bar{flex:0 0 auto;max-width:60%;}
   body:not(.ft-fit) main:has(> #lessonStage) .ea-deck-head .slide-dots{flex:1 1 0 !important;min-width:40px;}
   body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn:not(.on):not(.btn-navy):not(.btn-primary){background:#fff !important;color:#262B45 !important;border:1px solid rgba(255,255,255,.6) !important;}
-  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn.on{background:#DB8437 !important;color:#241304 !important;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn.on{background:var(--gold) !important;color:var(--gold-ink) !important;}
   body:not(.ft-fit) main:has(> #lessonStage) .ls-top > *, body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn{width:auto;margin:0 !important;}
   body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn{padding:4px 10px;font-size:12.5px;min-height:0;line-height:1.3;}
   body:not(.ft-fit) main:has(> #lessonStage) .ls-top .audio-rate{padding:3px 4px;font-size:12px;}
@@ -2190,7 +2190,7 @@ window.initCalendar = async function(body){
 .lab-shell .wizard-nav{border-top:1px solid var(--line);padding-top:16px;margin-top:26px;}
 /* Practice Lab list: same card language as the dashboard */
 .tool-card .tool-open-btn{background:var(--navy);color:#fff;border-color:var(--navy);border-radius:10px;padding:11px;font-size:14px;}
-.tool-card:hover .tool-open-btn{background:var(--orange);border-color:var(--orange);}
+.tool-card:hover .tool-open-btn{background:var(--gold);border-color:#e0a43a;color:var(--gold-ink);}
 .tool-card .tool-status-row{font-weight:700;font-size:12.5px;border-radius:999px;padding:4px 10px;align-self:flex-start;background:#F3F4F9;}
 .tool-card .tool-status-row.st-done{background:#EAF6EF;}
 .tool-card .tool-desc2{font-size:13.5px;line-height:1.5;}

@@ -318,7 +318,7 @@ body.sim-open{overflow:hidden;}
 .sim-brand b{font:700 18px 'Fraunces',Georgia,serif;} .sim-brand em{font-style:normal;color:#C9CEE3;font-size:14px;overflow:hidden;text-overflow:ellipsis;}
 .sim-live{font:800 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;background:#C2410C;color:#fff;border-radius:4px;padding:3px 7px;}
 .sim-clock{display:flex;flex-direction:column;align-items:flex-end;line-height:1.1;} .sim-clock span{font:700 20px 'IBM Plex Mono',monospace;} .sim-clock small{font-size:12px;color:#C9CEE3;}
-.sim-next{background:#DB8437 !important;color:#241304 !important;border:0 !important;font-weight:800 !important;}
+.sim-next{background:var(--gold) !important;color:var(--gold-ink) !important;border:0 !important;font-weight:800 !important;}
 .sim-end{background:transparent !important;color:#fff !important;border:1px solid rgba(255,255,255,.5) !important;}
 .sim-x{background:none;border:0;color:#fff;font-size:20px;cursor:pointer;padding:4px 8px;}
 .sim-k{margin:0 0 6px;font:800 11.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#A34E14;}
