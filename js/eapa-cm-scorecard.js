@@ -49,7 +49,20 @@ function sheet(rec, own){
     const seen = Math.min(n, (sp[d.id] || 0) + ((sp[d.id] || src.dp[d.id]) ? 1 : 0));
     const work = log.filter(e => e && e.dayId === d.id && e.kind !== "quiz");
     const quiz = log.filter(e => e && e.dayId === d.id && e.kind === "quiz").slice(-1)[0] || null;
-    return Object.assign({}, r, {d, n, seen, work, quiz, active: r.active || seen > 0 || work.length > 0});
+    // the day's Practice Lab outputs count too: every graded lab run in the work log, best per lab, alongside the
+    // saved Practice Lab bests (a lab with only a graded output, and no saved best, still scores)
+    const tools = (r.tools || []).map(t => Object.assign({}, t));
+    work.filter(e => e.kind === "lab" && num(e.score)).forEach(e => {
+      const key = e.toolId || e.label;
+      let t = tools.find(x => x.t && (x.t.id === key || (!e.toolId && x.t.title === e.label)));
+      if(!t){ t = {t: {id: key, title: e.label || "Practice Lab"}, runs: 0, best: null}; tools.push(t); }
+      t.best = num(t.best) ? Math.max(t.best, e.score) : e.score;
+      t.runs = Math.max(t.runs || 0, work.filter(x => x.kind === "lab" && (x.toolId || x.label) === key).length);
+    });
+    const practice = avg(tools.map(t => t.best));
+    const parts = [r.kc, r.qc, practice, r.task].filter(num);
+    return Object.assign({}, r, {d, n, seen, work, quiz, tools, practice, average: parts.length ? avg(parts) : null,
+      active: r.active || seen > 0 || work.length > 0});
   });
   const scored = days.filter(r => num(r.average));
   const overall = scored.length ? Math.round(avg(scored.map(r => r.average))) : null;
@@ -100,21 +113,23 @@ function focusItems(s){
 /* ---------- the table ---------- */
 function dayCell(r){
   if(!r.active) return `<td class="eacm-c eacm-none" title="Day ${r.dayId}: not started">—</td>`;
-  const bits = [];
-  if(num(r.kc)) bits.push(`KC ${r.kc}%`);
-  if(num(r.practice)) bits.push(`Lab ${Math.round(r.practice)}%`);
-  if(r.qcTotal) bits.push(`QC ${r.qcRight}/${r.qcTotal}`);
-  if(num(r.task)) bits.push(`Task ${r.task}%`);
-  const tip = [`Day ${r.dayId} — ${r.d.title}`, `Score ${P(r.average)}${r.passed ? " · Knowledge Check passed" : ""}`, ...bits, `Slides ${r.seen}/${r.n}`,
-    ...r.work.slice(-3).map(e => `${e.label}: ${e.score}%`)].join("\n");
+  // the day's score, then what it is made of in a small table inside the cell
+  const line = (k, v, t) => `<tr><th>${k}</th><td class="${t ? "eacm-m-" + t : ""}">${v}</td></tr>`;
+  const rows = [
+    line("KC", num(r.kc) ? r.kc + "%" : "—", num(r.kc) ? tint(r.kc) : ""),
+    line("Lab", num(r.practice) ? Math.round(r.practice) + "%" : "—", num(r.practice) ? tint(r.practice) : ""),
+    r.qcTotal ? line("QC", `${r.qcRight}/${r.qcTotal}`, tint(r.qc)) : "",
+    num(r.task) ? line("Task", r.task + "%", tint(r.task)) : "",
+    line("Slides", `${r.seen}/${r.n}`, "")].join("");
+  const tip = [`Day ${r.dayId} — ${r.d.title}`, `Score ${P(r.average)}${r.passed ? " · Knowledge Check passed" : ""}`,
+    ...r.tools.filter(t => num(t.best)).map(t => `Practice Lab · ${toolName(t.t)}: ${t.best}%`), ...r.work.slice(-3).map(e => `${e.label}: ${e.score}%`)].join("\n");
   return `<td class="eacm-c eacm-${tint(r.average)}" title="${E(tip)}"><b>${P(r.average)}${r.passed ? ' <span class="eacm-tick">✓</span>' : ""}</b>
-    ${bits.length ? `<small>${E(bits.slice(0, 2).join(" · "))}</small>` : ""}<small>Slides ${r.seen}/${r.n}</small></td>`;
+    <table class="eacm-mini">${rows}</table></td>`;
 }
 function table(rows){
   const cols = ["Trainee", "Batch", "Registered", "Days passed", "Overall", ...DAYS.map(d => `Day ${d.id} %`)];
   const sel = state.eacmId;
-  return `<div class="eacm-sheet"><div class="eacm-sheet-h">🏅 Scores <span>${rows.length} row${rows.length === 1 ? "" : "s"}</span><em>Click a trainee to open their scorecard · hover a day for its breakdown</em></div>
-    <div class="eacm-scroll"><table class="eacm-t">
+  return `<div class="eacm-sheet"><div class="eacm-scroll"><table class="eacm-t">
       <thead><tr class="eacm-letters"><th></th>${cols.map((_, i) => `<th>${LETTERS[i] || ""}</th>`).join("")}</tr>
       <tr><th class="eacm-rn"></th>${cols.map(c => `<th>${E(c)}</th>`).join("")}</tr></thead>
       <tbody>${rows.map((s, i) => {
@@ -143,6 +158,8 @@ function makeup(r, fb){
   if(num(r.task)) L.push(`<li><span class="eacm-pill eacm-${tint(r.task)}">${r.task}%</span><div><b>Random task</b></div></li>`);
   L.push(`<li><span class="eacm-pill eacm-none">${r.seen}/${r.n}</span><div><b>Slides reached</b></div></li>`);
   const acts = r.work.slice().reverse();
+  // a Practice Lab scored before its notes were kept: say so, rather than leave the score unexplained
+  const bare = r.tools.filter(t => num(t.best) && !r.work.some(e => e.toolId === (t.t && t.t.id)));
   const f = fb[r.dayId];
   return `<div class="eacm-mk"><p class="eacm-mk-h">The day's score is the average of the Knowledge Check, Quick Checks, Practice Lab and random task.</p><ul class="eacm-parts">${L.join("")}</ul>
     ${acts.length ? `<p class="eacm-mk-h">Each activity and its feedback</p>${acts.map(e => `<div class="eacm-act">
@@ -150,6 +167,8 @@ function makeup(r, fb){
         <small>${e.kind === "roleplay" ? "Live Roleplay" : "Practice Lab"}${e.tier ? ` · ${E(tierOf(e.tier))}` : ""}${e.at ? ` · ${E(new Date(e.at).toLocaleString())}` : ""}</small></div>
       <div class="eacm-fbks">${list("✓ Strengths", e.strengths, "s")}${list("△ Gaps", e.gaps, "g")}${list("→ Next time", e.growth, "n")}</div>
       ${e.excerpt ? `<details class="eacm-ex"><summary>Their answer</summary><p>${E(e.excerpt)}</p></details>` : ""}</div>`).join("")}` : ""}
+    ${!acts.length && bare.length ? `<p class="eacm-mk-h">Each activity and its feedback</p>` : ""}${bare.map(t => `<div class="eacm-act"><div class="eacm-act-h"><span class="eacm-pill eacm-${tint(t.best)}">${P(t.best)}</span><b>${E(toolName(t.t))}</b><small>Practice Lab · best of ${t.runs} run${t.runs === 1 ? "" : "s"}</small></div>
+      <p class="eacm-sub">${t.best >= PASS ? "Passed" : "Below the " + PASS + "% pass mark"}. This run was scored before the lab kept its notes, so there is no breakdown for it — the next run records what went well and what to do better.</p></div>`).join("")}
     ${f ? `<div class="eacm-tfb"><b>✍ Trainer feedback</b> <small>${f.status === "sent" ? "Sent" + (f.readAt ? " · read" : "") : "Draft — not sent"}${f.rating ? ` · ${E(f.rating)}` : ""}</small>${f.summary ? `<p>${E(f.summary)}</p>` : ""}${f.mine && typeof openDayFeedback === "function" ? `<button type="button" class="eacm-more" onclick="openDayFeedback(${r.dayId})">Read the full feedback →</button>` : ""}</div>` : ""}</div>`;
 }
 function card(s, you){
@@ -206,24 +225,26 @@ function redraw(){
 function body(k){
   const recs = members(k);
   ensureLoaded(recs);
-  const rows = recs.map(sheet);
+  const rows = recs.map(r => sheet(r));
   if(state.eacmId && !rows.some(s => s.rec.id === state.eacmId)) state.eacmId = null;
   const passing = rows.filter(s => num(s.overall) && s.overall >= PASS).length;
   const pick = rows.find(s => s.rec.id === state.eacmId);
   const loading = rows.some(s => !s.loaded);
-  return `<div class="eacm-bar">
-      <label class="eacm-f">Trainee <select onchange="EAPACM.open(this.value)"><option value="">— Pick a trainee —</option>${rows.map(s => `<option value="${E(s.rec.id)}" ${s.rec.id === state.eacmId ? "selected" : ""}>${E(nameOf(s.rec))}</option>`).join("")}</select></label>
-      <span class="eacm-chip">${rows.length} trainee${rows.length === 1 ? "" : "s"}</span><span class="eacm-chip eacm-ok">${passing} passing</span>
-      ${loading ? `<span class="eacm-chip">Loading saved work…</span>` : ""}
-      <button type="button" class="btn btn-sm eacm-btn" onclick="EAPACM.csv()">⬇ Scores only (CSV)</button></div>
+  // (the Trainee picker and ⬇ Scores only sit in the Scorecard's navy banner, beside Batch: EAPACM.picker)
+  return `${loading ? `<p class="eacm-loading">Loading saved work…</p>` : ""}
     ${table(rows)}
     ${pick ? card(pick) : `<p class="eacm-hint">Pick a trainee above, or click their row, to see their full scorecard: what to focus on and the feedback on each activity.</p>`}`;
 }
 function section(k){ return `<div id="eacmHost">${body(k)}</div>`; }
 
+// the Trainee picker for the Scorecard's banner, beside Batch
+function picker(k){
+  const recs = members(k);
+  return `<label class="eash-f">Trainee <select id="eacmPick" onchange="EAPACM.open(this.value)"><option value="">— Pick a trainee —</option>${recs.map(r => `<option value="${E(r.id)}" ${r.id === state.eacmId ? "selected" : ""}>${E(nameOf(r))}</option>`).join("")}</select></label>`;
+}
 window.EAPACM = {
-  section,
-  open(id){ state.eacmId = id || null; redraw(); if(id) setTimeout(() => { const c = document.getElementById("eacmCard"); if(c) c.scrollIntoView({behavior: "smooth", block: "start"}); }, 30); },
+  section, picker,
+  open(id){ state.eacmId = id || null; const pk = document.getElementById("eacmPick"); if(pk) pk.value = id || ""; redraw(); if(id) setTimeout(() => { const c = document.getElementById("eacmCard"); if(c) c.scrollIntoView({behavior: "smooth", block: "start"}); }, 30); },
   toggle(key){ const o = state.eacmOpen || (state.eacmOpen = {}); o[key] = !o[key]; if(state.view === "scorecard") render(); else redraw(); },
   // the trainee's own scorecard (🏅 My Scorecard): the same card the admin sees, from this browser's progress, with
   // only the trainer feedback that was sent to them
@@ -236,7 +257,7 @@ window.EAPACM = {
   },
   mark(key, v){ const o = state.eacmOpen || (state.eacmOpen = {}); o[key] = !!v; },
   csv(){
-    const k = state.scFolder, rows = members(k).map(sheet);
+    const k = state.scFolder, rows = members(k).map(r => sheet(r));
     if(!rows.length){ if(typeof toast === "function") toast("No trainees in this batch."); return; }
     const q = v => `"${String(v == null ? "" : v).replace(/"/g, '""')}"`;
     const head = ["Trainee", "Batch", "Registered", "Days passed", "Overall %", "Status", ...DAYS.map(d => `Day ${d.id} %`)];
@@ -250,7 +271,7 @@ window.EAPACM = {
 
 const st = document.createElement("style");
 st.textContent = `
-.eacm-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 12px;}
+.eacm-loading{margin:0 0 10px;font:700 13px "Inter",system-ui,sans-serif;color:#3B4160;}
 .eacm-f{font:800 14px 'Inter',system-ui,sans-serif;color:#1E2340;display:flex;align-items:center;gap:8px;}
 .eacm-f select{font:700 14px 'Inter',system-ui,sans-serif;padding:7px 10px;border:1px solid #C9CEDC;border-radius:8px;background:#fff;min-width:240px;}
 .eacm-chip{font:800 13px 'Inter',system-ui,sans-serif;background:#EEF1FA;color:#1E2340;border-radius:999px;padding:5px 12px;}
@@ -284,6 +305,11 @@ st.textContent = `
 .eacm-lo{background:#FDE7E3 !important;color:#8A1C10;}
 .eacm-none{background:#F5F6F9 !important;color:#6A7088;}
 .eacm-tick{color:#15803D;font-weight:800;}
+.eacm-mini{margin:5px auto 0;border-collapse:collapse;font-size:11.5px;background:rgba(255,255,255,.7);border-radius:6px;overflow:hidden;min-width:96px;}
+.eacm-mini th,.eacm-mini td{border:1px solid rgba(38,43,69,.14) !important;padding:2px 6px !important;white-space:nowrap;line-height:1.3;}
+.eacm-mini th{font-weight:700;color:#3B4160;text-align:left !important;background:rgba(238,241,250,.8);}
+.eacm-mini td{font-weight:800;text-align:right !important;color:#1E2340;}
+.eacm-mini td.eacm-m-lo{color:#A3260F;} .eacm-mini td.eacm-m-hi,.eacm-mini td.eacm-m-ok{color:#14532D;}
 .eacm-empty{text-align:center !important;color:#3B4160;padding:20px !important;}
 .eacm-hint{margin:14px 2px 0;font:600 14px 'Inter',system-ui,sans-serif;color:#3B4160;}
 .eacm-card{margin-top:16px;border:1px solid #CFD5E3;border-radius:14px;overflow:hidden;background:#fff;scroll-margin-top:90px;}
