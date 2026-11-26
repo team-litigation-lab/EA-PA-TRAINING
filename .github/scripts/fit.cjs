@@ -1,7 +1,7 @@
 // Every slide fits on one screen: on the lesson page, the slide and its Previous / Next bar end inside the
 // window (no scrolling), and nothing inside the slide frame is cut off or scrolls — every slide, every page
 // of every day, on a laptop and on a large screen. The deck has one size: every slide is laid out at
-// 960 × 540 and scaled as a whole, with the same scale on every slide of a screen, so a slide splits into
+// DECK_W × DECK_H (1240 × 540) and scaled as a whole, with the same scale on every slide of a screen, so a slide splits into
 // the same pages on the laptop and on the large screen. On a desktop the lesson's controls sit to the right of
 // the slide; on a narrower window (under 1000px) they stay above it, and the slide still never scrolls inside
 // (the page itself may: the site's top bar alone wraps to three rows there).
@@ -43,7 +43,7 @@ const SIZES = [[1366, 768], [1920, 1080]];
                         const wrap = document.getElementById('lessonSlideWrap'), stage = document.getElementById('lessonStage');
                         const where = `Day ${d.id} slide ${i + 1} (${slides[i].type})${n > 1 ? ` page ${p + 1}/${n}` : ''}`;
                         if (!wrap || !stage) { out.push(`${where}: no slide drawn`); continue; }
-                        if (wrap.offsetWidth !== 960 || wrap.offsetHeight !== 540) out.push(`${where}: the slide is laid out at ${wrap.offsetWidth}x${wrap.offsetHeight}, not the deck's 960x540`);
+                        if (wrap.offsetWidth !== DECK_W || wrap.offsetHeight !== DECK_H) out.push(`${where}: the slide is laid out at ${wrap.offsetWidth}x${wrap.offsetHeight}, not the deck's ${DECK_W}x${DECK_H}`);
                         const fit = wrap.closest('.deck-fit'); if (fit) scales.add(getComputedStyle(fit).getPropertyValue('--deck-scale'));
                         const bottom = stage.getBoundingClientRect().bottom + window.scrollY;
                         if (bottom > innerHeight + 1) out.push(`${where}: the slide and its Previous / Next bar end ${Math.round(bottom - innerHeight)}px below the screen`);
@@ -52,9 +52,14 @@ const SIZES = [[1366, 768], [1920, 1080]];
                         if ([...wrap.children].some(c => c.style.zoom && Number(c.style.zoom) < 1)) counts.shrunk++;
                     }
                 }
-                // the controls: to the right of the slide on a desktop
+                // the controls: in the deck's own top row on a desktop (beside the progress dots, above the ribbon), not over the dots
                 const top = document.querySelector('.ls-top'), stage = document.getElementById('lessonStage');
-                if (top && stage && innerWidth >= 1000 && top.getBoundingClientRect().left < stage.getBoundingClientRect().right) out.push(`Day ${d.id}: the lesson controls aren't in the column to the right of the slide`);
+                const ribbon = stage && stage.querySelector('.ea-ribbon'), dots = stage && stage.querySelector('.ea-deck-head .slide-dots');
+                if (top && ribbon && innerWidth >= 1000) {
+                    const t = top.getBoundingClientRect(), r = ribbon.getBoundingClientRect(), dt = dots && dots.getBoundingClientRect();
+                    if (t.bottom > r.top + 1 || t.top < stage.getBoundingClientRect().top) out.push(`Day ${d.id}: the lesson controls aren't in the deck's top row`);
+                    if (dt && dt.right > t.left + 1) out.push(`Day ${d.id}: the lesson controls cover the progress dots`);
+                }
             }
             if (scales.size > 1) out.push(`the deck's scale changes from slide to slide (${[...scales].join(', ')}): it should be one size on one screen`);
             return { out, counts, pages, scale: [...scales].join(',') };

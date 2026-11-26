@@ -35,7 +35,7 @@ window.EAPA_UPDATE_PACK = "z";
 }
 @container (max-width:170px){.topbar .brand-text{display:none !important}}
 /* ================= One fixed-size deck =================
-   A lesson slide is always laid out at one size, 960 × 540 (16:9), with fixed type: on a laptop, a large
+   A lesson slide is always laid out at one size, DECK_W × DECK_H (1240 × 540), with fixed type: on a laptop, a large
    screen, in full screen and in the shared slides window alike. The whole frame is then scaled to fit
    (deckRescale), the way a slide deck is. Nothing grows or shrinks with the window, so a slide splits into
    the same pages everywhere, and a resize only changes the scale: the slide is never laid out again, so it
@@ -119,17 +119,26 @@ window.EAPA_UPDATE_PACK = "z";
    the slide, and fitSlideFrame() sizes the slide to the height that's left. (Foundational's deck-page lessons,
    body.ft-fit, have their own layout in js/ft-slides.js.) */
 @media(min-width:1000px){
-  body:not(.ft-fit) main:has(> #lessonStage){display:grid;grid-template-columns:minmax(0,1fr) 200px;column-gap:16px;align-items:start;padding-top:12px;}
-  body:not(.ft-fit) main:has(> #lessonStage) > *{grid-column:2;margin:0 0 10px;}
-  body:not(.ft-fit) main:has(> #lessonStage) > #lessonStage{grid-column:1;grid-row:1 / span 40;margin:0;}
+  /* (the controls sit in one slim row above the deck, the Case Management way, so the deck has the page's full width) */
+  body:not(.ft-fit) main:has(> #lessonStage){display:flex;flex-direction:column;padding-top:8px;}
+  body:not(.ft-fit) main:has(> #lessonStage) > *{margin:0 0 6px;}
+  body:not(.ft-fit) main:has(> #lessonStage) > #lessonStage{order:9;margin:0;}
   body:not(.ft-fit) main:has(> #lessonStage) > #navBackSlot:empty{display:none;}
   body:not(.ft-fit) main:has(> #lessonStage) .day-head-compact{display:flex;flex-direction:column;gap:4px;border:0;padding:0;}
   body:not(.ft-fit) main:has(> #lessonStage) .day-head-compact .dhc-title{white-space:normal;font-size:17px;line-height:1.3;}
-  body:not(.ft-fit) main:has(> #lessonStage) .ls-top{display:flex;flex-direction:column;align-items:stretch;gap:8px;}
-  body:not(.ft-fit) main:has(> #lessonStage) .ls-top > *, body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn{width:100%;margin:0 !important;justify-content:center;}
-  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .audio-bar{display:grid;grid-template-columns:1fr auto;gap:6px;}
-  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .audio-bar #audioModeBtn{grid-column:1 / -1;}
-  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .or-tip{font-size:12px;line-height:1.4;order:9;white-space:normal;}
+  /* the controls ride in the deck's own top row (right of the progress dots), so they cost the slide no height */
+  body:not(.ft-fit) main:has(> #lessonStage){position:relative;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top{position:absolute;top:27px;right:146px;z-index:5;margin:0 !important;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:flex-end;gap:6px;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .or-tip{display:none;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ea-deck-head{margin-right:calc(var(--ls-w, 620px) + 124px) !important;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ea-deck-head .ea-topic-bar{flex:0 0 auto;max-width:60%;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ea-deck-head .slide-dots{flex:1 1 0 !important;min-width:40px;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn:not(.on):not(.btn-navy):not(.btn-primary){background:#fff !important;color:#262B45 !important;border:1px solid rgba(255,255,255,.6) !important;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn.on{background:#DB8437 !important;color:#241304 !important;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top > *, body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn{width:auto;margin:0 !important;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .btn{padding:4px 10px;font-size:12.5px;min-height:0;line-height:1.3;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .audio-rate{padding:3px 4px;font-size:12px;}
+  body:not(.ft-fit) main:has(> #lessonStage) .ls-top .audio-bar{display:flex;gap:6px;align-items:center;}
 }
 /* ================= SOP Reference: readable reference + live Present mode ================= */
 .sopx-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
@@ -364,10 +373,12 @@ function collectSlideUnits(root, bigH){
   walk(root);
   return units.filter(u=>u.getClientRects().length);
 }
-// Every slide fits on one screen: the slide is laid out at the deck's one size (960 × 540), what doesn't
+// Every slide fits on one screen: the slide is laid out at the deck's one size (DECK_W × DECK_H), what doesn't
 // fit continues on the next page (paginateSlideUnits), and the whole frame is scaled to the room left on
 // the lesson page, the full screen or the shared window (deckRescale). Nothing inside the slide changes size.
-const DECK_W = 960, DECK_H = 540;
+// 1240 × 540: a wide deck (about 2.3 : 1, the Case Management way) that fills a laptop or a wide screen side to
+// side; one fixed size everywhere, so the trainer's and the trainees' windows split a slide into the same pages
+const DECK_W = 1240, DECK_H = 540;
 function paginateLessonSlide(){
   const wrap = document.getElementById("lessonSlideWrap");
   fitSlideFrame(wrap);
@@ -394,8 +405,18 @@ function fitSlideFrame(wrap){
 }
 // The deck's scale: as large as the room allows, the same for every slide. On the lesson page the slide and
 // its Previous / Next bar end inside the window; full screen and the shared window fill their window.
+// the lesson controls ride in the deck's top row: the row keeps their width free (an admin has more buttons than a trainee)
+function lessonControlsWidth(){
+  const ls = document.querySelector("main > .ls-top"), mn = ls && ls.parentElement;
+  if(!ls || !mn) return;
+  const set = ()=>{ const w = Math.ceil(ls.getBoundingClientRect().width) + "px"; if(w !== "0px" && mn.style.getPropertyValue("--ls-w") !== w) mn.style.setProperty("--ls-w", w); };
+  set();
+  // and again whenever they change width (a button's label changes, the fonts arrive, the page finishes sliding in)
+  if(typeof ResizeObserver === "function" && !ls.__lsRO){ ls.__lsRO = new ResizeObserver(set); ls.__lsRO.observe(ls); }
+}
 function deckRescale(){
   const fit = document.querySelector("#lessonStage .deck-fit"); if(!fit) return;
+  lessonControlsWidth();
   if(window.innerWidth <= 760){ fit.style.removeProperty("--deck-scale"); return; }   // phones: the slide is a scrolling page
   const stage = fit.closest(".lesson-stage"), body = fit.parentElement;
   let roomH;

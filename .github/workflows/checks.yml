@@ -90,6 +90,10 @@ jobs:
         env:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules
         run: node .github/scripts/admin-scorecard.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
+      - name: Live Simulation (every day's lab; scored, debriefed and logged to the scorecard)
+        env:
+          NODE_PATH: ${{ runner.temp }}/pw/node_modules
+        run: node .github/scripts/live-sim.cjs http://localhost:8787/ || { echo "--- server log ---"; cat "$RUNNER_TEMP/server.log"; exit 1; }
       - name: The day's Practice Lab inside its deck (a slide per activity, back to the same slide) and a day that completes itself (no Finish Training)
         env:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules

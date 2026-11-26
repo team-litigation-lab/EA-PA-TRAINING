@@ -40,18 +40,88 @@ const kcPassed = dayId => !!(state.progress && state.progress[dayId] && state.pr
 const labDone = dayId => typeof dayLabDone === "function" ? dayLabDone(dayId) : true;
 const dayComplete = dayId => kcPassed(dayId) && labDone(dayId);
 
-/* ---------- 1. the deck: a slide for each activity of the day's Practice Lab ---------- */
+/* ---------- 1. the deck: a slide for each activity of the day's Practice Lab, in the lesson it practises ----------
+   Each activity's slide sits right after the topic it practises (AFTER_TOPIC: activity → topic title; after that topic's
+   Quick Check when it has one), so the trainee practises during the session, not only at the end of the day. An
+   activity with no topic of its own (the day's Crisis Roleplay, a capstone) stays at the end, before the Knowledge Check.
+   Topic titles are keys (see README, "Titles are keys"): if a title changes, its activity falls back to the end, and
+   .github/scripts/deck-lab.cjs fails until AFTER_TOPIC is updated. */
+const AFTER_TOPIC = {
+  dossier1: { "Gatekeeping Practice": "Scripts That Redirect Without Alienating", "Client Dossier": "Dossier Excerpt — Elias Thorne",
+    "Preference Trackers": "Setting Up Client Trackers", "ACT Email": "The ACT Email Framework" },
+  forcemultiplier2: { "Anticipate the Real Need": "Force Multiplier in the Wild", "The Full Scenario": "Risk Buffering for Legal Work",
+    "Prompt Engineering": "Claude, ChatGPT, and Gemini — Practical Differences", "Inbox Triage": "What High-Performing Inbox Triage Looks Like" },
+  calendar: { "Calendar Conflict Resolver": "Calendar Conflict & Prioritization Discipline", "Daily Briefing Prompt": "Multi-Calendar Coordination",
+    "Proactive EA Tasks": "Multi-Calendar Coordination", "Travel & the Trip That Breaks": "Emergency Flight Contingencies" },
+  coldcalling4: { "Prospect Call Log": "Cold Calling, Appointment Setting & Lead Generation", "Lead Generation Practice": "Verifying a Working Lead",
+    "Live Intake Call Simulator": "Handling Sales Objections Beyond the Script", "Email Outreach Simulator": "Email Outreach End-to-End: Research, Write, Follow Up" },
+  insurance5: { "Home Binder": "Home Binder: Format, Security & Maintenance", "Classify the Risk": "The PA Risk Management Framework",
+    "Match the Strategy": "The Four Core Risk Strategies" },
+  projectcompliance6: { "Compliance Risk": "Corporate Recordkeeping & Minute Books", "Compliance Audit Simulation": "Other Relevant Compliance Frameworks",
+    "Recovery Memo": "Stakeholder Communication During Project Delays", "Operational Warning Signs": "The KPI Dashboard Template" },
+  financial: { "Trust Ledger Reconciliation": "Trust Account Reconciliation Discipline", "Invoice & Bill Audit": "Pre-Bill Review: Checking an Invoice Before It Goes Out",
+    "Invoice Follow-Up": "Invoice Management: Tracking, Follow-Up & Collections", "Attention to Detail Test": "Invoice & Payment Reconciliation" },
+  accessincident8: { "Least-Privilege Access Audit": "Least-Privilege Access", "Verify Before You Disclose": "Responding to a Suspicious Data Request",
+    "Contain the Leak": "Containing a Confidentiality Leak", "The Firm Is Exposed — Size It": "Who to Notify and When",
+    "Recommendation & Action Plan": "Post-Incident Review", "The Client Conversation": "Crisis Communication Principles" },
+  compliance9: { "Event Invite & Registration Form": "Sending Intake Forms: Event Registration & New-Client Questionnaires", "Event Follow-Up": "Post-Event Follow-Up & ROI Tracking",
+    "Meeting Notes & Action Items": "Everyday Meeting Notes & Action Items", "CLE Compliance Dashboard": "CLE / Compliance Tracking",
+    "Negative Review Response": "Protecting the Brand Online", "Awards Tracker": "Awards, Recognition & Charitable Coordination" },
+  socialmedia10: { "Engagement Rate": "Engagement Rate Benchmarks & Interpretation", "Version Matching": "Platform Details & the One Rule That Applies to All Three",
+    "Campaign Math": "Basic Campaign Math", "Brand Kit": "Brand Consistency: Palette, Typography & Imagery" }
+};
 const __build = buildDaySlides;
-buildDaySlides = window.buildDaySlides = function(d){
-  const slides = __build.apply(this, arguments);
+// inline: false gives the old layout (every activity at the end), which the saved-place migration below reads.
+function placeLabs(d, slides, inline){
   const at = slides.findIndex(s => s && s.type === "practiceLab");
   if(at < 0) return slides;
   const parts = [];
   relatedTools(d.id).forEach(t => { const a = acts(t); if(a.length) a.forEach((label, i) => parts.push({type: "practiceLab", toolId: t.id, part: i, label, of: a.length})); });
   if(!parts.length) return slides;
-  slides.splice(at, 1, ...parts);
+  const end = [], after = {};   // after: topic index -> the activities that follow it, in the lab's order
+  parts.forEach(p => {
+    const h = inline && (AFTER_TOPIC[p.toolId] || {})[p.label], li = h ? d.lessons.findIndex(l => l.h === h) : -1;
+    if(li >= 0){ p.after = h; (after[li] = after[li] || []).push(p); } else end.push(p);
+  });
+  slides.splice(at, 1, ...end);
+  // from the last topic back, so earlier positions don't move: after the topic's last slide (its Quick Check when it has one)
+  Object.keys(after).map(Number).sort((a, b) => b - a).forEach(li => {
+    let k = -1; slides.forEach((s, j) => { if(s && s.lessonIndex === li && (s.type === "topic" || s.type === "quickCheck")) k = j; });
+    if(k >= 0) slides.splice(k + 1, 0, ...after[li]); else slides.splice(slides.findIndex(s => s && s.type === "practiceLab") + 1 || slides.length, 0, ...after[li]);
+  });
   return slides;
-};
+}
+buildDaySlides = window.buildDaySlides = function(d){ return placeLabs(d, __build.apply(this, arguments), true); };
+const buildDaySlidesAtEnd = d => placeLabs(d, __build(d), false);
+
+/* Saved places are slide positions (last-slide, slide-progress), so when the activities first move into the lessons each
+   trainee's place moves to the same slide in the new order (by what the slide is, as migrateDayOrder does), once per day. */
+const INLINE_FLAG = id => "deck-lab-inline:" + id;
+async function migrateLabsInline(){
+  if(!state.dayOrderMigrated) state.dayOrderMigrated = {};
+  let ls = false, sp = false, fl = false;
+  (typeof DAYS !== "undefined" ? DAYS : []).forEach(d => {
+    if(state.dayOrderMigrated[INLINE_FLAG(d.id)]) return;
+    state.dayOrderMigrated[INLINE_FLAG(d.id)] = true; fl = true;
+    const last = (state.lastSlide || {})[d.id], far = (state.slideProgress || {})[d.id];
+    if(!(typeof last === "number" && last > 0) && !(typeof far === "number" && far > 0)) return;
+    const oldS = buildDaySlidesAtEnd(d), newS = buildDaySlides(d);
+    const key = x => x ? [x.type, x.lessonIndex == null ? "" : x.lessonIndex, x.part == null ? "" : x.part, x.toolId || "", x.section ? 1 : 0].join("|") : "";
+    const move = i => { for(let k = i; k < oldS.length; k++){ const j = newS.findIndex(x => key(x) === key(oldS[k])); if(j >= 0) return j; } return -1; };
+    if(typeof last === "number" && last > 0){ const j = move(last); if(j >= 0 && j !== last){ state.lastSlide[d.id] = j; ls = true; } }
+    // the furthest slide reached: the furthest of every slide reached before, in the new order (an activity now earlier
+    // in the deck mustn't pull the trainee's reach back and lock slides they had already seen)
+    if(typeof far === "number" && far > 0){ let m = 0; for(let i = 0; i <= Math.min(far, oldS.length - 1); i++){ const j = move(i); if(j > m) m = j; }
+      if(m !== far){ state.slideProgress[d.id] = m; sp = true; } }
+  });
+  if(ls) await storeSet("last-slide", state.lastSlide);
+  if(sp) await storeSet("slide-progress", state.slideProgress);
+  if(fl) await storeSet("day-order-migrated", state.dayOrderMigrated);
+}
+if(typeof migrateQuickCheckOrder === "function"){
+  const __mq = migrateQuickCheckOrder;
+  migrateQuickCheckOrder = window.migrateQuickCheckOrder = async function(){ const r = await __mq.apply(this, arguments); try{ await migrateLabsInline(); }catch(e){} return r; };
+}
 function labSlideHtml(d, slide){
   const t = PRACTICE_TOOLS.find(x => x.id === slide.toolId); if(!t) return "";
   const p = pp(t.id), parts = (p && p.parts) || {}, mine = parts[slide.label];
@@ -61,11 +131,12 @@ function labSlideHtml(d, slide){
   const left = kcPassed(d.id) ? (labDone(d.id) ? `✓ Day ${d.id} is complete: Knowledge Check passed and Practice Lab done.` : `✓ Knowledge Check passed. A graded Practice Lab activity completes Day ${d.id}.`)
     : (labDone(d.id) ? `✓ Practice Lab done. Pass the Knowledge Check (next) and Day ${d.id} completes itself.` : `Do the Practice Lab here, then the Knowledge Check: Day ${d.id} completes itself when both are done.`);
   return `
-    <div class="topic-separator">DAY ${d.id} &middot; PRACTICE LAB &middot; ACTIVITY ${slide.part + 1} OF ${slide.of}</div>
+    <div class="topic-separator">DAY ${d.id} &middot; ${slide.after ? "PRACTICE IN THE SESSION" : "PRACTICE LAB"} &middot; ACTIVITY ${slide.part + 1} OF ${slide.of}</div>
     <div class="card edl">
       <div class="edl-main">
         <div class="edl-kick">${t.icon} ${E(t.title)}</div>
         <h3 class="edl-h">${E(slide.label)}</h3>
+        ${slide.after ? `<p class="edl-after">🎯 Practise it now: you've just covered <b>${E(slide.after)}</b>.</p>` : ""}
         <p class="edl-p">${E(t.desc)}</p>
         <div class="edl-state ${graded ? "ok" : ""}">${graded ? `✓ Graded · best ${mine}%` : "Not graded yet"}</div>
         <button type="button" class="btn btn-navy edl-go" onclick="eapaDeckLab.open('${E(t.id)}', ${slide.part}, ${d.id})">▶ ${graded ? "Open again" : "Start"}: ${E(slide.label)}</button>
@@ -169,12 +240,13 @@ if(typeof moduleCard === "function"){
   };
 }
 
-window.eapaDeckLab = {ACTIVITIES, open, toDeck, dayComplete};
+window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline};
 
 const st = document.createElement("style"); st.id = "eapa-deck-lab"; st.textContent = `
 .edl{text-align:left;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;padding:22px 24px;background:#FFFBF3;border-color:var(--orange-soft,#F3D2B0);align-items:start;}
 .edl-kick{font:800 16px Arial,sans-serif;color:#46508A;} .edl-h{margin:6px 0 8px;font:800 24px Arial,sans-serif;color:var(--navy,#1E2340);}
 .edl-p{margin:0 0 12px;font:600 16px/1.45 Arial,sans-serif;color:#37394A;}
+.edl-after{margin:-4px 0 10px;font:600 15px/1.4 Arial,sans-serif;color:#A34E14;}
 .edl-state{display:inline-block;margin-bottom:12px;padding:4px 12px;border-radius:999px;background:#EEF0F6;font:800 16px Arial,sans-serif;color:#4A5070;}
 .edl-state.ok{background:#E6F4EA;color:#0B5D1E;}
 .edl-go{display:block;font-size:17px;font-weight:800;padding:12px 18px;}
