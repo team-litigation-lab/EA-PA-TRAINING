@@ -3,14 +3,14 @@
    so a trainer knows what's coming before moving on. 👁 Peek next, beside Next, pins the same preview open (or
    press N); it stays up while moving through the slides until it's turned off. Works on the lesson page, in full
    screen, and on the Presenter view console's Next. Never shown in the slides window shared in Meet.
-   The preview is the next slide's own content drawn at the deck's size (960 × 540) and scaled down; it is inert,
+   The preview is the next slide's own content drawn at the deck's size (DECK_W × DECK_H) and scaled down; it is inert,
    carries no ids but its frame's, and is removed before any slide is drawn. Loaded after js/eapa-deck-card.js. */
 (function(){
   if(window.__eaNextPreview) return; window.__eaNextPreview = true;
   if(document.body && document.body.classList.contains("audience-mode")) return;
   if(/[?&]audience=/.test(location.search)) return;
   const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  const W = 960, H = 540, THUMB_W = 336, SC = THUMB_W / W;
+  const W = typeof DECK_W === "number" ? DECK_W : 960, H = typeof DECK_H === "number" ? DECK_H : 540, THUMB_W = 336, SC = THUMB_W / W;
   let pinned = false; try{ pinned = localStorage.getItem("eapa-peek-next") === "1"; }catch(e){}
   let hoverT = null, box = null;
 
