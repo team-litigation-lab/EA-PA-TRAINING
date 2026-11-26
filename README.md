@@ -48,6 +48,14 @@ It works on the lesson page, in full screen and on the Presenter view console's 
 
 The calendar, the Gmail-style inbox, the Excel-style trackers, the calls and the roleplay chats already look like the tools an EA uses. Every other lab activity now sits in the window of the app the task happens in (`js/eapa-lab-apps.js`, loaded last; remove its `<script>` tag to go back): Day 1's dossier on a page in **Docs**, the ACT email in **Mail**, gatekeeping at the **Front Desk**; Day 4's *Prioritize the Day* as a **Tasks** list (and the reply to the partner in Mail); Day 9's invitation in Mail with the registration questions in **Forms**; the trust ledger and bills in **Ledger**, the access audit in an **Admin Console**, the license sweep in a **State Business Portal**, KPI and CLE tables in **Insights**, prompts in an **AI Assistant**, call logs and leads in a **CRM**, reviews in **Reviews**, social metrics in **Social Studio**. App names are generic. Only the frame is new: each activity's fields, buttons and results move into the window as they are (same ids, handlers and grading), its intro and any briefing card stay above it, and 📝 My Notes stays outside. The mapping is `PARTS` (`"<tool id>:<activity label>"` → app, window title).
 
+## 🎯 Practice during the session
+
+Each Practice Lab activity's slide now sits **inside the lesson it practises**, right after that topic (after its Quick Check when it has one), so trainees practise during the session instead of only at the end of the day: Day 1's *Gatekeeping Practice* follows *Scripts That Redirect Without Alienating*, Day 7's *Trust Ledger Reconciliation* follows *Trust Account Reconciliation Discipline*, Day 8's *Contain the Leak* follows *Containing a Confidentiality Leak*, and so on. The slide says so (*Day 7 · Practice in the session · Activity 1 of 5*, *🎯 Practise it now: you've just covered …*), and ▶ Start, the grade, ← Back to the same slide and the day completing itself all work as before.
+
+- The map is `AFTER_TOPIC` in `js/eapa-deck-lab.js` (activity → topic title). Activities with no topic of their own (every day's *Crisis Roleplay*, Day 4's *Prioritize the Day*, Day 10's *Marketing Plan*) stay at the end of the day, before the Knowledge Check.
+- Topic titles are keys: renaming a topic moves its activity back to the end, and `.github/scripts/deck-lab.cjs` fails until `AFTER_TOPIC` is updated.
+- Saved places move with their slide: the first time a trainee signs in after this change, their place and furthest slide on each day are moved to the same slides in the new order (`migrateLabsInline`, once per day, flagged `deck-lab-inline:<day>` in `day-order-migrated`), and the furthest slide never moves back.
+
 ## 🎨 Slide colour, graphics and icons
 
 Every lesson slide on every day gets colour, pictures and icons from `js/eapa-deck-color.js` (loaded last; removing its `<script>` tag puts the slides back as they were):
