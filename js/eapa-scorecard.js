@@ -303,6 +303,7 @@ window.EXTRA_ROUTE_LABELS = Object.assign(window.EXTRA_ROUTE_LABELS || {}, {scor
 window.renderScorecardPage = renderScorecardPage;
 // (the week and overall scores, for Admin → 🏆 Rankings & Progress Report: js/eapa-admin-shell.js)
 window.eapaScores = {WEEKS, scoreOver, ranked, rankingHtml};
+window.EAPAScore = {dayRow, scoreOver};   // (the Admin 🏅 Scorecards table, js/eapa-cm-scorecard.js)
 if(typeof renderTopbar === "function"){
   const __top = renderTopbar;
   renderTopbar = function(){

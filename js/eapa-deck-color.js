@@ -194,23 +194,24 @@
 #lessonSlideWrap .ec-sec-steps ol > li::before{background:#DB8437 !important;color:#1B1E2E !important;}
 #lessonSlideWrap .ec-sec-steps ol > li:nth-child(even)::before{background:#262B45 !important;color:#fff !important;}
 
-/* dashboard day cards: contrast. The cards were frosted glass over the photo (grey on grey); now a navy
-   head (peach DAY N, white title), a white body, a solid navy Start and a tinted Topics / Finish row.
-   The orange top stripe on every third card stays. Overrides js/lsh-card-frame.js (shared by every course). */
+/* dashboard day cards: contrast, kept light. The cards were frosted glass over the photo (grey on grey);
+   now a solid white card with the navy / orange top stripe, a deep-orange DAY N and a near-black title, a
+   soft blue-grey Start with bold navy text (solid navy on hover) and a white Topics / Finish row with
+   dark text. Overrides js/lsh-card-frame.js (shared by every course). */
 body .dash-main .module-card.mc-clean{background:#fff !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;}
 body .dash-main .module-card.mc-clean .module-head,
 body .dash-main .module-card.mc-clean:nth-child(3n+2) .module-head,
-body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{background:var(--g-navy,linear-gradient(135deg,#161829,#262B45 55%,#3C4268)) !important;border-bottom:none !important;}
-body .dash-main .module-card.mc-clean .mh-day{color:#F0C08A !important;}
-body .dash-main .module-card.mc-clean .mh-title{color:#fff !important;}
+body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{background:#fff !important;border-bottom:1px solid #E6E9F1 !important;}
+body .dash-main .module-card.mc-clean .mh-day{color:#A34E14 !important;font-weight:800 !important;}
+body .dash-main .module-card.mc-clean .mh-title{color:#1B1E2E !important;}
 body .dash-main .module-card.mc-clean .module-body{background:#fff;}
-body .dash-main .module-card.mc-clean .mc-grid{border-top:none !important;}
-body .dash-main .module-card.mc-clean .mc-grid > .module-start-btn{background:#262B45 !important;color:#fff !important;letter-spacing:.02em;}
+body .dash-main .module-card.mc-clean .mc-grid{border-top:1px solid #E6E9F1 !important;}
+body .dash-main .module-card.mc-clean .mc-grid > .module-start-btn{background:#EEF1FA !important;color:#262B45 !important;font-weight:800 !important;}
 body .dash-main .module-card.mc-clean .mc-grid > .module-start-btn:not(:disabled):hover,
-body .dash-main .module-card.mc-clean:hover .mc-grid > .module-start-btn:not(:disabled){background:#DB8437 !important;color:#1B1E2E !important;}
-body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){background:#EEF1FA !important;color:#262B45 !important;font-weight:700 !important;border-top:1px solid #DCE0EE !important;}
-body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn):not(:last-child){border-right:1px solid #DCE0EE !important;}
-body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:disabled):hover{background:#DCE3F5 !important;}
+body .dash-main .module-card.mc-clean:hover .mc-grid > .module-start-btn:not(:disabled){background:#262B45 !important;color:#fff !important;}
+body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){background:#fff !important;color:#262B45 !important;font-weight:600 !important;border-top:1px solid #E6E9F1 !important;}
+body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn):not(:last-child){border-right:1px solid #E6E9F1 !important;}
+body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:disabled):hover{background:#F3F5FB !important;}
 body .dash-main .module-card.mc-clean .module-topics-btn span{color:#A34E14 !important;}
 
 /* Do this / Watch out cards */

@@ -137,6 +137,9 @@
   const __after = window.afterRender;
   window.afterRender = function(){
     const r = __after ? __after.apply(this, arguments) : undefined;
+    // the Practice Lab page: all ten labs on one screen (wide screens)
+    document.body.classList.toggle("practice-onescreen", typeof state !== "undefined" && state.view === "practice");
+    if(typeof state !== "undefined" && state.view === "practice") document.querySelectorAll(".tool-card .tool-desc2").forEach(d => { if(!d.title) d.title = d.textContent; });
     skinLab(); setTimeout(skinLab, 0); setTimeout(skinLab, 250); setTimeout(skinLab, 900);
     return r;
   };
@@ -223,7 +226,27 @@
 .app-form .aw-main{background:#F3EEFA;} .app-form .aw-body{max-width:760px;margin:16px auto;background:#fff;border-radius:10px;border-top:8px solid var(--aw);}
 .app-form .aw-body textarea{min-height:150px;}
 `;
-  const st = document.createElement("style"); st.id = "eapa-lab-apps"; st.textContent = css;
+  const pageCss = `
+/* Practice Lab page: the window's full width and all ten labs on one screen, five to a row */
+@media (min-width:1200px){
+  body.practice-onescreen main:not(.main-dash){max-width:none;padding:12px 24px 40px;}
+  body.practice-onescreen .page-hero{padding:14px 22px !important;margin-bottom:10px !important;}
+  body.practice-onescreen .page-hero h1{font-size:24px !important;margin:2px 0 !important;}
+  body.practice-onescreen .page-hero .eyebrow{display:none !important;}
+  body.practice-onescreen .page-hero p:not(.eyebrow){font-size:12.5px !important;margin:2px 0 0 !important;max-width:none !important;}
+  body.practice-onescreen .tool-card .tool-body2 .module-icon{display:none !important;}
+  body.practice-onescreen .tfb-fab{bottom:4px;padding:5px 12px;font-size:12px;}
+  body.practice-onescreen main .card:not(.tool-card):not(.tool-card *){padding:8px 16px !important;margin-bottom:10px !important;}
+  body.practice-onescreen main .card:not(.tool-card) *{font-size:12px !important;line-height:1.4 !important;margin-top:0 !important;margin-bottom:2px !important;}
+  body.practice-onescreen .tool-grid{grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:12px !important;}
+  body.practice-onescreen .tool-card .tool-head{min-height:0 !important;padding:9px 10px !important;}
+  body.practice-onescreen .tool-card .mh-title{font-size:12.5px !important;line-height:1.25 !important;}
+  body.practice-onescreen .tool-card .tool-body2{padding:8px 12px 10px !important;gap:6px !important;}
+  body.practice-onescreen .tool-card .tool-desc2{font-size:12.5px !important;line-height:1.4 !important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:0 0 auto !important;}
+  body.practice-onescreen .tool-card .tool-status-row{font-size:11.5px !important;padding:3px 9px !important;}
+  body.practice-onescreen .tool-card .tool-open-btn{padding:7px !important;font-size:13px !important;}
+}`;
+  const st = document.createElement("style"); st.id = "eapa-lab-apps"; st.textContent = css + pageCss;
   (document.head || document.documentElement).appendChild(st);
   setTimeout(skinLab, 0);
 })();
