@@ -1818,5 +1818,203 @@ window.EAPA_DAY_VIDEOS = {
     "t": 1780.5
    }
   ]
+ },
+ "9": {
+  "title": "Day 9 — Events, Meetings, CLE & Reputation",
+  "src": "/videos/day9-narrated.mp4?v=tp3cgi",
+  "captions": "/videos/day9-narrated.vtt?v=tp3cgi",
+  "duration": 1864,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 9 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Events & Travel Logistics",
+    "t": 39.1
+   },
+   {
+    "slide": 3,
+    "title": "Running an Event End-to-End",
+    "t": 52
+   },
+   {
+    "slide": 4,
+    "title": "Event Management Tips: Checklists, Run Sheets & the Day-Of Kit",
+    "t": 100.2
+   },
+   {
+    "slide": 5,
+    "title": "Sending Invites: Calendar Invites & Event Invitations",
+    "t": 173.5
+   },
+   {
+    "slide": 6,
+    "title": "Sending Intake Forms: Event Registration & New-Client Questionnaires",
+    "t": 246
+   },
+   {
+    "slide": 7,
+    "title": "CLE Management for Firm-Hosted Events",
+    "t": 330.5
+   },
+   {
+    "slide": 8,
+    "title": "Speaker & Panelist Logistics for Conferences",
+    "t": 412.8
+   },
+   {
+    "slide": 9,
+    "title": "Sponsorship & Vendor Contract Basics for Events",
+    "t": 464.8
+   },
+   {
+    "slide": 10,
+    "title": "Live Event Moderation",
+    "t": 509.1
+   },
+   {
+    "slide": 11,
+    "title": "Post-Event Follow-Up & ROI Tracking",
+    "t": 558.4
+   },
+   {
+    "slide": 12,
+    "title": "High-Stakes Travel Disruption Management",
+    "t": 596.4
+   },
+   {
+    "slide": 13,
+    "title": "Meetings & Video Conferencing",
+    "t": 667.1
+   },
+   {
+    "slide": 14,
+    "title": "Everyday Meeting Notes & Action Items",
+    "t": 680.7
+   },
+   {
+    "slide": 15,
+    "title": "Board Meeting Preparation & Minute Drafting",
+    "t": 748.8
+   },
+   {
+    "slide": 16,
+    "title": "Shareholder & Investor Meeting (AGM) Logistics",
+    "t": 813.2
+   },
+   {
+    "slide": 17,
+    "title": "Executive Meeting Etiquette",
+    "t": 862.8
+   },
+   {
+    "slide": 18,
+    "title": "Video Conferencing: Platform Admin (Zoom/Teams/Meet)",
+    "t": 917.7
+   },
+   {
+    "slide": 19,
+    "title": "Video Conferencing: Technical Troubleshooting",
+    "t": 969.1
+   },
+   {
+    "slide": 20,
+    "title": "Compliance Tracking & Professional Development",
+    "t": 1019.7
+   },
+   {
+    "slide": 21,
+    "title": "Four SOPs That Keep Professional Development on Track",
+    "t": 1031.8
+   },
+   {
+    "slide": 22,
+    "title": "Quick Check",
+    "t": 1086.7
+   },
+   {
+    "slide": 23,
+    "title": "CLE / Compliance Tracking",
+    "t": 1116.8
+   },
+   {
+    "slide": 24,
+    "title": "Planning Professional Development",
+    "t": 1167.7
+   },
+   {
+    "slide": 25,
+    "title": "Membership Renewals",
+    "t": 1216
+   },
+   {
+    "slide": 26,
+    "title": "Ethics & Gift Compliance",
+    "t": 1268.9
+   },
+   {
+    "slide": 27,
+    "title": "Professional Liability & Insurance Awareness",
+    "t": 1309.9
+   },
+   {
+    "slide": 28,
+    "title": "Stress & Wellbeing",
+    "t": 1352.6
+   },
+   {
+    "slide": 29,
+    "title": "Recognizing Stress & Burnout in High-Pressure Roles",
+    "t": 1364.9
+   },
+   {
+    "slide": 30,
+    "title": "Stress Management Techniques That Work at a Desk",
+    "t": 1443.4
+   },
+   {
+    "slide": 31,
+    "title": "Setting Boundaries & Managing Executive Pressure",
+    "t": 1506.9
+   },
+   {
+    "slide": 32,
+    "title": "Recovery, Workload Conversations & Support Resources",
+    "t": 1570.1
+   },
+   {
+    "slide": 33,
+    "title": "Reputation & Brand",
+    "t": 1634.2
+   },
+   {
+    "slide": 34,
+    "title": "Protecting the Brand Online",
+    "t": 1647.8
+   },
+   {
+    "slide": 35,
+    "title": "Quick Check",
+    "t": 1701.9
+   },
+   {
+    "slide": 36,
+    "title": "Awards, Recognition & Charitable Coordination",
+    "t": 1732.6
+   },
+   {
+    "slide": 37,
+    "title": "Building an Executive's Media & Speaking Kit",
+    "t": 1795.1
+   },
+   {
+    "slide": 38,
+    "title": "Practice Lab",
+    "t": 1837.9
+   }
+  ]
  }
 };
