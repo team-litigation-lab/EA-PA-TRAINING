@@ -30,7 +30,7 @@
    "image": "005.png",
    "slide": 4,
    "title": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
-   "text": "A few spreadsheet skills can turn an afternoon of copying and counting into five minutes. A good one has one header row, one row per record and one column per piece of information, with no merged cells and no blank rows in the middle.\n\nThen five tools do most of the work: sort, filter, remove duplicates, lookups and pivot tables, plus two small formulas, COUNTIF and SUMIF, for 'how many' and 'how much'."
+   "text": "A few spreadsheet skills can turn an afternoon of copying and counting into five minutes. A good spreadsheet has one header row, one row per record and one column per piece of information, with no merged cells and no blank rows in the middle.\n\nThen five tools do most of the work: sort, filter, remove duplicates, lookups and pivot tables, plus two small formulas, COUNTIF and SUMIF, for 'how many' and 'how much'."
   },
   {
    "image": "006.png",
@@ -102,7 +102,7 @@
    "image": "017.png",
    "slide": 10,
    "title": "Contact List Failure Modes & Upkeep",
-   "text": "The most common problem with contact lists isn't missing people; it's out-of-date details. An assistant who left a year ago, a phone number from two jobs back. These look fine until someone relies on them in a hurry.\n\nFirst, keep the list in one system, not spread across a phone, a spreadsheet and email signatures. Next, do a quick check every quarter: ten minutes to remove duplicates and spot anything old."
+   "text": "The most common problem with contact lists isn't missing people; it's out-of-date details. An assistant who left a year ago, a phone number from two jobs back.\n\nFirst, keep the list in one system, not spread across a phone, a spreadsheet and email signatures. Next, do a quick check every quarter: ten minutes to remove duplicates and spot anything old."
   },
   {
    "image": "018.png",
@@ -144,7 +144,7 @@
    "image": "024.png",
    "slide": 14,
    "title": "Data Hygiene & Deduplication",
-   "text": "Duplicate records aren't just untidy; they split a person's history so nobody sees the whole picture. And data goes stale on its own, because people change jobs and email addresses all the time.\n\nFirst, before adding a new contact, search by name, company and email domain, not just the exact name. Next, when you merge two records, keep the history from both. Finally, regularly remove or flag contacts whose emails bounce or who have unsubscribed.\n\nTake a second with this one. You find three records that look like the same person at the same company, each with different history. How do you confirm they're the same person before merging?"
+   "text": "Duplicate records aren't just untidy; they split a person's history so nobody sees the whole picture.\n\nFirst, before adding a new contact, search by name, company and email domain, not just the exact name. Next, when you merge two records, keep the history from both. Finally, regularly remove or flag contacts whose emails bounce or who have unsubscribed.\n\nTake a second with this one. You find three records that look like the same person at the same company, each with different history. How do you confirm they're the same person before merging?"
   },
   {
    "image": "025.png",
@@ -168,7 +168,7 @@
    "image": "028.png",
    "slide": 17,
    "title": "Cold Calling, Appointment Setting & Lead Generation",
-   "text": "A specific, current detail about the person you're calling beats any script. When someone hears their own situation in the first sentence, they keep listening. A generic pitch sounds like every other call they ignore. That's why research comes before the call.\n\nFirst, open with a short reason this is relevant to them. Next, keep your goal realistic: not a sale, but a warmer second conversation."
+   "text": "A specific, current detail about the person you're calling beats any script. When someone hears their own situation in the first sentence, they keep listening. That's why research comes before the call.\n\nFirst, open with a short reason this is relevant to them. Next, keep your goal realistic: not a sale, but a warmer second conversation."
   },
   {
    "image": "029.png",
@@ -192,7 +192,7 @@
    "image": "032.png",
    "slide": 20,
    "title": "Manual Lead Generation Methods",
-   "text": "The leads most likely to become clients are usually the ones someone found by hand, through a person who already trusts the firm. Manual lead generation means referrals, events, directories, people who came to Elias's webinar, and old contacts in the CRM. It's slower than a tool, but these leads arrive with context and trust.\n\nOne rule sits over all of it: bar rules limit how a firm may approach people who might need legal help, so the attorney approves who we contact and how."
+   "text": "The leads most likely to become clients are usually the ones someone found by hand, through a person who already trusts the firm. Manual lead generation means referrals, events, directories, people who came to Elias's webinar, and old contacts in the CRM.\n\nOne rule sits over all of it: bar rules limit how a firm may approach people who might need legal help, so the attorney approves who we contact and how."
   },
   {
    "image": "033.png",
@@ -210,7 +210,7 @@
    "image": "035.png",
    "slide": 21,
    "title": "Automated Lead Generation Tools & Workflows",
-   "text": "Tools can catch leads around the clock, but only if someone designs where those leads go. A website or webinar form creates a record in the CRM. A saved search in LinkedIn Sales Navigator tells us when a prospect changes jobs. Tools like Zapier or Make pass the lead from one system to the next.\n\nWhat automation doesn't do is decide: every lead still gets verified, and nothing goes to a prospect until a person approves it."
+   "text": "Tools can catch leads around the clock, but only if someone designs where those leads go. A website or webinar form creates a record in the CRM. Tools like Zapier or Make pass the lead from one system to the next.\n\nWhat automation doesn't do is decide: every lead still gets verified, and nothing goes to a prospect until a person approves it."
   },
   {
    "image": "036.png",
@@ -252,7 +252,7 @@
    "image": "042.png",
    "slide": 24,
    "title": "Lead Quality, Qualifying & Tracking",
-   "text": "Referrals are the best leads you'll get, so ask for them instead of waiting. A referral arrives with trust already built in, because someone the prospect respects vouched for the firm. A cold list never has that.\n\nFirst, qualify every lead early: fit, need, authority and timeline. Next, log every lead the moment it appears."
+   "text": "Referrals are the best leads you'll get, so ask for them instead of waiting. A referral arrives with trust already built in, because someone the prospect respects vouched for the firm.\n\nFirst, qualify every lead early: fit, need, authority and timeline. Next, log every lead the moment it appears."
   },
   {
    "image": "043.png",
@@ -282,7 +282,7 @@
    "image": "047.png",
    "slide": 27,
    "title": "Handling Sales Objections Beyond the Script",
-   "text": "Understand what an objection really means before you answer it. Real conversations rarely match the script. Most objections are one of three things in disguise: they don't know enough, they don't trust us yet, or the timing is wrong. And pushing past a genuine no ruins the chance of a future yes.\n\nFirst, ask one clarifying question before you respond. Next, acknowledge the concern specifically, so they know you listened. Finally, if the issue is timing, agree a specific date to follow up.\n\nTake a second with this one. A prospect says, 'We already have a vendor for this.' That could mean they're happy, locked into a contract or just ending the call politely. What's your next question?"
+   "text": "Understand what an objection really means before you answer it. Most objections are one of three things in disguise: they don't know enough, they don't trust us yet, or the timing is wrong. And pushing past a genuine no ruins the chance of a future yes.\n\nFirst, ask one clarifying question before you respond. Next, acknowledge the concern specifically, so they know you listened. Finally, if the issue is timing, agree a specific date to follow up.\n\nTake a second with this one. A prospect says, 'We already have a vendor for this.' That could mean they're happy, locked into a contract or just ending the call politely. What's your next question?"
   },
   {
    "image": "048.png",
@@ -384,7 +384,7 @@
    "image": "064.png",
    "slide": 37,
    "title": "Law Firm Email Newsletters",
-   "text": "A newsletter keeps the firm in people's minds between cases, and most small firms win work from people who already know them. Steady monthly or quarterly beats weekly bursts followed by silence. And because it comes from attorneys, it may need an advertising label, and it must never read as legal advice for someone's specific situation."
+   "text": "A newsletter keeps the firm in people's minds between cases, and most small firms win work from people who already know them. And because it comes from attorneys, it may need an advertising label, and it must never read as legal advice for someone's specific situation."
   },
   {
    "image": "065.png",
@@ -402,7 +402,7 @@
    "image": "067.png",
    "slide": 38,
    "title": "Email Marketing Tools & Approval Workflow",
-   "text": "A written approval process is what stops one quick send from reaching thousands of people with a mistake. There are plenty of tools, from Mailchimp or Constant Contact for newsletters to Outlook or Gmail templates for one-to-one emails. But the tool matters much less than the process: who writes it, who reviews it, who checks it's compliant and who presses send.\n\nFirst, set up an approved template with the firm's branding, address, unsubscribe link and any disclaimer. Next, follow the same flow every time: you draft, the attorney reviews, you check compliance, then schedule and report."
+   "text": "A written approval process is what stops one quick send from reaching thousands of people with a mistake. There are plenty of tools, from Mailchimp or Constant Contact for newsletters to Outlook or Gmail templates for one-to-one emails. But the tool matters much less than the process around it.\n\nFirst, set up an approved template with the firm's branding, address, unsubscribe link and any disclaimer. Next, follow the same flow every time: you draft, the attorney reviews, you check compliance, then schedule and report."
   },
   {
    "image": "068.png",
