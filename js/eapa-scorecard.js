@@ -301,6 +301,7 @@ if(typeof renderAdminDetail === "function"){
 window.EXTRA_ROUTE_VIEWS = (window.EXTRA_ROUTE_VIEWS || []).concat(["scorecard"]);
 window.EXTRA_ROUTE_LABELS = Object.assign(window.EXTRA_ROUTE_LABELS || {}, {scorecard:"My Scorecard"});
 window.renderScorecardPage = renderScorecardPage;
+window.EAPAScore = {dayRow, scoreOver};   // (the Admin 🏅 Scorecards table, js/eapa-cm-scorecard.js)
 if(typeof renderTopbar === "function"){
   const __top = renderTopbar;
   renderTopbar = function(){

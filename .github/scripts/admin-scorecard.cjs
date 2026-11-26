@@ -18,10 +18,31 @@ const failures = []; const fail = (m) => failures.push(m);
       const now = new Date().toISOString();
       await put('trainee:ana-cruz--b123126', { id: 'ana-cruz--b123126', name: 'Ana Cruz', batch: 'B123126', approved: true, registeredAt: now, labAttemptsGlobal: 3, labResetRequestedAt: now });
       await put('trainee:ben-diaz--b123126', { id: 'ben-diaz--b123126', name: 'Ben Diaz', batch: 'B123126', approved: true, registeredAt: now });
+      await put('progress:ana-cruz--b123126', { savedAt: now, data: {
+        'day-progress': { 1: { done: true, score: 90, history: [{ score: 90 }] }, 2: { done: false, score: 55, history: [{ score: 40 }, { score: 55 }] } },
+        'practice-progress': {}, 'slide-progress': { 1: 30, 2: 12 },
+        'work-log': [
+          { kind: 'quiz', dayId: 2, label: 'Day 2 Knowledge Check', score: 55, missed: ['What goes in a BLUF?'] },
+          { kind: 'lab', dayId: 1, toolId: 'x-lab', label: 'Client Dossier', score: 62, tier: 'Developing', strengths: ['Clear headings'], gaps: ['Missed the travel rule'], growth: ['Check the Client Profile first'] }] } });
       await put('trainee:old-one--b010126', { id: 'old-one--b010126', name: 'Old One', batch: 'B010126', approved: true, registeredAt: now });
       state.isAdmin = true; state.adminData = null; goto('admin');
     });
     await page.waitForSelector('.eash-banner', { timeout: 20000 });
+    // 🏅 Scorecards (the default sub-tab): the scores table, then a trainee's card
+    const subs = await page.$$eval('.eash-sub-b', b => b.map(x => x.innerText.trim()));
+    if (subs.join('|') !== '🏅 Scorecards|🏆 Rankings & Progress Report|👥 Trainees & Actions|💬 Trainee Feedback') fail(`the Scorecard's sub-tabs: ${subs}`);
+    await page.waitForFunction(() => /Ana Cruz/.test((document.querySelector('.eacm-t tbody') || {}).innerText || '') && /90%/.test(document.querySelector('.eacm-t tbody').innerText), null, { timeout: 20000 });
+    const head = await page.$$eval('.eacm-t thead tr:last-child th', t => t.map(x => x.innerText.trim()).filter(Boolean));
+    if (head.slice(0, 5).join('|') !== 'Trainee|Batch|Registered|Days passed|Overall' || head[5] !== 'Day 1 %') fail(`the scores table's columns: ${head.slice(0, 7)}`);
+    await page.click('.eacm-t tbody tr:has-text("Ana Cruz")');
+    await page.waitForSelector('#eacmCard');
+    const cardTxt = await page.$eval('#eacmCard', c => c.innerText);
+    for (const t of ['Ana Cruz', 'Overall', 'Focus on', 'Day 2 · Knowledge Check', 'What happened', 'What you could have done better', 'Client Dossier', 'Missed the travel rule', 'Day scores'])
+      if (!cardTxt.toLowerCase().includes(t.toLowerCase())) fail(`the trainee's card has no "${t}"`);
+    await page.click('#eacmCard tr:has-text("Day 1") summary');
+    const mk = await page.$eval('#eacmCard tr:has-text("Day 1") .eacm-mk', m => m.innerText).catch(() => '');
+    for (const t of ['Knowledge Check', 'Client Dossier', 'Clear headings', 'Check the Client Profile first']) if (!mk.includes(t)) fail(`"What makes up this score" for Day 1 has no "${t}"`);
+    await page.evaluate(() => EAPAShell.sub('people'));
     await page.waitForFunction(() => document.querySelectorAll('.audit-table tbody tr').length >= 2, null, { timeout: 20000 });
     const pills = await page.$$eval('.eash-pill', b => b.map(x => x.innerText.trim()));
     if (pills.join('|') !== '🏅 Scorecard|🛡 Admin Master Control') fail(`the section pills: ${pills}`);
@@ -39,8 +60,10 @@ const failures = []; const fail = (m) => failures.push(m);
     if (await page.$('.audit-table details.at-more')) fail('the rows still hide buttons under "More ▾"');
     const vis = await page.$$eval('.audit-table .at-btns button', b => b.filter(x => /Reset Attempts/.test(x.innerText)).every(x => x.offsetParent !== null));
     if (!vis) fail('↺ Reset Attempts isn\'t visible on every row');
-    const parts = await page.$$eval('.eash-part .eash-h', h => h.map(x => x.innerText));
-    if (parts.join('|') !== '👥 Trainees|🏆 Rankings|💬 Trainee Feedback|📈 Activities') fail(`the Scorecard's parts: ${parts}`);
+    const partsOf = async (id) => { await page.evaluate(i => EAPAShell.sub(i), id); return (await page.$$eval('.eash-part .eash-h', h => h.map(x => x.innerText))).join('|'); };
+    if ((await partsOf('ranks')) !== '🏆 Rankings|📈 Progress Report — Activities') fail('the Rankings & Progress Report sub-tab');
+    if ((await partsOf('fb')) !== '💬 Trainee Feedback') fail('the Trainee Feedback sub-tab');
+    if ((await partsOf('people')) !== '👥 Trainees & Actions') fail('the Trainees & Actions sub-tab');
     const th = await page.$eval('.audit-table thead th', t => { const s = getComputedStyle(t); return s.backgroundColor + ' ' + s.borderBottomColor; });
     if (!/rgb\(38, 43, 69\).*rgb\(219, 132, 55\)/.test(th)) fail(`the table header isn't the standard navy with the orange rule: ${th}`);
     // the old tabs open the Scorecard; 🛡 Admin Master Control has the rest
@@ -57,9 +80,12 @@ const failures = []; const fail = (m) => failures.push(m);
     await page.evaluate(() => { EAPAShell.go('scorecard'); }); await page.waitForSelector('.eash-banner');
     await page.selectOption('.eash-banner select', 'B010126');
     await page.waitForFunction(() => /Batch B010126/.test(document.querySelector('.eash-banner').innerText));
+    await page.evaluate(() => EAPAShell.sub('cards'));
+    await page.waitForFunction(() => /Old One/.test((document.querySelector('.eacm-t tbody') || {}).innerText || ''), null, { timeout: 10000 }).catch(() => fail('picking another batch doesn\'t show its trainees in the scores table'));
+    await page.evaluate(() => EAPAShell.sub('people'));
     if (!(await page.$$eval('.audit-table tbody tr', r => r.some(x => /Old One/.test(x.innerText))))) fail('picking another batch doesn\'t show its trainees');
   } catch (e) { fail(`threw: ${e && e.stack || e}`); }
   await browser.close();
   if (failures.length) { console.log(`\n${failures.length} failure(s):`); failures.forEach((f, i) => console.log(`${i + 1}. ${f}`)); process.exit(1); }
-  console.log('Admin Scorecard test passed (two section pills; the Scorecard opens on the newest batch with every admin button in its header and every row button in view, ↺ Reset Attempts included; Trainees, Rankings, Trainee Feedback and Activities on one page; the standard table header; the old tabs open it; Admin Master Control keeps the rest; another batch from the header).');
+  console.log('Admin Scorecard test passed (two section pills; 🏅 Scorecards: the scores table, a trainee\'s card with Focus on and each activity\'s feedback; the Scorecard opens on the newest batch with every admin button in its header and every row button in view, ↺ Reset Attempts included; Trainees, Rankings, Trainee Feedback and Activities on one page; the standard table header; the old tabs open it; Admin Master Control keeps the rest; another batch from the header).');
 })();
