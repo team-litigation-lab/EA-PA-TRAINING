@@ -35,8 +35,9 @@ function totalSlides(d){
 }
 
 /* ---------- one trainee's numbers ---------- */
-function sheet(rec){
-  const x = (state.auditExtra || {})[rec.id];
+// (own: {data, fb} for a trainee's own scorecard, read from this browser instead of the admin's copy)
+function sheet(rec, own){
+  const x = own || (state.auditExtra || {})[rec.id];
   const data = (x && x.data) || {};
   const src = {dp: data["day-progress"] || rec.dayProgress || {}, pp: data["practice-progress"] || rec.practiceProgress || {}, qa: data["quick-check-answers"] || {}};
   const sp = data["slide-progress"] || {};
@@ -149,18 +150,18 @@ function makeup(r, fb){
         <small>${e.kind === "roleplay" ? "Live Roleplay" : "Practice Lab"}${e.tier ? ` · ${E(tierOf(e.tier))}` : ""}${e.at ? ` · ${E(new Date(e.at).toLocaleString())}` : ""}</small></div>
       <div class="eacm-fbks">${list("✓ Strengths", e.strengths, "s")}${list("△ Gaps", e.gaps, "g")}${list("→ Next time", e.growth, "n")}</div>
       ${e.excerpt ? `<details class="eacm-ex"><summary>Their answer</summary><p>${E(e.excerpt)}</p></details>` : ""}</div>`).join("")}` : ""}
-    ${f ? `<div class="eacm-tfb"><b>✍ Trainer feedback</b> <small>${f.status === "sent" ? "Sent" + (f.readAt ? " · read" : "") : "Draft — not sent"}${f.rating ? ` · ${E(f.rating)}` : ""}</small>${f.summary ? `<p>${E(f.summary)}</p>` : ""}</div>` : ""}</div>`;
+    ${f ? `<div class="eacm-tfb"><b>✍ Trainer feedback</b> <small>${f.status === "sent" ? "Sent" + (f.readAt ? " · read" : "") : "Draft — not sent"}${f.rating ? ` · ${E(f.rating)}` : ""}</small>${f.summary ? `<p>${E(f.summary)}</p>` : ""}${f.mine && typeof openDayFeedback === "function" ? `<button type="button" class="eacm-more" onclick="openDayFeedback(${r.dayId})">Read the full feedback →</button>` : ""}</div>` : ""}</div>`;
 }
-function card(s){
+function card(s, you){
   const r = s.rec, st = status(s), items = focusItems(s);
   const SHOW = 4;
   const open = state.eacmOpen || (state.eacmOpen = {});
   const all = !!open["focus:" + r.id];
   const shown = all ? items : items.slice(0, SHOW);
   return `<div class="eacm-card" id="eacmCard">
-    <div class="eacm-card-h"><div><p class="eacm-k">Trainee scorecard</p><h3>${E(nameOf(r))}</h3>
+    <div class="eacm-card-h"><div><p class="eacm-k">${you ? "Your scorecard" : "Trainee scorecard"}</p><h3>${E(nameOf(r))}</h3>
       <p class="eacm-k2">${E(typeof batchLabel === "function" ? batchLabel(batchKey(r)) : r.batch || "")}${r.registeredAt ? ` · registered ${E(new Date(r.registeredAt).toLocaleDateString())}` : ""} · ${s.passedN} of ${DAYS.length} days passed</p></div>
-      <div class="eacm-card-chips"><span class="eacm-big eacm-${tint(s.overall)}">Overall ${P(s.overall)}</span><span class="eacm-st2 eacm-${st.c}">${st.t}</span></div></div>
+      <div class="eacm-card-chips"><span class="eacm-big eacm-${tint(s.overall)}">Overall ${P(s.overall)}</span><span class="eacm-st2 eacm-${st.c}">${st.t}</span><span class="eacm-pm" title="Every score is measured against the ${PASS}% pass mark">Passing score ${PASS}%</span></div></div>
     <div class="eacm-sec"><h4>🎯 Focus on <small>(below the ${PASS}% pass mark, lowest first)</small></h4>
       ${items.length ? `<ol class="eacm-focus">${shown.map(it => `<li><div class="eacm-fh"><span class="eacm-pill eacm-${tint(it.score)}">${Math.round(it.score)}%</span><b>${E(it.title)}</b></div>
         <dl><dt>What happened</dt><dd>${E(it.what)}</dd><dt>Why</dt><dd>${E(it.why)}</dd><dt>What you could have done better</dt><dd>${E(it.better)}</dd></dl></li>`).join("")}</ol>
@@ -172,7 +173,7 @@ function card(s){
         ${s.days.map(d => {
           const key = `day:${r.id}:${d.dayId}`, isOpen = !!open[key];
           const br = [num(d.kc) ? `Knowledge Check ${d.kc}%` : "", num(d.practice) ? `Practice Lab ${Math.round(d.practice)}%` : "", d.qcTotal ? `Quick Checks ${d.qcRight}/${d.qcTotal}` : "", num(d.task) ? `Random task ${d.task}%` : "", `Slides ${d.seen}/${d.n}`].filter(Boolean);
-          return `<tr><td><b>Day ${d.dayId}</b><small>${E(d.d.title)}</small></td><td class="eacm-c eacm-${tint(d.average)}"><b>${d.active ? P(d.average) : "—"}</b>${d.passed ? '<small class="eacm-tick">✓ passed</small>' : ""}</td>
+          return `<tr><td><b>Day ${d.dayId}</b><small>${E(d.d.title)}</small></td><td class="eacm-c eacm-${tint(d.average)}"><b>${d.active ? P(d.average) : "—"}</b>${d.passed ? '<small class="eacm-tick">✓ passed</small>' : num(d.average) ? `<small>${d.average >= PASS ? "✓ passing" : "below " + PASS + "%"}</small>` : ""}</td>
             <td>${d.active ? E(br.join(" · ")) : "Not started"}
               ${d.active ? `<details class="eacm-why" ${isOpen ? "open" : ""} ontoggle="EAPACM.mark('${Q(key)}', this.open)"><summary>What makes up this score${d.work.length ? ` · ${d.work.length} graded activit${d.work.length === 1 ? "y" : "ies"}` : ""}</summary>${makeup(d, s.fb)}</details>` : ""}</td></tr>`;
         }).join("")}
@@ -223,7 +224,16 @@ function section(k){ return `<div id="eacmHost">${body(k)}</div>`; }
 window.EAPACM = {
   section,
   open(id){ state.eacmId = id || null; redraw(); if(id) setTimeout(() => { const c = document.getElementById("eacmCard"); if(c) c.scrollIntoView({behavior: "smooth", block: "start"}); }, 30); },
-  toggle(key){ const o = state.eacmOpen || (state.eacmOpen = {}); o[key] = !o[key]; redraw(); },
+  toggle(key){ const o = state.eacmOpen || (state.eacmOpen = {}); o[key] = !o[key]; if(state.view === "scorecard") render(); else redraw(); },
+  // the trainee's own scorecard (🏅 My Scorecard): the same card the admin sees, from this browser's progress, with
+  // only the trainer feedback that was sent to them
+  mine(){
+    const fb = {}; Object.entries(state.myFeedback || {}).forEach(([k, v]) => { if(v) fb[k] = Object.assign({status: "sent"}, v, {mine: true}); });
+    const data = {"day-progress": state.progress || {}, "practice-progress": state.practiceProgress || {}, "quick-check-answers": state.qcAnswers || {},
+      "slide-progress": state.slideProgress || {}, "work-log": state.workLog || []};
+    const rec = {id: state.traineeId || "__me", name: state.traineeName || "You", batch: state.traineeBatch || "", registeredAt: state.traineeRegisteredAt};
+    return card(sheet(rec, {data, fb}), true);
+  },
   mark(key, v){ const o = state.eacmOpen || (state.eacmOpen = {}); o[key] = !!v; },
   csv(){
     const k = state.scFolder, rows = members(k).map(sheet);
@@ -283,6 +293,7 @@ st.textContent = `
 .eacm-k2{margin:0;font:600 13.5px 'Inter',system-ui,sans-serif;color:#E3E6F2;}
 .eacm-card-chips{display:flex;gap:8px;align-items:center;}
 .eacm-big{font:800 17px 'Inter',system-ui,sans-serif;border-radius:999px;padding:6px 14px;}
+.eacm-pm{font:800 13px 'Inter',system-ui,sans-serif;border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.12);color:#F2D28F;border:1px solid rgba(242,183,126,.55);}
 .eacm-st2{font:800 14px 'Inter',system-ui,sans-serif;border-radius:999px;padding:6px 12px;}
 .eacm-sec{padding:16px 20px;border-top:1px solid #E4E7EF;}
 .eacm-sec h4{margin:0 0 10px;font:800 17px 'Inter',system-ui,sans-serif;color:#1E2340;}
