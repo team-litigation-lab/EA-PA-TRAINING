@@ -284,7 +284,7 @@ function narratorAfterRender(pageOnly){
   if(key!==__lastNarrKey){ __lastNarrKey = key; Narrator.afterSlideChange(); } else Narrator.paint();
 }
 function renderTopbar(){
-  let views = [["dashboard","Dashboard"],["tasks","🎲 Tasks"],["clientprofile","Client Profile"],["practice","Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","My Notes"],["handouts","Handouts"]];
+  let views = [["dashboard","📚 Dashboard"],["tasks","🎲 Tasks"],["clientprofile","📁 Client Profile"],["practice","🛠 Practice Lab"],["crisisroleplay","🔥 Live Roleplay"],["notes","🗒 Notes"],["handouts","Handouts"]];
   if(state.isAdmin){
     // Admin is a trainer monitoring dashboard, not a trainee workspace — hide
     // the trainee-facing-only views that have no role here.
@@ -305,10 +305,11 @@ function renderTopbar(){
         <div class="nav">
           ${views.map(([id,label])=>`<button class="${state.view===id?'active':''}" onclick="goto('${id}')">${label}${id==="tasks" && openTasksCount() ? `<span class="nav-badge">${openTasksCount()}</span>` : ""}</button>`).join("")}
           ${(state.traineeId && !state.isAdmin) ? `<button type="button" class="nav-focus" onclick="openFocusPanel()" title="My Focus — trainer feedback and what to work on next">🎯 Focus${focusNewCount()?`<span class="nav-badge">${focusNewCount()}</span>`:""}</button>` : ""}
+          ${/* the Foundational Training's order (js/lsh-program.js there): … 👁 Switch View · 🛡 Admin · 🎓 LSH Academy Index (js/portal-link.js) */""}
           ${state.adminPreview
-            ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('admin')" title="Return to the admin (trainer) view">🛡 Back to Admin view</button>`
-            : ((state.portalOnly && !state.isAdmin) ? "" : `<button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>`)}
-          ${state.isAdmin ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('trainee')" title="See the portal exactly as a trainee does — no trainer tools or admin pages">👁 Trainee view</button>` : ""}
+            ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('admin')" title="Switch back to the trainer (admin) view">👁 Switch View</button>`
+            : (state.isAdmin ? `<button type="button" class="nav-viewswitch" onclick="setAdminViewMode('trainee')" title="See the portal exactly as a trainee does — no trainer tools or admin pages">👁 Switch View</button>` : "")}
+          ${state.adminPreview || (state.traineeId && !state.isAdmin) || (state.portalOnly && !state.isAdmin) ? "" : `<button class="${state.view==='admin'?'active':''}" onclick="openAdmin()">🛡 Admin</button>`}
         </div>
       </div>
     </div>
@@ -531,7 +532,7 @@ function setAdminViewMode(mode){
     try{ sessionStorage.setItem("lsh_admin_preview","1"); }catch(e){}
     const back = ["admin","orientation","facilitatorguide"].includes(state.view) ? "dashboard" : state.view;
     if(state.view==="day") render(); else goto(back);
-    toast("👁 Trainee view — this is what trainees see. Use “Back to Admin view” to return.");
+    toast("👁 Trainee view — this is what trainees see. Use 👁 Switch View to return.");
   }else{
     if(!state.adminPreview) return;
     state.adminPreview = false; state.isAdmin = true;
