@@ -1,0 +1,1544 @@
+WEBVTT
+
+00:00:00.975 --> 00:00:05.175
+Welcome to Day 4: Data, Research, Sales and Outreach.
+
+00:00:05.175 --> 00:00:08.900
+We start with data entry and spreadsheets, then move into research,
+
+00:00:08.900 --> 00:00:12.762
+and then contact lists, CRM and data hygiene.
+
+00:00:12.762 --> 00:00:17.350
+After that comes sales and lead generation, and we finish with email outreach and
+
+00:00:17.350 --> 00:00:18.450
+marketing.
+
+00:00:19.200 --> 00:00:23.312
+By the end of today, you'll be able to clean data before it becomes a report,
+
+00:00:23.312 --> 00:00:27.600
+research and keep contact lists and CRM records accurate,
+
+00:00:27.600 --> 00:00:31.600
+and open cold outreach by phone and email the right way.
+
+00:00:33.525 --> 00:00:36.950
+Section 1 of 5: Data Entry and Spreadsheets.
+
+00:00:36.950 --> 00:00:40.525
+We'll cover data entry that holds up, and the spreadsheet essentials:
+
+00:00:40.525 --> 00:00:43.825
+sort, filter, lookups and pivot tables.
+
+00:00:45.750 --> 00:00:48.262
+Clean data isn't about being tidy.
+
+00:00:48.262 --> 00:00:51.362
+When data is messy, the problems show up later:
+
+00:00:51.362 --> 00:00:55.712
+a client gets the same email twice, a report adds up wrong.
+
+00:00:55.712 --> 00:00:59.675
+The fix is a simple routine, done in the same order every time,
+
+00:00:59.675 --> 00:01:01.300
+and the order matters.
+
+00:01:02.100 --> 00:01:03.950
+First, remove duplicates.
+
+00:01:03.950 --> 00:01:07.625
+If you tidy the data first, you just end up with tidy duplicates.
+
+00:01:07.625 --> 00:01:11.500
+Next, make the formatting consistent, so 'St.' and 'Street',
+
+00:01:11.500 --> 00:01:14.625
+or 'CA' and 'California', read the same.
+
+00:01:16.575 --> 00:01:19.600
+Then, check the entries against the original documents,
+
+00:01:19.600 --> 00:01:22.550
+especially numbers, dates and names.
+
+00:01:22.550 --> 00:01:25.925
+Finally, sort it in the order the next person will need it.
+
+00:01:26.700 --> 00:01:28.875
+Here's a situation to work through.
+
+00:01:28.875 --> 00:01:32.512
+You sent a contact list to the marketing team without cleaning it.
+
+00:01:32.512 --> 00:01:37.038
+The next week, two clients got the newsletter three times and complained.
+
+00:01:37.038 --> 00:01:39.225
+What should the handover have looked like?
+
+00:01:41.150 --> 00:01:45.613
+A few spreadsheet skills can turn an afternoon of copying and counting into five
+
+00:01:45.613 --> 00:01:46.638
+minutes.
+
+00:01:46.638 --> 00:01:51.588
+A good spreadsheet has one header row, one row per record and one column per piece
+
+00:01:51.588 --> 00:01:56.350
+of information, with no merged cells and no blank rows in the middle.
+
+00:01:57.125 --> 00:02:00.425
+Then five tools do most of the work: sort, filter,
+
+00:02:00.425 --> 00:02:05.038
+remove duplicates, lookups and pivot tables, plus two small formulas,
+
+00:02:05.038 --> 00:02:09.275
+COUNTIF and SUMIF, for 'how many' and 'how much'.
+
+00:02:11.325 --> 00:02:15.025
+First, freeze the header row and turn the data into a table.
+
+00:02:15.025 --> 00:02:20.712
+Next, use drop-down lists for columns like Status, so everyone types the same thing.
+
+00:02:20.712 --> 00:02:25.950
+Then use a lookup, like XLOOKUP, to pull information from another sheet.
+
+00:02:27.875 --> 00:02:32.750
+After that, build a pivot table for summaries, like totals by matter and month.
+
+00:02:32.750 --> 00:02:36.525
+Finally, before sharing, check totals against the source.
+
+00:02:37.275 --> 00:02:38.438
+Picture this.
+
+00:02:38.438 --> 00:02:43.450
+Elias wants to know, by tomorrow, how much each matter spent on travel last quarter.
+
+00:02:43.450 --> 00:02:45.650
+You have 400 expense rows.
+
+00:02:45.650 --> 00:02:48.450
+Which tools do you use, and in what order?
+
+00:02:50.400 --> 00:02:53.025
+Section 2 of 5: Research.
+
+00:02:53.025 --> 00:02:57.362
+We'll look at research as a core EA skill, then a quick research method and the real
+
+00:02:57.362 --> 00:02:58.700
+failure mode.
+
+00:03:00.675 --> 00:03:05.100
+Research is the quiet habit underneath almost everything an EA does.
+
+00:03:05.100 --> 00:03:07.775
+It shows up in three everyday ways.
+
+00:03:07.775 --> 00:03:12.650
+Checking that a new vendor or contact is genuine before the executive spends time or
+
+00:03:12.650 --> 00:03:13.888
+money on them.
+
+00:03:13.888 --> 00:03:16.300
+A short note on who'll be in a meeting.
+
+00:03:16.300 --> 00:03:19.075
+And checking a claim before we pass it on as fact,
+
+00:03:19.075 --> 00:03:22.100
+because if it's wrong, it's our credibility on the line,
+
+00:03:22.100 --> 00:03:23.500
+not the source's.
+
+00:03:25.450 --> 00:03:29.825
+So, check that someone new is genuine from more than their own description.
+
+00:03:29.825 --> 00:03:32.550
+Prepare that short note before every meeting.
+
+00:03:32.550 --> 00:03:35.525
+And check anything before you forward it as fact.
+
+00:03:37.475 --> 00:03:41.100
+Always start with the original source: the company's own site,
+
+00:03:41.100 --> 00:03:44.025
+the actual filing, the original email.
+
+00:03:44.025 --> 00:03:48.750
+And if you can't confirm something in time, say clearly that it's unconfirmed.
+
+00:03:49.525 --> 00:03:50.888
+Think this one through.
+
+00:03:50.888 --> 00:03:55.925
+A partner forwards a news article claiming a client's company is being investigated,
+
+00:03:55.925 --> 00:04:01.475
+and asks you to 'send it to Elias.' The article is from an unfamiliar website.
+
+00:04:01.475 --> 00:04:03.600
+What do you check before forwarding it?
+
+00:04:05.525 --> 00:04:09.462
+You don't have time to research everything deeply, and you don't need to.
+
+00:04:09.462 --> 00:04:12.200
+What you need is a quick, reliable method.
+
+00:04:13.025 --> 00:04:16.950
+First, start at the original source before reading anyone's summary.
+
+00:04:16.950 --> 00:04:20.175
+Next, for anything that affects money or a decision,
+
+00:04:20.175 --> 00:04:23.375
+confirm it with a second, independent source.
+
+00:04:23.375 --> 00:04:25.938
+Then, match your effort to the stakes.
+
+00:04:25.938 --> 00:04:29.025
+A lunch booking isn't a co-counsel agreement.
+
+00:04:30.950 --> 00:04:34.975
+After that, remember that what a company says about itself isn't proof.
+
+00:04:34.975 --> 00:04:38.800
+Finally, use the same habit before every call you make.
+
+00:04:39.550 --> 00:04:41.112
+Here's a situation.
+
+00:04:41.112 --> 00:04:45.475
+You booked a translator for a deposition because their LinkedIn profile said
+
+00:04:45.475 --> 00:04:50.575
+'certified legal interpreter.' On the day, their certification had lapsed.
+
+00:04:50.575 --> 00:04:52.650
+What should your process have included?
+
+00:04:54.575 --> 00:04:59.625
+Section 3 of 5: Contact Lists, CRM and Data Hygiene.
+
+00:04:59.625 --> 00:05:04.125
+We'll build and maintain a contact list, look at client relationship management and
+
+00:05:04.125 --> 00:05:08.625
+CRM software, and finish with data hygiene and deduplication.
+
+00:05:10.550 --> 00:05:15.613
+A great contact list lets anyone covering for you find the right person in seconds.
+
+00:05:15.613 --> 00:05:18.662
+A good one tells us how someone knows the executive,
+
+00:05:18.662 --> 00:05:22.125
+how they like to be reached and who their assistant is.
+
+00:05:22.125 --> 00:05:24.400
+It's organized into clear groups.
+
+00:05:24.400 --> 00:05:28.613
+And it's updated the moment anything changes, because a list that's a few months out
+
+00:05:28.613 --> 00:05:31.600
+of date is how calls go to the wrong number.
+
+00:05:33.550 --> 00:05:37.775
+First, record more than the basics, including any standing notes.
+
+00:05:37.775 --> 00:05:41.775
+Next, build it so a stand-in could use it without asking you.
+
+00:05:41.775 --> 00:05:46.525
+Finally, treat it as part of how the office runs, not your private notebook.
+
+00:05:47.275 --> 00:05:49.475
+Here's a situation to work through.
+
+00:05:49.475 --> 00:05:54.450
+The opposing party in the Meridian matter is also a board member at a charity Elias
+
+00:05:54.450 --> 00:05:55.538
+supports.
+
+00:05:55.538 --> 00:05:58.500
+How do you record this so nobody makes a mistake?
+
+00:06:00.400 --> 00:06:04.013
+The most common problem with contact lists isn't missing people;
+
+00:06:04.013 --> 00:06:05.988
+it's out-of-date details.
+
+00:06:05.988 --> 00:06:10.550
+An assistant who left a year ago, a phone number from two jobs back.
+
+00:06:11.350 --> 00:06:15.150
+First, keep the list in one system, not spread across a phone,
+
+00:06:15.150 --> 00:06:17.700
+a spreadsheet and email signatures.
+
+00:06:17.700 --> 00:06:22.350
+Next, do a quick check every quarter: ten minutes to remove duplicates and spot
+
+00:06:22.350 --> 00:06:23.675
+anything old.
+
+00:06:25.600 --> 00:06:29.075
+After that, when you find a wrong entry, fix it right then.
+
+00:06:29.075 --> 00:06:30.500
+It takes seconds.
+
+00:06:30.500 --> 00:06:34.875
+Finally, if your contacts are scattered, bring them together deliberately.
+
+00:06:35.625 --> 00:06:36.813
+Picture this.
+
+00:06:36.813 --> 00:06:41.725
+Elias's contacts live in his phone, your spreadsheet and the firm's CRM,
+
+00:06:41.725 --> 00:06:45.238
+and a client's number was different in all three last week.
+
+00:06:45.238 --> 00:06:47.400
+What's your plan to fix this for good?
+
+00:06:49.350 --> 00:06:54.713
+The whole team uses one master contact list, because private copies drift apart.
+
+00:06:54.713 --> 00:06:57.950
+Two people each keep their own copy of a contact.
+
+00:06:57.950 --> 00:07:00.600
+One gets updated, the other doesn't.
+
+00:07:00.600 --> 00:07:04.875
+And the outdated copy is the one someone grabs in an emergency.
+
+00:07:05.650 --> 00:07:10.350
+First, use the master list for scheduling too, so you know exactly who to include
+
+00:07:10.350 --> 00:07:12.025
+for each type of meeting.
+
+00:07:12.025 --> 00:07:16.525
+Next, check now and then that nobody has started a private copy.
+
+00:07:18.450 --> 00:07:22.175
+After that, update the master the moment you learn about a change.
+
+00:07:22.175 --> 00:07:27.100
+Finally, if you find a mismatch, fix the habit, not just that one entry.
+
+00:07:27.875 --> 00:07:29.363
+Think this one through.
+
+00:07:29.363 --> 00:07:31.963
+A client's CFO left last month.
+
+00:07:31.963 --> 00:07:36.813
+You updated the master list, but a partner's assistant still emailed the old CFO
+
+00:07:36.813 --> 00:07:38.863
+about a confidential matter.
+
+00:07:38.863 --> 00:07:42.075
+What went wrong, and how do you stop it happening again?
+
+00:07:44.025 --> 00:07:49.250
+Winning a client is the start; the relationship lives or dies on the follow-through.
+
+00:07:49.250 --> 00:07:52.975
+Client relationship management is what happens after the yes:
+
+00:07:52.975 --> 00:07:56.875
+remembering what was said, keeping promises and getting in touch at the right
+
+00:07:56.875 --> 00:07:57.925
+moments.
+
+00:07:57.925 --> 00:08:03.400
+A CRM helps, but the real value is the habit of recording every conversation.
+
+00:08:05.350 --> 00:08:08.825
+First, log every real conversation right after it happens:
+
+00:08:08.825 --> 00:08:12.025
+what was discussed, what was promised and what's next.
+
+00:08:12.025 --> 00:08:17.100
+Next, group contacts by where they are: new, active, quiet or past.
+
+00:08:17.100 --> 00:08:22.475
+Then, set specific reminders tied to promises, not vague 'touch base' tasks.
+
+00:08:22.475 --> 00:08:26.275
+Finally, before any call or email, look at their history first.
+
+00:08:27.025 --> 00:08:28.613
+Here's a situation.
+
+00:08:28.613 --> 00:08:33.525
+After a big win, Elias promised a client he'd 'check in after the holidays.' It's
+
+00:08:33.525 --> 00:08:34.475
+now March.
+
+00:08:34.475 --> 00:08:38.250
+What do you do, and how would a CRM task have prevented this?
+
+00:08:40.175 --> 00:08:45.262
+Every CRM is built on three things: people, deals and activities.
+
+00:08:45.262 --> 00:08:48.500
+The software doesn't create discipline; you do.
+
+00:08:48.500 --> 00:08:51.575
+A CRM is only as good as what gets put into it,
+
+00:08:51.575 --> 00:08:54.650
+and if the real status of a deal lives in someone's head,
+
+00:08:54.650 --> 00:08:57.025
+it's already stopped doing its job.
+
+00:08:57.850 --> 00:09:02.900
+First, match a new CRM's deal stages to how the firm actually wins work.
+
+00:09:02.900 --> 00:09:07.875
+Next, use the CRM's own reminders instead of a separate to-do list.
+
+00:09:08.650 --> 00:09:10.788
+Here's a situation to work through.
+
+00:09:10.788 --> 00:09:15.188
+A colleague moved five deals to 'Negotiation' because the clients 'seemed
+
+00:09:15.188 --> 00:09:16.963
+interested' on calls.
+
+00:09:16.963 --> 00:09:20.062
+Elias's forecast now looks far too high.
+
+00:09:20.062 --> 00:09:23.075
+What rule would you suggest for moving a deal forward?
+
+00:09:25.025 --> 00:09:30.188
+Duplicate records aren't just untidy; they split a person's history so nobody sees
+
+00:09:30.188 --> 00:09:31.550
+the whole picture.
+
+00:09:32.350 --> 00:09:35.613
+First, before adding a new contact, search by name,
+
+00:09:35.613 --> 00:09:39.400
+company and email domain, not just the exact name.
+
+00:09:39.400 --> 00:09:43.100
+Next, when you merge two records, keep the history from both.
+
+00:09:43.100 --> 00:09:47.788
+Finally, regularly remove or flag contacts whose emails bounce or who have
+
+00:09:47.788 --> 00:09:49.225
+unsubscribed.
+
+00:09:49.975 --> 00:09:51.775
+Take a second with this one.
+
+00:09:51.775 --> 00:09:55.813
+You find three records that look like the same person at the same company,
+
+00:09:55.813 --> 00:09:57.663
+each with different history.
+
+00:09:57.663 --> 00:10:00.875
+How do you confirm they're the same person before merging?
+
+00:10:02.800 --> 00:10:06.650
+Section 4 of 5: Sales and Lead Generation.
+
+00:10:06.650 --> 00:10:10.150
+We'll cover the sales mindset, how to find and verify leads,
+
+00:10:10.150 --> 00:10:11.650
+and appointment setting.
+
+00:10:13.600 --> 00:10:17.750
+Selling isn't talking someone into something; it's finding a real problem you can
+
+00:10:17.750 --> 00:10:19.012
+help solve.
+
+00:10:19.012 --> 00:10:22.688
+A message built around what the firm offers falls flat.
+
+00:10:22.688 --> 00:10:26.375
+A message built around what the other person needs gets read.
+
+00:10:27.175 --> 00:10:28.900
+And most outreach gets a no.
+
+00:10:28.900 --> 00:10:30.038
+That's normal.
+
+00:10:30.038 --> 00:10:32.850
+A no is information, not a verdict on you.
+
+00:10:34.825 --> 00:10:38.138
+First, be genuinely curious about their situation.
+
+00:10:38.138 --> 00:10:41.725
+The best messages read like they were written for one person.
+
+00:10:41.725 --> 00:10:45.325
+Next, keep an honest record of what you send and what comes back,
+
+00:10:45.325 --> 00:10:47.175
+including the rejections.
+
+00:10:47.175 --> 00:10:50.575
+Finally, keep the result separate from your feelings.
+
+00:10:51.325 --> 00:10:52.588
+Picture this.
+
+00:10:52.588 --> 00:10:57.688
+After 20 cold emails and no replies, a colleague's messages have become short and
+
+00:10:57.688 --> 00:10:58.988
+slightly bitter.
+
+00:10:58.988 --> 00:11:02.450
+What would you say to her, and what would you look at in her emails?
+
+00:11:04.375 --> 00:11:09.000
+A specific, current detail about the person you're calling beats any script.
+
+00:11:09.000 --> 00:11:13.713
+When someone hears their own situation in the first sentence, they keep listening.
+
+00:11:13.713 --> 00:11:16.350
+That's why research comes before the call.
+
+00:11:17.150 --> 00:11:20.550
+First, open with a short reason this is relevant to them.
+
+00:11:20.550 --> 00:11:26.050
+Next, keep your goal realistic: not a sale, but a warmer second conversation.
+
+00:11:28.000 --> 00:11:32.100
+Then, treat call lists with the same care as confidential email.
+
+00:11:32.100 --> 00:11:35.850
+Finally, record the outcome of every call straight away.
+
+00:11:36.625 --> 00:11:38.350
+Try this one out loud.
+
+00:11:38.350 --> 00:11:43.163
+You're calling the office manager of a 12-doctor medical practice about Elias's
+
+00:11:43.163 --> 00:11:44.775
+employment-law work.
+
+00:11:44.775 --> 00:11:47.113
+They just opened a second location.
+
+00:11:47.113 --> 00:11:50.900
+Pause the video and deliver the first 20 seconds of the call.
+
+00:11:52.800 --> 00:11:57.350
+Before you can call a lead, you have to find one, and that's a four-step process.
+
+00:11:58.150 --> 00:12:01.525
+First, identify sources: referrals, past clients,
+
+00:12:01.525 --> 00:12:04.875
+networking, directories and content that draws people in.
+
+00:12:04.875 --> 00:12:08.025
+Next, qualify: does this lead fit, need the service,
+
+00:12:08.025 --> 00:12:10.038
+have authority and have a timeline?
+
+00:12:10.038 --> 00:12:14.075
+Then, make first contact: specific, researched and short.
+
+00:12:14.075 --> 00:12:16.288
+Finally, track it and follow up.
+
+00:12:16.288 --> 00:12:19.275
+A lead nobody logged is a lead that's lost.
+
+00:12:20.050 --> 00:12:21.525
+Think this one through.
+
+00:12:21.525 --> 00:12:25.925
+At the end of the quarter, the firm has 30 new clients but no idea where they came
+
+00:12:25.925 --> 00:12:26.738
+from.
+
+00:12:26.738 --> 00:12:30.425
+What should have been recorded, and how would that help next quarter?
+
+00:12:32.375 --> 00:12:36.075
+A brilliant message sent to the wrong person is wasted.
+
+00:12:36.075 --> 00:12:39.925
+Data sourcing is the research behind lead generation.
+
+00:12:40.700 --> 00:12:45.100
+First, use LinkedIn and company websites to confirm someone's current role and
+
+00:12:45.100 --> 00:12:47.250
+what's happening at their company.
+
+00:12:47.250 --> 00:12:50.925
+Next, confirm contact details at the original source,
+
+00:12:50.925 --> 00:12:53.375
+not from a single third-party list.
+
+00:12:53.375 --> 00:12:58.550
+Then, focus on leads that actually fit, rather than collecting everyone and sorting
+
+00:12:58.550 --> 00:12:59.500
+later.
+
+00:13:00.275 --> 00:13:01.762
+Here's a situation.
+
+00:13:01.762 --> 00:13:04.750
+Your manager wants 200 leads by Friday.
+
+00:13:04.750 --> 00:13:09.025
+You can find 60 well-researched ones, or pad the list with names from an old
+
+00:13:09.025 --> 00:13:10.350
+conference list.
+
+00:13:10.350 --> 00:13:12.900
+What do you do, and how do you explain it?
+
+00:13:14.825 --> 00:13:19.638
+The leads most likely to become clients are usually the ones someone found by hand,
+
+00:13:19.638 --> 00:13:22.425
+through a person who already trusts the firm.
+
+00:13:22.425 --> 00:13:25.750
+Manual lead generation means referrals, events,
+
+00:13:25.750 --> 00:13:29.125
+directories, people who came to Elias's webinar,
+
+00:13:29.125 --> 00:13:31.550
+and old contacts in the CRM.
+
+00:13:32.350 --> 00:13:36.975
+One rule sits over all of it: bar rules limit how a firm may approach people who
+
+00:13:36.975 --> 00:13:41.500
+might need legal help, so the attorney approves who we contact and how.
+
+00:13:43.450 --> 00:13:47.900
+First, start with the warmest source: past clients and referral partners,
+
+00:13:47.900 --> 00:13:51.150
+with a short referral ask for the attorney to send.
+
+00:13:51.150 --> 00:13:56.738
+Next, log every event contact the same day, with where you met and the next step.
+
+00:13:56.738 --> 00:14:01.600
+Then research directories against a clear target, recording the source and date.
+
+00:14:03.525 --> 00:14:08.400
+After that, follow up on real signals, like webinar attendees and people who asked
+
+00:14:08.400 --> 00:14:09.600
+questions.
+
+00:14:09.600 --> 00:14:14.750
+Finally, every quarter, review dormant contacts in the CRM for a check-in.
+
+00:14:15.525 --> 00:14:17.825
+Here's a situation to work through.
+
+00:14:17.825 --> 00:14:22.013
+Elias asks you to find 20 companies for the firm's new Data Privacy and
+
+00:14:22.013 --> 00:14:26.463
+Cybersecurity practice by Friday, using only manual methods.
+
+00:14:26.463 --> 00:14:30.650
+Where do you start, what do you record, and what needs his approval first?
+
+00:14:32.575 --> 00:14:36.975
+Tools can catch leads around the clock, but only if someone designs where those
+
+00:14:36.975 --> 00:14:38.175
+leads go.
+
+00:14:38.175 --> 00:14:42.150
+A website or webinar form creates a record in the CRM.
+
+00:14:42.150 --> 00:14:46.725
+Tools like Zapier or Make pass the lead from one system to the next.
+
+00:14:47.475 --> 00:14:52.100
+What automation doesn't do is decide: every lead still gets verified,
+
+00:14:52.100 --> 00:14:55.550
+and nothing goes to a prospect until a person approves it.
+
+00:14:57.500 --> 00:15:00.825
+First, map the flow on paper: where the lead comes from,
+
+00:15:00.825 --> 00:15:04.425
+what's recorded, who's told, and what happens next.
+
+00:15:04.425 --> 00:15:08.950
+Next, send every form and alert into the CRM, with the source filled in
+
+00:15:08.950 --> 00:15:13.350
+automatically, and set duplicate checks on email and company name.
+
+00:15:15.275 --> 00:15:19.675
+After that, make each new lead create a task for a person to verify it.
+
+00:15:19.675 --> 00:15:24.175
+Finally, review what the automation caught every week for the first month.
+
+00:15:24.925 --> 00:15:26.188
+Picture this.
+
+00:15:26.188 --> 00:15:30.250
+The webinar form now creates 40 new CRM records a week,
+
+00:15:30.250 --> 00:15:33.912
+and the partners complain that most are students and vendors.
+
+00:15:33.912 --> 00:15:38.425
+Without turning the form off, how would you change the workflow so only real leads
+
+00:15:38.425 --> 00:15:39.525
+reach them?
+
+00:15:41.475 --> 00:15:46.238
+A name on a list isn't a lead until you know it's real, reachable and allowed.
+
+00:15:46.238 --> 00:15:49.550
+A working lead is a real person, in the role we think,
+
+00:15:49.550 --> 00:15:52.425
+at an active business that fits what the firm does,
+
+00:15:52.425 --> 00:15:54.950
+and the firm is allowed to contact them.
+
+00:15:54.950 --> 00:15:58.925
+We check before any outreach and before we count the lead in a report.
+
+00:15:58.925 --> 00:16:02.650
+It takes a few minutes, and it protects the firm's credibility.
+
+00:16:04.575 --> 00:16:07.863
+First, the person: are they real and still in that role?
+
+00:16:07.863 --> 00:16:11.275
+Check the company's site or a recent LinkedIn profile.
+
+00:16:11.275 --> 00:16:14.625
+Next, the company: is it active in the state registry,
+
+00:16:14.625 --> 00:16:16.988
+with a live website, and does it fit?
+
+00:16:16.988 --> 00:16:20.912
+Then the contact details: the company's own email domain,
+
+00:16:20.912 --> 00:16:23.600
+spelled right, and a working phone number.
+
+00:16:25.525 --> 00:16:28.875
+After that, clearance: no duplicate in the CRM,
+
+00:16:28.875 --> 00:16:32.775
+not on a do-not-contact list, and a conflict check requested.
+
+00:16:32.775 --> 00:16:37.200
+Finally, record the result: Verified, Needs check or Not workable,
+
+00:16:37.200 --> 00:16:39.100
+with the reason and the date.
+
+00:16:39.875 --> 00:16:41.188
+Think this one through.
+
+00:16:41.188 --> 00:16:46.150
+Your list has Dana Reyes, Chief Privacy Officer at Brightline Logistics.
+
+00:16:46.150 --> 00:16:50.863
+LinkedIn shows Dana left in March, and the state registry shows Brightline merged
+
+00:16:50.863 --> 00:16:52.400
+into another company.
+
+00:16:52.400 --> 00:16:55.300
+What do you record, and is there still a lead here?
+
+00:16:57.200 --> 00:16:57.950
+Quick check.
+
+00:16:57.950 --> 00:17:01.850
+A new lead's email address is at acme corp, spelled with a zero instead of the
+
+00:17:01.850 --> 00:17:05.375
+letter O, but the company's website is acme corp dot com,
+
+00:17:05.375 --> 00:17:06.950
+spelled the normal way.
+
+00:17:06.950 --> 00:17:08.150
+What's the right move?
+
+00:17:08.150 --> 00:17:11.238
+Is it A, send the email anyway, it will probably arrive?
+
+00:17:11.238 --> 00:17:13.525
+B, check the address on the company's own site,
+
+00:17:13.525 --> 00:17:15.875
+then correct it or mark the lead Needs check?
+
+00:17:15.875 --> 00:17:18.050
+C, delete the lead from the CRM?
+
+00:17:18.050 --> 00:17:21.613
+Or D, have Elias call the company's main number instead?
+
+00:17:21.613 --> 00:17:22.900
+Take a second.
+
+00:17:23.650 --> 00:17:24.150
+It's B.
+
+00:17:24.025 --> 00:17:29.262
+A misspelled domain, a zero for an o, is a classic verification failure.
+
+00:17:29.262 --> 00:17:32.650
+Confirm the address on the company's own site and correct it,
+
+00:17:32.650 --> 00:17:34.725
+or mark the lead Needs check.
+
+00:17:34.725 --> 00:17:36.875
+Never send to a guessed address.
+
+00:17:38.800 --> 00:17:43.538
+Referrals are the best leads you'll get, so ask for them instead of waiting.
+
+00:17:43.538 --> 00:17:46.450
+A referral arrives with trust already built in,
+
+00:17:46.450 --> 00:17:49.775
+because someone the prospect respects vouched for the firm.
+
+00:17:50.575 --> 00:17:55.450
+First, qualify every lead early: fit, need, authority and timeline.
+
+00:17:55.450 --> 00:17:58.450
+Next, log every lead the moment it appears.
+
+00:18:00.400 --> 00:18:02.113
+Then, follow through.
+
+00:18:02.113 --> 00:18:06.950
+The difference between good and bad lead generation is almost always the follow-up,
+
+00:18:06.950 --> 00:18:08.700
+not the first contact.
+
+00:18:08.700 --> 00:18:13.925
+Finally, feed every qualified lead into the contact list, so it doesn't disappear.
+
+00:18:14.675 --> 00:18:16.275
+Here's a situation.
+
+00:18:16.275 --> 00:18:19.600
+You spent two hours preparing a proposal for a prospect,
+
+00:18:19.600 --> 00:18:23.812
+then learned they have no budget until next year and aren't the decision-maker.
+
+00:18:23.812 --> 00:18:25.625
+What should you have checked first?
+
+00:18:27.575 --> 00:18:31.712
+Check that a meeting is worth having before you put it on the executive's calendar.
+
+00:18:31.712 --> 00:18:36.625
+Appointment setting isn't about filling slots; it's about productive conversations.
+
+00:18:36.625 --> 00:18:41.200
+BANT is the quick check: budget, authority, need and timeline.
+
+00:18:41.200 --> 00:18:45.025
+MEDDPICC is the thorough version for bigger, more complex deals,
+
+00:18:45.025 --> 00:18:50.000
+covering things like who really pays, how they decide and who the competition is.
+
+00:18:51.925 --> 00:18:53.275
+Use BANT first.
+
+00:18:53.275 --> 00:18:58.100
+If two or more of the four are clearly missing, the meeting probably isn't ready.
+
+00:18:58.100 --> 00:19:01.500
+Let genuinely interested people pick a time with a booking tool,
+
+00:19:01.500 --> 00:19:06.325
+then confirm the agenda, length and attendees, and send a reminder a day or two
+
+00:19:06.325 --> 00:19:07.425
+before.
+
+00:19:08.175 --> 00:19:09.812
+Take a second with this one.
+
+00:19:09.812 --> 00:19:13.225
+A prospect replies eagerly and wants a call right away,
+
+00:19:13.225 --> 00:19:16.088
+but you don't know if they have the budget or authority.
+
+00:19:16.088 --> 00:19:19.300
+Do you book it, check first or something in between?
+
+00:19:21.200 --> 00:19:26.888
+A specific opening, a small ask and a logged result: that's cold outreach done well.
+
+00:19:26.888 --> 00:19:29.950
+Quality matters more than quantity: one strong,
+
+00:19:29.950 --> 00:19:32.875
+relevant message beats ten generic ones.
+
+00:19:33.675 --> 00:19:38.025
+First, open with something real about the person, so it doesn't feel mass-produced.
+
+00:19:38.025 --> 00:19:40.962
+Next, keep the ask small and concrete.
+
+00:19:40.962 --> 00:19:46.000
+Fifteen minutes next Tuesday gets more yeses than 'let's connect sometime.' Then,
+
+00:19:46.000 --> 00:19:49.450
+prepare for the conversation, not just the first line.
+
+00:19:50.225 --> 00:19:52.425
+Here's a situation to work through.
+
+00:19:52.425 --> 00:19:56.825
+On a call, a prospect interrupts your script to ask about a specific problem with a
+
+00:19:56.825 --> 00:19:58.038
+contractor.
+
+00:19:58.038 --> 00:20:01.125
+Do you go back to the script or follow the conversation?
+
+00:20:01.125 --> 00:20:02.975
+What do you log afterwards?
+
+00:20:04.900 --> 00:20:08.775
+Understand what an objection really means before you answer it.
+
+00:20:08.775 --> 00:20:11.875
+Most objections are one of three things in disguise:
+
+00:20:11.875 --> 00:20:14.350
+they don't know enough, they don't trust us yet,
+
+00:20:14.350 --> 00:20:16.200
+or the timing is wrong.
+
+00:20:16.200 --> 00:20:20.675
+And pushing past a genuine no ruins the chance of a future yes.
+
+00:20:21.475 --> 00:20:25.175
+First, ask one clarifying question before you respond.
+
+00:20:25.175 --> 00:20:29.575
+Next, acknowledge the concern specifically, so they know you listened.
+
+00:20:29.575 --> 00:20:34.400
+Finally, if the issue is timing, agree a specific date to follow up.
+
+00:20:35.150 --> 00:20:36.612
+Take a second with this one.
+
+00:20:36.612 --> 00:20:41.562
+A prospect says, 'We already have a vendor for this.' That could mean they're happy,
+
+00:20:41.562 --> 00:20:44.888
+locked into a contract or just ending the call politely.
+
+00:20:44.888 --> 00:20:46.500
+What's your next question?
+
+00:20:48.425 --> 00:20:52.450
+A forecast is only as honest as the deal stages behind it.
+
+00:20:52.450 --> 00:20:54.950
+Forecasting isn't guessing the future.
+
+00:20:54.950 --> 00:20:58.725
+It's putting an honest probability on what's in the pipeline today.
+
+00:20:58.725 --> 00:21:02.375
+If deals sit in the wrong stages, the forecast will be wrong,
+
+00:21:02.375 --> 00:21:04.550
+and usually too optimistic.
+
+00:21:05.350 --> 00:21:08.525
+First, give each stage a realistic chance of closing,
+
+00:21:08.525 --> 00:21:11.125
+based on what has actually happened before.
+
+00:21:11.125 --> 00:21:15.000
+Next, report 'committed' and 'best case' separately.
+
+00:21:15.000 --> 00:21:19.725
+Finally, flag any deal that has sat in one stage far longer than normal.
+
+00:21:20.475 --> 00:21:21.663
+Picture this.
+
+00:21:21.663 --> 00:21:26.725
+One $250,000 deal makes up most of the quarter's forecast,
+
+00:21:26.725 --> 00:21:29.562
+and the client hasn't replied in three weeks.
+
+00:21:29.562 --> 00:21:32.350
+How do you show that risk in your weekly report?
+
+00:21:34.275 --> 00:21:38.150
+Section 5 of 5: Email Outreach and Marketing.
+
+00:21:38.150 --> 00:21:41.788
+We'll cover the difference between email marketing and cold outreach,
+
+00:21:41.788 --> 00:21:45.725
+writing emails that get replies, and law firm newsletters.
+
+00:21:47.625 --> 00:21:49.325
+Did they ask to hear from us?
+
+00:21:49.325 --> 00:21:53.038
+That one question tells you whether it's marketing or outreach.
+
+00:21:53.038 --> 00:21:57.400
+Email marketing is one message to many people who already know the firm.
+
+00:21:57.400 --> 00:22:01.488
+Cold outreach is one-to-one, to people who don't know the firm yet.
+
+00:22:01.488 --> 00:22:05.725
+They follow different rules, and mixing them up is the most common mistake.
+
+00:22:07.675 --> 00:22:10.562
+So, ask that question before any send.
+
+00:22:10.562 --> 00:22:13.425
+Then send marketing through the email platform,
+
+00:22:13.425 --> 00:22:17.250
+and outreach from the attorney's own mailbox in small batches.
+
+00:22:19.150 --> 00:22:23.100
+Keep the two lists separate, and note how each person joined.
+
+00:22:23.100 --> 00:22:26.350
+And get the attorney to approve every template and script,
+
+00:22:26.350 --> 00:22:29.925
+because law firm emails can count as advertising.
+
+00:22:30.675 --> 00:22:32.062
+Think this one through.
+
+00:22:32.062 --> 00:22:36.962
+A partner sends the firm's newsletter to 900 contacts from his own Outlook.
+
+00:22:36.962 --> 00:22:40.688
+The next day, his normal client emails start bouncing.
+
+00:22:40.688 --> 00:22:43.850
+What went wrong, and how do you fix it going forward?
+
+00:22:45.800 --> 00:22:49.688
+Outreach is regulated, so check the rules before the campaign,
+
+00:22:49.688 --> 00:22:51.337
+not after a complaint.
+
+00:22:51.337 --> 00:22:55.200
+Email, phone and text outreach each have their own laws.
+
+00:22:55.200 --> 00:22:59.700
+And this is one area where you confirm with the firm's policy rather than going from
+
+00:22:59.700 --> 00:23:00.750
+memory.
+
+00:23:01.550 --> 00:23:05.475
+First, include a working opt-out, and honor it immediately.
+
+00:23:05.475 --> 00:23:09.850
+Next, keep a record of why each person on the list can be contacted.
+
+00:23:10.625 --> 00:23:12.112
+Here's a situation.
+
+00:23:12.112 --> 00:23:15.888
+A prospect replied 'stop' to one email campaign.
+
+00:23:15.888 --> 00:23:19.375
+Two weeks later, they get a different campaign from the same firm.
+
+00:23:19.375 --> 00:23:22.525
+What went wrong, and what does a proper opt-out look like?
+
+00:23:24.475 --> 00:23:28.700
+A small list of people who want to hear from the firm beats a big list of people who
+
+00:23:28.700 --> 00:23:29.575
+don't.
+
+00:23:29.575 --> 00:23:32.575
+And different groups rarely want the same message.
+
+00:23:33.375 --> 00:23:36.600
+First, collect contacts only in legitimate ways:
+
+00:23:36.600 --> 00:23:40.475
+sign-up forms, events, client intake and people who ask.
+
+00:23:40.475 --> 00:23:46.050
+Next, tag each contact when they join: source, date, interest and relationship.
+
+00:23:48.000 --> 00:23:52.800
+Then, start with three groups: clients, referral partners and prospects.
+
+00:23:52.800 --> 00:23:56.462
+Finally, clean the list every quarter: remove bounces,
+
+00:23:56.462 --> 00:24:01.125
+merge duplicates and suppress anyone who unsubscribed or never opens.
+
+00:24:01.900 --> 00:24:04.138
+Here's a situation to work through.
+
+00:24:04.138 --> 00:24:07.688
+A partner wants the next newsletter sent 'to everyone':
+
+00:24:07.688 --> 00:24:13.862
+1,800 contacts, including corporate clients and opposing counsel from past cases.
+
+00:24:13.862 --> 00:24:16.750
+How do you split it up, and who shouldn't get it at all?
+
+00:24:18.725 --> 00:24:24.163
+Short, specific and one clear ask: that's an outreach email that gets answered.
+
+00:24:24.163 --> 00:24:28.100
+The subject line's only job is to get it opened honestly.
+
+00:24:28.100 --> 00:24:31.675
+And personalizing means showing why you're writing to this person,
+
+00:24:31.675 --> 00:24:35.675
+like an article they wrote, not just inserting their first name.
+
+00:24:36.475 --> 00:24:39.950
+First, open with why you're writing to them in particular.
+
+00:24:39.950 --> 00:24:44.700
+Next, explain the value in a sentence or two, in terms of their problem.
+
+00:24:46.650 --> 00:24:50.750
+Then, make one easy ask, like a 15-minute call next week.
+
+00:24:50.750 --> 00:24:54.775
+Finally, sign off with the attorney's details and an easy opt-out,
+
+00:24:54.775 --> 00:24:56.800
+and proofread names and links.
+
+00:24:57.600 --> 00:25:02.238
+Now pause the video and rewrite this opener, for a founder whose startup just raised
+
+00:25:02.238 --> 00:25:08.363
+a funding round: 'Dear Sir or Madam, Thorne & Partners is a leading full-service law
+
+00:25:08.363 --> 00:25:12.425
+firm founded in 1998 with over 40 attorneys...'
+
+00:25:14.375 --> 00:25:17.425
+Every follow-up needs a new reason to reply.
+
+00:25:17.425 --> 00:25:21.025
+Most replies come from follow-ups, not the first email,
+
+00:25:21.025 --> 00:25:24.375
+but 'just following up' gives nobody a reason to answer.
+
+00:25:25.175 --> 00:25:29.000
+First, space follow-ups a few working days apart, not daily.
+
+00:25:29.000 --> 00:25:32.400
+Next, change the angle each time: first the offer,
+
+00:25:32.400 --> 00:25:36.475
+then a relevant example, then a genuine, low-pressure question.
+
+00:25:36.475 --> 00:25:41.225
+Finally, end with a clear closing message, like 'I'll leave this here unless I hear
+
+00:25:41.225 --> 00:25:42.150
+from you.'
+
+00:25:42.925 --> 00:25:44.088
+Picture this.
+
+00:25:44.088 --> 00:25:48.212
+A colleague's sequence sends the same email four times, two days apart.
+
+00:25:48.212 --> 00:25:50.325
+One prospect replied angrily.
+
+00:25:50.325 --> 00:25:51.800
+What would you change?
+
+00:25:53.600 --> 00:25:58.938
+If the firm's email reputation gets damaged, even ordinary client emails can land in
+
+00:25:58.938 --> 00:26:00.025
+spam.
+
+00:26:00.025 --> 00:26:05.238
+Three technical records, called SPF, DKIM and DMARC,
+
+00:26:05.238 --> 00:26:09.150
+prove to inbox providers that emails really come from the firm.
+
+00:26:09.950 --> 00:26:15.075
+First, ask IT to confirm those three records are set up before the first campaign.
+
+00:26:15.075 --> 00:26:19.300
+Next, include a one-click unsubscribe in every marketing email,
+
+00:26:19.300 --> 00:26:21.050
+and honor it promptly.
+
+00:26:22.975 --> 00:26:27.950
+Then, check the report after each send: keep bounces low and spam complaints very
+
+00:26:27.950 --> 00:26:28.875
+low.
+
+00:26:28.875 --> 00:26:33.625
+Finally, when a new domain starts sending, build up volume gradually.
+
+00:26:34.375 --> 00:26:35.862
+Think this one through.
+
+00:26:35.862 --> 00:26:40.750
+After last month's newsletter, the bounce rate was 18 percent and several clients
+
+00:26:40.750 --> 00:26:43.238
+found firm emails in spam.
+
+00:26:43.238 --> 00:26:46.375
+What caused it, and what do you do before the next send?
+
+00:26:48.300 --> 00:26:52.913
+Decide what success looks like before you send, not after you see the numbers.
+
+00:26:52.913 --> 00:26:55.512
+Not all email numbers are trustworthy.
+
+00:26:55.512 --> 00:26:59.663
+Opens are inflated these days by privacy features on phones.
+
+00:26:59.663 --> 00:27:03.450
+Clicks, replies and booked consultations tell you much more.
+
+00:27:03.450 --> 00:27:06.950
+And when you test two versions, change only one thing.
+
+00:27:08.900 --> 00:27:12.700
+First, pick the goal, like replies or consultations.
+
+00:27:12.700 --> 00:27:16.700
+Next, to test, send each version to a small random group,
+
+00:27:16.700 --> 00:27:19.000
+then send the winner to everyone else.
+
+00:27:20.950 --> 00:27:24.625
+Then, keep a simple log of every campaign's results.
+
+00:27:24.625 --> 00:27:27.838
+Finally, review the trends monthly with the attorney,
+
+00:27:27.838 --> 00:27:30.025
+against the firm's own history.
+
+00:27:30.800 --> 00:27:32.400
+Here's a situation.
+
+00:27:32.400 --> 00:27:36.663
+Version A got 45 percent opens and no consultations.
+
+00:27:36.663 --> 00:27:41.038
+Version B got 28 percent opens and three consultation requests.
+
+00:27:41.038 --> 00:27:42.525
+A colleague says A won.
+
+00:27:42.525 --> 00:27:43.725
+What do you say?
+
+00:27:45.700 --> 00:27:49.450
+A newsletter keeps the firm in people's minds between cases,
+
+00:27:49.450 --> 00:27:53.300
+and most small firms win work from people who already know them.
+
+00:27:53.300 --> 00:27:57.325
+And because it comes from attorneys, it may need an advertising label,
+
+00:27:57.325 --> 00:28:02.000
+and it must never read as legal advice for someone's specific situation.
+
+00:28:03.950 --> 00:28:08.200
+First, agree the schedule and two or three regular sections with the attorney,
+
+00:28:08.200 --> 00:28:12.025
+like a legal update, a practical tip and firm news.
+
+00:28:12.025 --> 00:28:16.038
+Next, build it in the email platform using an approved template,
+
+00:28:16.038 --> 00:28:18.950
+mobile-friendly and with image descriptions.
+
+00:28:20.900 --> 00:28:25.525
+Then, get the attorney to sign off every issue, including any disclaimer.
+
+00:28:25.525 --> 00:28:29.550
+Finally, send a test, check the links on phone and computer,
+
+00:28:29.550 --> 00:28:32.625
+then schedule it for a consistent day and time.
+
+00:28:33.400 --> 00:28:35.712
+Here's a situation to work through.
+
+00:28:35.712 --> 00:28:39.712
+Elias wants this month's newsletter to celebrate a big settlement,
+
+00:28:39.712 --> 00:28:42.200
+naming the client's company in the headline.
+
+00:28:42.200 --> 00:28:44.375
+What do you need before it can go out?
+
+00:28:46.300 --> 00:28:50.625
+A written approval process is what stops one quick send from reaching thousands of
+
+00:28:50.625 --> 00:28:52.238
+people with a mistake.
+
+00:28:52.238 --> 00:28:56.988
+There are plenty of tools, from Mailchimp or Constant Contact for newsletters to
+
+00:28:56.988 --> 00:29:00.675
+Outlook or Gmail templates for one-to-one emails.
+
+00:29:00.675 --> 00:29:04.000
+But the tool matters much less than the process around it.
+
+00:29:04.800 --> 00:29:07.950
+First, set up an approved template with the firm's branding,
+
+00:29:07.950 --> 00:29:11.250
+address, unsubscribe link and any disclaimer.
+
+00:29:11.250 --> 00:29:14.638
+Next, follow the same flow every time: you draft,
+
+00:29:14.638 --> 00:29:19.075
+the attorney reviews, you check compliance, then schedule and report.
+
+00:29:21.025 --> 00:29:25.150
+Then, schedule sends for business hours in the recipient's time zone.
+
+00:29:25.150 --> 00:29:30.175
+Finally, save every version and approval, so any send can be checked later.
+
+00:29:30.925 --> 00:29:32.163
+Picture this.
+
+00:29:32.163 --> 00:29:35.350
+A staff member accidentally sent a draft newsletter,
+
+00:29:35.350 --> 00:29:41.750
+with typos and a placeholder saying 'INSERT CLIENT NAME,' to 1,500 contacts.
+
+00:29:41.750 --> 00:29:45.575
+What do you do in the first hour, and what control would have prevented it?
+
+00:29:47.500 --> 00:29:51.000
+An outreach email gets about three seconds on a phone screen,
+
+00:29:51.000 --> 00:29:54.650
+so the subject line and first sentence decide everything.
+
+00:29:54.650 --> 00:29:59.363
+One specific, true fact about the person does more than any clever wording.
+
+00:29:59.363 --> 00:30:03.650
+Each email has one job, usually a small, easy yes.
+
+00:30:03.650 --> 00:30:07.825
+And since most replies come from follow-ups, you plan the sequence before the first
+
+00:30:07.825 --> 00:30:09.300
+email goes out.
+
+00:30:11.250 --> 00:30:15.200
+First, research: confirm their current role, find one recent,
+
+00:30:15.200 --> 00:30:18.025
+specific trigger, like an expansion or a new hire,
+
+00:30:18.025 --> 00:30:19.700
+and log the source.
+
+00:30:19.700 --> 00:30:24.425
+Next, write a subject line of three to seven specific words, with no tricks.
+
+00:30:24.425 --> 00:30:29.138
+Then, keep the body to 50 to 125 words: their situation,
+
+00:30:29.138 --> 00:30:32.675
+one line on how Elias can help and one small ask.
+
+00:30:34.625 --> 00:30:37.950
+After that, sign off for Elias with a simple opt-out.
+
+00:30:37.950 --> 00:30:42.400
+Then, plan the follow-ups: a new angle around day three or four,
+
+00:30:42.400 --> 00:30:45.375
+and a polite close-out around day eight to ten.
+
+00:30:45.375 --> 00:30:48.613
+Finally, stop as soon as they reply or opt out,
+
+00:30:48.613 --> 00:30:52.575
+log the outcome and pass any interest to Elias in one line.
+
+00:30:53.350 --> 00:30:54.625
+Here's one to try.
+
+00:30:54.625 --> 00:30:57.688
+You've sent two emails to a prospect with no reply.
+
+00:30:57.688 --> 00:31:01.900
+Pause the video and write the third, a short, gracious close-out.
+
+00:31:03.800 --> 00:31:04.450
+Quick check.
+
+00:31:04.450 --> 00:31:07.925
+Your first outreach email got no reply after four days.
+
+00:31:07.925 --> 00:31:09.575
+What's the strongest follow-up?
+
+00:31:09.575 --> 00:31:12.762
+Is it A, 'Just bumping this to the top of your inbox'?
+
+00:31:12.762 --> 00:31:17.175
+B, a short note with a new, relevant angle and the same small ask?
+
+00:31:17.175 --> 00:31:21.350
+C, a longer email re-explaining every service the firm offers?
+
+00:31:21.350 --> 00:31:24.762
+Or D, wait a month, then resend the original email?
+
+00:31:24.762 --> 00:31:26.050
+Take a second.
+
+00:31:26.800 --> 00:31:27.300
+It's B.
+
+00:31:27.113 --> 00:31:30.663
+A follow-up should add something new and keep the ask small.
+
+00:31:30.663 --> 00:31:34.350
+A bare bump adds nothing, a longer pitch adds friction,
+
+00:31:34.350 --> 00:31:38.125
+and waiting a month loses the trigger that made the timing relevant.
+
+00:31:40.075 --> 00:31:41.413
+Now it's your turn.
+
+00:31:41.413 --> 00:31:45.675
+In today's Practice Lab, you'll sort a real Monday's tasks and push back on an
+
+00:31:45.675 --> 00:31:50.725
+impossible deadline, make five simulated calls to prospective clients and log each
+
+00:31:50.725 --> 00:31:55.663
+one, build a lead list for a new practice, handle a live intake call and run an
+
+00:31:55.663 --> 00:31:57.663
+email outreach sequence.
+
+00:31:57.663 --> 00:31:59.925
+Open the tool and give it a go.
+

@@ -748,5 +748,218 @@ window.EAPA_DAY_VIDEOS = {
     "t": 2675.5
    }
   ]
+ },
+ "4": {
+  "title": "Day 4 — Data, Research, Sales & Outreach",
+  "src": "/videos/day4-narrated.mp4?v=tp3a6s",
+  "captions": "/videos/day4-narrated.vtt?v=tp3a6s",
+  "duration": 1921,
+  "chapters": [
+   {
+    "slide": 1,
+    "title": "Day 4 Agenda",
+    "t": 0
+   },
+   {
+    "slide": 2,
+    "title": "Data Entry & Spreadsheets",
+    "t": 32.5
+   },
+   {
+    "slide": 3,
+    "title": "Data Entry That Holds Up",
+    "t": 44.8
+   },
+   {
+    "slide": 4,
+    "title": "Spreadsheet Essentials: Sort, Filter, Lookups & Pivot Tables",
+    "t": 100.2
+   },
+   {
+    "slide": 5,
+    "title": "Research",
+    "t": 169.4
+   },
+   {
+    "slide": 6,
+    "title": "Research as a Core EA Skill",
+    "t": 179.7
+   },
+   {
+    "slide": 7,
+    "title": "Research Method & the Real Failure Mode",
+    "t": 244.6
+   },
+   {
+    "slide": 8,
+    "title": "Contact Lists, CRM & Data Hygiene",
+    "t": 293.6
+   },
+   {
+    "slide": 9,
+    "title": "Creating and Maintaining a Comprehensive Contact List",
+    "t": 309.6
+   },
+   {
+    "slide": 10,
+    "title": "Contact List Failure Modes & Upkeep",
+    "t": 359.5
+   },
+   {
+    "slide": 11,
+    "title": "Master Contact List Discipline",
+    "t": 408.4
+   },
+   {
+    "slide": 12,
+    "title": "Client Relationship Management",
+    "t": 463
+   },
+   {
+    "slide": 13,
+    "title": "CRM Software Fundamentals",
+    "t": 519.2
+   },
+   {
+    "slide": 14,
+    "title": "Data Hygiene & Deduplication",
+    "t": 564
+   },
+   {
+    "slide": 15,
+    "title": "Sales & Lead Generation",
+    "t": 601.8
+   },
+   {
+    "slide": 16,
+    "title": "Sales Mindset",
+    "t": 612.6
+   },
+   {
+    "slide": 17,
+    "title": "Cold Calling, Appointment Setting & Lead Generation",
+    "t": 663.4
+   },
+   {
+    "slide": 18,
+    "title": "How to Generate Leads for Business",
+    "t": 711.9
+   },
+   {
+    "slide": 19,
+    "title": "Lead Generation & Data Sourcing",
+    "t": 751.4
+   },
+   {
+    "slide": 20,
+    "title": "Manual Lead Generation Methods",
+    "t": 793.9
+   },
+   {
+    "slide": 21,
+    "title": "Automated Lead Generation Tools & Workflows",
+    "t": 871.6
+   },
+   {
+    "slide": 22,
+    "title": "Verifying a Working Lead",
+    "t": 940.5
+   },
+   {
+    "slide": 23,
+    "title": "Quick Check",
+    "t": 1016.3
+   },
+   {
+    "slide": 24,
+    "title": "Lead Quality, Qualifying & Tracking",
+    "t": 1057.8
+   },
+   {
+    "slide": 25,
+    "title": "Appointment Setting (BANT/MEDDPICC)",
+    "t": 1106.6
+   },
+   {
+    "slide": 26,
+    "title": "Cold Outbound Execution",
+    "t": 1160.2
+   },
+   {
+    "slide": 27,
+    "title": "Handling Sales Objections Beyond the Script",
+    "t": 1203.9
+   },
+   {
+    "slide": 28,
+    "title": "Pipeline Reporting & Forecasting Basics",
+    "t": 1247.5
+   },
+   {
+    "slide": 29,
+    "title": "Email Outreach & Marketing",
+    "t": 1293.3
+   },
+   {
+    "slide": 30,
+    "title": "Email Marketing vs. Cold Outreach",
+    "t": 1306.7
+   },
+   {
+    "slide": 31,
+    "title": "Outreach Compliance Basics",
+    "t": 1364.8
+   },
+   {
+    "slide": 32,
+    "title": "Building & Segmenting an Email List",
+    "t": 1403.5
+   },
+   {
+    "slide": 33,
+    "title": "Writing Outreach Emails That Get Replies",
+    "t": 1457.7
+   },
+   {
+    "slide": 34,
+    "title": "Email Outreach Sequencing & Follow-Up Cadence",
+    "t": 1513.4
+   },
+   {
+    "slide": 35,
+    "title": "Email Deliverability Basics",
+    "t": 1552.7
+   },
+   {
+    "slide": 36,
+    "title": "Email Metrics & A/B Testing",
+    "t": 1607.3
+   },
+   {
+    "slide": 37,
+    "title": "Law Firm Email Newsletters",
+    "t": 1664.7
+   },
+   {
+    "slide": 38,
+    "title": "Email Marketing Tools & Approval Workflow",
+    "t": 1725.3
+   },
+   {
+    "slide": 39,
+    "title": "Email Outreach End-to-End: Research, Write, Follow Up",
+    "t": 1786.5
+   },
+   {
+    "slide": 40,
+    "title": "Quick Check",
+    "t": 1862.9
+   },
+   {
+    "slide": 41,
+    "title": "Practice Lab",
+    "t": 1899.1
+   }
+  ]
  }
 };
