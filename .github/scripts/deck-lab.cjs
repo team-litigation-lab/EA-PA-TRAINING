@@ -1,6 +1,7 @@
 // 🛠 The day's Practice Lab inside its deck, and a day that completes itself (js/eapa-deck-lab.js):
 // 1. eapaDeckLab.ACTIVITIES names every lab's activities as the lab itself does (toolState.wizardLabels once it is open).
-// 2. A day's deck ends with one slide per activity of its Practice Lab; ▶ Start opens the lab on that activity, and the
+// 2. A day's deck has one slide per activity of its Practice Lab, each right after the topic it practises (the rest at
+//    the end), and a saved place moves with its slide; ▶ Start opens the lab on that activity, and the
 //    lab's "← Back to Day N" comes back to the same slide, which then shows the activity's grade.
 // 3. The day card has no ✓ Finish Training (☰ Topics and ▶ Video share the row); a day whose Knowledge Check is passed but
 //    whose Practice Lab is not done says so and is not Completed; with both done it is Completed.
@@ -29,8 +30,39 @@ const failures = []; const fail = (m) => failures.push(m);
     // 2. the deck: a slide per activity, ▶ Start, back to the same slide
     await page.evaluate(() => goto('day', 1)); await page.waitForTimeout(500);
     const labs = await page.evaluate(() => buildDaySlides(DAYS[0]).map((s, i) => [i, s.type, s.label]).filter(x => x[1] === 'practiceLab'));
-    if (JSON.stringify(labs.map(x => x[2])) !== JSON.stringify(await page.evaluate(() => eapaDeckLab.ACTIVITIES.dossier1))) fail(`Day 1's deck should end with a slide per Practice Lab activity: ${JSON.stringify(labs)}`);
-    const at = (labs[2] || [])[0];
+    if (JSON.stringify(labs.map(x => x[2]).sort()) !== JSON.stringify((await page.evaluate(() => eapaDeckLab.ACTIVITIES.dossier1)).slice().sort())) fail(`Day 1's deck should have a slide per Practice Lab activity: ${JSON.stringify(labs)}`);
+    const at = (labs.find(x => x[2] === 'ACT Email') || [])[0];
+
+    // 2b. in the session: every activity of AFTER_TOPIC names a topic of its day, and its slide follows that topic's last
+    //     slide (or another activity of the same topic); the rest (Crisis Roleplay, a capstone) close the day
+    const inline = await page.evaluate(() => DAYS.map(d => {
+      const slides = buildDaySlides(d), out = [];
+      relatedTools(d.id).forEach(t => Object.entries(eapaDeckLab.AFTER_TOPIC[t.id] || {}).forEach(([label, h]) => {
+        const li = d.lessons.findIndex(l => l.h === h), j = slides.findIndex(s => s.type === 'practiceLab' && s.toolId === t.id && s.label === label);
+        let k = j - 1; while (k >= 0 && slides[k].type === 'practiceLab' && slides[k].after === h) k--;
+        out.push({ day: d.id, label, h, li, j, prev: k >= 0 ? [slides[k].type, slides[k].lessonIndex] : null, isLab: (eapaDeckLab.ACTIVITIES[t.id] || []).includes(label) });
+      }));
+      return out;
+    }).flat());
+    for (const x of inline) {
+      if (!x.isLab) fail(`AFTER_TOPIC names "${x.label}", which isn't an activity of its lab`);
+      else if (x.li < 0) fail(`Day ${x.day}: "${x.label}" should follow the topic "${x.h}", which isn't in the day (was it renamed?)`);
+      else if (!x.prev || !['topic', 'quickCheck'].includes(x.prev[0]) || x.prev[1] !== x.li) fail(`Day ${x.day}: "${x.label}" should come right after "${x.h}": ${JSON.stringify(x)}`);
+    }
+    if (inline.length < 40) fail(`expected the labs' activities in the sessions, found ${inline.length}`);
+
+    // 2c. a saved place moves with its slide: a trainee who was on Day 1's ACT Email slide (at the end, the old layout)
+    //     is on it again in the new layout, and their furthest slide doesn't move back
+    const mig = await page.evaluate(async () => {
+      const d = DAYS[0], old = eapaDeckLab.buildDaySlidesAtEnd(d), now = buildDaySlides(d);
+      const oi = old.findIndex(s => s.type === 'practiceLab' && s.label === 'ACT Email');
+      state.lastSlide[1] = oi; state.slideProgress[1] = old.length - 1; delete state.dayOrderMigrated['deck-lab-inline:1'];
+      await eapaDeckLab.migrateLabsInline();
+      const ni = now.findIndex(s => s.type === 'practiceLab' && s.label === 'ACT Email');
+      return { oi, ni, last: state.lastSlide[1], far: state.slideProgress[1], n: now.length };
+    });
+    if (mig.last !== mig.ni || mig.oi === mig.ni) fail(`the saved place should move to the ACT Email slide's new position: ${JSON.stringify(mig)}`);
+    if (mig.far < mig.n - 2) fail(`the furthest slide reached shouldn't move back: ${JSON.stringify(mig)}`);
     await page.evaluate(i => { state.dayViewMode = 'slides'; state.maxSlideReached = 999; state.lessonSlide = i; render(); }, at); await page.waitForTimeout(600);
     if (!/ACT Email/.test(await page.locator('.edl-go').innerText().catch(() => ''))) fail('the activity slide has no ▶ Start for its activity');
     await page.click('.edl-go'); await page.waitForTimeout(1000);
