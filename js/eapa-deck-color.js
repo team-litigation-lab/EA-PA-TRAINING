@@ -217,6 +217,15 @@ body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-
 body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn):not(:disabled):hover{background:#F3F5FB !important;}
 body .dash-main .module-card.mc-clean .module-topics-btn span{color:#A34E14 !important;}
 
+/* the lines inside each day card (under the title, above Start, above Topics / Finish and between them):
+   navy-to-gold too, so the card reads as one navy-and-gold grid */
+body .dash-main .module-card.mc-clean .module-head,
+body .dash-main .module-card.mc-clean:nth-child(3n+2) .module-head,
+body .dash-main .module-card.mc-clean:nth-child(3n+3) .module-head{border-bottom:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
+body .dash-main .module-card.mc-clean .mc-grid{border-top:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
+body .dash-main .module-card.mc-clean .mc-grid > button:not(.module-start-btn){border-top:2px solid #B8892B !important;border-image:linear-gradient(90deg,#1E2340,#B8892B 55%,#E2B85A) 1 !important;}
+body .dash-main .module-card.mc-clean .mc-grid.mc-n2 > button:not(.module-start-btn):not(:last-child){border-right:2px solid #B8892B !important;}
+
 /* the dashboard uses the window's full width, and the cards' titles grow with it */
 @media (min-width:1200px){
   main.main-dash{max-width:none !important;padding-left:24px !important;padding-right:24px !important;}
