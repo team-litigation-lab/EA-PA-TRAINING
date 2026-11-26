@@ -54,7 +54,7 @@
    "image": "009.png",
    "slide": 6,
    "title": "Research as a Core EA Skill",
-   "text": "Research is the quiet habit underneath almost everything an EA does. It shows up in three everyday ways. Checking that a new vendor or contact is genuine before the executive spends time or money on them. A short note on who'll be in a meeting and what they care about. And checking a claim before we pass it on as fact, because if it's wrong, it's our credibility on the line, not the source's."
+   "text": "Research is the quiet habit underneath almost everything an EA does. It shows up in three everyday ways. Checking that a new vendor or contact is genuine before the executive spends time or money on them. A short note on who'll be in a meeting. And checking a claim before we pass it on as fact, because if it's wrong, it's our credibility on the line, not the source's."
   },
   {
    "image": "010.png",
@@ -96,7 +96,7 @@
    "image": "016.png",
    "slide": 9,
    "title": "Creating and Maintaining a Comprehensive Contact List",
-   "text": "First, record more than the basics, including any standing notes. Next, put every contact in a group on purpose: business, personal, vendor, medical or legal. Then, build it so a stand-in could use it without asking you. Finally, treat it as part of how the office runs, not your private notebook.\n\nHere's a situation to work through. The opposing party in the Meridian matter is also a board member at a charity Elias supports. How do you record this so nobody makes a mistake?"
+   "text": "First, record more than the basics, including any standing notes. Next, build it so a stand-in could use it without asking you. Finally, treat it as part of how the office runs, not your private notebook.\n\nHere's a situation to work through. The opposing party in the Meridian matter is also a board member at a charity Elias supports. How do you record this so nobody makes a mistake?"
   },
   {
    "image": "017.png",
@@ -138,7 +138,7 @@
    "image": "023.png",
    "slide": 13,
    "title": "CRM Software Fundamentals",
-   "text": "Every CRM is built on three things: people, deals and activities. The software doesn't create discipline; you do. A CRM is only as good as what gets put into it, and if the real status of a deal lives in someone's head, it's already stopped doing its job.\n\nFirst, match a new CRM's deal stages to how the firm actually wins work. Next, if the standard fields don't cover something, add a proper field instead of burying it in notes. Finally, use the CRM's own reminders instead of a separate to-do list.\n\nHere's a situation to work through. A colleague moved five deals to 'Negotiation' because the clients 'seemed interested' on calls. Elias's forecast now looks far too high. What rule would you suggest for moving a deal forward?"
+   "text": "Every CRM is built on three things: people, deals and activities. The software doesn't create discipline; you do. A CRM is only as good as what gets put into it, and if the real status of a deal lives in someone's head, it's already stopped doing its job.\n\nFirst, match a new CRM's deal stages to how the firm actually wins work. Next, use the CRM's own reminders instead of a separate to-do list.\n\nHere's a situation to work through. A colleague moved five deals to 'Negotiation' because the clients 'seemed interested' on calls. Elias's forecast now looks far too high. What rule would you suggest for moving a deal forward?"
   },
   {
    "image": "024.png",
@@ -186,7 +186,7 @@
    "image": "031.png",
    "slide": 19,
    "title": "Lead Generation & Data Sourcing",
-   "text": "A brilliant message sent to the wrong person is wasted. Data sourcing is the research behind lead generation: who the prospect really is, what they do and why they might be a fit.\n\nFirst, use LinkedIn and company websites to confirm someone's current role and what's happening at their company. Next, confirm contact details at the original source, not from a single third-party list. Then, focus on leads that actually fit, rather than collecting everyone and sorting later.\n\nHere's a situation. Your manager wants 200 leads by Friday. You can find 60 well-researched ones, or pad the list with names from an old conference list. What do you do, and how do you explain it?"
+   "text": "A brilliant message sent to the wrong person is wasted. Data sourcing is the research behind lead generation.\n\nFirst, use LinkedIn and company websites to confirm someone's current role and what's happening at their company. Next, confirm contact details at the original source, not from a single third-party list. Then, focus on leads that actually fit, rather than collecting everyone and sorting later.\n\nHere's a situation. Your manager wants 200 leads by Friday. You can find 60 well-researched ones, or pad the list with names from an old conference list. What do you do, and how do you explain it?"
   },
   {
    "image": "032.png",
@@ -210,7 +210,7 @@
    "image": "035.png",
    "slide": 21,
    "title": "Automated Lead Generation Tools & Workflows",
-   "text": "Tools can catch leads around the clock, but only if someone designs where those leads go. A website or webinar form creates a record in the CRM. A saved search in LinkedIn Sales Navigator tells us when a prospect changes jobs. Enrichment tools fill in company size and role, and tools like Zapier or Make pass the lead from one system to the next.\n\nWhat automation doesn't do is decide: every lead still gets verified, and nothing goes to a prospect until a person approves it."
+   "text": "Tools can catch leads around the clock, but only if someone designs where those leads go. A website or webinar form creates a record in the CRM. A saved search in LinkedIn Sales Navigator tells us when a prospect changes jobs. Tools like Zapier or Make pass the lead from one system to the next.\n\nWhat automation doesn't do is decide: every lead still gets verified, and nothing goes to a prospect until a person approves it."
   },
   {
    "image": "036.png",
@@ -234,7 +234,7 @@
    "image": "039.png",
    "slide": 22,
    "title": "Verifying a Working Lead",
-   "text": "First, the person: are they real and still in that role? Check the company's site or a recent LinkedIn profile. Next, the company: is it active in the state registry, with a live website, and does it fit? Then the contact details: the company's own email domain, spelled right, and a phone number that reaches them."
+   "text": "First, the person: are they real and still in that role? Check the company's site or a recent LinkedIn profile. Next, the company: is it active in the state registry, with a live website, and does it fit? Then the contact details: the company's own email domain, spelled right, and a working phone number."
   },
   {
    "image": "040.png",
@@ -318,13 +318,13 @@
    "image": "053.png",
    "slide": 31,
    "title": "Outreach Compliance Basics",
-   "text": "Outreach is regulated, so check the rules before the campaign, not after a complaint. Email, phone and text outreach each have their own laws. Because the details change and vary by place, you confirm with the firm's policy rather than going from memory.\n\nFirst, include a working opt-out, and honor it immediately. Next, keep a record of why each person on the list can be contacted.\n\nHere's a situation. A prospect replied 'stop' to one email campaign. Two weeks later, they get a different campaign from the same firm. What went wrong, and what does a proper opt-out look like?"
+   "text": "Outreach is regulated, so check the rules before the campaign, not after a complaint. Email, phone and text outreach each have their own laws. And this is one area where you confirm with the firm's policy rather than going from memory.\n\nFirst, include a working opt-out, and honor it immediately. Next, keep a record of why each person on the list can be contacted.\n\nHere's a situation. A prospect replied 'stop' to one email campaign. Two weeks later, they get a different campaign from the same firm. What went wrong, and what does a proper opt-out look like?"
   },
   {
    "image": "054.png",
    "slide": 32,
    "title": "Building & Segmenting an Email List",
-   "text": "A small list of people who want to hear from the firm beats a big list of people who don't. List quality decides who opens, who replies and whether emails reach inboxes at all. And different groups rarely want the same message.\n\nFirst, collect contacts only in legitimate ways: sign-up forms, events, client intake and people who ask. Next, tag each contact when they join: source, date, interest and relationship."
+   "text": "A small list of people who want to hear from the firm beats a big list of people who don't. And different groups rarely want the same message.\n\nFirst, collect contacts only in legitimate ways: sign-up forms, events, client intake and people who ask. Next, tag each contact when they join: source, date, interest and relationship."
   },
   {
    "image": "055.png",
@@ -348,13 +348,13 @@
    "image": "058.png",
    "slide": 34,
    "title": "Email Outreach Sequencing & Follow-Up Cadence",
-   "text": "Every follow-up needs a new reason to reply. Most replies come from follow-ups, not the first email, but 'just following up' gives nobody a reason to answer. And too many, too often, damages the relationship you're trying to build.\n\nFirst, space follow-ups a few working days apart, not daily. Next, change the angle each time: first the offer, then a relevant example, then a genuine, low-pressure question. Finally, end with a clear closing message, like 'I'll leave this here unless I hear from you.'\n\nPicture this. A colleague's sequence sends the same email four times, two days apart. One prospect replied angrily. What would you change?"
+   "text": "Every follow-up needs a new reason to reply. Most replies come from follow-ups, not the first email, but 'just following up' gives nobody a reason to answer.\n\nFirst, space follow-ups a few working days apart, not daily. Next, change the angle each time: first the offer, then a relevant example, then a genuine, low-pressure question. Finally, end with a clear closing message, like 'I'll leave this here unless I hear from you.'\n\nPicture this. A colleague's sequence sends the same email four times, two days apart. One prospect replied angrily. What would you change?"
   },
   {
    "image": "059.png",
    "slide": 35,
    "title": "Email Deliverability Basics",
-   "text": "If the firm's email reputation gets damaged, even ordinary client emails can land in spam. Deliverability is simply whether an email reaches the inbox. Three technical records, called SPF, DKIM and DMARC, prove to inbox providers that emails really come from the firm.\n\nFirst, ask IT to confirm those three records are set up before the first campaign. Next, include a one-click unsubscribe in every marketing email, and honor it promptly."
+   "text": "If the firm's email reputation gets damaged, even ordinary client emails can land in spam. Three technical records, called SPF, DKIM and DMARC, prove to inbox providers that emails really come from the firm.\n\nFirst, ask IT to confirm those three records are set up before the first campaign. Next, include a one-click unsubscribe in every marketing email, and honor it promptly."
   },
   {
    "image": "060.png",
@@ -402,7 +402,7 @@
    "image": "067.png",
    "slide": 38,
    "title": "Email Marketing Tools & Approval Workflow",
-   "text": "A written approval process is what stops one quick send from reaching thousands of people with a mistake. There are plenty of tools: Mailchimp or Constant Contact for newsletters, HubSpot or a CRM when we want everything tracked together, and Outlook or Gmail templates for one-to-one emails. But the tool matters much less than the process: who writes it, who reviews it, who checks it's compliant and who presses send.\n\nFirst, set up an approved template with the firm's branding, address, unsubscribe link and any disclaimer. Next, follow the same flow every time: you draft, the attorney reviews, you check compliance, then schedule and report."
+   "text": "A written approval process is what stops one quick send from reaching thousands of people with a mistake. There are plenty of tools, from Mailchimp or Constant Contact for newsletters to Outlook or Gmail templates for one-to-one emails. But the tool matters much less than the process: who writes it, who reviews it, who checks it's compliant and who presses send.\n\nFirst, set up an approved template with the firm's branding, address, unsubscribe link and any disclaimer. Next, follow the same flow every time: you draft, the attorney reviews, you check compliance, then schedule and report."
   },
   {
    "image": "068.png",
