@@ -147,28 +147,100 @@ function table(rows){
 }
 
 /* ---------- the trainee's card ---------- */
-function list(label, a, cls){ return a && a.length ? `<div class="eacm-fbk ${cls}"><b>${label}</b><ul>${a.map(x => `<li>${E(x)}</li>`).join("")}</ul></div>` : ""; }
+/* ---------- "What makes up this score": one table row per part of the day's score ----------
+   As on the Standard and Case Management courses: for each part (Knowledge Check, Quick Checks, each Practice Lab,
+   the random task, and any roleplay) the score, why it scored that way, what was done great, what was wrong and
+   what could have been done better, from the grader's notes. A run saved with a score only (before the lab kept
+   its notes) is explained from what was saved, and says so, rather than left blank. */
+const SUBS = {accuracy: "Accuracy", presence: "Executive presence", risk: "Risk & confidentiality", efficiency: "Efficiency",
+  bluf: "BLUF", composure: "Composure", act: "ACT protocol"};
+const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+const level = v => v >= 85 ? "Proficient" : v >= PASS ? "Developing" : "Requires Remediation";
+const passLine = v => v >= PASS ? `${PASS}% passes: this passes.` : `Below the ${PASS}% pass mark.`;
+function subsLine(e){
+  const xs = Object.entries((e && e.subs) || {}).filter(([k, v]) => SUBS[k] && num(v)).map(([k, v]) => `${SUBS[k]} ${v}%`);
+  return xs.length ? `By area: ${xs.join(" · ")}.` : "";
+}
+// the run whose notes explain a score: the run that got it (the best), else the best-scoring run, else the latest
+function runFor(runs, score){
+  const hit = runs.filter(e => num(e.score) && e.score === score);
+  if(hit.length) return hit[hit.length - 1];
+  return runs.slice().sort((x, y) => (y.score || 0) - (x.score || 0))[0] || null;
+}
+function scoreRows(r){
+  const rows = [], D = `Day ${r.dayId}`;
+  // Knowledge Check
+  if(num(r.kc)){
+    const q = r.quiz, missed = (q && q.missed) || [], hasN = q && num(q.correct) && num(q.total);
+    rows.push({name: "Knowledge Check", sub: `best of ${plural(r.tries, "attempt")}`, score: r.kc,
+      why: [`Best score of ${plural(r.tries, "attempt")}${num(r.firstTry) && r.tries > 1 ? ` (first try ${r.firstTry}%)` : ""}.`,
+        hasN ? `Latest try: ${q.correct} of ${q.total} questions right.` : "", passLine(r.kc)],
+      great: r.kc >= 90 ? ["Knew the day's key points cold."] : r.kc >= PASS ? ["Got most of the day's key points right."]
+        : hasN && q.correct ? [`${q.correct} of ${q.total} questions right.`] : [],
+      wrong: missed.length ? missed.map(m => `Missed: ${m}`) : r.kc < 100 ? [`${100 - r.kc}% of the questions answered wrong (which ones wasn't recorded for this attempt).`] : [],
+      better: r.kc >= 100 ? [] : [`Re-read ${D}'s slides on ${missed.length ? "the questions missed" : "the points missed"}, then retake the Knowledge Check${r.kc >= PASS ? " to lift the score" : ""}.`]});
+  } else rows.push({name: "Knowledge Check", sub: "not taken yet", score: null, why: ["Not taken yet, so it isn't in the day's score."], great: [], wrong: [],
+    better: [`Finish ${D}'s slides, then take its Knowledge Check (${PASS}% passes).`]});
+  // Quick Checks
+  if(r.qcTotal){
+    const bad = r.qcTotal - r.qcRight;
+    rows.push({name: "Quick Checks", sub: "on the slides", score: r.qc,
+      why: [`${r.qcRight} of ${r.qcTotal} Quick Checks on ${D}'s slides answered right.`, passLine(r.qc)],
+      great: r.qcRight ? [`${plural(r.qcRight, "Quick Check")} answered right.`] : [],
+      wrong: bad ? [`${plural(bad, "Quick Check")} answered wrong.`] : [],
+      better: bad ? ["Pause on each Quick Check and re-read the slide it follows before answering."] : []});
+  }
+  // each Practice Lab
+  r.tools.forEach(t => {
+    const id = t.t && t.t.id, name = toolName(t.t);
+    const runs = r.work.filter(e => e.kind === "lab" && num(e.score) && (e.toolId === id || (!e.toolId && e.label === (t.t && t.t.title))));
+    if(!num(t.best)){ rows.push({name, sub: "Practice Lab · not run yet", score: null, why: ["Not run yet, so it isn't in the day's score."], great: [], wrong: [],
+      better: [`Open ${name} in the Practice Lab and complete every part.`]}); return; }
+    const e = runFor(runs, t.best), noted = e && ((e.strengths || []).length || (e.gaps || []).length || (e.growth || []).length);
+    const scores = runs.map(x => x.score + "%");
+    rows.push({name, sub: `Practice Lab · best of ${plural(t.runs || runs.length || 1, "run")}`, score: t.best, run: e,
+      why: [`Best of ${plural(t.runs || runs.length || 1, "run")}${scores.length > 1 ? ` (${scores.join(", ")})` : ""}.`,
+        `Graded ${(e && e.tier && tierOf(e.tier)) || level(t.best)}.`, subsLine(e), passLine(t.best)],
+      great: noted ? (e.strengths || []) : t.best >= PASS ? [`Passed at ${t.best}%: most of the lab done right.`] : [],
+      wrong: noted ? (e.gaps || []) : t.best < 100 ? [`${100 - t.best}% of the points were lost. Which items were missed wasn't recorded: this run was scored before the lab kept its notes.`] : [],
+      better: noted ? (e.growth || []) : t.best < 100 ? ["Run the lab again: the next run records, item by item, what went well and what to do better."] : [],
+      bare: !noted});
+  });
+  // the random task
+  if(num(r.task)){
+    const runs = r.work.filter(e => e.kind === "task"), e = runFor(runs, r.task), missed = !!(e && /missed/i.test(e.label || ""));
+    rows.push({name: "Random task", sub: "the interruption during the day", score: r.task,
+      why: [missed ? "The task wasn't answered in time, so it scored 0%." : `Graded ${(e && e.tier && tierOf(e.tier)) || level(r.task)}.`, passLine(r.task)],
+      great: r.task >= PASS ? ["Acknowledged the interruption, planned it and closed it out in time."] : [],
+      wrong: missed ? ["The task was missed: not answered before it ran out of time."] : r.task < PASS ? ["The interruption wasn't acknowledged, planned and closed out in time."] : r.task < 100 ? ["A step of the response was thin or late."] : [],
+      better: r.task >= 100 ? [] : ["Acknowledge it fast, jot a three-step plan, then resolve it before going back to the lesson."]});
+  }
+  // a roleplay or live simulation: graded, but not part of the day's score
+  const other = {};
+  r.work.filter(e => e.kind === "roleplay" && num(e.score)).forEach(e => { (other[e.label || "Roleplay"] = other[e.label || "Roleplay"] || []).push(e); });
+  Object.entries(other).forEach(([name, runs]) => {
+    const best = Math.max(...runs.map(e => e.score)), e = runFor(runs, best);
+    rows.push({name, sub: `Live Roleplay · best of ${plural(runs.length, "run")}`, score: best, run: e,
+      why: [`Graded ${(e.tier && tierOf(e.tier)) || level(best)}.`, subsLine(e), "Not counted in the day's score."],
+      great: e.strengths || [], wrong: e.gaps || [], better: e.growth || []});
+  });
+  return rows;
+}
+const cellList = (xs, none) => (xs = (xs || []).filter(Boolean)).length ? `<ul>${xs.map(x => `<li>${E(x)}</li>`).join("")}</ul>` : `<i>${none}</i>`;
 function makeup(r, fb){
-  const L = [];
-  if(num(r.kc)) L.push(`<li><span class="eacm-pill eacm-${tint(r.kc)}">${r.kc}%</span><div><b>Knowledge Check</b> — best of ${r.tries} attempt${r.tries === 1 ? "" : "s"}${num(r.firstTry) && r.tries > 1 ? ` (first try ${r.firstTry}%)` : ""}${r.passed ? " · passed" : ` · ${PASS}% passes`}
-    ${r.quiz && (r.quiz.missed || []).length ? `<div class="eacm-sub">Missed on the latest try: ${E(r.quiz.missed.join(" · "))}</div>` : ""}</div></li>`);
-  else L.push(`<li><span class="eacm-pill eacm-none">—</span><div><b>Knowledge Check</b> — not taken yet</div></li>`);
-  if(r.qcTotal) L.push(`<li><span class="eacm-pill eacm-${tint(r.qc)}">${Math.round(r.qc)}%</span><div><b>Quick Checks</b> — ${r.qcRight} of ${r.qcTotal} right</div></li>`);
-  r.tools.forEach(t => L.push(`<li><span class="eacm-pill eacm-${tint(t.best)}">${P(t.best)}</span><div><b>Practice Lab · ${E(toolName(t.t))}</b> — ${t.runs ? `best of ${t.runs} run${t.runs === 1 ? "" : "s"}` : "not run yet"}</div></li>`));
-  if(num(r.task)) L.push(`<li><span class="eacm-pill eacm-${tint(r.task)}">${r.task}%</span><div><b>Random task</b></div></li>`);
-  L.push(`<li><span class="eacm-pill eacm-none">${r.seen}/${r.n}</span><div><b>Slides reached</b></div></li>`);
-  const acts = r.work.slice().reverse();
-  // a Practice Lab scored before its notes were kept: say so, rather than leave the score unexplained
-  const bare = r.tools.filter(t => num(t.best) && !r.work.some(e => e.toolId === (t.t && t.t.id)));
-  const f = fb[r.dayId];
-  return `<div class="eacm-mk"><p class="eacm-mk-h">The day's score is the average of the Knowledge Check, Quick Checks, Practice Lab and random task.</p><ul class="eacm-parts">${L.join("")}</ul>
-    ${acts.length ? `<p class="eacm-mk-h">Each activity and its feedback</p>${acts.map(e => `<div class="eacm-act">
-      <div class="eacm-act-h"><span class="eacm-pill eacm-${tint(e.score)}">${P(e.score)}</span><b>${E(e.label || (e.kind === "roleplay" ? "Roleplay" : "Practice Lab"))}</b>
-        <small>${e.kind === "roleplay" ? "Live Roleplay" : "Practice Lab"}${e.tier ? ` · ${E(tierOf(e.tier))}` : ""}${e.at ? ` · ${E(new Date(e.at).toLocaleString())}` : ""}</small></div>
-      <div class="eacm-fbks">${list("✓ Strengths", e.strengths, "s")}${list("△ Gaps", e.gaps, "g")}${list("→ Next time", e.growth, "n")}</div>
-      ${e.excerpt ? `<details class="eacm-ex"><summary>Their answer</summary><p>${E(e.excerpt)}</p></details>` : ""}</div>`).join("")}` : ""}
-    ${!acts.length && bare.length ? `<p class="eacm-mk-h">Each activity and its feedback</p>` : ""}${bare.map(t => `<div class="eacm-act"><div class="eacm-act-h"><span class="eacm-pill eacm-${tint(t.best)}">${P(t.best)}</span><b>${E(toolName(t.t))}</b><small>Practice Lab · best of ${t.runs} run${t.runs === 1 ? "" : "s"}</small></div>
-      <p class="eacm-sub">${t.best >= PASS ? "Passed" : "Below the " + PASS + "% pass mark"}. This run was scored before the lab kept its notes, so there is no breakdown for it — the next run records what went well and what to do better.</p></div>`).join("")}
+  const rows = scoreRows(r), f = fb[r.dayId];
+  return `<div class="eacm-mk"><p class="eacm-mk-h">The day's score is the average of the Knowledge Check, Quick Checks, Practice Lab and random task.</p>
+    <div class="eacm-sw"><table class="eacm-st-t"><thead><tr><th>Activity</th><th>Score</th><th>🧾 Why this score</th><th>⭐ What you did great</th><th>❌ What was wrong</th><th>💡 What could have been done better</th></tr></thead>
+    <tbody>${rows.map(x => `<tr>
+      <th scope="row"><b>${E(x.name)}</b><small>${E(x.sub)}${x.run && x.run.at ? ` · ${E(new Date(x.run.at).toLocaleDateString())}` : ""}</small>
+        ${x.run && x.run.excerpt ? `<details class="eacm-ex"><summary>Their answer</summary><p>${E(x.run.excerpt)}</p></details>` : ""}</th>
+      <td class="eacm-sc"><span class="eacm-pill eacm-${num(x.score) ? tint(x.score) : "none"}">${num(x.score) ? Math.round(x.score) + "%" : "—"}</span></td>
+      <td class="eacm-w">${cellList(x.why, "—")}</td>
+      <td class="eacm-g">${cellList(x.great, num(x.score) ? "Nothing noted." : "—")}</td>
+      <td class="eacm-b">${cellList(x.wrong, num(x.score) ? (x.score >= 100 ? "Nothing — full marks." : "Nothing noted.") : "—")}</td>
+      <td class="eacm-n">${cellList(x.better, num(x.score) ? "Keep the same approach." : "—")}</td></tr>`).join("")}
+    </tbody></table></div>
+    <p class="eacm-sub">Slides reached: ${r.seen} of ${r.n}.</p>
     ${f ? `<div class="eacm-tfb"><b>✍ Trainer feedback</b> <small>${f.status === "sent" ? "Sent" + (f.readAt ? " · read" : "") : "Draft — not sent"}${f.rating ? ` · ${E(f.rating)}` : ""}</small>${f.summary ? `<p>${E(f.summary)}</p>` : ""}${f.mine && typeof openDayFeedback === "function" ? `<button type="button" class="eacm-more" onclick="openDayFeedback(${r.dayId})">Read the full feedback →</button>` : ""}</div>` : ""}</div>`;
 }
 function card(s, you){
@@ -347,6 +419,17 @@ st.textContent = `
 .eacm-parts{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:6px;}
 .eacm-parts li{display:flex;gap:10px;align-items:flex-start;}
 .eacm-sub{font-size:12.5px;color:#3B4160;margin-top:2px;}
+.eacm-sw{overflow-x:auto;border:1px solid #E1E5EE;border-radius:10px;background:#fff;margin-bottom:8px;}
+.eacm-st-t{width:100%;min-width:980px;border-collapse:collapse;font-size:13px;line-height:1.42;color:#262B45;}
+.eacm-st-t thead th{background:#262B45;color:#fff;font:800 12.5px 'Inter',system-ui,sans-serif;text-align:left;padding:8px 10px;border-bottom:2px solid #DB8437;white-space:nowrap;}
+.eacm-st-t td,.eacm-st-t tbody th{padding:8px 10px;border-top:1px solid #E6E9F1;vertical-align:top;text-align:left;}
+.eacm-st-t tbody th{width:170px;font-weight:600;background:#fff !important;border-bottom:0 !important;box-shadow:none !important;color:#1B1E2E !important;text-transform:none !important;letter-spacing:0 !important;font-size:13px !important;}
+.eacm-st-t tbody th b{color:#0f2148;}
+.eacm-st-t tbody th small{display:block;font-size:12px;color:#4A5070 !important;font-weight:600;margin-top:2px;}
+.eacm-st-t td.eacm-sc{width:64px;text-align:center;}
+.eacm-st-t ul{margin:0;padding-left:16px;} .eacm-st-t li+li{margin-top:3px;}
+.eacm-st-t i{color:#5A6078;}
+.eacm-st-t td.eacm-w{background:#F7F8FC;} .eacm-st-t td.eacm-g{background:#F1F9F3;} .eacm-st-t td.eacm-b{background:#FDF3F0;} .eacm-st-t td.eacm-n{background:#F2F4FB;}
 .eacm-act{border:1px solid #E1E5EE;border-radius:10px;padding:9px 11px;background:#fff;margin-bottom:8px;}
 .eacm-act-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
 .eacm-act-h small{color:#3B4160;font-size:12.5px;}

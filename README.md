@@ -352,6 +352,8 @@ Trainees open **🏅 Scorecard** in the top bar (or the button under the dashboa
 
 Trainers see the same tables for each trainee in **Admin → Trainee Audit → View Detail → 🏅 Scorecard**, with each day's feedback status (Sent / Draft / Not reviewed). **👁 Trainee view** shows the page too, from that browser's own progress.
 
+**Why each day scored the way it did** (`js/eapa-cm-scorecard.js`, the trainee's card in **Admin → 🏅 Scorecard → 🏅 Scorecards**): under each day, **▾ What makes up this score** is a table, as on the Standard and Case Management courses, with a row per part of the day's score (Knowledge Check, Quick Checks, each Practice Lab, the random task, and any Live Roleplay, which is graded but not counted). Its columns: **Score**, **🧾 Why this score** (best of how many runs or attempts, the grade, the score by area, and whether it passes 70%), **⭐ What you did great**, **❌ What was wrong** and **💡 What could have been done better**, from the grader's notes on the run that got the score. A run scored before the labs kept their notes is explained from what was saved (the score, the points lost) and says that the next run records the details.
+
 A graded call counts here. The Training Portal (its `/api/call-results`) keeps the trainee's graded calls in `callsim:<trainee id>` (no key prefix; a trainee on an older id is found through `trainee-alias:`), by line, and the Worker lets the trainee read it but never write it. The dashboard band's **Graded calls** card (`js/graded-calls.js`) shows the best graded call on each line, averaged, with the lines and calls taken; each line's best is in its tooltip. It's read once a page load and again when the trainee comes back to the tab (at most every two minutes).
 
 ## 🔄 New versions (auto-update)

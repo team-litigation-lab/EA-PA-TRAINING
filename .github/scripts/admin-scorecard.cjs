@@ -41,7 +41,7 @@ const failures = []; const fail = (m) => failures.push(m);
       if (!cardTxt.toLowerCase().includes(t.toLowerCase())) fail(`the trainee's card has no "${t}"`);
     await page.click('#eacmCard tr:has-text("Day 1") summary');
     const mk = await page.$eval('#eacmCard tr:has-text("Day 1") .eacm-mk', m => m.innerText).catch(() => '');
-    for (const t of ['Knowledge Check', 'Client Dossier', 'Clear headings', 'Check the Client Profile first']) if (!mk.includes(t)) fail(`"What makes up this score" for Day 1 has no "${t}"`);
+    for (const t of ['Knowledge Check', 'Client Dossier', 'Clear headings', 'Missed the travel rule', 'Check the Client Profile first', 'Why this score', 'What you did great', 'What was wrong', 'What could have been done better']) if (!mk.includes(t)) fail(`"What makes up this score" for Day 1 has no "${t}"`);
     await page.evaluate(() => EAPAShell.sub('people'));
     await page.waitForFunction(() => document.querySelectorAll('.audit-table tbody tr').length >= 2, null, { timeout: 20000 });
     const pills = await page.$$eval('.eash-pill', b => b.map(x => x.innerText.trim()));
