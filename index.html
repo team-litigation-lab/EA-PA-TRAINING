@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root{
   --navy:#262B45;
@@ -1759,8 +1759,6 @@ main.has-presenter{padding-right:calc(clamp(170px,16vw,250px) + 16px);}
   /* admin */
   .admin-tabs{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
   .admin-tab-btn{white-space:nowrap;flex:0 0 auto;}
-  .admin-rank-grid{grid-template-columns:40px minmax(0,1fr) 60px !important;}
-  .admin-rank-grid > div:nth-child(n+4){display:none;}
   main select{max-width:100%;}
   .cues-day-tabs{flex-wrap:nowrap;overflow-x:auto;}
 }
@@ -2051,11 +2049,9 @@ img[alt="Legal Support Help"]{border-radius:8px;}
 .batch-folder .bf-icon{font-size:30px;line-height:1;}
 .batch-folder .bf-name{font-weight:800;color:var(--navy);font-size:15px;margin-top:4px;}
 .batch-folder .bf-meta{font-size:12px;color:var(--ink-soft);}
-.bf-crumb{margin-bottom:6px;}
 .bf-audit-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
 .bf-audit-controls input[type=text]{padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;min-width:200px;}
 .bf-audit-controls select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;}
-.bf-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 16px;}
 .bf-files-note{font-size:14px;font-weight:600;color:#3B4160;margin:8px 0 12px;max-width:95ch;}
 .bf-files-note a{color:#A34E14;font-weight:800;}
 .bf-files{padding:0 !important;overflow:hidden;background:#fff !important;backdrop-filter:none !important;}
@@ -2063,9 +2059,6 @@ img[alt="Legal Support Help"]{border-radius:8px;}
 .bf-files-t th{background:#262B45;color:#fff;font-size:12.5px;text-align:left;padding:10px 12px;border-bottom:2px solid #DB8437;}
 .bf-files-t td{padding:10px 12px;border-top:1px solid #E4E7EF;font-weight:600;}
 .bf-files-t code{font-size:12.5px;color:#3B4160;}
-.bf-tabs button{font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;}
-.bf-tabs button.active{background:var(--navy);color:#fff;border-color:var(--navy);}
-.bf-tabs em{font-style:normal;font-weight:600;opacity:.7;margin-left:2px;}
 .bf-act-row{display:grid;grid-template-columns:minmax(0,1.4fr) 110px minmax(0,1.6fr) 60px 110px 120px 130px;gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--line);font-size:12.5px;}
 .bf-act-head{background:#F8F9FC;font-size:11px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;}
 @media (max-width:900px){ .bf-act-row{grid-template-columns:1fr 1fr;} .bf-act-head{display:none;} }
@@ -6713,7 +6706,6 @@ function openRouteFromHash(){
   goto(r.view, r.id);
   return true;
 }
-function openInNewTab(){ syncRouteHash(); window.open(location.href, "_blank"); }
 function openRouteInNewTab(hash){ window.open(location.pathname + location.search + hash, "_blank"); }
 window.addEventListener("hashchange", ()=>{
   if(!(state.traineeId || state.isAdmin) || ["login","pendingApproval","registrationDenied"].includes(state.view)) return;
@@ -6733,7 +6725,7 @@ window.addEventListener("storage", (e)=>{
   if(key==="slide-progress" && state.view==="day" && state.dayId && !state.isAdmin) state.maxSlideReached = Math.max(state.maxSlideReached||0, val[state.dayId]||0);
   if(key==="notes" && state.view==="notes" && !(typeof isTyping==="function" && isTyping())) render();
 });
-Object.assign(window, {openInNewTab, openRouteInNewTab});
+Object.assign(window, {openRouteInNewTab});
 function resumeLabel(){
   const lv = state.lastView; if(!lv) return "";
   if(lv.view==="day" && lv.dayId){ const idx = resumeSlideFor(lv.dayId); const d = DAYS.find(x=>x.id===lv.dayId); const sl = buildDaySlides(d)[idx]; return `Day ${lv.dayId} · ${sl ? daySlideTitle(d, sl) : "Lesson"}`; }
@@ -7900,13 +7892,6 @@ function updateLessonStage(){
   st.scrollTop = 0; const ls = document.getElementById("lessonSlideWrap"); if(ls) ls.scrollTop = 0;
   return true;
 }
-function togglePageFullscreen(){
-  if(document.fullscreenElement){ document.exitFullscreen && document.exitFullscreen(); return; }
-  const el = document.documentElement;
-  if(el.requestFullscreen) el.requestFullscreen().catch(()=>toast("Your browser blocked full screen — press F11 instead."));
-  else toast("Press F11 for full screen.");
-}
-window.togglePageFullscreen = togglePageFullscreen;
 function lessonFullscreen(){
   const el = document.getElementById("lessonStage");
   if(!document.fullscreenElement && el && el.requestFullscreen) el.requestFullscreen().catch(()=>toast("Your browser blocked full screen — press F11 instead."));
@@ -10600,16 +10585,6 @@ async function downloadFinancialPdf(){
 }
 window.downloadFinancialPdf = downloadFinancialPdf;
 
-/* ---------- image-or-placeholder helper ---------- */
-function imgOrPlaceholder(url, label){
-  if(!url) return `<div class="link-preview-box empty">📷 ${esc(label)} — no link provided yet</div>`;
-  return `<div class="link-preview-box"><img src="${esc(url)}" alt="${esc(label)}" onerror="this.parentElement.innerHTML='📷 ${esc(label)} — link provided but couldn\\'t load a preview'">
-    <a href="${esc(url)}" target="_blank" rel="noopener">↗ Open link</a></div>`;
-}
-function mapsDirectionsLink(origin, destination){
-  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
-}
-
 /* ---------- Business travel: choices, a day sheet, and the night it falls apart ---------- */
 function tripState(){ toolState.trip = toolState.trip || {day:{}}; toolState.trip.day = toolState.trip.day || {}; return toolState.trip; }
 async function tripSave(){ await storeSet("trip-plan", toolState.trip); }
@@ -13112,7 +13087,6 @@ function renderAdmin(){
     <div class="admin-tabs" style="display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line);">
       <button class="admin-tab-btn ${tab==='audit'?'active':''}" onclick="setAdminTab('audit')">Settings &amp; Reports</button>
       <button class="admin-tab-btn ${tab==='batches'?'active':''}" onclick="setAdminTab('batches')">📁 Batch Folders</button>
-      <button class="admin-tab-btn ${tab==='rankings'?'active':''}" onclick="setAdminTab('rankings')">Rankings</button>
       <button class="admin-tab-btn ${tab==='sop'?'active':''}" onclick="setAdminTab('sop')">SOP Reference</button>
       <button class="admin-tab-btn ${tab==='studio'?'active':''}" onclick="setAdminTab('studio')">Content Studio</button>
       <button class="admin-tab-btn ${tab==='tfeedback'?'active':''}" onclick="setAdminTab('tfeedback')">Trainee Feedback</button>
@@ -13120,7 +13094,6 @@ function renderAdmin(){
   if(tab==="sop") return tabBar + renderAdminSOP();
   if(tab==="studio") return tabBar + renderAdminStudio();
   if(tab==="tfeedback") return tabBar + renderAdminTraineeFeedback();
-  if(tab==="rankings") return tabBar + renderAdminRankings();
   if(tab==="batches") return tabBar + renderAdminBatchFolders();
 
   if(state.adminLoading || !state.adminData){
@@ -13229,9 +13202,7 @@ function folderLabel(k){ return k===NO_BATCH ? "⚠ Needs a batch" : `Batch ${k}
 function batchMembers(k){ return (state.adminData||[]).filter(r=>batchKey(r)===k && (state.batchShowArchived || !r.archived)); }
 function batchFeedback(k){ return ((state.tfbAdmin||{}).items||[]).filter(x=>(cleanBatch(x.batch)||NO_BATCH)===k); }
 function openBatchFolder(k, sub){ state.batchFolder = k; state.batchSub = sub || state.batchSub || "registry"; render(); }
-function closeBatchFolder(){ state.batchFolder = null; render(); }
-function setBatchSub(sub){ state.batchSub = sub; render(); }
-Object.assign(window, {openBatchFolder, closeBatchFolder, setBatchSub});
+Object.assign(window, {openBatchFolder});
 
 function renderAdminBatchFolders(){
   if(state.adminLoading || !state.adminData){
@@ -13292,12 +13263,6 @@ function renderBatchFolderBody(){
   const k = state.batchFolder; if(!k) return "";
   const sub = state.batchSub || "registry";
   const members = batchMembers(k);
-  if(sub==="rankings") return renderAdminRankings(k);
-  if(sub==="feedback"){
-    if(!state.tfbAdmin || state.tfbAdmin.loading) return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">Loading trainee feedback…</div>`;
-    const items = batchFeedback(k);
-    return items.length ? items.map(tfbItemCard).join("") : `<div class="empty-note">No feedback from ${esc(folderLabel(k))} yet.</div>`;
-  }
   if(!members.length) return `<div class="empty-note">No trainees in ${esc(folderLabel(k))}${state.batchShowArchived?"":" (archived trainees are hidden)"}.</div>`;
   if(members.some(r=>!state.auditExtra[r.id] || Date.now()-state.auditExtra[r.id].at>60000)) setTimeout(()=>loadAuditExtras(), 0);
   if(sub==="activities"){
@@ -13335,131 +13300,6 @@ function renderBatchFolderBody(){
 const NO_BATCH = "__none__";
 function batchKey(rec){ return cleanBatch(rec && rec.batch) || NO_BATCH; }
 function batchLabel(b){ return b===NO_BATCH ? "No batch" : b; }
-function renderAdminRankings(onlyBatch){
-  if(state.adminLoading || !state.adminData){
-    return `<div class="card" style="padding:40px;text-align:center;color:var(--ink-soft);">Loading trainee ledger…</div>`;
-  }
-  const scoreOf = rec=>{
-    const day = adminDayStats(rec);
-    const practice = adminPracticeStats(rec);
-    // Same score the trainee's dashboard ranking card uses (rankOverall), so both show the same rank.
-    const overall = rankOverall(rec);
-    const task = taskAvgOf(rec);
-    return {rec, day, practice, overall, task: task===null ? null : Math.round(task)};
-  };
-  // One group per batch, ranked within the batch. A batch counts as archived
-  // once every trainee in it is archived (📦 Archive batch).
-  const groups = new Map();
-  state.adminData.forEach(rec=>{
-    if(rec.approved!==true) return;   // like the trainee view, only approved trainees are ranked
-    const b = batchKey(rec);
-    if(!groups.has(b)) groups.set(b, []);
-    groups.get(b).push(rec);
-  });
-  const batches = Array.from(groups, ([batch, recs])=>{
-    const archived = recs.every(r=>r.archived);
-    const ranked = recs.filter(r=>archived || !r.archived).map(scoreOf).sort((a,b)=>b.overall-a.overall);
-    const last = Math.max(0, ...recs.map(r=>new Date(r.lastActive||0).getTime()||0));
-    return {batch, archived, ranked, last};
-  }).sort((a,b)=>(a.batch===NO_BATCH)-(b.batch===NO_BATCH) || b.last-a.last || a.batch.localeCompare(b.batch));
-
-  const active = batches.filter(g=>!g.archived);
-  const archivedGroups = batches.filter(g=>g.archived);
-  // A saved filter for a batch that no longer exists falls back to all active batches.
-  const filter = onlyBatch || (batches.some(g=>g.batch===state.adminBatchFilter) ? state.adminBatchFilter : "");
-  const shown = filter ? batches.filter(g=>g.batch===filter) : active;
-  const rankedAll = shown.flatMap(g=>g.ranked);
-
-  const header = onlyBatch ? "" : `
-    <p class="eyebrow">Admin Dashboard</p>
-    <h1 style="color:var(--navy);font-size:26px;margin:6px 0 4px;">Rankings</h1>
-    <p style="color:var(--ink-soft);font-size:13px;max-width:70ch;margin:0 0 20px;">Approved trainees are ranked within their own batch by a blended score — 40% program completion, 30% average quiz score, 30% average Practice Lab competency. Once a trainee has graded random tasks, it becomes 35% completion, 25% quiz, 25% Practice Lab and 15% random tasks. Trainees see the same score and rank on their dashboard. Meant as a coaching signal, not a formal evaluation.</p>`;
-  const toolbar = onlyBatch ? "" : `
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-        <select onchange="setAdminBatchFilter(this.value)" style="padding:8px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;">
-          <option value="">All active batches</option>
-          ${active.map(g=>`<option value="${esc(g.batch)}" ${filter===g.batch?"selected":""}>${esc(batchLabel(g.batch))}</option>`).join("")}
-          ${archivedGroups.length ? `<optgroup label="Archived">${archivedGroups.map(g=>`<option value="${esc(g.batch)}" ${filter===g.batch?"selected":""}>${esc(batchLabel(g.batch))} (archived)</option>`).join("")}</optgroup>` : ""}
-        </select>
-      </div>
-      <button class="btn btn-ghost btn-sm" onclick="refreshAdminData()">🔄 Refresh</button>
-    </div>`;
-  const archivedList = !filter && archivedGroups.length ? `
-    <details class="card" style="padding:14px 18px;margin-top:18px;">
-      <summary style="cursor:pointer;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:700;">📦 Archived batches (${archivedGroups.length})</summary>
-      <div style="margin-top:10px;">
-        ${archivedGroups.map(g=>`
-          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);">
-            <div><b style="color:var(--navy);font-family:'IBM Plex Mono';font-size:13px;">${esc(batchLabel(g.batch))}</b> <span style="font-size:12px;color:var(--ink-soft);">· ${g.ranked.length} trainee${g.ranked.length===1?"":"s"}${g.last?` · last active ${fmtDate(new Date(g.last).toISOString())}`:""}</span></div>
-            <div style="display:flex;gap:8px;">
-              <button class="btn btn-ghost btn-sm" onclick="setAdminBatchFilter(this.dataset.b)" data-b="${esc(g.batch)}">View ranking</button>
-              <button class="btn btn-ghost btn-sm" onclick="confirmUnarchiveBatch(this.dataset.b)" data-b="${esc(g.batch)}">↩ Restore</button>
-            </div>
-          </div>`).join("")}
-      </div>
-    </details>` : "";
-
-  if(!rankedAll.length){
-    return header + toolbar + `<div class="empty-note">${archivedGroups.length && !filter ? "All batches are archived. Open “Archived batches” below to view or restore one." : "No trainees to rank yet — once someone sets their name in the app, they'll show up here."}</div>` + archivedList;
-  }
-
-  const totalTrainees = rankedAll.length;
-  const avgOverall = Math.round(rankedAll.reduce((a,r)=>a+r.overall,0)/totalTrainees);
-  const topScore = Math.max(...rankedAll.map(r=>r.overall));
-  const fullyDone = rankedAll.filter(r=>r.day.done===r.day.total).length;
-
-  const medals = ["🥇","🥈","🥉"];
-  const cols = "56px minmax(0,1fr) 90px 80px 90px 90px 100px";
-  const batchTable = g=>{
-    const avg = Math.round(g.ranked.reduce((a,r)=>a+r.overall,0)/g.ranked.length);
-    return `
-    <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;${g.archived?"opacity:.85;":""}">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line);">
-        <div>
-          <b style="color:var(--navy);font-size:15px;">${g.batch===NO_BATCH ? "No batch set" : `Batch <span style="font-family:'IBM Plex Mono';">${esc(g.batch)}</span>`}</b>${g.archived?` <span class="estatus archived" style="margin-left:6px;">Archived</span>`:""}
-          <div style="font-size:12px;color:var(--ink-soft);margin-top:2px;">${g.ranked.length} trainee${g.ranked.length===1?"":"s"} · batch avg. ${avg}%${g.last?` · last active ${fmtDate(new Date(g.last).toISOString())}`:""}</div>
-        </div>
-        ${g.archived
-          ? `<button class="btn btn-ghost btn-sm" onclick="confirmUnarchiveBatch(this.dataset.b)" data-b="${esc(g.batch)}">↩ Restore batch</button>`
-          : `<button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="confirmArchiveBatch(this.dataset.b)" data-b="${esc(g.batch)}">📦 Archive batch</button>`}
-      </div>
-      <div class="admin-rank-grid" style="display:grid;grid-template-columns:${cols};gap:12px;align-items:center;padding:10px 18px;background:#F8F9FC;border-bottom:1px solid var(--line);">
-        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Rank</div>
-        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Trainee</div>
-        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Overall</div>
-        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Days</div>
-        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Quiz Avg</div>
-        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Lab Avg</div>
-        <div style="font-size:11px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;">Random Tasks</div>
-      </div>
-      ${g.ranked.map(({rec,day,practice,overall,task},i)=>`
-        <div class="admin-rank-grid" style="display:grid;grid-template-columns:${cols};gap:12px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line);">
-          <div style="font-size:${i<3?'20px':'14px'};font-weight:700;color:${i<3?'inherit':'var(--ink-soft)'};">${medals[i] || `#${i+1}`}</div>
-          <div>
-            <b class="admin-name" title="${esc(String(rec.name||"Unnamed").slice(0,200))}" style="color:var(--navy);font-size:13.5px;">${esc(String(rec.name||"Unnamed").slice(0,60))}${String(rec.name||"").length>60?"…":""}</b>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:var(--navy);">${overall}%</div>
-          <div style="font-size:13px;">${day.done}/${day.total}</div>
-          <div style="font-size:13px;">${day.avg}%</div>
-          <div style="font-size:13px;">${practice.avg}%</div>
-          <div style="font-size:13px;${task===null?"color:var(--ink-soft);":""}">${task===null ? "—" : task+"%"}</div>
-        </div>`).join("")}
-    </div>`;
-  };
-
-  return header + `
-    <div class="stat-row">
-      <div class="card stat"><div class="num">${totalTrainees}</div><div class="lbl">Trainees ranked</div></div>
-      <div class="card stat"><div class="num">${topScore}%</div><div class="lbl">Top overall score</div></div>
-      <div class="card stat"><div class="num">${avgOverall}%</div><div class="lbl">${shown.length===1?"Batch":"Cohort"} avg. score</div></div>
-      <div class="card stat"><div class="num">${fullyDone}</div><div class="lbl">Finished all ${DAYS.length} days</div></div>
-    </div>
-    ${toolbar}
-    ${shown.map(batchTable).join("")}
-    ${archivedList}
-  `;
-}
 function renderAdminRows(onlyBatch){
   // The live refreshers (a search keystroke, the 30s poll, a row action) re-render
   // these rows without an argument. Inside a batch folder that would quietly widen
@@ -14324,8 +14164,6 @@ function setAdminSort(v){ state.adminSort=v; refreshAdminRows(); }
 window.setAdminSort = setAdminSort;
 function setAdminBatchFilter(v){ state.adminBatchFilter=v; render(); }
 window.setAdminBatchFilter = setAdminBatchFilter;
-function setAdminShowArchived(v){ state.adminShowArchived=v; render(); }
-window.setAdminShowArchived = setAdminShowArchived;
 
 
 /* ============================================================
