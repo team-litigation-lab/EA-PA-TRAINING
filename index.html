@@ -17,6 +17,11 @@
   --orange:#DB8437;
   --orange-deep:#B5651F;
   --orange-soft:#F0C08A;
+  /* Gold buttons (the LSH Training Portal's): every button that was filled orange; navy text on it. */
+  --gold:linear-gradient(180deg, #fde7b0 0%, #f5c451 50%, #e0a43a 100%);
+  --gold-hover:linear-gradient(180deg, #ffefc4 0%, #f7cf6a 50%, #e8b04a 100%);
+  --gold-ink:#1E2340;
+  --gold-glow:rgba(224,164,58,.55);
   --bg:#EEF0F6;
   --paper:#FFFFFF;
   --ink:#1B1E2E;
@@ -252,7 +257,7 @@ button{font-family:inherit;cursor:pointer;}
   background:transparent;border:none;color:#D7DAEC;font-size:13px;font-weight:600;
   padding:8px 9px;border-radius:7px;transition:all .15s ease;white-space:nowrap;
 }
-.nav button.active{background:var(--orange);color:#241304;}
+.nav button.active{background:var(--gold);color:var(--gold-ink);}
 .nav button:not(.active):hover{background:rgba(255,255,255,.09);color:#fff;}
 
 
@@ -278,8 +283,8 @@ main{flex:1;max-width:1400px;margin:0 auto;padding:36px 20px 80px;width:100%;ani
   display:inline-flex;align-items:center;gap:8px;border-radius:9px;border:1px solid transparent;
   font-weight:600;font-size:var(--font-body);padding:10px 18px;transition:all .15s ease;
 }
-.btn-primary{background:var(--orange);color:#241304;}
-.btn-primary:hover{background:var(--orange-deep);color:#fff;}
+.btn-primary{background:var(--gold);color:var(--gold-ink);}
+.btn-primary:hover{background:var(--gold-hover);color:var(--gold-ink);}
 .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink);}
 .btn-ghost:hover{border-color:var(--navy-soft);background:#F6F7FB;}
 .btn-navy{background:var(--navy);color:#fff;}
@@ -1652,7 +1657,7 @@ main{overflow-wrap:anywhere;}
 .vc-controls{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;}
 .vc-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
 .vc-btn:hover{background:rgba(255,255,255,.18);}
-.vc-btn.vc-on{background:var(--orange);border-color:var(--orange);}
+.vc-btn.vc-on{background:var(--gold);border-color:#e0a43a;color:var(--gold-ink);}
 .vc-btn.vc-hang{background:#B54A3F;border-color:#B54A3F;margin-left:auto;}
 .vc-btn.vc-hang span{margin-left:2px;}
 .vc-note{grid-column:1/-1;font-size:11.5px;color:#C9CCDD;}
@@ -1958,7 +1963,7 @@ body.tap-moving [ondrop]{outline:2px dashed rgba(219,132,55,.55);outline-offset:
 .studio-checklist li{font-size:13px;margin:4px 0;}
 
 .tfb-fab{position:fixed;left:16px;bottom:16px;z-index:6;background:var(--navy);color:#fff;border:none;border-radius:24px;padding:10px 16px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px -6px rgba(38,43,69,.45);}
-.tfb-fab:hover{background:var(--orange);}
+.tfb-fab:hover{background:var(--gold);color:var(--gold-ink);}
 .overlay .card.tfb-modal{max-width:620px;padding:0;}
 .tfb-body{padding:16px 22px;overflow:auto;}
 .tfb-intro{font-size:13px;color:var(--ink-soft);margin:0 0 10px;}
@@ -2289,7 +2294,7 @@ em.warn{font-style:normal;color:var(--danger);}
 @media(max-width:760px){.or-slide{padding:24px 18px 60px;} .or-3,.or-nav{grid-template-columns:1fr;} .or-client,.or-cert{flex-direction:column;}}
 
 .update-banner{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:300;display:flex;align-items:center;gap:14px;background:var(--navy);color:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 14px 34px -12px rgba(20,24,48,.6);font-size:13.5px;max-width:min(680px, calc(100vw - 24px));}
-.update-banner button{background:var(--orange);color:#fff;border:none;border-radius:9px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer;white-space:nowrap;}
+.update-banner button{background:var(--gold);color:var(--gold-ink);border:none;border-radius:9px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer;white-space:nowrap;}
 
 .or-export-host{position:fixed;left:-20000px;top:0;width:1280px;height:720px;overflow:hidden;z-index:-1;}
 .or-slide.or-export{width:1280px;height:720px;min-height:0;box-sizing:border-box;border-radius:0;padding:44px 56px 56px;}
@@ -2361,7 +2366,7 @@ em.warn{font-style:normal;color:var(--danger);}
 /* ---------- audio controls ---------- */
 .audio-bar{display:inline-flex;align-items:center;gap:6px;margin-right:auto;}
 .audio-rate{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:5px 6px;background:#fff;}
-#audioModeBtn.on{background:var(--orange);color:#fff;border-color:var(--orange);}
+#audioModeBtn.on{background:var(--gold);color:var(--gold-ink);border-color:#e0a43a;}
 .ls-top{justify-content:space-between !important;}
 /* ---------- full-screen alignment: no big empty card, content centred and larger ---------- */
 .lesson-stage:fullscreen .lesson-slide{display:flex;flex-direction:column;justify-content:center;font-size:1.4em;}
@@ -2505,7 +2510,7 @@ em.warn{font-style:normal;color:var(--danger);}
    big serif title, lead text, and content laid out as cards. */
 /* The standard deck card (every lesson slide, every day): a white page with the
    angled orange/navy edge of the LSH deck on the left and the LSH mark top right. */
-.lesson-stage #lessonSlideWrap{position:relative;background:#FFFFFF url(/logo.svg) no-repeat right 26px top 22px;background-size:96px auto;border-radius:16px;padding:30px 132px 34px 128px;min-height:min(64vh,640px);max-height:none;overflow:hidden;box-shadow:none;}
+.lesson-stage #lessonSlideWrap{position:relative;background:#FFFFFF;background-size:96px auto;border-radius:16px;padding:30px 132px 34px 128px;min-height:min(64vh,640px);max-height:none;overflow:hidden;box-shadow:none;}
 .lesson-stage #lessonSlideWrap::before{content:"";position:absolute;left:0;top:0;width:104px;height:64%;background:var(--orange);clip-path:polygon(0 0,100% 0,26% 100%,0 100%);pointer-events:none;}
 .lesson-stage #lessonSlideWrap::after{content:"";position:absolute;left:0;bottom:0;width:104px;height:34%;background:var(--navy);clip-path:polygon(0 36%,100% 100%,0 100%);pointer-events:none;}
 @media(max-width:760px){.lesson-stage #lessonSlideWrap{overflow:visible;padding:26px 20px 28px 44px;background-size:62px auto;background-position:right 14px top 14px;}
@@ -2839,13 +2844,12 @@ body::before{opacity:.40;}
    -------------------------------------------------------------------------- */
 :root{
   --g-navy:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 55%,var(--navy-soft) 100%);
-  /* Starts at the brand orange and travels lighter, never darker: the dark
-     label these buttons carry reads 6.3:1 at the first stop and 7.9:1 at the
-     last, where the deep orange would have taken it to 4.1:1. */
-  --g-accent:linear-gradient(135deg,var(--orange) 0%,#E59A52 55%,#EFA560 100%);
+  /* The primary button is gold (the Training Portal's), with the navy label
+     --gold-ink: 7.1:1 at its darkest stop. */
+  --g-accent:var(--gold);
   --edge-cyan:rgba(56,189,248,.38);
   --glow-navy:0 12px 30px -16px rgba(22,24,41,.65);
-  --glow-accent:0 10px 26px -14px rgba(219,132,55,.55);
+  --glow-accent:0 10px 26px -14px var(--gold-glow);
   --glow-cyan:0 0 0 1px rgba(56,189,248,.30),0 10px 26px -16px rgba(56,189,248,.5);
 }
 .topbar{background-image:var(--g-navy);box-shadow:inset 0 -1px 0 var(--edge-cyan),var(--glow-navy);}
@@ -2932,7 +2936,7 @@ body::before{opacity:.40;}
 .xd-head-steps{list-style:none;display:flex;gap:6px;margin:0;padding:0;flex:none;}
 .xd-head-steps button{border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:rgba(255,255,255,.75);
   border-radius:999px;padding:5px 12px;font:600 11.5px var(--font-ui);cursor:pointer;}
-.xd-head-steps li.on button{background:#DB8437;border-color:#DB8437;color:#fff;}
+.xd-head-steps li.on button{background:var(--gold);border-color:#e0a43a;color:var(--gold-ink);}
 .xd-head-steps button:hover{background:rgba(255,255,255,.18);}
 /* the strip says it already */
 .xd-head ~ .topic-separator{display:none !important;}
@@ -4482,7 +4486,7 @@ function completionRibbonSvg(pct, done){
   </svg>`;
 }
 function brandMark(){
-  return `<img class="brand-mark brand-logo" src="/logo.svg" alt="Legal Support Help">`;
+  return `<img class="brand-mark brand-logo" src="/js/lsh-logo-dark.png" alt="Legal Support Help">`;
 }
 
 /* ---------- top bar ---------- */
@@ -18195,7 +18199,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=4"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=wide-9"></script>
+<script src="/js/eapa-updates.js?v=gold-1"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>
@@ -18206,7 +18210,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- 📋 Compliance and Platform Utilization Monitoring in View Detail, before the trainee's 🏅 Scorecard: lesson decks, Knowledge Checks, Practice Lab, last opened, last on the platform, 📝 Send Feedback -->
 <script src="/js/eapa-compliance-monitor.js?v=1"></script>
 <script src="/js/eapa-cm-scorecard.js?v=10"></script>
-<script src="/js/eapa-admin-shell.js?v=10"></script>
+<script src="/js/eapa-admin-shell.js?v=11"></script>
 <!-- 🧭 Blueprints: the Trainer blueprint (blueprint-content.js) and the Trainee blueprint (Orientation, /blueprint.pdf) rebuilt after every deploy -->
 <script src="/js/blueprint-content.js?v=3"></script>
 <script src="/js/lsh-blueprint-course.js?v=2"></script>
@@ -18215,23 +18219,25 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- 🟨 lesson cards framed as on the LSH Academy Index: navy along the top fading to gold, on a white card (the same file in every LSH course; the buttons stay as they are) -->
 <script src="/js/lsh-academy-frame.js?v=1"></script>
 <script src="/js/lsh-topbar.js?v=3"></script>
-<script src="/js/eapa-deck-card.js?v=7"></script>
+<script src="/js/eapa-deck-card.js?v=8"></script>
 <!-- 👁 Up next: hover Next (or 👁 Peek next / N) for a preview of the next slide -->
 <script src="/js/eapa-next-preview.js?v=2"></script>
 <!-- 🎨 Deck colour, graphics and icons on every slide (topic illustrations, section colours, AA contrast) -->
 <script src="/js/eapa-deck-color.js?v=8"></script>
 <!-- ✨ The elite deck: the Portal's blue-gold frame, mono tags, sans-serif headings and navy primary buttons on the lesson deck (design only) -->
-<script src="/js/eapa-deck-elite.js?v=1"></script>
+<script src="/js/eapa-deck-elite.js?v=2"></script>
 <!-- 🖥 Practice Lab activities in realistic app windows (docs, mail, tasks, ledger, admin console, portal, dashboards, AI assistant, CRM, forms, reviews, social) -->
 <script src="/js/eapa-lab-apps.js?v=5"></script>
 <script src="/js/eapa-sim-scenarios.js?v=2"></script>
-<script src="/js/eapa-sim-run.js?v=3"></script>
+<script src="/js/eapa-sim-run.js?v=4"></script>
 <!-- 🎬 Each day's narrated Video Presentation (▶ Video on the day card; build/video/README.md) -->
 <script src="/js/eapa-day-videos.js?v=2"></script>
-<script src="/js/eapa-day-video.js?v=2"></script>
+<script src="/js/eapa-day-video.js?v=3"></script>
 <!-- 🛠 The day's Practice Lab inside its deck (a slide per activity, ▶ Start opens it there), and a day that completes itself: Knowledge Check passed + Practice Lab done, no ✓ Finish Training -->
 <script src="/js/eapa-deck-lab.js?v=2"></script>
 <!-- 🔠 The lesson deck's type, the Case Management / Foundational way: body text 16px+ on a laptop, labels you can read -->
 <script src="/js/eapa-deck-type.js?v=1"></script>
+<script src="/js/lsh-footer.js?v=1"></script>
+<script src="/js/lsh-hero-logo.js?v=2"></script>
 </body>
 </html>
