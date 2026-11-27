@@ -48,6 +48,7 @@
     "projectcompliance6:Operational Warning Signs": ["dash", "Trial team · KPI dashboard"],
     "projectcompliance6:Recovery Memo": ["docs", "Memo — Trial team recovery plan", {doc:true}],
     "projectcompliance6:Compliance Audit Simulation": ["portal", "Compliance audit · annual review"],
+    "projectcompliance6:Florida Satellite Office": ["portal", "Miami office · opening checklist"],
     "financial:Trust Ledger Reconciliation": ["ledger", "Client trust ledger · reconciliation"],
     "financial:Invoice & Bill Audit": ["ledger", "Bills & invoices · review queue"],
     "financial:Invoice Follow-Up": ["mail", "Follow-up on open invoices", {from:"Accounts · Thorne & Partners"}],

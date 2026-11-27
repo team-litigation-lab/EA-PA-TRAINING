@@ -2276,7 +2276,7 @@ const SOP_LAB_ACTIVITIES = {
   calendar:["Calendar Conflict Resolver","Daily Briefing Prompt","Proactive EA Tasks","Travel & the Trip That Breaks","Crisis Roleplay"],
   coldcalling4:["Prioritize the Day","Prospect Call Log","Lead Generation Practice","Live Intake Call Simulator","Email Outreach Simulator","Crisis Roleplay"],
   insurance5:["Classify the Risk","Match the Strategy","Home Binder","Crisis Roleplay"],
-  projectcompliance6:["Compliance Risk","Operational Warning Signs","Recovery Memo","Crisis Roleplay","Compliance Audit Simulation"],
+  projectcompliance6:["Compliance Risk","Operational Warning Signs","Recovery Memo","Crisis Roleplay","Compliance Audit Simulation","Florida Satellite Office"],
   financial:["Trust Ledger Reconciliation","Invoice & Bill Audit","Invoice Follow-Up","Attention to Detail Test","Crisis Roleplay"],
   accessincident8:["Least-Privilege Access Audit","Verify Before You Disclose","Contain the Leak","The Firm Is Exposed — Size It","Recommendation & Action Plan","The Client Conversation","Crisis Roleplay"],
   compliance9:["Event Invite & Registration Form","Event Follow-Up","Meeting Notes & Action Items","CLE Compliance Dashboard","Negative Review Response","Awards Tracker","Crisis Roleplay"],
