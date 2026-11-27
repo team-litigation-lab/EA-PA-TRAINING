@@ -3684,6 +3684,35 @@ const RISK_STRATEGY_SCENARIOS = [
    ============================================================ */
 // "Renew Soon" = expires within ~60 days of today; "Current" = further out. Dates are counted from the day the lab
 // is opened, so the exercise never shows a license that has already lapsed.
+/* Day 6 · Florida Satellite Office: Elias opens a Miami office. What the firm must have in place before opening
+   day (Do it) and the traps (Don't). Each "why" names the rule or office to check it with; it teaches where to look,
+   not legal advice: trainees confirm each item with the official source before acting on it. */
+const FL_SATELLITE_ITEMS = [
+  {t:"Have a Florida Bar–licensed attorney handle all Florida legal work and supervise the Miami office", a:"do",
+   r:"Practising Florida law takes Florida Bar membership; lawyers admitted only in New York or D.C. can't (Rule 4-5.5, unlicensed practice). Confirm with The Florida Bar."},
+  {t:"Let Elias advise Florida clients on Florida law from the Miami office under his New York license, as long as he signs off", a:"dont",
+   r:"Supervising doesn't make it lawful: Florida law work from a Florida office needs a Florida Bar member. That's the unlicensed-practice risk to flag, not to work around."},
+  {t:"Register the firm with the Florida Division of Corporations (Sunbiz) for authority to transact business in Florida, with a Florida registered agent", a:"do",
+   r:"An out-of-state entity doing business in Florida files for authority (foreign qualification) and keeps a registered agent with a Florida street address. File and check status at sunbiz.org."},
+  {t:"Get the Local Business Tax Receipts for the office's county and city (Miami-Dade County and the City of Miami)", a:"do",
+   r:"Florida counties and cities issue their own Local Business Tax Receipt for a business location. Check both the county's and the city's requirements."},
+  {t:"Open a Florida IOTA trust account for Florida client funds before taking any retainer there", a:"do",
+   r:"The Florida Bar's trust-account rules (Chapter 5) want client funds held in a trust account in the state where the office is, unless the client agrees otherwise; Florida's IOTA program covers nominal or short-term funds."},
+  {t:"Put Florida clients' retainers into the firm's existing New York IOLA account to save opening a new one", a:"dont",
+   r:"Mixing a Florida office's client funds into another state's trust program without the client's say-so breaks the trust-account rules. Florida funds go to the Florida trust account."},
+  {t:"Register with the Florida Department of Revenue as an employer (reemployment tax) before the first Florida hire", a:"do",
+   r:"Employers with Florida staff register for reemployment (unemployment) tax with the Florida Department of Revenue."},
+  {t:"Set up Florida state income tax withholding for the Miami staff's paychecks", a:"dont",
+   r:"Florida has no state personal income tax, so there is nothing to withhold for Florida. Federal withholding still applies."},
+  {t:"Start charging Florida sales tax on the office's legal fees", a:"dont",
+   r:"Florida doesn't tax legal services. Collecting sales tax on legal fees would be wrong; check the Department of Revenue's guidance before charging any tax."},
+  {t:"Arrange workers' compensation coverage for the Miami staff", a:"do",
+   r:"Florida requires workers' compensation for most non-construction employers once they have four or more employees; arrange it before the office reaches that size."},
+  {t:"Check the office's website, signage, letterhead and ads against The Florida Bar's advertising rules, and note where listed lawyers aren't admitted in Florida", a:"do",
+   r:"The Florida Bar's advertising rules (Rule 4-7) cover a Florida office's marketing, and a firm name or letterhead listing lawyers not admitted in Florida must say where they are admitted."},
+  {t:"Extend the firm's professional liability (malpractice) insurance to cover the Miami office and its Florida work", a:"do",
+   r:"The policy has to cover the new location and the Florida attorney's work, or a claim from the new office may not be covered. Ask the firm's broker before opening day."}
+];
 const FIRM_LICENSES = (()=>{
   const now = new Date();
   const m = n => new Date(now.getFullYear(), now.getMonth()+n, 1).toLocaleDateString("en-US",{month:"short", year:"numeric"});
@@ -18044,12 +18073,35 @@ function initProjectCompliance6(body){
     <button class="btn btn-navy btn-sm" onclick="reviewComplianceAuditResponse()">Get Review on My Actions</button>
     <div id="complianceAuditWrittenResult" style="margin-top:14px;"></div>
   `;
+  toolState.c6fl = {picks:{}, score:null, memoReport:null};
+  const partF = `
+    <div class="card" style="padding:16px 18px;margin-bottom:16px;background:#F8F9FC;">
+      <b style="font-size:13px;color:var(--navy);">🌴 Thorne &amp; Partners is opening a satellite office in Miami, Florida</b>
+      <p style="font-size:13px;color:#37394A;margin:8px 0 0;">Elias: "We're opening in Miami in eight weeks. Florida is new for us: we're in New York, D.C., London and Singapore. Before I sign the lease, I need to know everything the firm must have in place there, who handles what, and what could go wrong."</p>
+      <p style="font-size:12.5px;color:var(--ink-soft);margin:10px 0 0;">An EA doesn't give legal advice: you research, organise and route. For each item, decide whether the firm should do it before opening day, or whether it's a trap. Then brief Elias. Check every item against the official source (The Florida Bar, sunbiz.org, the Florida Department of Revenue, the county and city) before acting on it.</p>
+    </div>
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">1. The opening checklist</h3>
+    <div class="card" style="padding:14px 16px;overflow-x:auto;">
+      <table class="log-table"><thead><tr><th>Item</th><th>Your call</th></tr></thead><tbody>
+        ${FL_SATELLITE_ITEMS.map((x,i)=>`<tr><td>${esc(x.t)}<div class="fb" id="c6flFb${i}" style="margin-top:6px;font-size:12.5px;"></div></td>
+          <td><select onchange="setC6Fl(${i}, this.value)"><option value="">Choose&hellip;</option><option value="do">Do it before opening</option><option value="dont">Don't: wrong or not needed</option></select></td></tr>`).join("")}
+      </tbody></table>
+    </div>
+    <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="checkC6Fl()">Check My Checklist</button>
+    <div id="c6FlResult" style="margin-top:8px;font-size:13px;"></div>
+    <h3 style="margin:24px 0 6px;color:var(--navy);font-size:15px;">2. Brief Elias</h3>
+    <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 8px;">Write Elias a short BLUF memo: what must be in place before the Miami office opens, who owns each item (Elias, the Florida attorney, the bookkeeper, the broker, you), by when, and the two biggest risks if anything is missed.</p>
+    <textarea id="c6FlMemo" placeholder="BLUF: …" style="width:100%;min-height:160px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font:inherit;font-size:13.5px;"></textarea>
+    <button class="btn btn-navy btn-sm" style="margin-top:10px;" onclick="checkC6FlMemo(this)">Get Review</button>
+    <div id="c6FlMemoResult" style="margin-top:10px;"></div>
+  `;
   body.innerHTML = renderToolWizard(6, [
     {label:"Compliance Risk", html:partA},
     {label:"Operational Warning Signs", html:partB},
     {label:"Recovery Memo", html:partC},
     {label:"Crisis Roleplay", html:partD},
-    {label:"Compliance Audit Simulation", html:partE}
+    {label:"Compliance Audit Simulation", html:partE},
+    {label:"Florida Satellite Office", html:partF}
   ]);
 }
 function setC6License(i,v){ toolState.c6.license[i]=v; }
@@ -18104,6 +18156,48 @@ async function checkC6Recovery(btn){
   }
 }
 window.checkC6Recovery = checkC6Recovery;
+function setC6Fl(i,v){ toolState.c6fl.picks[i]=v; }
+window.setC6Fl = setC6Fl;
+async function checkC6Fl(){
+  const P = toolState.c6fl.picks, n = FL_SATELLITE_ITEMS.length;
+  if(FL_SATELLITE_ITEMS.some((_,i)=>!P[i])){ toast(`Decide all ${n} items first.`); return; }
+  let correct = 0;
+  FL_SATELLITE_ITEMS.forEach((x,i)=>{ const ok = P[i]===x.a; if(ok) correct++;
+    const fb = document.getElementById(`c6flFb${i}`); fb.classList.add("show");
+    fb.style.color = ok ? "var(--success)" : "var(--danger)";
+    fb.textContent = (ok ? "✅ Correct — " : "❌ Not quite — ") + x.r; });
+  const score = Math.round(correct/n*100);
+  toolState.c6fl.score = score;
+  document.getElementById("c6FlResult").innerHTML = `<b style="color:${score>=70?'var(--success)':'var(--danger)'};">${correct}/${n} correct (${score}%)</b>`;
+  await bumpPracticeProgress("projectcompliance6", score);
+}
+window.checkC6Fl = checkC6Fl;
+async function checkC6FlMemo(btn){
+  const text = document.getElementById("c6FlMemo").value.trim();
+  if(text.length<40){ toast("Write a fuller memo first."); return; }
+  if(!(await useLabAttempt(6, "checkC6FlMemo"))) return;
+  btn.disabled = true; btn.textContent = "Reviewing…";
+  const resultEl = document.getElementById("c6FlMemoResult");
+  resultEl.innerHTML = `<div class="ai-loading">Reviewing your memo…</div>`;
+  try{
+    const report = await runRubricEvaluation(
+      "Florida Satellite Office — BLUF Memo to Elias",
+      `Thorne & Partners (offices in New York, D.C., London, Singapore) is opening a satellite office in Miami, Florida in eight weeks. The EA briefs the managing partner, Elias Thorne, on what must be in place before opening day. What the firm needs: ${FL_SATELLITE_ITEMS.filter(x=>x.a==="do").map(x=>x.t).join("; ")}. Traps to avoid: ${FL_SATELLITE_ITEMS.filter(x=>x.a==="dont").map(x=>x.t+" ("+x.r+")").join("; ")}.`,
+      text,
+      `BLUF first (the answer in the first line). Covers the biggest items: a Florida Bar-licensed attorney handling Florida work (the unlicensed-practice risk), Florida foreign qualification with a registered agent, local business tax receipts, a Florida trust (IOTA) account kept separate, employer registration and workers' comp, advertising rules, and malpractice coverage. Names an owner and a timing for each. Names the two biggest risks (unlicensed practice of law; client funds in the wrong trust account) and doesn't fall for the traps. Says items will be confirmed with the official sources and doesn't present itself as legal advice. Concise enough for a busy managing partner.`
+    );
+    toolState.c6fl.memoReport = report;
+    resultEl.innerHTML = `<b style="font-size:13px;color:var(--navy);display:block;margin-bottom:8px;">Evaluation Report — Your Miami Office Memo</b>` + renderEvaluationReport(report, 6);
+    await bumpPracticeProgress("projectcompliance6", report.totalScore);
+    if(report.totalScore>=85) burstConfetti();
+  }catch(e){
+    toolState.c6fl.memoReport = "Couldn't reach the review service.";
+    resultEl.innerHTML = renderAiErrorBlock(e, "Couldn't get feedback");
+  }finally{
+    btn.disabled = false; btn.textContent = "Get Review";
+  }
+}
+window.checkC6FlMemo = checkC6FlMemo;
 async function downloadProjectCompliance6Pdf(){
   await ensureTraineeName();
   const c6 = toolState.c6;
@@ -18199,7 +18293,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=4"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=gold-1"></script>
+<script src="/js/eapa-updates.js?v=gold-2"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>
@@ -18227,14 +18321,14 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- ✨ The elite deck: the Portal's blue-gold frame, mono tags, sans-serif headings and navy primary buttons on the lesson deck (design only) -->
 <script src="/js/eapa-deck-elite.js?v=2"></script>
 <!-- 🖥 Practice Lab activities in realistic app windows (docs, mail, tasks, ledger, admin console, portal, dashboards, AI assistant, CRM, forms, reviews, social) -->
-<script src="/js/eapa-lab-apps.js?v=5"></script>
+<script src="/js/eapa-lab-apps.js?v=6"></script>
 <script src="/js/eapa-sim-scenarios.js?v=2"></script>
 <script src="/js/eapa-sim-run.js?v=4"></script>
 <!-- 🎬 Each day's narrated Video Presentation (▶ Video on the day card; build/video/README.md) -->
 <script src="/js/eapa-day-videos.js?v=2"></script>
 <script src="/js/eapa-day-video.js?v=3"></script>
 <!-- 🛠 The day's Practice Lab inside its deck (a slide per activity, ▶ Start opens it there), and a day that completes itself: Knowledge Check passed + Practice Lab done, no ✓ Finish Training -->
-<script src="/js/eapa-deck-lab.js?v=3"></script>
+<script src="/js/eapa-deck-lab.js?v=4"></script>
 <!-- 🔠 The lesson deck's type, the Case Management / Foundational way: body text 16px+ on a laptop, labels you can read -->
 <script src="/js/eapa-deck-type.js?v=1"></script>
 <script src="/js/lsh-footer.js?v=1"></script>
