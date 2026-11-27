@@ -89,13 +89,20 @@ const failures = []; const fail = (m) => failures.push(m);
     if (!/rgb\(38, 43, 69\).*rgb\(219, 132, 55\)/.test(th)) fail(`the table header isn't the standard navy with the orange rule: ${th}`);
     // the old tabs open the Scorecard; 🛡 Admin Master Control has the rest
     await page.evaluate(() => setAdminTab('tfeedback'));
-    if (!(await page.$('.eash-banner'))) fail('the old Trainee Feedback tab doesn\'t open the Scorecard');
+    if (!(await page.$('.eash-banner:not(.eash-amc-banner)'))) fail('the old Trainee Feedback tab doesn\'t open the Scorecard');
     await page.evaluate(() => EAPAShell.go('audit'));
     await page.waitForSelector('.eash-tabs');
     const tabs = await page.$$eval('.eash-tabs .admin-tab-btn', b => b.map(x => x.innerText.trim()));
     if (tabs.join('|') !== '⚙ Settings & Reports|📁 Batch Folders|📋 SOP Reference|✏️ Content Studio|🎬 Videos') fail(`🛡 Admin Master Control's tabs: ${tabs}`);
     await page.evaluate(() => EAPAShell.go('batches'));
-    if (await page.$('.eash-banner')) fail('📁 Batch Folders opened the Scorecard');
+    if (await page.$('.eash-banner:not(.eash-amc-banner)')) fail('📁 Batch Folders opened the Scorecard');
+    // every 🛡 Admin Master Control tab in the Scorecard's look: its own navy banner, the strip underlined on it, one white panel
+    for (const [id, title] of [['audit', 'Settings & Reports'], ['batches', 'Batch Folders'], ['sop', 'SOP Reference'], ['studio', 'Content Studio'], ['videos', 'Videos']]) {
+        await page.evaluate(id => { if (id === 'videos') setAdminTab('videos'); else EAPAShell.go(id); }, id); await page.waitForTimeout(300);
+        const look = await page.evaluate(() => ({ h: (document.querySelector('.eash-amc-banner h2') || {}).textContent || '', on: [...document.querySelectorAll('.eash-tabs .admin-tab-btn.on')].map(b => b.innerText.trim()), body: !!document.querySelector('.eash-amc-body'), loose: !!document.querySelector('.eash-amc-body > h1, .eash-amc-body .page-hero') }));
+        if (!look.h.includes(title) || look.on.length !== 1 || !look.on[0].includes(title) || !look.body || look.loose) fail(`🛡 ${title} isn't in the Scorecard's look: ${JSON.stringify(look)}`);
+    }
+    await page.evaluate(() => EAPAShell.go('batches'));
     if (!(await page.$('.batch-folder'))) fail('📁 Batch Folders doesn\'t show the batch folders');
     // another batch from the header
     await page.evaluate(() => { EAPAShell.go('scorecard'); }); await page.waitForSelector('.eash-banner');

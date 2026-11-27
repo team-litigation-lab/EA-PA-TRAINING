@@ -15,6 +15,10 @@
      🛡 Admin Master Control Settings & Reports (audit), 📁 Batch Folders (batches), 📋 SOP Reference (sop), ✏️ Content Studio
                              (studio), and any tab another script adds.
    The tables take the Foundational / Case Management look: solid white, a navy header with the orange rule.
+   Every 🛡 Admin Master Control tab takes the Scorecard's look too (elite()): the tab's own heading and its buttons become
+   the same navy banner, the tab strip is the Scorecard's underlined sub-tabs, and the tab's content sits in one solid
+   white panel (no frosted glass over the photo). It wraps renderAdmin last, once every script has loaded, so a tab added
+   by another script (🎬 Videos) gets it as well.
    ============================================================ */
 (function(){
 "use strict";
@@ -47,7 +51,7 @@ function pills(sec){
     <button type="button" class="eash-pill ${sec === "admin" ? "on" : ""}" onclick="EAPAShell.go('audit')">🛡 Admin Master Control</button></div>`;
 }
 function adminTabs(tab){
-  return `<div class="admin-tabs eash-tabs">${ADMIN_TABS.map(([id, l]) => `<button class="admin-tab-btn ${tab === id ? "active" : ""}" onclick="EAPAShell.go('${id}')">${l}</button>`).join("")}</div>`;
+  return `<div class="admin-tabs eash-tabs eash-subs">${ADMIN_TABS.map(([id, l]) => `<button class="admin-tab-btn eash-sub-b ${tab === id ? "active on" : ""}" onclick="EAPAShell.go('${id}')">${l}</button>`).join("")}</div>`;
 }
 
 function scorecardHtml(){
@@ -171,9 +175,63 @@ renderAdmin = function(){
   const m = /<div class="admin-tabs"[^>]*>[\s\S]*?<\/div>/.exec(out);
   if(!m) return pills("admin") + out;
   const extra = [...m[0].matchAll(/<button[^>]*setAdminTab\('([^']+)'\)[^>]*>[\s\S]*?<\/button>/g)].filter(x => !ADMIN_TABS.some(t => t[0] === x[1]) && !MERGED.includes(x[1])).map(x => x[0]).join("");
-  const strip = adminTabs(state.adminTab).replace(/<\/div>$/, extra + "</div>");
+  const strip = adminTabs(state.adminTab).replace(/<\/div>$/, extra.replace(/class="admin-tab-btn( active)?"/g, (x, on) => `class="admin-tab-btn eash-sub-b${on ? " active on" : ""}"`) + "</div>");
   return pills("admin") + out.slice(0, m.index) + strip + out.slice(m.index + m[0].length);
 };
+
+/* 🛡 Admin Master Control in the Scorecard's look: whichever tab is open, its own heading (a page hero, the Settings
+   heading with its buttons, a batch's title, or none) becomes the same navy banner as the Scorecard's, with its buttons
+   in the banner; then the tab strip; then the tab's content in one solid white panel. Each tab keeps its own render
+   function: this only moves its heading and wraps the rest. */
+function elite(after, strip){
+  const T = document.createElement("template"); T.innerHTML = after;
+  const root = T.content;
+  const label = ((/class="admin-tab-btn eash-sub-b active on"[^>]*>([\s\S]*?)<\/button>/.exec(strip) || [])[1] || "").replace(/<[^>]+>/g, "").trim();
+  let title = "", sub = "", acts = "", head = null, introEl = null;
+  const txt = n => n ? n.textContent.replace(/\s+/g, " ").trim() : "";
+  const hero = root.querySelector(".page-hero");
+  const ap = hero ? null : root.querySelector(".audit-page-head");
+  const nh = hero || ap ? null : root.querySelector("h1.no-hero"), noHero = nh ? nh.parentElement : null;
+  if(hero){ head = hero; const h = hero.querySelector("h1, h2"); title = txt(h); if(h) h.remove(); const eb = hero.querySelector(".eyebrow"); if(eb) eb.remove();
+    const ps = [...hero.querySelectorAll(":scope > p")]; sub = ps.map(x => x.innerHTML).join(" "); ps.forEach(x => x.remove()); acts = hero.innerHTML.trim(); }
+  else if(ap){ head = ap; const h = ap.querySelector("h1"); title = txt(h); const box = h && h.parentElement; if(box && box !== ap) box.remove(); else { if(h) h.remove(); const eb = ap.querySelector(".eyebrow"); if(eb) eb.remove(); }
+    acts = ap.innerHTML.trim(); const nx = ap.nextElementSibling; if(nx && nx.tagName === "P"){ sub = nx.innerHTML; introEl = nx; } }
+  else if(noHero){ head = noHero; title = txt(nh); nh.remove(); acts = noHero.innerHTML.trim(); }
+  // (a heading drawn loose at the top: an eyebrow, a title and its intro line, which a later step wraps into a hero)
+  const loose = !head && [...root.children].find(n => n.tagName === "H1" || n.tagName === "H2");
+  if(loose && [...root.children].indexOf(loose) <= 2){
+    title = txt(loose); const pv = loose.previousElementSibling, nx = loose.nextElementSibling;
+    if(pv && pv.matches(".eyebrow")) pv.remove();
+    if(nx && nx.tagName === "P"){ sub = nx.innerHTML; nx.remove(); }
+    loose.remove();
+  }
+  if(head) head.remove(); if(introEl) introEl.remove();
+  if(!title) title = label;
+  if(!/^\p{Extended_Pictographic}/u.test(title)) { const ic = (/^(\S+)\s/.exec(label) || [])[1]; if(ic && /\p{Extended_Pictographic}/u.test(ic)) title = ic + " " + title; }
+  const box = document.createElement("div"); box.appendChild(root.cloneNode(true));
+  const banner = `<div class="eash-banner eash-amc-banner"><div class="eash-banner-t"><p class="eash-k">${KICKER} · Admin Master Control</p><h2>${E(title)}</h2>${sub ? `<p class="eash-sub">${sub}</p>` : ""}</div>${acts ? `<div class="eash-acts">${acts}</div>` : ""}</div>`;
+  return `<div class="eash-page eash-amc">${banner}${strip}<section class="eash-part eash-amc-body">${box.innerHTML}</section></div>`;
+}
+// the outermost wrap, put on once every script has loaded (🎬 Videos and any other tab add themselves after this file):
+// the strip's underline follows the tab that is open, then the page is laid out as above
+function eliteWrap(){
+  if(typeof renderAdmin !== "function" || renderAdmin.__elite) return;
+  const inner = renderAdmin;
+  renderAdmin = window.renderAdmin = function(){
+    const out = inner.apply(this, arguments);
+    if(!state.isAdmin || state.adminTab === "scorecard") return out;
+    const m = /<div class="admin-tabs eash-tabs eash-subs">[\s\S]*?<\/div>/.exec(out);
+    if(!m) return out;
+    const tab = state.adminTab;
+    const strip = m[0].replace(/<button class="admin-tab-btn[^"]*"([^>]*)>/g, (x, rest) => {
+      const id = (/(?:EAPAShell\.go|setAdminTab)\('([^']+)'\)/.exec(rest) || [])[1];
+      return `<button class="admin-tab-btn eash-sub-b${id === tab ? " active on" : ""}"${rest}>`; });
+    return out.slice(0, m.index) + elite(out.slice(m.index + m[0].length), strip);
+  };
+  renderAdmin.__elite = true;
+  if(state.view === "admin" && typeof render === "function") render();
+}
+if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", eliteWrap); else setTimeout(eliteWrap, 0);
 
 // every row's buttons in view: no "More ▾" menu (its 🎓 Certificate, ↺ Reset Attempts, ♻ Restore and Revoke sit beside the rest)
 if(typeof renderAdminRow === "function" && !renderAdminRow.__eash){
@@ -268,6 +326,24 @@ const st = document.createElement("style"); st.id = "eapa-admin-shell"; st.textC
 .eash-page .bf-act-row{background:#fff;font-size:14px;}
 .eash-page .bf-act-head{background:#262B45 !important;color:#fff !important;border-bottom:2px solid #DB8437;}
 .eash-page .tfb-summary .card,.eash-page .tfb-days{background:#fff !important;}
+/* 🛡 Admin Master Control: the tab strip as the Scorecard's sub-tabs, every card solid white with a thin border (no
+   frosted glass over the photo), stat tiles and tables in the same navy-and-white look */
+.eash-amc .eash-tabs{background:transparent;border-radius:0;padding:0;margin:0;}
+.eash-amc .eash-sub-b.admin-tab-btn{border-radius:0;box-shadow:none;}
+.eash-amc-banner .eash-sub{max-width:90ch;font-size:14px;line-height:1.5;color:#D9DDEA;margin:4px 0 0;} .eash-amc-banner .eash-sub b{color:#fff;}
+.eash-amc-banner .eash-acts .btn{background:#262B45 !important;border:1px solid #5A6080 !important;color:#fff !important;font-weight:800;box-shadow:none !important;}
+.eash-amc-banner .eash-acts .btn:hover{background:#343A5C !important;}
+.eash-amc-banner .eash-acts .btn-primary,.eash-amc-banner .eash-acts .btn-orange{background:#DB8437 !important;border-color:#DB8437 !important;color:#241304 !important;}
+.eash-amc-banner .eash-acts > div{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.eash-amc-banner .eash-acts a,.eash-amc-banner .eash-acts span,.eash-amc-banner .eash-acts label{color:#fff !important;font-weight:700;}
+.eash-amc-body{display:flex;flex-direction:column;gap:14px;}
+.eash-amc-body > *{margin-top:0 !important;margin-bottom:0 !important;}
+.eash-amc-body .card:not(#eash-x1):not(#eash-x2),.eash-amc-body .stat:not(#eash-x1):not(#eash-x2){background:#fff !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;border:1px solid #DCE0EA !important;border-radius:12px !important;box-shadow:0 1px 4px rgba(30,35,64,.06) !important;}
+.eash-amc-body .card[style*="danger"]:not(#eash-x1):not(#eash-x2):not(#eash-x3){background:#FDECEA !important;border-left:4px solid #C0392B !important;}
+.eash-amc-body .card[style*="orange"]:not(#eash-x1):not(#eash-x2):not(#eash-x3),.eash-amc-body .card[style*="255,244,232"]:not(#eash-x1):not(#eash-x2):not(#eash-x3){background:#FFF8F0 !important;border-color:#F0D2B0 !important;}
+.eash-amc-body table thead th{background:#262B45 !important;color:#fff !important;border-bottom:2px solid #DB8437 !important;font-weight:800;}
+.eash-amc-body .sopf-grid,.eash-amc-body .studio-stats{gap:12px;}
+.eash-amc-body h3{color:#1E2340;}
 .eash-flash td{background:#FFF1E2 !important;transition:background .4s;}
 `;
 (document.head || document.documentElement).appendChild(st);

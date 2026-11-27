@@ -14,6 +14,11 @@ Trainees sign in once, on the LSH Training Portal, and open this program from th
 
 The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with its records in the `LSH_KV` KV namespace and trainees' saved progress in R2 (see "Where records are kept").
 
+**🛡 Admin Master Control looks like the 🏅 Scorecard** (`js/eapa-admin-shell.js`). On every tab (⚙ Settings & Reports, 📁 Batch Folders and each batch, 📋 SOP Reference, ✏️ Content Studio, 🎬 Videos):
+- the tab's title, intro and buttons sit in the same navy banner as the Scorecard's;
+- the tab strip is the Scorecard's underlined sub-tabs;
+- the content is in one solid white panel, with white cards and navy-header tables, instead of frosted glass over the photo.
+
 **🏠 Main Portal (admins):** while an admin is signed in, the top bar has **🏠 Main Portal** and the Admin screen has **← Back to Main Portal** (next to Log out). Both open the LSH Training Portal's LSH Academy Index (`https://cm-training-activity.pages.dev/programs.html`), where admins open each program. Trainees and the 👁 Trainee view don't show them. It's `js/portal-link.js`, the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them.
 
 **🧭 The top bar, organized (every course):** buttons that do the same kind of thing share one menu, the way the Training Portal keeps everything else under ⚙ System Management. **📁 Case File** is one tab for the Case File (or Claim File), 📁 Documents and 🗂 Workspace, which share a row of tabs at the top of their pages; **📚 Guides ▾** holds Notes, Handouts and the Facilitator Guide (whichever the page has; the blueprints are on the Main Portal); **📋 My Sheets ▾** holds the Task Tracker and Monitoring Sheet; **⛶ View ▾** holds ⧉ Open in a new tab and ⛶ Full screen. A menu is made only when two or more of its buttons are on the bar. It's `js/lsh-topbar.js`, loaded last, the same file in every LSH course repo; change it in all of them.
