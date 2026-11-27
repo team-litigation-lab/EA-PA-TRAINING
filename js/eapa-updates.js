@@ -2222,7 +2222,10 @@ function labChipsHtml(t){
   const n = (toolState && toolState.wizardLabels) ? toolState.wizardLabels.length : 0;
   const left = typeof labAttemptsRemaining==="function" ? labAttemptsRemaining() : null;
   return (n ? `<span>🧩 ${n} activities</span>` : "")
-    + (p ? `<span class="ok">✓ Best score ${p.bestScore}% · ${p.runs} run${p.runs===1?"":"s"}</span>` : `<span>◻ Not started</span>`)
+    + (() => { const lp = window.eapaDeckLab && eapaDeckLab.labProgress ? eapaDeckLab.labProgress(t.id) : null;
+        if(lp && lp.total) return lp.complete ? `<span class="ok">✓ All ${lp.total} activities graded${lp.best != null ? ` · best ${lp.best}%` : ""}</span>`
+          : lp.started ? `<span>◐ ${lp.done} of ${lp.total} activities graded${lp.best != null ? ` · best ${lp.best}%` : ""}</span>` : `<span>◻ Not started</span>`;
+        return p ? `<span class="ok">✓ Best score ${p.bestScore}% · ${p.runs} run${p.runs===1?"":"s"}</span>` : `<span>◻ Not started</span>`; })()
     + (left!=null ? `<span>🔁 ${left} of ${LAB_ATTEMPT_CAP} repeats left for this day</span>` : "")
     + `<span>🆓 First try of each exercise is free</span>`;
 }

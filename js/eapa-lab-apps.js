@@ -230,7 +230,7 @@
   const pageCss = `
 /* Practice Lab page: the window's full width and all ten labs on one screen, five to a row */
 @media (min-width:1200px){
-  body.practice-onescreen main:not(.main-dash){max-width:none;padding:12px 24px 40px;}
+  body.practice-onescreen main:not(.main-dash){max-width:none;padding:12px 24px 28px;}
   body.practice-onescreen .page-hero{padding:14px 22px !important;margin-bottom:10px !important;}
   body.practice-onescreen .page-hero h1{font-size:24px !important;margin:2px 0 !important;}
   body.practice-onescreen .page-hero .eyebrow{display:none !important;}
@@ -246,6 +246,18 @@
   body.practice-onescreen .tool-card .tool-desc2{font-size:12.5px !important;line-height:1.4 !important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:0 0 auto !important;}
   body.practice-onescreen .tool-card .tool-status-row{font-size:11.5px !important;padding:3px 9px !important;}
   body.practice-onescreen .tool-card .tool-open-btn{padding:7px !important;font-size:13px !important;}
+  /* the ten cards fill the window down to the footer, two equal rows, every card the same height, with its status line
+     and Open Tool button at its foot, so the buttons line up across each row */
+  body.practice-onescreen main:not(.main-dash){display:flex;flex-direction:column;min-height:calc(100vh - 168px);}
+  body.practice-onescreen #toolGridWrap{flex:1 1 auto;grid-auto-rows:minmax(0,1fr);align-items:stretch;}
+  body.practice-onescreen .tool-card{height:100%;}
+  body.practice-onescreen .tool-card .tool-head{min-height:56px !important;display:flex;flex-direction:column;justify-content:center;}
+  body.practice-onescreen .tool-card .mh-title{font-size:14px !important;}
+  body.practice-onescreen .tool-card .tool-body2{flex:1 1 auto !important;padding:10px 16px 12px !important;gap:4px !important;}
+  body.practice-onescreen .tool-card .tool-body2 .module-icon{display:block !important;font-size:28px;line-height:1;margin:2px 0 0 !important;text-align:center;}
+  body.practice-onescreen .tool-card .tool-desc2{font-size:14px !important;line-height:1.45 !important;-webkit-line-clamp:3;}
+  body.practice-onescreen .tool-card .tool-status-row{margin-top:auto !important;font-size:12.5px !important;}
+  body.practice-onescreen .tool-card .tool-open-btn{padding:10px !important;font-size:15px !important;}
 }`;
   const st = document.createElement("style"); st.id = "eapa-lab-apps"; st.textContent = css + pageCss;
   (document.head || document.documentElement).appendChild(st);

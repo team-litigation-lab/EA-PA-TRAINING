@@ -281,7 +281,16 @@ if(typeof renderQuiz === "function"){
   };
 }
 
-window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline, labLeft, kcHeld, startFromGate};
+// one lab's progress, counted by activity (what the Knowledge Check waits for): the Practice Lab cards and the lab's own
+// header say "Completed" only once every activity is graded
+function labProgress(toolId){
+  const t = PRACTICE_TOOLS.find(x => x.id === toolId), a = t ? acts(t) : [], p = pp(toolId), parts = (p && p.parts) || {};
+  const done = a.filter(l => typeof parts[l] === "number").length;
+  return {total: a.length, done, best: p && typeof p.bestScore === "number" && (p.runs || 0) > 0 ? p.bestScore : null, runs: (p && p.runs) || 0,
+    complete: a.length > 0 && done === a.length, started: done > 0 || ((p && p.runs) || 0) > 0};
+}
+
+window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline, labLeft, kcHeld, startFromGate, labProgress};
 
 const st = document.createElement("style"); st.id = "eapa-deck-lab"; st.textContent = `
 .edl{text-align:left;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;padding:22px 24px;background:#FFFBF3;border-color:var(--orange-soft,#F3D2B0);align-items:start;}
