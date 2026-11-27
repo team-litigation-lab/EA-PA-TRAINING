@@ -37,6 +37,22 @@ ${W} .btn${notGrid},${W} .lab-cta{font-size:15.5px !important;font-weight:800 !i
 ${W} .aw-bar{font-size:14px !important;font-weight:700 !important;}
 ${W} .aw-tools span,${W} .aw-side span{font-size:13.5px !important;font-weight:700 !important;}
 
+/* 📧💬📞 a task from Elias: the message it arrives in (email, text or call), then the trainee's move */
+.eli-task{border:1px solid #D9DEEC;border-left:5px solid #1E2340;border-radius:12px;background:#fff;padding:14px 18px;margin:0 0 14px;box-shadow:0 6px 16px -12px rgba(30,35,64,.35);}
+.eli-task-h{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding-bottom:8px;margin-bottom:10px;border-bottom:1px solid #E7EAF2;font-size:14.5px;color:#3F4560;}
+.eli-task-h b{color:#1E2340;font-size:15.5px;}
+.eli-ch{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:999px;background:#1E2340;color:#fff;font-weight:800;font-size:13px;letter-spacing:.03em;}
+.eli-text .eli-ch{background:#1F7A45;} .eli-call .eli-ch{background:#B5651F;}
+.trip-act{border-left:5px solid #DB8437 !important;background:#FFF8F0 !important;padding:12px 16px !important;margin:0 0 6px;}
+/* ✈ the trip, as the trainee builds it */
+.trip-h{margin:22px 0 8px !important;color:#1E2340;font-size:21px !important;font-weight:800 !important;}
+.trip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px 14px;margin:0 0 10px;}
+#toolBody .trip-grid > label{display:flex !important;flex-direction:column !important;align-items:stretch !important;gap:5px;color:#1E2340;font-family:Inter,Arial,sans-serif !important;}
+#toolBody .trip-grid > label > .trip-in{width:100%;box-sizing:border-box;}
+.trip-grid label.wide{grid-column:1 / -1;}
+.trip-in{font:600 16px/1.4 Inter,Arial,sans-serif;padding:8px 10px;border:1.5px solid #C9CFE6;border-radius:8px;background:#fff;color:#1E2340;min-width:0;}
+.trip-in:focus{outline:none;border-color:#1E2340;box-shadow:0 0 0 3px rgba(30,35,64,.12);}
+
 /* 🛠 the Practice Lab page: the cards in a row line up — same height, a two-line header, status and Open Tool at the foot */
 .tool-grid{align-items:stretch !important;}
 .tool-grid > .tool-card{height:100%;display:flex !important;flex-direction:column;}
