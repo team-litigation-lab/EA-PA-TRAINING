@@ -6,10 +6,11 @@
        Day 1 … Day 10). Each day cell shows the day's score, what it is made of (Knowledge Check, Practice Lab,
        Quick Checks, random task) and the slides reached, tinted against the 70% pass mark.
        Click a row (or pick a trainee) to open the card.
-     • The trainee's card: a navy header with the Overall score and a status; 🎯 Focus on — every score under
-       the pass mark with what happened, why, and what they could have done better (from the graders' notes);
-       📅 Day scores — each day's score with "▸ What makes up this score": every activity, its score, and its
-       feedback (strengths, gaps, next time) as the grader wrote it.
+     • The trainee's card, laid out as the Case Management course's: a navy header (Overall, status, days passed);
+       📅 Day scores — one line of numbers per day (Knowledge Check, Practice Lab, Quick Checks, random task, slides);
+       💬 Feedback on each activity — 🎯 Focus on (every score under the pass mark, one line each, linking to its day),
+       then each day folded: its why-this-score table and the trainer's feedback; then how the scores are worked out.
+       Each fact is shown once.
    The numbers are the same as the trainee's own 🏅 My Scorecard (EAPAScore.dayRow in js/eapa-scorecard.js),
    read from each trainee's saved progress (state.auditExtra, loaded by loadAuditExtras).
    ============================================================ */
@@ -73,41 +74,6 @@ function status(s){
   if(s.overall >= 85) return {t: "Excellent", c: "hi"};
   if(s.overall >= PASS) return {t: "Passing", c: "ok"};
   return {t: "Needs Improvement", c: "lo"};
-}
-
-/* ---------- 🎯 Focus on: everything under the pass mark ---------- */
-function focusItems(s){
-  const out = [];
-  s.days.forEach(r => {
-    const D = `Day ${r.dayId}`;
-    if(num(r.kc) && r.kc < PASS){
-      const missed = (r.quiz && r.quiz.missed) || [];
-      out.push({score: r.kc, day: r.dayId, title: `${D} · Knowledge Check`,
-        what: `Best score ${r.kc}% after ${r.tries} attempt${r.tries === 1 ? "" : "s"} (${PASS}% passes).`,
-        why: missed.length ? `Missed: ${missed.slice(0, 3).join(" · ")}${missed.length > 3 ? ` · and ${missed.length - 3} more` : ""}` : "Some of the day's key points didn't stick yet.",
-        better: `Go back through Day ${r.dayId}'s slides on the questions missed, then retake the Knowledge Check.`});
-    }
-    // each graded activity's latest run, under the pass mark
-    const latest = {};
-    r.work.forEach(e => { if(num(e.score)) latest[e.toolId || e.label] = e; });
-    Object.values(latest).forEach(e => {
-      if(e.score >= PASS) return;
-      out.push({score: e.score, day: r.dayId, title: `${D} · ${e.label || (e.kind === "roleplay" ? "Roleplay" : "Practice Lab")}`,
-        what: `Scored ${e.score}%${e.tier ? ` (${tierOf(e.tier)})` : ""}.`,
-        why: (e.gaps || []).length ? e.gaps.join(" · ") : "The grader didn't list specific gaps.",
-        better: (e.growth || []).length ? e.growth.join(" · ") : "Run it again using the grader's notes."});
-    });
-    // a Practice Lab best below the pass mark with no graded note saved for it
-    r.tools.filter(t => num(t.best) && t.best < PASS && !r.work.some(e => e.toolId === t.t.id)).forEach(t => {
-      out.push({score: t.best, day: r.dayId, title: `${D} · ${toolName(t.t)}`, what: `Best of ${t.runs} run${t.runs === 1 ? "" : "s"}: ${t.best}%.`,
-        why: "Below the pass mark — the grader's notes are on the trainee's last run.", better: "Another run, working through the grader's notes point by point."});
-    });
-    if(num(r.qc) && r.qcTotal && r.qc < PASS) out.push({score: r.qc, day: r.dayId, title: `${D} · Quick Checks`, what: `${r.qcRight} of ${r.qcTotal} right.`,
-      why: "Answered before the point landed on the slide.", better: "Pause on each Quick Check and re-read the slide before it."});
-    if(num(r.task) && r.task < PASS) out.push({score: r.task, day: r.dayId, title: `${D} · Random task`, what: `Scored ${r.task}%.`,
-      why: "The interruption wasn't acknowledged, planned and closed out in time.", better: "Acknowledge it fast, jot a three-step plan, then resolve it before going back to the lesson."});
-  });
-  return out.sort((a, b) => a.score - b.score);
 }
 
 /* ---------- the table ---------- */
@@ -227,9 +193,10 @@ function scoreRows(r){
   return rows;
 }
 const cellList = (xs, none) => (xs = (xs || []).filter(Boolean)).length ? `<ul>${xs.map(x => `<li>${E(x)}</li>`).join("")}</ul>` : `<i>${none}</i>`;
+// one day's activities and their feedback: the why-this-score table, then the trainer's feedback for the day
 function makeup(r, fb){
   const rows = scoreRows(r), f = fb[r.dayId];
-  return `<div class="eacm-mk"><p class="eacm-mk-h">The day's score is the average of the Knowledge Check, Quick Checks, Practice Lab and random task.</p>
+  return `<div class="eacm-mk">
     <div class="eacm-sw"><table class="eacm-st-t"><thead><tr><th>Activity</th><th>Score</th><th>🧾 Why this score</th><th>⭐ What you did great</th><th>❌ What was wrong</th><th>💡 What could have been done better</th></tr></thead>
     <tbody>${rows.map(x => `<tr>
       <th scope="row"><b>${E(x.name)}</b><small>${E(x.sub)}${x.run && x.run.at ? ` · ${E(new Date(x.run.at).toLocaleDateString())}` : ""}</small>
@@ -240,35 +207,74 @@ function makeup(r, fb){
       <td class="eacm-b">${cellList(x.wrong, num(x.score) ? (x.score >= 100 ? "Nothing — full marks." : "Nothing noted.") : "—")}</td>
       <td class="eacm-n">${cellList(x.better, num(x.score) ? "Keep the same approach." : "—")}</td></tr>`).join("")}
     </tbody></table></div>
-    <p class="eacm-sub">Slides reached: ${r.seen} of ${r.n}.</p>
     ${f ? `<div class="eacm-tfb"><b>✍ Trainer feedback</b> <small>${f.status === "sent" ? "Sent" + (f.readAt ? " · read" : "") : "Draft — not sent"}${f.rating ? ` · ${E(f.rating)}` : ""}</small>${f.summary ? `<p>${E(f.summary)}</p>` : ""}${f.mine && typeof openDayFeedback === "function" ? `<button type="button" class="eacm-more" onclick="openDayFeedback(${r.dayId})">Read the full feedback →</button>` : ""}</div>` : ""}</div>`;
 }
+/* The card, laid out as the Case Management course's: the header; 📅 Day scores (one line of numbers per day, nothing
+   else); 💬 Feedback on each activity (🎯 Focus on first, a short index of what is below the pass mark, then each day's
+   activities and feedback, folded until opened); and how the scores are worked out, folded at the bottom. Each fact is
+   shown once: the numbers in Day scores, the explanations in the day's feedback, and Focus on only points to them. */
+const cell = (v, t) => `<td class="eacm-c eacm-${num(v) ? tint(v) : "none"}">${num(v) ? Math.round(v) + "%" : "—"}${t ? `<small>${t}</small>` : ""}</td>`;
+function daysTable(s, r, you){
+  const head = `<thead><tr><th>Day</th><th>Day score</th><th>✍️ Knowledge Check</th><th>🛠 Practice Lab</th><th>❓ Quick Checks</th><th>⚡ Random task</th><th>📖 Slides</th><th>💬 Feedback</th></tr></thead>`;
+  const rows = s.days.map(d => {
+    if(!d.active) return `<tr class="eacm-off"><td><b>Day ${d.dayId}</b><small>${E(d.d.title)}</small></td><td class="eacm-c eacm-none">—</td><td colspan="6" class="eacm-ns">Not started</td></tr>`;
+    const below = scoreRows(d).filter(x => num(x.score) && x.score < PASS).length, f = s.fb[d.dayId];
+    return `<tr><td><b>Day ${d.dayId}</b><small>${E(d.d.title)}</small></td>
+      ${cell(d.average, d.passed ? "✓ passed" : num(d.average) ? (d.average >= PASS ? "passing" : "below " + PASS + "%") : "")}
+      ${cell(d.kc, num(d.kc) ? (d.tries > 1 ? `${d.tries} tries` : "") : "not taken")}
+      ${cell(d.practice, d.tools.length ? `${d.tools.filter(t => num(t.best)).length}/${d.tools.length} labs` : "")}
+      ${d.qcTotal ? cell(d.qc, `${d.qcRight}/${d.qcTotal} right`) : `<td class="eacm-c eacm-none">—</td>`}
+      ${cell(d.task, "")}
+      <td class="eacm-c eacm-none">${d.seen}/${d.n}</td>
+      <td class="eacm-fbc"><button type="button" class="eacm-go" onclick="EAPACM.goDay('${Q(r.id)}', ${d.dayId})">Open ↓</button>${below ? `<small class="eacm-lo-t">${below} below ${PASS}%</small>` : ""}${f ? `<small>✍ ${f.status === "sent" ? "trainer feedback sent" : "trainer draft"}</small>` : ""}</td></tr>`;
+  }).join("");
+  return `<div class="eacm-dsw"><table class="eacm-days">${head}<tbody>
+    ${you ? "" : `<tr class="eacm-ov"><td><b>Overall</b><small>${s.passedN} of ${DAYS.length} days passed</small></td>${cell(s.overall, "")}<td colspan="6" class="eacm-ns">The average of the days scored so far. A day's score is the average of its Knowledge Check, Practice Lab, Quick Checks and random task.</td></tr>`}
+    ${rows}</tbody></table></div>`;
+}
+function focusTable(s, r){
+  // from the same rows as each day's table, so an item shows here under the same name and score as in its day
+  const items = [];
+  s.days.forEach(d => { if(d.active) scoreRows(d).forEach(x => { if(num(x.score) && x.score < PASS) items.push({day: d.dayId, title: x.name, score: x.score,
+    why: (x.wrong || []).slice(0, 2).join(" · ") || "Nothing noted.", better: (x.better || [])[0] || "See the day's feedback."}); }); });
+  items.sort((a, b) => a.score - b.score);
+  if(!items.length) return `<p class="eacm-okp">${num(s.overall) ? `✓ Nothing below the ${PASS}% pass mark: every score so far is ${PASS}% or better.` : "Nothing scored yet."}</p>`;
+  const open = state.eacmOpen || {}, all = !!open["focus:" + r.id], SHOW = 5, shown = all ? items : items.slice(0, SHOW);
+  return `<div class="eacm-fo"><p class="eacm-fo-h">🎯 Focus on <small>below the ${PASS}% pass mark, lowest first · the full explanation is in the day below</small></p>
+    <div class="eacm-sw"><table class="eacm-fo-t"><thead><tr><th>Item</th><th>Day</th><th>Score</th><th>❌ What was wrong</th><th>💡 What to do</th></tr></thead><tbody>
+    ${shown.map(it => `<tr><th scope="row">${E(it.title.replace(/^Day \d+ · /, ""))}</th><td><button type="button" class="eacm-go" onclick="EAPACM.goDay('${Q(r.id)}', ${it.day})">Day ${it.day} ↓</button></td>
+      <td class="eacm-sc"><span class="eacm-pill eacm-${tint(it.score)}">${Math.round(it.score)}%</span></td><td>${E(it.why)}</td><td>${E(it.better)}</td></tr>`).join("")}
+    </tbody></table></div>
+    ${items.length > SHOW ? `<button type="button" class="eacm-more" onclick="EAPACM.toggle('focus:${Q(r.id)}')">${all ? "Show fewer" : `Show all ${items.length}`}</button>` : ""}</div>`;
+}
+function feedbackDays(s, r){
+  const open = state.eacmOpen || {}, act = s.days.filter(d => d.active);
+  if(!act.length) return `<p class="eacm-okp">No activity yet.</p>`;
+  return act.map(d => {
+    const rows = scoreRows(d).filter(x => num(x.score)), below = rows.filter(x => x.score < PASS).length, key = `fb:${r.id}:${d.dayId}`;
+    return `<details class="eacm-day" id="eacm-day-${d.dayId}" data-day="${d.dayId}" ${open[key] ? "open" : ""} ontoggle="EAPACM.mark('${Q(key)}', this.open)">
+      <summary><b>Day ${d.dayId}</b><span class="eacm-dt">${E(d.d.title)}</span>
+        <em>${rows.length} scored${below ? ` · <i class="eacm-lo-t">${below} below ${PASS}%</i>` : ""}</em><span class="eacm-pill eacm-${num(d.average) ? tint(d.average) : "none"}">${P(d.average)}</span></summary>
+      ${makeup(d, s.fb)}</details>`;
+  }).join("");
+}
 function card(s, you){
-  const r = s.rec, st = status(s), items = focusItems(s);
-  const SHOW = 4;
-  const open = state.eacmOpen || (state.eacmOpen = {});
-  const all = !!open["focus:" + r.id];
-  const shown = all ? items : items.slice(0, SHOW);
-  return `<div class="eacm-card" id="eacmCard">
-    <div class="eacm-card-h"><div><p class="eacm-k">${you ? "Your scorecard" : "Trainee scorecard"}</p><h3>${E(nameOf(r))}</h3>
-      <p class="eacm-k2">${E(typeof batchLabel === "function" ? batchLabel(batchKey(r)) : r.batch || "")}${r.registeredAt ? ` · registered ${E(new Date(r.registeredAt).toLocaleDateString())}` : ""} · ${s.passedN} of ${DAYS.length} days passed</p></div>
-      <div class="eacm-card-chips"><span class="eacm-big eacm-${tint(s.overall)}">Overall ${P(s.overall)}</span><span class="eacm-st2 eacm-${st.c}">${st.t}</span><span class="eacm-pm" title="Every score is measured against the ${PASS}% pass mark">Passing score ${PASS}%</span></div></div>
-    <div class="eacm-sec"><h4>🎯 Focus on <small>(below the ${PASS}% pass mark, lowest first)</small></h4>
-      ${items.length ? `<ol class="eacm-focus">${shown.map(it => `<li><div class="eacm-fh"><span class="eacm-pill eacm-${tint(it.score)}">${Math.round(it.score)}%</span><b>${E(it.title)}</b></div>
-        <dl><dt>What happened</dt><dd>${E(it.what)}</dd><dt>Why</dt><dd>${E(it.why)}</dd><dt>What you could have done better</dt><dd>${E(it.better)}</dd></dl></li>`).join("")}</ol>
-        ${items.length > SHOW ? `<button type="button" class="eacm-more" onclick="EAPACM.toggle('focus:${Q(r.id)}')">${all ? "Show fewer" : `…and ${items.length - SHOW} more below the pass mark — show all`}</button>` : ""}`
-        : `<p class="eacm-okp">${num(s.overall) ? "Nothing below the pass mark — every score so far is " + PASS + "% or better." : "Nothing scored yet."}</p>`}</div>
-    <div class="eacm-sec"><h4>📅 Day scores</h4>
-      <table class="eacm-days"><thead><tr><th>Day</th><th>Score</th><th>Breakdown</th></tr></thead><tbody>
-        <tr class="eacm-ov"><td><b>Overall</b></td><td class="eacm-c eacm-${tint(s.overall)}"><b>${P(s.overall)}</b></td><td>Average of the days scored so far · ${s.passedN} of ${DAYS.length} Knowledge Checks passed</td></tr>
-        ${s.days.map(d => {
-          const key = `day:${r.id}:${d.dayId}`, isOpen = !!open[key];
-          const br = [num(d.kc) ? `Knowledge Check ${d.kc}%` : "", num(d.practice) ? `Practice Lab ${Math.round(d.practice)}%` : "", d.qcTotal ? `Quick Checks ${d.qcRight}/${d.qcTotal}` : "", num(d.task) ? `Random task ${d.task}%` : "", `Slides ${d.seen}/${d.n}`].filter(Boolean);
-          return `<tr><td><b>Day ${d.dayId}</b><small>${E(d.d.title)}</small></td><td class="eacm-c eacm-${tint(d.average)}"><b>${d.active ? P(d.average) : "—"}</b>${d.passed ? '<small class="eacm-tick">✓ passed</small>' : num(d.average) ? `<small>${d.average >= PASS ? "✓ passing" : "below " + PASS + "%"}</small>` : ""}</td>
-            <td>${d.active ? E(br.join(" · ")) : "Not started"}
-              ${d.active ? `<details class="eacm-why" ${isOpen ? "open" : ""} ontoggle="EAPACM.mark('${Q(key)}', this.open)"><summary>What makes up this score${d.work.length ? ` · ${d.work.length} graded activit${d.work.length === 1 ? "y" : "ies"}` : ""}</summary>${makeup(d, s.fb)}</details>` : ""}</td></tr>`;
-        }).join("")}
-      </tbody></table></div></div>`;
+  const r = s.rec, st = status(s), open = state.eacmOpen || (state.eacmOpen = {});
+  return `<div class="eacm-card${you ? " eacm-you" : ""}" id="eacmCard">
+    ${you ? "" : `<div class="eacm-card-h"><div><p class="eacm-k">Trainee scorecard</p><h3>${E(nameOf(r))}</h3>
+      <p class="eacm-k2">${E(typeof batchLabel === "function" ? batchLabel(batchKey(r)) : r.batch || "")}${r.registeredAt ? ` · registered ${E(new Date(r.registeredAt).toLocaleDateString())}` : ""}</p></div>
+      <div class="eacm-card-chips"><span class="eacm-big eacm-${tint(s.overall)}">Overall ${P(s.overall)}</span><span class="eacm-st2 eacm-${st.c}">${st.t}</span><span class="eacm-pm">${s.passedN} of ${DAYS.length} days passed · pass mark ${PASS}%</span></div></div>`}
+    <div class="eacm-sec"><h4>📅 Day scores</h4>${daysTable(s, r, you)}</div>
+    <div class="eacm-sec"><h4>💬 Feedback on each activity <small>· every score explained: why, what went well, what was wrong, what to do better</small></h4>
+      ${focusTable(s, r)}
+      <div class="eacm-btns"><button type="button" class="eacm-more" onclick="EAPACM.allDays('${Q(r.id)}', true)">Open every day</button><button type="button" class="eacm-more" onclick="EAPACM.allDays('${Q(r.id)}', false)">Close every day</button></div>
+      ${feedbackDays(s, r)}</div>
+    <details class="eacm-how"><summary>How these scores are worked out</summary>
+      <ul><li><b>Day score</b> = the average of the day's Knowledge Check, Practice Lab (the best run of each lab), Quick Checks and random task, whichever have a score.</li>
+        <li><b>Overall</b> = the average of the days scored so far. A day is <b>passed</b> when its Knowledge Check is passed.</li>
+        <li><b>Pass mark ${PASS}%</b> for every score. Green 85%+ · light green ${PASS}–84% · orange below ${PASS}%.</li>
+        <li>Live Roleplays are graded and explained in the day's feedback, but don't count in the day score. Slides reached is shown for progress only.</li></ul></details>
+  </div>`;
 }
 
 /* ---------- the section ---------- */
@@ -328,6 +334,10 @@ window.EAPACM = {
     return card(sheet(rec, {data, fb}), true);
   },
   mark(key, v){ const o = state.eacmOpen || (state.eacmOpen = {}); o[key] = !!v; },
+  // open one day's feedback (from Day scores or 🎯 Focus on) and bring it into view
+  goDay(id, day){ const o = state.eacmOpen || (state.eacmOpen = {}); o[`fb:${id}:${day}`] = true;
+    const el = document.getElementById("eacm-day-" + day); if(el){ el.open = true; el.scrollIntoView({behavior: "smooth", block: "start"}); } },
+  allDays(id, v){ const o = state.eacmOpen || (state.eacmOpen = {}); document.querySelectorAll("#eacmCard details.eacm-day").forEach(el => { el.open = !!v; o[`fb:${id}:${el.dataset.day}`] = !!v; }); },
   csv(){
     const k = state.scFolder, rows = members(k).map(r => sheet(r));
     if(!rows.length){ if(typeof toast === "function") toast("No trainees in this batch."); return; }
@@ -396,28 +406,41 @@ st.textContent = `
 .eacm-sec{padding:16px 20px;border-top:1px solid #E4E7EF;}
 .eacm-sec h4{margin:0 0 10px;font:800 17px 'Inter',system-ui,sans-serif;color:#1E2340;}
 .eacm-sec h4 small{font-size:13px;font-weight:600;color:#3B4160;}
-.eacm-focus{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;}
-.eacm-focus li{border:1px solid #F1C9C1;border-left:4px solid #C2410C;border-radius:10px;padding:10px 12px;background:#FFFAF8;}
-.eacm-fh{display:flex;align-items:center;gap:8px;margin-bottom:6px;font:800 14.5px 'Inter',system-ui,sans-serif;color:#1E2340;}
-.eacm-focus dl{margin:0;font:600 13.5px/1.45 'Inter',system-ui,sans-serif;color:#262B45;}
-.eacm-focus dt{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#A34E14;margin-top:5px;}
-.eacm-focus dd{margin:1px 0 0;}
 .eacm-more{margin-top:10px;background:none;border:0;padding:0;font:800 14px 'Inter',system-ui,sans-serif;color:#A34E14;cursor:pointer;text-decoration:underline;}
 .eacm-okp{margin:0;font:700 14px "Inter",system-ui,sans-serif;color:#14532D;}
 .eacm-pill{display:inline-block;min-width:48px;text-align:center;font:800 13px 'Inter',system-ui,sans-serif;border-radius:999px;padding:3px 8px;}
-.eacm-days{width:100%;border-collapse:collapse;font:600 14px 'Inter',system-ui,sans-serif;color:#141A2E;}
-.eacm-days th{background:#262B45;color:#fff;font-size:12.5px;text-align:left;padding:9px 12px;border-bottom:2px solid #DB8437;}
+.eacm-dsw{overflow-x:auto;border:1px solid #E1E5EE;border-radius:10px;}
+.eacm-days{min-width:900px;width:100%;border-collapse:collapse;font:600 14px 'Inter',system-ui,sans-serif;color:#141A2E;}
+.eacm-days th{white-space:nowrap;background:#262B45;color:#fff;font-size:12.5px;text-align:left;padding:9px 12px;border-bottom:2px solid #DB8437;}
 .eacm-days td{border-bottom:1px solid #E4E7EF;padding:10px 12px;vertical-align:top;}
-.eacm-days td:first-child{width:28%;}
 .eacm-days td:first-child small{display:block;font-size:12.5px;color:#3B4160;font-weight:600;}
-.eacm-days td.eacm-c{width:100px;}
 .eacm-days tr.eacm-ov td{background:#F4F6FB;}
-.eacm-why{margin-top:6px;}
-.eacm-why>summary{cursor:pointer;font:800 13.5px 'Inter',system-ui,sans-serif;color:#A34E14;}
+.eacm-days td.eacm-c{width:92px;text-align:center;font-weight:800;} .eacm-days td.eacm-c small{display:block;font-size:11.5px;font-weight:600;color:#3B4160;}
+.eacm-days td:first-child{min-width:210px;}
+.eacm-days tr.eacm-off td{color:#6A7088;background:#FAFBFD;} .eacm-days td.eacm-ns{color:#3B4160;font-weight:600;}
+.eacm-days td.eacm-fbc{white-space:nowrap;} .eacm-days td.eacm-fbc small{display:block;font-size:11.5px;color:#3B4160;margin-top:3px;}
+.eacm-go{white-space:nowrap;border:1px solid #CBD2E3;background:#fff;color:#1E2340;border-radius:999px;padding:3px 10px;font:800 12px 'Inter',system-ui,sans-serif;cursor:pointer;}
+.eacm-go:hover{background:#262B45;color:#fff;border-color:#262B45;}
+.eacm-lo-t{color:#B23A12 !important;font-weight:800;font-style:normal;}
+.eacm-fo{margin-bottom:14px;}
+.eacm-fo-h{margin:0 0 6px;font:800 14.5px 'Inter',system-ui,sans-serif;color:#1E2340;} .eacm-fo-h small{font-weight:600;color:#3B4160;font-size:12.5px;margin-left:4px;}
+.eacm-fo-t{width:100%;min-width:820px;border-collapse:collapse;font:600 13px/1.42 'Inter',system-ui,sans-serif;color:#262B45;}
+.eacm-fo-t thead th{background:#262B45;color:#fff;font-size:12.5px;text-align:left;padding:8px 10px;border-bottom:2px solid #DB8437;white-space:nowrap;}
+.eacm-fo-t td,.eacm-fo-t tbody th{padding:8px 10px;border-top:1px solid #E6E9F1;vertical-align:top;text-align:left;background:#fff !important;color:#1B1E2E !important;text-transform:none !important;letter-spacing:0 !important;}
+.eacm-fo-t tbody th{width:230px;font-weight:800;}
+.eacm-btns{display:flex;gap:8px;margin:4px 0 8px;}
+.eacm-day{border:1px solid #E1E5EE;border-radius:10px;margin-bottom:8px;background:#fff;}
+.eacm-day>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:10px 14px;font:600 14px 'Inter',system-ui,sans-serif;color:#1E2340;}
+.eacm-day>summary::-webkit-details-marker{display:none;}
+.eacm-day>summary::before{content:"▸";color:#A34E14;font-weight:800;} .eacm-day[open]>summary::before{content:"▾";}
+.eacm-day>summary .eacm-dt{color:#3B4160;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.eacm-day>summary em{font-style:normal;font-size:12.5px;color:#3B4160;white-space:nowrap;}
+.eacm-day[open]>summary{border-bottom:1px solid #E1E5EE;}
+.eacm-day .eacm-mk{margin:0;border:0;border-radius:0 0 10px 10px;}
+.eacm-how{padding:12px 20px 16px;border-top:1px solid #E4E7EF;} .eacm-how>summary{cursor:pointer;font:800 13.5px 'Inter',system-ui,sans-serif;color:#A34E14;}
+.eacm-how ul{margin:8px 0 0;padding-left:18px;font:600 13.5px/1.5 'Inter',system-ui,sans-serif;color:#262B45;}
+.eacm-you .eacm-sec:first-child{border-top:0;}
 .eacm-mk{margin-top:8px;padding:10px 12px;border:1px solid #E1E5EE;border-radius:10px;background:#FBFCFE;}
-.eacm-mk-h{margin:0 0 6px;font:800 12.5px 'Inter',system-ui,sans-serif;color:#3B4160;text-transform:uppercase;letter-spacing:.04em;}
-.eacm-parts{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:6px;}
-.eacm-parts li{display:flex;gap:10px;align-items:flex-start;}
 .eacm-sub{font-size:12.5px;color:#3B4160;margin-top:2px;}
 .eacm-sw{overflow-x:auto;border:1px solid #E1E5EE;border-radius:10px;background:#fff;margin-bottom:8px;}
 .eacm-st-t{width:100%;min-width:980px;border-collapse:collapse;font-size:13px;line-height:1.42;color:#262B45;}
@@ -430,18 +453,10 @@ st.textContent = `
 .eacm-st-t ul{margin:0;padding-left:16px;} .eacm-st-t li+li{margin-top:3px;}
 .eacm-st-t i{color:#5A6078;}
 .eacm-st-t td.eacm-w{background:#F7F8FC;} .eacm-st-t td.eacm-g{background:#F1F9F3;} .eacm-st-t td.eacm-b{background:#FDF3F0;} .eacm-st-t td.eacm-n{background:#F2F4FB;}
-.eacm-act{border:1px solid #E1E5EE;border-radius:10px;padding:9px 11px;background:#fff;margin-bottom:8px;}
-.eacm-act-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
-.eacm-act-h small{color:#3B4160;font-size:12.5px;}
-.eacm-fbks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-top:6px;}
-.eacm-fbk{font-size:13px;line-height:1.4;border-radius:8px;padding:6px 9px;}
-.eacm-fbk ul{margin:3px 0 0;padding-left:16px;}
-.eacm-fbk.s{background:#EDF7EF;}.eacm-fbk.g{background:#FDEEEA;}.eacm-fbk.n{background:#EEF1FA;}
 .eacm-ex summary{cursor:pointer;font-size:12.5px;font-weight:800;color:#3B4160;margin-top:6px;}
 .eacm-ex p{font-size:13px;color:#262B45;white-space:pre-wrap;margin:4px 0 0;}
 .eacm-tfb{margin-top:6px;padding:8px 10px;border-left:3px solid #DB8437;background:#FFF6EC;border-radius:6px;font-size:13.5px;}
 .eacm-tfb p{margin:4px 0 0;}
-@media (max-width:900px){ .eacm-btn{margin-left:0;} .eacm-days td:first-child{width:auto;} .eacm-focus{grid-template-columns:1fr;} }
-`;
+@media (max-width:900px){ .eacm-btn{margin-left:0;} .eacm-days td:first-child{width:auto;} `;
 (document.head || document.documentElement).appendChild(st);
 })();
