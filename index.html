@@ -4546,7 +4546,7 @@ function orientSlides(){
      <p class="or-foot">Every day is open — take them in order, as each builds on the one before.</p>`},
    {k:"A day", h:"How every day works", body:`
      <div class="or-flow">${step(1,"🖥","Lesson slides","One topic at a time. Next / Previous at the bottom; your place is saved.")}<i>→</i>${step(2,"✔","Quick Checks","Short questions between topics. Pick, change your mind, then Check Answer.")}<i>→</i>${step(3,"🧪","Practice Lab","Do the real task. Graded with written feedback. Auto-saves as you type.")}<i>→</i>${step(4,"📝","Knowledge Check","Pass at 70% to mark the day complete ✓.")}<i>→</i>${step(5,"➡","Next day","Every day is open. Move on once the day's Practice Lab is done.")}</div>
-     <div class="or-note">Didn't pass the Knowledge Check? That's a <b>“not yet”</b>, not a “no” — you can still move on, and retake it any time. Your best score counts.</div>`},
+     <div class="or-note"><b>One try, Pass or Fail:</b> each Knowledge Check and each Practice Lab exercise is taken once. 70% or more is a Pass; below is a Fail. Read the lesson, then take it when you're ready.</div>`},
    {k:"Dashboard", h:"Your dashboard at a glance", body:`
      <div class="or-bp">
        <div class="or-bp-main">
@@ -4573,7 +4573,7 @@ function orientSlides(){
        <ul class="or-list"><li>Read the <b>Client Profile</b> before Day 1 and keep it handy — his preferences are graded.</li><li>If a later task seems to contradict the profile, raise it — spotting that is the job.</li><li>Treat everything about him as confidential, like a real client.</li></ul></div>
      </div>`},
    {k:"Practice", h:"Practice Labs: how grading works", body:`
-     <div class="or-3">${pill("🆓","First try is free","Your first submission of each exercise never uses an attempt.")}${pill("🔁",`${LAB_ATTEMPT_CAP} repeats per day`,"Each day's Practice Lab has its own repeats. Your trainer can reset them.")}${pill("💾","Auto-saves","Close the tab or switch devices — your work is still there.")}</div>
+     <div class="or-3">${pill("🆓","First try is free","Your first submission of each exercise never uses an attempt.")}${pill("🎯","One try","Each exercise and Knowledge Check is submitted once: Pass (70%+) or Fail.")}${pill("💾","Auto-saves","Close the tab or switch devices — your work is still there.")}</div>
      <div class="or-note"><b>Feedback, not just a score:</b> every graded submission shows strengths, what to change (“not this way — here's the better way”) and next steps. Nonsense or copy-paste answers aren't graded.</div>`},
    {k:"Calls", h:"Live calls & roleplays", body:`
      <ul class="or-list big"><li>🎧 Use a headset. The caller <b>speaks</b>; you answer out loud (Chrome/Edge) or type.</li><li>🔊 Can't hear the caller? Check your volume and press <b>↻ Replay</b>.</li><li>🙋 Hands-free mode listens automatically after the caller finishes.</li><li>📞 <b>Hang Up</b> ends the call and gives you your evaluation.</li></ul>`},
@@ -4759,7 +4759,7 @@ function renderFacilitatorGuide(){
       <h3>Progression Rules Trainees Follow</h3>
       <ul>
         <li><b>Every day is open.</b> Trainees can open any day, any slide and any Practice Lab at any time — nothing is locked.</li>
-        <li><b>Practice Lab attempts:</b> the first submission of each exercise is free; repeats use one of <b>3 attempts per day</b>. Reset them per trainee in Trainee Audit (↺ Reset Attempts).</li>
+        <li><b>Practice Lab attempts:</b> <b>one try</b> per exercise and per Knowledge Check, Pass (70%+) or Fail; there are no repeats.</li>
         <li><b>Feedback style:</b> grades below 85% are framed as <b>"Not yet"</b> or <b>"Not this way"</b> with concrete next steps — never a flat "no".</li>
         <li><b>Progress is saved to the server</b> (not just the browser): trainees can log in on any device and pick up on the exact slide or tool they left.</li>
       </ul>
@@ -8521,7 +8521,7 @@ function renderQuizNextStep(d, passed){
 function renderQuizResult(d){
   const {lastScore, lastCorrect, lastTotal, lastPassed} = state;
   const passMsgs = ["Nice work — well done.", "Sharp — you've got this down.", "Solid pass. On to the next one.", "That's a wrap on Day "+d.id+" — well done."];
-  const failMsgs = ["Not quite 70% yet. See which questions you missed below, retake if you like, or keep going.", "Close, but not there yet. Review the topics you missed (marked below). You can still move on.", "So close! Check which questions you missed below. A retake is optional."];
+  const failMsgs = ["Not 70% this time. See which questions you missed below, and keep going.", "Close, but not there. Review the topics you missed (marked below). You can still move on.", "So close! Check which questions you missed below before the next lesson."];
   const msg = lastPassed ? passMsgs[Math.floor(Math.random()*passMsgs.length)] : failMsgs[Math.floor(Math.random()*failMsgs.length)];
   const history = (state.progress[d.id] && state.progress[d.id].history) || [];
   return `
@@ -8753,7 +8753,7 @@ async function bumpPracticeProgress(toolId, score){
 /* ============================================================
    PRACTICE LAB USAGE CAP — 3 AI-graded attempts per day's module.
    ============================================================ */
-const LAB_ATTEMPT_CAP = 3; // repeat attempts per day's Practice Lab (first tries are free)
+const LAB_ATTEMPT_CAP = 0; // one try: each Practice Lab exercise is submitted once, and its result is final (Pass 70%+ or Fail) — js/eapa-one-try.js
 // Repeats are counted per day in state.labAttemptsByDay; labAttemptsGlobal is kept as the
 // total across all days (shown to admins, and used by the trainer-reset check).
 function currentLabDay(){
@@ -8877,7 +8877,7 @@ async function useLabAttempt(dayId, actionId){
   state.lastLabAttempt = {actionId, dayId, wasRepeat:isRepeat, at:Date.now()};
   if(isRepeat){
     if(labAttemptsRemaining(dayId) <= 0){
-      toast(`No repeat attempts left for Day ${dayId} (all ${LAB_ATTEMPT_CAP} used). Use 🙋 Ask for more attempts, or ask your trainer to reset your Practice Lab attempts.`);
+      toast(`One try only: you've already submitted this exercise, and its result is final (Pass or Fail).`);
       return false;
     }
     const b = Object.assign({}, state.labAttemptsByDay||{}); b[dayId] = (b[dayId]||0) + 1;
@@ -9161,7 +9161,7 @@ function renderEvaluationReport(report, dayId){
       </div>` : ""}
       ${dayId ? `
       <div class="eval-action-row">
-        <button class="btn btn-ghost btn-sm" onclick="repeatActivity()" ${labAttemptsRemaining(dayId)<=0 ? `disabled title="No repeat attempts left for Day ${dayId} — ask your trainer to reset them"` : ''}>🔁 Repeat Activity${labAttemptsRemaining(dayId)<=0 ? "" : ` (${labAttemptsRemaining(dayId)} left)`}</button>${labAttemptsRemaining(dayId)<=0 ? `<button class="btn btn-ghost btn-sm" onclick="requestMoreLabAttempts(${dayId})" title="Your trainer sees the request in Trainee Audit and can give you a fresh set">🙋 ${state.labResetRequestedAt ? "Asked for more attempts ✓" : "Ask for more attempts"}</button>` : ''}
+        <button class="btn btn-ghost btn-sm" onclick="repeatActivity()" ${labAttemptsRemaining(dayId)<=0 ? `disabled title="One try only: this exercise's result is final"` : ''}>🔁 Repeat Activity${labAttemptsRemaining(dayId)<=0 ? "" : ` (${labAttemptsRemaining(dayId)} left)`}</button>${labAttemptsRemaining(dayId)<=0 ? `<button class="btn btn-ghost btn-sm" onclick="requestMoreLabAttempts(${dayId})" title="Your trainer sees the request in Trainee Audit and can give you a fresh set">🙋 ${state.labResetRequestedAt ? "Asked for more attempts ✓" : "Ask for more attempts"}</button>` : ''}
         <button class="btn btn-navy btn-sm" onclick="retainScoreAndAdvance()">✅ Retain Score &amp; Advance</button>
       </div>
       <div class="eval-action-row" style="border-top:none;padding-top:0;margin-top:8px;">
@@ -9555,8 +9555,13 @@ function renderCalendarBody(body){
     <div id="proactiveResult" style="margin-top:14px;"></div>
   `;
   const trip = toolState.trip || {};
+  const trip_ = tripEntry(), fl_ = trip_.fl, rt_ = trip_.ret, gt_ = trip_.gt, ht_ = trip_.ht;
+  const tIn = (path, val, ph, type) => `<input type="${type||"text"}" class="trip-in" value="${esc(val||"")}" placeholder="${esc(ph||"")}" oninput="tripField('${path}', this.value)" onchange="tripField('${path}', this.value)">`;
+  const tSel = (path, val, opts) => `<select class="trip-in" onchange="tripField('${path}', this.value)"><option value="">Choose…</option>${opts.map(([v, l])=>`<option value="${v}" ${val===v?"selected":""}>${esc(l)}</option>`).join("")}</select>`;
+  const MODES = [["Car service (pre-booked)","Car service (pre-booked)"],["Rideshare (booked ahead)","Rideshare (booked ahead)"],["Taxi","Taxi"],["Hotel shuttle","Hotel shuttle"],["Train / transit","Train / transit"],["Walk","Walk"]];
   const partD = `
-    <div class="cal-brief">
+    <div class="eli-task eli-email">
+      <div class="eli-task-h"><span class="eli-ch">📧 Email</span><b>From: Elias Thorne</b><span>To: you · Subject: Chicago, the arbitration, book it</span></div>
       <p class="lead"><b>${esc(TRIP_BRIEF.title)}</b></p>
       <p class="lead" style="margin-bottom:8px;">${esc(TRIP_BRIEF.text)}</p>
       <div class="cal-brief-cols">
@@ -9564,37 +9569,49 @@ function renderCalendarBody(body){
         <div><h4>Firm policy &amp; how he travels</h4><ul>${TRIP_BRIEF.policy.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>
       </div>
     </div>
-
-    <h3 style="margin:18px 0 4px;color:var(--navy);font-size:15px;">1. Book the flight out</h3>
-    <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Every one of these is really bookable. Pick the one you'd put in front of him, and say why in a line — if it breaks policy, your line is the written reason on file.</p>
-    <div class="opt-grid">
-      ${FLIGHT_OPTIONS.map(f=>`
-        <label class="opt-card ${trip.flight===f.id?'sel':''}">
-          <input type="radio" name="tripFlight" value="${f.id}" ${trip.flight===f.id?"checked":""} onchange="tripPick('flight','${f.id}')">
-          <div class="oc-head"><b>${esc(f.carrier)}</b><span class="oc-price">$${f.price}</span></div>
-          <div class="oc-row">${esc(f.day)} · ${esc(f.dep)} → ${esc(f.arr)}</div>
-          <div class="oc-row">${esc(f.route)}</div>
-          <div class="oc-row">${esc(f.cabin)} · ${esc(f.seat)}</div>
-          <div class="oc-row muted">${esc(f.change)}</div>
-        </label>`).join("")}
+    <div class="card trip-act">
+      <b>Your move: ACT, then BLUF.</b> Nothing is picked for you. Work out the trip the way you would for him: <b>search real options</b>
+      (Google Flights or the airlines' sites for a midweek Chicago trip, the hotel sites, a car service), then put in front of him
+      the flight out and home, the ground transport for every leg, and the hotel, each held against his schedule and the firm's policy.
     </div>
-    <textarea id="tripFlightWhy" class="trip-why" placeholder="Why this flight — and if it breaks the cap, the seat rule or the direct-only rule, the reason you'd put on file…" oninput="tripNote('flightWhy', this.value)">${esc(trip.flightWhy||"")}</textarea>
 
-    <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">2. Book the hotel</h3>
-    <div class="opt-grid">
-      ${HOTEL_OPTIONS.map(h=>`
-        <label class="opt-card ${trip.hotel===h.id?'sel':''}">
-          <input type="radio" name="tripHotel" value="${h.id}" ${trip.hotel===h.id?"checked":""} onchange="tripPick('hotel','${h.id}')">
-          <div class="oc-head"><b>${esc(h.name)}</b><span class="oc-price">$${h.price}<small>/night</small></span></div>
-          <div class="oc-row">${esc(h.dist)}</div>
-          <div class="oc-row">${esc(h.room)}</div>
-          <div class="oc-row">${esc(h.food)}</div>
-          <div class="oc-row muted">${esc(h.cancel)}</div>
-        </label>`).join("")}
+    <h3 class="trip-h">1. Identify the flights</h3>
+    <div class="trip-grid">
+      <label>Flight out: airline &amp; flight number ${tIn("fl.name", fl_.name, "e.g. United 1234")}</label>
+      <label>Day ${tSel("fl.day", fl_.day, [["Wednesday","Wednesday"],["Thursday","Thursday"]])}</label>
+      <label>Departs ${tIn("fl.dep", fl_.dep, "", "time")}</label>
+      <label>Lands in Chicago ${tIn("fl.arr", fl_.arr, "", "time")}</label>
+      <label>Stops ${tSel("fl.stops", fl_.stops, [["0","Nonstop"],["1","1 stop"],["2","2+ stops"]])}</label>
+      <label>Round-trip fare ($) ${tIn("fl.fare", fl_.fare, "e.g. 640", "number")}</label>
+      <label>Seat ${tIn("fl.seat", fl_.seat, "e.g. Aisle 4C")}</label>
+      <label>Change / refund terms ${tIn("fl.terms", fl_.terms, "e.g. Free changes")}</label>
+      <label>Flight home Friday: airline &amp; flight number ${tIn("ret.name", rt_.name, "e.g. United 5678")}</label>
+      <label>Departs Friday ${tIn("ret.dep", rt_.dep, "", "time")}</label>
+    </div>
+    <textarea id="tripFlightWhy" class="trip-why" placeholder="Why these flights — and if anything breaks the cap, the seat rule or the nonstop rule, the reason you'd put on file…" oninput="tripNote('flightWhy', this.value)">${esc(trip.flightWhy||"")}</textarea>
+
+    <h3 class="trip-h">2. Prep the ground transportation</h3>
+    <div class="trip-grid">
+      <label>Airport → hotel, Wednesday ${tSel("gt.in.mode", (gt_.in||{}).mode, MODES)}</label>
+      <label>Pickup time ${tIn("gt.in.time", (gt_.in||{}).time, "", "time")}</label>
+      <label>Hotel → Keller Center, Thursday ${tSel("gt.thu.mode", (gt_.thu||{}).mode, MODES)}</label>
+      <label>(its pickup time goes on the day sheet below)</label>
+      <label>Hotel / meeting → airport, Friday ${tSel("gt.out.mode", (gt_.out||{}).mode, MODES)}</label>
+      <label>Pickup time ${tIn("gt.out.time", (gt_.out||{}).time, "", "time")}</label>
+    </div>
+    <textarea class="trip-why" placeholder="Who's booked, the confirmation details he needs, and what happens if the flight is late…" oninput="tripField('gt.notes', this.value)">${esc(gt_.notes||"")}</textarea>
+
+    <h3 class="trip-h">3. Book the hotel</h3>
+    <div class="trip-grid">
+      <label>Hotel ${tIn("ht.name", ht_.name, "Name and street")}</label>
+      <label>Walk to the Keller Center (minutes) ${tIn("ht.walk", ht_.walk, "e.g. 8", "number")}</label>
+      <label>Nightly rate ($) ${tIn("ht.rate", ht_.rate, "e.g. 295", "number")}</label>
+      <label>Cancellation ${tSel("ht.cancel", ht_.cancel, [["free","Free cancellation"],["nonref","Non-refundable / prepaid"]])}</label>
+      <label class="wide">Where he eats strict Paleo, zero dairy ${tIn("ht.food", ht_.food, "e.g. kitchen does eggs and grilled protein; room service")}</label>
     </div>
     <textarea id="tripHotelWhy" class="trip-why" placeholder="Why this hotel — distance, what he eats, and what happens to the booking if the trip moves…" oninput="tripNote('hotelWhy', this.value)">${esc(trip.hotelWhy||"")}</textarea>
 
-    <h3 style="margin:22px 0 4px;color:var(--navy);font-size:15px;">3. Thursday, hour by hour</h3>
+    <h3 class="trip-h">4. Thursday, hour by hour</h3>
     <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">Lay out the morning with the travel time in it, not around it. The hearing is the one time you can't change.</p>
     <div class="card" style="padding:12px 16px;">
       ${TRIP_DAY_BLOCKS.map(b=>`
@@ -9609,7 +9626,7 @@ function renderCalendarBody(body){
     <div id="tripResult"></div>
 
     <div id="tripCrisis" style="${trip.checked?"":"display:none;"}">
-      <h3 style="margin:26px 0 4px;color:var(--danger);font-size:15px;">4. It falls apart the night before</h3>
+      <h3 style="margin:26px 0 4px;color:var(--danger);font-size:15px;">5. It falls apart the night before</h3>
       <div class="card crisis-card">
         <span class="crisis-when">${esc(TRIP_DISRUPTION.when)}</span>
         <p>${esc(TRIP_DISRUPTION.text)}</p>
@@ -10623,6 +10640,20 @@ function tripNote(field, value){ const t = tripState(); t[field] = value; clearT
 window.tripNote = tripNote;
 function tripDay(id, value){ const t = tripState(); t.day[id] = value; tripSave(); }
 window.tripDay = tripDay;
+/* ✈ The trainee researches and enters the trip themselves (the owner: "a scenario … they should be able to identify flights,
+   prep ground transportation and hotel"). tripEntry() reads what they typed; a trainee who picked one of the old ready-made
+   flight / hotel cards keeps it, copied into these fields the first time, so no one's progress is lost. */
+function tripEntry(){
+  const t = tripState();
+  t.fl = t.fl || {}; t.ret = t.ret || {}; t.gt = t.gt || {}; t.ht = t.ht || {};
+  const old = FLIGHT_OPTIONS.find(x=>x.id===t.flight), oh = HOTEL_OPTIONS.find(x=>x.id===t.hotel);
+  const to24 = c => { const m = tripClock(c); return m===null ? "" : String(Math.floor(m/60)).padStart(2,"0") + ":" + String(m%60).padStart(2,"0"); };
+  if(old && !t.fl.name) Object.assign(t.fl, {name: old.carrier, day: old.day, dep: to24(old.dep), arr: to24(old.arr), stops: String(old.stops), fare: String(old.price), seat: old.aisle ? "Aisle" : "Middle", terms: old.change});
+  if(oh && !t.ht.name){ const w = /(\d+) min walk/.exec(oh.dist); Object.assign(t.ht, {name: oh.name, walk: w ? w[1] : "30", rate: String(oh.price), cancel: /Free cancellation/i.test(oh.cancel) ? "free" : "nonref", food: oh.food}); }
+  return t;
+}
+function tripField(path, value){ const t = tripEntry(); const [a, b, c] = path.split("."); if(c){ t[a][b] = t[a][b] || {}; t[a][b][c] = value; } else if(b) t[a][b] = value; else t[a] = value; clearTimeout(toolState.tripSaveTimer); toolState.tripSaveTimer = setTimeout(tripSave, 600); }
+window.tripField = tripField;
 function tripMinutes(hhmm){ if(!hhmm) return null; const [h,m] = hhmm.split(":").map(Number); return h*60+m; }
 /* "8:30 AM" → minutes after midnight (null when the text carries a next-day note it can't place) */
 function tripClock(txt){ const m = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(String(txt).trim()); if(!m) return null; let h = +m[1] % 12; if(/PM/i.test(m[3])) h += 12; return h*60 + +m[2]; }
@@ -10631,32 +10662,40 @@ function tripFmt(hhmm){ const mins = tripMinutes(hhmm); if(mins===null) return "
 /* The hard constraints — fixed times, caps and rules, checked without an AI call.
    The trainee sees these only after they submit; nothing is flagged while they work. */
 function tripHardChecks(){
-  const t = tripState();
-  const f = FLIGHT_OPTIONS.find(x=>x.id===t.flight);
-  const h = HOTEL_OPTIONS.find(x=>x.id===t.hotel);
+  const t = tripEntry();
+  const fl = t.fl, ret = t.ret, gt = t.gt, ht = t.ht;
+  const f = fl.name ? fl : null, h = ht.name ? ht : null;
   const d = t.day || {};
   const HEARING = 9*60;
   const checks = [];
   const add = (ok, label, fix) => checks.push({ok, label, fix});
-  add(!!f, "A flight is booked", "No flight chosen.");
-  add(!!h, "A hotel is booked", "No hotel chosen.");
+  const num = v => { const n = parseFloat(String(v||"").replace(/[^0-9.]/g, "")); return isFinite(n) ? n : null; };
+  const why = (t.flightWhy || "") + " " + (t.hotelWhy || "");
+  add(!!f, "The flight out is identified", "No flight entered: the airline and flight number, the day and the times.");
+  add(!!h, "The hotel is identified", "No hotel entered.");
   if(f){
-    add(f.day==="Wednesday", "He is on the ground the night before, not travelling on hearing morning",
-      `${f.carrier} gets in on ${f.day}. One delay on hearing morning and the tribunal starts without him.`);
-    add(f.stops===0, "Nonstop, as the policy requires", `${f.carrier} connects — ${f.route}. A missed connection the night before a fixed hearing is the whole trip.`);
-    add(f.price<=750, "Within the $750 fare cap", `$${f.price} is over the cap and needs the managing partner's written approval.`);
-    add(f.aisle, "Aisle seat, as he books every time", `${f.seat}.`);
-    add(!/redeye/i.test(f.route), "Not a redeye before he appears", "He argues the morning after a redeye.");
-    const dep = tripClock(f.dep), arr = tripClock(f.arr);
-    const inAirDuringCall = f.day==="Wednesday" && dep!==null && arr!==null && arr>dep && dep < 10*60+30 && arr > 9*60;
-    add(!inAirDuringCall, "Doesn't fly during Wednesday's 9:00–10:30 client call", `${f.carrier} is in the air ${f.dep}–${f.arr} Wednesday, through the client call.`);
+    const dep = tripMinutes(fl.dep), arr = tripMinutes(fl.arr), fare = num(fl.fare);
+    add(fl.day==="Wednesday", "He is on the ground the night before, not travelling on hearing morning", `The flight is on ${fl.day || "no day given"}. One delay on hearing morning and the tribunal starts without him.`);
+    add(fl.stops==="0", "Nonstop, as the policy requires", fl.stops ? "It connects: a missed connection the night before a fixed hearing is the whole trip (or write the reason on file)." : "Say whether it's nonstop.");
+    add(fare!==null && (fare<=750 || /approv/i.test(why)), "Within the $750 round-trip fare cap (or approval noted)", fare===null ? "No fare entered." : `$${fare} is over the cap: it needs the managing partner's written approval, noted in your reason.`);
+    add(/aisle/i.test(fl.seat||""), "Aisle seat, near the front, as he books every time", `Seat: ${fl.seat || "not given"}.`);
+    add(dep!==null && arr!==null && arr > dep && dep < 21*60, "Not a redeye or a late-night arrival before he appears", "He argues the morning after: no redeye, no landing after midnight.");
+    add(dep!==null && dep >= 12*60, "Leaves after Wednesday's 9:00-10:30 client call, with time to reach the airport", dep===null ? "No departure time." : `Departing ${tripFmt(fl.dep)} cuts into the 9:00-10:30 call or the drive to the airport.`);
+    add(/free|refund|flex/i.test(fl.terms||""), "The fare can change if the hearing moves", `Change terms: ${fl.terms || "not given"}.`);
   }
+  const rdep = tripMinutes(ret.dep);
+  add(!!ret.name && rdep!==null && rdep >= 17*60, "Flight home Friday evening, after the 2:00 PM client meeting", !ret.name ? "No flight home entered." : `Leaving at ${tripFmt(ret.dep)} doesn't clear a 2:00 PM meeting and the ride to the airport.`);
+  // 🚗 ground transport, every leg
+  const arrIn = tripMinutes(fl.arr), gin = tripMinutes((gt.in||{}).time), gout = tripMinutes((gt.out||{}).time);
+  add(!!(gt.in||{}).mode && gin!==null && (arrIn===null || gin >= arrIn), "A ride is booked from the airport to the hotel when he lands", !(gt.in||{}).mode ? "Nothing booked from the airport: he lands and stands at the curb." : "The pickup time is before he lands.");
+  add(!!(gt.thu||{}).mode, "Thursday's ride to the Keller Center is booked (he carries an exhibit case)", "No car or ride booked for hearing morning.");
+  add(!!(gt.out||{}).mode && gout!==null && (rdep===null || rdep - gout >= 90), "A ride to the airport Friday, with 90+ minutes before the flight", !(gt.out||{}).mode ? "Nothing booked to the airport Friday." : "The pickup leaves under 90 minutes before the flight home.");
   if(h){
-    const far = /35 min|15 min by car/.test(h.dist);
-    add(!far, "Hotel is walking distance from the Keller Center", `${h.name} is ${h.dist} — morning traffic decides whether he makes a fixed hearing.`);
-    add(h.price<=320, "Within the $320 a night cap", `$${h.price} a night is over the cap.`);
-    add(/Free cancellation/i.test(h.cancel), "Refundable, as court travel has to be", `${h.cancel} — if the trip moves, the firm eats it.`);
-    add(!/closed|renovation/i.test(h.food+h.room), "No renovation or closed restaurant to work around", `${h.name}: ${h.room}; ${h.food}.`);
+    const walk = num(ht.walk), rate = num(ht.rate);
+    add(walk!==null && walk <= 15, "Hotel within a 15-minute walk of the Keller Center", walk===null ? "How far is it from the Keller Center?" : `${walk} minutes away: morning traffic decides whether he makes a fixed hearing.`);
+    add(rate!==null && rate <= 320, "Within the $320 a night cap", rate===null ? "No nightly rate entered." : `$${rate} a night is over the cap.`);
+    add(ht.cancel==="free", "Refundable, as court travel has to be", "Non-refundable: if the trip moves, the firm eats it.");
+    add(/paleo|dairy|egg|protein|grill|meat|fish|salad|veg/i.test(ht.food||""), "Somewhere he can eat strict Paleo, zero dairy", "Say what he'll eat: the hotel kitchen, room service or a nearby place that does Paleo.");
   }
   const arrive = tripMinutes(d.arrive), car = tripMinutes(d.wake), prep = tripMinutes(d.prep), debrief = tripMinutes(d.debrief);
   add(arrive!==null, "Thursday morning is laid out", "The day sheet is empty — no arrival time at the Keller Center.");
@@ -10668,11 +10707,12 @@ function tripHardChecks(){
     else add(false, "A final run-through is on the sheet", "No run-through with co-counsel before argument.");
   }
   add(debrief!==null && debrief >= HEARING, "A debrief buffer after the hearing", "Nothing held after the hearing — the client will want to talk and so will he.");
-  return {checks, f, h};
+  return {checks, f, h, t};
 }
 async function checkTripPlan(){
   const t = tripState();
-  if(!t.flight || !t.hotel){ toast("Pick a flight and a hotel first."); return; }
+  const e_ = tripEntry();
+  if(!e_.fl.name || !e_.ht.name){ toast("Identify the flight out and the hotel first."); return; }
   const {checks} = tripHardChecks();
   const passed = checks.filter(c=>c.ok).length;
   const el = document.getElementById("tripResult");
@@ -10696,9 +10736,11 @@ function tripSummaryText(){
   const d = t.day||{};
   const r = TRIP_RECOVERY.find(x=>x.id===t.recovery);
   return [
-    `FLIGHT BOOKED: ${f ? `${f.carrier}, ${f.day} ${f.dep}–${f.arr}, ${f.route}, ${f.cabin}, ${f.seat}, $${f.price}, ${f.change}` : "none"}`,
+    `FLIGHT OUT (the trainee found it): ${f ? `${f.name}, ${f.day||"?"} ${tripFmt(f.dep)}–${tripFmt(f.arr)}, ${f.stops==="0" ? "nonstop" : "connecting"}, $${f.fare||"?"} round trip, seat ${f.seat||"?"}, ${f.terms||"terms not given"}` : "none"}`,
+    `FLIGHT HOME: ${t.ret && t.ret.name ? `${t.ret.name}, Friday ${tripFmt(t.ret.dep)}` : "none"}`,
     `Trainee's reason: ${t.flightWhy || "(none written)"}`,
-    `HOTEL BOOKED: ${h ? `${h.name}, ${h.dist}, $${h.price}/night, ${h.room}, ${h.food}, ${h.cancel}` : "none"}`,
+    `GROUND TRANSPORT: airport to hotel ${(t.gt.in||{}).mode || "none"} at ${tripFmt((t.gt.in||{}).time)}; Thursday to the Keller Center ${(t.gt.thu||{}).mode || "none"}; Friday to the airport ${(t.gt.out||{}).mode || "none"} at ${tripFmt((t.gt.out||{}).time)}. Notes: ${t.gt.notes || "(none)"}`,
+    `HOTEL: ${h ? `${h.name}, ${h.walk||"?"} min walk to the Keller Center, $${h.rate||"?"}/night, ${h.cancel==="free" ? "free cancellation" : "non-refundable"}, food: ${h.food||"(not said)"}` : "none"}`,
     `Trainee's reason: ${t.hotelWhy || "(none written)"}`,
     `THURSDAY DAY SHEET: car at ${tripFmt(d.wake)}; at the Keller Center ${tripFmt(d.arrive)}; run-through ${tripFmt(d.prep)}; hearing 9:00 AM (fixed); debrief ${tripFmt(d.debrief)}.`,
     `HARD CONSTRAINTS: ${checks.filter(c=>c.ok).length} of ${checks.length} met. Missed: ${checks.filter(c=>!c.ok).map(c=>c.label).join("; ") || "none"}.`,
@@ -10745,7 +10787,7 @@ window.reviewTripCrisis = reviewTripCrisis;
 async function downloadTravelPdf(){
   await ensureTraineeName();
   const t = tripState();
-  if(!t.flight && !t.hotel){ toast("Book the trip first."); return; }
+  { const e_ = tripEntry(); if(!e_.fl.name && !e_.ht.name){ toast("Book the trip first."); return; } }
   const {checks} = tripHardChecks();
   const lines = [`## ${TRIP_BRIEF.title}`, TRIP_BRIEF.text, "---", "## What I Booked And Why"];
   tripSummaryText().split("\n").forEach(l=>lines.push(l));
@@ -11039,7 +11081,7 @@ function renderIntakeCallChat(){
       <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
         <button class="btn btn-ghost btn-sm" onclick="restartIntakeCall()">Restart</button>
         <button class="btn btn-navy btn-sm" onclick="endIntakeCallDebrief()">End Call &amp; Get Evaluation</button>
-      </div>` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:14px 0 0;">No repeat attempts remaining — this call is view-only. Ask your trainer to reset your Practice Lab attempts to run it again.</p>`}
+      </div>` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:14px 0 0;">One try only: this call is done and its result is final, so it's view-only now.</p>`}
       <div id="intakeCallDebrief" style="margin-top:14px;"></div>
     </div>
   `;
@@ -12851,7 +12893,7 @@ function sopLiveSections(d){
   ]});
   sec.push({h:`Topics covered in the portal (${lessons.length})`, type:"table", headers:["#","Topic","Key teaching point","Trainer cue"], rows:
     lessons.map((l,i)=>{ const {principles} = lessonParts(l); return [String(i+1), l.h + (l.__extra?" (added in Content Studio)":""), scriptShort(principles[0]||"", 160), scriptShort(l.trainerCue||"—", 140)]; })});
-  if(tools.length) sec.push({h:"Practice Lab", type:"bullets", items: tools.map(t=>`${t.title} — ${t.desc}`).concat(["First submission of each exercise is free; repeats use one of the 3 attempts for this day's Practice Lab (reset them in Trainee Audit if needed).","Completing the Practice Lab (any score) unlocks the next day."])});
+  if(tools.length) sec.push({h:"Practice Lab", type:"bullets", items: tools.map(t=>`${t.title} — ${t.desc}`).concat(["One try per exercise and per Knowledge Check: Pass (70%+) or Fail.","Completing the Practice Lab (any score) unlocks the next day."])});
   sec.push({h:"After the session (trainer checklist)", type:"bullets", items:[
     "Trainee Audit → View Detail: review each trainee's Day-by-Day Feedback (auto-drafted when they finish) and click Send.",
     "Add any personal Focus items for trainees who need a specific next step.",
@@ -18333,5 +18375,11 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/eapa-deck-type.js?v=1"></script>
 <script src="/js/lsh-footer.js?v=1"></script>
 <script src="/js/lsh-hero-logo.js?v=2"></script>
+<!-- 🎯 One try, Pass or Fail: every Practice Lab exercise and Knowledge Check is taken once (js/eapa-one-try.js) -->
+<script src="/js/eapa-one-try.js?v=1"></script>
+<!-- 🔠 Skill-building activity type, the standard: bigger and bolder in every Practice Lab activity; the tool cards line up (js/eapa-lab-type.js) -->
+<script src="/js/eapa-lab-type.js?v=1"></script>
+<!-- 📧💬📞 Every Practice Lab activity opens with the task as Elias sent it: email, text or call, then ACT and BLUF (js/eapa-eli-tasks.js) -->
+<script src="/js/eapa-eli-tasks.js?v=1"></script>
 </body>
 </html>
