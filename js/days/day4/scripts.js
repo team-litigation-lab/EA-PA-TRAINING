@@ -649,7 +649,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Finally, sign off with the attorney's details and an easy opt-out, and proofread names and links."
    ],
    "ask": "What's wrong with opening an email with who the firm is?",
-   "scenario": "Rewrite this email in under 80 words: 'Dear Sir, Thorne & Partners was founded in 1998 and has 40 attorneys practising in many areas of law. We would welcome the opportunity to discuss our services with you at your convenience.' The recipient's company just announced a merger."
+   "scenario": "Rewrite this email in under 80 words: 'Dear Sir, Thorne & Partners was founded in 1998 and has 40 attorneys practicing in many areas of law. We would welcome the opportunity to discuss our services with you at your convenience.' The recipient's company just announced a merger."
   },
   "p2": {
    "why": "Never promise a legal outcome in outreach.",

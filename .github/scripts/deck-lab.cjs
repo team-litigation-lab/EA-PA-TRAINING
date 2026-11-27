@@ -1,6 +1,6 @@
 // 🛠 The day's Practice Lab inside its deck, and a day that completes itself (js/eapa-deck-lab.js):
 // 1. eapaDeckLab.ACTIVITIES names every lab's activities as the lab itself does (toolState.wizardLabels once it is open).
-// 2. A day's deck has one slide per activity of its Practice Lab, each right after the topic it practises (the rest at
+// 2. A day's deck has one slide per activity of its Practice Lab, each right after the topic it practices (the rest at
 //    the end), and a saved place moves with its slide; ▶ Start opens the lab on that activity, and the
 //    lab's "← Back to Day N" comes back to the same slide, which then shows the activity's grade.
 // 3. The day card has no ✓ Finish Training (☰ Topics and ▶ Video share the row); a day whose Knowledge Check is passed but

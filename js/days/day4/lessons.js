@@ -420,7 +420,7 @@ const DAY4 = {
         ],
         "discussionCase": "Your list has 'Dana Reyes, Chief Privacy Officer, Brightline Logistics, dana.reyes@brightline-logistcs.com'. LinkedIn shows Dana left Brightline in March, and the state registry shows Brightline merged into another company. What do you record, and is there still a lead here?"
       },
-      "trainerCue": "Run three sample leads through the five checks live: one clean, one with a misspelled domain and one that's an adverse party. Trainees practise the same sorting in the Day 4 Practice Lab's Lead Generation Practice."
+      "trainerCue": "Run three sample leads through the five checks live: one clean, one with a misspelled domain and one that's an adverse party. Trainees practice the same sorting in the Day 4 Practice Lab's Lead Generation Practice."
     },
     {
       "h": "Lead Quality, Qualifying & Tracking",

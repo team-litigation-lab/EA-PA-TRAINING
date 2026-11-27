@@ -264,7 +264,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
     "Next, we never blame the person for their timing, and we always leave them with a real next step.",
     "Finally, when we need to persuade, we listen, frame the situation, appeal to shared goals and ask for their view."
    ],
-   "ask": "Let's practise. I'll play a pushy caller who wants Elias right now. First, a volunteer caves; then another holds the line politely. What made the difference?",
+   "ask": "Let's practice. I'll play a pushy caller who wants Elias right now. First, a volunteer caves; then another holds the line politely. What made the difference?",
    "scenario": "A junior partner has asked for time with Elias three times this week and is getting frustrated. Elias has said he can't meet until next week. How do you respond so the partner feels heard and still leaves with a real next step?"
   }
  },

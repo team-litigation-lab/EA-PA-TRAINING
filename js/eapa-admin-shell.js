@@ -120,7 +120,7 @@ const toneOf = v => typeof v !== "number" ? "" : v >= 85 ? "eash-hi" : v >= 70 ?
    of how they work (the areas they are strong or weak in), with no detail of a piece of work */
 const AREAS = [
   {id: "kc", label: "Lesson knowledge", good: "understands the lessons and applies them", gap: "reviewing the lessons until each Knowledge Check is passed"},
-  {id: "pr", label: "Practical skills", good: "handles the Practice Lab tasks the way an EA / PA would on the job", gap: "practising the lab tasks until they meet the standard"},
+  {id: "pr", label: "Practical skills", good: "handles the Practice Lab tasks the way an EA / PA would on the job", gap: "practicing the lab tasks until they meet the standard"},
   {id: "tk", label: "Responsiveness", good: "handles surprise tasks promptly and calmly", gap: "handling surprise tasks promptly and in full"}];
 const ATTRS = [["Knowledge & Understanding", ["kc"]], ["Practical Execution", ["pr"]], ["Reliability & Responsiveness", ["tk", "pace"]]];
 const stars = v => v == null ? "N/A (insufficient data)" : "★".repeat(Math.max(1, Math.min(5, Math.round(v / 20)))) + "☆".repeat(5 - Math.max(1, Math.min(5, Math.round(v / 20))));
