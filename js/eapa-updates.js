@@ -484,18 +484,21 @@ function paginateSlideUnits(){
     for(let k=0;k<16;k++){ const mid = (lo+hi)/2; if(pack(mid).length <= pages.length) hi = mid; else lo = mid; }
     pages = pack(hi);
   }
-  // a page left with only a sliver (one short step, a last line) folds into the page next to it, which is then
-  // drawn a little smaller to fit (applySlidePage: down to 80%), so no page holds a single leftover item
+  if(pages.length < 2){ state.slidePage = 0; updateSlidePageUi(); return; }
+  // a page left with only a sliver (one short step on a row of its own) takes the units just before it from the page
+  // above, so the two pages share the content instead of one holding a single leftover item. Every page still fits
+  // its room at the deck's one size: nothing is shrunk.
   const hOf = ([a,b])=>Math.max(...box.slice(a,b+1).map(x=>x.bottom)) - box[a].top;
-  for(let guard = 0; guard < 8 && pages.length > 1; guard++){
-    const i = pages.findIndex(pg=>hOf(pg) < room*0.3); if(i < 0) break;
-    const opts = [i > 0 ? i-1 : -1, i < pages.length-1 ? i+1 : -1].filter(j=>j >= 0)
-      .map(j=>{ const m = [Math.min(pages[i][0], pages[j][0]), Math.max(pages[i][1], pages[j][1])]; return {j, m, h: hOf(m)}; })
-      .filter(o=>o.h <= room*1.25).sort((x,y)=>x.h - y.h);
-    if(!opts.length) break;
-    const {j, m} = opts[0]; pages.splice(Math.min(i,j), 2, m);
+  for(let i = 1; i < pages.length; i++){
+    if(hOf(pages[i]) >= room*0.3) continue;
+    const [pa, pb] = pages[i-1], [, cb] = pages[i]; let best = null;
+    for(let k = pb; k > pa; k--){
+      if(!canBreak[k] || hOf([k, cb]) > room) continue;
+      const worst = Math.max(hOf([pa, k-1]), hOf([k, cb]));
+      if(!best || worst < best.worst) best = {k, worst};
+    }
+    if(best){ pages[i-1] = [pa, best.k-1]; pages[i] = [best.k, cb]; }
   }
-  if(pages.length < 2 && hOf(pages[0]) <= room){ state.slidePage = 0; updateSlidePageUi(); return; }
   const heights = pages.map(hOf);
   __slidePg = {wrap, units, pages, heights, room};
   state.slidePages = pages.length;
@@ -518,11 +521,8 @@ function applySlidePage(){
     else if(ol.hasAttribute("data-pg-start")){ ol.removeAttribute("start"); ol.style.counterReset = ""; ol.removeAttribute("data-pg-start"); }
   });
   pg.wrap.classList.toggle("pg-later", p > 0);
-  // a page that took in a sliver from the next is drawn a little smaller, so it still fits
-  const z = pg.heights[p] > pg.room ? Math.max(0.8, pg.room / pg.heights[p]) : 1;
-  slideZoomParts(pg.wrap).forEach(n=>n.style.zoom = z < 1 ? String(Math.floor(z*100)/100) : "");
   pg.wrap.querySelectorAll(".pg-badge").forEach(n=>n.remove());
-  if(pg.pages.length > 1) pg.wrap.insertAdjacentHTML("beforeend", `<div class="pg-badge">PAGE ${p+1} / ${pg.pages.length}${p < pg.pages.length-1 ? " · CONTINUES →" : ""}</div>`);
+  pg.wrap.insertAdjacentHTML("beforeend", `<div class="pg-badge">PAGE ${p+1} / ${pg.pages.length}${p < pg.pages.length-1 ? " · CONTINUES →" : ""}</div>`);
   pg.wrap.scrollTop = 0;
   updateSlidePageUi();
 }
