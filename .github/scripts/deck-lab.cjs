@@ -59,6 +59,7 @@ const failures = []; const fail = (m) => failures.push(m);
       const first = await page.evaluate(() => [(toolState.wizardLabels || [])[0], !!document.querySelector('#actHabitDraft, #d1ActDraft')]);
       if (first[0] !== 'ACT Email' || !first[1]) fail(`${id}: the lab should open on its ACT Email: ${JSON.stringify(first)}`);
     }
+    await page.evaluate(() => goto('day', 1)); await page.waitForTimeout(500);   // (back to Day 1's deck for the steps below)
 
     // 2c. a saved place moves with its slide: a trainee who was on Day 1's ACT Email slide (at the end, the old layout)
     //     is on it again in the new layout, and their furthest slide doesn't move back
