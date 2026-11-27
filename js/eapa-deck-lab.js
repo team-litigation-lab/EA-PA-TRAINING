@@ -23,16 +23,16 @@ const E = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&": "&amp;
 
 // each lab's activities, in its own order (toolState.wizardLabels once the lab is open)
 const ACTIVITIES = {
-  dossier1: ["Client Dossier", "Preference Trackers", "ACT Email", "Gatekeeping Practice"],
-  forcemultiplier2: ["Anticipate the Real Need", "Prompt Engineering", "The Full Scenario", "Inbox Triage"],
-  calendar: ["Calendar Conflict Resolver", "Daily Briefing Prompt", "Proactive EA Tasks", "Travel & the Trip That Breaks", "Crisis Roleplay"],
-  coldcalling4: ["Prioritize the Day", "Prospect Call Log", "Lead Generation Practice", "Live Intake Call Simulator", "Email Outreach Simulator", "Crisis Roleplay"],
-  insurance5: ["Classify the Risk", "Match the Strategy", "Home Binder", "Crisis Roleplay"],
-  projectcompliance6: ["Compliance Risk", "Operational Warning Signs", "Recovery Memo", "Crisis Roleplay", "Compliance Audit Simulation", "Florida Satellite Office"],
-  financial: ["Trust Ledger Reconciliation", "Invoice & Bill Audit", "Invoice Follow-Up", "Attention to Detail Test", "Crisis Roleplay"],
-  accessincident8: ["Least-Privilege Access Audit", "Verify Before You Disclose", "Contain the Leak", "The Firm Is Exposed — Size It", "Recommendation & Action Plan", "The Client Conversation", "Crisis Roleplay"],
-  compliance9: ["Event Invite & Registration Form", "Event Follow-Up", "Meeting Notes & Action Items", "CLE Compliance Dashboard", "Negative Review Response", "Awards Tracker", "Crisis Roleplay"],
-  socialmedia10: ["Engagement Rate", "Version Matching", "Campaign Math", "Brand Kit", "Marketing Plan", "Crisis Roleplay"]
+  dossier1: ["ACT Email", "Client Dossier", "Preference Trackers", "Gatekeeping Practice"],
+  forcemultiplier2: ["ACT Email", "Anticipate the Real Need", "Prompt Engineering", "The Full Scenario", "Inbox Triage"],
+  calendar: ["ACT Email", "Calendar Conflict Resolver", "Daily Briefing Prompt", "Proactive EA Tasks", "Travel & the Trip That Breaks", "Crisis Roleplay"],
+  coldcalling4: ["ACT Email", "Prioritize the Day", "Prospect Call Log", "Lead Generation Practice", "Live Intake Call Simulator", "Email Outreach Simulator", "Crisis Roleplay"],
+  insurance5: ["ACT Email", "Classify the Risk", "Match the Strategy", "Home Binder", "Crisis Roleplay"],
+  projectcompliance6: ["ACT Email", "Compliance Risk", "Operational Warning Signs", "Recovery Memo", "Crisis Roleplay", "Compliance Audit Simulation", "Florida Satellite Office"],
+  financial: ["ACT Email", "Trust Ledger Reconciliation", "Invoice & Bill Audit", "Invoice Follow-Up", "Attention to Detail Test", "Crisis Roleplay"],
+  accessincident8: ["ACT Email", "Least-Privilege Access Audit", "Verify Before You Disclose", "Contain the Leak", "The Firm Is Exposed — Size It", "Recommendation & Action Plan", "The Client Conversation", "Crisis Roleplay"],
+  compliance9: ["ACT Email", "Event Invite & Registration Form", "Event Follow-Up", "Meeting Notes & Action Items", "CLE Compliance Dashboard", "Negative Review Response", "Awards Tracker", "Crisis Roleplay"],
+  socialmedia10: ["ACT Email", "Engagement Rate", "Version Matching", "Campaign Math", "Brand Kit", "Marketing Plan", "Crisis Roleplay"]
 };
 const acts = t => ACTIVITIES[t.id] || [];
 const pp = id => (state.practiceProgress || {})[id] || null;
@@ -70,6 +70,10 @@ const AFTER_TOPIC = {
   socialmedia10: { "Engagement Rate": "Engagement Rate Benchmarks & Interpretation", "Version Matching": "Platform Details & the One Rule That Applies to All Three",
     "Campaign Math": "Basic Campaign Math", "Brand Kit": "Brand Consistency: Palette, Typography & Imagery" }
 };
+/* Activities that open the day: their slides come first, right after the day's agenda. The ACT email is the first thing
+   a trainee does each day from Day 2 (js/eapa-act-habit.js); Day 1 practises it after the topic that teaches it. */
+const AT_START = ["forcemultiplier2", "calendar", "coldcalling4", "insurance5", "projectcompliance6", "financial", "accessincident8", "compliance9", "socialmedia10"]
+  .reduce((o, id) => (o[id] = ["ACT Email"], o), {});
 const __build = buildDaySlides;
 // inline: false gives the old layout (every activity at the end), which the saved-place migration below reads.
 function placeLabs(d, slides, inline){
@@ -78,8 +82,9 @@ function placeLabs(d, slides, inline){
   const parts = [];
   relatedTools(d.id).forEach(t => { const a = acts(t); if(a.length) a.forEach((label, i) => parts.push({type: "practiceLab", toolId: t.id, part: i, label, of: a.length})); });
   if(!parts.length) return slides;
-  const end = [], after = {};   // after: topic index -> the activities that follow it, in the lab's order
+  const end = [], after = {}, first = [];   // after: topic index -> the activities that follow it, in the lab's order
   parts.forEach(p => {
+    if(inline && (AT_START[p.toolId] || []).includes(p.label)){ p.start = true; first.push(p); return; }
     const h = inline && (AFTER_TOPIC[p.toolId] || {})[p.label], li = h ? d.lessons.findIndex(l => l.h === h) : -1;
     if(li >= 0){ p.after = h; (after[li] = after[li] || []).push(p); } else end.push(p);
   });
@@ -89,6 +94,8 @@ function placeLabs(d, slides, inline){
     let k = -1; slides.forEach((s, j) => { if(s && s.lessonIndex === li && (s.type === "topic" || s.type === "quickCheck")) k = j; });
     if(k >= 0) slides.splice(k + 1, 0, ...after[li]); else slides.splice(slides.findIndex(s => s && s.type === "practiceLab") + 1 || slides.length, 0, ...after[li]);
   });
+  // the day's opening activities: right after the agenda
+  if(first.length){ const ag = slides.findIndex(s => s && s.type === "agenda"); slides.splice(ag + 1, 0, ...first); }
   return slides;
 }
 buildDaySlides = window.buildDaySlides = function(d){ return placeLabs(d, __build.apply(this, arguments), true); };
@@ -118,9 +125,36 @@ async function migrateLabsInline(){
   if(sp) await storeSet("slide-progress", state.slideProgress);
   if(fl) await storeSet("day-order-migrated", state.dayOrderMigrated);
 }
+// The ACT email's slide, new at the start of Days 2–10, moves every later slide on by one: a trainee's saved place (and
+// furthest slide) on those days moves with it, once per day. (A day migrated by migrateLabsInline in the same run already
+// has its places in the new order.)
+const ACT_FLAG = id => "act-first:" + id;
+async function migrateActFirst(already){
+  if(!state.dayOrderMigrated) state.dayOrderMigrated = {};
+  let ls = false, sp = false, fl = false;
+  (typeof DAYS !== "undefined" ? DAYS : []).forEach(d => {
+    if(state.dayOrderMigrated[ACT_FLAG(d.id)]) return;
+    state.dayOrderMigrated[ACT_FLAG(d.id)] = true; fl = true;
+    if(!already.includes(d.id)) return;
+    const n = buildDaySlides(d).filter(s => s && s.type === "practiceLab" && s.start).length; if(!n) return;
+    const ag = buildDaySlides(d).findIndex(s => s && s.type === "agenda");
+    const move = v => typeof v === "number" && v > ag ? v + n : v;
+    const last = (state.lastSlide || {})[d.id], far = (state.slideProgress || {})[d.id];
+    if(move(last) !== last){ state.lastSlide[d.id] = move(last); ls = true; }
+    if(move(far) !== far){ state.slideProgress[d.id] = move(far); sp = true; }
+  });
+  if(ls) await storeSet("last-slide", state.lastSlide);
+  if(sp) await storeSet("slide-progress", state.slideProgress);
+  if(fl) await storeSet("day-order-migrated", state.dayOrderMigrated);
+}
 if(typeof migrateQuickCheckOrder === "function"){
   const __mq = migrateQuickCheckOrder;
-  migrateQuickCheckOrder = window.migrateQuickCheckOrder = async function(){ const r = await __mq.apply(this, arguments); try{ await migrateLabsInline(); }catch(e){} return r; };
+  migrateQuickCheckOrder = window.migrateQuickCheckOrder = async function(){
+    const r = await __mq.apply(this, arguments);
+    const already = (typeof DAYS !== "undefined" ? DAYS : []).filter(d => state.dayOrderMigrated && state.dayOrderMigrated[INLINE_FLAG(d.id)]).map(d => d.id);
+    try{ await migrateLabsInline(); }catch(e){}
+    try{ await migrateActFirst(already); }catch(e){}
+    return r; };
 }
 function labSlideHtml(d, slide){
   const t = PRACTICE_TOOLS.find(x => x.id === slide.toolId); if(!t) return "";
@@ -131,7 +165,7 @@ function labSlideHtml(d, slide){
   const left = kcPassed(d.id) ? (labDone(d.id) ? `✓ Day ${d.id} is complete: Knowledge Check passed and Practice Lab done.` : `✓ Knowledge Check passed. A graded Practice Lab activity completes Day ${d.id}.`)
     : (() => { const L = labLeft(d.id); return L.left.length ? `${L.all.length - L.left.length} of ${L.all.length} Practice Lab activities done. The Knowledge Check opens once all ${L.all.length} are graded.` : `✓ Every Practice Lab activity is done: the Knowledge Check is open.`; })();
   return `
-    <div class="topic-separator">DAY ${d.id} &middot; ${slide.after ? "PRACTICE IN THE SESSION" : "PRACTICE LAB"} &middot; ACTIVITY ${slide.part + 1} OF ${slide.of}</div>
+    <div class="topic-separator">DAY ${d.id} &middot; ${slide.start ? "FIRST THING TODAY" : slide.after ? "PRACTICE IN THE SESSION" : "PRACTICE LAB"} &middot; ACTIVITY ${slide.part + 1} OF ${slide.of}</div>
     <div class="card edl">
       <div class="edl-main">
         <div class="edl-kick">${t.icon} ${E(t.title)}</div>
@@ -290,7 +324,7 @@ function labProgress(toolId){
     complete: a.length > 0 && done === a.length, started: done > 0 || ((p && p.runs) || 0) > 0};
 }
 
-window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline, labLeft, kcHeld, startFromGate, labProgress};
+window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, AT_START, migrateActFirst, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline, labLeft, kcHeld, startFromGate, labProgress};
 
 const st = document.createElement("style"); st.id = "eapa-deck-lab"; st.textContent = `
 .edl{text-align:left;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;padding:22px 24px;background:#FFFBF3;border-color:var(--orange-soft,#F3D2B0);align-items:start;}

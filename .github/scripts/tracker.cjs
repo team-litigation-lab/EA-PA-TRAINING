@@ -27,7 +27,7 @@ const BASE = process.argv[2] || 'http://localhost:8787/';
     await page.reload({ waitUntil: 'load' }); await page.waitForTimeout(1500);
     await page.evaluate(() => { state.isAdmin = true; goto('tool', 'dossier1'); });
     await page.waitForTimeout(400);
-    await page.evaluate(() => wizardGoTo(1));
+    await page.evaluate(() => wizardGoTo(toolState.wizardLabels.indexOf('Preference Trackers')));
     await page.waitForTimeout(200);
 
     const book = '#d1xlHost .xl-book';
@@ -131,7 +131,7 @@ print('Seat preference' in z.read('xl/worksheets/sheet1.xml').decode())`, file])
     await page.reload({ waitUntil: 'load' }); await page.waitForTimeout(1500);
     await page.evaluate(() => { state.isAdmin = true; goto('tool', 'dossier1'); });
     await page.waitForTimeout(600);
-    await page.evaluate(() => wizardGoTo(1));
+    await page.evaluate(() => wizardGoTo(toolState.wizardLabels.indexOf('Preference Trackers')));
     check((await cell(1, 0)) === 'Seat preference', 'the workbook is restored after a reload');
 
     // phone width: the grid scrolls inside its box, the page doesn't scroll sideways

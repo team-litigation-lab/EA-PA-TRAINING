@@ -17340,7 +17340,7 @@ function initDossier1(body){
     <div id="d1TrackerResult" style="margin-top:8px;font-size:13px;"></div>
   `;
   const partC = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Sample Task — Responding with an ACT Email</h3>
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">First: Responding with an ACT Email</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias just sent this. It's unstructured on purpose — real requests from him arrive exactly like this. Your job is to send back an <b>ACT email</b>: <b>A</b>cknowledge what he needs, <b>C</b>larify what's still unknown, and lay out the <b>T</b>imeline for what happens next.</p>
     <div class="act-box">
       <div class="act-card"><b>A</b>Acknowledge the ask in one line — show him you understood it, not just that you received it.</div>
@@ -17367,9 +17367,10 @@ function initDossier1(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
   `;
   body.innerHTML = renderToolWizard(1, [
+    {label:"ACT Email", html:partC},
     {label:"Client Dossier", html:partA},
     {label:"Preference Trackers", html:partB},
-    {label:"ACT Email", html:partC},
+
     {label:"Gatekeeping Practice", html:partD}
   ]);
   d1xlRender();
@@ -18312,7 +18313,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=4"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=gold-3"></script>
+<script src="/js/eapa-updates.js?v=gold-4"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>
@@ -18340,14 +18341,16 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- ✨ The elite deck: the Portal's blue-gold frame, mono tags, sans-serif headings and navy primary buttons on the lesson deck (design only) -->
 <script src="/js/eapa-deck-elite.js?v=2"></script>
 <!-- 🖥 Practice Lab activities in realistic app windows (docs, mail, tasks, ledger, admin console, portal, dashboards, AI assistant, CRM, forms, reviews, social) -->
-<script src="/js/eapa-lab-apps.js?v=10"></script>
+<script src="/js/eapa-lab-apps.js?v=11"></script>
 <script src="/js/eapa-sim-scenarios.js?v=2"></script>
 <script src="/js/eapa-sim-run.js?v=4"></script>
 <!-- 🎬 Each day's narrated Video Presentation (▶ Video on the day card; build/video/README.md) -->
 <script src="/js/eapa-day-videos.js?v=2"></script>
 <script src="/js/eapa-day-video.js?v=3"></script>
 <!-- 🛠 The day's Practice Lab inside its deck (a slide per activity, ▶ Start opens it there), and a day that completes itself: Knowledge Check passed + Practice Lab done, no ✓ Finish Training -->
-<script src="/js/eapa-deck-lab.js?v=5"></script>
+<!-- ✉️ The ACT email habit: every day's Practice Lab from Day 2 opens with an ACT email to Elias -->
+<script src="/js/eapa-act-habit.js?v=1"></script>
+<script src="/js/eapa-deck-lab.js?v=6"></script>
 <!-- 🔠 The lesson deck's type, the Case Management / Foundational way: body text 16px+ on a laptop, labels you can read -->
 <script src="/js/eapa-deck-type.js?v=1"></script>
 <script src="/js/lsh-footer.js?v=1"></script>
