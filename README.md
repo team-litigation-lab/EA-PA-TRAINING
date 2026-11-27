@@ -63,6 +63,7 @@ Each Practice Lab activity's slide now sits **inside the lesson it practises**, 
 
 - The map is `AFTER_TOPIC` in `js/eapa-deck-lab.js` (activity → topic title). Activities with no topic of their own (every day's *Crisis Roleplay*, Day 4's *Prioritize the Day*, Day 10's *Marketing Plan*) stay at the end of the day, before the Knowledge Check.
 - Topic titles are keys: renaming a topic moves its activity back to the end, and `.github/scripts/deck-lab.cjs` fails until `AFTER_TOPIC` is updated.
+- **The Practice Lab comes before the Knowledge Check.** A day's ✍️ Knowledge Check opens only once every activity of that day's Practice Lab is graded. Until then it shows **Finish Day N's Practice Lab first**: each activity, ✓ with its best mark or ▶ Start, which opens the lab on that activity from its own slide in the deck. A trainer is never held (👁 Trainee view is), nor is a day whose Knowledge Check is already passed. Every lab activity saves its mark when graded, so no one can be locked out (`kcHeld` / `labLeft` in `js/eapa-deck-lab.js`; checked by `.github/scripts/deck-lab.cjs`).
 - Saved places move with their slide: the first time a trainee signs in after this change, their place and furthest slide on each day are moved to the same slides in the new order (`migrateLabsInline`, once per day, flagged `deck-lab-inline:<day>` in `day-order-migrated`), and the furthest slide never moves back.
 
 ## 🎨 Slide colour, graphics and icons
