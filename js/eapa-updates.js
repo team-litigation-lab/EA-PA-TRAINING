@@ -2360,7 +2360,7 @@ function sopRunOfShow(dRaw){
       `Trainees open it from the Practice Lab slide (or 🧪 Practice Lab). They work in their own portal; stop presenting or leave the Practice Lab slide up.`,
       acts.length ? `Activities (≈10 min each): ${acts.map((a,k)=>`<b>${k+1}. ${esc(a)}</b>`).join(" · ")}.` : "",
       acts.some(a=>/Roleplay/i.test(a)) ? `The Crisis Roleplay can be run live by you, or trainees rehearse solo first.` : "",
-      `First submission of each exercise is free; repeats use one of the 3 attempts for that day's Practice Lab (reset in Trainee Audit if someone is blocked by a technical issue).`].filter(Boolean),
+      `One try per exercise and per Knowledge Check: Pass (70%+) or Fail.`].filter(Boolean),
       watch:"Anyone stuck on the same activity for more than 10 minutes — nudge them to submit and move on; the debrief is where the learning lands."});
     add(10, {title:"Practice Lab debrief", do:[`Ask 2–3 trainees to walk through what they did and why, and where their judgment differed from the model answer.`, `Point to the Evaluation Report's “Not this way — what to change” section: it's the next step, not a verdict.`]});
   }
