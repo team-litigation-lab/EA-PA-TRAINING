@@ -166,9 +166,10 @@ function scoreRows(r){
     const scores = runs.map(x => x.score + "%");
     // every activity of the lab, as the Knowledge Check counts them (js/eapa-deck-lab.js): graded, and what's still to do
     const all = (window.eapaDeckLab && eapaDeckLab.ACTIVITIES[id]) || [], marks = (((r.pp || {})[id] || {}).parts) || {};
-    const todo = all.filter(l => typeof marks[l] !== "number");
+    const legacy = !!(((r.pp || {})[id] || {}).legacy);   // graded before activities were counted one by one: done as it was
+    const todo = legacy ? [] : all.filter(l => typeof marks[l] !== "number");
     rows.push({name, sub: `Practice Lab · best of ${plural(t.runs || runs.length || 1, "run")}`, score: t.best, run: e,
-      why: [all.length ? `${all.length - todo.length} of ${all.length} activities graded${todo.length ? "" : ": the lab is complete"}.` : "",
+      why: [legacy ? "Graded before the lab was counted activity by activity: it counts as complete, as it was." : all.length ? `${all.length - todo.length} of ${all.length} activities graded${todo.length ? "" : ": the lab is complete"}.` : "",
         `Best of ${plural(t.runs || runs.length || 1, "run")}${scores.length > 1 ? ` (${scores.join(", ")})` : ""}.`,
         `Graded ${(e && e.tier && tierOf(e.tier)) || level(t.best)}.`, subsLine(e), passLine(t.best)],
       great: noted ? (e.strengths || []) : t.best >= PASS ? [`Passed at ${t.best}%: most of the lab done right.`] : [],
