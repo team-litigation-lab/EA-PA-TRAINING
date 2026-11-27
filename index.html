@@ -4517,7 +4517,7 @@ function orientSlides(){
      <p class="or-foot">Every day is open — take them in order, as each builds on the one before.</p>`},
    {k:"A day", h:"How every day works", body:`
      <div class="or-flow">${step(1,"🖥","Lesson slides","One topic at a time. Next / Previous at the bottom; your place is saved.")}<i>→</i>${step(2,"✔","Quick Checks","Short questions between topics. Pick, change your mind, then Check Answer.")}<i>→</i>${step(3,"🧪","Practice Lab","Do the real task. Graded with written feedback. Auto-saves as you type.")}<i>→</i>${step(4,"📝","Knowledge Check","Pass at 70% to mark the day complete ✓.")}<i>→</i>${step(5,"➡","Next day","Every day is open. Move on once the day's Practice Lab is done.")}</div>
-     <div class="or-note">Didn't pass the Knowledge Check? That's a <b>“not yet”</b>, not a “no” — you can still move on, and retake it any time. Your best score counts.</div>`},
+     <div class="or-note"><b>One try, Pass or Fail:</b> each Knowledge Check and each Practice Lab exercise is taken once. 70% or more is a Pass; below is a Fail. Read the lesson, then take it when you're ready.</div>`},
    {k:"Dashboard", h:"Your dashboard at a glance", body:`
      <div class="or-bp">
        <div class="or-bp-main">
@@ -4544,7 +4544,7 @@ function orientSlides(){
        <ul class="or-list"><li>Read the <b>Client Profile</b> before Day 1 and keep it handy — his preferences are graded.</li><li>If a later task seems to contradict the profile, raise it — spotting that is the job.</li><li>Treat everything about him as confidential, like a real client.</li></ul></div>
      </div>`},
    {k:"Practice", h:"Practice Labs: how grading works", body:`
-     <div class="or-3">${pill("🆓","First try is free","Your first submission of each exercise never uses an attempt.")}${pill("🔁",`${LAB_ATTEMPT_CAP} repeats per day`,"Each day's Practice Lab has its own repeats. Your trainer can reset them.")}${pill("💾","Auto-saves","Close the tab or switch devices — your work is still there.")}</div>
+     <div class="or-3">${pill("🆓","First try is free","Your first submission of each exercise never uses an attempt.")}${pill("🎯","One try","Each exercise and Knowledge Check is submitted once: Pass (70%+) or Fail.")}${pill("💾","Auto-saves","Close the tab or switch devices — your work is still there.")}</div>
      <div class="or-note"><b>Feedback, not just a score:</b> every graded submission shows strengths, what to change (“not this way — here's the better way”) and next steps. Nonsense or copy-paste answers aren't graded.</div>`},
    {k:"Calls", h:"Live calls & roleplays", body:`
      <ul class="or-list big"><li>🎧 Use a headset. The caller <b>speaks</b>; you answer out loud (Chrome/Edge) or type.</li><li>🔊 Can't hear the caller? Check your volume and press <b>↻ Replay</b>.</li><li>🙋 Hands-free mode listens automatically after the caller finishes.</li><li>📞 <b>Hang Up</b> ends the call and gives you your evaluation.</li></ul>`},
@@ -4730,7 +4730,7 @@ function renderFacilitatorGuide(){
       <h3>Progression Rules Trainees Follow</h3>
       <ul>
         <li><b>Every day is open.</b> Trainees can open any day, any slide and any Practice Lab at any time — nothing is locked.</li>
-        <li><b>Practice Lab attempts:</b> the first submission of each exercise is free; repeats use one of <b>3 attempts per day</b>. Reset them per trainee in Trainee Audit (↺ Reset Attempts).</li>
+        <li><b>Practice Lab attempts:</b> <b>one try</b> per exercise and per Knowledge Check, Pass (70%+) or Fail; there are no repeats.</li>
         <li><b>Feedback style:</b> grades below 85% are framed as <b>"Not yet"</b> or <b>"Not this way"</b> with concrete next steps — never a flat "no".</li>
         <li><b>Progress is saved to the server</b> (not just the browser): trainees can log in on any device and pick up on the exact slide or tool they left.</li>
       </ul>
@@ -8492,7 +8492,7 @@ function renderQuizNextStep(d, passed){
 function renderQuizResult(d){
   const {lastScore, lastCorrect, lastTotal, lastPassed} = state;
   const passMsgs = ["Nice work — well done.", "Sharp — you've got this down.", "Solid pass. On to the next one.", "That's a wrap on Day "+d.id+" — well done."];
-  const failMsgs = ["Not quite 70% yet. See which questions you missed below, retake if you like, or keep going.", "Close, but not there yet. Review the topics you missed (marked below). You can still move on.", "So close! Check which questions you missed below. A retake is optional."];
+  const failMsgs = ["Not 70% this time. See which questions you missed below, and keep going.", "Close, but not there. Review the topics you missed (marked below). You can still move on.", "So close! Check which questions you missed below before the next lesson."];
   const msg = lastPassed ? passMsgs[Math.floor(Math.random()*passMsgs.length)] : failMsgs[Math.floor(Math.random()*failMsgs.length)];
   const history = (state.progress[d.id] && state.progress[d.id].history) || [];
   return `
@@ -8724,7 +8724,7 @@ async function bumpPracticeProgress(toolId, score){
 /* ============================================================
    PRACTICE LAB USAGE CAP — 3 AI-graded attempts per day's module.
    ============================================================ */
-const LAB_ATTEMPT_CAP = 3; // repeat attempts per day's Practice Lab (first tries are free)
+const LAB_ATTEMPT_CAP = 0; // one try: each Practice Lab exercise is submitted once, and its result is final (Pass 70%+ or Fail) — js/eapa-one-try.js
 // Repeats are counted per day in state.labAttemptsByDay; labAttemptsGlobal is kept as the
 // total across all days (shown to admins, and used by the trainer-reset check).
 function currentLabDay(){
@@ -8848,7 +8848,7 @@ async function useLabAttempt(dayId, actionId){
   state.lastLabAttempt = {actionId, dayId, wasRepeat:isRepeat, at:Date.now()};
   if(isRepeat){
     if(labAttemptsRemaining(dayId) <= 0){
-      toast(`No repeat attempts left for Day ${dayId} (all ${LAB_ATTEMPT_CAP} used). Use 🙋 Ask for more attempts, or ask your trainer to reset your Practice Lab attempts.`);
+      toast(`One try only: you've already submitted this exercise, and its result is final (Pass or Fail).`);
       return false;
     }
     const b = Object.assign({}, state.labAttemptsByDay||{}); b[dayId] = (b[dayId]||0) + 1;
@@ -9132,7 +9132,7 @@ function renderEvaluationReport(report, dayId){
       </div>` : ""}
       ${dayId ? `
       <div class="eval-action-row">
-        <button class="btn btn-ghost btn-sm" onclick="repeatActivity()" ${labAttemptsRemaining(dayId)<=0 ? `disabled title="No repeat attempts left for Day ${dayId} — ask your trainer to reset them"` : ''}>🔁 Repeat Activity${labAttemptsRemaining(dayId)<=0 ? "" : ` (${labAttemptsRemaining(dayId)} left)`}</button>${labAttemptsRemaining(dayId)<=0 ? `<button class="btn btn-ghost btn-sm" onclick="requestMoreLabAttempts(${dayId})" title="Your trainer sees the request in Trainee Audit and can give you a fresh set">🙋 ${state.labResetRequestedAt ? "Asked for more attempts ✓" : "Ask for more attempts"}</button>` : ''}
+        <button class="btn btn-ghost btn-sm" onclick="repeatActivity()" ${labAttemptsRemaining(dayId)<=0 ? `disabled title="One try only: this exercise's result is final"` : ''}>🔁 Repeat Activity${labAttemptsRemaining(dayId)<=0 ? "" : ` (${labAttemptsRemaining(dayId)} left)`}</button>${labAttemptsRemaining(dayId)<=0 ? `<button class="btn btn-ghost btn-sm" onclick="requestMoreLabAttempts(${dayId})" title="Your trainer sees the request in Trainee Audit and can give you a fresh set">🙋 ${state.labResetRequestedAt ? "Asked for more attempts ✓" : "Ask for more attempts"}</button>` : ''}
         <button class="btn btn-navy btn-sm" onclick="retainScoreAndAdvance()">✅ Retain Score &amp; Advance</button>
       </div>
       <div class="eval-action-row" style="border-top:none;padding-top:0;margin-top:8px;">
@@ -11010,7 +11010,7 @@ function renderIntakeCallChat(){
       <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
         <button class="btn btn-ghost btn-sm" onclick="restartIntakeCall()">Restart</button>
         <button class="btn btn-navy btn-sm" onclick="endIntakeCallDebrief()">End Call &amp; Get Evaluation</button>
-      </div>` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:14px 0 0;">No repeat attempts remaining — this call is view-only. Ask your trainer to reset your Practice Lab attempts to run it again.</p>`}
+      </div>` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:14px 0 0;">One try only: this call is done and its result is final, so it's view-only now.</p>`}
       <div id="intakeCallDebrief" style="margin-top:14px;"></div>
     </div>
   `;
@@ -12822,7 +12822,7 @@ function sopLiveSections(d){
   ]});
   sec.push({h:`Topics covered in the portal (${lessons.length})`, type:"table", headers:["#","Topic","Key teaching point","Trainer cue"], rows:
     lessons.map((l,i)=>{ const {principles} = lessonParts(l); return [String(i+1), l.h + (l.__extra?" (added in Content Studio)":""), scriptShort(principles[0]||"", 160), scriptShort(l.trainerCue||"—", 140)]; })});
-  if(tools.length) sec.push({h:"Practice Lab", type:"bullets", items: tools.map(t=>`${t.title} — ${t.desc}`).concat(["First submission of each exercise is free; repeats use one of the 3 attempts for this day's Practice Lab (reset them in Trainee Audit if needed).","Completing the Practice Lab (any score) unlocks the next day."])});
+  if(tools.length) sec.push({h:"Practice Lab", type:"bullets", items: tools.map(t=>`${t.title} — ${t.desc}`).concat(["One try per exercise and per Knowledge Check: Pass (70%+) or Fail.","Completing the Practice Lab (any score) unlocks the next day."])});
   sec.push({h:"After the session (trainer checklist)", type:"bullets", items:[
     "Trainee Audit → View Detail: review each trainee's Day-by-Day Feedback (auto-drafted when they finish) and click Send.",
     "Add any personal Focus items for trainees who need a specific next step.",
@@ -18239,5 +18239,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/eapa-deck-type.js?v=1"></script>
 <script src="/js/lsh-footer.js?v=1"></script>
 <script src="/js/lsh-hero-logo.js?v=2"></script>
+<!-- 🎯 One try, Pass or Fail: every Practice Lab exercise and Knowledge Check is taken once (js/eapa-one-try.js) -->
+<script src="/js/eapa-one-try.js?v=1"></script>
 </body>
 </html>
