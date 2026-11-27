@@ -25,7 +25,7 @@ window.PRESENTER_NOTES = Object.assign(window.PRESENTER_NOTES || {}, {
     "answer": [
       "The backup navy suit and the dry cleaning: his standing instructions say to pack a backup navy suit for any trip over two nights, and those trips are arbitrations in Singapore and London. Turning up without it affects how he appears to the tribunal and the client, so it's trial prep, not laundry.",
       "Client dinners and gifts: a dinner is client relations (the venue checked for his Paleo diet; spend near his $5,000 personal-review limit). Gifts carry legal exposure: anything to someone tied to a court or tribunal, or lavish gifts to clients, raises ethics questions and must be recorded as a business expense.",
-      "Bar registrations, memberships and CLE credits: renewing them feels like personal paperwork, but a lapse means he can't practise. That's a regulatory and reputational problem for the firm (Day 9's crisis roleplay is built on exactly this).",
+      "Bar registrations, memberships and CLE credits: renewing them feels like personal paperwork, but a lapse means he can't practice. That's a regulatory and reputational problem for the firm (Day 9's crisis roleplay is built on exactly this).",
       "Also accept: family items on the firm calendar three partners can see (confidentiality); a personal social-media post after a win (client information, Day 10); personal spend on a firm card (expense and trust-account controls, Robert Hale).",
       "Debrief: the test is whether a mistake costs him only personally, or costs his reputation, a client or his licence. If it's the second, handle it in EA mode: document it, check the policy, loop in the owner (e.g. Priya Nair for anything public)."
     ]

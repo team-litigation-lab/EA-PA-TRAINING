@@ -105,7 +105,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "talk": "Someone in the helper mindset looks for approval, avoids owning decisions, waits for instructions, worries about overstepping and measures success by how fast they reply. Someone in the force multiplier mindset owns the outcome, sets up the decision, thinks about consequences, understands how the executive thinks and measures success by how much more he gets done. Same person, same job; a very different way of showing up.",
    "walk": [
     "First, we notice our default when a request is unclear. Do we ask 'What should I do?', or do we suggest an approach and ask for a quick OK?",
-    "Finally, we practise attaching a suggestion to every fact we pass on, even a tentative one."
+    "Finally, we practice attaching a suggestion to every fact we pass on, even a tentative one."
    ],
    "ask": "When a request is unclear, do you usually ask what to do, or suggest an approach?",
    "scenario": "Elias forwards an email with just 'deal with this.' It's a vendor asking to change payment terms. The helper asks what he wants. What does the force multiplier send back instead?"
@@ -379,7 +379,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
    "talk": "At any moment, an attorney is juggling case strategy, an emotional client, pressure to bring in money, compliance risk and court deadlines. When we hand them forty-two unread emails, we've just added to the pile. When we say 'three need your legal decision, two are billing approvals, and one is opposing counsel asking for more time', we've taken a weight off. Same inbox, very different experience.",
    "walk": [
     "First, instead of reporting the volume, we report what matters: which emails need their judgment, and what the rest are.",
-    "Finally, we practise that sort-and-summarise habit on our own inbox review before we pass anything on."
+    "Finally, we practice that sort-and-summarise habit on our own inbox review before we pass anything on."
    ],
    "ask": "How would you sum up your own inbox right now, in one sentence?",
    "scenario": "Elias is between hearings and asks, 'Anything I need to know?' You have 23 new emails. Give him the answer in three lines."

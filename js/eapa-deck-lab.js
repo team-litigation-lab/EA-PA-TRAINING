@@ -40,9 +40,9 @@ const kcPassed = dayId => !!(state.progress && state.progress[dayId] && state.pr
 const labDone = dayId => typeof dayLabDone === "function" ? dayLabDone(dayId) : true;
 const dayComplete = dayId => kcPassed(dayId) && labDone(dayId);
 
-/* ---------- 1. the deck: a slide for each activity of the day's Practice Lab, in the lesson it practises ----------
-   Each activity's slide sits right after the topic it practises (AFTER_TOPIC: activity → topic title; after that topic's
-   Quick Check when it has one), so the trainee practises during the session, not only at the end of the day. An
+/* ---------- 1. the deck: a slide for each activity of the day's Practice Lab, in the lesson it practices ----------
+   Each activity's slide sits right after the topic it practices (AFTER_TOPIC: activity → topic title; after that topic's
+   Quick Check when it has one), so the trainee practices during the session, not only at the end of the day. An
    activity with no topic of its own (the day's Crisis Roleplay, a capstone) stays at the end, before the Knowledge Check.
    Topic titles are keys (see README, "Titles are keys"): if a title changes, its activity falls back to the end, and
    .github/scripts/deck-lab.cjs fails until AFTER_TOPIC is updated. */
@@ -71,7 +71,7 @@ const AFTER_TOPIC = {
     "Campaign Math": "Basic Campaign Math", "Brand Kit": "Brand Consistency: Palette, Typography & Imagery" }
 };
 /* Activities that open the day: their slides come first, right after the day's agenda. The ACT email is the first thing
-   a trainee does each day from Day 2 (js/eapa-act-habit.js); Day 1 practises it after the topic that teaches it. */
+   a trainee does each day from Day 2 (js/eapa-act-habit.js); Day 1 practices it after the topic that teaches it. */
 const AT_START = ["forcemultiplier2", "calendar", "coldcalling4", "insurance5", "projectcompliance6", "financial", "accessincident8", "compliance9", "socialmedia10"]
   .reduce((o, id) => (o[id] = ["ACT Email"], o), {});
 const __build = buildDaySlides;
@@ -188,7 +188,7 @@ function labSlideHtml(d, slide){
       <div class="edl-main">
         <div class="edl-kick">${t.icon} ${E(t.title)}</div>
         <h3 class="edl-h">${E(slide.label)}</h3>
-        ${slide.after ? `<p class="edl-after">🎯 Practise it now: you've just covered <b>${E(slide.after)}</b>.</p>` : ""}
+        ${slide.after ? `<p class="edl-after">🎯 Practice it now: you've just covered <b>${E(slide.after)}</b>.</p>` : ""}
         <p class="edl-p">${E(t.desc)}</p>
         <div class="edl-state ${graded ? "ok" : ""}">${graded ? `✓ Graded · best ${mine}%` : "Not graded yet"}</div>
         <button type="button" class="btn btn-navy edl-go" onclick="eapaDeckLab.open('${E(t.id)}', ${slide.part}, ${d.id})">▶ ${graded ? "Open again" : "Start"}: ${E(slide.label)}</button>

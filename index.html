@@ -3044,7 +3044,7 @@ body::before{opacity:.40;}
 <script src="/js/days/day1/lessons.js?v=5"></script>
 <script src="/js/days/day2/lessons.js?v=8"></script>
 <script src="/js/days/day3/lessons.js?v=6"></script>
-<script src="/js/days/day4/lessons.js?v=7"></script>
+<script src="/js/days/day4/lessons.js?v=8"></script>
 <script src="/js/days/day5/lessons.js?v=2"></script>
 <script src="/js/days/day6/lessons.js?v=4"></script>
 <script src="/js/days/day7/lessons.js?v=5"></script>
@@ -3690,7 +3690,7 @@ const RISK_STRATEGY_SCENARIOS = [
    not legal advice: trainees confirm each item with the official source before acting on it. */
 const FL_SATELLITE_ITEMS = [
   {t:"Have a Florida Bar–licensed attorney handle all Florida legal work and supervise the Miami office", a:"do",
-   r:"Practising Florida law takes Florida Bar membership; lawyers admitted only in New York or D.C. can't (Rule 4-5.5, unlicensed practice). Confirm with The Florida Bar."},
+   r:"Practicing Florida law takes Florida Bar membership; lawyers admitted only in New York or D.C. can't (Rule 4-5.5, unlicensed practice). Confirm with The Florida Bar."},
   {t:"Let Elias advise Florida clients on Florida law from the Miami office under his New York license, as long as he signs off", a:"dont",
    r:"Supervising doesn't make it lawful: Florida law work from a Florida office needs a Florida Bar member. That's the unlicensed-practice risk to flag, not to work around."},
   {t:"Register the firm with the Florida Division of Corporations (Sunbiz) for authority to transact business in Florida, with a Florida registered agent", a:"do",
@@ -5834,7 +5834,7 @@ function renderFocusAdmin(rec){
         <span class="fa-state">${x.doneAt?"✓ Done by trainee":x.seenAt?"Seen":"Not seen yet"}</span>
         <button class="btn btn-ghost btn-sm" onclick="adminRemoveFocus('${rec.id}','${x.id}')">Remove</button></li>`).join("")}</ul>` : ""}
     <div class="focus-admin-form">
-      <textarea id="focusText_${sid}" rows="2" placeholder="e.g. Practise BLUF: rewrite your last two status updates so the decision needed is in the first line."></textarea>
+      <textarea id="focusText_${sid}" rows="2" placeholder="e.g. Practice BLUF: rewrite your last two status updates so the decision needed is in the first line."></textarea>
       <select id="focusDay_${sid}"><option value="0">Any day</option>${DAYS.map(d=>`<option value="${d.id}">Day ${d.id}</option>`).join("")}</select>
       <select id="focusPri_${sid}"><option value="normal">Normal</option><option value="high">High priority</option><option value="low">Low</option></select>
       <button class="btn btn-navy btn-sm" onclick="adminAddFocus('${rec.id}')">➕ Add to Focus</button>
@@ -18339,14 +18339,14 @@ window.addEventListener("unhandledrejection", (ev)=>{ const e = ev.reason; if(e 
 window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message && !/ResizeObserver|Script error/.test(ev.message)) showActionError(new Error(ev.message), ""); });
 
 </script>
-<script src="/js/days/day1/notes.js?v=5"></script>
-<script src="/js/days/day1/scripts.js?v=4"></script>
+<script src="/js/days/day1/notes.js?v=6"></script>
+<script src="/js/days/day1/scripts.js?v=5"></script>
 <script src="/js/days/day2/notes.js?v=7"></script>
-<script src="/js/days/day2/scripts.js?v=7"></script>
+<script src="/js/days/day2/scripts.js?v=8"></script>
 <script src="/js/days/day3/notes.js?v=6"></script>
 <script src="/js/days/day3/scripts.js?v=4"></script>
 <script src="/js/days/day4/notes.js?v=8"></script>
-<script src="/js/days/day4/scripts.js?v=6"></script>
+<script src="/js/days/day4/scripts.js?v=7"></script>
 <script src="/js/days/day5/notes.js?v=2"></script>
 <script src="/js/days/day5/scripts.js?v=1"></script>
 <script src="/js/days/day6/notes.js?v=4"></script>
@@ -18358,8 +18358,8 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/notes.js?v=5"></script>
 <script src="/js/days/day9/scripts.js?v=4"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
-<script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=gold-6"></script>
+<script src="/js/days/day10/scripts.js?v=2"></script>
+<script src="/js/eapa-updates.js?v=gold-7"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>
@@ -18368,9 +18368,9 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/sim-results.js?v=1"></script>
 <script src="/js/eapa-scorecard.js?v=5"></script>
 <!-- 📋 Compliance and Platform Utilization Monitoring in View Detail, before the trainee's 🏅 Scorecard: lesson decks, Knowledge Checks, Practice Lab, last opened, last on the platform, 📝 Send Feedback -->
-<script src="/js/eapa-compliance-monitor.js?v=1"></script>
+<script src="/js/eapa-compliance-monitor.js?v=2"></script>
 <script src="/js/eapa-cm-scorecard.js?v=13"></script>
-<script src="/js/eapa-admin-shell.js?v=11"></script>
+<script src="/js/eapa-admin-shell.js?v=12"></script>
 <!-- 🧭 Blueprints: the Trainer blueprint (blueprint-content.js) and the Trainee blueprint (Orientation, /blueprint.pdf) rebuilt after every deploy -->
 <script src="/js/blueprint-content.js?v=3"></script>
 <script src="/js/lsh-blueprint-course.js?v=2"></script>
@@ -18396,7 +18396,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- 🛠 The day's Practice Lab inside its deck (a slide per activity, ▶ Start opens it there), and a day that completes itself: Knowledge Check passed + Practice Lab done, no ✓ Finish Training -->
 <!-- ✉️ The ACT email habit: every day's Practice Lab from Day 2 opens with an ACT email to Elias -->
 <script src="/js/eapa-act-habit.js?v=1"></script>
-<script src="/js/eapa-deck-lab.js?v=7"></script>
+<script src="/js/eapa-deck-lab.js?v=8"></script>
 <!-- ✍️ The Knowledge Check, the Standard way: 20 questions, bigger and clearer, its buttons in one footer bar -->
 <script src="/js/eapa-kc-standard.js?v=1"></script>
 <!-- 🔠 The lesson deck's type, the Case Management / Foundational way: body text 16px+ on a laptop, labels you can read -->

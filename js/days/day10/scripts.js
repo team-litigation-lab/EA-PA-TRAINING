@@ -657,7 +657,7 @@ window.SLIDE_SCRIPTS = Object.assign(window.SLIDE_SCRIPTS || {}, {
   },
   "p2": {
    "why": "A finished program isn't a finished skill set, so leave with a plan, not just a certificate.",
-   "talk": "Finishing the program isn't the same as finishing learning. This is the last chance, inside the program, to close a gap you already know about. And the strongest way to end isn't just collecting the certificate; it's leaving with a specific plan for what you'll keep practising once you're in the role.",
+   "talk": "Finishing the program isn't the same as finishing learning. This is the last chance, inside the program, to close a gap you already know about. And the strongest way to end isn't just collecting the certificate; it's leaving with a specific plan for what you'll keep practicing once you're in the role.",
    "walk": [
     "First, this is your last chance in the program to close a known gap.",
     "Finally, the strongest ending is a specific plan for what you'll keep practicing."
