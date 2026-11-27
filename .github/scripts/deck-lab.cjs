@@ -50,6 +50,16 @@ const failures = []; const fail = (m) => failures.push(m);
       else if (!x.prev || !['topic', 'quickCheck'].includes(x.prev[0]) || x.prev[1] !== x.li) fail(`Day ${x.day}: "${x.label}" should come right after "${x.h}": ${JSON.stringify(x)}`);
     }
     if (inline.length < 40) fail(`expected the labs' activities in the sessions, found ${inline.length}`);
+    // 2b'. the ACT email habit: from Day 2 every lab opens with an ACT Email, and its slide is the first thing after the day's agenda
+    const act = await page.evaluate(() => DAYS.filter(d => d.id >= 2).map(d => { const sl = buildDaySlides(d), ag = sl.findIndex(s => s.type === 'agenda'), t = relatedTools(d.id)[0];
+      return { day: d.id, first: (eapaDeckLab.ACTIVITIES[t.id] || [])[0], next: sl[ag + 1] && [sl[ag + 1].type, sl[ag + 1].label] }; }));
+    for (const x of act) if (x.first !== 'ACT Email' || !x.next || x.next[0] !== 'practiceLab' || x.next[1] !== 'ACT Email') fail(`Day ${x.day} should open with its ACT Email, right after the agenda: ${JSON.stringify(x)}`);
+    for (const id of await page.evaluate(() => PRACTICE_TOOLS.map(t => t.id))) {
+      await page.evaluate(id => goto('tool', id), id); await page.waitForTimeout(300);
+      const first = await page.evaluate(() => [(toolState.wizardLabels || [])[0], !!document.querySelector('#actHabitDraft, #d1ActDraft')]);
+      if (first[0] !== 'ACT Email' || !first[1]) fail(`${id}: the lab should open on its ACT Email: ${JSON.stringify(first)}`);
+    }
+    await page.evaluate(() => goto('day', 1)); await page.waitForTimeout(500);   // (back to Day 1's deck for the steps below)
 
     // 2c. a saved place moves with its slide: a trainee who was on Day 1's ACT Email slide (at the end, the old layout)
     //     is on it again in the new layout, and their furthest slide doesn't move back
@@ -106,5 +116,5 @@ const failures = []; const fail = (m) => failures.push(m);
   } catch (e) { fail(e.message); }
   await browser.close();
   if (failures.length) { console.log('✗ Practice Lab in the deck:\n  ' + failures.join('\n  ')); process.exit(1); }
-  console.log("✓ Practice Lab in the deck: a slide per activity, ▶ Start opens it, back returns to the slide; no Finish Training; a day completes with its Knowledge Check and Practice Lab; the Knowledge Check waits for every Practice Lab activity");
+  console.log("✓ Practice Lab in the deck: every lab opens with an ACT Email; a slide per activity, ▶ Start opens it, back returns to the slide; no Finish Training; a day completes with its Knowledge Check and Practice Lab; the Knowledge Check waits for every Practice Lab activity");
 })();

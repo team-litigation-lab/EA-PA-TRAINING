@@ -2875,7 +2875,7 @@ body::before{opacity:.40;}
 .xl-fx{flex:none;padding:6px 10px;border-right:1px solid var(--line);font-style:italic;font-family:Georgia,serif;color:var(--ink-soft);}
 .xl-formula{flex:1;min-width:0;border:0;outline:0;padding:6px 10px;font:13px var(--font-ui);color:var(--ink);background:transparent;}
 .xl-scroll{overflow:auto;max-height:340px;outline:none;}
-.xl-grid{border-collapse:separate;border-spacing:0;table-layout:fixed;}
+.xl-grid{border-collapse:separate;border-spacing:0;table-layout:fixed;width:100%;min-width:800px;}
 .xl-grid th,.xl-grid td{border-right:1px solid var(--xl-grid);border-bottom:1px solid var(--xl-grid);height:26px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .xl-grid thead th{position:sticky;top:0;z-index:2;background:var(--xl-head);font-weight:500;font-size:11.5px;color:var(--ink-soft);text-align:center;}
 .xl-grid th.xl-rh{position:sticky;left:0;z-index:1;background:var(--xl-head);font-weight:500;font-size:11.5px;color:var(--ink-soft);text-align:center;width:40px;}
@@ -8661,9 +8661,14 @@ function renderToolCards(tools){
   if(!tools.length) return `<div class="card" style="padding:30px;text-align:center;color:var(--ink-soft);">No tools for this day yet.</div>`;
   return tools.map(t=>{
     const p = (state.practiceProgress||{})[t.id];
-    const statusClass = p ? "st-done" : "st-notstarted";
-    const statusIcon = p ? "✅" : "◻";
-    const statusLabel = p ? `Completed — best score ${p.bestScore}% (${p.runs} run${p.runs===1?"":"s"})` : "Not started";
+    // counted by activity (js/eapa-deck-lab.js labProgress): Completed only once every activity is graded
+    const lp = window.eapaDeckLab && eapaDeckLab.labProgress ? eapaDeckLab.labProgress(t.id) : null;
+    const complete = lp && lp.total ? lp.complete : !!p, started = lp ? lp.started : !!p;
+    const bestTxt = lp && lp.best != null ? ` · best ${lp.best}%` : (p ? ` · best ${p.bestScore}%` : "");
+    const statusClass = complete ? "st-done" : started ? "st-inprogress" : "st-notstarted";
+    const statusIcon = complete ? "✅" : started ? "◐" : "◻";
+    const statusLabel = complete ? `Completed — all ${lp && lp.total ? lp.total + " activities graded" : "done"}${bestTxt}`
+      : started ? `In progress — ${lp ? `${lp.done} of ${lp.total} activities graded` : "started"}${bestTxt}` : "Not started";
     const locked = !toolUnlocked(t);
     const dn = toolDayOf(t);
     if(locked) return `
@@ -8682,7 +8687,7 @@ function renderToolCards(tools){
     return `
     <div class="card tool-card" onclick="goto('tool','${t.id}')">
       <div class="module-head tool-head">
-        <div class="mh-day">${t.relates ? `Day ${esc(String(t.relates).replace(/[^0-9]/g,""))} &middot; Practice Lab` : "Practice Lab"}${p ? " &middot; Completed" : ""}</div>
+        <div class="mh-day">${t.relates ? `Day ${esc(String(t.relates).replace(/[^0-9]/g,""))} &middot; Practice Lab` : "Practice Lab"}${complete ? " &middot; Completed" : ""}</div>
         <div class="mh-title">${esc(t.title)}</div>
       </div>
       <div class="tool-body2">
@@ -17377,7 +17382,7 @@ function initDossier1(body){
     <div id="d1TrackerResult" style="margin-top:8px;font-size:13px;"></div>
   `;
   const partC = `
-    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">C. Sample Task — Responding with an ACT Email</h3>
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:15px;">First: Responding with an ACT Email</h3>
     <p style="font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;">Elias just sent this. It's unstructured on purpose — real requests from him arrive exactly like this. Your job is to send back an <b>ACT email</b>: <b>A</b>cknowledge what he needs, <b>C</b>larify what's still unknown, and lay out the <b>T</b>imeline for what happens next.</p>
     <div class="act-box">
       <div class="act-card"><b>A</b>Acknowledge the ask in one line — show him you understood it, not just that you received it.</div>
@@ -17404,9 +17409,10 @@ function initDossier1(body){
     <button class="btn btn-ghost btn-sm" style="margin-top:20px;" onclick="downloadDossier1Pdf()">⬇ Download My Work</button>
   `;
   body.innerHTML = renderToolWizard(1, [
+    {label:"ACT Email", html:partC},
     {label:"Client Dossier", html:partA},
     {label:"Preference Trackers", html:partB},
-    {label:"ACT Email", html:partC},
+
     {label:"Gatekeeping Practice", html:partD}
   ]);
   d1xlRender();
@@ -17499,7 +17505,8 @@ function d1xlRender(){
       </div>
       <div class="xl-scroll" tabindex="0" data-xl="scroll" role="grid" aria-label="${esc(sh.name)} sheet">
         <table class="xl-grid">
-          <colgroup><col style="width:40px">${XL_COL_WIDTHS.slice(0,nCols).map(w=>`<col style="width:${w}px">`).join("")}</colgroup>
+          <colgroup><col style="width:40px">${(()=>{ const ws = XL_COL_WIDTHS.slice(0,nCols), sum = ws.reduce((a,b)=>a+b,0) || 1;
+            /* the columns share the sheet's full width, in these proportions */ return ws.map(w=>`<col style="width:${(w/sum*100).toFixed(3)}%">`).join(""); })()}</colgroup>
           <thead><tr><th class="xl-corner"></th>${sh.rows[0].map((_,c)=>`<th data-col="${c}" class="${c===sel.c?'xl-on':''}">${xlColLetter(c)}</th>`).join("")}</tr></thead>
           <tbody>${sh.rows.map((row,r)=>`<tr class="${r===0?'xl-hdr':''}"><th class="xl-rh ${r===sel.r?'xl-on':''}" data-row="${r}">${r+1}</th>${row.map((v,c)=>`<td data-r="${r}" data-c="${c}" class="${r===sel.r&&c===sel.c?'xl-sel':''}" title="${esc(v)}">${esc(v)}</td>`).join("")}</tr>`).join("")}</tbody>
         </table>
@@ -18252,7 +18259,8 @@ async function downloadProjectCompliance6Pdf(){
     lines.push(`${k.category} — ${k.kpi}: target ${k.target}, actual ${k.actual} — your call: ${c6.kpi[i]||"(not answered)"} (correct: ${k.correctStatus})`);
   });
   lines.push("---", "## C. Recovery & Escalation Memo", `Scenario: ${TRIAL_RECOVERY_SCENARIO.text}`, `Your message: ${document.getElementById("c6RecoveryReply").value.trim()||"(not written)"}`);
-  if(c6.recoveryReport) lines.push("", "Feedback:", c6.recoveryReport);
+  const fbText = r => typeof r === "string" ? r : `Score ${r.totalScore}%${r.gradeTier ? ` (${r.gradeTier})` : ""}${(r.strengths||[]).length ? ` · Strengths: ${r.strengths.join("; ")}` : ""}${(r.blindspots||[]).length ? ` · To improve: ${r.blindspots.join("; ")}` : ""}`;
+  if(c6.recoveryReport) lines.push("", "Feedback:", fbText(c6.recoveryReport));
   const ca = toolState.c6audit;
   if(ca && Object.keys(ca.verdicts||{}).length){
     lines.push("---", "## E. 15-Case Compliance Audit Simulation");
@@ -18261,6 +18269,18 @@ async function downloadProjectCompliance6Pdf(){
       lines.push(`Case ${c.id} (${c.jurisdiction} · ${c.matterType}) — your call: ${verdict}${verdict==="issue" ? `, risk: ${ca.risks[i]||"(not set)"}` : ""}`);
       if(verdict==="issue") lines.push(`  Proposed Next Action: ${ca.actions[i]||"(not written)"}`);
     });
+  }
+  const fl = toolState.c6fl;
+  if(fl){
+    lines.push("---", "## F. Florida Satellite Office");
+    FL_SATELLITE_ITEMS.forEach((x,i)=>{
+      const v = fl.picks[i], say = v === "do" ? "Do it before opening" : v === "dont" ? "Don't" : "(not answered)";
+      lines.push(`${x.t} — your call: ${say} (correct: ${x.a === "do" ? "Do it before opening" : "Don't"})`);
+    });
+    if(typeof fl.score === "number") lines.push(`Checklist score: ${fl.score}%`);
+    const memo = (document.getElementById("c6FlMemo") || {}).value;
+    lines.push("", `Your memo to Elias: ${(memo || "").trim() || "(not written)"}`);
+    if(fl.memoReport) lines.push("", "Feedback:", fbText(fl.memoReport));
   }
   buildAndSavePdf("LSH EA PA Track", "Business Compliance & Project Recovery — Results", lines, "LSH_Project_Compliance");
 }
@@ -18335,7 +18355,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/days/day9/scripts.js?v=4"></script>
 <script src="/js/days/day10/notes.js?v=2"></script>
 <script src="/js/days/day10/scripts.js?v=1"></script>
-<script src="/js/eapa-updates.js?v=gold-2"></script>
+<script src="/js/eapa-updates.js?v=gold-4"></script>
 <!-- ⧉ Side by side: the lesson notes, the day's handout or a Portal tool beside the slide, on every day -->
 <script src="/js/eapa-toolframe.js?v=1"></script>
 <script src="/js/portal-link.js?v=3"></script>
@@ -18345,7 +18365,7 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/eapa-scorecard.js?v=5"></script>
 <!-- 📋 Compliance and Platform Utilization Monitoring in View Detail, before the trainee's 🏅 Scorecard: lesson decks, Knowledge Checks, Practice Lab, last opened, last on the platform, 📝 Send Feedback -->
 <script src="/js/eapa-compliance-monitor.js?v=1"></script>
-<script src="/js/eapa-cm-scorecard.js?v=11"></script>
+<script src="/js/eapa-cm-scorecard.js?v=12"></script>
 <script src="/js/eapa-admin-shell.js?v=11"></script>
 <!-- 🧭 Blueprints: the Trainer blueprint (blueprint-content.js) and the Trainee blueprint (Orientation, /blueprint.pdf) rebuilt after every deploy -->
 <script src="/js/blueprint-content.js?v=3"></script>
@@ -18363,14 +18383,16 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <!-- ✨ The elite deck: the Portal's blue-gold frame, mono tags, sans-serif headings and navy primary buttons on the lesson deck (design only) -->
 <script src="/js/eapa-deck-elite.js?v=2"></script>
 <!-- 🖥 Practice Lab activities in realistic app windows (docs, mail, tasks, ledger, admin console, portal, dashboards, AI assistant, CRM, forms, reviews, social) -->
-<script src="/js/eapa-lab-apps.js?v=6"></script>
+<script src="/js/eapa-lab-apps.js?v=11"></script>
 <script src="/js/eapa-sim-scenarios.js?v=2"></script>
 <script src="/js/eapa-sim-run.js?v=4"></script>
 <!-- 🎬 Each day's narrated Video Presentation (▶ Video on the day card; build/video/README.md) -->
 <script src="/js/eapa-day-videos.js?v=2"></script>
 <script src="/js/eapa-day-video.js?v=3"></script>
 <!-- 🛠 The day's Practice Lab inside its deck (a slide per activity, ▶ Start opens it there), and a day that completes itself: Knowledge Check passed + Practice Lab done, no ✓ Finish Training -->
-<script src="/js/eapa-deck-lab.js?v=4"></script>
+<!-- ✉️ The ACT email habit: every day's Practice Lab from Day 2 opens with an ACT email to Elias -->
+<script src="/js/eapa-act-habit.js?v=1"></script>
+<script src="/js/eapa-deck-lab.js?v=6"></script>
 <!-- 🔠 The lesson deck's type, the Case Management / Foundational way: body text 16px+ on a laptop, labels you can read -->
 <script src="/js/eapa-deck-type.js?v=1"></script>
 <script src="/js/lsh-footer.js?v=1"></script>

@@ -62,7 +62,7 @@ function sheet(rec, own){
     });
     const practice = avg(tools.map(t => t.best));
     const parts = [r.kc, r.qc, practice, r.task].filter(num);
-    return Object.assign({}, r, {d, n, seen, work, quiz, tools, practice, average: parts.length ? avg(parts) : null,
+    return Object.assign({}, r, {d, n, seen, work, quiz, tools, practice, pp: src.pp, average: parts.length ? avg(parts) : null,
       active: r.active || seen > 0 || work.length > 0});
   });
   const scored = days.filter(r => num(r.average));
@@ -164,12 +164,17 @@ function scoreRows(r){
       better: [`Open ${name} in the Practice Lab and complete every part.`]}); return; }
     const e = runFor(runs, t.best), noted = e && ((e.strengths || []).length || (e.gaps || []).length || (e.growth || []).length);
     const scores = runs.map(x => x.score + "%");
+    // every activity of the lab, as the Knowledge Check counts them (js/eapa-deck-lab.js): graded, and what's still to do
+    const all = (window.eapaDeckLab && eapaDeckLab.ACTIVITIES[id]) || [], marks = (((r.pp || {})[id] || {}).parts) || {};
+    const todo = all.filter(l => typeof marks[l] !== "number");
     rows.push({name, sub: `Practice Lab · best of ${plural(t.runs || runs.length || 1, "run")}`, score: t.best, run: e,
-      why: [`Best of ${plural(t.runs || runs.length || 1, "run")}${scores.length > 1 ? ` (${scores.join(", ")})` : ""}.`,
+      why: [all.length ? `${all.length - todo.length} of ${all.length} activities graded${todo.length ? "" : ": the lab is complete"}.` : "",
+        `Best of ${plural(t.runs || runs.length || 1, "run")}${scores.length > 1 ? ` (${scores.join(", ")})` : ""}.`,
         `Graded ${(e && e.tier && tierOf(e.tier)) || level(t.best)}.`, subsLine(e), passLine(t.best)],
       great: noted ? (e.strengths || []) : t.best >= PASS ? [`Passed at ${t.best}%: most of the lab done right.`] : [],
       wrong: noted ? (e.gaps || []) : t.best < 100 ? [`${100 - t.best}% of the points were lost. Which items were missed wasn't recorded: this run was scored before the lab kept its notes.`] : [],
-      better: noted ? (e.growth || []) : t.best < 100 ? ["Run the lab again: the next run records, item by item, what went well and what to do better."] : [],
+      better: (todo.length ? [`Still to do: ${todo.join(", ")} (the Knowledge Check opens once every activity is graded).`] : [])
+        .concat(noted ? (e.growth || []) : t.best < 100 ? ["Run the lab again: the next run records, item by item, what went well and what to do better."] : []),
       bare: !noted});
   });
   // the random task
