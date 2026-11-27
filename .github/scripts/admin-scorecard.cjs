@@ -34,7 +34,11 @@ const failures = []; const fail = (m) => failures.push(m);
     await page.waitForFunction(() => /Ana Cruz/.test((document.querySelector('.eacm-t tbody') || {}).innerText || '') && /90%/.test(document.querySelector('.eacm-t tbody').innerText), null, { timeout: 20000 });
     const head = await page.$$eval('.eacm-t thead tr:last-child th', t => t.map(x => x.innerText.trim()).filter(Boolean));
     if (head.slice(0, 5).join('|') !== 'Trainee|Batch|Registered|Days passed|Overall' || head[5] !== 'Day 1 %') fail(`the scores table's columns: ${head.slice(0, 7)}`);
+    // the Trainee picker in the banner: picking a name opens their card even though the dropdown keeps focus
+    await page.focus('#eacmPick'); await page.selectOption('#eacmPick', { label: 'Ben Diaz' });
+    await page.waitForFunction(() => /Ben Diaz/.test((document.querySelector('#eacmCard h3') || {}).textContent || ''), null, { timeout: 5000 }).catch(() => fail('picking a trainee in the Trainee dropdown did not open their card'));
     await page.click('.eacm-t tbody tr:has-text("Ana Cruz")');
+    await page.waitForFunction(() => /Ana Cruz/.test((document.querySelector('#eacmCard h3') || {}).textContent || ''), null, { timeout: 5000 });
     await page.waitForSelector('#eacmCard');
     const cardTxt = await page.$eval('#eacmCard', c => c.innerText);
     for (const t of ['Ana Cruz', 'Overall', 'Day scores', 'Feedback on each activity', 'Focus on', 'Knowledge Check', 'Day 2 ↓', 'What to do', 'Client Dossier', 'Missed the travel rule', 'How these scores are worked out'])

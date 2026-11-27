@@ -297,7 +297,11 @@ function ensureLoaded(recs){
 }
 function redraw(){
   const host = document.getElementById("eacmHost");
-  if(!host || state.view !== "admin" || (typeof isTyping === "function" && isTyping())) return;
+  // hold off only while someone is typing in a text box: a dropdown that still has focus after a pick (the Trainee
+  // picker sits outside the card) mustn't block the card it just asked for
+  if(!host) return;
+  const ae = document.activeElement, typing = !!(ae && (ae.tagName === "TEXTAREA" || (ae.tagName === "INPUT" && !/^(checkbox|radio|button|submit)$/.test(ae.type)) || ae.isContentEditable) && host.contains(ae));
+  if(!host || state.view !== "admin" || typing) return;
   host.innerHTML = body(state.scFolder);
 }
 function body(k){
