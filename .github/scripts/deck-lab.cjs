@@ -113,6 +113,20 @@ const failures = []; const fail = (m) => failures.push(m);
     await page.evaluate(() => { const t = relatedTools(3)[0]; delete state.practiceProgress[t.id]; state.isAdmin = true; state.adminPreview = false; render(); });
     await page.waitForTimeout(400);
     if (await page.$('#quizWrap .edl-gate')) fail("a trainer's Knowledge Check is held by the Practice Lab");
+
+    // 5. the Knowledge Check, the Standard way: 20 questions from the bank, its buttons in one footer bar
+    await page.evaluate(() => { state.isAdmin = true; goto('day', 1); state.dayViewMode = 'knowledgeCheck'; state.quizSubmitted = false; state.quizQuestionIndex = 0; render(); });
+    await page.waitForTimeout(500);
+    const kcs = await page.evaluate(() => ({ n: DAYS[0].quiz.length, bank: (DAYS[0].quizBank || []).length, foot: [...document.querySelectorAll('.kc-foot button')].map(b => b.innerText.trim()),
+      stray: !!document.querySelector('main .back-link') || [...document.querySelectorAll('main button')].some(b => !b.closest('.kc-foot') && /Back to lessons|Review lessons/.test(b.innerText)) }));
+    if (kcs.n !== 20 || kcs.bank < 20) fail(`Day 1's Knowledge Check should ask 20 questions from its bank: ${JSON.stringify(kcs)}`);
+    for (const b of ['Back to roadmap', 'Back to lessons', 'Review lessons in a new tab', 'Back', 'Next']) if (!kcs.foot.some(x => x.includes(b))) fail(`the Knowledge Check footer has no "${b}": ${kcs.foot}`);
+    if (kcs.stray) fail('the Knowledge Check still has its buttons outside the footer');
+    // 6. existing trainees keep their progress: a lab graded before activities were counted one by one stays done
+    const legacy = await page.evaluate(async () => { state.isAdmin = false; const t = relatedTools(4)[0];
+      state.practiceProgress[t.id] = { runs: 1, bestScore: 80, history: [], parts: {} }; delete state.dayOrderMigrated['lab-legacy-v1'];
+      await eapaDeckLab.markLegacyLabs(); return { legacy: !!state.practiceProgress[t.id].legacy, held: eapaDeckLab.kcHeld(4), complete: eapaDeckLab.labProgress(t.id).complete }; });
+    if (!legacy.legacy || legacy.held || !legacy.complete) fail(`a lab graded before the change should stay done (no redo, the Knowledge Check open): ${JSON.stringify(legacy)}`);
   } catch (e) { fail(e.message); }
   await browser.close();
   if (failures.length) { console.log('✗ Practice Lab in the deck:\n  ' + failures.join('\n  ')); process.exit(1); }

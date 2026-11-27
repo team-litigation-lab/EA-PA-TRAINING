@@ -128,6 +128,23 @@ async function migrateLabsInline(){
 // The ACT email's slide, new at the start of Days 2–10, moves every later slide on by one: a trainee's saved place (and
 // furthest slide) on those days moves with it, once per day. (A day migrated by migrateLabsInline in the same run already
 // has its places in the new order.)
+/* Trainees keep their progress as it was graded: a lab with a graded run from before activities were counted one by one
+   (and before each day opened with an ACT email) stays done, so nobody redoes work or loses a day they could finish.
+   Marked once per trainee (practice-progress <lab>.legacy); a trainee who starts after this change has nothing to mark. */
+const LEGACY_FLAG = "lab-legacy-v1";
+async function markLegacyLabs(){
+  if(!state.dayOrderMigrated) state.dayOrderMigrated = {};
+  if(state.dayOrderMigrated[LEGACY_FLAG]) return;
+  state.dayOrderMigrated[LEGACY_FLAG] = true;
+  let changed = false;
+  Object.entries(state.practiceProgress || {}).forEach(([id, p]) => {
+    if(!p || !((p.runs || 0) > 0) || p.legacy) return;
+    const t = PRACTICE_TOOLS.find(x => x.id === id), a = t ? acts(t) : [], parts = p.parts || {};
+    if(a.length && a.some(l => typeof parts[l] !== "number")){ p.legacy = true; changed = true; }
+  });
+  if(changed) await storeSet("practice-progress", state.practiceProgress);
+  await storeSet("day-order-migrated", state.dayOrderMigrated);
+}
 const ACT_FLAG = id => "act-first:" + id;
 async function migrateActFirst(already){
   if(!state.dayOrderMigrated) state.dayOrderMigrated = {};
@@ -154,6 +171,7 @@ if(typeof migrateQuickCheckOrder === "function"){
     const already = (typeof DAYS !== "undefined" ? DAYS : []).filter(d => state.dayOrderMigrated && state.dayOrderMigrated[INLINE_FLAG(d.id)]).map(d => d.id);
     try{ await migrateLabsInline(); }catch(e){}
     try{ await migrateActFirst(already); }catch(e){}
+    try{ await markLegacyLabs(); }catch(e){}
     return r; };
 }
 function labSlideHtml(d, slide){
@@ -283,7 +301,8 @@ if(typeof moduleCard === "function"){
 function labLeft(dayId){
   const left = [], all = [];
   relatedTools(dayId).forEach(t => acts(t).forEach((label, part) => { const v = ((pp(t.id) || {}).parts || {})[label];
-    const x = {t, label, part, done: typeof v === "number", v}; all.push(x); if(!x.done) left.push(x); }));
+    const lg = !!(pp(t.id) || {}).legacy;
+    const x = {t, label, part, done: typeof v === "number" || lg, v: typeof v === "number" ? v : null}; all.push(x); if(!x.done) left.push(x); }));
   return {left, all};
 }
 function kcHeld(dayId){
@@ -319,12 +338,12 @@ if(typeof renderQuiz === "function"){
 // header say "Completed" only once every activity is graded
 function labProgress(toolId){
   const t = PRACTICE_TOOLS.find(x => x.id === toolId), a = t ? acts(t) : [], p = pp(toolId), parts = (p && p.parts) || {};
-  const done = a.filter(l => typeof parts[l] === "number").length;
+  const done = p && p.legacy ? a.length : a.filter(l => typeof parts[l] === "number").length;
   return {total: a.length, done, best: p && typeof p.bestScore === "number" && (p.runs || 0) > 0 ? p.bestScore : null, runs: (p && p.runs) || 0,
     complete: a.length > 0 && done === a.length, started: done > 0 || ((p && p.runs) || 0) > 0};
 }
 
-window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, AT_START, migrateActFirst, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline, labLeft, kcHeld, startFromGate, labProgress};
+window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, AT_START, migrateActFirst, markLegacyLabs, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline, labLeft, kcHeld, startFromGate, labProgress};
 
 const st = document.createElement("style"); st.id = "eapa-deck-lab"; st.textContent = `
 .edl{text-align:left;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;padding:22px 24px;background:#FFFBF3;border-color:var(--orange-soft,#F3D2B0);align-items:start;}

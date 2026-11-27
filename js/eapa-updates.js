@@ -485,7 +485,21 @@ function paginateSlideUnits(){
     pages = pack(hi);
   }
   if(pages.length < 2){ state.slidePage = 0; updateSlidePageUi(); return; }
-  const heights = pages.map(([a,b])=>Math.max(...box.slice(a,b+1).map(x=>x.bottom)) - box[a].top);
+  // a page left with only a sliver (one short step on a row of its own) takes the units just before it from the page
+  // above, so the two pages share the content instead of one holding a single leftover item. Every page still fits
+  // its room at the deck's one size: nothing is shrunk.
+  const hOf = ([a,b])=>Math.max(...box.slice(a,b+1).map(x=>x.bottom)) - box[a].top;
+  for(let i = 1; i < pages.length; i++){
+    if(hOf(pages[i]) >= room*0.3) continue;
+    const [pa, pb] = pages[i-1], [, cb] = pages[i]; let best = null;
+    for(let k = pb; k > pa; k--){
+      if(!canBreak[k] || hOf([k, cb]) > room) continue;
+      const worst = Math.max(hOf([pa, k-1]), hOf([k, cb]));
+      if(!best || worst < best.worst) best = {k, worst};
+    }
+    if(best){ pages[i-1] = [pa, best.k-1]; pages[i] = [best.k, cb]; }
+  }
+  const heights = pages.map(hOf);
   __slidePg = {wrap, units, pages, heights, room};
   state.slidePages = pages.length;
   if(state.slidePage === -1 || (state.slidePage||0) >= pages.length) state.slidePage = pages.length-1;
