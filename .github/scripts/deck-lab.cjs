@@ -81,8 +81,30 @@ const failures = []; const fail = (m) => failures.push(m);
     if (!/Completed/.test(cards[0].head)) fail(`Day 1 (Knowledge Check passed, Practice Lab graded) should be Completed: ${cards[0].head}`);
     if (/Completed/.test(cards[1].head) || !/Practice Lab to do/.test(cards[1].head)) fail(`Day 2 (Knowledge Check passed, no Practice Lab) should say the Practice Lab is to do: ${cards[1].head}`);
     if (!cards[2].btns.some(b => /Video/.test(b)) || !cards[2].btns.some(b => /Topics/.test(b))) fail(`a day card should have ☰ Topics and ▶ Video: ${JSON.stringify(cards[2].btns)}`);
+
+    // 4. the Practice Lab before the Knowledge Check: held until every activity of the day's lab is graded
+    await page.evaluate(() => { state.isAdmin = false; delete state.progress[3]; const t = relatedTools(3)[0]; if (state.practiceProgress) delete state.practiceProgress[t.id];
+      goto('day', 3); state.dayViewMode = 'knowledgeCheck'; state.quizSubmitted = false; render(); });
+    await page.waitForTimeout(500);
+    let kc = await page.evaluate(() => ({ gate: !!document.querySelector('#quizWrap .edl-gate'), starts: document.querySelectorAll('#quizWrap .edl-gate-go').length, total: eapaDeckLab.labLeft(3).all.length }));
+    if (!kc.gate || kc.starts !== kc.total) fail(`Day 3's Knowledge Check should wait for its Practice Lab, with ▶ Start on each of its ${kc.total} activities: ${JSON.stringify(kc)}`);
+    await page.click('#quizWrap .edl-gate-go >> nth=1'); await page.waitForTimeout(800);
+    const went = await page.evaluate(() => { const t = relatedTools(3)[0]; return [state.view, state.toolId === t.id, toolState.wizardLabels[toolState.wizardIndex || 0] === eapaDeckLab.ACTIVITIES[t.id][1]]; });
+    if (JSON.stringify(went) !== JSON.stringify(['tool', true, true])) fail(`▶ Start on the checkpoint should open that activity: ${JSON.stringify(went)}`);
+    // all but one graded: still held; every one graded: the questions
+    await page.evaluate(() => { const t = relatedTools(3)[0], a = eapaDeckLab.ACTIVITIES[t.id]; state.practiceProgress[t.id] = { runs: 1, bestScore: 80, history: [], parts: Object.fromEntries(a.slice(1).map(l => [l, 80])) };
+      goto('day', 3); state.dayViewMode = 'knowledgeCheck'; state.quizSubmitted = false; render(); });
+    await page.waitForTimeout(400);
+    if (!(await page.$('#quizWrap .edl-gate'))) fail('the Knowledge Check opened with one Practice Lab activity still not graded');
+    await page.evaluate(() => { const t = relatedTools(3)[0]; state.practiceProgress[t.id].parts[eapaDeckLab.ACTIVITIES[t.id][0]] = 75; render(); });
+    await page.waitForTimeout(400);
+    if (await page.$('#quizWrap .edl-gate')) fail('the Knowledge Check is still held with every Practice Lab activity graded');
+    // a trainer is never held
+    await page.evaluate(() => { const t = relatedTools(3)[0]; delete state.practiceProgress[t.id]; state.isAdmin = true; state.adminPreview = false; render(); });
+    await page.waitForTimeout(400);
+    if (await page.$('#quizWrap .edl-gate')) fail("a trainer's Knowledge Check is held by the Practice Lab");
   } catch (e) { fail(e.message); }
   await browser.close();
   if (failures.length) { console.log('✗ Practice Lab in the deck:\n  ' + failures.join('\n  ')); process.exit(1); }
-  console.log("✓ Practice Lab in the deck: a slide per activity, ▶ Start opens it, back returns to the slide; no Finish Training; a day completes with its Knowledge Check and Practice Lab");
+  console.log("✓ Practice Lab in the deck: a slide per activity, ▶ Start opens it, back returns to the slide; no Finish Training; a day completes with its Knowledge Check and Practice Lab; the Knowledge Check waits for every Practice Lab activity");
 })();

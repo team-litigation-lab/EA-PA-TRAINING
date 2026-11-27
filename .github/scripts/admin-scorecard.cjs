@@ -34,14 +34,24 @@ const failures = []; const fail = (m) => failures.push(m);
     await page.waitForFunction(() => /Ana Cruz/.test((document.querySelector('.eacm-t tbody') || {}).innerText || '') && /90%/.test(document.querySelector('.eacm-t tbody').innerText), null, { timeout: 20000 });
     const head = await page.$$eval('.eacm-t thead tr:last-child th', t => t.map(x => x.innerText.trim()).filter(Boolean));
     if (head.slice(0, 5).join('|') !== 'Trainee|Batch|Registered|Days passed|Overall' || head[5] !== 'Day 1 %') fail(`the scores table's columns: ${head.slice(0, 7)}`);
+    // the Trainee picker in the banner: picking a name opens their card even though the dropdown keeps focus
+    await page.focus('#eacmPick'); await page.selectOption('#eacmPick', { label: 'Ben Diaz' });
+    await page.waitForFunction(() => /Ben Diaz/.test((document.querySelector('#eacmCard h3') || {}).textContent || ''), null, { timeout: 5000 }).catch(() => fail('picking a trainee in the Trainee dropdown did not open their card'));
     await page.click('.eacm-t tbody tr:has-text("Ana Cruz")');
+    await page.waitForFunction(() => /Ana Cruz/.test((document.querySelector('#eacmCard h3') || {}).textContent || ''), null, { timeout: 5000 });
     await page.waitForSelector('#eacmCard');
     const cardTxt = await page.$eval('#eacmCard', c => c.innerText);
-    for (const t of ['Ana Cruz', 'Overall', 'Focus on', 'Day 2 · Knowledge Check', 'What happened', 'What you could have done better', 'Client Dossier', 'Missed the travel rule', 'Day scores'])
+    for (const t of ['Ana Cruz', 'Overall', 'Day scores', 'Feedback on each activity', 'Focus on', 'Knowledge Check', 'Day 2 ↓', 'What to do', 'Client Dossier', 'Missed the travel rule', 'How these scores are worked out'])
       if (!cardTxt.toLowerCase().includes(t.toLowerCase())) fail(`the trainee's card has no "${t}"`);
-    await page.click('#eacmCard tr:has-text("Day 1") summary');
-    const mk = await page.$eval('#eacmCard tr:has-text("Day 1") .eacm-mk', m => m.innerText).catch(() => '');
-    for (const t of ['Knowledge Check', 'Client Dossier', 'Clear headings', 'Check the Client Profile first']) if (!mk.includes(t)) fail(`"What makes up this score" for Day 1 has no "${t}"`);
+    // the card follows the CM scorecard: Day scores is numbers only (no feedback text in it), the feedback is per day, folded
+    if (await page.$('#eacmCard .eacm-days .eacm-mk, #eacmCard .eacm-days details')) fail('📅 Day scores still holds the feedback: it should be numbers only');
+    const dayHead = await page.$$eval('#eacmCard .eacm-days thead th', t => t.map(x => x.innerText.trim()));
+    if (dayHead.join('|') !== 'Day|Day score|✍️ Knowledge Check|🛠 Practice Lab|❓ Quick Checks|⚡ Random task|📖 Slides|💬 Feedback') fail(`📅 Day scores' columns: ${dayHead}`);
+    if (await page.$eval('#eacmCard details.eacm-day[data-day="1"]', d => d.open)) fail("a day's feedback should start folded");
+    await page.click('#eacmCard .eacm-days tr:has-text("Day 1") .eacm-go');
+    await page.waitForFunction(() => document.querySelector('#eacmCard details.eacm-day[data-day="1"]').open, null, { timeout: 5000 }).catch(() => fail('Open ↓ in Day scores did not open the day\'s feedback'));
+    const mk = await page.$eval('#eacmCard details.eacm-day[data-day="1"] .eacm-mk', m => m.innerText).catch(() => '');
+    for (const t of ['Knowledge Check', 'Client Dossier', 'Clear headings', 'Missed the travel rule', 'Check the Client Profile first', 'Why this score', 'What you did great', 'What was wrong', 'What could have been done better']) if (!mk.includes(t)) fail(`"What makes up this score" for Day 1 has no "${t}"`);
     await page.evaluate(() => EAPAShell.sub('people'));
     await page.waitForFunction(() => document.querySelectorAll('.audit-table tbody tr').length >= 2, null, { timeout: 20000 });
     const pills = await page.$$eval('.eash-pill', b => b.map(x => x.innerText.trim()));
@@ -79,13 +89,20 @@ const failures = []; const fail = (m) => failures.push(m);
     if (!/rgb\(38, 43, 69\).*rgb\(219, 132, 55\)/.test(th)) fail(`the table header isn't the standard navy with the orange rule: ${th}`);
     // the old tabs open the Scorecard; 🛡 Admin Master Control has the rest
     await page.evaluate(() => setAdminTab('tfeedback'));
-    if (!(await page.$('.eash-banner'))) fail('the old Trainee Feedback tab doesn\'t open the Scorecard');
+    if (!(await page.$('.eash-banner:not(.eash-amc-banner)'))) fail('the old Trainee Feedback tab doesn\'t open the Scorecard');
     await page.evaluate(() => EAPAShell.go('audit'));
     await page.waitForSelector('.eash-tabs');
     const tabs = await page.$$eval('.eash-tabs .admin-tab-btn', b => b.map(x => x.innerText.trim()));
     if (tabs.join('|') !== '⚙ Settings & Reports|📁 Batch Folders|📋 SOP Reference|✏️ Content Studio|🎬 Videos') fail(`🛡 Admin Master Control's tabs: ${tabs}`);
     await page.evaluate(() => EAPAShell.go('batches'));
-    if (await page.$('.eash-banner')) fail('📁 Batch Folders opened the Scorecard');
+    if (await page.$('.eash-banner:not(.eash-amc-banner)')) fail('📁 Batch Folders opened the Scorecard');
+    // every 🛡 Admin Master Control tab in the Scorecard's look: its own navy banner, the strip underlined on it, one white panel
+    for (const [id, title] of [['audit', 'Settings & Reports'], ['batches', 'Batch Folders'], ['sop', 'SOP Reference'], ['studio', 'Content Studio'], ['videos', 'Videos']]) {
+        await page.evaluate(id => { if (id === 'videos') setAdminTab('videos'); else EAPAShell.go(id); }, id); await page.waitForTimeout(300);
+        const look = await page.evaluate(() => ({ h: (document.querySelector('.eash-amc-banner h2') || {}).textContent || '', on: [...document.querySelectorAll('.eash-tabs .admin-tab-btn.on')].map(b => b.innerText.trim()), body: !!document.querySelector('.eash-amc-body'), loose: !!document.querySelector('.eash-amc-body > h1, .eash-amc-body .page-hero') }));
+        if (!look.h.includes(title) || look.on.length !== 1 || !look.on[0].includes(title) || !look.body || look.loose) fail(`🛡 ${title} isn't in the Scorecard's look: ${JSON.stringify(look)}`);
+    }
+    await page.evaluate(() => EAPAShell.go('batches'));
     if (!(await page.$('.batch-folder'))) fail('📁 Batch Folders doesn\'t show the batch folders');
     // another batch from the header
     await page.evaluate(() => { EAPAShell.go('scorecard'); }); await page.waitForSelector('.eash-banner');

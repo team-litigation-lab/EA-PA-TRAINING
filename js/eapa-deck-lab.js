@@ -129,7 +129,7 @@ function labSlideHtml(d, slide){
   const list = acts(t).map((l, i) => { const s = parts[l];
     return `<li class="${i === slide.part ? "on" : ""}${typeof s === "number" ? " done" : ""}"><span>${typeof s === "number" ? "✓" : i + 1}</span>${E(l)}${typeof s === "number" ? ` <em>${s}%</em>` : ""}</li>`; }).join("");
   const left = kcPassed(d.id) ? (labDone(d.id) ? `✓ Day ${d.id} is complete: Knowledge Check passed and Practice Lab done.` : `✓ Knowledge Check passed. A graded Practice Lab activity completes Day ${d.id}.`)
-    : (labDone(d.id) ? `✓ Practice Lab done. Pass the Knowledge Check (next) and Day ${d.id} completes itself.` : `Do the Practice Lab here, then the Knowledge Check: Day ${d.id} completes itself when both are done.`);
+    : (() => { const L = labLeft(d.id); return L.left.length ? `${L.all.length - L.left.length} of ${L.all.length} Practice Lab activities done. The Knowledge Check opens once all ${L.all.length} are graded.` : `✓ Every Practice Lab activity is done: the Knowledge Check is open.`; })();
   return `
     <div class="topic-separator">DAY ${d.id} &middot; ${slide.after ? "PRACTICE IN THE SESSION" : "PRACTICE LAB"} &middot; ACTIVITY ${slide.part + 1} OF ${slide.of}</div>
     <div class="card edl">
@@ -240,7 +240,48 @@ if(typeof moduleCard === "function"){
   };
 }
 
-window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline};
+/* ---------- 3. the Practice Lab before the Knowledge Check ----------
+   Trainees were reaching the Knowledge Check without doing the day's Practice Lab (its slides can be passed with Next).
+   The Knowledge Check now opens once EVERY activity of the day's Practice Lab is graded (each activity's best mark, in
+   practice-progress parts): until then it shows what is left, with ▶ Start on each, which opens the lab on that activity
+   from its own slide in the deck. Not held: a trainer (unless in 👁 Trainee view), a day whose Knowledge Check is already
+   passed, and a result just submitted. Every lab activity saves its mark when graded (.github/scripts/deck-lab.cjs). */
+function labLeft(dayId){
+  const left = [], all = [];
+  relatedTools(dayId).forEach(t => acts(t).forEach((label, part) => { const v = ((pp(t.id) || {}).parts || {})[label];
+    const x = {t, label, part, done: typeof v === "number", v}; all.push(x); if(!x.done) left.push(x); }));
+  return {left, all};
+}
+function kcHeld(dayId){
+  if(state.isAdmin && !state.adminPreview) return false;
+  if(kcPassed(dayId) || state.quizSubmitted) return false;
+  return labLeft(dayId).left.length > 0;
+}
+// ▶ Start from the checkpoint: to the activity's own slide in the deck first, so the lab's ← Back returns there
+function startFromGate(dayId, toolId, part){
+  const d = DAYS.find(x => x.id === dayId); const i = d ? buildDaySlides(d).findIndex(s => s && s.type === "practiceLab" && s.toolId === toolId && s.part === part) : -1;
+  state.dayViewMode = "slides"; if(i >= 0){ state.lessonSlide = i; if((state.maxSlideReached || 0) < i) state.maxSlideReached = i; }
+  open(toolId, part, dayId);
+}
+function gateHtml(d){
+  const {left, all} = labLeft(d.id), done = all.length - left.length;
+  return `<div class="card edl-gate">
+    <div class="edl-kick">🛠 Before the Knowledge Check</div>
+    <h3 class="edl-h">Finish Day ${d.id}'s Practice Lab first</h3>
+    <p class="edl-p">The Knowledge Check opens once every Practice Lab activity for today is graded. <b>${done} of ${all.length} done.</b></p>
+    <ol class="edl-list edl-gate-list">${all.map(x => `<li class="${x.done ? "done" : ""}"><span>${x.done ? "✓" : x.part + 1}</span>${E(x.label)}
+      ${x.done ? `<em>${x.v}%</em>` : `<button type="button" class="btn btn-navy btn-sm edl-gate-go" onclick="eapaDeckLab.startFromGate(${d.id}, '${E(x.t.id)}', ${x.part})">▶ Start</button>`}</li>`).join("")}</ol>
+  </div>`;
+}
+if(typeof renderQuiz === "function"){
+  const __quizHtml = renderQuiz;
+  renderQuiz = window.renderQuiz = function(d){
+    if(d && state.view === "day" && kcHeld(d.id)) return gateHtml(d);
+    return __quizHtml.apply(this, arguments);
+  };
+}
+
+window.eapaDeckLab = {ACTIVITIES, AFTER_TOPIC, open, toDeck, dayComplete, buildDaySlidesAtEnd, migrateLabsInline, labLeft, kcHeld, startFromGate};
 
 const st = document.createElement("style"); st.id = "eapa-deck-lab"; st.textContent = `
 .edl{text-align:left;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;padding:22px 24px;background:#FFFBF3;border-color:var(--orange-soft,#F3D2B0);align-items:start;}
@@ -256,6 +297,8 @@ const st = document.createElement("style"); st.id = "eapa-deck-lab"; st.textCont
 .edl-list li span{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#EEF0F6;color:#1E2340;font-weight:800;}
 .edl-list li.done span{background:#1E8E3E;color:#fff;} .edl-list li em{margin-left:auto;font-style:normal;color:#0B5D1E;}
 .edl-list li.on{border-color:#DB8437;box-shadow:0 0 0 2px rgba(219,132,55,.25);}
+.edl-gate{text-align:left;padding:22px 24px;background:#FFFBF3;border-color:var(--orange-soft,#F3D2B0);}
+.edl-gate-list li .edl-gate-go{margin-left:auto;font-size:14px;padding:6px 14px;}
 @media(max-width:760px){ .edl{grid-template-columns:1fr;} }
 `;
 (document.head || document.documentElement).appendChild(st);

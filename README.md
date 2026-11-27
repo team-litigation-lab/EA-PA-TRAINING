@@ -14,6 +14,11 @@ Trainees sign in once, on the LSH Training Portal, and open this program from th
 
 The 10-day EA/PA training course: a Cloudflare Worker (`worker.js`) serving `index.html`, with its records in the `LSH_KV` KV namespace and trainees' saved progress in R2 (see "Where records are kept").
 
+**🛡 Admin Master Control looks like the 🏅 Scorecard** (`js/eapa-admin-shell.js`). On every tab (⚙ Settings & Reports, 📁 Batch Folders and each batch, 📋 SOP Reference, ✏️ Content Studio, 🎬 Videos):
+- the tab's title, intro and buttons sit in the same navy banner as the Scorecard's;
+- the tab strip is the Scorecard's underlined sub-tabs;
+- the content is in one solid white panel, with white cards and navy-header tables, instead of frosted glass over the photo.
+
 **🏠 Main Portal (admins):** while an admin is signed in, the top bar has **🏠 Main Portal** and the Admin screen has **← Back to Main Portal** (next to Log out). Both open the LSH Training Portal's LSH Academy Index (`https://cm-training-activity.pages.dev/programs.html`), where admins open each program. Trainees and the 👁 Trainee view don't show them. It's `js/portal-link.js`, the same file in every LSH course repo (EA-PA-TRAINING, Case-Management-Training, propertydamageclaimstraining, Foundational-Training); change it in all of them.
 
 **🧭 The top bar, organized (every course):** buttons that do the same kind of thing share one menu, the way the Training Portal keeps everything else under ⚙ System Management. **📁 Case File** is one tab for the Case File (or Claim File), 📁 Documents and 🗂 Workspace, which share a row of tabs at the top of their pages; **📚 Guides ▾** holds Notes, Handouts and the Facilitator Guide (whichever the page has; the blueprints are on the Main Portal); **📋 My Sheets ▾** holds the Task Tracker and Monitoring Sheet; **⛶ View ▾** holds ⧉ Open in a new tab and ⛶ Full screen. A menu is made only when two or more of its buttons are on the bar. It's `js/lsh-topbar.js`, loaded last, the same file in every LSH course repo; change it in all of them.
@@ -58,6 +63,7 @@ Each Practice Lab activity's slide now sits **inside the lesson it practises**, 
 
 - The map is `AFTER_TOPIC` in `js/eapa-deck-lab.js` (activity → topic title). Activities with no topic of their own (every day's *Crisis Roleplay*, Day 4's *Prioritize the Day*, Day 10's *Marketing Plan*) stay at the end of the day, before the Knowledge Check.
 - Topic titles are keys: renaming a topic moves its activity back to the end, and `.github/scripts/deck-lab.cjs` fails until `AFTER_TOPIC` is updated.
+- **The Practice Lab comes before the Knowledge Check.** A day's ✍️ Knowledge Check opens only once every activity of that day's Practice Lab is graded. Until then it shows **Finish Day N's Practice Lab first**: each activity, ✓ with its best mark or ▶ Start, which opens the lab on that activity from its own slide in the deck. A trainer is never held (👁 Trainee view is), nor is a day whose Knowledge Check is already passed. Every lab activity saves its mark when graded, so no one can be locked out (`kcHeld` / `labLeft` in `js/eapa-deck-lab.js`; checked by `.github/scripts/deck-lab.cjs`).
 - Saved places move with their slide: the first time a trainee signs in after this change, their place and furthest slide on each day are moved to the same slides in the new order (`migrateLabsInline`, once per day, flagged `deck-lab-inline:<day>` in `day-order-migrated`), and the furthest slide never moves back.
 
 ## 🎨 Slide colour, graphics and icons
@@ -351,6 +357,13 @@ Trainees open **🏅 Scorecard** in the top bar (or the button under the dashboa
 - **🏆 Ranking**: the batch, on the same score as the dashboard's Ranking card (35% days completed · 25% Knowledge Checks · 25% Practice Lab · 15% random tasks), with Week 1 and Week 2 beside the overall. Other trainees show as first name and last initial.
 
 Trainers see the same tables for each trainee in **Admin → Trainee Audit → View Detail → 🏅 Scorecard**, with each day's feedback status (Sent / Draft / Not reviewed). **👁 Trainee view** shows the page too, from that browser's own progress.
+
+**The trainee's card** (`js/eapa-cm-scorecard.js`: Admin → 🏅 Scorecard → 🏅 Scorecards, and the trainee's own 🏅 My Scorecard) is laid out as the Case Management course's, so a trainer can find and double-check any score in one place, and each fact is shown once:
+
+1. **Header**: name, batch, Overall, status, days passed and the 70% pass mark (on the trainee's page the tiles and pass band above already say this, so the card has no header).
+2. **📅 Day scores**: one line of numbers per day (Day score · ✍️ Knowledge Check · 🛠 Practice Lab · ❓ Quick Checks · ⚡ Random task · 📖 Slides) and **Open ↓**, with how many scores are below 70% and whether trainer feedback was sent. No feedback text here.
+3. **💬 Feedback on each activity**: **🎯 Focus on** first, every score below 70% lowest first, one line each (what was wrong, what to do) with a **Day N ↓** link. It is built from the same rows as the day tables, so an item has the same name and score in both. Then each day, folded until opened (**Open every day** / **Close every day**): the why-this-score table, one row per part of the day's score (Knowledge Check, Quick Checks, each Practice Lab, random task, any Live Roleplay, which is graded but not counted), with **Score · 🧾 Why this score · ⭐ What you did great · ❌ What was wrong · 💡 What could have been done better** from the grader's notes on the run that got the score, and the trainer's feedback for the day. A run scored before the labs kept their notes is explained from what was saved and says so.
+4. **How these scores are worked out**, folded at the bottom.
 
 A graded call counts here. The Training Portal (its `/api/call-results`) keeps the trainee's graded calls in `callsim:<trainee id>` (no key prefix; a trainee on an older id is found through `trainee-alias:`), by line, and the Worker lets the trainee read it but never write it. The dashboard band's **Graded calls** card (`js/graded-calls.js`) shows the best graded call on each line, averaged, with the lines and calls taken; each line's best is in its tooltip. It's read once a page load and again when the trainee comes back to the tab (at most every two minutes).
 
