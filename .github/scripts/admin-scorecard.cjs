@@ -44,12 +44,14 @@ const failures = []; const fail = (m) => failures.push(m);
     for (const t of ['Ana Cruz', 'Overall', 'Day scores', 'Feedback on each activity', 'Focus on', 'Knowledge Check', 'Day 2 ↓', 'What to do', 'Client Dossier', 'Missed the travel rule', 'How these scores are worked out'])
       if (!cardTxt.toLowerCase().includes(t.toLowerCase())) fail(`the trainee's card has no "${t}"`);
     // the card follows the CM scorecard: Day scores is numbers only (no feedback text in it), the feedback is per day, folded
+    const order = await page.$$eval('#eacmCard .eacm-sec h4', h => h.map(x => x.innerText));
+    if (!/Feedback on each activity/.test(order[0] || '') || !/Day scores/.test(order[1] || '')) fail(`💬 Feedback on each activity should come first, then 📅 Day scores: ${order}`);
     if (await page.$('#eacmCard .eacm-days .eacm-mk, #eacmCard .eacm-days details')) fail('📅 Day scores still holds the feedback: it should be numbers only');
     const dayHead = await page.$$eval('#eacmCard .eacm-days thead th', t => t.map(x => x.innerText.trim()));
     if (dayHead.join('|') !== 'Day|Day score|✍️ Knowledge Check|🛠 Practice Lab|❓ Quick Checks|⚡ Random task|📖 Slides|💬 Feedback') fail(`📅 Day scores' columns: ${dayHead}`);
     if (await page.$eval('#eacmCard details.eacm-day[data-day="1"]', d => d.open)) fail("a day's feedback should start folded");
     await page.click('#eacmCard .eacm-days tr:has-text("Day 1") .eacm-go');
-    await page.waitForFunction(() => document.querySelector('#eacmCard details.eacm-day[data-day="1"]').open, null, { timeout: 5000 }).catch(() => fail('Open ↓ in Day scores did not open the day\'s feedback'));
+    await page.waitForFunction(() => document.querySelector('#eacmCard details.eacm-day[data-day="1"]').open, null, { timeout: 5000 }).catch(() => fail('Open ↑ in Day scores did not open the day\'s feedback'));
     const mk = await page.$eval('#eacmCard details.eacm-day[data-day="1"] .eacm-mk', m => m.innerText).catch(() => '');
     for (const t of ['Knowledge Check', 'Client Dossier', 'Clear headings', 'Missed the travel rule', 'Check the Client Profile first', 'Why this score', 'What you did great', 'What was wrong', 'What could have been done better']) if (!mk.includes(t)) fail(`"What makes up this score" for Day 1 has no "${t}"`);
     await page.evaluate(() => EAPAShell.sub('people'));

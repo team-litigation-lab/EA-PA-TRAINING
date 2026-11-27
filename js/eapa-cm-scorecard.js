@@ -6,10 +6,10 @@
        Day 1 … Day 10). Each day cell shows the day's score, what it is made of (Knowledge Check, Practice Lab,
        Quick Checks, random task) and the slides reached, tinted against the 70% pass mark.
        Click a row (or pick a trainee) to open the card.
-     • The trainee's card, laid out as the Case Management course's: a navy header (Overall, status, days passed);
-       📅 Day scores — one line of numbers per day (Knowledge Check, Practice Lab, Quick Checks, random task, slides);
-       💬 Feedback on each activity — 🎯 Focus on (every score under the pass mark, one line each, linking to its day),
-       then each day folded: its why-this-score table and the trainer's feedback; then how the scores are worked out.
+     • The trainee's card: a navy header (Overall, status, days passed); 💬 Feedback on each activity first (what a trainer
+       checks most); then 📅 Day scores — one line of numbers per day (Knowledge Check, Practice Lab, Quick Checks, random task, slides);
+       In the feedback: 🎯 Focus on (every score under the pass mark, one line each, linking to its day), then each
+       day folded: its why-this-score table and the trainer's feedback; then how the scores are worked out.
        Each fact is shown once.
    The numbers are the same as the trainee's own 🏅 My Scorecard (EAPAScore.dayRow in js/eapa-scorecard.js),
    read from each trainee's saved progress (state.auditExtra, loaded by loadAuditExtras).
@@ -209,9 +209,9 @@ function makeup(r, fb){
     </tbody></table></div>
     ${f ? `<div class="eacm-tfb"><b>✍ Trainer feedback</b> <small>${f.status === "sent" ? "Sent" + (f.readAt ? " · read" : "") : "Draft — not sent"}${f.rating ? ` · ${E(f.rating)}` : ""}</small>${f.summary ? `<p>${E(f.summary)}</p>` : ""}${f.mine && typeof openDayFeedback === "function" ? `<button type="button" class="eacm-more" onclick="openDayFeedback(${r.dayId})">Read the full feedback →</button>` : ""}</div>` : ""}</div>`;
 }
-/* The card, laid out as the Case Management course's: the header; 📅 Day scores (one line of numbers per day, nothing
-   else); 💬 Feedback on each activity (🎯 Focus on first, a short index of what is below the pass mark, then each day's
-   activities and feedback, folded until opened); and how the scores are worked out, folded at the bottom. Each fact is
+/* The card: the header; 💬 Feedback on each activity first, the part a trainer checks most (🎯 Focus on, a short
+   index of what is below the pass mark, then each day's activities and feedback, folded until opened); 📅 Day scores
+   (one line of numbers per day, nothing else); and how the scores are worked out, folded at the bottom. Each fact is
    shown once: the numbers in Day scores, the explanations in the day's feedback, and Focus on only points to them. */
 const cell = (v, t) => `<td class="eacm-c eacm-${num(v) ? tint(v) : "none"}">${num(v) ? Math.round(v) + "%" : "—"}${t ? `<small>${t}</small>` : ""}</td>`;
 function daysTable(s, r, you){
@@ -226,7 +226,7 @@ function daysTable(s, r, you){
       ${d.qcTotal ? cell(d.qc, `${d.qcRight}/${d.qcTotal} right`) : `<td class="eacm-c eacm-none">—</td>`}
       ${cell(d.task, "")}
       <td class="eacm-c eacm-none">${d.seen}/${d.n}</td>
-      <td class="eacm-fbc"><button type="button" class="eacm-go" onclick="EAPACM.goDay('${Q(r.id)}', ${d.dayId})">Open ↓</button>${below ? `<small class="eacm-lo-t">${below} below ${PASS}%</small>` : ""}${f ? `<small>✍ ${f.status === "sent" ? "trainer feedback sent" : "trainer draft"}</small>` : ""}</td></tr>`;
+      <td class="eacm-fbc"><button type="button" class="eacm-go" onclick="EAPACM.goDay('${Q(r.id)}', ${d.dayId})">Open ↑</button>${below ? `<small class="eacm-lo-t">${below} below ${PASS}%</small>` : ""}${f ? `<small>✍ ${f.status === "sent" ? "trainer feedback sent" : "trainer draft"}</small>` : ""}</td></tr>`;
   }).join("");
   return `<div class="eacm-dsw"><table class="eacm-days">${head}<tbody>
     ${you ? "" : `<tr class="eacm-ov"><td><b>Overall</b><small>${s.passedN} of ${DAYS.length} days passed</small></td>${cell(s.overall, "")}<td colspan="6" class="eacm-ns">The average of the days scored so far. A day's score is the average of its Knowledge Check, Practice Lab, Quick Checks and random task.</td></tr>`}
@@ -264,11 +264,11 @@ function card(s, you){
     ${you ? "" : `<div class="eacm-card-h"><div><p class="eacm-k">Trainee scorecard</p><h3>${E(nameOf(r))}</h3>
       <p class="eacm-k2">${E(typeof batchLabel === "function" ? batchLabel(batchKey(r)) : r.batch || "")}${r.registeredAt ? ` · registered ${E(new Date(r.registeredAt).toLocaleDateString())}` : ""}</p></div>
       <div class="eacm-card-chips"><span class="eacm-big eacm-${tint(s.overall)}">Overall ${P(s.overall)}</span><span class="eacm-st2 eacm-${st.c}">${st.t}</span><span class="eacm-pm">${s.passedN} of ${DAYS.length} days passed · pass mark ${PASS}%</span></div></div>`}
-    <div class="eacm-sec"><h4>📅 Day scores</h4>${daysTable(s, r, you)}</div>
     <div class="eacm-sec"><h4>💬 Feedback on each activity <small>· every score explained: why, what went well, what was wrong, what to do better</small></h4>
       ${focusTable(s, r)}
       <div class="eacm-btns"><button type="button" class="eacm-more" onclick="EAPACM.allDays('${Q(r.id)}', true)">Open every day</button><button type="button" class="eacm-more" onclick="EAPACM.allDays('${Q(r.id)}', false)">Close every day</button></div>
       ${feedbackDays(s, r)}</div>
+    <div class="eacm-sec"><h4>📅 Day scores</h4>${daysTable(s, r, you)}</div>
     <details class="eacm-how"><summary>How these scores are worked out</summary>
       <ul><li><b>Day score</b> = the average of the day's Knowledge Check, Practice Lab (the best run of each lab), Quick Checks and random task, whichever have a score.</li>
         <li><b>Overall</b> = the average of the days scored so far. A day is <b>passed</b> when its Knowledge Check is passed.</li>
