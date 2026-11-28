@@ -32,7 +32,7 @@ if(typeof mergeExtraQuiz === "function"){
 }
 
 /* ---------- the footer bar ---------- */
-const pageLinks = d => `<button type="button" class="kc-fl" onclick="goto('dashboard')">← Back to roadmap</button>
+const pageLinks = d => `<button type="button" class="kc-fl" onclick="if(window.eapaRoadmap) eapaRoadmap.open(${d.id}); else goto('dashboard')" title="The day's roadmap: its agenda, each part of the deck one click away">← Back to roadmap</button>
   <button type="button" class="kc-fl" onclick="backToSlidesFromKnowledgeCheck()">← Back to lessons</button>
   <button type="button" class="kc-fl" onclick="openRouteInNewTab('#/day/${d.id}')" title="Keep this Knowledge Check open and review the lesson slides side by side">📑 Review lessons in a new tab</button>`;
 const __quiz = renderQuiz;
