@@ -7836,7 +7836,7 @@ function renderDayIntro(d){
         ${warm.length ? `<div class="di-warm"><b>🧠 Warm-up — what do you already know?</b> <span>Not graded. Just notice what you're unsure about.</span>
           ${warm.map((q,k)=>warmupQuestionHtml(d.id,q,k)).join("")}</div>` : ""}
       </div></div>
-      <div class="slide-nav"><span style="display:flex;gap:8px;align-items:center;">${dayFootLinks(false)}<button class="btn btn-ghost btn-sm" onclick="goto('dashboard')">⌂ Roadmap</button></span><span class="slide-counter">Objectives</span><button class="btn btn-primary" onclick="startDayFromIntro(${d.id})">Start Day ${d.id} →</button></div>
+      <div class="slide-nav"><span style="display:flex;gap:8px;align-items:center;">${dayFootLinks(false)}<button class="btn btn-ghost btn-sm" onclick="if(window.eapaRoadmap) eapaRoadmap.open(); else goto('dashboard')">⌂ Roadmap</button></span><span class="slide-counter">Objectives</span><button class="btn btn-primary" onclick="startDayFromIntro(${d.id})">Start Day ${d.id} →</button></div>
     </div>`;
 }
 /* Warm-up: the trainee picks an answer first; only then do we show whether it was right
@@ -18398,7 +18398,9 @@ window.addEventListener("error", (ev)=>{ if(state.isAdmin && ev && ev.message &&
 <script src="/js/eapa-act-habit.js?v=1"></script>
 <script src="/js/eapa-deck-lab.js?v=8"></script>
 <!-- ✍️ The Knowledge Check, the Standard way: 20 questions, bigger and clearer, its buttons in one footer bar -->
-<script src="/js/eapa-kc-standard.js?v=1"></script>
+<script src="/js/eapa-kc-standard.js?v=2"></script>
+<!-- 🗺 The day's roadmap: ⌂ Roadmap opens the day's agenda, each section a way into the deck -->
+<script src="/js/eapa-roadmap.js?v=1"></script>
 <!-- 🔠 The lesson deck's type, the Case Management / Foundational way: body text 16px+ on a laptop, labels you can read -->
 <script src="/js/eapa-deck-type.js?v=1"></script>
 <script src="/js/lsh-footer.js?v=1"></script>
